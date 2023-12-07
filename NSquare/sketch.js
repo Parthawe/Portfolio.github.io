@@ -30,8 +30,7 @@ function preload() {
 function setup() {
   canvas = createCanvas(600, 600);
   background(0);
-  
-  
+
   cellSize = width / 8; // Calculate cell size based on canvas width
 
   // Initialize the grid with 64 values of 0
@@ -55,12 +54,8 @@ function setup() {
   }
 
   // Start classifying on mouse press
-  // canvas.mousePressed(startDrawing);
-  // canvas.mouseReleased(classifyDrawing);
-  
-  canvas.touchStarted(touchStarted);
-  canvas.touchEnded(classifyDrawing);
-
+  canvas.mousePressed(startDrawing);
+  canvas.mouseReleased(classifyDrawing);
 
   // Create a clear button
   let clearButton = createButton('Clear');
@@ -96,19 +91,10 @@ function draw() {
 }
 
 // Start drawing when mouse is pressed
-function touchStarted() {
+function startDrawing() {
   isDrawing = true;
   previousX = mouseX;
   previousY = mouseY;
-}
-
-function touchEnded() {
-  isDrawing = false;
-}
-
-function touchMoved() {
-  // Prevent scrolling on mobile devices
-  return false;
 }
 
 // Stop drawing and classify the drawn image
