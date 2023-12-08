@@ -62,7 +62,7 @@ function setup() {
   canvas.touchEnded(classifyDrawing);
 
   clearButton = createButton('Clear');
-  clearButton.position(windowWidth / 2 - 50, height + 100); // Position the button centered below the canvas
+  clearButton.position(windowWidth / 2 - 50, height + 120); // Position the button centered below the canvas
   clearButton.style('background-color', 'black');
   clearButton.style('color', 'white');
   clearButton.style('padding', '10px 20px');
@@ -78,7 +78,7 @@ function setup() {
 
   // Set positions for the div elements
   textDiv1.position(windowWidth / 2 - 150, 15); // Position for the first text
-  textDiv2.position(windowWidth / 2 - 230, 55); // Position for the second text
+  textDiv2.position(windowWidth / 2 - 230, 50); // Position for the second text
 
   // Set styles for the div elements
   textDiv1.style('font-family', 'Gotham, sans-serif');
