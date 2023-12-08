@@ -247,6 +247,8 @@ function gotResult(error, results) {
   // Show the labels and confidence percentages
   //console.log(predictions);
   //console.log(confidenceArray); // Log the confidenceArray to see the values between positions 148 and 199
+  checkPrediction();
+  sendData();
 }
 
 // Clear the canvas and reset the grid
@@ -271,7 +273,7 @@ function checkPrediction() {
   // Combine grid and confidenceArray into combinedArray
   combinedArray = [...grid, ...hidden_array, ...confidenceArray];
   //console.log(combinedArray); // Log the combined array
-  sendData();
+  //sendData();
 }
 
 
