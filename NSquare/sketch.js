@@ -31,7 +31,7 @@ function preload() {
 }
 
 function setup() {
-  canvas = createCanvas(800, 800);
+  canvas = createCanvas(750, 750);
   background(0);
 
   cellSize = width / 8; // Calculate cell size based on canvas width
@@ -62,16 +62,16 @@ function setup() {
 
   // Create a clear button
   let clearButton = createButton('Clear');
-  clearButton.position(10, height + 10);
+  clearButton.position(40, height + 20);
   clearButton.mousePressed(clearCanvas);
 
   // Check for predictions every 2 seconds
-  setInterval(checkPrediction, 2000);
+  //setInterval(checkPrediction, 2000);
 }
 
 function draw() {
   stroke(255);
-  strokeWeight(60);
+  strokeWeight(55);
   if (isDrawing && touches.length > 0) {
     if (isStartingNewDrawing) {
       // Move the drawing without creating a line (only on the first touch)
@@ -115,7 +115,10 @@ function startDrawing() {
 // Stop drawing and classify the drawn image when touch ends
 function classifyDrawing() {
   isDrawing = false;
-  getDrawingClassification();
+  if (grid.some(cell => cell === 100)) {
+    getDrawingClassification(); // Perform classification only if something is drawn
+    checkPrediction();
+  }
 }
 
 // Update the grid cells intersected by the drawn line
