@@ -8,6 +8,9 @@ let canvas;
 let isDrawing = false;
 let previousX = 0;
 let previousY = 0;
+let prevTouchX; // Variable to store previous touch X position
+let prevTouchY; // Variable to store previous touch Y position
+let isStartingNewDrawing = true;
 
 // To store the classification
 let predictions = [];
@@ -54,8 +57,8 @@ function setup() {
   }
 
   // Start classifying on mouse press
-  canvas.mousePressed(startDrawing);
-  canvas.mouseReleased(classifyDrawing);
+  canvas.touchStarted(startDrawing);
+  canvas.touchEnded(classifyDrawing);
 
   // Create a clear button
   let clearButton = createButton('Clear');
@@ -69,11 +72,21 @@ function setup() {
 function draw() {
   stroke(255);
   strokeWeight(40);
-  if (isDrawing) {
-    line(previousX, previousY, mouseX, mouseY);
-    updateGridCells(previousX, previousY, mouseX, mouseY);
-    previousX = mouseX;
-    previousY = mouseY;
+  if (isDrawing && touches.length > 0) {
+    if (isStartingNewDrawing) {
+      // Move the drawing without creating a line (only on the first touch)
+      prevTouchX = touches[0].x;
+      prevTouchY = touches[0].y;
+      isStartingNewDrawing = false;
+    } else {
+      // Draw lines except for the first touch (creates separation between drawings)
+      line(prevTouchX, prevTouchY, touches[0].x, touches[0].y);
+      updateGridCells(prevTouchX, prevTouchY, touches[0].x, touches[0].y);
+    }
+
+    prevTouchX = touches[0].x;
+    prevTouchY = touches[0].y;
+  
     
      for (let i = 0; i < hidden_array.length; i++) {
   let randomValue = Math.floor(Math.random() * 2); // Generate either 0 or 1
@@ -83,21 +96,23 @@ function draw() {
     hidden_array[i] = Math.floor(Math.random() * 100) + 1; // Set a random value between 1 and 100 for the other half
   }
 }
-  }
+  } 
   
  
 
   //Console.log(hidden_array);
 }
 
-// Start drawing when mouse is pressed
 function startDrawing() {
   isDrawing = true;
-  previousX = mouseX;
-  previousY = mouseY;
+  isStartingNewDrawing = true; // Set flag to indicate a new drawing
+  if (touches.length > 0) {
+    prevTouchX = touches[0].x;
+    prevTouchY = touches[0].y;
+  }
 }
 
-// Stop drawing and classify the drawn image
+// Stop drawing and classify the drawn image when touch ends
 function classifyDrawing() {
   isDrawing = false;
   getDrawingClassification();
