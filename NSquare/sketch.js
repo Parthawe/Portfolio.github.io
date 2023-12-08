@@ -32,6 +32,9 @@ function preload() {
 
 function setup() {
   canvas = createCanvas(700, 700);
+  let x = (windowWidth - width) / 2;
+  let y = (windowHeight - height) / 2;
+  canvas.position(x, y);
   centerCanvas();
   background(0);
 
