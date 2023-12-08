@@ -62,7 +62,7 @@ function setup() {
   canvas.touchEnded(classifyDrawing);
 
   clearButton = createButton('Clear');
-  clearButton.position(windowWidth / 2 - 50, height + 120); // Position the button centered below the canvas
+  clearButton.position(windowWidth / 2 - 50, height + 100); // Position the button centered below the canvas
   clearButton.style('background-color', 'black');
   clearButton.style('color', 'white');
   clearButton.style('padding', '10px 20px');
