@@ -257,6 +257,7 @@ function clearCanvas() {
   grid = grid.map(() => 0);
   hidden_array = hidden_array.map(() => 0);
   confidenceArray = confidenceArray.map(() => 0);
+  combinedArray = combinedArray.map(() => 0);
   sendData();
 }
 let combinedArray = []; // Define a new array for combining grid and confidenceArray
