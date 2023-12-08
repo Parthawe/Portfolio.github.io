@@ -31,7 +31,8 @@ function preload() {
 }
 
 function setup() {
-  canvas = createCanvas(750, 750);
+  canvas = createCanvas(725, 725);
+  centerCanvas();
   background(0);
 
   cellSize = width / 8; // Calculate cell size based on canvas width
@@ -60,10 +61,35 @@ function setup() {
   canvas.touchStarted(startDrawing);
   canvas.touchEnded(classifyDrawing);
 
-  // Create a clear button
-  let clearButton = createButton('Clear');
-  clearButton.position(40, height + 20);
+  clearButton = createButton('Clear');
+  clearButton.position(windowWidth / 2 - 50, height + 140); // Position the button centered below the canvas
+  clearButton.style('background-color', 'black');
+  clearButton.style('color', 'white');
+  clearButton.style('padding', '10px 20px');
+  clearButton.style('border', 'none');
+  clearButton.style('border-radius', '100px');
+  clearButton.style('font-family', 'Helvatica, sans-serif');
+  clearButton.style('cursor', 'pointer');
+  clearButton.style('font-size', '24px');
   clearButton.mousePressed(clearCanvas);
+  
+ let textDiv1 = createDiv('Welcome to Neural Networks');
+  let textDiv2 = createDiv('Please draw one Alphabet');
+
+  // Set positions for the div elements
+  textDiv1.position(windowWidth / 2 - 150, 25); // Position for the first text
+  textDiv2.position(windowWidth / 2 - 230, 75); // Position for the second text
+
+  // Set styles for the div elements
+  textDiv1.style('font-family', 'Gotham, sans-serif');
+  textDiv1.style('text-align', 'center');
+  textDiv1.style('font-size', '16px');
+  textDiv1.style('padding', '10px');
+
+  textDiv2.style('font-family', 'Gotham, sans-serif');
+  textDiv2.style('text-align', 'center');
+  textDiv2.style('font-size', '32px');
+  textDiv2.style('padding', '10px');
 
   // Check for predictions every 2 seconds
   //setInterval(checkPrediction, 2000);
@@ -101,6 +127,16 @@ function draw() {
  
 
   //Console.log(hidden_array);
+}
+
+function centerCanvas() {
+  let x = (windowWidth - width) / 2;
+  let y = (windowHeight - height) / 2;
+  canvas.position(x, y);
+}
+
+function windowResized() {
+  centerCanvas();
 }
 
 function startDrawing() {
