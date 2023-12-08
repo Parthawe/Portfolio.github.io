@@ -31,7 +31,7 @@ function preload() {
 }
 
 function setup() {
-  canvas = createCanvas(600, 600);
+  canvas = createCanvas(800, 800);
   background(0);
 
   cellSize = width / 8; // Calculate cell size based on canvas width
@@ -71,7 +71,7 @@ function setup() {
 
 function draw() {
   stroke(255);
-  strokeWeight(40);
+  strokeWeight(60);
   if (isDrawing && touches.length > 0) {
     if (isStartingNewDrawing) {
       // Move the drawing without creating a line (only on the first touch)
