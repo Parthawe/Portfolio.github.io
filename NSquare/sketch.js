@@ -82,7 +82,7 @@ function setup() {
   let textDiv2 = createDiv('Please draw one Alphabet');
 
   // Set positions for the div elements
-  textDiv1.position(windowWidth / 2 - 150, 05); // Position for the first text
+  textDiv1.position(windowWidth / 2 - 160, 05); // Position for the first text
   textDiv2.position(windowWidth / 2 - 230, 40); // Position for the second text
 
   // Set styles for the div elements
