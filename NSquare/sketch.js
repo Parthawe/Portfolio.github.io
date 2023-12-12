@@ -1,7 +1,7 @@
 // Classifier Variable Perfect 2
 let classifier;
 // Model URL
-let imageModelURL = 'https://teachablemachine.withgoogle.com/models/pXcVCXEFE/';
+let imageModelURL = 'https://teachablemachine.withgoogle.com/models/LuuKcRhpv/';
 
 // Canvas
 let canvas;
