@@ -31,10 +31,12 @@ function preload() {
 }
 
 function setup() {
-  canvas = createCanvas(700, 700);
+  canvas = createCanvas(600, 600);
   let x = (windowWidth - width) / 2;
   let y = (windowHeight - height) / 2;
   canvas.position(x, y);
+  canvas.style('marginright',auto);
+  canvas.style('marginright',auto);
   centerCanvas();
   background(0);
 
@@ -65,7 +67,7 @@ function setup() {
   canvas.touchEnded(classifyDrawing);
 
   clearButton = createButton('Clear');
-  clearButton.position(windowWidth / 2 - 50, height + 120); // Position the button centered below the canvas
+  clearButton.position(windowWidth / 2 - 50, height + 50); // Position the button centered below the canvas
   clearButton.style('background-color', 'black');
   clearButton.style('color', 'white');
   clearButton.style('padding', '10px 20px');
@@ -76,12 +78,12 @@ function setup() {
   clearButton.style('font-size', '20px');
   clearButton.mousePressed(clearCanvas);
   
- let textDiv1 = createDiv('Welcome to Neural Networks');
+ let textDiv1 = createDiv('Welcome to Enigma');
   let textDiv2 = createDiv('Please draw one Alphabet');
 
   // Set positions for the div elements
-  textDiv1.position(windowWidth / 2 - 150, 15); // Position for the first text
-  textDiv2.position(windowWidth / 2 - 230, 50); // Position for the second text
+  textDiv1.position(windowWidth / 2 - 150, 05); // Position for the first text
+  textDiv2.position(windowWidth / 2 - 230, 40); // Position for the second text
 
   // Set styles for the div elements
   textDiv1.style('font-family', 'Gotham, sans-serif');
