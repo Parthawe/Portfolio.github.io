@@ -35,8 +35,6 @@ function setup() {
   let x = (windowWidth - width) / 2;
   let y = (windowHeight - height) / 2;
   canvas.position(x, y);
-  canvas.style('marginright',auto);
-  canvas.style('marginright',auto);
   centerCanvas();
   background(0);
 
@@ -67,7 +65,7 @@ function setup() {
   canvas.touchEnded(classifyDrawing);
 
   clearButton = createButton('Clear');
-  clearButton.position(windowWidth / 2 - 50, height + 50); // Position the button centered below the canvas
+  clearButton.position(windowWidth / 2 - 50, height-10); // Position the button centered below the canvas
   clearButton.style('background-color', 'black');
   clearButton.style('color', 'white');
   clearButton.style('padding', '10px 20px');
@@ -82,7 +80,7 @@ function setup() {
   let textDiv2 = createDiv('Please draw one Alphabet');
 
   // Set positions for the div elements
-  textDiv1.position(windowWidth / 2 - 160, 05); // Position for the first text
+  textDiv1.position(windowWidth / 2 - 100, 05); // Position for the first text
   textDiv2.position(windowWidth / 2 - 230, 40); // Position for the second text
 
   // Set styles for the div elements
