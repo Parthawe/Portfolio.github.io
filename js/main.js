@@ -14,31 +14,43 @@
   }
 
   /* ── Tab system (home hero) ── */
-  const ACCENTS = ['#fc5808', '#2d81c2'];
-  let accentIdx = 0;
+  // Each tab maps to its own accent color
+  const TAB_ACCENTS = {
+    anyone:    '#fc5808',
+    recruiter: '#2d81c2',
+    pm:        '#fc5808'
+  };
 
-  const pills   = document.querySelectorAll('.tab-pill');
-  const hls     = document.querySelectorAll('.hero-hl');
+  const pills = document.querySelectorAll('.tab-pill');
+  const hls   = document.querySelectorAll('.hero-hl');
 
   pills.forEach(pill => {
     pill.addEventListener('click', () => {
-      // cycle accent
-      accentIdx = (accentIdx + 1) % ACCENTS.length;
-      document.documentElement.style.setProperty('--accent', ACCENTS[accentIdx]);
+      const target = pill.dataset.tab;
 
-      // update pills
+      // set accent for this tab
+      const accent = TAB_ACCENTS[target] || '#fc5808';
+      document.documentElement.style.setProperty('--accent', accent);
+
+      // update active pill
       pills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
 
-      // update headlines
-      const target = pill.dataset.tab;
+      // swap headline
       hls.forEach(hl => {
-        if (hl.dataset.content === target) {
-          hl.classList.add('active');
-        } else {
-          hl.classList.remove('active');
-        }
+        hl.classList.toggle('active', hl.dataset.content === target);
       });
+
+      // update min-height
+      const hlContainer = document.querySelector('.hero-headline');
+      if (hlContainer) {
+        const active = hlContainer.querySelector('.hero-hl.active');
+        if (active) {
+          requestAnimationFrame(() => {
+            hlContainer.style.minHeight = active.offsetHeight + 'px';
+          });
+        }
+      }
     });
   });
 
@@ -54,11 +66,21 @@
         if (!grid) return;
 
         grid.querySelectorAll('.card').forEach(card => {
-          if (filter === 'all') {
+          const match = filter === 'all' || (card.dataset.tags || '').split(' ').includes(filter);
+          // Animate hide/show
+          if (match) {
             card.style.display = '';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(12px)';
+            requestAnimationFrame(() => {
+              card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+              card.style.opacity = '1';
+              card.style.transform = '';
+            });
           } else {
-            const tags = (card.dataset.tags || '').split(' ');
-            card.style.display = tags.includes(filter) ? '' : 'none';
+            card.style.transition = 'opacity 0.2s ease';
+            card.style.opacity = '0';
+            setTimeout(() => { card.style.display = 'none'; }, 200);
           }
         });
       });
@@ -75,31 +97,36 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+    }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => io.observe(el));
   } else {
     revealEls.forEach(el => el.classList.add('in'));
   }
 
-  /* ── Active nav ── */
+  /* ── Active nav link ── */
   const page = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(a => {
-    if ((a.getAttribute('href') || '').split('#')[0] === page) {
-      a.classList.add('active');
-    }
+    const href = (a.getAttribute('href') || '').split('#')[0];
+    if (href === page) a.classList.add('active');
   });
 
-  /* ── Hero headline min-height fix ── */
-  // After active headline renders, set container min-height so no jump on tab switch
+  /* ── Hero headline min-height ── */
   const hlContainer = document.querySelector('.hero-headline');
   if (hlContainer) {
     const activeHl = hlContainer.querySelector('.hero-hl.active');
     if (activeHl) {
-      // Let font load then measure
       requestAnimationFrame(() => {
         hlContainer.style.minHeight = activeHl.offsetHeight + 'px';
       });
     }
+  }
+
+  /* ── Prefers-reduced-motion: disable animations ── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    revealEls.forEach(el => el.classList.add('in'));
+    document.querySelectorAll('.marquee-inner, .footer-marquee-inner').forEach(el => {
+      el.style.animationPlayState = 'paused';
+    });
   }
 
 })();
