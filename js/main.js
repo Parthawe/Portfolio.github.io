@@ -408,50 +408,8 @@
     });
   }
 
-  /* ── 3D Parallax on hero card stack (mouse + scroll) ── */
+  /* ── Scroll-driven parallax for hero elements ── */
   if (!prefersReducedMotion && isFinePointer) {
-    const heroCards = document.querySelectorAll('.hero-card');
-    let pmx = 0, pmy = 0;
-
-    if (heroCards.length) {
-      let targetMX = 0, targetMY = 0;
-
-      document.addEventListener('mousemove', (e) => {
-        targetMX = (e.clientX / window.innerWidth - 0.5) * 2;
-        targetMY = (e.clientY / window.innerHeight - 0.5) * 2;
-      });
-
-      // Base 3D rotations per card (rz = Z rotation, rx/ry = 3D tilt, ty = Y offset)
-      var cardBases = [
-        { rz: 0,  rx: 0,    ry: 0,    ty: 0 },   // card--1 front
-        { rz: 5,  rx: 0.1,  ry: 0,    ty: 3 },   // card--2
-        { rz: -4, rx: -0.1, ry: 0.05, ty: 5 },   // card--3
-        { rz: 8,  rx: 0.15, ry: -0.1, ty: 7 },   // card--4
-        { rz: -7, rx: -0.1, ry: 0.1,  ty: 9 }    // card--5 back
-      ];
-
-      function updateParallax() {
-        pmx += (targetMX - pmx) * 0.035;
-        pmy += (targetMY - pmy) * 0.035;
-
-        heroCards.forEach(function (card, i) {
-          var b = cardBases[i] || cardBases[0];
-          var depth = (i + 1) * 0.5;
-          // 3D rotation influenced by mouse
-          var rz = b.rz + pmx * depth * 1.5;
-          var rx3d = (b.rx + pmy * depth * 0.08).toFixed(3);
-          var ry3d = (b.ry + pmx * depth * 0.12).toFixed(3);
-          var tx = pmx * depth * 10;
-          var ty = b.ty + pmy * depth * 5;
-          card.style.transform = 'translate(-50%, -50%) rotate3d(' + rx3d + ', ' + ry3d + ', 1, ' + rz.toFixed(2) + 'deg) translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px)';
-        });
-
-        requestAnimationFrame(updateParallax);
-      }
-      updateParallax();
-    }
-
-    /* ── Scroll-driven parallax for hero elements ── */
     const heroBody = document.querySelector('.hero-body');
     const heroFoot = document.querySelector('.hero-foot');
     const topPill = document.querySelector('.top-pill');
@@ -1128,18 +1086,6 @@
         el.style.transition = 'none';
       });
 
-      // Hero card stack — stagger each card individually
-      const heroCardStack = hero.querySelector('.hero-card-stack');
-      const heroCardEls = hero.querySelectorAll('.hero-card');
-      if (heroCardStack) {
-        heroCardStack.style.opacity = '1'; // stack itself is visible
-      }
-      heroCardEls.forEach(function (card) {
-        card.style.opacity = '0';
-        card.style.transform = 'translate(-50%, -50%) scale(0.8) rotate(0deg)';
-        card.style.transition = 'none';
-      });
-
       // Stagger reveal after a brief delay
       requestAnimationFrame(function () {
         setTimeout(function () {
@@ -1148,17 +1094,6 @@
             el.style.transitionDelay = (0.15 + i * 0.08) + 's';
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
-          });
-
-          // Cards fan in one by one from back to front
-          var cardDelays = [0.3, 0.42, 0.54, 0.66, 0.78]; // staggered
-          heroCardEls.forEach(function (card, i) {
-            // Reverse order — back cards first
-            var idx = heroCardEls.length - 1 - i;
-            card.style.transition = 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)';
-            card.style.transitionDelay = cardDelays[idx] + 's';
-            card.style.opacity = '1';
-            card.style.transform = ''; // clear inline, let CSS animation take over
           });
         }, 50);
       });
@@ -1268,7 +1203,6 @@
     if (hero) {
       const heroBody = hero.querySelector('.hero-body');
       const heroFoot = hero.querySelector('.hero-foot');
-      const heroCardStack = hero.querySelector('.hero-card-stack');
       let heroTicking = false;
 
       function updateHeroScroll() {
@@ -1276,7 +1210,7 @@
         const heroH = hero.offsetHeight;
         if (scrollY > heroH) { heroTicking = false; return; }
 
-        const progress = scrollY / heroH; // 0 at top, 1 at hero bottom
+        const progress = scrollY / heroH;
         const opacity = Math.max(0, 1 - progress * 1.8);
         const translate = scrollY * 0.3;
         const scale = 1 - progress * 0.05;
@@ -1288,11 +1222,6 @@
         if (heroFoot) {
           heroFoot.style.opacity = String(Math.max(0, 1 - progress * 2.2));
           heroFoot.style.transform = 'translateY(' + (scrollY * 0.15) + 'px)';
-        }
-        if (heroCardStack) {
-          var rot = progress * 5; // subtle tilt as you scroll
-          heroCardStack.style.transform = 'translateY(calc(-50% + ' + (scrollY * 0.15) + 'px)) perspective(1200px) rotateX(' + rot + 'deg) scale(' + (1 - progress * 0.08) + ')';
-          heroCardStack.style.opacity = String(Math.max(0, 1 - progress * 1.5));
         }
 
         heroTicking = false;

@@ -341,205 +341,35 @@ ul { list-style:none; }
 }
 
 /* ================================================
-   HERO CARD STACK — 3D floating keychain
+   HERO 3D SCENE
    ================================================ */
-.hero-card-stack {
+#hero-3d {
   position: absolute;
-  right: clamp(1rem, 5vw, 6%);
-  top: 50%;
-  transform: translateY(-50%) perspective(1200px);
-  width: clamp(300px, 36vw, 560px);
-  aspect-ratio: 1;
-  z-index: 3;
-  pointer-events: auto;
-}
-/* Dramatic ambient glow */
-.hero-card-stack::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 140%;
-  height: 140%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 40% 40%, rgba(232, 67, 147, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 60% 60%, rgba(74, 143, 231, 0.10) 0%, transparent 50%);
-  filter: blur(60px);
-  z-index: -1;
-  pointer-events: none;
-  animation: glowPulse 8s ease-in-out infinite alternate;
-}
-@keyframes glowPulse {
-  0%   { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
-}
-
-/* Keychain ring at top center */
-.hero-ring {
-  position: absolute;
-  left: 50%;
-  top: calc(50% - 58%);
-  transform: translateX(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 3px solid var(--ink-15);
-  z-index: 10;
-  pointer-events: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  background: transparent;
-}
-.hero-ring::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  width: 2px;
-  height: 12px;
-  background: var(--ink-10);
-  transform: translateX(-50%);
-}
-@media (max-width: 900px) {
-  .hero-ring { display: none; }
-}
-
-.hero-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100%;
+  right: 0;
+  top: 0;
+  width: 55%;
   height: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  transform-origin: 50% -20%;
-  will-change: transform;
-  backface-visibility: hidden;
-  transition: z-index 0s, box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.18),
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.04);
-  cursor: grab;
-}
-.hero-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
   pointer-events: none;
+  will-change: transform, opacity;
 }
-.hero-card img {
+#hero-3d canvas {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
-/* Card project label */
-.hero-card-label {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 4px 10px;
-  border-radius: 6px;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-}
-.hero-card:hover .hero-card-label {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Card 1 — front */
-.hero-card--1 {
-  z-index: 5;
-  animation: sway1 6s ease-in-out infinite;
-}
-.hero-card--2 {
-  z-index: 4;
-  animation: sway2 7.5s ease-in-out infinite;
-}
-.hero-card--3 {
-  z-index: 3;
-  animation: sway3 8s ease-in-out infinite;
-}
-.hero-card--4 {
-  z-index: 2;
-  animation: sway4 9s ease-in-out infinite;
-}
-.hero-card--5 {
-  z-index: 1;
-  animation: sway5 10s ease-in-out infinite;
-}
-
-/* 3D keyframe animations — rotate from hang point with depth */
-@keyframes sway1 {
-  0%, 100% { transform: translate(-50%, -50%) rotate3d(0, 0, 1, 0deg) translateY(0); }
-  25%  { transform: translate(-50%, -50%) rotate3d(0.1, 0.2, 1, 2deg) translateY(-4px); }
-  50%  { transform: translate(-50%, -50%) rotate3d(-0.1, 0.1, 1, -1deg) translateY(-6px); }
-  75%  { transform: translate(-50%, -50%) rotate3d(0.05, -0.1, 1, 1.5deg) translateY(-3px); }
-}
-@keyframes sway2 {
-  0%, 100% { transform: translate(-50%, -50%) rotate3d(0.1, 0, 1, 5deg) translateY(3px); }
-  30%  { transform: translate(-50%, -50%) rotate3d(0.2, 0.15, 1, 7deg) translateY(-2px); }
-  60%  { transform: translate(-50%, -50%) rotate3d(0, 0.1, 1, 3.5deg) translateY(-5px); }
-}
-@keyframes sway3 {
-  0%, 100% { transform: translate(-50%, -50%) rotate3d(-0.1, 0.05, 1, -4deg) translateY(5px); }
-  35%  { transform: translate(-50%, -50%) rotate3d(0, 0.15, 1, -2deg) translateY(0); }
-  65%  { transform: translate(-50%, -50%) rotate3d(-0.15, -0.1, 1, -6deg) translateY(-3px); }
-}
-@keyframes sway4 {
-  0%, 100% { transform: translate(-50%, -50%) rotate3d(0.15, -0.1, 1, 8deg) translateY(7px); }
-  40%  { transform: translate(-50%, -50%) rotate3d(0.2, 0.05, 1, 10deg) translateY(2px); }
-  70%  { transform: translate(-50%, -50%) rotate3d(0.1, -0.15, 1, 6deg) translateY(-1px); }
-}
-@keyframes sway5 {
-  0%, 100% { transform: translate(-50%, -50%) rotate3d(-0.1, 0.1, 1, -7deg) translateY(9px); }
-  30%  { transform: translate(-50%, -50%) rotate3d(-0.05, 0.2, 1, -5deg) translateY(4px); }
-  60%  { transform: translate(-50%, -50%) rotate3d(-0.2, -0.05, 1, -9deg) translateY(1px); }
-}
-
-/* Hovered card lifts + shows label */
-.hero-card:hover {
-  z-index: 10 !important;
-  box-shadow:
-    0 40px 100px rgba(0, 0, 0, 0.25),
-    0 15px 50px rgba(0, 0, 0, 0.12),
-    0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
-/* Mobile */
 @media (max-width: 900px) {
-  .hero-card-stack {
+  #hero-3d {
     position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    width: min(240px, 55vw);
-    margin: calc(var(--nav-h) + 2rem) auto 0;
-    z-index: 2;
-    pointer-events: none;
+    width: 100%;
+    height: 320px;
+    margin-top: calc(var(--nav-h) + 1rem);
+    order: -1;
   }
-  .hero-card-stack::before { display: none; }
-  .hero-card-label { display: none; }
 }
 @media (max-width: 580px) {
-  .hero-card-stack {
-    width: min(190px, 50vw);
-    margin-top: calc(var(--nav-h) + 1rem);
+  #hero-3d {
+    height: 260px;
   }
 }
 
@@ -2839,7 +2669,7 @@ body { animation: pageFade 0.45s ease both; }
   .page-loader { display: none; }
   .reveal { opacity: 1; transform: none; }
   .hero-scroll-hint { animation: none; }
-  .hero-card { animation: none !important; }
+  #hero-3d { display: none; }
   /* Awwwards interaction overrides */
   .split-word-inner { transform: none !important; }
   .img-reveal::after { transform: scaleX(0) !important; }
@@ -2877,7 +2707,7 @@ body { animation: pageFade 0.45s ease both; }
    ================================================ */
 @media print {
   .grain, .cursor-dot, .cursor-trail, .page-loader, .scroll-progress,
-  .page-transition, .hero-card-stack,
+  .page-transition, #hero-3d,
   .hero-scroll-hint, .nav-toggle,
   .mobile-overlay, .footer-marquee, .top-pill,
   .cta-section, .wk-hover-img, .wcat-images { display: none !important; }

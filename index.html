@@ -12,6 +12,14 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -50,31 +58,8 @@
   <!-- HERO -->
   <section class="hero">
 
-    <!-- Floating Card Stack (keychain-style) -->
-    <div class="hero-card-stack" id="hero-cards">
-      <!-- Keychain ring -->
-      <div class="hero-ring"></div>
-      <div class="hero-card hero-card--5" data-label="VJ Software">
-        <img src="assets/images/vj.png" alt="" aria-hidden="true" loading="eager"/>
-        <span class="hero-card-label">VJ Software</span>
-      </div>
-      <div class="hero-card hero-card--4" data-label="Jugalbandi">
-        <img src="assets/images/jugalbandi.png" alt="" aria-hidden="true" loading="eager"/>
-        <span class="hero-card-label">Jugalbandi</span>
-      </div>
-      <div class="hero-card hero-card--3" data-label="TransFi">
-        <img src="assets/images/transfi.png" alt="" aria-hidden="true" loading="eager"/>
-        <span class="hero-card-label">TransFi</span>
-      </div>
-      <div class="hero-card hero-card--2" data-label="ZentiPay">
-        <img src="assets/images/zentipay.png" alt="" aria-hidden="true" loading="eager"/>
-        <span class="hero-card-label">ZentiPay</span>
-      </div>
-      <div class="hero-card hero-card--1" data-label="BreakGen">
-        <img src="assets/images/keyboard.png" alt="" aria-hidden="true" loading="eager"/>
-        <span class="hero-card-label">BreakGen</span>
-      </div>
-    </div>
+    <!-- 3D Hero Scene -->
+    <div id="hero-3d"></div>
 
     <!-- Top pill banner -->
     <div class="top-pill">
@@ -411,5 +396,6 @@
 
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/hero-3d.js"></script>
 </body>
 </html>
