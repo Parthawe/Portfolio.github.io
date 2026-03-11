@@ -4,74 +4,494 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>ZentiPay · Parth Pawar</title>
-  <meta name="description" content="ZentiPay is a fintech super-app designed for migrant workers and international students to send money home with zero friction. The design system prioritized trust, clarity and speed — reducing transfer time perception by 40% in usability tests."/>
+  <meta name="description" content="ZentiPay — Founding Product Designer for an AI-driven fintech super app serving migrant workers and international students. Increased transaction success by 30% and reduced perceived transfer time by 40%."/>
+  <meta property="og:title" content="ZentiPay · Parth Pawar"/>
+  <meta property="og:description" content="Fintech super app that increased transaction success by 30% and reduced perceived transfer time by 40%."/>
+  <meta property="og:image" content="assets/images/zentipay.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
+  <style>
+    :root { --cs-blue: #0f4c81; --cs-dark: #0a0f1a; }
+  </style>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
+    <!-- ══════════════════════════════════════════════
+         HERO / HEADER
+         ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">← Back</a>
+        <a href="ux.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">Fintech</span><span class="proj-tag">Research</span></div>
+        <div class="proj-tags">
+          <span class="proj-tag">Fintech</span>
+          <span class="proj-tag">0&rarr;1 Product</span>
+          <span class="proj-tag">AI</span>
+          <span class="proj-tag">Cross-cultural UX</span>
+        </div>
         <h1 class="proj-title">ZentiPay</h1>
-        <p class="proj-subtitle">Fintech super-app for seamless international transfers</p>
+        <p class="proj-subtitle">Designed the end-to-end fintech super app that increased transaction success by 30% and reduced perceived transfer time by 40%</p>
         <div class="proj-info-row">
-          <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2025</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Lead UX Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Founding Product Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">0&rarr;1 Product Design</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Platform</span><span class="proj-info-val">Web &amp; Mobile</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">Figma, Maze, Hotjar</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2025</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/zentipay.png" alt="ZentiPay"/></div>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="assets/images/zentipay.png" alt="ZentiPay — fintech super app for cross-border payments" loading="lazy"/></div>
+      <div class="proj-read-time"><span>4 min read</span></div>
     </div>
 
+    <!-- ── Floating TOC ── -->
+    <nav class="cs-toc" id="cs-toc" aria-label="Case study navigation">
+      <span class="cs-toc-label">Sections</span>
+      <a class="cs-toc-link" href="#cs-hook">The Hook</a>
+      <a class="cs-toc-link" href="#cs-problem">Problem</a>
+      <a class="cs-toc-link" href="#cs-research">Research</a>
+      <a class="cs-toc-link" href="#cs-turning-point">Turning Point</a>
+      <a class="cs-toc-link" href="#cs-decisions">Design Decisions</a>
+      <a class="cs-toc-link" href="#cs-system">Design System</a>
+      <a class="cs-toc-link" href="#cs-results">Results</a>
+      <a class="cs-toc-link" href="#cs-reflections">Reflections</a>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════
+         THE HOOK — human story
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-hook">
+      <div class="wrap">
+        <div class="cs-body" style="max-width:720px;">
+          <p style="font-size:1.2rem;line-height:1.8;opacity:0.9;">A construction worker in Dubai sends $400 home to his family in Kerala every month. By the time it arrives, $25 has disappeared &mdash; eaten by exchange rate markups, hidden fees, and intermediary charges he never agreed to. That&rsquo;s $300 a year. Enough to cover his daughter&rsquo;s school supplies for an entire term.</p>
+          <p style="font-size:1.2rem;line-height:1.8;opacity:0.9;">He knows he&rsquo;s being overcharged. He just doesn&rsquo;t have a better option.</p>
+          <p style="font-size:1.2rem;line-height:1.8;opacity:0.9;">That&rsquo;s the problem ZentiPay was built to solve. And that&rsquo;s why I joined as the founding designer &mdash; to build the product from a blank Figma file into something that could earn trust from people who had every reason not to give it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         OVERVIEW
+         ══════════════════════════════════════════════ -->
     <div class="wrap project-overview reveal">
       <div class="proj-overview-grid">
         <div class="proj-overview-body">
           <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">ZentiPay is a fintech super-app designed for migrant workers and international students to send money home with zero friction. The design system prioritized trust, clarity and speed — reducing transfer time perception by 40% in usability tests.</p>
+          <p class="proj-desc">ZentiPay is an AI-driven crypto payments platform built for migrant workers and international students &mdash; people who send money home regularly but lose hundreds annually to opaque fees, slow transfers, and interfaces that weren&rsquo;t designed for them. As the founding product designer, I shaped the product from zero: research, information architecture, interaction design, design system, and usability validation across five countries.</p>
+        </div>
+        <div class="proj-overview-body">
+          <h2 class="section-label">The Mandate</h2>
+          <p class="proj-desc">Build a cross-border payment experience so clear and trustworthy that first-time crypto users complete transfers without hesitation. Every design decision had to earn trust in the first 30 seconds &mdash; because in fintech, a confused user is a lost user, and a lost user is a family that doesn&rsquo;t get their money.</p>
         </div>
       </div>
     </div>
 
+    <!-- ══════════════════════════════════════════════
+         PROBLEM
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-problem">
+      <div class="wrap">
+        <p class="cs-section-label">01 &mdash; Problem</p>
+        <h2 class="cs-section-title">$700B+ in remittances annually.<br/>Migrants still pay an average of 6.3% in fees.</h2>
 
+        <div class="cs-two-col">
+          <div class="cs-body">
+            <p>Cross-border money transfer is a high-anxiety, high-stakes interaction. For migrant workers sending $200&ndash;$500 home each month, every dollar lost to hidden fees is a dollar that doesn&rsquo;t reach their family. Yet the existing landscape &mdash; from legacy services like Western Union to newer fintech players &mdash; still treats this user segment as an afterthought.</p>
+            <p>The unbanked and underbanked face a compounding problem: confusing interfaces built for tech-literate users, fee structures buried in fine print, and zero feedback about where their money is at any given moment. The result is a population that either overpays or avoids digital transfers entirely.</p>
+          </div>
+          <div>
+            <div class="cs-callout">
+              <p><strong>The core tension:</strong> Users need to trust a digital platform with their earnings &mdash; often their family&rsquo;s primary income &mdash; but every existing touchpoint erodes that trust through ambiguity, jargon, and hidden costs.</p>
+            </div>
+            <ul class="cs-list">
+              <li>Confusing multi-step flows with no progress indicators</li>
+              <li>Fee estimates that change between confirmation and settlement</li>
+              <li>No real-time tracking &mdash; users wait days without status updates</li>
+              <li>Interfaces that assume English fluency and smartphone literacy</li>
+              <li>Crypto terminology alienating non-technical users</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-img-full"><img src="assets/images/zentipay.png" alt="Competitive landscape analysis of existing remittance apps" loading="lazy"/></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         RESEARCH
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" id="cs-research" style="--cs-dark:#0a0f1a">
+      <div class="wrap">
+        <p class="cs-section-label">02 &mdash; Research</p>
+        <h2 class="cs-section-title">15+ interviews across 4 countries revealed one pattern: users abandon when they can&rsquo;t predict costs.</h2>
+
+        <div class="cs-body" style="margin-bottom:2.5rem;">
+          <p>I ran a mixed-methods research sprint over three weeks. The goal was not just to understand pain points but to map the emotional arc of a cross-border transfer &mdash; from the moment a user decides to send money to the moment their recipient confirms receipt.</p>
+        </div>
+
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">User Interviews</div>
+            <div class="cs-step-desc">15+ in-depth interviews with migrant workers and international students across India, Philippines, Nigeria, and Mexico. Conducted in native languages via translators where needed.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Competitive Audit</div>
+            <div class="cs-step-desc">Analyzed 8 remittance platforms (Wise, Remitly, WorldRemit, Western Union, Xoom, Sendwave, Chipper Cash, Paysend) across 12 UX dimensions &mdash; from onboarding friction to fee transparency.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Journey Mapping</div>
+            <div class="cs-step-desc">Mapped end-to-end transfer journeys revealing 7 distinct friction points. The most critical: fee confirmation, identity verification, and post-transfer anxiety.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">4</div>
+            <div class="cs-step-title">Behavioral Analysis</div>
+            <div class="cs-step-desc">Session recordings and analytics from beta users identified that 67% of abandoned transfers happened at the fee confirmation step &mdash; users couldn&rsquo;t predict total costs upfront.</div>
+          </div>
+        </div>
+
+        <div class="cs-callout" style="margin-top:3rem;">
+          <p><strong>Key insight:</strong> &ldquo;Users abandoned transfers at the fee confirmation step 67% of the time because they couldn&rsquo;t predict total costs upfront.&rdquo; This single finding shaped the product&rsquo;s core interaction model: predictive pricing before commitment.</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">Research Themes</h3>
+
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Trust Deficit</div>
+            <div class="cs-feature-card-desc">12 of 15 participants mentioned &ldquo;fear of losing money&rdquo; as their primary barrier to using new payment apps. Trust is not built through marketing &mdash; it&rsquo;s built through interface transparency.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Literacy Spectrum</div>
+            <div class="cs-feature-card-desc">Tech literacy varied dramatically &mdash; from users who could barely navigate a smartphone to students fluent in multiple apps. A single onboarding flow would fail both groups.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Fee Anxiety</div>
+            <div class="cs-feature-card-desc">Users mentally calculated fees in their home currency, not the sending currency. They needed to see &ldquo;how much arrives&rdquo; not &ldquo;how much you pay.&rdquo;</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Transfer Blindness</div>
+            <div class="cs-feature-card-desc">Once money was sent, users entered an anxiety loop &mdash; checking the app repeatedly with no status updates. The gap between &ldquo;sent&rdquo; and &ldquo;received&rdquo; was a black box.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         THE TURNING POINT — narrative bridge
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--gray reveal" id="cs-turning-point">
+      <div class="wrap">
+        <div class="cs-body" style="max-width:720px;">
+          <p style="font-size:1.15rem;line-height:1.8;">After three weeks of research across four countries, I had a wall of sticky notes, twelve journey maps, and one uncomfortable truth: the problem wasn&rsquo;t that existing apps were bad at moving money. They were bad at moving <em>trust</em>.</p>
+          <p style="font-size:1.15rem;line-height:1.8;">Every competitor optimized for speed &mdash; fewer screens, faster flows, minimal friction. But our users didn&rsquo;t want fewer steps. They wanted fewer doubts. That reframe changed everything about how I designed ZentiPay.</p>
+          <p style="font-size:1.15rem;line-height:1.8;">I stopped asking &ldquo;how do we make this faster?&rdquo; and started asking &ldquo;what is the user afraid of right now?&rdquo; Every screen became an answer to a specific fear.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         DESIGN DECISIONS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-decisions">
+      <div class="wrap">
+        <p class="cs-section-label">03 &mdash; Design Decisions</p>
+        <h2 class="cs-section-title">Three bets that defined the product</h2>
+
+        <div class="cs-body" style="margin-bottom:3rem;">
+          <p>Every design decision at ZentiPay traced back to one question: does this reduce the user&rsquo;s anxiety or increase their confidence? The product needed to feel simpler than a bank app while being more transparent than any competitor.</p>
+        </div>
+
+        <!-- Decision 1: Adaptive Onboarding -->
+        <h3 class="cs-section-subtitle">1. Adaptive Onboarding</h3>
+        <div class="cs-two-col">
+          <div class="cs-body">
+            <p><strong>The problem:</strong> A construction worker in Dubai and a graduate student in New York have fundamentally different relationships with technology. Forcing both through the same onboarding flow guaranteed at least one would drop off.</p>
+            <p><strong>The solution:</strong> I designed an adaptive onboarding system that assessed tech literacy and country-specific requirements in the first three interactions. Based on signal cues &mdash; tap speed, scroll behavior, language selection &mdash; the flow adjusted its complexity, explanation density, and verification steps.</p>
+            <p><strong>How it worked:</strong> New users saw a minimal country-and-purpose selector. The system then branched into three onboarding tracks: guided (step-by-step with visual cues), standard (clean forms with inline help), and express (minimal friction for power users). Users could switch tracks at any point.</p>
+          </div>
+          <div class="cs-img"><img src="assets/images/zentipay.png" alt="ZentiPay adaptive onboarding flow — three complexity tracks" loading="lazy"/></div>
+        </div>
+
+        <div class="cs-img-full" style="margin-top:2rem;"><img src="assets/images/zentipay.png" alt="Onboarding flow wireframes showing adaptive branching logic" loading="lazy"/></div>
+
+        <!-- Decision 2: Predictive Fee Estimator -->
+        <h3 class="cs-section-subtitle">2. Predictive Fee Estimator</h3>
+        <div class="cs-two-col cs-two-col--reverse">
+          <div class="cs-body">
+            <p><strong>The problem:</strong> Users abandoned transfers because fees appeared late in the flow &mdash; often higher than expected. The mental model was broken: &ldquo;I thought I was sending $300, but only $278 arrives?&rdquo;</p>
+            <p><strong>The solution:</strong> I placed an AI-powered fee estimator on the very first screen of the transfer flow. Before users entered any personal details, they could see the exact amount their recipient would receive, the total fee breakdown (network fee, exchange rate margin, service fee), and a comparison against competitors.</p>
+            <p><strong>The interaction:</strong> As users typed an amount, the estimator updated in real time &mdash; showing both the send amount and receive amount simultaneously. A confidence indicator displayed how likely the quoted rate was to hold for the next 15 minutes, eliminating the &ldquo;bait and switch&rdquo; anxiety.</p>
+          </div>
+          <div class="cs-img"><img src="assets/images/zentipay.png" alt="ZentiPay predictive fee estimator with real-time cost breakdown" loading="lazy"/></div>
+        </div>
+
+        <!-- Decision 3: Trust Architecture -->
+        <h3 class="cs-section-subtitle">3. Trust Architecture</h3>
+        <div class="cs-two-col">
+          <div class="cs-body">
+            <p><strong>The problem:</strong> Displaying all security credentials upfront overwhelms users. But hiding them makes users feel unsafe. Traditional fintech apps solve this by burying compliance badges in footers &mdash; where no one looks.</p>
+            <p><strong>The solution:</strong> I designed a progressive trust disclosure system. Security signals appeared precisely when users needed reassurance, not before. During onboarding: regulatory compliance badges. At the payment step: encryption indicators and bank-grade security language. After transfer: real-time tracking with estimated delivery and receipt confirmation.</p>
+            <p><strong>The framework:</strong> Each screen was scored on an &ldquo;anxiety index&rdquo; (1&ndash;10). High-anxiety screens &mdash; entering bank details, confirming large amounts, waiting for delivery &mdash; received proportionally more trust signals. Low-anxiety screens stayed clean.</p>
+          </div>
+          <div class="cs-img"><img src="assets/images/zentipay.png" alt="Progressive trust disclosure system mapped to user anxiety levels" loading="lazy"/></div>
+        </div>
+
+        <div class="cs-callout" style="margin-top:2rem;">
+          <p><strong>Design principle:</strong> Trust signals should appear at the moment of doubt, not the moment of marketing. Every security indicator in ZentiPay was placed based on where users actually hesitated &mdash; identified through session recordings and click heatmaps.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         DESIGN SYSTEM
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--gray reveal" id="cs-system">
+      <div class="wrap">
+        <p class="cs-section-label">04 &mdash; Design System</p>
+        <h2 class="cs-section-title">Built for scale across languages, platforms, and literacy levels</h2>
+
+        <div class="cs-two-col">
+          <div class="cs-body">
+            <p>ZentiPay needed to work identically in English, Hindi, Spanish, Tagalog, and Arabic &mdash; including RTL layouts. I built a component library from the ground up that treated internationalization as a first-class requirement, not a retrofit.</p>
+            <p>The system comprised 120+ components across web and mobile, with built-in states for loading, error, success, and empty. Every component met WCAG AA contrast requirements and supported dynamic text scaling for users with accessibility needs.</p>
+          </div>
+          <div>
+            <ul class="cs-list">
+              <li><strong>Accessibility-first:</strong> WCAG AA compliance, screen reader support, RTL layout system</li>
+              <li><strong>Multi-language:</strong> Components designed for text expansion (German is 30% longer than English) and contraction</li>
+              <li><strong>Motion system:</strong> Purposeful animations for transaction feedback &mdash; confirmations, progress states, and error recovery. No decorative motion.</li>
+              <li><strong>Platform parity:</strong> Shared design tokens between web and mobile ensured visual consistency without identical layouts</li>
+              <li><strong>Intelligent defaults:</strong> AI-driven pre-fill for repeat transfers, currency pairs, and recipient details based on user history</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cs-img-full"><img src="assets/images/zentipay.png" alt="ZentiPay design system — component library, color tokens, and typography" loading="lazy"/></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         RESULTS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" id="cs-results" style="--cs-blue:#0f4c81">
+      <div class="wrap">
+        <p class="cs-section-label">05 &mdash; Results</p>
+        <h2 class="cs-section-title">The numbers that mattered</h2>
+
+        <div class="cs-body" style="margin-bottom:2.5rem;">
+          <p>Impact was measured across usability testing with 40+ participants in 5 countries, A/B tests on key flows, and post-launch analytics over the first 8 weeks.</p>
+        </div>
+
+        <div class="cs-info-grid" style="margin-bottom:3rem;">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Transaction Success</span>
+            <span class="cs-info-value" style="font-size:2rem;font-family:var(--display);letter-spacing:-0.02em;">+30%</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Perceived Transfer Time</span>
+            <span class="cs-info-value" style="font-size:2rem;font-family:var(--display);letter-spacing:-0.02em;">&minus;40%</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Onboarding Drop-off</span>
+            <span class="cs-info-value" style="font-size:2rem;font-family:var(--display);letter-spacing:-0.02em;">&minus;65%</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Usability Score (5 countries)</span>
+            <span class="cs-info-value" style="font-size:2rem;font-family:var(--display);letter-spacing:-0.02em;">4.7 / 5</span>
+          </div>
+        </div>
+
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Predictive Fee Estimator</div>
+            <div class="cs-feature-card-desc">The upfront cost transparency directly drove the 30% increase in completed transfers. Users who interacted with the fee estimator were 3.2x more likely to complete their first transaction.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Adaptive Onboarding</div>
+            <div class="cs-feature-card-desc">The 65% reduction in onboarding drop-off came from eliminating one-size-fits-all flows. The guided track alone retained 78% of low-tech-literacy users who would have churned.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Real-time Tracking</div>
+            <div class="cs-feature-card-desc">The 40% reduction in perceived transfer time was achieved through live status updates and proactive push notifications &mdash; not by making transfers faster, but by making the wait visible.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Cross-cultural Validation</div>
+            <div class="cs-feature-card-desc">The 4.7/5 usability score held consistent across all five test countries &mdash; India, Philippines, Nigeria, Mexico, and UAE &mdash; validating the adaptive approach over localized one-offs.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         REFLECTIONS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-reflections">
+      <div class="wrap">
+        <p class="cs-section-label">06 &mdash; Reflections</p>
+        <h2 class="cs-section-title">What I&rsquo;d carry forward</h2>
+
+        <div class="cs-body" style="margin-bottom:2.5rem;">
+          <p>ZentiPay was the project that fundamentally changed how I think about designing financial products. Three lessons will shape everything I build next.</p>
+        </div>
+
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Trust Requires Transparency at Every Step</div>
+            <div class="cs-step-desc">In fintech, trust is not a feature &mdash; it&rsquo;s the product. Users don&rsquo;t read security badges. They feel safe when every interaction is predictable, every cost is visible, and every state change is explained. Designing for trust means designing for no surprises.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Cross-cultural UX Demands Flexibility, Not Templates</div>
+            <div class="cs-step-desc">Localization is not translation. A user in Lagos and a user in Manila have different mental models for money, different trust thresholds, and different expectations for digital interactions. The only scalable approach is building adaptive systems that flex to context &mdash; not fixed flows that assume uniformity.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Design for Anxiety, Not Just Efficiency</div>
+            <div class="cs-step-desc">Most fintech products optimize for speed: fewer clicks, faster flows, minimal screens. But when someone is sending their paycheck to their family 8,000 miles away, speed is not the priority &mdash; confidence is. I learned to measure success not in task completion time, but in hesitation reduction.</div>
+          </div>
+        </div>
+
+        <div class="cs-callout" style="margin-top:2rem;">
+          <p>The biggest misconception in fintech design is that users want fewer steps. They don&rsquo;t. They want fewer doubts. Every screen in ZentiPay was designed to eliminate one specific doubt &mdash; and that reframe made all the difference.</p>
+        </div>
+
+        <div class="cs-body" style="margin-top:3rem;max-width:720px;">
+          <p>There&rsquo;s a moment I keep coming back to. During our final round of usability testing, a participant in Manila &mdash; a domestic worker who sends money to her children in the province every two weeks &mdash; finished her first test transfer and said: <em>&ldquo;This is the first time I knew exactly how much my kids would get before I pressed send.&rdquo;</em></p>
+          <p>That sentence validated every late-night design review, every argument about whether to show fees upfront or bury them. It confirmed that what we built wasn&rsquo;t just a better payment app. It was a small act of respect for people who deserved to know where their money was going.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         CREDITS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0f1a">
+      <div class="wrap">
+        <p class="cs-section-label">Credits</p>
+        <h2 class="cs-section-title">Team</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Founding Product Designer</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Scope</span>
+            <span class="cs-credit-name">End-to-end Product Design, Research, Design System, Usability Testing</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Platform</span>
+            <span class="cs-credit-name">Web &amp; Mobile (iOS, Android)</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Duration</span>
+            <span class="cs-credit-name">2025</span>
+          </div>
+        </div>
+
+        <div class="cs-thanks" style="margin-top:4rem;">
+          <h2 class="cs-thanks-title">Thank you</h2>
+          <p style="max-width:600px;margin:1.5rem auto 0;opacity:.7;font-size:1.05rem;line-height:1.7;text-align:center;">For reading this case study. If you&rsquo;re building something in fintech, payments, or cross-cultural products &mdash; I&rsquo;d love to talk.</p>
+        </div>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+  <a class="next-project" href="transfi-project.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">TransFi</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/transfi.png" alt="TransFi" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
+    <img src="" alt=""/>
+    <div class="lightbox-counter"></div>
+  </div>
+
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -4,74 +4,666 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Office of Diversity · Parth Pawar</title>
-  <meta name="description" content="Redesigned the NYU Office of Diversity, Equity and Belonging website to improve discoverability of programs and resources. Conducted accessibility audits and inclusive design workshops with staff and students."/>
+  <meta name="description" content="Office of Diversity Report & Data Visualization — an interactive IDBEA report for NYU Tisch School of the Arts, translating complex data into engaging, accessible visuals that foster community engagement."/>
+  <meta property="og:title" content="Office of Diversity · Parth Pawar"/>
+  <meta property="og:description" content="Interactive IDBEA data visualization report for NYU Tisch — translating data into accessible visuals."/>
+  <meta property="og:image" content="assets/images/office-of-diversity.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
+  <style>
+    :root { --cs-blue: #5B2D8E; --cs-dark: #1a0e2e; }
+  </style>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
+    <!-- ══════════════════════════════════════════════
+         SLIDE 1 — HERO
+         ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">← Back</a>
+        <a href="ux.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">Research</span><span class="proj-tag">Accessibility</span></div>
-        <h1 class="proj-title">Office of Diversity</h1>
-        <p class="proj-subtitle">NYU diversity & inclusion digital redesign</p>
+        <div class="proj-tags">
+          <span class="proj-tag">UI/UX</span>
+          <span class="proj-tag">Data Visualization</span>
+          <span class="proj-tag">Research</span>
+        </div>
+        <h1 class="proj-title">Office of Diversity Report &amp; Data Visualization</h1>
+        <p class="proj-subtitle">Interactive IDBEA report for NYU Tisch School of the Arts</p>
         <div class="proj-info-row">
+          <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">Office Of Diversity TSOA</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">User Research, UI/UX, Prototyping</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Website Publishing Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">3 Months</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2024</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">UX Researcher & Designer</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">Figma, Notion, Lookback</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/office-of-diversity.png" alt="Office of Diversity"/></div>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/Office of Diversity/1.jpg" alt="Office of Diversity Report — mobile and laptop mockups of the IDBEA 2024 report" loading="lazy"/></div>
     </div>
 
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">Redesigned the NYU Office of Diversity, Equity and Belonging website to improve discoverability of programs and resources. Conducted accessibility audits and inclusive design workshops with staff and students.</p>
+    <!-- ══════════════════════════════════════════════
+         SLIDE 2 — SUMMARY / CHALLENGES / ROLE / TOOLS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#5B2D8E">
+      <div class="wrap">
+        <h2 class="cs-display" style="max-width:26ch;">Translating complex data into engaging, accessible visuals that foster deeper community engagement.</h2>
+
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Summary</span>
+          <span class="cs-label-row-val">This project aimed to create an engaging, accessible, and interactive visualization for the 2024 IDBEA report, showcasing the Tisch School of the Arts&rsquo; progress in fostering inclusion, diversity, belonging, equity, and accessibility (IDBEA). Collaborating with Christina Monea from the Office of Diversity, my goal was to translate complex data into user-friendly visuals that reflect Tisch&rsquo;s values and foster deeper community engagement.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Challenges</span>
+          <span class="cs-label-row-val">
+            &bull; <strong>Data Precision</strong> &mdash; Visualizing complex data accurately while maintaining clarity and readability.<br/>
+            &bull; <strong>Interactive Engagement</strong> &mdash; Developing dynamic components to encourage users to explore milestones and data points.
+          </span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">
+            &bull; <strong>Data Visualization</strong> &mdash; Designing interactive timelines, charts, and graphs.<br/>
+            &bull; <strong>User Experience</strong> &mdash; Ensuring a seamless and engaging user experience with interactive and accessible elements.
+          </span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">Figma</span>
+              <span class="cs-tag-item">User Research</span>
+              <span class="cs-tag-item">Identity and Website Design</span>
+              <span class="cs-tag-item">Prototyping</span>
+              <span class="cs-tag-item">Wireframes</span>
+              <span class="cs-tag-item">High-Fidelity</span>
+              <span class="cs-tag-item">Experience Management</span>
+              <span class="cs-tag-item">Design System</span>
+            </span>
+          </span>
         </div>
       </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/2.jpg" alt="Summary, challenges, role, and tools overview for the IDBEA report project" loading="lazy"/>
     </div>
 
+    <!-- ══════════════════════════════════════════════
+         SLIDE 3 — IDBEA CONTEXT + PROJECT GOALS + PROCESS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <div class="cs-two-col">
+          <div>
+            <h2 class="cs-display" style="color:#5B2D8E;">The IDBEA Report</h2>
+            <div class="cs-body">
+              <p>Tisch&rsquo;s Office of Diversity champions Inclusion, Diversity, Belonging, Equity, and Accessibility (IDBEA) across the school. The 2024 report documents a decade of progress &mdash; from early listening sessions and foundational learning to the establishment of a dedicated office and committee structures that ensure lasting institutional change.</p>
+            </div>
+          </div>
+          <div class="cs-img">
+            <img src="Assets/Projects/Office of Diversity/3.jpg" alt="IDBEA report context — Tisch Office of Diversity values and process overview" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="cs-section reveal" style="padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">Project Goals</span>
+        <h2 class="cs-section-title">What we set out to achieve</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Data Precision</div>
+            <div class="cs-feature-card-desc">Visualize complex data accurately while keeping it approachable and easy to understand.</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Interactivity</div>
+            <div class="cs-feature-card-desc">Build dynamic components that encourage exploration and engagement with milestones.</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Accessibility</div>
+            <div class="cs-feature-card-desc">Ensure the report meets WCAG standards and is usable by everyone in the community.</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Collaborative Review</div>
+            <div class="cs-feature-card-desc">Integrate continuous feedback from faculty, students, and staff throughout the process.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451">
+      <div class="wrap">
+        <span class="cs-section-label">Design Process</span>
+        <h2 class="cs-section-title" style="text-align:center;">From scope to delivery</h2>
+        <div class="cs-steps" style="grid-template-columns:repeat(6,1fr);margin-top:3rem">
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-title">Understanding Scope</div>
+            <div class="cs-step-desc">Key metrics, themes &amp; milestones</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">&#9670;</div>
+            <div class="cs-step-title">Design Concept</div>
+            <div class="cs-step-desc">Interactive timeline &amp; visual direction</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-title">Data Visualization</div>
+            <div class="cs-step-desc">D3.js, Tableau, charts &amp; graphs</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">&#9670;</div>
+            <div class="cs-step-title">User Engagement</div>
+            <div class="cs-step-desc">Clickable data points &amp; real-time views</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-title">Collaboration</div>
+            <div class="cs-step-desc">Feedback integration with stakeholders</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-title">Accessibility</div>
+            <div class="cs-step-desc">WCAG 2.1 Level AA compliance</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 4 — PROCESS STEPS 1-3
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">01 &mdash; Process</span>
+        <h2 class="cs-section-title">Understanding The Scope</h2>
+        <div class="cs-body">
+          <p>The first step involved deep-diving into the report&rsquo;s key metrics, themes, and milestones. Three core focus areas emerged:</p>
+        </div>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Learning &amp; Engagement</div>
+            <div class="cs-feature-card-desc">Educational programs and community workshops driving awareness across Tisch.</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Restorative Practices</div>
+            <div class="cs-feature-card-desc">Addressing IDBEA concerns and global events through structured case resolution.</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Collaborative Efforts</div>
+            <div class="cs-feature-card-desc">School-wide programming that brings together faculty, staff, and students.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section reveal" style="padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">02 &mdash; Process</span>
+        <h2 class="cs-section-title">Design Conceptualization</h2>
+        <div class="cs-body">
+          <p>An interactive timeline was designed to map IDBEA milestones spanning 2014&ndash;2024, alongside dynamic charts and graphs. Early ideation involved sticky notes, whiteboard sessions, and rapid sketching to explore visual directions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section reveal" style="padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">03 &mdash; Process</span>
+        <h2 class="cs-section-title">Data Visualization</h2>
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">01</div>
+            <div class="cs-step-title">Tool Selection</div>
+            <div class="cs-step-desc">D3.js and Tableau were chosen for their flexibility in rendering interactive, data-driven visuals.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">02</div>
+            <div class="cs-step-title">Color-Coded Bar Charts</div>
+            <div class="cs-step-desc">Engagement metrics visualized through a consistent color system tied to each IDBEA pillar.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">03</div>
+            <div class="cs-step-title">Dynamic Pie Charts</div>
+            <div class="cs-step-desc">Breakdowns of participation, demographics, and resource allocation rendered as interactive pie charts.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">04</div>
+            <div class="cs-step-title">Interactive Tooltips</div>
+            <div class="cs-step-desc">Hover and click-to-reveal tooltips providing context and detail on every data point.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/4.jpg" alt="Process steps — understanding scope, design conceptualization, and data visualization approach" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 5 — PROCESS STEPS 4-6
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#3D1A6E">
+      <div class="wrap">
+        <span class="cs-section-label">04 &mdash; Process</span>
+        <h2 class="cs-section-title">Interactivity &amp; User Engagement</h2>
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Clickable Data Points</div>
+            <div class="cs-feature-card-desc">Each data point expands to reveal detailed information, case studies, and related milestones.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Real-Time Progress</div>
+            <div class="cs-feature-card-desc">Users can view Tisch&rsquo;s IDBEA progress in real-time through animated transitions and live data feeds.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">05 &mdash; Process</span>
+        <h2 class="cs-section-title">Collaboration &amp; Feedback Integration</h2>
+        <div class="cs-body">
+          <p>Over a 3-month process working with Christina Monea, the project involved multiple feedback sessions with faculty, students, and staff. This iterative cycle ensured the final product accurately reflected the community&rsquo;s voice and the office&rsquo;s mission.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">06 &mdash; Process</span>
+        <h2 class="cs-section-title">Accessibility Compliance</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">WCAG 2.1 Level AA</div>
+            <div class="cs-feature-card-desc">Full compliance with established web accessibility guidelines.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Screen Reader Support</div>
+            <div class="cs-feature-card-desc">Text alternatives for all visual elements, ensuring screen reader compatibility.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">High-Contrast Colors</div>
+            <div class="cs-feature-card-desc">Color schemes designed for maximum readability across all visual conditions.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Keyboard Navigation</div>
+            <div class="cs-feature-card-desc">Every interactive element fully navigable without a mouse.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/5.jpg" alt="Process steps — interactivity, collaboration sessions, and accessibility compliance" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 6 — OUTCOME + KEY LEARNINGS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#5B2D8E">
+      <div class="wrap">
+        <p class="cs-section-label">Impact</p>
+        <h2 class="cs-section-title" style="text-align:center;">Outcome</h2>
+        <div class="cs-info-grid" style="grid-template-columns:repeat(3,1fr);text-align:center;margin:2rem 0 0">
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">74%</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Increase in User Interaction</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">WCAG</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Accessibility Success</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">3 Mo</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Collaborative Process</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451">
+      <div class="wrap">
+        <span class="cs-section-label">Reflections</span>
+        <h2 class="cs-section-title">Key Learnings</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Collaboration</div>
+            <div class="cs-feature-card-desc">Working closely with Christina Monea and the broader Tisch community was essential to producing an authentic and impactful report.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Precision in Visualization</div>
+            <div class="cs-feature-card-desc">Complex data demands meticulous attention to accuracy &mdash; every number and chart must tell the true story.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Accessibility as Priority</div>
+            <div class="cs-feature-card-desc">Accessibility cannot be an afterthought. Integrating WCAG compliance from day one shaped better design decisions throughout.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/6.jpg" alt="Outcome — 74% increase in user interaction, accessibility success, and key learnings" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 7 — THE REPORT (IDBEA 2024 Report + Timeline + Team)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap" style="text-align:center;">
+        <span class="cs-section-label">The Report</span>
+        <h2 class="cs-section-title">IDBEA 2024 Report</h2>
+        <div class="cs-body" style="max-width:700px;margin:0 auto 2rem;">
+          <p>The final report traces a decade of IDBEA milestones &mdash; from the initial commitment in 2014 through listening sessions, foundational learning, the establishment of the Cabinet, the hiring of an Assistant Dean, and the expansion of the Office of Diversity &mdash; culminating in the formation of the IDBEA Committee in 2023.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">Timeline</span>
+        <h2 class="cs-section-title">A Decade of Progress</h2>
+        <div class="cs-steps" style="grid-template-columns:repeat(4,1fr);margin-top:2rem">
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2014</div>
+            <div class="cs-step-desc">Commitment to IDBEA</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2015</div>
+            <div class="cs-step-desc">Listening sessions begin</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2017</div>
+            <div class="cs-step-desc">Foundational learning</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2018</div>
+            <div class="cs-step-desc">Cabinet established</div>
+          </div>
+        </div>
+        <div class="cs-steps" style="grid-template-columns:repeat(4,1fr);margin-top:1.5rem">
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2019</div>
+            <div class="cs-step-desc">Assistant Dean hired</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2020</div>
+            <div class="cs-step-desc">Reaffirm commitment</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2022</div>
+            <div class="cs-step-desc">Office expands</div>
+          </div>
+          <div class="cs-step" style="text-align:center">
+            <div class="cs-step-num">2023</div>
+            <div class="cs-step-desc">Committee established</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">The Team</span>
+        <h2 class="cs-section-title">Meet the Office of Diversity</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Christina Salgado</div>
+            <div class="cs-feature-card-desc">Assistant Dean</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Monae Freeman</div>
+            <div class="cs-feature-card-desc">Diversity Program Administrator</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Kevin Hunter</div>
+            <div class="cs-feature-card-desc">Administrative Aide</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/7.jpg" alt="IDBEA 2024 Report — timeline, team, and approach overview" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 8 — REPORT: ADVISEMENT + FOCUS AREAS + DATA VIZ
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Structure</span>
+        <h2 class="cs-section-title">Advisement &amp; Feedback Groups</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Cabinet</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Deans and Chairs</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">IDBEA Committee</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Coalition</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#5B2D8E; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">Focus Areas</span>
+        <h2 class="cs-section-title">Four Pillars of IDBEA Work</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Learning &amp; Engagement</div>
+            <div class="cs-feature-card-desc">Workshops, dialogues, and educational programming across the Tisch community.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Resource Development</div>
+            <div class="cs-feature-card-desc">Building tools, guides, and materials to support IDBEA work at every level.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Restorative Practices</div>
+            <div class="cs-feature-card-desc">Addressing concerns and conflicts through structured, empathetic case resolution.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">School-wide Collaborative Programming</div>
+            <div class="cs-feature-card-desc">Cross-departmental initiatives that unite the Tisch community around shared values.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/8.jpg" alt="Report — advisement groups, focus areas, and data visualization charts showing engagement metrics" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 9 — REPORT: RESTORATIVE PRACTICES + HEAR US + FUTURE ARTISTS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451">
+      <div class="wrap">
+        <span class="cs-section-label">Data Highlights</span>
+        <h2 class="cs-section-title" style="text-align:center;">Restorative Practice</h2>
+        <div class="cs-info-grid" style="grid-template-columns:repeat(2,1fr);text-align:center;margin:2rem 0 0">
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">33</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Cases in Response to General IDBEA Concerns</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">14</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Cases in Response to Current Global Events</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3D1A6E">
+      <div class="wrap">
+        <span class="cs-section-label">Programs</span>
+        <h2 class="cs-section-title" style="text-align:center;">HEAR US</h2>
+        <div class="cs-info-grid" style="grid-template-columns:repeat(3,1fr);text-align:center;margin:2rem 0 0">
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);font-weight:400;letter-spacing:-0.02em">$62,000</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Distributed Among Awardees</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);font-weight:400;letter-spacing:-0.02em">11</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Student Awardees</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);font-weight:400;letter-spacing:-0.02em">38</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Students Mentored</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e">
+      <div class="wrap" style="text-align:center;">
+        <span class="cs-section-label">Future Artists</span>
+        <div class="cs-info-grid" style="grid-template-columns:repeat(2,1fr);text-align:center;margin:2rem 0 0">
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">178</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Students Enrolled</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center">
+            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">7</span>
+            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Departments</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/9.jpg" alt="Report — restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 10 — CREDITS + THANKS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e">
+      <div class="wrap">
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Credits</span>
+          <span class="cs-label-row-val"><strong>UI/UX Designer</strong><br/>Parth Pawar</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">User Experience</span>
+              <span class="cs-tag-item">Interview</span>
+              <span class="cs-tag-item">Identity and Website Design</span>
+              <span class="cs-tag-item">Analysis</span>
+              <span class="cs-tag-item">Wireframe</span>
+              <span class="cs-tag-item">Concept Development</span>
+              <span class="cs-tag-item">Prototyping</span>
+              <span class="cs-tag-item">Figma</span>
+            </span>
+          </span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">UI/UX Role</span>
+        </div>
+
+        <div class="cs-thanks" style="margin-top:3rem;">
+          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Office of Diversity/10.jpg" alt="Credits — Parth Pawar, UI/UX Designer" loading="lazy"/>
+    </div>
 
   </main>
+  </div>
+
+    <a class="next-project" href="CueTV.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">CueTV</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/cuetv.png" alt="CueTV" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

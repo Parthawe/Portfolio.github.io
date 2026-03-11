@@ -4,90 +4,474 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>TransFi · Parth Pawar</title>
-  <meta name="description" content="TransFi enables businesses to send and receive payments across borders using crypto rails. I redesigned the merchant dashboard and onboarding flow, reducing drop-off by 35% and cutting compliance-step completion time by half."/>
+  <meta name="description" content="TransFi — Lead Product Designer case study. Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets, reducing enterprise onboarding from 2 weeks to 3 days."/>
+  <meta property="og:title" content="TransFi · Parth Pawar"/>
+  <meta property="og:description" content="Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets."/>
+  <meta property="og:image" content="assets/images/transfi.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
+  <style>
+    :root { --cs-blue: #232D95; --cs-dark: #1a1a2e; }
+  </style>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
+    <!-- ══════════════════════════════════════════════
+         SLIDE 1 — HERO (light bg, metadata + title + dashboard mockups)
+         ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
         <a href="ux.html" class="back-link">← Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">Fintech</span><span class="proj-tag">Web3</span></div>
+        <div class="proj-tags">
+          <span class="proj-tag">Fintech</span>
+          <span class="proj-tag">UX</span>
+          <span class="proj-tag">Web3</span>
+          <span class="proj-tag">Brand</span>
+        </div>
         <h1 class="proj-title">TransFi</h1>
-        <p class="proj-subtitle">DeFi platform UX for cross-border crypto</p>
+        <p class="proj-subtitle">Led product design for Asia's leading crypto payments platform, owning the full design lifecycle across web and mobile products serving enterprise clients</p>
         <div class="proj-info-row">
-          <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2023</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Senior UX Designer</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">Figma, FigJam, Mixpanel</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Company</span><span class="proj-info-val">TransFi</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">Product Design, Brand Identity, Design Systems</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Lead Product Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">2022 &ndash; 2023</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Location</span><span class="proj-info-val">Bangalore, India</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/transfi.png" alt="TransFi"/></div>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/Transfi/Desktop/1.jpg" alt="TransFi hero — dashboard and buy crypto widget" loading="lazy"/></div>
     </div>
 
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">TransFi enables businesses to send and receive payments across borders using crypto rails. I redesigned the merchant dashboard and onboarding flow, reducing drop-off by 35% and cutting compliance-step completion time by half.</p>
+    <!-- ══════════════════════════════════════════════
+         SLIDE 2 — OVERVIEW + CHALLENGES + ROLE (blue bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#232D95">
+      <div class="wrap">
+        <h2 class="cs-display" style="max-width:18ch;">Web3 payments access simplified for the next billion users.</h2>
+
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Summary</span>
+          <span class="cs-label-row-val">TransFi provides crypto payment infrastructure &mdash; on-ramp, off-ramp, and cross-border payments &mdash; for enterprise clients across Asia. As Lead Product Designer, I owned the end-to-end design lifecycle for web and mobile products, from research and information architecture through to high-fidelity UI, design systems, and brand identity. I led the redesign of the merchant dashboard and consumer-facing widget, shipping V2 and architecting V3 of the platform.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">The Challenge</span>
+          <span class="cs-label-row-val">Crypto payments infrastructure was built for developers, not business users. Enterprise clients needed to integrate cross-border crypto payments but faced interfaces that assumed deep blockchain knowledge. The existing platform had high onboarding drop-off, low merchant self-service rates, and dashboards that surfaced raw data without actionable insights &mdash; all of which slowed adoption in a market where TransFi was competing with MoonPay, Ramp, and Transak.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">As the sole product designer embedded with engineering and product, I owned: product strategy and roadmap input, competitive research and user interviews, information architecture and user flows, wireframing and prototyping, high-fidelity UI design (web + mobile), component library and design system, brand identity and visual language, and direct interaction with enterprise clients for feedback loops.</span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">Figma</span>
+              <span class="cs-tag-item">Jira</span>
+              <span class="cs-tag-item">Transaction System</span>
+              <span class="cs-tag-item">Blockchain</span>
+              <span class="cs-tag-item">Cryptocurrency - Exchange</span>
+              <span class="cs-tag-item">User Flows</span>
+              <span class="cs-tag-item">User Study</span>
+              <span class="cs-tag-item">Local Payment Method</span>
+            </span>
+          </span>
         </div>
       </div>
-    </div>
+    </section>
 
-  <section class="project-gallery reveal">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/1.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/10.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/2.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/3.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/4.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/5.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/6.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/7.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/8.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Transfi/Desktop/9.jpg" alt="" loading="lazy"/></div>
+    <!-- ── Problem section (still blue) ── -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#232D95; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">Problem</span>
+        <h2 class="cs-display">Web3 Is Failing To Serve The Broader Asian Market.</h2>
+
+        <div class="cs-quote-grid">
+          <div class="cs-quote-card">
+            <p>You are solving a big problem. And Asia is very attractive for us</p>
+            <p style="font-style:italic; opacity:0.6; font-size:0.85rem;">We like local payment methods</p>
+            <cite>— Top 5 DeFi player</cite>
+          </div>
+          <div class="cs-quote-card">
+            <p>For crypto transactions, the acceptance rates are very low unless the companies have a local presence or focus</p>
+            <cite>— Leading wallet player</cite>
+          </div>
+          <div class="cs-quote-card">
+            <p>Our main challenges are in Philippines, Thailand, India, China and UAE</p>
+            <cite>— Leading hardware wallet</cite>
+          </div>
+        </div>
+
+        <div class="cs-info-grid" style="margin-top:2rem;">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Limited Local Payments</span>
+            <span class="cs-info-value">Popular local payment methods are not covered by many platforms (e.g. GoPay, PayPay, Gcash, DuitNow etc.).</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Low Conversion Rates</span>
+            <span class="cs-info-value">Global providers don't support local ID cards and fraud models which results in increased rejected transactions.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Poor User Experience</span>
+            <span class="cs-info-value">Current crypto products require technical knowledge and dissuade non-crypto natives from onboarding.</span>
+          </div>
+        </div>
+
+        <div class="cs-callout" style="margin-top:2.5rem;">
+          <p>Only early crypto adopters &amp; natives, especially those with access to credit cards offered by US providers, have easy access to Web3. Failed KYC, local currencies not supported, long transaction times, unavailable payment methods, and no local language support all block the broader market.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ══════════════════════════════════════════════
+         RESEARCH — Competitive analysis + user interviews
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Research</span>
+        <h2 class="cs-section-title">Understanding The Landscape</h2>
+        <div class="cs-body">
+          <p>Before designing, I conducted a competitive audit of crypto payment platforms and interviewed enterprise clients to identify friction points in existing solutions.</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">Competitive Analysis</h3>
+        <div class="cs-info-grid" style="margin-top:1rem;">
+          <div class="cs-info-item">
+            <span class="cs-info-key">MoonPay</span>
+            <span class="cs-info-value">Strong brand and coverage in Western markets, but limited Asian payment methods. Onboarding flow optimized for individual consumers, not enterprise integration.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Ramp</span>
+            <span class="cs-info-value">Developer-friendly APIs with good documentation, but the merchant dashboard lacked actionable analytics. No localization for Asian markets.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Transak</span>
+            <span class="cs-info-value">Widest fiat currency support, but the widget UX felt dated and the onboarding process for merchants took 2+ weeks with manual KYB steps.</span>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:2.5rem;">Enterprise Client Interviews</h3>
+        <div class="cs-body">
+          <p>I conducted interviews with 12 enterprise clients (wallet providers, DeFi platforms, and exchanges) across 6 Asian markets. Three recurring themes emerged:</p>
+        </div>
+        <ol class="cs-num-list">
+          <li><strong>Onboarding friction:</strong> Merchants described a "black box" experience &mdash; after signing up, they had no visibility into KYB status, integration progress, or what to do next.</li>
+          <li><strong>Dashboard overload:</strong> Existing dashboards showed raw transaction logs but didn't surface the metrics merchants actually needed: conversion rates, failure reasons, and settlement timelines.</li>
+          <li><strong>Localization gaps:</strong> End-users in Indonesia, Vietnam, and the Philippines abandoned flows when they encountered unfamiliar payment methods or English-only interfaces.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 3 — SOLUTION (mixed: light top + dark middle + light bottom)
+         ══════════════════════════════════════════════ -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Transfi/Desktop/3.jpg" alt="Access to Web3 flow diagram and Introducing TransFi with fiat-to-crypto solution" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 4 — DESIGN PROCESS (light top + wireframes)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Process</span>
+        <h2 class="cs-section-title">Design Process</h2>
+        <div class="cs-body">
+          <p>I established a structured design process that balanced speed-to-market with research rigor. Each feature went through discovery (client interviews + data review), definition (flows + wireframes), design (high-fidelity + prototype), and validation (usability testing with 3&ndash;5 merchant users before handoff).</p>
+        </div>
+        <div class="cs-process-flow">
+          <span class="cs-process-pill">Research &amp; Strategy</span>
+          <span class="cs-process-pill">User Flow</span>
+          <span class="cs-process-pill">Wireframing</span>
+          <span class="cs-process-pill">Moodboard</span>
+          <span class="cs-process-pill">UI/UX Design</span>
+          <span class="cs-process-pill">UI Kit</span>
+          <span class="cs-process-pill">Branding</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Transfi/Desktop/4.jpg" alt="Design process workflow and wireframe screens" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 5 — PRODUCT OVERVIEW (blue bg + feature cards)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#232D95">
+      <div class="wrap">
+        <span class="cs-section-label">Product Overview</span>
+        <h2 class="cs-display">Providing A Better User Experience.</h2>
+
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Intuitive Flow</div>
+            <div class="cs-feature-card-desc">Designed with local context in mind across user journey. Currently available in Bahasa and Vietnamese.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Crypto-Novice Friendly</div>
+            <div class="cs-feature-card-desc">Simple steps and gentle nudges to ease user flow. Similar to ecommerce shopping experiences.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Localized Language</div>
+            <div class="cs-feature-card-desc">Jargon-free descriptions that are comprehensible to non-crypto users with minimal data entry.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Functional KYC</div>
+            <div class="cs-feature-card-desc">Using local ID and driver licenses for higher KYC success rates and better experience.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Transfi/Desktop/5.jpg" alt="Product overview — widget mockup with feature cards and color palette" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 6 — DESIGN SYSTEM (dark/gray bg — typography + specs)
+         ══════════════════════════════════════════════ -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Transfi/Desktop/6.jpg" alt="Typography scale with DM Sans, button specifications, and card component specs" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 7 — BUY & SELL + ORDER SUMMARY (dark bg with mockups)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a2e">
+      <div class="wrap">
+        <span class="cs-section-label">Screens</span>
+        <h2 class="cs-display">Buy &amp; Sell Crypto Screen</h2>
+        <div class="cs-body">
+          <p>The Buy &amp; Sell Crypto screen is a simple and sophisticated interface to help users choose what to pay &amp; buy with a quick summary.</p>
+        </div>
+        <ol class="cs-num-list">
+          <li>Select a Crypto and on which chain you want that Crypto to be delivered</li>
+          <li>Select a Currency depending on your Country you live in or bank account</li>
+        </ol>
+
+        <h3 class="cs-section-subtitle">Order Summary Screen</h3>
+        <div class="cs-body">
+          <p>It helps you track your progress through statuses: Ordered, Payment Successful, Processed, and Delivered. It also helps users understand any difficulties and duration required for the order to be completed, along with the full order details.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Transfi/Desktop/7.jpg" alt="Buy crypto, select crypto, select currency, order summary and status screens" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 8 — PROFILE & TRADE HISTORY (light bg with 3 screens)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <h2 class="cs-section-title">Profile And Trade History</h2>
+        <div class="cs-body">
+          <p><strong>Menu Screen</strong> helps the user to login &amp; facilitates different options present in the product.</p>
+          <p><strong>Trade History Screen</strong> gives an overview about your recent crypto purchases and sells.</p>
+          <p><strong>Profile</strong> includes bank account details &amp; wallet addresses which have been previously saved.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Transfi/Desktop/8.jpg" alt="Menu, trade history and profile screens with wallet addresses" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 9 — GO-TO-MARKET STRATEGY (blue bg with steps + dashboard)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#232D95">
+      <div class="wrap">
+        <span class="cs-section-label">Go-To-Market Strategy</span>
+        <h2 class="cs-display">Businesses Can Implement The TransFi Widget Easily In 3 Steps.</h2>
+
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Straight To Sandbox</div>
+            <div class="cs-step-desc">Developers get instant access to the sandbox with just their email ID, and can play around with the widget easily.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Easy Onboarding</div>
+            <div class="cs-step-desc">Onboarding takes place in the sandbox through automated KYB and services agreement.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Go Live</div>
+            <div class="cs-step-desc">Once onboarded API keys are given to go live. The dashboard provides high-quality analytics on user metrics.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/Transfi/Desktop/9.jpg" alt="TransFi dashboard analytics and developer widget integration" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         RESULTS — Impact metrics
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#232D95">
+      <div class="wrap">
+        <span class="cs-section-label">Results</span>
+        <h2 class="cs-display">Measurable Impact Across The Platform.</h2>
+        <div class="cs-body">
+          <p>The redesigned platform launched in phases across 2022&ndash;2023. Here are the key outcomes from the product and design work:</p>
+        </div>
+
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title" style="font-size:2rem;">2 weeks &rarr; 3 days</div>
+            <div class="cs-feature-card-desc">Reduced enterprise client onboarding time through guided setup flows, automated KYB, and clear progress indicators that eliminated back-and-forth with support.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title" style="font-size:2rem;">$50M+</div>
+            <div class="cs-feature-card-desc">Monthly transaction volume processed through the redesigned merchant dashboard, with analytics that helped merchants identify and resolve payment failures proactively.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title" style="font-size:2rem;">45% increase</div>
+            <div class="cs-feature-card-desc">Improvement in merchant self-service rate after redesigning documentation, API reference pages, and in-dashboard guidance patterns &mdash; reducing dependency on support tickets.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title" style="font-size:2rem;">6 markets</div>
+            <div class="cs-feature-card-desc">Localized the consumer widget for Asian markets including Indonesia, Vietnam, Philippines, Thailand, India, and UAE &mdash; with local payment methods and language support.</div>
+          </div>
+        </div>
+
+        <div class="cs-callout" style="margin-top:2.5rem;">
+          <p>Beyond metrics, the redesign shifted TransFi's positioning from a developer-first tool to a product that enterprise clients could evaluate, integrate, and go live with independently &mdash; a critical differentiator against competitors in the Asian crypto payments space.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 10 — CREDITS + THANKS (dark blue bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a2e">
+      <div class="wrap">
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Credits</span>
+          <span class="cs-label-row-val"><strong>Lead Product Designer</strong> &mdash; Parth Pawar<br/>Product strategy, UX research, interaction design, visual design, design system, brand identity</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Tools</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">Figma</span>
+              <span class="cs-tag-item">Jira</span>
+              <span class="cs-tag-item">Notion</span>
+              <span class="cs-tag-item">Maze (usability testing)</span>
+              <span class="cs-tag-item">Amplitude (analytics)</span>
+            </span>
+          </span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">Domains</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">Crypto On/Off-Ramp</span>
+              <span class="cs-tag-item">Cross-Border Payments</span>
+              <span class="cs-tag-item">Enterprise SaaS</span>
+              <span class="cs-tag-item">Localization</span>
+              <span class="cs-tag-item">KYC/KYB Compliance</span>
+              <span class="cs-tag-item">API Developer Experience</span>
+            </span>
+          </span>
+        </div>
+
+        <div class="cs-thanks" style="margin-top:3rem;">
+          <h2 class="cs-thanks-title">Thanks for Reading</h2>
+        </div>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+    <a class="next-project" href="raahi-project.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">Raahi</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/raahi.png" alt="Raahi" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

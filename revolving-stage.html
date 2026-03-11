@@ -4,90 +4,365 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Revolving Stage · Parth Pawar</title>
-  <meta name="description" content="Designed and built a motorized revolving stage platform for live theatrical performances. The system allows 360° rotation with variable speed control, enabling dramatic scene transitions without manual crew intervention."/>
+  <meta name="description" content="Designed and engineered a revolving stage for a theatre play at Firodia Karandak. A 15 ft. rotating platform supporting 250+ kgs, enabling seamless scene transitions for a 65+ person production."/>
+  <meta property="og:title" content="Revolving Stage · Parth Pawar"/>
+  <meta property="og:description" content="Engineered a 15 ft. revolving stage for theatre — supporting 250+ kgs with seamless scene transitions."/>
+  <meta property="og:image" content="assets/images/revolving-stage.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
-    <div class="wrap project-header">
+    <!-- ══ SLIDE 1 — Hero / Title ══ -->
+    <div class="wrap project-header project-header--dark" style="--cs-dark:#2c2c2c">
       <div class="proj-back">
-        <a href="creative-tech.html" class="back-link">← Back</a>
+        <a href="creative-tech.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">Hardware</span><span class="proj-tag">Installation</span><span class="proj-tag">Engineering</span></div>
-        <h1 class="proj-title">Revolving Stage</h1>
-        <p class="proj-subtitle">Motorized stage for theatrical performance</p>
         <div class="proj-info-row">
+          <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">Firodia Karandak</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope of Work</span><span class="proj-info-val">Design, Production, Engineering</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Engineer &amp; Art Director</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">3 Months</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2022</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Creative Technologist</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">Arduino, DC Motors, Mechanical Design</span></div>
+        </div>
+        <h1 class="proj-title">Designing Revolving Stage<br><em>For Theatre Play</em></h1>
+      </div>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/RevolvingStage/Desktop/1.jpg" alt="Revolving Stage — designing a revolving stage for theatre play with stage photo and 3D render"/></div>
+    </div>
+
+    <!-- ══ SLIDE 2 — Summary, Challenges, Role, Tools ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2c2c2c">
+      <div class="wrap">
+        <h2 class="cs-display">Theatrical device to move 15 ft. to 8 ft. to 16 ft. the stage for scene changes in Theatre Play.</h2>
+
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Summary</span>
+          <span class="cs-label-row-val">Revolving stage, theatrical device for scene changes, or shifts, by which three or more settings are constructed on a turntable around a central pivot and revolved before the audience.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">The Challenges</span>
+          <span class="cs-label-row-val">The Main Challenge was to design an Axle to support and revolve and 15ft by 8ft stage base, with almost 250+ kgs baring on it. Also giving stability for actors to stand and perform on it. As the timeline was to plan &amp; complete this in 3 months while leading a team of 65+ people, had its own merits.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">As an Art Director, I had to design and engineer Axile and the complete stage with different scenes according to the Theatrical Play while administrating and leading 65+ people.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0">
+              <span class="cs-tag-item">Mechanical Engineering</span>
+              <span class="cs-tag-item">Welding</span>
+              <span class="cs-tag-item">Carpentry</span>
+              <span class="cs-tag-item">Drill</span>
+              <span class="cs-tag-item">Concept Development</span>
+              <span class="cs-tag-item">Stage Production</span>
+              <span class="cs-tag-item">Theatre &ndash; Tech</span>
+              <span class="cs-tag-item">Stage Management</span>
+              <span class="cs-tag-item">Stage Production</span>
+              <span class="cs-tag-item">Scene Types</span>
+            </span>
+          </span>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/revolving-stage.png" alt="Revolving Stage"/></div>
+    </section>
+
+    <!-- ══ SLIDE 2 image ══ -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/2.jpg" alt="Overview slide — summary, challenges, role, tools and 3D stage rotation diagrams" loading="lazy"/>
     </div>
 
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">Designed and built a motorized revolving stage platform for live theatrical performances. The system allows 360° rotation with variable speed control, enabling dramatic scene transitions without manual crew intervention.</p>
+    <!-- ══ SLIDE 3 — Revolving Stage Concept (isometric) ══ -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/3.jpg" alt="Isometric view showing the revolving stage rotating anticlockwise 135 degrees above the audience seating area" loading="lazy"/>
+    </div>
+
+    <!-- ══ SLIDE 4 — Exploded Mechanical Design ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2c2c2c">
+      <div class="wrap">
+        <p class="cs-section-label">Engineering</p>
+        <h2 class="cs-section-title">Mechanical Design</h2>
+        <div class="cs-body">
+          <p>The stage assembly consists of four main components: the wooden revolving stage (15 ft. expansion), a central axle, a caster wheel bearing assembly arranged in a circular pattern, and an 8 ft. &times; 8 ft. wooden base. The entire structure is designed for disassembly and transport.</p>
         </div>
       </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/4.jpg" alt="Exploded isometric view — wooden revolving stage, axle, caster wheel bearing assembly, and wooden base with dimensions" loading="lazy"/>
     </div>
 
-  <section class="project-gallery reveal">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/1.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/10.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/2.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/3.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/4.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/5.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/6.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/7.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/8.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/RevolvingStage/Desktop/9.jpg" alt="" loading="lazy"/></div>
+    <!-- ══ SLIDE 5 — Axle ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2c2c2c">
+      <div class="wrap">
+        <p class="cs-section-label">Engineering</p>
+        <h2 class="cs-section-title">Axle</h2>
+        <div class="cs-body">
+          <p>Axle is a device used in theatrical play production to support and move various props and set pieces. It consists of a rod or spindle that is either fixed or rotating, passing through the centre of a wheel or group of wheels. The axle is designed to enable props and set pieces to be lifted, rotated and moved in any direction on stage. It is often used to swiftly and safely move large props and scenery pieces in a controlled manner during a performance.</p>
+        </div>
+        <div class="cs-body" style="margin-top:1.5rem">
+          <p>The axle assembly is composed of the following components:</p>
+          <ul class="cs-list">
+            <li>Steel Plate 1 (1 ft. &times; 1 ft.)</li>
+            <li>Shaft</li>
+            <li>Thrust Bearing</li>
+            <li>Ball Bearing</li>
+            <li>Bearing</li>
+            <li>Steel Plate 2</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/5.jpg" alt="Exploded view of the axle assembly — steel plates, shaft, thrust bearing, ball bearing, and bearing components" loading="lazy"/>
+    </div>
+
+    <!-- ══ SLIDE 6 — Caster Wheel & Bearing Assembly ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#3a3a3a">
+      <div class="wrap">
+        <p class="cs-section-label">Engineering</p>
+        <h2 class="cs-section-title">Caster Wheel &amp; Bearing Assembly</h2>
+        <div class="cs-body">
+          <p>Wheels hold up the weight of the revolve. While it's desirable if a plain wagon moves quietly, it's even more important for our revolve, because one of this stage equipment unit is that it doesn't draw attention to itself by rumbling and squeaking. So we need wheels that will operate without making noise.</p>
+          <p>The caster wheels are arranged in a circular pattern on the 8 ft. base, with a 4 ft. radius, providing even weight distribution and smooth, silent rotation for the entire stage platform.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/6.jpg" alt="Caster wheel detail and circular bearing assembly arrangement on the base — 8 ft. diameter layout" loading="lazy"/>
+    </div>
+
+    <!-- ══ SLIDE 7 — Revolving Stage Physics & Design ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a0f">
+      <div class="wrap">
+        <p class="cs-section-label">Engineering</p>
+        <h2 class="cs-display">Revolving Stage</h2>
+        <div class="cs-body">
+          <p>For present purposes, a revolve is a circular disk, capable of supporting the same loads as the stage floor, lying in a horizontal plane and turning around a fixed center. You can conceive of a unit that violates any point of this definition; the victim's wheel in a knife-throwing act is not horizontal, a lightweight set piece can be revealed with a pie stand or a table mounted on a dowel rod, and so forth. I won't take up any of those cases.</p>
+          <p>The disk has to be fairly stiff, because we don't want set elements built on it to flex when the unit moves. We don't look for perfect rigidity; maybe we could build a 16- or 18-foot circle with no give in it, but even a sound floor sags a little when loaded, so there's no point incurring the vast expense of a perfect revolve to stand on an imperfect deck.</p>
+          <p>If the disk is more than a handspan across, it has to have support other than at the middle. A big revolve with all its weight concentrated at the center would punch right through the deck, making us no friends in the theater.</p>
+          <p>The forces on a revolve can be broken down (resolved) into vertical or gravity forces and lateral or thrust forces. Most of the thrusts act when we turn the unit, but lateral forces arise in violent action and even when someone steps on or off. If the revolve is stationary and no one is mounting or dismounting, gravity is the only force that acts on it. It will simplify design and construction if we can use one system to handle thrust and a different system to handle weight.</p>
+          <p>That won't quite happen, but we'll make the effort. In building theater equipment, most of us think in terms of wood and metal. There's a lot to be said for iron as a load-bearing material; your favorite freight elevator is chock-full of it.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/7.jpg" alt="Revolving stage shown at multiple rotation angles — clockwise 45 degrees, angle 0 degrees, anti-clockwise 45 and 90 degrees" loading="lazy"/>
+    </div>
+
+    <!-- ══ SLIDE 8 — Final Stage Design ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2c2c2c">
+      <div class="wrap">
+        <p class="cs-section-label">Design</p>
+        <h2 class="cs-display">Final Stage Design</h2>
+        <div class="cs-feature-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="cs-feature-card">
+            <h3 class="cs-feature-card-title">Cafe 1</h3>
+            <p class="cs-feature-card-desc">Cafe 1 is an indoor high end cafe to give a feel of luxury and casual meetups. It was specifically used in Key Script play (2nd and 5th Scene) as the protagonist develop their story.</p>
+          </div>
+          <div class="cs-feature-card">
+            <h3 class="cs-feature-card-title">Revolving Stage</h3>
+            <p class="cs-feature-card-desc">Revolving Stage was the centre piece of the act, as it performed as multiple stages inside one frame itself. The Building View, Corner Street View &amp; Garden view were showcased using this stage dynamic.</p>
+          </div>
+          <div class="cs-feature-card">
+            <h3 class="cs-feature-card-title">Cafe 2</h3>
+            <p class="cs-feature-card-desc">Cafe 2 was set as a foreground for Musicians to help give the inclusivity in the act.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/8.jpg" alt="Final stage design — front elevation showing Cafe 1, central revolving stage with umbrella, and Cafe 2" loading="lazy"/>
+    </div>
+
+    <!-- ══ SLIDE 9 — In Action ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2c2c2c">
+      <div class="wrap">
+        <p class="cs-section-label">Result</p>
+        <h2 class="cs-display">In &ndash; Action</h2>
+        <div class="cs-body">
+          <p>The revolving stage in live performance &mdash; capturing scene transitions, actor interactions, and the dynamic set changes during the theatrical play at Firodia Karandak.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/RevolvingStage/Desktop/9.jpg" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy"/>
+    </div>
+
+    <!-- ══ SLIDE 10 — Credits, Tools, Role & Thanks ══ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1e1e">
+      <div class="wrap">
+        <p class="cs-section-label">Team</p>
+        <h2 class="cs-section-title" style="font-style:italic">Credits</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Director</span>
+            <span class="cs-credit-name">Apoorva Joglikar</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Art Director</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Backstage Head</span>
+            <span class="cs-credit-name">Vaishnavi Vaidya</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Special Help</span>
+            <span class="cs-credit-name">Karan, Parth Ghamande, Prathamesh Kulkarni, Amey Shelke</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Technical Team</span>
+            <span class="cs-credit-name">Omkar Mahale, Omkar Sardeshpande, Akshit Mahale, Kedar Deshpande, Saumeen Phanasalkar, Nilay Diwan</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Acting Dance &amp; Music Team</span>
+            <span class="cs-credit-name">Shreya Lunkad, Varun Khalate, Sakshi Kanav, Sahil Taskar, Prathamesh Londhe, Saumya Deshmukh, Ritika Sisodiya</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Artist Team</span>
+            <span class="cs-credit-name">Shalaka Deo, Shrutika Nandurkar, Vaishnavi, Isha Patil</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Lights</span>
+            <span class="cs-credit-name">Umang Pathrabe, Adityaraj HonRaopatil</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Backstage Team</span>
+            <span class="cs-credit-name">Paresh Gokhale, Aryan Shinde, Aryan Karande, Pushkar Nerpagar, Anshuman Gramkar, Savant Bonthe, Soham Phadke, Vinayak Sawandkar, Shalmali Bhalero, Prathamesh Hawale, Shaunak Yevatkar, Saloni Nimgaonkar, Arya Joshi, Eshan Mehendale, Divya Kamalskar, Gaush Mukkawar, Parth Nevase, Karan</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Additional Team</span>
+            <span class="cs-credit-name">Apoorva Joglikar, Gaurav Waghmare, Mrunal Barve, Mandar Saraf, Parth Ghamande, Aditya Puntambekar, Pratik Hubikar, Aditya Dere, Radhika, Ojas Natu, Aditya Raje</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tools & My Role (from slide 10 bottom) ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#252525">
+      <div class="wrap">
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Tools and Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0">
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Mechanical Engineering</span>
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Welding</span>
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Carpentry</span>
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Stage Production</span>
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Drill</span>
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Concept Development</span>
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Stage Management</span>
+              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Theatre &ndash; Tech</span>
+            </span>
+          </span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">As an Art Director, I had to design and engineer Axile and the complete stage with different scenes according to the Theatrical Play while administrating and leading 65+ people.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Thanks ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1e1e">
+      <div class="wrap">
+        <div class="cs-thanks">
+          <h2 class="cs-thanks-title"><em>Thanks for Watching!</em></h2>
+        </div>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+    <a class="next-project" href="office-of-diversity.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">Office of Diversity</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/office-of-diversity.png" alt="Office of Diversity" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

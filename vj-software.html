@@ -3,92 +3,562 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>VJ Software · Parth Pawar</title>
-  <meta name="description" content="A custom real-time visual performance system built in TouchDesigner for live music events. Audio-reactive visuals, MIDI controller integration and multi-output rendering — designed for 60fps playback at festival scale."/>
+  <title>VJ Parivar · Parth Pawar</title>
+  <meta name="description" content="Designing the digital forefront of Vilas Javdekar — a vehicle parking management app for homeowners in VJ residential societies. User research, UI/UX design and prototyping for a seamless parking experience."/>
+  <meta property="og:title" content="VJ Software · Parth Pawar"/>
+  <meta property="og:description" content="Vehicle parking management app for VJ residential societies — user research, UI/UX and prototyping."/>
+  <meta property="og:image" content="assets/images/vj.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
+    <!-- ══════════════════════════════════════════════
+         SLIDE 1 — HERO (light bg, metadata + title + app mockups)
+         ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="creative-tech.html" class="back-link">← Back</a>
+        <a href="creative-tech.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">Code</span><span class="proj-tag">Installation</span><span class="proj-tag">Performance</span></div>
-        <h1 class="proj-title">VJ Software</h1>
-        <p class="proj-subtitle">Real-time visual performance with TouchDesigner</p>
+        <div class="proj-tags">
+          <span class="proj-tag">UX</span>
+          <span class="proj-tag">UI</span>
+          <span class="proj-tag">Research</span>
+          <span class="proj-tag">Prototyping</span>
+        </div>
+        <h1 class="proj-title">VJ Parivar</h1>
+        <p class="proj-subtitle">Vehicle Parking Made Easy</p>
         <div class="proj-info-row">
+          <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">Vilas Javdekar</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">User Research, UI/UX, Prototyping</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">UI/UX Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">3 Months</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2022</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Creative Technologist</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">TouchDesigner, MIDI, Python</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/vj.png" alt="VJ Software"/></div>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/vj/Desktop/1.jpg" alt="VJ Parivar — Vehicle Parking Made Easy hero with app screens" loading="lazy"/></div>
     </div>
 
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">A custom real-time visual performance system built in TouchDesigner for live music events. Audio-reactive visuals, MIDI controller integration and multi-output rendering — designed for 60fps playback at festival scale.</p>
+    <!-- ══════════════════════════════════════════════
+         SLIDE 2 — OVERVIEW (white bg, summary + challenges + role + tools)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <h2 class="cs-display" style="max-width:22ch;">Designing the digital forefront of a real estate company; to be the face of its post-payment services.</h2>
+
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Summary</span>
+          <span class="cs-label-row-val">Designing the digital forefront of a real estate company; to be the face of its post-payment services. VJ Parivar is an app for the homeowners of VJ Real Estate and constructions company. It aims to be the face of VJ services to their homeowners after their purchase of a house from VJ.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">The Challenges</span>
+          <span class="cs-label-row-val">My Challenge was to help the house owner to understand the need for the layout of the society. &amp; make it an easy process for selecting the car parking spot. Also help owners to tackle the secondary needs of the user. Like Complain / Renting Space.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">My role as UI/UX Designer was to first research the current methods and propose a new system for helping homeowners to select a proper Parking spot by giving a good visual experience and help them understand the layout.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">Figma</span>
+              <span class="cs-tag-item">User Research</span>
+              <span class="cs-tag-item">Identity and Website Design</span>
+              <span class="cs-tag-item">Prototyping</span>
+              <span class="cs-tag-item">Wireframes</span>
+              <span class="cs-tag-item">High-Fidelity</span>
+              <span class="cs-tag-item">Experience Management</span>
+              <span class="cs-tag-item">Design System</span>
+            </span>
+          </span>
         </div>
       </div>
-    </div>
+    </section>
 
-  <section class="project-gallery reveal">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/1.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/10.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/11.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/2.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/3.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/4.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/5.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/6.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/7.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/8.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/vj/Desktop/9.jpg" alt="" loading="lazy"/></div>
+    <!-- ══════════════════════════════════════════════
+         SLIDE 3 — CONTEXT + PROBLEM STATEMENT + PROCESS (white top, gray bottom)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Context</span>
+        <h2 class="cs-section-title">Vilas Javdekar &amp; VJ First</h2>
+        <div class="cs-two-col">
+          <div>
+            <div class="cs-body">
+              <p>Special tie-ups with neighborhood destinations. This includes sports facilities, educational institutions and healthcare destinations. VJ homeowners get priority treatment.</p>
+            </div>
+            <div class="cs-info-grid">
+              <div class="cs-info-item">
+                <span class="cs-info-key">Construction Updates</span>
+                <span class="cs-info-value">Real-time progress</span>
+              </div>
+              <div class="cs-info-item">
+                <span class="cs-info-key">Legal &amp; Pay</span>
+                <span class="cs-info-value">Documentation &amp; payments</span>
+              </div>
+              <div class="cs-info-item">
+                <span class="cs-info-key">Services</span>
+                <span class="cs-info-value">Maintenance &amp; utilities</span>
+              </div>
+              <div class="cs-info-item">
+                <span class="cs-info-key">VJ Connect</span>
+                <span class="cs-info-value">Community platform</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="cs-section-subtitle">VJ - First Vehicle Parking</h3>
+            <div class="cs-body">
+              <p>VJ Vehicle Parking is an elegant solution to help VJ users to Book their Parking Slots and avail services around the Vehicle and society regulations.</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <section class="cs-section cs-section--gray reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Discover</span>
+        <h2 class="cs-section-title">Problem Statement</h2>
+        <div class="cs-callout">
+          <p>How can VJ provide a <strong>seamless parking experience</strong> for their residents?</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">Process</h3>
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Discover</div>
+            <div class="cs-step-desc">User Research, Market Research, Current Methods</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Define</div>
+            <div class="cs-step-desc">Insights, Goals, Challenges, Features</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Develop</div>
+            <div class="cs-step-desc">UX, Visuals</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">4</div>
+            <div class="cs-step-title">Deliver</div>
+            <div class="cs-step-desc">Prototyping, Improvements</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 4 — USER RESEARCH + MARKET RESEARCH (white bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Discover</span>
+        <h2 class="cs-section-title">User Research</h2>
+        <div class="cs-info-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Mr. Ashish Patil</span>
+            <span class="cs-info-value">Male, 36 years old, working with BCG. Owner of flat B-block, Apartment #207 in Platinum City society in Bangalore.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Mr. Prakash Sharma</span>
+            <span class="cs-info-value">Male, 27 years old, works in IT. Tenant of flat A-block, Apartment #1103 in Essel Tower society in Gurugram.</span>
+          </div>
+        </div>
+
+        <div class="cs-two-col" style="margin-top:2rem;">
+          <div>
+            <div class="cs-callout">
+              <p>"I faced difficulty while choosing my parking spot."</p>
+            </div>
+            <div class="cs-body">
+              <p><strong>Primary Goal:</strong> To book a parking spot for their vehicle in the society.</p>
+              <p><strong>Secondary Goal:</strong> To complain for incorrect car parking. Rent his parking space for extra income. Apply for multiple parking (if applicable).</p>
+            </div>
+          </div>
+          <div>
+            <div class="cs-callout">
+              <p>"I would want an option to choose their parking spot other than the owner's."</p>
+            </div>
+            <div class="cs-body">
+              <p><strong>Primary Goal:</strong> To choose a different parking slot other than the available owner's parking.</p>
+              <p><strong>Secondary Goal:</strong> To complain for incorrect car parking. Apply for multiple parking (if applicable).</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle">Market Research &mdash; Competitive Analysis</h3>
+        <div class="cs-body">
+          <p>Analyzed competitor apps including MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety across features like visitor management, parking spots, domestic staff management, utility bill payments, communication management, and more.</p>
+        </div>
+        <div class="cs-img-full"><img src="Assets/Projects/vj/Desktop/4.jpg" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy"/></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 5 — FINDINGS + CURRENT METHODS (white bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Discover</span>
+        <h2 class="cs-section-title">Findings</h2>
+        <div class="cs-feature-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">NoBrokerHood App</div>
+            <div class="cs-feature-card-desc">Can upload documents later on. Verification from society officials is required. No option to add driver details. Visitor entry approval available and their entry-exit logs. No option to report complain. Option to add vehicle details.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">MyGate App</div>
+            <div class="cs-feature-card-desc">No documents required. No verification or confirmation. No option to add driver details. Visitor entry &amp; exit logs are available. No option to report complain if some other car is parked in their spot.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">ItsMyAccount App</div>
+            <div class="cs-feature-card-desc">Gives different options for available parking spots. Owner and Tenant can book for car parking. Contact details of car owners is available. Track changes regarding parking lot history and availability.</div>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle">Current Methods</h3>
+        <div class="cs-two-col">
+          <div>
+            <h3 class="cs-section-subtitle">Society Type 1</h3>
+            <div class="cs-body">
+              <p>No digitization, no documentation, cash payment. The user visits the society office, officials verify residency, explain parking layout and rates verbally, user selects a spot, pays by cash, and officials make a record in their system.</p>
+            </div>
+          </div>
+          <div>
+            <h3 class="cs-section-subtitle">Society Type 2</h3>
+            <div class="cs-body">
+              <p>No digitization, documentation required, multiple payment modes. User visits the society office, officials ask for documents to verify residency, ask for RC copy of the vehicle for record, explain parking layout and rates, user selects a spot, and multiple payment modes are available.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cs-img-full"><img src="Assets/Projects/vj/Desktop/5.jpg" alt="Current methods — flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy"/></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 6 — INSIGHTS + GOALS (dark bg ~#1e1e24)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1e24">
+      <div class="wrap">
+        <span class="cs-section-label">Define</span>
+        <h2 class="cs-section-title">Insights</h2>
+        <div class="cs-feature-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">People are interested in renting their parking space when its not in use.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">Tenants would want an option to choose their parking spot other than the owner's.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">An interactive society's layout can be used to help users book their parking spot.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">Stickers can be removed and RFIDs or FastTag can be leveraged for easy entry and exit in the society.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">Provide car parking norms of the society and any updates in fare or slots should be communicated.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">Car document verification is required and an option to get the car owners details is desired.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">People would want to inform the officials about their guest and can manage with any open parking space for them.</div>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle">Goals</h3>
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Understand Layout</div>
+            <div class="cs-step-desc">Help the house owner to understand need the layout of the society.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Easy Selection</div>
+            <div class="cs-step-desc">Easy process for selecting the car parking spot.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Secondary Needs</div>
+            <div class="cs-step-desc">Help to tackle secondary needs of the user. Like Complain / Renting Space.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 7 — USER JOURNEY + FEATURES (dark bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a22">
+      <div class="wrap">
+        <span class="cs-section-label">Define</span>
+        <h2 class="cs-section-title">User Journey</h2>
+        <div class="cs-body">
+          <p>Mapped the complete user journey covering first-time users booking a parking spot, adding RFID or FastTag details, editing vehicle details, renting a parking spot, and filing complaints for incorrect vehicle parking. Each flow includes decision points, success states, and error handling.</p>
+        </div>
+        <div class="cs-img-full"><img src="Assets/Projects/vj/Desktop/7.jpg" alt="User journey map — full flow diagram for parking spot booking, RFID, complaints" loading="lazy"/></div>
+
+        <h3 class="cs-section-subtitle">Features</h3>
+        <div class="cs-tags">
+          <span class="cs-tag-item">Visitor Management System</span>
+          <span class="cs-tag-item">Book Parking Spot</span>
+          <span class="cs-tag-item">Employee Sign In</span>
+          <span class="cs-tag-item">Multiple Parking Spot</span>
+          <span class="cs-tag-item">Domestic Staff Management</span>
+          <span class="cs-tag-item">Maintenance and Utility Bill Payments</span>
+          <span class="cs-tag-item">Communication Management</span>
+          <span class="cs-tag-item">Evacuation Management</span>
+          <span class="cs-tag-item">Complaint Management / Feedback</span>
+          <span class="cs-tag-item">Digital In &amp; Out Board</span>
+          <span class="cs-tag-item">Multi-lingual Support</span>
+          <span class="cs-tag-item">Digital Agreements</span>
+          <span class="cs-tag-item">ID Badge Printing / Digital</span>
+          <span class="cs-tag-item">Customization of Features</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 8 — UX & WIREFRAME + HIGH FIDELITY (light bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Develop</span>
+        <h2 class="cs-section-title">UX &amp; Wireframe</h2>
+        <div class="cs-body">
+          <p>Created low-fidelity wireframes exploring the full parking flow: from the vehicle parking tab, to booking a parking slot, navigation on the society map layout, selecting a parking spot, pricing and payment options, and the final confirmation screen.</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">High Fidelity</h3>
+        <div class="cs-body">
+          <p>Translated wireframes into polished high-fidelity screens featuring the interactive society map, spot selection interface, booking details, payment flow, and confirmation screens.</p>
+        </div>
+        <div class="cs-img-full"><img src="Assets/Projects/vj/Desktop/8.jpg" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy"/></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 9 — VISUAL STYLE (black bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+      <div class="wrap">
+        <span class="cs-section-label">Develop</span>
+        <h2 class="cs-section-title">Setting Visual Style</h2>
+
+        <h3 class="cs-section-subtitle">Color Palette</h3>
+        <div class="cs-swatch-grid">
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#F66300;"></div>
+            <span class="cs-swatch-hex">#F66300</span>
+          </div>
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#FFA25F;"></div>
+            <span class="cs-swatch-hex">#FFA25F</span>
+          </div>
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#E6F6FF;"></div>
+            <span class="cs-swatch-hex">#E6F6FF</span>
+          </div>
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#FFFFFF; border-color:rgba(255,255,255,0.3);"></div>
+            <span class="cs-swatch-hex">#FFFFFF</span>
+          </div>
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#000000;"></div>
+            <span class="cs-swatch-hex">#000000</span>
+          </div>
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#009DF6;"></div>
+            <span class="cs-swatch-hex">#009DF6</span>
+          </div>
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#3BD378;"></div>
+            <span class="cs-swatch-hex">#3BD378</span>
+          </div>
+          <div class="cs-swatch">
+            <div class="cs-swatch-color" style="background:#FFFDEC; border-color:rgba(255,255,255,0.3);"></div>
+            <span class="cs-swatch-hex">#FFFDEC</span>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle">Typography</h3>
+        <div class="cs-info-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Primary</span>
+            <span class="cs-info-value">Rubik Bold</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Secondary</span>
+            <span class="cs-info-value">Bebas Neue</span>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle">Layout</h3>
+        <div class="cs-info-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Type 1</span>
+            <span class="cs-info-value">Text single-column</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Type 2</span>
+            <span class="cs-info-value">Text double-column</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Type 3</span>
+            <span class="cs-info-value">Movie Grid with no margins</span>
+          </div>
+        </div>
+
+        <div class="cs-img-full"><img src="Assets/Projects/vj/Desktop/9.jpg" alt="Visual style — color palette, typography, icons, and layout system" loading="lazy"/></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 10 — VISUALS & PROTOTYPING (dark bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111117">
+      <div class="wrap">
+        <span class="cs-section-label">Deliver</span>
+        <h2 class="cs-section-title">Visuals &amp; Prototyping</h2>
+
+        <h3 class="cs-section-subtitle">Onboarding</h3>
+        <div class="cs-body">
+          <p>The onboarding flow guides users through selecting their vehicle type (two-wheeler or four-wheeler), viewing the society map layout, and navigating to their wing and floor to explore available parking spots.</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">Choosing A Spot</h3>
+        <div class="cs-body">
+          <p>Users can browse the interactive map, filter by parking type, view available spots with pricing, and walk through the lot with a visual guide before making their selection.</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">Payment</h3>
+        <div class="cs-body">
+          <p>After selecting a spot, users proceed through the booking process, choose a payment method, receive confirmation of their payment, and get a detailed summary of their parking reservation.</p>
+        </div>
+
+        <div class="cs-img-full"><img src="Assets/Projects/vj/Desktop/10.jpg" alt="Final high-fidelity screens — onboarding, spot selection, and payment flows" loading="lazy"/></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 11 — CREDITS + THANKS (dark bg ~#2a2a35)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2a2a35">
+      <div class="wrap">
+        <span class="cs-section-label">Team</span>
+        <h2 class="cs-section-title">Credits</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">UX Lead</span>
+            <span class="cs-credit-name">Akshita Anand</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">UI/UX Designer</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+        </div>
+
+        <div class="cs-label-row" style="margin-top:2rem;">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">UI/UX Role</span>
+        </div>
+
+        <div class="cs-thanks" style="margin-top:2rem;">
+          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+        </div>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+    <a class="next-project" href="uv-light.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">UV Light Installation</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/uv-light.png" alt="UV Light Installation" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

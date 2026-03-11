@@ -3,108 +3,221 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Creative-Tech · Parth Pawar</title>
-  <meta name="description" content="Creative technology, physical installations, typeface design, and hardware by Parth Pawar."/>
+  <title>Archive · Parth Pawar</title>
+  <meta name="description" content="Full project archive by Parth Pawar — fintech, research, AI, creative technology, installations, brand."/>
+  <meta property="og:title" content="Archive · Parth Pawar"/>
+  <meta property="og:description" content="Full project archive by Parth Pawar — fintech, research, AI, creative technology, installations."/>
+  <meta property="og:image" content="assets/images/zentipay.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
+
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
+
+  <div class="wk-hover-img" id="wk-hover-img">
+    <img src="" alt=""/>
+  </div>
+
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html" class="active">Creative-Tech</a></li>
+        <li><a href="ux.html" class="active">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <main>
-    <div class="wrap">
-      <div class="pg-hero">
-        <h1>Creative Technology &amp; Art</h1>
-        <p class="pg-sub">Physical installations, hardware, typography &amp; experimental work &middot; 2019–2025</p>
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html" class="active">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
+    <main>
+
+      <!-- Header: Works / Archive toggle -->
+      <div class="wrap wcat-header">
+        <a href="ux.html" class="wcat-title wcat-title--ghost">Works</a>
+        <a href="creative-tech.html" class="wcat-title active">Archive</a>
       </div>
 
-      <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="Installation">Installation</button>
-        <button class="filter-btn" data-filter="Hardware">Hardware</button>
-        <button class="filter-btn" data-filter="Typography">Typography</button>
-        <button class="filter-btn" data-filter="Code">Code</button>
-        <button class="filter-btn" data-filter="Art">Art</button>
+      <!-- Full project list -->
+      <div class="works-feed">
+
+        <a class="wk" href="mentra.html" data-img="assets/images/mentra.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">01</span>
+            <h2 class="wk-title">Mentra</h2>
+            <span class="wk-cat">AI Wearables · Smart Glasses · Product Design</span>
+            <span class="wk-year">2025</span>
+          </div>
+        </a>
+
+        <a class="wk" href="zentipay.html" data-img="assets/images/zentipay.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">02</span>
+            <h2 class="wk-title">ZentiPay</h2>
+            <span class="wk-cat">Fintech · UX · 0→1</span>
+            <span class="wk-year">2025</span>
+          </div>
+        </a>
+
+        <a class="wk" href="transfi-project.html" data-img="assets/images/transfi.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">03</span>
+            <h2 class="wk-title">TransFi</h2>
+            <span class="wk-cat">Fintech · UX · Brand</span>
+            <span class="wk-year">2022–23</span>
+          </div>
+        </a>
+
+        <a class="wk" href="raahi-project.html" data-img="assets/images/raahi.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">04</span>
+            <h2 class="wk-title">Raahi</h2>
+            <span class="wk-cat">UX · Research · Mobile</span>
+            <span class="wk-year">2023</span>
+          </div>
+        </a>
+
+        <a class="wk" href="the-point-cdc.html" data-img="assets/images/the-point-cdc.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">05</span>
+            <h2 class="wk-title">The Point CDC</h2>
+            <span class="wk-cat">UX · Research · Community</span>
+            <span class="wk-year">2024</span>
+          </div>
+        </a>
+
+        <a class="wk" href="ai-voice.html" data-img="assets/images/ai-voice.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">06</span>
+            <h2 class="wk-title">AI Voice Interface</h2>
+            <span class="wk-cat">AI · UX · Research</span>
+            <span class="wk-year">2021</span>
+          </div>
+        </a>
+
+        <a class="wk" href="keyboard-project.html" data-img="assets/images/keyboard.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">07</span>
+            <h2 class="wk-title">BreakGen</h2>
+            <span class="wk-cat">Creative Tech · Hardware · ML</span>
+            <span class="wk-year">2024</span>
+          </div>
+        </a>
+
+        <a class="wk" href="vj-software.html" data-img="assets/images/vj.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">08</span>
+            <h2 class="wk-title">VJ Software</h2>
+            <span class="wk-cat">Code · Art</span>
+            <span class="wk-year">2024</span>
+          </div>
+        </a>
+
+        <a class="wk" href="uv-light.html" data-img="assets/images/uv-light.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">09</span>
+            <h2 class="wk-title">UV Light Installation</h2>
+            <span class="wk-cat">Installation · Art</span>
+            <span class="wk-year">2023</span>
+          </div>
+        </a>
+
+        <a class="wk" href="revolving-stage.html" data-img="assets/images/revolving-stage.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">10</span>
+            <h2 class="wk-title">Revolving Stage</h2>
+            <span class="wk-cat">Hardware · Installation</span>
+            <span class="wk-year">2021</span>
+          </div>
+        </a>
+
+        <a class="wk" href="office-of-diversity.html" data-img="assets/images/office-of-diversity.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">11</span>
+            <h2 class="wk-title">Office of Diversity</h2>
+            <span class="wk-cat">UX · Brand · Web</span>
+            <span class="wk-year">2023–24</span>
+          </div>
+        </a>
+
+        <a class="wk" href="CueTV.html" data-img="assets/images/cuetv.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">12</span>
+            <h2 class="wk-title">CueTV</h2>
+            <span class="wk-cat">UX · Research</span>
+            <span class="wk-year">2023</span>
+          </div>
+        </a>
+
+        <a class="wk" href="ATPS.html" data-img="assets/images/atps.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">13</span>
+            <h2 class="wk-title">ATPS</h2>
+            <span class="wk-cat">UX · Research</span>
+            <span class="wk-year">2023</span>
+          </div>
+        </a>
+
+        <a class="wk" href="Typeface.html" data-img="assets/images/typeface.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">14</span>
+            <h2 class="wk-title">Butler's Slice</h2>
+            <span class="wk-cat">Typography · Art</span>
+            <span class="wk-year">2022</span>
+          </div>
+        </a>
+
+        <a class="wk" href="tedx.html" data-img="assets/images/tedx.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">15</span>
+            <h2 class="wk-title">TEDx VITPUNE</h2>
+            <span class="wk-cat">Art · Brand</span>
+            <span class="wk-year">2021</span>
+          </div>
+        </a>
+
+        <a class="wk" href="code-for-build.html" data-img="assets/images/code-for-build.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">16</span>
+            <h2 class="wk-title">Code for Build</h2>
+            <span class="wk-cat">Code · Brand</span>
+            <span class="wk-year">2021</span>
+          </div>
+        </a>
+
+        <a class="wk" href="jugalbandi.html" data-img="assets/images/jugalbandi.png">
+          <div class="wrap wk-row">
+            <span class="wk-no">17</span>
+            <h2 class="wk-title">Jugalbandi</h2>
+            <span class="wk-cat">Creative-Tech · Music</span>
+            <span class="wk-year">2024</span>
+          </div>
+        </a>
+
       </div>
 
-      <div class="grid-3" id="ct-grid">
-
-        <a class="card reveal" href="keyboard-project.html" data-tags="Hardware Making">
-          <div class="card-img">
-            <img src="assets/images/keyboard.png" alt="Custom Keyboard" loading="eager"/>
-            <div class="card-overlay"><span class="overlay-title">Custom Keyboard</span></div>
-          </div>
-          <div class="card-meta"><span class="card-name">Custom Mechanical Keyboard</span><span class="card-year">2023</span></div>
-          <div class="card-tags"><span class="tag-dot">Hardware</span><span class="tag-dot">Making</span></div>
-        </a>
-
-        <a class="card reveal" href="typeface.html" data-tags="Typography Art">
-          <div class="card-img">
-            <img src="assets/images/typeface.png" alt="Butler's Slice" loading="eager"/>
-            <div class="card-overlay"><span class="overlay-title">Butler's Slice</span></div>
-          </div>
-          <div class="card-meta"><span class="card-name">Butler's Slice Typeface</span><span class="card-year">2022</span></div>
-          <div class="card-tags"><span class="tag-dot">Typography</span><span class="tag-dot">Art</span></div>
-        </a>
-
-        <a class="card reveal" href="vj-software.html" data-tags="Code Art">
-          <div class="card-img">
-            <img src="assets/images/vj.png" alt="VJ Software" loading="eager"/>
-            <div class="card-overlay"><span class="overlay-title">VJ Software</span></div>
-          </div>
-          <div class="card-meta"><span class="card-name">VJ Performance Software</span><span class="card-year">2024</span></div>
-          <div class="card-tags"><span class="tag-dot">Code</span><span class="tag-dot">Art</span></div>
-        </a>
-
-        <a class="card reveal" href="uv-light.html" data-tags="Installation Art">
-          <div class="card-img">
-            <img src="assets/images/uv-light.png" alt="UV Light" loading="lazy"/>
-            <div class="card-overlay"><span class="overlay-title">UV Light Installation</span></div>
-          </div>
-          <div class="card-meta"><span class="card-name">UV Light Installation</span><span class="card-year">2023</span></div>
-          <div class="card-tags"><span class="tag-dot">Installation</span><span class="tag-dot">Art</span></div>
-        </a>
-
-        <a class="card reveal" href="revolving-stage.html" data-tags="Hardware Installation">
-          <div class="card-img">
-            <img src="assets/images/revolving-stage.png" alt="Revolving Stage" loading="lazy"/>
-            <div class="card-overlay"><span class="overlay-title">Revolving Stage</span></div>
-          </div>
-          <div class="card-meta"><span class="card-name">Revolving Stage</span><span class="card-year">2021</span></div>
-          <div class="card-tags"><span class="tag-dot">Hardware</span><span class="tag-dot">Installation</span></div>
-        </a>
-
-        <a class="card reveal" href="tedx.html" data-tags="Art Brand">
-          <div class="card-img">
-            <img src="assets/images/tedx.png" alt="TEDx VITPUNE" loading="lazy"/>
-            <div class="card-overlay"><span class="overlay-title">TEDx VITPUNE</span></div>
-          </div>
-          <div class="card-meta"><span class="card-name">TEDx VITPUNE</span><span class="card-year">2021</span></div>
-          <div class="card-tags"><span class="tag-dot">Art</span><span class="tag-dot">Brand</span></div>
-        </a>
-
-        <a class="card reveal" href="code-for-build.html" data-tags="Code Art">
-          <div class="card-img">
-            <img src="assets/images/code-for-build.png" alt="Code for Build" loading="lazy"/>
-            <div class="card-overlay"><span class="overlay-title">Code for Build</span></div>
-          </div>
-          <div class="card-meta"><span class="card-name">Code for Build</span><span class="card-year">2021</span></div>
-          <div class="card-tags"><span class="tag-dot">Code</span><span class="tag-dot">Art</span></div>
-        </a>
-
-      </div>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <footer class="footer">
     <div class="footer-marquee">
@@ -127,16 +240,18 @@
       <div class="wrap footer-inner">
         <div>
           <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;25 &middot; designwhich.works</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
         </div>
         <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parthawe" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
         </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

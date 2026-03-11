@@ -5,6 +5,7 @@
 /* ── Back link ── */
 .project-main {
   padding-top: 80px;
+  background: var(--bg);
 }
 
 .project-header {
@@ -16,15 +17,23 @@
 }
 
 .back-link {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  color: var(--ink);
+  font-family: var(--sans, 'Inter', system-ui, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink, #1a1a1a);
   text-decoration: none;
   opacity: 0.5;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, color 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
-.back-link:hover { opacity: 1; }
+.back-link:hover {
+  opacity: 1;
+  color: var(--accent, #e84393);
+  transform: translateX(-4px);
+}
 
 /* ── Project meta ── */
 .proj-meta {
@@ -40,18 +49,27 @@
 }
 
 .proj-tag {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-family: var(--sans, 'Inter', system-ui, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.3rem 0.7rem;
-  border: 1px solid var(--ink);
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--ink-30, rgba(26,26,26,0.3));
   border-radius: 100px;
-  color: var(--ink);
+  color: var(--ink, #1a1a1a);
+  transition: all 0.25s cubic-bezier(0,0,.3,1);
+  background: transparent;
+}
+.proj-tag:hover {
+  background: var(--ink, #1a1a1a);
+  color: var(--bg, #fafaf8);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .proj-title {
-  font-family: var(--serif);
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
   font-size: clamp(2.5rem, 6vw, 5rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -82,10 +100,10 @@
 
 .proj-info-label {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.45;
+  opacity: 0.5;
 }
 
 .proj-info-val {
@@ -97,10 +115,16 @@
 /* ── Hero image ── */
 .proj-hero-img {
   width: 100%;
-  border-radius: 4px;
+  border-radius: var(--radius-md, 16px);
   overflow: hidden;
   margin-bottom: 3rem;
-  background: #e8e8e6;
+  background: #e8e8e4;
+  border: 1px solid rgba(26,26,26,0.06);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  transition: box-shadow 0.4s;
+}
+.proj-hero-img:hover {
+  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
 }
 
 .proj-hero-img img {
@@ -114,7 +138,7 @@
 /* ── Overview section ── */
 .project-overview {
   padding: 4rem 0;
-  border-top: 1px solid rgba(14,14,14,0.12);
+  border-top: 1px solid rgba(14,14,14,0.1);
 }
 
 .proj-overview-grid {
@@ -129,10 +153,10 @@
 
 .section-label {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.45;
+  opacity: 0.5;
   margin: 0 0 1rem;
 }
 
@@ -157,25 +181,44 @@
   gap: 1.5rem;
 }
 
-@media (min-width: 1024px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
 .gallery-item {
-  background: #e8e8e6;
-  border-radius: 4px;
+  background: #e8e8e4;
+  border-radius: var(--radius-sm, 12px);
   overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(26,26,26,0.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  transition: box-shadow 0.4s, transform 0.4s cubic-bezier(0,0,.3,1);
+}
+.gallery-item:hover {
+  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
 }
 
 .gallery-item img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .gallery-item:hover img {
   transform: scale(1.02);
+}
+
+/* Zoom hint on hover */
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background 0.3s;
+  pointer-events: none;
+  border-radius: var(--radius-sm, 10px);
+}
+.gallery-item:hover::after {
+  background: rgba(0,0,0,0.04);
 }
 
 /* First image spans full width */
@@ -186,4 +229,980 @@
 @media (max-width: 600px) {
   .gallery-grid { grid-template-columns: 1fr; }
   .gallery-item:first-child { grid-column: auto; }
+}
+
+/* ================================================
+   LIGHTBOX
+   ================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  cursor: zoom-out;
+}
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  transform: scale(0.92);
+  transition: transform 0.4s cubic-bezier(.22,.68,0,1);
+  cursor: default;
+}
+.lightbox.open img {
+  transform: scale(1);
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.6;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  background: none;
+  border: none;
+}
+.lightbox-close:hover { opacity: 1; }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  background: none;
+  border: none;
+  border-radius: 50%;
+}
+.lightbox-nav:hover { opacity: 1; background: rgba(255,255,255,0.08); }
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ================================================
+   NEXT PROJECT NAVIGATION
+   ================================================ */
+.next-project {
+  display: block;
+  border-top: 1px solid var(--ink-10, rgba(26,26,26,0.08));
+  padding: clamp(3rem,5vw,5rem) 0;
+  transition: background 0.3s, padding 0.3s;
+  background: var(--bg, #fafaf8);
+}
+.next-project:hover {
+  background: rgba(232,67,147,0.03);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.next-project-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.next-project-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-bottom: 0.5rem;
+}
+.next-project-title {
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+  transition: color 0.3s;
+}
+.next-project:hover .next-project-title {
+  color: var(--accent);
+}
+.next-project-img {
+  width: 160px;
+  height: 100px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.next-project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.next-project:hover .next-project-img img {
+  transform: scale(1.06);
+}
+.next-project-arrow {
+  font-size: 1.5rem;
+  color: var(--ink-30);
+  transition: color 0.3s, transform 0.3s;
+}
+.next-project:hover .next-project-arrow {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+  .next-project-img { width: 100px; height: 70px; }
+}
+
+/* ================================================
+   CASE STUDY CONTENT SECTIONS
+   ================================================ */
+
+/* ── Generic content section ── */
+.cs-section {
+  padding: clamp(3rem,5vw,5rem) 0;
+  border-top: 1px solid rgba(14,14,14,0.08);
+}
+
+.cs-section .wrap {
+  max-width: 1100px;
+}
+
+.cs-section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0 0 0.5rem;
+}
+
+.cs-section-title {
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: clamp(1.8rem,4vw,2.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 1.5rem;
+}
+
+.cs-section-subtitle {
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: clamp(1.2rem,2.5vw,1.6rem);
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 2.5rem 0 1rem;
+}
+
+.cs-body {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink);
+  opacity: 0.8;
+  max-width: 680px;
+}
+.cs-body p { margin: 0 0 1.2rem; }
+.cs-body p:last-child { margin-bottom: 0; }
+
+/* ── Two-column layout (text + image) ── */
+.cs-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem,4vw,4rem);
+  align-items: start;
+}
+.cs-two-col--reverse {
+  direction: rtl;
+}
+.cs-two-col--reverse > * {
+  direction: ltr;
+}
+
+@media (max-width: 768px) {
+  .cs-two-col,
+  .cs-two-col--reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+}
+
+/* ── Full-width image ── */
+.cs-img-full {
+  width: 100%;
+  border-radius: var(--radius-sm, 10px);
+  overflow: hidden;
+  margin: 2rem 0;
+  background: #e8e8e6;
+}
+.cs-img-full img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Inline image (within columns) ── */
+.cs-img {
+  border-radius: var(--radius-sm, 10px);
+  overflow: hidden;
+  background: #e8e8e6;
+}
+.cs-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Image pair side by side ── */
+.cs-img-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.cs-img-pair .cs-img { margin: 0; }
+
+@media (max-width: 600px) {
+  .cs-img-pair { grid-template-columns: 1fr; }
+}
+
+/* ── Tag/pill list ── */
+.cs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.cs-tag-item {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--ink-20);
+  border-radius: 100px;
+  color: var(--ink);
+  opacity: 0.7;
+}
+
+/* ── Key-value info grid ── */
+.cs-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem 3rem;
+  margin: 1.5rem 0;
+}
+.cs-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.cs-info-key {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+.cs-info-value {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ── Bullet list ── */
+.cs-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+.cs-list li {
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  opacity: 0.8;
+  padding-left: 1.2rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+.cs-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Numbered list ── */
+.cs-num-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  counter-reset: cs-counter;
+}
+.cs-num-list li {
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  opacity: 0.8;
+  padding-left: 2rem;
+  position: relative;
+  margin-bottom: 0.75rem;
+  counter-increment: cs-counter;
+}
+.cs-num-list li::before {
+  content: counter(cs-counter) '.';
+  position: absolute;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ── Highlight/callout box ── */
+.cs-callout {
+  background: rgba(232,67,147,0.04);
+  border-left: 3px solid var(--accent, #e84393);
+  padding: 1.5rem 2rem;
+  border-radius: 0 12px 12px 0;
+  margin: 2rem 0;
+  box-shadow: 0 2px 12px rgba(232,67,147,0.06);
+}
+.cs-callout p {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* ── Credits section ── */
+.cs-credits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+.cs-credit-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.cs-credit-role {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+.cs-credit-name {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ── Image grid (3 col for showcases) ── */
+.cs-img-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.cs-img-grid .cs-img { margin: 0; }
+
+@media (max-width: 768px) {
+  .cs-img-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .cs-img-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Spectrum bar (for brand personality) ── */
+.cs-spectrum {
+  margin: 1.5rem 0;
+}
+.cs-spectrum-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.cs-spectrum-label {
+  width: 140px;
+  text-align: right;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+.cs-spectrum-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--ink-10);
+  border-radius: 2px;
+  position: relative;
+}
+.cs-spectrum-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.cs-spectrum-label-right {
+  width: 140px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .cs-spectrum-label,
+  .cs-spectrum-label-right { width: 90px; font-size: 0.75rem; }
+}
+
+/* ================================================
+   COLORED SECTION VARIANTS
+   Matches original presentation slide backgrounds
+   ================================================ */
+
+/* ── Blue section (e.g. TransFi #232D95, Raahi teal, etc.) ── */
+.cs-section--blue {
+  background: var(--cs-blue, #232D95);
+  color: #fff;
+  border-top-color: rgba(255,255,255,0.08);
+}
+.cs-section--blue .cs-section-label { color: rgba(255,255,255,0.5); opacity: 1; }
+.cs-section--blue .cs-section-title { color: #fff; }
+.cs-section--blue .cs-section-subtitle { color: rgba(255,255,255,0.9); }
+.cs-section--blue .cs-body { color: rgba(255,255,255,0.8); opacity: 1; }
+.cs-section--blue .cs-body p { color: rgba(255,255,255,0.8); }
+.cs-section--blue .cs-info-key { color: rgba(255,255,255,0.45); opacity: 1; }
+.cs-section--blue .cs-info-value { color: #fff; }
+.cs-section--blue .cs-tag-item {
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+  opacity: 1;
+}
+.cs-section--blue .cs-list li { color: rgba(255,255,255,0.85); opacity: 1; }
+.cs-section--blue .cs-list li::before { background: #fff; }
+.cs-section--blue .cs-num-list li { color: rgba(255,255,255,0.85); opacity: 1; }
+.cs-section--blue .cs-num-list li::before { color: #fff; }
+.cs-section--blue .cs-callout {
+  background: rgba(255,255,255,0.08);
+  border-left-color: rgba(255,255,255,0.4);
+}
+.cs-section--blue .cs-callout p { color: rgba(255,255,255,0.85); opacity: 1; }
+.cs-section--blue .cs-credit-role { color: rgba(255,255,255,0.45); opacity: 1; }
+.cs-section--blue .cs-credit-name { color: #fff; }
+.cs-section--blue .cs-img-full { background: rgba(255,255,255,0.06); }
+.cs-section--blue .cs-img { background: rgba(255,255,255,0.06); }
+
+/* ── Dark section (#0a0a0a / #1a1a2e) ── */
+.cs-section--dark {
+  background: var(--cs-dark, #0a0a0a);
+  color: #fff;
+  border-top-color: rgba(255,255,255,0.06);
+}
+.cs-section--dark .cs-section-label { color: rgba(255,255,255,0.4); opacity: 1; }
+.cs-section--dark .cs-section-title { color: #fff; }
+.cs-section--dark .cs-section-subtitle { color: rgba(255,255,255,0.9); }
+.cs-section--dark .cs-body { color: rgba(255,255,255,0.7); opacity: 1; }
+.cs-section--dark .cs-body p { color: rgba(255,255,255,0.7); }
+.cs-section--dark .cs-info-key { color: rgba(255,255,255,0.35); opacity: 1; }
+.cs-section--dark .cs-info-value { color: rgba(255,255,255,0.9); }
+.cs-section--dark .cs-tag-item {
+  border-color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  opacity: 1;
+}
+.cs-section--dark .cs-list li { color: rgba(255,255,255,0.75); opacity: 1; }
+.cs-section--dark .cs-list li::before { background: var(--accent); }
+.cs-section--dark .cs-num-list li { color: rgba(255,255,255,0.75); opacity: 1; }
+.cs-section--dark .cs-num-list li::before { color: var(--accent); }
+.cs-section--dark .cs-callout {
+  background: rgba(255,255,255,0.04);
+  border-left-color: var(--accent);
+}
+.cs-section--dark .cs-callout p { color: rgba(255,255,255,0.8); opacity: 1; }
+.cs-section--dark .cs-credit-role { color: rgba(255,255,255,0.35); opacity: 1; }
+.cs-section--dark .cs-credit-name { color: #fff; }
+.cs-section--dark .cs-img-full { background: rgba(255,255,255,0.04); }
+.cs-section--dark .cs-img { background: rgba(255,255,255,0.04); }
+
+/* ── Gray section ── */
+.cs-section--gray {
+  background: #e8e8e6;
+  border-top-color: rgba(14,14,14,0.06);
+}
+
+/* ── Full-bleed slide image (no border-radius, edge-to-edge) ── */
+.cs-slide {
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+.cs-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Slide with constrained width (within wrap) ── */
+.cs-slide--contained {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  line-height: 0;
+}
+.cs-slide--contained img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm, 10px);
+}
+
+/* ── Large display heading (matching presentation slides) ── */
+.cs-display {
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.5rem;
+}
+.cs-section--blue .cs-display { color: #fff; }
+.cs-section--dark .cs-display { color: #fff; }
+
+/* ── Label-value rows (like original slide layouts) ── */
+.cs-label-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 2rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.cs-label-row:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+.cs-label-row-key {
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  opacity: 0.8;
+}
+.cs-label-row-val {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* Light variant for label rows */
+.cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-label-row {
+  border-bottom-color: var(--ink-10);
+}
+.cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-label-row:first-child {
+  border-top-color: var(--ink-10);
+}
+
+@media (max-width: 600px) {
+  .cs-label-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+/* ── Quote cards (3-col testimonial style from presentation slides) ── */
+.cs-quote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.cs-quote-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.cs-quote-card p {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
+  margin: 0 0 0.75rem;
+}
+.cs-quote-card cite {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.45);
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .cs-quote-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Numbered steps (horizontal, like presentation slides) ── */
+.cs-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+  counter-reset: step-counter;
+}
+.cs-step {
+  counter-increment: step-counter;
+  position: relative;
+}
+.cs-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-family: var(--sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.cs-section--blue .cs-step-num {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+.cs-section--dark .cs-step-num {
+  background: var(--accent);
+  color: #fff;
+}
+.cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-step-num {
+  background: var(--ink);
+  color: var(--bg);
+}
+.cs-step-title {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.cs-section--blue .cs-step-title { color: #fff; }
+.cs-section--dark .cs-step-title { color: #fff; }
+.cs-step-desc {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+/* ── Feature cards (2x2 grid, like product overview slides) ── */
+.cs-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.cs-feature-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-feature-card {
+  background: rgba(14,14,14,0.03);
+  border: 1px solid var(--ink-10);
+}
+.cs-feature-card-title {
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.cs-section--blue .cs-feature-card-title { color: #fff; }
+.cs-section--dark .cs-feature-card-title { color: #fff; }
+.cs-feature-card-desc {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+@media (max-width: 600px) {
+  .cs-feature-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Process flow pills (like design process slides) ── */
+.cs-process-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+.cs-process-pill {
+  font-family: var(--sans, 'Inter', system-ui, sans-serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  background: var(--accent, #e84393);
+  color: #fff;
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cs-process-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232,67,147,0.3);
+}
+.cs-section--blue .cs-process-pill {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ── Hero image full bleed (no max-height restriction) ── */
+.proj-hero-img--full img {
+  max-height: none;
+  object-fit: contain;
+}
+
+/* ── Colored header variant ── */
+.project-header--blue {
+  background: var(--cs-blue, #232D95);
+  color: #fff;
+  padding-bottom: 0;
+}
+.project-header--blue .proj-title { color: #fff; }
+.project-header--blue .proj-subtitle { color: rgba(255,255,255,0.7); }
+.project-header--blue .proj-info-label { color: rgba(255,255,255,0.45); }
+.project-header--blue .proj-info-val { color: #fff; }
+.project-header--blue .proj-tag {
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.project-header--blue .back-link { color: rgba(255,255,255,0.5); }
+.project-header--blue .back-link:hover { color: #fff; }
+
+.project-header--dark {
+  background: var(--cs-dark, #0a0a0a);
+  color: #fff;
+}
+.project-header--dark .proj-title { color: #fff; }
+.project-header--dark .proj-subtitle { color: rgba(255,255,255,0.6); }
+.project-header--dark .proj-info-label { color: rgba(255,255,255,0.4); }
+.project-header--dark .proj-info-val { color: rgba(255,255,255,0.9); }
+.project-header--dark .proj-tag {
+  border-color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+}
+.project-header--dark .back-link { color: rgba(255,255,255,0.4); }
+.project-header--dark .back-link:hover { color: #fff; }
+
+/* ── Thanks / closing section ── */
+.cs-thanks {
+  text-align: center;
+  padding: clamp(4rem, 8vw, 8rem) 0;
+}
+.cs-thanks-title {
+  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+.cs-section--blue .cs-thanks-title { color: #fff; }
+.cs-section--dark .cs-thanks-title { color: #fff; }
+
+/* ── Color swatches (for design system slides) ── */
+.cs-swatch-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+.cs-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cs-swatch-color {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.cs-swatch-hex {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+/* ================================================
+   PROJECT DETAIL — ADDITIONAL POLISH
+   ================================================ */
+
+/* ── Feature card hover ── */
+.cs-feature-card {
+  transition: transform 0.35s cubic-bezier(0,0,.3,1), box-shadow 0.35s, background 0.3s;
+}
+.cs-feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+.cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-feature-card:hover {
+  background: rgba(232,67,147,0.04);
+  border-color: rgba(232,67,147,0.15);
+}
+
+/* ── Callout pulse on hover ── */
+.cs-callout {
+  transition: transform 0.3s cubic-bezier(0,0,.3,1), box-shadow 0.3s;
+}
+.cs-callout:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(232,67,147,0.1);
+}
+
+/* ── Image full — subtle hover shadow ── */
+.cs-img-full {
+  transition: box-shadow 0.4s, transform 0.4s cubic-bezier(0,0,.3,1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+.cs-img-full:hover {
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* ── Step number — hover glow ── */
+.cs-step-num {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.cs-step-num:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(232,67,147,0.2);
+}
+
+/* ── Quote card hover ── */
+.cs-quote-card {
+  transition: transform 0.3s cubic-bezier(0,0,.3,1), background 0.3s;
+}
+.cs-quote-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.12);
+}
+
+/* ── Project tag — pink hover variant ── */
+.proj-tag:hover {
+  background: var(--accent, #e84393);
+  color: #fff;
+  border-color: var(--accent, #e84393);
+}
+
+/* ── Section label — slide in decoration ── */
+.cs-section-label {
+  position: relative;
+  padding-left: 14px;
+}
+.cs-section-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #e84393);
+}
+.cs-section--blue .cs-section-label::before,
+.cs-section--dark .cs-section-label::before {
+  background: #fff;
+}
+
+/* ── Back link arrow ── */
+.back-link::before {
+  content: '\2190';
+  transition: transform 0.2s;
+}
+.back-link:hover::before {
+  transform: translateX(-4px);
+}
+
+/* ── Project hero image — entrance ── */
+.proj-hero-img {
+  animation: heroImgReveal 0.8s cubic-bezier(0,0,.3,1) both;
+  animation-delay: 0.2s;
+}
+@keyframes heroImgReveal {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Next project — arrow animation ── */
+.next-project-arrow {
+  display: inline-block;
+}
+.next-project:hover .next-project-arrow {
+  animation: arrowBounce 0.6s ease infinite;
+}
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+/* ── Swatch hover ── */
+.cs-swatch-color {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+.cs-swatch-color:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* ── Spectrum dot — pulse ── */
+.cs-spectrum-dot {
+  transition: transform 0.3s;
+}
+.cs-spectrum-row:hover .cs-spectrum-dot {
+  transform: translate(-50%, -50%) scale(1.3);
 }

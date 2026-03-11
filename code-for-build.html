@@ -4,90 +4,542 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Code for Build · Parth Pawar</title>
-  <meta name="description" content="Code for Build is a nonprofit coding education initiative. I built their complete design system from scratch — component library, typography scale, color tokens and interaction patterns — enabling consistent delivery across web and mobile."/>
+  <meta name="description" content="Helping Kids learn Coding through Visual Block building and developing Website. A mobile app that uses 3D castle blocks to gamify coding education for teenagers."/>
+  <meta property="og:title" content="Code for Build · Parth Pawar"/>
+  <meta property="og:description" content="Helping kids learn coding through visual block building — 3D castle blocks to gamify coding education."/>
+  <meta property="og:image" content="assets/images/code-for-build.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
+    <!-- ============ SLIDE 1 — Hero (white) ============ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">← Back</a>
+        <a href="ux.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">Brand</span><span class="proj-tag">Systems</span></div>
-        <h1 class="proj-title">Code for Build</h1>
-        <p class="proj-subtitle">Coding education platform design system</p>
+        <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">Interaction Design</span><span class="proj-tag">3D</span></div>
+        <h1 class="proj-title">Learn Coding<br/>By Building Blocks</h1>
+        <p class="proj-subtitle">Helping Kids learn Coding through Visual Block building and developing Website.</p>
         <div class="proj-info-row">
+          <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">Self Initiated</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope of Work</span><span class="proj-info-val">Research, UI/UX, Development</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Interaction Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">3 Months</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2021</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Design Systems Designer</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">Figma, Storybook, GitHub</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/code-for-build.png" alt="Code for Build"/></div>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/CodeforBuild/Desktop/1.jpg" alt="Code for Build — Learn Coding By Building Blocks hero with 3D block illustrations and mobile mockups"/></div>
     </div>
 
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">Code for Build is a nonprofit coding education initiative. I built their complete design system from scratch — component library, typography scale, color tokens and interaction patterns — enabling consistent delivery across web and mobile.</p>
+    <!-- ============ SLIDE 2 — Summary / Challenges / Role / Tools / Problem / Process (white) ============ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <div class="cs-label-row" style="border-bottom-color:var(--ink-10);">
+          <span class="cs-label-row-key">Summary</span>
+          <span class="cs-label-row-val">Kids from Istanbul have a curiosity to learn coding and development of websites, but can't access computer. Therefore the solution was to help these demographics learn to code on their mobile using visual elements by associating the Visual elements (Kid's childhood playing block pieces) with Code piece, to building block pieces one on top of the other.</span>
+        </div>
+        <div class="cs-label-row" style="border-bottom-color:var(--ink-10);">
+          <span class="cs-label-row-key">The Challenges</span>
+          <span class="cs-label-row-val">Challenge was to build visual elements which could translate and help kids understand the body, container, images, text, and div-block.</span>
+        </div>
+        <div class="cs-label-row" style="border-bottom-color:var(--ink-10);">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">As I was the Sole Interaction Designer, I experimented with solutions to visualize the content to learn 10 to 16 years old kids to understand coding. The idea revolved around making puzzle block pieces to build a castle of blocks to make coding fun to learn.</span>
+        </div>
+        <div class="cs-label-row" style="border-bottom-color:var(--ink-10); border-bottom: none;">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">3D Modelling</span>
+              <span class="cs-tag-item">Figma</span>
+              <span class="cs-tag-item">Illustrator</span>
+              <span class="cs-tag-item">Blender</span>
+              <span class="cs-tag-item">Transformation - Access</span>
+              <span class="cs-tag-item">Code Block Building</span>
+              <span class="cs-tag-item">Html</span>
+              <span class="cs-tag-item">CSS</span>
+              <span class="cs-tag-item">Frontend - Development</span>
+            </span>
+          </span>
         </div>
       </div>
-    </div>
+    </section>
 
-  <section class="project-gallery reveal">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/1.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/10.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/2.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/3.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/4.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/5.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/6.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/7.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/8.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/CodeforBuild/Desktop/9.jpg" alt="" loading="lazy"/></div>
+    <!-- Problem Statement -->
+    <section class="cs-section reveal">
+      <div class="wrap" style="text-align:center;">
+        <p class="cs-section-label">Discover</p>
+        <h2 class="cs-section-title">Problem Statement</h2>
+        <div class="cs-callout" style="text-align:center; border-left:none; max-width:700px; margin:2rem auto;">
+          <p>How can we encourage teenagers to learn <strong>learn coding</strong> effectively using Gamified Visualisation?</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- Process -->
+    <section class="cs-section reveal">
+      <div class="wrap" style="text-align:center;">
+        <p class="cs-section-label">Discover</p>
+        <h2 class="cs-section-title">Process</h2>
+        <div class="cs-info-grid" style="grid-template-columns:repeat(4,1fr); text-align:center;">
+          <div class="cs-info-item" style="align-items:center;">
+            <span class="cs-info-key">Discover</span>
+            <span class="cs-info-value">User Research</span>
+            <span class="cs-info-value">Market Research</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center;">
+            <span class="cs-info-key">Define</span>
+            <span class="cs-info-value">Insights</span>
+            <span class="cs-info-value">Goals</span>
+            <span class="cs-info-value">Challenges</span>
+            <span class="cs-info-value">Features</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center;">
+            <span class="cs-info-key">Develop</span>
+            <span class="cs-info-value">UX</span>
+            <span class="cs-info-value">Visuals</span>
+          </div>
+          <div class="cs-info-item" style="align-items:center;">
+            <span class="cs-info-key">Deliver</span>
+            <span class="cs-info-value">Prototyping</span>
+            <span class="cs-info-value">Improvements</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 3 — User Research + Market Research (white/light) ============ -->
+    <section class="cs-section reveal">
+      <div class="wrap" style="text-align:center;">
+        <p class="cs-section-label">Discover</p>
+        <h2 class="cs-section-title">User Research</h2>
+        <div class="cs-img-full">
+          <img src="Assets/Projects/CodeforBuild/Desktop/3.jpg" alt="User Research findings and competitive analysis matrix" loading="lazy"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market Research / Competitive Analysis -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label" style="text-align:center;">Discover</p>
+        <h2 class="cs-section-title" style="text-align:center;">Market Research</h2>
+        <h3 class="cs-section-subtitle">Competitive Analysis</h3>
+
+        <div style="overflow-x:auto; margin:2rem 0;">
+          <table style="width:100%; border-collapse:collapse; font-family:var(--sans); font-size:0.9rem;">
+            <thead>
+              <tr style="border-bottom:2px solid var(--ink-10);">
+                <th style="text-align:left; padding:0.75rem 1rem; opacity:0.6;">Application Name</th>
+                <th style="text-align:center; padding:0.75rem 0.5rem; font-weight:600;">Enki</th>
+                <th style="text-align:center; padding:0.75rem 0.5rem; font-weight:600;">SoloLearn</th>
+                <th style="text-align:center; padding:0.75rem 0.5rem; font-weight:600;">Mimo</th>
+                <th style="text-align:center; padding:0.75rem 0.5rem; font-weight:600;">Encode</th>
+                <th style="text-align:center; padding:0.75rem 0.5rem; font-weight:600;">Codeacademy</th>
+                <th style="text-align:center; padding:0.75rem 0.5rem; font-weight:600;">Programming Hub</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Coding Languages - HTML, CSS</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Coding Languages - Javascript</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Visualization of Code</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Multiple Layouts</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Illustrated Code</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Coding stem</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Castle Blocks</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Multi-lingual Support</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">Digital In &amp; Out Board</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--ink-10);">
+                <td style="padding:0.6rem 1rem;">3D Modelling</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+              <tr>
+                <td style="padding:0.6rem 1rem;">Digital agreements</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#22c55e;">Yes</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+                <td style="text-align:center; color:#2563eb;">No</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 4 — Goals + User Journey (blue) ============ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#2779BD;">
+      <div class="wrap" style="text-align:center;">
+        <p class="cs-section-label">Define</p>
+        <h2 class="cs-section-title">Goals</h2>
+      </div>
+      <div class="cs-slide reveal">
+        <img src="Assets/Projects/CodeforBuild/Desktop/4.jpg" alt="Goals — castle block illustration, user journey flowchart on blue background" loading="lazy"/>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 5 — Features + UX & Wireframe (blue) ============ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#2779BD;">
+      <div class="wrap" style="text-align:center;">
+        <p class="cs-section-label">Define</p>
+        <h2 class="cs-section-title">Features</h2>
+        <div class="cs-tags" style="justify-content:center; margin-bottom:3rem;">
+          <span class="cs-tag-item">Coding Languages - HTML, CSS</span>
+          <span class="cs-tag-item">Visualization of Code</span>
+          <span class="cs-tag-item">Coding Languages - Javascript</span>
+          <span class="cs-tag-item">Multiple Layouts</span>
+          <span class="cs-tag-item">Illustrated Code</span>
+          <span class="cs-tag-item">Coding Stem</span>
+          <span class="cs-tag-item">Castle Blocks</span>
+          <span class="cs-tag-item">Multi-lingual Support</span>
+          <span class="cs-tag-item">Digital In &amp; Out Board</span>
+          <span class="cs-tag-item">Digital Agreements</span>
+          <span class="cs-tag-item">Multi-lingual Support</span>
+        </div>
+
+        <p class="cs-section-label">Develop</p>
+        <h2 class="cs-section-title">UX &amp; Wireframe</h2>
+      </div>
+      <div class="cs-slide reveal">
+        <img src="Assets/Projects/CodeforBuild/Desktop/5.jpg" alt="UX wireframes and features overview on blue background" loading="lazy"/>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 6 — Design System (light/off-white) ============ -->
+    <section class="cs-section cs-section--gray reveal">
+      <div class="wrap">
+        <p class="cs-section-label" style="text-align:center;">Develop</p>
+        <h2 class="cs-section-title" style="text-align:center;">Design System</h2>
+
+        <h3 class="cs-section-subtitle">Colors</h3>
+        <div class="cs-body">
+          <p>For the app, the colors were removed based on how these colors affect the human psyche. The blue color has a refreshing effect and allows young mind to stay active and coding vibe. The Multi color combination has a pop look which helps with identification.</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">Typography</h3>
+        <div class="cs-body">
+          <p><strong>Inter</strong></p>
+        </div>
+        <div class="cs-info-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Regular</span>
+            <span class="cs-info-value">16px</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Medium</span>
+            <span class="cs-info-value">28px</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">SemiBold</span>
+            <span class="cs-info-value">34px</span>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle">Block System</h3>
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Body Block</div>
+            <div class="cs-feature-card-desc">Use this as the base of your Code</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Padding</div>
+            <div class="cs-feature-card-desc">Use this block to add Padding between/ all Blocks</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Image Block</div>
+            <div class="cs-feature-card-desc">Use this block to add Image to your container</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Icons Block</div>
+            <div class="cs-feature-card-desc">Use this block to add Icons in your container</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Container / Child</div>
+            <div class="cs-feature-card-desc">Single pieces which join together to form body are called as container</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Cross Axis Alignment</div>
+            <div class="cs-feature-card-desc">Use this block for If, While, If Else, For Types of Conditions</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Padding between</div>
+            <div class="cs-feature-card-desc">Space between 2 Containers, Blocks is known as Padding</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Button</div>
+            <div class="cs-feature-card-desc">Use this block for If, While, If Else, For Types of Conditions</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Text</div>
+            <div class="cs-feature-card-desc">Add Style to your code using this block</div>
+          </div>
+        </div>
+
+        <div class="cs-img-full">
+          <img src="Assets/Projects/CodeforBuild/Desktop/6.jpg" alt="Design System — Colors, typography, and 3D block components" loading="lazy"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 7 — Function & Motivation + Illustration Code (white) ============ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label" style="text-align:center;">Develop</p>
+        <h2 class="cs-section-title" style="text-align:center;">Function &amp; Motivation</h2>
+
+        <div class="cs-body" style="margin-bottom:3rem;">
+          <h3 class="cs-section-subtitle" style="font-style:italic;">Code for Build</h3>
+          <p>The idea revolved around making puzzle block pieces to build a castle of blocks to make coding fun to learn.</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">1. Illustration Code</h3>
+        <div class="cs-body" style="margin-bottom:2rem;">
+          <p>Illustration depicted in left bottom corner changes according to the part of the code the user choose. Example. Over here we are inside Body &rarr; Container &rarr; Logo &rarr; Netflix.. which showcases the inner parts of the 3D Layout.</p>
+        </div>
+
+        <div class="cs-img-full">
+          <img src="Assets/Projects/CodeforBuild/Desktop/7.jpg" alt="Illustration Code — app mockup with 3D block illustrations showing code structure" loading="lazy"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 8 — Code Learning + Multiple Layouts (white) ============ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <h3 class="cs-section-subtitle">2. Code Learning</h3>
+        <div class="cs-two-col">
+          <div class="cs-body">
+            <p>In the Output Window user will be able to see the Preview of the Frontend Layout &amp; 3D Model representing the same. Its an interactive 3D Block Model to help learn Code by clicking on the 3D Block Model.</p>
+          </div>
+          <div class="cs-img">
+            <img src="Assets/Projects/CodeforBuild/Desktop/8.jpg" alt="Code Learning — output window and 3D block model interaction with multiple phone mockups" loading="lazy"/>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:4rem;">3. Multiple Layouts</h3>
+        <div class="cs-two-col cs-two-col--reverse">
+          <div class="cs-body">
+            <p>Multiple Layouts will help you get a deeper understanding and reflecting on different Coding 3D Models. You can interact with the 3D Layout to change and reflect on Code changes.</p>
+          </div>
+          <div class="cs-img">
+            <img src="Assets/Projects/CodeforBuild/Desktop/8.jpg" alt="Multiple Layouts — different coding 3D models across multiple screens" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 9 — Final Screens (blue) ============ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#2779BD; padding-bottom:0;">
+      <div class="wrap" style="text-align:center;">
+        <p class="cs-section-label">Deliver</p>
+        <h2 class="cs-section-title">Final Screens</h2>
+      </div>
+      <div class="cs-slide reveal">
+        <img src="Assets/Projects/CodeforBuild/Desktop/9.jpg" alt="Final screen showcase — all app screens arranged diagonally on blue background" loading="lazy"/>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 10 — Credits + Thanks (blue) ============ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#2779BD;">
+      <div class="wrap">
+        <h2 class="cs-section-title" style="font-style:italic;">Credits</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Interaction Designer</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:3rem;">Tools and Techniques</h3>
+        <div class="cs-tags">
+          <span class="cs-tag-item">3D Modelling</span>
+          <span class="cs-tag-item">Figma</span>
+          <span class="cs-tag-item">Illustrator</span>
+          <span class="cs-tag-item">Blender</span>
+          <span class="cs-tag-item">Transformation - Access</span>
+          <span class="cs-tag-item">Html</span>
+          <span class="cs-tag-item">Code Block Building</span>
+          <span class="cs-tag-item">CSS</span>
+          <span class="cs-tag-item">Frontend - Development</span>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:3rem; font-style:italic;">My Role</h3>
+        <div class="cs-body">
+          <p>As I was the Sole Interaction Designer, I experimented with solutions to visualize the content to learn 10 to 13 years old kids to understand coding. The idea revolved around making puzzle block pieces to build a castle of blocks to make coding fun to learn.</p>
+        </div>
+
+        <hr style="border:none; border-top:1px solid rgba(255,255,255,0.2); margin:3rem 0;"/>
+
+        <div class="cs-thanks">
+          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+        </div>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+    <a class="next-project" href="jugalbandi.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">Jugalbandi</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/jugalbandi.png" alt="Jugalbandi" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -3,90 +3,339 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>UV Light Installation · Parth Pawar</title>
-  <meta name="description" content="A site-specific installation using UV fluorescent paint and reactive materials to reveal hidden layers of a space. Viewers move through zones of visible and invisible light, exploring the perceptual limits of human vision."/>
+  <title>UV Light Experience · Parth Pawar</title>
+  <meta name="description" content="Creating an immersive experience utilizing blacklights, invisible ink, and hidden messages, guiding participants through interactive spaces while subtly revealing monitoring, culminating in the revelation of a significant message on portraits."/>
+  <meta property="og:title" content="UV Light Installation · Parth Pawar"/>
+  <meta property="og:description" content="Immersive experience with blacklights, invisible ink, and hidden messages in interactive spaces."/>
+  <meta property="og:image" content="assets/images/uv-light.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
+  <style>
+    :root { --cs-blue: #161A3E; --cs-dark: #161A3E; }
+  </style>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
+    <!-- ══════════════════════════════════════════════
+         SLIDE 1 — HERO (light gray bg, metadata + title + hero photo)
+         ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="creative-tech.html" class="back-link">← Back</a>
+        <a href="creative-tech.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">Installation</span><span class="proj-tag">Hardware</span><span class="proj-tag">Art</span></div>
-        <h1 class="proj-title">UV Light Installation</h1>
-        <p class="proj-subtitle">Invisible spectra made visible</p>
+        <div class="proj-tags"><span class="proj-tag">Installation</span><span class="proj-tag">Experience Design</span><span class="proj-tag">Art</span></div>
+        <h1 class="proj-title">UV Light Experience</h1>
+        <p class="proj-subtitle">Creating an immersive experience utilizing blacklights, invisible ink, and hidden messages</p>
         <div class="proj-info-row">
-          <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2022</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Installation Artist</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">UV LEDs, Arduino, Theatrical Lighting</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">NYU &ndash; ITP</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope of Work</span><span class="proj-info-val">Experience Design</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Artist</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">2 Weeks</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2023</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/uv-light.png" alt="UV Light Installation"/></div>
+      <div class="proj-hero-img reveal"><img src="Assets/Projects/UVLight/Desktop/1.jpg" alt="UV Light Experience — immersive blacklight installation with participants"/></div>
     </div>
 
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">A site-specific installation using UV fluorescent paint and reactive materials to reveal hidden layers of a space. Viewers move through zones of visible and invisible light, exploring the perceptual limits of human vision.</p>
+    <!-- ══════════════════════════════════════════════
+         SLIDE 2 — THE CONCEPT / IDEATION / PROCESS / RESEARCH (dark navy bg)
+         ══════════════════════════════════════════════ -->
+
+    <!-- ── The Concept ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Background</p>
+        <h2 class="cs-display">The Concept</h2>
+        <div class="cs-body">
+          <ul class="cs-list">
+            <li>Creating an immersive experience using blacklights, invisible ink, UV light, paper, projectors, and hidden messages.</li>
+            <li>Engaging participants through exploration and discovery within designated spaces.</li>
+          </ul>
         </div>
       </div>
-    </div>
+    </section>
 
-  <section class="project-gallery reveal">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/1.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/2.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/3.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/4.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/5.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/6.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/7.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/8.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/UVLight/Desktop/9.jpg" alt="" loading="lazy"/></div>
+    <!-- ── Ideation ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Exploration</p>
+        <h2 class="cs-display">Ideation</h2>
+        <div class="cs-body">
+          <ul class="cs-list">
+            <li>Brainstorming the use of blacklights and invisible ink to create hidden messages and interactive &ldquo;elevator&rdquo; spaces.</li>
+            <li>Aiming for subtle participant monitoring through hidden cameras.</li>
+          </ul>
+        </div>
+        <div class="cs-img-full">
+          <img src="Assets/Projects/UVLight/Desktop/2.jpg" alt="Ideation sketches, whiteboard brainstorming, and early process photos" loading="lazy"/>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ── Process ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Making</p>
+        <h2 class="cs-display">Process</h2>
+        <div class="cs-body">
+          <ul class="cs-list">
+            <li>Setting up multiple &ldquo;elevator&rdquo; style spaces in rooms with blacklight-covered walls displaying hidden messages.</li>
+            <li>Allowing participants to explore these areas before directing them to an auditorium with a live feed showing their exploration.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Research ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Discovery</p>
+        <h2 class="cs-display">Research</h2>
+        <div class="cs-body">
+          <p>Engaging participants in an immersive journey involving interaction with hidden elements and discovering the &lsquo;SHOW DON&rsquo;T TELL&rsquo; message displayed on various portraits.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 3 — UNFOLD OF ACT (dark navy) + EXPERIENCE (light)
+         ══════════════════════════════════════════════ -->
+
+    <!-- ── Unfold of Act ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Narrative</p>
+        <h2 class="cs-display">Unfold of Act</h2>
+        <ol class="cs-num-list">
+          <li><strong>Arrival and Grouping</strong> &mdash; Participants were organized into groups of four and ushered into the first room.</li>
+          <li><strong>The UV Revelation</strong> &mdash; Initially handed blank paper, attendees discovered hidden drawings under UV light upon entering the room. Each revealed piece contributed to a larger painting.</li>
+          <li><strong>Projection of &lsquo;Starry Night&rsquo;</strong> &mdash; As they worked on their contributions, a projector displayed Van Gogh&rsquo;s mesmerizing &lsquo;Starry Night&rsquo; video, immersing the space in the artist&rsquo;s iconic masterpiece.</li>
+          <li><strong>Completion of the Puzzle Painting</strong> &mdash; After completing their individual drawings, participants placed them strategically to form a cohesive puzzle painting resembling Van Gogh&rsquo;s style.</li>
+          <li><strong>Transition to the Second Room</strong> &mdash; Moving to the next room, attendees found seats furnished with pamphlets containing Van Gogh&rsquo;s poetry.</li>
+          <li><strong>Artistic Presentation</strong> &mdash; At the center of the room, the performer crafted a small violin out of paper, symbolizing Van Gogh&rsquo;s passion for art.</li>
+          <li><strong>Final Act</strong> &mdash; Upon finishing the violin, the performer returned to the first room and placed the paper violin at the center of the puzzle painting.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ── Experience: UV Room Photos (light bg) ── -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">Documentation</p>
+        <h2 class="cs-section-title">Experience</h2>
+        <div class="cs-img-pair">
+          <div class="cs-img"><img src="Assets/Projects/UVLight/Desktop/3.jpg" alt="Participants discovering hidden UV drawings and assembling the puzzle painting under blacklight" loading="lazy"/></div>
+          <div class="cs-img"><img src="Assets/Projects/UVLight/Desktop/4.jpg" alt="Second room with Van Gogh pamphlets, poetry, and seated attendees" loading="lazy"/></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDES 4-5 — HIDDEN MESSAGES & PORTRAITS (light bg)
+         ══════════════════════════════════════════════ -->
+
+    <!-- ── Interactive Portraits & Hidden Messages ── -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">Interaction</p>
+        <h2 class="cs-section-title">Hidden Messages &amp; Portraits</h2>
+        <div class="cs-body">
+          <p>Each participant received a portrait card with seemingly innocent questions &mdash; &ldquo;How many cups of coffee have you had since the start of the program?&rdquo;, &ldquo;What do you enjoy most about your work?&rdquo;, &ldquo;How many hours of sleep do you get daily?&rdquo;, &ldquo;What do you enjoy about ITP?&rdquo;, &ldquo;Draw anything&rdquo;, and &ldquo;What are your weekend plans?&rdquo;. Under UV light, the hidden messages and drawings were revealed on these seemingly blank surfaces.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Full-bleed slide: portrait card ── -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/UVLight/Desktop/5.jpg" alt="Portrait cards with hidden UV messages and the blacklight-lit stage floor" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 6 — THE BLACKLIGHT STAGE (light bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">Environment</p>
+        <h2 class="cs-section-title">The Blacklight Stage</h2>
+        <div class="cs-body">
+          <p>The main stage was transformed into a UV-reactive environment with fluorescent tape markings on the floor, colorful UV dots, and hidden text that only became visible under blacklight. Participants explored the space, discovering hidden elements as they moved through zones of visible and invisible light.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Full-bleed slide: stage floor + participants ── -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/UVLight/Desktop/6.jpg" alt="UV-lit stage with fluorescent floor markings and participants assembling puzzle pieces" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDES 7-8 — PARTICIPANT ENGAGEMENT (light bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">Engagement</p>
+        <h2 class="cs-section-title">Participant Interaction</h2>
+        <div class="cs-body">
+          <p>Participants engaged deeply with the installation, examining UV-revealed messages on their cards, viewing hidden drawings through blacklight, and filling out their personal portrait cards with handwritten answers. A live camera feed in the auditorium showed the exploration happening in real-time, adding a subtle layer of monitoring to the experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Full-bleed slide: UV messages + portraits ── -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/UVLight/Desktop/7.jpg" alt="Close-ups of UV-revealed messages on cards and participant portraits under blacklight" loading="lazy"/>
+    </div>
+
+    <!-- ── Full-bleed slide: exploration + live feed ── -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/UVLight/Desktop/8.jpg" alt="Participants exploring the UV space, filled-in portrait cards, and live camera feed in the auditorium" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 9 — CREDITS / TOOLS / MY ROLE / THANKS (dark navy bg)
+         ══════════════════════════════════════════════ -->
+
+    <!-- ── Credits ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Team</p>
+        <h2 class="cs-display">Credits</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Artist</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Artist Collaborators</span>
+            <span class="cs-credit-name">Nathan</span>
+            <span class="cs-credit-name">Lauren</span>
+            <span class="cs-credit-name">Baiyuian</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tools & Techniques ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Capabilities</p>
+        <h2 class="cs-display">Tools and Techniques</h2>
+        <div class="cs-tags">
+          <span class="cs-tag-item">Fabrication</span>
+          <span class="cs-tag-item">Research</span>
+          <span class="cs-tag-item">Interview</span>
+          <span class="cs-tag-item">Python</span>
+          <span class="cs-tag-item">Data Visualisation</span>
+          <span class="cs-tag-item">3D Printing</span>
+          <span class="cs-tag-item">Dismantling</span>
+          <span class="cs-tag-item">Sculptor</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── My Role ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <p class="cs-section-label">Contribution</p>
+        <h2 class="cs-display">My Role</h2>
+        <div class="cs-body">
+          <p>My role encompasses conceptualizing and implementing the immersive experience, overseeing the setup of interactive spaces, monitoring systems, and orchestrating participant engagement to reveal the hidden message, ensuring a captivating and impactful journey for all involved.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Thanks ── -->
+    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#161A3E">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+    <a class="next-project" href="revolving-stage.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">Revolving Stage</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/revolving-stage.png" alt="Revolving Stage" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

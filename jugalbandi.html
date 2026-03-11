@@ -4,90 +4,349 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Jugalbandi · Parth Pawar</title>
-  <meta name="description" content="Jugalbandi (meaning 'a duet' in Hindi) is an AI music tool that lets musicians improvise with generative AI in real-time. I designed the session interface and the visual language for representing AI-generated musical phrases."/>
+  <meta name="description" content="Jugalbandi showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments — a physical computing art installation created at NYU ITP."/>
+  <meta property="og:title" content="Jugalbandi · Parth Pawar"/>
+  <meta property="og:description" content="Blending traditional analog instruments with modern digital MIDI — a physical computing installation."/>
+  <meta property="og:image" content="assets/images/jugalbandi.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
-    <div class="wrap project-header">
+    <!-- ── Header ── -->
+    <div class="wrap project-header project-header--dark" style="--cs-dark:#1a1a2e">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">← Back</a>
+        <a href="creative-tech.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">AI</span><span class="proj-tag">Creative</span></div>
+        <div class="proj-tags"><span class="proj-tag">Physical Computing</span><span class="proj-tag">Music</span><span class="proj-tag">Art Installation</span></div>
         <h1 class="proj-title">Jugalbandi</h1>
-        <p class="proj-subtitle">AI music collaboration platform</p>
+        <p class="proj-subtitle">A duet between traditional analog instruments and modern digital MIDI &mdash; where neural networks become playable music</p>
         <div class="proj-info-row">
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2024</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Product Designer</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">Figma, TouchDesigner, User Research</span></div>
-        </div>
-      </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/jugalbandi.png" alt="Jugalbandi"/></div>
-    </div>
-
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">Jugalbandi (meaning 'a duet' in Hindi) is an AI music tool that lets musicians improvise with generative AI in real-time. I designed the session interface and the visual language for representing AI-generated musical phrases.</p>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Artist</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Context</span><span class="proj-info-val">NYU &ndash; ITP</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">5 Months</span></div>
         </div>
       </div>
     </div>
 
-  <section class="project-gallery reveal">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/1.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/2.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/3.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/4.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/5.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/6.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/7.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/8.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/9.jpg" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/Jugalbandi/Desktop/Jugalbandi.png" alt="" loading="lazy"/></div>
-      </div>
-    </div>
-  </section>
+    <!-- ── Hero Image ── -->
+    <section class="cs-slide reveal">
+      <img src="Assets/images/jugalbandi.png" alt="Jugalbandi — performer playing the Hexa-18 instrument on a dark stage with mechanized instruments"/>
+    </section>
 
+    <!-- ── Overview ── -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">Overview</p>
+        <h2 class="cs-display">A duet in Hindi</h2>
+        <div class="cs-body">
+          <p>Jugalbandi (meaning &ldquo;a duet&rdquo; in Hindi) showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments. The project is a physical computing art installation that materialises the inner workings of neural networks into tangible, playable musical instruments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Background ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a2e">
+      <div class="wrap">
+        <p class="cs-section-label">01 &mdash; Background</p>
+        <h3 class="cs-section-title">The Concept</h3>
+        <div class="cs-body">
+          <p>The genesis of this project drew inspiration from the &lsquo;Abacus&rsquo; project undertaken at panGenerator Studio. While the Abacus focused on recognizing digits, Jugalbandi operates on a similar concept but transforms neural network processes into acoustic and electronic sound.</p>
+          <p>The installation is a 1:1 interactive physical representation of a real, functioning deep learning network, manifested through musical instruments rather than visual displays.</p>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Inspiration</span>
+          <span class="cs-label-row-val">panGenerator Studio &mdash; &ldquo;The Abacus&rdquo;</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Approach</span>
+          <span class="cs-label-row-val">Translate neural network layers into tangible, playable acoustic and electronic mechanisms</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Research ── -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">02 &mdash; Research</p>
+        <h3 class="cs-section-title">Materialise Neural Networks</h3>
+        <div class="cs-body">
+          <p>Deep learning networks are a type of artificial neural network (ANN) with multiple layers of processing units. Each layer learns to perform a specific task, and the layers work together to learn complex patterns in data. Jugalbandi maps these layers to physical sound-making mechanisms &mdash; each layer of the network controls a different instrument or actuator.</p>
+        </div>
+        <div class="cs-callout">
+          <p>Original artform inspired by panGenerator Studio &mdash; called &ldquo;The Abacus,&rdquo; which uses digits as the final output. Jugalbandi replaces digits with musical notes.</p>
+        </div>
+        <div class="cs-info-grid">
+          <div class="cs-info-item"><span class="cs-info-key">Reference Year</span><span class="cs-info-value">2021</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Credits</span><span class="cs-info-value">Krzysztof Cybulski, Krzysztof Goli&#324;ski, Jakub Ko&#378;niewski, Wojciech Stokowiec</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Reference</span><span class="cs-info-value">pangenerator.com/projects/the-abacus/</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The Instrument ── -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#2d1b4e">
+      <div class="wrap">
+        <p class="cs-section-label">03 &mdash; The Instrument</p>
+        <h2 class="cs-display">Hexa-18</h2>
+        <div class="cs-body">
+          <p>Hexa-18 is a custom-built hexagonal instrument that combines three distinct sound-making mechanisms into a single sculptural form &mdash; wind, string, and percussion. Each face of the polyhedron serves a different acoustic or electronic function.</p>
+        </div>
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Wind</div>
+            <div class="cs-feature-card-desc">Air-driven pipes of varying heights produce different tonal frequencies, controlled by solenoid valves.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">String</div>
+            <div class="cs-feature-card-desc">Servo-actuated plucking mechanisms produce melodic sequences through algorithmically composed patterns.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Percussion</div>
+            <div class="cs-feature-card-desc">Speaker cones and vibration motors embedded in hexagonal faces create rhythmic, percussive textures.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Sculpture</div>
+            <div class="cs-feature-card-desc">The hexagonal form is both a visual art piece and a functional instrument &mdash; each face serves a purpose.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Components ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+      <div class="wrap">
+        <p class="cs-section-label">04 &mdash; Components</p>
+        <h3 class="cs-section-title">Mechanized Harp</h3>
+        <div class="cs-body">
+          <p>The mechanized harp is built inside a wooden frame and uses servo motors to pluck individual strings automatically. An Arduino Mega controls the timing and sequencing of each pluck, allowing for algorithmically composed melodies.</p>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Controller</span>
+          <span class="cs-label-row-val">Mega Arduino</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Actuators</span>
+          <span class="cs-label-row-val">Servo Motors</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Materials</span>
+          <span class="cs-label-row-val">Wire Mesh, Harp, Wood Frame</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Automated Flute ── -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">05 &mdash; Component</p>
+        <h3 class="cs-section-title">Automated Flute</h3>
+        <div class="cs-body">
+          <p>The automated flute uses an air pump to push air through the blowing hole, while servo motors actuated by Lego mechanisms open and close the finger holes to produce different notes. The entire assembly is controlled by a Mega Arduino.</p>
+        </div>
+        <div class="cs-info-grid">
+          <div class="cs-info-item"><span class="cs-info-key">Air Source</span><span class="cs-info-value">Air Pump</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Actuators</span><span class="cs-info-value">Servo Motors</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Controller</span><span class="cs-info-value">Mega Arduino</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Structure</span><span class="cs-info-value">Legos, Clamp, Blowing Hole</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Rainsticks ── -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#2d1b4e">
+      <div class="wrap">
+        <p class="cs-section-label">06 &mdash; Component</p>
+        <h3 class="cs-section-title">Rainsticks</h3>
+        <div class="cs-body">
+          <p>The rainstick module is mounted on a wooden structure and uses servo motors to tilt and rotate cardboard rainsticks, producing cascading percussive sounds. A dedicated circuit board coordinates the timing of each tilt to layer rhythmic patterns.</p>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Actuators</span>
+          <span class="cs-label-row-val">Servo Motors</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Structure</span>
+          <span class="cs-label-row-val">Wooden Frame</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Sound Source</span>
+          <span class="cs-label-row-val">Rainsticks</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Electronics</span>
+          <span class="cs-label-row-val">Circuit Board</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tools & Techniques ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a2e">
+      <div class="wrap">
+        <p class="cs-section-label">07 &mdash; Process</p>
+        <h3 class="cs-section-title">Tools and Techniques</h3>
+        <div class="cs-tags">
+          <span class="cs-tag-item">Neural Networks</span>
+          <span class="cs-tag-item">Machine Learning (ML5.JS)</span>
+          <span class="cs-tag-item">Fabrication</span>
+          <span class="cs-tag-item">Data Analysis</span>
+          <span class="cs-tag-item">Dataset</span>
+          <span class="cs-tag-item">Critical Thinking</span>
+          <span class="cs-tag-item">Physical Computing</span>
+          <span class="cs-tag-item">Electronics</span>
+        </div>
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Research &amp; Data</div>
+            <div class="cs-step-desc">Studied neural network architectures and built custom training datasets for musical pattern recognition.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Prototyping</div>
+            <div class="cs-step-desc">Designed and fabricated mechanical instrument prototypes using Arduino, servos, and found materials.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Integration</div>
+            <div class="cs-step-desc">Connected ML models to physical actuators, mapping network outputs to musical notes and rhythms.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">4</div>
+            <div class="cs-step-title">Performance</div>
+            <div class="cs-step-desc">Staged a live performance where the artist and machine played together as a duet &mdash; Jugalbandi.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── My Role ── -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">08 &mdash; Reflection</p>
+        <h3 class="cs-section-title">My Role</h3>
+        <div class="cs-body">
+          <p>In Jugalbandi, my role was pivotal in translating the complex workings of artificial neural networks into an interactive physical installation. I navigated through challenges while utilizing tools like TensorFlow, ML5.JS, and Teachable Machines. Collaborating with mentors, I contributed to creating a dataset tailored specifically for the project, overcoming hurdles in model accuracy, and adapting methodologies to ensure the successful convergence of art and science in the final performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Credits ── -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+      <div class="wrap">
+        <p class="cs-section-label">09 &mdash; Team</p>
+        <h3 class="cs-section-title">Credits</h3>
+        <div class="cs-credits">
+          <div class="cs-credit-item"><span class="cs-credit-role">Artist</span><span class="cs-credit-name">Parth</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Mentor</span><span class="cs-credit-name">David Rios</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Mentor</span><span class="cs-credit-name">Phil Caridi</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Shot &amp; InFrame</span><span class="cs-credit-name">Virendra Pawar</span></div>
+        </div>
+
+        <h4 class="cs-section-subtitle">Abacus Inspiration Credits</h4>
+        <div class="cs-credits">
+          <div class="cs-credit-item"><span class="cs-credit-role">Studio</span><span class="cs-credit-name">panGenerator</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Team</span><span class="cs-credit-name">Krzysztof Cybulski</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Team</span><span class="cs-credit-name">Krzysztof Goli&#324;ski</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Team</span><span class="cs-credit-name">Jakub Ko&#378;niewski</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Team</span><span class="cs-credit-name">Wojciech Stokowiec</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Thanks ── -->
+    <section class="cs-section cs-section--blue cs-thanks reveal" style="--cs-blue:#2d1b4e">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+  <a class="next-project" href="mentra.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">Mentra</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/mentra.png" alt="Mentra" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

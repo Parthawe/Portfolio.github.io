@@ -4,91 +4,521 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>The Point CDC · Parth Pawar</title>
-  <meta name="description" content="The Point Community Development Corporation serves underrepresented communities in the South Bronx. I redesigned their digital presence to improve access to health resources, events and community programs — with a focus on low-bandwidth users."/>
+  <meta name="description" content="Revitalizing The Point CDC — A digital transformation for community empowerment in Hunts Point, Bronx. Redesigning their website to streamline services, foster innovation, and enhance community engagement."/>
+  <meta property="og:title" content="The Point CDC · Parth Pawar"/>
+  <meta property="og:description" content="Digital transformation for community empowerment in Hunts Point, Bronx — website redesign."/>
+  <meta property="og:image" content="assets/images/the-point-cdc.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/project.css"/>
+  <style>
+    :root { --cs-blue: #3B6BF5; --cs-dark: #0e0e1a; }
+  </style>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">UX</a></li>
-        <li><a href="creative-tech.html">Creative-Tech</a></li>
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="proof.html">Proof</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">parthpawar@nyu.edu</div>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
+    <!-- ══════════════════════════════════════════════
+         SLIDE 1 — HERO (light bg, metadata + title + device mockups)
+         ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">← Back</a>
+        <a href="ux.html" class="back-link">&larr; Back</a>
       </div>
       <div class="proj-meta reveal">
-        <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">Healthcare</span><span class="proj-tag">Research</span></div>
+        <div class="proj-tags">
+          <span class="proj-tag">UX</span>
+          <span class="proj-tag">Community</span>
+          <span class="proj-tag">Research</span>
+        </div>
         <h1 class="proj-title">The Point CDC</h1>
-        <p class="proj-subtitle">Community health center digital experience</p>
+        <p class="proj-subtitle">A digital transformation for community empowerment</p>
         <div class="proj-info-row">
+          <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">The Point CDC</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">User Research, UI/UX, Prototyping</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Product Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Duration</span><span class="proj-info-val">3 Months</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2024</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">UX Designer</span></div>
-          <div class="proj-info-item"><span class="proj-info-label">Tools</span><span class="proj-info-val">Figma, Webflow, WCAG 2.1</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/the-point-cdc.png" alt="The Point CDC"/></div>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 1.png" alt="The Point CDC — Revitalizing a community website with device mockups showing the redesigned homepage" loading="lazy"/></div>
     </div>
 
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">The Point Community Development Corporation serves underrepresented communities in the South Bronx. I redesigned their digital presence to improve access to health resources, events and community programs — with a focus on low-bandwidth users.</p>
+    <!-- ══════════════════════════════════════════════
+         SLIDE 2 — OVERVIEW + SUMMARY + CHALLENGES + ROLE + TOOLS (blue bg, label-row layout)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3B6BF5">
+      <div class="wrap">
+        <h2 class="cs-display" style="max-width:22ch;">Redesigning the Hunts Point website to streamline services, foster innovation, and enhance community engagement in the Bronx.</h2>
+
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Summary</span>
+          <span class="cs-label-row-val">The Point CDC, a cornerstone in Hunts Point, Bronx, has been at the forefront of empowering the community by providing free WiFi through a resilient mesh network. The website revamp project aimed to modernize their online presence, streamline access to community services, and showcase their latest initiatives and programs. This case study outlines the challenges, process, and solutions involved in the revamp.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">The Challenges</span>
+          <span class="cs-label-row-val">The Point CDC website faced several challenges, including:<br/>
+            &bull; Outdated design and complex navigation<br/>
+            &bull; Lack of a clear communication pathway for highlighting community initiatives<br/>
+            &bull; The need to integrate real-time updates on programs like the &ldquo;Be a Buddy&rdquo; program, free WiFi access, and &ldquo;Hunts Point Forward&rdquo;<br/>
+            &bull; Optimizing the mobile experience for community residents</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">As the lead UI/UX designer, my role was to revamp the website with a fresh, community-focused design. I conducted user research, created prototypes, and led the redesign to improve navigation and accessibility.</span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">Figma</span>
+              <span class="cs-tag-item">User Research</span>
+              <span class="cs-tag-item">Identity and Website Design</span>
+              <span class="cs-tag-item">Prototyping</span>
+              <span class="cs-tag-item">Wireframes</span>
+              <span class="cs-tag-item">High-Fidelity</span>
+              <span class="cs-tag-item">Experience Management</span>
+              <span class="cs-tag-item">Design System</span>
+            </span>
+          </span>
         </div>
       </div>
-    </div>
+    </section>
 
-  <section class="project-gallery reveal">
-    <div class="wrap">
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 1.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 10.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 11.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 2.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 3.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 4.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 5.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 6.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 7.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 8.png" alt="" loading="lazy"/></div>
-        <div class="gallery-item"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 9.png" alt="" loading="lazy"/></div>
+    <!-- ══════════════════════════════════════════════
+         SLIDE 3 — ABOUT THE POINT CDC + PROBLEM STATEMENT (light bg, text + photos)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <div class="cs-two-col">
+          <div>
+            <h2 class="cs-display" style="color:#3B6BF5;">The Point CDC</h2>
+            <div class="cs-body">
+              <p>The Point CDC is a non-profit organization in Hunts Point, Bronx, focused on empowering the local community through arts, education, and environmental initiatives. They provide programs to improve residents' lives, including free WiFi access and youth leadership opportunities, while promoting social justice and sustainability.</p>
+            </div>
+          </div>
+          <div class="cs-img">
+            <img src="Assets/Projects/ThePointCDC/Desktop/Slice 3.png" alt="The Point CDC community work — WiFi installation and community members" loading="lazy"/>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <section class="cs-section reveal">
+      <div class="wrap" style="text-align:center;">
+        <span class="cs-section-label">01 &mdash; Discover</span>
+        <h2 class="cs-section-title">Problem Statement</h2>
+        <div class="cs-callout" style="max-width:800px; margin-left:auto; margin-right:auto; text-align:left;">
+          <p>How can we redesign The Point CDC's website to enhance accessibility, streamline navigation, and effectively highlight community programs and services?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 4 — PROCESS + USER RESEARCH (light bg, 4-col process + 3 circles)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">02 &mdash; Discover</span>
+        <h2 class="cs-section-title">Process</h2>
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Discover</div>
+            <div class="cs-step-desc">Conducted a website audit to identify pain points and opportunities. Interviewed community members and staff to gain insights into their digital needs.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Define</div>
+            <div class="cs-step-desc">Organized content to prioritize essential services. Highlighted the community's accomplishments. Defined goals and problems.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Develop</div>
+            <div class="cs-step-desc">Created wireframes and low-fidelity prototypes to test navigation and flow. Collaborated with The Point CDC to ensure all features aligned with their mission of empowerment.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">4</div>
+            <div class="cs-step-title">Deliver</div>
+            <div class="cs-step-desc">Launched a redesigned website with intuitive navigation and a modern layout. Introduced new sections like &ldquo;Hunts Point News&rdquo; and &ldquo;Quick Finds&rdquo; to provide real-time program updates.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">03 &mdash; Discover</span>
+        <h2 class="cs-section-title">User Research</h2>
+        <div class="cs-body">
+          <p>I focused on understanding how the website could best serve the Hunts Point community. Residents emphasized the need for:</p>
+        </div>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Easy access to WiFi service information.</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Clear communication about events and programs.</div>
+          </div>
+          <div class="cs-feature-card" style="text-align:center;">
+            <div class="cs-feature-card-title">Mobile-friendly navigation, as many users rely on their phones for internet access.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 5 — INTERVIEW / PERSONA + INSIGHTS + VISUAL IMPROVEMENTS (light top + blue insights box + before screenshots)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Interview</span>
+        <h2 class="cs-section-title">User Persona</h2>
+        <div class="cs-info-grid">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Name</span>
+            <span class="cs-info-value">Maria Rodriguez</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Age</span>
+            <span class="cs-info-value">32</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Occupation</span>
+            <span class="cs-info-value">Community Organizer</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Digital Access</span>
+            <span class="cs-info-value">Primarily mobile (75%), occasional desktop usage</span>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle">Goals</h3>
+        <ul class="cs-list">
+          <li>Easily access information on free community resources like WiFi and mentorship programs.</li>
+          <li>Stay updated on local initiatives and events hosted by The Point CDC.</li>
+          <li>Use the website as a tool to help others in the community connect with resources.</li>
+        </ul>
+
+        <h3 class="cs-section-subtitle">Frustrations</h3>
+        <ul class="cs-list">
+          <li>Difficulty finding information on the old website due to cluttered layout.</li>
+          <li>Slow loading times and poor mobile optimization made accessing resources inconvenient.</li>
+          <li>Lack of a centralized location for event updates, leading to missed community activities.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3B6BF5">
+      <div class="wrap">
+        <span class="cs-section-label">Key Insights</span>
+        <h2 class="cs-section-title">Research Insights</h2>
+        <ol class="cs-num-list">
+          <li><strong>Ease of Access to WiFi Information:</strong> Users emphasized needing quick access to the &ldquo;Free Hunts Point WiFi&rdquo; section, as it's one of the most valuable resources provided by The Point CDC.</li>
+          <li><strong>Mobile Usage Preference:</strong> Many residents primarily access the site on mobile devices, underscoring the importance of mobile-friendly navigation.</li>
+          <li><strong>Event and Program Awareness:</strong> Users highlighted the importance of staying updated on programs like &ldquo;Be a Buddy&rdquo; and events through clear, real-time information.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Discover</span>
+        <h2 class="cs-section-title">Visual Improvements</h2>
+        <div class="cs-body">
+          <p>An audit of the existing site revealed several areas for improvement:</p>
+        </div>
+        <ul class="cs-list">
+          <li><strong>Simplify Navigation:</strong> Reduce menu clutter by grouping items under broader categories.</li>
+          <li><strong>Reduce Visual Clutter:</strong> Streamline layout elements to focus on essential information.</li>
+          <li><strong>Refine Color Scheme:</strong> Use a cohesive color palette that aligns with the community mission.</li>
+          <li><strong>Highlight Key Programs:</strong> Use icons or banners to make important resources more visible.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/ThePointCDC/Desktop/Slice 5.png" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 6 — DEFINE: INSIGHTS + GOALS + USER JOURNEY (dark bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a">
+      <div class="wrap">
+        <span class="cs-section-label">Insights</span>
+        <h2 class="cs-section-title">Design Direction</h2>
+        <ol class="cs-num-list">
+          <li>The new design should feature clean lines, a simplified color palette, and clearly defined sections for news, programs, and events.</li>
+          <li>Special emphasis should be placed on typography and imagery that resonates with the community's identity.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">Define</span>
+        <h2 class="cs-section-title">Insights</h2>
+        <div class="cs-body">
+          <p>I focused on understanding how the website could best serve the Hunts Point community. Residents emphasized the need for</p>
+        </div>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">Easy access to WiFi service information.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">Clear communication about events and programs.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-desc">Mobile-friendly navigation, as many users rely on their phones for internet access.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">Define</span>
+        <h2 class="cs-section-title">Goals</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Improve Accessibility</div>
+            <div class="cs-feature-card-desc">Ensure the website is user-friendly and easy to navigate for all community members.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Highlight Key Programs</div>
+            <div class="cs-feature-card-desc">Effectively showcase vital services like free WiFi and community initiatives.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Enhance Engagement</div>
+            <div class="cs-feature-card-desc">Foster stronger community connections by providing real-time updates and a modern digital experience.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a; padding-top:0;">
+      <div class="wrap">
+        <span class="cs-section-label">Define</span>
+        <h2 class="cs-section-title">User Journey</h2>
+        <div class="cs-img-full">
+          <img src="Assets/Projects/ThePointCDC/Desktop/Slice 6.png" alt="User journey map and information architecture flow diagram" loading="lazy"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 7 — UX & WIREFRAME (light/cream bg)
+         ══════════════════════════════════════════════ -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/ThePointCDC/Desktop/Slice 7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 8 — SETTING VISUAL STYLE (dark bg, design system components)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+      <div class="wrap">
+        <span class="cs-section-label">Develop</span>
+        <h2 class="cs-section-title">Setting Visual Style</h2>
+        <div class="cs-body">
+          <p>A comprehensive design system was established covering typography, buttons, sections, colors, tags, icons, and menu components to ensure consistency across the entire website.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/ThePointCDC/Desktop/Slice 8.png" alt="Design system components — typography, buttons, colors, tags, icons, sections, and menu" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 9 — VISUALS & PROTOTYPING (dark bg with annotated final screens)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+      <div class="wrap">
+        <span class="cs-section-label">Deliver</span>
+        <h2 class="cs-section-title">Visuals &amp; Prototyping</h2>
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Streamlined Navigation</div>
+            <div class="cs-feature-card-desc">Simplified menu for easier access to information.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Responsive Design</div>
+            <div class="cs-feature-card-desc">Optimized for mobile, ensuring smooth access on all devices.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Improved Readability</div>
+            <div class="cs-feature-card-desc">Clear sections and whitespace for better content flow.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Highlighted Key Programs</div>
+            <div class="cs-feature-card-desc">Featured icons for quick access to important services.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Cohesive Color Scheme</div>
+            <div class="cs-feature-card-desc">Used a consistent palette that reflects the community focus.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Community Engagement</div>
+            <div class="cs-feature-card-desc">Added testimonials and social media links for trust-building.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/ThePointCDC/Desktop/Slice 9.png" alt="Final high-fidelity design — desktop and mobile responsive views with annotated improvements" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 10 — MORE PAGES (dark bg top with additional page screenshots)
+         ══════════════════════════════════════════════ -->
+    <div class="cs-slide reveal">
+      <img src="Assets/Projects/ThePointCDC/Desktop/Slice 10.png" alt="Additional page designs showing various sections of the redesigned website" loading="lazy"/>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 10 (continued) — OUTCOME & RESULTS (dark bg, 3-col results)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a">
+      <div class="wrap">
+        <span class="cs-section-label">Deliver</span>
+        <h2 class="cs-section-title">Outcome &amp; Results</h2>
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-desc">Increased community engagement by 35% within the first three months after launch.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-desc">Mobile visits grew by 50%, demonstrating the success of the mobile-first design approach.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-desc">Feedback from community members and staff was overwhelmingly positive, particularly around the ease of navigation and access to the WiFi program.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SLIDE 11 — CREDITS + THANKS (dark bg)
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a2e">
+      <div class="wrap">
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Credits</span>
+          <span class="cs-label-row-val"><strong>UI/UX Designer</strong><br/>Parth Pawar</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">User Experience</span>
+              <span class="cs-tag-item">Interview</span>
+              <span class="cs-tag-item">Identity and Website Design</span>
+              <span class="cs-tag-item">Analysis</span>
+              <span class="cs-tag-item">Wireframe</span>
+              <span class="cs-tag-item">Concept Development</span>
+              <span class="cs-tag-item">Prototyping</span>
+              <span class="cs-tag-item">Figma</span>
+            </span>
+          </span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">UI/UX Role</span>
+        </div>
+
+        <div class="cs-thanks" style="margin-top:3rem;">
+          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+        </div>
+      </div>
+    </section>
 
   </main>
+  </div>
+
+    <a class="next-project" href="ai-voice.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">AI Voice Interface</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/ai-voice.png" alt="AI Voice Interface" loading="lazy"/>
+      </div>
+    </div>
+  </a>
 
   <footer class="footer">
     <div class="footer-marquee">
       <div class="footer-marquee-inner">
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
-        <span>Let's talk!&nbsp;&nbsp;☕&nbsp;&nbsp;Let's have a Coffee!&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span class="footer-copy">© 2025 Parth Pawar</span>
-      <div class="footer-links">
-        <a href="mailto:parthpawar@nyu.edu">Email</a>
-        <a href="https://linkedin.com/in/parthpawar" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Parthawe" target="_blank">GitHub</a>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
