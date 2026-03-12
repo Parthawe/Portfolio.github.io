@@ -91,19 +91,8 @@
   /* ── Nav scroll state ── */
   const nav = document.getElementById('nav');
   if (nav) {
-    const hero = document.querySelector('.hero');
     const updateNav = () => {
-      var sy = window.scrollY;
-      nav.classList.toggle('scrolled', sy > 20);
-      // Remove hero dark nav once scrolled past hero
-      if (hero && nav.classList.contains('nav--hero')) {
-        if (sy > hero.offsetHeight * 0.85) {
-          nav.classList.remove('nav--hero');
-        }
-      }
-      if (hero && !nav.classList.contains('nav--hero') && sy <= 50) {
-        nav.classList.add('nav--hero');
-      }
+      nav.classList.toggle('scrolled', window.scrollY > 20);
     };
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
