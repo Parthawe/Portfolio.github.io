@@ -27,9 +27,8 @@
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
         <li><a href="ux.html">Work</a></li>
-        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -38,68 +37,72 @@
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
       <li><a href="ux.html">Work</a></li>
-      <li><a href="proof.html">Proof</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
     </ul>
-    <div class="mobile-contact">parthpawar@nyu.edu</div>
   </div>
 
+  <div class="color-chapter color-chapter--light">
   <main class="project-main">
 
-    <!-- ════════════════════════════════════════════
-         HERO
-         ════════════════════════════════════════════ -->
-    <div class="cs-slide reveal">
-      <img src="assets/images/keyboard.png" alt="BreakGen — modular keyboard design platform hero image"/>
-    </div>
-
-    <!-- ════════════════════════════════════════════
-         HEADER + OVERVIEW
-         ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111111">
-      <div class="wrap">
-        <div class="proj-back">
-          <a href="creative-tech.html" class="back-link">&larr; Back</a>
+    <!-- ══════════════════════════════════════════════
+         HEADER
+         ══════════════════════════════════════════════ -->
+    <div class="wrap project-header">
+      <div class="proj-back">
+        <a href="ux.html" class="back-link">&larr; Back</a>
+      </div>
+      <div class="proj-meta reveal">
+        <div class="proj-tags">
+          <span class="proj-tag">Creative Tech</span>
+          <span class="proj-tag">Hardware</span>
+          <span class="proj-tag">Machine Learning</span>
+          <span class="proj-tag">UX/UI</span>
         </div>
-
-        <div class="cs-tags" style="margin-bottom:1.5rem;">
-          <span class="cs-tag-item">Creative Tech</span>
-          <span class="cs-tag-item">Hardware</span>
-          <span class="cs-tag-item">Machine Learning</span>
-          <span class="cs-tag-item">UX/UI</span>
-        </div>
-
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;margin-bottom:3rem;">
-          <div>
-            <h1 class="cs-display">BreakGen</h1>
-            <p class="cs-body" style="max-width:640px;margin-top:1rem;font-size:clamp(1.1rem,2vw,1.4rem);color:rgba(255,255,255,0.7);">A modular keyboard design platform that democratizes hardware creation through AI and intuitive design tools.</p>
-          </div>
-          <div style="text-align:right;">
-            <p class="cs-section-label" style="margin-bottom:0.3rem;">ITP Thesis</p>
-            <p style="font-family:var(--display);font-size:1.1rem;color:rgba(255,255,255,0.7);margin:0;">NYU ITP, 2024&ndash;2025</p>
-          </div>
-        </div>
-
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Overview</span>
-          <span class="cs-label-row-val">BreakGen is a web-based platform where users design fully custom mechanical keyboards from scratch. They select key feel, generate AI-personalized keycaps, build ergonomic layouts, and receive auto-generated PCBs ready for fabrication. The project bridges the gap between desire and ability in the DIY keyboard community&mdash;making deep customization accessible to people without engineering backgrounds.</span>
-        </div>
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Role</span>
-          <span class="cs-label-row-val">Sole designer and developer. Responsible for concept, UX/UI design, frontend development, AI pipeline integration, PCB auto-generation logic, and physical prototyping. Thesis project at NYU&rsquo;s Interactive Telecommunications Program.</span>
-        </div>
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Categories</span>
-          <span class="cs-label-row-val">Art, Machine Learning, Product Design, UX/UI Design</span>
+        <h1 class="proj-title">BreakGen</h1>
+        <p class="proj-subtitle">A modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, intuitive layout tools, and automated PCB generation</p>
+        <div class="proj-info-row">
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Designer &amp; Developer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Context</span><span class="proj-info-val">ITP Thesis, NYU</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">2024&ndash;2025</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Stack</span><span class="proj-info-val">React, Three.js, Meshy AI, KiCad</span></div>
         </div>
       </div>
-    </section>
+      <div class="proj-hero-img proj-hero-img--full reveal"><img src="assets/images/keyboard.png" alt="BreakGen — modular keyboard design platform" loading="lazy"/></div>
+    </div>
+
+    <!-- Case Study TOC — sticky sidebar -->
+    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
+      <div class="cs-toc-inner">
+        <span class="cs-toc-label">Contents</span>
+        <a href="#cs-concept" class="cs-toc-link">Concept</a>
+        <a href="#cs-architecture" class="cs-toc-link">Architecture</a>
+        <a href="#cs-process" class="cs-toc-link">Process</a>
+        <a href="#cs-fabrication" class="cs-toc-link">Fabrication</a>
+        <a href="#cs-outcome" class="cs-toc-link">Outcome</a>
+      </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════
+         OVERVIEW
+         ══════════════════════════════════════════════ -->
+    <div class="wrap project-overview reveal">
+      <div class="proj-overview-grid">
+        <div class="proj-overview-body">
+          <h2 class="section-label">Overview</h2>
+          <p class="proj-desc">BreakGen is a web-based platform where users design fully custom mechanical keyboards from scratch. They select key feel, generate AI-personalized keycaps, build ergonomic layouts, and receive auto-generated PCBs ready for fabrication. The project bridges the gap between desire and ability in the DIY keyboard community &mdash; making deep customization accessible to people without engineering backgrounds.</p>
+        </div>
+        <div class="proj-overview-body">
+          <h2 class="section-label">My Role</h2>
+          <p class="proj-desc">Sole designer and developer. Responsible for concept, UX/UI design, frontend development, AI pipeline integration, PCB auto-generation logic, and physical prototyping. Thesis project at NYU&rsquo;s Interactive Telecommunications Program.</p>
+        </div>
+      </div>
+    </div>
 
     <!-- ════════════════════════════════════════════
          CONCEPT
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a1a">
+    <section class="cs-section cs-section--dark reveal" id="cs-concept" style="--cs-dark:#1a1a1a">
       <div class="wrap">
         <p class="cs-section-label">01 &mdash; Concept</p>
         <h2 class="cs-section-title">Breaking Things to Understand Them</h2>
@@ -114,7 +117,7 @@
     <!-- ════════════════════════════════════════════
          TECHNICAL ARCHITECTURE
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#141414">
+    <section class="cs-section cs-section--dark reveal" id="cs-architecture" style="--cs-dark:#141414">
       <div class="wrap">
         <p class="cs-section-label">02 &mdash; Technical Architecture</p>
         <h2 class="cs-section-title">The Stack</h2>
@@ -148,7 +151,7 @@
     <!-- ════════════════════════════════════════════
          DESIGN PROCESS
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1e1e">
+    <section class="cs-section cs-section--dark reveal" id="cs-process" style="--cs-dark:#1e1e1e">
       <div class="wrap">
         <p class="cs-section-label">03 &mdash; Design Process</p>
         <h2 class="cs-section-title">From Digital Design to Physical Assembly</h2>
@@ -162,7 +165,7 @@
     <!-- ════════════════════════════════════════════
          FABRICATION
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0f0f0f">
+    <section class="cs-section cs-section--dark reveal" id="cs-fabrication" style="--cs-dark:#0f0f0f">
       <div class="wrap">
         <p class="cs-section-label">04 &mdash; Fabrication</p>
         <h2 class="cs-section-title">Making It Real</h2>
@@ -196,7 +199,7 @@
     <!-- ════════════════════════════════════════════
          OUTCOME
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a1a">
+    <section class="cs-section cs-section--dark reveal" id="cs-outcome" style="--cs-dark:#1a1a1a">
       <div class="wrap">
         <p class="cs-section-label">05 &mdash; Outcome</p>
         <h2 class="cs-section-title">ITP Thesis Show</h2>
@@ -240,8 +243,9 @@
     </section>
 
   </main>
+  </div>
 
-    <a class="next-project" href="vj-software.html">
+  <a class="next-project" href="vj-software.html">
     <div class="wrap next-project-inner">
       <div>
         <div class="next-project-label">Next Project</div>
@@ -281,7 +285,7 @@
           <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
         </ul>
-        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
+        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
       </div>
     </div>
   </footer>

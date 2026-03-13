@@ -140,14 +140,14 @@
   }
 
   /* ── Tab system (home hero) with auto-cycling ── */
-  const TAB_ACCENTS = { anyone: '#e84393', recruiter: '#e84393', pm: '#e84393' };
+  const TAB_ACCENTS = { anyone: '#ffe430', recruiter: '#ffe430', pm: '#ffe430' };
   const pills = document.querySelectorAll('.tab-pill');
   const hls = document.querySelectorAll('.hero-hl');
   const tabKeys = ['anyone', 'recruiter', 'pm'];
   let tabIndex = 0, tabTimer = null, tabPaused = false;
 
   function switchTab(target) {
-    const accent = TAB_ACCENTS[target] || '#e84393';
+    const accent = TAB_ACCENTS[target] || '#ffe430';
     document.documentElement.style.setProperty('--accent', accent);
     pills.forEach(p => p.classList.remove('active', 'cycling'));
     const activePill = Array.from(pills).find(p => p.dataset.tab === target);

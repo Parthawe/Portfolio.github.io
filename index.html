@@ -4,10 +4,10 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Parth Pawar · Product Designer</title>
-  <meta name="description" content="Parth Pawar — Product Designer specializing in AI wearables, fintech, human centered interfaces, and interactive systems. Head of UI/UX at Mentra (AI smart glasses). NYU ITP MPS."/>
+  <meta name="description" content="Parth Pawar — Product Designer. Head of UI/UX at Mentra (AI smart glasses). Previously ZentiPay, TransFi. NYU ITP."/>
   <meta property="og:title" content="Parth Pawar · Product Designer"/>
-  <meta property="og:description" content="Product Designer · Fintech, AI, Interactive Systems · New York"/>
-  <meta property="og:image" content="assets/images/zentipay.png"/>
+  <meta property="og:description" content="Product Designer · AI Wearables, Fintech, Interactive Systems · New York"/>
+  <meta property="og:image" content="assets/images/mentra.png"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
@@ -16,7 +16,8 @@
   {
     "imports": {
       "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/",
+      "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
     }
   }
   </script>
@@ -24,22 +25,17 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <!-- Global overlays -->
-  <div class="grain"></div>
   <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
   <div class="page-loader"></div>
   <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
         <li><a href="ux.html">Work</a></li>
-        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -48,346 +44,156 @@
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
       <li><a href="ux.html">Work</a></li>
-      <li><a href="proof.html">Proof</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
     </ul>
-    <div class="mobile-contact">parthpawar@nyu.edu</div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO — Split: text left, 3D keychain right -->
+  <section class="hero-v2 hero-v2--split">
 
-    <!-- 3D ambient backdrop -->
-    <div id="hero-3d"></div>
+    <!-- 3D Keychain scene (Three.js + cannon-es physics) -->
+    <div class="hero-keychain-scene" id="hero-keychain"></div>
 
-    <!-- Floating metadata -->
-    <div class="hero-meta hero-meta--tl">
-      <span class="avail-dot"></span> Available for work
-    </div>
-    <div class="hero-meta hero-meta--tr">New York, NY</div>
-
-    <div class="wrap hero-body">
-
-      <span class="hero-label">Product Designer</span>
-
-      <div class="hero-tabs">
-        <button class="tab-pill active" data-tab="anyone">For Anyone</button>
-        <button class="tab-pill" data-tab="recruiter">Hiring Recruiters</button>
-        <button class="tab-pill" data-tab="pm">Product Managers</button>
-      </div>
-
-      <div class="hero-headline" id="hero-hl">
-        <h1 class="hero-hl active" data-content="anyone">
-          Designing human centered products across <em>AI wearables,</em> fintech, and interactive systems
-        </h1>
-        <h1 class="hero-hl" data-content="recruiter">
-          Head of UI/UX at Mentra with 5+ years shipping products from <em>0 to 1</em> across AI wearables, fintech, and interactive systems
-        </h1>
-        <h1 class="hero-hl" data-content="pm">
-          End to end product design from <em>user research</em> and systems thinking to scalable design delivery
-        </h1>
-      </div>
-
-      <p class="hero-sub">Currently Head of UI/UX at <strong>Mentra</strong>, building AI-powered smart glasses. Previously founding designer at ZentiPay and lead designer at TransFi. NYU ITP MPS &rsquo;24.</p>
-
-    </div>
-
-    <div class="wrap hero-foot">
-      <div class="hero-ctas">
-        <a href="mentra.html" class="btn-arrow">
-          View featured work
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="proof.html" class="btn-arrow">Proof and recognition</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-n">20+</div>
-          <div class="stat-l">Products shipped</div>
+    <div class="wrap hero-v2-inner hero-v2-inner--split">
+      <div class="hero-v2-content">
+        <div class="hero-v2-status">
+          <span class="avail-dot"></span> Available for work
+          <span class="hero-v2-sep">/</span>
+          New York
         </div>
-        <div class="stat">
-          <div class="stat-n">5+</div>
-          <div class="stat-l">Years experience</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n">3</div>
-          <div class="stat-l">Countries</div>
+        <span class="hero-v2-label">Product Designer</span>
+        <h1 class="hero-v2-name">Parth<br/>Pawar</h1>
+        <p class="hero-v2-intro">Head of UI/UX at <strong>Mentra</strong>, designing AI-powered smart glasses. Building AI products at <strong>Clawed</strong> and <strong>ExecutiveLens</strong>. Previously ZentiPay, TransFi. NYU ITP '24.</p>
+        <div class="hero-v2-cta">
+          <a href="#main-content" class="hero-v2-scroll">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M8 13l-3-3M8 13l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            See work
+          </a>
         </div>
       </div>
-    </div>
-
-    <div class="hero-scroll-hint">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M8 13l-3-3M8 13l3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
   </section>
 
-  <!-- CONTENT SECTIONS -->
-  <div class="color-chapter color-chapter--light" id="main-content">
-
-    <!-- CREDIBILITY LINE -->
-    <div class="proof-strip">
-      <div class="proof-strip-inner">
-        <span class="proof-chip">Mentra</span>
-        <span class="proof-chip">NYU ITP MPS</span>
-        <span class="proof-chip">IBM Research</span>
-        <span class="proof-chip">TransFi</span>
-        <span class="proof-chip">ZentiPay</span>
-        <span class="proof-chip">NYU Tisch</span>
-        <span class="proof-chip">Maker Faire</span>
-        <span class="proof-chip">Mentra</span>
-        <span class="proof-chip">NYU ITP MPS</span>
-        <span class="proof-chip">IBM Research</span>
-        <span class="proof-chip">TransFi</span>
-        <span class="proof-chip">ZentiPay</span>
-        <span class="proof-chip">NYU Tisch</span>
-        <span class="proof-chip">Maker Faire</span>
-      </div>
-    </div>
-
-    <!-- IMPACT SNAPSHOT -->
-    <section class="sec sec--compact">
-      <div class="wrap">
-        <div class="impact-strip reveal">
-          <div class="impact-item">
-            <span class="impact-n">1M+</span>
-            <span class="impact-l">Users across products</span>
-          </div>
-          <div class="impact-divider"></div>
-          <div class="impact-item">
-            <span class="impact-n">$50M+</span>
-            <span class="impact-l">Monthly volume designed for</span>
-          </div>
-          <div class="impact-divider"></div>
-          <div class="impact-item">
-            <span class="impact-n">0 &rarr; 1</span>
-            <span class="impact-l">Two startups founded</span>
-          </div>
-          <div class="impact-divider"></div>
-          <div class="impact-item">
-            <span class="impact-n">12+</span>
-            <span class="impact-l">Hours battery life designed for</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURED WORK — 3 projects only -->
-    <section class="sec">
+  <!-- SELECTED WORK — the work IS the portfolio -->
+  <main id="main-content">
+    <section class="work-sec">
       <div class="wrap">
         <div class="sec-head">
-          <span class="sec-label">Featured Work</span>
+          <span class="sec-label">Selected Work</span>
           <a href="ux.html" class="sec-more">All projects <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 10L10 1M10 1H3.5M10 1V7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
 
-        <div class="grid-featured">
-          <a class="card card-lg card-tilt card-shine reveal" href="mentra.html">
-            <div class="card-img">
-              <img src="assets/images/mentra.png" alt="Mentra" loading="eager"/>
-              <div class="card-overlay"><span class="overlay-title">Mentra</span></div>
-              <span class="card-badge">Current</span>
+        <!-- Mentra — hero card, full width -->
+        <a class="pcard pcard--hero reveal" href="mentra.html">
+          <div class="pcard-img">
+            <img src="assets/images/mentra.png" alt="Mentra — AI smart glasses" loading="eager"/>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-top">
+              <h2 class="pcard-name">Mentra</h2>
+              <span class="pcard-badge">Current</span>
             </div>
-            <div class="card-meta">
-              <span class="card-name">Mentra</span>
-              <span class="card-detail">Head of UI/UX &middot; 2025</span>
+            <p class="pcard-result">AI smart glasses with the world's first wearable app store</p>
+            <span class="pcard-role">Head of UI/UX · 2025</span>
+          </div>
+        </a>
+
+        <!-- Row 2 -->
+        <div class="pcard-row">
+          <a class="pcard reveal" href="clawed-chat.html">
+            <div class="pcard-img">
+              <img src="assets/images/clawed.png" alt="Clawed" loading="eager"/>
             </div>
-            <div class="card-tags">
-              <span class="tag-dot">AI Wearables</span>
-              <span class="tag-dot">Smart Glasses</span>
-              <span class="tag-dot read-time">5 min read</span>
+            <div class="pcard-body">
+              <h2 class="pcard-name">Clawed</h2>
+              <p class="pcard-result">Safety-first AI assistant for glasses and web</p>
+              <span class="pcard-role">Product Designer · 2026</span>
             </div>
-            <p class="card-value">Leading UI/UX for AI-powered smart glasses with an open-source OS and the world's first wearable miniapp store</p>
           </a>
-          <a class="card card-sm card-tilt card-shine reveal" href="zentipay.html">
-            <div class="card-img">
-              <img src="assets/images/zentipay.png" alt="ZentiPay" loading="eager"/>
-              <div class="card-overlay"><span class="overlay-title">ZentiPay</span></div>
-              <span class="card-badge">Shipped</span>
+          <a class="pcard reveal" href="executivelens.html">
+            <div class="pcard-img">
+              <img src="assets/images/executivelens.png" alt="ExecutiveLens" loading="eager"/>
             </div>
-            <div class="card-meta">
-              <span class="card-name">ZentiPay</span>
-              <span class="card-detail">Founding Designer &middot; 2025</span>
+            <div class="pcard-body">
+              <h2 class="pcard-name">ExecutiveLens</h2>
+              <p class="pcard-result">AI-powered business intelligence for executives</p>
+              <span class="pcard-role">Product Designer · 2025–26</span>
             </div>
-            <div class="card-tags">
-              <span class="tag-dot">Fintech</span>
-              <span class="tag-dot">0 to 1</span>
-              <span class="tag-dot read-time">4 min read</span>
-            </div>
-            <p class="card-value">End to end fintech super app that increased transaction success by 30%</p>
           </a>
         </div>
 
-        <div class="grid-2">
-          <a class="card card-tilt card-shine reveal" href="transfi-project.html">
-            <div class="card-img">
-              <img src="assets/images/transfi.png" alt="TransFi" loading="lazy"/>
-              <div class="card-overlay"><span class="overlay-title">TransFi</span></div>
-              <span class="card-badge">Shipped</span>
+        <!-- Row 3 -->
+        <div class="pcard-row">
+          <a class="pcard reveal" href="zentipay.html">
+            <div class="pcard-img">
+              <img src="assets/images/zentipay.png" alt="ZentiPay" loading="lazy"/>
             </div>
-            <div class="card-meta">
-              <span class="card-name">TransFi</span>
-              <span class="card-detail">Lead Designer &middot; 2022 &mdash; 23</span>
+            <div class="pcard-body">
+              <h2 class="pcard-name">ZentiPay</h2>
+              <p class="pcard-result">Fintech super app — 30% higher transaction success</p>
+              <span class="pcard-role">Founding Designer · 2025</span>
             </div>
-            <div class="card-tags">
-              <span class="tag-dot">Fintech</span>
-              <span class="tag-dot">Crypto</span>
-              <span class="tag-dot read-time">4 min read</span>
-            </div>
-            <p class="card-value">Led product design for Asia's leading crypto payments platform serving $50M+ monthly volume</p>
           </a>
-          <a class="card card-tilt card-shine reveal" href="raahi-project.html">
-            <div class="card-img">
-              <img src="assets/images/raahi.png" alt="Raahi" loading="lazy"/>
-              <div class="card-overlay"><span class="overlay-title">Raahi</span></div>
-              <span class="card-badge">Research</span>
+          <a class="pcard reveal" href="oncall-lens.html">
+            <div class="pcard-img">
+              <img src="assets/images/oncall-lens.png" alt="OnCall Lens" loading="lazy"/>
             </div>
-            <div class="card-meta">
-              <span class="card-name">Raahi</span>
-              <span class="card-detail">Designer &middot; 2023</span>
+            <div class="pcard-body">
+              <h2 class="pcard-name">OnCall Lens</h2>
+              <p class="pcard-result">Sentry alerts to automated PR fixes via smart glasses</p>
+              <span class="pcard-role">Designer + Developer · 2026</span>
             </div>
-            <div class="card-tags">
-              <span class="tag-dot">UX</span>
-              <span class="tag-dot">Research</span>
-              <span class="tag-dot read-time">3 min read</span>
-            </div>
-            <p class="card-value">Transit accessibility research and mobile app design for underserved commuters</p>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- MARQUEE BREAK -->
-    <div class="marquee reveal">
-      <div class="marquee-inner">
-        <span>Product Design</span>
-        <span>AI Wearables</span>
-        <span>Fintech</span>
-        <span>Interactive Systems</span>
-        <span>Creative Technology</span>
-        <span>Product Design</span>
-        <span>AI Wearables</span>
-        <span>Fintech</span>
-        <span>Interactive Systems</span>
-        <span>Creative Technology</span>
-      </div>
-    </div>
-
-    <!-- APPROACH — personality section (dark) -->
-    <section class="sec approach-section">
+    <!-- IMPACT — only the strongest numbers -->
+    <section class="impact-sec">
       <div class="wrap">
-        <div class="approach-grid">
-          <div class="approach-left">
-            <span class="eyebrow reveal">Approach</span>
-            <h2 class="approach-headline reveal">I don&rsquo;t believe in design that explains itself.<br/>I believe in design that doesn&rsquo;t need to.</h2>
+        <div class="impact-row reveal">
+          <div class="impact-item">
+            <span class="impact-n">1M+</span>
+            <span class="impact-l">Users across shipped products</span>
           </div>
-          <div class="approach-right">
-            <p class="reveal">Every product I build starts with the same question: <strong>what is the user afraid of right now?</strong> Not what features do they need &mdash; what fears do they carry into this interaction? A migrant worker sending money home. A developer building their first miniapp. A patient reading an AI diagnosis. The interface is the last thing I design. The emotional architecture comes first.</p>
-            <p class="reveal">I work across the full stack of design: research, systems thinking, interaction design, visual craft, and prototyping. I build installations and typefaces alongside product work because understanding how people interact with physical space makes me a better designer of digital space.</p>
+          <div class="impact-item">
+            <span class="impact-n">$50M+</span>
+            <span class="impact-l">Monthly transaction volume</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RECOGNITION -->
-    <section class="sec sec--compact">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="sec-label">Recognition</span>
-          <a href="proof.html" class="sec-more">Full proof <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1 10L10 1M10 1H3.5M10 1V7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        </div>
-        <div class="recog-list reveal">
-          <div class="recog-row">
-            <span class="recog-type">Role</span>
-            <span class="recog-detail">Head of UI/UX, Mentra</span>
-            <span class="recog-context">AI Smart Glasses</span>
-          </div>
-          <div class="recog-row">
-            <span class="recog-type">Role</span>
-            <span class="recog-detail">Founding Product Designer, ZentiPay</span>
-            <span class="recog-context">0 &rarr; 1</span>
-          </div>
-          <div class="recog-row">
-            <span class="recog-type">Role</span>
-            <span class="recog-detail">Lead Product Designer, TransFi</span>
-            <span class="recog-context">$50M+ volume</span>
-          </div>
-          <div class="recog-row">
-            <span class="recog-type">Research</span>
-            <span class="recog-detail">IBM Research, AI Interfaces</span>
-            <span class="recog-context">Intern</span>
-          </div>
-          <div class="recog-row">
-            <span class="recog-type">Education</span>
-            <span class="recog-detail">MPS, NYU Tisch ITP</span>
-            <span class="recog-context">2024</span>
-          </div>
-          <div class="recog-row">
-            <span class="recog-type">Teaching</span>
-            <span class="recog-detail">Graduate TA, NYU Tisch</span>
-            <span class="recog-context">3 semesters</span>
-          </div>
-          <div class="recog-row">
-            <span class="recog-type">Exhibited</span>
-            <span class="recog-detail">Maker Faire, WonderVille, ITP Shows</span>
-            <span class="recog-context">6+ shows</span>
+          <div class="impact-item">
+            <span class="impact-n">0 &rarr; 1</span>
+            <span class="impact-l">Two startups from scratch</span>
           </div>
         </div>
       </div>
     </section>
 
-  </div>
-
-    <!-- CTA — dark dramatic section -->
-    <section class="cta-dark">
-      <div class="wrap cta-dark-inner">
-        <span class="cta-dark-label">Get in touch</span>
-        <h2 class="cta-dark-headline">Let&rsquo;s build<br/>something great</h2>
-        <p class="cta-dark-sub">I&rsquo;m always interested in ambitious products &mdash; especially where design can reduce fear, build trust, or make complex systems feel simple.</p>
-        <div class="cta-dark-row">
-          <a href="mailto:parthpawar@nyu.edu" class="cta-dark-btn magnetic magnetic-glow">
-            parthpawar@nyu.edu
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <span class="cta-dark-location">Currently in New York</span>
-        </div>
+    <!-- CTA — simple and direct -->
+    <section class="cta-v2">
+      <div class="wrap cta-v2-inner">
+        <h2 class="cta-v2-headline">Let's work together</h2>
+        <a href="mailto:parthpawar@nyu.edu" class="cta-v2-btn magnetic">
+          parthpawar@nyu.edu
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </section>
+  </main>
 
-  <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
-      </div>
+  <footer class="footer-v2">
+    <div class="wrap footer-v2-inner">
+      <span class="footer-v2-copy">&copy; 2022&ndash;26</span>
+      <ul class="footer-v2-links">
+        <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu">Email</a></li>
+      </ul>
     </div>
   </footer>
 
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
-  <script type="module" src="js/hero-3d.js"></script>
+  <script type="module" src="js/hero-keychain.js"></script>
 </body>
 </html>

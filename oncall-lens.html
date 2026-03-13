@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>OnCall Lens · Parth Pawar</title>
+  <meta name="description" content="OnCall Lens — Transforming Sentry alerts into automated PR patches via smart glasses. Built at Daytona HackSprint SF, Jan 2026 at Sentry HQ. Case study by Parth Pawar."/>
+  <meta property="og:title" content="OnCall Lens · Parth Pawar"/>
+  <meta property="og:description" content="Transforming Sentry alerts into automated PR patches via smart glasses. AI agent fixes bugs while humans approve from their wrist."/>
+  <meta property="og:image" content="assets/images/oncall-lens.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/project.css"/>
+  <style>
+    :root { --cs-dark: #0a0a0a; }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+  <div class="page-loader"></div>
+  <div class="scroll-progress"></div>
+  <div class="page-transition-overlay"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Parth Pawar</a>
+      <ul class="nav-links">
+        <li><a href="ux.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="color-chapter color-chapter--light">
+  <main class="project-main">
+
+    <!-- ══════════════════════════════════════════════
+         HEADER
+         ══════════════════════════════════════════════ -->
+    <div class="wrap project-header">
+      <div class="proj-back">
+        <a href="ux.html" class="back-link">&larr; Back</a>
+      </div>
+      <div class="proj-meta reveal">
+        <div class="proj-tags">
+          <span class="proj-tag">AI</span>
+          <span class="proj-tag">Developer Tools</span>
+          <span class="proj-tag">Hackathon</span>
+          <span class="proj-tag">Smart Glasses</span>
+        </div>
+        <h1 class="proj-title">OnCall Lens</h1>
+        <p class="proj-subtitle">Transforming Sentry alerts into automated PR patches via smart glasses &mdash; so on-call engineers can fix production bugs without opening a laptop</p>
+        <div class="proj-info-row">
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Designer + Developer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">Jan 2026</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Team</span><span class="proj-info-val">Hackathon team</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Platform</span><span class="proj-info-val">Glasses + Web</span></div>
+        </div>
+      </div>
+      <div class="proj-hero-img reveal"><img src="assets/images/oncall-lens.png" alt="OnCall Lens — Sentry alerts to automated PR patches via smart glasses"/></div>
+      <div class="proj-read-time"><span>4 min read</span></div>
+    </div>
+
+    <!-- Case Study TOC — sticky sidebar -->
+    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
+      <div class="cs-toc-inner">
+        <span class="cs-toc-label">Contents</span>
+        <a href="#cs-vision" class="cs-toc-link active">Vision &amp; Role</a>
+        <a href="#cs-context" class="cs-toc-link">Context</a>
+        <a href="#cs-bet" class="cs-toc-link">The Bet</a>
+        <a href="#cs-challenges" class="cs-toc-link">Challenges</a>
+        <a href="#cs-glasses" class="cs-toc-link">Glasses UX</a>
+        <a href="#cs-pipeline" class="cs-toc-link">Fix Pipeline</a>
+        <a href="#cs-miniapp" class="cs-toc-link">Mini-App</a>
+        <a href="#cs-impact" class="cs-toc-link">Impact</a>
+        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
+      </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════
+         OVERVIEW — THE VISION + MY ROLE
+         ══════════════════════════════════════════════ -->
+    <div class="wrap project-overview reveal" id="cs-vision">
+      <div class="proj-overview-grid">
+        <div class="proj-overview-body">
+          <h2 class="section-label">The Vision</h2>
+          <p class="proj-desc">On-call engineering is a brutal reality of modern software. An alert fires at 3am, you fumble for your laptop, spend twenty minutes finding the right repo, and another forty minutes understanding a stack trace someone else wrote. OnCall Lens eliminates that entire sequence. Sentry detects the error, your smart glasses show the alert, you tap &ldquo;Fix,&rdquo; and a Claude-powered agent spins up a Daytona workspace, writes a patch, gets it reviewed by CodeRabbit, and opens a PR &mdash; all before you finish your coffee.</p>
+        </div>
+        <div class="proj-overview-body">
+          <h2 class="section-label">My Role</h2>
+          <p class="proj-desc">As Product Designer and Developer, I designed the glasses notification UX, the incident response flow, and the Mentra mini-app interface that runs on the glasses. I also helped build the frontend that ties the smart glasses server to the backend orchestrator. In a 24-hour hackathon, the line between designer and developer does not exist &mdash; you design in code and ship in real time.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         CONTEXT — ON-CALL IS BROKEN
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-context">
+      <div class="wrap">
+        <span class="cs-section-label">Context</span>
+        <h2 class="cs-section-title">On-Call Is Broken</h2>
+        <div class="cs-body">
+          <p>Every engineer who has carried a pager knows the feeling. The alert arrives at the worst possible time. You are asleep, at dinner, on a train. You open your laptop, SSH into a production box or pull up a dashboard, and begin the slow process of reconstructing what happened. Context switching from life to incident response takes minutes. Understanding the error takes longer. Writing a fix &mdash; if you even have the right codebase cloned &mdash; takes longer still.</p>
+          <p>The tools have improved. Sentry surfaces rich stack traces, PagerDuty routes alerts intelligently, Slack threads keep context. But the fundamental loop has not changed: a human gets woken up, opens a computer, reads a wall of text, and manually writes a patch. The human is the bottleneck at every step.</p>
+        </div>
+
+        <div class="cs-callout">
+          <p>&ldquo;The best incident response is the one where the engineer never has to open a laptop. The second best is the one where the laptop is already open and the fix is already written.&rdquo;</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         THE BET — AI FIRST RESPONDER
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" id="cs-bet" style="--cs-dark:#111111">
+      <div class="wrap">
+        <span class="cs-section-label">The Bet</span>
+        <h2 class="cs-section-title">What If the First Responder Was an AI Agent?</h2>
+        <div class="cs-body">
+          <p>The thesis behind OnCall Lens is a simple inversion: instead of paging a human to debug and fix, page an AI agent to debug and fix &mdash; and page the human only to approve. The engineer becomes the decision-maker, not the debugger. They glance at their glasses, see a one-line summary of the error and the proposed fix, and tap &ldquo;Approve&rdquo; or &ldquo;Reject.&rdquo; That is the entire interaction.</p>
+          <p>This is not about replacing engineers. It is about respecting their time and sleep. The AI agent does the mechanical work &mdash; reading stack traces, finding the relevant code, writing a patch, running tests. The human does what humans are best at: deciding whether this fix is correct and whether it should ship.</p>
+          <p>Smart glasses are the perfect interface for this. You do not need a laptop to approve a PR. You need three seconds of attention and a single tap.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         DESIGN CHALLENGES — FOUR CARDS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-challenges">
+      <div class="wrap">
+        <span class="cs-section-label">Design Challenges</span>
+        <h2 class="cs-section-title">Four Constraints, Twenty-Four Hours</h2>
+        <div class="cs-body">
+          <p>Building OnCall Lens at a hackathon meant every design decision had to be made fast and right. There was no time for user research, no room for iteration cycles, and no luxury of polishing what did not work. These were the four constraints that shaped every choice.</p>
+        </div>
+
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">3-Second Notification</div>
+            <div class="cs-feature-card-desc">A Sentry alert on glasses needs to be understood in three seconds or less. No scrolling, no detail views, no multi-step flows. I had to compress a stack trace, an error severity, and a service name into a single glanceable card that an engineer could triage without removing their glasses or reaching for a phone.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Human-in-the-Loop Trust</div>
+            <div class="cs-feature-card-desc">An AI agent writing code and opening PRs on production repos is a trust problem. Engineers will not approve a fix they do not understand. The challenge was designing a review surface on a glasses display that conveys enough information to make an informed decision without overwhelming a 3am brain.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Transparent AI Debugging</div>
+            <div class="cs-feature-card-desc">When Claude analyzes a stack trace and proposes a fix, the reasoning needs to be visible. Black-box AI fixes are a non-starter for production code. I designed a step-by-step progress view that shows the agent&rsquo;s reasoning chain &mdash; what it found, what it changed, and why &mdash; in a format that works on both glasses and the web dashboard.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">24-Hour Time Pressure</div>
+            <div class="cs-feature-card-desc">A hackathon demands ruthless prioritization. Every design asset, every interaction, every screen had to be scoped to what could be built and demoed in a single day. I designed the entire UX in Figma in the first three hours and then switched to code for the remaining twenty-one. No handoff. No spec documents. Just build.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         GLASSES NOTIFICATION UX
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--gray reveal" id="cs-glasses">
+      <div class="wrap">
+        <span class="cs-section-label">Glasses UX</span>
+        <h2 class="cs-section-title">Alert, Glance, Tap, Fixed</h2>
+        <div class="cs-body">
+          <p>The glasses notification flow is the heart of OnCall Lens. It is the interface between a production incident and a human decision. Every detail was designed to minimize cognitive load at the moment when cognitive load is highest &mdash; 3am, half asleep, adrenaline spiking from a page.</p>
+        </div>
+
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Sentry Alert</div>
+            <div class="cs-step-desc">Sentry detects a new error or a spike in an existing one. The webhook fires to the OnCall Lens backend, which parses severity, service name, and a one-line error summary.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Glasses Card</div>
+            <div class="cs-step-desc">A notification card appears on the on-call engineer&rsquo;s smart glasses: service name, error type, severity badge, and a single action button. Red for critical, amber for warning. The card auto-dismisses in ten seconds if not engaged.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">Tap to Fix</div>
+            <div class="cs-step-desc">The engineer taps the &ldquo;Fix&rdquo; button on the glasses frame. This triggers the backend orchestrator to spin up a Daytona workspace, clone the repo, and dispatch the Claude agent to analyze the error and write a patch.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">4</div>
+            <div class="cs-step-title">PR Ready</div>
+            <div class="cs-step-desc">Minutes later, a second card appears on the glasses: &ldquo;Fix ready for review.&rdquo; The engineer taps to see a diff summary, the CodeRabbit review score, and two buttons &mdash; Approve or Reject. One tap to merge. Done.</div>
+          </div>
+        </div>
+
+        <div class="cs-body" style="margin-top:2rem;">
+          <p>The entire flow &mdash; from Sentry alert to merged PR &mdash; can complete without the engineer ever leaving bed. The glasses handle triage and approval. The AI handles everything else.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         FIX PIPELINE
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-pipeline">
+      <div class="wrap">
+        <span class="cs-section-label">Fix Pipeline</span>
+        <h2 class="cs-section-title">From Stack Trace to Pull Request</h2>
+        <div class="cs-body">
+          <p>Behind the simple tap on the glasses is a multi-stage pipeline that orchestrates AI analysis, code generation, and automated review. Each stage is designed to be observable &mdash; the engineer can check progress on the glasses mini-app or the web dashboard at any time.</p>
+        </div>
+
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">1</div>
+            <div class="cs-step-title">Daytona Workspace</div>
+            <div class="cs-step-desc">A fresh Daytona workspace spins up in seconds with the correct repo, branch, and environment. No local setup, no stale dependencies. The workspace is ephemeral &mdash; it exists only for this fix and is destroyed after the PR is opened.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">2</div>
+            <div class="cs-step-title">Claude Analysis</div>
+            <div class="cs-step-desc">Claude (Anthropic) with tool use reads the Sentry error payload, navigates the codebase, identifies the root cause, and writes a patch. The agent uses structured tool calls to read files, search code, and run tests &mdash; not a single monolithic prompt.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">3</div>
+            <div class="cs-step-title">CodeRabbit Review</div>
+            <div class="cs-step-desc">The proposed patch is automatically submitted for CodeRabbit review. The review checks for correctness, style conformance, and potential regressions. If issues are found, Claude refines the patch &mdash; a human-in-the-loop cycle between two AI systems, with the human as the final approver.</div>
+          </div>
+          <div class="cs-step">
+            <div class="cs-step-num">4</div>
+            <div class="cs-step-title">PR Opened</div>
+            <div class="cs-step-desc">Once the patch passes review, a pull request is opened on GitHub with a clear description: what broke, why it broke, what the fix does, and the CodeRabbit review summary. The on-call engineer gets the final notification on their glasses to approve or reject.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         MINI-APP INTERFACE
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" id="cs-miniapp" style="--cs-dark:#0d0d0d">
+      <div class="wrap">
+        <span class="cs-section-label">Mini-App</span>
+        <h2 class="cs-section-title">The Mentra Mini-App for Incident Response</h2>
+        <div class="cs-body">
+          <p>OnCall Lens runs as a Mentra mini-app on the smart glasses &mdash; a lightweight interface built specifically for the glasses display. The mini-app has three views, each designed around the principle that on-call engineers should never need to read more than two lines of text at a glance.</p>
+          <p>The <strong>Incident Feed</strong> shows active Sentry alerts ranked by severity, with color-coded badges and one-tap actions. The <strong>Fix Status</strong> view displays the current pipeline stage &mdash; workspace spinning up, agent analyzing, review in progress, PR ready &mdash; as a simple progress bar with a one-line status label. The <strong>Approval View</strong> shows the diff summary, review score, and two large tap targets: green for approve, red for reject.</p>
+          <p>Building this as a Mentra mini-app meant leveraging the MentraOS design system &mdash; the same notification patterns, typography scale, and interaction primitives I designed at Mentra. The OnCall Lens mini-app feels native to the glasses because it is native to the OS.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         IMPACT
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" id="cs-impact" style="--cs-dark:#1a1a2e">
+      <div class="wrap">
+        <span class="cs-section-label">Impact</span>
+        <h2 class="cs-section-title">Built in 24 Hours at Sentry HQ</h2>
+        <div class="cs-body" style="margin-bottom:2rem;">
+          <p>OnCall Lens was built from scratch at the Daytona HackSprint #4 in San Francisco, January 24, 2026, hosted at Sentry&rsquo;s headquarters. In twenty-four hours, we went from a whiteboard sketch to a working end-to-end demo: a real Sentry alert triggering a real Claude agent in a real Daytona workspace, producing a real PR reviewed by CodeRabbit, all controlled from smart glasses.</p>
+        </div>
+
+        <div class="cs-info-grid">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Build Time</span>
+            <span class="cs-info-value">24 hours</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Event</span>
+            <span class="cs-info-value">Daytona HackSprint #4</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Location</span>
+            <span class="cs-info-value">Sentry HQ, SF</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Backend</span>
+            <span class="cs-info-value">Bun + Fastify</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">AI Agent</span>
+            <span class="cs-info-value">Claude (Anthropic)</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Demo</span>
+            <span class="cs-info-value">End-to-end working</span>
+          </div>
+        </div>
+
+        <div class="cs-body" style="margin-top:2.5rem;">
+          <p>The tech stack &mdash; Bun, TypeScript, Fastify, MongoDB, Claude with tool use, Daytona workspaces, CodeRabbit, and GitHub &mdash; was chosen for speed and reliability. Every component had to work on the first try. In a hackathon, you do not get a second deploy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         REFLECTIONS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-reflections">
+      <div class="wrap">
+        <span class="cs-section-label">Reflections</span>
+        <h2 class="cs-section-title">What Designing for Urgency Taught Me</h2>
+
+        <div class="cs-num-list">
+          <li><strong>Urgency compresses design to its essentials.</strong> When the user is an engineer woken up at 3am, every extra word, every unnecessary screen, every ambiguous icon is a failure. Designing for on-call stripped my work down to the absolute minimum viable information: what broke, how bad, what do you want to do about it. That discipline carries into everything I design now.</li>
+          <li><strong>Hackathons reward conviction over consensus.</strong> In twenty-four hours, there is no time for design reviews, stakeholder alignment, or A/B tests. You make a decision, commit to it, and build. The OnCall Lens UX was designed in three hours and coded in twenty-one. Some of the best design work happens when you remove the option to second-guess.</li>
+          <li><strong>AI agents need transparent reasoning, not just correct outputs.</strong> Engineers will not trust a black-box fix on a production system. The step-by-step pipeline view &mdash; showing what Claude found, what it changed, and why &mdash; was not a nice-to-have. It was the feature that made the entire product usable. Trust is built through visibility.</li>
+          <li><strong>Smart glasses are the right interface for interrupt-driven work.</strong> On-call is inherently an interrupt. You are doing something else, and then you are not. A laptop requires context-switching to an entirely different device and mental mode. Glasses let you stay in your current context and handle the interrupt with a glance and a tap. The form factor matches the task.</li>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         CREDITS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+      <div class="wrap">
+        <span class="cs-section-label">Credits</span>
+        <h2 class="cs-section-title">Team</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Product Designer + Developer</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Event</span>
+            <span class="cs-credit-name">Daytona HackSprint #4, SF</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Stack</span>
+            <span class="cs-credit-name">Bun, TypeScript, Fastify, MongoDB, Claude, Daytona, CodeRabbit</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Platform</span>
+            <span class="cs-credit-name">Mentra Smart Glasses, Web</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         THANKS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#0a0a0a">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thanks for Reading</h2>
+      </div>
+    </section>
+
+  </main>
+  </div>
+
+  <a class="next-project" href="mentra.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">Mentra</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/mentra.png" alt="Mentra" loading="lazy"/>
+      </div>
+    </div>
+  </a>
+
+  <footer class="footer">
+    <div class="footer-marquee">
+      <div class="footer-marquee-inner">
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's talk!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's have a Coffee!</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+        <span class="footer-marquee-item">Let's build something great</span>
+        <span class="footer-marquee-item hi">&middot;</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="wrap footer-inner">
+        <div>
+          <div class="footer-logo">Parth Pawar</div>
+          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
+        </ul>
+        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
+    <img src="" alt=""/>
+    <div class="lightbox-counter"></div>
+  </div>
+
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

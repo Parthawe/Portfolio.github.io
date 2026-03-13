@@ -21,7 +21,7 @@
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--ink, #1a1a1a);
+  color: var(--ink, #f0ece6);
   text-decoration: none;
   opacity: 0.5;
   transition: opacity 0.2s, color 0.2s, transform 0.2s;
@@ -31,7 +31,7 @@
 }
 .back-link:hover {
   opacity: 1;
-  color: var(--accent, #e84393);
+  color: var(--accent, #ffe430);
   transform: translateX(-4px);
 }
 
@@ -55,26 +55,27 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 0.35rem 0.85rem;
-  border: 1px solid var(--ink-30, rgba(26,26,26,0.3));
+  border: 1px solid var(--ink-30, rgba(240,236,230,0.25));
   border-radius: 100px;
-  color: var(--ink, #1a1a1a);
+  color: var(--ink, #f0ece6);
   transition: all 0.25s cubic-bezier(0,0,.3,1);
   background: transparent;
 }
 .proj-tag:hover {
-  background: var(--ink, #1a1a1a);
-  color: var(--bg, #fafaf8);
+  background: var(--ink, #f0ece6);
+  color: var(--bg, #111111);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .proj-title {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--ink);
   margin: 0 0 1rem;
+  font-style: italic;
 }
 
 .proj-subtitle {
@@ -118,13 +119,13 @@
   border-radius: var(--radius-md, 16px);
   overflow: hidden;
   margin-bottom: 3rem;
-  background: #e8e8e4;
-  border: 1px solid rgba(26,26,26,0.06);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  background: #1e1e1e;
+  border: 1px solid rgba(240,236,230,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   transition: box-shadow 0.4s;
 }
 .proj-hero-img:hover {
-  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
 }
 
 .proj-hero-img img {
@@ -138,7 +139,7 @@
 /* ── Overview section ── */
 .project-overview {
   padding: 4rem 0;
-  border-top: 1px solid rgba(14,14,14,0.1);
+  border-top: 1px solid rgba(240,236,230,0.08);
 }
 
 .proj-overview-grid {
@@ -182,17 +183,17 @@
 }
 
 .gallery-item {
-  background: #e8e8e4;
+  background: #1e1e1e;
   border-radius: var(--radius-sm, 12px);
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  border: 1px solid rgba(26,26,26,0.06);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  border: 1px solid rgba(240,236,230,0.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   transition: box-shadow 0.4s, transform 0.4s cubic-bezier(0,0,.3,1);
 }
 .gallery-item:hover {
-  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
   transform: translateY(-3px);
 }
 
@@ -322,10 +323,10 @@
   border-top: 1px solid var(--ink-10, rgba(26,26,26,0.08));
   padding: clamp(3rem,5vw,5rem) 0;
   transition: background 0.3s, padding 0.3s;
-  background: var(--bg, #fafaf8);
+  background: var(--bg, #111111);
 }
 .next-project:hover {
-  background: rgba(232,67,147,0.03);
+  background: rgba(255,228,48,0.03);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -344,7 +345,7 @@
   margin-bottom: 0.5rem;
 }
 .next-project-title {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
   font-size: clamp(1.8rem, 4vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -392,7 +393,7 @@
 /* ── Generic content section ── */
 .cs-section {
   padding: clamp(3rem,5vw,5rem) 0;
-  border-top: 1px solid rgba(14,14,14,0.08);
+  border-top: 1px solid rgba(240,236,230,0.08);
 }
 
 .cs-section .wrap {
@@ -409,7 +410,7 @@
 }
 
 .cs-section-title {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
   font-size: clamp(1.8rem,4vw,2.8rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -418,7 +419,7 @@
 }
 
 .cs-section-subtitle {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
   font-size: clamp(1.2rem,2.5vw,1.6rem);
   line-height: 1.3;
   color: var(--ink);
@@ -464,7 +465,7 @@
   border-radius: var(--radius-sm, 10px);
   overflow: hidden;
   margin: 2rem 0;
-  background: #e8e8e6;
+  background: #1e1e1e;
 }
 .cs-img-full img {
   width: 100%;
@@ -476,7 +477,7 @@
 .cs-img {
   border-radius: var(--radius-sm, 10px);
   overflow: hidden;
-  background: #e8e8e6;
+  background: #1e1e1e;
 }
 .cs-img img {
   width: 100%;
@@ -598,12 +599,12 @@
 
 /* ── Highlight/callout box ── */
 .cs-callout {
-  background: rgba(232,67,147,0.04);
-  border-left: 3px solid var(--accent, #e84393);
+  background: rgba(255,228,48,0.04);
+  border-left: 3px solid var(--accent, #ffe430);
   padding: 1.5rem 2rem;
   border-radius: 0 12px 12px 0;
   margin: 2rem 0;
-  box-shadow: 0 2px 12px rgba(232,67,147,0.06);
+  box-shadow: 0 2px 12px rgba(255,228,48,0.04);
 }
 .cs-callout p {
   font-family: var(--sans);
@@ -773,8 +774,8 @@
 
 /* ── Gray section ── */
 .cs-section--gray {
-  background: #e8e8e6;
-  border-top-color: rgba(14,14,14,0.06);
+  background: #161616;
+  border-top-color: rgba(240,236,230,0.06);
 }
 
 /* ── Full-bleed slide image (no border-radius, edge-to-edge) ── */
@@ -807,7 +808,7 @@
 
 /* ── Large display heading (matching presentation slides) ── */
 .cs-display {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
   font-size: clamp(2.5rem, 6vw, 5rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -826,7 +827,7 @@
 }
 .cs-label-row:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
 .cs-label-row-key {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
   font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 600;
   opacity: 0.8;
@@ -914,7 +915,7 @@
 }
 .cs-section--dark .cs-step-num {
   background: var(--accent);
-  color: #fff;
+  color: #111;
 }
 .cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-step-num {
   background: var(--ink);
@@ -948,11 +949,11 @@
   padding: 1.5rem;
 }
 .cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-feature-card {
-  background: rgba(14,14,14,0.03);
+  background: rgba(255,255,255,0.04);
   border: 1px solid var(--ink-10);
 }
 .cs-feature-card-title {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -984,14 +985,14 @@
   font-weight: 500;
   padding: 0.6rem 1.4rem;
   border-radius: 999px;
-  background: var(--accent, #e84393);
+  background: var(--accent, #ffe430);
   color: #fff;
   white-space: nowrap;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .cs-process-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(232,67,147,0.3);
+  box-shadow: 0 4px 12px rgba(255,228,48,0.2);
 }
 .cs-section--blue .cs-process-pill {
   background: rgba(255,255,255,0.15);
@@ -1041,7 +1042,7 @@
   padding: clamp(4rem, 8vw, 8rem) 0;
 }
 .cs-thanks-title {
-  font-family: var(--display, 'Manrope', system-ui, sans-serif);
+  font-family: var(--display, 'Playfair Display', Georgia, serif);
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 400;
   letter-spacing: -0.03em;
@@ -1087,11 +1088,11 @@
 }
 .cs-feature-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
 }
 .cs-section:not(.cs-section--blue):not(.cs-section--dark) .cs-feature-card:hover {
-  background: rgba(232,67,147,0.04);
-  border-color: rgba(232,67,147,0.15);
+  background: rgba(255,228,48,0.04);
+  border-color: rgba(255,228,48,0.15);
 }
 
 /* ── Callout pulse on hover ── */
@@ -1100,16 +1101,16 @@
 }
 .cs-callout:hover {
   transform: translateX(4px);
-  box-shadow: 0 4px 20px rgba(232,67,147,0.1);
+  box-shadow: 0 4px 20px rgba(255,228,48,0.06);
 }
 
 /* ── Image full — subtle hover shadow ── */
 .cs-img-full {
   transition: box-shadow 0.4s, transform 0.4s cubic-bezier(0,0,.3,1);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 .cs-img-full:hover {
-  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
   transform: translateY(-2px);
 }
 
@@ -1119,7 +1120,7 @@
 }
 .cs-step-num:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(232,67,147,0.2);
+  box-shadow: 0 4px 16px rgba(255,228,48,0.15);
 }
 
 /* ── Quote card hover ── */
@@ -1133,9 +1134,9 @@
 
 /* ── Project tag — pink hover variant ── */
 .proj-tag:hover {
-  background: var(--accent, #e84393);
+  background: var(--accent, #ffe430);
   color: #fff;
-  border-color: var(--accent, #e84393);
+  border-color: var(--accent, #ffe430);
 }
 
 /* ── Section label — slide in decoration ── */
@@ -1152,7 +1153,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent, #e84393);
+  background: var(--accent, #ffe430);
 }
 .cs-section--blue .cs-section-label::before,
 .cs-section--dark .cs-section-label::before {

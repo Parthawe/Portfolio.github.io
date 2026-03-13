@@ -30,9 +30,8 @@
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
         <li><a href="ux.html">Work</a></li>
-        <li><a href="proof.html">Proof</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact me</a></li>
+        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -41,11 +40,9 @@
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
       <li><a href="ux.html">Work</a></li>
-      <li><a href="proof.html">Proof</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
     </ul>
-    <div class="mobile-contact">parthpawar@nyu.edu</div>
   </div>
 
   <div class="color-chapter color-chapter--light">
@@ -77,6 +74,20 @@
       </div>
       <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/AI VOICE/AI.jpg" alt="AI Voice Selection — hero" loading="lazy"/></div>
     </div>
+
+    <!-- Case Study TOC — sticky sidebar -->
+    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
+      <div class="cs-toc-inner">
+        <span class="cs-toc-label">Contents</span>
+        <a href="#cs-research" class="cs-toc-link">Research</a>
+        <a href="#cs-define" class="cs-toc-link">Define</a>
+        <a href="#cs-concept-a" class="cs-toc-link">Concept A</a>
+        <a href="#cs-concept-b" class="cs-toc-link">Concept B</a>
+        <a href="#cs-voice-dna" class="cs-toc-link">Voice DNA</a>
+        <a href="#cs-mood" class="cs-toc-link">Mood Matching</a>
+        <a href="#cs-validate" class="cs-toc-link">Validate</a>
+      </div>
+    </nav>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 1 cont. — OVERVIEW + CHALLENGES + ROLE (dark bg)
@@ -123,7 +134,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 2 — COMPARATIVE UX + RESEARCH
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111118">
+    <section class="cs-section cs-section--dark reveal" id="cs-research" style="--cs-dark:#111118">
       <div class="wrap">
         <span class="cs-section-label">Research</span>
         <h2 class="cs-display">The voices are world-class. The discovery experience isn't.</h2>
@@ -153,7 +164,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 3 — DEFINE: PROBLEM + JOURNEY MAP
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a12">
+    <section class="cs-section cs-section--dark reveal" id="cs-define" style="--cs-dark:#0a0a12">
       <div class="wrap">
         <span class="cs-section-label">Define</span>
         <h2 class="cs-display" style="max-width:28ch;">How might we help Enterprise Teams select an expressive AI voice that aligns with brand tone?</h2>
@@ -223,7 +234,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 4 — IDEATE: VOICE DNA BUILDER CONCEPT
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111118">
+    <section class="cs-section cs-section--dark reveal" id="cs-concept-a" style="--cs-dark:#111118">
       <div class="wrap">
         <span class="cs-section-label">Ideate &mdash; Concept A</span>
         <h2 class="cs-display">Voice DNA Builder</h2>
@@ -260,7 +271,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 5 — IDEATE: MOOD-BASED VOICE MATCHING CONCEPT
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a12">
+    <section class="cs-section cs-section--dark reveal" id="cs-concept-b" style="--cs-dark:#0a0a12">
       <div class="wrap">
         <span class="cs-section-label">Ideate &mdash; Concept B</span>
         <h2 class="cs-display">Mood-Based Voice Matching</h2>
@@ -296,7 +307,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 6 — VOICE DNA BUILDER DETAILS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111118">
+    <section class="cs-section cs-section--dark reveal" id="cs-voice-dna" style="--cs-dark:#111118">
       <div class="wrap">
         <span class="cs-section-label">Deep Dive &mdash; Voice DNA Builder</span>
         <h2 class="cs-display">Build a voice, don't just pick one.</h2>
@@ -376,7 +387,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 8 — MOOD-BASED VOICE MATCHING DETAILS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111118">
+    <section class="cs-section cs-section--dark reveal" id="cs-mood" style="--cs-dark:#111118">
       <div class="wrap">
         <span class="cs-section-label">Deep Dive &mdash; Mood-Based Voice Matching</span>
         <h2 class="cs-display">The system adapts to you.</h2>
@@ -446,7 +457,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 10 — A/B TESTING + REFLECTIONS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111118">
+    <section class="cs-section cs-section--dark reveal" id="cs-validate" style="--cs-dark:#111118">
       <div class="wrap">
         <span class="cs-section-label">Validate</span>
         <h2 class="cs-display">A/B Testing: DNA Builder vs. Mood Matching</h2>
@@ -564,7 +575,7 @@
           <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
         </ul>
-        <div class="footer-colophon">Set in Inter &amp; Manrope &middot; Built with intention</div>
+        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
       </div>
     </div>
   </footer>
