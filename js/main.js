@@ -53,7 +53,7 @@
   if (hoverImg && hoverImgEl && isFinePointer && !prefersReducedMotion) {
     let imgX = 0, imgY = 0, imgTX = 0, imgTY = 0;
 
-    document.querySelectorAll('.wk[data-img]').forEach(item => {
+    document.querySelectorAll('.wk[data-img], .work-list-row[data-img]').forEach(item => {
       item.addEventListener('mouseenter', () => {
         hoverImgEl.src = item.dataset.img;
         hoverImg.classList.add('active');

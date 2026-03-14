@@ -4,10 +4,10 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Work · Parth Pawar</title>
-  <meta name="description" content="Selected work by Parth Pawar — product design, AI wearables, fintech, creative technology, installations."/>
+  <meta name="description" content="Selected work by Parth Pawar — product design, AI wearables, fintech, creative technology."/>
   <meta property="og:title" content="Work · Parth Pawar"/>
   <meta property="og:description" content="Selected work — product design, AI, fintech, creative technology."/>
-  <meta property="og:image" content="assets/images/mentra.png"/>
+  <meta property="og:image" content="assets/images/zentipay.png"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
@@ -19,6 +19,7 @@
   <div class="cursor-dot"></div>
   <div class="page-loader"></div>
   <div class="scroll-progress"></div>
+  <div class="wk-hover-img" id="wk-hover-img"><img src="" alt=""/></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -45,149 +46,163 @@
 
       <header class="work-page-header">
         <h1 class="work-page-title">Work</h1>
-        <p class="work-page-sub">Product design, AI wearables, fintech, and creative technology</p>
+        <p class="work-page-sub">20+ projects across product design, AI wearables, fintech, and creative technology &mdash; from research through shipped products.</p>
       </header>
 
-      <!-- FEATURED — Mentra hero card -->
-      <a class="pcard pcard--hero reveal" href="mentra.html">
-        <div class="pcard-img"><img src="assets/images/mentra.png" alt="Mentra — AI smart glasses" loading="eager"/></div>
-        <div class="pcard-body">
-          <div class="pcard-top">
-            <h2 class="pcard-name">Mentra</h2>
-            <span class="pcard-badge">Current</span>
-          </div>
-          <p class="pcard-result">AI smart glasses with the world&rsquo;s first wearable app store</p>
-          <span class="pcard-role">Head of UI/UX &middot; 2025</span>
+      <!-- CURRENT ROLES — text-forward cards for projects without images -->
+      <section class="work-current">
+        <span class="work-section-label">Current</span>
+        <div class="pcard-text-row">
+          <a class="pcard-text reveal" href="mentra.html" style="--grad-from: #1a2744; --grad-to: #0d1520;">
+            <span class="pcard-text-badge">Head of UI/UX</span>
+            <h2 class="pcard-text-name">Mentra</h2>
+            <p class="pcard-text-desc">AI-powered smart glasses with an open-source OS and the world&rsquo;s first wearable miniapp store</p>
+            <span class="pcard-text-year">2025 &middot; AI Wearables</span>
+          </a>
+          <a class="pcard-text reveal" href="clawed-chat.html" style="--grad-from: #2a1f0a; --grad-to: #1a1408;">
+            <span class="pcard-text-badge">Product Designer</span>
+            <h2 class="pcard-text-name">Clawed</h2>
+            <p class="pcard-text-desc">Safety-first AI assistant for smart glasses and web &mdash; conversational UI with guardrails</p>
+            <span class="pcard-text-year">2026 &middot; AI</span>
+          </a>
+          <a class="pcard-text reveal" href="executivelens.html" style="--grad-from: #0a2a1f; --grad-to: #081a14;">
+            <span class="pcard-text-badge">Product Designer</span>
+            <h2 class="pcard-text-name">ExecutiveLens</h2>
+            <p class="pcard-text-desc">AI-powered business intelligence for executives &mdash; real-time insights on smart glasses</p>
+            <span class="pcard-text-year">2025&ndash;26 &middot; AI &middot; B2B</span>
+          </a>
         </div>
-      </a>
+      </section>
 
-      <!-- ROW: Clawed + ExecutiveLens -->
-      <div class="pcard-row">
-        <a class="pcard reveal" href="clawed-chat.html">
-          <div class="pcard-img"><img src="assets/images/clawed.png" alt="Clawed" loading="eager"/></div>
-          <div class="pcard-body">
-            <div class="pcard-top">
-              <h2 class="pcard-name">Clawed</h2>
-              <span class="pcard-badge">New</span>
-            </div>
-            <p class="pcard-result">Safety-first AI assistant for glasses and web</p>
-            <span class="pcard-role">Product Designer &middot; 2026</span>
-          </div>
-        </a>
-        <a class="pcard reveal" href="executivelens.html">
-          <div class="pcard-img"><img src="assets/images/executivelens.png" alt="ExecutiveLens" loading="eager"/></div>
-          <div class="pcard-body">
-            <h2 class="pcard-name">ExecutiveLens</h2>
-            <p class="pcard-result">AI-powered business intelligence for executives</p>
-            <span class="pcard-role">Product Designer &middot; 2025&ndash;26</span>
-          </div>
-        </a>
-      </div>
+      <!-- SHIPPED — image cards for projects with thumbnails -->
+      <section class="work-shipped">
+        <span class="work-section-label">Shipped</span>
 
-      <!-- ROW: ZentiPay + TransFi -->
-      <div class="pcard-row">
-        <a class="pcard reveal" href="zentipay.html">
+        <!-- Hero card: ZentiPay -->
+        <a class="pcard pcard--hero reveal" href="zentipay.html">
           <div class="pcard-img"><img src="assets/images/zentipay.png" alt="ZentiPay" loading="eager"/></div>
           <div class="pcard-body">
-            <h2 class="pcard-name">ZentiPay</h2>
-            <p class="pcard-result">Fintech super app &mdash; 30% higher transaction success</p>
+            <div class="pcard-top">
+              <h2 class="pcard-name">ZentiPay</h2>
+              <span class="pcard-badge">0 &rarr; 1</span>
+            </div>
+            <p class="pcard-result">Founding designer of a fintech super app &mdash; increased transaction success by 30% across payments, remittances, and crypto</p>
             <span class="pcard-role">Founding Designer &middot; 2025</span>
           </div>
         </a>
-        <a class="pcard reveal" href="transfi-project.html">
-          <div class="pcard-img"><img src="assets/images/transfi.png" alt="TransFi" loading="lazy"/></div>
-          <div class="pcard-body">
-            <h2 class="pcard-name">TransFi</h2>
-            <p class="pcard-result">Crypto payments &mdash; $50M+ monthly volume</p>
-            <span class="pcard-role">Lead Designer &middot; 2022&ndash;23</span>
-          </div>
-        </a>
-      </div>
 
-      <!-- ROW: OnCall Lens + Raahi -->
-      <div class="pcard-row">
-        <a class="pcard reveal" href="oncall-lens.html">
-          <div class="pcard-img"><img src="assets/images/oncall-lens.png" alt="OnCall Lens" loading="lazy"/></div>
-          <div class="pcard-body">
-            <h2 class="pcard-name">OnCall Lens</h2>
-            <p class="pcard-result">Sentry alerts to automated PR fixes via smart glasses</p>
-            <span class="pcard-role">Designer + Developer &middot; 2026</span>
-          </div>
-        </a>
-        <a class="pcard reveal" href="raahi-project.html">
-          <div class="pcard-img"><img src="assets/images/raahi.png" alt="Raahi" loading="lazy"/></div>
-          <div class="pcard-body">
-            <h2 class="pcard-name">Raahi</h2>
-            <p class="pcard-result">Transit accessibility for underserved commuters</p>
-            <span class="pcard-role">Designer &middot; 2023</span>
-          </div>
-        </a>
-      </div>
+        <div class="pcard-row">
+          <a class="pcard reveal" href="transfi-project.html">
+            <div class="pcard-img"><img src="assets/images/transfi.png" alt="TransFi" loading="eager"/></div>
+            <div class="pcard-body">
+              <h2 class="pcard-name">TransFi</h2>
+              <p class="pcard-result">Led product design for Asia&rsquo;s leading crypto payments platform &mdash; $50M+ monthly volume</p>
+              <span class="pcard-role">Lead Designer &middot; 2022&ndash;23</span>
+            </div>
+          </a>
+          <a class="pcard reveal" href="raahi-project.html">
+            <div class="pcard-img"><img src="assets/images/raahi.png" alt="Raahi" loading="eager"/></div>
+            <div class="pcard-body">
+              <h2 class="pcard-name">Raahi</h2>
+              <p class="pcard-result">Transit accessibility research &mdash; mobile app design for underserved commuters in NYC</p>
+              <span class="pcard-role">Designer &middot; 2023</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="pcard-row">
+          <a class="pcard reveal" href="the-point-cdc.html">
+            <div class="pcard-img"><img src="assets/images/the-point-cdc.png" alt="The Point CDC" loading="lazy"/></div>
+            <div class="pcard-body">
+              <h2 class="pcard-name">The Point CDC</h2>
+              <p class="pcard-result">Community-centered UX research and design for the South Bronx&rsquo;s cultural development hub</p>
+              <span class="pcard-role">Designer &middot; 2024</span>
+            </div>
+          </a>
+          <a class="pcard reveal" href="office-of-diversity.html">
+            <div class="pcard-img"><img src="assets/images/office-of-diversity.png" alt="Office of Diversity" loading="lazy"/></div>
+            <div class="pcard-body">
+              <h2 class="pcard-name">Office of Diversity</h2>
+              <p class="pcard-result">Web presence and design system for NYU Tisch School of the Arts diversity initiatives</p>
+              <span class="pcard-role">Designer &middot; 2023&ndash;24</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="pcard-row">
+          <a class="pcard reveal" href="ai-voice.html">
+            <div class="pcard-img"><img src="assets/images/ai-voice.png" alt="AI Voice Interface" loading="lazy"/></div>
+            <div class="pcard-body">
+              <h2 class="pcard-name">AI Voice Interface</h2>
+              <p class="pcard-result">Conversational AI interface design &mdash; voice-driven interactions for accessible computing</p>
+              <span class="pcard-role">Designer &middot; 2024</span>
+            </div>
+          </a>
+          <a class="pcard reveal" href="keyboard-project.html">
+            <div class="pcard-img"><img src="assets/images/keyboard.png" alt="BreakGen" loading="lazy"/></div>
+            <div class="pcard-body">
+              <h2 class="pcard-name">BreakGen</h2>
+              <p class="pcard-result">Modular keyboard platform with embedded ML &mdash; ITP thesis exploring generative tactile design</p>
+              <span class="pcard-role">ITP Thesis &middot; 2024</span>
+            </div>
+          </a>
+        </div>
+      </section>
 
       <!-- DIVIDER -->
       <hr class="work-divider"/>
 
-      <!-- ARCHIVE — compact list for remaining projects -->
+      <!-- ARCHIVE — compact list -->
       <section class="work-archive">
-        <span class="work-archive-label">More projects</span>
+        <span class="work-section-label">Archive</span>
 
-        <div class="work-list">
-          <a class="work-list-row reveal" href="the-point-cdc.html">
-            <span class="work-list-name">The Point CDC</span>
-            <span class="work-list-desc">Community development platform for the Bronx</span>
-            <span class="work-list-year">2024</span>
+        <div class="work-list" id="work-list">
+          <a class="work-list-row reveal" href="oncall-lens.html">
+            <span class="work-list-name">OnCall Lens</span>
+            <span class="work-list-desc">Sentry alerts to automated PR fixes via smart glasses</span>
+            <span class="work-list-year">2026</span>
           </a>
-          <a class="work-list-row reveal" href="office-of-diversity.html">
-            <span class="work-list-name">Office of Diversity</span>
-            <span class="work-list-desc">Web presence for NYU Tisch</span>
-            <span class="work-list-year">2023&ndash;24</span>
-          </a>
-          <a class="work-list-row reveal" href="ai-voice.html">
-            <span class="work-list-name">AI Voice Interface</span>
-            <span class="work-list-desc">Conversational AI and voice-driven interaction</span>
-            <span class="work-list-year">2024</span>
-          </a>
-          <a class="work-list-row reveal" href="keyboard-project.html">
-            <span class="work-list-name">BreakGen</span>
-            <span class="work-list-desc">Modular keyboard with generative design</span>
-            <span class="work-list-year">2024</span>
-          </a>
-          <a class="work-list-row reveal" href="jugalbandi.html">
+          <a class="work-list-row reveal" href="jugalbandi.html" data-img="assets/images/jugalbandi.png">
             <span class="work-list-name">Jugalbandi</span>
             <span class="work-list-desc">ML-driven musical instrument and installation</span>
             <span class="work-list-year">2024</span>
           </a>
-          <a class="work-list-row reveal" href="vj-software.html">
+          <a class="work-list-row reveal" href="vj-software.html" data-img="assets/images/vj.png">
             <span class="work-list-name">VJ Software</span>
             <span class="work-list-desc">Real-time visual performance tool</span>
             <span class="work-list-year">2024</span>
           </a>
-          <a class="work-list-row reveal" href="uv-light.html">
+          <a class="work-list-row reveal" href="uv-light.html" data-img="assets/images/uv-light.png">
             <span class="work-list-name">UV Light</span>
             <span class="work-list-desc">Interactive light installation</span>
             <span class="work-list-year">2024</span>
           </a>
-          <a class="work-list-row reveal" href="revolving-stage.html">
+          <a class="work-list-row reveal" href="revolving-stage.html" data-img="assets/images/revolving-stage.png">
             <span class="work-list-name">Revolving Stage</span>
             <span class="work-list-desc">Kinetic stage design and fabrication</span>
             <span class="work-list-year">2023</span>
           </a>
-          <a class="work-list-row reveal" href="CueTV.html">
+          <a class="work-list-row reveal" href="CueTV.html" data-img="assets/images/cuetv.png">
             <span class="work-list-name">CueTV</span>
             <span class="work-list-desc">Accessible TV experience research</span>
             <span class="work-list-year">2023</span>
           </a>
-          <a class="work-list-row reveal" href="tedx.html">
+          <a class="work-list-row reveal" href="ATPS.html" data-img="assets/images/atps.png">
+            <span class="work-list-name">ATPS</span>
+            <span class="work-list-desc">Video production and UX research</span>
+            <span class="work-list-year">2023</span>
+          </a>
+          <a class="work-list-row reveal" href="tedx.html" data-img="assets/images/tedx.png">
             <span class="work-list-name">TEDxVITPune</span>
             <span class="work-list-desc">Brand identity and event design</span>
             <span class="work-list-year">2021</span>
           </a>
-          <a class="work-list-row reveal" href="code-for-build.html">
+          <a class="work-list-row reveal" href="code-for-build.html" data-img="assets/images/code-for-build.png">
             <span class="work-list-name">Code for Build</span>
             <span class="work-list-desc">Brand and product design for Istanbul startup</span>
             <span class="work-list-year">2021</span>
           </a>
-          <a class="work-list-row reveal" href="Typeface.html">
+          <a class="work-list-row reveal" href="Typeface.html" data-img="assets/images/typeface.png">
             <span class="work-list-name">Butler&rsquo;s Slice</span>
             <span class="work-list-desc">Original variable display typeface</span>
             <span class="work-list-year">2022</span>

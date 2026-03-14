@@ -5111,18 +5111,8 @@ html {
   animation: fadeUp 0.7s var(--ease-out) 0.1s both;
 }
 
-/* Divider between featured cards and archive list */
-.work-divider {
-  border: none;
-  border-top: 1px solid var(--ink-10);
-  margin: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
-}
-
-/* Archive section — compact list */
-.work-archive {
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-}
-.work-archive-label {
+/* Section labels */
+.work-section-label {
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
@@ -5130,7 +5120,123 @@ html {
   color: var(--ink-30);
   font-weight: 500;
   display: block;
-  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* Current roles — text-forward cards */
+.work-current {
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  border-top: 1px solid var(--ink-10);
+}
+.work-shipped {
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  border-top: 1px solid var(--ink-10);
+}
+
+/* Text card row — 3 columns */
+.pcard-text-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+/* Text-forward project card */
+.pcard-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--grad-from, #1a2744), var(--grad-to, #0d1520));
+  border: 1px solid var(--ink-10);
+  text-decoration: none;
+  color: var(--ink);
+  min-height: clamp(200px, 22vw, 280px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s, border-color 0.3s;
+}
+.pcard-text::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.04;
+  filter: blur(60px);
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.pcard-text:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.4);
+  border-color: rgba(255,228,48,0.15);
+}
+.pcard-text:hover::before {
+  opacity: 0.08;
+}
+
+.pcard-text-badge {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: auto;
+}
+.pcard-text-name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-top: 1.5rem;
+  transition: color 0.3s;
+}
+.pcard-text:hover .pcard-text-name {
+  color: var(--accent);
+}
+.pcard-text-desc {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-60);
+  margin-top: 0.5rem;
+  max-width: 30ch;
+}
+.pcard-text-year {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-30);
+  margin-top: 0.75rem;
+}
+
+/* Divider */
+.work-divider {
+  border: none;
+  border-top: 1px solid var(--ink-10);
+  margin: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+/* Archive section */
+.work-archive {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+/* Responsive: text card row */
+@media (max-width: 860px) {
+  .pcard-text-row { grid-template-columns: 1fr 1fr; }
+  .pcard-text:last-child { grid-column: span 2; }
+  .pcard-text-name { font-size: 1.3rem; }
+}
+@media (max-width: 600px) {
+  .pcard-text-row { grid-template-columns: 1fr; }
+  .pcard-text:last-child { grid-column: span 1; }
+  .pcard-text { min-height: 180px; }
 }
 
 /* Archive list rows */
