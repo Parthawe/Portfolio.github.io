@@ -5087,27 +5087,42 @@ html {
 }
 
 /* ================================================
-   WORK PAGE — Header + Group Labels
+   WORK PAGE — Header + Layout
    ================================================ */
 .work-page-header {
-  padding: clamp(6rem, 12vw, 10rem) 0 clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(6rem, 12vw, 10rem) 0 clamp(2rem, 4vw, 3rem);
 }
 .work-page-title {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(4rem, 10vw, 8rem);
+  font-size: clamp(3.5rem, 8vw, 6rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--ink);
   font-style: italic;
   animation: fadeUp 0.7s var(--ease-out) both;
 }
-
-.work-group {
-  padding: clamp(2rem, 4vw, 3.5rem) 0;
-  border-top: 1px solid var(--ink-10);
+.work-page-sub {
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  color: var(--ink-60);
+  line-height: 1.6;
+  margin-top: 1rem;
+  max-width: 480px;
+  animation: fadeUp 0.7s var(--ease-out) 0.1s both;
 }
-.work-group-label {
+
+/* Divider between featured cards and archive list */
+.work-divider {
+  border: none;
+  border-top: 1px solid var(--ink-10);
+  margin: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+/* Archive section — compact list */
+.work-archive {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+.work-archive-label {
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
@@ -5115,20 +5130,67 @@ html {
   color: var(--ink-30);
   font-weight: 500;
   display: block;
-  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
-.work-group-label::before {
-  content: '';
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--pink);
-  margin-right: 0.5rem;
-  vertical-align: middle;
+
+/* Archive list rows */
+.work-list {
+  display: flex;
+  flex-direction: column;
 }
-.work-group .pcard-row:first-of-type {
-  margin-top: 0;
+.work-list-row {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: clamp(0.85rem, 1.4vw, 1.1rem) 0;
+  border-top: 1px solid var(--ink-10);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.3s, padding 0.3s, border-radius 0.3s;
+}
+.work-list-row:last-child {
+  border-bottom: 1px solid var(--ink-10);
+}
+.work-list-row:hover {
+  background: var(--ink-05);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 8px;
+}
+.work-list-name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  font-style: italic;
+  letter-spacing: -0.01em;
+  transition: color 0.3s;
+}
+.work-list-row:hover .work-list-name {
+  color: var(--accent);
+}
+.work-list-desc {
+  font-size: 0.82rem;
+  color: var(--ink-30);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.work-list-year {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-30);
+  letter-spacing: 0.04em;
+  text-align: right;
+  min-width: 3.5rem;
+}
+
+@media (max-width: 600px) {
+  .work-list-row {
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+  }
+  .work-list-desc { display: none; }
 }
 
 /* ================================================
