@@ -12,23 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -36,21 +31,21 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
+  <main class="project-main" style="--project-color: #5C6B3A">
 
     <!-- ══════════════════════════════════════════════
          HEADER
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
       <div class="proj-meta reveal">
         <div class="proj-tags">
@@ -59,16 +54,16 @@
           <span class="proj-tag">Machine Learning</span>
           <span class="proj-tag">UX/UI</span>
         </div>
-        <h1 class="proj-title">BreakGen</h1>
-        <p class="proj-subtitle">A modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, intuitive layout tools, and automated PCB generation</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">BreakGen</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">A modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, intuitive layout tools, and automated PCB generation</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Designer &amp; Developer</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Context</span><span class="proj-info-val">ITP Thesis, NYU</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">2024&ndash;2025</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Stack</span><span class="proj-info-val">React, Three.js, Meshy AI, KiCad</span></div>
         </div>
       </div>
-      <div class="proj-hero-img proj-hero-img--full reveal"><img src="assets/images/keyboard.png" alt="BreakGen — modular keyboard design platform" loading="lazy"/></div>
+      <div class="proj-hero-img proj-hero-img--full hero-anim hero-anim-4"><img src="assets/images/keyboard.png" alt="BreakGen — modular keyboard design platform" loading="lazy"/></div>
     </div>
 
     <!-- Case Study TOC — sticky sidebar -->
@@ -76,174 +71,374 @@
       <div class="cs-toc-inner">
         <span class="cs-toc-label">Contents</span>
         <a href="#cs-concept" class="cs-toc-link">Concept</a>
+        <a href="#cs-research" class="cs-toc-link">Research</a>
         <a href="#cs-architecture" class="cs-toc-link">Architecture</a>
         <a href="#cs-process" class="cs-toc-link">Process</a>
         <a href="#cs-fabrication" class="cs-toc-link">Fabrication</a>
         <a href="#cs-outcome" class="cs-toc-link">Outcome</a>
+        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
       </div>
     </nav>
 
     <!-- ══════════════════════════════════════════════
          OVERVIEW
          ══════════════════════════════════════════════ -->
-    <div class="wrap project-overview reveal">
-      <div class="proj-overview-grid">
-        <div class="proj-overview-body">
-          <h2 class="section-label">Overview</h2>
-          <p class="proj-desc">BreakGen is a web-based platform where users design fully custom mechanical keyboards from scratch. They select key feel, generate AI-personalized keycaps, build ergonomic layouts, and receive auto-generated PCBs ready for fabrication. The project bridges the gap between desire and ability in the DIY keyboard community &mdash; making deep customization accessible to people without engineering backgrounds.</p>
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <h2 class="cs-display" style="max-width:20ch;">Breaking things to understand how they work.</h2>
+
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Summary</span>
+          <span class="cs-label-row-val">BreakGen is a web-based platform where users design fully custom mechanical keyboards from scratch. They select key feel, generate AI-personalized keycaps, build ergonomic layouts, and receive auto-generated PCBs ready for fabrication. The project bridges the gap between desire and ability in the DIY keyboard community &mdash; making deep customization accessible to people without engineering backgrounds.</span>
         </div>
-        <div class="proj-overview-body">
-          <h2 class="section-label">My Role</h2>
-          <p class="proj-desc">Sole designer and developer. Responsible for concept, UX/UI design, frontend development, AI pipeline integration, PCB auto-generation logic, and physical prototyping. Thesis project at NYU&rsquo;s Interactive Telecommunications Program.</p>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">The Challenge</span>
+          <span class="cs-label-row-val">Custom keyboards are one of the most vibrant hardware subcultures online, but the technical barriers to creating one from scratch are enormous. PCB design requires EDA software expertise, ergonomic layout planning demands spatial reasoning and engineering knowledge, and firmware configuration assumes programming fluency. Most enthusiasts end up buying pre-made boards or waiting months for group buys they cannot influence &mdash; never getting the keyboard that truly fits their hands, workflow, and aesthetic.</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">My Role</span>
+          <span class="cs-label-row-val">Sole designer and developer. Responsible for concept development, UX/UI design, frontend development (React + Three.js), AI pipeline integration (Meshy AI), PCB auto-generation logic (KiCad), physical prototyping (3D printing, laser cutting, CNC), and thesis presentation. ITP Thesis project at NYU&rsquo;s Interactive Telecommunications Program, advised by Luisa Pereira.</span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">Tools &amp; Techniques</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">React</span>
+              <span class="cs-tag-item">Three.js</span>
+              <span class="cs-tag-item">Spline</span>
+              <span class="cs-tag-item">Meshy AI</span>
+              <span class="cs-tag-item">KiCad</span>
+              <span class="cs-tag-item">3D Printing</span>
+              <span class="cs-tag-item">Laser Cutting</span>
+              <span class="cs-tag-item">CNC Milling</span>
+            </span>
+          </span>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- ════════════════════════════════════════════
-         CONCEPT
+         01 — CONCEPT
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-concept" style="--cs-dark:#1a1a1a">
+    <section class="cs-section reveal" id="cs-concept">
       <div class="wrap">
-        <p class="cs-section-label">01 &mdash; Concept</p>
+        <span class="cs-section-label">01 &mdash; Concept</span>
         <h2 class="cs-section-title">Breaking Things to Understand Them</h2>
         <div class="cs-body" style="max-width:720px;">
           <p>BreakGen started with something personal: the childhood practice of disassembling toys, electronics, and household objects to understand how they work. That impulse&mdash;to crack open a black box and see the mechanism inside&mdash;is the same one that drives the mechanical keyboard community.</p>
           <p>Custom keyboards are one of the most vibrant hardware subcultures online, but there is a stark gap between aspiration and execution. Thousands of enthusiasts want a keyboard that feels, sounds, and looks exactly right, but the technical barriers&mdash;PCB design, firmware configuration, ergonomic layout planning&mdash;keep most people buying pre-made boards or paying a premium for group buys they cannot influence.</p>
           <p>BreakGen addresses this directly. It is a platform that lets anyone walk through the full keyboard creation process: choosing switch feel, generating personalized keycap designs with AI, arranging an ergonomic layout, and exporting a production-ready PCB&mdash;all without opening KiCad or writing a line of firmware.</p>
         </div>
+
+        <div class="cs-callout" style="margin-top:2.5rem;">
+          <p>The thesis question driving BreakGen: can generative AI and parametric design tools collapse the expertise barrier in hardware creation without sacrificing the depth, quality, or joy of making something with your hands?</p>
+        </div>
       </div>
     </section>
 
     <!-- ════════════════════════════════════════════
-         TECHNICAL ARCHITECTURE
+         02 — RESEARCH
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-architecture" style="--cs-dark:#141414">
+    <section class="cs-section reveal" id="cs-research">
       <div class="wrap">
-        <p class="cs-section-label">02 &mdash; Technical Architecture</p>
+        <span class="cs-section-label">02 &mdash; Research</span>
+        <h2 class="cs-section-title">Understanding the Landscape</h2>
+        <div class="cs-body" style="max-width:720px;">
+          <p>Before building, I spent weeks embedded in the mechanical keyboard community &mdash; reading build logs on r/MechanicalKeyboards, joining Discord servers, attending ITP open labs with keyboard enthusiasts, and cataloging the tools people actually used (and the points where they gave up).</p>
+        </div>
+
+        <h3 class="cs-section-subtitle">Community Pain Points</h3>
+        <div class="cs-info-grid" style="margin-top:1rem;">
+          <div class="cs-info-item">
+            <span class="cs-info-key">PCB Design Barrier</span>
+            <span class="cs-info-value">KiCad and EasyEDA are powerful but assume electronics engineering knowledge. Most enthusiasts abandon custom PCB design after encountering schematic editors for the first time.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Keycap Customization Gap</span>
+            <span class="cs-info-value">Keycap design is either mass-produced (limited choices) or artisan (expensive, months-long waits). There is no middle ground for personal expression at accessible price points.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Fragmented Toolchain</span>
+            <span class="cs-info-value">Building a custom keyboard requires jumping between 5&ndash;8 different tools: layout editors, CAD software, EDA tools, firmware generators, and fabrication services. Each transition is a drop-off point.</span>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:2.5rem;">User Interviews</h3>
+        <div class="cs-body" style="max-width:720px;">
+          <p>I conducted interviews with 8 ITP students and keyboard community members ranging from complete beginners to experienced builders. Three recurring themes shaped the platform direction:</p>
+        </div>
+        <ol class="cs-num-list">
+          <li><strong>Creative intent without technical fluency:</strong> Most users could articulate exactly what they wanted their keyboard to feel and look like, but could not translate that vision into the technical specifications required by existing tools.</li>
+          <li><strong>Decision fatigue from options overload:</strong> Cherry MX Red vs. Gateron Yellow vs. Kailh Box White &mdash; the sheer number of switch options paralyzed new users. They wanted guidance, not a catalog.</li>
+          <li><strong>The "last mile" problem:</strong> Several experienced builders described getting 80% through a custom build and then stalling at PCB routing or firmware configuration &mdash; the most technical and least creative steps in the process.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         03 — TECHNICAL ARCHITECTURE
+         ════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-architecture">
+      <div class="wrap">
+        <span class="cs-section-label">03 &mdash; Architecture</span>
         <h2 class="cs-section-title">The Stack</h2>
         <div class="cs-body" style="max-width:720px;">
-          <p>BreakGen is built as a single-page React application with a real-time 3D preview powered by Three.js and Spline. The interface guides users through a sequential design flow: select switches, design keycaps, arrange layout, generate PCB.</p>
+          <p>BreakGen is built as a single-page React application with a real-time 3D preview powered by Three.js and Spline. The interface guides users through a sequential design flow: select switches, design keycaps, arrange layout, generate PCB. Each step feeds into the next, and the 3D preview updates in real time so users always see the consequence of their decisions.</p>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2.5rem;">
-          <div>
-            <p class="cs-section-label" style="margin-bottom:0.5rem;">Frontend</p>
-            <div class="cs-body">
-              <p><strong>React + Three.js + Spline</strong> &mdash; The interface renders a live 3D model of the keyboard as users make design decisions. Each change&mdash;switch type, keycap texture, layout shape&mdash;updates the preview in real time. Spline handles stylized 3D scenes for onboarding and presentation, while Three.js powers the precise parametric keyboard model.</p>
-            </div>
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Frontend &mdash; React + Three.js + Spline</div>
+            <div class="cs-feature-card-desc">The interface renders a live 3D model of the keyboard as users make design decisions. Each change&mdash;switch type, keycap texture, layout shape&mdash;updates the preview in real time. Spline handles stylized 3D scenes for onboarding and presentation, while Three.js powers the precise parametric keyboard model.</div>
           </div>
-          <div>
-            <p class="cs-section-label" style="margin-bottom:0.5rem;">AI Pipeline</p>
-            <div class="cs-body">
-              <p><strong>Meshy AI</strong> &mdash; Users describe their ideal keycap aesthetic in natural language or select from style presets. Meshy AI generates 3D keycap models that match&mdash;from minimal geometric patterns to ornate sculptural tops. The generated models are normalized for printability and mapped onto the layout in real time.</p>
-            </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">AI Pipeline &mdash; Meshy AI</div>
+            <div class="cs-feature-card-desc">Users describe their ideal keycap aesthetic in natural language or select from style presets. Meshy AI generates 3D keycap models that match&mdash;from minimal geometric patterns to ornate sculptural tops. The generated models are normalized for printability and mapped onto the layout in real time.</div>
           </div>
-          <div>
-            <p class="cs-section-label" style="margin-bottom:0.5rem;">PCB Auto-Generation</p>
-            <div class="cs-body">
-              <p><strong>KiCad Integration</strong> &mdash; Once the layout is finalized, BreakGen auto-generates a precise PCB schematic. The system maps each key position to a switch footprint, routes traces, and exports production-ready Gerber files. Users can send these directly to a PCB fabrication service without touching EDA software.</p>
-            </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">PCB Auto-Generation &mdash; KiCad Integration</div>
+            <div class="cs-feature-card-desc">Once the layout is finalized, BreakGen auto-generates a precise PCB schematic. The system maps each key position to a switch footprint, routes traces, and exports production-ready Gerber files. Users can send these directly to a PCB fabrication service without touching EDA software.</div>
           </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Export Pipeline</div>
+            <div class="cs-feature-card-desc">The platform exports multiple file formats matched to fabrication methods: STL files for 3D-printed keycaps and cases, DXF files for laser-cut plates, and Gerber files for PCB manufacturing. Each export is pre-validated for printability and tolerance requirements.</div>
+          </div>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">System architecture diagram &mdash; data flow from user input through AI generation, parametric modeling, and fabrication export</span>
         </div>
       </div>
     </section>
 
     <!-- ════════════════════════════════════════════
-         DESIGN PROCESS
+         04 — DESIGN PROCESS
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-process" style="--cs-dark:#1e1e1e">
+    <section class="cs-section reveal" id="cs-process">
       <div class="wrap">
-        <p class="cs-section-label">03 &mdash; Design Process</p>
+        <span class="cs-section-label">04 &mdash; Process</span>
         <h2 class="cs-section-title">From Digital Design to Physical Assembly</h2>
         <div class="cs-body" style="max-width:720px;">
           <p>The design process mirrors the user journey itself. Early prototypes tested whether non-technical users could navigate the full keyboard design pipeline without documentation. Iterative user testing at ITP refined the flow: reducing decision fatigue by sequencing choices logically (feel before aesthetics, aesthetics before layout, layout before electronics) and surfacing real-time feedback at every step.</p>
           <p>The interface treats keyboard design as a creative act, not an engineering task. Visual metaphors replace technical jargon. Instead of "Cherry MX Red, linear, 45g actuation," users experience a tactile simulation and choose the one that feels right. The system handles the translation.</p>
         </div>
+
+        <div class="cs-process-flow">
+          <span class="cs-process-pill">Switch Selection</span>
+          <span class="cs-process-pill">Keycap Generation</span>
+          <span class="cs-process-pill">Layout Design</span>
+          <span class="cs-process-pill">PCB Generation</span>
+          <span class="cs-process-pill">Export &amp; Fabrication</span>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:2.5rem;">Key Design Decisions</h3>
+        <ol class="cs-num-list">
+          <li><strong>Sequential flow over open canvas.</strong> Early prototypes offered a freeform workspace where users could tackle any step in any order. Testing revealed that beginners froze when faced with simultaneous choices. The final design enforces a linear progression: feel, then look, then layout, then electronics. Advanced users can jump between steps, but the default path removes ambiguity.</li>
+          <li><strong>Tactile previews over spec sheets.</strong> Switch selection was redesigned from a comparison table (actuation force, travel distance, operating force) to an interactive simulation. Users press virtual keys and hear the sound profile. The spec data is still accessible but deprioritized &mdash; feel comes first, numbers second.</li>
+          <li><strong>Prompt-driven keycap design.</strong> Rather than offering a fixed catalog of keycap styles, the AI pipeline lets users describe what they want in natural language. "Brutalist concrete texture," "Japanese woodblock wave pattern," "smooth matte black with gold flecks" &mdash; the system generates options and users refine from there. This made personalization feel limitless without requiring 3D modeling skills.</li>
+          <li><strong>Automated PCB as an invisible step.</strong> PCB generation is the most technical part of keyboard building, and in BreakGen it is the most automated. Users never see a schematic editor. The system infers the circuit from the layout, routes traces automatically, and validates the design against manufacturing constraints. The user sees a confirmation screen; the complexity is hidden.</li>
+        </ol>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Interface screenshots &mdash; switch selection flow with tactile preview and sound profiles</span>
+        </div>
       </div>
     </section>
 
     <!-- ════════════════════════════════════════════
-         FABRICATION
+         05 — FABRICATION
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-fabrication" style="--cs-dark:#0f0f0f">
+    <section class="cs-section reveal" id="cs-fabrication">
       <div class="wrap">
-        <p class="cs-section-label">04 &mdash; Fabrication</p>
+        <span class="cs-section-label">05 &mdash; Fabrication</span>
         <h2 class="cs-section-title">Making It Real</h2>
         <div class="cs-body" style="max-width:720px;">
-          <p>BreakGen is not purely digital. Physical prototyping was central to validating the platform. Keyboards designed through the tool were fabricated using a combination of methods:</p>
+          <p>BreakGen is not purely digital. Physical prototyping was central to validating the platform &mdash; every claim the software makes about "production-ready" exports had to be verified by actually producing keyboards. This cycle of digital design to physical artifact, repeated dozens of times, surfaced constraints that pure software testing would never reveal.</p>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:2rem;">
-          <div>
-            <p class="cs-section-label" style="margin-bottom:0.5rem;">3D Printing</p>
-            <div class="cs-body">
-              <p>Keycaps and case enclosures were printed in resin and PLA. AI-generated keycap designs were exported as STL files and printed at high resolution to verify that generative aesthetics translated to physical objects with satisfying tactile quality.</p>
-            </div>
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">3D Printing</div>
+            <div class="cs-feature-card-desc">Keycaps and case enclosures were printed in resin and PLA. AI-generated keycap designs were exported as STL files and printed at high resolution to verify that generative aesthetics translated to physical objects with satisfying tactile quality. Early prints revealed that intricate AI-generated textures needed minimum wall thicknesses enforced at the model level.</div>
           </div>
-          <div>
-            <p class="cs-section-label" style="margin-bottom:0.5rem;">Laser Cutting</p>
-            <div class="cs-body">
-              <p>Keyboard plates&mdash;the structural layer between keycaps and PCB&mdash;were laser cut from acrylic and aluminum sheets. The platform exports DXF files matched to the user&rsquo;s layout for direct fabrication.</p>
-            </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Laser Cutting</div>
+            <div class="cs-feature-card-desc">Keyboard plates&mdash;the structural layer between keycaps and PCB&mdash;were laser cut from acrylic and aluminum sheets. The platform exports DXF files matched to the user&rsquo;s layout for direct fabrication. Tolerance testing across three different laser cutters established the kerf compensation values built into the export pipeline.</div>
           </div>
-          <div>
-            <p class="cs-section-label" style="margin-bottom:0.5rem;">CNC Milling</p>
-            <div class="cs-body">
-              <p>For premium case prototypes, CNC-milled aluminum housings were produced. These tested the platform&rsquo;s ability to generate production-grade enclosure geometry from the parametric design system.</p>
-            </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">CNC Milling</div>
+            <div class="cs-feature-card-desc">For premium case prototypes, CNC-milled aluminum housings were produced. These tested the platform&rsquo;s ability to generate production-grade enclosure geometry from the parametric design system. The milling process validated that the software&rsquo;s auto-generated fillets and mounting points were structurally sound.</div>
           </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">PCB Manufacturing</div>
+            <div class="cs-feature-card-desc">Auto-generated Gerber files were sent to PCB fabrication services (JLCPCB, PCBWay) to validate that the routing algorithms produced boards that passed DRC checks and functioned correctly. Multiple revision cycles refined the auto-router to handle edge cases in non-standard layouts.</div>
+          </div>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:2.5rem;">Fabrication Challenges</h3>
+        <div class="cs-body" style="max-width:720px;">
+          <p>The hardest fabrication problem was bridging the gap between what looks good on screen and what works in physical reality. AI-generated keycap designs were often beautiful in the 3D preview but unprintable &mdash; overhangs too steep, details too fine for resin resolution, or surfaces that felt wrong despite looking right. This led to a critical platform feature: a printability validation layer that constrains the AI output to physically viable geometries before the user ever sees a design.</p>
+          <p>Laser-cut plates revealed another class of problem. Switch cutout tolerances at plus or minus 0.1mm are the difference between a switch that clips in securely and one that rattles or will not seat at all. The platform now bakes in per-material kerf compensation based on the fabrication method the user selects during export.</p>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">3D printed keycap prototypes &mdash; progression from early test prints to final AI-generated designs</span>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Laser cut plate components &mdash; acrylic and aluminum keyboard plates with switch cutouts</span>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Final keyboard assembly &mdash; completed build with AI-generated keycaps, laser-cut plate, and auto-generated PCB</span>
         </div>
       </div>
     </section>
 
     <!-- ════════════════════════════════════════════
-         OUTCOME
+         06 — ML INTEGRATION
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-outcome" style="--cs-dark:#1a1a1a">
+    <section class="cs-section reveal">
       <div class="wrap">
-        <p class="cs-section-label">05 &mdash; Outcome</p>
+        <span class="cs-section-label">06 &mdash; ML Integration</span>
+        <h2 class="cs-section-title">Why Meshy AI, and What It Took</h2>
+        <div class="cs-body" style="max-width:720px;">
+          <p>Choosing the right generative AI pipeline was one of the most consequential decisions in the project. The keycap generation system needed to produce 3D models (not just images), respond to natural language prompts, and output geometry that could be 3D printed without manual cleanup.</p>
+          <p>I evaluated four approaches before settling on Meshy AI:</p>
+        </div>
+
+        <div class="cs-info-grid" style="margin-top:1.5rem;">
+          <div class="cs-info-item">
+            <span class="cs-info-key">Text-to-3D (Meshy AI)</span>
+            <span class="cs-info-value">Selected. Best balance of prompt fidelity, mesh quality, and API reliability. Models required post-processing for printability but the base geometry was consistently usable.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Image-to-3D Pipeline</span>
+            <span class="cs-info-value">Tested with Stable Diffusion + NeRF reconstruction. Higher visual quality but fragile pipeline &mdash; too many failure modes for a user-facing product.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Parametric Generation</span>
+            <span class="cs-info-value">Custom OpenSCAD scripts with randomized parameters. Reliable and printable, but the aesthetic range was narrow &mdash; everything looked procedural rather than designed.</span>
+          </div>
+          <div class="cs-info-item">
+            <span class="cs-info-key">Pre-built Library</span>
+            <span class="cs-info-value">A curated set of artist-designed keycaps. High quality but limited personalization &mdash; contradicted the core thesis of user-driven creation.</span>
+          </div>
+        </div>
+
+        <div class="cs-body" style="max-width:720px;margin-top:2rem;">
+          <p>The integration required building a normalization layer between Meshy AI&rsquo;s output and the Three.js preview. Generated meshes varied in polygon count (8K to 200K faces), scale, and orientation. The normalization pipeline decimates high-poly models for real-time preview, enforces a consistent coordinate system, and validates that the mesh is watertight (a requirement for 3D printing). This invisible infrastructure is what makes the "type a prompt, see a keycap" experience feel instantaneous and reliable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         07 — OUTCOME
+         ════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-outcome">
+      <div class="wrap">
+        <span class="cs-section-label">07 &mdash; Outcome</span>
         <h2 class="cs-section-title">ITP Thesis Show</h2>
         <div class="cs-body" style="max-width:720px;">
           <p>BreakGen was exhibited at the NYU ITP Thesis Show, where visitors designed their own keyboards live on the platform and handled physical prototypes produced through the pipeline. The exhibition demonstrated the full loop: digital design to physical artifact, completed in minutes rather than weeks.</p>
-          <p>The project validates a broader thesis&mdash;that generative AI and parametric design tools can collapse the expertise barrier in hardware creation without sacrificing depth or quality. The keyboard is the proof of concept; the architecture generalizes to any modular hardware system.</p>
+        </div>
+
+        <div class="cs-stat-grid">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Thesis Show Visitors</span>
+            <span class="cs-stat-value">200+</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Live Designs Created</span>
+            <span class="cs-stat-value">50+</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Physical Prototypes</span>
+            <span class="cs-stat-value">6</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Design-to-Export Time</span>
+            <span class="cs-stat-value">&lt;10 min</span>
+          </div>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Thesis show installation &mdash; BreakGen live demo station with physical keyboard prototypes on display</span>
+        </div>
+
+        <h3 class="cs-section-subtitle" style="margin-top:2.5rem;">Exhibition Feedback</h3>
+        <blockquote class="cs-pullquote">
+          <p>"I've wanted to build a custom keyboard for two years but never got past the PCB step. I just designed one in eight minutes and it actually looks like something I'd use."</p>
+          <cite>&mdash; Thesis Show visitor, ITP second-year student</cite>
+        </blockquote>
+
+        <div class="cs-body" style="max-width:720px;">
+          <p>The most consistent feedback from visitors was surprise at how short the path from intent to artifact had become. People who had never considered building a keyboard found themselves engaged in the design process, while experienced builders appreciated that the platform handled the tedious steps (PCB routing, firmware generation) without limiting creative control over the parts that matter to them (layout, aesthetics, feel).</p>
+          <p>Several faculty members noted that the project demonstrated a broader principle &mdash; that generative AI tools are most powerful not when they replace human creativity but when they remove the technical gatekeeping that prevents people from expressing creativity they already have.</p>
+        </div>
+
+        <div class="cs-callout" style="margin-top:2.5rem;">
+          <p>The project validates a broader thesis &mdash; that generative AI and parametric design tools can collapse the expertise barrier in hardware creation without sacrificing depth or quality. The keyboard is the proof of concept; the architecture generalizes to any modular hardware system.</p>
         </div>
       </div>
     </section>
 
     <!-- ════════════════════════════════════════════
-         CREDITS
+         08 — REFLECTIONS
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
-        <h2 class="cs-thanks-title">Thank You</h2>
+        <span class="cs-section-label">08 &mdash; Reflections</span>
+        <h2 class="cs-section-title">What I'd Carry Forward</h2>
+        <div class="cs-body" style="max-width:720px;">
+          <p>BreakGen was the most technically complex project I have built, spanning web development, 3D graphics, machine learning, electronics design, and physical fabrication. Working across all of these domains as a sole practitioner taught me lessons that no single-discipline project could.</p>
+        </div>
+        <ol class="cs-num-list">
+          <li><strong>Physical constraints are the best design constraints.</strong> The most important features in BreakGen &mdash; printability validation, kerf compensation, mesh normalization &mdash; were not in the original spec. They emerged from the fabrication process, when digital designs failed to become physical objects. Building software for hardware taught me that real-world constraints are not limitations to work around; they are the information that makes the product actually useful.</li>
+          <li><strong>AI is a material, not a feature.</strong> Early in the project, I treated AI-generated keycaps as a feature to demo. By the end, I understood generative AI as a material with properties &mdash; it has grain, tolerance, failure modes, and sweet spots, just like wood or resin. Designing with AI means understanding those properties and building guardrails that channel its output toward usable results, not just impressive ones.</li>
+          <li><strong>Sequencing beats simultaneity for novices.</strong> The biggest UX insight was that constraining the design flow (feel, then aesthetics, then layout, then electronics) dramatically reduced drop-off compared to the open-canvas approach. Experts want freedom; beginners want a path. The best tools provide both by making the path the default and freedom the override.</li>
+          <li><strong>Thesis work is a forcing function for finishing.</strong> Having a fixed exhibition date and a public audience meant that BreakGen had to work end-to-end, not just in isolated demos. That pressure pushed me to solve integration problems I would have deferred indefinitely in a personal project &mdash; and the result was a system that genuinely works, not a collection of promising prototypes.</li>
+        </ol>
+      </div>
+    </section>
 
-        <div class="cs-credits" style="justify-content:center;margin-top:2rem;">
-          <div class="cs-credit-item" style="text-align:center;">
-            <span class="cs-credit-role">Designer &amp; Developer</span>
-            <span class="cs-credit-name">Parth Pawar</span>
-          </div>
-          <div class="cs-credit-item" style="text-align:center;">
-            <span class="cs-credit-role">Thesis Advisor</span>
-            <span class="cs-credit-name">Luisa Pereira</span>
-          </div>
+    <!-- ════════════════════════════════════════════
+         THANK YOU
+         ════════════════════════════════════════════ -->
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Credits</span>
+          <span class="cs-label-row-val"><strong>Designer &amp; Developer</strong> &mdash; Parth Pawar<br/>Concept, UX/UI design, frontend development, AI pipeline, PCB generation, physical prototyping</span>
+        </div>
+        <div class="cs-label-row">
+          <span class="cs-label-row-key">Advisor</span>
+          <span class="cs-label-row-val"><strong>Thesis Advisor</strong> &mdash; Luisa Pereira<br/>NYU Interactive Telecommunications Program</span>
+        </div>
+        <div class="cs-label-row" style="border-bottom:none;">
+          <span class="cs-label-row-key">Tools &amp; Methods</span>
+          <span class="cs-label-row-val">
+            <span class="cs-tags" style="margin:0;">
+              <span class="cs-tag-item">React</span>
+              <span class="cs-tag-item">Three.js</span>
+              <span class="cs-tag-item">Meshy AI</span>
+              <span class="cs-tag-item">Spline</span>
+              <span class="cs-tag-item">KiCad</span>
+              <span class="cs-tag-item">3D Printing</span>
+              <span class="cs-tag-item">Laser Cutting</span>
+              <span class="cs-tag-item">CNC Milling</span>
+              <span class="cs-tag-item">NYU ITP</span>
+            </span>
+          </span>
         </div>
 
-        <div class="cs-tags" style="justify-content:center;margin-top:2rem;">
-          <span class="cs-tag-item">React</span>
-          <span class="cs-tag-item">Three.js</span>
-          <span class="cs-tag-item">Meshy AI</span>
-          <span class="cs-tag-item">Spline</span>
-          <span class="cs-tag-item">KiCad</span>
-          <span class="cs-tag-item">3D Printing</span>
-          <span class="cs-tag-item">Laser Cutting</span>
-          <span class="cs-tag-item">CNC Milling</span>
-          <span class="cs-tag-item">NYU ITP</span>
+        <div class="cs-thanks" style="margin-top:3rem;">
+          <h2 class="cs-thanks-title">Thank You</h2>
         </div>
       </div>
     </section>
 
   </main>
-  </div>
 
   <a class="next-project" href="vj-software.html">
     <div class="wrap next-project-inner">
@@ -258,39 +453,15 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

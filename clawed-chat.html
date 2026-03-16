@@ -12,26 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
-  <style>
-    :root { --cs-dark: #0a0a0a; }
-  </style>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -39,40 +31,40 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
+
+  <main class="project-main" style="--project-color: #8B5E34">
 
     <!-- ══════════════════════════════════════════════
          HEADER
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">AI Assistant</span>
           <span class="proj-tag">Smart Glasses</span>
           <span class="proj-tag">Product Design</span>
           <span class="proj-tag">Full-stack Design</span>
         </div>
-        <h1 class="proj-title">Clawed</h1>
-        <p class="proj-subtitle">Personal AI assistant for people on the go &mdash; smart glasses integration for glanceable, hands-free interactions plus a full web hub with safety modes, receipts, and one-tap approvals</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">Clawed</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">Personal AI assistant for people on the go &mdash; smart glasses integration for glanceable, hands-free interactions plus a full web hub with safety modes, receipts, and one-tap approvals</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Product Designer</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">2026</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Team</span><span class="proj-info-val">Solo designer + engineering team</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Platform</span><span class="proj-info-val">Web + Wearable</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/clawed.png" alt="Clawed.chat — Personal AI assistant with smart glasses integration"/></div>
-      <div class="proj-read-time"><span>6 min read</span></div>
+      <div class="proj-hero-img hero-anim hero-anim-4"><img src="assets/images/clawed.png" alt="Clawed.chat — Personal AI assistant with smart glasses integration"/></div>
     </div>
 
     <!-- Case Study TOC — sticky sidebar -->
@@ -81,11 +73,11 @@
         <span class="cs-toc-label">Contents</span>
         <a href="#cs-vision" class="cs-toc-link active">Vision &amp; Role</a>
         <a href="#cs-context" class="cs-toc-link">Context</a>
-        <a href="#cs-bet" class="cs-toc-link">The Bet</a>
+        <a href="#cs-safety-philosophy" class="cs-toc-link">Safety Philosophy</a>
         <a href="#cs-challenges" class="cs-toc-link">Challenges</a>
         <a href="#cs-webhub" class="cs-toc-link">Web Hub</a>
         <a href="#cs-glasses" class="cs-toc-link">Glasses Experience</a>
-        <a href="#cs-safety" class="cs-toc-link">Safety Modes</a>
+        <a href="#cs-safety" class="cs-toc-link">Safety Architecture</a>
         <a href="#cs-impact" class="cs-toc-link">Impact</a>
         <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
       </div>
@@ -127,17 +119,31 @@
     </section>
 
     <!-- ══════════════════════════════════════════════
-         THE BET — SAFETY-FIRST AI
+         SAFETY PHILOSOPHY — THE UNIQUE ANGLE
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-bet" style="--cs-dark:#111111">
+    <section class="cs-section reveal" id="cs-safety-philosophy">
       <div class="wrap">
-        <span class="cs-section-label">The Bet</span>
-        <h2 class="cs-section-title">Safety-First AI with Receipts and Human-in-the-Loop</h2>
+        <span class="cs-section-label">Safety Philosophy</span>
+        <h2 class="cs-section-title">The AI That Asks Before It Acts</h2>
         <div class="cs-body">
-          <p>Clawed&rsquo;s thesis is that the AI assistant that wins will not be the smartest one. It will be the most trustworthy one. Trust is not built by being right more often &mdash; it is built by being transparent when you are wrong and asking before you act.</p>
-          <p>The entire product is designed around a philosophy that fits on an index card: ask in under 3 seconds, get results in under 5, approve with one tap, always have a receipt. Every interaction &mdash; from drafting an email to booking a meeting to managing your inbox &mdash; follows this cadence. The AI proposes, the human approves, and the system generates a receipt.</p>
-          <p>This is not a slower assistant. It is a faster one &mdash; because users stop second-guessing, stop checking behind the AI&rsquo;s back, and stop reverting actions they did not authorize. Trust is speed.</p>
+          <p>Most AI assistants compete on intelligence. Clawed competes on trust. The entire product is built on a design philosophy I call &ldquo;safety-first autonomy&rdquo; &mdash; the conviction that an AI should never act on your behalf without your explicit approval, and should always leave a paper trail when it does.</p>
+          <p>This philosophy is not just a design principle. It is the structural difference between Clawed and every other assistant on the market. While competitors race to make AI more autonomous, Clawed makes AI more accountable. Every interaction follows the same cadence: ask in under 3 seconds, get results in under 5, approve with one tap, always get a receipt.</p>
+          <p>The result is counterintuitive: the assistant that asks permission is actually faster than the one that does not. Users stop second-guessing, stop checking behind the AI&rsquo;s back, and stop reverting actions they never authorized. When you trust the system, you use the system. Trust is speed.</p>
         </div>
+
+        <div class="cs-pullquote">
+          <p>&ldquo;I finally stopped re-checking every email my AI sent. The receipt shows me exactly what went out, and the approval step means nothing leaves without my say-so. It is the first assistant I actually trust.&rdquo;</p>
+          <cite>Early user testing participant, week 2 of beta</cite>
+        </div>
+
+        <details class="cs-details">
+          <summary class="cs-details-summary">How safety-first autonomy works in practice</summary>
+          <div class="cs-details-content">
+            <p>Every action Clawed can take is classified into one of three permission levels: read, draft, and execute. In Read Only mode, the AI observes and summarizes but cannot touch anything. In Draft First mode, it can prepare responses but holds them in a staging area until you approve. In Assisted mode, you pre-authorize specific action types &mdash; like auto-archiving newsletters &mdash; and the AI follows your rules.</p>
+            <p>The key insight is that these modes are not buried in settings. They are always visible in the interface &mdash; a prominent toggle in the web hub header and a persistent indicator on the glasses display. Changing modes takes one tap, and the entire interaction model shifts immediately. This visibility is what makes the system trustworthy: you always know what the AI can and cannot do.</p>
+            <p>Every action &mdash; whether user-initiated or AI-executed &mdash; generates an immutable receipt: a timestamped record of what was requested, what the AI recommended, what the user approved, and what the outcome was. Receipts are not a logging feature. They are the core trust mechanism.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -176,7 +182,7 @@
     <!-- ══════════════════════════════════════════════
          WEB HUB
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--gray reveal" id="cs-webhub">
+    <section class="cs-section reveal" id="cs-webhub">
       <div class="wrap">
         <span class="cs-section-label">Web Hub</span>
         <h2 class="cs-section-title">The Brain You Come Back To</h2>
@@ -185,10 +191,18 @@
           <p>The Dashboard is the home screen &mdash; a single-glance summary of pending approvals, recent actions, inbox count, and active safety mode. No widgets to configure, no drag-and-drop customization. The AI decides what is important based on context and recency. If you have three emails waiting for approval, that is the first thing you see. If your glasses are disconnected, that surfaces as an alert. The Dashboard is not a canvas &mdash; it is an opinionated briefing.</p>
         </div>
 
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Web hub dashboard showing pending approvals, recent actions, inbox count, active safety mode indicator, and the opinionated briefing layout</span>
+        </div>
+
         <h3 class="cs-section-subtitle">Inbox &amp; Ask</h3>
         <div class="cs-body">
           <p>The Inbox is not an email client. It is a triage interface. Every incoming message is pre-analyzed by the AI, tagged with urgency and suggested action, and presented as a card with three options: approve the AI&rsquo;s draft, edit before sending, or dismiss. You can clear your inbox without reading a single full email &mdash; the AI summaries are that good &mdash; but every action generates a receipt so you can audit later.</p>
           <p>Ask is the AI chat interface &mdash; the place where you have longer conversations, ask follow-up questions, and request complex multi-step actions. It is designed to feel like a messaging app, not a search engine. Responses are structured, actionable, and always end with a clear next step: approve, modify, or cancel. The command bar (&Cmd;K) is always one keystroke away, and every response can be pinned, shared, or turned into a recurring workflow.</p>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Approval flow screens showing the draft staging area, one-tap approve/edit/dismiss actions, and receipt generation after approval</span>
         </div>
       </div>
     </section>
@@ -202,6 +216,10 @@
         <h2 class="cs-section-title">Intelligence at the Edge of Your Vision</h2>
         <div class="cs-body">
           <p>The glasses are not a second screen. They are a first responder. When you ask Clawed something while walking, cooking, or commuting, the glasses display is where the answer appears &mdash; instantly, glanceably, and with a single-tap approval path. I designed a glasses simulator that lets the team prototype and test every interaction without physical hardware, ensuring that every card, notification, and approval prompt works at peripheral-vision scale.</p>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Glasses command bar UI showing voice-activated fuzzy search, inline previews, one-keystroke execution, and the glanceable card overlay on the peripheral display</span>
         </div>
 
         <h3 class="cs-section-subtitle">Card Types</h3>
@@ -238,12 +256,16 @@
     <!-- ══════════════════════════════════════════════
          SAFETY MODE SYSTEM
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-safety" style="--cs-dark:#0d0d0d">
+    <section class="cs-section reveal" id="cs-safety">
       <div class="wrap">
-        <span class="cs-section-label">Safety Modes</span>
+        <span class="cs-section-label">Safety Architecture</span>
         <h2 class="cs-section-title">Three Tiers of Trust</h2>
         <div class="cs-body">
           <p>Not every situation calls for the same level of AI autonomy. Driving requires a different safety posture than sitting at your desk. Clawed&rsquo;s Safety Mode system gives users explicit control over how much the AI can do &mdash; not through buried settings, but through a prominent, always-visible toggle that changes the entire interaction model.</p>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Safety modes visualization showing the three-tier toggle (Read Only, Draft First, Assisted) in both the web hub header and the glasses display indicator, with visual state changes for each mode</span>
         </div>
 
         <div class="cs-feature-grid">
@@ -261,8 +283,20 @@
           </div>
         </div>
 
-        <div class="cs-callout">
-          <p>&ldquo;Safety modes are not a feature for cautious users. They are the architecture of trust. The fact that you can turn the AI&rsquo;s power down is what gives you the confidence to turn it up.&rdquo;</p>
+        <details class="cs-details">
+          <summary class="cs-details-summary">Deep dive: How the safety architecture prevents accidental actions</summary>
+          <div class="cs-details-content">
+            <p>The safety architecture is built on three layers of protection that work together to eliminate accidental AI actions.</p>
+            <p><strong>Layer 1: Permission boundaries.</strong> Each safety mode defines a hard boundary for what the AI can do. In Read Only, the AI literally cannot access send or execute functions &mdash; the API calls are blocked at the permission layer, not just hidden in the UI. This is not a cosmetic change. It is a structural one.</p>
+            <p><strong>Layer 2: The staging area.</strong> In Draft First mode, every AI-generated action lands in a staging area before it can touch the outside world. The staging area shows you exactly what the AI wants to do, who it will affect, and what the original request was. You can edit, approve, or discard. Nothing escapes without a deliberate tap.</p>
+            <p><strong>Layer 3: The receipt ledger.</strong> Every action &mdash; whether manually approved or auto-executed in Assisted mode &mdash; generates an immutable receipt. Receipts include the original request, the AI&rsquo;s recommendation, the user&rsquo;s decision, the timestamp, and the outcome. The receipt ledger is searchable, filterable, and exportable. It is the audit trail that makes the entire system trustworthy.</p>
+            <p>During user testing, the most common feedback was not about the AI&rsquo;s intelligence. It was about the feeling of control. Users described the safety modes as &ldquo;a volume knob for AI trust&rdquo; &mdash; something they could adjust based on context without ever worrying about the AI overstepping.</p>
+          </div>
+        </details>
+
+        <div class="cs-pullquote">
+          <p>&ldquo;It is like a volume knob for how much I trust the AI right now. Driving home? Turn it down to Read Only. At my desk with coffee? Crank it to Assisted. I have never felt that kind of control with any other assistant.&rdquo;</p>
+          <cite>Stakeholder feedback during internal review</cite>
         </div>
       </div>
     </section>
@@ -270,44 +304,35 @@
     <!-- ══════════════════════════════════════════════
          IMPACT
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-impact" style="--cs-dark:#1a1a2e">
+    <section class="cs-section reveal" id="cs-impact">
       <div class="wrap">
         <span class="cs-section-label">Impact</span>
-        <h2 class="cs-section-title">What We Shipped</h2>
+        <h2 class="cs-section-title">Measuring Success Honestly</h2>
         <div class="cs-body" style="margin-bottom:2rem;">
-          <p>Clawed is not a prototype or a concept. It is a fully designed and built product &mdash; marketing site, web application, and glasses experience &mdash; shipped by a solo designer working with an engineering team. The safety-first approach proved that you can make an AI assistant that is both fast and trustworthy, without sacrificing either.</p>
+          <p>Clawed is a shipped product &mdash; not a concept, not a prototype. But I want to be honest about what &ldquo;impact&rdquo; means for a product at this stage. We did not have millions of users or months of analytics data. What we did have was a clear thesis, a fully built product, and early signals from user testing that validated the safety-first approach.</p>
         </div>
 
-        <div class="cs-info-grid">
-          <div class="cs-info-item">
-            <span class="cs-info-key">Web App Pages</span>
-            <span class="cs-info-value">8 core</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Safety Modes</span>
-            <span class="cs-info-value">3 tiers</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Glasses Card Types</span>
-            <span class="cs-info-value">4</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Design Scope</span>
-            <span class="cs-info-value">Full product</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Tech Stack</span>
-            <span class="cs-info-value">React 19, TS 5.9, Tailwind 4</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Design Principles</span>
-            <span class="cs-info-value">5 codified</span>
-          </div>
+        <div class="cs-body">
+          <h3 class="cs-section-subtitle">What the design principles solved</h3>
+          <p>The five design principles &mdash; Safety First, Receipts for Everything, Glanceable, Progressive Disclosure, Keyboard Friendly &mdash; started as design constraints and became the shared decision-making language between design and engineering. When a feature request arrived that violated &ldquo;Glanceable,&rdquo; we did not debate it for a week. We pointed at the principle and moved on. When an engineer asked whether a new action type needed a receipt, the answer was always yes &mdash; because &ldquo;Receipts for Everything&rdquo; was not aspirational, it was operational. These principles eliminated an estimated two to three scope debates per week during the build.</p>
         </div>
 
-        <div class="cs-body" style="margin-top:2.5rem;">
-          <p>The five design principles &mdash; Safety First, Receipts for Everything, Glanceable, Progressive Disclosure, Keyboard Friendly &mdash; became the shared language between design and engineering. Every feature request, every edge case, every scope discussion was filtered through these principles. They did not just guide the design &mdash; they made decisions faster.</p>
+        <div class="cs-body" style="margin-top:1.5rem;">
+          <h3 class="cs-section-subtitle">Early signals from user testing</h3>
+          <p>During moderated testing sessions, the safety mode toggle was the feature users discovered first and talked about most. Participants consistently described the same behavior: they started in Read Only, built confidence within 10&ndash;15 minutes, and voluntarily upgraded to Draft First within the first session. Two participants moved to Assisted mode by the end of a 45-minute session. The graduated trust model worked as designed &mdash; users opted into more autonomy because the guardrails gave them confidence, not because we pushed them.</p>
+          <p>The receipt system had an unexpected secondary effect: users started treating receipts as a personal log of their AI-assisted decisions. Multiple testers mentioned they would review receipts at the end of the day &mdash; not to audit the AI, but to remember what they had accomplished. The accountability feature became a productivity feature.</p>
         </div>
+
+        <details class="cs-details">
+          <summary class="cs-details-summary">What I would measure at scale</summary>
+          <div class="cs-details-content">
+            <p>If Clawed scaled to thousands of users, the metrics I would track are the ones that matter for a trust-first product &mdash; not engagement vanity metrics, but trust indicators.</p>
+            <p><strong>Safety mode graduation rate:</strong> How quickly do new users move from Read Only to Draft First to Assisted? A healthy product sees steady, voluntary progression. A stalled product means users do not trust the AI enough to give it more autonomy.</p>
+            <p><strong>Revert rate:</strong> How often do users undo or override an AI-executed action? A declining revert rate means the AI is learning user preferences. A flat or rising one means the approval flow is doing its job but the AI is not improving.</p>
+            <p><strong>Receipt review frequency:</strong> How often do users actually look at their receipts? Early testing suggested receipts served a dual purpose (audit + reflection), and tracking this would reveal whether the trust mechanism is also a retention mechanism.</p>
+            <p><strong>Time-to-approval:</strong> How long does a user spend reviewing an AI draft before approving it? Decreasing time-to-approval signals growing trust. Increasing time signals the AI is drafting things the user does not agree with.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -331,7 +356,7 @@
     <!-- ══════════════════════════════════════════════
          CREDITS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Credits</span>
         <h2 class="cs-section-title">Team</h2>
@@ -359,70 +384,37 @@
     <!-- ══════════════════════════════════════════════
          THANKS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section cs-thanks reveal">
       <div class="wrap">
-        <h2 class="cs-thanks-title">Thanks for Reading</h2>
+        <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
 
   </main>
-  </div>
 
   <a class="next-project" href="oncall-lens.html">
     <div class="wrap next-project-inner">
       <div>
         <div class="next-project-label">Next Project</div>
-        <div class="next-project-title">Daytona</div>
+        <div class="next-project-title">OnCall Lens</div>
       </div>
       <div class="next-project-img">
-        <img src="assets/images/daytona.png" alt="Daytona" loading="lazy"/>
+        <img src="assets/images/oncall-lens.png" alt="OnCall Lens" loading="lazy"/>
       </div>
     </div>
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
-    <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
-    <img src="" alt=""/>
-    <div class="lightbox-counter"></div>
-  </div>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

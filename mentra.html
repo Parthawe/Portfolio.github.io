@@ -12,26 +12,19 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
-  <style>
-    :root { --cs-dark: #0a0a0a; }
-  </style>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
+  <div class="dot-grid"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -39,43 +32,39 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
 
-    <!-- ══════════════════════════════════════════════
-         HEADER
-         ══════════════════════════════════════════════ -->
+  <main class="project-main" style="--project-color: #1B4D8F">
+
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">AI Wearables</span>
+          <span class="proj-tag">Head of UI/UX</span>
+          <span class="proj-tag">0&rarr;1 Product</span>
           <span class="proj-tag">Smart Glasses</span>
-          <span class="proj-tag">Product Design</span>
-          <span class="proj-tag">Design Systems</span>
         </div>
-        <h1 class="proj-title">Mentra</h1>
-        <p class="proj-subtitle">Designing the UX for the only AI-powered smart glasses with an app store &mdash; from companion app to open-source OS to developer marketplace</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">Mentra</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">Designing the UX for the only AI-powered smart glasses with an app store &mdash; from companion app to open-source OS to developer marketplace</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Head of UI/UX</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">2025&ndash;Present</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Team</span><span class="proj-info-val">Design lead + cross-functional</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Platform</span><span class="proj-info-val">Wearable OS, Mobile, Web</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/mentra.png" alt="Mentra Glass — AI-powered smart glasses with open-source OS"/></div>
-      <div class="proj-read-time"><span>5 min read</span></div>
+      <div class="proj-hero-img hero-anim hero-anim-4"><img src="assets/images/mentra.png" alt="Mentra Glass — AI-powered smart glasses with open-source OS"/></div>
     </div>
 
-    <!-- Case Study TOC — sticky sidebar -->
     <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
       <div class="cs-toc-inner">
         <span class="cs-toc-label">Contents</span>
@@ -86,14 +75,12 @@
         <a href="#cs-companion" class="cs-toc-link">Companion App</a>
         <a href="#cs-os" class="cs-toc-link">MentraOS</a>
         <a href="#cs-store" class="cs-toc-link">MiniApp Store</a>
+        <a href="#cs-timeline" class="cs-toc-link">Timeline</a>
         <a href="#cs-impact" class="cs-toc-link">Impact</a>
         <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
       </div>
     </nav>
 
-    <!-- ══════════════════════════════════════════════
-         OVERVIEW — THE VISION + MY ROLE
-         ══════════════════════════════════════════════ -->
     <div class="wrap project-overview reveal" id="cs-vision">
       <div class="proj-overview-grid">
         <div class="proj-overview-body">
@@ -107,9 +94,6 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════
-         CONTEXT — WHY SMART GLASSES FAILED BEFORE
-         ══════════════════════════════════════════════ -->
     <section class="cs-section reveal" id="cs-context">
       <div class="wrap">
         <span class="cs-section-label">Context</span>
@@ -119,17 +103,17 @@
           <p>Google Glass had the sensors but no software story. Snap Spectacles had the brand but no utility past fifteen-second clips. North Focals had the elegance but no reason to exist past the first week. Every one treated software as an afterthought and developers as an audience that would show up uninvited.</p>
           <p>The lesson: smart glasses without an ecosystem are an expensive accessory with a charging cable.</p>
         </div>
-
         <div class="cs-callout">
           <p>&ldquo;The smartphone won because of the App Store. Smart glasses will too.&rdquo;</p>
         </div>
+        <blockquote class="cs-pullquote">
+          <p>&ldquo;Every smart glasses company before us shipped hardware and hoped software would follow. We designed the software ecosystem first and built the hardware to serve it.&rdquo;</p>
+          <cite>&mdash; Mentra founding thesis</cite>
+        </blockquote>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         THE BET — MENTRA'S THESIS
-         ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-bet" style="--cs-dark:#111111">
+    <section class="cs-section reveal" id="cs-bet">
       <div class="wrap">
         <span class="cs-section-label">The Bet</span>
         <h2 class="cs-section-title">What Android Did for Phones, MentraOS Does for Glasses</h2>
@@ -141,9 +125,6 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         DESIGN CHALLENGES — FOUR CARDS
-         ══════════════════════════════════════════════ -->
     <section class="cs-section reveal" id="cs-challenges">
       <div class="wrap">
         <span class="cs-section-label">Design Challenges</span>
@@ -151,219 +132,234 @@
         <div class="cs-body">
           <p>Smart glasses are not &ldquo;mobile design but smaller.&rdquo; The screen is in your peripheral vision, the input is voice and gesture, and the context is the real world. Every assumption from a decade of screen design had to be thrown out.</p>
         </div>
-
         <div class="cs-feature-grid">
           <div class="cs-feature-card">
             <div class="cs-feature-card-title">The Screen You Never Look At</div>
-            <div class="cs-feature-card-desc">The display lives in peripheral vision, not dead center. UI elements must be glanceable, not readable. Hierarchy is about where in the visual field something appears, not font size. I had to unlearn centering content and design for the edges of attention.</div>
+            <div class="cs-feature-card-desc">The display lives in peripheral vision, not dead center. UI elements must be glanceable, not readable. Hierarchy is about where in the visual field something appears, not font size.</div>
           </div>
           <div class="cs-feature-card">
             <div class="cs-feature-card-title">Sixty Seconds or You Lose Them</div>
-            <div class="cs-feature-card-desc">New form factor, zero patience. I designed a four-step onboarding &mdash; slide on, download app, pair, say &ldquo;Hey Mentra&rdquo; &mdash; that gets users from unboxing to first interaction in under a minute. No tutorials, no walkthrough. Wear them and talk.</div>
+            <div class="cs-feature-card-desc">New form factor, zero patience. I designed a four-step onboarding that gets users from unboxing to first interaction in under a minute. No tutorials, no walkthrough. Wear them and talk.</div>
           </div>
           <div class="cs-feature-card">
-            <div class="cs-feature-card-title">If They Won&rsquo;t Build, Nothing Else Matters</div>
-            <div class="cs-feature-card-desc">An app store is only as good as its apps. I designed the SDK docs, developer portal, and submission flow to make building for glasses feel as natural as building for phones &mdash; so developers choose this platform first, not as an afterthought.</div>
+            <div class="cs-feature-card-title">If They Won't Build, Nothing Else Matters</div>
+            <div class="cs-feature-card-desc">An app store is only as good as its apps. I designed the SDK docs, developer portal, and submission flow to make building for glasses feel as natural as building for phones.</div>
           </div>
           <div class="cs-feature-card">
             <div class="cs-feature-card-title">A Camera on Your Face Is a Social Contract</div>
-            <div class="cs-feature-card-desc">Post-Google-Glass, face-worn cameras carry social baggage. The challenge was not hardware weight &mdash; it was emotional weight. I designed visual indicators, privacy modes, and interaction patterns that build trust with both the wearer and everyone in the room.</div>
+            <div class="cs-feature-card-desc">Post-Google-Glass, face-worn cameras carry social baggage. I designed visual indicators, privacy modes, and interaction patterns that build trust with both the wearer and everyone in the room.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         COMPANION APP
-         ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--gray reveal" id="cs-companion">
+    <section class="cs-section reveal" id="cs-companion">
       <div class="wrap">
         <span class="cs-section-label">Companion App</span>
         <h2 class="cs-section-title">The Control Center in Your Pocket</h2>
         <div class="cs-body">
-          <p>The companion app is not a remote control &mdash; it is the bridge between your phone and your face. It handles everything the glasses should not: deep configuration, miniapp management, firmware updates, AI settings. The design rule: anything requiring more than three words of reading happens on the phone, not the glasses.</p>
-          <p>Pairing was the first interaction I obsessed over. Bluetooth pairing is traditionally a five-minute frustration. I designed a one-tap flow &mdash; scan the QR code on the glasses case, connection established, personalized home screen &mdash; all in under thirty seconds. The glasses confirm with a haptic pulse and a voice prompt: &ldquo;Connected. Say Hey Mentra to get started.&rdquo;</p>
+          <p>The companion app is not a remote control &mdash; it is the bridge between your phone and your face. It handles everything the glasses should not: deep configuration, miniapp management, firmware updates, AI settings.</p>
+          <p>Pairing was the first interaction I obsessed over. Bluetooth pairing is traditionally a five-minute frustration. I designed a one-tap flow &mdash; scan the QR code on the glasses case, connection established, personalized home screen &mdash; all in under thirty seconds.</p>
         </div>
-
         <div class="cs-steps">
           <div class="cs-step">
             <div class="cs-step-num">1</div>
             <div class="cs-step-title">Slide On</div>
-            <div class="cs-step-desc">Unfold the temples and the glasses power on. No buttons, no long-press. The accelerometer detects the motion and boots MentraOS in under two seconds.</div>
+            <div class="cs-step-desc">Unfold the temples and the glasses power on. The accelerometer detects the motion and boots MentraOS in under two seconds.</div>
           </div>
           <div class="cs-step">
             <div class="cs-step-num">2</div>
             <div class="cs-step-title">Download App</div>
-            <div class="cs-step-desc">A card in the display directs you to download the companion app. NFC in the case triggers the download on Android &mdash; one less step between unboxing and using.</div>
+            <div class="cs-step-desc">A card in the display directs you to download the companion app. NFC in the case triggers the download on Android.</div>
           </div>
           <div class="cs-step">
             <div class="cs-step-num">3</div>
             <div class="cs-step-title">Pair</div>
-            <div class="cs-step-desc">Scan the QR code. One tap to confirm. The phone and glasses handshake over Bluetooth LE and the connection is persistent &mdash; no re-pairing, no &ldquo;searching for device.&rdquo;</div>
+            <div class="cs-step-desc">Scan the QR code. One tap to confirm. The phone and glasses handshake over Bluetooth LE and the connection is persistent.</div>
           </div>
           <div class="cs-step">
             <div class="cs-step-num">4</div>
             <div class="cs-step-title">&ldquo;Hey Mentra&rdquo;</div>
-            <div class="cs-step-desc">The wake word activates the AI. Directions, translation, song ID, calendar &mdash; the first interaction sets the tone: this is not a screen on your face. It is an intelligence you wear.</div>
+            <div class="cs-step-desc">The wake word activates the AI. Directions, translation, song ID, calendar &mdash; the first interaction sets the tone.</div>
           </div>
         </div>
-
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Companion app mockup — home screen, device pairing flow, and miniapp management interface</span>
+        </div>
         <div class="cs-body" style="margin-top:2rem;">
-          <p>Beyond onboarding, the app is the management layer for the entire ecosystem: browse miniapps, configure per-app notifications, adjust display settings, manage privacy. I built it on a single-tab architecture &mdash; no hamburger menus, no buried settings. Everything is two taps away, because this should feel like a thirty-second tool, not a thirty-minute app.</p>
+          <p>Beyond onboarding, the app is the management layer for the entire ecosystem: browse miniapps, configure per-app notifications, adjust display settings, manage privacy. I built it on a single-tab architecture &mdash; everything is two taps away.</p>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         MENTRA OS — THE GLASSES INTERFACE
-         ══════════════════════════════════════════════ -->
     <section class="cs-section reveal" id="cs-os">
       <div class="wrap">
         <span class="cs-section-label">MentraOS</span>
         <h2 class="cs-section-title">An OS That Disappears Until You Need It</h2>
         <div class="cs-body">
           <p>MentraOS is open-source &mdash; a product decision that became the defining design constraint. An open OS means developers will build things I cannot predict, on a display I cannot control, for users I will never meet. The design system had to be opinionated enough to feel cohesive and flexible enough for miniapps that do not exist yet.</p>
-          <p>The HUD operates on a principle I call &ldquo;glance, don&rsquo;t gaze.&rdquo; Every piece of information must be understood in under two seconds of peripheral attention. Notifications arrive as translucent cards at the edge of vision, auto-dismissing after three seconds unless engaged. No notification center &mdash; if you missed it, the companion app has the history.</p>
+          <p>The HUD operates on a principle I call &ldquo;glance, don&rsquo;t gaze.&rdquo; Every piece of information must be understood in under two seconds of peripheral attention.</p>
         </div>
-
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">MentraOS HUD design — glanceable interface showing ambient notifications, AI waveform, and contextual cards in peripheral vision</span>
+        </div>
         <h3 class="cs-section-subtitle">Voice-First, Screen-Second</h3>
         <div class="cs-body">
-          <p>Voice is the primary input &mdash; not because it is always best, but because your hands are busy living your life. The AI handles natural language queries, contextual responses from the camera feed, and proactive suggestions from time and location. I designed it to follow conversation, not command-line syntax: you say &ldquo;Hey Mentra, remind me to check the oven in five,&rdquo; not &ldquo;Mentra, set timer five minutes.&rdquo;</p>
-          <p>Visual feedback is minimal by design: a thin amber waveform that pulses while listening and settles when processing. No full-screen takeover, no animated avatar, no spinner. The glasses should feel barely there &mdash; until you need them.</p>
+          <p>Voice is the primary input. The AI handles natural language queries, contextual responses from the camera feed, and proactive suggestions from time and location. Visual feedback is minimal by design: a thin amber waveform that pulses while listening and settles when processing.</p>
         </div>
-
         <h3 class="cs-section-subtitle">Notification Architecture</h3>
         <div class="cs-body">
-          <p>On a phone, a badge sits quietly until you look. On glasses, every notification competes with reality. I designed three tiers: ambient (subtle color shift at the frame edge), informational (translucent one-line card), and urgent (persistent card with haptic pulse requiring voice dismissal). Users assign tiers per app, and MentraOS learns from behavior &mdash; consistently ignore an app within one second and it auto-downgrades to ambient.</p>
+          <p>On glasses, every notification competes with reality. I designed three tiers: ambient (subtle color shift at the frame edge), informational (translucent one-line card), and urgent (persistent card with haptic pulse requiring voice dismissal). Users assign tiers per app, and MentraOS learns from behavior.</p>
+        </div>
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Notification architecture diagram — three-tier system showing ambient, informational, and urgent notification patterns with visual hierarchy</span>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         MINIAPP STORE
-         ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-store" style="--cs-dark:#0d0d0d">
+    <section class="cs-section reveal" id="cs-store">
       <div class="wrap">
         <span class="cs-section-label">MiniApp Store</span>
         <h2 class="cs-section-title">The App Store That Lives on Your Face</h2>
         <div class="cs-body">
-          <p>This is what separates Mentra from everything else. Meta Ray-Ban Gen 2 ships at the same $299 price point but is a closed system &mdash; no app store, no third-party development, no ecosystem growth beyond what Meta decides to build. Mentra is the opposite: an open marketplace where any developer can ship.</p>
-          <p>Designing a store for a HUD meant rethinking every convention. No icon grid. No screenshot carousel. The on-glasses store is voice-navigated and context-curated &mdash; ask for a translation app while looking at a foreign menu, and it surfaces relevant miniapps before you finish the sentence.</p>
+          <p>This is what separates Mentra from everything else. Meta Ray-Ban Gen 2 ships at the same $299 price point but is a closed system. Mentra is the opposite: an open marketplace where any developer can ship.</p>
+          <p>Designing a store for a HUD meant rethinking every convention. No icon grid. No screenshot carousel. The on-glasses store is voice-navigated and context-curated.</p>
         </div>
-
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">MiniApp Store interface — voice-navigated store layout with contextual app suggestions, category browsing, and developer submission portal</span>
+        </div>
         <h3 class="cs-section-subtitle">Discoverability Without Browsing</h3>
         <div class="cs-body">
-          <p>On a phone, discovery means browsing. On glasses, discovery means context. The store surfaces miniapps from three signals: what you are doing (accelerometer), where you are (GPS + scene recognition), and what you are asking for (natural language intent). The result feels less like a catalog and more like a knowledgeable friend who always knows the right tool.</p>
-          <p>Deeper browsing happens in the companion app &mdash; categories, reviews, developer profiles, curated collections. I added trust signals specific to wearables: privacy badges showing exactly what data each miniapp accesses, installation size relative to local storage, and battery impact ratings from real-world testing.</p>
+          <p>The store surfaces miniapps from three signals: what you are doing, where you are, and what you are asking for. The result feels less like a catalog and more like a knowledgeable friend who always knows the right tool.</p>
         </div>
-
         <h3 class="cs-section-subtitle">Developer Experience</h3>
         <div class="cs-body">
-          <p>An app store lives or dies by its developers. I designed the portal and SDK docs with the same care as the consumer product. Submission is three steps: upload, metadata, review. The docs follow a &ldquo;first miniapp in 15 minutes&rdquo; philosophy &mdash; zero to working hello-world in a single sitting. Pre-built UI components auto-conform to the MentraOS design system, so developers ship faster without worrying about HUD rendering.</p>
+          <p>I designed the portal and SDK docs with the same care as the consumer product. Submission is three steps: upload, metadata, review. The docs follow a &ldquo;first miniapp in 15 minutes&rdquo; philosophy.</p>
+        </div>
+        <blockquote class="cs-pullquote">
+          <p>&ldquo;An app store on your face sounds absurd until you use it. Then every other pair of smart glasses feels like a flip phone.&rdquo;</p>
+          <cite>&mdash; Early beta tester feedback</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="cs-section reveal" id="cs-timeline">
+      <div class="wrap">
+        <span class="cs-section-label">Design Evolution</span>
+        <h2 class="cs-section-title">From Zero to Shipping Product</h2>
+        <div class="cs-body">
+          <p>Building the UX for an entirely new product category meant evolving the design as our understanding of face-worn computing deepened. Here is how the product and its design language matured.</p>
+        </div>
+        <div class="cs-timeline">
+          <div class="cs-timeline-item">
+            <span class="cs-timeline-date">Q1 2025</span>
+            <div class="cs-timeline-content">
+              <h4>Foundation &amp; Research</h4>
+              <p>Competitive audit of every smart glasses product since Google Glass. Established core UX principles: glance-not-gaze, voice-first input, and peripheral-priority information hierarchy. Built the initial design system for MentraOS.</p>
+            </div>
+          </div>
+          <div class="cs-timeline-item">
+            <span class="cs-timeline-date">Q2 2025</span>
+            <div class="cs-timeline-content">
+              <h4>Companion App &amp; Onboarding</h4>
+              <p>Designed and iterated the companion app from wireframes to high-fidelity. Reduced the onboarding flow from twelve steps to four. Validated the one-tap QR pairing pattern with hardware prototypes.</p>
+            </div>
+          </div>
+          <div class="cs-timeline-item">
+            <span class="cs-timeline-date">Q3 2025</span>
+            <div class="cs-timeline-content">
+              <h4>MentraOS HUD &amp; Notification System</h4>
+              <p>Developed the three-tier notification architecture. Iterated the HUD layout through Protopie simulations and on-device testing. Established the amber waveform as the AI's visual signature.</p>
+            </div>
+          </div>
+          <div class="cs-timeline-item">
+            <span class="cs-timeline-date">Q4 2025</span>
+            <div class="cs-timeline-content">
+              <h4>MiniApp Store &amp; Developer Platform</h4>
+              <p>Shipped the MiniApp Store design with voice-navigated browsing. Built the developer portal, SDK documentation, and submission flow. Designed the review and curation system.</p>
+            </div>
+          </div>
+          <div class="cs-timeline-item">
+            <span class="cs-timeline-date">Q1 2026</span>
+            <div class="cs-timeline-content">
+              <h4>Launch &amp; Iteration</h4>
+              <p>Mentra Glass shipped at $299 with Batch 2 at 88% claimed. Ongoing iteration on the design system based on developer and user feedback. Expanding the notification architecture with AI-driven priority learning.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         IMPACT — METRICS
-         ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-impact" style="--cs-dark:#1a1a2e">
+    <section class="cs-section reveal" id="cs-impact">
       <div class="wrap">
         <span class="cs-section-label">Impact</span>
         <h2 class="cs-section-title">Shipping, Not Pitching</h2>
         <div class="cs-body" style="margin-bottom:2rem;">
-          <p>Mentra Live is not a concept deck. It is shipping at $299, backed by the founders of YouTube, Android, and Pebble &mdash; plus Y Combinator, Amazon, and Toyota Ventures. When the people who built the last three platform shifts put their names on a smart glass startup, the ecosystem thesis stops being credible and starts being inevitable. Press coverage spans Forbes, GamesBeat, Gizmodo, Android Police, and 9to5Google.</p>
+          <p>Mentra Live is not a concept deck. It is shipping at $299, backed by the founders of YouTube, Android, and Pebble &mdash; plus Y Combinator, Amazon, and Toyota Ventures. Press coverage spans Forbes, GamesBeat, Gizmodo, Android Police, and 9to5Google.</p>
         </div>
-
+        <div class="cs-stat-grid" style="margin-bottom:2rem;">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Onboarding Time</span>
+            <span class="cs-stat-value">&lt; 60s</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Batch 2 Claimed</span>
+            <span class="cs-stat-value">88%</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Onboarding Steps</span>
+            <span class="cs-stat-value">12 &rarr; 4</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Design Surfaces</span>
+            <span class="cs-stat-value">5</span>
+          </div>
+        </div>
         <div class="cs-info-grid">
-          <div class="cs-info-item">
-            <span class="cs-info-key">Price</span>
-            <span class="cs-info-value">$299</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Weight</span>
-            <span class="cs-info-value">43 grams</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Battery Life</span>
-            <span class="cs-info-value">12+ hours</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Camera FOV</span>
-            <span class="cs-info-value">119&deg;</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Prescription</span>
-            <span class="cs-info-value">Ready</span>
-          </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Batch 2 Claimed</span>
-            <span class="cs-info-value">88%</span>
-          </div>
+          <div class="cs-info-item"><span class="cs-info-key">Price</span><span class="cs-info-value">$299</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Weight</span><span class="cs-info-value">43g</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Battery Life</span><span class="cs-info-value">12+ hrs</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Camera FOV</span><span class="cs-info-value">119&deg;</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">Prescription</span><span class="cs-info-value">Ready</span></div>
+          <div class="cs-info-item"><span class="cs-info-key">OS</span><span class="cs-info-value">Open Source</span></div>
         </div>
-
         <div class="cs-callout" style="margin-top:2.5rem;">
           <p>&ldquo;Backed by the founders of YouTube, Android &amp; Pebble &mdash; plus Y&nbsp;Combinator, Amazon &amp; Toyota Ventures.&rdquo;</p>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         REFLECTIONS
-         ══════════════════════════════════════════════ -->
     <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
         <span class="cs-section-label">Reflections</span>
         <h2 class="cs-section-title">What Building for the Face Taught Me</h2>
-
         <div class="cs-num-list">
-          <li><strong>World-first design is a different discipline.</strong> On a phone, the screen is the world. On glasses, the world is the screen. Every decision starts with one question: does this help the user engage with reality, or pull them away? If it pulls, the design is wrong &mdash; no matter how good it looks in Figma.</li>
-          <li><strong>Constraint is the best creative force.</strong> A peripheral display, 43 grams, voice-first input &mdash; no hover states, no scroll, no tap targets. What remains is the essence of the information, and that essence is usually more powerful than the decorated version I would have built on a phone.</li>
-          <li><strong>Open ecosystems demand opinionated design systems.</strong> The more open the platform, the more disciplined the design language must be. I built tokens and components to be strict where consistency matters (typography, spacing, notifications) and flexible where creativity matters (color, layout, animation).</li>
-          <li><strong>Trust is a design material.</strong> Privacy indicators, recording lights, clear permissions &mdash; these are not features. They are the foundation that makes every other feature possible. Without trust, the best AI in the world is just a creepy camera.</li>
+          <li><strong>World-first design is a different discipline.</strong> On a phone, the screen is the world. On glasses, the world is the screen. Every decision starts with: does this help the user engage with reality, or pull them away?</li>
+          <li><strong>Constraint is the best creative force.</strong> A peripheral display, 43 grams, voice-first input &mdash; no hover states, no scroll, no tap targets. What remains is the essence of the information.</li>
+          <li><strong>Open ecosystems demand opinionated design systems.</strong> The more open the platform, the more disciplined the design language must be.</li>
+          <li><strong>Trust is a design material.</strong> Privacy indicators, recording lights, clear permissions &mdash; these are not features. They are the foundation that makes every other feature possible.</li>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         CREDITS
-         ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Credits</span>
         <h2 class="cs-section-title">Team</h2>
         <div class="cs-credits">
-          <div class="cs-credit-item">
-            <span class="cs-credit-role">Head of UI/UX</span>
-            <span class="cs-credit-name">Parth Pawar</span>
-          </div>
-          <div class="cs-credit-item">
-            <span class="cs-credit-role">Company</span>
-            <span class="cs-credit-name">Mentra Glass</span>
-          </div>
-          <div class="cs-credit-item">
-            <span class="cs-credit-role">Tools</span>
-            <span class="cs-credit-name">Figma, Protopie, Blender</span>
-          </div>
-          <div class="cs-credit-item">
-            <span class="cs-credit-role">Platforms</span>
-            <span class="cs-credit-name">MentraOS, iOS, Android, Web</span>
-          </div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Head of UI/UX</span><span class="cs-credit-name">Parth Pawar</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Company</span><span class="cs-credit-name">Mentra Glass</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Tools</span><span class="cs-credit-name">Figma, Protopie, Blender</span></div>
+          <div class="cs-credit-item"><span class="cs-credit-role">Platforms</span><span class="cs-credit-name">MentraOS, iOS, Android, Web</span></div>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-         THANKS
-         ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#0a0a0a">
-      <div class="wrap">
-        <h2 class="cs-thanks-title">Thanks for Reading</h2>
-      </div>
-    </section>
+    <div class="cs-thanks" style="margin-top:4rem;">
+      <h2 class="cs-thanks-title">Thank You</h2>
+    </div>
 
   </main>
-  </div>
 
   <a class="next-project" href="zentipay.html">
     <div class="wrap next-project-inner">
@@ -378,48 +374,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
-    <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
-    <img src="" alt=""/>
-    <div class="lightbox-counter"></div>
-  </div>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -12,23 +12,19 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
+  <div class="dot-grid"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -36,21 +32,20 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <main class="project-main" style="--project-color: #D53F8C">
 
     <!-- ══════════════════════════════════════════════
          SLIDE 1 — Hero (white background)
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
       <div class="proj-meta reveal">
         <div class="proj-tags"><span class="proj-tag">UX</span><span class="proj-tag">Brand</span><span class="proj-tag">Product</span></div>
@@ -77,7 +72,7 @@
     <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Overview</p>
-        <h3 class="cs-display" style="color: var(--accent);">Developing OTT Platform for connoisseurs and professionals for opera, ballet, symphonies, and classical music.</h3>
+        <h3 class="cs-display" style="color: var(--project-color, #D53F8C);">Developing OTT Platform for connoisseurs and professionals for opera, ballet, symphonies, and classical music.</h3>
 
         <div class="cs-label-row">
           <span class="cs-label-row-key">Summary</span>
@@ -150,7 +145,7 @@
         <p class="cs-section-label">Research</p>
         <h3 class="cs-section-title">Problem Statement</h3>
 
-        <p class="cs-section-subtitle" style="color:var(--accent); margin-top:1rem;">How To</p>
+        <p class="cs-section-subtitle" style="color:var(--project-color, #D53F8C); margin-top:1rem;">How To</p>
 
         <div class="cs-steps">
           <div class="cs-step">
@@ -193,7 +188,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 4 — Process Ahead (light gray bg)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--gray reveal">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Process</p>
         <h3 class="cs-section-title">Process Ahead</h3>
@@ -235,27 +230,27 @@
         <h3 class="cs-section-title">Focusing on Awareness</h3>
 
         <div class="cs-quote-grid" style="margin-bottom:2.5rem;">
-          <div class="cs-quote-card" style="background:rgba(14,14,14,0.03); border:1px solid var(--ink-10); border-radius:12px;">
+          <div class="cs-quote-card" style="background:var(--ink-04); border:1px solid var(--ink-12); border-radius:12px;">
             <p style="color:var(--ink); font-weight:600; margin-bottom:0.5rem;">Experiment 1</p>
-            <p style="color:var(--ink); opacity:0.75;">Aim: to understand if collaborating with magazines helps us with awareness.</p>
+            <p style="color:var(--ink);">Aim: to understand if collaborating with magazines helps us with awareness.</p>
           </div>
-          <div class="cs-quote-card" style="background:rgba(14,14,14,0.03); border:1px solid var(--ink-10); border-radius:12px;">
+          <div class="cs-quote-card" style="background:var(--ink-04); border:1px solid var(--ink-12); border-radius:12px;">
             <p style="color:var(--ink); font-weight:600; margin-bottom:0.5rem;">Experiment 2</p>
-            <p style="color:var(--ink); opacity:0.75;">Aim: to confirm the set 3 user segment, and see how they react to free trial campaign.</p>
+            <p style="color:var(--ink);">Aim: to confirm the set 3 user segment, and see how they react to free trial campaign.</p>
           </div>
-          <div class="cs-quote-card" style="background:rgba(14,14,14,0.03); border:1px solid var(--ink-10); border-radius:12px;">
+          <div class="cs-quote-card" style="background:var(--ink-04); border:1px solid var(--ink-12); border-radius:12px;">
             <p style="color:var(--ink); font-weight:600; margin-bottom:0.5rem;">Experiment 3</p>
-            <p style="color:var(--ink); opacity:0.75;">Aim: to experiment where do the users land after targeting ads and evaluate the response.</p>
+            <p style="color:var(--ink);">Aim: to experiment where do the users land after targeting ads and evaluate the response.</p>
           </div>
         </div>
 
         <h4 class="cs-section-subtitle">Plan of Action</h4>
         <div class="cs-process-flow">
-          <span class="cs-process-pill" style="background:var(--accent);">Awareness</span>
+          <span class="cs-process-pill" style="background:var(--project-color, #D53F8C);">Awareness</span>
           <span class="cs-process-pill" style="background:#4a7c59;">Discovery</span>
           <span class="cs-process-pill" style="background:var(--ink);">Validation</span>
           <span class="cs-process-pill" style="background:#c9a94e;">Targeting</span>
-          <span class="cs-process-pill" style="background:rgba(14,14,14,0.08); color:var(--ink);">Yay! We got a Sign Up</span>
+          <span class="cs-process-pill" style="background:var(--ink-08); color:var(--ink);">Yay! We got a Sign Up</span>
         </div>
 
         <div class="cs-body" style="margin-top:2rem;">
@@ -312,7 +307,7 @@
     <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Output</p>
-        <h3 class="cs-display" style="text-align:center;"><span style="color:var(--accent); font-size:clamp(3rem,8vw,6rem);">30,000+</span> <span style="font-style:italic;">Different Ads</span></h3>
+        <h3 class="cs-display" style="text-align:center;"><span style="color:var(--project-color, #D53F8C); font-size:clamp(3rem,8vw,6rem);">30,000+</span> <span style="font-style:italic;">Different Ads</span></h3>
         <div class="cs-body" style="margin:0 auto 2rem; text-align:center; max-width:680px;">
           <p>We produced over 30,000 different ad creatives tailored to each customer segment and platform, covering shows like Romeo and Juliet, Hercules, Carmen, Der Zwerg, Cinderella, Macbeth, Fortunio, Agrippina, Jake Arditti, and many more.</p>
         </div>
@@ -332,7 +327,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 8 — Platform Optimization (dark mauve)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#5a3a3a;">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Product Design</p>
         <h3 class="cs-section-title">Platform Optimization</h3>
@@ -342,12 +337,12 @@
 
         <div class="cs-feature-grid">
           <div class="cs-feature-card">
-            <div class="cs-feature-card-title" style="color:var(--accent);">Watch</div>
+            <div class="cs-feature-card-title" style="color:var(--project-color, #D53F8C);">Watch</div>
             <div class="cs-feature-card-title">Live Streams And Premieres</div>
             <div class="cs-feature-card-desc">The explore tab surfaces recorded streams, live performances, summer festivals, and premieres from opera houses worldwide &mdash; including titles like Siberia, Nerone, La Traviata, and Moise et Pharaon.</div>
           </div>
           <div class="cs-feature-card">
-            <div class="cs-feature-card-title" style="color:var(--accent);">Find</div>
+            <div class="cs-feature-card-title" style="color:var(--project-color, #D53F8C);">Find</div>
             <div class="cs-feature-card-title">Musical Works</div>
             <div class="cs-feature-card-desc">A powerful search experience lets users find specific works like Macbeth with preview clips, full performances, and related works like Lady Macbeth of Mtensk.</div>
           </div>
@@ -363,21 +358,21 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 9 — More Platform Features (dark brown)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#3a2525;">
+    <section class="cs-section reveal">
       <div class="wrap">
         <div class="cs-feature-grid">
           <div class="cs-feature-card">
-            <div class="cs-feature-card-title" style="color:var(--accent);">Find</div>
+            <div class="cs-feature-card-title" style="color:var(--project-color, #D53F8C);">Find</div>
             <div class="cs-feature-card-title">Composers</div>
             <div class="cs-feature-card-desc">Search by composer name like Mozart to discover their full catalogue of available performances and recordings.</div>
           </div>
           <div class="cs-feature-card">
-            <div class="cs-feature-card-title" style="color:var(--accent);">Find</div>
+            <div class="cs-feature-card-title" style="color:var(--project-color, #D53F8C);">Find</div>
             <div class="cs-feature-card-title">Companies &amp; Festivals</div>
             <div class="cs-feature-card-desc">Search by opera house or festival &mdash; such as the Royal Opera House &mdash; to browse collections including Giselle, The Winter's Tale, Madama Butterfly, The Nutcracker, The Sleeping Beauty, and Alice's Adventures in Wonderland.</div>
           </div>
           <div class="cs-feature-card" style="grid-column: 1 / -1;">
-            <div class="cs-feature-card-title" style="color:var(--accent);">Save And</div>
+            <div class="cs-feature-card-title" style="color:var(--project-color, #D53F8C);">Save And</div>
             <div class="cs-feature-card-title">Watch Offline</div>
             <div class="cs-feature-card-desc">Users can download performances to watch offline, making the platform accessible even without an internet connection.</div>
           </div>
@@ -393,7 +388,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 10 — Credits & Thanks (very dark brown)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1212;">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Team</p>
         <h3 class="cs-section-title">Credits</h3>
@@ -422,10 +417,6 @@
           <span class="cs-tag-item">Experience Design</span>
         </div>
 
-        <h4 class="cs-section-subtitle">My Role</h4>
-        <div class="cs-body">
-          <p>As a UI Designer &amp; Research, my role was to get to identify the audience and Create Awareness by helping them engage by using Google, Facebook Ads &amp; giving a smooth experience on the OTT Platform for easy movement from Home to the Opera show they want to watch. Also watch across all screens in HD: computers, tablets, smartphones, and smart TVs.</p>
-        </div>
       </div>
     </section>
 
@@ -434,18 +425,26 @@
       <img src="Assets/Projects/CueTV/Desktop/10.jpg" alt="Credits — performance stills from opera, ballet, and classical productions. Thanks for Watching! Typeface: Butler's Slice. Done with MonsoonFish." loading="lazy"/>
     </div>
 
-    <!-- ── Thanks Section ── -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#1a0f0f;">
+    <!-- ── Reflections ── -->
+    <section class="cs-section reveal">
       <div class="wrap">
-        <h2 class="cs-thanks-title">Thanks for Watching!</h2>
-        <div class="cs-body" style="text-align:center; max-width:100%; margin:1rem auto 0;">
-          <p><em>Done with MonsoonFish</em></p>
+        <p class="cs-section-label">Reflections</p>
+        <h2 class="cs-section-title">What I Learned</h2>
+        <div class="cs-body" style="max-width:720px;">
+          <p>CueTV was my first experience designing for a niche audience at scale. The natural instinct was to make the platform feel like Netflix or Spotify&mdash;familiar, broad, optimized for casual browsing. But our users were connoisseurs, not casual viewers. They knew exactly what they wanted (a specific production of Carmen by a specific company) and needed tools to find it precisely, not algorithms to surface it serendipitously.</p>
+          <p>The ad system taught me that targeting is a design problem, not just a marketing problem. When you produce 30,000+ ad variations, the creative decisions&mdash;which image, which copy, which CTA&mdash;become a design system unto themselves. I built templates and rules so that every variation maintained brand coherence while speaking to its specific audience segment. This systematic approach to creative production is a skill I have carried into every project since.</p>
+          <p><em>Done with MonsoonFish.</em></p>
         </div>
       </div>
     </section>
 
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
+      </div>
+    </section>
+
   </main>
-  </div>
 
     <a class="next-project" href="ATPS.html">
     <div class="wrap next-project-inner">
@@ -460,39 +459,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

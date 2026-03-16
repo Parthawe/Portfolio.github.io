@@ -12,26 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
-  <style>
-    :root { --cs-blue: #5B2D8E; --cs-dark: #1a0e2e; }
-  </style>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -39,31 +31,31 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
+  <main class="project-main" style="--project-color: #6B2D8B">
 
     <!-- ══════════════════════════════════════════════
          SLIDE 1 — HERO
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">UI/UX</span>
           <span class="proj-tag">Data Visualization</span>
           <span class="proj-tag">Research</span>
         </div>
-        <h1 class="proj-title">Office of Diversity Report &amp; Data Visualization</h1>
-        <p class="proj-subtitle">Interactive IDBEA report for NYU Tisch School of the Arts</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">Office of Diversity Report &amp; Data Visualization</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">Interactive IDBEA report for NYU Tisch School of the Arts</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">Office Of Diversity TSOA</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">User Research, UI/UX, Prototyping</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Website Publishing Designer</span></div>
@@ -71,7 +63,7 @@
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2024</span></div>
         </div>
       </div>
-      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/Office of Diversity/1.jpg" alt="Office of Diversity Report — mobile and laptop mockups of the IDBEA 2024 report" loading="lazy"/></div>
+      <div class="proj-hero-img proj-hero-img--full hero-anim hero-anim-4"><img src="Assets/Projects/Office of Diversity/1.jpg" alt="Office of Diversity Report — mobile and laptop mockups of the IDBEA 2024 report" loading="lazy"/></div>
     </div>
 
     <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
@@ -88,7 +80,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 2 — SUMMARY / CHALLENGES / ROLE / TOOLS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#5B2D8E">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display" style="max-width:26ch;">Translating complex data into engaging, accessible visuals that foster deeper community engagement.</h2>
 
@@ -139,7 +131,7 @@
       <div class="wrap">
         <div class="cs-two-col">
           <div>
-            <h2 class="cs-display" style="color:#5B2D8E;">The IDBEA Report</h2>
+            <h2 class="cs-display" style="color:var(--project-color);">The IDBEA Report</h2>
             <div class="cs-body">
               <p>Tisch&rsquo;s Office of Diversity champions Inclusion, Diversity, Belonging, Equity, and Accessibility (IDBEA) across the school. The 2024 report documents a decade of progress &mdash; from early listening sessions and foundational learning to the establishment of a dedicated office and committee structures that ensure lasting institutional change.</p>
             </div>
@@ -155,20 +147,20 @@
       <div class="wrap">
         <span class="cs-section-label">Project Goals</span>
         <h2 class="cs-section-title">What we set out to achieve</h2>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
-          <div class="cs-feature-card" style="text-align:center;">
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Data Precision</div>
             <div class="cs-feature-card-desc">Visualize complex data accurately while keeping it approachable and easy to understand.</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Interactivity</div>
             <div class="cs-feature-card-desc">Build dynamic components that encourage exploration and engagement with milestones.</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Accessibility</div>
             <div class="cs-feature-card-desc">Ensure the report meets WCAG standards and is usable by everyone in the community.</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Collaborative Review</div>
             <div class="cs-feature-card-desc">Integrate continuous feedback from faculty, students, and staff throughout the process.</div>
           </div>
@@ -176,34 +168,38 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451" id="cs-process">
+    <section class="cs-section reveal" id="cs-process">
       <div class="wrap">
         <span class="cs-section-label">Design Process</span>
-        <h2 class="cs-section-title" style="text-align:center;">From scope to delivery</h2>
-        <div class="cs-steps" style="grid-template-columns:repeat(6,1fr);margin-top:3rem">
-          <div class="cs-step" style="text-align:center">
+        <h2 class="cs-section-title">From scope to delivery</h2>
+        <div class="cs-steps">
+          <div class="cs-step">
+            <div class="cs-step-num">01</div>
             <div class="cs-step-title">Understanding Scope</div>
             <div class="cs-step-desc">Key metrics, themes &amp; milestones</div>
           </div>
-          <div class="cs-step" style="text-align:center">
-            <div class="cs-step-num">&#9670;</div>
+          <div class="cs-step">
+            <div class="cs-step-num">02</div>
             <div class="cs-step-title">Design Concept</div>
             <div class="cs-step-desc">Interactive timeline &amp; visual direction</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
+            <div class="cs-step-num">03</div>
             <div class="cs-step-title">Data Visualization</div>
             <div class="cs-step-desc">D3.js, Tableau, charts &amp; graphs</div>
           </div>
-          <div class="cs-step" style="text-align:center">
-            <div class="cs-step-num">&#9670;</div>
+          <div class="cs-step">
+            <div class="cs-step-num">04</div>
             <div class="cs-step-title">User Engagement</div>
             <div class="cs-step-desc">Clickable data points &amp; real-time views</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
+            <div class="cs-step-num">05</div>
             <div class="cs-step-title">Collaboration</div>
             <div class="cs-step-desc">Feedback integration with stakeholders</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
+            <div class="cs-step-num">06</div>
             <div class="cs-step-title">Accessibility</div>
             <div class="cs-step-desc">WCAG 2.1 Level AA compliance</div>
           </div>
@@ -221,16 +217,16 @@
         <div class="cs-body">
           <p>The first step involved deep-diving into the report&rsquo;s key metrics, themes, and milestones. Three core focus areas emerged:</p>
         </div>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
-          <div class="cs-feature-card" style="text-align:center;">
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Learning &amp; Engagement</div>
             <div class="cs-feature-card-desc">Educational programs and community workshops driving awareness across Tisch.</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Restorative Practices</div>
             <div class="cs-feature-card-desc">Addressing IDBEA concerns and global events through structured case resolution.</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Collaborative Efforts</div>
             <div class="cs-feature-card-desc">School-wide programming that brings together faculty, staff, and students.</div>
           </div>
@@ -284,7 +280,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 5 — PROCESS STEPS 4-6
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#3D1A6E">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">04 &mdash; Process</span>
         <h2 class="cs-section-title">Interactivity &amp; User Engagement</h2>
@@ -301,7 +297,7 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451; padding-top:0;">
+    <section class="cs-section reveal" style="padding-top:0;">
       <div class="wrap">
         <span class="cs-section-label">05 &mdash; Process</span>
         <h2 class="cs-section-title">Collaboration &amp; Feedback Integration</h2>
@@ -311,11 +307,11 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e; padding-top:0;">
+    <section class="cs-section reveal" style="padding-top:0;">
       <div class="wrap">
         <span class="cs-section-label">06 &mdash; Process</span>
         <h2 class="cs-section-title">Accessibility Compliance</h2>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
+        <div class="cs-feature-grid">
           <div class="cs-feature-card">
             <div class="cs-feature-card-title">WCAG 2.1 Level AA</div>
             <div class="cs-feature-card-desc">Full compliance with established web accessibility guidelines.</div>
@@ -343,44 +339,36 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 6 — OUTCOME + KEY LEARNINGS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#5B2D8E" id="cs-impact">
+    <section class="cs-section reveal" id="cs-impact">
       <div class="wrap">
         <p class="cs-section-label">Impact</p>
-        <h2 class="cs-section-title" style="text-align:center;">Outcome</h2>
-        <div class="cs-info-grid" style="grid-template-columns:repeat(3,1fr);text-align:center;margin:2rem 0 0">
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">74%</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Increase in User Interaction</span>
+        <h2 class="cs-section-title">Outcome</h2>
+        <div class="cs-stat-grid">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">User Interaction</span>
+            <span class="cs-stat-value" data-count="74%">+74%</span>
           </div>
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">WCAG</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Accessibility Success</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Accessibility</span>
+            <span class="cs-stat-value">WCAG 2.1 AA</span>
           </div>
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">3 Mo</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Collaborative Process</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Collaborative Process</span>
+            <span class="cs-stat-value" data-count="3">3 Months</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451" id="cs-reflections">
+    <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
-        <span class="cs-section-label">Reflections</span>
-        <h2 class="cs-section-title">Key Learnings</h2>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
-          <div class="cs-feature-card">
-            <div class="cs-feature-card-title">Collaboration</div>
-            <div class="cs-feature-card-desc">Working closely with Christina Monea and the broader Tisch community was essential to producing an authentic and impactful report.</div>
-          </div>
-          <div class="cs-feature-card">
-            <div class="cs-feature-card-title">Precision in Visualization</div>
-            <div class="cs-feature-card-desc">Complex data demands meticulous attention to accuracy &mdash; every number and chart must tell the true story.</div>
-          </div>
-          <div class="cs-feature-card">
-            <div class="cs-feature-card-title">Accessibility as Priority</div>
-            <div class="cs-feature-card-desc">Accessibility cannot be an afterthought. Integrating WCAG compliance from day one shaped better design decisions throughout.</div>
-          </div>
+        <p class="cs-section-label">Reflections</p>
+        <h2 class="cs-section-title">What this project taught me</h2>
+        <div class="cs-num-list">
+          <li><strong>Institutional trust is built in the details.</strong> Every color choice, every word, every layout decision carried the weight of NYU Tisch&rsquo;s commitment to its community. Choosing accessible type sizes over flashy ones, letting the data speak clearly rather than over-designing it, and ensuring every stakeholder saw their voice reflected in the final product &mdash; these small decisions compound into credibility.</li>
+          <li><strong>Designing about inclusion demands honesty, not performance.</strong> It is easy to fall into performative visuals &mdash; bold statements and stock imagery that signal values without embodying them. Working closely with Christina and the Office of Diversity team kept the work honest. The design had to serve the people and the progress it documented, not just look good on a screen.</li>
+          <li><strong>Data visualization is an act of translation, not decoration.</strong> Complex institutional data needs a designer who can hold two things at once: fidelity to the numbers and empathy for the reader. The charts and timelines in this report were not about making data &ldquo;pretty&rdquo; &mdash; they were about making a decade of progress legible to the community it serves.</li>
+          <li><strong>Collaborative feedback loops produce better outcomes than isolated design sprints.</strong> The 3-month process of iterating with faculty, students, and staff surfaced blind spots I would never have caught alone. The best design decisions in this project came from conversations, not from my Figma artboard.</li>
         </div>
       </div>
     </section>
@@ -393,51 +381,49 @@
          SLIDE 7 — THE REPORT (IDBEA 2024 Report + Timeline + Team)
          ══════════════════════════════════════════════ -->
     <section class="cs-section reveal" id="cs-report">
-      <div class="wrap" style="text-align:center;">
+      <div class="wrap">
         <span class="cs-section-label">The Report</span>
         <h2 class="cs-section-title">IDBEA 2024 Report</h2>
-        <div class="cs-body" style="max-width:700px;margin:0 auto 2rem;">
+        <div class="cs-body">
           <p>The final report traces a decade of IDBEA milestones &mdash; from the initial commitment in 2014 through listening sessions, foundational learning, the establishment of the Cabinet, the hiring of an Assistant Dean, and the expansion of the Office of Diversity &mdash; culminating in the formation of the IDBEA Committee in 2023.</p>
         </div>
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e; padding-top:0;">
+    <section class="cs-section reveal" style="padding-top:0;">
       <div class="wrap">
         <span class="cs-section-label">Timeline</span>
         <h2 class="cs-section-title">A Decade of Progress</h2>
-        <div class="cs-steps" style="grid-template-columns:repeat(4,1fr);margin-top:2rem">
-          <div class="cs-step" style="text-align:center">
+        <div class="cs-steps">
+          <div class="cs-step">
             <div class="cs-step-num">2014</div>
             <div class="cs-step-desc">Commitment to IDBEA</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
             <div class="cs-step-num">2015</div>
             <div class="cs-step-desc">Listening sessions begin</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
             <div class="cs-step-num">2017</div>
             <div class="cs-step-desc">Foundational learning</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
             <div class="cs-step-num">2018</div>
             <div class="cs-step-desc">Cabinet established</div>
           </div>
-        </div>
-        <div class="cs-steps" style="grid-template-columns:repeat(4,1fr);margin-top:1.5rem">
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
             <div class="cs-step-num">2019</div>
             <div class="cs-step-desc">Assistant Dean hired</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
             <div class="cs-step-num">2020</div>
             <div class="cs-step-desc">Reaffirm commitment</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
             <div class="cs-step-num">2022</div>
             <div class="cs-step-desc">Office expands</div>
           </div>
-          <div class="cs-step" style="text-align:center">
+          <div class="cs-step">
             <div class="cs-step-num">2023</div>
             <div class="cs-step-desc">Committee established</div>
           </div>
@@ -445,20 +431,20 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451; padding-top:0;">
+    <section class="cs-section reveal" style="padding-top:0;">
       <div class="wrap">
         <span class="cs-section-label">The Team</span>
         <h2 class="cs-section-title">Meet the Office of Diversity</h2>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
-          <div class="cs-feature-card" style="text-align:center;">
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Christina Salgado</div>
             <div class="cs-feature-card-desc">Assistant Dean</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Monae Freeman</div>
             <div class="cs-feature-card-desc">Diversity Program Administrator</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Kevin Hunter</div>
             <div class="cs-feature-card-desc">Administrative Aide</div>
           </div>
@@ -477,28 +463,28 @@
       <div class="wrap">
         <span class="cs-section-label">Structure</span>
         <h2 class="cs-section-title">Advisement &amp; Feedback Groups</h2>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
-          <div class="cs-feature-card" style="text-align:center;">
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Cabinet</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Deans and Chairs</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">IDBEA Committee</div>
           </div>
-          <div class="cs-feature-card" style="text-align:center;">
+          <div class="cs-feature-card">
             <div class="cs-feature-card-title">Coalition</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#5B2D8E; padding-top:0;">
+    <section class="cs-section reveal" style="padding-top:0;">
       <div class="wrap">
         <span class="cs-section-label">Focus Areas</span>
         <h2 class="cs-section-title">Four Pillars of IDBEA Work</h2>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(4,1fr);">
+        <div class="cs-feature-grid">
           <div class="cs-feature-card">
             <div class="cs-feature-card-title">Learning &amp; Engagement</div>
             <div class="cs-feature-card-desc">Workshops, dialogues, and educational programming across the Tisch community.</div>
@@ -524,59 +510,51 @@
     </div>
 
     <!-- ══════════════════════════════════════════════
-         SLIDE 9 — REPORT: RESTORATIVE PRACTICES + HEAR US + FUTURE ARTISTS
+         SLIDE 9 — REPORT: DATA HIGHLIGHTS (collapsible)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2D1451">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Data Highlights</span>
-        <h2 class="cs-section-title" style="text-align:center;">Restorative Practice</h2>
-        <div class="cs-info-grid" style="grid-template-columns:repeat(2,1fr);text-align:center;margin:2rem 0 0">
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">33</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Cases in Response to General IDBEA Concerns</span>
-          </div>
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">14</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Cases in Response to Current Global Events</span>
-          </div>
+        <h2 class="cs-section-title">Report Data at a Glance</h2>
+        <div class="cs-body">
+          <p>The report showcases key program outcomes across restorative practices, student funding, and enrollment. These figures were visualized through color-coded charts and interactive data points in the final design.</p>
         </div>
-      </div>
-    </section>
 
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3D1A6E">
-      <div class="wrap">
-        <span class="cs-section-label">Programs</span>
-        <h2 class="cs-section-title" style="text-align:center;">HEAR US</h2>
-        <div class="cs-info-grid" style="grid-template-columns:repeat(3,1fr);text-align:center;margin:2rem 0 0">
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);font-weight:400;letter-spacing:-0.02em">$62,000</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Distributed Among Awardees</span>
+        <div class="cs-stat-grid">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Restorative Cases (IDBEA)</span>
+            <span class="cs-stat-value" data-count="33">33</span>
           </div>
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);font-weight:400;letter-spacing:-0.02em">11</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Student Awardees</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Restorative Cases (Global Events)</span>
+            <span class="cs-stat-value" data-count="14">14</span>
           </div>
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(2.5rem,6vw,4rem);font-weight:400;letter-spacing:-0.02em">38</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Students Mentored</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">HEAR US Funding</span>
+            <span class="cs-stat-value">$62K</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Student Awardees</span>
+            <span class="cs-stat-value" data-count="11">11</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Future Artists Enrolled</span>
+            <span class="cs-stat-value" data-count="178">178</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Departments Represented</span>
+            <span class="cs-stat-value" data-count="7">7</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e">
-      <div class="wrap" style="text-align:center;">
-        <span class="cs-section-label">Future Artists</span>
-        <div class="cs-info-grid" style="grid-template-columns:repeat(2,1fr);text-align:center;margin:2rem 0 0">
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">178</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Students Enrolled</span>
+        <details class="cs-details">
+          <summary class="cs-details-summary">IDBEA report data highlights</summary>
+          <div class="cs-details-content">
+            <p><strong>Restorative Practice:</strong> The Office addressed 33 cases in response to general IDBEA concerns and 14 cases in response to current global events, using structured, empathetic case resolution to support the Tisch community.</p>
+            <p><strong>HEAR US Program:</strong> $62,000 was distributed among 11 student awardees, with 38 students mentored through the program &mdash; providing direct funding and guidance to amplify underrepresented voices in the arts.</p>
+            <p><strong>Future Artists:</strong> 178 students enrolled across 7 departments, expanding access and representation in Tisch&rsquo;s creative pipeline through targeted outreach and programming.</p>
           </div>
-          <div class="cs-info-item" style="align-items:center">
-            <span class="cs-info-value" style="font-family:var(--display);font-size:clamp(3rem,7vw,5rem);font-weight:400;letter-spacing:-0.02em">7</span>
-            <span class="cs-info-key" style="font-size:1.1rem;text-transform:none;letter-spacing:0;font-family:var(--sans)">Departments</span>
-          </div>
-        </div>
+        </details>
       </div>
     </section>
 
@@ -584,38 +562,9 @@
       <img src="Assets/Projects/Office of Diversity/9.jpg" alt="Report — restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" loading="lazy"/>
     </div>
 
-    <!-- ══════════════════════════════════════════════
-         SLIDE 10 — CREDITS + THANKS
-         ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a0e2e">
+    <section class="cs-section cs-thanks reveal">
       <div class="wrap">
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Credits</span>
-          <span class="cs-label-row-val"><strong>UI/UX Designer</strong><br/>Parth Pawar</span>
-        </div>
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Tools &amp; Techniques</span>
-          <span class="cs-label-row-val">
-            <span class="cs-tags" style="margin:0;">
-              <span class="cs-tag-item">User Experience</span>
-              <span class="cs-tag-item">Interview</span>
-              <span class="cs-tag-item">Identity and Website Design</span>
-              <span class="cs-tag-item">Analysis</span>
-              <span class="cs-tag-item">Wireframe</span>
-              <span class="cs-tag-item">Concept Development</span>
-              <span class="cs-tag-item">Prototyping</span>
-              <span class="cs-tag-item">Figma</span>
-            </span>
-          </span>
-        </div>
-        <div class="cs-label-row" style="border-bottom:none;">
-          <span class="cs-label-row-key">My Role</span>
-          <span class="cs-label-row-val">UI/UX Role</span>
-        </div>
-
-        <div class="cs-thanks" style="margin-top:3rem;">
-          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
-        </div>
+        <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
 
@@ -624,7 +573,6 @@
     </div>
 
   </main>
-  </div>
 
     <a class="next-project" href="tedx.html">
     <div class="wrap next-project-inner">
@@ -639,39 +587,15 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

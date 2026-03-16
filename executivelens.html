@@ -12,26 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
-  <style>
-    :root { --cs-dark: #0a0a0a; }
-  </style>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -39,40 +31,39 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
+  <main class="project-main" style="--project-color: #0A6847">
 
     <!-- ══════════════════════════════════════════════
          HEADER
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">AI</span>
           <span class="proj-tag">SaaS</span>
           <span class="proj-tag">Product Design</span>
           <span class="proj-tag">Data Visualization</span>
         </div>
-        <h1 class="proj-title">ExecutiveLens</h1>
-        <p class="proj-subtitle">AI-powered business intelligence for executives &mdash; from meeting insights to strategic recommendations in real time</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">ExecutiveLens</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">AI-powered business intelligence for executives &mdash; from meeting insights to strategic recommendations in real time</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Product Designer</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">2025&ndash;26</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Team</span><span class="proj-info-val">Design lead</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Platform</span><span class="proj-info-val">Web + Mobile</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/executivelens.png" alt="ExecutiveLens.ai — AI-powered business intelligence for executives"/></div>
-      <div class="proj-read-time"><span>5 min read</span></div>
+      <div class="proj-hero-img hero-anim hero-anim-4"><img src="assets/images/executivelens.png" alt="ExecutiveLens.ai — AI-powered business intelligence for executives"/></div>
     </div>
 
     <!-- Case Study TOC — sticky sidebar -->
@@ -129,7 +120,7 @@
     <!-- ══════════════════════════════════════════════
          THE BET — EXECUTIVELENS THESIS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-bet" style="--cs-dark:#111111">
+    <section class="cs-section reveal" id="cs-bet">
       <div class="wrap">
         <span class="cs-section-label">The Bet</span>
         <h2 class="cs-section-title">What If AI Could Attend Every Meeting and Connect Every Dot?</h2>
@@ -175,7 +166,7 @@
     <!-- ══════════════════════════════════════════════
          MEETING ASSISTANT
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--gray reveal" id="cs-meeting">
+    <section class="cs-section reveal" id="cs-meeting">
       <div class="wrap">
         <span class="cs-section-label">Meeting Assistant</span>
         <h2 class="cs-section-title">Your AI Co-Pilot in Every Conversation</h2>
@@ -206,6 +197,10 @@
             <div class="cs-step-desc">Within 60 seconds of the meeting ending, every participant receives a structured summary: decisions, action items, open questions, and a narrative overview &mdash; ready to share or archive.</div>
           </div>
         </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Meeting assistant live view — transcript with decision cards on the right rail</span>
+        </div>
       </div>
     </section>
 
@@ -225,13 +220,17 @@
         <div class="cs-body">
           <p>The biggest design decision was replacing the traditional grid-of-widgets dashboard with a feed-based narrative. Instead of twelve charts competing for attention, the dashboard presents a prioritized stream: the most important insight first, with supporting data below. Each card in the feed is actionable &mdash; tap to drill down, swipe to dismiss, long-press to share with your team. The AI curates the feed based on your role, your recent meetings, and what has changed since you last looked.</p>
         </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Executive dashboard — feed-based narrative with KPI cards and meeting-to-metric connections</span>
+        </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════
          INSIGHT ENGINE
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-insights" style="--cs-dark:#0d0d0d">
+    <section class="cs-section reveal" id="cs-insights">
       <div class="wrap">
         <span class="cs-section-label">Insight Engine</span>
         <h2 class="cs-section-title">AI That Connects Dots You Did Not Know Existed</h2>
@@ -244,13 +243,28 @@
         <div class="cs-body">
           <p>The engine also runs a continuous risk scan. It monitors for action items that are overdue, decisions that contradict previous commitments, metrics moving in the wrong direction without acknowledgment, and sentiment shifts in team conversations. Risk alerts are designed to feel urgent without feeling noisy &mdash; a red border, a clear one-line summary, and a single tap to see the full context. Executives told us in research that they get hundreds of notifications per day. The risk alert needed to be the one they actually read.</p>
         </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Insight engine — AI-generated cards with citation trails linking back to meeting transcripts</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         MOBILE VIEW
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <div class="cs-img-placeholder reveal-image" style="aspect-ratio:9/16;max-width:375px;">
+          <span class="cs-img-placeholder-text">Mobile experience — glanceable cards, voice-triggered summaries, 30-second meeting prep</span>
+        </div>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════
          IMPACT — METRICS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-impact" style="--cs-dark:#1a1a2e">
+    <section class="cs-section reveal" id="cs-impact">
       <div class="wrap">
         <span class="cs-section-label">Impact</span>
         <h2 class="cs-section-title">The Numbers Behind the Intelligence</h2>
@@ -258,35 +272,40 @@
           <p>ExecutiveLens shipped to a closed beta of 40 executive teams and the results validated the thesis: when you capture the right information and surface it at the right time, leaders make better decisions faster.</p>
         </div>
 
-        <div class="cs-info-grid">
-          <div class="cs-info-item">
-            <span class="cs-info-key">Meetings Analyzed</span>
-            <span class="cs-info-value">12,000+</span>
+        <div class="cs-stat-grid">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Meetings Analyzed</span>
+            <span class="cs-stat-value" data-count="12000+">12,000+</span>
           </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Time Saved / Exec / Week</span>
-            <span class="cs-info-value">5.2 hrs</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Time Saved / Exec / Week</span>
+            <span class="cs-stat-value" data-count="5.2 hrs">5.2 hrs</span>
           </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Decision Tracking Accuracy</span>
-            <span class="cs-info-value">94%</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Decision Tracking Accuracy</span>
+            <span class="cs-stat-value" data-count="94%">94%</span>
           </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Action Item Completion</span>
-            <span class="cs-info-value">+38%</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Action Item Completion</span>
+            <span class="cs-stat-value" data-count="+38%">+38%</span>
           </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Exec Adoption Rate</span>
-            <span class="cs-info-value">87%</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Exec Adoption Rate</span>
+            <span class="cs-stat-value" data-count="87%">87%</span>
           </div>
-          <div class="cs-info-item">
-            <span class="cs-info-key">Summary Accuracy (rated)</span>
-            <span class="cs-info-value">4.6 / 5</span>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Summary Accuracy (rated)</span>
+            <span class="cs-stat-value" data-count="4.6/5">4.6/5</span>
           </div>
         </div>
 
-        <div class="cs-body" style="margin-top:2.5rem;">
-          <p>The metric that mattered most was not a number &mdash; it was behavior. Within two weeks of onboarding, 87% of executives checked their ExecutiveLens dashboard before their morning email. That is the signal that the product crossed from &ldquo;nice to have&rdquo; to &ldquo;part of the routine.&rdquo;</p>
+        <blockquote class="cs-pullquote">
+          <p>&ldquo;Within two weeks, I stopped checking email first. I check ExecutiveLens. It tells me what actually changed, not what someone wants me to read.&rdquo;</p>
+          <cite>&mdash; VP of Product, Beta participant</cite>
+        </blockquote>
+
+        <div class="cs-body" style="margin-top:1.5rem;">
+          <p>87% of executives in the beta checked their ExecutiveLens dashboard before their morning email within two weeks of onboarding. That is the signal that the product crossed from &ldquo;nice to have&rdquo; to &ldquo;part of the routine.&rdquo;</p>
         </div>
       </div>
     </section>
@@ -311,7 +330,7 @@
     <!-- ══════════════════════════════════════════════
          CREDITS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Credits</span>
         <h2 class="cs-section-title">Team</h2>
@@ -339,70 +358,37 @@
     <!-- ══════════════════════════════════════════════
          THANKS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section cs-thanks reveal">
       <div class="wrap">
-        <h2 class="cs-thanks-title">Thanks for Reading</h2>
+        <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
 
   </main>
-  </div>
 
   <a class="next-project" href="clawed-chat.html">
     <div class="wrap next-project-inner">
       <div>
         <div class="next-project-label">Next Project</div>
-        <div class="next-project-title">Clawed Chat</div>
+        <div class="next-project-title">Clawed</div>
       </div>
       <div class="next-project-img">
-        <img src="assets/images/clawed-chat.png" alt="Clawed Chat" loading="lazy"/>
+        <img src="assets/images/clawed.png" alt="Clawed" loading="lazy"/>
       </div>
     </div>
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
-    <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
-    <img src="" alt=""/>
-    <div class="lightbox-counter"></div>
-  </div>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

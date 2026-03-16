@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ballah Code · Parth Pawar</title>
+  <meta name="description" content="Ballah Code — AI-native desktop IDE where the AI works as a senior engineer, not a chatbot. Case study by Parth Pawar, Creator & Designer."/>
+  <meta property="og:title" content="Ballah Code · Parth Pawar"/>
+  <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer — not a chatbot."/>
+  <meta property="og:image" content="assets/images/ballah-code.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="dot-grid"></div>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Parth Pawar</a>
+      <ul class="nav-links">
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay">
+    <ul class="mobile-nav-links">
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
+    </ul>
+  </div>
+
+  <div class="reading-progress"></div>
+  <main class="project-main" style="--project-color: #E04832">
+
+    <!-- ══════════════════════════════════════════════
+         HEADER
+         ══════════════════════════════════════════════ -->
+    <div class="wrap project-header">
+      <div class="proj-back">
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
+      </div>
+      <div class="proj-meta">
+        <div class="proj-tags">
+          <span class="proj-tag">Dev Tools</span>
+          <span class="proj-tag">AI</span>
+        </div>
+        <h1 class="proj-title hero-anim hero-anim-1">Ballah Code</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">AI-native desktop IDE where the AI works as a senior engineer &mdash; not a chatbot</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
+          <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Creator &amp; Designer</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">2026</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Type</span><span class="proj-info-val">Dev Tools &middot; AI</span></div>
+          <div class="proj-info-item"><span class="proj-info-label">Team</span><span class="proj-info-val">Solo / Founder</span></div>
+        </div>
+      </div>
+      <div class="proj-hero-img hero-anim hero-anim-4"><img src="assets/images/ballah-code.png" alt="Ballah Code — AI-native desktop IDE"/></div>
+    </div>
+
+    <!-- Case Study TOC — sticky sidebar -->
+    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
+      <div class="cs-toc-inner">
+        <span class="cs-toc-label">Contents</span>
+        <a href="#cs-overview" class="cs-toc-link active">Overview</a>
+        <a href="#cs-problem" class="cs-toc-link">The Problem</a>
+        <a href="#cs-decisions" class="cs-toc-link">Design Decisions</a>
+        <a href="#cs-architecture" class="cs-toc-link">Architecture</a>
+        <a href="#cs-features" class="cs-toc-link">Key Features</a>
+        <a href="#cs-results" class="cs-toc-link">Results &amp; Status</a>
+      </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════
+         01 — OVERVIEW
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-overview">
+      <div class="wrap">
+        <span class="cs-section-label">01 &mdash; Overview</span>
+        <h2 class="cs-section-title">A Development Environment That Treats AI as a Senior Engineer</h2>
+        <div class="cs-body">
+          <p>Ballah Code is a native desktop development environment that treats AI as a trusted senior engineer architect &mdash; not a disposable chatbot. The AI plans, writes specifications, delegates to workers, reviews output, and maintains decision records. Core philosophy: context is sacred, documents are first-class, and your time is spent on decisions, not management.</p>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Desktop app interface &mdash; the AI-native development environment</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         02 — THE PROBLEM
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-problem">
+      <div class="wrap">
+        <span class="cs-section-label">02 &mdash; The Problem</span>
+        <h2 class="cs-section-title">Context Is Disposable and AI Is Replaceable</h2>
+        <div class="cs-body">
+          <p>Existing AI coding tools treat context as disposable and AI as replaceable. Every conversation starts from zero. There&rsquo;s no persistent memory of why decisions were made, no living documents that evolve with the codebase, and no structured delegation between architect-level thinking and implementation-level execution.</p>
+        </div>
+
+        <blockquote class="cs-pullquote">
+          <p>&ldquo;Every conversation starts from zero. There is no persistent memory of why decisions were made, no living documents that evolve with the codebase.&rdquo;</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         03 — DESIGN DECISIONS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-decisions">
+      <div class="wrap">
+        <span class="cs-section-label">03 &mdash; Design Decisions</span>
+        <h2 class="cs-section-title">Two-Process Architecture, One Seamless Experience</h2>
+        <div class="cs-body">
+          <p>The interface is built around a two-process architecture: a Bun backend handling AI calls, file system operations, and tool execution, connected to a React frontend in a native WebKit webview via typed RPC. The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. Every interaction is designed to keep the developer in flow state while giving the AI full context.</p>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">File explorer + chat layout &mdash; multi-workspace interface with git-aware sidebar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         04 — TECHNICAL ARCHITECTURE
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-architecture">
+      <div class="wrap">
+        <span class="cs-section-label">04 &mdash; Technical Architecture</span>
+        <h2 class="cs-section-title">Native Performance, Minimal Footprint</h2>
+        <div class="cs-body">
+          <p>Built with Electrobun for tiny ~14MB bundles and native performance. Features 17 production-ready AI tools (read, write, search, execute, diagnose, screenshot), a custom agentic loop using direct Anthropic Messages API streaming (not framework abstractions), prompt caching for long contexts, and workspace multiplexing for parallel workstreams. The standalone @ballah/agent package can run in CLI, desktop, or any frontend.</p>
+        </div>
+
+        <div class="cs-stat-grid">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Bundle Size</span>
+            <span class="cs-stat-value">~14MB</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">AI Tools</span>
+            <span class="cs-stat-value">17</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Runtime</span>
+            <span class="cs-stat-value">Bun</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Framework</span>
+            <span class="cs-stat-value">Electrobun</span>
+          </div>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Architecture diagram &mdash; two-process design with typed RPC bridge</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         05 — KEY FEATURES
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-features">
+      <div class="wrap">
+        <span class="cs-section-label">05 &mdash; Key Features</span>
+        <h2 class="cs-section-title">Built for Real Engineering Workflows</h2>
+
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Multi-Workspace, Multi-Chat</div>
+            <div class="cs-feature-card-desc">Persistent history across workspaces and chat sessions. Switch between projects without losing context or conversation state.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">17 AI Tools</div>
+            <div class="cs-feature-card-desc">Production-ready tools for code interaction &mdash; read, write, search, execute, diagnose. The AI operates on your codebase with the same access a senior engineer would have.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Custom Streaming Agent Loop</div>
+            <div class="cs-feature-card-desc">Direct Anthropic Messages API streaming with per-step token logging. No framework abstractions between you and the model.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Typed RPC Bridge</div>
+            <div class="cs-feature-card-desc">Type-safe communication between the Bun backend and the React webview. Full end-to-end type safety from AI response to UI render.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Integrated Terminal</div>
+            <div class="cs-feature-card-desc">PTY session management with full terminal emulation. The AI can execute commands, and you can see everything it does in real time.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Cost Tracking &amp; Model Flexibility</div>
+            <div class="cs-feature-card-desc">Real-time progress indicators and cost tracking per conversation. Switch between Claude, Gemini, and OpenAI on a per-chat basis.</div>
+          </div>
+        </div>
+
+        <div class="cs-img-placeholder reveal-image">
+          <span class="cs-img-placeholder-text">Terminal integration &mdash; PTY session management with real-time AI execution</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         06 — RESULTS & STATUS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal" id="cs-results">
+      <div class="wrap">
+        <span class="cs-section-label">06 &mdash; Results &amp; Status</span>
+        <h2 class="cs-section-title">Functional Core, Ambitious Roadmap</h2>
+        <div class="cs-body">
+          <p>Core desktop app is functional with all 17 tools operational, streaming AI agent loop, terminal integration, and settings persistence. The project includes an evaluation harness benchmarking against SWE-PolyBench. Living documents, architect/worker delegation, and decision ledger are in the roadmap.</p>
+        </div>
+
+        <div class="cs-feature-grid">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Shipped</div>
+            <div class="cs-feature-card-desc">17 AI tools, streaming agent loop, multi-workspace UI, terminal integration, settings persistence, evaluation harness.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">On the Roadmap</div>
+            <div class="cs-feature-card-desc">Living documents, architect/worker delegation, decision ledger, and expanded benchmark coverage.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         CREDITS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <span class="cs-section-label">Credits</span>
+        <h2 class="cs-section-title">Team</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Creator &amp; Designer</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Project</span>
+            <span class="cs-credit-name">Ballah Code</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Tools</span>
+            <span class="cs-credit-name">Electrobun, Bun, React, TypeScript, Anthropic Claude, Tailwind CSS</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Platform</span>
+            <span class="cs-credit-name">Desktop (macOS)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         THANKS
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
+      </div>
+    </section>
+
+  </main>
+
+  <a class="next-project" href="zentipay.html">
+    <div class="wrap next-project-inner">
+      <div>
+        <div class="next-project-label">Next Project</div>
+        <div class="next-project-title">ZentiPay</div>
+      </div>
+      <div class="next-project-img">
+        <img src="assets/images/zentipay.png" alt="ZentiPay" loading="lazy"/>
+      </div>
+    </div>
+  </a>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

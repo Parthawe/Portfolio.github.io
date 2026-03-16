@@ -12,23 +12,19 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
+  <div class="dot-grid"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -36,21 +32,20 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <main class="project-main" style="--project-color: #E53E3E">
 
     <!-- ══════════════════════════════════════════════
          HEADER
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
       <div class="proj-meta reveal">
         <div class="proj-tags">
@@ -103,7 +98,7 @@
     <!-- ════════════════════════════════════════════
          BRAND IDENTITY
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-brand" style="--cs-dark:#111111;">
+    <section class="cs-section reveal" id="cs-brand">
       <div class="wrap">
         <p class="cs-section-label">02 &mdash; Brand Identity</p>
         <h2 class="cs-section-title">Visual System</h2>
@@ -137,7 +132,7 @@
     <!-- ════════════════════════════════════════════
          STAGE DESIGN
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-stage" style="--cs-dark:#0C0E2E;">
+    <section class="cs-section reveal" id="cs-stage">
       <div class="wrap">
         <p class="cs-section-label">03 &mdash; Stage Design</p>
         <h2 class="cs-section-title">Parallax Cityscape</h2>
@@ -152,7 +147,7 @@
     <!-- ════════════════════════════════════════════
          STAGE DESIGN — Gallery
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0C0E2E;">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display" style="opacity:0.25; font-size:clamp(3rem,8vw,7rem); margin-bottom:2rem;">Stage Design</h2>
         <figure class="cs-img-full" style="background:transparent;"><img src="Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="TEDxVITPune stage design — speakers and performers on the parallax cityscape stage" loading="lazy"/></figure>
@@ -162,7 +157,7 @@
     <!-- ════════════════════════════════════════════
          TEAM LEADERSHIP
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-team" style="--cs-dark:#111111;">
+    <section class="cs-section reveal" id="cs-team">
       <div class="wrap">
         <p class="cs-section-label">04 &mdash; Team Leadership</p>
         <h2 class="cs-section-title">Coordinating 65+ People</h2>
@@ -177,7 +172,7 @@
     <!-- ════════════════════════════════════════════
          PROCESS
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-process" style="--cs-dark:#0a0a0a;">
+    <section class="cs-section reveal" id="cs-process">
       <div class="wrap">
         <p class="cs-section-label">05 &mdash; Process</p>
         <h2 class="cs-section-title">Eight Weeks, Concept to Curtain</h2>
@@ -194,7 +189,7 @@
     <!-- ════════════════════════════════════════════
          PROCESS — Gallery
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111111;">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display" style="margin-bottom:2rem;">Process</h2>
         <figure class="cs-img-full" style="background:transparent;"><img src="Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind-the-scenes process photos showing stage construction, column fabrication, lighting tests, and assembly" loading="lazy"/></figure>
@@ -204,7 +199,7 @@
     <!-- ════════════════════════════════════════════
          REFLECTIONS
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-reflections" style="--cs-dark:#0C0E2E;">
+    <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
         <p class="cs-section-label">06 &mdash; Reflections</p>
         <h2 class="cs-section-title">What Leading This Taught Me</h2>
@@ -219,7 +214,7 @@
     <!-- ════════════════════════════════════════════
          CREDITS
          ════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#080B1E;">
+    <section class="cs-section cs-thanks reveal">
       <div class="wrap">
         <h2 class="cs-thanks-title">Thank You</h2>
 
@@ -244,7 +239,6 @@
     </section>
 
   </main>
-  </div>
 
   <a class="next-project" href="code-for-build.html">
     <div class="wrap next-project-inner">
@@ -259,39 +253,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

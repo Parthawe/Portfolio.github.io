@@ -12,23 +12,17 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
-  <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -36,19 +30,18 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <main class="project-main" style="--project-color: #319795">
 
     <!-- ── Header ── -->
-    <div class="wrap project-header project-header--dark" style="--cs-dark:#1a1a3e">
+    <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
       <div class="proj-meta reveal">
         <div class="proj-tags"><span class="proj-tag">Podcast</span><span class="proj-tag">Content</span><span class="proj-tag">Art &amp; Design</span></div>
@@ -68,7 +61,7 @@
     </div>
 
     <!-- ── Slide 2 — Platforms + Summary/Interest/Achievement ── -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#141432">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Distribution</p>
         <h2 class="cs-display">Listen from the best podcast platform</h2>
@@ -82,13 +75,13 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#10102e">
+    <section class="cs-section reveal">
       <div class="wrap">
         <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem">
           <h2 class="cs-display" style="margin:0">ArtTown Podcast Series</h2>
           <div style="text-align:right">
-            <div style="font-family:var(--display);font-size:1.1rem;color:rgba(255,255,255,0.8)">Podcast Host</div>
-            <div style="font-family:var(--display);font-size:1rem;color:rgba(255,255,255,0.6)">March 2020 &ndash; Present</div>
+            <div style="font-family:var(--display);font-size:1.1rem;color:var(--ink-70)">Podcast Host</div>
+            <div style="font-family:var(--display);font-size:1rem;color:var(--ink-40)">March 2020 &ndash; Present</div>
           </div>
         </div>
         <div class="cs-label-row">
@@ -107,7 +100,7 @@
     </section>
 
     <!-- ── Slide 3 — Stats + Plan of Action ── -->
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#4455CC">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Impact</p>
         <div class="cs-info-grid" style="grid-template-columns:repeat(3,1fr);text-align:center;margin:2rem 0 0">
@@ -127,7 +120,7 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a3e">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display" style="text-align:center">Plan of action?</h2>
         <div class="cs-steps" style="grid-template-columns:repeat(6,1fr);margin-top:3rem">
@@ -162,7 +155,7 @@
     </section>
 
     <!-- ── Slide 4 — Guest Connections + How It Works ── -->
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3344BB">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display" style="text-align:center">Guest Connections</h2>
         <div class="cs-body" style="max-width:100%;text-align:center;margin:0 auto 2rem">
@@ -171,7 +164,7 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e2a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label" style="text-align:center">Listener Experience</p>
         <h2 class="cs-section-title" style="text-align:center">How It Works</h2>
@@ -197,19 +190,19 @@
             <div class="cs-step-desc">Come back every Friday for a new episode</div>
           </div>
         </div>
-        <div class="cs-callout" style="text-align:center;margin-top:3rem;border-left:none;border-radius:12px;background:rgba(255,255,255,0.06)">
+        <div class="cs-callout" style="text-align:center;margin-top:3rem;border-left:none;border-radius:12px;background:var(--bg-alt)">
           <p><strong>Podcast Every Friday</strong></p>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem">
             <div>
-              <div style="font-family:var(--mono);font-size:0.7rem;opacity:0.5;margin-bottom:0.3rem">WHAT YOU GAIN?</div>
+              <div style="font-family:var(--mono);font-size:0.7rem;color:var(--ink-40);margin-bottom:0.3rem">WHAT YOU GAIN?</div>
               <div style="font-family:var(--display);font-size:clamp(1.5rem,3vw,2rem)">Art</div>
             </div>
             <div>
-              <div style="font-family:var(--mono);font-size:0.7rem;opacity:0.5;margin-bottom:0.3rem">WHEN DOES IT AIR?</div>
+              <div style="font-family:var(--mono);font-size:0.7rem;color:var(--ink-40);margin-bottom:0.3rem">WHEN DOES IT AIR?</div>
               <div style="font-family:var(--display);font-size:clamp(1.5rem,3vw,2rem)">Friday</div>
             </div>
             <div>
-              <div style="font-family:var(--mono);font-size:0.7rem;opacity:0.5;margin-bottom:0.3rem">ANY CHARGES?</div>
+              <div style="font-family:var(--mono);font-size:0.7rem;color:var(--ink-40);margin-bottom:0.3rem">ANY CHARGES?</div>
               <div style="font-family:var(--display);font-size:clamp(1.5rem,3vw,2rem)">Free</div>
             </div>
           </div>
@@ -223,7 +216,7 @@
     </div>
 
     <!-- ── Notable Guests ── -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#141432">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Episodes</p>
         <h2 class="cs-section-title">Notable Guests</h2>
@@ -250,18 +243,27 @@
       </div>
     </section>
 
-    <!-- ── Closing ── -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#1a1a3e">
+    <!-- ── Reflections ── -->
+    <section class="cs-section reveal">
       <div class="wrap">
-        <p class="cs-thanks-title">Thank you for listening.</p>
-        <div class="cs-body" style="margin:0 auto;text-align:center;max-width:500px">
-          <p>New episodes every Friday on Spotify, Apple Podcasts, and all major platforms.</p>
+        <p class="cs-section-label">Reflections</p>
+        <h2 class="cs-section-title">What Hosting 40+ Conversations Taught Me</h2>
+        <div class="cs-body" style="max-width:720px;">
+          <p>Running ATPS for three years taught me that the best interviews happen when you stop performing expertise and start genuinely listening. Early episodes were over-prepared&mdash;I would script every question and stick rigidly to my list. The conversations felt stilted. The turning point was an episode with a glass sculptor who went on a tangent about how material failure teaches you more than success. I followed the tangent instead of redirecting, and it became one of our most-listened episodes.</p>
+          <p>The design skill I developed was editorial thinking&mdash;knowing what to cut, what to keep, and how to structure a 60-minute conversation into a compelling 30-minute episode. This is the same skill I now use in product design: understanding that what you leave out defines the experience as much as what you include.</p>
+          <p>ATPS also gave me a network I could not have built any other way. Several professional collaborations&mdash;including introductions that led to real projects&mdash;started as podcast conversations.</p>
         </div>
       </div>
     </section>
 
+    <!-- ── Closing ── -->
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
+      </div>
+    </section>
+
   </main>
-  </div>
 
     <a class="next-project" href="Typeface.html">
     <div class="wrap next-project-inner">
@@ -276,39 +278,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

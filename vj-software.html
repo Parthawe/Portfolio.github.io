@@ -12,23 +12,16 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
-  <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -36,21 +29,20 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <main class="project-main" style="--project-color: #4A5568">
 
     <!-- ══════════════════════════════════════════════
          SLIDE 1 — HERO (light bg, metadata + title + app mockups)
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
       <div class="proj-meta reveal">
         <div class="proj-tags">
@@ -161,7 +153,7 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--gray reveal" id="cs-discover">
+    <section class="cs-section reveal" id="cs-discover">
       <div class="wrap">
         <span class="cs-section-label">Discover</span>
         <h2 class="cs-section-title">Problem Statement</h2>
@@ -286,7 +278,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 6 — INSIGHTS + GOALS (dark bg ~#1e1e24)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1e24" id="cs-define">
+    <section class="cs-section reveal" id="cs-define">
       <div class="wrap">
         <span class="cs-section-label">Define</span>
         <h2 class="cs-section-title">Insights</h2>
@@ -338,7 +330,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 7 — USER JOURNEY + FEATURES (dark bg)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a22">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Define</span>
         <h2 class="cs-section-title">User Journey</h2>
@@ -389,7 +381,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 9 — VISUAL STYLE (black bg)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Develop</span>
         <h2 class="cs-section-title">Setting Visual Style</h2>
@@ -409,7 +401,7 @@
             <span class="cs-swatch-hex">#E6F6FF</span>
           </div>
           <div class="cs-swatch">
-            <div class="cs-swatch-color" style="background:#FFFFFF; border-color:rgba(255,255,255,0.3);"></div>
+            <div class="cs-swatch-color" style="background:#FFFFFF; border-color:var(--ink-15);"></div>
             <span class="cs-swatch-hex">#FFFFFF</span>
           </div>
           <div class="cs-swatch">
@@ -425,7 +417,7 @@
             <span class="cs-swatch-hex">#3BD378</span>
           </div>
           <div class="cs-swatch">
-            <div class="cs-swatch-color" style="background:#FFFDEC; border-color:rgba(255,255,255,0.3);"></div>
+            <div class="cs-swatch-color" style="background:#FFFDEC; border-color:var(--ink-15);"></div>
             <span class="cs-swatch-hex">#FFFDEC</span>
           </div>
         </div>
@@ -465,7 +457,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 10 — VISUALS & PROTOTYPING (dark bg)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#111117" id="cs-deliver">
+    <section class="cs-section reveal" id="cs-deliver">
       <div class="wrap">
         <span class="cs-section-label">Deliver</span>
         <h2 class="cs-section-title">Visuals &amp; Prototyping</h2>
@@ -492,7 +484,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 11 — CREDITS + THANKS (dark bg ~#2a2a35)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2a2a35">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Team</span>
         <h2 class="cs-section-title">Credits</h2>
@@ -507,19 +499,28 @@
           </div>
         </div>
 
-        <div class="cs-label-row" style="margin-top:2rem;">
-          <span class="cs-label-row-key">My Role</span>
-          <span class="cs-label-row-val">UI/UX Role</span>
-        </div>
+      </div>
+    </section>
 
-        <div class="cs-thanks" style="margin-top:2rem;">
-          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+    <!-- ── Reflections ── -->
+    <section class="cs-section reveal">
+      <div class="wrap">
+        <p class="cs-section-label">Reflections</p>
+        <h2 class="cs-section-title">What I Learned</h2>
+        <div class="cs-body" style="max-width:720px;">
+          <p>VJ Parivar was a lesson in designing for real-world constraints that no competitive analysis can prepare you for. The biggest insight came from user research: residents did not think about parking as a digital problem. They thought about it as a spatial problem&mdash;&ldquo;I want the spot closest to the elevator.&rdquo; The interactive society map became the core of the experience because it matched the user&rsquo;s mental model: a physical space, not a list of options.</p>
+          <p>The competitive analysis revealed that existing apps (MyGate, NoBrokerHood) treated parking as a secondary feature buried in a larger society management platform. By making parking the hero flow&mdash;visual map first, details second&mdash;we created a more focused experience. This taught me that sometimes the best design strategy is to do one thing well rather than many things adequately.</p>
         </div>
       </div>
     </section>
 
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
+      </div>
+    </section>
+
   </main>
-  </div>
 
     <a class="next-project" href="uv-light.html">
     <div class="wrap next-project-inner">
@@ -534,39 +535,15 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

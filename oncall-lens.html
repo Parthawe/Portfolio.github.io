@@ -12,26 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
-  <style>
-    :root { --cs-dark: #0a0a0a; }
-  </style>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -39,40 +31,38 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <main class="project-main" style="--project-color: #2D3748">
 
     <!-- ══════════════════════════════════════════════
          HEADER
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">AI</span>
           <span class="proj-tag">Developer Tools</span>
           <span class="proj-tag">Hackathon</span>
           <span class="proj-tag">Smart Glasses</span>
         </div>
-        <h1 class="proj-title">OnCall Lens</h1>
-        <p class="proj-subtitle">Transforming Sentry alerts into automated PR patches via smart glasses &mdash; so on-call engineers can fix production bugs without opening a laptop</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">OnCall Lens</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">Transforming Sentry alerts into automated PR patches via smart glasses &mdash; so on-call engineers can fix production bugs without opening a laptop</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Designer + Developer</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Timeline</span><span class="proj-info-val">Jan 2026</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Team</span><span class="proj-info-val">Hackathon team</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Platform</span><span class="proj-info-val">Glasses + Web</span></div>
         </div>
       </div>
-      <div class="proj-hero-img reveal"><img src="assets/images/oncall-lens.png" alt="OnCall Lens — Sentry alerts to automated PR patches via smart glasses"/></div>
-      <div class="proj-read-time"><span>4 min read</span></div>
+      <div class="proj-hero-img hero-anim hero-anim-4"><img src="assets/images/oncall-lens.png" alt="OnCall Lens — Sentry alerts to automated PR patches via smart glasses"/></div>
     </div>
 
     <!-- Case Study TOC — sticky sidebar -->
@@ -128,7 +118,7 @@
     <!-- ══════════════════════════════════════════════
          THE BET — AI FIRST RESPONDER
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-bet" style="--cs-dark:#111111">
+    <section class="cs-section reveal" id="cs-bet">
       <div class="wrap">
         <span class="cs-section-label">The Bet</span>
         <h2 class="cs-section-title">What If the First Responder Was an AI Agent?</h2>
@@ -175,7 +165,7 @@
     <!-- ══════════════════════════════════════════════
          GLASSES NOTIFICATION UX
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--gray reveal" id="cs-glasses">
+    <section class="cs-section reveal" id="cs-glasses">
       <div class="wrap">
         <span class="cs-section-label">Glasses UX</span>
         <h2 class="cs-section-title">Alert, Glance, Tap, Fixed</h2>
@@ -251,7 +241,7 @@
     <!-- ══════════════════════════════════════════════
          MINI-APP INTERFACE
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-miniapp" style="--cs-dark:#0d0d0d">
+    <section class="cs-section reveal" id="cs-miniapp">
       <div class="wrap">
         <span class="cs-section-label">Mini-App</span>
         <h2 class="cs-section-title">The Mentra Mini-App for Incident Response</h2>
@@ -266,7 +256,7 @@
     <!-- ══════════════════════════════════════════════
          IMPACT
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-impact" style="--cs-dark:#1a1a2e">
+    <section class="cs-section reveal" id="cs-impact">
       <div class="wrap">
         <span class="cs-section-label">Impact</span>
         <h2 class="cs-section-title">Built in 24 Hours at Sentry HQ</h2>
@@ -327,7 +317,7 @@
     <!-- ══════════════════════════════════════════════
          CREDITS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Credits</span>
         <h2 class="cs-section-title">Team</h2>
@@ -355,14 +345,13 @@
     <!-- ══════════════════════════════════════════════
          THANKS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark cs-thanks reveal" style="--cs-dark:#0a0a0a">
+    <section class="cs-section cs-thanks reveal">
       <div class="wrap">
-        <h2 class="cs-thanks-title">Thanks for Reading</h2>
+        <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
 
   </main>
-  </div>
 
   <a class="next-project" href="mentra.html">
     <div class="wrap next-project-inner">
@@ -377,48 +366,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="Close">&times;</button>
-    <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
-    <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
-    <img src="" alt=""/>
-    <div class="lightbox-counter"></div>
-  </div>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

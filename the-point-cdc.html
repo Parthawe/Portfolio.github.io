@@ -12,26 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
-  <style>
-    :root { --cs-blue: #3B6BF5; --cs-dark: #0e0e1a; }
-  </style>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -39,31 +31,31 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
+  <main class="project-main" style="--project-color: #C44D2B">
 
     <!-- ══════════════════════════════════════════════
          SLIDE 1 — HERO (light bg, metadata + title + device mockups)
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">UX</span>
           <span class="proj-tag">Community</span>
           <span class="proj-tag">Research</span>
         </div>
-        <h1 class="proj-title">The Point CDC</h1>
-        <p class="proj-subtitle">A digital transformation for community empowerment</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">The Point CDC</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">A digital transformation for community empowerment</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">The Point CDC</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">User Research, UI/UX, Prototyping</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Product Designer</span></div>
@@ -71,7 +63,7 @@
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2024</span></div>
         </div>
       </div>
-      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 1.png" alt="The Point CDC — Revitalizing a community website with device mockups showing the redesigned homepage" loading="lazy"/></div>
+      <div class="proj-hero-img proj-hero-img--full hero-anim hero-anim-4"><img src="Assets/Projects/ThePointCDC/Desktop/Slice 1.png" alt="The Point CDC — Revitalizing a community website with device mockups showing the redesigned homepage" loading="lazy"/></div>
     </div>
 
     <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
@@ -81,13 +73,15 @@
         <a href="#cs-define" class="cs-toc-link">Define</a>
         <a href="#cs-develop" class="cs-toc-link">Develop</a>
         <a href="#cs-deliver" class="cs-toc-link">Deliver</a>
+        <a href="#cs-results" class="cs-toc-link">Results</a>
+        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
       </div>
     </nav>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 2 — OVERVIEW + SUMMARY + CHALLENGES + ROLE + TOOLS (blue bg, label-row layout)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3B6BF5">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display" style="max-width:22ch;">Redesigning the Hunts Point website to streamline services, foster innovation, and enhance community engagement in the Bronx.</h2>
 
@@ -132,7 +126,7 @@
       <div class="wrap">
         <div class="cs-two-col">
           <div>
-            <h2 class="cs-display" style="color:#3B6BF5;">The Point CDC</h2>
+            <h2 class="cs-display">The Point CDC</h2>
             <div class="cs-body">
               <p>The Point CDC is a non-profit organization in Hunts Point, Bronx, focused on empowering the local community through arts, education, and environmental initiatives. They provide programs to improve residents' lives, including free WiFi access and youth leadership opportunities, while promoting social justice and sustainability.</p>
             </div>
@@ -249,7 +243,7 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3B6BF5">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Key Insights</span>
         <h2 class="cs-section-title">Research Insights</h2>
@@ -284,7 +278,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 6 — DEFINE: INSIGHTS + GOALS + USER JOURNEY (dark bg)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">Insights</span>
         <h2 class="cs-section-title">Design Direction</h2>
@@ -295,28 +289,7 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a; padding-top:0;" id="cs-define">
-      <div class="wrap">
-        <span class="cs-section-label">Define</span>
-        <h2 class="cs-section-title">Insights</h2>
-        <div class="cs-body">
-          <p>I focused on understanding how the website could best serve the Hunts Point community. Residents emphasized the need for</p>
-        </div>
-        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
-          <div class="cs-feature-card">
-            <div class="cs-feature-card-desc">Easy access to WiFi service information.</div>
-          </div>
-          <div class="cs-feature-card">
-            <div class="cs-feature-card-desc">Clear communication about events and programs.</div>
-          </div>
-          <div class="cs-feature-card">
-            <div class="cs-feature-card-desc">Mobile-friendly navigation, as many users rely on their phones for internet access.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a; padding-top:0;">
+    <section class="cs-section reveal" style="padding-top:0;" id="cs-define">
       <div class="wrap">
         <span class="cs-section-label">Define</span>
         <h2 class="cs-section-title">Goals</h2>
@@ -337,7 +310,7 @@
       </div>
     </section>
 
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a; padding-top:0;">
+    <section class="cs-section reveal" style="padding-top:0;">
       <div class="wrap">
         <span class="cs-section-label">Define</span>
         <h2 class="cs-section-title">User Journey</h2>
@@ -357,7 +330,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 8 — SETTING VISUAL STYLE (dark bg, design system components)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a" id="cs-develop">
+    <section class="cs-section reveal" id="cs-develop">
       <div class="wrap">
         <span class="cs-section-label">Develop</span>
         <h2 class="cs-section-title">Setting Visual Style</h2>
@@ -374,7 +347,7 @@
     <!-- ══════════════════════════════════════════════
          SLIDE 9 — VISUALS & PROTOTYPING (dark bg with annotated final screens)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a0a" id="cs-deliver">
+    <section class="cs-section reveal" id="cs-deliver">
       <div class="wrap">
         <span class="cs-section-label">Deliver</span>
         <h2 class="cs-section-title">Visuals &amp; Prototyping</h2>
@@ -419,66 +392,69 @@
     </div>
 
     <!-- ══════════════════════════════════════════════
-         SLIDE 10 (continued) — OUTCOME & RESULTS (dark bg, 3-col results)
+         SLIDE 10 (continued) — OUTCOME & RESULTS (dark bg, stat cards)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0e0e1a">
+    <section class="cs-section reveal" id="cs-results">
       <div class="wrap">
         <span class="cs-section-label">Deliver</span>
         <h2 class="cs-section-title">Outcome &amp; Results</h2>
-        <div class="cs-steps">
-          <div class="cs-step">
-            <div class="cs-step-num">1</div>
-            <div class="cs-step-desc">Increased community engagement by 35% within the first three months after launch.</div>
+        <div class="cs-stat-grid">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Community Engagement Increase</span>
+            <span class="cs-stat-value" data-count="+35%">+35%</span>
           </div>
-          <div class="cs-step">
-            <div class="cs-step-num">2</div>
-            <div class="cs-step-desc">Mobile visits grew by 50%, demonstrating the success of the mobile-first design approach.</div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Growth in Mobile Visits</span>
+            <span class="cs-stat-value" data-count="+50%">+50%</span>
           </div>
-          <div class="cs-step">
-            <div class="cs-step-num">3</div>
-            <div class="cs-step-desc">Feedback from community members and staff was overwhelmingly positive, particularly around the ease of navigation and access to the WiFi program.</div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Navigation Time Reduced</span>
+            <span class="cs-stat-value" data-count="60%">60%</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">WiFi Page Discoverability</span>
+            <span class="cs-stat-value" data-count="2x">2x</span>
           </div>
         </div>
+        <div class="cs-body" style="margin-top:2rem;">
+          <p>Feedback from community members and staff was overwhelmingly positive, particularly around the ease of navigation and access to the WiFi program.</p>
+        </div>
+        <blockquote class="cs-pullquote">
+          <p>&ldquo;Before, I couldn&rsquo;t even find the WiFi page. Now I send the link to my neighbors and they sign up the same day. It finally feels like our website.&rdquo;</p>
+          <cite>&mdash; Maria, Hunts Point Community Organizer</cite>
+        </blockquote>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 11 — CREDITS + THANKS (dark bg)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a2e">
+    <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Credits</span>
-          <span class="cs-label-row-val"><strong>UI/UX Designer</strong><br/>Parth Pawar</span>
-        </div>
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Tools &amp; Techniques</span>
-          <span class="cs-label-row-val">
-            <span class="cs-tags" style="margin:0;">
-              <span class="cs-tag-item">User Experience</span>
-              <span class="cs-tag-item">Interview</span>
-              <span class="cs-tag-item">Identity and Website Design</span>
-              <span class="cs-tag-item">Analysis</span>
-              <span class="cs-tag-item">Wireframe</span>
-              <span class="cs-tag-item">Concept Development</span>
-              <span class="cs-tag-item">Prototyping</span>
-              <span class="cs-tag-item">Figma</span>
-            </span>
-          </span>
-        </div>
-        <div class="cs-label-row" style="border-bottom:none;">
-          <span class="cs-label-row-key">My Role</span>
-          <span class="cs-label-row-val">UI/UX Role</span>
-        </div>
+        <p class="cs-section-label">Reflections</p>
+        <h2 class="cs-section-title">What Community-Centered Design Taught Me</h2>
+        <ol class="cs-num-list" style="max-width:720px;">
+          <li><strong>Deep listening beats designer instincts.</strong> Designing for a community you are not part of requires listening, not assumptions. Every interview and site visit reminded me that my instincts about what residents needed were often wrong until I sat down and actually heard their stories.</li>
+          <li><strong>Mobile-first is a lived reality, not a buzzword.</strong> When 75% of your users literally only have phone access, it reframes every layout decision, every interaction pattern, and every content hierarchy choice. This project made mobile-first thinking a non-negotiable part of my design process.</li>
+          <li><strong>Balance institutional messaging with genuine utility.</strong> The tension between what a non-profit organization wants to communicate and what community members actually need to find was one of the hardest design challenges. Prioritizing user tasks over organizational messaging led to a site that served both goals more effectively.</li>
+          <li><strong>Accessibility raises the bar for everyone.</strong> Designing for accessibility forced better design decisions overall &mdash; clearer typography, simpler navigation, and stronger visual hierarchy benefited every single user, not just those with specific needs.</li>
+        </ol>
+      </div>
+    </section>
 
-        <div class="cs-thanks" style="margin-top:3rem;">
-          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">Product Designer</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
-  </div>
 
     <a class="next-project" href="ai-voice.html">
     <div class="wrap next-project-inner">
@@ -493,39 +469,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

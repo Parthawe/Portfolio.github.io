@@ -12,23 +12,16 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
-  <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -36,19 +29,18 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <main class="project-main" style="--project-color: #B7791F">
 
     <!-- ══ SLIDE 1 — Hero / Title ══ -->
-    <div class="wrap project-header project-header--dark" style="--cs-dark:#2c2c2c">
+    <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
       <div class="proj-meta reveal">
         <div class="proj-info-row">
@@ -69,11 +61,12 @@
         <a href="#cs-engineering" class="cs-toc-link">Engineering</a>
         <a href="#cs-design" class="cs-toc-link">Design</a>
         <a href="#cs-result" class="cs-toc-link">Result</a>
+        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
       </div>
     </nav>
 
     <!-- ══ SLIDE 2 — Summary, Challenges, Role, Tools ══ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2c2c2c">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display">Theatrical device to move 15 ft. to 8 ft. to 16 ft. the stage for scene changes in Theatre Play.</h2>
 
@@ -120,7 +113,7 @@
     </div>
 
     <!-- ══ SLIDE 4 — Exploded Mechanical Design ══ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-engineering" style="--cs-dark:#2c2c2c">
+    <section class="cs-section reveal" id="cs-engineering">
       <div class="wrap">
         <p class="cs-section-label">Engineering</p>
         <h2 class="cs-section-title">Mechanical Design</h2>
@@ -135,7 +128,7 @@
     </div>
 
     <!-- ══ SLIDE 5 — Axle ══ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#2c2c2c">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Engineering</p>
         <h2 class="cs-section-title">Axle</h2>
@@ -161,7 +154,7 @@
     </div>
 
     <!-- ══ SLIDE 6 — Caster Wheel & Bearing Assembly ══ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#3a3a3a">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Engineering</p>
         <h2 class="cs-section-title">Caster Wheel &amp; Bearing Assembly</h2>
@@ -177,7 +170,7 @@
     </div>
 
     <!-- ══ SLIDE 7 — Revolving Stage Physics & Design ══ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1a1a0f">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Engineering</p>
         <h2 class="cs-display">Revolving Stage</h2>
@@ -196,7 +189,7 @@
     </div>
 
     <!-- ══ SLIDE 8 — Final Stage Design ══ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-design" style="--cs-dark:#2c2c2c">
+    <section class="cs-section reveal" id="cs-design">
       <div class="wrap">
         <p class="cs-section-label">Design</p>
         <h2 class="cs-display">Final Stage Design</h2>
@@ -222,7 +215,7 @@
     </div>
 
     <!-- ══ SLIDE 9 — In Action ══ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-result" style="--cs-dark:#2c2c2c">
+    <section class="cs-section reveal" id="cs-result">
       <div class="wrap">
         <p class="cs-section-label">Result</p>
         <h2 class="cs-display">In &ndash; Action</h2>
@@ -237,7 +230,7 @@
     </div>
 
     <!-- ══ SLIDE 10 — Credits, Tools, Role & Thanks ══ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1e1e">
+    <section class="cs-section reveal">
       <div class="wrap">
         <p class="cs-section-label">Team</p>
         <h2 class="cs-section-title" style="font-style:italic">Credits</h2>
@@ -287,41 +280,45 @@
     </section>
 
     <!-- ── Tools & My Role (from slide 10 bottom) ── -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#252525">
+    <section class="cs-section reveal">
       <div class="wrap">
         <div class="cs-label-row">
           <span class="cs-label-row-key">Tools and Techniques</span>
           <span class="cs-label-row-val">
             <span class="cs-tags" style="margin:0">
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Mechanical Engineering</span>
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Welding</span>
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Carpentry</span>
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Stage Production</span>
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Drill</span>
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Concept Development</span>
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Stage Management</span>
-              <span class="cs-tag-item" style="background:rgba(180,140,60,0.6);border-color:rgba(180,140,60,0.6)">Theatre &ndash; Tech</span>
+              <span class="cs-tag-item">Mechanical Engineering</span>
+              <span class="cs-tag-item">Welding</span>
+              <span class="cs-tag-item">Carpentry</span>
+              <span class="cs-tag-item">Stage Production</span>
+              <span class="cs-tag-item">Drill</span>
+              <span class="cs-tag-item">Concept Development</span>
+              <span class="cs-tag-item">Stage Management</span>
+              <span class="cs-tag-item">Theatre &ndash; Tech</span>
             </span>
           </span>
-        </div>
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">My Role</span>
-          <span class="cs-label-row-val">As an Art Director, I had to design and engineer Axile and the complete stage with different scenes according to the Theatrical Play while administrating and leading 65+ people.</span>
         </div>
       </div>
     </section>
 
-    <!-- ── Thanks ── -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#1e1e1e">
+    <!-- ── Reflections ── -->
+    <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
-        <div class="cs-thanks">
-          <h2 class="cs-thanks-title"><em>Thanks for Watching!</em></h2>
+        <p class="cs-section-label">Reflections</p>
+        <h2 class="cs-section-title">What Building a Stage Taught Me About Design</h2>
+        <div class="cs-body" style="max-width:720px;">
+          <p>The revolving stage was the project that taught me design is not a visual discipline&mdash;it is a systems discipline. Every aesthetic decision was also a structural decision. The parallax effect I wanted required specific material thicknesses. The scene transitions I designed required specific rotation speeds. The lighting I planned required specific electrical loads. If any one system failed, the whole production failed.</p>
+          <p>Leading 65+ people also taught me that clarity of specification is the most underrated design skill. When I handed a carpenter a drawing with exact dimensions, paint codes, and assembly sequence, the result matched my intent. When I handed them a sketch and said &ldquo;make it look like this,&rdquo; the result required three revisions. Design systems work the same way&mdash;the more precisely you define the rules, the more reliably other people can execute without you.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
 
   </main>
-  </div>
 
     <a class="next-project" href="office-of-diversity.html">
     <div class="wrap next-project-inner">
@@ -336,39 +333,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

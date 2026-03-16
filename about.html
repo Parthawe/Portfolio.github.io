@@ -12,21 +12,20 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="dot-grid"></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
-
-  <div class="cursor-dot"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html" class="active"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -34,16 +33,15 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html" class="active"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
   <main id="main-content">
     <div class="wrap">
 
-      <!-- INTRO — photo + tight bio -->
       <header class="about-hero-v2">
         <div class="about-v2-photo-col">
           <img src="Assets/ParthAboutus.png" alt="Parth Pawar" class="about-photo" loading="eager"/>
@@ -51,19 +49,19 @@
         <div class="about-v2-text-col">
           <h1 class="about-v2-name">Parth Pawar</h1>
           <p class="about-v2-role">Product Designer · New York</p>
-          <p class="about-v2-bio">I design products across AI wearables, fintech, and interactive systems. Currently Head of UI/UX at Mentra, building AI-powered smart glasses with an open-source OS and app store. Also designing AI products at Clawed and ExecutiveLens. Previously founding designer at ZentiPay and lead designer at TransFi.</p>
-          <p class="about-v2-bio">MPS from NYU's Interactive Telecommunications Program (Tisch). BS in Computer Science. Former AI research intern at IBM.</p>
+          <p class="about-v2-bio">I think the best interfaces disappear. Not in the trendy &ldquo;invisible design&rdquo; sense &mdash; I mean they earn trust so quickly that people stop noticing them and start doing what they came to do. That&rsquo;s what I optimize for: the moment a user forgets they&rsquo;re using software.</p>
+          <p class="about-v2-bio">Right now I lead UI/UX at Mentra, where I&rsquo;m designing the OS and app store for AI-powered smart glasses &mdash; a form factor with no established patterns, a peripheral display you never stare at, and voice as the primary input. Before that I was the founding designer at ZentiPay (fintech for migrant workers) and led design at TransFi (crypto payments across six Asian markets). I also design AI products at Clawed and ExecutiveLens.</p>
+          <p class="about-v2-bio">I studied at NYU&rsquo;s Interactive Telecommunications Program, where I built neural-network music installations, mechanical theatre stages, and VJ software &mdash; the kind of work that taught me to design across hardware, software, and physical space simultaneously. Before that, Computer Science at VIT Pune and an AI research stint at IBM.</p>
           <div class="about-v2-links">
             <a href="mailto:parthpawar@nyu.edu" class="about-link">Email</a>
             <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener" class="about-link">LinkedIn</a>
-            <a href="https://freight.cargo.site/m/K2505295326952803353443522904598/Parth_Pawar_Resume.pdf" target="_blank" class="about-link">Resume &#8599;</a>
+            <a href="https://freight.cargo.site/m/K2505295326952803353443522904598/Parth_Pawar_Resume.pdf" target="_blank" class="about-link">Resume</a>
           </div>
         </div>
       </header>
 
       <hr class="divider"/>
 
-      <!-- EXPERIENCE — clean table -->
       <div class="exp-section">
         <div class="sec-head">
           <span class="sec-label">Experience</span>
@@ -73,16 +71,24 @@
             <div class="exp-date">2025 — Present</div>
             <div>
               <div class="exp-role">Head of UI/UX</div>
-              <div class="exp-co">Mentra &middot; New York</div>
-              <div class="exp-desc">Leading UI/UX for AI-powered smart glasses. Companion app, MentraOS, miniapp store, and developer platform. Backed by founders of YouTube, Android, and Pebble.</div>
+              <div class="exp-co">Mentra · New York</div>
+              <div class="exp-desc">Leading UI/UX for AI-powered smart glasses. Companion app, MentraOS, miniapp store, and developer platform.</div>
             </div>
           </div>
           <div class="exp-row reveal">
             <div class="exp-date">2026</div>
             <div>
               <div class="exp-role">Product Designer</div>
-              <div class="exp-co">Clawed &middot; New York</div>
-              <div class="exp-desc">Designed a safety-first AI assistant for smart glasses and web. Full product from marketing site to glasses experience.</div>
+              <div class="exp-co">Clawed · New York</div>
+              <div class="exp-desc">Designed a safety-first AI assistant for smart glasses and web.</div>
+            </div>
+          </div>
+          <div class="exp-row reveal">
+            <div class="exp-date">2026</div>
+            <div>
+              <div class="exp-role">Designer</div>
+              <div class="exp-co">OrgDashboard</div>
+              <div class="exp-desc">SaaS platform giving AI agents organizational context.</div>
             </div>
           </div>
           <div class="exp-row reveal">
@@ -90,45 +96,44 @@
             <div>
               <div class="exp-role">Product Designer</div>
               <div class="exp-co">ExecutiveLens.ai</div>
-              <div class="exp-desc">AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time dashboards.</div>
+              <div class="exp-desc">AI-powered business intelligence for executives.</div>
             </div>
           </div>
           <div class="exp-row reveal">
             <div class="exp-date">2025</div>
             <div>
               <div class="exp-role">Founding Product Designer</div>
-              <div class="exp-co">ZentiPay &middot; New York</div>
-              <div class="exp-desc">Built a fintech super app for migrant workers from 0 to 1. 30% higher transaction success, 40% faster perceived transfers.</div>
+              <div class="exp-co">ZentiPay · New York</div>
+              <div class="exp-desc">Built a fintech super app from 0 to 1. 30% higher transaction success.</div>
             </div>
           </div>
           <div class="exp-row reveal">
             <div class="exp-date">2022 — 2023</div>
             <div>
               <div class="exp-role">Lead Product Designer</div>
-              <div class="exp-co">TransFi &middot; Bangalore</div>
-              <div class="exp-desc">Led design for Asia's leading crypto payments platform. $50M+ monthly volume across web and mobile.</div>
+              <div class="exp-co">TransFi · Bangalore</div>
+              <div class="exp-desc">Led design for Asia's leading crypto payments platform. $50M+ monthly volume.</div>
             </div>
           </div>
           <div class="exp-row reveal">
             <div class="exp-date">2024</div>
             <div>
               <div class="exp-role">Designer</div>
-              <div class="exp-co">The Point CDC &middot; New York</div>
+              <div class="exp-co">The Point CDC · New York</div>
             </div>
           </div>
           <div class="exp-row reveal">
             <div class="exp-date">2023 — 2024</div>
             <div>
               <div class="exp-role">Graduate Teaching Assistant</div>
-              <div class="exp-co">NYU Tisch / ITP &middot; 3 semesters</div>
+              <div class="exp-co">NYU Tisch / ITP · 3 semesters</div>
             </div>
           </div>
           <div class="exp-row reveal">
             <div class="exp-date">2020 — 2021</div>
             <div>
               <div class="exp-role">Research Intern</div>
-              <div class="exp-co">IBM &middot; Pune</div>
-              <div class="exp-desc">Cancer prognosis UX research and AI interface design.</div>
+              <div class="exp-co">IBM · Pune</div>
             </div>
           </div>
         </div>
@@ -136,7 +141,6 @@
 
       <hr class="divider"/>
 
-      <!-- EDUCATION -->
       <div class="exp-section">
         <div class="sec-head">
           <span class="sec-label">Education</span>
@@ -153,7 +157,7 @@
             <div class="exp-date">2018 — 2022</div>
             <div>
               <div class="exp-role">BE, Computer Science</div>
-              <div class="exp-co">Vishwakarma Institute of Technology &middot; Pune</div>
+              <div class="exp-co">Vishwakarma Institute of Technology · Pune</div>
             </div>
           </div>
         </div>
@@ -161,7 +165,6 @@
 
       <hr class="divider"/>
 
-      <!-- RECOGNITION — merged from proof.html -->
       <div class="exp-section">
         <div class="sec-head">
           <span class="sec-label">Recognition</span>
@@ -188,7 +191,6 @@
 
       <hr class="divider"/>
 
-      <!-- EXHIBITIONS -->
       <div class="exp-section">
         <div class="sec-head">
           <span class="sec-label">Exhibitions</span>
@@ -216,29 +218,25 @@
     </div>
 
     <!-- CTA -->
-    <section class="cta-v2">
-      <div class="wrap cta-v2-inner">
-        <h2 class="cta-v2-headline">Let's work together</h2>
-        <a href="mailto:parthpawar@nyu.edu" class="cta-v2-btn magnetic">
-          parthpawar@nyu.edu
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <section class="cta">
+      <div class="wrap">
+        <p class="cta-text">Available for new projects.</p>
+        <a class="cta-email" href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer-v2">
-    <div class="wrap footer-v2-inner">
-      <span class="footer-v2-copy">&copy; 2022&ndash;26</span>
-      <ul class="footer-v2-links">
-        <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Email</a></li>
-      </ul>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
+      </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

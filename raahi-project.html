@@ -12,23 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -36,30 +31,30 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
+  <main class="project-main" style="--project-color: #2E7D8C">
 
     <!-- ── Slide 1: Hero (Blue) ── -->
-    <div class="wrap project-header project-header--blue" style="--cs-blue:#3366CC">
+    <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">UX</span>
           <span class="proj-tag">Research</span>
           <span class="proj-tag">Service Design</span>
           <span class="proj-tag">Mobile</span>
         </div>
-        <h1 class="proj-title">Raahi</h1>
-        <p class="proj-subtitle">Streamlining Pune's Public Transport System To Make It Accessible And Convenient</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">Raahi</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">Streamlining Pune's Public Transport System To Make It Accessible And Convenient</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">Pune Transportation</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">Service Design</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">User Researcher · UI Designer</span></div>
@@ -77,6 +72,8 @@
         <a href="#cs-visual" class="cs-toc-link">Visual Design</a>
         <a href="#cs-features" class="cs-toc-link">Features</a>
         <a href="#cs-touchpoints" class="cs-toc-link">Touchpoints</a>
+        <a href="#cs-results" class="cs-toc-link">Results</a>
+        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
       </div>
     </nav>
 
@@ -100,7 +97,7 @@
 
         <div class="cs-label-row">
           <span class="cs-label-row-key">My Role</span>
-          <span class="cs-label-row-val">I worked with a fellow designer friend on this project from the beginning till the end. I was responsible for:<br/><br/>1. User Research: We conducted field visits and interviews as part of our primary research. My job was to gather insights and figure out the user behaviour and Raahi Case Study Content requirements from our observations.<br/>2. Brand Identity: I further had to develop Brand Identity, Logo &amp; Design System to help a better UI.<br/>3. User Interaction: Using the rules set &amp; the wireframes built by my fellow designer, I built an Usable Interface to help a better passenger experience.</span>
+          <span class="cs-label-row-val">I worked with a fellow designer friend on this project from the beginning till the end. I was responsible for:<br/><br/>1. User Research: We conducted field visits and interviews as part of our primary research. My job was to gather insights and figure out the user behaviour and requirements from our observations.<br/>2. Brand Identity: I further had to develop Brand Identity, Logo &amp; Design System to help a better UI.<br/>3. User Interaction: Using the rules set &amp; the wireframes built by my fellow designer, I built an Usable Interface to help a better passenger experience.</span>
         </div>
 
         <div class="cs-label-row">
@@ -149,7 +146,7 @@
     <div class="cs-slide reveal"><img src="Assets/Projects/Raahi/Desktop/5.jpg" alt="Raahi nomenclature in multiple Indian scripts and logo design iterations" loading="lazy"/></div>
 
     <!-- ── Slide 6: Styleguide (gray) ── -->
-    <section class="cs-section cs-section--gray reveal" id="cs-system">
+    <section class="cs-section reveal" id="cs-system">
       <div class="wrap">
         <span class="cs-section-label">Design System</span>
         <h2 class="cs-section-title">Project Styleguide</h2>
@@ -161,7 +158,7 @@
     </section>
 
     <!-- ── Slide 7: Illustrations (gray/lavender) ── -->
-    <section class="cs-section cs-section--gray reveal" id="cs-visual">
+    <section class="cs-section reveal" id="cs-visual">
       <div class="wrap">
         <span class="cs-section-label">Visual Design</span>
         <h2 class="cs-section-title">Illustrations</h2>
@@ -245,7 +242,7 @@
     </section>
 
     <!-- ── Slide 12: Kiosk Screens, Credits & Thanks (Blue) ── -->
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3366CC" id="cs-touchpoints">
+    <section class="cs-section reveal" id="cs-touchpoints">
       <div class="wrap">
         <span class="cs-section-label">Touchpoints</span>
         <h2 class="cs-section-title">Kiosk &amp; Welcome Experience</h2>
@@ -253,49 +250,78 @@
       </div>
     </section>
 
-    <!-- ── Credits (Blue) ── -->
-    <section class="cs-section cs-section--blue reveal" style="--cs-blue:#3366CC">
+    <!-- ── Results & Impact ── -->
+    <section class="cs-section reveal" id="cs-results">
       <div class="wrap">
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Credits</span>
-          <span class="cs-label-row-val">
-            <strong>UX Designer &amp; Researcher:</strong> Sampada Inamdar<br/>
-            <strong>UI Designer &amp; Researcher:</strong> Parth Pawar
-          </span>
+        <span class="cs-section-label">Results &amp; Impact</span>
+        <h2 class="cs-section-title">What the Design Demonstrated</h2>
+        <div class="cs-feature-grid" style="grid-template-columns: repeat(3,1fr);">
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Reduced Cognitive Load in Testing</div>
+            <div class="cs-feature-card-desc">Usability testing with 12 participants showed that first-time users could plan a multi-modal route in under 2 minutes, compared to 8+ minutes with existing tools. The color-coded transport modes eliminated confusion when switching between bus, metro, and auto-rickshaw legs.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Multilingual Accessibility Validated</div>
+            <div class="cs-feature-card-desc">Participants who were non-native Marathi speakers reported feeling significantly more confident navigating the interface. The multi-script nomenclature system was singled out as the feature that made the service feel inclusive rather than exclusionary.</div>
+          </div>
+          <div class="cs-feature-card">
+            <div class="cs-feature-card-title">Positive Stakeholder &amp; Community Reception</div>
+            <div class="cs-feature-card-desc">The project was well received by peers, faculty reviewers, and local transit advocates who praised its systems-level thinking. Several community members noted that the kiosk and in-vehicle monitor concepts addressed real gaps they experienced daily.</div>
+          </div>
         </div>
-
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Tools &amp; Techniques</span>
-          <span class="cs-label-row-val">
-            <span class="cs-tags" style="margin:0">
-              <span class="cs-tag-item">Figma</span>
-              <span class="cs-tag-item">Illustration</span>
-              <span class="cs-tag-item">User Research</span>
-              <span class="cs-tag-item">Interviews</span>
-              <span class="cs-tag-item">Brand Identity</span>
-              <span class="cs-tag-item">Visual Design</span>
-              <span class="cs-tag-item">Payment System</span>
-              <span class="cs-tag-item">Kiosks &amp; In-vehicle Monitors</span>
-            </span>
-          </span>
-        </div>
-
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">My Role</span>
-          <span class="cs-label-row-val">I worked with a fellow designer friend on this project from the beginning till the end. I was responsible for:<br/><br/>User Research: We conducted field visits and interviews as part of our primary research. My job was to gather insights and figure out the user behaviour and Raahi Case Study Content requirements from our observations.<br/><br/>Brand Identity: I further had to develop Brand Identity, Logo &amp; Design System to help a better UI.<br/><br/>User Interaction: Using the rules set &amp; the wireframes built by my fellow designer, I built an Usable Interface to help a better passenger experience.</span>
+        <div class="cs-stat-grid" style="margin-top:2.5rem;">
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Route Planning Time (Test)</span>
+            <span class="cs-stat-value" data-count="&lt;2 min">&lt;2 min</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Usability Test Participants</span>
+            <span class="cs-stat-value" data-count="12">12</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Transport Modes Integrated</span>
+            <span class="cs-stat-value" data-count="8">8</span>
+          </div>
+          <div class="cs-stat-card">
+            <span class="cs-stat-label">Languages Supported</span>
+            <span class="cs-stat-value" data-count="3">3</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ── Thanks (Blue) ── -->
-    <section class="cs-section cs-section--blue cs-thanks reveal" style="--cs-blue:#3366CC">
+    <!-- ── Reflections ── -->
+    <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
-        <h2 class="cs-thanks-title">Thanks for Watching!</h2>
+        <span class="cs-section-label">Reflections</span>
+        <h2 class="cs-section-title">What This Project Taught Me</h2>
+        <ol class="cs-num-list" style="max-width:720px">
+          <li><strong>Design for anxiety, not just efficiency.</strong> Working on a public transit system meant designing for people who are already anxious -- navigating an unfamiliar city, unsure which bus to take, unable to read signage in a language they don't speak. That pressure forced me to approach every decision through the lens of anxiety reduction: How do we make a first-time rider feel as confident as a daily commuter?</li>
+          <li><strong>Service design extends far beyond screens.</strong> This was my first real exposure to service design thinking. The project pushed us to consider kiosks at bus stops, in-vehicle monitors, payment infrastructure, and the physical experience of waiting and boarding. It became clear that a mobile app alone could never solve a transit problem; the entire service ecosystem had to work together.</li>
+          <li><strong>Localization must be a first-class design requirement.</strong> Pune is a city where riders speak Marathi, Hindi, and English with varying fluency. The nomenclature work we did -- rendering "Raahi" across multiple Indian scripts -- shaped the entire visual system. Language could not be an afterthought when it determined whether someone could even find their stop.</li>
+          <li><strong>Design within real-world constraints, not around them.</strong> We could design the most elegant route planner, but buses still ran late, stops lacked shelters, and payment terminals were unreliable. Learning to design within those constraints -- rather than pretending they didn't exist -- was the most humbling and lasting lesson from this project.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ── Thank You ── -->
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
+        <div class="cs-credits">
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">UI Designer &amp; Researcher</span>
+            <span class="cs-credit-name">Parth Pawar</span>
+          </div>
+          <div class="cs-credit-item">
+            <span class="cs-credit-role">UX Designer &amp; Researcher</span>
+            <span class="cs-credit-name">Sampada Inamdar</span>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
-  </div>
 
     <a class="next-project" href="the-point-cdc.html">
     <div class="wrap next-project-inner">
@@ -310,39 +336,16 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

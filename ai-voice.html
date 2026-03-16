@@ -12,26 +12,18 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
-  <link rel="stylesheet" href="css/project.css"/>
-  <style>
-    :root { --cs-blue: #2196F3; --cs-dark: #0a0a12; }
-  </style>
+  <script src="js/theme.js"></script>
 </head>
 <body>
   <div class="grain"></div>
-  <div class="cursor-dot"></div>
-  <div class="cursor-glow"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="page-transition-overlay"></div>
-
+  <div class="dot-grid"></div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -39,32 +31,32 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
-  <div class="color-chapter color-chapter--light">
-  <main class="project-main">
+  <div class="reading-progress"></div>
+  <main class="project-main" style="--project-color: #4A6FA5">
 
     <!-- ══════════════════════════════════════════════
          SLIDE 1 — HERO (metadata + title + hero image)
          ══════════════════════════════════════════════ -->
     <div class="wrap project-header">
       <div class="proj-back">
-        <a href="ux.html" class="back-link">&larr; Back</a>
+        <a href="ux.html" class="back-link">&larr; Back to Work</a>
       </div>
-      <div class="proj-meta reveal">
+      <div class="proj-meta">
         <div class="proj-tags">
           <span class="proj-tag">Product Design</span>
           <span class="proj-tag">AI</span>
           <span class="proj-tag">Voice UX</span>
           <span class="proj-tag">Enterprise</span>
         </div>
-        <h1 class="proj-title">Redefining AI Voice Selection For Enterprise</h1>
-        <p class="proj-subtitle">Integrating Emotional Intelligence and Expressive Voice Selection: A Reimagined AI Voice Experience</p>
-        <div class="proj-info-row">
+        <h1 class="proj-title hero-anim hero-anim-1">Redefining AI Voice Selection For Enterprise</h1>
+        <p class="proj-subtitle hero-anim hero-anim-2">Integrating Emotional Intelligence and Expressive Voice Selection: A Reimagined AI Voice Experience</p>
+        <div class="proj-info-row hero-anim hero-anim-3">
           <div class="proj-info-item"><span class="proj-info-label">Client</span><span class="proj-info-val">Voice AI (NDA)</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Scope</span><span class="proj-info-val">Product Design</span></div>
           <div class="proj-info-item"><span class="proj-info-label">Role</span><span class="proj-info-val">Product Designer</span></div>
@@ -72,7 +64,7 @@
           <div class="proj-info-item"><span class="proj-info-label">Year</span><span class="proj-info-val">2025</span></div>
         </div>
       </div>
-      <div class="proj-hero-img proj-hero-img--full reveal"><img src="Assets/Projects/AI VOICE/AI.jpg" alt="AI Voice Selection — hero" loading="lazy"/></div>
+      <div class="proj-hero-img proj-hero-img--full hero-anim hero-anim-4"><img src="Assets/Projects/AI VOICE/AI.jpg" alt="AI Voice Selection — hero" loading="lazy"/></div>
     </div>
 
     <!-- Case Study TOC — sticky sidebar -->
@@ -86,13 +78,14 @@
         <a href="#cs-voice-dna" class="cs-toc-link">Voice DNA</a>
         <a href="#cs-mood" class="cs-toc-link">Mood Matching</a>
         <a href="#cs-validate" class="cs-toc-link">Validate</a>
+        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
       </div>
     </nav>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 1 cont. — OVERVIEW + CHALLENGES + ROLE (dark bg)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a12">
+    <section class="cs-section reveal">
       <div class="wrap">
         <h2 class="cs-display" style="max-width:22ch;">Reimagining how enterprise teams discover and select AI voices.</h2>
 
@@ -130,11 +123,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/1.png" alt="AI Voice Selection — project overview slide" loading="lazy"/>
     </div>
+    <p class="cs-caption">Project overview — the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 2 — COMPARATIVE UX + RESEARCH
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-research" style="--cs-dark:#111118">
+    <section class="cs-section reveal" id="cs-research">
       <div class="wrap">
         <span class="cs-section-label">Research</span>
         <h2 class="cs-display">The voices are world-class. The discovery experience isn't.</h2>
@@ -160,11 +154,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/2.png" alt="Comparative UX analysis and market research across voice AI platforms" loading="lazy"/>
     </div>
+    <p class="cs-caption">Comparative UX analysis across three competing platforms revealed critical gaps in voice discovery, onboarding flow, and personality customization.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 3 — DEFINE: PROBLEM + JOURNEY MAP
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-define" style="--cs-dark:#0a0a12">
+    <section class="cs-section reveal" id="cs-define">
       <div class="wrap">
         <span class="cs-section-label">Define</span>
         <h2 class="cs-display" style="max-width:28ch;">How might we help Enterprise Teams select an expressive AI voice that aligns with brand tone?</h2>
@@ -230,11 +225,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/3.png" alt="Problem definition, pain points, and customer journey map" loading="lazy"/>
     </div>
+    <p class="cs-caption">Five pain points distilled from research, mapped against an enterprise manager's journey from awareness through handoff to engineering.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 4 — IDEATE: VOICE DNA BUILDER CONCEPT
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-concept-a" style="--cs-dark:#111118">
+    <section class="cs-section reveal" id="cs-concept-a">
       <div class="wrap">
         <span class="cs-section-label">Ideate &mdash; Concept A</span>
         <h2 class="cs-display">Voice DNA Builder</h2>
@@ -267,11 +263,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/4.png" alt="Voice DNA Builder — sketch and final dark UI mockup" loading="lazy"/>
     </div>
+    <p class="cs-caption">Concept A: Voice DNA Builder — from initial sketch to high-fidelity dark UI. Users build a voice through parameter sliders that form an animated DNA helix.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 5 — IDEATE: MOOD-BASED VOICE MATCHING CONCEPT
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-concept-b" style="--cs-dark:#0a0a12">
+    <section class="cs-section reveal" id="cs-concept-b">
       <div class="wrap">
         <span class="cs-section-label">Ideate &mdash; Concept B</span>
         <h2 class="cs-display">Mood-Based Voice Matching</h2>
@@ -303,11 +300,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/5.png" alt="Mood-Based Voice Matching — sketch and final dark UI mockup" loading="lazy"/>
     </div>
+    <p class="cs-caption">Concept B: Mood-Based Voice Matching — the user speaks, the AI analyzes emotion and tone, then suggests three voices that match their energy.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 6 — VOICE DNA BUILDER DETAILS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-voice-dna" style="--cs-dark:#111118">
+    <section class="cs-section reveal" id="cs-voice-dna">
       <div class="wrap">
         <span class="cs-section-label">Deep Dive &mdash; Voice DNA Builder</span>
         <h2 class="cs-display">Build a voice, don't just pick one.</h2>
@@ -348,11 +346,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/6.png" alt="Voice DNA Builder — detailed feature breakdown and UI" loading="lazy"/>
     </div>
+    <p class="cs-caption">DNA Builder deep dive — six key features including live persona preview, transcript panel, global accent map, and real-time parameter sliders.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 7 — PERSONA MOVEMENTS + UX BENEFITS (DNA Builder)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a12">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">UX Benefits &mdash; Voice DNA Builder</span>
         <h2 class="cs-display">Creative freedom meets technical power.</h2>
@@ -383,11 +382,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/7.png" alt="Persona movements and UX benefits for Voice DNA Builder" loading="lazy"/>
     </div>
+    <p class="cs-caption">Persona movement states (Listen, Think, Talk) bring the voice character to life. The DNA Builder balances creative freedom with technical control.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 8 — MOOD-BASED VOICE MATCHING DETAILS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-mood" style="--cs-dark:#111118">
+    <section class="cs-section reveal" id="cs-mood">
       <div class="wrap">
         <span class="cs-section-label">Deep Dive &mdash; Mood-Based Voice Matching</span>
         <h2 class="cs-display">The system adapts to you.</h2>
@@ -419,11 +419,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/8.png" alt="Mood-Based Voice Matching — three screens: listening, thinking, talking" loading="lazy"/>
     </div>
+    <p class="cs-caption">Mood Matching's three-stage flow: a glowing circle captures voice input, a silhouette processes emotion, and three matched personas appear with mood summaries.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 9 — PERSONA + UX BENEFITS (Mood Matching)
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a12">
+    <section class="cs-section reveal">
       <div class="wrap">
         <span class="cs-section-label">UX Benefits &mdash; Mood-Based Matching</span>
         <h2 class="cs-display">Voice-first. Emotionally intelligent.</h2>
@@ -453,11 +454,12 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/9.png" alt="Persona silhouettes and UX benefits for Mood-Based Voice Matching" loading="lazy"/>
     </div>
+    <p class="cs-caption">Persona silhouettes give each voice a visual identity. Voice-first onboarding eliminates clicks entirely — users just speak, and the system adapts.</p>
 
     <!-- ══════════════════════════════════════════════
          SLIDE 10 — A/B TESTING + REFLECTIONS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" id="cs-validate" style="--cs-dark:#111118">
+    <section class="cs-section reveal" id="cs-validate">
       <div class="wrap">
         <span class="cs-section-label">Validate</span>
         <h2 class="cs-display">A/B Testing: DNA Builder vs. Mood Matching</h2>
@@ -497,6 +499,11 @@
           <p><strong>Overall Winner: Voice DNA Builder (Prototype A)</strong> for its customization depth and creative freedom. Recommendation: Use Mood-Based Matching as an emotional onboarding layer, then let users graduate to Voice DNA Builder for full control.</p>
         </div>
 
+        <div class="cs-pullquote" style="margin-top:2.5rem;">
+          <p>&ldquo;The DNA Builder made me feel like I was crafting a character, not picking from a dropdown. I actually wanted to keep tweaking it &mdash; that never happens with voice tools.&rdquo;</p>
+          <cite>A/B Test Participant, Enterprise Product Manager</cite>
+        </div>
+
         <h3 class="cs-section-subtitle" style="margin-top:3rem;">Reflections</h3>
         <div class="cs-body">
           <p>Working on the AI voice matching platform gave me the opportunity to deeply explore how voice can evolve from a utility into an expressive interface for emotion, identity, and brand storytelling.</p>
@@ -507,33 +514,39 @@
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/10.png" alt="A/B testing results and reflections" loading="lazy"/>
     </div>
+    <p class="cs-caption">A/B test results across 7 participants: DNA Builder won on customization, playfulness, and visual engagement; Mood Matching won on onboarding ease and emotional connection.</p>
 
     <!-- ══════════════════════════════════════════════
-         SLIDE 11 — CREDITS + THANKS
+         REFLECTIONS
          ══════════════════════════════════════════════ -->
-    <section class="cs-section cs-section--dark reveal" style="--cs-dark:#0a0a12">
+    <section class="cs-section reveal" id="cs-reflections">
       <div class="wrap">
-        <div class="cs-label-row">
-          <span class="cs-label-row-key">Credits</span>
-          <span class="cs-label-row-val"><strong>Product Designer</strong><br/>Parth Pawar</span>
+        <p class="cs-section-label">Reflections</p>
+        <h2 class="cs-section-title">Designing for a voice-first world</h2>
+        <div class="cs-num-list">
+          <li><strong>Voice-first design strips away visual scaffolding.</strong> There is no layout to guide the eye, no button to make obvious, no color to signal state. Every decision has to land through sound, timing, and language alone. This project taught me how much we rely on visual crutches in interface design &mdash; and how liberating it can be to design for a purely temporal medium where pacing and tone carry the entire experience.</li>
+          <li><strong>The line between helpful AI and intrusive AI is thinner than you think.</strong> An emotionally intelligent system that adapts to your voice is powerful, but it can easily tip into feeling surveillance-like if the user does not feel in control. The more capable the AI, the more deliberate the design needs to be about transparency, consent, and letting people opt out gracefully.</li>
+          <li><strong>Two concepts are better than one.</strong> Building both the DNA Builder and the Mood Matcher forced each idea to be sharper. A/B testing revealed that neither concept alone was the answer &mdash; the best experience layers mood-based onboarding into DNA-based customization. Competing prototypes made the final recommendation stronger than any single direction could have been.</li>
+          <li><strong>Intelligence without restraint is not good design.</strong> Enterprise teams need to trust the system before they deploy it to their customers. That trust is built through visible controls, transparent matching logic, and the ability to override every suggestion. The most sophisticated AI features in this project were the ones that showed their work.</li>
         </div>
-        <div class="cs-label-row" style="border-bottom:none;">
-          <span class="cs-label-row-key">My Role</span>
-          <span class="cs-label-row-val"><strong>Product Design Strategy:</strong> Leading concept definition for how users engage with AI voice personalities.<br/><strong>Interaction &amp; System Design:</strong> Designing DNA-based and mood-based systems for selecting and shaping voice outputs.</span>
-        </div>
+      </div>
+    </section>
 
-        <div class="cs-thanks" style="margin-top:3rem;">
-          <h2 class="cs-thanks-title">Thanks for Watching!</h2>
-        </div>
+    <!-- ══════════════════════════════════════════════
+         THANK YOU
+         ══════════════════════════════════════════════ -->
+    <section class="cs-section cs-thanks reveal">
+      <div class="wrap">
+        <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
 
     <div class="cs-slide reveal">
       <img src="Assets/Projects/AI VOICE/11.png" alt="Credits and thank you slide" loading="lazy"/>
     </div>
+    <p class="cs-caption">Final recommendation: layer Mood-Based Matching as the emotional onboarding, then graduate users to the Voice DNA Builder for full creative control.</p>
 
   </main>
-  </div>
 
     <a class="next-project" href="keyboard-project.html">
     <div class="wrap next-project-inner">
@@ -548,39 +561,15 @@
   </a>
 
   <footer class="footer">
-    <div class="footer-marquee">
-      <div class="footer-marquee-inner">
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's talk!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's have a Coffee!</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-        <span class="footer-marquee-item">Let's build something great</span>
-        <span class="footer-marquee-item hi">&middot;</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrap footer-inner">
-        <div>
-          <div class="footer-logo">Parth Pawar</div>
-          <div class="footer-copy">&copy;2022&mdash;&rsquo;26 &middot; designwhich.works</div>
-        </div>
-        <ul class="footer-links">
-          <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a></li>
-        </ul>
-        <div class="footer-colophon">Set in Inter &amp; Playfair Display &middot; Built with intention</div>
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
       </div>
     </div>
   </footer>
-
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

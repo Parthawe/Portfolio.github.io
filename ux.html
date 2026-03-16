@@ -12,22 +12,20 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
   <link rel="stylesheet" href="css/main.css"/>
+  <script src="js/theme.js"></script>
 </head>
 <body>
+  <div class="grain"></div>
+  <div class="dot-grid"></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
-
-  <div class="cursor-dot"></div>
-  <div class="page-loader"></div>
-  <div class="scroll-progress"></div>
-  <div class="wk-hover-img" id="wk-hover-img"><img src="" alt=""/></div>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Parth Pawar</a>
       <ul class="nav-links">
-        <li><a href="ux.html" class="active">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu" class="nav-contact">Contact</a></li>
+        <li><a href="ux.html" class="active"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+        <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+        <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
       </ul>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
@@ -35,9 +33,9 @@
 
   <div class="mobile-overlay">
     <ul class="mobile-nav-links">
-      <li><a href="ux.html" class="active">Work</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="mailto:parthpawar@nyu.edu">Contact</a></li>
+      <li><a href="ux.html" class="active"><span class="nav-link-default">Work</span><span class="nav-link-hover">Work</span></a></li>
+      <li><a href="about.html"><span class="nav-link-default">About</span><span class="nav-link-hover">About</span></a></li>
+      <li><a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a></li>
     </ul>
   </div>
 
@@ -46,166 +44,165 @@
 
       <header class="work-page-header">
         <h1 class="work-page-title">Work</h1>
-        <p class="work-page-sub">20+ projects across product design, AI wearables, fintech, and creative technology &mdash; from research through shipped products.</p>
+        <p class="work-page-sub">20+ projects across product design, AI wearables, fintech, and creative technology.</p>
       </header>
 
-      <!-- CURRENT ROLES — text-forward cards for projects without images -->
+      <!-- CURRENT — text cards -->
       <section class="work-current">
         <span class="work-section-label">Current</span>
         <div class="pcard-text-row">
-          <a class="pcard-text reveal" href="mentra.html" style="--grad-from: #1a2744; --grad-to: #0d1520;">
+          <a class="pcard-text reveal" href="mentra.html" style="--project-color: #1B4D8F">
             <span class="pcard-text-badge">Head of UI/UX</span>
             <h2 class="pcard-text-name">Mentra</h2>
-            <p class="pcard-text-desc">AI-powered smart glasses with an open-source OS and the world&rsquo;s first wearable miniapp store</p>
-            <span class="pcard-text-year">2025 &middot; AI Wearables</span>
+            <p class="pcard-text-desc">AI-powered smart glasses with an open-source OS and the world's first wearable miniapp store</p>
+            <span class="pcard-text-year">2025 · AI Wearables</span>
           </a>
-          <a class="pcard-text reveal" href="clawed-chat.html" style="--grad-from: #2a1f0a; --grad-to: #1a1408;">
+          <a class="pcard-text reveal" href="clawed-chat.html" style="--project-color: #8B5E34">
             <span class="pcard-text-badge">Product Designer</span>
             <h2 class="pcard-text-name">Clawed</h2>
-            <p class="pcard-text-desc">Safety-first AI assistant for smart glasses and web &mdash; conversational UI with guardrails</p>
-            <span class="pcard-text-year">2026 &middot; AI</span>
+            <p class="pcard-text-desc">Safety-first AI assistant for smart glasses and web — conversational UI with guardrails</p>
+            <span class="pcard-text-year">2026 · AI</span>
           </a>
-          <a class="pcard-text reveal" href="executivelens.html" style="--grad-from: #0a2a1f; --grad-to: #081a14;">
+          <a class="pcard-text reveal" href="executivelens.html" style="--project-color: #0A6847">
             <span class="pcard-text-badge">Product Designer</span>
             <h2 class="pcard-text-name">ExecutiveLens</h2>
-            <p class="pcard-text-desc">AI-powered business intelligence for executives &mdash; real-time insights on smart glasses</p>
-            <span class="pcard-text-year">2025&ndash;26 &middot; AI &middot; B2B</span>
+            <p class="pcard-text-desc">AI-powered business intelligence for executives — real-time insights on smart glasses</p>
+            <span class="pcard-text-year">2025–26 · AI · B2B</span>
+          </a>
+          <a class="pcard-text reveal" href="org-dashboard.html" style="--project-color: #2D3748">
+            <span class="pcard-text-badge">Designer</span>
+            <h2 class="pcard-text-name">OrgDashboard</h2>
+            <p class="pcard-text-desc">SaaS platform that gives AI agents organizational context — a shared brain for your company</p>
+            <span class="pcard-text-year">2026 · SaaS</span>
+          </a>
+          <a class="pcard-text reveal" href="ballah-code.html" style="--project-color: #E04832">
+            <span class="pcard-text-badge">Creator &amp; Designer</span>
+            <h2 class="pcard-text-name">Ballah Code</h2>
+            <p class="pcard-text-desc">AI-native desktop IDE where the AI works as a senior engineer — not a chatbot. 17 tools, custom agentic loop</p>
+            <span class="pcard-text-year">2026 · Dev Tools · AI</span>
           </a>
         </div>
       </section>
 
-      <!-- SHIPPED — image cards for projects with thumbnails -->
+      <!-- SHIPPED — image cards -->
       <section class="work-shipped">
         <span class="work-section-label">Shipped</span>
 
-        <!-- Hero card: ZentiPay -->
-        <a class="pcard pcard--hero reveal" href="zentipay.html">
+        <a class="pcard pcard--hero reveal" href="zentipay.html" style="--project-color: #1E6B45">
           <div class="pcard-img"><img src="assets/images/zentipay.png" alt="ZentiPay" loading="eager"/></div>
           <div class="pcard-body">
-            <div class="pcard-top">
-              <h2 class="pcard-name">ZentiPay</h2>
-              <span class="pcard-badge">0 &rarr; 1</span>
-            </div>
-            <p class="pcard-result">Founding designer of a fintech super app &mdash; increased transaction success by 30% across payments, remittances, and crypto</p>
-            <span class="pcard-role">Founding Designer &middot; 2025</span>
+            <h2 class="pcard-name">ZentiPay</h2>
+            <p class="pcard-result">Fintech super app — 30% higher transaction success across payments, remittances, and crypto</p>
           </div>
         </a>
 
         <div class="pcard-row">
-          <a class="pcard reveal" href="transfi-project.html">
+          <a class="pcard reveal" href="transfi-project.html" style="--project-color: #232D95">
             <div class="pcard-img"><img src="assets/images/transfi.png" alt="TransFi" loading="eager"/></div>
             <div class="pcard-body">
               <h2 class="pcard-name">TransFi</h2>
-              <p class="pcard-result">Led product design for Asia&rsquo;s leading crypto payments platform &mdash; $50M+ monthly volume</p>
-              <span class="pcard-role">Lead Designer &middot; 2022&ndash;23</span>
+              <p class="pcard-result">Asia's leading crypto payments platform — $50M+ monthly volume</p>
             </div>
           </a>
-          <a class="pcard reveal" href="raahi-project.html">
+          <a class="pcard reveal" href="raahi-project.html" style="--project-color: #2E7D8C">
             <div class="pcard-img"><img src="assets/images/raahi.png" alt="Raahi" loading="eager"/></div>
             <div class="pcard-body">
               <h2 class="pcard-name">Raahi</h2>
-              <p class="pcard-result">Transit accessibility research &mdash; mobile app design for underserved commuters in NYC</p>
-              <span class="pcard-role">Designer &middot; 2023</span>
+              <p class="pcard-result">Transit accessibility — mobile app design for underserved commuters</p>
             </div>
           </a>
         </div>
 
         <div class="pcard-row">
-          <a class="pcard reveal" href="the-point-cdc.html">
+          <a class="pcard reveal" href="the-point-cdc.html" style="--project-color: #C44D2B">
             <div class="pcard-img"><img src="assets/images/the-point-cdc.png" alt="The Point CDC" loading="lazy"/></div>
             <div class="pcard-body">
               <h2 class="pcard-name">The Point CDC</h2>
-              <p class="pcard-result">Community-centered UX research and design for the South Bronx&rsquo;s cultural development hub</p>
-              <span class="pcard-role">Designer &middot; 2024</span>
+              <p class="pcard-result">Community-centered design for the South Bronx's cultural hub</p>
             </div>
           </a>
-          <a class="pcard reveal" href="office-of-diversity.html">
+          <a class="pcard reveal" href="office-of-diversity.html" style="--project-color: #6B2D8B">
             <div class="pcard-img"><img src="assets/images/office-of-diversity.png" alt="Office of Diversity" loading="lazy"/></div>
             <div class="pcard-body">
               <h2 class="pcard-name">Office of Diversity</h2>
-              <p class="pcard-result">Web presence and design system for NYU Tisch School of the Arts diversity initiatives</p>
-              <span class="pcard-role">Designer &middot; 2023&ndash;24</span>
+              <p class="pcard-result">Web presence and design system for NYU Tisch diversity initiatives</p>
             </div>
           </a>
         </div>
 
         <div class="pcard-row">
-          <a class="pcard reveal" href="ai-voice.html">
+          <a class="pcard reveal" href="ai-voice.html" style="--project-color: #4A6FA5">
             <div class="pcard-img"><img src="assets/images/ai-voice.png" alt="AI Voice Interface" loading="lazy"/></div>
             <div class="pcard-body">
               <h2 class="pcard-name">AI Voice Interface</h2>
-              <p class="pcard-result">Conversational AI interface design &mdash; voice-driven interactions for accessible computing</p>
-              <span class="pcard-role">Designer &middot; 2024</span>
+              <p class="pcard-result">Conversational AI interface design — voice-driven interactions</p>
             </div>
           </a>
-          <a class="pcard reveal" href="keyboard-project.html">
+          <a class="pcard reveal" href="keyboard-project.html" style="--project-color: #5C6B3A">
             <div class="pcard-img"><img src="assets/images/keyboard.png" alt="BreakGen" loading="lazy"/></div>
             <div class="pcard-body">
               <h2 class="pcard-name">BreakGen</h2>
-              <p class="pcard-result">Modular keyboard platform with embedded ML &mdash; ITP thesis exploring generative tactile design</p>
-              <span class="pcard-role">ITP Thesis &middot; 2024</span>
+              <p class="pcard-result">Modular keyboard with embedded ML — ITP thesis</p>
             </div>
           </a>
         </div>
       </section>
 
-      <!-- DIVIDER -->
       <hr class="work-divider"/>
 
-      <!-- ARCHIVE — compact list -->
+      <!-- ARCHIVE — minimal list -->
       <section class="work-archive">
         <span class="work-section-label">Archive</span>
-
-        <div class="work-list" id="work-list">
+        <div class="work-list">
           <a class="work-list-row reveal" href="oncall-lens.html">
             <span class="work-list-name">OnCall Lens</span>
-            <span class="work-list-desc">Sentry alerts to automated PR fixes via smart glasses</span>
             <span class="work-list-year">2026</span>
+            <img class="wk-hover-img" src="assets/images/oncall-lens.png" alt="" loading="lazy"/>
           </a>
-          <a class="work-list-row reveal" href="jugalbandi.html" data-img="assets/images/jugalbandi.png">
+          <a class="work-list-row reveal" href="jugalbandi.html">
             <span class="work-list-name">Jugalbandi</span>
-            <span class="work-list-desc">ML-driven musical instrument and installation</span>
             <span class="work-list-year">2024</span>
+            <img class="wk-hover-img" src="assets/images/jugalbandi.png" alt="" loading="lazy"/>
           </a>
-          <a class="work-list-row reveal" href="vj-software.html" data-img="assets/images/vj.png">
+          <a class="work-list-row reveal" href="vj-software.html">
             <span class="work-list-name">VJ Software</span>
-            <span class="work-list-desc">Real-time visual performance tool</span>
             <span class="work-list-year">2024</span>
+            <img class="wk-hover-img" src="assets/images/vj.png" alt="" loading="lazy"/>
           </a>
-          <a class="work-list-row reveal" href="uv-light.html" data-img="assets/images/uv-light.png">
+          <a class="work-list-row reveal" href="uv-light.html">
             <span class="work-list-name">UV Light</span>
-            <span class="work-list-desc">Interactive light installation</span>
             <span class="work-list-year">2024</span>
+            <img class="wk-hover-img" src="assets/images/uv-light.png" alt="" loading="lazy"/>
           </a>
-          <a class="work-list-row reveal" href="revolving-stage.html" data-img="assets/images/revolving-stage.png">
+          <a class="work-list-row reveal" href="revolving-stage.html">
             <span class="work-list-name">Revolving Stage</span>
-            <span class="work-list-desc">Kinetic stage design and fabrication</span>
             <span class="work-list-year">2023</span>
+            <img class="wk-hover-img" src="assets/images/revolving-stage.png" alt="" loading="lazy"/>
           </a>
-          <a class="work-list-row reveal" href="CueTV.html" data-img="assets/images/cuetv.png">
+          <a class="work-list-row reveal" href="CueTV.html">
             <span class="work-list-name">CueTV</span>
-            <span class="work-list-desc">Accessible TV experience research</span>
             <span class="work-list-year">2023</span>
+            <img class="wk-hover-img" src="assets/images/cuetv.png" alt="" loading="lazy"/>
           </a>
-          <a class="work-list-row reveal" href="ATPS.html" data-img="assets/images/atps.png">
+          <a class="work-list-row reveal" href="ATPS.html">
             <span class="work-list-name">ATPS</span>
-            <span class="work-list-desc">Video production and UX research</span>
             <span class="work-list-year">2023</span>
+            <img class="wk-hover-img" src="assets/images/atps.png" alt="" loading="lazy"/>
           </a>
-          <a class="work-list-row reveal" href="tedx.html" data-img="assets/images/tedx.png">
-            <span class="work-list-name">TEDxVITPune</span>
-            <span class="work-list-desc">Brand identity and event design</span>
-            <span class="work-list-year">2021</span>
-          </a>
-          <a class="work-list-row reveal" href="code-for-build.html" data-img="assets/images/code-for-build.png">
-            <span class="work-list-name">Code for Build</span>
-            <span class="work-list-desc">Brand and product design for Istanbul startup</span>
-            <span class="work-list-year">2021</span>
-          </a>
-          <a class="work-list-row reveal" href="Typeface.html" data-img="assets/images/typeface.png">
-            <span class="work-list-name">Butler&rsquo;s Slice</span>
-            <span class="work-list-desc">Original variable display typeface</span>
+          <a class="work-list-row reveal" href="Typeface.html">
+            <span class="work-list-name">Butler's Slice</span>
             <span class="work-list-year">2022</span>
+            <img class="wk-hover-img" src="assets/images/typeface.png" alt="" loading="lazy"/>
+          </a>
+          <a class="work-list-row reveal" href="tedx.html">
+            <span class="work-list-name">TEDxVITPune</span>
+            <span class="work-list-year">2021</span>
+            <img class="wk-hover-img" src="assets/images/tedx.png" alt="" loading="lazy"/>
+          </a>
+          <a class="work-list-row reveal" href="code-for-build.html">
+            <span class="work-list-name">Code for Build</span>
+            <span class="work-list-year">2021</span>
+            <img class="wk-hover-img" src="assets/images/code-for-build.png" alt="" loading="lazy"/>
           </a>
         </div>
       </section>
@@ -213,29 +210,25 @@
     </div>
 
     <!-- CTA -->
-    <section class="cta-v2">
-      <div class="wrap cta-v2-inner">
-        <h2 class="cta-v2-headline">Let&rsquo;s work together</h2>
-        <a href="mailto:parthpawar@nyu.edu" class="cta-v2-btn magnetic">
-          parthpawar@nyu.edu
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <section class="cta">
+      <div class="wrap">
+        <p class="cta-text">Available for new projects.</p>
+        <a class="cta-email" href="mailto:parthpawar@nyu.edu">parthpawar@nyu.edu</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer-v2">
-    <div class="wrap footer-v2-inner">
-      <span class="footer-v2-copy">&copy; 2022&ndash;26</span>
-      <ul class="footer-v2-links">
-        <li><a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="mailto:parthpawar@nyu.edu">Email</a></li>
-      </ul>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-copy">Parth Pawar, 2026</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener"><span class="nav-link-default">LinkedIn</span><span class="nav-link-hover">LinkedIn</span></a>
+        <a href="https://www.instagram.com/designwhich.works" target="_blank" rel="noopener"><span class="nav-link-default">Instagram</span><span class="nav-link-hover">Instagram</span></a>
+        <a href="mailto:parthpawar@nyu.edu"><span class="nav-link-default">Email</span><span class="nav-link-hover">Email</span></a>
+      </div>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
