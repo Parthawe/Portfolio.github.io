@@ -554,10 +554,9 @@
     backBtn.classList.toggle('visible', show);
   }, { passive: true });
 
-  // ── Footer reveal ──
+  // ── Footer reveal — content scrolls away, dark footer underneath ──
   var footer = document.querySelector('.footer');
-  var isCorePage = document.querySelector('.hero') || document.querySelector('.work-page-header') || document.querySelector('.about-hero-v2');
-  if (footer && isCorePage && !document.querySelector('.reading-progress')) {
+  if (footer && !document.querySelector('.reading-progress')) {
     // Wrap footer in reveal container
     var footerReveal = document.createElement('div');
     footerReveal.className = 'footer-reveal';
@@ -593,7 +592,7 @@
 
   // ── Magnetic CTA button ──
   if (!isMobile && !prefersReduced) {
-    document.querySelectorAll('.cta-email').forEach(function (btn) {
+    document.querySelectorAll('.cta-email, .footer-cta-email').forEach(function (btn) {
       btn.addEventListener('mousemove', function (e) {
         var rect = btn.getBoundingClientRect();
         var x = e.clientX - rect.left - rect.width / 2;
