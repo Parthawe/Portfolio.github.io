@@ -1,6 +1,52 @@
 # Changelog — Portfolio Redesign
 
-Complete record of every change made to [parthpawar.github.io](https://parthpawar.github.io) across 11 commits from March 10–16, 2026. This document covers the full evolution from initial overhaul to the current minimal editorial design, including three rounds of site-wide auditing and cleanup.
+Complete record of every change made to [parthpawar.github.io](https://parthpawar.github.io) across 12 commits from March 10–17, 2026. This document covers the full evolution from initial overhaul to the current minimal editorial design, including four rounds of site-wide auditing and cleanup.
+
+---
+
+## March 17, 2026
+
+### Commit — Round 4 Audit: Art Page Meta Tags, Next-Project Images, JS Performance
+
+Fourth comprehensive audit pass. Found and fixed issues specific to the 6 art project pages created in Round 1, plus a JS performance improvement.
+
+**Missing `og:image` Meta Tags (6 pages):**
+All 6 art project pages were missing the `og:image` Open Graph meta tag, meaning social media shares (LinkedIn, Twitter/X, Slack) would show no preview image.
+
+| File | Added `og:image` |
+|------|-----------------|
+| `shuffle.html` | `Assets/images/shuffle.png` |
+| `enigma.html` | `Assets/images/enigma.png` |
+| `making-of-time.html` | `Assets/images/making-of-time.png` |
+| `the-omakase.html` | `Assets/images/the-omakase.png` |
+| `moniac-machine.html` | `Assets/images/moniac-machine.png` |
+| `drowning.html` | `Assets/images/drowning.png` |
+
+**Missing Next-Project Thumbnail Images (6 pages):**
+All 6 art project pages had next-project links without the `<div class="next-project-img"><img>` block. Every other project page in the portfolio shows a thumbnail preview of the next project on hover — these 6 showed only the project title with no image.
+
+| File | Next-Project Image Added |
+|------|------------------------|
+| `shuffle.html` | `enigma.png` |
+| `enigma.html` | `making-of-time.png` |
+| `making-of-time.html` | `uv-light.png` |
+| `the-omakase.html` | `moniac-machine.png` |
+| `moniac-machine.html` | `drowning.png` |
+| `drowning.html` | `tedx.png` |
+
+**JavaScript Fixes (js/main.js):**
+- **Dead selector removed** — Line 387: `document.querySelector('.project-header, .proj-hero')` → `document.querySelector('.project-header')`. The `.proj-hero` class doesn't exist in any HTML file — this was a leftover from an earlier design iteration. The reading time calculator now queries only the class that actually exists.
+- **Passive event listener** — Line 91: Global `document.addEventListener('mousemove', ...)` was missing `{ passive: true }`. This listener fires hundreds of times per second; marking it passive tells the browser it won't call `preventDefault()`, allowing smoother scrolling and compositing.
+- **Passive event listener** — Line 156: `heroEl.addEventListener('mousemove', ...)` for the hero glow cursor effect also marked `{ passive: true }` for the same reason.
+
+**Full Audit Results (verified clean):**
+- Navigation chain: 28 pages, complete loop, all target files exist ✓
+- Image paths: All using `Assets/images/` (uppercase A) ✓
+- Skip-links: Present on all 28 project pages + index + about + ux ✓
+- `defer` attributes: Present on all `theme.js` and `main.js` script tags ✓
+- External links: All `target="_blank"` links have `rel="noopener"` ✓
+- CSS variables: No undefined `var()` references ✓
+- No unused JS variables or uncalled functions ✓
 
 ---
 
@@ -593,23 +639,23 @@ Brand & Visual:      → tedx → code-for-build → Typeface → ATPS → mentr
 
 ### P0 — Blocking (broken on live site)
 
-- [ ] **6 missing thumbnail images** — These are referenced in ux.html and next-project links but don't exist. The project cards show broken images on the Work page.
+- [ ] **6 missing thumbnail images** — These are referenced in ux.html, next-project links, and og:image meta tags but don't exist as files. The project cards show broken images on the Work page, and social media shares show no preview.
   - `Assets/images/shuffle.png`
   - `Assets/images/enigma.png`
   - `Assets/images/making-of-time.png`
   - `Assets/images/the-omakase.png`
   - `Assets/images/moniac-machine.png`
   - `Assets/images/drowning.png`
-  - **Action**: Export/screenshot thumbnails from Vimeo videos or project content. Target size: ~800x600px, optimized PNG or WebP.
+  - **Action**: Export/screenshot thumbnails from Vimeo videos or project content. Target size: ~800x600px, optimized PNG or WebP. Each image is referenced in 3 places: ux.html card, next-project link from the previous page, and the page's own og:image tag.
 
 ### P1 — High Priority (quality / completeness)
 
-- [ ] **PDF.html doesn't follow standard template** — Missing nav, footer, skip-link, mobile-overlay, favicon, theme.js. Uses external CDN (Tailwind, jQuery, flipbook library). Either rebuild to match the portfolio template or remove from the site.
+- [ ] **PDF.html doesn't follow standard template** — Missing nav, footer, skip-link, mobile-overlay, grain, dot-grid, favicon, theme.js, main.js. Uses external CDN (Tailwind, jQuery, dflip flipbook library) without `defer`. Script tags also lack `defer` attribute. Either rebuild to match the portfolio template or remove from the site.
 - [ ] **Cross-verify with designwhich.works** — The live Cargo site may have additional projects, updated descriptions, or newer images not yet pulled into this repo. Compare project list and content 1:1.
-- [ ] **Additional projects from Portfolio-replicate not yet added** — healthapp, ibm (Cancer Prognosis), sculpture, vishwaconclave were identified in the source repo but not created as pages. Decide which to include.
+- [ ] **Additional projects from Portfolio-replicate not yet added** — healthapp, ibm (Cancer Prognosis), sculpture, vishwaconclave were identified in the source repo but not created as pages. Decide which to include and create pages following the standard template.
 - [ ] **Placeholder images across project pages** — mentra, zentipay, clawed-chat, keyboard-project, ballah-code, executivelens, org-dashboard may still reference placeholder screenshots rather than final polished assets. Review and replace with production-quality images.
 - [ ] **revolving-stage.html missing proj-subtitle** — Only project page without the standard `<p class="proj-subtitle">` element beneath the title. All other 27 pages have it.
-- [ ] **Open Graph images per project** — Currently most pages share `mentra.png` as og:image. Each project page should reference its own thumbnail for accurate social sharing previews.
+- [ ] **Open Graph images — existing pages** — Many of the original 22 project pages share `mentra.png` as og:image rather than referencing their own thumbnail. Each project page should use its own image for accurate social sharing previews. (The 6 new art pages were fixed in Round 4 to use their own images.)
 
 ### P2 — SEO & Performance
 
@@ -619,17 +665,21 @@ Brand & Visual:      → tedx → code-for-build → Typeface → ATPS → mentr
 - [ ] **Preconnect to font CDN** — Add `<link rel="preconnect" href="https://fonts.googleapis.com">` and `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>` to all pages to reduce font load latency.
 - [ ] **Sitemap.xml** — Generate a sitemap listing all 31+ pages for better search engine crawling.
 - [ ] **robots.txt** — Add a robots.txt pointing to the sitemap.
+- [ ] **Preload critical assets** — Add `<link rel="preload">` for Satoshi font files and main.css to reduce initial render time.
 
 ### P3 — Code Quality & Maintainability
 
-- [ ] **Reduce CSS `!important` usage** — 62 instances, mostly in `.cs-section--blue` and `.cs-section--dark` overrides (lines 1418–2452 of main.css). Restructure specificity so these rules win naturally without `!important`.
-- [ ] **Merge duplicate CSS selectors** — `.pcard` is defined in 3 separate locations (lines 998, 2306, 2584), `.hero-label` in 2 places (lines 462, 669). Consolidate into single definitions to avoid cascade confusion.
-- [ ] **JS observer cleanup** — `tocObserver` (line 336) and `overlayMo` MutationObserver (line 498) are created but never disconnected. Add cleanup on `beforeunload` to prevent memory accumulation.
-- [ ] **JS event listener cleanup** — Global scroll/resize listeners (hero fade, nav scroll state, progress bar, back-to-top visibility, footer height) are never removed. Consider using an AbortController signal for grouped cleanup.
+- [ ] **Reduce CSS `!important` usage** — 61 instances, mostly in `.cs-section--blue` and `.cs-section--dark` overrides (lines 1418–2452 of main.css) and `.nav-contact` resets (lines 372–380). Restructure specificity so these rules win naturally without `!important`.
+- [ ] **Merge duplicate CSS selectors** — `.pcard` is defined in 3 separate locations (lines 998, 2306, 2584), `.hero-label` in 2 places (lines 462, 669), `.theme-toggle svg` in 2 places (lines 149, 157). Consolidate into single definitions to avoid cascade confusion.
+- [ ] **JS observer cleanup** — `tocObserver` (line 336) and `overlayMo` MutationObserver (line 498) are created but never disconnected. Add cleanup on `beforeunload` to prevent memory accumulation during long browsing sessions.
+- [ ] **JS event listener cleanup** — 18+ event listeners (scroll, mousemove, resize, click, keydown) are attached globally but never removed. Consider using an AbortController signal for grouped cleanup, or accept the tradeoff since this is a static portfolio (no SPA routing).
 - [ ] **`:has()` CSS browser support** — The sibling fade effect (`.pcard-row:has(.pcard:hover)`) doesn't work in Firefox versions before 121 (Dec 2023). Current behavior degrades gracefully (hover effect just doesn't dim siblings). Could add a JS fallback if broader support is needed.
+- [ ] **CSS orphaned hidden selectors** — `.hero-v2--split` and `.footer-v2` are still in the `display: none !important` block (line 2527-2528). These classes don't exist in any HTML file. Safe to remove entirely.
 
 ### P4 — Nice to Have
 
 - [ ] **404.html** — Custom 404 page matching the portfolio design. GitHub Pages automatically serves `404.html` from the repo root.
 - [ ] **Print stylesheet** — `@media print` styles for case studies: hide nav, footer, next-project, back-to-top; optimize typography and images for paper.
 - [ ] **Service worker / offline** — Cache static assets (CSS, JS, fonts, thumbnails) for offline portfolio viewing at conferences and interviews where wifi may be unreliable.
+- [ ] **Favicon as local file** — Currently all pages reference favicon from `freight.cargo.site` CDN. Download and serve locally from `Assets/` to avoid external dependency and improve load time.
+- [ ] **CSS custom property for project colors** — Standardize all 28 project pages to set `--project-color` via inline style on `<body>`, then reference it consistently in `.color-chapter`, `.project-header`, and `.cs-section` backgrounds. Some pages may still use hardcoded hex values.

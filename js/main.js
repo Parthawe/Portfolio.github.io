@@ -91,7 +91,7 @@
       document.addEventListener('mousemove', function (e) {
         targetX = (e.clientX / window.innerWidth - 0.5) * 2;
         targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-      });
+      }, { passive: true });
     }
 
     function animateCards() {
@@ -157,7 +157,7 @@
           var rect = heroEl.getBoundingClientRect();
           glowEl.style.left = (e.clientX - rect.left) + 'px';
           glowEl.style.top = (e.clientY - rect.top) + 'px';
-        });
+        }, { passive: true });
       }
     }
   }
@@ -384,7 +384,7 @@
   }
 
   // ── Reading time ──
-  var projHero = document.querySelector('.project-header, .proj-hero');
+  var projHero = document.querySelector('.project-header');
   if (projHero) {
     var mainEl = document.querySelector('main');
     if (mainEl) {
