@@ -150,8 +150,47 @@ moniac-machine → drowning → tedx → code-for-build → Typeface → ATPS �
 
 ---
 
-## Known Issues / Remaining Work
-- **6 missing thumbnail images**: shuffle.png, enigma.png, making-of-time.png, the-omakase.png, moniac-machine.png, drowning.png need to be created/exported for Assets/images/
-- **PDF.html** does not follow the standard page template (no nav, footer, skip-link)
-- No canonical URLs or JSON-LD structured data (SEO enhancement)
-- `:has()` CSS selector not supported in older Firefox (graceful degradation — sibling fade just won't trigger)
+## Next Steps
+
+### P0 — Blocking (broken on live site)
+
+- [ ] **6 missing thumbnail images** — These are referenced in ux.html and next-project links but don't exist. The project cards show broken images on the Work page.
+  - `Assets/images/shuffle.png`
+  - `Assets/images/enigma.png`
+  - `Assets/images/making-of-time.png`
+  - `Assets/images/the-omakase.png`
+  - `Assets/images/moniac-machine.png`
+  - `Assets/images/drowning.png`
+  - **Action**: Export/screenshot thumbnails from Vimeo videos or project content. Target size: ~800x600px, optimized PNG or WebP.
+
+### P1 — High Priority (quality / completeness)
+
+- [ ] **PDF.html doesn't follow standard template** — Missing nav, footer, skip-link, mobile-overlay, favicon, theme.js. Uses external CDN (Tailwind, jQuery, flipbook library). Either rebuild to match the portfolio template or remove from the site.
+- [ ] **Cross-verify with designwhich.works** — The user's live Cargo site may have additional projects, updated descriptions, or newer images not yet pulled into this repo. Compare project list and content 1:1.
+- [ ] **Additional projects from Portfolio-replicate not yet added** — healthapp, ibm (Cancer Prognosis), sculpture, vishwaconclave were identified but not created as pages. Decide which to include.
+- [ ] **31 placeholder images across 8 pages** — mentra, zentipay, clawed-chat, keyboard-project, ballah-code, executivelens, org-dashboard still reference images that may be placeholder screenshots rather than final polished assets. Review and replace.
+- [ ] **revolving-stage.html missing proj-subtitle** — Only project page without the standard `<p class="proj-subtitle">` element beneath the title.
+
+### P2 — SEO & Performance
+
+- [ ] **Add canonical URLs** — Every page needs `<link rel="canonical" href="https://parthpawar.github.io/[page].html"/>` to prevent duplicate content issues.
+- [ ] **Add JSON-LD structured data** — Person schema on index.html, CreativeWork schema on each project page. Enables rich snippets in search results.
+- [ ] **Image optimization** — Current thumbnails are unoptimized PNGs. Convert to WebP with `<picture>` fallback, add `srcset` for responsive sizes, lazy-load below-the-fold images (already using `loading="lazy"` but no srcset).
+- [ ] **Preconnect to font CDN** — Add `<link rel="preconnect" href="https://fonts.googleapis.com">` and `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>` to reduce font load time.
+
+### P3 — Code Quality & Maintainability
+
+- [ ] **Reduce CSS !important usage** — 62 instances, mostly in `.cs-section--blue`/`.cs-section--dark` overrides (lines 1418–2452). Restructure specificity to avoid cascade hacks.
+- [ ] **Merge duplicate CSS selectors** — `.pcard` defined in 3 places (lines 998, 2306, 2584), `.hero-label` in 2 places (lines 462, 669). Consolidate into single definitions.
+- [ ] **JS observer cleanup** — `tocObserver` and `overlayMo` (MutationObserver) are never disconnected. Add cleanup on page unload to prevent memory accumulation.
+- [ ] **JS event listener cleanup** — Global scroll/resize listeners (hero fade, nav scroll, progress bar, back-to-top, footer height) are never removed. Consider AbortController pattern for grouped cleanup.
+- [ ] **`:has()` CSS fallback** — The sibling fade effect (`.pcard-row:has(.pcard:hover)`) doesn't work in older Firefox. Graceful degradation is acceptable, but could add a JS fallback if broader support needed.
+
+### P4 — Nice to Have
+
+- [ ] **Open Graph images per project** — Currently all pages share `mentra.png` as og:image. Each project page should have its own thumbnail for better social sharing previews.
+- [ ] **Sitemap.xml** — Generate a sitemap for better search engine crawling of all 28+ pages.
+- [ ] **robots.txt** — Add a robots.txt pointing to the sitemap.
+- [ ] **404.html** — Custom 404 page matching the portfolio design (GitHub Pages supports this).
+- [ ] **Print stylesheet** — `@media print` styles for case studies (hide nav, footer, next-project; optimize for paper).
+- [ ] **Service worker / offline** — Cache static assets for offline portfolio viewing at conferences/interviews.
