@@ -28,7 +28,6 @@
   --body:     var(--sans);
 
   --accent:       #f5f5f5;
-  --gray-light:   #d9d9d9;
   --gray-mid:     #ababab;
   --footer-dark:  rgb(32, 32, 32);
 
@@ -45,8 +44,6 @@
   --w:        1120px;
   --narrow:   720px;
   --pad:      clamp(1.25rem, 4vw, 3rem);
-  --gap:      clamp(1.25rem, 2.5vw, 2rem);
-
   --radius:   8px;
   --ease-out: cubic-bezier(0,0,0.3,1);
   --ease-spring: cubic-bezier(0.16,1,0.3,1);
@@ -105,7 +102,7 @@
   color: var(--accent);
 }
 [data-theme="dark"] :focus-visible {
-  outline-color: rgba(237,237,236,0.4);
+  outline-color: rgba(237,237,236,0.65);
 }
 [data-theme="dark"] img:not(.lightbox img) {
   filter: brightness(0.92);
@@ -209,7 +206,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--gray-mid) var(--bg); }
 
 /* --- Focus-visible --- */
 :focus-visible {
-  outline: 3px solid rgba(26,26,26,0.4);
+  outline: 3px solid rgba(26,26,26,0.65);
   outline-offset: 2px;
 }
 a:focus-visible,
@@ -665,7 +662,7 @@ hr.divider {
   100% { transform: translateX(-50%); }
 }
 
-/* ── Cycling hero label ── */
+/* ── Cycling hero label transition (extends .hero-label above) ── */
 .hero-label {
   transition: opacity 0.3s;
 }
@@ -2536,8 +2533,6 @@ body.has-footer-reveal .cta {
    BACKWARDS COMPAT — old class names still in HTML
    ================================================ */
 /* Hero v2 classes from index.html — remap to new hero */
-.hero-v2.hero-v2--split { display: none !important; }
-
 /* CTA v2 from existing pages — restyle as new CTA */
 .cta-v2 {
   padding: 6rem 0;
@@ -2588,8 +2583,8 @@ body.has-footer-reveal .cta {
 /* ── Custom scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--ink-30); border-radius: 2px; }
-* { scrollbar-width: thin; scrollbar-color: var(--ink-30) var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gray-mid); border-radius: 2px; }
+* { scrollbar-width: thin; scrollbar-color: var(--gray-mid) var(--bg); }
 
 /* ── Selection highlight ── */
 ::selection { background: var(--accent, #ffe430); color: var(--ink); }

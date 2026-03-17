@@ -67,7 +67,7 @@
       'Building AI-Native Tools'
     ];
     var labelIdx = 0;
-    setInterval(function () {
+    var labelInterval = setInterval(function () {
       labelIdx = (labelIdx + 1) % labels.length;
       heroLabel.style.opacity = '0';
       setTimeout(function () {
@@ -75,6 +75,7 @@
         heroLabel.style.opacity = '1';
       }, 300);
     }, 3000);
+    window.addEventListener('beforeunload', function () { clearInterval(labelInterval); });
   }
 
   // ── Hero 3D card parallax (with RAF optimization) ──
@@ -86,15 +87,10 @@
     var heroRafId = null;
     var heroVisible = true;
 
-    // Track mouse position for cursor glow too
-    var mousePageX = 0, mousePageY = 0;
-
     if (!isMobile) {
       document.addEventListener('mousemove', function (e) {
         targetX = (e.clientX / window.innerWidth - 0.5) * 2;
         targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-        mousePageX = e.clientX;
-        mousePageY = e.clientY;
       });
     }
 
