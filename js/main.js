@@ -1,9 +1,8 @@
 /* ============================================
    Parth Pawar — Portfolio
    JS: nav, mobile menu, scroll reveal, stagger,
-   TOC, lightbox, counters, compare slider,
-   reading progress, theme toggle, page transitions,
-   image parallax, card tilt, archive preview,
+   TOC, counters, reading progress, theme toggle,
+   page transitions, image parallax, card tilt,
    cursor glow, back-to-top, footer reveal,
    reading time, focus trap, a11y
    ============================================ */
@@ -308,29 +307,6 @@
     counters.forEach(function (el) { counterObserver.observe(el); });
   }
 
-  // ── Before/After compare slider ──
-  document.querySelectorAll('.cs-compare').forEach(function (compare) {
-    var handle = compare.querySelector('.cs-compare-handle');
-    var after = compare.querySelector('.cs-compare-after');
-    if (!handle || !after) return;
-
-    var dragging = false;
-
-    function setPosition(x) {
-      var rect = compare.getBoundingClientRect();
-      var pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
-      handle.style.left = (pct * 100) + '%';
-      after.style.clipPath = 'inset(0 0 0 ' + (pct * 100) + '%)';
-    }
-
-    compare.addEventListener('mousedown', function (e) { dragging = true; setPosition(e.clientX); });
-    compare.addEventListener('touchstart', function (e) { dragging = true; setPosition(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('mousemove', function (e) { if (dragging) setPosition(e.clientX); });
-    window.addEventListener('touchmove', function (e) { if (dragging) setPosition(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('mouseup', function () { dragging = false; });
-    window.addEventListener('touchend', function () { dragging = false; });
-  });
-
   // ── Reading progress bar ──
   var progressBar = document.querySelector('.reading-progress');
   if (progressBar) {
@@ -373,92 +349,6 @@
     }
   }
 
-  // ── Lightbox (with a11y) ──
-  var galleryItems = document.querySelectorAll('.gallery-item img');
-  if (galleryItems.length) {
-    var lb = document.createElement('div');
-    lb.className = 'lightbox';
-    lb.setAttribute('role', 'dialog');
-    lb.setAttribute('aria-modal', 'true');
-    lb.setAttribute('aria-label', 'Image lightbox');
-    lb.innerHTML =
-      '<button class="lightbox-close" aria-label="Close">&times;</button>' +
-      '<button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>' +
-      '<button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>' +
-      '<img src="" alt=""/>' +
-      '<span class="lightbox-counter"></span>';
-    document.body.appendChild(lb);
-
-    var lbImg = lb.querySelector('img');
-    var lbCounter = lb.querySelector('.lightbox-counter');
-    var images = Array.from(galleryItems);
-    var currentIdx = 0;
-    var triggerEl = null;
-
-    function openLightbox(idx) {
-      triggerEl = images[idx];
-      currentIdx = idx;
-      lbImg.src = images[idx].src;
-      lbImg.alt = images[idx].alt || '';
-      lbCounter.textContent = (idx + 1) + ' / ' + images.length;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      // Move focus to close button
-      lb.querySelector('.lightbox-close').focus();
-    }
-
-    function closeLightbox() {
-      lb.classList.remove('open');
-      document.body.style.overflow = '';
-      // Restore focus
-      if (triggerEl) {
-        triggerEl.focus();
-        triggerEl = null;
-      }
-    }
-
-    function navigateLb(dir) {
-      currentIdx = (currentIdx + dir + images.length) % images.length;
-      lbImg.src = images[currentIdx].src;
-      lbImg.alt = images[currentIdx].alt || '';
-      lbCounter.textContent = (currentIdx + 1) + ' / ' + images.length;
-    }
-
-    images.forEach(function (img, i) {
-      img.style.cursor = 'zoom-in';
-      img.setAttribute('tabindex', '0');
-      img.addEventListener('click', function () { openLightbox(i); });
-      img.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') openLightbox(i);
-      });
-    });
-
-    lb.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-    lb.querySelector('.lightbox-prev').addEventListener('click', function () { navigateLb(-1); });
-    lb.querySelector('.lightbox-next').addEventListener('click', function () { navigateLb(1); });
-    lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
-
-    document.addEventListener('keydown', function (e) {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigateLb(-1);
-      if (e.key === 'ArrowRight') navigateLb(1);
-      // Focus trap within lightbox
-      if (e.key === 'Tab') {
-        var focusable = lb.querySelectorAll('button');
-        var first = focusable[0];
-        var last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    });
-  }
-
   // ── Project row image parallax ──
   if (!isMobile && !prefersReduced) {
     document.querySelectorAll('.project-row-image').forEach(function (imgWrap) {
@@ -493,28 +383,6 @@
 
       card.addEventListener('mouseleave', function () {
         imgWrap.style.transform = '';
-      });
-    });
-  }
-
-  // ── Archive hover image preview ──
-  if (!isMobile) {
-    var hoverImgs = document.querySelectorAll('.wk-hover-img');
-    hoverImgs.forEach(function (img) {
-      var row = img.closest('.work-list-row');
-      if (!row) return;
-
-      row.addEventListener('mouseenter', function () {
-        img.classList.add('active');
-      });
-
-      row.addEventListener('mousemove', function (e) {
-        img.style.left = (e.clientX + 20) + 'px';
-        img.style.top = (e.clientY - 80) + 'px';
-      });
-
-      row.addEventListener('mouseleave', function () {
-        img.classList.remove('active');
       });
     });
   }
@@ -592,7 +460,7 @@
 
   // ── Magnetic CTA button ──
   if (!isMobile && !prefersReduced) {
-    document.querySelectorAll('.cta-email, .footer-cta-email').forEach(function (btn) {
+    document.querySelectorAll('.footer-cta-email').forEach(function (btn) {
       btn.addEventListener('mousemove', function (e) {
         var rect = btn.getBoundingClientRect();
         var x = e.clientX - rect.left - rect.width / 2;
