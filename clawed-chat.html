@@ -7,14 +7,16 @@
   <meta name="description" content="Clawed.chat — Personal AI assistant for people on the go. Smart glasses integration, safety-first design, and receipts for every action. Case study by Parth Pawar, Product Designer."/>
   <meta property="og:title" content="Clawed · Parth Pawar"/>
   <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action."/>
-  <meta property="og:image" content="Assets/images/clawed.png"/>
+  <meta property="og:image" content="https://www.designwhich.works/Assets/images/clawed.png"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="Assets/images/favicon.ico"/>
+  <link rel="apple-touch-icon" href="Assets/images/mentra.png"/>
   <link rel="stylesheet" href="css/main.css"/>
   <script src="js/theme.js" defer></script>
 </head>
 <body>
+  <div class="page-loader"><span class="page-loader-logo">PP</span></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="grain"></div>
   <div class="dot-grid"></div>
@@ -68,21 +70,6 @@
       <div class="proj-hero-img hero-anim hero-anim-4"><img src="Assets/images/clawed.png" alt="Clawed.chat — Personal AI assistant with smart glasses integration"/></div>
     </div>
 
-    <!-- Case Study TOC — sticky sidebar -->
-    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
-      <div class="cs-toc-inner">
-        <span class="cs-toc-label">Contents</span>
-        <a href="#cs-vision" class="cs-toc-link active">Vision &amp; Role</a>
-        <a href="#cs-context" class="cs-toc-link">Context</a>
-        <a href="#cs-safety-philosophy" class="cs-toc-link">Safety Philosophy</a>
-        <a href="#cs-challenges" class="cs-toc-link">Challenges</a>
-        <a href="#cs-webhub" class="cs-toc-link">Web Hub</a>
-        <a href="#cs-glasses" class="cs-toc-link">Glasses Experience</a>
-        <a href="#cs-safety" class="cs-toc-link">Safety Architecture</a>
-        <a href="#cs-impact" class="cs-toc-link">Impact</a>
-        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
-      </div>
-    </nav>
 
     <!-- ══════════════════════════════════════════════
          OVERVIEW — THE VISION + MY ROLE
@@ -192,9 +179,10 @@
           <p>The Dashboard is the home screen &mdash; a single-glance summary of pending approvals, recent actions, inbox count, and active safety mode. No widgets to configure, no drag-and-drop customization. The AI decides what is important based on context and recency. If you have three emails waiting for approval, that is the first thing you see. If your glasses are disconnected, that surfaces as an alert. The Dashboard is not a canvas &mdash; it is an opinionated briefing.</p>
         </div>
 
-        <div class="cs-img-placeholder reveal-image">
-          <span class="cs-img-placeholder-text">Web hub dashboard showing pending approvals, recent actions, inbox count, active safety mode indicator, and the opinionated briefing layout</span>
+        <div class="cs-slide reveal">
+          <img src="Assets/images/clawed.png" alt="Web hub dashboard" loading="lazy" style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); width: 100%; height: auto;" />
         </div>
+        <p class="cs-caption">Web hub dashboard showing pending approvals, recent actions, inbox count, active safety mode indicator, and the opinionated briefing layout</p>
 
         <h3 class="cs-section-subtitle">Inbox &amp; Ask</h3>
         <div class="cs-body">
@@ -202,9 +190,7 @@
           <p>Ask is the AI chat interface &mdash; the place where you have longer conversations, ask follow-up questions, and request complex multi-step actions. It is designed to feel like a messaging app, not a search engine. Responses are structured, actionable, and always end with a clear next step: approve, modify, or cancel. The command bar (&Cmd;K) is always one keystroke away, and every response can be pinned, shared, or turned into a recurring workflow.</p>
         </div>
 
-        <div class="cs-img-placeholder reveal-image">
-          <span class="cs-img-placeholder-text">Approval flow screens showing the draft staging area, one-tap approve/edit/dismiss actions, and receipt generation after approval</span>
-        </div>
+
       </div>
     </section>
 
@@ -219,9 +205,7 @@
           <p>The glasses are not a second screen. They are a first responder. When you ask Clawed something while walking, cooking, or commuting, the glasses display is where the answer appears &mdash; instantly, glanceably, and with a single-tap approval path. I designed a glasses simulator that lets the team prototype and test every interaction without physical hardware, ensuring that every card, notification, and approval prompt works at peripheral-vision scale.</p>
         </div>
 
-        <div class="cs-img-placeholder reveal-image">
-          <span class="cs-img-placeholder-text">Glasses command bar UI showing voice-activated fuzzy search, inline previews, one-keystroke execution, and the glanceable card overlay on the peripheral display</span>
-        </div>
+
 
         <h3 class="cs-section-subtitle">Card Types</h3>
         <div class="cs-body">
@@ -265,9 +249,7 @@
           <p>Not every situation calls for the same level of AI autonomy. Driving requires a different safety posture than sitting at your desk. Clawed&rsquo;s Safety Mode system gives users explicit control over how much the AI can do &mdash; not through buried settings, but through a prominent, always-visible toggle that changes the entire interaction model.</p>
         </div>
 
-        <div class="cs-img-placeholder reveal-image">
-          <span class="cs-img-placeholder-text">Safety modes visualization showing the three-tier toggle (Read Only, Draft First, Assisted) in both the web hub header and the glasses display indicator, with visual state changes for each mode</span>
-        </div>
+
 
         <div class="cs-feature-grid">
           <div class="cs-feature-card">
@@ -390,6 +372,18 @@
         <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
+
+    <nav class="cs-bottom-nav" id="cs-bottom-nav" aria-label="Case study sections">
+      <a href="#cs-vision" class="cs-bnav-link">Vision &amp; Role</a>
+      <a href="#cs-context" class="cs-bnav-link">Context</a>
+      <a href="#cs-safety-philosophy" class="cs-bnav-link">Safety Philosophy</a>
+      <a href="#cs-challenges" class="cs-bnav-link">Challenges</a>
+      <a href="#cs-webhub" class="cs-bnav-link">Web Hub</a>
+      <a href="#cs-glasses" class="cs-bnav-link">Glasses Experience</a>
+      <a href="#cs-safety" class="cs-bnav-link">Safety Architecture</a>
+      <a href="#cs-impact" class="cs-bnav-link">Impact</a>
+      <a href="#cs-reflections" class="cs-bnav-link">Reflections</a>
+    </nav>
 
   </main>
 

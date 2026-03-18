@@ -7,14 +7,16 @@
   <meta name="description" content="Enigma is an interactive light sculpture that embodies a real functioning deep learning network, using 200 illuminated neurons to elucidate the complexity of neural networks."/>
   <meta property="og:title" content="Enigma · Parth Pawar"/>
   <meta property="og:description" content="Interactive light sculpture embodying a real functioning deep learning network."/>
-  <meta property="og:image" content="Assets/images/enigma.jpg"/>
+  <meta property="og:image" content="https://www.designwhich.works/Assets/images/enigma.jpg"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="Assets/images/favicon.ico"/>
+  <link rel="apple-touch-icon" href="Assets/images/mentra.png"/>
   <link rel="stylesheet" href="css/main.css"/>
   <script src="js/theme.js" defer></script>
 </head>
 <body>
+  <div class="page-loader"><span class="page-loader-logo">PP</span></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="grain"></div>
   <div class="dot-grid"></div>
@@ -57,14 +59,6 @@
       </div>
     </div>
 
-    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
-      <div class="cs-toc-inner">
-        <span class="cs-toc-label">Contents</span>
-        <a href="#cs-concept" class="cs-toc-link">Concept</a>
-        <a href="#cs-technology" class="cs-toc-link">Technology</a>
-        <a href="#cs-exhibition" class="cs-toc-link">Exhibition</a>
-      </div>
-    </nav>
 
     <!-- ── Hero Video ── -->
     <section class="cs-slide reveal">
@@ -91,7 +85,9 @@
         <p class="cs-section-label">01 &mdash; Concept</p>
         <h3 class="cs-section-title">Illuminated Neural Architecture</h3>
         <div class="cs-body">
-          <p>200 individually addressable LED neurons arranged in a network topology that mirrors a real neural network architecture. Each neuron lights up as data flows through the network during inference.</p>
+          <p>Enigma was born from a desire to make artificial intelligence tangible. Neural networks are often described in abstract terms — layers, weights, activations — yet their inner workings remain invisible to most people. The sculpture translates that hidden computation into physical light: 200 individually addressable LED neurons are arranged in a network topology that mirrors the actual architecture of a trained neural network, turning each mathematical operation into a visible pulse of color.</p>
+          <p>The piece takes the form of a large wall-mounted panel, roughly four feet wide and three feet tall, with each LED node suspended at a precise position corresponding to a neuron in the network's layers. Acrylic rods and custom-fabricated mounts hold the LEDs in place, creating a three-dimensional constellation of light that reveals the structure of the model — input layer at one edge, hidden layers in the center, and output layer at the opposite edge. When the network is idle, the sculpture glows softly; when it is processing, light cascades through the layers in real time, making the flow of information something viewers can see and feel.</p>
+          <p>Viewers are not passive observers. By writing a character on a connected tablet, they initiate inference and watch their input propagate through the physical network. The metaphor is immediate: light is information, brightness is activation strength, and the path it travels is the decision the model makes. Enigma invites audiences to develop an intuitive understanding of deep learning — not through equations or code, but through the universal language of light and motion.</p>
         </div>
       </div>
     </section>
@@ -113,7 +109,9 @@
         <p class="cs-section-label">02 &mdash; Technology</p>
         <h3 class="cs-section-title">From Model to Light</h3>
         <div class="cs-body">
-          <p>Built with a trained character recognition model, Arduino controllers, and custom LED drivers. The sculpture processes handwritten alphabetic input in real-time, with each layer of the network visualized through light.</p>
+          <p>At the core of Enigma is a fully connected feedforward neural network trained on the EMNIST letters dataset to recognize handwritten alphabetic characters. The model consists of an input layer, two hidden layers, and an output layer — each layer physically represented by a row of LEDs on the sculpture. After training, the learned weights and biases are exported and loaded onto the hardware so the sculpture can perform inference locally, without any cloud dependency.</p>
+          <p>The hardware stack centers on an Arduino Mega microcontroller that orchestrates the entire visualization pipeline. A companion laptop captures handwritten input from a tablet, preprocesses the image into a 28 by 28 pixel grayscale matrix, and transmits the flattened pixel values to the Arduino over serial communication. The Arduino then performs a forward pass through the network, computing activations layer by layer. Each of the 200 LEDs is driven by TLC5940 constant-current LED drivers daisy-chained together, giving individual brightness control over every node with 12-bit resolution.</p>
+          <p>As the forward pass executes, each neuron's activation value is mapped to an LED brightness level, so viewers see the data literally flow from the input layer through the hidden layers to the output. Highly activated neurons glow brightly while low-activation neurons remain dim, revealing which pathways the network relies on for a given character. The entire cycle — from drawing a letter to seeing the network's prediction light up at the output layer — completes in under a second, creating a seamless real-time connection between human gesture and machine computation.</p>
         </div>
       </div>
     </section>
@@ -132,7 +130,9 @@
         <p class="cs-section-label">03 &mdash; Exhibition</p>
         <h3 class="cs-section-title">ITP Winter Show 2023</h3>
         <div class="cs-body">
-          <p>Exhibited at ITP Winter Show 2023. Audiences could write characters on a tablet, watching the neural network process their input through 200 physical light nodes.</p>
+          <p>Enigma was exhibited at the ITP Winter Show 2023, NYU's flagship end-of-semester showcase where the Interactive Telecommunications Program opens its doors to the public. The show draws thousands of visitors over two days — designers, engineers, artists, families, and curious New Yorkers — making it an ideal venue to test how a broad audience engages with a piece about machine learning.</p>
+          <p>Visitors interacted with Enigma by writing letters on a tablet stationed in front of the sculpture. As soon as a character was submitted, the network came alive: light rippled from the input layer through the hidden layers and converged on the output, where the predicted letter glowed brightest. Many visitors wrote the same letter repeatedly, noticing how different handwriting styles activated different pathways. Others tested edge cases — ambiguous letters, symbols, or scribbles — to see how the network responded to unexpected input.</p>
+          <p>The most consistent reaction was surprise at how structured and purposeful the light patterns looked. Viewers frequently remarked that they expected AI to feel random or opaque, but watching activations cascade through defined pathways gave them an immediate sense that the network had learned real structure. Several visitors described the experience as the first time neural networks "made sense" to them. The exhibition reinforced the project's central thesis: that making computation physically visible can bridge the gap between technical understanding and intuitive comprehension.</p>
         </div>
       </div>
     </section>
@@ -151,6 +151,12 @@
         <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
+
+    <nav class="cs-bottom-nav" id="cs-bottom-nav" aria-label="Case study sections">
+      <a href="#cs-concept" class="cs-bnav-link">Concept</a>
+      <a href="#cs-technology" class="cs-bnav-link">Technology</a>
+      <a href="#cs-exhibition" class="cs-bnav-link">Exhibition</a>
+    </nav>
 
   </main>
 

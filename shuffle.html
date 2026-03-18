@@ -7,14 +7,16 @@
   <meta name="description" content="Shuffle — an interactive installation proposing a strategy simulation of student life at ITP, built with Arduino, addressable LEDs, and custom PCB."/>
   <meta property="og:title" content="Shuffle · Parth Pawar"/>
   <meta property="og:description" content="Interactive installation proposing a strategy simulation of student life at ITP."/>
-  <meta property="og:image" content="Assets/images/shuffle.jpg"/>
+  <meta property="og:image" content="https://www.designwhich.works/Assets/images/shuffle.jpg"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="Assets/images/favicon.ico"/>
+  <link rel="apple-touch-icon" href="Assets/images/mentra.png"/>
   <link rel="stylesheet" href="css/main.css"/>
   <script src="js/theme.js" defer></script>
 </head>
 <body>
+  <div class="page-loader"><span class="page-loader-logo">PP</span></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="grain"></div>
   <div class="dot-grid"></div>
@@ -57,15 +59,6 @@
       </div>
     </div>
 
-    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
-      <div class="cs-toc-inner">
-        <span class="cs-toc-label">Contents</span>
-        <a href="#cs-concept" class="cs-toc-link">Concept</a>
-        <a href="#cs-process" class="cs-toc-link">Process</a>
-        <a href="#cs-exhibition" class="cs-toc-link">Exhibition</a>
-      </div>
-    </nav>
-
     <!-- ── Hero Image ── -->
     <section class="cs-slide reveal">
       <div class="cs-img-placeholder reveal-image"><span class="cs-img-placeholder-text">Shuffle — interactive tabletop installation with LED matrix and physical tokens</span></div>
@@ -97,7 +90,9 @@
         <p class="cs-section-label">01 &mdash; Concept</p>
         <h3 class="cs-section-title">Physical Redistribution of Time</h3>
         <div class="cs-body">
-          <p>The installation invites participants to physically redistribute their time across different aspects of student life at ITP. Each token represents a unit of time, and the LED matrix responds in real-time to placement decisions.</p>
+          <p>The installation invites participants to physically redistribute their time across different aspects of student life at ITP. Each token represents a unit of time, and the LED matrix responds in real-time to placement decisions. The grid is divided into categories that mirror the daily pressures of graduate life&mdash;coursework, personal projects, social connection, rest, and professional development&mdash;forcing participants to confront trade-offs that are normally invisible.</p>
+          <p>Inspired by resource-allocation mechanics found in classic strategy games like G80, the concept reframes time management as a tangible, spatial problem rather than an abstract mental exercise. By making these decisions physical&mdash;picking up a weighted token, placing it deliberately on a surface&mdash;the installation slows down the act of choosing and gives it a sense of consequence that a digital calendar never could.</p>
+          <p>The piece asks a deceptively simple question: if you had a finite number of tokens representing your semester, where would you place them? The answers participants gave were often surprising, revealing gaps between how they believed they spent their time and how they actually wanted to spend it.</p>
         </div>
       </div>
     </section>
@@ -127,7 +122,9 @@
         <p class="cs-section-label">02 &mdash; Process</p>
         <h3 class="cs-section-title">Hardware &amp; Fabrication</h3>
         <div class="cs-body">
-          <p>Built with Arduino, addressable LEDs, and custom PCB. The physical interface uses weight sensors to detect token placement on a grid surface.</p>
+          <p>Built with Arduino, addressable LEDs, and a custom PCB, the physical interface uses an array of weight sensors embedded beneath a laser-cut acrylic grid surface to detect token placement. Each cell in the grid sits above its own load cell, and the readings are multiplexed through shift registers to keep wiring manageable. When a token is placed, the corresponding addressable LED beneath the translucent surface illuminates, creating an immediate visual feedback loop.</p>
+          <p>Fabrication involved several iterative prototyping rounds. The first version used a breadboard circuit that was too fragile for public interaction, so a custom PCB was designed in KiCad and manufactured to ensure reliability during the exhibition. The enclosure was built from birch plywood, CNC-milled to house the electronics cleanly while remaining easy to disassemble for maintenance. Tokens were 3D-printed with embedded magnets to give them a satisfying heft and prevent accidental displacement.</p>
+          <p>On the software side, the Arduino firmware communicates sensor states over serial to a Processing sketch that manages the LED color mapping and keeps a running tally of each category. The color palette was carefully chosen so that each life-category had a distinct, readable hue even under the warm ambient lighting of the ITP floor.</p>
         </div>
         <div class="cs-label-row">
           <span class="cs-label-row-key">Controller</span>
@@ -167,7 +164,9 @@
         <p class="cs-section-label">03 &mdash; Exhibition</p>
         <h3 class="cs-section-title">ITP Winter Show 2023</h3>
         <div class="cs-body">
-          <p>Exhibited at ITP Winter Show 2023. Visitors engaged with the installation, sparking conversations about work-life balance in graduate school.</p>
+          <p>Shuffle was exhibited at the ITP Winter Show 2023, a two-day public event that draws thousands of visitors to NYU&rsquo;s Tisch School of the Arts. The installation was positioned near the entrance of the fourth-floor exhibition space, where foot traffic was highest, and attracted a steady stream of participants throughout both days.</p>
+          <p>Visitors naturally gravitated toward the glowing grid, often pausing to watch others before trying it themselves. The physical tokens lowered the barrier to engagement&mdash;people instinctively wanted to pick them up and place them. What began as a quick interaction frequently turned into extended conversations about priorities, burnout, and the hidden costs of saying yes to everything in a demanding graduate program.</p>
+          <p>One of the most rewarding outcomes was observing how groups of friends would compare their token distributions side by side, laughing at differences and debating trade-offs. Faculty members also engaged deeply, noting that the installation surfaced tensions around workload that are difficult to articulate in conventional feedback channels. The piece demonstrated that playful, tactile interfaces can open up reflective dialogue in ways that surveys and forms simply cannot.</p>
         </div>
       </div>
     </section>
@@ -191,6 +190,12 @@
         <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
+
+    <nav class="cs-bottom-nav" id="cs-bottom-nav" aria-label="Case study sections">
+      <a href="#cs-concept" class="cs-bnav-link">Concept</a>
+      <a href="#cs-process" class="cs-bnav-link">Process</a>
+      <a href="#cs-exhibition" class="cs-bnav-link">Exhibition</a>
+    </nav>
 
   </main>
 

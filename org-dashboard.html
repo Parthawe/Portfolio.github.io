@@ -7,14 +7,16 @@
   <meta name="description" content="OrgDashboard — Designing the SaaS platform that gives AI agents organizational context. Knowledge base, integrations dashboard, and action approval system. Case study by Parth Pawar."/>
   <meta property="og:title" content="OrgDashboard · Parth Pawar"/>
   <meta property="og:description" content="SaaS platform that gives AI agents a brain for your company — designing for two users simultaneously."/>
-  <meta property="og:image" content="Assets/images/org-dashboard.png"/>
+  <meta property="og:image" content="https://www.designwhich.works/Assets/images/org-dashboard.png"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="Assets/images/favicon.ico"/>
+  <link rel="apple-touch-icon" href="Assets/images/mentra.png"/>
   <link rel="stylesheet" href="css/main.css"/>
   <script src="js/theme.js" defer></script>
 </head>
 <body>
+  <div class="page-loader"><span class="page-loader-logo">PP</span></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="grain"></div>
   <div class="dot-grid"></div>
@@ -67,19 +69,6 @@
       <div class="proj-hero-img hero-anim hero-anim-4"><img src="Assets/images/org-dashboard.png" alt="OrgDashboard — SaaS platform giving AI agents organizational context"/></div>
     </div>
 
-    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
-      <div class="cs-toc-inner">
-        <span class="cs-toc-label">Contents</span>
-        <a href="#cs-problem" class="cs-toc-link active">The Problem</a>
-        <a href="#cs-concept" class="cs-toc-link">Concept</a>
-        <a href="#cs-two-users" class="cs-toc-link">Two Users</a>
-        <a href="#cs-decisions" class="cs-toc-link">Design Decisions</a>
-        <a href="#cs-system" class="cs-toc-link">Design System</a>
-        <a href="#cs-surfaces" class="cs-toc-link">Product Surfaces</a>
-        <a href="#cs-results" class="cs-toc-link">Results</a>
-        <a href="#cs-reflections" class="cs-toc-link">Reflections</a>
-      </div>
-    </nav>
 
     <div class="wrap project-overview reveal" id="cs-problem">
       <div class="proj-overview-grid">
@@ -106,9 +95,10 @@
           <p>&ldquo;The OrgDashboard CLI is not a standalone agent &mdash; it is an extension to any existing agent harness. When added as an MCP server to Claude Code, Zed, or Cursor, the agent gains organizational awareness without replacing any of the harness&rsquo;s existing tools.&rdquo;</p>
         </div>
 
-        <div class="cs-img-placeholder reveal-image">
-          <span class="cs-img-placeholder-text">Dashboard overview &mdash; the human-facing home screen showing connected integrations, knowledge base health, and pending agent actions</span>
+        <div class="cs-slide reveal">
+          <img src="Assets/images/org-dashboard.png" alt="Dashboard overview" loading="lazy" style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); width: 100%; height: auto;" />
         </div>
+        <p class="cs-caption">Dashboard overview &mdash; the human-facing home screen showing connected integrations, knowledge base health, and pending agent actions</p>
       </div>
     </section>
 
@@ -163,9 +153,7 @@
           <p>The knowledge base uses an agentic retrieval model, not pure RAG. Agents browse by type or tag, follow relationships, and explore iteratively. The web dashboard&rsquo;s knowledge explorer mirrors this exact navigation model &mdash; if an agent can find something via <code>org kb search</code>, a human can find it through the same logical path in the UI.</p>
         </div>
 
-        <div class="cs-img-placeholder reveal-image">
-          <span class="cs-img-placeholder-text">CLI interface &mdash; the <code>org</code> command in action, showing KB search, entity creation, and structured data retrieval</span>
-        </div>
+
 
         <h3 class="cs-section-subtitle">3. Progressive Trust Through Action Tiers</h3>
         <div class="cs-body">
@@ -246,9 +234,7 @@
           </div>
         </div>
 
-        <div class="cs-img-placeholder reveal-image">
-          <span class="cs-img-placeholder-text">Knowledge base search UI &mdash; browsing entities by type and tag, with relationship graphs and version history sidebar</span>
-        </div>
+
       </div>
     </section>
 
@@ -309,6 +295,17 @@
         </div>
       </div>
     </section>
+
+    <nav class="cs-bottom-nav" id="cs-bottom-nav" aria-label="Case study sections">
+      <a href="#cs-problem" class="cs-bnav-link">The Problem</a>
+      <a href="#cs-concept" class="cs-bnav-link">Concept</a>
+      <a href="#cs-two-users" class="cs-bnav-link">Two Users</a>
+      <a href="#cs-decisions" class="cs-bnav-link">Design Decisions</a>
+      <a href="#cs-system" class="cs-bnav-link">Design System</a>
+      <a href="#cs-surfaces" class="cs-bnav-link">Product Surfaces</a>
+      <a href="#cs-results" class="cs-bnav-link">Results</a>
+      <a href="#cs-reflections" class="cs-bnav-link">Reflections</a>
+    </nav>
 
   </main>
 

@@ -7,14 +7,16 @@
   <meta name="description" content="Jugalbandi showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments — a physical computing art installation created at NYU ITP."/>
   <meta property="og:title" content="Jugalbandi · Parth Pawar"/>
   <meta property="og:description" content="Blending traditional analog instruments with modern digital MIDI — a physical computing installation."/>
-  <meta property="og:image" content="Assets/images/jugalbandi.png"/>
+  <meta property="og:image" content="https://www.designwhich.works/Assets/images/jugalbandi.png"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="Assets/images/favicon.ico"/>
+  <link rel="apple-touch-icon" href="Assets/images/mentra.png"/>
   <link rel="stylesheet" href="css/main.css"/>
   <script src="js/theme.js" defer></script>
 </head>
 <body>
+  <div class="page-loader"><span class="page-loader-logo">PP</span></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="grain"></div>
   <div class="dot-grid"></div>
@@ -59,17 +61,6 @@
       </div>
     </div>
 
-    <nav class="cs-toc" id="cs-toc" aria-label="Case study sections">
-      <div class="cs-toc-inner">
-        <span class="cs-toc-label">Contents</span>
-        <a href="#cs-background" class="cs-toc-link">Background</a>
-        <a href="#cs-research" class="cs-toc-link">Research</a>
-        <a href="#cs-instrument" class="cs-toc-link">The Instrument</a>
-        <a href="#cs-process" class="cs-toc-link">Process</a>
-        <a href="#cs-reflection" class="cs-toc-link">Reflection</a>
-      </div>
-    </nav>
-
     <!-- ── Hero Image ── -->
     <section class="cs-slide reveal">
       <img src="Assets/images/jugalbandi.png" alt="Jugalbandi — performer playing the Hexa-18 instrument on a dark stage with mechanized instruments"/>
@@ -82,6 +73,8 @@
         <h2 class="cs-display">A duet in Hindi</h2>
         <div class="cs-body">
           <p>Jugalbandi (meaning &ldquo;a duet&rdquo; in Hindi) showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments. The project is a physical computing art installation that materialises the inner workings of neural networks into tangible, playable musical instruments.</p>
+          <p>In Indian classical music, a jugalbandi is a performance where two lead musicians engage in a dialogue, trading phrases, responding to each other&rsquo;s improvisations, and building toward a shared climax. This installation reimagines that tradition: one &ldquo;musician&rdquo; is a human performer, and the other is a neural network expressed through mechanized acoustic instruments. The conversation between them unfolds in real time, with the network&rsquo;s outputs driving physical sound-making devices that respond to the performer&rsquo;s gestures.</p>
+          <p>Exhibited at the ITP Spring Show and Maker Faire Coney Island in 2024, Jugalbandi invited audiences to witness computation as something audible and embodied rather than abstract and screen-bound. The installation occupied a darkened stage where visitors could watch servos pluck strings, solenoids drive air through pipes, and vibration motors pulse against resonant surfaces &mdash; all choreographed by a live neural network.</p>
         </div>
       </div>
     </section>
@@ -92,8 +85,9 @@
         <p class="cs-section-label">01 &mdash; Background</p>
         <h3 class="cs-section-title">The Concept</h3>
         <div class="cs-body">
-          <p>The genesis of this project drew inspiration from the &lsquo;Abacus&rsquo; project undertaken at panGenerator Studio. While the Abacus focused on recognizing digits, Jugalbandi operates on a similar concept but transforms neural network processes into acoustic and electronic sound.</p>
-          <p>The installation is a 1:1 interactive physical representation of a real, functioning deep learning network, manifested through musical instruments rather than visual displays.</p>
+          <p>The genesis of this project drew inspiration from the &lsquo;Abacus&rsquo; project undertaken at panGenerator Studio. While the Abacus focused on recognizing digits, Jugalbandi operates on a similar concept but transforms neural network processes into acoustic and electronic sound. The core question driving the work was: what if you could hear a machine think?</p>
+          <p>The installation is a 1:1 interactive physical representation of a real, functioning deep learning network, manifested through musical instruments rather than visual displays. Each hidden layer of the network corresponds to a different instrument or actuator group, so as data propagates through the model, you hear it move &mdash; from the airy tones of the flute layer, through the plucked melodies of the harp, to the percussive textures of the rainsticks. The final output layer produces a MIDI note on the Hexa-18 controller, completing the chain from raw input to musical expression.</p>
+          <p>The concept also draws deeply from the Indian classical tradition of raga-based improvisation, where a performer follows a set of ascending and descending note patterns but is free to embellish and interpret within those constraints. Similarly, the neural network operates within its trained weights, yet produces outputs that feel spontaneous and alive when expressed through mechanical instruments whose physical tolerances introduce subtle variations in timing, pitch, and dynamics.</p>
         </div>
         <div class="cs-label-row">
           <span class="cs-label-row-key">Inspiration</span>
@@ -113,6 +107,8 @@
         <h3 class="cs-section-title">Materialise Neural Networks</h3>
         <div class="cs-body">
           <p>Deep learning networks are a type of artificial neural network (ANN) with multiple layers of processing units. Each layer learns to perform a specific task, and the layers work together to learn complex patterns in data. Jugalbandi maps these layers to physical sound-making mechanisms &mdash; each layer of the network controls a different instrument or actuator.</p>
+          <p>The research phase involved two parallel tracks. On the technical side, I studied convolutional neural network architectures and trained custom models using ML5.js and TensorFlow, experimenting with how intermediate layer activations could be extracted in real time and converted to MIDI signals. On the cultural side, I researched Indian classical music structures &mdash; particularly the concepts of tala (rhythmic cycles), raga (melodic frameworks), and jugalbandi itself as a performance format &mdash; to find meaningful ways to map computational processes onto musical traditions that already have a language for structured improvisation.</p>
+          <p>A key insight from the research was that neural network activations are not random noise; they have structure, clustering, and dynamics that shift as data moves through the model. By assigning specific ragas to different activation ranges and tying rhythmic density to confidence scores, the output became musically coherent rather than chaotic. The mapping was not purely algorithmic &mdash; it required hundreds of hours of listening, tuning, and compositional judgment to find assignments that sounded intentional.</p>
         </div>
         <div class="cs-callout">
           <p>Original artform inspired by panGenerator Studio &mdash; called &ldquo;The Abacus,&rdquo; which uses digits as the final output. Jugalbandi replaces digits with musical notes.</p>
@@ -131,7 +127,9 @@
         <p class="cs-section-label">03 &mdash; The Instrument</p>
         <h2 class="cs-display">Hexa-18</h2>
         <div class="cs-body">
-          <p>Hexa-18 is a custom-built hexagonal instrument that combines three distinct sound-making mechanisms into a single sculptural form &mdash; wind, string, and percussion. Each face of the polyhedron serves a different acoustic or electronic function.</p>
+          <p>Hexa-18 is a custom-built hexagonal instrument that combines three distinct sound-making mechanisms into a single sculptural form &mdash; wind, string, and percussion. Each face of the polyhedron serves a different acoustic or electronic function, and the geometry itself became a design constraint that shaped the instrument&rsquo;s voice.</p>
+          <p>The name references its eighteen active faces across three hexagonal tiers, each tier dedicated to one of the three sound families. The form factor was chosen both for structural rigidity &mdash; hexagons tessellate efficiently and distribute mechanical stress &mdash; and for its visual resonance with the node-and-edge diagrams commonly used to illustrate neural networks. When all three tiers are active simultaneously, the instrument produces a layered, polyphonic texture that shifts as the neural network&rsquo;s internal state evolves.</p>
+          <p>Building the Hexa-18 required extensive prototyping in laser-cut acrylic and plywood, with multiple iterations to solve acoustic coupling problems. Early versions suffered from unwanted resonance between the percussion and string tiers, which was addressed by introducing damping layers of neoprene foam between each hexagonal platform. The final instrument stands roughly 1.2 meters tall and weighs approximately 15 kilograms, designed to be both visually striking under stage lighting and structurally stable enough to withstand the vibrations of a full performance.</p>
         </div>
         <div class="cs-feature-grid">
           <div class="cs-feature-card">
@@ -160,7 +158,9 @@
         <p class="cs-section-label">04 &mdash; Components</p>
         <h3 class="cs-section-title">Mechanized Harp</h3>
         <div class="cs-body">
-          <p>The mechanized harp is built inside a wooden frame and uses servo motors to pluck individual strings automatically. An Arduino Mega controls the timing and sequencing of each pluck, allowing for algorithmically composed melodies.</p>
+          <p>The mechanized harp is built inside a wooden frame and uses servo motors to pluck individual strings automatically. An Arduino Mega controls the timing and sequencing of each pluck, allowing for algorithmically composed melodies that respond to the neural network&rsquo;s hidden layer activations in real time.</p>
+          <p>Each string is tuned to a note within the selected raga, so regardless of which combination the network triggers, the output remains harmonically consistent. The servo arms are fitted with flexible nylon picks that approximate the timbre of a finger pluck, and the tension of each string was calibrated by hand to ensure consistent volume across the register. Getting the servos to release cleanly without damping the string prematurely was one of the most time-consuming mechanical challenges of the entire build.</p>
+          <p>In performance, the harp functions as the melodic voice of the network&rsquo;s middle layers &mdash; a kind of singing commentary on the data flowing through the system. Its tone is warm and organic, providing a counterpoint to the sharper electronic sounds of the MIDI output layer and grounding the installation in something recognizably acoustic and human.</p>
         </div>
         <div class="cs-label-row">
           <span class="cs-label-row-key">Controller</span>
@@ -183,7 +183,9 @@
         <p class="cs-section-label">05 &mdash; Component</p>
         <h3 class="cs-section-title">Automated Flute</h3>
         <div class="cs-body">
-          <p>The automated flute uses an air pump to push air through the blowing hole, while servo motors actuated by Lego mechanisms open and close the finger holes to produce different notes. The entire assembly is controlled by a Mega Arduino.</p>
+          <p>The automated flute uses an air pump to push air through the blowing hole, while servo motors actuated by Lego mechanisms open and close the finger holes to produce different notes. The entire assembly is controlled by a Mega Arduino that receives pitch commands from the neural network&rsquo;s early convolutional layers.</p>
+          <p>Achieving a clean, playable tone from an automated flute proved to be the project&rsquo;s most demanding engineering challenge. The angle of airflow across the blowing hole had to be precise to within a few degrees; even small shifts caused the note to drop out entirely or jump to an overtone. A custom 3D-printed nozzle was designed to direct air at the correct embouchure angle, and a PWM-controlled pump allowed dynamic control of air pressure so that the instrument could play both soft and loud passages.</p>
+          <p>The Lego-based finger mechanisms were chosen for rapid prototyping and easy adjustment. Each finger assembly uses a small servo arm pressing a silicone pad over the tone hole, creating an airtight seal. The use of Lego allowed quick iteration on lever ratios and mounting positions without the lead time of custom fabrication, and the playful materiality of the Lego bricks added an unexpected visual charm to the instrument that audiences responded to warmly.</p>
         </div>
         <div class="cs-info-grid">
           <div class="cs-info-item"><span class="cs-info-key">Air Source</span><span class="cs-info-value">Air Pump</span></div>
@@ -200,7 +202,9 @@
         <p class="cs-section-label">06 &mdash; Component</p>
         <h3 class="cs-section-title">Rainsticks</h3>
         <div class="cs-body">
-          <p>The rainstick module is mounted on a wooden structure and uses servo motors to tilt and rotate cardboard rainsticks, producing cascading percussive sounds. A dedicated circuit board coordinates the timing of each tilt to layer rhythmic patterns.</p>
+          <p>The rainstick module is mounted on a wooden structure and uses servo motors to tilt and rotate cardboard rainsticks, producing cascading percussive sounds. A dedicated circuit board coordinates the timing of each tilt to layer rhythmic patterns that mirror the activation density of the network&rsquo;s pooling layers.</p>
+          <p>Rainsticks were chosen for their inherently stochastic sound &mdash; the beads tumbling through internal pins produce a texture that is never exactly the same twice, much like the probabilistic nature of neural network inference. By varying the tilt angle and speed, the installation controls the density and duration of the cascading sound, from a sparse trickle to a dense, enveloping wash. This made the rainsticks an ideal physical analogue for the pooling layers, which compress and summarize information.</p>
+          <p>The wooden mounting frame was designed to hold four rainsticks at different angles, each driven by its own servo. The cardboard tubes were filled with a mixture of rice grains and small glass beads to produce a richer frequency spectrum than either material alone. Tuning the fill amount and pin density inside each stick was an iterative, hands-on process that blended craft with computation &mdash; a fitting metaphor for the project as a whole.</p>
         </div>
         <div class="cs-label-row">
           <span class="cs-label-row-key">Actuators</span>
@@ -303,6 +307,14 @@
         <h2 class="cs-thanks-title">Thank You</h2>
       </div>
     </section>
+
+    <nav class="cs-bottom-nav" id="cs-bottom-nav" aria-label="Case study sections">
+      <a href="#cs-background" class="cs-bottom-nav-link">Background</a>
+      <a href="#cs-research" class="cs-bottom-nav-link">Research</a>
+      <a href="#cs-instrument" class="cs-bottom-nav-link">The Instrument</a>
+      <a href="#cs-process" class="cs-bottom-nav-link">Process</a>
+      <a href="#cs-reflection" class="cs-bottom-nav-link">Reflection</a>
+    </nav>
 
   </main>
 

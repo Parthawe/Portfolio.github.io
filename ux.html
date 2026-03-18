@@ -7,14 +7,17 @@
   <meta name="description" content="Selected work by Parth Pawar — product design, AI wearables, fintech, creative technology, installations."/>
   <meta property="og:title" content="Work · Parth Pawar"/>
   <meta property="og:description" content="Selected work — product design, AI, fintech, creative technology."/>
-  <meta property="og:image" content="Assets/images/mentra.png"/>
+  <meta property="og:image" content="https://www.designwhich.works/Assets/images/mentra.png"/>
+  <meta property="og:url" content="https://www.designwhich.works/ux.html"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <link rel="icon" href="https://freight.cargo.site/t/original/i/A1915288035864708351840810762774/Facicon.ico"/>
+  <link rel="icon" type="image/x-icon" href="Assets/images/favicon.ico"/>
+  <link rel="apple-touch-icon" href="Assets/images/mentra.png"/>
   <link rel="stylesheet" href="css/main.css"/>
   <script src="js/theme.js" defer></script>
 </head>
 <body>
+  <div class="page-loader"><span class="page-loader-logo">PP</span></div>
   <a href="#main-content" class="skip-link">Skip to content</a>
 
   <div class="grain"></div>
@@ -47,8 +50,20 @@
         <h1 class="work-page-title">Work</h1>
       </header>
 
+      <nav class="work-filter-nav" aria-label="Filter projects">
+        <div class="work-filter-list">
+          <button class="work-filter-btn active" data-filter="all">All</button>
+          <button class="work-filter-btn" data-filter="ux">UX Design</button>
+          <button class="work-filter-btn" data-filter="good">Design for Good</button>
+          <button class="work-filter-btn" data-filter="ai">AI & Wearables</button>
+          <button class="work-filter-btn" data-filter="creative">Creative Tech</button>
+          <button class="work-filter-btn" data-filter="install">Installations</button>
+          <button class="work-filter-btn" data-filter="brand">Brand & Visual</button>
+        </div>
+      </nav>
+
       <!-- UX DESIGN -->
-      <section class="work-group">
+      <section class="work-group" data-category="ux">
         <span class="work-group-label">UX Design</span>
         <div class="pcard-row">
           <a class="pcard reveal" href="mentra.html">
@@ -107,7 +122,7 @@
       </section>
 
       <!-- DESIGN FOR GOOD -->
-      <section class="work-group">
+      <section class="work-group" data-category="good">
         <span class="work-group-label">Design for Good</span>
         <div class="pcard-row">
           <a class="pcard reveal" href="raahi-project.html">
@@ -141,7 +156,7 @@
       </section>
 
       <!-- AI & WEARABLES -->
-      <section class="work-group">
+      <section class="work-group" data-category="ai">
         <span class="work-group-label">AI & Wearables</span>
         <div class="pcard-row">
           <a class="pcard reveal" href="clawed-chat.html">
@@ -182,7 +197,7 @@
       </section>
 
       <!-- CREATIVE TECHNOLOGY -->
-      <section class="work-group">
+      <section class="work-group" data-category="creative">
         <span class="work-group-label">Creative Technology</span>
         <div class="pcard-row">
           <a class="pcard reveal" href="keyboard-project.html">
@@ -241,7 +256,7 @@
       </section>
 
       <!-- INSTALLATIONS -->
-      <section class="work-group">
+      <section class="work-group" data-category="install">
         <span class="work-group-label">Installations</span>
         <div class="pcard-row">
           <a class="pcard reveal" href="uv-light.html">
@@ -293,7 +308,7 @@
       </section>
 
       <!-- BRAND & VISUAL -->
-      <section class="work-group">
+      <section class="work-group" data-category="brand">
         <span class="work-group-label">Brand & Visual</span>
         <div class="pcard-row">
           <a class="pcard reveal" href="tedx.html">
