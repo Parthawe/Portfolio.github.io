@@ -6,3 +6,6 @@ package-lock.json
 screenshot-check.mjs
 .env
 .DS_Store
+
+# Claude Code
+.claude/
