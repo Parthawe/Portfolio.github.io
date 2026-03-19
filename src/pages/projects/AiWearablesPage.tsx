@@ -12,7 +12,7 @@ export default function AiWearablesPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI & Wearables · Parth Pawar" />
         <meta property="og:description" content="Intelligent interfaces for AI-powered products — smart glasses, voice assistants, and conversational AI." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/clawed.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/oncall-lens.png" />
       </Helmet>
 
       <Nav />
@@ -73,7 +73,7 @@ export default function AiWearablesPage() {
                 <div className="pcard-body">
                   <h2 className="pcard-name">AI Voice Interface</h2>
                   <p className="pcard-result">Conversational AI and voice-driven interaction</p>
-                  <span className="pcard-role">Designer &middot; 2024</span>
+                  <span className="pcard-role">Designer &middot; 2025</span>
                 </div>
               </Link>
             </div>
@@ -83,7 +83,7 @@ export default function AiWearablesPage() {
                 <div className="pcard-body">
                   <h2 className="pcard-name">Ballah Code</h2>
                   <p className="pcard-result">AI-powered dev tools platform</p>
-                  <span className="pcard-role">Designer &middot; 2024</span>
+                  <span className="pcard-role">Designer &middot; 2026</span>
                 </div>
               </Link>
               <div className="pcard pcard--empty"></div>

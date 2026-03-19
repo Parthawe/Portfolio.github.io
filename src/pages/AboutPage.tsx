@@ -6,11 +6,8 @@ import Footer from '../components/Footer'
 
 const experience = [
   { date: '2025 — Present', role: 'Head of UI/UX', co: 'Mentra · New York', desc: 'Leading UI/UX for AI-powered smart glasses. Companion app, MentraOS, miniapp store, and developer platform.' },
-  { date: '2026', role: 'Product Designer', co: 'Clawed · New York', desc: 'Designed a safety-first AI assistant for smart glasses and web.' },
-  { date: '2026', role: 'Designer', co: 'OrgDashboard', desc: 'SaaS platform giving AI agents organizational context.' },
-  { date: '2025 — 2026', role: 'Product Designer', co: 'ExecutiveLens.ai', desc: 'AI-powered business intelligence for executives.' },
   { date: '2025', role: 'Founding Product Designer', co: 'ZentiPay · New York', desc: 'Built a fintech super app from 0 to 1. 30% higher transaction success.' },
-  { date: '2022 — 2023', role: 'Lead Product Designer', co: 'TransFi · Bangalore', desc: "Led design for Asia's leading crypto payments platform. $50M+ monthly volume." },
+  { date: '2022 — 2023', role: 'Lead Product Designer', co: 'TransFi · Dubai', desc: "Led design for Asia's leading crypto payments platform. $50M+ monthly volume." },
   { date: '2024', role: 'Designer', co: 'The Point CDC · New York' },
   { date: '2023 — 2024', role: 'Graduate Teaching Assistant', co: 'NYU Tisch / ITP · 3 semesters' },
   { date: '2020 — 2021', role: 'Research Intern', co: 'IBM · Pune' },
@@ -37,7 +34,16 @@ const exhibitions = [
 
 const tools = ['Figma', 'Protopie', 'Blender', 'After Effects', 'React', 'Swift', 'Python', 'Arduino', 'p5.js', 'TouchDesigner', 'Laser Cutting', '3D Printing']
 
-const interests = ['Mechanical Keyboards', 'Vinyl Records', 'Street Photography', 'Specialty Coffee', 'Board Games', 'Live Music', 'Sci-Fi', 'Cycling']
+const interests = [
+  { label: 'Mechanical Keyboards', image: '/Assets/interests/keyboards.jpg' },
+  { label: 'Vinyl Records', image: '/Assets/interests/vinyl.jpg' },
+  { label: 'Street Photography', image: '/Assets/interests/street-photo.jpg' },
+  { label: 'Specialty Coffee', image: '/Assets/interests/coffee.jpg' },
+  { label: 'Board Games', image: '/Assets/interests/board-games.jpg' },
+  { label: 'Live Music', image: '/Assets/interests/live-music.jpg' },
+  { label: 'Sci-Fi', image: '/Assets/interests/sci-fi.jpg' },
+  { label: 'Cycling', image: '/Assets/interests/cycling.jpg' },
+]
 
 const stats = [
   { num: '30+', label: 'Projects Shipped' },
@@ -110,7 +116,7 @@ export default function AboutPage() {
                 className="about-stat"
                 variants={{
                   hidden: { opacity: 0, y: 20, scale: 0.9 },
-                  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+                  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] } },
                 }}
               >
                 <span className="about-stat-num">{s.num}</span>
@@ -137,9 +143,9 @@ export default function AboutPage() {
               <span className="sec-label">Background</span>
             </div>
             <div className="about-bio-content">
-              <p>Right now I lead UI/UX at Mentra, where I&rsquo;m designing the OS and app store for AI-powered smart glasses &mdash; a form factor with no established patterns, a peripheral display you never stare at, and voice as the primary input.</p>
-              <p>Before that I was the founding designer at ZentiPay (fintech for migrant workers) and led design at TransFi (crypto payments across six Asian markets). I also design AI products at Clawed and ExecutiveLens.</p>
-              <p>I studied at NYU&rsquo;s Interactive Telecommunications Program, where I built neural-network music installations, mechanical theatre stages, and VJ software &mdash; the kind of work that taught me to design across hardware, software, and physical space simultaneously. Before that, Computer Science at VIT Pune and an AI research stint at IBM.</p>
+              <p>I lead UI/UX at Mentra, designing the OS and app store for AI smart glasses &mdash; a form factor with no established patterns, a peripheral display you never stare at, and voice as the primary input. The product ships at $299.</p>
+              <p>Before that: founding designer at ZentiPay (30% higher transaction success across 5 countries), lead designer at TransFi ($50M+ monthly crypto volume across six Asian markets), and AI products at Clawed and ExecutiveLens.</p>
+              <p>NYU ITP (MPS &rsquo;24) is where I built neural-network music installations, mechanical theatre stages, and VJ software &mdash; work that taught me to design across hardware, software, and physical space simultaneously. Before that, CS at VIT Pune and AI research at IBM.</p>
             </div>
           </div>
 
@@ -192,7 +198,10 @@ export default function AboutPage() {
             <p className="about-beyond-text">When I&rsquo;m not pushing pixels or writing shaders, you&rsquo;ll find me building mechanical keyboards, digging through vinyl crates, or hunting down the best pour-over in the Mission.</p>
             <div className="about-interests-grid">
               {interests.map(item => (
-                <span key={item} className="about-interest">{item}</span>
+                <div key={item.label} className="about-interest-card reveal">
+                  <img src={item.image} alt={item.label} loading="lazy" className="about-interest-img" />
+                  <span className="about-interest-label">{item.label}</span>
+                </div>
               ))}
             </div>
           </div>
@@ -209,8 +218,8 @@ export default function AboutPage() {
                 parthpawar@nyu.edu
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </a>
-              <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener" className="about-cta-link">LinkedIn</a>
-              <a href="/Assets/Parth_Pawar_Resume.pdf" target="_blank" rel="noopener" className="about-cta-link">Resume</a>
+              <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener noreferrer" className="about-cta-link">LinkedIn</a>
+              <a href="/Assets/Parth_Pawar_Resume.pdf" target="_blank" rel="noopener noreferrer" className="about-cta-link">Resume</a>
             </div>
           </div>
         </section>

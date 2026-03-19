@@ -31,9 +31,9 @@ export default function RevolvingStagePage() {
         <ProjectHeader
           backLink="/work"
           backLabel="Back to Work"
-          tags={[]}
+          tags={['Fabrication', 'Engineering', 'Art Direction']}
           title={'Designing Revolving Stage\nFor Theatre Play'}
-          subtitle=""
+          subtitle="Engineering a 15 ft. rotating platform supporting 250+ kgs for seamless scene transitions"
           info={[
             { label: 'Client', value: 'Firodia Karandak' },
             { label: 'Scope of Work', value: 'Design, Production, Engineering' },

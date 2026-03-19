@@ -26,10 +26,20 @@
   --body:     var(--sans);
 
   --accent:       #f5f5f5;
+  --accent-gold:  #ffe430;
+  --accent-gold-70: rgba(255, 228, 48, 0.7);
+  --accent-gold-50: rgba(255, 228, 48, 0.5);
+  --accent-gold-30: rgba(255, 228, 48, 0.3);
+  --accent-gold-15: rgba(255, 228, 48, 0.15);
+  --accent-gold-08: rgba(255, 228, 48, 0.08);
+  --accent-gold-05: rgba(255, 228, 48, 0.05);
   --gray-mid:     #ababab;
   --footer-dark:  rgb(32, 32, 32);
 
   --ink-50:   rgba(26,26,26,0.5);
+
+  /* Spacing utilities */
+  --gutter:   clamp(1.25rem, 4vw, 3rem);
 
   /* Type scale */
   --text-2xs:  0.6rem;      /* 9.6px — tiny labels */

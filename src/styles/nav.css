@@ -43,8 +43,8 @@
 .nav-pill {
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 4px 5px;
+  gap: 6px;
+  padding: 5px 6px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(0, 0, 0, 0.06);
   background: rgba(255, 255, 255, 0.55);
@@ -63,7 +63,7 @@
   font-weight: 500;
   letter-spacing: 0;
   color: var(--ink-50);
-  padding: var(--btn-md);
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-pill);
   transition: color 0.2s, background 0.2s;
   white-space: nowrap;
@@ -87,7 +87,7 @@
   border: none;
   background: transparent;
   border-radius: var(--radius-pill);
-  margin-left: 1px;
+  margin-left: 0;
   color: var(--ink-40);
   cursor: pointer;
   display: flex;

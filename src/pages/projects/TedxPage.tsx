@@ -37,6 +37,7 @@ export default function TedxPage() {
             { label: 'Team', value: '65+ volunteers' },
             { label: 'Timeline', value: 'Sept\u2013Nov 2019' },
             { label: 'Audience', value: '800+ attendees' },
+            { label: 'Year', value: '2019' },
           ]}
           heroImage="/Assets/Projects/Tedxvitpune/Desktop/5.jpg"
           heroAlt="Completed TEDxVITPune stage with parallax cityscape"

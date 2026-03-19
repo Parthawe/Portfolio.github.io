@@ -13,6 +13,10 @@ export function useMagnetic() {
     let rafId: number;
 
     const scan = () => {
+      // Remove stale elements no longer in the DOM
+      elements.forEach((el) => {
+        if (!el.isConnected) elements.delete(el);
+      });
       document.querySelectorAll<HTMLElement>('.magnetic').forEach((el) => {
         if (!elements.has(el)) {
           elements.add(el);
@@ -25,6 +29,10 @@ export function useMagnetic() {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
         elements.forEach((el) => {
+          if (!el.isConnected) {
+            elements.delete(el);
+            return;
+          }
           const rect = el.getBoundingClientRect();
           const cx = rect.left + rect.width / 2;
           const cy = rect.top + rect.height / 2;

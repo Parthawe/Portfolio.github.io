@@ -16,6 +16,7 @@ import CsImage from '../../components/case-study/CsImage'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsNumList from '../../components/case-study/CsNumList'
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -50,8 +51,8 @@ export default function MentraPage() {
           { label: 'Platform', value: 'Wearable OS, Mobile, Web' },
         ]}
         liveUrl="https://www.mentra.glass"
-        heroImage="/Assets/images/mentra.png"
-        heroAlt="Mentra Glass — AI-powered smart glasses with open-source OS"
+        heroImage="/Assets/images/mentra/render-camera-detail.png"
+        heroAlt="Mentra Glass — AI-powered smart glasses with camera detail and Mentra logo"
       />
 
         <ProjectOverview
@@ -81,7 +82,19 @@ export default function MentraPage() {
             quote="Every smart glasses company before us shipped hardware and hoped software would follow. We designed the software ecosystem first and built the hardware to serve it."
             cite="— Mentra founding thesis"
           />
+        <CsImage src="/Assets/images/mentra/glasses-angle.png" alt="Mentra Live smart glasses — three-quarter angle showing camera module and Mentra logo on temple" />
         </CsSection>
+
+        <CsProcessFlow
+          title="Design Process"
+          steps={[
+            { label: 'Research', desc: 'Audited every smart glasses product since Google Glass — hardware, software, and go-to-market. Identified the missing layer: an open software ecosystem.' },
+            { label: 'Define', desc: 'Established three core UX principles: glance-not-gaze, voice-first input, and peripheral-priority information hierarchy. These guided every decision.' },
+            { label: 'Design', desc: 'Built the companion app, MentraOS HUD, and MiniApp Store in parallel. Used Protopie for on-device simulations and Figma for the design system.' },
+            { label: 'Prototype', desc: 'Tested on real glasses hardware with tethered phones. Validated the one-tap QR pairing, three-tier notifications, and voice-navigated store.' },
+            { label: 'Ship', desc: 'Launched at $299 with an open-source OS and a functioning app store — a first for smart glasses. Batch 2 pre-orders at 88% claimed.' },
+          ]}
+        />
 
         <CsSection id="cs-bet" label="The Bet" title="What Android Did for Phones, MentraOS Does for Glasses">
           <CsBody>
@@ -101,6 +114,7 @@ export default function MentraPage() {
             { title: "If They Won't Build, Nothing Else Matters", desc: "An app store is only as good as its apps. I designed the SDK docs, developer portal, and submission flow to make building for glasses feel as natural as building for phones." },
             { title: 'A Camera on Your Face Is a Social Contract', desc: 'Post-Google-Glass, face-worn cameras carry social baggage. I designed visual indicators, privacy modes, and interaction patterns that build trust with both the wearer and everyone in the room.' },
           ]} />
+          <CsImage src="/Assets/images/mentra/render-temple-detail.png" alt="Mentra Live temple detail — close-up of hinge mechanism, USB-C port, and Mentra logo" />
         </CsSection>
 
         <CsSection id="cs-companion" label="Companion App" title="The Control Center in Your Pocket">
@@ -114,7 +128,8 @@ export default function MentraPage() {
             { num: 3, title: 'Pair', desc: 'Scan the QR code. One tap to confirm. The phone and glasses handshake over Bluetooth LE and the connection is persistent.' },
             { num: 4, title: '"Hey Mentra"', desc: 'The wake word activates the AI. Directions, translation, song ID, calendar — the first interaction sets the tone.' },
           ]} />
-          <CsImage placeholder="Companion app mockup — home screen, device pairing flow, and miniapp management interface" />
+          <CsImage src="/Assets/images/mentra/appstore-hero.png" alt="MentraOS companion app — home screen with glasses status, background apps, and active captions" />
+          <CsImage src="/Assets/images/mentra/appstore-device.png" alt="Companion app device settings — Even Realities G1 connection, brightness controls, battery status" />
           <CsBody style={{ marginTop: '2rem' }}>
             <p>Beyond onboarding, the app is the management layer for the entire ecosystem: browse miniapps, configure per-app notifications, adjust display settings, manage privacy. I built it on a single-tab architecture — everything is two taps away.</p>
           </CsBody>
@@ -125,7 +140,8 @@ export default function MentraPage() {
             <p>MentraOS is open-source — a product decision that became the defining design constraint. An open OS means developers will build things I cannot predict, on a display I cannot control, for users I will never meet. The design system had to be opinionated enough to feel cohesive and flexible enough for miniapps that do not exist yet.</p>
             <p>The HUD operates on a principle I call &ldquo;glance, don&rsquo;t gaze.&rdquo; Every piece of information must be understood in under two seconds of peripheral attention.</p>
           </CsBody>
-          <CsImage placeholder="MentraOS HUD design — glanceable interface showing ambient notifications, AI waveform, and contextual cards in peripheral vision" />
+          <CsImage src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen — glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
+          <CsImage src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer — searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
           <h3 className="cs-section-subtitle">Voice-First, Screen-Second</h3>
           <CsBody>
             <p>Voice is the primary input. The AI handles natural language queries, contextual responses from the camera feed, and proactive suggestions from time and location. Visual feedback is minimal by design: a thin amber waveform that pulses while listening and settles when processing.</p>
@@ -134,7 +150,8 @@ export default function MentraPage() {
           <CsBody>
             <p>On glasses, every notification competes with reality. I designed three tiers: ambient (subtle color shift at the frame edge), informational (translucent one-line card), and urgent (persistent card with haptic pulse requiring voice dismissal). Users assign tiers per app, and MentraOS learns from behavior.</p>
           </CsBody>
-          <CsImage placeholder="Notification architecture diagram — three-tier system showing ambient, informational, and urgent notification patterns with visual hierarchy" />
+          <CsImage src="/Assets/images/mentra/os-notes.png" alt="Mentra Notes app — note editor with formatting toolbar, AI summarization button, and quick actions" />
+          <CsImage src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view — multitasking interface showing stacked app cards with Teleprompter active" />
         </CsSection>
 
         <CsSection id="cs-store" label="MiniApp Store" title="The App Store That Lives on Your Face">
@@ -142,7 +159,7 @@ export default function MentraPage() {
             <p>This is what separates Mentra from everything else. Meta Ray-Ban Gen 2 ships at the same $299 price point but is a closed system. Mentra is the opposite: an open marketplace where any developer can ship.</p>
             <p>Designing a store for a HUD meant rethinking every convention. No icon grid. No screenshot carousel. The on-glasses store is voice-navigated and context-curated.</p>
           </CsBody>
-          <CsImage placeholder="MiniApp Store interface — voice-navigated store layout with contextual app suggestions, category browsing, and developer submission portal" />
+          <CsImage src="/Assets/images/mentra/appstore-translation.png" alt="MentraOS Translation app — real-time English to Japanese translation through smart glasses with auto-scroll" />
           <h3 className="cs-section-subtitle">Discoverability Without Browsing</h3>
           <CsBody>
             <p>The store surfaces miniapps from three signals: what you are doing, where you are, and what you are asking for. The result feels less like a catalog and more like a knowledgeable friend who always knows the right tool.</p>
@@ -169,6 +186,9 @@ export default function MentraPage() {
             { date: 'Q1 2026', title: 'Launch & Iteration', desc: 'Mentra Glass shipped at $299 with Batch 2 at 88% claimed. Ongoing iteration on the design system based on developer and user feedback. Expanding the notification architecture with AI-driven priority learning.' },
           ]} />
         </CsSection>
+
+        <CsImage src="/Assets/images/mentra/render-transparent.png" alt="Mentra Live transparent frame render — showing internal components, camera module, and circuit board" />
+        <CsImage src="/Assets/images/mentra/photo-front.jpg" alt="Mentra Live smart glasses — real product photo showing lens display and black frame" />
 
         <CsSection id="cs-impact" label="Impact" title="Shipping, Not Pitching">
           <CsBody style={{ marginBottom: '2rem' }}>

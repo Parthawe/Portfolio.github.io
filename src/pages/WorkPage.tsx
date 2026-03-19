@@ -28,98 +28,100 @@ const workGroups: WorkGroup[] = [
     category: 'ux',
     label: 'UX Design',
     projects: [
-      { slug: 'mentra', image: '/Assets/images/mentra.png', name: 'Mentra', tag: 'AI WEARABLES', year: '2026', desc: "World's first wearable app store for AI smart glasses", category: 'ux', loading: 'eager' },
-      { slug: 'executivelens', image: '/Assets/images/executivelens.png', name: 'ExecutiveLens', tag: 'AI ANALYTICS', year: '2026', desc: 'Business intelligence platform for C-suite executives', category: 'ux', loading: 'eager' },
-      { slug: 'zentipay', image: '/Assets/images/zentipay.png', name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Super app that increased transaction success by 30%', category: 'ux', loading: 'eager' },
-      { slug: 'transfi-project', image: '/Assets/images/transfi.jpg', name: 'TransFi', tag: 'WEB3 UX DESIGN', year: '2023', desc: 'Cross-border crypto payments processing $50M+ monthly', category: 'ux' },
-      { slug: 'cuetv', image: '/Assets/images/cuetv.jpg', name: 'CueTV', tag: 'PRODUCT DESIGN', year: '2023', desc: 'TV scheduling platform — redesigned content workflow reducing task time by 40%', category: 'ux' },
-      { slug: 'org-dashboard', image: '/Assets/images/org-dashboard.png', name: 'OrgDashboard', tag: 'B2B SAAS', year: '2026', desc: 'AI-powered organizational analytics for enterprise teams', category: 'ux' },
+      { slug: 'mentra', image: '/Assets/images/mentra.png', name: 'Mentra', tag: 'AI WEARABLES', year: '2026', desc: 'OS, companion app, and app store for AI smart glasses — shipping at $299', category: 'ux', loading: 'eager' },
+      { slug: 'transfi-project', image: '/Assets/images/transfi.jpg', name: 'TransFi', tag: 'WEB3 PAYMENTS', year: '2023', desc: 'Crypto payment rails across 6 Asian markets — $50M+ monthly volume', category: 'ux', loading: 'eager' },
+      { slug: 'zentipay', image: '/Assets/images/zentipay.png', name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Fintech super app from scratch — 30% higher transaction success', category: 'ux', loading: 'eager' },
+      { slug: 'executivelens', image: '/Assets/images/executivelens.png', name: 'ExecutiveLens', tag: 'AI ANALYTICS', year: '2026', desc: 'AI meeting intelligence saving executives 5.2 hrs/week — 87% adoption', category: 'ux' },
+      { slug: 'org-dashboard', image: '/Assets/images/org-dashboard.png', name: 'OrgDashboard', tag: 'B2B SAAS', year: '2026', desc: 'SaaS giving AI agents organizational context — dual-user design', category: 'ux' },
+      { slug: 'cuetv', image: '/Assets/images/cuetv.jpg', name: 'CueTV', tag: 'PRODUCT DESIGN', year: '2022', desc: 'OTT streaming platform — retargeting system generating 30K+ ad variations', category: 'ux' },
     ],
   },
   {
     category: 'good',
     label: 'Design for Good',
     projects: [
-      { slug: 'raahi-project', image: '/Assets/images/raahi.jpg', name: 'Raahi', tag: 'CIVIC DESIGN', year: '2023', desc: 'Transit accessibility platform for underserved commuters', category: 'good' },
-      { slug: 'the-point-cdc', image: '/Assets/images/the-point-cdc.png', name: 'The Point CDC', tag: 'COMMUNITY', year: '2024', desc: 'Digital platform for Bronx community development', category: 'good' },
-      { slug: 'office-of-diversity', image: '/Assets/images/office-of-diversity.png', name: 'Office of Diversity', tag: 'EDUCATION', year: '2024', desc: 'Web presence redesign for NYU Tisch School of the Arts', category: 'good' },
+      { slug: 'raahi-project', image: '/Assets/images/raahi.jpg', name: 'Raahi', tag: 'CIVIC DESIGN', year: '2022', desc: 'Service design for Pune public transit — app, kiosk, and in-vehicle systems', category: 'good' },
+      { slug: 'the-point-cdc', image: '/Assets/images/the-point-cdc.png', name: 'The Point CDC', tag: 'COMMUNITY', year: '2024', desc: 'Redesigned digital platform for a Bronx community development nonprofit', category: 'good' },
+      { slug: 'office-of-diversity', image: '/Assets/images/office-of-diversity.png', name: 'Office of Diversity', tag: 'EDUCATION', year: '2024', desc: 'IDBEA report and interactive timeline for NYU Tisch — WCAG 2.1 AA', category: 'good' },
     ],
   },
   {
     category: 'ai',
     label: 'AI & Wearables',
     projects: [
-      { slug: 'clawed-chat', image: '/Assets/images/clawed.png', name: 'Clawed', tag: 'AI ASSISTANT', year: '2026', desc: 'Safety-first AI assistant for smart glasses and web', category: 'ai' },
-      { slug: 'oncall-lens', image: '/Assets/images/oncall-lens.png', name: 'OnCall Lens', tag: 'DEVTOOLS', year: '2026', desc: 'Sentry alerts to automated PR fixes via smart glasses', category: 'ai' },
-      { slug: 'ai-voice', image: '/Assets/images/ai-voice.png', name: 'AI Voice', tag: 'CONVERSATIONAL AI', year: '2025', desc: 'Voice-driven interaction and conversational interface design', category: 'ai' },
-      { slug: 'ballah-code', image: '/Assets/images/ballah-code.png', name: 'Ballah Code', tag: 'AI DEVTOOLS', year: '2026', desc: 'AI-powered developer tools and code generation platform', category: 'ai' },
+      { slug: 'clawed-chat', image: '/Assets/images/clawed.png', name: 'Clawed', tag: 'AI ASSISTANT', year: '2026', desc: 'AI assistant with receipts for every action — 3-tier trust architecture', category: 'ai' },
+      { slug: 'ballah-code', image: '/Assets/images/ballah-code.png', name: 'Ballah Code', tag: 'AI DEVTOOLS', year: '2026', desc: 'AI-native IDE treating AI as a senior engineer — 17 production tools', category: 'ai' },
+      { slug: 'oncall-lens', image: '/Assets/images/oncall-lens.png', name: 'OnCall Lens', tag: 'DEVTOOLS', year: '2026', desc: 'Sentry alert → Claude analysis → auto PR fix — built in 24 hours', category: 'ai' },
+      { slug: 'ai-voice', image: '/Assets/images/ai-voice.png', name: 'AI Voice', tag: 'CONVERSATIONAL AI', year: '2025', desc: 'Enterprise voice selection with emotional intelligence — A/B tested with 7 users', category: 'ai' },
     ],
   },
   {
     category: 'creative',
     label: 'Creative Technology',
     projects: [
-      { slug: 'keyboard-project', image: '/Assets/images/keyboard.jpg', name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'Modular keyboard with generative design and custom firmware', category: 'creative' },
-      { slug: 'jugalbandi', image: '/Assets/images/jugalbandi.png', name: 'Jugalbandi', tag: 'ML + MUSIC', year: '2024', desc: 'Machine learning instrument that duets with human musicians', category: 'creative' },
-      { slug: 'vj-software', image: '/Assets/images/vj.jpg', name: 'VJ Software', tag: 'REAL-TIME VISUALS', year: '2022', desc: 'Live visual performance tool with audio-reactive shaders', category: 'creative' },
-      { slug: 'shuffle', image: '/Assets/images/shuffle.jpg', name: 'Shuffle', tag: 'INTERACTIVE', year: '2024', desc: 'Physical strategy simulation installation with real-time feedback', category: 'creative' },
-      { slug: 'enigma', image: '/Assets/images/enigma.jpg', name: 'Enigma', tag: 'DEEP LEARNING', year: '2023', desc: 'Light sculpture powered by a neural network', category: 'creative' },
-      { slug: 'making-of-time', image: '/Assets/images/making-of-time.jpg', name: 'Making of Time', tag: 'PHYSICAL COMPUTING', year: '2024', desc: 'Exploring temporal perception through physical computing', category: 'creative' },
+      { slug: 'jugalbandi', image: '/Assets/images/jugalbandi.png', name: 'Jugalbandi', tag: 'ML + MUSIC', year: '2024', desc: 'Neural network that duets with human musicians — Maker Faire + ITP Show', category: 'creative' },
+      { slug: 'keyboard-project', image: '/Assets/images/keyboard.jpg', name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'AI-generated keycap designs fabricated in real time — 200+ visitors', category: 'creative' },
+      { slug: 'vj-software', image: '/Assets/images/vj.jpg', name: 'VJ Software', tag: 'REAL-TIME VISUALS', year: '2022', desc: 'Audio-reactive visual performance tool — 5 competitor analysis, 2 personas', category: 'creative' },
+      { slug: 'enigma', image: '/Assets/images/enigma.jpg', name: 'Enigma', tag: 'DEEP LEARNING', year: '2023', desc: '200-neuron light sculpture visualizing a functioning neural network', category: 'creative' },
+      { slug: 'shuffle', image: '/Assets/images/shuffle.jpg', name: 'Shuffle', tag: 'INTERACTIVE', year: '2024', desc: 'Weight-sensor LED grid — physical strategy game at ITP Winter Show', category: 'creative' },
+      { slug: 'making-of-time', image: '/Assets/images/making-of-time.jpg', name: 'Making of Time', tag: 'PHYSICAL COMPUTING', year: '2024', desc: 'Sundial → mechanical watch → software clock — three ways to measure time', category: 'creative' },
     ],
   },
   {
     category: 'install',
     label: 'Installations',
     projects: [
-      { slug: 'uv-light', image: '/Assets/images/uv-light.jpg', name: 'UV Light', tag: 'LIGHT ART', year: '2024', desc: 'Interactive ultraviolet light installation', category: 'install' },
-      { slug: 'revolving-stage', image: '/Assets/images/revolving-stage.jpg', name: 'Revolving Stage', tag: 'FABRICATION', year: '2022', desc: 'Kinetic rotating stage — design through fabrication', category: 'install' },
-      { slug: 'the-omakase', image: '/Assets/images/the-omakase.jpg', name: 'The Omakase', tag: 'ARCADE GAME', year: '2024', desc: '2-player competitive party arcade experience', category: 'install' },
-      { slug: 'moniac-machine', image: '/Assets/images/moniac-machine.jpg', name: 'Moniac Machine', tag: 'GAME DESIGN', year: '2024', desc: 'Economic strategy board game with hydraulic mechanics', category: 'install' },
-      { slug: 'drowning', image: '/Assets/images/drowning.jpg', name: 'Drowning', tag: 'SCENIC DESIGN', year: '2024', desc: 'Theatrical set design for an immersive production', category: 'install' },
+      { slug: 'black-hole', image: '/Assets/images/black-hole.jpg', name: 'Black Hole', tag: 'SCIENCE + FABRICATION', year: '2026', desc: 'Five physical models of black hole phenomena — Horological Society of NY', category: 'install' },
+      { slug: 'uv-light', image: '/Assets/images/uv-light.jpg', name: 'UV Light', tag: 'LIGHT ART', year: '2023', desc: 'Multi-room blacklight installation with hidden messages and live projection', category: 'install' },
+      { slug: 'the-omakase', image: '/Assets/images/the-omakase.jpg', name: 'The Omakase', tag: 'ARCADE GAME', year: '2024', desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille', category: 'install' },
+      { slug: 'revolving-stage', image: '/Assets/images/revolving-stage.jpg', name: 'Revolving Stage', tag: 'FABRICATION', year: '2022', desc: '15 ft. rotating stage supporting 250+ kgs — engineered for live theatre', category: 'install' },
+      { slug: 'moniac-machine', image: '/Assets/images/moniac-machine.jpg', name: 'Moniac Machine', tag: 'GAME DESIGN', year: '2024', desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education', category: 'install' },
+      { slug: 'drowning', image: '/Assets/images/drowning.jpg', name: 'Drowning', tag: 'SCENIC DESIGN', year: '2024', desc: 'Abandoned greenhouse set for NYU theatre — multi-layer lighting for 100+ audience', category: 'install' },
     ],
   },
   {
     category: 'brand',
     label: 'Brand & Visual',
     projects: [
-      { slug: 'tedx', image: '/Assets/images/tedx.png', name: 'TEDxVITPune', tag: 'ART DIRECTION', year: '2021', desc: 'Complete brand identity and event experience design', category: 'brand' },
-      { slug: 'code-for-build', image: '/Assets/images/code-for-build.jpg', name: 'Code for Build', tag: 'BRAND + PRODUCT', year: '2021', desc: 'Brand system and product design for Istanbul startup', category: 'brand' },
-      { slug: 'typeface', image: '/Assets/images/typeface.jpg', name: "Butler's Slice", tag: 'TYPE DESIGN', year: '2022', desc: 'Original variable display typeface with geometric cuts', category: 'brand' },
-      { slug: 'atps', image: '/Assets/images/atps.png', name: 'ArtTown Podcast', tag: 'MEDIA', year: '2021', desc: 'Visual identity for a podcast series on art and design', category: 'brand' },
+      { slug: 'tedx', image: '/Assets/images/tedx.png', name: 'TEDxVITPune', tag: 'ART DIRECTION', year: '2021', desc: 'Art directed 65-person team — parallax cityscape stage for 800+ attendees', category: 'brand' },
+      { slug: 'code-for-build', image: '/Assets/images/code-for-build.jpg', name: 'Code for Build', tag: 'BRAND + PRODUCT', year: '2021', desc: 'Brand system and developer platform for Istanbul open-source startup', category: 'brand' },
+      { slug: 'typeface', image: '/Assets/images/typeface.jpg', name: "Butler's Slice", tag: 'TYPE DESIGN', year: '2022', desc: 'Variable display typeface with geometric slice cuts — 400+ glyphs', category: 'brand' },
+      { slug: 'atps', image: '/Assets/images/atps.png', name: 'ArtTown Podcast', tag: 'MEDIA', year: '2021', desc: 'Visual identity and motion graphics for an art and design podcast series', category: 'brand' },
     ],
   },
 ]
 
-/* Curated mixed order for "All" — interleaves categories for visual variety */
+/* Curated mixed order for "All" — interleaves categories, strongest first */
 const allProjectsMixed: ProjectCard[] = [
   workGroups[0].projects[0],  // Mentra (ux)
   workGroups[2].projects[0],  // Clawed (ai)
-  workGroups[3].projects[0],  // BreakGen (creative)
-  workGroups[0].projects[1],  // ExecutiveLens (ux)
+  workGroups[0].projects[1],  // TransFi (ux)
+  workGroups[3].projects[0],  // Jugalbandi (creative)
   workGroups[1].projects[0],  // Raahi (good)
-  workGroups[4].projects[0],  // UV Light (install)
+  workGroups[4].projects[0],  // Black Hole (install)
   workGroups[0].projects[2],  // ZentiPay (ux)
-  workGroups[2].projects[1],  // OnCall Lens (ai)
+  workGroups[2].projects[1],  // Ballah Code (ai)
   workGroups[5].projects[0],  // TEDxVITPune (brand)
-  workGroups[3].projects[1],  // Jugalbandi (creative)
-  workGroups[0].projects[3],  // TransFi (ux)
-  workGroups[4].projects[1],  // Revolving Stage (install)
+  workGroups[0].projects[3],  // ExecutiveLens (ux)
+  workGroups[3].projects[1],  // BreakGen (creative)
+  workGroups[4].projects[1],  // UV Light (install)
   workGroups[1].projects[1],  // The Point CDC (good)
-  workGroups[2].projects[2],  // AI Voice (ai)
+  workGroups[2].projects[2],  // OnCall Lens (ai)
   workGroups[3].projects[2],  // VJ Software (creative)
-  workGroups[0].projects[4],  // CueTV (ux)
-  workGroups[5].projects[1],  // Code for Build (brand)
   workGroups[4].projects[2],  // The Omakase (install)
-  workGroups[3].projects[3],  // Shuffle (creative)
+  workGroups[0].projects[4],  // OrgDashboard (ux)
+  workGroups[5].projects[1],  // Code for Build (brand)
+  workGroups[4].projects[3],  // Revolving Stage (install)
+  workGroups[3].projects[3],  // Enigma (creative)
   workGroups[1].projects[2],  // Office of Diversity (good)
-  workGroups[2].projects[3],  // Ballah Code (ai)
-  workGroups[0].projects[5],  // OrgDashboard (ux)
+  workGroups[2].projects[3],  // AI Voice (ai)
+  workGroups[0].projects[5],  // CueTV (ux)
   workGroups[5].projects[2],  // Butler's Slice (brand)
-  workGroups[4].projects[3],  // Moniac Machine (install)
-  workGroups[3].projects[4],  // Enigma (creative)
+  workGroups[4].projects[4],  // Moniac Machine (install)
+  workGroups[3].projects[4],  // Shuffle (creative)
   workGroups[5].projects[3],  // ArtTown Podcast (brand)
   workGroups[3].projects[5],  // Making of Time (creative)
-  workGroups[4].projects[4],  // Drowning (install)
+  workGroups[4].projects[5],  // Drowning (install)
 ]
 
 const filters = [
@@ -238,7 +240,10 @@ export default function WorkPage() {
           <button
             key={f.key}
             className={`work-bnav-link${activeFilter === f.key ? ' active' : ''}`}
-            onClick={() => setActiveFilter(f.key)}
+            onClick={() => {
+              setActiveFilter(f.key)
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
           >
             {f.label}
           </button>

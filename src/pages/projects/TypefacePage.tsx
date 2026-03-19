@@ -224,7 +224,7 @@ export default function TypefacePage() {
 
       </main>
 
-      <NextProject slug="ATPS" title="ArtTown Podcast" image="/Assets/images/atps.png" />
+      <NextProject slug="atps" title="ArtTown Podcast" image="/Assets/images/atps.png" />
       <Footer />
     </>
   )

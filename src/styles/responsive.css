@@ -41,7 +41,7 @@
   /* footer responsive is handled in footer.css */
 
   .pcard-row { grid-template-columns: 1fr; }
-  .pcard-masonry { columns: 2; }
+  /* masonry responsive handled in work-page.css */
   .pcard-text-row { grid-template-columns: 1fr; }
 
   .about-hero-v2 {
@@ -127,7 +127,7 @@
 }
 
 @media (max-width: 480px) {
-  .pcard-masonry { columns: 1; }
+  /* masonry responsive handled in work-page.css */
   .hero-scene { height: 220px; }
   .hero-card { width: 120px; margin-left: -60px; margin-top: -80px; border-radius: var(--radius-sm); }
   .hero-cards { transform: rotateY(3deg) rotateX(-2deg) !important; }

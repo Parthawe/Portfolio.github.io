@@ -449,6 +449,7 @@ body:has(.hp) main::before {
   opacity: 0.5;
 }
 .hp-tab:hover { opacity: 0.7; }
+.hp-tab:active { transform: scale(0.97); }
 
 /* ── Hero text + stats ── */
 .hp-hero {
@@ -482,6 +483,10 @@ body:has(.hp) main::before {
 }
 .hp-hero-link:hover {
   border-color: var(--ink); background: var(--ink-04);
+}
+.hp-hero-link:active {
+  transform: scale(0.96);
+  transition-duration: 0.08s;
 }
 
 /* ── Logo marquee ── */

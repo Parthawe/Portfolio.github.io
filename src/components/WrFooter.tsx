@@ -35,7 +35,7 @@ export default function WrFooter() {
             <a
               href="https://www.instagram.com/designwhich.works"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="wr-social-btn"
             >
               <span className="wr-social-default">INSTAGRAM</span>
@@ -44,7 +44,7 @@ export default function WrFooter() {
             <a
               href="https://www.linkedin.com/in/parth-pawar-1501/"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="wr-social-btn"
             >
               <span className="wr-social-default">LINKEDIN</span>
@@ -54,7 +54,7 @@ export default function WrFooter() {
           <div className="wr-watermark" aria-hidden="true">PARTHPAWAR</div>
         </div>
         <div className="wr-footer-bottom">
-          <span>&copy; 2022&mdash;'26 PARTH PAWAR</span>
+          <span>&copy; 2022&mdash;'{String(new Date().getFullYear()).slice(-2)} PARTH PAWAR</span>
           <span>SAN FRANCISCO, CA</span>
         </div>
       </footer>

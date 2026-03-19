@@ -8,9 +8,12 @@ import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
 import CsCallout from '../../components/case-study/CsCallout'
+import CsImage from '../../components/case-study/CsImage'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsNumList from '../../components/case-study/CsNumList'
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
+import CsArchDiagram from '../../components/case-study/CsArchDiagram'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -38,13 +41,13 @@ export default function OnCallLensPage() {
           title="OnCall Lens"
           subtitle="Transforming Sentry alerts into automated PR patches via smart glasses &mdash; so on-call engineers can fix production bugs without opening a laptop"
           info={[
-            { label: 'Role', value: 'Designer + Developer' },
-            { label: 'Timeline', value: 'Jan 2026' },
-            { label: 'Team', value: 'Hackathon team' },
-            { label: 'Platform', value: 'Glasses + Web' },
+            { label: 'Role', value: 'Product Designer + Developer' },
+            { label: 'Timeline', value: 'Jan 24, 2026 (24hrs)' },
+            { label: 'Team', value: 'Team SOGA' },
+            { label: 'Platform', value: 'MentraOS Glasses + Web' },
           ]}
-          heroImage="/Assets/images/oncall-lens.png"
-          heroAlt="OnCall Lens — Sentry alerts to automated PR patches via smart glasses"
+          heroImage="/Assets/images/oncall-lens/hero.png"
+          heroAlt="Pager Lens — Stay present. Handle incidents anywhere."
         />
 
         <ProjectOverview
@@ -69,6 +72,7 @@ export default function OnCallLensPage() {
           <CsCallout>
             <p>&ldquo;The best incident response is the one where the engineer never has to open a laptop. The second best is the one where the laptop is already open and the fix is already written.&rdquo;</p>
           </CsCallout>
+          <CsImage src="/Assets/images/oncall-lens/glasses-detail.png" alt="Close-up of smart glasses lens used for OnCall Lens" />
         </CsSection>
 
         <CsSection id="cs-bet" label="The Bet" title="What If the First Responder Was an AI Agent?">
@@ -78,6 +82,16 @@ export default function OnCallLensPage() {
             <p>Smart glasses are the perfect interface for this. You do not need a laptop to approve a PR. You need three seconds of attention and a single tap.</p>
           </CsBody>
         </CsSection>
+
+        <CsProcessFlow
+          title="Hackathon Design Sprint"
+          steps={[
+            { label: 'Whiteboard', desc: 'First 2 hours: mapped the entire incident response flow on a whiteboard. Identified the core interaction: alert → glance → tap → fixed.' },
+            { label: 'Figma', desc: 'Hours 2–5: designed all glasses notification cards, the mini-app views, and the web dashboard in Figma. Three screens, three states each.' },
+            { label: 'Build', desc: 'Hours 5–22: switched to code. Built the Mentra mini-app frontend, the backend orchestrator, and wired up Sentry, Claude, Daytona, and CodeRabbit.' },
+            { label: 'Demo', desc: 'Hour 23–24: end-to-end demo at Sentry HQ. Real Sentry alert → real Claude fix → real PR → approved from smart glasses.' },
+          ]}
+        />
 
         <CsSection id="cs-challenges" label="Design Challenges" title="Four Constraints, Twenty-Four Hours">
           <CsBody>
@@ -118,6 +132,29 @@ export default function OnCallLensPage() {
           ]} />
         </CsSection>
 
+        <CsArchDiagram
+          title="System Architecture"
+          cols={3}
+          nodes={[
+            { id: 'sentry', label: 'Sentry', desc: 'Detects errors in production and fires webhooks to the OnCall Lens backend with severity, service, and stack trace.', row: 0, col: 1 },
+            { id: 'backend', label: 'OnCall Lens Backend', desc: 'Bun + Fastify orchestrator that receives Sentry webhooks, dispatches Claude agents, and manages the fix pipeline.', row: 1, col: 1 },
+            { id: 'glasses', label: 'Smart Glasses', desc: 'Mentra mini-app shows alert cards, fix status, and approval interface. One tap to approve or reject.', row: 1, col: 0 },
+            { id: 'daytona', label: 'Daytona Workspace', desc: 'Ephemeral dev environment spins up with the correct repo, branch, and dependencies in seconds.', row: 1, col: 2 },
+            { id: 'claude', label: 'Claude Agent', desc: 'Reads the error, navigates the codebase, identifies root cause, and writes a patch using structured tool calls.', row: 2, col: 1 },
+            { id: 'coderabbit', label: 'CodeRabbit', desc: 'Automated code review checks the patch for correctness, style, and regressions before PR is opened.', row: 2, col: 2 },
+            { id: 'github', label: 'GitHub PR', desc: 'Final pull request with clear description, diff, and review summary. Engineer approves from glasses.', row: 2, col: 0 },
+          ]}
+          connections={[
+            { from: 'sentry', to: 'backend', label: 'Webhook' },
+            { from: 'backend', to: 'glasses', label: 'Alert notification' },
+            { from: 'backend', to: 'daytona', label: 'Spin up workspace' },
+            { from: 'daytona', to: 'claude', label: 'Agent dispatched' },
+            { from: 'claude', to: 'coderabbit', label: 'Patch review' },
+            { from: 'coderabbit', to: 'github', label: 'PR opened' },
+            { from: 'github', to: 'glasses', label: 'Approve/Reject' },
+          ]}
+        />
+
         <CsSection id="cs-miniapp" label="Mini-App" title="The Mentra Mini-App for Incident Response">
           <CsBody>
             <p>OnCall Lens runs as a Mentra mini-app on the smart glasses &mdash; a lightweight interface built specifically for the glasses display. The mini-app has three views, each designed around the principle that on-call engineers should never need to read more than two lines of text at a glance.</p>
@@ -139,6 +176,7 @@ export default function OnCallLensPage() {
             { key: 'Demo', value: 'End-to-end working' },
           ]} />
           <CsBody style={{ marginTop: '2.5rem' }}>
+            <p>The system runs a <strong>two-agent architecture</strong>: a fast chat agent (Claude Haiku) for sub-500ms user-facing responses on the glasses, and a powerful execution agent (Claude Sonnet) for background tasks &mdash; analyzing stack traces, writing patches, coordinating Daytona workspaces. Both feed into a shared state manager that tracks the world state, event log, and entity registry.</p>
             <p>The tech stack &mdash; Bun, TypeScript, Fastify, MongoDB, Claude with tool use, Daytona workspaces, CodeRabbit, and GitHub &mdash; was chosen for speed and reliability. Every component had to work on the first try. In a hackathon, you do not get a second deploy.</p>
           </CsBody>
         </CsSection>
@@ -155,9 +193,10 @@ export default function OnCallLensPage() {
         <CsSection label="Credits" title="Team">
           <CsCredits credits={[
             { role: 'Product Designer + Developer', name: 'Parth Pawar' },
-            { role: 'Event', name: 'Daytona HackSprint #4, SF' },
-            { role: 'Stack', name: 'Bun, TypeScript, Fastify, MongoDB, Claude, Daytona, CodeRabbit' },
-            { role: 'Platform', name: 'Mentra Smart Glasses, Web' },
+            { role: 'Team', name: 'Team SOGA' },
+            { role: 'Event', name: 'Daytona HackSprint #4 at Sentry HQ, SF' },
+            { role: 'Stack', name: 'Bun, TypeScript, Fastify, MongoDB, Claude (Haiku + Sonnet), Daytona, CodeRabbit' },
+            { role: 'Platform', name: 'MentraOS Smart Glasses, Web Dashboard' },
           ]} />
         </CsSection>
 

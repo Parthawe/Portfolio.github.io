@@ -40,6 +40,7 @@ const MoniacMachinePage = lazy(() => import('./pages/projects/MoniacMachinePage'
 const RevolvingStagePage = lazy(() => import('./pages/projects/RevolvingStagePage'))
 const UvLightPage = lazy(() => import('./pages/projects/UvLightPage'))
 const VjSoftwarePage = lazy(() => import('./pages/projects/VjSoftwarePage'))
+const BlackHolePage = lazy(() => import('./pages/projects/BlackHolePage'))
 
 function Loading() {
   return <div className="page-loader"><span className="page-loader-logo">PP</span></div>
@@ -94,6 +95,7 @@ export default function App() {
           <Route path="/revolving-stage" element={<RevolvingStagePage />} />
           <Route path="/uv-light" element={<UvLightPage />} />
           <Route path="/vj-software" element={<VjSoftwarePage />} />
+          <Route path="/black-hole" element={<BlackHolePage />} />
 
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />

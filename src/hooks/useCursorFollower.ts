@@ -11,11 +11,15 @@ export function useCursorFollower() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isTouchDevice || isMobile || prefersReduced) return;
 
-    // Create cursor elements
+    // Prevent duplicate cursor elements from StrictMode double-mount
+    document.querySelectorAll('.cursor-dot, .cursor-ring').forEach(el => el.remove());
+
     const dot = document.createElement('div');
     dot.className = 'cursor-dot';
+    dot.setAttribute('aria-hidden', 'true');
     const ring = document.createElement('div');
     ring.className = 'cursor-ring';
+    ring.setAttribute('aria-hidden', 'true');
     document.body.appendChild(dot);
     document.body.appendChild(ring);
 

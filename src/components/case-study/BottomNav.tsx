@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { useReadingProgress } from '../../hooks/useReadingProgress';
 
 interface BottomNavProps {
   sections: { id: string; label: string }[];
@@ -7,24 +8,20 @@ interface BottomNavProps {
 
 export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
   const navRef = useRef<HTMLElement>(null);
-  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const shownRef = useRef(true);
+  const progress = useReadingProgress();
+  const hideTimer = useRef<ReturnType<typeof setTimeout>>();
+  const isScrolling = useRef(false);
 
-  // Auto-hide after 3s, show on scroll
   const showNav = useCallback(() => {
     const nav = navRef.current;
     if (!nav) return;
-
-    if (!shownRef.current) {
-      nav.classList.remove('is-hidden');
-      shownRef.current = true;
-    }
-
-    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-    hideTimerRef.current = setTimeout(() => {
-      nav.classList.add('is-hidden');
-      shownRef.current = false;
-    }, 3000);
+    nav.classList.remove('is-idle');
+    isScrolling.current = true;
+    clearTimeout(hideTimer.current);
+    hideTimer.current = setTimeout(() => {
+      isScrolling.current = false;
+      nav.classList.add('is-idle');
+    }, 2500);
   }, []);
 
   useEffect(() => {
@@ -60,15 +57,6 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
       pairs.forEach((p) => sectionObserver!.observe(p.section));
     }
 
-    // --- Show/hide on scroll ---
-    window.addEventListener('scroll', showNav, { passive: true });
-
-    // Start visible, auto-hide after 3s
-    hideTimerRef.current = setTimeout(() => {
-      nav.classList.add('is-hidden');
-      shownRef.current = false;
-    }, 3000);
-
     // --- Hide when footer is visible ---
     let footerObserver: IntersectionObserver | undefined;
     const footer = document.querySelector('.footer');
@@ -77,6 +65,8 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
         ([entry]) => {
           if (entry.isIntersecting) {
             nav.classList.add('is-hidden');
+          } else {
+            nav.classList.remove('is-hidden');
           }
         },
         { threshold: 0.1 }
@@ -84,11 +74,16 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
       footerObserver.observe(footer);
     }
 
+    // --- Auto-hide on scroll pause ---
+    window.addEventListener('scroll', showNav, { passive: true });
+    // Initial idle state after mount
+    hideTimer.current = setTimeout(() => nav.classList.add('is-idle'), 3000);
+
     return () => {
       sectionObserver?.disconnect();
       footerObserver?.disconnect();
       window.removeEventListener('scroll', showNav);
-      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+      clearTimeout(hideTimer.current);
     };
   }, [sections, showNav]);
 
@@ -108,7 +103,19 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
       className="cs-bottom-nav"
       id="cs-bottom-nav"
       aria-label="Case study sections"
+      onMouseEnter={() => {
+        clearTimeout(hideTimer.current);
+        navRef.current?.classList.remove('is-idle');
+      }}
+      onMouseLeave={() => {
+        hideTimer.current = setTimeout(() => {
+          navRef.current?.classList.add('is-idle');
+        }, 2500);
+      }}
     >
+      {/* Reading progress bar */}
+      <div className="cs-bnav-progress" style={{ width: `${progress}%` }} />
+
       {sections.map((s) => (
         <a
           key={s.id}

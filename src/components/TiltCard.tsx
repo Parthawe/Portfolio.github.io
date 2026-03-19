@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useEffect, useState } from 'react';
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -9,8 +9,14 @@ interface TiltCardProps {
 export default function TiltCard({ children, className = '', intensity = 8 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const rafId = useRef<number>(0);
+  const [isTouch, setIsTouch] = useState(false);
+
+  useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const handleMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouch) return;
     const el = ref.current;
     if (!el) return;
 
@@ -21,13 +27,13 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       el.style.transform = `perspective(800px) rotateY(${x * intensity}deg) rotateX(${-y * intensity}deg) scale(1.02)`;
     });
-  }, [intensity]);
+  }, [intensity, isTouch]);
 
   const handleLeave = useCallback(() => {
     const el = ref.current;
     if (!el) return;
     cancelAnimationFrame(rafId.current);
-    el.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)';
+    el.style.transform = '';
   }, []);
 
   return (
@@ -36,7 +42,7 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       className={className}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      style={{ transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
+      style={isTouch ? undefined : { transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
     >
       {children}
     </div>

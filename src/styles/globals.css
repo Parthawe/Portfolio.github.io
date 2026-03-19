@@ -5,10 +5,6 @@
   --color-bg-alt: var(--bg-alt);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
-  --font-display: 'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Source Serif 4', 'Georgia', serif;
-  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
