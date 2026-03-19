@@ -1,0 +1,337 @@
+/* ================================================
+   WORK PAGE
+   ================================================ */
+.work-page-header {
+  padding: 8rem 0 3rem;
+  padding-top: calc(var(--nav-h) + 4rem);
+}
+.work-page-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: var(--ls-normal);
+  margin-bottom: 0.75rem;
+}
+
+/* Work group label */
+.work-group-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 1.25rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--ink-06);
+}
+.work-group:first-of-type .work-group-label {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Masonry grid — 3 columns ── */
+.pcard-masonry {
+  columns: 3;
+  column-gap: 1.25rem;
+}
+.pcard-masonry > .pcard {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Project card — image fills entire card, text overlaid ── */
+.pcard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s var(--ease-spring);
+}
+.pcard:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+.pcard-inner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s;
+}
+.pcard:hover .pcard-inner {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Image fills the entire card background */
+.pcard-visual {
+  display: block;
+  width: 100%;
+}
+.pcard-visual img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-spring);
+}
+.pcard:hover .pcard-visual img {
+  transform: scale(1.05);
+}
+
+/* Top row — category + year, overlaid */
+.pcard-top-row {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.pcard-tag {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.6rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pcard-year {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.6rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Project title — overlaid on image */
+.pcard-name {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 1rem;
+  right: 1rem;
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 300;
+  letter-spacing: var(--ls-normal);
+  color: #fff;
+  margin: 0;
+  line-height: 1.15;
+  z-index: 2;
+}
+
+/* Infinite scrolling subtitle strip at bottom */
+.pcard-marquee {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0.4rem 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pcard-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: pcard-scroll 30s linear infinite;
+  will-change: transform;
+}
+.pcard-marquee-track span {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+.pcard:hover .pcard-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes pcard-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Light image variant — dark text/UI ── */
+.pcard--light .pcard-tag {
+  color: rgba(0, 0, 0, 0.75);
+  background: rgba(255, 255, 255, 0.45);
+}
+.pcard--light .pcard-year {
+  color: rgba(0, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.35);
+}
+.pcard--light .pcard-name {
+  color: rgba(0, 0, 0, 0.85);
+}
+.pcard--light .pcard-marquee {
+  background: rgba(255, 255, 255, 0.3);
+  border-top-color: rgba(0, 0, 0, 0.04);
+}
+.pcard--light .pcard-marquee-track span {
+  color: rgba(0, 0, 0, 0.4);
+}
+.pcard--light .pcard-inner {
+  border-color: rgba(0, 0, 0, 0.06);
+}
+.pcard--light:hover .pcard-inner {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ── Featured card — full width on category pages ── */
+.pcard--featured {
+  margin-bottom: 2rem;
+}
+.pcard--featured .pcard-visual img {
+  aspect-ratio: 16 / 9;
+}
+.pcard--featured .pcard-name {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* ── Varying heights — alternate card sizes ── */
+.pcard-masonry > .pcard:nth-child(3n+1) .pcard-visual img {
+  aspect-ratio: 3 / 4;
+}
+.pcard-masonry > .pcard:nth-child(3n+2) .pcard-visual img {
+  aspect-ratio: 1 / 1;
+}
+.pcard-masonry > .pcard:nth-child(3n+3) .pcard-visual img {
+  aspect-ratio: 4 / 5;
+}
+
+/* ── Sibling fade on card hover ── */
+.pcard-masonry:has(.pcard:hover) .pcard:not(:hover) {
+  opacity: 0.35;
+}
+
+/* ── Floating bottom category nav ── */
+.work-bottom-nav {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 5px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+  max-width: calc(100vw - 2rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+}
+.work-bottom-nav::-webkit-scrollbar { display: none; }
+.work-bottom-nav.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(20px);
+  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+}
+
+.work-bnav-link {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-40);
+  padding: var(--btn-md);
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.work-bnav-link:hover {
+  color: var(--ink-70);
+  background: rgba(0, 0, 0, 0.04);
+}
+.work-bnav-link.active {
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+  font-weight: 600;
+}
+
+/* ── Dark mode — bottom nav ── */
+[data-theme="dark"] .work-bottom-nav {
+  background: rgba(30, 30, 30, 0.75);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    0 1px 4px rgba(0, 0, 0, 0.15),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .work-bnav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .work-bnav-link.active {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: var(--ink);
+}
+
+/* Work group show/hide */
+.work-group {
+  transition: opacity 0.4s var(--ease-out), max-height 0.5s var(--ease-out);
+}
+.work-group.hidden-group {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .pcard-inner {
+  border-color: rgba(255, 255, 255, 0.04);
+}
+[data-theme="dark"] .pcard:hover .pcard-inner {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .pcard-masonry {
+    columns: 2;
+  }
+}
+@media (max-width: 540px) {
+  .pcard-masonry {
+    columns: 1;
+  }
+}

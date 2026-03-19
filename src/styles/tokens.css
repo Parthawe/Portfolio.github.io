@@ -1,0 +1,194 @@
+/* ============================================
+   Parth Pawar — Portfolio
+   Light · type-driven · restrained
+   ============================================ */
+
+/* Font imports moved to index.html <head> for performance */
+
+/* --- Tokens --- */
+:root {
+  --bg:       #FAFAF8;
+  --bg-alt:   #F2F1EE;
+  --surface:  #FFFFFF;
+  --ink:      #1A1A1A;
+  --ink-70:   rgba(26,26,26,0.7);
+  --ink-40:   rgba(26,26,26,0.4);
+  --ink-15:   rgba(26,26,26,0.15);
+  --ink-12:   rgba(26,26,26,0.12);
+  --ink-08:   rgba(26,26,26,0.08);
+  --ink-06:   rgba(26,26,26,0.06);
+  --ink-04:   rgba(26,26,26,0.04);
+
+  --display:  'DM Sans', system-ui, -apple-system, sans-serif;
+  --serif:    'Source Serif 4', 'Georgia', serif;
+  --sans:     'DM Sans', system-ui, -apple-system, sans-serif;
+  --mono:     'JetBrains Mono', monospace;
+  --body:     var(--sans);
+
+  --accent:       #f5f5f5;
+  --gray-mid:     #ababab;
+  --footer-dark:  rgb(32, 32, 32);
+
+  --ink-50:   rgba(26,26,26,0.5);
+
+  /* Type scale */
+  --text-2xs:  0.6rem;      /* 9.6px — tiny labels */
+  --text-xs:   0.72rem;     /* 11.5px — captions, tags */
+  --text-sm:   0.85rem;     /* 13.6px — secondary text */
+  --text-base: 1rem;        /* 16px — body */
+  --text-lg:   1.125rem;    /* 18px — emphasized body */
+  --text-xl:   1.5rem;      /* 24px */
+  --text-2xl:  2rem;        /* 32px */
+  --text-3xl:  3rem;        /* 48px */
+  --text-hero: clamp(3.5rem, 8vw, 6rem);
+
+  /* Letter spacing scale */
+  --ls-tight:  -0.02em;     /* display headings */
+  --ls-normal: -0.01em;     /* headings */
+  --ls-body:   0;           /* body text */
+  --ls-wide:   0.06em;      /* labels, tags, uppercase */
+  --ls-wider:  0.1em;       /* small mono labels */
+  --ls-widest: 0.12em;     /* section labels, approach labels */
+
+  /* Radius scale */
+  --radius-sm:   6px;
+  --radius:      10px;
+  --radius-lg:   14px;
+  --radius-pill: 100px;
+
+  /* Button padding scale */
+  --btn-sm:   0.35rem 0.75rem;
+  --btn-md:   0.5rem 1.1rem;
+  --btn-lg:   0.75rem 1.5rem;
+
+  /* Spacing */
+  --nav-h:    56px;
+  --w:        1120px;
+  --narrow:   720px;
+  --pad:      clamp(1.25rem, 4vw, 3rem);
+
+  /* Easing */
+  --ease-out: cubic-bezier(0,0,0.3,1);
+  --ease-spring: cubic-bezier(0.16,1,0.3,1);
+
+  /* Status colors */
+  --green: #34C759;
+
+  --project-color: var(--ink);
+}
+
+/* --- Dark mode tokens --- */
+[data-theme="dark"] {
+  --bg:       #111110;
+  --bg-alt:   #1A1918;
+  --surface:  #222220;
+  --ink:      #EDEDEC;
+  --ink-70:   rgba(237,237,236,0.7);
+  --ink-50:   rgba(237,237,236,0.5);
+  --ink-40:   rgba(237,237,236,0.4);
+  --ink-15:   rgba(237,237,236,0.15);
+  --ink-12:   rgba(237,237,236,0.12);
+  --ink-08:   rgba(237,237,236,0.08);
+  --ink-06:   rgba(237,237,236,0.06);
+  --ink-04:   rgba(237,237,236,0.04);
+  color-scheme: dark;
+}
+
+/* OS preference fallback when JS is disabled */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    --bg:       #111110;
+    --bg-alt:   #1A1918;
+    --surface:  #222220;
+    --ink:      #EDEDEC;
+    --ink-70:   rgba(237,237,236,0.7);
+    --ink-50:   rgba(237,237,236,0.5);
+    --ink-40:   rgba(237,237,236,0.4);
+    --ink-15:   rgba(237,237,236,0.15);
+    --ink-12:   rgba(237,237,236,0.12);
+    --ink-08:   rgba(237,237,236,0.08);
+    --ink-06:   rgba(237,237,236,0.06);
+    --ink-04:   rgba(237,237,236,0.04);
+    color-scheme: dark;
+  }
+}
+
+/* Dark mode element overrides */
+[data-theme="dark"] .grain {
+  mix-blend-mode: soft-light;
+  opacity: 0.12;
+}
+[data-theme="dark"] .dot-grid {
+  background-image: radial-gradient(circle, rgba(237,237,236,0.05) 1px, transparent 1px);
+}
+[data-theme="dark"] .nav.scrolled {
+  background: rgba(17,17,16,0.92);
+}
+/* Footer is always dark — no theme override needed */
+[data-theme="dark"] .footer {
+  background: var(--footer-dark);
+  color: var(--accent);
+}
+[data-theme="dark"] :focus-visible {
+  outline-color: rgba(237,237,236,0.65);
+}
+[data-theme="dark"] img:not(.lightbox img) {
+  filter: brightness(0.92);
+}
+/* Dark mode: elevate cards with stronger borders since shadows are invisible on dark bg */
+[data-theme="dark"] .pcard,
+[data-theme="dark"] .pcard-text,
+[data-theme="dark"] .cs-feature-card,
+[data-theme="dark"] .cs-stat-card,
+[data-theme="dark"] .cs-quote-card,
+[data-theme="dark"] .cs-details,
+[data-theme="dark"] .cs-swatch {
+  border-color: var(--ink-12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+[data-theme="dark"] .pcard:hover,
+[data-theme="dark"] .pcard-text:hover,
+[data-theme="dark"] .cs-feature-card:hover {
+  border-color: var(--ink-15);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+/* --- Theme toggle --- */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-08);
+  color: var(--ink-40);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+  background: none;
+  padding: 0;
+}
+.theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--ink-15);
+  background: var(--ink-04);
+}
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+.theme-icon-moon { display: block; }
+.theme-icon-sun { display: none; }
+[data-theme="dark"] .theme-icon-moon { display: none; }
+[data-theme="dark"] .theme-icon-sun { display: block; }
+.theme-toggle svg {
+  transition: transform 0.5s var(--ease-spring), opacity 0.3s;
+}
+.theme-toggle:active svg {
+  transform: rotate(90deg) scale(0.8);
+}
+.theme-toggle--mobile { display: none; margin-right: 1rem; }
+@media (max-width: 768px) {
+  .theme-toggle--mobile { display: flex; }
+}
