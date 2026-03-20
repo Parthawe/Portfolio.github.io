@@ -1,7 +1,25 @@
-import { useRef, useMemo, useEffect, useState } from 'react';
+import { useRef, useMemo, useEffect, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Text, Environment } from '@react-three/drei';
 import * as THREE from 'three';
+
+/* ─── Theme detection ─── */
+
+function useThemeMode() {
+  const [dark, setDark] = useState(() =>
+    typeof document !== 'undefined'
+      ? document.documentElement.dataset.theme === 'dark'
+      : false,
+  );
+  useEffect(() => {
+    const obs = new MutationObserver(() => {
+      setDark(document.documentElement.dataset.theme === 'dark');
+    });
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => obs.disconnect();
+  }, []);
+  return dark;
+}
 
 /* ─── Reduced motion ─── */
 
@@ -20,294 +38,613 @@ function usePrefersReduced() {
   return r;
 }
 
-/* ─── Constellation lines — glowing curved connections ─── */
+/* ─── Node config ─── */
 
-function ConstellationLines({ positions }: { positions: [number, number, number][] }) {
+interface NodeConfig {
+  position: [number, number, number];
+  label: string;
+  labelOffset: [number, number, number];
+  route: string;
+}
+
+const NODES: NodeConfig[] = [
+  { position: [0, 1.9, 0], label: 'Installations', labelOffset: [0, 0.95, 0], route: '/installations' },
+  { position: [2.4, 0.6, -0.2], label: 'Design for Good', labelOffset: [0.1, 0.85, 0], route: '/design-for-good' },
+  { position: [0, 0.15, 0.3], label: 'Product Design', labelOffset: [0, -0.75, 0], route: '/ux-design' },
+  { position: [-2.4, 0.1, 0.3], label: 'Brand & Visual', labelOffset: [0, -0.5, 0], route: '/brand-visual' },
+  { position: [-1.3, -1.6, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.85, 0], route: '/ai' },
+  { position: [1.8, -1.4, 0.2], label: 'Creative Technology', labelOffset: [0, -0.85, 0], route: '/creative-tech' },
+];
+
+/* ─── Constellation threads — invisible curves that glow as energy passes ─── */
+
+const THREADS_PER_LINK = 5;
+const TUBE_SEGMENTS = 32;
+const RADIAL_SEGMENTS = 3;
+const PRODUCT_DESIGN_IDX = 2;
+const GLOW_WIDTH = 0.10;
+
+function seededRand(seed: number) {
+  const x = Math.sin(seed * 127.1 + seed * 311.7) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+// Custom shader: thread is invisible except where the glow window passes
+const threadVertexShader = /* glsl */ `
+  attribute float curveProgress;
+  varying float vProgress;
+  void main() {
+    vProgress = curveProgress;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const threadFragmentShader = /* glsl */ `
+  uniform float uGlowCenter;
+  uniform float uGlowWidth;
+  uniform vec3 uColor;
+  uniform float uBaseAlpha;
+  varying float vProgress;
+  void main() {
+    float d = abs(vProgress - uGlowCenter);
+    d = min(d, 1.0 - d);
+    // Sharp bright glow — pow makes it concentrated and shiny
+    float glow = smoothstep(uGlowWidth, 0.0, d);
+    glow = pow(glow, 1.5); // sharper falloff = more defined shine
+    // White-hot center, colored edges
+    vec3 white = vec3(1.0);
+    vec3 col = mix(uColor, white, glow * 0.6);
+    float alpha = glow * 0.55 + uBaseAlpha;
+    gl_FragColor = vec4(col, alpha);
+  }
+`;
+
+interface ThreadInfo {
+  tubeGeo: THREE.TubeGeometry;
+  material: THREE.ShaderMaterial;
+  speed: number;
+  phase: number;
+}
+
+function ConstellationLines({ positions, dark }: { positions: [number, number, number][]; dark: boolean }) {
   const groupRef = useRef<THREE.Group>(null!);
 
-  const curves = useMemo(() => {
-    const result: { geo: THREE.BufferGeometry }[] = [];
+  const threadData = useMemo(() => {
+    const result: ThreadInfo[] = [];
+    const color = dark ? new THREE.Color('#ccddf8') : new THREE.Color('#aabbdd');
+
+    // Build connection pairs — nearest 2 neighbors per node (no full mesh)
+    const vecs = positions.map(p => new THREE.Vector3(...p));
+    const pairSet = new Set<string>();
+    const pairs: [number, number][] = [];
+
     for (let i = 0; i < positions.length; i++) {
-      for (let j = i + 1; j < positions.length; j++) {
-        const a = new THREE.Vector3(...positions[i]);
-        const b = new THREE.Vector3(...positions[j]);
-        const mid = new THREE.Vector3().addVectors(a, b).multiplyScalar(0.5);
-        // Slight curve outward from center
-        const center = new THREE.Vector3(0, 0, 0);
-        const outDir = mid.clone().sub(center).normalize();
-        mid.add(outDir.multiplyScalar(0.3));
+      // Find 2 nearest neighbors for each node (3 for non-PD nodes)
+      const maxNeighbors = i === PRODUCT_DESIGN_IDX ? 2 : 3;
+      const dists = positions.map((_, j) => ({
+        idx: j,
+        dist: i === j ? Infinity : vecs[i].distanceTo(vecs[j]),
+      })).sort((a, b) => a.dist - b.dist);
+
+      for (let k = 0; k < maxNeighbors && k < dists.length; k++) {
+        const j = dists[k].idx;
+        const key = Math.min(i, j) + '-' + Math.max(i, j);
+        if (!pairSet.has(key)) {
+          pairSet.add(key);
+          pairs.push([Math.min(i, j), Math.max(i, j)]);
+        }
+      }
+    }
+
+    for (const [i, j] of pairs) {
+      const a = new THREE.Vector3(...positions[i]);
+      const b = new THREE.Vector3(...positions[j]);
+      const pairIdx = i * 10 + j;
+
+      const ab = new THREE.Vector3().subVectors(b, a).normalize();
+      const up = Math.abs(ab.y) < 0.9 ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(1, 0, 0);
+      const perp1 = new THREE.Vector3().crossVectors(ab, up).normalize();
+      const perp2 = new THREE.Vector3().crossVectors(ab, perp1).normalize();
+
+      for (let t = 0; t < THREADS_PER_LINK; t++) {
+        const r1 = seededRand(pairIdx * 31 + t * 17);
+        const r2 = seededRand(pairIdx * 47 + t * 23);
+        const r3 = seededRand(pairIdx * 59 + t * 37);
+
+        const angle = (t / THREADS_PER_LINK) * Math.PI * 2 + r1 * 1.2;
+        const bowAmount = 0.15 + r2 * 0.25;
+
+        const mid = new THREE.Vector3().lerpVectors(a, b, 0.35 + r3 * 0.3);
+        mid.add(perp1.clone().multiplyScalar(Math.cos(angle) * bowAmount));
+        mid.add(perp2.clone().multiplyScalar(Math.sin(angle) * bowAmount));
+
         const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
-        const pts = curve.getPoints(24);
-        const geo = new THREE.BufferGeometry().setFromPoints(pts);
-        result.push({ geo });
+        const tubeGeo = new THREE.TubeGeometry(curve, TUBE_SEGMENTS, 0.0018, RADIAL_SEGMENTS, false);
+
+        // Add curveProgress attribute — 0 at start, 1 at end
+        const count = tubeGeo.attributes.position.count;
+        const progressArr = new Float32Array(count);
+        const vertsPerRing = RADIAL_SEGMENTS + 1;
+        for (let v = 0; v < count; v++) {
+          const ring = Math.floor(v / vertsPerRing);
+          progressArr[v] = ring / TUBE_SEGMENTS;
+        }
+        tubeGeo.setAttribute('curveProgress', new THREE.BufferAttribute(progressArr, 1));
+
+        const material = new THREE.ShaderMaterial({
+          vertexShader: threadVertexShader,
+          fragmentShader: threadFragmentShader,
+          uniforms: {
+            uGlowCenter: { value: 0 },
+            uGlowWidth: { value: GLOW_WIDTH },
+            uColor: { value: color },
+            uBaseAlpha: { value: 0.008 },
+          },
+          transparent: true,
+          depthWrite: false,
+          side: THREE.DoubleSide,
+        });
+
+        result.push({
+          tubeGeo,
+          material,
+          speed: 0.03 + r1 * 0.12 + r3 * 0.06, // wider speed range for organic feel
+          phase: r2 * 6.28 + t * 1.2 + pairIdx * 0.7, // more phase spread
+        });
       }
     }
     return result;
-  }, [positions]);
+  }, [positions, dark]);
 
+  // Animate: move the glow window along each thread
   useFrame(({ clock }) => {
     if (!groupRef.current) return;
-    const t = clock.getElapsedTime();
-    groupRef.current.children.forEach((child, i) => {
-      const mat = (child as THREE.Line).material as THREE.LineBasicMaterial;
-      if (mat) mat.opacity = 0.025 + Math.sin(t * 0.4 + i * 0.5) * 0.015;
-    });
+    const time = clock.getElapsedTime();
+
+    for (let idx = 0; idx < threadData.length; idx++) {
+      const thread = threadData[idx];
+      // Glow center travels 0→1→0 (ping pong)
+      const raw = (time * thread.speed + thread.phase) % 2;
+      const center = raw < 1 ? raw : 2 - raw;
+      thread.material.uniforms.uGlowCenter.value = center;
+    }
   });
+
+  // Disable raycasting so threads never block clicks on objects
+  const noRaycast = useCallback(() => null, []);
 
   return (
     <group ref={groupRef}>
-      {curves.map((c, i) => (
-        <line key={i} geometry={c.geo}>
-          <lineBasicMaterial color="#aabbff" transparent opacity={0.03} depthWrite={false} />
-        </line>
+      {threadData.map((td, i) => (
+        <mesh key={i} geometry={td.tubeGeo} material={td.material} raycast={noRaycast} />
       ))}
     </group>
   );
 }
 
-/* ─── Discipline label ─── */
+/* ─── Global navigate ref — set by parent via onNavigate prop ─── */
+let _navigate: ((path: string) => void) | null = null;
+export function setHeroNavigate(fn: (path: string) => void) { _navigate = fn; }
 
-function Label({ position, text, offset = [0, -0.9, 0] }: {
+/* ─── Clickable wrapper — passes hovered state to children via render prop ─── */
+/* Also handles drag-to-spin: dragging on an object spins it in that direction */
+
+function ClickableObject({
+  route,
+  children,
+  position,
+}: {
+  route: string;
+  children: (hovered: boolean) => React.ReactNode;
   position: [number, number, number];
-  text: string;
-  offset?: [number, number, number];
 }) {
-  return (
-    <Text
-      position={[position[0] + offset[0], position[1] + offset[1], position[2] + offset[2]]}
-      fontSize={0.14}
-      color="#ffffff"
-      anchorX="center"
-      anchorY="top"
-      letterSpacing={0.12}
-      fillOpacity={0.4}
-    >
-      {text}
-    </Text>
-  );
-}
+  const [hovered, setHovered] = useState(false);
+  const spinGroupRef = useRef<THREE.Group>(null!);
+  const isDragging = useRef(false);
+  const dragMoved = useRef(false);
+  const spinVel = useRef({ x: 0, y: 0 });
 
-/* ─── Shared materials ─── */
-
-const BRUSHED_METAL = { color: '#c8c8d0', metalness: 0.92, roughness: 0.18 };
-const DARK_METAL = { color: '#2a2a30', metalness: 0.85, roughness: 0.25 };
-const GLASS = { color: '#99aacc', metalness: 0.05, roughness: 0.02, transmission: 0.92, transparent: true, opacity: 0.2, ior: 1.5, thickness: 0.3 };
-
-/* ─── AI & Wearables — precision lens assembly ─── */
-
-function LensAssembly({ position }: { position: [number, number, number] }) {
-  const ref = useRef<THREE.Group>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.z = clock.getElapsedTime() * 0.12;
-  });
-  return (
-    <Float speed={0.5} floatIntensity={0.3} rotationIntensity={0.1}>
-      <group position={position} ref={ref}>
-        {/* Outer housing */}
-        <mesh>
-          <torusGeometry args={[0.65, 0.08, 24, 64]} />
-          <meshStandardMaterial {...BRUSHED_METAL} />
-        </mesh>
-        {/* Inner ring — darker */}
-        <mesh>
-          <torusGeometry args={[0.48, 0.05, 20, 64]} />
-          <meshStandardMaterial {...DARK_METAL} />
-        </mesh>
-        {/* Lens element */}
-        <mesh>
-          <torusGeometry args={[0.32, 0.035, 16, 64]} />
-          <meshStandardMaterial color="#d8d8e0" metalness={0.95} roughness={0.08} emissive="#ffffff" emissiveIntensity={0.04} />
-        </mesh>
-        {/* Glass center */}
-        <mesh>
-          <cylinderGeometry args={[0.2, 0.2, 0.06, 32]} />
-          <meshPhysicalMaterial {...GLASS} color="#667799" ior={2.0} />
-        </mesh>
-        {/* Center dot — bright */}
-        <mesh>
-          <sphereGeometry args={[0.06, 16, 16]} />
-          <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={0.5} metalness={0.2} roughness={0.1} />
-        </mesh>
-      </group>
-    </Float>
-  );
-}
-
-/* ─── Product Design — frosted glass tablet with wireframe UI ─── */
-
-function GlassTablet({ position }: { position: [number, number, number] }) {
-  const ref = useRef<THREE.Group>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.2) * 0.08;
-  });
-
-  const wireLines = useMemo(() => {
-    const pts: THREE.Vector3[][] = [];
-    // Horizontal rules
-    for (let i = 0; i < 8; i++) {
-      const y = -0.42 + i * 0.12;
-      const w = i < 2 ? 0.38 : 0.3 + Math.random() * 0.1;
-      pts.push([new THREE.Vector3(-0.38, y, 0.028), new THREE.Vector3(w, y, 0.028)]);
+  // Apply spin velocity with momentum decay each frame
+  useFrame((_, delta) => {
+    if (!spinGroupRef.current) return;
+    const sv = spinVel.current;
+    if (Math.abs(sv.x) > 0.001 || Math.abs(sv.y) > 0.001) {
+      spinGroupRef.current.rotation.x += sv.x * delta;
+      spinGroupRef.current.rotation.y += sv.y * delta;
+      // Momentum decay — slows down naturally
+      sv.x *= 0.96;
+      sv.y *= 0.96;
     }
-    // Vertical dividers
-    pts.push([new THREE.Vector3(-0.1, -0.42, 0.028), new THREE.Vector3(-0.1, 0.42, 0.028)]);
-    pts.push([new THREE.Vector3(0.15, -0.1, 0.028), new THREE.Vector3(0.15, 0.42, 0.028)]);
-    // Boxes (wireframe rectangles)
-    const box = (x: number, y: number, w: number, h: number) => {
-      const z = 0.028;
-      pts.push([new THREE.Vector3(x, y, z), new THREE.Vector3(x + w, y, z)]);
-      pts.push([new THREE.Vector3(x + w, y, z), new THREE.Vector3(x + w, y + h, z)]);
-      pts.push([new THREE.Vector3(x + w, y + h, z), new THREE.Vector3(x, y + h, z)]);
-      pts.push([new THREE.Vector3(x, y + h, z), new THREE.Vector3(x, y, z)]);
-      // Diagonal cross
-      pts.push([new THREE.Vector3(x, y, z), new THREE.Vector3(x + w, y + h, z)]);
+  });
+
+  const handlePointerDown = useCallback((e: { stopPropagation: () => void; nativeEvent: PointerEvent }) => {
+    e.stopPropagation();
+    isDragging.current = true;
+    dragMoved.current = false;
+
+    const onMove = (ev: PointerEvent) => {
+      if (!isDragging.current) return;
+      const dx = ev.movementX;
+      const dy = ev.movementY;
+      if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) dragMoved.current = true;
+      // Horizontal drag → Y spin, vertical drag → X spin
+      spinVel.current.y += dx * 0.4;
+      spinVel.current.x += dy * 0.4;
     };
-    box(-0.36, -0.38, 0.24, 0.2);
-    box(-0.36, 0.08, 0.24, 0.18);
-    box(0.02, -0.38, 0.35, 0.28);
-    box(0.02, 0.14, 0.35, 0.2);
-    return pts;
+
+    const onUp = () => {
+      isDragging.current = false;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
   }, []);
 
+  const handleClick = useCallback(() => {
+    // Only navigate if it wasn't a drag
+    if (!dragMoved.current && _navigate) {
+      _navigate(route);
+    }
+  }, [route]);
+
   return (
-    <Float speed={0.7} floatIntensity={0.4} rotationIntensity={0.15}>
-      <group position={position} rotation={[0.08, -0.15, 0.03]} ref={ref}>
-        {/* Frosted glass panel */}
-        <mesh>
-          <boxGeometry args={[0.9, 1.05, 0.04]} />
-          <meshPhysicalMaterial
-            color="#dde0e8"
-            metalness={0.02}
-            roughness={0.15}
-            transmission={0.75}
-            transparent
-            opacity={0.3}
-            ior={1.45}
-            thickness={0.04}
-          />
+    <group
+      position={position}
+      onPointerDown={handlePointerDown}
+      onClick={handleClick}
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
+      onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
+    >
+      <group ref={spinGroupRef}>
+        {/* Invisible hit area — ensures all objects are draggable */}
+        <mesh visible={false}>
+          <sphereGeometry args={[0.55, 8, 8]} />
+          <meshBasicMaterial />
         </mesh>
-        {/* Top bar */}
-        <mesh position={[0, 0.48, 0.005]}>
-          <boxGeometry args={[0.9, 0.07, 0.045]} />
-          <meshStandardMaterial {...BRUSHED_METAL} color="#d0d0d8" />
-        </mesh>
-        {/* Wire etchings */}
-        {wireLines.map((pair, i) => {
-          const g = new THREE.BufferGeometry().setFromPoints(pair);
-          return (
-            <line key={i} geometry={g}>
-              <lineBasicMaterial color="#ffffff" transparent opacity={0.18} />
-            </line>
-          );
-        })}
+        {children(hovered)}
       </group>
-    </Float>
+    </group>
   );
 }
 
-/* ─── Creative Technology — nested glass star/crystal ─── */
+/* ─── Smooth hover lerp hook — intentionally slow for elegance ─── */
+function useHoverLerp(hovered: boolean, speed = 3) {
+  const t = useRef(0);
+  useFrame((_, delta) => {
+    const target = hovered ? 1 : 0;
+    t.current += (target - t.current) * Math.min(delta * speed, 1);
+  });
+  return t;
+}
 
-function GlassCrystal({ position }: { position: [number, number, number] }) {
+/* ─── Lerp helper ─── */
+function mix(a: number, b: number, t: number) { return a + (b - a) * t; }
+
+/* ─── Interactive Label — morphs into 3D mini-object on hover ─── */
+
+/* Mini 3D objects for each category — visually distinct from parent */
+function MiniInstallation({ dark }: { dark: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    ref.current.rotation.y = clock.getElapsedTime() * 0.6;
+    ref.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.4) * 0.3;
+  });
+  const verts: [number, number, number][] = [[0, 0.08, 0], [0.07, -0.04, 0.04], [-0.07, -0.04, 0.04], [0, -0.04, -0.06]];
+  const lineGeos = useMemo(() =>
+    [[0,1],[1,2],[2,0],[0,3],[1,3],[2,3]].map(([a, b]) =>
+      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...verts[a]), new THREE.Vector3(...verts[b])])
+    ), []);
+  return (
+    <group ref={ref}>
+      {verts.map((p, i) => (
+        <mesh key={i} position={p}>
+          <octahedronGeometry args={[0.018, 0]} />
+          <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#c0c0d0'} metalness={1} roughness={0.03} clearcoat={1} envMapIntensity={3} />
+        </mesh>
+      ))}
+      {lineGeos.map((geo, i) => (
+        // @ts-expect-error — R3F `line` conflicts with SVG line type
+        <line key={i} geometry={geo}><lineBasicMaterial color={dark ? '#8899bb' : '#667799'} transparent opacity={0.5} /></line>
+      ))}
+    </group>
+  );
+}
+
+function MiniDesignForGood({ dark }: { dark: boolean }) {
+  // Knot → unfurled into a smooth spinning ring with orbiting dot
+  const ref = useRef<THREE.Group>(null!);
+  const dotRef = useRef<THREE.Mesh>(null!);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = clock.getElapsedTime();
+    ref.current.rotation.z = t * 0.5;
+    ref.current.rotation.x = Math.sin(t * 0.3) * 0.4;
+    if (dotRef.current) {
+      dotRef.current.position.x = Math.cos(t * 1.5) * 0.09;
+      dotRef.current.position.y = Math.sin(t * 1.5) * 0.09;
+    }
+  });
+  return (
+    <group ref={ref}>
+      <mesh>
+        <torusGeometry args={[0.07, 0.012, 16, 32]} />
+        <meshPhysicalMaterial color={dark ? '#d0d0e8' : '#b0b0c8'} metalness={1} roughness={0.02} clearcoat={1} envMapIntensity={3} />
+      </mesh>
+      <mesh ref={dotRef}>
+        <sphereGeometry args={[0.015, 12, 12]} />
+        <meshPhysicalMaterial color="#ffffff" emissive={dark ? '#8899cc' : '#6677aa'} emissiveIntensity={1} />
+      </mesh>
+    </group>
+  );
+}
+
+function MiniProductDesign({ dark }: { dark: boolean }) {
+  // Screens → collapse into a single glowing cursor/pointer arrow
   const ref = useRef<THREE.Group>(null!);
   useFrame(({ clock }) => {
     if (!ref.current) return;
     const t = clock.getElapsedTime();
-    ref.current.rotation.x = t * 0.1;
-    ref.current.rotation.y = t * 0.15;
+    ref.current.rotation.y = Math.sin(t * 0.5) * 0.3;
+    ref.current.position.y = Math.sin(t * 0.8) * 0.015;
   });
-  return (
-    <Float speed={0.8} floatIntensity={0.5} rotationIntensity={0.2}>
-      <group position={position} ref={ref}>
-        {/* Outer icosahedron — glass */}
-        <mesh>
-          <icosahedronGeometry args={[0.55, 0]} />
-          <meshPhysicalMaterial {...GLASS} color="#aabbdd" opacity={0.15} />
-        </mesh>
-        {/* Inner icosahedron — smaller, rotated, brighter */}
-        <mesh rotation={[0, 0, Math.PI / 5]}>
-          <icosahedronGeometry args={[0.35, 0]} />
-          <meshPhysicalMaterial {...GLASS} color="#bbccee" opacity={0.2} />
-        </mesh>
-        {/* Core sphere — metal */}
-        <mesh>
-          <sphereGeometry args={[0.12, 24, 24]} />
-          <meshStandardMaterial {...BRUSHED_METAL} emissive="#aaccff" emissiveIntensity={0.08} />
-        </mesh>
-      </group>
-    </Float>
-  );
-}
-
-/* ─── Design for Good — organic blob / soft sculpture ─── */
-
-function SoftSculpture({ position }: { position: [number, number, number] }) {
-  const ref = useRef<THREE.Mesh>(null!);
-  const geo = useMemo(() => {
-    const g = new THREE.SphereGeometry(0.45, 32, 32);
-    const pos = g.attributes.position;
-    for (let i = 0; i < pos.count; i++) {
-      const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
-      const noise = Math.sin(x * 4) * Math.cos(y * 3) * Math.sin(z * 5) * 0.12;
-      const noise2 = Math.sin(x * 7 + 1) * Math.cos(z * 6 + 2) * 0.06;
-      pos.setXYZ(i, x + noise + noise2, y + noise * 0.8, z + noise + noise2);
-    }
-    g.computeVertexNormals();
-    return g;
+  const shape = useMemo(() => {
+    const s = new THREE.Shape();
+    s.moveTo(0, 0.09);
+    s.lineTo(0.05, -0.04);
+    s.lineTo(0.015, -0.02);
+    s.lineTo(0.04, -0.08);
+    s.lineTo(0.02, -0.09);
+    s.lineTo(-0.005, -0.04);
+    s.lineTo(-0.04, -0.06);
+    s.closePath();
+    return s;
   }, []);
-
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.y = clock.getElapsedTime() * 0.08;
-    ref.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.12) * 0.1;
-  });
-
   return (
-    <Float speed={0.6} floatIntensity={0.4} rotationIntensity={0.1}>
-      <mesh position={position} geometry={geo} ref={ref}>
-        <meshStandardMaterial
-          color="#3a3a42"
-          metalness={0.15}
-          roughness={0.65}
-        />
+    <group ref={ref}>
+      <mesh>
+        <extrudeGeometry args={[shape, { depth: 0.02, bevelEnabled: true, bevelThickness: 0.005, bevelSize: 0.005, bevelSegments: 3 }]} />
+        <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} metalness={1} roughness={0.03} clearcoat={1} envMapIntensity={3} />
       </mesh>
-    </Float>
+    </group>
   );
 }
 
-/* ─── Installations — metallic rod truss structure ─── */
-
-function TrussStructure({ position }: { position: [number, number, number] }) {
+function MiniBrandVisual({ dark }: { dark: boolean }) {
+  // Bauhaus → three overlapping chrome discs (color wheel abstraction)
   const ref = useRef<THREE.Group>(null!);
   useFrame(({ clock }) => {
     if (!ref.current) return;
-    ref.current.rotation.y = clock.getElapsedTime() * 0.06;
-    ref.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.08) * 0.05;
+    ref.current.rotation.z = clock.getElapsedTime() * 0.4;
+    ref.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.3) * 0.2;
   });
+  const colors = dark ? ['#c8c8e0', '#a0a0c0', '#888898'] : ['#b0b0c8', '#909098', '#707078'];
+  return (
+    <group ref={ref}>
+      {[0, 2.1, 4.2].map((angle, i) => (
+        <mesh key={i} position={[Math.cos(angle) * 0.035, Math.sin(angle) * 0.035, i * 0.008]}>
+          <cylinderGeometry args={[0.04, 0.04, 0.006, 24]} />
+          <meshPhysicalMaterial color={colors[i]} metalness={1} roughness={0.05} clearcoat={1} envMapIntensity={2.5} />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function MiniAIWearables({ dark }: { dark: boolean }) {
+  // Lens → opens into an iris/eye with dilating pupil
+  const ref = useRef<THREE.Group>(null!);
+  const pupilRef = useRef<THREE.Mesh>(null!);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = clock.getElapsedTime();
+    ref.current.rotation.y = Math.sin(t * 0.4) * 0.3;
+    ref.current.rotation.x = Math.cos(t * 0.3) * 0.2;
+    if (pupilRef.current) {
+      const s = 0.8 + Math.sin(t * 0.7) * 0.3;
+      pupilRef.current.scale.set(s, s, 1);
+    }
+  });
+  return (
+    <group ref={ref}>
+      {/* Iris ring */}
+      <mesh>
+        <torusGeometry args={[0.06, 0.015, 12, 32]} />
+        <meshPhysicalMaterial color={dark ? '#c0c0d0' : '#a0a0b0'} metalness={1} roughness={0.04} clearcoat={1} envMapIntensity={3} />
+      </mesh>
+      {/* Pupil — glass sphere */}
+      <mesh ref={pupilRef}>
+        <sphereGeometry args={[0.035, 24, 24]} />
+        <meshPhysicalMaterial
+          color={dark ? '#4060a0' : '#6080c0'}
+          metalness={0} roughness={0} transmission={0.9} transparent opacity={0.3} ior={2} thickness={0.5}
+          specularIntensity={1} specularColor="#ffffff"
+        />
+      </mesh>
+      {/* Center highlight */}
+      <mesh>
+        <sphereGeometry args={[0.008, 8, 8]} />
+        <meshPhysicalMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={dark ? 1.5 : 0.8} />
+      </mesh>
+    </group>
+  );
+}
+
+function MiniCreativeTech({ dark }: { dark: boolean }) {
+  // Geodesic → fractured into spinning triangle shards
+  const ref = useRef<THREE.Group>(null!);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const t = clock.getElapsedTime();
+    ref.current.rotation.y = t * 0.5;
+    ref.current.rotation.x = t * 0.3;
+    // Each child shard orbits slightly
+    ref.current.children.forEach((child, i) => {
+      child.position.x = Math.cos(t * 0.4 + i * 1.2) * (0.04 + i * 0.01);
+      child.position.y = Math.sin(t * 0.5 + i * 1.0) * (0.04 + i * 0.008);
+      child.position.z = Math.cos(t * 0.3 + i * 0.8) * 0.03;
+    });
+  });
+  return (
+    <group ref={ref}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <mesh key={i} rotation={[i * 0.8, i * 1.2, i * 0.5]}>
+          <tetrahedronGeometry args={[0.025, 0]} />
+          <meshPhysicalMaterial
+            color={dark ? '#d0d0f0' : '#b8b8d0'}
+            metalness={1} roughness={0.02} clearcoat={1} envMapIntensity={3}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+const MINI_COMPONENTS = [MiniInstallation, MiniDesignForGood, MiniProductDesign, MiniBrandVisual, MiniAIWearables, MiniCreativeTech];
+
+function InteractiveLabel({ position, text, offset, dark, index, route }: {
+  position: [number, number, number];
+  text: string;
+  offset: [number, number, number];
+  dark: boolean;
+  index: number;
+  route: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+  const textRef = useRef<THREE.Mesh>(null!);
+  const objectRef = useRef<THREE.Group>(null!);
+  const lerp = useRef(0); // 0 = text, 1 = 3D object
+
+  const handleClick = useCallback(() => {
+    if (_navigate) _navigate(route);
+  }, [route]);
+
+  useFrame((_, delta) => {
+    const target = hovered ? 1 : 0;
+    lerp.current += (target - lerp.current) * Math.min(delta * 6, 1);
+
+    // Text: fade out and scale down
+    if (textRef.current) {
+      const textScale = 1 - lerp.current * 0.5;
+      textRef.current.scale.set(textScale, textScale, textScale);
+      (textRef.current as any).fillOpacity = (dark ? 0.55 : 0.65) * (1 - lerp.current);
+    }
+    // Object: scale up
+    if (objectRef.current) {
+      const objScale = lerp.current;
+      objectRef.current.scale.set(objScale, objScale, objScale);
+    }
+  });
+
+  const MiniComponent = MINI_COMPONENTS[index];
+  const lx = position[0] + offset[0];
+  const ly = position[1] + offset[1];
+  const lz = position[2] + offset[2];
+
+  return (
+    <group
+      position={[lx, ly, lz]}
+      onClick={handleClick}
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
+      onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
+    >
+      {/* Text label */}
+      <Text
+        ref={textRef}
+        fontSize={0.14}
+        color={dark ? '#e8e4df' : '#1a1a1a'}
+        anchorX="center"
+        anchorY={offset[1] > 0 ? 'bottom' : 'top'}
+        letterSpacing={0.08}
+        fillOpacity={dark ? 0.55 : 0.65}
+      >
+        {text}
+      </Text>
+      {/* Mini 3D object — scales in on hover */}
+      <group ref={objectRef} scale={0}>
+        <MiniComponent dark={dark} />
+      </group>
+    </group>
+  );
+}
+
+/* ─── Virtual time that freezes on hover — rotation stops in place, no jump ─── */
+function useVirtualTime(ht: React.RefObject<number>) {
+  const vt = useRef(0);
+  useFrame((_, delta) => {
+    vt.current += delta * (1 - ht.current);
+  });
+  return vt;
+}
+
+/* ═══════════════════════════════════════════════════
+   INSTALLATIONS — metallic rod truss (KEEP — user likes this)
+   ═══════════════════════════════════════════════════ */
+
+function TrussStructure({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  const jointRefs = useRef<THREE.Mesh[]>([]);
+  const rodRefs = useRef<THREE.Mesh[]>([]);
+
+  const corners = useMemo(() => {
+    const s = 0.5;
+    return [
+      [-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s],
+      [-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s],
+    ] as [number, number, number][];
+  }, []);
+
+  // Pre-compute normalized directions for each corner (avoid allocation in useFrame)
+  const cornerDirs = useMemo(() =>
+    corners.map(c => new THREE.Vector3(...c).normalize()),
+  [corners]);
 
   const rods = useMemo(() => {
     const result: { start: THREE.Vector3; end: THREE.Vector3 }[] = [];
-    const s = 0.5;
-    const corners: THREE.Vector3[] = [
-      new THREE.Vector3(-s, -s, -s), new THREE.Vector3(s, -s, -s),
-      new THREE.Vector3(s, s, -s), new THREE.Vector3(-s, s, -s),
-      new THREE.Vector3(-s, -s, s), new THREE.Vector3(s, -s, s),
-      new THREE.Vector3(s, s, s), new THREE.Vector3(-s, s, s),
-    ];
-    // All cube edges
-    const edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
-    // Face diagonals for truss effect
-    const diags = [[0,2],[1,3],[4,6],[5,7],[0,5],[1,4],[2,7],[3,6],[0,7],[1,6],[2,5],[3,4]];
+    const c = corners.map(p => new THREE.Vector3(...p));
+    const edges: [number, number][] = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+    const diags: [number, number][] = [[0,2],[1,3],[4,6],[5,7],[0,5],[1,4],[2,7],[3,6],[0,7],[1,6],[2,5],[3,4]];
     for (const [a, b] of [...edges, ...diags]) {
-      result.push({ start: corners[a], end: corners[b] });
+      result.push({ start: c[a], end: c[b] });
     }
     return result;
-  }, []);
+  }, [corners]);
+
+  useFrame(() => {
+    if (!ref.current) return;
+    const v = vt.current;
+    const h = ht.current;
+    ref.current.rotation.y = v * 0.06;
+    ref.current.rotation.x = Math.sin(v * 0.04) * 0.06;
+    ref.current.rotation.z = Math.cos(v * 0.03) * 0.04;
+    // Joints expand outward on hover
+    jointRefs.current.forEach((mesh, i) => {
+      if (!mesh) return;
+      const base = corners[i];
+      const dir = cornerDirs[i];
+      const expand = h * 0.35;
+      mesh.position.set(base[0] + dir.x * expand, base[1] + dir.y * expand, base[2] + dir.z * expand);
+      const s = mix(0.035, 0.06, h);
+      mesh.scale.setScalar(s / 0.035);
+      const mat = mesh.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(0, 0.6, h);
+    });
+    // Rods fade on hover (they'd break with expanded joints — becoming wireframe ghost)
+    rodRefs.current.forEach((mesh) => {
+      if (!mesh) return;
+      const mat = mesh.material as THREE.MeshPhysicalMaterial;
+      mat.opacity = mix(1, 0.15, h);
+      mat.transparent = h > 0.01;
+    });
+  });
 
   return (
     <Float speed={0.7} floatIntensity={0.5} rotationIntensity={0.15}>
-      <group position={position} rotation={[0.4, 0.3, 0.15]} ref={ref}>
+      <group rotation={[0.4, 0.3, 0.15]} ref={ref}>
         {rods.map((rod, i) => {
           const mid = new THREE.Vector3().addVectors(rod.start, rod.end).multiplyScalar(0.5);
           const len = rod.start.distanceTo(rod.end);
@@ -315,22 +652,34 @@ function TrussStructure({ position }: { position: [number, number, number] }) {
           const quat = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
           const isEdge = i < 12;
           return (
-            <mesh key={i} position={mid} quaternion={quat}>
-              <cylinderGeometry args={[isEdge ? 0.018 : 0.008, isEdge ? 0.018 : 0.008, len, 6]} />
-              <meshStandardMaterial
-                color={isEdge ? '#c0c0c8' : '#888890'}
-                metalness={0.9}
-                roughness={isEdge ? 0.15 : 0.3}
+            <mesh key={i} position={mid} quaternion={quat} ref={(el) => { if (el) rodRefs.current[i] = el; }}>
+              <cylinderGeometry args={[isEdge ? 0.02 : 0.009, isEdge ? 0.02 : 0.009, len, 6]} />
+              <meshPhysicalMaterial
+                color={isEdge ? (dark ? '#c8c8d0' : '#a8a8b0') : (dark ? '#888890' : '#999')}
+                metalness={0.95}
+                roughness={isEdge ? 0.08 : 0.2}
+                clearcoat={1}
+                clearcoatRoughness={0.05}
+                envMapIntensity={dark ? 1.5 : 2}
+                reflectivity={1}
               />
             </mesh>
           );
         })}
-        {/* Joint spheres */}
-        {[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5],
-          [-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]].map((p, i) => (
-          <mesh key={`j${i}`} position={p as [number, number, number]}>
-            <sphereGeometry args={[0.03, 12, 12]} />
-            <meshStandardMaterial color="#d0d0d8" metalness={0.95} roughness={0.1} />
+        {corners.map((p, i) => (
+          <mesh key={`j${i}`} position={p} ref={(el) => { if (el) jointRefs.current[i] = el; }}>
+            <sphereGeometry args={[0.035, 16, 16]} />
+            <meshPhysicalMaterial
+              color={dark ? '#e0e0e8' : '#d0d0d8'}
+              metalness={1}
+              roughness={0.03}
+              clearcoat={1}
+              clearcoatRoughness={0.02}
+              envMapIntensity={dark ? 2 : 2.5}
+              reflectivity={1}
+              emissive={dark ? '#6688bb' : '#4466aa'}
+              emissiveIntensity={0}
+            />
           </mesh>
         ))}
       </group>
@@ -338,32 +687,741 @@ function TrussStructure({ position }: { position: [number, number, number] }) {
   );
 }
 
-/* ─── Brand & Visual — stacked offset plates ─── */
+/* ═══════════════════════════════════════════════════
+   DESIGN FOR GOOD — chrome torus knot with glass shell
+   ═══════════════════════════════════════════════════ */
 
-function StackedPlates({ position }: { position: [number, number, number] }) {
+function PetalRose({ dark, hovered }: { dark: boolean; hovered: boolean }) {
   const ref = useRef<THREE.Group>(null!);
-  useFrame(({ clock }) => {
+  const shellRef = useRef<THREE.Mesh>(null!);
+  const knotRef = useRef<THREE.Mesh>(null!);
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+
+  useFrame(() => {
     if (!ref.current) return;
-    ref.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.15) * 0.1;
+    const v = vt.current;
+    const h = ht.current;
+    ref.current.rotation.y = v * 0.07;
+    ref.current.rotation.x = Math.sin(v * 0.03) * 0.05;
+    ref.current.rotation.z = Math.cos(v * 0.025) * 0.03;
+    // Knot squashes flat
+    if (knotRef.current) {
+      knotRef.current.scale.set(mix(1, 1.3, h), mix(1, 0.3, h), mix(1, 1.3, h));
+    }
+    // Shell expands
+    if (shellRef.current) {
+      const s = mix(1, 1.5, h) + Math.sin(v * 0.5) * 0.04;
+      shellRef.current.scale.set(s, s, s);
+      const mat = shellRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.opacity = mix(0.15, 0.35, h);
+      mat.ior = mix(1.5, 2.2, h);
+    }
+    // Core brightens
+    if (coreRef.current) {
+      const s = mix(1, 1.8, h);
+      coreRef.current.scale.setScalar(s);
+      const mat = coreRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(dark ? 0.6 : 0.3, dark ? 1.2 : 0.8, h);
+    }
   });
+
   return (
-    <Float speed={0.4} floatIntensity={0.3} rotationIntensity={0.12}>
-      <group position={position} rotation={[0.35, -0.2, 0.08]} ref={ref}>
-        {Array.from({ length: 5 }, (_, i) => (
-          <mesh key={i} position={[i * 0.02, -i * 0.065, -i * 0.01]} rotation={[0, i * 0.04, 0]}>
-            <boxGeometry args={[0.7, 0.03, 0.52]} />
-            <meshStandardMaterial
-              color={i === 0 ? '#555560' : i < 2 ? '#404048' : '#2e2e34'}
-              metalness={i === 0 ? 0.8 : 0.6}
-              roughness={i === 0 ? 0.2 : 0.4}
+    <Float speed={0.6} floatIntensity={0.4} rotationIntensity={0.12}>
+      <group ref={ref}>
+        <mesh ref={knotRef}>
+          <torusKnotGeometry args={[0.3, 0.065, 200, 32, 2, 3]} />
+          <meshPhysicalMaterial
+            color={dark ? '#e0e0f0' : '#c8c8d8'}
+            metalness={1} roughness={0.04} clearcoat={1} clearcoatRoughness={0.03}
+            envMapIntensity={dark ? 2.5 : 3} reflectivity={1}
+          />
+        </mesh>
+        <mesh ref={shellRef}>
+          <sphereGeometry args={[0.48, 64, 64]} />
+          <meshPhysicalMaterial
+            color={dark ? '#a0b0d0' : '#c0d0e8'}
+            metalness={0} roughness={0} transmission={0.96} transparent opacity={0.15}
+            ior={1.5} thickness={0.5} envMapIntensity={dark ? 0.8 : 1}
+            specularIntensity={1} specularColor={dark ? '#aabbdd' : '#8899bb'}
+          />
+        </mesh>
+        <mesh ref={coreRef}>
+          <sphereGeometry args={[0.04, 16, 16]} />
+          <meshPhysicalMaterial
+            color="#ffffff" emissive={dark ? '#8899cc' : '#6677aa'}
+            emissiveIntensity={dark ? 0.6 : 0.3} metalness={0.3} roughness={0.1}
+          />
+        </mesh>
+      </group>
+    </Float>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   PRODUCT DESIGN — Morphing chrome sculpture
+
+   Cycles between 3 abstract forms:
+   Form 0 (Layers):  Discs stacked horizontally — layered interfaces
+   Form 1 (Orrery):  Discs tilted at angles around center — interconnected systems
+   Form 2 (Column):  Discs vertical, spread along Y — information architecture
+
+   On hover: layers separate, ring expands, core brightens
+   Same visual language as every other object.
+   ═══════════════════════════════════════════════════ */
+
+const PD_HOLD = 4.0;
+const PD_MORPH = 2.5;
+const PD_FORMS = 3;
+const PD_CYCLE = (PD_HOLD + PD_MORPH) * PD_FORMS;
+
+function easeInOutCubic(t: number) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+
+  const discRefs = useRef<THREE.Mesh[]>([]);
+  const ringRef = useRef<THREE.Mesh>(null!);
+  const shellRef = useRef<THREE.Mesh>(null!);
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const crossRef = useRef<THREE.Group>(null!);
+  const nodeRefs = useRef<THREE.Mesh[]>([]);
+
+  // Pre-compute form data to avoid allocation in useFrame
+  // Each disc: [posX, posY, posZ, rotX, rotZ, scaleXZ]
+  // Form 0 (Layers): horizontal stack
+  // Form 1 (Orrery): tilted at 120° around center, spread radially
+  // Form 2 (Column): vertical discs, spaced along Y
+  const forms = useMemo(() => [
+    // Form 0 — Layers
+    { discs: [[0, -0.1, 0, 0, 0, 1], [0, 0, 0, 0, 0, 1], [0, 0.1, 0, 0, 0, 1]] as number[][],
+      ring: [0.8, 0.5] as [number, number],   // [tiltX base, tiltZ base]
+      cross: 0,
+      nodeR: 0.32, nodeSpreadY: 0 },
+    // Form 1 — Orrery
+    { discs: [[0.22, 0.08, 0, 1.1, 0.3, 0.85], [-0.12, -0.06, 0.2, 0.4, -0.5, 0.9], [-0.1, -0.02, -0.2, -0.7, 0.8, 0.95]] as number[][],
+      ring: [1.5, 0.2] as [number, number],
+      cross: 0.4,
+      nodeR: 0.25, nodeSpreadY: 0.14 },
+    // Form 2 — Column
+    { discs: [[0, -0.26, 0, Math.PI * 0.48, 0, 0.8], [0, 0, 0, Math.PI * 0.48, Math.PI * 0.25, 0.9], [0, 0.26, 0, Math.PI * 0.48, Math.PI * 0.5, 0.75]] as number[][],
+      ring: [0.3, 1.4] as [number, number],
+      cross: Math.PI * 0.15,
+      nodeR: 0.2, nodeSpreadY: 0.24 },
+  ], []);
+
+  // Hover explode directions per disc (unit vectors pointing outward)
+  const explodeDirs = useMemo(() => [
+    [-0.4, -1, 0], [0.5, 0, 0.5], [-0.1, 1, -0.5],
+  ] as [number, number, number][], []);
+
+  useFrame(() => {
+    if (!ref.current) return;
+    const v = vt.current;
+    const h = ht.current;
+
+    // Gentle rotation — matches other objects
+    ref.current.rotation.y = v * 0.06;
+    ref.current.rotation.x = Math.sin(v * 0.035) * 0.06;
+    ref.current.rotation.z = Math.cos(v * 0.03) * 0.03;
+
+    // ── Morph phase ──
+    const cycle = v % PD_CYCLE;
+    const block = PD_HOLD + PD_MORPH;
+    const form = Math.floor(cycle / block);
+    const within = cycle - form * block;
+    const rawM = within < PD_HOLD ? 0 : (within - PD_HOLD) / PD_MORPH;
+    const m = easeInOutCubic(Math.min(1, Math.max(0, rawM)));
+    const next = (form + 1) % PD_FORMS;
+    const F = forms[form];
+    const N = forms[next];
+
+    // ── Discs ──
+    discRefs.current.forEach((mesh, i) => {
+      if (!mesh) return;
+      const fd = F.discs[i];
+      const nd = N.discs[i];
+      // Position
+      const px = mix(fd[0], nd[0], m);
+      const py = mix(fd[1], nd[1], m);
+      const pz = mix(fd[2], nd[2], m);
+      // Hover: push along explode direction
+      const ex = h * 0.25;
+      const ed = explodeDirs[i];
+      mesh.position.set(px + ed[0] * ex, py + ed[1] * ex, pz + ed[2] * ex);
+      // Rotation: morph between forms + gentle continuous spin
+      mesh.rotation.set(
+        mix(fd[3], nd[3], m),
+        v * (i === 1 ? -0.06 : 0.04),
+        mix(fd[4], nd[4], m),
+      );
+      // Scale: morph + breathing
+      const sc = mix(fd[5], nd[5], m);
+      const breath = 1 + Math.sin(v * 0.6 + i * 1.5) * 0.02;
+      mesh.scale.set(sc * breath, 1, sc * breath);
+      // Emissive on hover
+      const mat = mesh.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(0, i === 1 ? 0.5 : 0.3, h);
+    });
+
+    // ── Ring: smooth tilt morph + continuous orbit ──
+    if (ringRef.current) {
+      const tiltX = mix(F.ring[0], N.ring[0], m);
+      const tiltZ = mix(F.ring[1], N.ring[1], m);
+      ringRef.current.rotation.x = tiltX + v * 0.1;
+      ringRef.current.rotation.z = tiltZ + v * 0.07;
+      ringRef.current.scale.setScalar(mix(1, 1.4, h));
+    }
+
+    // ── Node spheres: orbit around center ──
+    const nr = mix(F.nodeR, N.nodeR, m);
+    const nsy = mix(F.nodeSpreadY, N.nodeSpreadY, m);
+    nodeRefs.current.forEach((mesh, i) => {
+      if (!mesh) return;
+      const angle = (i / 4) * Math.PI * 2 + 0.4 + v * 0.04;
+      const r = nr + h * 0.1;
+      // Spread along Y based on form
+      const yOff = nsy * (i % 2 === 0 ? 1 : -1) * (i < 2 ? 1 : 0.5);
+      mesh.position.set(Math.cos(angle) * r, yOff, Math.sin(angle) * r);
+    });
+
+    // ── Shell ──
+    if (shellRef.current) {
+      shellRef.current.scale.setScalar(mix(1, 1.35, h));
+      const mat = shellRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.opacity = mix(0.12, 0.25, h);
+      mat.ior = mix(1.5, 2.0, h);
+    }
+
+    // ── Core ──
+    if (coreRef.current) {
+      const mat = coreRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(dark ? 0.6 : 0.3, dark ? 1.4 : 0.9, h);
+      coreRef.current.scale.setScalar(mix(1, 1.5, h));
+    }
+
+    // ── Cross bars: tilt morphs between forms ──
+    if (crossRef.current) {
+      crossRef.current.rotation.y = -v * 0.04;
+      crossRef.current.rotation.x = mix(F.cross, N.cross, m);
+      crossRef.current.scale.setScalar(mix(1, 1.2, h));
+    }
+  });
+
+  const chrome = {
+    metalness: 1,
+    roughness: 0.03,
+    clearcoat: 1,
+    clearcoatRoughness: 0.02,
+    envMapIntensity: dark ? 2.5 : 3,
+    reflectivity: 1,
+  };
+
+  const discConfigs = [
+    { radius: 0.28, height: 0.02, color: dark ? '#555565' : '#808090', opacity: 0.9 },
+    { radius: 0.35, height: 0.015, color: dark ? '#d0d0d8' : '#b8b8c0', opacity: 1 },
+    { radius: 0.22, height: 0.018, color: dark ? '#888898' : '#a0a0a8', opacity: 0.85 },
+  ];
+
+  return (
+    <Float speed={0.6} floatIntensity={0.4} rotationIntensity={0.12}>
+      <group ref={ref}>
+
+        {/* Stacked chrome discs — UI layers */}
+        {discConfigs.map((disc, i) => (
+          <mesh
+            key={`disc${i}`}
+            ref={(el) => { if (el) discRefs.current[i] = el; }}
+            position={[0, [-0.08, 0, 0.08][i], 0]}
+          >
+            <cylinderGeometry args={[disc.radius, disc.radius, disc.height, 48]} />
+            <meshPhysicalMaterial
+              color={disc.color}
+              {...chrome}
+              transparent opacity={disc.opacity}
+              emissive={dark ? '#6688bb' : '#4466aa'}
+              emissiveIntensity={0}
             />
           </mesh>
         ))}
-        {/* Top embossed detail */}
-        <mesh position={[-0.15, 0.02, 0]}>
-          <boxGeometry args={[0.25, 0.008, 0.15]} />
-          <meshStandardMaterial {...BRUSHED_METAL} />
+
+        {/* Cross bars through center — structural spine */}
+        <group ref={crossRef}>
+          <mesh rotation={[0, 0, 0]}>
+            <cylinderGeometry args={[0.012, 0.012, 0.55, 8]} />
+            <meshPhysicalMaterial color={dark ? '#c0c0c8' : '#a8a8b0'} {...chrome} />
+          </mesh>
+          <mesh rotation={[0, 0, Math.PI / 2]}>
+            <cylinderGeometry args={[0.008, 0.008, 0.4, 8]} />
+            <meshPhysicalMaterial
+              color={dark ? '#888898' : '#707078'}
+              metalness={0.95} roughness={0.08}
+              clearcoat={1} clearcoatRoughness={0.05}
+              envMapIntensity={dark ? 2 : 2.5}
+            />
+          </mesh>
+        </group>
+
+        {/* Orbiting chrome ring — interaction cycle */}
+        <mesh ref={ringRef}>
+          <torusGeometry args={[0.42, 0.014, 16, 64]} />
+          <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} {...chrome} />
         </mesh>
+
+        {/* Glass shell — subtle enclosure */}
+        <mesh ref={shellRef}>
+          <sphereGeometry args={[0.46, 48, 48]} />
+          <meshPhysicalMaterial
+            color={dark ? '#a0b0d0' : '#c0d0e8'}
+            metalness={0} roughness={0}
+            transmission={0.96} transparent opacity={0.12}
+            ior={1.5} thickness={0.5}
+            envMapIntensity={dark ? 0.8 : 1}
+            specularIntensity={1} specularColor={dark ? '#aabbdd' : '#8899bb'}
+          />
+        </mesh>
+
+        {/* Core glow sphere */}
+        <mesh ref={coreRef}>
+          <sphereGeometry args={[0.04, 16, 16]} />
+          <meshPhysicalMaterial
+            color="#ffffff"
+            emissive={dark ? '#8899cc' : '#6677aa'}
+            emissiveIntensity={dark ? 0.6 : 0.3}
+            metalness={0.3} roughness={0.1}
+          />
+        </mesh>
+
+        {/* Small chrome spheres — node accents (animated per form) */}
+        {[0, 1, 2, 3].map(i => {
+          const angle = (i / 4) * Math.PI * 2 + 0.4;
+          return (
+            <mesh
+              key={`node${i}`}
+              ref={(el) => { if (el) nodeRefs.current[i] = el; }}
+              position={[Math.cos(angle) * 0.3, 0, Math.sin(angle) * 0.3]}
+            >
+              <sphereGeometry args={[0.025, 12, 12]} />
+              <meshPhysicalMaterial
+                color={dark ? '#e0e0e8' : '#d0d0d8'}
+                {...chrome}
+                emissive={dark ? '#6688bb' : '#4466aa'}
+                emissiveIntensity={0.15}
+              />
+            </mesh>
+          );
+        })}
+
+      </group>
+    </Float>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   BRAND & VISUAL — Bauhaus composition: chrome primitives
+   ═══════════════════════════════════════════════════ */
+
+function StackedPlates({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const ringRef = useRef<THREE.Mesh>(null!);
+  const cubeRef = useRef<THREE.Mesh>(null!);
+  const discRef = useRef<THREE.Mesh>(null!);
+  const slabRef = useRef<THREE.Mesh>(null!);
+  const sphereRef = useRef<THREE.Mesh>(null!);
+  const coneRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+
+  useFrame(() => {
+    if (!ref.current) return;
+    const v = vt.current;
+    const h = ht.current;
+    ref.current.rotation.y = v * 0.05;
+    ref.current.rotation.x = Math.sin(v * 0.03) * 0.06;
+    ref.current.rotation.z = Math.cos(v * 0.035) * 0.04;
+    // Ring expands gently
+    if (ringRef.current) {
+      ringRef.current.rotation.x = v * 0.1;
+      ringRef.current.rotation.z = v * 0.12;
+      const rs = mix(1, 1.4, h);
+      ringRef.current.scale.set(rs, rs, rs);
+    }
+    // Cube drifts outward
+    if (cubeRef.current) {
+      cubeRef.current.rotation.x = v * 0.08;
+      cubeRef.current.rotation.y = v * 0.1;
+      cubeRef.current.position.set(mix(-0.2, -0.35, h), mix(0.22, 0.3, h), mix(-0.08, -0.2, h));
+    }
+    // Disc tilts and rises
+    if (discRef.current) {
+      discRef.current.rotation.x = mix(0, 0.5, h);
+      discRef.current.position.y = mix(0, 0.15, h);
+    }
+    // Slab floats away
+    if (slabRef.current) {
+      slabRef.current.position.set(mix(-0.12, -0.3, h), mix(-0.06, -0.2, h), mix(0.08, 0.25, h));
+    }
+    // Sphere glows
+    if (sphereRef.current) {
+      const mat = sphereRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(0, dark ? 1.5 : 1, h);
+      sphereRef.current.position.set(mix(0.17, 0.28, h), mix(0.12, 0.25, h), mix(0.06, 0.15, h));
+    }
+    // Cone rises
+    if (coneRef.current) {
+      coneRef.current.position.y = mix(0.38, 0.55, h);
+    }
+  });
+
+  const chrome = {
+    metalness: 1,
+    roughness: 0.03,
+    clearcoat: 1,
+    clearcoatRoughness: 0.02,
+    envMapIntensity: dark ? 2.5 : 3,
+    reflectivity: 1,
+  };
+
+  const darkChrome = {
+    metalness: 0.95,
+    roughness: 0.08,
+    clearcoat: 1,
+    clearcoatRoughness: 0.05,
+    envMapIntensity: dark ? 2 : 2.5,
+    reflectivity: 1,
+  };
+
+  return (
+    <Float speed={0.5} floatIntensity={0.35} rotationIntensity={0.12}>
+      <group ref={ref}>
+        {/* Central chrome cylinder — pillar */}
+        <mesh>
+          <cylinderGeometry args={[0.055, 0.055, 0.65, 32]} />
+          <meshPhysicalMaterial color={dark ? '#d0d0d8' : '#b8b8c0'} {...chrome} />
+        </mesh>
+
+        {/* Horizontal disc — dark mirror */}
+        <mesh ref={discRef} position={[0, 0, 0]}>
+          <cylinderGeometry args={[0.32, 0.32, 0.018, 48]} />
+          <meshPhysicalMaterial color={dark ? '#404048' : '#606068'} {...darkChrome} />
+        </mesh>
+
+        {/* Orbiting chrome ring */}
+        <mesh ref={ringRef} position={[0, 0.05, 0]}>
+          <torusGeometry args={[0.38, 0.016, 16, 64]} />
+          <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} {...chrome} />
+        </mesh>
+
+        {/* Glass sphere — sitting on disc */}
+        <mesh ref={sphereRef} position={[0.17, 0.12, 0.06]}>
+          <sphereGeometry args={[0.1, 48, 48]} />
+          <meshPhysicalMaterial
+            color={dark ? '#b0c0e0' : '#c8d8f0'}
+            metalness={0} roughness={0} transmission={0.95} transparent opacity={0.2}
+            ior={1.8} thickness={0.6} envMapIntensity={dark ? 1 : 1.2}
+            specularIntensity={1} specularColor="#ffffff" clearcoat={0.5} clearcoatRoughness={0.02}
+            emissive={dark ? '#6688bb' : '#4466aa'} emissiveIntensity={0}
+          />
+        </mesh>
+
+        {/* Angled chrome slab */}
+        <mesh ref={slabRef} position={[-0.12, -0.06, 0.08]} rotation={[0.15, 0.35, 0.55]}>
+          <boxGeometry args={[0.24, 0.34, 0.012]} />
+          <meshPhysicalMaterial color={dark ? '#555565' : '#808090'} {...darkChrome} />
+        </mesh>
+
+        {/* Small tumbling cube */}
+        <mesh ref={cubeRef} position={[-0.2, 0.22, -0.08]}>
+          <boxGeometry args={[0.075, 0.075, 0.075]} />
+          <meshPhysicalMaterial color={dark ? '#e8e8f0' : '#d0d0d8'} {...chrome} />
+        </mesh>
+
+        {/* Cone cap */}
+        <mesh ref={coneRef} position={[0, 0.38, 0]}>
+          <coneGeometry args={[0.04, 0.09, 24]} />
+          <meshPhysicalMaterial color={dark ? '#2a2a34' : '#505058'} {...darkChrome} />
+        </mesh>
+      </group>
+    </Float>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   AI & WEARABLES — camera lens with chrome barrel and glass optics
+   ═══════════════════════════════════════════════════ */
+
+function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const apertureRef = useRef<THREE.Group>(null!);
+  const frontLensRef = useRef<THREE.Mesh>(null!);
+  const rearLensRef = useRef<THREE.Mesh>(null!);
+  const frontBezelRef = useRef<THREE.Mesh>(null!);
+  const rearRingRef = useRef<THREE.Mesh>(null!);
+  const centerRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+
+  useFrame(() => {
+    if (!ref.current) return;
+    const v = vt.current;
+    const h = ht.current;
+    ref.current.rotation.y = v * 0.05;
+    ref.current.rotation.x = Math.sin(v * 0.03) * 0.08;
+    ref.current.rotation.z = Math.cos(v * 0.025) * 0.04;
+    // Aperture opens on hover
+    if (apertureRef.current) {
+      const base = 0.9 + Math.sin(v * 0.4) * 0.15;
+      const scale = mix(base, 1.8, h);
+      apertureRef.current.scale.set(scale, scale, 1);
+    }
+    // Lens elements separate — exploded view
+    if (frontLensRef.current) frontLensRef.current.position.z = mix(0.08, 0.25, h);
+    if (rearLensRef.current) rearLensRef.current.position.z = mix(-0.06, -0.25, h);
+    if (frontBezelRef.current) frontBezelRef.current.position.z = mix(0.14, 0.35, h);
+    if (rearRingRef.current) rearRingRef.current.position.z = mix(-0.14, -0.35, h);
+    // Center brightens gently
+    if (centerRef.current) {
+      const mat = centerRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(dark ? 1 : 0.5, dark ? 1.8 : 1.2, h);
+      const s = mix(1, 1.5, h);
+      centerRef.current.scale.setScalar(s);
+    }
+  });
+
+  const chrome = {
+    metalness: 1,
+    roughness: 0.04,
+    clearcoat: 1,
+    clearcoatRoughness: 0.03,
+    envMapIntensity: dark ? 2.5 : 3,
+    reflectivity: 1,
+  };
+
+  return (
+    <Float speed={0.5} floatIntensity={0.3} rotationIntensity={0.1}>
+      <group ref={ref}>
+        {/* Outer barrel — chrome cylinder */}
+        <mesh rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.5, 0.46, 0.28, 48, 1, true]} />
+          <meshPhysicalMaterial
+            color={dark ? '#c0c0c8' : '#a8a8b0'}
+            {...chrome}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+
+        {/* Front bezel ring */}
+        <mesh ref={frontBezelRef} position={[0, 0, 0.14]}>
+          <torusGeometry args={[0.48, 0.035, 24, 64]} />
+          <meshPhysicalMaterial color={dark ? '#e0e0e8' : '#d0d0d8'} {...chrome} />
+        </mesh>
+
+        {/* Rear ring */}
+        <mesh ref={rearRingRef} position={[0, 0, -0.14]}>
+          <torusGeometry args={[0.44, 0.025, 20, 64]} />
+          <meshPhysicalMaterial
+            color={dark ? '#3a3a44' : '#606068'} metalness={0.95} roughness={0.1}
+            clearcoat={1} clearcoatRoughness={0.08} envMapIntensity={dark ? 2 : 2.5}
+          />
+        </mesh>
+
+        {/* Front glass element — convex lens */}
+        <mesh ref={frontLensRef} position={[0, 0, 0.08]}>
+          <sphereGeometry args={[0.32, 48, 48, 0, Math.PI * 2, 0, Math.PI / 3.5]} />
+          <meshPhysicalMaterial
+            color={dark ? '#6080b0' : '#80a0d0'} metalness={0} roughness={0}
+            transmission={0.94} transparent opacity={0.15} ior={2.2} thickness={0.8}
+            envMapIntensity={dark ? 1 : 1.5} specularIntensity={1} specularColor={dark ? '#aaccff' : '#8899cc'}
+          />
+        </mesh>
+
+        {/* Rear glass — concave */}
+        <mesh ref={rearLensRef} position={[0, 0, -0.06]} rotation={[Math.PI, 0, 0]}>
+          <sphereGeometry args={[0.24, 32, 32, 0, Math.PI * 2, 0, Math.PI / 4]} />
+          <meshPhysicalMaterial
+            color={dark ? '#7090c0' : '#90b0e0'} metalness={0} roughness={0}
+            transmission={0.92} transparent opacity={0.12} ior={1.9} thickness={0.5} specularIntensity={0.8}
+          />
+        </mesh>
+
+        {/* Aperture blades — chrome */}
+        <group ref={apertureRef}>
+          {Array.from({ length: 9 }, (_, i) => {
+            const angle = (i / 9) * Math.PI * 2;
+            return (
+              <mesh key={i} position={[Math.cos(angle) * 0.18, Math.sin(angle) * 0.18, 0]} rotation={[0, 0, angle + 0.35]}>
+                <boxGeometry args={[0.1, 0.025, 0.004]} />
+                <meshPhysicalMaterial
+                  color={dark ? '#2a2a32' : '#484850'}
+                  metalness={0.9}
+                  roughness={0.15}
+                  clearcoat={0.8}
+                  clearcoatRoughness={0.1}
+                  envMapIntensity={dark ? 1.5 : 2}
+                />
+              </mesh>
+            );
+          })}
+        </group>
+
+        {/* Center bright point — sensor indicator */}
+        <mesh ref={centerRef} position={[0, 0, 0.01]}>
+          <sphereGeometry args={[0.025, 16, 16]} />
+          <meshPhysicalMaterial
+            color="#ffffff" emissive={dark ? '#aaccff' : '#6688bb'}
+            emissiveIntensity={dark ? 1 : 0.5} metalness={0.3} roughness={0.05}
+          />
+        </mesh>
+
+        {/* Focus ring grooves — detail rings on barrel */}
+        {[-0.04, 0.04].map((z, i) => (
+          <mesh key={`gr${i}`} position={[0, 0, z]} rotation={[Math.PI / 2, 0, 0]}>
+            <torusGeometry args={[0.505, 0.006, 8, 48]} />
+            <meshPhysicalMaterial
+              color={dark ? '#888890' : '#707078'}
+              metalness={0.9}
+              roughness={0.2}
+              clearcoat={0.5}
+              envMapIntensity={dark ? 1.5 : 2}
+            />
+          </mesh>
+        ))}
+      </group>
+    </Float>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   CREATIVE TECHNOLOGY — geodesic wireframe + chrome octahedron core
+   ═══════════════════════════════════════════════════ */
+
+function GlassCrystal({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const innerRef = useRef<THREE.Mesh>(null!);
+  const orbitRef = useRef<THREE.Group>(null!);
+  const shellRef = useRef<THREE.Mesh>(null!);
+  const wireRef = useRef<THREE.LineSegments>(null!);
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  // Inner octahedron keeps its own time — it spins gently even on hover
+  const innerTime = useRef(0);
+
+  const outerEdges = useMemo(() => {
+    const geo = new THREE.IcosahedronGeometry(0.55, 1);
+    return new THREE.EdgesGeometry(geo);
+  }, []);
+
+  useFrame((_, delta) => {
+    if (!ref.current) return;
+    const v = vt.current;
+    const h = ht.current;
+    innerTime.current += delta * mix(0.5, 1, h);
+    ref.current.rotation.y = v * 0.06;
+    ref.current.rotation.x = Math.sin(v * 0.035) * 0.05;
+    ref.current.rotation.z = Math.cos(v * 0.03) * 0.04;
+    // Inner octahedron: gentle spin, slightly faster on hover
+    const it = innerTime.current;
+    if (innerRef.current) {
+      innerRef.current.rotation.x = -it * 0.08;
+      innerRef.current.rotation.y = it * 0.1;
+      innerRef.current.rotation.z = Math.cos(it * 0.06) * 0.05;
+      const s = mix(1, 1.6, h);
+      innerRef.current.scale.setScalar(s);
+      const mat = innerRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(0, dark ? 0.8 : 0.5, h);
+    }
+    // Wireframe expands
+    if (wireRef.current) {
+      const ws = mix(1, 1.4, h);
+      wireRef.current.scale.setScalar(ws);
+      const mat = wireRef.current.material as THREE.LineBasicMaterial;
+      mat.opacity = mix(dark ? 0.35 : 0.3, dark ? 0.6 : 0.5, h);
+    }
+    // Glass shell expands
+    if (shellRef.current) {
+      const ss = mix(1, 1.4, h);
+      shellRef.current.scale.setScalar(ss);
+    }
+    // Orbit particles drift wider gently
+    if (orbitRef.current) {
+      orbitRef.current.rotation.y = v * 0.1;
+      orbitRef.current.rotation.x = Math.sin(v * 0.06) * 0.15;
+      const os = mix(1, 1.35, h);
+      orbitRef.current.scale.setScalar(os);
+    }
+    // Core gently brightens
+    if (coreRef.current) {
+      const mat = coreRef.current.material as THREE.MeshPhysicalMaterial;
+      mat.emissiveIntensity = mix(dark ? 0.8 : 0.4, dark ? 1.6 : 1.2, h);
+      const cs = mix(1, 1.4, h);
+      coreRef.current.scale.setScalar(cs);
+    }
+  });
+
+  return (
+    <Float speed={0.8} floatIntensity={0.45} rotationIntensity={0.15}>
+      <group ref={ref}>
+        {/* Outer wireframe — silver */}
+        <lineSegments ref={wireRef} geometry={outerEdges}>
+          <lineBasicMaterial color={dark ? '#9aaccc' : '#778899'} transparent opacity={dark ? 0.35 : 0.3} />
+        </lineSegments>
+
+        {/* Glass shell — barely visible refraction */}
+        <mesh ref={shellRef}>
+          <icosahedronGeometry args={[0.53, 1]} />
+          <meshPhysicalMaterial
+            color={dark ? '#a0b0d0' : '#c0d0e8'} metalness={0} roughness={0}
+            transmission={0.97} transparent opacity={0.06} ior={1.4} thickness={0.3}
+            envMapIntensity={dark ? 0.5 : 0.7} specularIntensity={0.8}
+          />
+        </mesh>
+
+        {/* Inner chrome octahedron */}
+        <mesh ref={innerRef}>
+          <octahedronGeometry args={[0.2, 0]} />
+          <meshPhysicalMaterial
+            color={dark ? '#d0d0e0' : '#b8b8c8'} metalness={1} roughness={0.02}
+            clearcoat={1} clearcoatRoughness={0.02} envMapIntensity={dark ? 3 : 3.5} reflectivity={1}
+            emissive={dark ? '#6688bb' : '#4466aa'} emissiveIntensity={0}
+          />
+        </mesh>
+
+        {/* Core glow */}
+        <mesh ref={coreRef}>
+          <sphereGeometry args={[0.06, 24, 24]} />
+          <meshPhysicalMaterial
+            color="#ffffff" emissive={dark ? '#99bbff' : '#6688bb'}
+            emissiveIntensity={dark ? 0.8 : 0.4} metalness={0.2} roughness={0.05} clearcoat={1}
+          />
+        </mesh>
+
+        {/* Orbiting chrome spheres */}
+        <group ref={orbitRef}>
+          {Array.from({ length: 6 }, (_, i) => {
+            const angle = (i / 6) * Math.PI * 2;
+            const r = 0.4;
+            return (
+              <mesh key={i} position={[Math.cos(angle) * r, Math.sin(angle * 0.7) * 0.12, Math.sin(angle) * r]}>
+                <sphereGeometry args={[0.025, 16, 16]} />
+                <meshPhysicalMaterial
+                  color={dark ? '#e0e0f0' : '#d0d0e0'}
+                  metalness={1}
+                  roughness={0.02}
+                  clearcoat={1}
+                  clearcoatRoughness={0.02}
+                  envMapIntensity={dark ? 3 : 3.5}
+                  reflectivity={1}
+                />
+              </mesh>
+            );
+          })}
+        </group>
       </group>
     </Float>
   );
@@ -371,7 +1429,7 @@ function StackedPlates({ position }: { position: [number, number, number] }) {
 
 /* ─── Particle dust ─── */
 
-function ParticleDust({ count, reduced }: { count: number; reduced: boolean }) {
+function ParticleDust({ count, reduced, dark }: { count: number; reduced: boolean; dark: boolean }) {
   const ref = useRef<THREE.Points>(null!);
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
@@ -393,23 +1451,21 @@ function ParticleDust({ count, reduced }: { count: number; reduced: boolean }) {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#ffffff" size={0.012} transparent opacity={0.2} sizeAttenuation depthWrite={false} />
+      <pointsMaterial
+        color={dark ? '#ffffff' : '#333333'}
+        size={0.012}
+        transparent
+        opacity={dark ? 0.2 : 0.15}
+        sizeAttenuation
+        depthWrite={false}
+      />
     </points>
   );
 }
 
 /* ─── Scene Content ─── */
 
-const NODE_POSITIONS: [number, number, number][] = [
-  [0, 1.8, 0],        // AI & Wearables — top center
-  [-2.3, 0.3, 0.4],   // Product Design — left
-  [2.3, 0.5, -0.2],   // Creative Technology — right
-  [-1.5, -1.6, 0.4],  // Design for Good — bottom left
-  [1.8, -1.3, 0.3],   // Installations — bottom right
-  [0, -0.6, -0.3],    // Brand & Visual — center
-];
-
-function SceneContent({ reduced, isMobile }: { reduced: boolean; isMobile: boolean }) {
+function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile: boolean; dark: boolean }) {
   const groupRef = useRef<THREE.Group>(null!);
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
@@ -430,65 +1486,101 @@ function SceneContent({ reduced, isMobile }: { reduced: boolean; isMobile: boole
     return () => document.removeEventListener('mousemove', h);
   }, [isMobile]);
 
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (!groupRef.current) return;
     const t = target.current;
     const m = mouse.current;
-    t.x += (m.x - t.x) * 0.02;
-    t.y += (m.y - t.y) * 0.02;
-    groupRef.current.rotation.y = t.x * 0.15;
-    groupRef.current.rotation.x = -t.y * 0.08;
+    t.x += (m.x - t.x) * 0.012;
+    t.y += (m.y - t.y) * 0.012;
+    // Continuous slow orbit — whole constellation rotates around Product Design (center)
+    const elapsed = clock.getElapsedTime();
+    const orbitY = elapsed * 0.015; // very slow continuous rotation
+    const orbitX = Math.cos(elapsed * 0.03) * 0.03; // subtle vertical drift
+    groupRef.current.rotation.y = t.x * 0.1 + orbitY;
+    groupRef.current.rotation.x = -t.y * 0.05 + orbitX;
+    groupRef.current.rotation.z = Math.sin(elapsed * 0.025) * 0.012;
   });
+
+  const positions = NODES.map(n => n.position);
 
   return (
     <>
-      {/* Studio lighting — key, fill, rim, bounce */}
-      <ambientLight intensity={0.1} />
-      <directionalLight intensity={0.8} position={[4, 6, 5]} color="#f0f0ff" castShadow={false} />
-      <directionalLight intensity={0.3} position={[-5, 2, -3]} color="#8899cc" />
-      <pointLight intensity={0.6} color="#ffffff" distance={18} position={[0, 1, 6]} />
-      <pointLight intensity={0.25} color="#6677aa" distance={14} position={[-4, -3, 3]} />
-      <pointLight intensity={0.15} color="#aabbee" distance={12} position={[5, -2, -1]} />
+      {/* Dramatic lighting for real reflections */}
+      <ambientLight intensity={dark ? 0.08 : 0.2} />
+      {/* Key light — bright, high, from front-right */}
+      <directionalLight intensity={dark ? 1.2 : 1} position={[5, 8, 6]} color={dark ? '#e8e8ff' : '#ffffff'} />
+      {/* Fill light — softer, from left */}
+      <directionalLight intensity={dark ? 0.4 : 0.35} position={[-6, 3, -4]} color={dark ? '#8899cc' : '#bbc8dd'} />
+      {/* Rim light — from behind for edge highlights */}
+      <directionalLight intensity={dark ? 0.6 : 0.5} position={[0, -2, -8]} color={dark ? '#aabbee' : '#99aacc'} />
+      {/* Top accent */}
+      <pointLight intensity={dark ? 0.8 : 0.5} color="#ffffff" distance={20} position={[0, 6, 4]} />
+      {/* Warm bottom bounce */}
+      <pointLight intensity={0.2} color={dark ? '#6677aa' : '#8899bb'} distance={15} position={[-3, -4, 3]} />
 
-      {/* Environment for realistic reflections */}
-      <Environment preset="city" environmentIntensity={0.15} />
+      {/* High-quality environment for reflections — CRUCIAL */}
+      <Environment preset="studio" environmentIntensity={dark ? 0.6 : 0.8} />
 
-      <group ref={groupRef}>
-        {/* Constellation connections */}
-        <ConstellationLines positions={NODE_POSITIONS} />
+      <group ref={groupRef} scale={0.7}>
+        <ConstellationLines positions={positions} dark={dark} />
 
-        {/* 6 discipline objects */}
-        <LensAssembly position={NODE_POSITIONS[0]} />
-        <GlassTablet position={NODE_POSITIONS[1]} />
-        <GlassCrystal position={NODE_POSITIONS[2]} />
-        <SoftSculpture position={NODE_POSITIONS[3]} />
-        <TrussStructure position={NODE_POSITIONS[4]} />
-        <StackedPlates position={NODE_POSITIONS[5]} />
+        {/* 0: Installations — Truss (top) */}
+        <ClickableObject route={NODES[0].route} position={NODES[0].position}>
+          {(hovered) => <TrussStructure dark={dark} hovered={hovered} />}
+        </ClickableObject>
 
-        {/* Labels */}
-        <Label position={NODE_POSITIONS[0]} text="AI & Wearables" />
-        <Label position={NODE_POSITIONS[1]} text="Product Design" offset={[0, -0.7, 0]} />
-        <Label position={NODE_POSITIONS[2]} text="Creative Technology" />
-        <Label position={NODE_POSITIONS[3]} text="Design for Good" offset={[0, -0.7, 0]} />
-        <Label position={NODE_POSITIONS[4]} text="Installations" />
-        <Label position={NODE_POSITIONS[5]} text="Brand & Visual" offset={[0, -0.45, 0]} />
+        {/* 1: Design for Good — Chrome knot (right) */}
+        <ClickableObject route={NODES[1].route} position={NODES[1].position}>
+          {(hovered) => <PetalRose dark={dark} hovered={hovered} />}
+        </ClickableObject>
+
+        {/* 2: Product Design — Morphing screens (center) */}
+        <ClickableObject route={NODES[2].route} position={NODES[2].position}>
+          {(hovered) => <MorphingScreens dark={dark} hovered={hovered} />}
+        </ClickableObject>
+
+        {/* 3: Brand & Visual — Bauhaus (left) */}
+        <ClickableObject route={NODES[3].route} position={NODES[3].position}>
+          {(hovered) => <StackedPlates dark={dark} hovered={hovered} />}
+        </ClickableObject>
+
+        {/* 4: AI & Wearables — Lens (bottom left) */}
+        <ClickableObject route={NODES[4].route} position={NODES[4].position}>
+          {(hovered) => <LensAssembly dark={dark} hovered={hovered} />}
+        </ClickableObject>
+
+        {/* 5: Creative Technology — Geodesic (bottom right) */}
+        <ClickableObject route={NODES[5].route} position={NODES[5].position}>
+          {(hovered) => <GlassCrystal dark={dark} hovered={hovered} />}
+        </ClickableObject>
+
+        {/* Interactive Labels — morph into mini 3D objects on hover */}
+        {NODES.map((n, i) => (
+          <InteractiveLabel key={i} position={n.position} text={n.label} offset={n.labelOffset} dark={dark} index={i} route={n.route} />
+        ))}
       </group>
 
-      {/* Particles */}
-      <ParticleDust count={isMobile ? 50 : 140} reduced={reduced} />
+      <ParticleDust count={isMobile ? 100 : 280} reduced={reduced} dark={dark} />
     </>
   );
 }
 
 /* ─── Main Component ─── */
 
-export default function HeroScene() {
+export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReduced();
+  const dark = useThemeMode();
   const [isMobile] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false,
   );
   const [visible, setVisible] = useState(true);
+
+  // Sync navigate callback to module-level ref for R3F access
+  useEffect(() => {
+    if (onNavigate) _navigate = onNavigate;
+    return () => { _navigate = null; };
+  }, [onNavigate]);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -502,12 +1594,12 @@ export default function HeroScene() {
     <div ref={containerRef} className="hero-3d-canvas">
       <Canvas
         frameloop={visible ? 'always' : 'never'}
-        dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
+        dpr={[1, 2]}
+        gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
         camera={{ fov: 40, near: 0.1, far: 100, position: [0, 0.3, 7.5] }}
         style={{ background: 'transparent' }}
       >
-        <SceneContent reduced={reduced} isMobile={isMobile} />
+        <SceneContent reduced={reduced} isMobile={isMobile} dark={dark} />
       </Canvas>
     </div>
   );
