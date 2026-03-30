@@ -9,7 +9,7 @@ interface BottomNavProps {
 export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
   const navRef = useRef<HTMLElement>(null);
   const progress = useReadingProgress();
-  const hideTimer = useRef<ReturnType<typeof setTimeout>>();
+  const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
 
   const showNav = useCallback(() => {

@@ -1,14 +1,12 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsStatGrid from '../../components/case-study/CsStatGrid'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsImage from '../../components/case-study/CsImage'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsPullquote from '../../components/case-study/CsPullquote'
 import CsNumList from '../../components/case-study/CsNumList'
@@ -28,12 +26,12 @@ export default function KeyboardProjectPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#5C6B3A' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="creative-tech"
           backLabel="Back to Work"
           tags={['Creative Tech', 'Hardware', 'Machine Learning', 'UX/UI']}
           title="BreakGen"
@@ -133,7 +131,6 @@ export default function KeyboardProjectPage() {
             { title: 'Export Pipeline', desc: 'The platform exports multiple file formats matched to fabrication methods: STL files for 3D-printed keycaps and cases, DXF files for laser-cut plates, and Gerber files for PCB manufacturing. Each export is pre-validated for printability and tolerance requirements.' },
           ]} />
 
-          <CsImage placeholder="System architecture diagram \u2014 data flow from user input through AI generation, parametric modeling, and fabrication export" className="reveal-image" />
         </CsSection>
 
         {/* 04 — Process */}
@@ -159,7 +156,6 @@ export default function KeyboardProjectPage() {
             <><strong>Automated PCB as an invisible step.</strong> PCB generation is the most technical part of keyboard building, and in BreakGen it is the most automated. Users never see a schematic editor. The system infers the circuit from the layout, routes traces automatically, and validates the design against manufacturing constraints. The user sees a confirmation screen; the complexity is hidden.</>,
           ]} />
 
-          <CsImage placeholder="Interface screenshots \u2014 switch selection flow with tactile preview and sound profiles" className="reveal-image" />
         </CsSection>
 
         {/* 05 — Fabrication */}
@@ -181,9 +177,6 @@ export default function KeyboardProjectPage() {
             <p>Laser-cut plates revealed another class of problem. Switch cutout tolerances at plus or minus 0.1mm are the difference between a switch that clips in securely and one that rattles or will not seat at all. The platform now bakes in per-material kerf compensation based on the fabrication method the user selects during export.</p>
           </CsBody>
 
-          <CsImage placeholder="3D printed keycap prototypes \u2014 progression from early test prints to final AI-generated designs" className="reveal-image" />
-          <CsImage placeholder="Laser cut plate components \u2014 acrylic and aluminum keyboard plates with switch cutouts" className="reveal-image" />
-          <CsImage placeholder="Final keyboard assembly \u2014 completed build with AI-generated keycaps, laser-cut plate, and auto-generated PCB" className="reveal-image" />
         </CsSection>
 
         {/* 06 — ML Integration */}
@@ -222,7 +215,6 @@ export default function KeyboardProjectPage() {
             { label: 'Design-to-Export Time', value: '<10 min' },
           ]} />
 
-          <CsImage placeholder="Thesis show installation \u2014 BreakGen live demo station with physical keyboard prototypes on display" className="reveal-image" />
 
           <h3 className="cs-section-subtitle" style={{ marginTop: '2.5rem' }}>Exhibition Feedback</h3>
           <CsPullquote

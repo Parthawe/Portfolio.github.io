@@ -80,17 +80,17 @@ export default function Nav() {
       <a href="#main-content" className="skip-to-content">Skip to content</a>
       <nav className="nav" id="nav" ref={navRef}>
         <div className="nav-inner">
-          <Link to="/" className="nav-logo">PP</Link>
-
-          <div className="nav-pill">
-            <Link to="/work" className={`nav-pill-link${isWork ? ' active' : ''}`}>Work</Link>
-            <Link to="/about" className={`nav-pill-link${isAbout ? ' active' : ''}`}>About</Link>
-            <ThemeToggle />
+          {/* Left group — logo + links in a single pill */}
+          <div className="nav-left-pill">
+            <Link to="/" className="nav-logo">PP</Link>
+            <Link to="/work" className={`pill-link nav-pill-link${isWork ? ' active' : ''}`}>Work</Link>
+            <Link to="/about" className={`pill-link nav-pill-link${isAbout ? ' active' : ''}`}>About</Link>
           </div>
 
+          {/* Right group — theme toggle + CTA */}
           <div className="nav-right">
+            <ThemeToggle />
             <a href="mailto:parthpawar@nyu.edu" className="nav-cta">Let's Talk</a>
-            <ThemeToggle className="theme-toggle--mobile" />
             <button
               ref={toggleRef}
               className="nav-toggle"

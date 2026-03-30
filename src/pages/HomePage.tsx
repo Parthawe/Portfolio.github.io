@@ -1,12 +1,11 @@
-import { useState, useEffect, useCallback, lazy, Suspense, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, lazy, Suspense, useRef, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
-import WrFooter from '../components/WrFooter';
-import { getImageBrightness } from '../utils/imageBrightness';
+import Footer from '../components/Footer';
 import TiltCard from '../components/TiltCard';
-
+import { getImageBrightness } from '../utils/imageBrightness';
 const HeroScene = lazy(() => import('../components/HeroScene'));
 
 interface HomePcard {
@@ -21,14 +20,14 @@ interface HomePcard {
 const featuredProjects: HomePcard[] = [
   { slug: 'mentra', image: `${'/Assets/images'}/mentra.png`, name: 'Mentra', tag: 'AI WEARABLES', year: '2026', desc: 'Designed the OS, companion app, and app store for AI smart glasses — shipping at $299' },
   { slug: 'transfi-project', image: `${'/Assets/images'}/transfi.jpg`, name: 'TransFi', tag: 'WEB3 PAYMENTS', year: '2023', desc: 'Redesigned crypto payment rails across 6 Asian markets — $50M+ monthly volume' },
-  { slug: 'zentipay', image: `${'/Assets/images'}/zentipay.png`, name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Built a fintech super app from scratch — 30% higher transaction success rate' },
+  { slug: 'zentipay', image: `${'/Assets/images'}/zentipay.png`, name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Built a fintech super app from scratch — 30% higher transaction completion' },
   { slug: 'clawed-chat', image: `${'/Assets/images'}/clawed.png`, name: 'Clawed', tag: 'AI ASSISTANT', year: '2026', desc: 'AI assistant with receipts for every action — safety-first on glasses and web' },
 ];
 
 const archiveProjects: HomePcard[] = [
   { slug: 'executivelens', image: `${'/Assets/images'}/executivelens.png`, name: 'ExecutiveLens', tag: 'AI ANALYTICS', year: '2026', desc: 'Saved executives 5.2 hrs/week with AI meeting intelligence — 87% adoption in 2 weeks' },
   { slug: 'black-hole', image: `${'/Assets/images'}/black-hole.jpg`, name: 'Black Hole', tag: 'SCIENCE + FABRICATION', year: '2026', desc: 'Five physical models of black hole phenomena — exhibited at Horological Society of NY' },
-  { slug: 'keyboard-project', image: `${'/Assets/images'}/keyboard.jpg`, name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'AI-generated keycap designs fabricated in real time — 200+ visitors at ITP Thesis Show' },
+  { slug: 'keyboard-project', image: `${'/Assets/images'}/keyboard.jpg`, name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors at ITP Thesis Show' },
   { slug: 'jugalbandi', image: `${'/Assets/images'}/jugalbandi.png`, name: 'Jugalbandi', tag: 'ML + MUSIC', year: '2024', desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024' },
   { slug: 'tedx', image: `${'/Assets/images'}/tedx.png`, name: 'TEDxVITPune', tag: 'ART DIRECTION', year: '2021', desc: 'Art directed a 65-person team to build a parallax cityscape stage for 800+ attendees' },
   { slug: 'the-point-cdc', image: `${'/Assets/images'}/the-point-cdc.png`, name: 'The Point CDC', tag: 'COMMUNITY', year: '2024', desc: 'Redesigned digital platform for a Bronx community development nonprofit' },
@@ -40,6 +39,9 @@ const archiveProjects: HomePcard[] = [
   { slug: 'making-of-time', image: `${'/Assets/images'}/making-of-time.jpg`, name: 'Making of Time', tag: 'PHYSICAL COMPUTING', year: '2024', desc: 'Sundial → mechanical watch → software clock — building three ways to measure time' },
   { slug: 'moniac-machine', image: `${'/Assets/images'}/moniac-machine.jpg`, name: 'Moniac Machine', tag: 'GAME DESIGN', year: '2024', desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education' },
   { slug: 'typeface', image: `${'/Assets/images'}/typeface.jpg`, name: "Butler's Slice", tag: 'TYPE DESIGN', year: '2022', desc: 'Variable display typeface with geometric slice cuts — 400+ glyphs' },
+  { slug: 'ballah-code', image: `${'/Assets/images'}/ballah-code.png`, name: 'Ballah Code', tag: 'AI DEV TOOLS', year: '2026', desc: 'AI-native IDE treating AI as a senior engineer — 17 production tools' },
+  { slug: 'oncall-lens', image: `${'/Assets/images'}/oncall-lens.png`, name: 'OnCall Lens', tag: 'AI WEARABLE', year: '2026', desc: 'Sentry alert → Claude analysis → auto PR fix via smart glasses — built in 24 hours' },
+  { slug: 'sea-of-salt', image: `${'/Assets/images'}/sea-of-salt.jpg`, name: 'Sea of Salt', tag: 'INSTALLATION', year: '2024', desc: 'Kinetic salt installation reacting to real-time ocean data' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -72,7 +74,7 @@ const jsonLd = {
   mainEntity: {
     '@type': 'Person',
     name: 'Parth Pawar',
-    jobTitle: 'Product Designer',
+    jobTitle: 'Design Engineer',
     url: 'https://parthpawar.com',
     sameAs: [
       'https://www.linkedin.com/in/parth-pawar-1501/',
@@ -92,19 +94,24 @@ const jsonLd = {
 
 export default function HomePage() {
   /* --- state --- */
+  const navigate = useNavigate();
   const [skillIdx, setSkillIdx] = useState(0);
   const [skillPaused, setSkillPaused] = useState(false);
-  const [hoveredArchive, setHoveredArchive] = useState<string | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
   const heroRef = useRef<HTMLElement>(null);
-  const archiveRef = useRef<HTMLElement>(null);
 
-  /* --- archive hover image tracking --- */
-  const handleArchiveMouseMove = useCallback((e: React.MouseEvent) => {
-    const rect = archiveRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  /* --- auto light/dark card text based on image brightness --- */
+  const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    const card = img.closest('.pcard');
+    if (!card) return;
+    try {
+      const brightness = getImageBrightness(img);
+      if (brightness > 140) {
+        card.classList.add('pcard--light');
+      }
+    } catch {
+      // cross-origin or canvas error
+    }
   }, []);
 
   /* --- skill cycling --- */
@@ -116,48 +123,14 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, [skillPaused]);
 
-  /* --- brightness detection for pcard text color --- */
-  const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    const card = img.closest('.pcard');
-    if (!card) return;
-    try {
-      const brightness = getImageBrightness(img);
-      if (brightness > 140) card.classList.add('pcard--light');
-    } catch { /* cross-origin */ }
-  }, []);
-
-  const renderPcard = (project: HomePcard, loading: 'eager' | 'lazy' = 'lazy') => (
-    <TiltCard intensity={6}>
-      <Link className="pcard reveal" to={`/${project.slug}`}>
-        <div className="pcard-inner">
-          <div className="pcard-top-row">
-            <span className="pcard-tag">{project.tag}</span>
-            <span className="pcard-year">{project.year}</span>
-          </div>
-          <div className="pcard-visual">
-            <img src={project.image} alt={project.name} loading={loading} onLoad={handleImgLoad} />
-          </div>
-          <h2 className="pcard-name">{project.name}</h2>
-          <div className="pcard-marquee">
-            <div className="pcard-marquee-track">
-              <span>{project.desc} — {project.desc} — {project.desc} — </span>
-              <span>{project.desc} — {project.desc} — {project.desc} — </span>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </TiltCard>
-  );
-
   return (
     <>
       <Helmet>
-        <title>Parth Pawar — Product Designer</title>
-        <meta name="description" content="Portfolio of Parth Pawar — Product Designer crafting intuitive, user-centered experiences across UX, fintech, creative technology, and physical computing." />
+        <title>Parth Pawar — Design Engineer</title>
+        <meta name="description" content="Portfolio of Parth Pawar — Design Engineer crafting intuitive, user-centered experiences across UX, fintech, creative technology, and physical computing." />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Parth Pawar — Product Designer" />
-        <meta property="og:description" content="Product Designer specializing in AI wearables, fintech, and interactive systems. Head of UI/UX at Mentra. NYU ITP '24." />
+        <meta property="og:title" content="Parth Pawar — Design Engineer" />
+        <meta property="og:description" content="Design Engineer specializing in AI wearables, fintech, and interactive systems. Head of UI/UX at Mentra. NYU ITP '24." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.png" />
         <link rel="canonical" href="https://parthpawar.com" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -165,10 +138,13 @@ export default function HomePage() {
 
       {/* ═══ DARK HERO — 3D centerpiece ═══ */}
       <section className="wr-hero" id="hero" ref={heroRef}>
+        {/* Aurora gradient bottom blob */}
+        <div className="wr-hero-aurora-bottom" />
+
         {/* 3D Scene — constellation of discipline objects */}
         <div className="wr-hero-3d">
           <Suspense fallback={null}>
-            <HeroScene />
+            <HeroScene onNavigate={navigate} />
           </Suspense>
         </div>
 
@@ -178,8 +154,7 @@ export default function HomePage() {
 
         {/* Bottom bar */}
         <div className="wr-hero-bottom hero-reveal hero-reveal-3">
-          <span className="wr-hero-bottom-label">PRODUCT DESIGNER · SAN FRANCISCO</span>
-          <span className="wr-hero-bottom-avail"><span className="wr-hero-avail-dot" />AVAILABLE FOR WORK</span>
+          <span className="wr-hero-bottom-label">DESIGN ENGINEER · SAN FRANCISCO</span>
           <span className="wr-hero-bottom-label">HEAD OF UI/UX AT MENTRA</span>
         </div>
       </section>
@@ -188,6 +163,37 @@ export default function HomePage() {
       <Nav />
 
       <main id="main-content">
+        {/* ── Paper canvas wraps everything below hero ── */}
+        <div className="abt-paper">
+          {/* SVG pattern for dashed grid */}
+          <svg className="abt-grid-defs" aria-hidden="true">
+            <defs>
+              <pattern id="hp-minor-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="18" x2="24" y2="18" className="abt-grid-h-minor" />
+                <line x1="24" y1="0" x2="24" y2="24" className="abt-grid-v-minor" strokeDasharray="3 5" />
+              </pattern>
+              <pattern id="hp-major-grid" width="120" height="120" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="18" x2="120" y2="18" className="abt-grid-h-major" />
+                <line x1="120" y1="0" x2="120" y2="120" className="abt-grid-v-major" strokeDasharray="4 4" />
+              </pattern>
+            </defs>
+          </svg>
+
+          {/* Grid layers */}
+          <svg className="abt-grid-layer" aria-hidden="true">
+            <rect width="100%" height="100%" fill="url(#hp-minor-grid)" />
+          </svg>
+          <svg className="abt-grid-layer abt-grid-layer--major" aria-hidden="true">
+            <rect width="100%" height="100%" fill="url(#hp-major-grid)" />
+          </svg>
+
+          {/* Decorative arc */}
+          <div className="abt-arc" aria-hidden="true" />
+
+          {/* Ruler marks */}
+          <div className="abt-ruler abt-ruler--left" aria-hidden="true" />
+          <div className="abt-ruler abt-ruler--right" aria-hidden="true" />
+
         {/* ═══ KEYWORD MARQUEE — visual energy strip ═══ */}
         <div className="wr-keyword-strip" aria-hidden="true">
           <div className="wr-keyword-track">
@@ -322,62 +328,53 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══ ARCHIVE — hover-reveal text list ═══ */}
-        <section
-          className="wr-archive"
-          ref={archiveRef}
-          onMouseMove={handleArchiveMouseMove}
-        >
+        {/* ═══ ARCHIVE — image card grid ═══ */}
+        <section className="wr-archive">
           <div className="wr-archive-inner">
             <div className="wr-section-head">
-              <span className="wr-label">ARCHIVE &middot; 2019&ndash;2026</span>
+              <span className="wr-label">ARCHIVE &middot; 2021&ndash;2026</span>
+              <Link to="/work" className="wr-arrow-btn">View All &rarr;</Link>
             </div>
 
-            <div className="wr-archive-list">
+            <div className="wr-archive-grid">
               {archiveProjects.map((p, i) => (
                 <motion.div
                   key={p.slug}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-20px' }}
-                  transition={{ duration: 0.5, delay: i * 0.03, ease: [0.4, 0, 0.2, 1] }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.5, delay: i * 0.05, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <Link
-                    to={`/${p.slug}`}
-                    className={`wr-archive-item ${hoveredArchive && hoveredArchive !== p.slug ? 'wr-archive-item--dimmed' : ''}`}
-                    onMouseEnter={() => setHoveredArchive(p.slug)}
-                    onMouseLeave={() => setHoveredArchive(null)}
-                  >
-                    <span className="wr-archive-idx">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="wr-archive-name">{p.name}</span>
-                    <span className="wr-archive-tag">{p.tag}</span>
-                    <span className="wr-archive-year">{p.year}</span>
-                  </Link>
+                  <TiltCard intensity={5}>
+                    <Link className="pcard reveal" to={`/${p.slug}`}>
+                      <div className="pcard-inner">
+                        <div className="pcard-top-row">
+                          <span className="pcard-tag">{p.tag}</span>
+                          <span className="pcard-year">{p.year}</span>
+                        </div>
+                        <div className="pcard-visual">
+                          <img src={p.image} alt={p.name} loading="lazy" onLoad={handleImgLoad} />
+                        </div>
+                        <h2 className="pcard-name">{p.name}</h2>
+                        <div className="pcard-marquee">
+                          <div className="pcard-marquee-track">
+                            <span>{p.desc} — {p.desc} — {p.desc} — </span>
+                            <span>{p.desc} — {p.desc} — {p.desc} — </span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </TiltCard>
                 </motion.div>
               ))}
             </div>
-
-            {/* Floating hover image */}
-            {hoveredArchive && (
-              <div
-                className="wr-archive-hover-img"
-                style={{
-                  left: mousePos.x,
-                  top: mousePos.y,
-                }}
-              >
-                <img
-                  src={archiveProjects.find(p => p.slug === hoveredArchive)?.image}
-                  alt=""
-                />
-              </div>
-            )}
           </div>
         </section>
+        </div>{/* end .abt-paper */}
       </main>
 
       {/* ═══ FOOTER ═══ */}
-      <WrFooter />
+      <Footer />
     </>
   );
 }

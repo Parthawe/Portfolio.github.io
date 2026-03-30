@@ -29,6 +29,30 @@ export function useCursorFollower() {
     let rafId: number;
     let visible = true;
 
+    // State machine — single source of truth, prevents flicker
+    let cursorState: 'default' | 'view' | 'cta' | 'hover' = 'default';
+
+    const resolveState = (el: Element | null): 'default' | 'view' | 'cta' | 'hover' => {
+      if (!el) return 'default';
+      if (el.closest(VIEW_SELECTOR)) return 'view';
+      if (el.closest(CTA_SELECTOR)) return 'cta';
+      if (el.closest(INTERACTIVE)) return 'hover';
+      return 'default';
+    };
+
+    const setCursorState = (state: 'default' | 'view' | 'cta' | 'hover') => {
+      if (state === cursorState) return;
+      if (cursorState !== 'default') {
+        dot.classList.remove(cursorState);
+        ring.classList.remove(cursorState);
+      }
+      if (state !== 'default') {
+        dot.classList.add(state);
+        ring.classList.add(state);
+      }
+      cursorState = state;
+    };
+
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -37,34 +61,14 @@ export function useCursorFollower() {
         dot.style.opacity = '1';
         ring.style.opacity = '1';
       }
+      setCursorState(resolveState(document.elementFromPoint(mouseX, mouseY)));
     };
 
     const onMouseLeave = () => {
       visible = false;
       dot.style.opacity = '0';
       ring.style.opacity = '0';
-    };
-
-    const onMouseOver = (e: MouseEvent) => {
-      const target = e.target as Element;
-      if (target.closest(VIEW_SELECTOR)) {
-        dot.classList.add('view');
-        ring.classList.add('view');
-      } else if (target.closest(CTA_SELECTOR)) {
-        dot.classList.add('cta');
-        ring.classList.add('cta');
-      } else if (target.closest(INTERACTIVE)) {
-        dot.classList.add('hover');
-        ring.classList.add('hover');
-      }
-    };
-
-    const onMouseOut = (e: MouseEvent) => {
-      const target = e.target as Element;
-      if (target.closest(INTERACTIVE) || target.closest(VIEW_SELECTOR) || target.closest(CTA_SELECTOR)) {
-        dot.classList.remove('hover', 'cta', 'view');
-        ring.classList.remove('hover', 'cta', 'view');
-      }
+      setCursorState('default');
     };
 
     const loop = () => {
@@ -79,16 +83,12 @@ export function useCursorFollower() {
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseleave', onMouseLeave);
-    document.addEventListener('mouseover', onMouseOver);
-    document.addEventListener('mouseout', onMouseOut);
     rafId = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(rafId);
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseleave', onMouseLeave);
-      document.removeEventListener('mouseover', onMouseOver);
-      document.removeEventListener('mouseout', onMouseOut);
       dot.remove();
       ring.remove();
     };

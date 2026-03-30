@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -22,12 +21,12 @@ export default function EnigmaPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#6B4C9A' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="ai"
           backLabel="Back to Work"
           tags={['Creative Technology', 'AI', 'Installation']}
           title="Enigma"

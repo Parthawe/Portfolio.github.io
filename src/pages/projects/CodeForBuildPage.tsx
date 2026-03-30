@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -23,12 +22,12 @@ export default function CodeForBuildPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#2B6CB0' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="brand-visual"
           backLabel="Back to Work"
           tags={['UX', 'Interaction Design', '3D']}
           title={'Learn Coding\nBy Building Blocks'}

@@ -12,7 +12,8 @@
   --surface:  #FFFFFF;
   --ink:      #1A1A1A;
   --ink-70:   rgba(26,26,26,0.7);
-  --ink-40:   rgba(26,26,26,0.4);
+  --ink-40:   rgba(26,26,26,0.55); /* WCAG AA: ~4.7:1 on #FAFAF8 */
+  --ink-30:   rgba(26,26,26,0.3);
   --ink-15:   rgba(26,26,26,0.15);
   --ink-12:   rgba(26,26,26,0.12);
   --ink-08:   rgba(26,26,26,0.08);
@@ -26,17 +27,17 @@
   --body:     var(--sans);
 
   --accent:       #f5f5f5;
-  --accent-gold:  #ffe430;
-  --accent-gold-70: rgba(255, 228, 48, 0.7);
-  --accent-gold-50: rgba(255, 228, 48, 0.5);
-  --accent-gold-30: rgba(255, 228, 48, 0.3);
-  --accent-gold-15: rgba(255, 228, 48, 0.15);
-  --accent-gold-08: rgba(255, 228, 48, 0.08);
-  --accent-gold-05: rgba(255, 228, 48, 0.05);
+  --accent-hi:    #a8b8d8;
+  --accent-hi-70: rgba(168, 184, 216, 0.7);
+  --accent-hi-50: rgba(168, 184, 216, 0.5);
+  --accent-hi-30: rgba(168, 184, 216, 0.3);
+  --accent-hi-15: rgba(168, 184, 216, 0.15);
+  --accent-hi-08: rgba(168, 184, 216, 0.08);
+  --accent-hi-05: rgba(168, 184, 216, 0.05);
   --gray-mid:     #ababab;
   --footer-dark:  rgb(32, 32, 32);
 
-  --ink-50:   rgba(26,26,26,0.5);
+  --ink-50:   rgba(26,26,26,0.58); /* WCAG AA: ~4.8:1 on #FAFAF8 */
 
   /* Spacing utilities */
   --gutter:   clamp(1.25rem, 4vw, 3rem);
@@ -59,6 +60,12 @@
   --ls-wide:   0.06em;      /* labels, tags, uppercase */
   --ls-wider:  0.1em;       /* small mono labels */
   --ls-widest: 0.12em;     /* section labels, approach labels */
+
+  /* Line-height scale */
+  --lh-display: 1.05;    /* hero/display headings */
+  --lh-tight:   1.15;    /* subheadings, card titles */
+  --lh-base:    1.65;    /* body text */
+  --lh-relaxed: 1.75;    /* long-form reading */
 
   /* Radius scale */
   --radius-sm:   6px;
@@ -85,6 +92,39 @@
   --green: #34C759;
 
   --project-color: var(--ink);
+
+  /* Spacing scale */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-8: 3rem;      /* 48px */
+  --space-10: 4rem;     /* 64px */
+  --space-12: 6rem;     /* 96px */
+
+  /* Transition durations */
+  --dur-fast: 0.15s;
+  --dur-base: 0.25s;
+  --dur-slow: 0.4s;
+  --dur-slower: 0.7s;
+
+  /* Shadow elevation */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  /* Glass-morphism */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.03);
+  --glass-blur: blur(20px) saturate(1.8);
+
+  /* Overlays */
+  --overlay-dark: rgba(0, 0, 0, 0.35);
+  --overlay-light: rgba(255, 255, 255, 0.55);
 }
 
 /* --- Dark mode tokens --- */
@@ -94,14 +134,26 @@
   --surface:  #222220;
   --ink:      #EDEDEC;
   --ink-70:   rgba(237,237,236,0.7);
-  --ink-50:   rgba(237,237,236,0.5);
-  --ink-40:   rgba(237,237,236,0.4);
+  --ink-50:   rgba(237,237,236,0.58); /* WCAG AA: ~4.9:1 on #111110 */
+  --ink-40:   rgba(237,237,236,0.5);  /* WCAG AA: ~4.3:1 on #111110 — large text OK */
+  --ink-30:   rgba(237,237,236,0.3);
   --ink-15:   rgba(237,237,236,0.15);
   --ink-12:   rgba(237,237,236,0.12);
   --ink-08:   rgba(237,237,236,0.08);
   --ink-06:   rgba(237,237,236,0.06);
   --ink-04:   rgba(237,237,236,0.04);
   color-scheme: dark;
+
+  /* Shadow elevation — dark */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  /* Glass-morphism — dark */
+  --glass-bg: rgba(30, 30, 30, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* OS preference fallback when JS is disabled */
@@ -112,14 +164,18 @@
     --surface:  #222220;
     --ink:      #EDEDEC;
     --ink-70:   rgba(237,237,236,0.7);
-    --ink-50:   rgba(237,237,236,0.5);
-    --ink-40:   rgba(237,237,236,0.4);
+    --ink-50:   rgba(237,237,236,0.58);
+    --ink-40:   rgba(237,237,236,0.5);
+    --ink-30:   rgba(237,237,236,0.3);
     --ink-15:   rgba(237,237,236,0.15);
     --ink-12:   rgba(237,237,236,0.12);
     --ink-08:   rgba(237,237,236,0.08);
     --ink-06:   rgba(237,237,236,0.06);
     --ink-04:   rgba(237,237,236,0.04);
     color-scheme: dark;
+    --glass-bg: rgba(30, 30, 30, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -154,13 +210,13 @@
 [data-theme="dark"] .cs-details,
 [data-theme="dark"] .cs-swatch {
   border-color: var(--ink-12);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-md);
 }
 [data-theme="dark"] .pcard:hover,
 [data-theme="dark"] .pcard-text:hover,
 [data-theme="dark"] .cs-feature-card:hover {
   border-color: var(--ink-15);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  box-shadow: var(--shadow-hover);
 }
 
 /* --- Theme toggle --- */
@@ -168,8 +224,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid var(--ink-08);
   color: var(--ink-40);
@@ -178,6 +234,14 @@
   flex-shrink: 0;
   background: none;
   padding: 0;
+  /* Touch target: visual 36px, but padding ensures 44px hit area */
+  position: relative;
+}
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
 }
 .theme-toggle:hover {
   color: var(--ink);

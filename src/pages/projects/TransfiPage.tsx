@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -13,6 +12,8 @@ import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsNumList from '../../components/case-study/CsNumList'
+import CsCompareTable from '../../components/case-study/CsCompareTable'
+import CsBeforeAfter from '../../components/case-study/CsBeforeAfter'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -30,12 +31,12 @@ export default function TransfiPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#232D95' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="fintech"
           backLabel="Back to Work"
           tags={['Fintech', 'UX', 'Web3', 'Brand']}
           title="TransFi"
@@ -67,7 +68,7 @@ export default function TransfiPage() {
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">As the sole product designer embedded with engineering and product, I owned: product strategy and roadmap input, competitive research and user interviews, information architecture and user flows, wireframing and prototyping, high-fidelity UI design (web + mobile), component library and design system, brand identity and visual language, and direct interaction with enterprise clients for feedback loops.</span>
+              <span className="cs-label-row-val">Sole product designer on a team of 8 (product lead + 6 engineers). I owned research, UX flows, visual design, and the component library. Product strategy was collaborative with the founder and product lead. I conducted client interviews directly and participated in sprint planning, but engineering architecture and backend decisions were owned by the eng team.</span>
             </div>
             <div className="cs-label-row" style={{ borderBottom: 'none' }}>
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
@@ -131,6 +132,18 @@ export default function TransfiPage() {
             { key: 'Ramp', value: 'Developer-friendly APIs with good documentation, but the merchant dashboard lacked actionable analytics. No localization for Asian markets.' },
             { key: 'Transak', value: 'Widest fiat currency support, but the widget UX felt dated and the onboarding process for merchants took 2+ weeks with manual KYB steps.' },
           ]} />
+          <CsCompareTable
+            title="Competitive Feature Matrix"
+            columns={['MoonPay', 'Ramp', 'Transak', 'TransFi']}
+            rows={[
+              { feature: 'Asian market localization', values: [false, false, 'Partial', true] },
+              { feature: 'Enterprise onboarding < 1 week', values: [false, true, false, true] },
+              { feature: 'Automated KYB', values: [false, false, false, true] },
+              { feature: 'Actionable merchant analytics', values: ['Basic', false, 'Basic', true] },
+              { feature: 'Sandbox-first developer flow', values: [true, true, false, true] },
+              { feature: 'Local payment methods (6+ markets)', values: [false, false, true, true] },
+            ]}
+          />
           <h3 className="cs-section-subtitle" style={{ marginTop: '2.5rem' }}>Enterprise Client Interviews</h3>
           <CsBody>
             <p>I conducted interviews with 12 enterprise clients (wallet providers, DeFi platforms, and exchanges) across 6 Asian markets. Three recurring themes emerged:</p>
@@ -236,6 +249,28 @@ export default function TransfiPage() {
           <p className="cs-caption">Profile and trade history screens give users a clear overview of their transaction activity, saved wallet addresses, and bank account details &mdash; reducing friction for repeat purchases.</p>
         </div>
 
+        <CsBeforeAfter
+          title="Merchant Onboarding Transformation"
+          before={{
+            label: 'Before (2+ weeks)',
+            items: [
+              'Manual KYB via email attachments',
+              'No visibility into review status',
+              'Back-and-forth with support for API keys',
+              'Documentation scattered across PDFs',
+            ],
+          }}
+          after={{
+            label: 'After (3 days)',
+            items: [
+              'Automated KYB with real-time document upload',
+              'Progress dashboard with clear status indicators',
+              'Instant sandbox access — API keys on signup',
+              'Interactive docs with in-dashboard guidance',
+            ],
+          }}
+        />
+
         <CsSection id="cs-gtm" label="Go-To-Market Strategy" title="">
           <h2 className="cs-display">Businesses Can Implement The TransFi Widget Easily In 3 Steps.</h2>
           <CsSteps steps={[
@@ -253,12 +288,12 @@ export default function TransfiPage() {
         <CsSection id="cs-results" label="Results" title="">
           <h2 className="cs-display">Measurable Impact Across The Platform.</h2>
           <CsBody>
-            <p>The redesigned platform launched in phases across 2022&ndash;2023. Here are the key outcomes from the product and design work:</p>
+            <p>The redesigned platform launched in phases across 2022&ndash;2023. Metrics below reflect the state when I departed in early 2023. The platform has continued to grow under the team I helped build.</p>
           </CsBody>
           <CsStatGrid stats={[
-            { label: 'Onboarding Time', value: '2wk \u2192 3d' },
-            { label: 'Monthly Volume', value: '$50M+' },
-            { label: 'Self-Service Rate', value: '+45%' },
+            { label: 'Merchant Onboarding (was 2wk manual)', value: '3 days' },
+            { label: 'Monthly Volume (by Q1 2023)', value: '$50M+' },
+            { label: 'Self-Service Rate (from ~30% baseline)', value: '75%' },
             { label: 'Markets Localized', value: '6' },
           ]} />
           <CsPullquote
@@ -276,12 +311,23 @@ export default function TransfiPage() {
           </CsCallout>
         </CsSection>
 
-        <CsSection id="cs-reflections" label="Reflections" title="What I Carried Forward">
-          <CsBody style={{ maxWidth: '720px' }}>
-            <p>Being the sole designer embedded with engineering taught me the difference between ownership and isolation. Ownership means you shape every pixel and every flow; isolation means there is no one to challenge your assumptions in real time. I learned to compensate by pulling engineers into design critiques early, treating product managers as co-designers, and scheduling regular check-ins with enterprise clients so that external perspective replaced the internal sounding board I did not have.</p>
-            <p>The hardest design problem at TransFi was serving two audiences simultaneously with one design system. Enterprise merchants needed dashboards that surfaced ROI, conversion funnels, and settlement timelines &mdash; they evaluate design through the lens of business outcomes, not delight. Their end consumers, meanwhile, needed a checkout widget that felt as effortless as any e-commerce purchase. Building a component library flexible enough to serve both taught me that a good design system is not about consistency for its own sake; it is about encoding the right defaults for each context while sharing a common visual language.</p>
-            <p>Localizing the widget for Indonesia, Vietnam, and the Philippines revealed that localization and cultural adaptation are not the same thing. Translation gets you language; cultural adaptation gets you trust. Supporting GoPay, GCash, and local bank transfers was not a feature checkbox &mdash; it required rethinking payment selection hierarchies, adjusting information density for markets where mobile data is expensive, and designing KYC flows around national ID formats that Western platforms had never accounted for. That work changed how I think about &ldquo;international&rdquo; design: it starts with local context, not global patterns adapted after the fact.</p>
+        <CsSection id="cs-learnings" label="Key Learnings" title="What I Carried Forward">
+          <CsFeatureGrid features={[
+            { title: 'Ownership vs. isolation', desc: 'As the sole designer, I shaped every pixel but had no one to challenge assumptions in real time. I compensated by pulling engineers into design critiques early and scheduling regular check-ins with enterprise clients as external sounding boards.' },
+            { title: 'One system, two audiences', desc: 'Merchants evaluate design through business outcomes (ROI, funnels, settlements). Consumers need effortless checkout. Building a component library for both taught me that a good design system encodes the right defaults for each context, not consistency for its own sake.' },
+            { title: 'Localization \u2260 translation', desc: 'Supporting GoPay, GCash, and local bank transfers required rethinking payment hierarchies, adjusting information density for expensive mobile data markets, and designing KYC around national ID formats Western platforms never accounted for.' },
+          ]} />
+        </CsSection>
+
+        <CsSection id="cs-whats-next" label="What&rsquo;s Next" title="Where TransFi Is Heading">
+          <CsBody>
+            <p>TransFi continues to operate and scale across Asian markets. I left the team in early 2023 after establishing the design system and product foundations. The platform now processes $50M+ monthly. Here is what the roadmap looked like when I departed.</p>
           </CsBody>
+          <CsSteps steps={[
+            { num: '1', title: 'Off-Ramp Expansion', desc: 'Extending the widget to support crypto-to-fiat off-ramp flows \u2014 letting merchants pay out to local bank accounts and mobile wallets in markets where traditional banking is fragmented.' },
+            { num: '2', title: 'Embedded Analytics for Merchants', desc: 'Moving from a reporting dashboard to an intelligence layer: automated alerts for conversion drops, cohort analysis by geography, and predictive fee optimization based on transfer patterns.' },
+            { num: '3', title: 'Compliance Automation', desc: 'Expanding the automated KYB system to handle regulatory changes across jurisdictions without manual intervention \u2014 reducing the compliance burden that is the biggest barrier to scaling in new markets.' },
+          ]} />
         </CsSection>
 
         {/* Credits */}
@@ -330,7 +376,8 @@ export default function TransfiPage() {
           { id: 'cs-screens', label: 'Screens' },
           { id: 'cs-gtm', label: 'Go-To-Market' },
           { id: 'cs-results', label: 'Results' },
-          { id: 'cs-reflections', label: 'Reflections' },
+          { id: 'cs-learnings', label: 'Learnings' },
+          { id: 'cs-whats-next', label: 'What\u2019s Next' },
         ]} liveUrl="https://www.transfi.com" />
 
       </main>

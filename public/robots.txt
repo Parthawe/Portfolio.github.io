@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://parthpawar.com/sitemap.xml

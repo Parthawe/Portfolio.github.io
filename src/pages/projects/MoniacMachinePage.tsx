@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -22,12 +21,12 @@ export default function MoniacMachinePage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#2E7D32' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="installations"
           backLabel="Back to Work"
           tags={['Creative Technology', 'Game Design']}
           title="Moniac Machine"

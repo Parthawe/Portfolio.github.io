@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, lazy, Suspense } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -9,9 +9,14 @@ import TiltCard from '../components/TiltCard'
 import { Reveal } from '../components/Reveal'
 import { getImageBrightness } from '../utils/imageBrightness'
 
+const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'))
+
+const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'brand-visual', 'ai', 'creative-tech'])
+
 export default function CategoryPage() {
   const { pathname } = useLocation()
   const slug = pathname.replace(/^\//, '')
+  const has3D = CATEGORIES_WITH_3D.has(slug)
   const category = categories.find((c) => c.slug === slug)
 
   const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -57,8 +62,8 @@ export default function CategoryPage() {
         <div className="wrap">
           {/* Hero */}
           <div className="lp-hero">
-            <div className="lp-hero-grid">
-              <div>
+            <div className={`lp-hero-grid${has3D ? ' lp-hero-grid--3col' : ''}`}>
+              <div className="lp-hero-text">
                 <motion.h1
                   className="lp-hero-title"
                   initial={{ opacity: 0, y: 40 }}
@@ -76,14 +81,14 @@ export default function CategoryPage() {
                     {category.titleAccent}
                   </motion.span>
                 </motion.h1>
-              </div>
-              <motion.div
-                className="lp-hero-right"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-              >
-                <p className="lp-hero-intro">{category.description}</p>
+                <motion.p
+                  className="lp-hero-intro"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                >
+                  {category.description}
+                </motion.p>
                 <motion.div
                   className="lp-stats"
                   initial="hidden"
@@ -122,7 +127,21 @@ export default function CategoryPage() {
                     </motion.span>
                   ))}
                 </motion.div>
-              </motion.div>
+              </div>
+
+              {/* 3D Object — only on the 6 real categories */}
+              {has3D && (
+                <motion.div
+                  className="lp-hero-3d"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Suspense fallback={null}>
+                    <CategoryObject3D slug={slug} size={280} />
+                  </Suspense>
+                </motion.div>
+              )}
             </div>
           </div>
 

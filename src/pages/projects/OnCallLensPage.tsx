@@ -36,6 +36,7 @@ export default function OnCallLensPage() {
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="ai"
           backLabel="Back to Work"
           tags={['AI', 'Developer Tools', 'Hackathon', 'Smart Glasses']}
           title="OnCall Lens"

@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -26,12 +25,12 @@ export default function VjSoftwarePage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#4A5568' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="creative-tech"
           backLabel="Back to Work"
           tags={['UX', 'UI', 'Research', 'Prototyping']}
           title="VJ Parivar"

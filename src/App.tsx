@@ -17,12 +17,10 @@ const OnCallLensPage = lazy(() => import('./pages/projects/OnCallLensPage'))
 const OrgDashboardPage = lazy(() => import('./pages/projects/OrgDashboardPage'))
 const ZentipayPage = lazy(() => import('./pages/projects/ZentipayPage'))
 const TransfiPage = lazy(() => import('./pages/projects/TransfiPage'))
-const CryptoPage = lazy(() => import('./pages/projects/CryptoPage'))
 const ShufflePage = lazy(() => import('./pages/projects/ShufflePage'))
 const RaahiPage = lazy(() => import('./pages/projects/RaahiPage'))
 const ThePointCdcPage = lazy(() => import('./pages/projects/ThePointCdcPage'))
 const AiVoicePage = lazy(() => import('./pages/projects/AiVoicePage'))
-const AiWearablesPage = lazy(() => import('./pages/projects/AiWearablesPage'))
 const BallahCodePage = lazy(() => import('./pages/projects/BallahCodePage'))
 const OfficeOfDiversityPage = lazy(() => import('./pages/projects/OfficeOfDiversityPage'))
 const TheOmakasePage = lazy(() => import('./pages/projects/TheOmakasePage'))
@@ -41,6 +39,9 @@ const RevolvingStagePage = lazy(() => import('./pages/projects/RevolvingStagePag
 const UvLightPage = lazy(() => import('./pages/projects/UvLightPage'))
 const VjSoftwarePage = lazy(() => import('./pages/projects/VjSoftwarePage'))
 const BlackHolePage = lazy(() => import('./pages/projects/BlackHolePage'))
+const SeaOfSaltPage = lazy(() => import('./pages/projects/SeaOfSaltPage'))
+const BookPage = lazy(() => import('./pages/BookPage'))
+const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 
 function Loading() {
   return <div className="page-loader"><span className="page-loader-logo">PP</span></div>
@@ -72,12 +73,12 @@ export default function App() {
           <Route path="/org-dashboard" element={<OrgDashboardPage />} />
           <Route path="/zentipay" element={<ZentipayPage />} />
           <Route path="/transfi-project" element={<TransfiPage />} />
-          <Route path="/crypto" element={<CryptoPage />} />
+          <Route path="/crypto" element={<CategoryPage />} />
           <Route path="/shuffle" element={<ShufflePage />} />
           <Route path="/raahi-project" element={<RaahiPage />} />
           <Route path="/the-point-cdc" element={<ThePointCdcPage />} />
           <Route path="/ai-voice" element={<AiVoicePage />} />
-          <Route path="/ai-wearables" element={<AiWearablesPage />} />
+          <Route path="/ai-wearables" element={<CategoryPage />} />
           <Route path="/ballah-code" element={<BallahCodePage />} />
           <Route path="/office-of-diversity" element={<OfficeOfDiversityPage />} />
           <Route path="/the-omakase" element={<TheOmakasePage />} />
@@ -96,6 +97,9 @@ export default function App() {
           <Route path="/uv-light" element={<UvLightPage />} />
           <Route path="/vj-software" element={<VjSoftwarePage />} />
           <Route path="/black-hole" element={<BlackHolePage />} />
+          <Route path="/sea-of-salt" element={<SeaOfSaltPage />} />
+          <Route path="/book" element={<BookPage />} />
+          <Route path="/graveyard" element={<GraveyardPage />} />
 
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />

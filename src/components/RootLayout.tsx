@@ -1,25 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import BackToTop from './BackToTop';
 import PageLoader from './PageLoader';
+import Lightbox from './Lightbox';
 import { useCursorFollower } from '../hooks/useCursorFollower';
 import { useMagnetic } from '../hooks/useMagnetic';
+import { useKeyboardNav } from '../hooks/useKeyboardNav';
 
-const pageVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
-};
-
-const pageTransition = {
-  duration: 0.4,
-  ease: [0.4, 0, 0.2, 1] as [number, number, number, number],
-};
+const HandTracker = lazy(() => import('./HandTracker'));
 
 export default function RootLayout() {
   const location = useLocation();
   const ioRef = useRef<IntersectionObserver | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  // Fade-in on mount and route change (CSS-driven, replaces Framer Motion)
+  useEffect(() => {
+    setVisible(false);
+    // Trigger reflow so the opacity:0 is painted before transitioning to 1
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setVisible(true));
+    });
+  }, [location.pathname]);
 
   // Scroll to top on route change (Lenis-aware)
   useEffect(() => {
@@ -92,17 +93,16 @@ export default function RootLayout() {
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Re-scan after route change — catches elements that AnimatePresence reveals
+  // Re-scan after route change — catches elements revealed after CSS transition
   useEffect(() => {
     const io = ioRef.current;
     if (!io) return;
 
-    // Wait for Framer Motion enter animation to finish, then scan
     const timer = setTimeout(() => {
       document.querySelectorAll('.reveal:not(.visible), .reveal-image:not(.visible)').forEach((el) => {
         io.observe(el);
       });
-    }, 350); // just after the 300ms page transition
+    }, 350);
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -110,25 +110,25 @@ export default function RootLayout() {
   // Custom cursor + magnetic buttons (desktop only)
   useCursorFollower();
   useMagnetic();
+  useKeyboardNav();
 
   return (
     <>
       <div className="grain" aria-hidden="true"></div>
       <div className="dot-grid" aria-hidden="true"></div>
       <PageLoader />
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={location.pathname}
-          variants={pageVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={pageTransition}
-        >
-          <Outlet />
-        </motion.div>
-      </AnimatePresence>
-      <BackToTop />
+      <div
+        style={{
+          opacity: visible ? 1 : 0,
+          transition: 'opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
+      >
+        <Outlet />
+      </div>
+      <Lightbox />
+      <Suspense fallback={null}>
+        <HandTracker />
+      </Suspense>
     </>
   );
 }

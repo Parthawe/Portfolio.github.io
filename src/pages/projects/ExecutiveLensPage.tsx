@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
@@ -11,8 +10,8 @@ import CsStatGrid from '../../components/case-study/CsStatGrid'
 import CsSteps from '../../components/case-study/CsSteps'
 import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsImage from '../../components/case-study/CsImage'
 import CsCredits from '../../components/case-study/CsCredits'
+import CsImage from '../../components/case-study/CsImage'
 import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -31,12 +30,12 @@ export default function ExecutiveLensPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#0A6847' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="ai"
           backLabel="Back to Work"
           tags={['AI', 'SaaS', 'Product Design', 'Data Visualization']}
           title="ExecutiveLens"
@@ -107,7 +106,6 @@ export default function ExecutiveLensPage() {
             { num: '3', title: 'Action Item Extraction', desc: 'Commitments are captured with owners and deadlines. \u201cSarah, can you get that report by Friday?\u201d becomes a tracked action item assigned to Sarah, due Friday, linked to the meeting context.' },
             { num: '4', title: 'Post-Meeting Summary', desc: 'Within 60 seconds of the meeting ending, every participant receives a structured summary: decisions, action items, open questions, and a narrative overview \u2014 ready to share or archive.' },
           ]} />
-          <CsImage placeholder="Meeting assistant live view — transcript with decision cards on the right rail" />
         </CsSection>
 
         <CsSection id="cs-dashboard" label="Executive Dashboard" title="The Command Center That Thinks for You">
@@ -119,7 +117,13 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>The biggest design decision was replacing the traditional grid-of-widgets dashboard with a feed-based narrative. Instead of twelve charts competing for attention, the dashboard presents a prioritized stream: the most important insight first, with supporting data below. Each card in the feed is actionable &mdash; tap to drill down, swipe to dismiss, long-press to share with your team. The AI curates the feed based on your role, your recent meetings, and what has changed since you last looked.</p>
           </CsBody>
-          <CsImage placeholder="Executive dashboard — feed-based narrative with KPI cards and meeting-to-metric connections" />
+        </CsSection>
+
+        <CsSection id="cs-website" label="Live Product" title="executivelens.ai — The Product Site">
+          <CsBody>
+            <p>The marketing site follows the same design philosophy as the product: clarity over cleverness. Clean typography, structured information hierarchy, and a narrative that walks executives from problem to solution without buzzword bingo. The hero shows the real product, not mockups.</p>
+          </CsBody>
+          <CsImage src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.png" alt="ExecutiveLens.ai full marketing website — hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
         </CsSection>
 
         <CsSection id="cs-insights" label="Insight Engine" title="AI That Connects Dots You Did Not Know Existed">
@@ -131,15 +135,7 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>The engine also runs a continuous risk scan. It monitors for action items that are overdue, decisions that contradict previous commitments, metrics moving in the wrong direction without acknowledgment, and sentiment shifts in team conversations. Risk alerts are designed to feel urgent without feeling noisy &mdash; a red border, a clear one-line summary, and a single tap to see the full context. Executives told us in research that they get hundreds of notifications per day. The risk alert needed to be the one they actually read.</p>
           </CsBody>
-          <CsImage placeholder="Insight engine — AI-generated cards with citation trails linking back to meeting transcripts" />
         </CsSection>
-
-        {/* Mobile View */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <CsImage placeholder="Mobile experience — glanceable cards, voice-triggered summaries, 30-second meeting prep" className="reveal-image" style={{ aspectRatio: '9/16', maxWidth: 'min(375px, 90vw)' } as React.CSSProperties} />
-          </div>
-        </section>
 
         <CsSection id="cs-impact" label="Impact" title="The Numbers Behind the Intelligence">
           <CsBody style={{ marginBottom: '2rem' }}>
@@ -189,6 +185,7 @@ export default function ExecutiveLensPage() {
           { id: 'cs-challenges', label: 'Challenges' },
           { id: 'cs-meeting', label: 'Meeting Assistant' },
           { id: 'cs-dashboard', label: 'Dashboard' },
+          { id: 'cs-website', label: 'Live Site' },
           { id: 'cs-insights', label: 'Insight Engine' },
           { id: 'cs-impact', label: 'Impact' },
           { id: 'cs-reflections', label: 'Reflections' },

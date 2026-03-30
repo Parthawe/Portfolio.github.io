@@ -504,17 +504,19 @@ function MiniCreativeTech({ dark }: { dark: boolean }) {
 
 const MINI_COMPONENTS = [MiniInstallation, MiniDesignForGood, MiniProductDesign, MiniBrandVisual, MiniAIWearables, MiniCreativeTech];
 
-function InteractiveLabel({ position, text, offset, dark, index, route }: {
+function InteractiveLabel({ position, text, offset, dark, index, route, parentRef }: {
   position: [number, number, number];
   text: string;
   offset: [number, number, number];
   dark: boolean;
   index: number;
   route: string;
+  parentRef: React.RefObject<THREE.Group>;
 }) {
   const [hovered, setHovered] = useState(false);
   const textRef = useRef<THREE.Mesh>(null!);
   const objectRef = useRef<THREE.Group>(null!);
+  const groupRef = useRef<THREE.Group>(null!);
   const lerp = useRef(0); // 0 = text, 1 = 3D object
 
   const handleClick = useCallback(() => {
@@ -525,16 +527,26 @@ function InteractiveLabel({ position, text, offset, dark, index, route }: {
     const target = hovered ? 1 : 0;
     lerp.current += (target - lerp.current) * Math.min(delta * 6, 1);
 
-    // Text: fade out and scale down
+    // Text: fade out and scale down, force depthTest off so text is never occluded
     if (textRef.current) {
       const textScale = 1 - lerp.current * 0.5;
       textRef.current.scale.set(textScale, textScale, textScale);
       (textRef.current as any).fillOpacity = (dark ? 0.55 : 0.65) * (1 - lerp.current);
+      const mat = (textRef.current as any).material;
+      if (mat && mat.depthTest !== false) {
+        mat.depthTest = false;
+        mat.depthWrite = false;
+        mat.needsUpdate = true;
+      }
     }
     // Object: scale up
     if (objectRef.current) {
       const objScale = lerp.current;
       objectRef.current.scale.set(objScale, objScale, objScale);
+    }
+    // Counter-rotate Z so labels always stay upright/readable
+    if (groupRef.current && parentRef?.current) {
+      groupRef.current.rotation.z = -parentRef.current.rotation.z;
     }
   });
 
@@ -544,13 +556,13 @@ function InteractiveLabel({ position, text, offset, dark, index, route }: {
   const lz = position[2] + offset[2];
 
   return (
-    <group
-      position={[lx, ly, lz]}
-      onClick={handleClick}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
-      onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
-    >
-      {/* Text label */}
+    <group ref={groupRef} position={[lx, ly, lz]}>
+      <group
+        onClick={handleClick}
+        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
+        onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
+      >
+      {/* Text label — always renders on top so 3D objects don't occlude it */}
       <Text
         ref={textRef}
         fontSize={0.14}
@@ -559,12 +571,14 @@ function InteractiveLabel({ position, text, offset, dark, index, route }: {
         anchorY={offset[1] > 0 ? 'bottom' : 'top'}
         letterSpacing={0.08}
         fillOpacity={dark ? 0.55 : 0.65}
+        renderOrder={999}
       >
         {text}
       </Text>
       {/* Mini 3D object — scales in on hover */}
       <group ref={objectRef} scale={0}>
         <MiniComponent dark={dark} />
+      </group>
       </group>
     </group>
   );
@@ -1492,13 +1506,13 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
     const m = mouse.current;
     t.x += (m.x - t.x) * 0.012;
     t.y += (m.y - t.y) * 0.012;
-    // Continuous slow orbit — whole constellation rotates around Product Design (center)
+    // Continuous slow orbit — whole constellation rotates around Z axis
     const elapsed = clock.getElapsedTime();
-    const orbitY = elapsed * 0.015; // very slow continuous rotation
-    const orbitX = Math.cos(elapsed * 0.03) * 0.03; // subtle vertical drift
-    groupRef.current.rotation.y = t.x * 0.1 + orbitY;
+    const orbitZ = elapsed * 0.015; // very slow continuous rotation around Z
+    const orbitX = Math.cos(elapsed * 0.03) * 0.02; // subtle drift
+    groupRef.current.rotation.y = t.x * 0.1;
     groupRef.current.rotation.x = -t.y * 0.05 + orbitX;
-    groupRef.current.rotation.z = Math.sin(elapsed * 0.025) * 0.012;
+    groupRef.current.rotation.z = orbitZ;
   });
 
   const positions = NODES.map(n => n.position);
@@ -1556,7 +1570,7 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
 
         {/* Interactive Labels — morph into mini 3D objects on hover */}
         {NODES.map((n, i) => (
-          <InteractiveLabel key={i} position={n.position} text={n.label} offset={n.labelOffset} dark={dark} index={i} route={n.route} />
+          <InteractiveLabel key={i} position={n.position} text={n.label} offset={n.labelOffset} dark={dark} index={i} route={n.route} parentRef={groupRef} />
         ))}
       </group>
 
@@ -1566,6 +1580,10 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
 }
 
 /* ─── Main Component ─── */
+
+/* ─── Named exports for reuse on category/project pages ─── */
+export { TrussStructure, PetalRose, MorphingScreens, StackedPlates, LensAssembly, GlassCrystal };
+export { useHoverLerp, useVirtualTime, mix };
 
 export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const containerRef = useRef<HTMLDivElement>(null);

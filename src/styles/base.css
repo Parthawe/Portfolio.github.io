@@ -1,3 +1,16 @@
+/* --- Brand icons --- */
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+  line-height: 1;
+}
+.brand-icon svg {
+  display: block;
+}
+
 /* --- Skip to content --- */
 .skip-to-content {
   position: fixed; top: -100%; left: 50%;
@@ -8,7 +21,7 @@
   border-radius: var(--radius-pill);
   font-family: var(--sans); font-size: var(--text-sm);
   text-decoration: none;
-  transition: top 0.2s;
+  transition: top var(--dur-base);
 }
 .skip-to-content:focus {
   top: 1rem;
@@ -115,7 +128,7 @@ hr.divider {
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px);
-  transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s;
+  transition: opacity var(--dur-base), transform var(--dur-base), background var(--dur-base), border-color var(--dur-base);
   z-index: 50;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -142,12 +155,14 @@ hr.divider {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--accent-gold);
+  background: var(--accent-hi);
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
-  transition: width 0.35s var(--ease-spring), height 0.35s var(--ease-spring),
-              background 0.3s, opacity 0.3s;
+  transition: width 0.3s var(--ease-spring), height 0.3s var(--ease-spring),
+              top 0.3s var(--ease-spring), left 0.3s var(--ease-spring),
+              background var(--dur-base), opacity var(--dur-base),
+              border 0.3s var(--ease-spring);
   opacity: 0;
 }
 .cursor-ring {
@@ -156,11 +171,12 @@ hr.divider {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--accent-gold-30);
+  border: 1px solid var(--accent-hi-30);
   pointer-events: none;
   z-index: 9998;
-  transition: width 0.4s var(--ease-spring), height 0.4s var(--ease-spring),
-              border-color 0.3s, opacity 0.3s, background 0.3s;
+  transition: width 0.35s var(--ease-spring), height 0.35s var(--ease-spring),
+              top 0.35s var(--ease-spring), left 0.35s var(--ease-spring),
+              border-color var(--dur-base), opacity var(--dur-base), background var(--dur-base);
   opacity: 0;
 }
 .cursor-dot.hover, .cursor-dot.cta {
@@ -170,19 +186,19 @@ hr.divider {
 .cursor-ring.hover {
   width: 56px; height: 56px;
   top: -28px; left: -28px;
-  border-color: var(--accent-gold-50);
+  border-color: var(--accent-hi-50);
 }
 .cursor-ring.cta {
   width: 64px; height: 64px;
   top: -32px; left: -32px;
-  border-color: var(--accent-gold-70);
-  background: var(--accent-gold-05);
+  border-color: var(--accent-hi-70);
+  background: var(--accent-hi-05);
 }
 .cursor-dot.view {
   width: 60px; height: 60px;
   top: -30px; left: -30px;
-  background: var(--accent-gold-08);
-  border: 1px solid var(--accent-gold-30);
+  background: var(--accent-hi-08);
+  border: 1px solid var(--accent-hi-30);
   mix-blend-mode: normal;
 }
 .cursor-dot.view::after {
@@ -194,13 +210,13 @@ hr.divider {
   font-size: var(--text-2xs);
   text-transform: uppercase;
   letter-spacing: var(--ls-wider);
-  color: var(--accent-gold-70);
+  color: var(--accent-hi-70);
   white-space: nowrap;
 }
 .cursor-ring.view {
   width: 80px; height: 80px;
   top: -40px; left: -40px;
-  border-color: var(--accent-gold-15);
+  border-color: var(--accent-hi-15);
 }
 @media (max-width: 768px) {
   .cursor-dot, .cursor-ring { display: none !important; }
@@ -220,23 +236,42 @@ hr.divider {
   .page-loader-logo { animation: none; opacity: 1; }
 }
 
-/* ── Focus Visible ── */
-:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
+/* ── Mono Label — unified section label pattern ── */
+.mono-label {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--ink-40);
 }
-.pcard:focus-visible,
-.hp-tab:focus-visible,
-.wr-arrow-btn:focus-visible,
-.work-bnav-link:focus-visible,
-.about-cta-btn:focus-visible,
-.back-to-top:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
-  border-radius: 4px;
+.mono-label--wide {
+  letter-spacing: var(--ls-widest);
 }
-.hp-tab:focus-visible {
-  outline-offset: -2px;
+
+/* ── Pill Link — unified pill button pattern ── */
+.pill-link {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-50);
+  padding: var(--btn-sm);
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color var(--dur-fast), background var(--dur-fast), box-shadow var(--dur-fast);
+}
+.pill-link:hover {
+  color: var(--ink);
+  background: var(--ink-04);
+}
+.pill-link.active {
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+  font-weight: 600;
 }
 
 /* ── Image Lightbox ── */
@@ -250,7 +285,7 @@ hr.divider {
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s var(--ease-out);
+  transition: opacity var(--dur-base) var(--ease-out);
   cursor: zoom-out;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -285,7 +320,7 @@ hr.divider {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background var(--dur-base), transform var(--dur-base);
   font-size: 1.2rem;
 }
 .lightbox-close:hover {
@@ -338,10 +373,10 @@ hr.divider {
   navigation: auto;
 }
 ::view-transition-old(root) {
-  animation: 0.2s var(--ease-out) both vt-fade-out;
+  animation: var(--dur-base) var(--ease-out) both vt-fade-out;
 }
 ::view-transition-new(root) {
-  animation: 0.3s var(--ease-out) both vt-fade-in;
+  animation: var(--dur-base) var(--ease-out) both vt-fade-in;
 }
 @keyframes vt-fade-out {
   to { opacity: 0; transform: translateY(-6px); }
@@ -421,7 +456,7 @@ hr.divider {
   padding: 0.5rem 1rem;
   border: 1px solid var(--ink-12);
   border-radius: var(--radius-pill);
-  transition: color 0.3s, border-color 0.3s, background 0.3s, gap 0.3s;
+  transition: color var(--dur-base), border-color var(--dur-base), background var(--dur-base), gap var(--dur-base);
 }
 .not-found-link:hover {
   color: var(--ink);
@@ -433,7 +468,7 @@ hr.divider {
   width: 12px;
   height: 12px;
   opacity: 0.5;
-  transition: opacity 0.3s, transform 0.3s;
+  transition: opacity var(--dur-base), transform var(--dur-base);
 }
 .not-found-link:hover svg {
   opacity: 1;

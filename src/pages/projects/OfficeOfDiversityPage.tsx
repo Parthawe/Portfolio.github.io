@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
@@ -28,12 +27,12 @@ export default function OfficeOfDiversityPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#6B2D8B' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="design-for-good"
           backLabel="Back to Work"
           tags={['UI/UX', 'Data Visualization', 'Research']}
           title="Office of Diversity Report & Data Visualization"

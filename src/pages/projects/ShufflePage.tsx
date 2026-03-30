@@ -4,7 +4,6 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsImage from '../../components/case-study/CsImage'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -27,6 +26,7 @@ export default function ShufflePage() {
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="creative-tech"
           backLabel="Back to Work"
           tags={['Creative Technology', 'Physical Computing', 'Installation']}
           title="Shuffle"
@@ -39,7 +39,6 @@ export default function ShufflePage() {
 
         {/* Hero Image placeholder */}
         <section className="cs-slide reveal">
-          <CsImage placeholder="Shuffle — interactive tabletop installation with LED matrix and physical tokens" />
         </section>
 
         {/* Video */}

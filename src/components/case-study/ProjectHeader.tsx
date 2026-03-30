@@ -1,4 +1,8 @@
+import { lazy, Suspense, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, useScroll, useTransform } from 'framer-motion'
+
+const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
 interface ProjectHeaderProps {
   backLink: string
@@ -10,6 +14,7 @@ interface ProjectHeaderProps {
   heroImage?: string
   heroAlt?: string
   liveUrl?: string
+  categorySlug?: string
 }
 
 export default function ProjectHeader({
@@ -22,7 +27,16 @@ export default function ProjectHeader({
   heroImage,
   heroAlt,
   liveUrl,
+  categorySlug,
 }: ProjectHeaderProps) {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start end', 'end start'],
+  })
+  const heroY = useTransform(scrollYProgress, [0, 1], ['-3%', '3%'])
+  const heroScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1, 1.02])
+
   return (
     <div className="wrap project-header">
       <div className="proj-back">
@@ -31,6 +45,13 @@ export default function ProjectHeader({
         </Link>
       </div>
       <div className="proj-meta">
+        {categorySlug && (
+          <div className="proj-3d-ornament">
+            <Suspense fallback={null}>
+              <CategoryObject3D slug={categorySlug} size={typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 140} />
+            </Suspense>
+          </div>
+        )}
         <div className="proj-tags">
           {tags.map((tag) => (
             <span key={tag} className="proj-tag">
@@ -61,8 +82,13 @@ export default function ProjectHeader({
         )}
       </div>
       {heroImage && (
-        <div className="proj-hero-img hero-anim hero-anim-4">
-          <img src={heroImage} alt={heroAlt || ''} />
+        <div className="proj-hero-img hero-anim hero-anim-4" ref={heroRef}>
+          <motion.img
+            src={heroImage}
+            alt={heroAlt || ''}
+            loading="eager"
+            style={{ y: heroY, scale: heroScale }}
+          />
         </div>
       )}
     </div>

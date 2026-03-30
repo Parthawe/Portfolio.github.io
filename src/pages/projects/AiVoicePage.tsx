@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
@@ -29,12 +28,12 @@ export default function AiVoicePage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#4A6FA5' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="ai"
           backLabel="Back to Work"
           tags={['Product Design', 'AI', 'Voice UX', 'Enterprise']}
           title="Redefining AI Voice Selection For Enterprise"

@@ -1,28 +1,50 @@
 /* ================================================
-   WORK PAGE
+   WORK PAGE — 24px grid system
    ================================================ */
+
+/* Content above grid */
+.page-work .abt-paper .wrap {
+  position: relative;
+  z-index: 2;
+  padding-left: 48px;  /* 2 units */
+  padding-right: 48px;
+}
+
 .work-page-header {
-  padding: 8rem 0 3rem;
-  padding-top: calc(var(--nav-h) + 4rem);
+  padding-top: 168px; /* 7 units — clears nav, sits on grid */
+  padding-bottom: 48px; /* 2 units */
 }
 .work-page-title {
   font-family: var(--serif);
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 300;
   letter-spacing: var(--ls-normal);
-  margin-bottom: 0.75rem;
+  line-height: 72px; /* 3 units */
+  margin-bottom: 0;
+  position: relative;
+}
+/* Figma-style node label */
+.work-page-title::before {
+  content: 'Source Serif 4 · display';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink-15);
+  line-height: 14px;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-/* Work group label */
+/* Work group label — typography via .mono-label in base.css */
 .work-group-label {
   display: block;
-  font-family: var(--mono);
-  font-size: var(--text-xs);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--ink-40);
-  margin-bottom: 1.25rem;
-  padding-top: 2.5rem;
+  line-height: 24px; /* 1 unit */
+  margin-bottom: 24px; /* 1 unit */
+  padding-top: 48px; /* 2 units */
   border-top: 1px solid var(--ink-06);
 }
 .work-group:first-of-type .work-group-label {
@@ -30,14 +52,15 @@
   padding-top: 0;
 }
 
-/* ── Masonry grid — 3 columns (Pinterest-style) ── */
+/* ── Masonry grid — 3 columns ── */
 .pcard-masonry {
   columns: 3;
-  column-gap: 1.25rem;
+  column-gap: 24px; /* 1 unit */
+  padding-bottom: 72px; /* 3 units */
 }
 .pcard-masonry > * {
   break-inside: avoid;
-  margin-bottom: 1.25rem;
+  margin-bottom: 24px; /* 1 unit */
 }
 
 /* ── Project card — image fills entire card, text overlaid ── */
@@ -47,10 +70,10 @@
   color: inherit;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s var(--ease-spring);
+  transition: opacity var(--dur-slow) cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s var(--ease-spring);
 }
 .pcard:hover {
-  transform: translateY(-4px) scale(1.01);
+  transform: translateY(-2px) scale(1.01);
 }
 .pcard:active {
   transform: translateY(-2px) scale(0.995);
@@ -62,7 +85,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: border-color 0.3s;
+  transition: border-color var(--dur-base);
 }
 .pcard:hover .pcard-inner {
   border-color: rgba(255, 255, 255, 0.15);
@@ -107,7 +130,7 @@
   border: none;
   border-radius: var(--radius-pill);
   white-space: nowrap;
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--overlay-dark);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -129,11 +152,11 @@
 /* Project title — overlaid on image */
 .pcard-name {
   position: absolute;
-  bottom: 1.75rem;
+  bottom: 2.75rem;
   left: 1rem;
   right: 1rem;
   font-family: var(--serif);
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
   font-weight: 300;
   letter-spacing: var(--ls-normal);
   color: #fff;
@@ -236,9 +259,26 @@
   aspect-ratio: 9 / 16;
 }
 
-/* ── Sibling fade on card hover ── */
-.pcard-masonry:has(.pcard:hover) .pcard:not(:hover) {
-  opacity: 0.35;
+
+/* Figma-style radius arcs on bottom nav (work page only) */
+.page-work .work-bottom-nav { position: fixed; /* ensure pseudo can position */ }
+.page-work .work-bottom-nav::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border: 1px solid var(--ink-12);
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-mask-image:
+    radial-gradient(circle at 0% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 0% 100%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 100%, black 22px, transparent 22px);
+  mask-image:
+    radial-gradient(circle at 0% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 0% 100%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 100%, black 22px, transparent 22px);
 }
 
 /* ── Floating bottom category nav — unified pill (matches .nav-pill) ── */
@@ -253,17 +293,15 @@
   gap: 6px;
   padding: 5px 6px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(1.8);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.03);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   max-width: calc(100vw - 2rem);
   overflow-x: auto;
   scrollbar-width: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity var(--dur-slow) ease, transform var(--dur-slow) ease;
 }
 .work-bottom-nav::-webkit-scrollbar { display: none; }
 .work-bottom-nav.is-hidden {
@@ -272,38 +310,17 @@
   transform: translateX(-50%) translateY(16px);
 }
 
+/* extends .pill-link from base.css */
 .work-bnav-link {
-  font-family: var(--sans);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: 0;
-  color: var(--ink-50);
   padding: 0.5rem 1rem;
-  border-radius: var(--radius-pill);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
-}
-.work-bnav-link:hover {
-  color: var(--ink);
-  background: rgba(0, 0, 0, 0.04);
-}
-.work-bnav-link.active {
-  color: var(--ink);
-  background: var(--surface);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
-  font-weight: 600;
 }
 
 /* ── Dark mode — bottom nav ── */
 [data-theme="dark"] .work-bottom-nav {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(30, 30, 30, 0.6);
+  border-color: var(--glass-border);
+  background: var(--glass-bg);
   box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.2),
-    0 4px 16px rgba(0, 0, 0, 0.15),
+    var(--glass-shadow),
     inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
 }
 [data-theme="dark"] .work-bnav-link:hover {
@@ -317,7 +334,7 @@
 
 /* Work group show/hide */
 .work-group {
-  transition: opacity 0.4s var(--ease-out), max-height 0.5s var(--ease-out);
+  transition: opacity var(--dur-slow) var(--ease-out), max-height 0.5s var(--ease-out);
 }
 .work-group.hidden-group {
   opacity: 0;
@@ -340,10 +357,26 @@
 @media (max-width: 900px) {
   .pcard-masonry {
     columns: 2;
+    column-gap: 24px;
   }
+}
+@media (max-width: 768px) {
+  .page-work .abt-paper .wrap { padding-left: 24px; padding-right: 24px; }
+  .page-work .work-bottom-nav::after { display: none; }
+  .work-page-title::before { display: none; }
+  .work-page-header { padding-top: 120px; padding-bottom: 24px; }
+  .work-page-title { line-height: 48px; }
+  .pcard-masonry {
+    columns: 2;
+    column-gap: 16px;
+    padding-bottom: 48px;
+  }
+  .pcard-masonry > * { margin-bottom: 16px; }
 }
 @media (max-width: 540px) {
   .pcard-masonry {
     columns: 1;
+    column-gap: 24px;
   }
+  .pcard-masonry > * { margin-bottom: 24px; }
 }

@@ -30,7 +30,7 @@ const workGroups: WorkGroup[] = [
     projects: [
       { slug: 'mentra', image: '/Assets/images/mentra.png', name: 'Mentra', tag: 'AI WEARABLES', year: '2026', desc: 'OS, companion app, and app store for AI smart glasses — shipping at $299', category: 'ux', loading: 'eager' },
       { slug: 'transfi-project', image: '/Assets/images/transfi.jpg', name: 'TransFi', tag: 'WEB3 PAYMENTS', year: '2023', desc: 'Crypto payment rails across 6 Asian markets — $50M+ monthly volume', category: 'ux', loading: 'eager' },
-      { slug: 'zentipay', image: '/Assets/images/zentipay.png', name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Fintech super app from scratch — 30% higher transaction success', category: 'ux', loading: 'eager' },
+      { slug: 'zentipay', image: '/Assets/images/zentipay.png', name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Fintech super app from scratch — 30% higher transaction completion', category: 'ux', loading: 'eager' },
       { slug: 'executivelens', image: '/Assets/images/executivelens.png', name: 'ExecutiveLens', tag: 'AI ANALYTICS', year: '2026', desc: 'AI meeting intelligence saving executives 5.2 hrs/week — 87% adoption', category: 'ux' },
       { slug: 'org-dashboard', image: '/Assets/images/org-dashboard.png', name: 'OrgDashboard', tag: 'B2B SAAS', year: '2026', desc: 'SaaS giving AI agents organizational context — dual-user design', category: 'ux' },
       { slug: 'cuetv', image: '/Assets/images/cuetv.jpg', name: 'CueTV', tag: 'PRODUCT DESIGN', year: '2022', desc: 'OTT streaming platform — retargeting system generating 30K+ ad variations', category: 'ux' },
@@ -60,11 +60,12 @@ const workGroups: WorkGroup[] = [
     label: 'Creative Technology',
     projects: [
       { slug: 'jugalbandi', image: '/Assets/images/jugalbandi.png', name: 'Jugalbandi', tag: 'ML + MUSIC', year: '2024', desc: 'Neural network that duets with human musicians — Maker Faire + ITP Show', category: 'creative' },
-      { slug: 'keyboard-project', image: '/Assets/images/keyboard.jpg', name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'AI-generated keycap designs fabricated in real time — 200+ visitors', category: 'creative' },
+      { slug: 'keyboard-project', image: '/Assets/images/keyboard.jpg', name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'AI platform: text prompts \u2192 fabrication-ready custom keyboards \u2014 200+ visitors at thesis show', category: 'creative' },
       { slug: 'vj-software', image: '/Assets/images/vj.jpg', name: 'VJ Software', tag: 'REAL-TIME VISUALS', year: '2022', desc: 'Audio-reactive visual performance tool — 5 competitor analysis, 2 personas', category: 'creative' },
       { slug: 'enigma', image: '/Assets/images/enigma.jpg', name: 'Enigma', tag: 'DEEP LEARNING', year: '2023', desc: '200-neuron light sculpture visualizing a functioning neural network', category: 'creative' },
       { slug: 'shuffle', image: '/Assets/images/shuffle.jpg', name: 'Shuffle', tag: 'INTERACTIVE', year: '2024', desc: 'Weight-sensor LED grid — physical strategy game at ITP Winter Show', category: 'creative' },
       { slug: 'making-of-time', image: '/Assets/images/making-of-time.jpg', name: 'Making of Time', tag: 'PHYSICAL COMPUTING', year: '2024', desc: 'Sundial → mechanical watch → software clock — three ways to measure time', category: 'creative' },
+      { slug: 'sea-of-salt', image: '/Assets/images/sea-of-salt.jpg', name: 'Sea of Salt', tag: 'INSTALLATION', year: '2024', desc: 'Kinetic salt installation reacting to real-time ocean data', category: 'creative' },
     ],
   },
   {
@@ -140,6 +141,11 @@ export default function WorkPage() {
   const bottomNavRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    document.body.classList.add('page-work')
+    return () => document.body.classList.remove('page-work')
+  }, [])
+
+  useEffect(() => {
     const footer = document.querySelector('.footer')
     if (!footer) return
     const observer = new IntersectionObserver(
@@ -203,43 +209,74 @@ export default function WorkPage() {
       <Nav />
 
       <main id="main-content">
-        <div className="wrap">
-          <header className="work-page-header">
-            <h1 className="work-page-title">Work</h1>
-          </header>
+        <div className="abt-paper">
+          {/* SVG grid pattern defs */}
+          <svg className="abt-grid-defs" aria-hidden="true">
+            <defs>
+              <pattern id="wk-minor-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="18" x2="24" y2="18" className="abt-grid-h-minor" />
+                <line x1="24" y1="0" x2="24" y2="24" className="abt-grid-v-minor" strokeDasharray="3 5" />
+              </pattern>
+              <pattern id="wk-major-grid" width="120" height="120" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="18" x2="120" y2="18" className="abt-grid-h-major" />
+                <line x1="120" y1="0" x2="120" y2="120" className="abt-grid-v-major" strokeDasharray="4 4" />
+              </pattern>
+            </defs>
+          </svg>
 
-          {isAll ? (
-            <div className="pcard-masonry">
-              {allProjectsMixed.map(renderCard)}
-            </div>
-          ) : (
-            filteredGroups.map(group => (
-              <section key={group.category} className="work-group" data-category={group.category}>
-                <span className="work-group-label">{group.label}</span>
-                <div className="pcard-masonry">
-                  {group.projects.map(renderCard)}
-                </div>
-              </section>
-            ))
-          )}
-        </div>
+          {/* Grid layers */}
+          <svg className="abt-grid-layer" aria-hidden="true">
+            <rect width="100%" height="100%" fill="url(#wk-minor-grid)" />
+          </svg>
+          <svg className="abt-grid-layer abt-grid-layer--major" aria-hidden="true">
+            <rect width="100%" height="100%" fill="url(#wk-major-grid)" />
+          </svg>
 
-        <section className="cta-v2">
-          <div className="wrap cta-v2-inner">
-            <h2 className="cta-v2-headline">Let's work together</h2>
-            <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic">
-              parthpawar@nyu.edu
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </a>
+          {/* Decorative arc */}
+          <div className="abt-arc" aria-hidden="true" />
+
+          {/* Ruler marks */}
+          <div className="abt-ruler abt-ruler--left" aria-hidden="true" />
+          <div className="abt-ruler abt-ruler--right" aria-hidden="true" />
+
+          <div className="wrap">
+            <header className="work-page-header">
+              <h1 className="work-page-title">Work</h1>
+            </header>
+
+            {isAll ? (
+              <div className="pcard-masonry">
+                {allProjectsMixed.map(renderCard)}
+              </div>
+            ) : (
+              filteredGroups.map(group => (
+                <section key={group.category} className="work-group" data-category={group.category}>
+                  <span className="mono-label work-group-label">{group.label}</span>
+                  <div className="pcard-masonry">
+                    {group.projects.map(renderCard)}
+                  </div>
+                </section>
+              ))
+            )}
           </div>
-        </section>
+
+          <section className="cta-v2">
+            <div className="wrap cta-v2-inner">
+              <h2 className="cta-v2-headline">Let's work together</h2>
+              <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic">
+                parthpawar@nyu.edu
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
+            </div>
+          </section>
+        </div>
       </main>
 
       <nav className={`work-bottom-nav${footerVisible ? ' is-hidden' : ''}`} ref={bottomNavRef} aria-label="Filter projects">
         {filters.map(f => (
           <button
             key={f.key}
-            className={`work-bnav-link${activeFilter === f.key ? ' active' : ''}`}
+            className={`pill-link work-bnav-link${activeFilter === f.key ? ' active' : ''}`}
             onClick={() => {
               setActiveFilter(f.key)
               window.scrollTo({ top: 0, behavior: 'smooth' })

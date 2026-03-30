@@ -26,6 +26,7 @@ export default function TheOmakasePage() {
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="installations"
           backLabel="Back to Work"
           tags={['Creative Technology', 'Game Design']}
           title="The Omakase"

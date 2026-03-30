@@ -56,7 +56,7 @@
   perspective: 1200px;
   perspective-origin: 50% 50%;
   width: 100%;
-  max-width: 640px;
+  max-width: min(640px, 90vw);
   height: 340px;
   margin: clamp(2rem, 4vw, 3.5rem) auto clamp(1.5rem, 3vw, 2.5rem);
   position: relative;
@@ -65,8 +65,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 500px;
-  height: 500px;
+  width: min(500px, 100vw);
+  height: min(500px, 100vw);
   transform: translate(-50%, -50%);
   background: radial-gradient(circle, var(--ink-04) 0%, transparent 70%);
   pointer-events: none;
@@ -167,6 +167,9 @@
   display: block;
   width: 100%;
   height: 100%;
+}
+@media (max-width: 480px) {
+  .hero-3d-wrap { height: 320px; }
 }
 @media (min-width: 769px) {
   .hero-3d-wrap { height: 480px; }
@@ -281,6 +284,7 @@
   grid-template-columns: auto 1fr;
   gap: 4rem;
   align-items: start;
+  overflow: hidden;
 }
 .home-about-head {
   display: flex;
@@ -388,8 +392,8 @@
 /* ── Cursor glow ── */
 .hero-glow-cursor {
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: min(500px, 100vw);
+  height: min(500px, 100vw);
   border-radius: 50%;
   background: radial-gradient(circle, var(--ink-04) 0%, transparent 70%);
   pointer-events: none;
@@ -403,4 +407,15 @@
 /* ── Cycling hero label transition (extends .hero-label above) ── */
 .hero-label {
   transition: opacity 0.3s;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .home-about { padding: 3.5rem 0; }
+  .home-about-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .home-about-num { font-size: clamp(2rem, 8vw, 3rem); }
+  .home-about-head { flex-direction: row; align-items: center; gap: 1rem; }
 }

@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsBody from '../../components/case-study/CsBody'
@@ -23,12 +22,12 @@ export default function AtpsPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#319795' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="brand-visual"
           backLabel="Back to Work"
           tags={['Podcast', 'Content', 'Art & Design']}
           title="ArtTown Podcast Series"

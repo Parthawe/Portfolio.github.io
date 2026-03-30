@@ -50,7 +50,7 @@ export default function CryptoPage() {
             <div className="lp-featured-body">
               <div>
                 <h2 className="lp-featured-title">ZentiPay</h2>
-                <p className="lp-featured-desc">Fintech super app &mdash; 30% higher transaction success rate</p>
+                <p className="lp-featured-desc">Fintech super app &mdash; 30% higher transaction completion</p>
               </div>
               <span className="lp-featured-role">Founding Designer &middot; 2025</span>
             </div>

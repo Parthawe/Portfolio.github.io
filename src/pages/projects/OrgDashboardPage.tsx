@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
@@ -30,12 +29,12 @@ export default function OrgDashboardPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#2D3748' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="ux-design"
           backLabel="Back to Work"
           tags={['SaaS', 'AI', 'Product Design', 'B2B']}
           title="OrgDashboard"

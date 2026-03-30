@@ -1,22 +1,104 @@
 /* ================================================
-   DARK HERO — full-screen typographic intro
-   Award-winning pattern: left-aligned, name-dominant
+   HERO — full-screen 3D constellation
+   Adapts to light/dark theme
    ================================================ */
 .wr-hero {
   position: sticky; top: 0; z-index: 0;
   height: 100svh; width: 100%;
-  background: #000; color: #f0ede8;
+  background: var(--bg);
+  color: var(--ink, #1a1a1a);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  transition: color 0.4s;
+}
+
+/* Aurora gradient — soft pastel blobs at top edge, Dia-inspired */
+.wr-hero::before {
+  content: '';
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  top: -30%;
+  height: 130%;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 50% 35% at 8% 12%, rgba(200, 170, 210, 0.7) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 30% at 28% 8%, rgba(210, 180, 200, 0.55) 0%, transparent 100%),
+    radial-gradient(ellipse 45% 32% at 48% 6%, rgba(242, 200, 140, 0.65) 0%, transparent 100%),
+    radial-gradient(ellipse 38% 26% at 63% 10%, rgba(252, 220, 160, 0.6) 0%, transparent 100%),
+    radial-gradient(ellipse 42% 30% at 78% 8%, rgba(190, 210, 200, 0.55) 0%, transparent 100%),
+    radial-gradient(ellipse 35% 24% at 92% 14%, rgba(180, 200, 220, 0.5) 0%, transparent 100%);
+  animation: diaAurora 25s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes diaAurora {
+  0% {
+    transform: translateY(0%);
+  }
+  30% {
+    transform: translateY(-3%);
+  }
+  50% {
+    transform: translateY(-5%);
+  }
+  70% {
+    transform: translateY(-2%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* Second layer — the bottom coral blob that fades in/out */
+.wr-hero-aurora-bottom {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 50%;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 60% 50% at 65% 90%, rgba(245, 170, 155, 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 35% at 35% 85%, rgba(250, 210, 180, 0.25) 0%, transparent 65%);
+  animation: diaAuroraBottom 25s ease-in-out infinite;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+@keyframes diaAuroraBottom {
+  0%, 100% { opacity: 0; }
+  40% { opacity: 0; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  95% { opacity: 0; }
+}
+
+[data-theme="dark"] .wr-hero {
+  background: #0a0a0a;
+  color: #f0ede8;
+}
+[data-theme="dark"] .wr-hero::before {
+  background:
+    radial-gradient(ellipse 50% 35% at 8% 12%, rgba(80, 50, 90, 0.5) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 30% at 28% 8%, rgba(85, 55, 80, 0.4) 0%, transparent 100%),
+    radial-gradient(ellipse 45% 32% at 48% 6%, rgba(100, 70, 35, 0.45) 0%, transparent 100%),
+    radial-gradient(ellipse 38% 26% at 63% 10%, rgba(110, 80, 40, 0.4) 0%, transparent 100%),
+    radial-gradient(ellipse 42% 30% at 78% 8%, rgba(50, 70, 60, 0.38) 0%, transparent 100%),
+    radial-gradient(ellipse 35% 24% at 92% 14%, rgba(40, 55, 75, 0.32) 0%, transparent 100%);
+}
+[data-theme="dark"] .wr-hero-aurora-bottom {
+  background:
+    radial-gradient(ellipse 60% 50% at 65% 90%, rgba(100, 40, 35, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 35% at 35% 85%, rgba(90, 60, 40, 0.15) 0%, transparent 65%);
 }
 
 /* 3D Scene — THE centerpiece visual */
 .wr-hero-3d {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
 }
 .wr-hero-3d .hero-3d-canvas {
   position: absolute;
@@ -31,7 +113,7 @@
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;
@@ -46,17 +128,22 @@
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(240, 237, 232, 0.35);
+  color: var(--ink-30, rgba(0, 0, 0, 0.25));
   writing-mode: vertical-rl;
   text-orientation: mixed;
+  transition: color 0.4s;
+}
+[data-theme="dark"] .wr-hero-left,
+[data-theme="dark"] .wr-hero-right {
+  color: rgba(240, 237, 232, 0.35);
 }
 .wr-hero-left {
-  left: clamp(16px, 3vw, 40px);
+  left: calc(var(--pad) / 2);
   top: 50%;
   transform: translateY(-50%) rotate(180deg);
 }
 .wr-hero-right {
-  right: clamp(16px, 3vw, 40px);
+  right: calc(var(--pad) / 2);
   top: 50%;
   transform: translateY(-50%);
 }
@@ -71,11 +158,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem clamp(24px, 5vw, 80px);
+  padding: 1.5rem calc(var(--pad) / 2);
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--ink-30, rgba(0, 0, 0, 0.25));
+  transition: color 0.4s;
+}
+[data-theme="dark"] .wr-hero-bottom {
   color: rgba(240, 237, 232, 0.35);
 }
 .wr-hero-bottom-label {
@@ -85,14 +176,14 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--accent-gold, #ffe430);
+  color: var(--green, #34c759);
   opacity: 0.85;
 }
 .wr-hero-avail-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-gold, #ffe430);
+  background: var(--green, #34c759);
   animation: hero-pulse 2s ease-in-out infinite;
 }
 @keyframes hero-pulse {
@@ -144,10 +235,10 @@
    ================================================ */
 .wr-keyword-strip {
   position: relative; z-index: 2;
-  background: var(--ink);
   overflow: hidden;
   padding: 0.85rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--ink-06);
+  border-top: 1px solid var(--ink-06);
 }
 .wr-keyword-track {
   display: flex;
@@ -160,7 +251,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(240, 237, 232, 0.35);
+  color: var(--ink-30);
   flex-shrink: 0;
   padding: 0 1rem;
 }
@@ -187,15 +278,18 @@
 
 /* ── Shared label ── */
 .wr-label {
-  font-family: var(--mono); font-size: 10px;
-  text-transform: uppercase; letter-spacing: var(--ls-wider);
+  /* extends .mono-label — typography inherited via base.css */
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
   color: var(--ink-40);
 }
 
 /* ── Arrow button ── */
 .wr-arrow-btn {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--mono); font-size: 12px;
+  font-family: var(--mono); font-size: var(--text-xs);
   text-transform: uppercase; letter-spacing: 0.05em;
   text-decoration: none; color: inherit;
   transition: gap 0.3s ease, opacity 0.3s;
@@ -208,7 +302,6 @@
    ================================================ */
 .wr-about-section {
   position: relative; z-index: 2;
-  background: var(--bg);
   padding: clamp(4rem, 8vw, 7rem) clamp(24px, 5vw, 80px);
 }
 .wr-about-card {
@@ -388,7 +481,6 @@
    ================================================ */
 .wr-featured-v2 {
   position: relative; z-index: 2;
-  background: var(--bg);
   border-top: 1px solid var(--ink-06);
 }
 .wr-featured-v2-inner {
@@ -515,112 +607,41 @@
 }
 
 /* ================================================
-   ARCHIVE — hover-reveal text list
+   ARCHIVE — image card grid
    ================================================ */
 .wr-archive {
   position: relative; z-index: 2;
-  background: var(--ink);
-  color: #f0ede8;
+  border-top: 1px solid var(--ink-06);
 }
 .wr-archive-inner {
   max-width: 1400px; margin: 0 auto;
   padding: clamp(3rem, 6vw, 5rem) clamp(24px, 5vw, 80px);
-  position: relative;
-}
-.wr-archive .wr-section-head {
-  border-bottom-color: rgba(240, 237, 232, 0.1);
-}
-.wr-archive .wr-label {
-  color: rgba(240, 237, 232, 0.35);
 }
 
-/* List */
-.wr-archive-list {
-  display: flex;
-  flex-direction: column;
-}
-.wr-archive-item {
+/* 4-column grid */
+.wr-archive-grid {
   display: grid;
-  grid-template-columns: 48px 1fr auto auto;
-  gap: clamp(1rem, 2vw, 2rem);
-  align-items: baseline;
-  padding: clamp(0.85rem, 1.5vw, 1.25rem) 0;
-  border-bottom: 1px solid rgba(240, 237, 232, 0.06);
-  text-decoration: none;
-  color: #f0ede8;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding-left 0.3s;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
 }
-.wr-archive-item:first-child {
-  border-top: 1px solid rgba(240, 237, 232, 0.06);
-}
-.wr-archive-item:hover {
-  padding-left: 0.5rem;
-}
-.wr-archive-item--dimmed {
-  opacity: 0.2;
-}
-
-.wr-archive-idx {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  color: rgba(240, 237, 232, 0.25);
-}
-.wr-archive-name {
-  font-family: var(--serif);
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.wr-archive-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(240, 237, 232, 0.3);
-  white-space: nowrap;
-}
-.wr-archive-year {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.03em;
-  color: rgba(240, 237, 232, 0.25);
-  min-width: 40px;
-  text-align: right;
-}
-
-/* Floating hover image */
-.wr-archive-hover-img {
-  position: absolute;
-  width: 320px;
-  height: 200px;
-  pointer-events: none;
-  z-index: 10;
+/* Match card heights to work page — constrain images to consistent aspect ratio */
+.wr-archive-grid .pcard-visual {
+  aspect-ratio: 3 / 4;
   overflow: hidden;
-  border-radius: var(--radius-sm);
-  transform: translate(-50%, -110%);
-  transition: opacity 0.2s;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 }
-.wr-archive-hover-img img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
+.wr-archive-grid .pcard-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Mobile archive */
+/* Responsive */
+@media (max-width: 1100px) {
+  .wr-archive-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 768px) {
-  .wr-archive-item {
-    grid-template-columns: 32px 1fr auto;
-    gap: 0.75rem;
-  }
-  .wr-archive-tag {
-    display: none;
-  }
-  .wr-archive-hover-img {
-    display: none;
-  }
-  .wr-archive-name {
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
-  }
+  .wr-archive-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+@media (max-width: 480px) {
+  .wr-archive-grid { grid-template-columns: 1fr; }
 }

@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -28,12 +27,12 @@ export default function ThePointCdcPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#C44D2B' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="design-for-good"
           backLabel="Back to Work"
           tags={['UX', 'Community', 'Research']}
           title="The Point CDC"

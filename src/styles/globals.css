@@ -16,7 +16,6 @@
 @layer components {
   @import "./nav.css";
   @import "./hero.css";
-  @import "./homepage.css";
   @import "./homepage-wr.css";
   @import "./work-page.css";
   @import "./about.css";
@@ -26,4 +25,7 @@
   @import "./cta.css";
 }
 
+@import "./hand-tracker.css";
+@import "./book-viewer.css";
+@import "./graveyard.css";
 @import "./responsive.css";

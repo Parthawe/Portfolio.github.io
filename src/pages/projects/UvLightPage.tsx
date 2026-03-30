@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsNumList from '../../components/case-study/CsNumList'
@@ -23,12 +22,12 @@ export default function UvLightPage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#6B46C1' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="installations"
           backLabel="Back to Work"
           tags={['Installation', 'Experience Design', 'Art']}
           title="UV Light Experience"

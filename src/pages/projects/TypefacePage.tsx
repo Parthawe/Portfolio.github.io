@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import ReadingProgress from '../../components/case-study/ReadingProgress'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
@@ -21,12 +20,12 @@ export default function TypefacePage() {
       </Helmet>
 
       <Nav />
-      <ReadingProgress />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#744210' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
+          categorySlug="brand-visual"
           backLabel="Back to Work"
           tags={['Typography', 'Type Design', 'Art']}
           title="Butler\u2019s Slice"
