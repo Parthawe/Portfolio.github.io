@@ -1,0 +1,382 @@
+/* ================================================
+   WORK PAGE — 24px grid system
+   ================================================ */
+
+/* Content above grid */
+.page-work .abt-paper .wrap {
+  position: relative;
+  z-index: 2;
+  padding-left: 48px;  /* 2 units */
+  padding-right: 48px;
+}
+
+.work-page-header {
+  padding-top: 168px; /* 7 units — clears nav, sits on grid */
+  padding-bottom: 48px; /* 2 units */
+}
+.work-page-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: var(--ls-normal);
+  line-height: 72px; /* 3 units */
+  margin-bottom: 0;
+  position: relative;
+}
+/* Figma-style node label */
+.work-page-title::before {
+  content: 'Source Serif 4 · display';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink-15);
+  line-height: 14px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Work group label — typography via .mono-label in base.css */
+.work-group-label {
+  display: block;
+  line-height: 24px; /* 1 unit */
+  margin-bottom: 24px; /* 1 unit */
+  padding-top: 48px; /* 2 units */
+  border-top: 1px solid var(--ink-06);
+}
+.work-group:first-of-type .work-group-label {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Masonry grid — 3 columns ── */
+.pcard-masonry {
+  columns: 3;
+  column-gap: 24px; /* 1 unit */
+  padding-bottom: 72px; /* 3 units */
+}
+.pcard-masonry > * {
+  break-inside: avoid;
+  margin-bottom: 24px; /* 1 unit */
+}
+
+/* ── Project card — image fills entire card, text overlaid ── */
+.pcard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: opacity var(--dur-slow) cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s var(--ease-spring);
+}
+.pcard:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+.pcard:active {
+  transform: translateY(-2px) scale(0.995);
+  transition-duration: 0.1s;
+}
+
+.pcard-inner {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color var(--dur-base);
+}
+.pcard:hover .pcard-inner {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Image fills the entire card background */
+.pcard-visual {
+  display: block;
+  width: 100%;
+}
+.pcard-visual img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-spring);
+}
+.pcard:hover .pcard-visual img {
+  transform: scale(1.05);
+}
+
+/* Top row — category + year, overlaid */
+.pcard-top-row {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.pcard-tag {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.6rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  background: var(--overlay-dark);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pcard-year {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.25rem 0.6rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Project title — overlaid on image */
+.pcard-name {
+  position: absolute;
+  bottom: 2.75rem;
+  left: 1rem;
+  right: 1rem;
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+  font-weight: 300;
+  letter-spacing: var(--ls-normal);
+  color: #fff;
+  margin: 0;
+  line-height: 1.15;
+  z-index: 2;
+}
+
+/* Infinite scrolling subtitle strip at bottom */
+.pcard-marquee {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0.4rem 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pcard-marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: pcard-scroll 30s linear infinite;
+  will-change: transform;
+}
+.pcard-marquee-track span {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+.pcard:hover .pcard-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes pcard-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Light image variant — dark text/UI ── */
+.pcard--light .pcard-tag {
+  color: rgba(0, 0, 0, 0.75);
+  background: rgba(255, 255, 255, 0.45);
+}
+.pcard--light .pcard-year {
+  color: rgba(0, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.35);
+}
+.pcard--light .pcard-name {
+  color: rgba(0, 0, 0, 0.85);
+}
+.pcard--light .pcard-marquee {
+  background: rgba(255, 255, 255, 0.3);
+  border-top-color: rgba(0, 0, 0, 0.04);
+}
+.pcard--light .pcard-marquee-track span {
+  color: rgba(0, 0, 0, 0.4);
+}
+.pcard--light .pcard-inner {
+  border-color: rgba(0, 0, 0, 0.06);
+}
+.pcard--light:hover .pcard-inner {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ── Featured card — full width on category pages ── */
+.pcard--featured {
+  margin-bottom: 2rem;
+}
+.pcard--featured .pcard-visual img {
+  aspect-ratio: 16 / 9;
+}
+.pcard--featured .pcard-name {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* ── Varying heights — 6-item cycle for visual rhythm ── */
+.pcard-masonry > *:nth-child(6n+1) .pcard-visual img {
+  aspect-ratio: 3 / 4;
+}
+.pcard-masonry > *:nth-child(6n+2) .pcard-visual img {
+  aspect-ratio: 1 / 1;
+}
+.pcard-masonry > *:nth-child(6n+3) .pcard-visual img {
+  aspect-ratio: 4 / 5;
+}
+.pcard-masonry > *:nth-child(6n+4) .pcard-visual img {
+  aspect-ratio: 5 / 4;
+}
+.pcard-masonry > *:nth-child(6n+5) .pcard-visual img {
+  aspect-ratio: 3 / 4;
+}
+.pcard-masonry > *:nth-child(6n+6) .pcard-visual img {
+  aspect-ratio: 9 / 16;
+}
+
+
+/* Figma-style radius arcs on bottom nav (work page only) */
+.page-work .work-bottom-nav { position: fixed; /* ensure pseudo can position */ }
+.page-work .work-bottom-nav::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border: 1px solid var(--ink-12);
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-mask-image:
+    radial-gradient(circle at 0% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 0% 100%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 100%, black 22px, transparent 22px);
+  mask-image:
+    radial-gradient(circle at 0% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 0%, black 22px, transparent 22px),
+    radial-gradient(circle at 0% 100%, black 22px, transparent 22px),
+    radial-gradient(circle at 100% 100%, black 22px, transparent 22px);
+}
+
+/* ── Floating bottom category nav — unified pill (matches .nav-pill) ── */
+.work-bottom-nav {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  max-width: calc(100vw - 2rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+  transition: opacity var(--dur-slow) ease, transform var(--dur-slow) ease;
+}
+.work-bottom-nav::-webkit-scrollbar { display: none; }
+.work-bottom-nav.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(16px);
+}
+
+/* extends .pill-link from base.css */
+.work-bnav-link {
+  padding: 0.5rem 1rem;
+}
+
+/* ── Dark mode — bottom nav ── */
+[data-theme="dark"] .work-bottom-nav {
+  border-color: var(--glass-border);
+  background: var(--glass-bg);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .work-bnav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .work-bnav-link.active {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color: var(--ink);
+}
+
+/* Work group show/hide */
+.work-group {
+  transition: opacity var(--dur-slow) var(--ease-out), max-height 0.5s var(--ease-out);
+}
+.work-group.hidden-group {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .pcard-inner {
+  border-color: rgba(255, 255, 255, 0.04);
+}
+[data-theme="dark"] .pcard:hover .pcard-inner {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .pcard-masonry {
+    columns: 2;
+    column-gap: 24px;
+  }
+}
+@media (max-width: 768px) {
+  .page-work .abt-paper .wrap { padding-left: 24px; padding-right: 24px; }
+  .page-work .work-bottom-nav::after { display: none; }
+  .work-page-title::before { display: none; }
+  .work-page-header { padding-top: 120px; padding-bottom: 24px; }
+  .work-page-title { line-height: 48px; }
+  .pcard-masonry {
+    columns: 2;
+    column-gap: 16px;
+    padding-bottom: 48px;
+  }
+  .pcard-masonry > * { margin-bottom: 16px; }
+}
+@media (max-width: 540px) {
+  .pcard-masonry {
+    columns: 1;
+    column-gap: 24px;
+  }
+  .pcard-masonry > * { margin-bottom: 24px; }
+}

@@ -1,0 +1,510 @@
+/* ══════════════════════════════════════════════════════════
+   Folio — full-body illustrated portfolio agent
+   One Sec inspired: elongated, oversized jacket, minimal face
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Character palette ───────────────────────────────── */
+
+:root {
+  --ag-skin:      #D8A88C;
+  --ag-skin-dk:   #C4957A;
+  --ag-hair:      #1A1A1A;
+  --ag-sweat:     #222222;
+  --ag-sweat-dk:  #1A1A1A;
+  --ag-sweat-line:#333333;
+  --ag-pants:     #1E1E1E;
+  --ag-shoe:      #1A1A1A;
+  --ag-sole:      #E0DCD6;
+  --ag-mouth:     #3D2B25;
+  --ag-eye-white: #FFFFFF;
+  --ag-pupil:     #1A1A1A;
+  --ag-brow:      #1A1A1A;
+  --ag-nose:      #C4957A;
+  --ag-stubble:   rgba(40, 30, 25, 0.08);
+  --ag-blush:     rgba(210, 140, 110, 0.25);
+  --ag-shadow:    rgba(0,0,0,0.05);
+  --ag-bubble:    var(--surface);
+}
+
+[data-theme="dark"] {
+  --ag-skin:      #C49A80;
+  --ag-skin-dk:   #B08870;
+  --ag-hair:      #141414;
+  --ag-sweat:     #2A2A2A;
+  --ag-sweat-dk:  #1E1E1E;
+  --ag-sweat-line:#3A3A3A;
+  --ag-pants:     #222222;
+  --ag-shoe:      #181818;
+  --ag-sole:      #D0CCC6;
+  --ag-mouth:     #5A4540;
+  --ag-eye-white: #F5F5F5;
+  --ag-pupil:     #141414;
+  --ag-brow:      #141414;
+  --ag-nose:      #B08870;
+  --ag-stubble:   rgba(40, 30, 25, 0.06);
+  --ag-blush:     rgba(190, 130, 100, 0.15);
+  --ag-shadow:    rgba(0,0,0,0.12);
+}
+
+/* ── Root — fixed to bottom ──────────────────────────── */
+
+.agent-root {
+  position: fixed;
+  bottom: 0;
+  right: max(calc(50% - 280px), 80px);
+  z-index: 89;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease;
+}
+
+.agent-root > * { pointer-events: auto; }
+
+.agent-root--out { transform: translateX(-100px); opacity: 0; }
+.agent-root--in  { transform: translateX(0); opacity: 1; }
+
+/* Dragging state — no transitions, grab cursor */
+.agent-root--dragging {
+  transition: none !important;
+}
+.agent-root--dragging .agent-trigger {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+.agent-root--dragging .agent-speech { display: none; }
+
+/* Default cursor — long-press to drag */
+.agent-trigger { cursor: pointer; }
+
+/* ── Character wrapper ───────────────────────────────── */
+
+.agent-char-wrap { position: relative; flex-shrink: 0; }
+
+/* ── Speech bubble ───────────────────────────────────── */
+
+.agent-speech {
+  position: absolute;
+  bottom: calc(100% - 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: var(--ag-bubble);
+  border: 1px solid var(--ink-08);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink-70);
+  white-space: normal;
+  text-align: left;
+  max-width: 260px;
+  min-width: 100px;
+  animation: ag-bubble 0.3s var(--ease-spring);
+  cursor: pointer;
+}
+
+/* Speech bubble caret pointing down */
+.agent-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 6px;
+  background: var(--ag-bubble);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1px solid var(--ink-08);
+}
+
+@keyframes ag-bubble {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px) scale(0.95); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* ── Trigger button ──────────────────────────────────── */
+
+.agent-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.agent-trigger:hover { transform: translateY(-3px); }
+
+.agent-trigger:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+/* ── SVG base ────────────────────────────────────────── */
+
+.agent-body-svg {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.06));
+}
+
+/* ── Fills ────────────────────────────────────────────── */
+
+/* ── SVG fills — Parth's avatar ───────────────────────── */
+
+.agent-b-shadow      { fill: var(--ag-shadow); }
+.agent-b-head        { fill: var(--ag-skin); }
+.agent-b-neck        { fill: var(--ag-skin); }
+.agent-b-ear         { fill: var(--ag-skin-dk); }
+.agent-b-hand        { fill: var(--ag-skin); }
+
+.agent-b-hair        { fill: var(--ag-hair); }
+.agent-b-hair-tuft   { fill: none; stroke: var(--ag-hair); stroke-width: 2; stroke-linecap: round; }
+
+.agent-b-eye-white   { fill: var(--ag-eye-white); }
+.agent-b-pupil       { fill: var(--ag-pupil); }
+.agent-b-glint       { fill: #FFFFFF; }
+.agent-b-brow        { fill: none; stroke: var(--ag-brow); stroke-width: 1.5; stroke-linecap: round; }
+.agent-b-nose        { fill: none; stroke: var(--ag-nose); stroke-width: 1; stroke-linecap: round; }
+.agent-b-stubble     { fill: var(--ag-stubble); }
+.agent-b-mouth       { fill: none; stroke: var(--ag-mouth); stroke-width: 1.3; stroke-linecap: round; }
+.agent-b-blush       { fill: var(--ag-blush); }
+
+.agent-b-sweat       { fill: var(--ag-sweat); }
+.agent-b-sweat-shadow { fill: var(--ag-sweat-dk); }
+.agent-b-sleeve      { fill: var(--ag-sweat); }
+.agent-b-neckline    { fill: none; stroke: var(--ag-sweat-line); stroke-width: 1; stroke-linecap: round; }
+.agent-b-seam-line   { fill: none; stroke: var(--ag-sweat-line); stroke-width: 0.6; opacity: 0.3; stroke-linecap: round; }
+
+.agent-b-pants       { fill: var(--ag-pants); }
+.agent-b-shoe        { fill: var(--ag-shoe); }
+.agent-b-sole        { fill: var(--ag-sole); }
+
+.agent-b-think, .agent-b-zzz { opacity: 0; }
+.agent-b-dot { fill: var(--ag-sweat); }
+.agent-b-z   { fill: var(--ag-sweat); font-family: var(--serif); font-weight: 600; }
+.agent-b-z--1 { font-size: 8px; }
+.agent-b-z--2 { font-size: 9px; }
+.agent-b-z--3 { font-size: 11px; }
+
+
+/* ══════════════════════════════════════════════════════════
+   ANIMATION STATES
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Idle — gentle sway + micro-rotation + pencil glint ─ */
+
+.agent-trigger--idle .agent-body-svg {
+  animation: ag-idle 4s ease-in-out infinite;
+}
+
+@keyframes ag-idle {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50%      { transform: translateY(-2px) rotate(-0.5deg); }
+}
+
+@keyframes ag-pencil-glint {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+}
+
+/* ── Walking — 0.5s cycle, organic ───────────────────── */
+
+.agent-trigger--walking .agent-body-svg {
+  animation: ag-walk-bob 0.5s ease-in-out infinite;
+}
+
+.agent-trigger--walking .agent-leg--l {
+  animation: ag-step-l 0.5s ease-in-out infinite;
+  transform-origin: 25px 82px;
+}
+.agent-trigger--walking .agent-leg--r {
+  animation: ag-step-r 0.5s ease-in-out infinite;
+  transform-origin: 38px 82px;
+}
+.agent-trigger--walking .agent-arm--l {
+  animation: ag-swing-l 0.5s ease-in-out infinite;
+  transform-origin: 8px 38px;
+}
+.agent-trigger--walking .agent-arm--r {
+  animation: ag-swing-r 0.5s ease-in-out infinite;
+  transform-origin: 56px 38px;
+}
+
+@keyframes ag-walk-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+@keyframes ag-step-l  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(15deg); } }
+@keyframes ag-step-r  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-15deg); } }
+@keyframes ag-swing-l { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-10deg); } }
+@keyframes ag-swing-r { 0%,100% { transform: rotate(0); } 50% { transform: rotate(10deg); } }
+
+/* ── Thinking — head tilt + left hand to chin + dots ─── */
+
+.agent-trigger--thinking .agent-body-svg {
+  animation: ag-idle 4s ease-in-out infinite;
+}
+
+.agent-trigger--thinking .agent-b-head,
+.agent-trigger--thinking .agent-b-hair,
+.agent-trigger--thinking .agent-b-ear,
+.agent-trigger--thinking .agent-b-face {
+  transform-origin: 32px 14px;
+  animation: ag-tilt 2.5s ease-in-out infinite;
+}
+
+.agent-trigger--thinking .agent-arm--l {
+  transform-origin: 8px 38px;
+  animation: ag-chin 2.5s ease-in-out infinite;
+}
+
+.agent-trigger--thinking .agent-b-think { opacity: 1; }
+
+.agent-b-dot--1 { animation: ag-pulse 1.4s ease-in-out infinite 0s; }
+.agent-b-dot--2 { animation: ag-pulse 1.4s ease-in-out infinite 0.2s; }
+.agent-b-dot--3 { animation: ag-pulse 1.4s ease-in-out infinite 0.4s; }
+
+@keyframes ag-tilt  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(4deg); } }
+@keyframes ag-chin  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-30deg); } }
+@keyframes ag-pulse { 0%,100% { opacity: 0.2; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } }
+
+/* ── Talking — mouth + right arm gesture ─────────────── */
+
+.agent-trigger--talking .agent-body-svg {
+  animation: ag-idle 4s ease-in-out infinite;
+}
+
+.agent-trigger--talking .agent-b-mouth {
+  transform-origin: 32px 21px;
+  animation: ag-talk 0.35s ease-in-out infinite;
+}
+
+.agent-trigger--talking .agent-arm--r {
+  transform-origin: 56px 38px;
+  animation: ag-gesture 1.2s ease-in-out infinite;
+}
+
+@keyframes ag-talk {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.5); }
+}
+
+@keyframes ag-gesture {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(-15deg); }
+}
+
+/* ── Waving — right arm waves ────────────────────────── */
+
+.agent-trigger--waving .agent-body-svg {
+  animation: ag-idle 4s ease-in-out infinite;
+}
+
+.agent-trigger--waving .agent-arm--r {
+  transform-origin: 56px 38px;
+  animation: ag-wave 0.4s ease-in-out 3;
+}
+
+@keyframes ag-wave {
+  0%, 100% { transform: rotate(-25deg); }
+  50%      { transform: rotate(-55deg); }
+}
+
+/* ── Sleeping — closed eyes + zzz ────────────────────── */
+
+.agent-trigger--sleeping .agent-body-svg {
+  animation: ag-idle 5s ease-in-out infinite;
+}
+
+.agent-trigger--sleeping .agent-b-eyes { opacity: 0.25; }
+
+.agent-trigger--sleeping .agent-b-head,
+.agent-trigger--sleeping .agent-b-hair,
+.agent-trigger--sleeping .agent-b-ear,
+.agent-trigger--sleeping .agent-b-face {
+  transform: rotate(5deg);
+  transform-origin: 32px 14px;
+}
+
+.agent-trigger--sleeping .agent-b-zzz { opacity: 1; }
+
+.agent-b-z--1 { animation: ag-zzz 3s ease-in-out infinite 0s; }
+.agent-b-z--2 { animation: ag-zzz 3s ease-in-out infinite 0.4s; }
+.agent-b-z--3 { animation: ag-zzz 3s ease-in-out infinite 0.8s; }
+
+@keyframes ag-zzz {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  40%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translate(3px, -8px); }
+}
+
+/* ── Pointing — arm up, hold pose ────────────────────── */
+
+.agent-trigger--pointing .agent-body-svg {
+  animation: ag-idle 4s ease-in-out infinite;
+}
+
+.agent-trigger--pointing .agent-arm--r {
+  transform-origin: 56px 38px;
+  animation: ag-point 0.4s ease-out forwards;
+}
+
+@keyframes ag-point {
+  from { transform: rotate(0); }
+  to   { transform: rotate(-60deg); }
+}
+
+/* Flip character to face left when target is to the left */
+.agent-body-svg--flip { transform: scaleX(-1); }
+
+/* ── Chat open — dims ────────────────────────────────── */
+
+.agent-trigger--open {
+  transform: scale(0.92);
+  opacity: 0.6;
+}
+.agent-trigger--open:hover {
+  opacity: 0.9;
+  transform: scale(0.95) translateY(-2px);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   CHAT PANEL
+   ══════════════════════════════════════════════════════════ */
+
+.agent-chat {
+  position: fixed;
+  bottom: 130px;
+  right: max(calc(50% - 380px), 24px);
+  width: 360px;
+  max-height: min(480px, calc(100vh - 180px));
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid var(--ink-08);
+  border-radius: 20px;
+  box-shadow:
+    0 0 0 0.5px rgba(0,0,0,0.02),
+    0 4px 16px rgba(0,0,0,0.05),
+    0 16px 48px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  transition: opacity 0.25s var(--ease-spring), transform 0.3s var(--ease-spring);
+  pointer-events: none;
+  z-index: 91;
+}
+
+.agent-chat--open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+@keyframes chatdot {
+  0%, 100% { opacity: 0.25; transform: translateY(0); }
+  50%      { opacity: 1; transform: translateY(-3px); }
+}
+
+@keyframes chips-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typing cursor blink ─────────────────────────────── */
+
+.agent-typing-cursor {
+  display: inline;
+  color: var(--ink-30);
+  font-weight: 300;
+  animation: ag-cursor-blink 0.6s ease-in-out infinite;
+  margin-left: 1px;
+}
+
+@keyframes ag-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .agent-root { right: 16px; }
+
+  .agent-body-svg { width: 48px; height: 90px; }
+
+  .agent-chat {
+    bottom: 100px;
+    right: 12px;
+    width: calc(100vw - 24px);
+    max-width: 360px;
+    max-height: 55vh;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .agent-root { right: 10px; }
+
+  .agent-body-svg { width: 40px; height: 75px; }
+
+  .agent-chat {
+    bottom: 85px;
+    right: 8px;
+    width: calc(100vw - 16px);
+    max-height: 60vh;
+    border-radius: 16px;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   DARK MODE
+   ══════════════════════════════════════════════════════════ */
+
+[data-theme="dark"] .agent-body-svg {
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+}
+
+[data-theme="dark"] .agent-speech {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+[data-theme="dark"] .agent-chat {
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  border-color: var(--ink-08);
+  box-shadow:
+    0 0 0 0.5px rgba(255,255,255,0.03),
+    0 4px 16px rgba(0,0,0,0.2),
+    0 16px 48px rgba(0,0,0,0.25);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-body-svg,
+  .agent-leg, .agent-arm,
+  .agent-b-head, .agent-b-hair, .agent-b-ear,
+  .agent-b-face, .agent-b-eyes, .agent-b-mouth,
+  .agent-b-dot, .agent-b-z {
+    animation: none !important;
+  }
+  .agent-root, .agent-chat, .agent-trigger, .agent-speech {
+    transition-duration: 0.01s !important;
+  }
+}

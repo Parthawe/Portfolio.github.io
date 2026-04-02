@@ -1,0 +1,647 @@
+/* ================================================
+   HERO — full-screen 3D constellation
+   Adapts to light/dark theme
+   ================================================ */
+.wr-hero {
+  position: sticky; top: 0; z-index: 0;
+  height: 100svh; width: 100%;
+  background: var(--bg);
+  color: var(--ink, #1a1a1a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: color 0.4s;
+}
+
+/* Aurora gradient — soft pastel blobs at top edge, Dia-inspired */
+.wr-hero::before {
+  content: '';
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  top: -30%;
+  height: 130%;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 50% 35% at 8% 12%, rgba(200, 170, 210, 0.7) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 30% at 28% 8%, rgba(210, 180, 200, 0.55) 0%, transparent 100%),
+    radial-gradient(ellipse 45% 32% at 48% 6%, rgba(242, 200, 140, 0.65) 0%, transparent 100%),
+    radial-gradient(ellipse 38% 26% at 63% 10%, rgba(252, 220, 160, 0.6) 0%, transparent 100%),
+    radial-gradient(ellipse 42% 30% at 78% 8%, rgba(190, 210, 200, 0.55) 0%, transparent 100%),
+    radial-gradient(ellipse 35% 24% at 92% 14%, rgba(180, 200, 220, 0.5) 0%, transparent 100%);
+  animation: diaAurora 25s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes diaAurora {
+  0% {
+    transform: translateY(0%);
+  }
+  30% {
+    transform: translateY(-3%);
+  }
+  50% {
+    transform: translateY(-5%);
+  }
+  70% {
+    transform: translateY(-2%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* Second layer — the bottom coral blob that fades in/out */
+.wr-hero-aurora-bottom {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 50%;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 60% 50% at 65% 90%, rgba(245, 170, 155, 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 35% at 35% 85%, rgba(250, 210, 180, 0.25) 0%, transparent 65%);
+  animation: diaAuroraBottom 25s ease-in-out infinite;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+@keyframes diaAuroraBottom {
+  0%, 100% { opacity: 0; }
+  40% { opacity: 0; }
+  60% { opacity: 1; }
+  80% { opacity: 1; }
+  95% { opacity: 0; }
+}
+
+[data-theme="dark"] .wr-hero {
+  background: #0a0a0a;
+  color: #f0ede8;
+}
+[data-theme="dark"] .wr-hero::before {
+  background:
+    radial-gradient(ellipse 50% 35% at 8% 12%, rgba(80, 50, 90, 0.5) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 30% at 28% 8%, rgba(85, 55, 80, 0.4) 0%, transparent 100%),
+    radial-gradient(ellipse 45% 32% at 48% 6%, rgba(100, 70, 35, 0.45) 0%, transparent 100%),
+    radial-gradient(ellipse 38% 26% at 63% 10%, rgba(110, 80, 40, 0.4) 0%, transparent 100%),
+    radial-gradient(ellipse 42% 30% at 78% 8%, rgba(50, 70, 60, 0.38) 0%, transparent 100%),
+    radial-gradient(ellipse 35% 24% at 92% 14%, rgba(40, 55, 75, 0.32) 0%, transparent 100%);
+}
+[data-theme="dark"] .wr-hero-aurora-bottom {
+  background:
+    radial-gradient(ellipse 60% 50% at 65% 90%, rgba(100, 40, 35, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 35% at 35% 85%, rgba(90, 60, 40, 0.15) 0%, transparent 65%);
+}
+
+/* 3D Scene — THE centerpiece visual */
+.wr-hero-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.wr-hero-3d .hero-3d-canvas {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+}
+
+/* Noise grain overlay */
+.wr-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Flanking labels — wildyriftian style */
+.wr-hero-left,
+.wr-hero-right {
+  position: absolute;
+  z-index: 4;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-30, rgba(0, 0, 0, 0.25));
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transition: color 0.4s;
+}
+[data-theme="dark"] .wr-hero-left,
+[data-theme="dark"] .wr-hero-right {
+  color: rgba(240, 237, 232, 0.35);
+}
+.wr-hero-left {
+  left: calc(var(--pad) / 2);
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+}
+.wr-hero-right {
+  right: calc(var(--pad) / 2);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Bottom bar */
+.wr-hero-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem calc(var(--pad) / 2);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-30, rgba(0, 0, 0, 0.25));
+  transition: color 0.4s;
+}
+[data-theme="dark"] .wr-hero-bottom {
+  color: rgba(240, 237, 232, 0.35);
+}
+.wr-hero-bottom-label {
+  white-space: nowrap;
+}
+.wr-hero-bottom-avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green, #34c759);
+  opacity: 0.85;
+}
+.wr-hero-avail-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #34c759);
+  animation: hero-pulse 2s ease-in-out infinite;
+}
+@keyframes hero-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Text reveal animation ── */
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero-reveal {
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+/* Left label */
+.hero-reveal-1 {
+  animation: heroFadeIn 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.6s forwards;
+}
+/* Right label */
+.hero-reveal-2 {
+  animation: heroFadeIn 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.8s forwards;
+}
+/* Bottom bar */
+.hero-reveal-3 {
+  animation: heroFadeIn 1s cubic-bezier(0.25, 0.1, 0.25, 1) 1.2s forwards;
+}
+
+/* Mobile hero */
+@media (max-width: 768px) {
+  .wr-hero-left,
+  .wr-hero-right {
+    display: none;
+  }
+  .wr-hero-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+}
+
+/* ================================================
+   KEYWORD MARQUEE — visual energy strip
+   ================================================ */
+.wr-keyword-strip {
+  position: relative; z-index: 2;
+  overflow: hidden;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--ink-06);
+  border-top: 1px solid var(--ink-06);
+}
+.wr-keyword-track {
+  display: flex;
+  white-space: nowrap;
+  animation: wr-keyword-scroll 25s linear infinite;
+  gap: 0;
+}
+.wr-keyword-track span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-30);
+  flex-shrink: 0;
+  padding: 0 1rem;
+}
+@keyframes wr-keyword-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ================================================
+   SECTION HEAD — reusable
+   ================================================ */
+.wr-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--ink-08);
+}
+
+/* ================================================
+   ABOUT SECTION — sits directly after hero
+   ================================================ */
+
+/* ── Shared label ── */
+.wr-label {
+  /* extends .mono-label — typography inherited via base.css */
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+/* ── Arrow button ── */
+.wr-arrow-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: var(--text-xs);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  text-decoration: none; color: inherit;
+  transition: gap 0.3s ease, opacity 0.3s;
+}
+.wr-arrow-btn:hover { gap: 12px; opacity: 0.65; }
+.wr-arrow-btn:active { transform: scale(0.96); transition-duration: 0.08s; }
+
+/* ================================================
+   ABOUT CARD — cycling skills (wr- prefix)
+   ================================================ */
+.wr-about-section {
+  position: relative; z-index: 2;
+  padding: clamp(4rem, 8vw, 7rem) clamp(24px, 5vw, 80px);
+}
+.wr-about-card {
+  position: relative; max-width: 1400px; margin: 0 auto;
+  background: var(--bg-alt); border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.wr-about-border {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1;
+}
+.wr-about-dot {
+  position: absolute; left: 11px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--bg-alt);
+  box-shadow: inset 0 0 0 1px var(--ink-12);
+  z-index: 2; transform: translateY(-50%);
+}
+.wr-about-dot:first-of-type { transform: none; }
+.wr-about-dot:last-of-type { transform: none; }
+
+/* Top bar */
+.wr-about-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 2rem 0.75rem; position: relative; z-index: 2;
+}
+.wr-about-top-left {
+  display: flex; align-items: center; gap: 1rem;
+}
+.wr-about-num {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--ink-40);
+}
+.wr-about-skill-label {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--ink-40);
+  transition: opacity 0.3s;
+}
+.wr-about-top-right {
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.wr-about-dot-sq {
+  width: 4px; height: 4px; background: var(--ink);
+}
+
+/* Body */
+.wr-about-body {
+  display: flex; gap: 0;
+  padding: 0 2rem 1rem; position: relative; z-index: 2;
+}
+.wr-about-img-col {
+  width: 280px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem 1.5rem 1rem 0;
+}
+.wr-about-img-wrap {
+  width: 100%; max-width: 260px; position: relative;
+}
+.wr-about-img-wrap img {
+  width: 100%; height: auto; object-fit: contain;
+  filter: drop-shadow(4px 8px 20px rgba(0,0,0,0.15));
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  user-select: none;
+}
+.wr-about-img-wrap img.swap-out {
+  opacity: 0; transform: scale(0.9) rotate(5deg);
+}
+.wr-about-img-wrap img.swap-in {
+  opacity: 0; transform: scale(0.9) rotate(-5deg);
+}
+.wr-about-text { flex: 1; max-width: 700px; }
+.wr-about-heading {
+  font-family: var(--serif); font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 300; line-height: 1.1; color: var(--ink);
+  margin: 0;
+}
+
+/* Cycling skill */
+.wr-about-cycle {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin: 1rem 0 1.5rem; min-height: 56px;
+}
+.wr-about-arrow {
+  font-family: var(--mono); font-size: 16px;
+  color: var(--ink-40); background: none; border: none;
+  cursor: pointer; padding: 0.25rem;
+  transition: opacity 0.2s;
+}
+.wr-about-arrow:hover { opacity: 0.5; }
+.wr-about-skill-wrap {
+  flex: 1; overflow: hidden; height: 56px;
+  position: relative;
+}
+.wr-about-skill {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300;
+  color: var(--ink); line-height: 56px;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
+}
+
+.wr-about-desc {
+  font-family: var(--mono); font-size: 10px; line-height: 1.8;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--ink-70); max-width: 560px; margin-bottom: 1.5rem;
+}
+.wr-about-readmore {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.75rem; color: var(--ink);
+  text-decoration: none; display: inline-block;
+  margin-bottom: 1.5rem;
+  transition: opacity 0.3s;
+}
+.wr-about-readmore:hover { opacity: 0.6; }
+.wr-about-site {
+  display: block; font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: var(--ls-wider);
+  color: var(--ink-15);
+}
+
+/* Vertical text */
+.wr-about-vert {
+  position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-family: var(--mono); font-size: 8px;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--ink-15); z-index: 2;
+}
+
+/* Bottom strip */
+.wr-about-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem; position: relative; z-index: 2;
+}
+.wr-about-bottom-left {
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.wr-about-dot-circle {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ink-40);
+}
+.wr-about-bottom-right {
+  display: flex; align-items: center; gap: 1rem;
+}
+.wr-about-meta-label {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--ink-40);
+}
+.wr-about-meta-val {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.wr-about-meta-coord {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--ink-40);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .wr-about-section { padding: 1.5rem 1rem; }
+  .wr-about-body { flex-direction: column; }
+  .wr-about-img-col { width: 100%; padding: 0 0 1rem; }
+  .wr-about-img-wrap { max-width: 180px; margin: 0 auto; }
+  .wr-about-top, .wr-about-body, .wr-about-bottom { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .wr-about-heading { font-size: clamp(2rem, 8vw, 2.5rem); }
+  .wr-about-vert { display: none; }
+  .wr-about-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .wr-about-bottom-right { flex-wrap: wrap; gap: 0.5rem; }
+}
+
+/* ================================================
+   FEATURED PROJECTS — editorial full-width rows
+   ================================================ */
+.wr-featured-v2 {
+  position: relative; z-index: 2;
+  border-top: 1px solid var(--ink-06);
+}
+.wr-featured-v2-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(24px, 5vw, 80px);
+}
+
+/* ── Featured row — editorial layout ── */
+.wr-feat-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  border-bottom: 1px solid var(--ink-06);
+  transition: opacity 0.3s;
+}
+.wr-feat-row:first-of-type {
+  /* no extra top border — section head handles it */
+}
+.wr-feat-row:hover {
+  opacity: 0.85;
+}
+
+/* Alternate: image on right */
+.wr-feat-row--reverse {
+  grid-template-columns: 1fr 1.2fr;
+}
+.wr-feat-row--reverse .wr-feat-img {
+  order: 2;
+}
+.wr-feat-row--reverse .wr-feat-info {
+  order: 1;
+}
+
+/* Image */
+.wr-feat-img {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 16 / 10;
+  background: var(--ink-04);
+}
+.wr-feat-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.wr-feat-row:hover .wr-feat-img img {
+  transform: scale(1.04);
+}
+
+/* Info */
+.wr-feat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.wr-feat-idx {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink-08);
+  margin-bottom: 0.75rem;
+}
+.wr-feat-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 0.75rem;
+}
+.wr-feat-name {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+.wr-feat-desc {
+  font-family: var(--sans);
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  line-height: 1.6;
+  color: var(--ink-40);
+  max-width: 40ch;
+  margin-bottom: 1.5rem;
+}
+.wr-feat-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.wr-feat-meta > span:first-child {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+/* Mobile featured */
+@media (max-width: 768px) {
+  .wr-feat-row,
+  .wr-feat-row--reverse {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .wr-feat-row--reverse .wr-feat-img { order: 0; }
+  .wr-feat-row--reverse .wr-feat-info { order: 0; }
+  .wr-feat-idx {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .wr-feat-name {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+}
+
+/* ================================================
+   ARCHIVE — image card grid
+   ================================================ */
+.wr-archive {
+  position: relative; z-index: 2;
+  border-top: 1px solid var(--ink-06);
+}
+.wr-archive-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(24px, 5vw, 80px);
+}
+
+/* 4-column grid */
+.wr-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+/* Match card heights to work page — constrain images to consistent aspect ratio */
+.wr-archive-grid .pcard-visual {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+.wr-archive-grid .pcard-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .wr-archive-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .wr-archive-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+@media (max-width: 480px) {
+  .wr-archive-grid { grid-template-columns: 1fr; }
+}

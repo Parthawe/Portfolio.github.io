@@ -1,0 +1,119 @@
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 768px) {
+  .nav-left-pill .nav-pill-link { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-right > .theme-toggle { display: none; }
+  .nav-cta { display: none; }
+
+  /* footer responsive is handled in footer.css */
+  /* masonry responsive handled in work-page.css */
+
+  .pcard-row { grid-template-columns: 1fr; }
+  .pcard-text-row { grid-template-columns: 1fr; }
+
+  .proj-overview-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .cs-two-col,
+  .cs-two-col--reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .cs-quote-grid { grid-template-columns: 1fr; }
+  .cs-feature-grid { grid-template-columns: 1fr; }
+  .cs-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-img-pair { grid-template-columns: 1fr; }
+  .cs-img-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-pullquote { padding-left: 1.5rem; margin: 2rem 0; }
+  .cs-pullquote p { font-size: 1.2rem; }
+  .cs-timeline { padding-left: 1.5rem; }
+
+  .next-project-img { width: min(100px, 25vw); height: auto; aspect-ratio: 10/7; }
+  .back-to-top { bottom: 1.25rem; right: 1.25rem; }
+
+  /* Featured cards */
+  .wr-sticky-card {
+    min-height: auto;
+    padding: 32px 16px 0;
+  }
+  .wr-corner-tab { right: 16px; }
+  .wr-card-tags { margin: 0 -16px 1.5rem; }
+  .wr-card-layout { flex-direction: column; gap: 1.5rem; }
+  .wr-card-title { font-size: clamp(1.5rem, 7vw, 28px); line-height: 1.25; }
+  .wr-card-images { flex: none; }
+
+  /* More work grid */
+  .wr-more-inner { padding: 2.5rem 1rem; }
+  .wr-grid-2 { grid-template-columns: 1fr; }
+  .wr-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .wr-card-info { flex-direction: column; gap: 0.15rem; }
+  .wr-cat-strip span { font-size: 1rem; margin: 0 0.5rem; }
+
+}
+
+@media (max-width: 600px) {
+  .cs-img-pair { grid-template-columns: 1fr; }
+  .cs-img-grid { grid-template-columns: 1fr; }
+  .cs-label-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .cs-spectrum-label,
+  .cs-spectrum-label-right { width: 90px; font-size: var(--text-xs); }
+  .work-page-header { padding-top: calc(var(--nav-h) + 2rem); }
+}
+
+@media (max-width: 480px) {
+  .cs-img-grid { grid-template-columns: 1fr; }
+  .cs-stat-grid { grid-template-columns: 1fr; }
+  .cs-img-placeholder { aspect-ratio: 4/3; }
+  .cs-timeline-content h4 { font-size: var(--text-sm); }
+  .cs-details-summary { padding: 1rem; font-size: var(--text-sm); }
+  .cs-details-content { padding: 0 1rem 1rem; }
+  .next-project-img { display: none; }
+  .next-project-title { font-size: clamp(1.4rem, 6vw, 2rem); }
+  .proj-overview-grid { gap: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .wr-grid-3 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 360px) {
+  :root { --pad: 1rem; }
+  .cs-pullquote { padding-left: 1rem; }
+  .cs-pullquote p { font-size: 1.1rem; }
+  .cs-timeline { padding-left: 1.25rem; }
+  .cs-timeline-item::before { left: -1.25rem; width: 8px; height: 8px; }
+  .pcard-body { padding: 1rem; }
+  .pcard-name { font-size: var(--text-lg); }
+  .cs-section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim { animation: none; opacity: 1; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .reveal-image { transition: none; opacity: 1; clip-path: none; }
+  .cs-stat-value[data-count] { transition: none; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: 0s; }
+  .back-to-top { transition: none; }
+  .pcard-text-row:hover .pcard-text { opacity: 1; }
+  .theme-toggle svg { transition: none; }
+}
+
+/* ── High contrast ── */
+@media (prefers-contrast: more) {
+  :root {
+    --ink-40: rgba(26,26,26,0.75);
+    --ink-50: rgba(26,26,26,0.78);
+    --ink-30: rgba(26,26,26,0.55);
+    --ink-06: rgba(26,26,26,0.2);
+    --ink-08: rgba(26,26,26,0.25);
+  }
+  [data-theme="dark"] {
+    --ink-40: rgba(237,237,236,0.75);
+    --ink-50: rgba(237,237,236,0.78);
+    --ink-30: rgba(237,237,236,0.55);
+    --ink-06: rgba(237,237,236,0.2);
+    --ink-08: rgba(237,237,236,0.25);
+  }
+}
