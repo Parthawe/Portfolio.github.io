@@ -9,9 +9,11 @@ interface Props {
 
 /*
   "Folio" — full-body illustrated character.
-  One Sec app inspired: elongated proportions (small head, long torso),
-  oversized sage jacket, chunky white-sole sneakers, minimal face.
-  Signature: round glasses + gold pencil tucked in beanie.
+  Lobster Studio / One Sec inspired: no outlines, pure filled shapes,
+  overlapping layers for depth, oversized jacket silhouette extends
+  beyond body, thick columnar legs, wide flat-bottomed chunky sneakers.
+  Asymmetric stance (left foot slightly forward).
+  Face: just two dots and a tiny curve. Beanie pulled low.
 */
 
 export default function AgentCharacter({ state, onClick, speechBubble, chatOpen }: Props) {
@@ -36,101 +38,92 @@ export default function AgentCharacter({ state, onClick, speechBubble, chatOpen 
           fill="none"
           className="agent-body-svg"
         >
-          {/* ── Shadow ── */}
-          <ellipse cx="32" cy="117" rx="18" ry="2.5" className="agent-b-shadow" />
+          {/* ── Ground shadow ── */}
+          <ellipse cx="33" cy="116" rx="18" ry="3" className="agent-b-shadow" />
 
-          {/* ── Left leg ── */}
+          {/* ── Left leg (slightly forward — asymmetric stance) ── */}
           <g className="agent-leg agent-leg--l">
-            <path d="M23 82C22.5 86 22 92 21.5 98Q21 100 22.5 100L28.5 100Q30 100 29.5 98C29 92 28.5 86 28 82Z" className="agent-b-pants" />
-            <rect x="21" y="97" width="9" height="3" rx="1.5" className="agent-b-sock" />
-            <path d="M19 100L19.5 108Q20 112 23 112L31 112Q33 112 33 109L32.5 100Z" className="agent-b-shoe" />
-            <rect x="18" y="110" width="16" height="4" rx="2" className="agent-b-sole" />
+            {/* Pant — thick columnar, no taper */}
+            <path d="M21 80C21 80 20.5 95 20.5 99Q20.5 101 22 101L28 101Q29.5 101 29 99C28.5 95 28 80 28 80Z" className="agent-b-pants" />
+            {/* Shoe — wide, chunky, flat bottom */}
+            <path d="M18 99L18.5 108Q19 111 22 111L30 111Q33 111 33 108L32 99Z" className="agent-b-shoe" />
+            {/* Thick light sole — flat bottom edge */}
+            <path d="M17 109L17 112Q17 114 19 114L32 114Q34 114 34 112L34 109Q28 110.5 25 110.5Q21 110.5 17 109Z" className="agent-b-sole" />
           </g>
 
           {/* ── Right leg ── */}
           <g className="agent-leg agent-leg--r">
-            <path d="M36 82C35.5 86 35 92 34.5 98Q34 100 35.5 100L41.5 100Q43 100 42.5 98C42 92 41.5 86 41 82Z" className="agent-b-pants" />
-            <rect x="34" y="97" width="9" height="3" rx="1.5" className="agent-b-sock" />
-            <path d="M32 100L31.5 108Q31 112 34 112L42 112Q44 112 44 109L44.5 100Z" className="agent-b-shoe" />
-            <rect x="30" y="110" width="16" height="4" rx="2" className="agent-b-sole" />
+            <path d="M35 80C35 80 34.5 95 34.5 99Q34.5 101 36 101L42 101Q43.5 101 43 99C42.5 95 42 80 42 80Z" className="agent-b-pants" />
+            <path d="M32 99L31.5 108Q31 111 34 111L42 111Q45 111 45 108L46 99Z" className="agent-b-shoe" />
+            <path d="M30 109L30 112Q30 114 32 114L45 114Q47 114 47 112L47 109Q42 110.5 38 110.5Q34 110.5 30 109Z" className="agent-b-sole" />
           </g>
 
-          {/* ── Tee visible through open jacket ── */}
-          <path d="M29 40Q32 43 35 40L35 82L29 82Z" className="agent-b-tee" />
+          {/* ── T-shirt visible through open jacket ── */}
+          <path d="M28 38Q32 41 36 38L36.5 82L27.5 82Z" className="agent-b-tee" />
 
-          {/* ── Jacket body — oversized, hangs past hips ── */}
-          <g className="agent-b-jacket-group">
-            {/* Left half */}
-            <path
-              d="M10 40Q10 36 14 34L26 32Q29 31.5 29 32L29 80Q29 83 26 83L14 83Q10 83 10 79Z"
-              className="agent-b-jacket"
-            />
-            {/* Right half */}
-            <path
-              d="M35 32Q35 31.5 38 32L50 34Q54 36 54 40L54 79Q54 83 50 83L38 83Q35 83 35 80Z"
-              className="agent-b-jacket"
-            />
+          {/* ── Jacket body — oversized, extends beyond body silhouette ── */}
+          {/* Back shadow layer (darker, peeks out behind jacket) */}
+          <path d="M12 39Q12 35 16 33L27 31Q32 30.5 37 31L48 33Q52 35 52 39L52 78Q52 82 48 83L16 83Q12 82 12 78Z" className="agent-b-jacket-shadow" />
 
-            {/* Collar flaps */}
-            <path d="M26 32L21 40L28 40Z" className="agent-b-collar" />
-            <path d="M38 32L43 40L36 40Z" className="agent-b-collar" />
+          {/* Left jacket panel */}
+          <path d="M10 40Q10 36 14 34L27 32Q28 31.5 28 32L28 80Q28 83 25 84L14 84Q10 83 10 79Z" className="agent-b-jacket" />
+          {/* Right jacket panel */}
+          <path d="M36 32Q36 31.5 37 32L50 34Q54 36 54 40L54 79Q54 83 50 84L39 84Q36 83 36 80Z" className="agent-b-jacket" />
 
-            {/* Single slash pocket — left side */}
-            <path d="M16 56L24 60" className="agent-b-pocket-line" />
+          {/* Collar — overlapping triangular flaps */}
+          <path d="M27 32L22 41L28 40Z" className="agent-b-collar" />
+          <path d="M37 32L42 41L36 40Z" className="agent-b-collar" />
 
-            {/* Jacket hem — curved bottom edge overlay */}
-            <path d="M10 79Q20 85 32 83Q44 85 54 79" className="agent-b-hem" />
-          </g>
+          {/* Pocket — single diagonal slash, left side */}
+          <path d="M15 55C17 56 22 58 24 59" className="agent-b-pocket-line" />
 
-          {/* ── Left arm ── */}
+          {/* ── Left arm — sleeve covers wrist, tiny hand nub ── */}
           <g className="agent-arm agent-arm--l">
-            <path d="M4 38Q2 36 4 34L10 33Q12 34 12 38L10 70Q10 73 8 73L6 73Q4 73 4 70Z" className="agent-b-sleeve" />
-            <circle cx="7" cy="74.5" r="3" className="agent-b-hand" />
+            <path d="M5 38Q3 36 5 34L11 33Q13 34 12 39L10 70Q10 73 8 73.5L6 73.5Q4 73 4 70Z" className="agent-b-sleeve" />
+            <circle cx="7" cy="75" r="3.5" className="agent-b-hand" />
           </g>
 
           {/* ── Right arm ── */}
           <g className="agent-arm agent-arm--r">
-            <path d="M52 38Q54 34 56 34L60 36Q62 38 60 38L58 70Q58 73 56 73L54 73Q52 73 52 70Z" className="agent-b-sleeve" />
-            <circle cx="57" cy="74.5" r="3" className="agent-b-hand" />
+            <path d="M52 39Q53 34 55 34L59 36Q61 38 59 39L57 70Q57 73 55.5 73.5L53.5 73.5Q52 73 52 70Z" className="agent-b-sleeve" />
+            <circle cx="57" cy="75" r="3.5" className="agent-b-hand" />
           </g>
 
           {/* ── Neck ── */}
-          <rect x="30" y="18" width="5" height="15" rx="2.5" className="agent-b-neck" />
+          <rect x="30" y="19" width="5" height="14" rx="2.5" className="agent-b-neck" />
 
-          {/* ── Head ── */}
+          {/* ── Head — slightly tilted oval ── */}
           <ellipse cx="32" cy="14" rx="11" ry="12" className="agent-b-head" />
 
-          {/* ── Beanie — flat cap style ── */}
-          <path
-            d="M21 12Q21 2 32 2Q43 2 43 12L43 14Q40 11 32 11Q24 11 21 14Z"
-            className="agent-b-beanie"
-          />
-          {/* Brim / cuff */}
-          <path d="M20 12.5Q20 10.5 22 11L42 11Q44 10.5 44 12.5Q40 11.5 32 11.5Q24 11.5 20 12.5Z" className="agent-b-brim" />
-          {/* Nub on top */}
-          <circle cx="32" cy="2.5" r="2" className="agent-b-beanie-nub" />
+          {/* ── Beanie — pulled low over forehead ── */}
+          <path d="M21 13Q21 2 32 2Q43 2 43 13L43 15Q39 12 32 12Q25 12 21 15Z" className="agent-b-beanie" />
+          {/* Thick cuff/brim */}
+          <path d="M20 13Q20 10 22.5 11L41.5 11Q44 10 44 13Q40 12 32 12Q24 12 20 13Z" className="agent-b-brim" />
+          {/* Nub */}
+          <circle cx="32" cy="2.5" r="2.2" className="agent-b-beanie" />
 
-          {/* ── Pencil tucked in beanie (right side) ── */}
+          {/* ── Pencil tucked in beanie ── */}
           <g className="agent-b-pencil-group" transform="rotate(-25, 42, 8)">
-            <rect x="41" y="1" width="2" height="14" rx="1" className="agent-b-pencil" />
-            <polygon points="41,15 43,15 42,17.5" className="agent-b-pencil-tip" />
+            <rect x="41" y="2" width="2.2" height="13" rx="1.1" className="agent-b-pencil" />
+            <polygon points="41,15 43.2,15 42.1,17.5" className="agent-b-pencil-tip" />
           </g>
 
-          {/* ── Glasses ── */}
-          <circle cx="27" cy="15" r="4.5" className="agent-b-glass" />
-          <circle cx="37" cy="15" r="4.5" className="agent-b-glass" />
-          <line x1="31.5" y1="15" x2="32.5" y2="15" className="agent-b-bridge" />
-          {/* Temple arms (side of glasses) */}
-          <line x1="22.5" y1="14" x2="21" y2="13" className="agent-b-temple" />
-          <line x1="41.5" y1="14" x2="43" y2="13" className="agent-b-temple" />
+          {/* ── Glasses — round, thin, no outlines just filled circles ── */}
+          <circle cx="27" cy="16" r="4.5" className="agent-b-glass" />
+          <circle cx="37" cy="16" r="4.5" className="agent-b-glass" />
+          <line x1="31.5" y1="16" x2="32.5" y2="16" className="agent-b-bridge" />
+          <line x1="22.5" y1="15" x2="21" y2="13.5" className="agent-b-temple" />
+          <line x1="41.5" y1="15" x2="43" y2="13.5" className="agent-b-temple" />
 
-          {/* ── Face — minimal ── */}
+          {/* ── Face — ultra minimal: two dots + tiny curve ── */}
           <g className="agent-b-face">
             <g className="agent-b-eyes">
-              <path d="M25.5 15.5Q27 13 28.5 15.5" className="agent-b-eye" />
-              <path d="M35.5 15.5Q37 13 38.5 15.5" className="agent-b-eye" />
+              {/* Dot eyes — not arcs, just filled circles for max simplicity */}
+              <circle cx="27" cy="16.5" r="1.5" className="agent-b-eye" />
+              <circle cx="37" cy="16.5" r="1.5" className="agent-b-eye" />
             </g>
-            <path d="M29 21Q32 23.5 35 21" className="agent-b-mouth" />
+            {/* Tiny smile — barely there */}
+            <path d="M29.5 22Q32 24 34.5 22" className="agent-b-mouth" />
           </g>
 
           {/* ── Thinking dots ── */}

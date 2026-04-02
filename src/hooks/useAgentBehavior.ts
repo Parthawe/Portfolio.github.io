@@ -36,7 +36,9 @@ export function useAgentBehavior() {
 
   // Drag state refs
   const dragOffset = useRef({ x: 0, y: 0 })
-  const hasMoved = useRef(false)
+  const dragStart = useRef({ x: 0, y: 0 })
+  const hasMoved = useRef(false)        // user has repositioned (persists across interactions)
+  const didDrag = useRef(false)          // this specific pointer session was a drag (reset on pointerup)
 
   // ── Delayed entry ────────────────────────────────────
   useEffect(() => {
@@ -117,6 +119,7 @@ export function useAgentBehavior() {
       if (!target.closest('.agent-trigger')) return
 
       pointerId = e.pointerId
+      didDrag.current = false
       ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
 
       const rect = el.getBoundingClientRect()
@@ -124,16 +127,18 @@ export function useAgentBehavior() {
         x: e.clientX - rect.left - rect.width / 2,
         y: e.clientY - rect.top - rect.height,
       }
-      hasMoved.current = false
+      dragStart.current = { x: e.clientX, y: e.clientY }
     }
 
     const onPointerMove = (e: PointerEvent) => {
       if (pointerId === null || e.pointerId !== pointerId) return
 
-      const dx = Math.abs(e.movementX)
-      const dy = Math.abs(e.movementY)
-      if (!hasMoved.current && dx < 3 && dy < 3) return
+      // Use total distance from start, not per-frame delta
+      const totalDx = Math.abs(e.clientX - dragStart.current.x)
+      const totalDy = Math.abs(e.clientY - dragStart.current.y)
+      if (!didDrag.current && totalDx < 5 && totalDy < 5) return
 
+      didDrag.current = true
       hasMoved.current = true
       setDragging(true)
 
@@ -239,5 +244,5 @@ export function useAgentBehavior() {
     resetIdleTimer()
   }, [resetIdleTimer])
 
-  return { state, entered, dockVisible, dragging, wrapRef, setAgentState, wake, route: location.pathname }
+  return { state, entered, dockVisible, dragging, didDrag, wrapRef, setAgentState, wake, route: location.pathname }
 }

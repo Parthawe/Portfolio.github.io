@@ -155,7 +155,8 @@
 .agent-b-bridge      { stroke: var(--ag-glass-s); stroke-width: 1; stroke-linecap: round; }
 .agent-b-temple      { stroke: var(--ag-glass-s); stroke-width: 0.8; stroke-linecap: round; }
 
-.agent-b-eye         { fill: none; stroke: var(--ag-eye); stroke-width: 1.8; stroke-linecap: round; }
+.agent-b-eye         { fill: var(--ag-eye); }
+.agent-b-jacket-shadow { fill: var(--ag-jacket-dk); opacity: 0.5; }
 .agent-b-mouth       { fill: none; stroke: var(--ag-mouth); stroke-width: 1.3; stroke-linecap: round; }
 
 .agent-b-jacket      { fill: var(--ag-jacket); }

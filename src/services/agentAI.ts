@@ -253,8 +253,8 @@ ${buildKnowledge()}`
 // Models to try in order — if primary is rate-limited, fall back
 // gemma-3-4b-it has a separate quota pool from Gemini models
 const MODELS = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemma-3-4b-it']
-const MAX_RETRIES = 2
-const RETRY_DELAY = 3000
+const MAX_RETRIES = 1
+const RETRY_DELAY = 2000
 
 // Rotate through multiple API keys to spread rate limits
 function getApiKeys(): string[] {
@@ -329,7 +329,8 @@ function adaptBodyForModel(model: string, body: Record<string, unknown>): Record
         { role: 'model' as const, parts: [{ text: 'Understood. I am Folio, ready to help visitors explore Parth\'s portfolio. I\'ll keep responses short, opinionated, and portfolio-focused.' }] },
         ...contents,
       ]
-      return { ...body, system_instruction: undefined, contents: adapted }
+      const { system_instruction: _, safetySettings: _s, ...rest } = body
+      return { ...rest, contents: adapted }
     }
   }
   return body
