@@ -7,6 +7,7 @@ import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
 
 const HandTracker = lazy(() => import('./HandTracker'));
+const PortfolioAgent = lazy(() => import('./agent/PortfolioAgent'));
 
 export default function RootLayout() {
   const location = useLocation();
@@ -128,6 +129,9 @@ export default function RootLayout() {
       <Lightbox />
       <Suspense fallback={null}>
         <HandTracker />
+      </Suspense>
+      <Suspense fallback={null}>
+        <PortfolioAgent />
       </Suspense>
     </>
   );
