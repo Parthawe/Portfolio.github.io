@@ -16,14 +16,14 @@ function getProactiveComment(path: string): string | null {
 }
 
 export default function PortfolioAgent() {
-  const { state, entered, dockVisible, wrapRef, setAgentState, wake, route } = useAgentBehavior()
+  const { state, entered, dockVisible, dragging, wrapRef, setAgentState, wake, route } = useAgentBehavior()
   const [chatOpen, setChatOpen] = useState(false)
   const [chatLoaded, setChatLoaded] = useState(false)
   const [speechBubble, setSpeechBubble] = useState<string | null>(null)
   const speechTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const shownRoutes = useRef(new Set<string>())
+  const wasDragging = useRef(false)
 
-  // Hide character = entered + dock visible
   const showChar = entered && dockVisible
 
   useEffect(() => {
@@ -41,12 +41,23 @@ export default function PortfolioAgent() {
 
   useEffect(() => { if (chatOpen) setSpeechBubble(null) }, [chatOpen])
 
+  // Track dragging to prevent click after drag
+  useEffect(() => {
+    if (dragging) wasDragging.current = true
+  }, [dragging])
+
   // Close chat when dock hides
   useEffect(() => {
     if (!dockVisible && chatOpen) setChatOpen(false)
   }, [dockVisible, chatOpen])
 
   const handleClick = useCallback(() => {
+    // If we just finished dragging, don't toggle chat
+    if (wasDragging.current) {
+      wasDragging.current = false
+      return
+    }
+
     if (state === 'sleeping') wake()
     setSpeechBubble(null)
     if (!chatLoaded) setChatLoaded(true)
@@ -65,7 +76,7 @@ export default function PortfolioAgent() {
   return (
     <div
       ref={wrapRef}
-      className={`agent-root ${showChar ? 'agent-root--in' : 'agent-root--out'}`}
+      className={`agent-root ${showChar ? 'agent-root--in' : 'agent-root--out'} ${dragging ? 'agent-root--dragging' : ''}`}
     >
       <AgentCharacter
         state={chatOpen ? (state === 'idle' ? 'idle' : state) : state}

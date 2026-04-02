@@ -9,12 +9,17 @@ export function useAgentBehavior() {
   const [state, setState] = useState<AgentState>('idle')
   const [entered, setEntered] = useState(false)
   const [dockVisible, setDockVisible] = useState(true)
+  const [dragging, setDragging] = useState(false)
 
   const wrapRef = useRef<HTMLDivElement>(null)
   const idleTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const prevRoute = useRef(location.pathname)
 
-  // Delayed entry — walk in from left
+  // Drag state refs (avoid re-renders during drag)
+  const dragOffset = useRef({ x: 0, y: 0 })
+  const hasMoved = useRef(false)
+
+  // ── Delayed entry ────────────────────────────────────
   useEffect(() => {
     const t1 = setTimeout(() => {
       setEntered(true)
@@ -24,7 +29,7 @@ export function useAgentBehavior() {
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
-  // Route change — walk briefly
+  // ── Route change — walk briefly ──────────────────────
   useEffect(() => {
     if (prevRoute.current === location.pathname) return
     prevRoute.current = location.pathname
@@ -36,7 +41,96 @@ export function useAgentBehavior() {
     return () => clearTimeout(t)
   }, [location.pathname])
 
-  // Watch for bottom nav / dock visibility
+  // ── Default position based on route ──────────────────
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+
+    // Reset position on route change (unless user has dragged)
+    if (!hasMoved.current) {
+      const isHome = location.pathname === '/'
+      el.style.left = isHome ? '24px' : ''
+      el.style.right = isHome ? '' : 'max(calc(50% - 280px), 80px)'
+    }
+  }, [location.pathname])
+
+  // ── Drag to reposition ───────────────────────────────
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+
+    let pointerId: number | null = null
+
+    const onPointerDown = (e: PointerEvent) => {
+      // Only drag from the character button area
+      const target = e.target as HTMLElement
+      if (!target.closest('.agent-trigger')) return
+
+      pointerId = e.pointerId
+      ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
+
+      const rect = el.getBoundingClientRect()
+      dragOffset.current = {
+        x: e.clientX - rect.left - rect.width / 2,
+        y: e.clientY - rect.top - rect.height,
+      }
+
+      // Don't start drag immediately — wait for movement
+      hasMoved.current = false
+    }
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (pointerId === null || e.pointerId !== pointerId) return
+
+      const dx = Math.abs(e.movementX)
+      const dy = Math.abs(e.movementY)
+      if (!hasMoved.current && dx < 3 && dy < 3) return
+
+      hasMoved.current = true
+      setDragging(true)
+
+      const x = e.clientX - dragOffset.current.x
+      const y = e.clientY - dragOffset.current.y
+
+      // Clamp to viewport
+      const maxX = window.innerWidth - 32
+      const maxY = window.innerHeight
+      const clampedX = Math.max(32, Math.min(x, maxX))
+      const clampedY = Math.max(120, Math.min(y, maxY))
+
+      // Switch to absolute positioning via left/top
+      el.style.right = ''
+      el.style.left = `${clampedX - 32}px`
+      el.style.bottom = `${window.innerHeight - clampedY}px`
+      el.style.transition = 'none'
+    }
+
+    const onPointerUp = (e: PointerEvent) => {
+      if (pointerId === null || e.pointerId !== pointerId) return
+      ;(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId)
+      pointerId = null
+      setDragging(false)
+
+      // Restore transition
+      requestAnimationFrame(() => {
+        el.style.transition = ''
+      })
+    }
+
+    el.addEventListener('pointerdown', onPointerDown)
+    el.addEventListener('pointermove', onPointerMove)
+    el.addEventListener('pointerup', onPointerUp)
+    el.addEventListener('pointercancel', onPointerUp)
+
+    return () => {
+      el.removeEventListener('pointerdown', onPointerDown)
+      el.removeEventListener('pointermove', onPointerMove)
+      el.removeEventListener('pointerup', onPointerUp)
+      el.removeEventListener('pointercancel', onPointerUp)
+    }
+  }, [])
+
+  // ── Watch for bottom nav / dock visibility ───────────
   useEffect(() => {
     const check = () => {
       const dock = document.querySelector('.work-bottom-nav, .cs-bottom-nav')
@@ -44,7 +138,6 @@ export function useAgentBehavior() {
         const hidden = dock.classList.contains('is-hidden')
         setDockVisible(!hidden)
       } else {
-        // No dock on this page — check if footer is near
         const footer = document.querySelector('.footer')
         if (footer) {
           const rect = footer.getBoundingClientRect()
@@ -58,8 +151,7 @@ export function useAgentBehavior() {
     check()
     window.addEventListener('scroll', check, { passive: true })
     const mo = new MutationObserver(check)
-    const body = document.body
-    mo.observe(body, { subtree: true, attributes: true, attributeFilter: ['class'] })
+    mo.observe(document.body, { subtree: true, attributes: true, attributeFilter: ['class'] })
 
     return () => {
       window.removeEventListener('scroll', check)
@@ -67,7 +159,7 @@ export function useAgentBehavior() {
     }
   }, [location.pathname])
 
-  // Idle → sleep
+  // ── Idle → sleep ─────────────────────────────────────
   const resetIdleTimer = useCallback(() => {
     if (idleTimer.current) clearTimeout(idleTimer.current)
     idleTimer.current = setTimeout(() => {
@@ -100,5 +192,5 @@ export function useAgentBehavior() {
     resetIdleTimer()
   }, [resetIdleTimer])
 
-  return { state, entered, dockVisible, wrapRef, setAgentState, wake, route: location.pathname }
+  return { state, entered, dockVisible, dragging, wrapRef, setAgentState, wake, route: location.pathname }
 }

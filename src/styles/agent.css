@@ -68,6 +68,19 @@
 .agent-root--out { transform: translateX(-100px); opacity: 0; }
 .agent-root--in  { transform: translateX(0); opacity: 1; }
 
+/* Dragging state — no transitions, grab cursor */
+.agent-root--dragging {
+  transition: none !important;
+}
+.agent-root--dragging .agent-trigger {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+.agent-root--dragging .agent-speech { display: none; }
+
+/* Default: grabbable cursor */
+.agent-trigger { cursor: grab; touch-action: none; }
+
 /* ── Character wrapper ───────────────────────────────── */
 
 .agent-char-wrap { position: relative; flex-shrink: 0; }
@@ -104,7 +117,6 @@
   background: none;
   border: none;
   padding: 0;
-  cursor: pointer;
   outline: none;
   transition: transform 0.3s var(--ease-spring);
 }
