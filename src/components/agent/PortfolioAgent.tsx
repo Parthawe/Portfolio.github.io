@@ -16,12 +16,15 @@ function getProactiveComment(path: string): string | null {
 }
 
 export default function PortfolioAgent() {
-  const { state, entered, wrapRef, setAgentState, wake, route } = useAgentBehavior()
+  const { state, entered, dockVisible, wrapRef, setAgentState, wake, route } = useAgentBehavior()
   const [chatOpen, setChatOpen] = useState(false)
   const [chatLoaded, setChatLoaded] = useState(false)
   const [speechBubble, setSpeechBubble] = useState<string | null>(null)
   const speechTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const shownRoutes = useRef(new Set<string>())
+
+  // Hide character = entered + dock visible
+  const showChar = entered && dockVisible
 
   useEffect(() => {
     if (chatOpen || !entered || shownRoutes.current.has(route)) return
@@ -37,6 +40,11 @@ export default function PortfolioAgent() {
   }, [route, chatOpen, entered])
 
   useEffect(() => { if (chatOpen) setSpeechBubble(null) }, [chatOpen])
+
+  // Close chat when dock hides
+  useEffect(() => {
+    if (!dockVisible && chatOpen) setChatOpen(false)
+  }, [dockVisible, chatOpen])
 
   const handleClick = useCallback(() => {
     if (state === 'sleeping') wake()
@@ -57,7 +65,7 @@ export default function PortfolioAgent() {
   return (
     <div
       ref={wrapRef}
-      className={`agent-root ${entered ? 'agent-root--in' : 'agent-root--out'}`}
+      className={`agent-root ${showChar ? 'agent-root--in' : 'agent-root--out'}`}
     >
       <AgentCharacter
         state={chatOpen ? (state === 'idle' ? 'idle' : state) : state}
