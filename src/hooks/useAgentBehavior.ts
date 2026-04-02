@@ -246,7 +246,7 @@ export function useAgentBehavior() {
 
   const setAgentState = useCallback((s: AgentState) => {
     setState(s)
-    chatActive.current = s === 'thinking' || s === 'talking'
+    chatActive.current = s === 'thinking' || s === 'talking' || s === 'pointing'
     if (s === 'idle') {
       chatActive.current = false
       resetIdleTimer()

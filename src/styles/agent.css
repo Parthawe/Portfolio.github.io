@@ -92,18 +92,36 @@
   bottom: calc(100% - 10px);
   left: 50%;
   transform: translateX(-50%);
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
+  padding: 10px 16px;
+  border-radius: 16px;
   background: var(--ag-bubble);
   border: 1px solid var(--ink-08);
   box-shadow: var(--shadow-sm);
   font-family: var(--sans);
   font-size: 12px;
   font-weight: 500;
+  line-height: 1.5;
   color: var(--ink-70);
-  white-space: nowrap;
+  white-space: normal;
+  text-align: left;
+  max-width: 260px;
+  min-width: 100px;
   animation: ag-bubble 0.3s var(--ease-spring);
-  pointer-events: none;
+  cursor: pointer;
+}
+
+/* Speech bubble caret pointing down */
+.agent-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 6px;
+  background: var(--ag-bubble);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1px solid var(--ink-08);
 }
 
 @keyframes ag-bubble {
@@ -344,6 +362,25 @@
   100% { opacity: 0; transform: translate(3px, -8px); }
 }
 
+/* ── Pointing — arm up, hold pose ────────────────────── */
+
+.agent-trigger--pointing .agent-body-svg {
+  animation: ag-idle 4s ease-in-out infinite;
+}
+
+.agent-trigger--pointing .agent-arm--r {
+  transform-origin: 56px 38px;
+  animation: ag-point 0.4s ease-out forwards;
+}
+
+@keyframes ag-point {
+  from { transform: rotate(0); }
+  to   { transform: rotate(-60deg); }
+}
+
+/* Flip character to face left when target is to the left */
+.agent-body-svg--flip { transform: scaleX(-1); }
+
 /* ── Chat open — dims ────────────────────────────────── */
 
 .agent-trigger--open {
@@ -399,6 +436,21 @@
 @keyframes chips-in {
   from { opacity: 0; transform: translateY(3px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typing cursor blink ─────────────────────────────── */
+
+.agent-typing-cursor {
+  display: inline;
+  color: var(--ink-30);
+  font-weight: 300;
+  animation: ag-cursor-blink 0.6s ease-in-out infinite;
+  margin-left: 1px;
+}
+
+@keyframes ag-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
 }
 
 

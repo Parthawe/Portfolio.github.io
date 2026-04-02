@@ -585,6 +585,30 @@ export function getChips(route: string, questionCount: number): string[] {
   return ['Best projects', 'About Parth', 'Something surprising']
 }
 
+/* ── Target extraction — find what to point at ────────── */
+
+export function extractTarget(text: string): HTMLElement | null {
+  // Find first internal link in response: [text](/slug)
+  const linkMatch = text.match(/\]\(\/([^)]+)\)/)
+  if (!linkMatch) return null
+
+  const slug = linkMatch[1]
+
+  // Try to find a project card linking to this slug
+  const card = document.querySelector(`a[href="/${slug}"]`)?.closest('.pcard') as HTMLElement | null
+  if (card) return card
+
+  // Try direct link
+  const link = document.querySelector(`a[href="/${slug}"]`) as HTMLElement | null
+  if (link) return link
+
+  // Try nav links
+  const navLink = document.querySelector(`.nav a[href="/${slug}"]`) as HTMLElement | null
+  if (navLink) return navLink
+
+  return null
+}
+
 /* ── Greeting ─────────────────────────────────────────── */
 
 export function getGreeting(route: string): string {

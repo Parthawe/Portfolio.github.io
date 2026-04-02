@@ -1,10 +1,11 @@
-export type AgentState = 'idle' | 'walking' | 'talking' | 'thinking' | 'waving' | 'sleeping'
+export type AgentState = 'idle' | 'walking' | 'talking' | 'thinking' | 'waving' | 'sleeping' | 'pointing'
 
 interface Props {
   state: AgentState
   onClick: () => void
   speechBubble?: string | null
   chatOpen?: boolean
+  facingLeft?: boolean
 }
 
 /*
@@ -16,7 +17,7 @@ interface Props {
   Face: just two dots and a tiny curve. Beanie pulled low.
 */
 
-export default function AgentCharacter({ state, onClick, speechBubble, chatOpen }: Props) {
+export default function AgentCharacter({ state, onClick, speechBubble, chatOpen, facingLeft }: Props) {
   return (
     <div className="agent-char-wrap">
       {speechBubble && (
@@ -36,7 +37,7 @@ export default function AgentCharacter({ state, onClick, speechBubble, chatOpen 
           width="64"
           height="120"
           fill="none"
-          className="agent-body-svg"
+          className={`agent-body-svg ${facingLeft ? 'agent-body-svg--flip' : ''}`}
         >
           {/* ── Ground shadow ── */}
           <ellipse cx="33" cy="116" rx="18" ry="3" className="agent-b-shadow" />
