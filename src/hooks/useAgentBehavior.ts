@@ -2,7 +2,23 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 import type { AgentState } from '../components/agent/AgentCharacter'
 
-const IDLE_TIMEOUT = 30_000
+const IDLE_TIMEOUT = 45_000
+const MICRO_MIN = 4_000
+const MICRO_MAX = 10_000
+
+// Random micro-actions to keep Folio alive
+const MICRO_ACTIONS: { state: AgentState; duration: number }[] = [
+  { state: 'waving', duration: 1200 },
+  { state: 'walking', duration: 1800 },
+  { state: 'thinking', duration: 2500 },
+  { state: 'talking', duration: 1500 },
+  { state: 'walking', duration: 1200 },
+  { state: 'waving', duration: 800 },
+]
+
+function randomDelay() {
+  return MICRO_MIN + Math.random() * (MICRO_MAX - MICRO_MIN)
+}
 
 export function useAgentBehavior() {
   const location = useLocation()
@@ -13,9 +29,12 @@ export function useAgentBehavior() {
 
   const wrapRef = useRef<HTMLDivElement>(null)
   const idleTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const microTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const prevRoute = useRef(location.pathname)
+  const microIndex = useRef(0)
+  const chatActive = useRef(false)
 
-  // Drag state refs (avoid re-renders during drag)
+  // Drag state refs
   const dragOffset = useRef({ x: 0, y: 0 })
   const hasMoved = useRef(false)
 
@@ -41,12 +60,44 @@ export function useAgentBehavior() {
     return () => clearTimeout(t)
   }, [location.pathname])
 
+  // ── Micro-actions loop — keeps Folio alive ───────────
+  useEffect(() => {
+    const scheduleNext = () => {
+      microTimer.current = setTimeout(() => {
+        // Don't interrupt chat states or sleeping
+        setState(prev => {
+          if (prev !== 'idle' || chatActive.current) {
+            scheduleNext()
+            return prev
+          }
+
+          const action = MICRO_ACTIONS[microIndex.current % MICRO_ACTIONS.length]
+          microIndex.current++
+
+          // Return to idle after the micro-action
+          setTimeout(() => {
+            setState(current => {
+              // Only return to idle if we're still in the micro-action state
+              if (current === action.state) return 'idle'
+              return current
+            })
+            scheduleNext()
+          }, action.duration)
+
+          return action.state
+        })
+      }, randomDelay())
+    }
+
+    scheduleNext()
+    return () => { if (microTimer.current) clearTimeout(microTimer.current) }
+  }, [])
+
   // ── Default position based on route ──────────────────
   useEffect(() => {
     const el = wrapRef.current
     if (!el) return
 
-    // Reset position on route change (unless user has dragged)
     if (!hasMoved.current) {
       const isHome = location.pathname === '/'
       el.style.left = isHome ? '24px' : ''
@@ -62,7 +113,6 @@ export function useAgentBehavior() {
     let pointerId: number | null = null
 
     const onPointerDown = (e: PointerEvent) => {
-      // Only drag from the character button area
       const target = e.target as HTMLElement
       if (!target.closest('.agent-trigger')) return
 
@@ -74,8 +124,6 @@ export function useAgentBehavior() {
         x: e.clientX - rect.left - rect.width / 2,
         y: e.clientY - rect.top - rect.height,
       }
-
-      // Don't start drag immediately — wait for movement
       hasMoved.current = false
     }
 
@@ -92,13 +140,11 @@ export function useAgentBehavior() {
       const x = e.clientX - dragOffset.current.x
       const y = e.clientY - dragOffset.current.y
 
-      // Clamp to viewport
       const maxX = window.innerWidth - 32
       const maxY = window.innerHeight
       const clampedX = Math.max(32, Math.min(x, maxX))
       const clampedY = Math.max(120, Math.min(y, maxY))
 
-      // Switch to absolute positioning via left/top
       el.style.right = ''
       el.style.left = `${clampedX - 32}px`
       el.style.bottom = `${window.innerHeight - clampedY}px`
@@ -111,10 +157,7 @@ export function useAgentBehavior() {
       pointerId = null
       setDragging(false)
 
-      // Restore transition
-      requestAnimationFrame(() => {
-        el.style.transition = ''
-      })
+      requestAnimationFrame(() => { el.style.transition = '' })
     }
 
     el.addEventListener('pointerdown', onPointerDown)
@@ -159,7 +202,7 @@ export function useAgentBehavior() {
     }
   }, [location.pathname])
 
-  // ── Idle → sleep ─────────────────────────────────────
+  // ── Idle → sleep (longer timeout now: 45s) ───────────
   const resetIdleTimer = useCallback(() => {
     if (idleTimer.current) clearTimeout(idleTimer.current)
     idleTimer.current = setTimeout(() => {
@@ -184,7 +227,11 @@ export function useAgentBehavior() {
 
   const setAgentState = useCallback((s: AgentState) => {
     setState(s)
-    if (s === 'idle') resetIdleTimer()
+    chatActive.current = s === 'thinking' || s === 'talking'
+    if (s === 'idle') {
+      chatActive.current = false
+      resetIdleTimer()
+    }
   }, [resetIdleTimer])
 
   const wake = useCallback(() => {
