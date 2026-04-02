@@ -120,12 +120,13 @@
   transform: scaleX(-1);
 }
 
-.agent-character-svg {
+.agent-character-img {
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;
   pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
 }
 
@@ -269,7 +270,7 @@
   animation: ag-sleep 5s ease-in-out infinite;
 }
 
-.agent-trigger--sleeping .agent-character-svg {
+.agent-trigger--sleeping .agent-character-img {
   filter: brightness(0.85) drop-shadow(0 2px 6px rgba(0,0,0,0.06));
 }
 

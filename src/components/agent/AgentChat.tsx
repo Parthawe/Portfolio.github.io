@@ -75,15 +75,8 @@ function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavig
 
 function MiniAvatar() {
   return (
-    <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex items-center justify-center flex-shrink-0 mb-0.5">
-      <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-        <ellipse cx="8" cy="10" rx="5.5" ry="5" fill="var(--ag-skin, #D8A88C)" />
-        <path d="M3 8Q3 3 8 3Q13 3 13 8Q14 7 13.5 8.5Q13 9 13 9Q13 7 10 5.5Q8 5 6 5.5Q3 7 3 9Z" fill="var(--ag-hair, #1A1A1A)" />
-        <ellipse cx="6.5" cy="9.5" rx="1.5" ry="1.8" fill="white" />
-        <ellipse cx="9.5" cy="9.5" rx="1.5" ry="1.8" fill="white" />
-        <circle cx="7" cy="10" r="0.8" fill="#1A1A1A" />
-        <circle cx="10" cy="10" r="0.8" fill="#1A1A1A" />
-      </svg>
+    <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex-shrink-0 mb-0.5 overflow-hidden">
+      <img src="/Assets/character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="" className="w-full h-full object-cover object-top" />
     </div>
   )
 }
@@ -210,16 +203,8 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--ink-06)]">
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-[var(--ink-04)] flex items-center justify-center flex-shrink-0 overflow-hidden">
-            <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-              <ellipse cx="14" cy="16" rx="9" ry="10" fill="var(--ag-skin, #D8A88C)" />
-              <path d="M5 12C5 5 9 2 14 2C19 2 23 5 23 12Q24 10 24.5 11Q25 12 23.5 13L23 14Q23 11 20 8Q17 6 14 6Q11 6 8 8Q5 11 5 14L4.5 13Q3 12 3.5 11Q4 10 5 12Z" fill="var(--ag-hair, #1A1A1A)" />
-              <ellipse cx="11" cy="15" rx="3" ry="3.5" fill="white" />
-              <ellipse cx="19" cy="15" rx="3" ry="3.5" fill="white" />
-              <circle cx="11.8" cy="15.5" r="1.5" fill="var(--ag-pupil, #1A1A1A)" />
-              <circle cx="19.8" cy="15.5" r="1.5" fill="var(--ag-pupil, #1A1A1A)" />
-              <path d="M11 21Q14 23.5 19 21" stroke="var(--ag-mouth, #3D2B25)" strokeWidth="1" strokeLinecap="round" fill="none" />
-            </svg>
+          <div className="w-7 h-7 rounded-full bg-[var(--ink-04)] flex-shrink-0 overflow-hidden">
+            <img src="/Assets/character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="Folio" className="w-full h-full object-cover object-top" />
           </div>
           <div>
             <span className="block text-[13px] font-semibold text-[var(--ink)] leading-none font-[var(--sans)]">Folio</span>
