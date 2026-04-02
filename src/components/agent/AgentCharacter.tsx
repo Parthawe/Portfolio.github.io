@@ -8,9 +8,25 @@ interface Props {
   facingLeft?: boolean
 }
 
-const FULL_BODY = '/Assets/character/hf_20260402_220205_dbb6f39a-e7aa-4fd3-b85e-ac01901e91ec.png'
+// Different poses for different states
+const POSES = {
+  standing: '/Assets/character/folio-standing.png',
+  walking:  '/Assets/character/folio-walking.png',
+  sitting:  '/Assets/character/folio-sitting.png',
+  half:     '/Assets/character/folio-half.png',
+}
+
+function getPose(state: AgentState): string {
+  switch (state) {
+    case 'walking':  return POSES.walking
+    case 'sleeping': return POSES.sitting
+    default:         return POSES.standing
+  }
+}
 
 export default function AgentCharacter({ state, onClick, chatOpen, facingLeft }: Props) {
+  const pose = getPose(state)
+
   return (
     <div className="agent-char-wrap">
       <button
@@ -20,9 +36,14 @@ export default function AgentCharacter({ state, onClick, chatOpen, facingLeft }:
         className={`agent-trigger agent-trigger--${state} ${chatOpen ? 'agent-trigger--open' : ''}`}
       >
         <div className={`agent-img-wrap ${facingLeft ? 'agent-img--flip' : ''}`}>
+          {/* Preload all poses */}
+          <link rel="preload" as="image" href={POSES.standing} />
+          <link rel="preload" as="image" href={POSES.walking} />
+          <link rel="preload" as="image" href={POSES.sitting} />
+
           <img
-            src={FULL_BODY}
-            alt="Folio — Parth's portfolio guide"
+            src={pose}
+            alt="Folio"
             className="agent-character-img"
             draggable={false}
           />
