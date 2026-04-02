@@ -77,10 +77,12 @@ function MiniAvatar() {
   return (
     <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex items-center justify-center flex-shrink-0 mb-0.5">
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-        <ellipse cx="8" cy="10" rx="5.5" ry="5" fill="var(--ag-skin, #E8BBA8)" />
-        <path d="M3 8.5Q3 3 8 3Q13 3 13 8.5L13 9.5Q11 8 8 8Q5 8 3 9.5Z" fill="var(--ag-hair, #2D2824)" />
-        <circle cx="6.5" cy="10" r="1" fill="var(--ag-eye, #2D2824)" />
-        <circle cx="9.5" cy="10" r="1" fill="var(--ag-eye, #2D2824)" />
+        <ellipse cx="8" cy="10" rx="5.5" ry="5" fill="var(--ag-skin, #D8A88C)" />
+        <path d="M3 8Q3 3 8 3Q13 3 13 8Q14 7 13.5 8.5Q13 9 13 9Q13 7 10 5.5Q8 5 6 5.5Q3 7 3 9Z" fill="var(--ag-hair, #1A1A1A)" />
+        <ellipse cx="6.5" cy="9.5" rx="1.5" ry="1.8" fill="white" />
+        <ellipse cx="9.5" cy="9.5" rx="1.5" ry="1.8" fill="white" />
+        <circle cx="7" cy="10" r="0.8" fill="#1A1A1A" />
+        <circle cx="10" cy="10" r="0.8" fill="#1A1A1A" />
       </svg>
     </div>
   )
@@ -210,14 +212,13 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-full bg-[var(--ink-04)] flex items-center justify-center flex-shrink-0 overflow-hidden">
             <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-              <ellipse cx="14" cy="16" rx="9" ry="10" fill="var(--ag-skin, #E8BBA8)" />
-              <path d="M5 14Q5 5 14 5Q23 5 23 14L23 15.5Q20 13 14 13Q8 13 5 15.5Z" fill="var(--ag-hair, #2D2824)" />
-              <path d="M4.5 14Q4.5 12 6 12.5L22 12.5Q23.5 12 23.5 14Q20.5 13 14 13Q7.5 13 4.5 14Z" fill="var(--ag-hair, #2D2824)" opacity="0.85" />
-              <circle cx="11" cy="17" r="3.5" fill="rgba(44,40,36,0.1)" stroke="rgba(44,40,36,0.22)" strokeWidth="0.8" />
-              <circle cx="19" cy="17" r="3.5" fill="rgba(44,40,36,0.1)" stroke="rgba(44,40,36,0.22)" strokeWidth="0.8" />
-              <line x1="14.5" y1="17" x2="15.5" y2="17" stroke="rgba(44,40,36,0.22)" strokeWidth="0.8" />
-              <circle cx="11" cy="17.5" r="1.2" fill="var(--ag-eye, #2D2824)" />
-              <circle cx="19" cy="17.5" r="1.2" fill="var(--ag-eye, #2D2824)" />
+              <ellipse cx="14" cy="16" rx="9" ry="10" fill="var(--ag-skin, #D8A88C)" />
+              <path d="M5 12C5 5 9 2 14 2C19 2 23 5 23 12Q24 10 24.5 11Q25 12 23.5 13L23 14Q23 11 20 8Q17 6 14 6Q11 6 8 8Q5 11 5 14L4.5 13Q3 12 3.5 11Q4 10 5 12Z" fill="var(--ag-hair, #1A1A1A)" />
+              <ellipse cx="11" cy="15" rx="3" ry="3.5" fill="white" />
+              <ellipse cx="19" cy="15" rx="3" ry="3.5" fill="white" />
+              <circle cx="11.8" cy="15.5" r="1.5" fill="var(--ag-pupil, #1A1A1A)" />
+              <circle cx="19.8" cy="15.5" r="1.5" fill="var(--ag-pupil, #1A1A1A)" />
+              <path d="M11 21Q14 23.5 19 21" stroke="var(--ag-mouth, #3D2B25)" strokeWidth="1" strokeLinecap="round" fill="none" />
             </svg>
           </div>
           <div>
