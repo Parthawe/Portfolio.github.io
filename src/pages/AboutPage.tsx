@@ -104,18 +104,64 @@ export default function AboutPage() {
           <div className="abt-ruler abt-ruler--left" aria-hidden="true" />
           <div className="abt-ruler abt-ruler--right" aria-hidden="true" />
 
-          {/* ── Hero ── */}
+          {/* ── Collage Hero ── */}
           <div className="wrap">
-            <header className="abt-hero">
-              <div className="abt-photo-col hero-anim hero-anim-1">
-                <div className="abt-photo-wrap">
-                  <img src="/Assets/ParthAboutus.png" alt="Parth Pawar" className="abt-photo" loading="eager" />
-                </div>
+            <header className="abt-collage">
+              {/* Top-right label */}
+              <div className="abt-collage-label hero-anim hero-anim-1">
+                <span>Notes from</span>
+                <span>a creative</span>
+                <span>to a creative.</span>
               </div>
-              <div className="abt-text-col">
-                <p className="abt-role hero-anim hero-anim-1">Design Engineer &middot; San Francisco</p>
-                <h1 className="abt-name hero-anim hero-anim-2">Parth<br />Pawar</h1>
-                <p className="abt-tagline hero-anim hero-anim-3">I make complex systems feel simple, then I obsess over the 2px that nobody else notices but everyone subconsciously feels.</p>
+
+              {/* Headline — handwritten style */}
+              <h1 className="abt-collage-title hero-anim hero-anim-2">
+                Be the Creative<br /><em>you</em>
+              </h1>
+
+              {/* Main portrait — center, largest */}
+              <div className="abt-collage-main hero-anim hero-anim-1">
+                <img src="/Assets/ParthAboutus.png" alt="Parth Pawar" loading="eager" />
+              </div>
+
+              {/* Scattered polaroid photos — position via CSS */}
+              <div className="abt-polaroid abt-polaroid--1 hero-anim hero-anim-2">
+                <div className="abt-polaroid-inner" />
+                <span className="abt-pin" />
+              </div>
+              <div className="abt-polaroid abt-polaroid--2 hero-anim hero-anim-2">
+                <div className="abt-polaroid-inner" />
+                <span className="abt-pin" />
+              </div>
+              <div className="abt-polaroid abt-polaroid--3 hero-anim hero-anim-3">
+                <div className="abt-polaroid-inner" />
+                <span className="abt-pin" />
+              </div>
+              <div className="abt-polaroid abt-polaroid--4 hero-anim hero-anim-3">
+                <div className="abt-polaroid-inner" />
+              </div>
+              <div className="abt-polaroid abt-polaroid--5 hero-anim hero-anim-2">
+                <div className="abt-polaroid-inner" />
+                <span className="abt-pin" />
+              </div>
+              <div className="abt-polaroid abt-polaroid--6 hero-anim hero-anim-3">
+                <div className="abt-polaroid-inner" />
+              </div>
+
+              {/* Bottom caption on main photo */}
+              <p className="abt-collage-caption hero-anim hero-anim-3">
+                you wanted your younger<br />self to know
+              </p>
+
+              {/* Right-side text block */}
+              <div className="abt-collage-text hero-anim hero-anim-3">
+                <p>The world will tell you to be this or that. And sometimes, it's hard to choose your own path — with all the pressure, expectations, and "shoulds." But you're more than what you think you are. It's never too late to start, to create, or to become the person your younger self dreamed of being.</p>
+              </div>
+
+              {/* Issue line */}
+              <div className="abt-collage-issue hero-anim hero-anim-3">
+                <span>ISSUE 2026</span>
+                <span>@DESIGNWHICH.WORKS</span>
               </div>
             </header>
 
