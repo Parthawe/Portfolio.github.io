@@ -120,13 +120,13 @@
   transform: scaleX(-1);
 }
 
-.agent-img {
+.agent-character-svg {
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
   pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
 }
 
 /* Shadow under character */
@@ -269,8 +269,8 @@
   animation: ag-sleep 5s ease-in-out infinite;
 }
 
-.agent-trigger--sleeping .agent-img {
-  filter: brightness(0.85);
+.agent-trigger--sleeping .agent-character-svg {
+  filter: brightness(0.85) drop-shadow(0 2px 6px rgba(0,0,0,0.06));
 }
 
 .agent-trigger--sleeping .agent-img-zzz {
