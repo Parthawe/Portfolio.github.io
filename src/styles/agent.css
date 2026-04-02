@@ -78,8 +78,8 @@
 }
 .agent-root--dragging .agent-speech { display: none; }
 
-/* Default: grabbable cursor */
-.agent-trigger { cursor: grab; touch-action: none; }
+/* Default cursor — long-press to drag */
+.agent-trigger { cursor: pointer; }
 
 /* ── Character wrapper ───────────────────────────────── */
 

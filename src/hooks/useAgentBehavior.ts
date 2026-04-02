@@ -107,12 +107,18 @@ export function useAgentBehavior() {
     }
   }, [location.pathname])
 
-  // ── Drag to reposition ───────────────────────────────
+  // ── Drag to reposition (long-press to activate) ──────
+  // Normal click/tap = toggle chat. Hold 300ms+ then drag = reposition.
+  // This prevents interference with scrolling and normal page interaction.
   useEffect(() => {
     const el = wrapRef.current
     if (!el) return
 
     let pointerId: number | null = null
+    let longPressTimer: ReturnType<typeof setTimeout> | null = null
+    let dragReady = false
+    let startElLeft = 0
+    let startElBottom = 0
 
     const onPointerDown = (e: PointerEvent) => {
       const target = e.target as HTMLElement
@@ -120,61 +126,69 @@ export function useAgentBehavior() {
 
       pointerId = e.pointerId
       didDrag.current = false
-      ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
+      dragReady = false
+      dragStart.current = { x: e.clientX, y: e.clientY }
 
       const rect = el.getBoundingClientRect()
-      dragOffset.current = {
-        x: e.clientX - rect.left - rect.width / 2,
-        y: e.clientY - rect.top - rect.height,
-      }
-      dragStart.current = { x: e.clientX, y: e.clientY }
+      startElLeft = rect.left
+      startElBottom = window.innerHeight - rect.bottom
+
+      // Start long-press timer — 300ms hold activates drag mode
+      longPressTimer = setTimeout(() => {
+        dragReady = true
+        setDragging(true)
+        el.style.transition = 'none'
+      }, 300)
     }
 
     const onPointerMove = (e: PointerEvent) => {
       if (pointerId === null || e.pointerId !== pointerId) return
 
-      // Use total distance from start, not per-frame delta
-      const totalDx = Math.abs(e.clientX - dragStart.current.x)
-      const totalDy = Math.abs(e.clientY - dragStart.current.y)
-      if (!didDrag.current && totalDx < 5 && totalDy < 5) return
+      const totalDx = e.clientX - dragStart.current.x
+      const totalDy = e.clientY - dragStart.current.y
+
+      // If user moves before long-press fires, cancel drag activation
+      if (!dragReady && (Math.abs(totalDx) > 5 || Math.abs(totalDy) > 5)) {
+        if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null }
+        pointerId = null
+        return
+      }
+
+      if (!dragReady) return
 
       didDrag.current = true
       hasMoved.current = true
-      setDragging(true)
 
-      const x = e.clientX - dragOffset.current.x
-      const y = e.clientY - dragOffset.current.y
+      const newLeft = startElLeft + totalDx
+      const newBottom = startElBottom - totalDy
 
-      const maxX = window.innerWidth - 32
-      const maxY = window.innerHeight
-      const clampedX = Math.max(32, Math.min(x, maxX))
-      const clampedY = Math.max(120, Math.min(y, maxY))
+      const clampedLeft = Math.max(0, Math.min(newLeft, window.innerWidth - 64))
+      const clampedBottom = Math.max(0, Math.min(newBottom, window.innerHeight - 120))
 
-      el.style.right = ''
-      el.style.left = `${clampedX - 32}px`
-      el.style.bottom = `${window.innerHeight - clampedY}px`
-      el.style.transition = 'none'
+      el.style.right = 'auto'
+      el.style.left = `${clampedLeft}px`
+      el.style.bottom = `${clampedBottom}px`
     }
 
-    const onPointerUp = (e: PointerEvent) => {
-      if (pointerId === null || e.pointerId !== pointerId) return
-      ;(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId)
+    const onPointerUp = () => {
+      if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null }
       pointerId = null
+      dragReady = false
       setDragging(false)
-
       requestAnimationFrame(() => { el.style.transition = '' })
     }
 
-    el.addEventListener('pointerdown', onPointerDown)
-    el.addEventListener('pointermove', onPointerMove)
-    el.addEventListener('pointerup', onPointerUp)
-    el.addEventListener('pointercancel', onPointerUp)
+    el.addEventListener('pointerdown', onPointerDown, { passive: true })
+    el.addEventListener('pointermove', onPointerMove, { passive: true })
+    el.addEventListener('pointerup', onPointerUp, { passive: true })
+    el.addEventListener('pointercancel', onPointerUp, { passive: true })
 
     return () => {
       el.removeEventListener('pointerdown', onPointerDown)
       el.removeEventListener('pointermove', onPointerMove)
       el.removeEventListener('pointerup', onPointerUp)
       el.removeEventListener('pointercancel', onPointerUp)
+      if (longPressTimer) clearTimeout(longPressTimer)
     }
   }, [])
 
