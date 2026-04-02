@@ -6,13 +6,12 @@ import type { AgentState } from './AgentCharacter'
 
 const AgentChat = lazy(() => import('./AgentChat'))
 
-// Proactive comments — subtle, informative
 function getProactiveComment(path: string): string | null {
   const slug = path.replace(/^\//, '')
-  if (slug && slug !== 'work' && slug !== 'about' && slug !== 'graveyard') return 'I know the backstory'
-  if (path === '/about') return 'Fun facts? Ask me'
-  if (path === '/work') return 'Which project interests you?'
-  if (path === '/') return 'Ask me about any project'
+  if (slug && slug !== 'work' && slug !== 'about' && slug !== 'graveyard') return 'Ask me about this project'
+  if (path === '/about') return 'Want to know more?'
+  if (path === '/work') return 'Which one interests you?'
+  if (path === '/') return 'Ask me anything'
   return null
 }
 
@@ -24,10 +23,8 @@ export default function PortfolioAgent() {
   const speechTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const shownRoutes = useRef(new Set<string>())
 
-  // Proactive speech bubble — once per route, section-aware
   useEffect(() => {
     if (chatOpen || !entered || shownRoutes.current.has(route)) return
-
     speechTimer.current = setTimeout(() => {
       const comment = getProactiveComment(route)
       if (comment) {
@@ -36,7 +33,6 @@ export default function PortfolioAgent() {
         setTimeout(() => setSpeechBubble(null), 3500)
       }
     }, route === '/' ? 4000 : 2500)
-
     return () => { if (speechTimer.current) clearTimeout(speechTimer.current) }
   }, [route, chatOpen, entered])
 
@@ -63,14 +59,13 @@ export default function PortfolioAgent() {
       ref={wrapRef}
       className={`agent-root ${entered ? 'agent-root--in' : 'agent-root--out'}`}
     >
-      {/* Character */}
       <AgentCharacter
         state={chatOpen ? (state === 'idle' ? 'idle' : state) : state}
         onClick={handleClick}
         speechBubble={chatOpen ? null : speechBubble}
+        chatOpen={chatOpen}
       />
 
-      {/* Chat — positioned to the right of the character */}
       {chatLoaded && (
         <Suspense fallback={null}>
           <AgentChat

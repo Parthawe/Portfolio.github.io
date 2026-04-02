@@ -4,127 +4,53 @@ interface Props {
   state: AgentState
   onClick: () => void
   speechBubble?: string | null
+  chatOpen?: boolean
 }
 
-/*
-  Illustrated character — flat design, layered clothing, warm personality.
-  Inspired by modern editorial illustration: rounded shapes, bold colors,
-  layered outfit (jacket over tee), sneakers, beanie/cap.
-  ~56px wide, proportioned like a real person (slightly stylized).
-*/
-export default function AgentCharacter({ state, onClick, speechBubble }: Props) {
+export default function AgentCharacter({ state, onClick, speechBubble, chatOpen }: Props) {
+  const isActive = state === 'thinking' || state === 'talking'
+
   return (
-    <div className="agent-char-wrap">
+    <div className="relative flex-shrink-0">
+      {/* Speech bubble */}
       {speechBubble && (
-        <div className="agent-bubble" aria-live="polite">
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--ink-08)] shadow-sm font-[var(--sans)] text-[11px] font-medium text-[var(--ink-70)] whitespace-nowrap animate-[bubble-in_0.3s_var(--ease-spring)] pointer-events-none">
           {speechBubble}
-          <svg className="agent-bubble-caret" width="10" height="6" viewBox="0 0 10 6">
-            <path d="M0 0L5 6L10 0Z" fill="var(--agent-bubble-bg, var(--surface))" />
-          </svg>
         </div>
       )}
 
+      {/* Trigger button */}
       <button
-        className={`agent-btn agent-btn--${state}`}
         onClick={onClick}
-        aria-label="Chat with portfolio assistant"
         type="button"
+        aria-label="Chat with portfolio assistant"
+        className="group relative flex items-center justify-center w-11 h-11 rounded-full border border-[var(--ink-08)] bg-[var(--surface)] shadow-[var(--shadow-md)] cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[var(--shadow-lg)] hover:border-[var(--ink-15)] focus-visible:outline-2 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
       >
-        <svg viewBox="0 0 56 88" width="56" height="88" fill="none" className="agent-svg">
-          {/* Shadow */}
-          <ellipse className="agent-shadow" cx="28" cy="86" rx="14" ry="2.5" />
+        {/* Pulse ring when active */}
+        {isActive && (
+          <span className="absolute inset-0 rounded-full border-2 border-[var(--ink-15)] animate-ping opacity-40" />
+        )}
 
-          {/* ── Left shoe ── */}
-          <g className="agent-leg agent-leg--l">
-            <path className="agent-shoe" d="M16 74 L16 80 Q16 83 19 83 L24 83 Q26 83 26 81 L26 74 Z" />
-            {/* Pant leg */}
-            <rect className="agent-pants" x="18" y="58" width="8" height="18" rx="3" />
-          </g>
+        {/* Icon — morphs between states */}
+        <div className={`transition-transform duration-300 ${chatOpen ? 'rotate-0' : ''} ${state === 'sleeping' ? 'opacity-40' : 'opacity-100'}`}>
+          {chatOpen ? (
+            /* X close icon */
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-[var(--ink-70)]">
+              <path d="M4 4L12 12M4 12L12 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          ) : (
+            /* Chat sparkle icon */
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-[var(--ink-70)] group-hover:text-[var(--ink)] transition-colors">
+              <path d="M9 1L9.87 5.36a2 2 0 0 0 1.77 1.77L16 8l-4.36.87a2 2 0 0 0-1.77 1.77L9 15l-.87-4.36a2 2 0 0 0-1.77-1.77L2 8l4.36-.87a2 2 0 0 0 1.77-1.77L9 1Z" fill="currentColor" />
+              <path d="M14 12l.5 1.5L16 14l-1.5.5L14 16l-.5-1.5L12 14l1.5-.5L14 12Z" fill="currentColor" opacity="0.5" />
+            </svg>
+          )}
+        </div>
 
-          {/* ── Right shoe ── */}
-          <g className="agent-leg agent-leg--r">
-            <path className="agent-shoe" d="M30 74 L30 80 Q30 83 33 83 L37 83 Q40 83 40 81 L40 74 Z" />
-            <rect className="agent-pants" x="30" y="58" width="8" height="18" rx="3" />
-          </g>
-
-          {/* ── T-shirt (visible at collar) ── */}
-          <path className="agent-tee" d="M20 38 Q28 42 36 38 L36 44 L20 44 Z" />
-
-          {/* ── Jacket body ── */}
-          <path className="agent-jacket"
-            d="M14 38 Q14 35 17 34 L23 32 Q28 31 33 32 L39 34 Q42 35 42 38 L42 58 Q42 60 40 60 L16 60 Q14 60 14 58 Z" />
-
-          {/* ── Jacket center line ── */}
-          <line className="agent-jacket-seam" x1="28" y1="34" x2="28" y2="59" strokeWidth="1" />
-
-          {/* ── Jacket collar flaps ── */}
-          <path className="agent-collar-l" d="M22 32 L19 38 L24 38 Z" />
-          <path className="agent-collar-r" d="M34 32 L37 38 L32 38 Z" />
-
-          {/* ── Pocket details ── */}
-          <rect className="agent-pocket" x="17" y="44" width="7" height="6" rx="1.5" />
-          <rect className="agent-pocket" x="32" y="44" width="7" height="6" rx="1.5" />
-
-          {/* ── Left arm ── */}
-          <g className="agent-arm agent-arm--l">
-            <rect className="agent-jacket-sleeve" x="6" y="36" width="9" height="18" rx="4" />
-            <ellipse className="agent-hand" cx="10.5" cy="56" rx="4" ry="3.5" />
-          </g>
-
-          {/* ── Right arm ── */}
-          <g className="agent-arm agent-arm--r">
-            <rect className="agent-jacket-sleeve" x="41" y="36" width="9" height="18" rx="4" />
-            <ellipse className="agent-hand" cx="45.5" cy="56" rx="4" ry="3.5" />
-          </g>
-
-          {/* ── Head ── */}
-          <ellipse className="agent-head" cx="28" cy="18" rx="14" ry="15" />
-
-          {/* ── Beanie/Cap ── */}
-          <path className="agent-beanie"
-            d="M14 14 Q14 4 28 4 Q42 4 42 14 L42 16 Q38 12 28 12 Q18 12 14 16 Z" />
-          <rect className="agent-beanie-band" x="14" y="13" width="28" height="3" rx="1.5" />
-          {/* Beanie pom */}
-          <circle className="agent-pom" cx="28" cy="4" r="3" />
-
-          {/* ── Face ── */}
-          <g className="agent-face">
-            {/* Eyes */}
-            <g className="agent-eyes">
-              <g className="agent-eye-l">
-                <ellipse className="agent-eye-white" cx="22" cy="19" rx="3.5" ry="4" />
-                <ellipse className="agent-pupil" cx="23" cy="19" rx="2" ry="2.5" />
-                <circle className="agent-glint" cx="24" cy="18" r="0.8" />
-              </g>
-              <g className="agent-eye-r">
-                <ellipse className="agent-eye-white" cx="34" cy="19" rx="3.5" ry="4" />
-                <ellipse className="agent-pupil" cx="35" cy="19" rx="2" ry="2.5" />
-                <circle className="agent-glint" cx="36" cy="18" r="0.8" />
-              </g>
-            </g>
-
-            {/* Mouth */}
-            <path className="agent-mouth" d="M24 26 Q28 30 32 26" strokeWidth="1.5" strokeLinecap="round" />
-
-            {/* Cheek blush */}
-            <ellipse className="agent-blush-l" cx="17" cy="23" rx="3" ry="2" />
-            <ellipse className="agent-blush-r" cx="39" cy="23" rx="3" ry="2" />
-          </g>
-
-          {/* ── Thinking dots ── */}
-          <g className="agent-think-dots">
-            <circle cx="46" cy="8" r="2" className="agent-dot agent-dot--1" />
-            <circle cx="50" cy="4" r="2.5" className="agent-dot agent-dot--2" />
-            <circle cx="54" cy="0" r="3" className="agent-dot agent-dot--3" />
-          </g>
-
-          {/* ── Zzz ── */}
-          <g className="agent-zzz">
-            <text x="44" y="10" className="agent-z agent-z--1">z</text>
-            <text x="48" y="5" className="agent-z agent-z--2">z</text>
-            <text x="51" y="-1" className="agent-z agent-z--3">Z</text>
-          </g>
-        </svg>
+        {/* Online indicator dot */}
+        {!chatOpen && (
+          <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[var(--surface)]" />
+        )}
       </button>
     </div>
   )

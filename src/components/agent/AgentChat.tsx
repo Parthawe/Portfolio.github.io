@@ -27,13 +27,11 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
   let key = 0
 
   while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIdx) {
-      parts.push(text.slice(lastIdx, match.index))
-    }
+    if (match.index > lastIdx) parts.push(text.slice(lastIdx, match.index))
     const seg = match[0]
 
     if (seg.startsWith('**')) {
-      parts.push(<strong key={key++}>{seg.slice(2, -2)}</strong>)
+      parts.push(<strong key={key++} className="font-semibold">{seg.slice(2, -2)}</strong>)
     } else if (seg.startsWith('[')) {
       const linkMatch = seg.match(/\[([^\]]+)\]\(([^)]+)\)/)
       if (linkMatch) {
@@ -43,14 +41,14 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
           isInternal ? (
             <button
               key={key++}
-              className="agent-msg-link"
+              className="inline underline underline-offset-2 decoration-[var(--ink-30)] hover:decoration-[var(--ink)] transition-colors cursor-pointer bg-transparent border-none font-inherit p-0"
               onClick={() => onNavigate(href)}
               type="button"
             >
               {label}
             </button>
           ) : (
-            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="agent-msg-link">
+            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="inline underline underline-offset-2 decoration-[var(--ink-30)] hover:decoration-[var(--ink)] transition-colors">
               {label}
             </a>
           )
@@ -61,10 +59,7 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
     lastIdx = match.index + seg.length
   }
 
-  if (lastIdx < text.length) {
-    parts.push(text.slice(lastIdx))
-  }
-
+  if (lastIdx < text.length) parts.push(text.slice(lastIdx))
   return <>{parts}</>
 }
 
@@ -84,12 +79,8 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const initializedRoute = useRef('')
   const questionCount = useRef(0)
 
-  // Keep route synced
-  useEffect(() => {
-    historyRef.current.route = route
-  }, [route])
+  useEffect(() => { historyRef.current.route = route }, [route])
 
-  // Initialize on open
   useEffect(() => {
     if (open && initializedRoute.current !== route) {
       initializedRoute.current = route
@@ -111,13 +102,11 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
     if (open) setTimeout(() => inputRef.current?.focus(), 150)
   }, [open])
 
-  // Scroll to bottom
   useEffect(() => {
     const el = messagesRef.current
     if (el) requestAnimationFrame(() => { el.scrollTop = el.scrollHeight })
   }, [messages, thinking, streaming])
 
-  // Escape to close
   useEffect(() => {
     if (!open) return
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -134,12 +123,7 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
     const trimmed = text.trim()
     if (!trimmed || thinking || streaming) return
 
-    // Add user message
-    setMessages(prev => [...prev, {
-      id: ++idCounter.current,
-      content: trimmed,
-      sender: 'user',
-    }])
+    setMessages(prev => [...prev, { id: ++idCounter.current, content: trimmed, sender: 'user' }])
     setInput('')
     setThinking(true)
     onAgentState('thinking')
@@ -148,20 +132,12 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
     const streamMsgId = ++idCounter.current
 
     try {
-      // Add placeholder for streaming response
-      setMessages(prev => [...prev, {
-        id: streamMsgId,
-        content: '',
-        sender: 'agent',
-        raw: '',
-      }])
-
+      setMessages(prev => [...prev, { id: streamMsgId, content: '', sender: 'agent', raw: '' }])
       setThinking(false)
       setStreaming(true)
       onAgentState('talking')
 
       const finalText = await sendMessage(trimmed, historyRef.current, (partialText) => {
-        // Update the streaming message in real-time
         setMessages(prev => prev.map(m =>
           m.id === streamMsgId
             ? { ...m, content: <RichText text={partialText} onNavigate={handleNav} />, raw: partialText }
@@ -169,15 +145,12 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
         ))
       })
 
-      // Final update with complete text
       setMessages(prev => prev.map(m =>
         m.id === streamMsgId
           ? { ...m, content: <RichText text={finalText} onNavigate={handleNav} />, raw: finalText }
           : m
       ))
-
       setChips(getChips(route, questionCount.current))
-
     } catch {
       setMessages(prev => prev.map(m =>
         m.id === streamMsgId
@@ -203,71 +176,77 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       aria-hidden={!open}
     >
       {/* Header */}
-      <div className="agent-chat-header">
-        <div className="agent-chat-header-left">
-          <div className="agent-chat-avatar">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
-              <circle cx="12" cy="12" r="10" fill="var(--ink)" />
-              <circle cx="9" cy="10" r="1.5" fill="var(--bg)" />
-              <circle cx="15" cy="10" r="1.5" fill="var(--bg)" />
-              <path d="M9 15 Q12 18 15 15" stroke="var(--bg)" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--ink-06)]">
+        <div className="flex items-center gap-2.5">
+          {/* Avatar */}
+          <div className="w-7 h-7 rounded-full bg-[var(--ink)] flex items-center justify-center flex-shrink-0">
+            <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+              <path d="M9 1L9.87 5.36a2 2 0 0 0 1.77 1.77L16 8l-4.36.87a2 2 0 0 0-1.77 1.77L9 15l-.87-4.36a2 2 0 0 0-1.77-1.77L2 8l4.36-.87a2 2 0 0 0 1.77-1.77L9 1Z" fill="var(--bg)" />
             </svg>
           </div>
           <div>
-            <span className="agent-chat-title">Portfolio Guide</span>
-            <span className="agent-chat-status">
-              <span className="agent-chat-dot" />
-              Online
+            <span className="block text-[13px] font-semibold text-[var(--ink)] leading-none font-[var(--sans)]">Portfolio Guide</span>
+            <span className="flex items-center gap-1 mt-0.5 text-[10px] text-[var(--ink-40)] font-[var(--sans)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+              Powered by AI
             </span>
           </div>
         </div>
-        <button className="agent-chat-close" onClick={onClose} aria-label="Close chat" type="button">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <button onClick={onClose} aria-label="Close chat" type="button" className="w-7 h-7 flex items-center justify-center rounded-lg text-[var(--ink-30)] hover:text-[var(--ink)] hover:bg-[var(--ink-04)] transition-all cursor-pointer border-none bg-transparent">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
             <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </button>
       </div>
 
       {/* Messages */}
-      <div className="agent-chat-messages" ref={messagesRef} aria-live="polite" aria-atomic="false">
+      <div ref={messagesRef} className="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-3 min-h-0 scroll-smooth" style={{ scrollbarWidth: 'thin', scrollbarColor: 'var(--ink-06) transparent' }} aria-live="polite" aria-atomic="false">
         {messages.map(msg => (
-          <div key={msg.id} className={`agent-msg-row agent-msg-row--${msg.sender}`}>
+          <div key={msg.id} className={`flex gap-2 items-end ${msg.sender === 'user' ? 'justify-end' : ''}`}>
             {msg.sender === 'agent' && (
-              <div className="agent-msg-avatar">
-                <svg viewBox="0 0 20 20" width="16" height="16" fill="none">
-                  <circle cx="10" cy="10" r="8" fill="var(--ink)" />
-                  <circle cx="7.5" cy="8.5" r="1" fill="var(--bg)" />
-                  <circle cx="12.5" cy="8.5" r="1" fill="var(--bg)" />
-                  <path d="M7.5 12.5 Q10 15 12.5 12.5" stroke="var(--bg)" strokeWidth="1" strokeLinecap="round" fill="none" />
+              <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex items-center justify-center flex-shrink-0 mb-0.5">
+                <svg width="10" height="10" viewBox="0 0 18 18" fill="none">
+                  <path d="M9 1L9.87 5.36a2 2 0 0 0 1.77 1.77L16 8l-4.36.87a2 2 0 0 0-1.77 1.77L9 15l-.87-4.36a2 2 0 0 0-1.77-1.77L2 8l4.36-.87a2 2 0 0 0 1.77-1.77L9 1Z" fill="var(--ink-40)" />
                 </svg>
               </div>
             )}
-            <div className={`agent-msg agent-msg--${msg.sender}`}>
-              {typeof msg.content === 'string' ? msg.content : msg.content}
+            <div className={`max-w-[85%] px-3.5 py-2.5 text-[13px] leading-relaxed font-[var(--sans)] whitespace-pre-line break-words ${
+              msg.sender === 'agent'
+                ? 'bg-[var(--ink-04)] text-[var(--ink)] rounded-2xl rounded-bl-md'
+                : 'bg-[var(--ink)] text-[var(--bg)] rounded-2xl rounded-br-md'
+            }`}>
+              {msg.content}
             </div>
           </div>
         ))}
+
+        {/* Thinking indicator */}
         {thinking && (
-          <div className="agent-msg-row agent-msg-row--agent">
-            <div className="agent-msg-avatar">
-              <svg viewBox="0 0 20 20" width="16" height="16" fill="none">
-                <circle cx="10" cy="10" r="8" fill="var(--ink)" />
-                <circle cx="7.5" cy="8.5" r="1" fill="var(--bg)" />
-                <circle cx="12.5" cy="8.5" r="1" fill="var(--bg)" />
+          <div className="flex gap-2 items-end">
+            <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex items-center justify-center flex-shrink-0 mb-0.5">
+              <svg width="10" height="10" viewBox="0 0 18 18" fill="none">
+                <path d="M9 1L9.87 5.36a2 2 0 0 0 1.77 1.77L16 8l-4.36.87a2 2 0 0 0-1.77 1.77L9 15l-.87-4.36a2 2 0 0 0-1.77-1.77L2 8l4.36-.87a2 2 0 0 0 1.77-1.77L9 1Z" fill="var(--ink-40)" />
               </svg>
             </div>
-            <div className="agent-msg agent-msg--agent agent-msg--thinking">
-              <span /><span /><span />
+            <div className="flex gap-1 px-3.5 py-3 bg-[var(--ink-04)] rounded-2xl rounded-bl-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-30)] animate-[chatdot_1.2s_ease-in-out_infinite]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-30)] animate-[chatdot_1.2s_ease-in-out_infinite_0.15s]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-30)] animate-[chatdot_1.2s_ease-in-out_infinite_0.3s]" />
             </div>
           </div>
         )}
       </div>
 
-      {/* Dynamic chips */}
+      {/* Chips */}
       {chips.length > 0 && !thinking && !streaming && (
-        <div className="agent-chips">
+        <div className="flex flex-wrap gap-1.5 px-4 pb-2 animate-[chips-in_0.2s_ease]">
           {chips.map(chip => (
-            <button key={chip} className="agent-chip" onClick={() => handleSend(chip)} type="button">
+            <button
+              key={chip}
+              onClick={() => handleSend(chip)}
+              type="button"
+              className="px-3 py-1.5 rounded-full border border-[var(--ink-08)] bg-transparent text-[11px] font-medium text-[var(--ink-50)] font-[var(--sans)] cursor-pointer transition-all hover:border-[var(--ink-15)] hover:text-[var(--ink)] hover:bg-[var(--ink-04)] whitespace-nowrap"
+            >
               {chip}
             </button>
           ))}
@@ -275,10 +254,9 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       )}
 
       {/* Input */}
-      <form className="agent-chat-input-wrap" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 px-3 py-2.5 border-t border-[var(--ink-06)]">
         <input
           ref={inputRef}
-          className="agent-chat-input"
           type="text"
           placeholder="Ask about any project..."
           value={input}
@@ -286,15 +264,16 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
           aria-label="Type your question"
           autoComplete="off"
           disabled={thinking || streaming}
+          className="flex-1 bg-transparent border-none text-[13px] text-[var(--ink)] font-[var(--sans)] outline-none placeholder:text-[var(--ink-30)] disabled:opacity-40 py-1"
         />
         <button
-          className="agent-chat-send"
           type="submit"
           disabled={!input.trim() || thinking || streaming}
           aria-label="Send message"
+          className="w-8 h-8 rounded-xl bg-[var(--ink)] text-[var(--bg)] flex items-center justify-center flex-shrink-0 cursor-pointer transition-all hover:scale-105 disabled:opacity-20 disabled:cursor-default border-none"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M2 14L14 8L2 2V6.5L10 8L2 9.5V14Z" fill="currentColor" />
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 13L13 8L3 3V6.5L9 8L3 9.5V13Z" fill="currentColor" />
           </svg>
         </button>
       </form>
