@@ -250,7 +250,31 @@ ${buildKnowledge()}`
 
 /* ── Gemini API ───────────────────────────────────────── */
 
-const GEMINI_MODEL = 'gemini-2.0-flash'
+// Models to try in order — if primary is rate-limited, fall back
+const MODELS = ['gemini-2.0-flash', 'gemini-2.0-flash-lite']
+const MAX_RETRIES = 2
+const RETRY_DELAY = 3000
+
+// Rotate through multiple API keys to spread rate limits
+function getApiKeys(): string[] {
+  const keys: string[] = []
+  const primary = import.meta.env.VITE_GEMINI_API_KEY
+  if (primary) keys.push(primary)
+  const extra = import.meta.env.VITE_GEMINI_API_KEY_2
+  if (extra) keys.push(extra)
+  const extra2 = import.meta.env.VITE_GEMINI_API_KEY_3
+  if (extra2) keys.push(extra2)
+  return keys
+}
+
+let keyIndex = 0
+function nextApiKey(): string | null {
+  const keys = getApiKeys()
+  if (!keys.length) return null
+  const key = keys[keyIndex % keys.length]
+  keyIndex++
+  return key
+}
 
 interface GeminiMessage {
   role: 'user' | 'model'
@@ -268,28 +292,82 @@ export function createChatHistory(route: string): ChatHistory {
   return { messages: [], route }
 }
 
+async function callGemini(
+  model: string,
+  apiKey: string,
+  body: Record<string, unknown>,
+  streaming: boolean,
+): Promise<{ ok: boolean; status: number; data?: Response; error?: string }> {
+  const endpoint = streaming
+    ? `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${apiKey}`
+    : `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
+
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+
+  if (res.ok) return { ok: true, status: res.status, data: res }
+
+  const errText = await res.text()
+  return { ok: false, status: res.status, error: errText }
+}
+
+async function tryWithFallback(
+  body: Record<string, unknown>,
+  streaming: boolean,
+): Promise<Response> {
+  const keys = getApiKeys()
+  if (!keys.length) throw new Error('No API keys configured')
+
+  for (let modelIdx = 0; modelIdx < MODELS.length; modelIdx++) {
+    const model = MODELS[modelIdx]
+
+    // Try each key for this model
+    for (let keyAttempt = 0; keyAttempt < keys.length; keyAttempt++) {
+      const apiKey = nextApiKey()!
+
+      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+        const result = await callGemini(model, apiKey, body, streaming)
+
+        if (result.ok && result.data) return result.data
+
+        if (result.status === 429) {
+          console.warn(`Rate limited on ${model} (key ${keyAttempt + 1}), attempt ${attempt + 1}`)
+          if (attempt < MAX_RETRIES) {
+            await new Promise(r => setTimeout(r, RETRY_DELAY * (attempt + 1)))
+            continue
+          }
+          break // try next key
+        }
+
+        throw new Error(result.error || `API error ${result.status}`)
+      }
+    }
+  }
+
+  throw new Error('All models and keys rate limited. Please try again in a moment.')
+}
+
 export async function sendMessage(
   userMessage: string,
   history: ChatHistory,
   onChunk?: (text: string) => void,
 ): Promise<string> {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY
-  if (!apiKey) {
-    return "Portfolio guide is not configured. Please set the VITE_GEMINI_API_KEY environment variable."
+  const keys = getApiKeys()
+  if (!keys.length) {
+    return "Portfolio guide is not configured yet."
   }
 
   // Cache the system prompt knowledge
   if (!cachedKnowledge) cachedKnowledge = buildSystemPrompt(history.route)
 
-  // Update route context in system prompt if route changed
   const systemPrompt = cachedKnowledge.includes(`currently on: ${history.route}`)
     ? cachedKnowledge
     : buildSystemPrompt(history.route)
 
-  // Add user message to history
   history.messages.push({ role: 'user', parts: [{ text: userMessage }] })
-
-  // Keep last 20 messages to avoid token bloat
   const recentMessages = history.messages.slice(-20)
 
   const body = {
@@ -310,19 +388,7 @@ export async function sendMessage(
 
   try {
     if (onChunk) {
-      // Streaming mode
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse&key=${apiKey}`,
-        { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) },
-      )
-
-      if (!res.ok) {
-        const err = await res.text()
-        console.error('Gemini API error:', err)
-        history.messages.pop()
-        return "Something went wrong. Try asking again."
-      }
-
+      const res = await tryWithFallback(body, true)
       const reader = res.body?.getReader()
       if (!reader) throw new Error('No reader')
 
@@ -353,25 +419,23 @@ export async function sendMessage(
         }
       }
 
+      if (!fullText) {
+        history.messages.pop()
+        return "Hmm, I didn't get a response. Try asking again."
+      }
+
       history.messages.push({ role: 'model', parts: [{ text: fullText }] })
       return fullText
 
     } else {
-      // Non-streaming mode
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
-        { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) },
-      )
-
-      if (!res.ok) {
-        const err = await res.text()
-        console.error('Gemini API error:', err)
-        history.messages.pop()
-        return "Something went wrong. Try asking again."
-      }
-
+      const res = await tryWithFallback(body, false)
       const json = await res.json()
-      const text = json.candidates?.[0]?.content?.parts?.[0]?.text || "I don't have an answer for that. Try asking about a specific project."
+      const text = json.candidates?.[0]?.content?.parts?.[0]?.text
+
+      if (!text) {
+        history.messages.pop()
+        return "I don't have an answer for that. Try asking about a specific project."
+      }
 
       history.messages.push({ role: 'model', parts: [{ text }] })
       return text
@@ -379,7 +443,11 @@ export async function sendMessage(
   } catch (e) {
     console.error('Agent AI error:', e)
     history.messages.pop()
-    return "Connection issue. Try again."
+    const msg = (e as Error).message || ''
+    if (msg.includes('rate limited') || msg.includes('Rate limited')) {
+      return "I'm getting a lot of questions right now. Give me a moment and try again."
+    }
+    return "Connection hiccup — try once more."
   }
 }
 
