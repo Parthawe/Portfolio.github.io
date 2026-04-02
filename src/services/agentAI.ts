@@ -251,7 +251,8 @@ ${buildKnowledge()}`
 /* ── Gemini API ───────────────────────────────────────── */
 
 // Models to try in order — if primary is rate-limited, fall back
-const MODELS = ['gemini-2.0-flash', 'gemini-2.0-flash-lite']
+// gemma-3-4b-it has a separate quota pool from Gemini models
+const MODELS = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemma-3-4b-it']
 const MAX_RETRIES = 2
 const RETRY_DELAY = 3000
 
@@ -298,7 +299,9 @@ async function callGemini(
   body: Record<string, unknown>,
   streaming: boolean,
 ): Promise<{ ok: boolean; status: number; data?: Response; error?: string }> {
-  const endpoint = streaming
+  // Gemma models: always use non-streaming (more reliable)
+  const useStreaming = streaming && !model.startsWith('gemma')
+  const endpoint = useStreaming
     ? `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${apiKey}`
     : `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
 
@@ -314,6 +317,24 @@ async function callGemini(
   return { ok: false, status: res.status, error: errText }
 }
 
+function adaptBodyForModel(model: string, body: Record<string, unknown>): Record<string, unknown> {
+  // Gemma models don't support system_instruction — inject it as first user message
+  if (model.startsWith('gemma')) {
+    const sysInstruction = body.system_instruction as { parts: { text: string }[] } | undefined
+    const contents = body.contents as GeminiMessage[]
+    if (sysInstruction) {
+      const systemText = sysInstruction.parts.map(p => p.text).join('\n')
+      const adapted = [
+        { role: 'user' as const, parts: [{ text: `[System Instructions]\n${systemText}\n\n[End System Instructions]\n\nPlease acknowledge and follow these instructions.` }] },
+        { role: 'model' as const, parts: [{ text: 'Understood. I am Folio, ready to help visitors explore Parth\'s portfolio. I\'ll keep responses short, opinionated, and portfolio-focused.' }] },
+        ...contents,
+      ]
+      return { ...body, system_instruction: undefined, contents: adapted }
+    }
+  }
+  return body
+}
+
 async function tryWithFallback(
   body: Record<string, unknown>,
   streaming: boolean,
@@ -323,13 +344,14 @@ async function tryWithFallback(
 
   for (let modelIdx = 0; modelIdx < MODELS.length; modelIdx++) {
     const model = MODELS[modelIdx]
+    const adaptedBody = adaptBodyForModel(model, body)
 
     // Try each key for this model
     for (let keyAttempt = 0; keyAttempt < keys.length; keyAttempt++) {
       const apiKey = nextApiKey()!
 
       for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-        const result = await callGemini(model, apiKey, body, streaming)
+        const result = await callGemini(model, apiKey, adaptedBody, streaming)
 
         if (result.ok && result.data) return result.data
 
@@ -389,43 +411,61 @@ export async function sendMessage(
   try {
     if (onChunk) {
       const res = await tryWithFallback(body, true)
-      const reader = res.body?.getReader()
-      if (!reader) throw new Error('No reader')
+      const contentType = res.headers.get('content-type') || ''
 
-      const decoder = new TextDecoder()
-      let fullText = ''
-      let buffer = ''
+      // If response is SSE (streaming), parse chunks
+      if (contentType.includes('text/event-stream')) {
+        const reader = res.body?.getReader()
+        if (!reader) throw new Error('No reader')
 
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
+        const decoder = new TextDecoder()
+        let fullText = ''
+        let buffer = ''
 
-        buffer += decoder.decode(value, { stream: true })
-        const lines = buffer.split('\n')
-        buffer = lines.pop() || ''
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
 
-        for (const line of lines) {
-          if (!line.startsWith('data: ')) continue
-          const data = line.slice(6).trim()
-          if (data === '[DONE]') continue
-          try {
-            const json = JSON.parse(data)
-            const text = json.candidates?.[0]?.content?.parts?.[0]?.text
-            if (text) {
-              fullText += text
-              onChunk(fullText)
-            }
-          } catch { /* skip malformed chunks */ }
+          buffer += decoder.decode(value, { stream: true })
+          const lines = buffer.split('\n')
+          buffer = lines.pop() || ''
+
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue
+            const data = line.slice(6).trim()
+            if (data === '[DONE]') continue
+            try {
+              const json = JSON.parse(data)
+              const text = json.candidates?.[0]?.content?.parts?.[0]?.text
+              if (text) {
+                fullText += text
+                onChunk(fullText)
+              }
+            } catch { /* skip malformed chunks */ }
+          }
         }
+
+        if (!fullText) {
+          history.messages.pop()
+          return "Hmm, I didn't get a response. Try asking again."
+        }
+
+        history.messages.push({ role: 'model', parts: [{ text: fullText }] })
+        return fullText
       }
 
-      if (!fullText) {
+      // Non-streaming response (e.g. gemma fallback) — parse as JSON
+      const json = await res.json()
+      const text = json.candidates?.[0]?.content?.parts?.[0]?.text || ''
+      if (text) onChunk(text)
+
+      if (!text) {
         history.messages.pop()
         return "Hmm, I didn't get a response. Try asking again."
       }
 
-      history.messages.push({ role: 'model', parts: [{ text: fullText }] })
-      return fullText
+      history.messages.push({ role: 'model', parts: [{ text }] })
+      return text
 
     } else {
       const res = await tryWithFallback(body, false)
