@@ -172,23 +172,30 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
     <div
       className={`agent-chat ${open ? 'agent-chat--open' : ''}`}
       role="dialog"
-      aria-label="Chat with portfolio assistant"
+      aria-label="Chat with Folio, portfolio guide"
       aria-hidden={!open}
     >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--ink-06)]">
         <div className="flex items-center gap-2.5">
-          {/* Avatar */}
-          <div className="w-7 h-7 rounded-full bg-[var(--ink)] flex items-center justify-center flex-shrink-0">
-            <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
-              <path d="M9 1L9.87 5.36a2 2 0 0 0 1.77 1.77L16 8l-4.36.87a2 2 0 0 0-1.77 1.77L9 15l-.87-4.36a2 2 0 0 0-1.77-1.77L2 8l4.36-.87a2 2 0 0 0 1.77-1.77L9 1Z" fill="var(--bg)" />
+          {/* Mini Folio avatar — beanie + glasses + eyes */}
+          <div className="w-7 h-7 rounded-full bg-[var(--ink-04)] flex items-center justify-center flex-shrink-0 overflow-hidden">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+              <ellipse cx="14" cy="16" rx="9" ry="10" fill="var(--ag-skin, #E8BBA8)" />
+              <path d="M5 14Q5 5 14 5Q23 5 23 14L23 15.5Q20 13 14 13Q8 13 5 15.5Z" fill="var(--ag-hair, #2D2824)" />
+              <path d="M4.5 14Q4.5 12 6 12.5L22 12.5Q23.5 12 23.5 14Q20.5 13 14 13Q7.5 13 4.5 14Z" fill="var(--ag-hair, #2D2824)" opacity="0.85" />
+              <circle cx="11" cy="17" r="3.5" fill="rgba(44,40,36,0.1)" stroke="rgba(44,40,36,0.22)" strokeWidth="0.8" />
+              <circle cx="19" cy="17" r="3.5" fill="rgba(44,40,36,0.1)" stroke="rgba(44,40,36,0.22)" strokeWidth="0.8" />
+              <line x1="14.5" y1="17" x2="15.5" y2="17" stroke="rgba(44,40,36,0.22)" strokeWidth="0.8" />
+              <path d="M10 17.5Q11 15.5 12 17.5" stroke="var(--ag-eye, #2D2824)" strokeWidth="1.3" strokeLinecap="round" fill="none" />
+              <path d="M18 17.5Q19 15.5 20 17.5" stroke="var(--ag-eye, #2D2824)" strokeWidth="1.3" strokeLinecap="round" fill="none" />
             </svg>
           </div>
           <div>
-            <span className="block text-[13px] font-semibold text-[var(--ink)] leading-none font-[var(--sans)]">Portfolio Guide</span>
+            <span className="block text-[13px] font-semibold text-[var(--ink)] leading-none font-[var(--sans)]">Folio</span>
             <span className="flex items-center gap-1 mt-0.5 text-[10px] text-[var(--ink-40)] font-[var(--sans)]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-              Powered by AI
+              Parth's portfolio guide
             </span>
           </div>
         </div>
@@ -205,8 +212,11 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
           <div key={msg.id} className={`flex gap-2 items-end ${msg.sender === 'user' ? 'justify-end' : ''}`}>
             {msg.sender === 'agent' && (
               <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex items-center justify-center flex-shrink-0 mb-0.5">
-                <svg width="10" height="10" viewBox="0 0 18 18" fill="none">
-                  <path d="M9 1L9.87 5.36a2 2 0 0 0 1.77 1.77L16 8l-4.36.87a2 2 0 0 0-1.77 1.77L9 15l-.87-4.36a2 2 0 0 0-1.77-1.77L2 8l4.36-.87a2 2 0 0 0 1.77-1.77L9 1Z" fill="var(--ink-40)" />
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                  <ellipse cx="8" cy="10" rx="5.5" ry="5" fill="var(--ag-skin, #E8BBA8)" />
+                  <path d="M3 8.5Q3 3 8 3Q13 3 13 8.5L13 9.5Q11 8 8 8Q5 8 3 9.5Z" fill="var(--ag-hair, #2D2824)" />
+                  <path d="M6 10Q7 8.5 8 10" stroke="var(--ag-eye, #2D2824)" strokeWidth="1" strokeLinecap="round" fill="none" />
+                  <path d="M9.5 10Q10.5 8.5 11.5 10" stroke="var(--ag-eye, #2D2824)" strokeWidth="1" strokeLinecap="round" fill="none" />
                 </svg>
               </div>
             )}

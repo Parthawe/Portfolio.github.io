@@ -1,25 +1,28 @@
 /* ══════════════════════════════════════════════════════════
-   Portfolio Agent — full-body illustrated character
-   Inspired by One Sec / editorial illustration style
+   Folio — full-body illustrated portfolio agent
+   One Sec inspired: elongated, oversized jacket, minimal face
    ══════════════════════════════════════════════════════════ */
 
 /* ── Character palette ───────────────────────────────── */
 
 :root {
-  --ag-skin:      #F2C4B8;
-  --ag-skin-dk:   #E4A99A;
-  --ag-hair:      #2A2520;
-  --ag-jacket:    #6BAF7B;
-  --ag-jacket-dk: #5A9A6A;
-  --ag-jacket-lt: #7EC08D;
-  --ag-tee:       #F5F0EB;
-  --ag-pants:     #F0EDE8;
-  --ag-sock:      #F5F0EB;
-  --ag-shoe:      #2A2A35;
-  --ag-sole:      #3D3D48;
+  --ag-skin:      #E8BBA8;
+  --ag-skin-dk:   #D4A08E;
+  --ag-hair:      #2D2824;
+  --ag-jacket:    #5B8C6A;
+  --ag-jacket-dk: #4A7858;
+  --ag-jacket-lt: #6E9E7B;
+  --ag-tee:       #F0EBE4;
+  --ag-pants:     #C8C3BA;
+  --ag-sock:      #F0EBE4;
+  --ag-shoe:      #2D2926;
+  --ag-sole:      #E8E3DC;
   --ag-mouth:     #4A3530;
-  --ag-eye:       #2A2520;
-  --ag-blush:     rgba(230, 150, 130, 0.25);
+  --ag-eye:       #2D2824;
+  --ag-pencil:    #D4A843;
+  --ag-pencil-tip:#8B6B2A;
+  --ag-glass:     rgba(44, 40, 36, 0.10);
+  --ag-glass-s:   rgba(44, 40, 36, 0.22);
   --ag-shadow:    rgba(0,0,0,0.05);
   --ag-bubble:    var(--surface);
 }
@@ -28,21 +31,24 @@
   --ag-skin:      #D4A898;
   --ag-skin-dk:   #C09585;
   --ag-hair:      #1E1A16;
-  --ag-jacket:    #5D9A6C;
-  --ag-jacket-dk: #4D8A5C;
-  --ag-jacket-lt: #6DAA7C;
-  --ag-tee:       #E0DCD7;
-  --ag-pants:     #DBD8D3;
-  --ag-sock:      #E0DCD7;
-  --ag-shoe:      #1E1E28;
-  --ag-sole:      #2D2D38;
+  --ag-jacket:    #4D8A5C;
+  --ag-jacket-dk: #3D7A4C;
+  --ag-jacket-lt: #5D9A6C;
+  --ag-tee:       #DDD8D1;
+  --ag-pants:     #B5B0A8;
+  --ag-sock:      #DDD8D1;
+  --ag-shoe:      #1E1B18;
+  --ag-sole:      #D5D0C9;
   --ag-mouth:     #6B5550;
   --ag-eye:       #1E1A16;
-  --ag-blush:     rgba(200, 140, 120, 0.15);
+  --ag-pencil:    #DEB050;
+  --ag-pencil-tip:#9A7A3A;
+  --ag-glass:     rgba(30, 27, 24, 0.15);
+  --ag-glass-s:   rgba(30, 27, 24, 0.3);
   --ag-shadow:    rgba(0,0,0,0.12);
 }
 
-/* ── Root — fixed to bottom, right of center ─────────── */
+/* ── Root — fixed to bottom ──────────────────────────── */
 
 .agent-root {
   position: fixed;
@@ -59,24 +65,12 @@
 
 .agent-root > * { pointer-events: auto; }
 
-/* Walk-in from left */
-.agent-root--out {
-  transform: translateX(-100px);
-  opacity: 0;
-}
-
-/* Settled position */
-.agent-root--in {
-  transform: translateX(0);
-  opacity: 1;
-}
+.agent-root--out { transform: translateX(-100px); opacity: 0; }
+.agent-root--in  { transform: translateX(0); opacity: 1; }
 
 /* ── Character wrapper ───────────────────────────────── */
 
-.agent-char-wrap {
-  position: relative;
-  flex-shrink: 0;
-}
+.agent-char-wrap { position: relative; flex-shrink: 0; }
 
 /* ── Speech bubble ───────────────────────────────────── */
 
@@ -115,9 +109,7 @@
   transition: transform 0.3s var(--ease-spring);
 }
 
-.agent-trigger:hover {
-  transform: translateY(-3px);
-}
+.agent-trigger:hover { transform: translateY(-3px); }
 
 .agent-trigger:focus-visible {
   outline: 2px solid var(--ink);
@@ -125,12 +117,12 @@
   border-radius: 12px;
 }
 
-/* ── SVG ─────────────────────────────────────────────── */
+/* ── SVG base ────────────────────────────────────────── */
 
 .agent-body-svg {
   display: block;
   overflow: visible;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.06));
 }
 
 /* ── Fills ────────────────────────────────────────────── */
@@ -139,18 +131,26 @@
 .agent-b-head        { fill: var(--ag-skin); }
 .agent-b-neck        { fill: var(--ag-skin); }
 .agent-b-hand        { fill: var(--ag-skin); }
+
 .agent-b-beanie      { fill: var(--ag-hair); }
 .agent-b-brim        { fill: var(--ag-hair); opacity: 0.85; }
-.agent-b-eye         { fill: none; stroke: var(--ag-eye); stroke-width: 2; stroke-linecap: round; }
-.agent-b-mouth       { fill: none; stroke: var(--ag-mouth); stroke-width: 1.5; stroke-linecap: round; }
-.agent-b-blush       { fill: var(--ag-blush); }
+.agent-b-beanie-nub  { fill: var(--ag-hair); }
+
+.agent-b-pencil      { fill: var(--ag-pencil); }
+.agent-b-pencil-tip  { fill: var(--ag-pencil-tip); }
+
+.agent-b-glass       { fill: var(--ag-glass); stroke: var(--ag-glass-s); stroke-width: 1; }
+.agent-b-bridge      { stroke: var(--ag-glass-s); stroke-width: 1; stroke-linecap: round; }
+.agent-b-temple      { stroke: var(--ag-glass-s); stroke-width: 0.8; stroke-linecap: round; }
+
+.agent-b-eye         { fill: none; stroke: var(--ag-eye); stroke-width: 1.8; stroke-linecap: round; }
+.agent-b-mouth       { fill: none; stroke: var(--ag-mouth); stroke-width: 1.3; stroke-linecap: round; }
 
 .agent-b-jacket      { fill: var(--ag-jacket); }
 .agent-b-sleeve      { fill: var(--ag-jacket); }
 .agent-b-collar      { fill: var(--ag-jacket-dk); }
-.agent-b-pocket      { fill: var(--ag-jacket-dk); opacity: 0.5; }
-.agent-b-pocket-flap { fill: var(--ag-jacket-dk); opacity: 0.7; }
-.agent-b-seam        { stroke: var(--ag-jacket-dk); stroke-width: 1; opacity: 0.35; }
+.agent-b-pocket-line { fill: none; stroke: var(--ag-jacket-dk); stroke-width: 1; opacity: 0.5; stroke-linecap: round; }
+.agent-b-hem         { fill: none; stroke: var(--ag-jacket-dk); stroke-width: 0.8; opacity: 0.25; }
 
 .agent-b-tee         { fill: var(--ag-tee); }
 .agent-b-pants       { fill: var(--ag-pants); }
@@ -158,9 +158,7 @@
 .agent-b-shoe        { fill: var(--ag-shoe); }
 .agent-b-sole        { fill: var(--ag-sole); }
 
-/* Thinking / sleeping hidden by default */
 .agent-b-think, .agent-b-zzz { opacity: 0; }
-
 .agent-b-dot { fill: var(--ag-jacket); }
 .agent-b-z   { fill: var(--ag-jacket); font-family: var(--serif); font-weight: 600; }
 .agent-b-z--1 { font-size: 8px; }
@@ -172,38 +170,47 @@
    ANIMATION STATES
    ══════════════════════════════════════════════════════════ */
 
-/* ── Idle — gentle sway + slow blink ─────────────────── */
+/* ── Idle — gentle sway + micro-rotation + pencil glint ─ */
 
 .agent-trigger--idle .agent-body-svg {
   animation: ag-idle 4s ease-in-out infinite;
 }
 
-@keyframes ag-idle {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-2px); }
+.agent-trigger--idle .agent-b-pencil {
+  animation: ag-pencil-glint 6s ease-in-out infinite;
 }
 
-/* ── Walking — legs alternate, arms swing, body bob ──── */
+@keyframes ag-idle {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50%      { transform: translateY(-2px) rotate(-0.5deg); }
+}
+
+@keyframes ag-pencil-glint {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+}
+
+/* ── Walking — 0.5s cycle, organic ───────────────────── */
 
 .agent-trigger--walking .agent-body-svg {
-  animation: ag-walk-bob 0.4s ease-in-out infinite;
+  animation: ag-walk-bob 0.5s ease-in-out infinite;
 }
 
 .agent-trigger--walking .agent-leg--l {
-  animation: ag-step-l 0.4s ease-in-out infinite;
-  transform-origin: 25px 75px;
+  animation: ag-step-l 0.5s ease-in-out infinite;
+  transform-origin: 25px 82px;
 }
 .agent-trigger--walking .agent-leg--r {
-  animation: ag-step-r 0.4s ease-in-out infinite;
-  transform-origin: 38px 75px;
+  animation: ag-step-r 0.5s ease-in-out infinite;
+  transform-origin: 38px 82px;
 }
 .agent-trigger--walking .agent-arm--l {
-  animation: ag-swing-l 0.4s ease-in-out infinite;
-  transform-origin: 11px 40px;
+  animation: ag-swing-l 0.5s ease-in-out infinite;
+  transform-origin: 8px 38px;
 }
 .agent-trigger--walking .agent-arm--r {
-  animation: ag-swing-r 0.4s ease-in-out infinite;
-  transform-origin: 53px 40px;
+  animation: ag-swing-r 0.5s ease-in-out infinite;
+  transform-origin: 56px 38px;
 }
 
 @keyframes ag-walk-bob {
@@ -215,7 +222,7 @@
 @keyframes ag-swing-l { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-10deg); } }
 @keyframes ag-swing-r { 0%,100% { transform: rotate(0); } 50% { transform: rotate(10deg); } }
 
-/* ── Thinking — head tilt + dots ─────────────────────── */
+/* ── Thinking — head tilt + left hand to chin + dots ─── */
 
 .agent-trigger--thinking .agent-body-svg {
   animation: ag-idle 4s ease-in-out infinite;
@@ -224,9 +231,19 @@
 .agent-trigger--thinking .agent-b-head,
 .agent-trigger--thinking .agent-b-beanie,
 .agent-trigger--thinking .agent-b-brim,
+.agent-trigger--thinking .agent-b-beanie-nub,
+.agent-trigger--thinking .agent-b-pencil-group,
+.agent-trigger--thinking .agent-b-glass,
+.agent-trigger--thinking .agent-b-bridge,
+.agent-trigger--thinking .agent-b-temple,
 .agent-trigger--thinking .agent-b-face {
-  transform-origin: 32px 18px;
+  transform-origin: 32px 14px;
   animation: ag-tilt 2.5s ease-in-out infinite;
+}
+
+.agent-trigger--thinking .agent-arm--l {
+  transform-origin: 8px 38px;
+  animation: ag-chin 2.5s ease-in-out infinite;
 }
 
 .agent-trigger--thinking .agent-b-think { opacity: 1; }
@@ -236,21 +253,22 @@
 .agent-b-dot--3 { animation: ag-pulse 1.4s ease-in-out infinite 0.4s; }
 
 @keyframes ag-tilt  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(4deg); } }
+@keyframes ag-chin  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-30deg); } }
 @keyframes ag-pulse { 0%,100% { opacity: 0.2; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } }
 
-/* ── Talking — mouth + arm gesture ───────────────────── */
+/* ── Talking — mouth + right arm gesture ─────────────── */
 
 .agent-trigger--talking .agent-body-svg {
   animation: ag-idle 4s ease-in-out infinite;
 }
 
 .agent-trigger--talking .agent-b-mouth {
-  transform-origin: 32px 25px;
+  transform-origin: 32px 21px;
   animation: ag-talk 0.35s ease-in-out infinite;
 }
 
 .agent-trigger--talking .agent-arm--r {
-  transform-origin: 53px 40px;
+  transform-origin: 56px 38px;
   animation: ag-gesture 1.2s ease-in-out infinite;
 }
 
@@ -271,7 +289,7 @@
 }
 
 .agent-trigger--waving .agent-arm--r {
-  transform-origin: 53px 40px;
+  transform-origin: 56px 38px;
   animation: ag-wave 0.4s ease-in-out 3;
 }
 
@@ -286,13 +304,19 @@
   animation: ag-idle 5s ease-in-out infinite;
 }
 
-.agent-trigger--sleeping .agent-b-eyes {
-  opacity: 0.3;
-}
+.agent-trigger--sleeping .agent-b-eyes { opacity: 0.25; }
 
-.agent-trigger--sleeping .agent-b-head {
+.agent-trigger--sleeping .agent-b-head,
+.agent-trigger--sleeping .agent-b-beanie,
+.agent-trigger--sleeping .agent-b-brim,
+.agent-trigger--sleeping .agent-b-beanie-nub,
+.agent-trigger--sleeping .agent-b-pencil-group,
+.agent-trigger--sleeping .agent-b-glass,
+.agent-trigger--sleeping .agent-b-bridge,
+.agent-trigger--sleeping .agent-b-temple,
+.agent-trigger--sleeping .agent-b-face {
   transform: rotate(5deg);
-  transform-origin: 32px 18px;
+  transform-origin: 32px 14px;
 }
 
 .agent-trigger--sleeping .agent-b-zzz { opacity: 1; }
@@ -307,7 +331,7 @@
   100% { opacity: 0; transform: translate(3px, -8px); }
 }
 
-/* ── Chat open — character is slightly dimmed ────────── */
+/* ── Chat open — dims ────────────────────────────────── */
 
 .agent-trigger--open {
   transform: scale(0.92);
@@ -320,7 +344,7 @@
 
 
 /* ══════════════════════════════════════════════════════════
-   CHAT PANEL — positioned above character
+   CHAT PANEL
    ══════════════════════════════════════════════════════════ */
 
 .agent-chat {
@@ -354,8 +378,6 @@
   pointer-events: auto;
 }
 
-/* ── Keyframes for chat elements ─────────────────────── */
-
 @keyframes chatdot {
   0%, 100% { opacity: 0.25; transform: translateY(0); }
   50%      { opacity: 1; transform: translateY(-3px); }
@@ -372,14 +394,9 @@
    ══════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
-  .agent-root {
-    right: 16px;
-  }
+  .agent-root { right: 16px; }
 
-  .agent-body-svg {
-    width: 48px;
-    height: 90px;
-  }
+  .agent-body-svg { width: 48px; height: 90px; }
 
   .agent-chat {
     bottom: 100px;
@@ -392,14 +409,9 @@
 }
 
 @media (max-width: 480px) {
-  .agent-root {
-    right: 10px;
-  }
+  .agent-root { right: 10px; }
 
-  .agent-body-svg {
-    width: 40px;
-    height: 75px;
-  }
+  .agent-body-svg { width: 40px; height: 75px; }
 
   .agent-chat {
     bottom: 85px;
@@ -409,6 +421,7 @@
     border-radius: 16px;
   }
 }
+
 
 /* ══════════════════════════════════════════════════════════
    DARK MODE
@@ -431,6 +444,7 @@
     0 16px 48px rgba(0,0,0,0.25);
 }
 
+
 /* ══════════════════════════════════════════════════════════
    REDUCED MOTION
    ══════════════════════════════════════════════════════════ */
@@ -438,7 +452,9 @@
 @media (prefers-reduced-motion: reduce) {
   .agent-body-svg,
   .agent-leg, .agent-arm,
-  .agent-b-head, .agent-b-beanie, .agent-b-brim,
+  .agent-b-head, .agent-b-beanie, .agent-b-brim, .agent-b-beanie-nub,
+  .agent-b-pencil-group, .agent-b-pencil,
+  .agent-b-glass, .agent-b-bridge, .agent-b-temple,
   .agent-b-face, .agent-b-eyes, .agent-b-mouth,
   .agent-b-dot, .agent-b-z {
     animation: none !important;
