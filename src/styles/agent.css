@@ -1,6 +1,30 @@
 /* ══════════════════════════════════════════════════════════
-   Portfolio Agent — minimal trigger + premium chat panel
+   Portfolio Agent — warm geometric character + chat panel
    ══════════════════════════════════════════════════════════ */
+
+/* ── Character palette ───────────────────────────────── */
+
+:root {
+  --agent-face:    #F5E6D3;
+  --agent-hair:    #3D3229;
+  --agent-eye:     #2C2824;
+  --agent-glass:   rgba(44, 40, 36, 0.12);
+  --agent-glass-s: rgba(44, 40, 36, 0.2);
+  --agent-mouth:   #C4A07A;
+  --agent-blush:   rgba(224, 166, 130, 0.25);
+  --agent-accent:  #C4956A;
+}
+
+[data-theme="dark"] {
+  --agent-face:    #D4B896;
+  --agent-hair:    #2A2420;
+  --agent-eye:     #1E1B18;
+  --agent-glass:   rgba(30, 27, 24, 0.2);
+  --agent-glass-s: rgba(30, 27, 24, 0.35);
+  --agent-mouth:   #A8866A;
+  --agent-blush:   rgba(200, 150, 120, 0.15);
+  --agent-accent:  #B88A60;
+}
 
 /* ── Root container ───────────────────────────────────── */
 
@@ -22,14 +46,231 @@
 .agent-root--out { transform: translateY(20px); opacity: 0; }
 .agent-root--in  { transform: translateY(0); opacity: 1; }
 
-/* ── Speech bubble animation ─────────────────────────── */
+/* ── Character wrapper ───────────────────────────────── */
 
-@keyframes bubble-in {
-  from { opacity: 0; transform: translateX(-50%) translateY(4px) scale(0.95); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+.agent-char-wrap {
+  position: relative;
+  flex-shrink: 0;
 }
 
-/* ── Chat panel ──────────────────────────────────────── */
+/* ── Speech bubble ───────────────────────────────────── */
+
+.agent-speech {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--ink-08);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-70);
+  white-space: nowrap;
+  animation: agent-bubble 0.3s var(--ease-spring);
+  pointer-events: none;
+}
+
+@keyframes agent-bubble {
+  from { opacity: 0; transform: translateY(4px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Trigger button ──────────────────────────────────── */
+
+.agent-trigger {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.agent-trigger:hover { transform: translateY(-2px); }
+
+.agent-trigger:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 16px;
+}
+
+/* Online dot */
+.agent-online-dot {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34C759;
+  border: 2px solid var(--bg);
+  z-index: 1;
+}
+
+/* ── SVG character fills ─────────────────────────────── */
+
+.agent-face-svg {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.06));
+}
+
+.agent-f-shadow   { fill: rgba(0,0,0,0.04); }
+.agent-f-face     { fill: var(--agent-face); }
+.agent-f-hair     { fill: none; stroke: var(--agent-hair); stroke-width: 6; stroke-linecap: round; }
+.agent-f-hair-tuft{ fill: none; stroke: var(--agent-hair); stroke-width: 2.5; stroke-linecap: round; }
+.agent-f-eye      { fill: var(--agent-eye); }
+.agent-f-glint    { fill: #FFFFFF; }
+.agent-f-glass    { fill: var(--agent-glass); stroke: var(--agent-glass-s); stroke-width: 1.2; }
+.agent-f-bridge   { fill: none; stroke: none; }
+.agent-f-bridge-line { stroke: var(--agent-glass-s); stroke-width: 1.2; stroke-linecap: round; }
+.agent-f-mouth    { fill: none; stroke: var(--agent-mouth); stroke-width: 1.5; stroke-linecap: round; }
+.agent-f-blush    { fill: var(--agent-blush); }
+
+/* Thinking dots & zzz hidden by default */
+.agent-f-think, .agent-f-zzz { opacity: 0; }
+
+.agent-f-dot { fill: var(--agent-accent); }
+.agent-f-z   { fill: var(--agent-accent); font-family: var(--serif); font-weight: 600; }
+.agent-f-z--1 { font-size: 7px; }
+.agent-f-z--2 { font-size: 8px; }
+.agent-f-z--3 { font-size: 10px; }
+
+
+/* ══════════════════════════════════════════════════════════
+   CHARACTER STATES — subtle, premium animations
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Idle — gentle float + slow blink ────────────────── */
+
+.agent-trigger--idle .agent-face-svg {
+  animation: agent-float 3.5s ease-in-out infinite;
+}
+
+.agent-trigger--idle .agent-f-eyes {
+  animation: agent-blink 5s ease-in-out infinite;
+}
+
+@keyframes agent-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px); }
+}
+
+@keyframes agent-blink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  92%           { transform: scaleY(0.1); }
+  96%           { transform: scaleY(1); }
+}
+
+/* ── Thinking — head tilt + dots ─────────────────────── */
+
+.agent-trigger--thinking .agent-face-svg {
+  animation: agent-float 3.5s ease-in-out infinite;
+}
+
+.agent-trigger--thinking .agent-f-face,
+.agent-trigger--thinking .agent-f-eyes,
+.agent-trigger--thinking .agent-f-glass,
+.agent-trigger--thinking .agent-f-mouth,
+.agent-trigger--thinking .agent-f-blush,
+.agent-trigger--thinking .agent-f-bridge-line {
+  transform-origin: 24px 27px;
+  animation: agent-tilt 2.5s ease-in-out infinite;
+}
+
+.agent-trigger--thinking .agent-f-think { opacity: 1; }
+
+.agent-f-dot--1 { animation: agent-pulse 1.4s ease-in-out infinite 0s; }
+.agent-f-dot--2 { animation: agent-pulse 1.4s ease-in-out infinite 0.2s; }
+.agent-f-dot--3 { animation: agent-pulse 1.4s ease-in-out infinite 0.4s; }
+
+@keyframes agent-tilt {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(3deg); }
+}
+
+@keyframes agent-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.7); }
+  50%      { opacity: 1; transform: scale(1.1); }
+}
+
+/* ── Talking — mouth animation + gentle nod ──────────── */
+
+.agent-trigger--talking .agent-face-svg {
+  animation: agent-float 3.5s ease-in-out infinite;
+}
+
+.agent-trigger--talking .agent-f-mouth {
+  transform-origin: 24px 33px;
+  animation: agent-talk 0.35s ease-in-out infinite;
+}
+
+.agent-trigger--talking .agent-f-eyes {
+  animation: agent-blink 4s ease-in-out infinite;
+}
+
+@keyframes agent-talk {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.6); }
+}
+
+/* ── Waving — eyes squint happily ────────────────────── */
+
+.agent-trigger--waving .agent-face-svg {
+  animation: agent-float 3.5s ease-in-out infinite;
+}
+
+.agent-trigger--waving .agent-f-mouth {
+  transform-origin: 24px 33px;
+  animation: agent-smile 0.8s ease-in-out;
+}
+
+@keyframes agent-smile {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.3) scaleX(1.1); }
+}
+
+/* ── Sleeping — closed eyes + zzz ────────────────────── */
+
+.agent-trigger--sleeping .agent-face-svg {
+  animation: agent-float 5s ease-in-out infinite;
+}
+
+.agent-trigger--sleeping .agent-f-eyes {
+  transform: scaleY(0.08);
+}
+
+.agent-trigger--sleeping .agent-f-zzz { opacity: 1; }
+
+.agent-f-z--1 { animation: agent-zzz 3s ease-in-out infinite 0s; }
+.agent-f-z--2 { animation: agent-zzz 3s ease-in-out infinite 0.4s; }
+.agent-f-z--3 { animation: agent-zzz 3s ease-in-out infinite 0.8s; }
+
+@keyframes agent-zzz {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  40%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translate(3px, -6px); }
+}
+
+/* ── Open state — shrink slightly ────────────────────── */
+
+.agent-trigger--open {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+.agent-trigger--open:hover {
+  opacity: 1;
+  transform: scale(0.95);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   CHAT PANEL
+   ══════════════════════════════════════════════════════════ */
 
 .agent-chat {
   width: 360px;
@@ -58,14 +299,14 @@
   pointer-events: auto;
 }
 
-/* ── Thinking dots keyframe ──────────────────────────── */
+/* ── Thinking dots ───────────────────────────────────── */
 
 @keyframes chatdot {
   0%, 100% { opacity: 0.25; transform: translateY(0); }
   50%      { opacity: 1; transform: translateY(-3px); }
 }
 
-/* ── Chip enter keyframe ─────────────────────────────── */
+/* ── Chip enter ──────────────────────────────────────── */
 
 @keyframes chips-in {
   from { opacity: 0; transform: translateY(3px); }
@@ -81,6 +322,12 @@
   .agent-root {
     bottom: 16px;
     right: 16px;
+  }
+
+  /* Smaller character on mobile */
+  .agent-face-svg {
+    width: 42px;
+    height: 42px;
   }
 
   .agent-chat {
@@ -115,6 +362,22 @@
    DARK MODE
    ══════════════════════════════════════════════════════════ */
 
+[data-theme="dark"] .agent-face-svg {
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+}
+
+[data-theme="dark"] .agent-f-shadow {
+  fill: rgba(0,0,0,0.12);
+}
+
+[data-theme="dark"] .agent-online-dot {
+  border-color: var(--bg);
+}
+
+[data-theme="dark"] .agent-speech {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
 [data-theme="dark"] .agent-chat {
   background: color-mix(in srgb, var(--surface) 85%, transparent);
   border-color: var(--ink-08);
@@ -129,9 +392,18 @@
    ══════════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  .agent-root, .agent-chat {
+  .agent-face-svg,
+  .agent-f-eyes,
+  .agent-f-mouth,
+  .agent-f-face,
+  .agent-f-glass,
+  .agent-f-blush,
+  .agent-f-bridge-line,
+  .agent-f-dot,
+  .agent-f-z {
+    animation: none !important;
+  }
+  .agent-root, .agent-chat, .agent-trigger {
     transition-duration: 0.01s !important;
   }
-  @keyframes chatdot { 0%, 100% { opacity: 1; transform: none; } }
-  @keyframes bubble-in { from, to { opacity: 1; transform: translateX(-50%); } }
 }

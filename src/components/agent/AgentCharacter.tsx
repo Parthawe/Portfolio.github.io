@@ -7,49 +7,99 @@ interface Props {
   chatOpen?: boolean
 }
 
-export default function AgentCharacter({ state, onClick, speechBubble, chatOpen }: Props) {
-  const isActive = state === 'thinking' || state === 'talking'
+/*
+  Warm geometric character — head-only design.
+  Soft squircle face in warm cream, dot eyes, tiny smile arc.
+  Single accent: small round glasses. No outlines — filled shapes only.
+  Designed to read perfectly at 48px and match the portfolio's
+  editorial aesthetic (warm neutrals, DM Sans, frosted glass).
+*/
 
+export default function AgentCharacter({ state, onClick, speechBubble, chatOpen }: Props) {
   return (
-    <div className="relative flex-shrink-0">
+    <div className="agent-char-wrap">
       {/* Speech bubble */}
       {speechBubble && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--ink-08)] shadow-sm font-[var(--sans)] text-[11px] font-medium text-[var(--ink-70)] whitespace-nowrap animate-[bubble-in_0.3s_var(--ease-spring)] pointer-events-none">
+        <div className="agent-speech" aria-live="polite">
           {speechBubble}
         </div>
       )}
 
-      {/* Trigger button */}
+      {/* Character button */}
       <button
         onClick={onClick}
         type="button"
         aria-label="Chat with portfolio assistant"
-        className="group relative flex items-center justify-center w-11 h-11 rounded-full border border-[var(--ink-08)] bg-[var(--surface)] shadow-[var(--shadow-md)] cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[var(--shadow-lg)] hover:border-[var(--ink-15)] focus-visible:outline-2 focus-visible:outline-[var(--ink)] focus-visible:outline-offset-2"
+        className={`agent-trigger agent-trigger--${state} ${chatOpen ? 'agent-trigger--open' : ''}`}
       >
-        {/* Pulse ring when active */}
-        {isActive && (
-          <span className="absolute inset-0 rounded-full border-2 border-[var(--ink-15)] animate-ping opacity-40" />
-        )}
+        <svg
+          viewBox="0 0 48 48"
+          width="48"
+          height="48"
+          fill="none"
+          className="agent-face-svg"
+        >
+          {/* Soft shadow underneath */}
+          <ellipse cx="24" cy="45" rx="14" ry="2" className="agent-f-shadow" />
 
-        {/* Icon — morphs between states */}
-        <div className={`transition-transform duration-300 ${chatOpen ? 'rotate-0' : ''} ${state === 'sleeping' ? 'opacity-40' : 'opacity-100'}`}>
-          {chatOpen ? (
-            /* X close icon */
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-[var(--ink-70)]">
-              <path d="M4 4L12 12M4 12L12 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          ) : (
-            /* Chat sparkle icon */
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="text-[var(--ink-70)] group-hover:text-[var(--ink)] transition-colors">
-              <path d="M9 1L9.87 5.36a2 2 0 0 0 1.77 1.77L16 8l-4.36.87a2 2 0 0 0-1.77 1.77L9 15l-.87-4.36a2 2 0 0 0-1.77-1.77L2 8l4.36-.87a2 2 0 0 0 1.77-1.77L9 1Z" fill="currentColor" />
-              <path d="M14 12l.5 1.5L16 14l-1.5.5L14 16l-.5-1.5L12 14l1.5-.5L14 12Z" fill="currentColor" opacity="0.5" />
-            </svg>
-          )}
-        </div>
+          {/* Hair / top of head — gives personality */}
+          <path
+            d="M12 22C12 13 17 8 24 8C31 8 36 13 36 22"
+            className="agent-f-hair"
+          />
+          {/* Small tuft / side part */}
+          <path
+            d="M18 10C20 7 23 6.5 24 8"
+            className="agent-f-hair-tuft"
+          />
 
-        {/* Online indicator dot */}
+          {/* Face — warm soft squircle */}
+          <rect
+            x="10" y="14" width="28" height="26" rx="12"
+            className="agent-f-face"
+          />
+
+          {/* Glasses — thin round frames, the signature detail */}
+          <circle cx="19" cy="26" r="5" className="agent-f-glass" />
+          <circle cx="29" cy="26" r="5" className="agent-f-glass" />
+          {/* Bridge */}
+          <path d="M24 26C23 24.5 25 24.5 24 26" className="agent-f-bridge" />
+          <line x1="24" y1="25.5" x2="24" y2="26.5" className="agent-f-bridge-line" />
+
+          {/* Eyes — simple dots inside glasses */}
+          <g className="agent-f-eyes">
+            <circle cx="19" cy="26.5" r="2" className="agent-f-eye" />
+            <circle cx="29" cy="26.5" r="2" className="agent-f-eye" />
+            {/* Tiny glints */}
+            <circle cx="20" cy="25.5" r="0.6" className="agent-f-glint" />
+            <circle cx="30" cy="25.5" r="0.6" className="agent-f-glint" />
+          </g>
+
+          {/* Mouth — tiny subtle arc */}
+          <path d="M21 33Q24 35.5 27 33" className="agent-f-mouth" />
+
+          {/* Blush — very subtle warmth */}
+          <ellipse cx="14" cy="30" rx="2.5" ry="1.5" className="agent-f-blush" />
+          <ellipse cx="34" cy="30" rx="2.5" ry="1.5" className="agent-f-blush" />
+
+          {/* Thinking dots — only visible in thinking state */}
+          <g className="agent-f-think">
+            <circle cx="38" cy="16" r="1.5" className="agent-f-dot agent-f-dot--1" />
+            <circle cx="41" cy="12" r="2" className="agent-f-dot agent-f-dot--2" />
+            <circle cx="44" cy="8" r="2.5" className="agent-f-dot agent-f-dot--3" />
+          </g>
+
+          {/* Zzz — only visible in sleeping state */}
+          <g className="agent-f-zzz">
+            <text x="36" y="16" className="agent-f-z agent-f-z--1">z</text>
+            <text x="39" y="11" className="agent-f-z agent-f-z--2">z</text>
+            <text x="42" y="6" className="agent-f-z agent-f-z--3">Z</text>
+          </g>
+        </svg>
+
+        {/* Online dot */}
         {!chatOpen && (
-          <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[var(--surface)]" />
+          <span className="agent-online-dot" />
         )}
       </button>
     </div>
