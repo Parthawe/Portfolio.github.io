@@ -427,13 +427,74 @@ const PROJECT_RESPONSES: Record<string, string> = {
   'enigma': "Light sculpture that shows how a neural network thinks.",
 }
 
-function getInstantResponse(message: string): string | null {
+// Project-specific deep answers (when you're ON that project's page)
+const PROJECT_DEEP: Record<string, Record<string, string>> = {
+  'mentra': {
+    'what was the hardest part': '640x400px display. Every phone convention breaks. Can\'t scroll, tap, or read normally.',
+    'what was the challenge': '640x400px display. Every phone convention breaks. Can\'t scroll, tap, or read normally.',
+    'key insight': 'Glance beats gaze. Voice-first, peripheral-priority. 2 seconds max per look.',
+    'how did you approach it': 'Studied every smart glasses failure. Found 12 reasons. Most were software.',
+    'what would you change': 'Ship the app store earlier. The ecosystem makes it a platform.',
+    'who was the team': '1 designer, 4 engineers, product + hardware.',
+    'related work': 'Clawed runs on these glasses. ExecutiveLens uses them for meetings.',
+    'your take on it': 'Most ambitious project here. An entire OS from scratch.',
+  },
+  'transfi': {
+    'what was the hardest part': '6 countries, 6 regulatory environments. One-size-fits-all breaks.',
+    'what was the challenge': '6 countries, 6 regulatory environments. One-size-fits-all breaks.',
+    'key insight': 'Compliance UX is a competitive advantage. Fast KYC lifts conversion.',
+    'how did you approach it': 'Mapped regulations per country. Built modular onboarding per jurisdiction.',
+    'who was the team': 'Lead Product Designer + design team. First time leading.',
+    'related work': 'ZentiPay builds on the fintech discipline learned here.',
+  },
+  'zentipay': {
+    'what was the hardest part': '67% abandoned at the fee step. Problem wasn\'t speed, it was fear.',
+    'what was the challenge': '67% abandoned at the fee step. Problem wasn\'t speed, it was fear.',
+    'key insight': 'Trust beats speed. Showing fees upfront reduces abandonment.',
+    'how did you approach it': '15 interviews, 4 countries, A/B tested fee disclosure.',
+    'how did you test it': '40+ participants. Journey mapping found 7 friction points.',
+    'who was the team': 'Sole designer + product + engineering.',
+  },
+  'clawed-chat': {
+    'what was the hardest part': '73% quit AI tools because "it did something I didn\'t ask for."',
+    'what was the challenge': '73% quit AI tools because "it did something I didn\'t ask for."',
+    'key insight': 'Receipts. Immutable trail for every AI action. Progressive autonomy.',
+    'how did you approach it': '3-tier trust model: Suggest, Stage, Act.',
+    'who was the team': 'Sole designer, 3 engineers. 10 weeks.',
+    'related work': 'Also runs on Mentra glasses. Approve actions by voice.',
+  },
+  'raahi': {
+    'what was the hardest part': 'Existing apps assume sight. Blind commuters can\'t read signs.',
+    'what was the challenge': 'Existing apps assume sight. Blind commuters can\'t read signs.',
+    'key insight': 'Designing for the most constrained user makes it better for everyone.',
+    'how did you approach it': 'Rode the NYC subway blindfolded. Interviewed 12 people.',
+    'how did you test it': 'Haptic prototypes in real stations. Sighted users preferred it too.',
+  },
+  'jugalbandi': {
+    'what was the hardest part': 'Making strangers interact without instructions or language.',
+    'what was the challenge': 'Making strangers interact without instructions or language.',
+    'key insight': 'If people read a sign, the interaction failed. Interface IS the invitation.',
+    'how did you approach it': '6 interaction models tested. Half-spectrum control worked best.',
+  },
+}
+
+function getInstantResponse(message: string, route?: string): string | null {
   const q = message.toLowerCase().trim().replace(/[?.!,]+$/, '')
+  const slug = (route || '').replace(/^\//, '')
+
+  // If on a project page, check deep project answers FIRST
+  if (slug && PROJECT_DEEP[slug]) {
+    const deep = PROJECT_DEEP[slug]
+    if (deep[q]) return deep[q]
+    for (const [key, response] of Object.entries(deep)) {
+      if (q.includes(key) || key.includes(q)) return response
+    }
+  }
 
   // Exact chip match
   if (INSTANT[q]) return INSTANT[q]
 
-  // Partial match against INSTANT keys (handles slight variations)
+  // Partial match
   for (const [key, response] of Object.entries(INSTANT)) {
     if (q.includes(key) || key.includes(q)) return response
   }
@@ -444,13 +505,11 @@ function getInstantResponse(message: string): string | null {
   }
 
   // Greeting
-  if (/^(hi|hello|hey|yo|sup|howdy)$/i.test(q)) {
-    return "Hey! I'm Folio, I know the backstory on every project here. Pick one that catches your eye, or try the buttons below."
-  }
+  if (/^(hi|hello|hey|yo|sup|howdy)$/i.test(q)) return "Hey! Pick a project, or try the buttons."
 
   // Thanks/bye
-  if (/^(thanks|thank you|thx|cheers)$/i.test(q)) return "Anytime. Poke around, there's good work in here."
-  if (/^(bye|goodbye|later|peace)$/i.test(q)) return "Later! **parthpawar@nyu.edu** if you want to connect."
+  if (/^(thanks|thank you|thx|cheers)$/i.test(q)) return "Anytime."
+  if (/^(bye|goodbye|later|peace)$/i.test(q)) return "parthpawar@nyu.edu"
 
   return null
 }
@@ -460,8 +519,8 @@ export async function sendMessage(
   history: ChatHistory,
   onChunk?: (text: string) => void,
 ): Promise<string> {
-  // Try instant response first, always works, no API needed
-  const instant = getInstantResponse(userMessage)
+  // Try instant response first, context-aware based on current route
+  const instant = getInstantResponse(userMessage, history.route)
   if (instant) {
     history.messages.push({ role: 'user', parts: [{ text: userMessage }] })
     history.messages.push({ role: 'model', parts: [{ text: instant }] })
@@ -684,9 +743,21 @@ export function getChips(route: string, questionCount: number, lastQuestion?: st
     if (route === '/work') return ['Best projects', 'AI work', 'Installations']
     if (route === '/about') return ['Fun facts', 'Daily practices', 'Hire Parth']
 
-    // Project page
+    // Project page: context-specific chips
+    if (slug && PROJECT_DEEP[slug]) {
+      const keys = Object.keys(PROJECT_DEEP[slug])
+      // Pick 3 most interesting from the available deep questions
+      const priority = ['key insight', 'what was the hardest part', 'how did you approach it', 'related work', 'who was the team', 'your take on it']
+      const available = priority.filter(k => keys.includes(k))
+      return available.slice(0, 3).map(k => {
+        // Capitalize first letter
+        return k.charAt(0).toUpperCase() + k.slice(1) + (k.includes('?') ? '' : '')
+      })
+    }
+
+    // Generic project page
     if (slug && !['work', 'about'].includes(slug)) {
-      return ['What was the hardest part?', 'Key insight', 'Related work']
+      return ['What was the hardest part?', 'Key insight', 'Your take on it']
     }
 
     // Category page
@@ -811,22 +882,42 @@ export function extractTarget(text: string): HTMLElement | null {
 
 /* ── Greeting ─────────────────────────────────────────── */
 
+// Short, punchy greetings per page context
+const PROJECT_GREETINGS: Record<string, string> = {
+  'mentra': "This is Mentra. The OS for smart glasses. Ask me anything about it.",
+  'transfi': "TransFi. $50M+ monthly volume across 6 countries.",
+  'zentipay': "ZentiPay. The fee anxiety discovery changed everything.",
+  'clawed-chat': "Clawed. Every AI action gets a receipt.",
+  'executivelens': "ExecutiveLens. 5.2 hours saved per week, zero manual input.",
+  'raahi': "Raahi. Parth rode the subway blindfolded for this one.",
+  'jugalbandi': "Jugalbandi. Sound as language between strangers.",
+  'enigma': "Enigma. A neural network you can see and feel.",
+  'oncall-lens': "OnCall Lens. Sentry alert to PR fix in 24 hours.",
+  'ballah-code': "Ballah Code. AI isn't a sidebar, it's the foundation.",
+  'tedx': "TEDxVITPune. One brand system for 1500 people.",
+}
+
 export function getGreeting(route: string): string {
-  if (route === '/') return "Hey, pick any project and I'll tell you the real story behind it."
-  if (route === '/work') return "Everything Parth has shipped. Ask about any one."
-  if (route === '/about') return "Ask me something the about page doesn't tell you."
+  if (route === '/') return "Pick any project. I know the real story."
+  if (route === '/work') return "Everything Parth has shipped. Ask about any."
+  if (route === '/about') return "What the resume doesn't tell you."
 
-  const cat = categories.find(c => route === `/${c.slug}`)
-  if (cat) return `${cat.title} ${cat.titleAccent}, ask about any project here.`
-
-  // Project page, find by slug
   const slug = route.replace(/^\//, '')
+
+  // Project-specific greeting
+  if (PROJECT_GREETINGS[slug]) return PROJECT_GREETINGS[slug]
+
+  // Category page
+  const cat = categories.find(c => route === `/${c.slug}`)
+  if (cat) return `${cat.title} ${cat.titleAccent}. Ask about any project.`
+
+  // Fallback: find project name
   for (const c of categories) {
-    if (c.featured.slug === slug) return `**${c.featured.title}**, ${c.featured.desc}. Ask me anything.`
+    if (c.featured.slug === slug) return `${c.featured.title}. Ask me anything.`
     for (const row of c.moreProjects) for (const p of row) {
-      if (p.slug === slug) return `**${p.name}**, ${p.desc || p.result}. Ask me anything.`
+      if (p.slug === slug) return `${p.name}. Ask me anything.`
     }
   }
 
-  return "Hey, ask me about any project."
+  return "Ask me about any project."
 }

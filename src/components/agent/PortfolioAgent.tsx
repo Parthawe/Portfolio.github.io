@@ -11,10 +11,40 @@ const AgentChat = lazy(() => import('./AgentChat'))
 
 function getProactiveComment(path: string): string | null {
   const slug = path.replace(/^\//, '')
-  if (slug && slug !== 'work' && slug !== 'about' && slug !== 'graveyard') return 'Ask me about this project'
-  if (path === '/about') return 'Want to know more?'
-  if (path === '/work') return 'Which one interests you?'
-  if (path === '/') return 'Ask me anything'
+
+  // Project-specific comments
+  const projectComments: Record<string, string> = {
+    'mentra': 'This one is wild. An entire OS on a 640×400 screen.',
+    'transfi': '$50M a month. Six countries. Ask me how.',
+    'zentipay': 'The fee anxiety insight is the best part.',
+    'clawed-chat': 'Every AI action gets a receipt. Smart.',
+    'executivelens': '5.2 hours saved per week. No manual input.',
+    'raahi': 'He rode the subway blindfolded for this.',
+    'jugalbandi': 'Two strangers, no words, just sound.',
+    'enigma': 'A neural network you can feel, not just see.',
+    'oncall-lens': 'Built in 24 hours. Sentry to PR.',
+    'ballah-code': 'AI isn\'t a sidebar here. It\'s everything.',
+    'tedx': '1500 people. One brand system.',
+    'revolving-stage': 'Kinetic installation. Handmade.',
+  }
+  if (projectComments[slug]) return projectComments[slug]
+
+  // Category pages
+  const catComments: Record<string, string> = {
+    'ai': 'Five AI projects. Each solves trust differently.',
+    'ux-design': 'Research-driven. Every decision has data.',
+    'fintech': '$50M+ volume. Compliance as design.',
+    'creative-tech': 'Code meets craft. NYU ITP vibes.',
+    'installations': 'Physical + digital. Gallery-tested.',
+    'brand-visual': 'Systems, not just logos.',
+    'design-for-good': 'Accessibility isn\'t a feature.',
+  }
+  if (catComments[slug]) return catComments[slug]
+
+  if (slug && slug !== 'work' && slug !== 'about' && slug !== 'graveyard') return 'I know the story behind this one.'
+  if (path === '/about') return 'There\'s more here than the resume shows.'
+  if (path === '/work') return 'Scroll through. I\'ll tell you the best ones.'
+  if (path === '/') return 'Ask me anything.'
   return null
 }
 
