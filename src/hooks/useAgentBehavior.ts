@@ -102,8 +102,13 @@ export function useAgentBehavior() {
 
     if (!hasMoved.current) {
       const isHome = location.pathname === '/'
-      el.style.left = isHome ? '24px' : ''
-      el.style.right = isHome ? '' : 'max(calc(50% - 280px), 80px)'
+      if (isHome) {
+        el.style.left = '24px'
+        el.style.right = 'auto'
+      } else {
+        el.style.left = ''
+        el.style.right = ''
+      }
     }
   }, [location.pathname])
 
