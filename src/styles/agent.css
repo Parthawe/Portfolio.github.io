@@ -44,11 +44,10 @@
   line-height: 1.5;
   color: var(--ink-70);
   white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-align: left;
-  max-width: min(260px, calc(100vw - 40px));
-  overflow: hidden;
+  min-width: 160px;
+  max-width: min(280px, calc(100vw - 40px));
   animation: ag-bubble 0.25s ease-out;
   cursor: pointer;
   z-index: 92;
@@ -375,17 +374,17 @@
 /* ── Chat body ───────────────────────────────────────── */
 
 .agent-chat-body {
-  flex: 1;
+  flex: 1 1 0;
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   min-height: 0;
   scroll-behavior: smooth;
-  scrollbar-width: none;
 }
-.agent-chat-body::-webkit-scrollbar { display: none; }
 
 /* ── Messages ────────────────────────────────────────── */
 

@@ -42,25 +42,29 @@ function SpeechBubble({ text, typing, onDone, onClick, wrapRef }: {
     const reposition = () => {
       const charRect = wrap.getBoundingClientRect()
       const vw = window.innerWidth
-      const pad = 12
+      const vh = window.innerHeight
+      const pad = 10
 
-      // Max width: never wider than viewport minus padding
-      el.style.maxWidth = `${Math.min(250, vw - pad * 2)}px`
-
+      // Let CSS handle max-width, just read the actual size
       const bubbleW = el.offsetWidth
 
-      // Try to center above character, clamp to viewport
+      // Position: above character, horizontally centered on character
       let left = charRect.left + charRect.width / 2 - bubbleW / 2
-      left = Math.max(pad, Math.min(left, vw - bubbleW - pad))
 
-      // Above the character
-      const bottom = window.innerHeight - charRect.top + 6
+      // Clamp so bubble stays fully inside viewport
+      if (left < pad) left = pad
+      if (left + bubbleW > vw - pad) left = vw - bubbleW - pad
+
+      const bottom = vh - charRect.top + 4
 
       el.style.left = `${left}px`
-      el.style.bottom = `${Math.max(20, bottom)}px`
+      el.style.bottom = `${Math.max(10, Math.min(bottom, vh - 60))}px`
     }
 
-    requestAnimationFrame(reposition)
+    // Run positioning after layout
+    let raf2 = 0
+    const raf1 = requestAnimationFrame(() => { raf2 = requestAnimationFrame(reposition) })
+    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2) }
   })
 
   return (
