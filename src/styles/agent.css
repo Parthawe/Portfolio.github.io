@@ -92,88 +92,141 @@
   border-radius: 12px;
 }
 
-/* ── Image container ─────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════
+   PUPPET, layered body parts with joint animations
+   ══════════════════════════════════════════════════════════ */
 
-.agent-img-wrap {
+.puppet {
   position: relative;
   width: 90px;
-  transition: transform 0.4s var(--ease-spring);
+  height: 280px;
+  transition: transform 0.3s var(--ease-spring);
 }
 
-.agent-img-wrap.agent-img--flip { transform: scaleX(-1); }
+.puppet--flip { transform: scaleX(-1); }
 
-.agent-character-img {
-  display: block;
-  width: 100%;
-  height: auto;
+.puppet-part {
+  position: absolute;
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
-  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.08));
 }
 
-.agent-img-shadow {
+/* Shadow */
+.puppet-shadow {
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 50px;
-  height: 6px;
+  height: 8px;
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(0,0,0,0.08) 0%, transparent 70%);
 }
 
+/* ── Part positions (matching the sliced images) ─────── */
+/* All sizes relative to 90px wide puppet */
+
+.puppet-head {
+  width: 63px;    /* 140/200 * 90 */
+  top: 0;
+  left: 12px;
+  z-index: 6;
+  transform-origin: 50% 95%;  /* neck joint */
+}
+
+.puppet-torso {
+  width: 68px;    /* 150/200 * 90 */
+  top: 80px;
+  left: 8px;
+  z-index: 3;
+}
+
+.puppet-arm--back {
+  width: 27px;    /* 60/200 * 90 */
+  top: 76px;
+  left: 0;
+  z-index: 2;
+  transform-origin: 80% 5%;  /* shoulder joint */
+}
+
+.puppet-arm--front {
+  width: 27px;
+  top: 76px;
+  right: 0;
+  z-index: 5;
+  transform-origin: 20% 5%;  /* shoulder joint */
+}
+
+.puppet-leg--back {
+  width: 36px;    /* 80/200 * 90 */
+  top: 160px;
+  left: 10px;
+  z-index: 1;
+  transform-origin: 60% 5%;  /* hip joint */
+}
+
+.puppet-leg--front {
+  width: 40px;    /* 90/200 * 90 */
+  top: 160px;
+  right: 5px;
+  z-index: 4;
+  transform-origin: 40% 5%;  /* hip joint */
+}
+
 /* ── Thinking dots ───────────────────────────────────── */
 
-.agent-img-think {
+.puppet-think {
   position: absolute;
-  top: 0;
-  right: -14px;
+  top: 5px;
+  right: -12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   opacity: 0;
   pointer-events: none;
+  z-index: 10;
 }
 
-.agent-img-dot {
+.puppet-dot {
   display: block;
   border-radius: 50%;
   background: var(--ink-30);
 }
-.agent-img-dot--1 { width: 5px; height: 5px; animation: ag-pulse 1.4s ease-in-out infinite 0s; }
-.agent-img-dot--2 { width: 7px; height: 7px; animation: ag-pulse 1.4s ease-in-out infinite 0.2s; }
-.agent-img-dot--3 { width: 9px; height: 9px; animation: ag-pulse 1.4s ease-in-out infinite 0.4s; }
+.puppet-dot--1 { width: 5px; height: 5px; animation: pup-pulse 1.4s ease-in-out infinite 0s; }
+.puppet-dot--2 { width: 7px; height: 7px; animation: pup-pulse 1.4s ease-in-out infinite 0.2s; }
+.puppet-dot--3 { width: 9px; height: 9px; animation: pup-pulse 1.4s ease-in-out infinite 0.4s; }
 
-@keyframes ag-pulse {
+@keyframes pup-pulse {
   0%, 100% { opacity: 0.2; transform: scale(0.7); }
   50%      { opacity: 1; transform: scale(1.1); }
 }
 
 /* ── Zzz ─────────────────────────────────────────────── */
 
-.agent-img-zzz {
+.puppet-zzz {
   position: absolute;
-  top: -5px;
-  right: -10px;
+  top: 0;
+  right: -8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   opacity: 0;
   pointer-events: none;
+  z-index: 10;
 }
 
-.agent-img-z {
+.puppet-z {
   font-family: var(--serif);
   font-weight: 600;
   color: var(--ink-30);
 }
-.agent-img-z--1 { font-size: 10px; animation: ag-zzz 3s ease-in-out infinite 0s; }
-.agent-img-z--2 { font-size: 12px; animation: ag-zzz 3s ease-in-out infinite 0.4s; margin-left: 6px; }
-.agent-img-z--3 { font-size: 15px; animation: ag-zzz 3s ease-in-out infinite 0.8s; margin-left: 12px; }
+.puppet-z--1 { font-size: 10px; animation: pup-zzz 3s ease-in-out infinite 0s; }
+.puppet-z--2 { font-size: 12px; animation: pup-zzz 3s ease-in-out infinite 0.4s; margin-left: 6px; }
+.puppet-z--3 { font-size: 15px; animation: pup-zzz 3s ease-in-out infinite 0.8s; margin-left: 12px; }
 
-@keyframes ag-zzz {
+@keyframes pup-zzz {
   0%   { opacity: 0; transform: translate(0, 0); }
   40%  { opacity: 0.4; }
   100% { opacity: 0; transform: translate(4px, -10px); }
@@ -181,71 +234,165 @@
 
 
 /* ══════════════════════════════════════════════════════════
-   ANIMATION STATES
+   PUPPET ANIMATION STATES
    ══════════════════════════════════════════════════════════ */
 
-.agent-trigger--idle .agent-img-wrap {
-  animation: ag-idle 4s ease-in-out infinite;
+/* ── Idle: gentle body sway, subtle head bob ─────────── */
+
+.agent-trigger--idle .puppet {
+  animation: pup-body-idle 4s ease-in-out infinite;
 }
-@keyframes ag-idle {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  50%      { transform: translateY(-3px) rotate(-0.5deg); }
+.agent-trigger--idle .puppet-head {
+  animation: pup-head-idle 4s ease-in-out infinite;
 }
 
-.agent-trigger--walking .agent-img-wrap {
-  animation: ag-walk 0.5s ease-in-out infinite;
-}
-@keyframes ag-walk {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  25%      { transform: translateY(-4px) rotate(2deg); }
-  75%      { transform: translateY(-4px) rotate(-2deg); }
-}
-
-.agent-trigger--thinking .agent-img-wrap {
-  animation: ag-think 2.5s ease-in-out infinite;
-}
-.agent-trigger--thinking .agent-img-think { opacity: 1; }
-@keyframes ag-think {
-  0%, 100% { transform: translateY(-1px) rotate(0); }
-  50%      { transform: translateY(-1px) rotate(4deg); }
-}
-
-.agent-trigger--talking .agent-img-wrap {
-  animation: ag-talk 0.6s ease-in-out infinite;
-}
-@keyframes ag-talk {
+@keyframes pup-body-idle {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-2px); }
 }
-
-.agent-trigger--waving .agent-img-wrap {
-  animation: ag-wave 0.5s ease-in-out 3;
-}
-@keyframes ag-wave {
+@keyframes pup-head-idle {
   0%, 100% { transform: rotate(0); }
-  25%      { transform: rotate(-8deg) translateY(-2px); }
-  75%      { transform: rotate(5deg) translateY(-2px); }
+  30%      { transform: rotate(-1deg); }
+  70%      { transform: rotate(0.5deg); }
 }
 
-.agent-trigger--sleeping .agent-img-wrap {
-  animation: ag-sleep 5s ease-in-out infinite;
+/* ── Walking: legs alternate, arms swing opposite, body bobs ── */
+
+.agent-trigger--walking .puppet {
+  animation: pup-body-walk 0.5s ease-in-out infinite;
 }
-.agent-trigger--sleeping .agent-character-img {
-  filter: brightness(0.85) drop-shadow(0 2px 6px rgba(0,0,0,0.06));
+.agent-trigger--walking .puppet-leg--front {
+  animation: pup-leg-front 0.5s ease-in-out infinite;
 }
-.agent-trigger--sleeping .agent-img-zzz { opacity: 1; }
-@keyframes ag-sleep {
-  0%, 100% { transform: translateY(0) rotate(3deg); }
-  50%      { transform: translateY(-2px) rotate(3deg); }
+.agent-trigger--walking .puppet-leg--back {
+  animation: pup-leg-back 0.5s ease-in-out infinite;
+}
+.agent-trigger--walking .puppet-arm--front {
+  animation: pup-arm-front 0.5s ease-in-out infinite;
+}
+.agent-trigger--walking .puppet-arm--back {
+  animation: pup-arm-back 0.5s ease-in-out infinite;
+}
+.agent-trigger--walking .puppet-head {
+  animation: pup-head-walk 0.5s ease-in-out infinite;
 }
 
-.agent-trigger--pointing .agent-img-wrap {
-  animation: ag-point 0.4s ease-out forwards;
+@keyframes pup-body-walk {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
 }
-@keyframes ag-point {
-  from { transform: rotate(0) translateX(0); }
-  to   { transform: rotate(-5deg) translateX(4px); }
+@keyframes pup-leg-front {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(-20deg); }
 }
+@keyframes pup-leg-back {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(20deg); }
+}
+@keyframes pup-arm-front {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(15deg); }
+}
+@keyframes pup-arm-back {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(-15deg); }
+}
+@keyframes pup-head-walk {
+  0%, 100% { transform: rotate(0); }
+  25%      { transform: rotate(1.5deg); }
+  75%      { transform: rotate(-1.5deg); }
+}
+
+/* ── Thinking: head tilts, back arm to chin ──────────── */
+
+.agent-trigger--thinking .puppet {
+  animation: pup-body-idle 4s ease-in-out infinite;
+}
+.agent-trigger--thinking .puppet-head {
+  animation: pup-head-think 2.5s ease-in-out infinite;
+}
+.agent-trigger--thinking .puppet-arm--back {
+  animation: pup-arm-think 2.5s ease-in-out infinite;
+}
+.agent-trigger--thinking .puppet-think { opacity: 1; }
+
+@keyframes pup-head-think {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(5deg); }
+}
+@keyframes pup-arm-think {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(-35deg); }
+}
+
+/* ── Talking: head nods, arms gesture ────────────────── */
+
+.agent-trigger--talking .puppet {
+  animation: pup-body-idle 4s ease-in-out infinite;
+}
+.agent-trigger--talking .puppet-head {
+  animation: pup-head-talk 0.6s ease-in-out infinite;
+}
+.agent-trigger--talking .puppet-arm--front {
+  animation: pup-arm-gesture 1s ease-in-out infinite;
+}
+
+@keyframes pup-head-talk {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(-2deg) translateY(-1px); }
+}
+@keyframes pup-arm-gesture {
+  0%, 100% { transform: rotate(0); }
+  50%      { transform: rotate(-12deg); }
+}
+
+/* ── Waving: front arm waves high ────────────────────── */
+
+.agent-trigger--waving .puppet {
+  animation: pup-body-idle 4s ease-in-out infinite;
+}
+.agent-trigger--waving .puppet-arm--front {
+  animation: pup-arm-wave 0.4s ease-in-out 4;
+}
+
+@keyframes pup-arm-wave {
+  0%, 100% { transform: rotate(-30deg); }
+  50%      { transform: rotate(-60deg); }
+}
+
+/* ── Sleeping: body tilts, zzz visible ───────────────── */
+
+.agent-trigger--sleeping .puppet {
+  animation: pup-body-sleep 5s ease-in-out infinite;
+}
+.agent-trigger--sleeping .puppet-head {
+  transform: rotate(8deg);
+}
+.agent-trigger--sleeping .puppet-part {
+  filter: brightness(0.88);
+}
+.agent-trigger--sleeping .puppet-zzz { opacity: 1; }
+
+@keyframes pup-body-sleep {
+  0%, 100% { transform: translateY(0) rotate(2deg); }
+  50%      { transform: translateY(-1px) rotate(2deg); }
+}
+
+/* ── Pointing: arm extended, body leans ──────────────── */
+
+.agent-trigger--pointing .puppet-arm--front {
+  animation: pup-arm-point 0.4s ease-out forwards;
+}
+.agent-trigger--pointing .puppet {
+  animation: pup-body-idle 4s ease-in-out infinite;
+}
+
+@keyframes pup-arm-point {
+  from { transform: rotate(0); }
+  to   { transform: rotate(-50deg); }
+}
+
+/* ── Chat open: dims ─────────────────────────────────── */
 
 .agent-trigger--open {
   transform: scale(0.9);
@@ -255,6 +402,10 @@
   opacity: 0.8;
   transform: scale(0.93) translateY(-2px);
 }
+
+/* ── Shadow responds to state ────────────────────────── */
+.agent-trigger--walking .puppet-shadow { width: 45px; opacity: 0.7; }
+.agent-trigger--sleeping .puppet-shadow { width: 55px; opacity: 0.5; }
 
 
 /* ══════════════════════════════════════════════════════════
@@ -435,13 +586,25 @@
 
 @media (max-width: 768px) {
   .agent-root { right: 12px; }
-  .agent-img-wrap { width: 70px; }
+  .puppet { width: 70px; height: 218px; }
+  .puppet-head { width: 49px; top: 0; left: 9px; }
+  .puppet-torso { width: 53px; top: 62px; left: 6px; }
+  .puppet-arm--back { width: 21px; top: 59px; }
+  .puppet-arm--front { width: 21px; top: 59px; }
+  .puppet-leg--back { width: 28px; top: 124px; left: 8px; }
+  .puppet-leg--front { width: 31px; top: 124px; }
   .agent-floating { max-width: min(280px, calc(100vw - 24px)); }
 }
 
 @media (max-width: 480px) {
   .agent-root { right: 6px; }
-  .agent-img-wrap { width: 56px; }
+  .puppet { width: 56px; height: 175px; }
+  .puppet-head { width: 39px; top: 0; left: 7px; }
+  .puppet-torso { width: 42px; top: 50px; left: 5px; }
+  .puppet-arm--back { width: 17px; top: 47px; }
+  .puppet-arm--front { width: 17px; top: 47px; }
+  .puppet-leg--back { width: 22px; top: 100px; left: 6px; }
+  .puppet-leg--front { width: 25px; top: 100px; }
   .agent-floating { max-width: calc(100vw - 20px); }
 }
 
@@ -468,7 +631,8 @@
    ══════════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  .agent-img-wrap, .agent-img-dot, .agent-img-z {
+  .puppet, .puppet-part, .puppet-head, .puppet-torso,
+  .puppet-arm, .puppet-leg, .puppet-dot, .puppet-z {
     animation: none !important;
   }
   .agent-root, .agent-chat, .agent-trigger, .agent-speech {

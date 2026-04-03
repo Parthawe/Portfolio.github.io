@@ -8,25 +8,15 @@ interface Props {
   facingLeft?: boolean
 }
 
-// Different poses for different states
-const POSES = {
-  standing: '/Assets/Character/folio-standing.png',
-  walking:  '/Assets/Character/folio-walking.png',
-  sitting:  '/Assets/Character/folio-sitting.png',
-  half:     '/Assets/Character/folio-half.png',
-}
+/*
+  Puppet character: body parts layered and animated independently.
+  Each part has a CSS transform-origin at its joint pivot point.
+  Walking = alternating leg swings + opposing arm swings + body bob.
+*/
 
-function getPose(state: AgentState): string {
-  switch (state) {
-    case 'walking':  return POSES.walking
-    case 'sleeping': return POSES.sitting
-    default:         return POSES.standing
-  }
-}
+const P = '/Assets/Character/puppet-'
 
 export default function AgentCharacter({ state, onClick, chatOpen, facingLeft }: Props) {
-  const pose = getPose(state)
-
   return (
     <div className="agent-char-wrap">
       <button
@@ -35,33 +25,40 @@ export default function AgentCharacter({ state, onClick, chatOpen, facingLeft }:
         aria-label="Chat with Folio, portfolio guide"
         className={`agent-trigger agent-trigger--${state} ${chatOpen ? 'agent-trigger--open' : ''}`}
       >
-        <div className={`agent-img-wrap ${facingLeft ? 'agent-img--flip' : ''}`}>
-          {/* Preload all poses */}
-          <link rel="preload" as="image" href={POSES.standing} />
-          <link rel="preload" as="image" href={POSES.walking} />
-          <link rel="preload" as="image" href={POSES.sitting} />
+        <div className={`puppet ${facingLeft ? 'puppet--flip' : ''}`}>
+          {/* Shadow */}
+          <div className="puppet-shadow" />
 
-          <img
-            src={pose}
-            alt="Folio"
-            className="agent-character-img"
-            draggable={false}
-          />
+          {/* Back arm (behind torso) */}
+          <img src={`${P}left-arm.png`} alt="" className="puppet-part puppet-arm puppet-arm--back" draggable={false} />
 
-          <div className="agent-img-shadow" />
+          {/* Back leg */}
+          <img src={`${P}left-leg.png`} alt="" className="puppet-part puppet-leg puppet-leg--back" draggable={false} />
+
+          {/* Torso */}
+          <img src={`${P}torso.png`} alt="" className="puppet-part puppet-torso" draggable={false} />
+
+          {/* Front leg */}
+          <img src={`${P}right-leg.png`} alt="" className="puppet-part puppet-leg puppet-leg--front" draggable={false} />
+
+          {/* Front arm (in front of torso) */}
+          <img src={`${P}right-arm.png`} alt="" className="puppet-part puppet-arm puppet-arm--front" draggable={false} />
+
+          {/* Head (topmost layer) */}
+          <img src={`${P}head.png`} alt="Folio" className="puppet-part puppet-head" draggable={false} />
 
           {/* Thinking dots */}
-          <div className="agent-img-think">
-            <span className="agent-img-dot agent-img-dot--1" />
-            <span className="agent-img-dot agent-img-dot--2" />
-            <span className="agent-img-dot agent-img-dot--3" />
+          <div className="puppet-think">
+            <span className="puppet-dot puppet-dot--1" />
+            <span className="puppet-dot puppet-dot--2" />
+            <span className="puppet-dot puppet-dot--3" />
           </div>
 
           {/* Zzz */}
-          <div className="agent-img-zzz">
-            <span className="agent-img-z agent-img-z--1">z</span>
-            <span className="agent-img-z agent-img-z--2">z</span>
-            <span className="agent-img-z agent-img-z--3">Z</span>
+          <div className="puppet-zzz">
+            <span className="puppet-z puppet-z--1">z</span>
+            <span className="puppet-z puppet-z--2">z</span>
+            <span className="puppet-z puppet-z--3">Z</span>
           </div>
         </div>
       </button>
