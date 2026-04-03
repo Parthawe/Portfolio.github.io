@@ -64,17 +64,8 @@ export default function PortfolioAgent() {
     setAgentState(s as AgentState)
   }, [setAgentState]))
 
-  // Patrol walk hook, character walks left-right when idle
-  const walkEnabled = showChar && !chatOpen && !dragging && !movement.isMoving
-  const walk = useAgentWalk(wrapRef, walkEnabled, useCallback((isWalking: boolean, facingRight: boolean) => {
-    if (isWalking) {
-      setAgentState('walking')
-      setFacingLeft(!facingRight)
-    } else {
-      setAgentState('idle')
-      setFacingLeft(!facingRight)
-    }
-  }, [setAgentState]))
+  // Walk patrol disabled, character stays in corner
+  const walk = { stop: () => {} }
 
   // Proactive speech bubble, once per route
   useEffect(() => {

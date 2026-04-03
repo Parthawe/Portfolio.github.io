@@ -96,17 +96,7 @@ export function useAgentBehavior() {
     return () => { if (microTimer.current) clearTimeout(microTimer.current) }
   }, [])
 
-  // ── Default position based on route ──────────────────
-  useEffect(() => {
-    const el = wrapRef.current
-    if (!el) return
-
-    if (!hasMoved.current) {
-      // Start from the left side
-      el.style.left = '24px'
-      el.style.right = 'auto'
-    }
-  }, [location.pathname])
+  // Position is handled by CSS (bottom-right corner)
 
   // ── Drag to reposition (long-press to activate) ──────
   // Normal click/tap = toggle chat. Hold 300ms+ then drag = reposition.
