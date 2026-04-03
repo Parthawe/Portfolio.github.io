@@ -236,6 +236,7 @@ export default function PortfolioAgent() {
             route={route}
             initialGreeting={getGreeting(route)}
             onAgentState={handleAgentState}
+            charRef={wrapRef}
           />
         </Suspense>
       )}

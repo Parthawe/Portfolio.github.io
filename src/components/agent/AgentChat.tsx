@@ -17,6 +17,7 @@ interface Props {
   route: string
   initialGreeting: string
   onAgentState: (state: 'thinking' | 'talking' | 'idle') => void
+  charRef?: React.RefObject<HTMLDivElement | null>
 }
 
 /* ── Rich text renderer ──────────────────────────────── */
@@ -72,7 +73,44 @@ function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavig
 
 /* ── Main chat component ─────────────────────────────── */
 
-export default function AgentChat({ open, onClose, route, initialGreeting, onAgentState }: Props) {
+export default function AgentChat({ open, onClose, route, initialGreeting, onAgentState, charRef }: Props) {
+  const chatRef = useRef<HTMLDivElement>(null)
+
+  // Position chat panel near the character, clamped to viewport
+  useEffect(() => {
+    const el = chatRef.current
+    const wrap = charRef?.current
+    if (!el || !wrap || !open) return
+
+    const position = () => {
+      const charRect = wrap.getBoundingClientRect()
+      const vw = window.innerWidth
+      const vh = window.innerHeight
+      const chatW = el.offsetWidth
+      const chatH = el.offsetHeight
+      const pad = 12
+
+      // Bottom: above the character
+      let bottom = vh - charRect.top + 8
+      bottom = Math.max(pad, Math.min(bottom, vh - chatH - pad))
+
+      // Left: try to align with character center, clamp to viewport
+      let left = charRect.left + charRect.width / 2 - chatW / 2
+      left = Math.max(pad, Math.min(left, vw - chatW - pad))
+
+      el.style.left = `${left}px`
+      el.style.bottom = `${bottom}px`
+      el.style.right = 'auto'
+    }
+
+    position()
+    const raf = requestAnimationFrame(position)
+    window.addEventListener('resize', position, { passive: true })
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', position)
+    }
+  }, [open, charRef])
   const navigate = useNavigate()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -164,6 +202,7 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
 
   return (
     <div
+      ref={chatRef}
       className={`agent-chat ${open ? 'agent-chat--open' : ''}`}
       role="dialog"
       aria-label="Chat with Folio"
