@@ -108,13 +108,21 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       const vw = window.innerWidth
       const vh = window.innerHeight
       const elW = el.offsetWidth
+      const elH = el.offsetHeight
 
+      // Horizontal: center on character, clamp to viewport
       let left = r.left + r.width / 2 - elW / 2
       left = Math.max(8, Math.min(left, vw - elW - 8))
 
-      const bottom = vh - r.top + 8
+      // Vertical: above character, but never off-screen top or overlapping bottom nav
+      let bottom = vh - r.top + 4
+      // Don't let it go above viewport
+      if (vh - bottom < elH + 10) bottom = vh - elH - 10
+      // Don't let it go below 80px (above bottom navs)
+      bottom = Math.max(80, bottom)
+
       el.style.left = `${left}px`
-      el.style.bottom = `${Math.max(8, Math.min(bottom, vh - 100))}px`
+      el.style.bottom = `${bottom}px`
     }
 
     reposition()
