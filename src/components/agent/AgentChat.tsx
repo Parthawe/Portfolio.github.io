@@ -76,12 +76,70 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const [chips, setChips] = useState<string[]>([])
   const messagesRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const chatRef = useRef<HTMLDivElement>(null)
   const idCounter = useRef(0)
   const historyRef = useRef<ChatHistory>(createChatHistory(route))
   const initializedRoute = useRef('')
   const questionCount = useRef(0)
 
   useEffect(() => { historyRef.current.route = route }, [route])
+
+  // ── Drag chat panel by its header ─────────────────────
+  useEffect(() => {
+    const chat = chatRef.current
+    if (!chat) return
+
+    let dragging = false
+    let startX = 0, startY = 0
+    let startRight = 0, startBottom = 0
+
+    const onDown = (e: PointerEvent) => {
+      const target = e.target as HTMLElement
+      // Only drag from the header area (not close button)
+      if (!target.closest('.agent-chat-header') || target.closest('.agent-chat-close-btn')) return
+
+      dragging = true
+      startX = e.clientX
+      startY = e.clientY
+
+      const style = getComputedStyle(chat)
+      startRight = parseInt(style.right) || 12
+      startBottom = parseInt(style.bottom) || 12
+
+      chat.style.transition = 'none'
+      chat.setPointerCapture(e.pointerId)
+      e.preventDefault()
+    }
+
+    const onMove = (e: PointerEvent) => {
+      if (!dragging) return
+      const dx = e.clientX - startX
+      const dy = e.clientY - startY
+
+      const newRight = Math.max(0, Math.min(startRight - dx, window.innerWidth - chat.offsetWidth))
+      const newBottom = Math.max(0, Math.min(startBottom + dy, window.innerHeight - chat.offsetHeight))
+
+      chat.style.right = `${newRight}px`
+      chat.style.bottom = `${newBottom}px`
+    }
+
+    const onUp = () => {
+      dragging = false
+      chat.style.transition = ''
+    }
+
+    chat.addEventListener('pointerdown', onDown)
+    chat.addEventListener('pointermove', onMove)
+    chat.addEventListener('pointerup', onUp)
+    chat.addEventListener('pointercancel', onUp)
+
+    return () => {
+      chat.removeEventListener('pointerdown', onDown)
+      chat.removeEventListener('pointermove', onMove)
+      chat.removeEventListener('pointerup', onUp)
+      chat.removeEventListener('pointercancel', onUp)
+    }
+  }, [])
 
   useEffect(() => {
     if (open && initializedRoute.current !== route) {
@@ -144,7 +202,7 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const anyTyping = messages.some(m => m.typing)
 
   return (
-    <div className={`agent-chat ${open ? 'agent-chat--open' : ''}`} role="dialog" aria-label="Chat with Folio" aria-hidden={!open}>
+    <div ref={chatRef} className={`agent-chat ${open ? 'agent-chat--open' : ''}`} role="dialog" aria-label="Chat with Folio" aria-hidden={!open}>
       {/* Header */}
       <div className="agent-chat-header">
         <div className="agent-chat-header-left">

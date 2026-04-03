@@ -299,7 +299,11 @@
   padding: 14px 16px;
   border-bottom: 1px solid var(--ink-04);
   flex-shrink: 0;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
+.agent-chat-header:active { cursor: grabbing; }
 
 .agent-chat-header-left {
   display: flex;
