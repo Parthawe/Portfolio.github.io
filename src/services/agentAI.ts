@@ -394,6 +394,15 @@ const INSTANT: Record<string, string> = {
   'installations': "Jugalbandi, Enigma, UV Light, Revolving Stage. Physical + digital.",
   'latest': "Mentra. Designing the entire smart glasses OS. Most ambitious project here.",
   'contact': "parthpawar@nyu.edu. Open to new opportunities.",
+  // "Show me X" variants
+  'show me mentra': "Smart glasses OS. 640x400px display, 2-second glances. Let me take you there.",
+  'show me transfi': "$50M+/month crypto payments across 6 countries. Let me show you.",
+  'show me clawed': "AI assistant where every action has a receipt. Trust by design.",
+  'show me enigma': "Light sculpture that shows how a neural network thinks.",
+  'show me jugalbandi': "Two strangers collaborate through sound without speaking.",
+  'what was the challenge?': "Which project? Every one started with an impossible constraint.",
+  'what was the insight?': "The best insights are counterintuitive. Which project?",
+  'how did you test it?': "15 interviews across 4 countries, journey mapping, A/B tests with 40+ participants.",
 }
 
 // Quick project lookups, instant, no AI needed
@@ -417,9 +426,9 @@ function getInstantResponse(message: string): string | null {
   // Exact chip match
   if (INSTANT[q]) return INSTANT[q]
 
-  // Project name match (handles "tell me about mentra", "what is transfi", "mentra?", etc.)
+  // Project name match (handles "tell me about mentra", "show me transfi", "mentra?", etc.)
   for (const [name, response] of Object.entries(PROJECT_RESPONSES)) {
-    if (q === name || q.includes(name)) return response
+    if (q === name || q.includes(name) || q === `show me ${name}`) return response
   }
 
   // Greeting
@@ -564,20 +573,76 @@ export async function sendMessage(
 
 /* ── Chips (keep static, no need for AI here) ────────── */
 
-export function getChips(route: string, questionCount: number): string[] {
+// Contextual chips that evolve based on what was already asked
+const CHIP_FLOWS: Record<string, string[]> = {
+  // After asking about best projects, suggest specific ones
+  'best projects': ['Show me Mentra', 'Show me TransFi', 'Something surprising'],
+  'best project': ['Show me Mentra', 'Show me TransFi', 'Something surprising'],
+  // After a specific project, suggest deeper dives or related
+  'mentra': ['What was the challenge?', 'Show me TransFi', 'Hire Parth'],
+  'transfi': ['What was the insight?', 'Show me Mentra', 'About Parth'],
+  'zentipay': ['How did you test it?', 'Show me TransFi', 'AI work'],
+  'clawed': ['Key insight', 'Show me Mentra', 'Design approach'],
+  'executivelens': ['Your take on it', 'Show me Clawed', 'Hire Parth'],
+  'raahi': ['Something surprising', 'Installations', 'About Parth'],
+  'jugalbandi': ['Show me Enigma', 'Design approach', 'About Parth'],
+  'enigma': ['Show me Jugalbandi', 'AI work', 'Fun facts'],
+  // After about/philosophy questions, suggest work
+  'about parth': ['Best projects', 'Fun facts', 'Hire Parth'],
+  'fun facts': ['Daily practices', 'Best projects', 'Philosophy'],
+  'daily practices': ['Fun facts', 'Design approach', 'Best projects'],
+  'philosophy': ['Design approach', 'Best projects', 'Hire Parth'],
+  'design approach': ['Best projects', 'AI work', 'About Parth'],
+  // After category questions, suggest specific projects
+  'ai work': ['Show me Mentra', 'Show me Clawed', 'Installations'],
+  'installations': ['Show me Jugalbandi', 'Show me Enigma', 'AI work'],
+  'all categories': ['AI work', 'Installations', 'Best projects'],
+  // After hire/contact, suggest seeing work
+  'hire parth': ['Best projects', 'About Parth', 'Design approach'],
+  'contact': ['Best projects', 'About Parth', 'AI work'],
+  'something surprising': ['Best projects', 'Fun facts', 'Hire Parth'],
+  'the challenge': ['Key insight', 'Related work', 'Best projects'],
+  'key insight': ['The challenge', 'Your take on it', 'Best projects'],
+  'your take on it': ['Best projects', 'Design approach', 'Hire Parth'],
+  'related work': ['Best projects', 'AI work', 'Installations'],
+  'latest': ['Show me Mentra', 'Design approach', 'Hire Parth'],
+}
+
+// Initial chips per page
+const PAGE_CHIPS: Record<string, string[]> = {
+  '/': ['Best projects', 'About Parth', 'Something surprising'],
+  '/work': ['Best projects', 'AI work', 'Installations'],
+  '/about': ['Fun facts', 'Daily practices', 'Philosophy'],
+}
+
+export function getChips(route: string, _questionCount: number, lastQuestion?: string): string[] {
+  // If we have a last question, use contextual follow-ups
+  if (lastQuestion) {
+    const q = lastQuestion.toLowerCase().trim().replace(/[?.!,]+$/, '')
+    // Check for "show me X" pattern
+    const showMe = q.match(/^show me (.+)/)
+    const key = showMe ? showMe[1] : q
+
+    if (CHIP_FLOWS[key]) return CHIP_FLOWS[key]
+
+    // Check partial matches (e.g. "tell me about mentra" matches "mentra")
+    for (const [k, chips] of Object.entries(CHIP_FLOWS)) {
+      if (q.includes(k)) return chips
+    }
+  }
+
+  // Page-specific defaults
+  if (PAGE_CHIPS[route]) return PAGE_CHIPS[route]
+
+  // Project page
   const slug = route.replace(/^\//, '')
+  if (slug && !['work', 'about'].includes(slug)) {
+    return ['The challenge', 'Key insight', 'Related work']
+  }
 
-  if (questionCount > 4) return ['Best project', 'Something unexpected', 'Hire Parth']
-
-  // On a project page
+  // Category page
   const cat = categories.find(c => c.slug === slug)
   if (cat) return [`Best ${cat.title} project`, 'Design approach', 'All categories']
-
-  if (route === '/about') return ['Fun facts', 'Daily practices', 'Philosophy']
-  if (route === '/work') return ['Best project', 'AI work', 'Installations']
-  if (slug && slug !== '/' && !['work', 'about'].includes(slug)) {
-    return ['The challenge', 'Key insight', 'Your take on it', 'Related work']
-  }
 
   return ['Best projects', 'About Parth', 'Something surprising']
 }

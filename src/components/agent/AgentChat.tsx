@@ -163,7 +163,7 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
         setMessages(prev => prev.map(m => m.id === sid ? { ...m, raw: pt, typing: true } : m))
       })
       setMessages(prev => prev.map(m => m.id === sid ? { ...m, raw: final, typing: true } : m))
-      setChips(getChips(route, questionCount.current))
+      setChips(getChips(route, questionCount.current, t))
     } catch {
       setMessages(prev => prev.map(m => m.id === sid ? { ...m, raw: 'Something went wrong.', typing: false } : m))
       onAgentState('idle')
