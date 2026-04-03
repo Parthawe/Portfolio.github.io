@@ -400,9 +400,16 @@ const INSTANT: Record<string, string> = {
   'show me clawed': "AI assistant where every action has a receipt. Trust by design.",
   'show me enigma': "Light sculpture that shows how a neural network thinks.",
   'show me jugalbandi': "Two strangers collaborate through sound without speaking.",
+  'show me zentipay': "Fee anxiety > transfer speed. 30% higher completion.",
+  'show me raahi': "Navigation for blind transit riders. Sighted users preferred it too.",
   'what was the challenge?': "Which project? Every one started with an impossible constraint.",
+  'what was the hardest part?': "Which project? Every one started with an impossible constraint.",
   'what was the insight?': "The best insights are counterintuitive. Which project?",
-  'how did you test it?': "15 interviews across 4 countries, journey mapping, A/B tests with 40+ participants.",
+  'how did you test it?': "15 interviews, 4 countries, journey mapping, A/B tests with 40+ participants.",
+  'how did you approach it?': "Constraint-driven. Find the hardest problem, solve that first, everything else follows.",
+  'what would you change?': "Honestly? Ship faster. The best learning comes from real users, not more iteration.",
+  'who was the team?': "Depends on the project. Mentra: 4 engineers + product. ZentiPay: solo designer. TransFi: led the design team.",
+  'show me something different': "Check out the installations. Physical + digital, completely different medium.",
 }
 
 // Quick project lookups, instant, no AI needed
@@ -571,80 +578,168 @@ export async function sendMessage(
   }
 }
 
-/* ── Chips (keep static, no need for AI here) ────────── */
+/* ── Smart chips, multi-layer conversation tracking ──── */
 
-// Contextual chips that evolve based on what was already asked
-const CHIP_FLOWS: Record<string, string[]> = {
-  // After asking about best projects, suggest specific ones
-  'best projects': ['Show me Mentra', 'Show me TransFi', 'Something surprising'],
-  'best project': ['Show me Mentra', 'Show me TransFi', 'Something surprising'],
-  // After a specific project, suggest deeper dives or related
-  'mentra': ['What was the challenge?', 'Show me TransFi', 'Hire Parth'],
-  'transfi': ['What was the insight?', 'Show me Mentra', 'About Parth'],
-  'zentipay': ['How did you test it?', 'Show me TransFi', 'AI work'],
-  'clawed': ['Key insight', 'Show me Mentra', 'Design approach'],
-  'executivelens': ['Your take on it', 'Show me Clawed', 'Hire Parth'],
-  'raahi': ['Something surprising', 'Installations', 'About Parth'],
-  'jugalbandi': ['Show me Enigma', 'Design approach', 'About Parth'],
-  'enigma': ['Show me Jugalbandi', 'AI work', 'Fun facts'],
-  // After about/philosophy questions, suggest work
-  'about parth': ['Best projects', 'Fun facts', 'Hire Parth'],
-  'fun facts': ['Daily practices', 'Best projects', 'Philosophy'],
-  'daily practices': ['Fun facts', 'Design approach', 'Best projects'],
-  'philosophy': ['Design approach', 'Best projects', 'Hire Parth'],
-  'design approach': ['Best projects', 'AI work', 'About Parth'],
-  // After category questions, suggest specific projects
-  'ai work': ['Show me Mentra', 'Show me Clawed', 'Installations'],
-  'installations': ['Show me Jugalbandi', 'Show me Enigma', 'AI work'],
-  'all categories': ['AI work', 'Installations', 'Best projects'],
-  // After hire/contact, suggest seeing work
-  'hire parth': ['Best projects', 'About Parth', 'Design approach'],
-  'contact': ['Best projects', 'About Parth', 'AI work'],
-  'something surprising': ['Best projects', 'Fun facts', 'Hire Parth'],
-  'the challenge': ['Key insight', 'Related work', 'Best projects'],
-  'key insight': ['The challenge', 'Your take on it', 'Best projects'],
-  'your take on it': ['Best projects', 'Design approach', 'Hire Parth'],
-  'related work': ['Best projects', 'AI work', 'Installations'],
-  'latest': ['Show me Mentra', 'Design approach', 'Hire Parth'],
+// Tag every chip with a category so the system knows what "kind" of question it was
+type ChipCategory = 'project' | 'deep' | 'personal' | 'meta' | 'action'
+
+interface ChipOption {
+  label: string
+  cat: ChipCategory
 }
 
-// Initial chips per page
-const PAGE_CHIPS: Record<string, string[]> = {
-  '/': ['Best projects', 'About Parth', 'Something surprising'],
-  '/work': ['Best projects', 'AI work', 'Installations'],
-  '/about': ['Fun facts', 'Daily practices', 'Philosophy'],
+// All possible chips organized by what they follow
+const AFTER_PROJECT: ChipOption[] = [
+  { label: 'What was the hardest part?', cat: 'deep' },
+  { label: 'Key insight', cat: 'deep' },
+  { label: 'How did you approach it?', cat: 'deep' },
+  { label: 'What would you change?', cat: 'deep' },
+  { label: 'Who was the team?', cat: 'deep' },
+  { label: 'Show me something different', cat: 'project' },
+  { label: 'Related work', cat: 'project' },
+  { label: 'Hire Parth', cat: 'action' },
+]
+
+const AFTER_DEEP: ChipOption[] = [
+  { label: 'Show me Mentra', cat: 'project' },
+  { label: 'Show me TransFi', cat: 'project' },
+  { label: 'Show me ZentiPay', cat: 'project' },
+  { label: 'Show me Clawed', cat: 'project' },
+  { label: 'Design approach', cat: 'meta' },
+  { label: 'About Parth', cat: 'personal' },
+  { label: 'Something surprising', cat: 'personal' },
+]
+
+const AFTER_PERSONAL: ChipOption[] = [
+  { label: 'Best projects', cat: 'project' },
+  { label: 'AI work', cat: 'meta' },
+  { label: 'Installations', cat: 'meta' },
+  { label: 'Design approach', cat: 'meta' },
+  { label: 'Daily practices', cat: 'personal' },
+  { label: 'Philosophy', cat: 'personal' },
+  { label: 'Hire Parth', cat: 'action' },
+]
+
+const AFTER_META: ChipOption[] = [
+  { label: 'Show me Mentra', cat: 'project' },
+  { label: 'Show me Jugalbandi', cat: 'project' },
+  { label: 'Show me Raahi', cat: 'project' },
+  { label: 'Something surprising', cat: 'personal' },
+  { label: 'Fun facts', cat: 'personal' },
+  { label: 'Best projects', cat: 'project' },
+  { label: 'Hire Parth', cat: 'action' },
+]
+
+const AFTER_ACTION: ChipOption[] = [
+  { label: 'Best projects', cat: 'project' },
+  { label: 'About Parth', cat: 'personal' },
+  { label: 'Design approach', cat: 'meta' },
+  { label: 'AI work', cat: 'meta' },
+  { label: 'Something surprising', cat: 'personal' },
+]
+
+// Detect what category a question falls into
+function categorizeQuestion(q: string): ChipCategory {
+  const projects = ['mentra', 'transfi', 'zentipay', 'clawed', 'executivelens', 'raahi', 'jugalbandi', 'enigma', 'tedx', 'ballah', 'oncall', 'best project']
+  if (projects.some(p => q.includes(p)) || q.startsWith('show me')) return 'project'
+  const deep = ['challenge', 'hardest', 'insight', 'approach', 'change', 'team', 'test', 'how did', 'what was', 'why']
+  if (deep.some(d => q.includes(d))) return 'deep'
+  const personal = ['about parth', 'fun fact', 'surprising', 'daily', 'philosophy', 'poem', 'sketch', 'podcast']
+  if (personal.some(p => q.includes(p))) return 'personal'
+  const action = ['hire', 'contact', 'email', 'resume']
+  if (action.some(a => q.includes(a))) return 'action'
+  return 'meta'
 }
 
-export function getChips(route: string, _questionCount: number, lastQuestion?: string): string[] {
-  // If we have a last question, use contextual follow-ups
+// Pick the right pool based on what was just asked
+function getPool(cat: ChipCategory): ChipOption[] {
+  switch (cat) {
+    case 'project': return AFTER_PROJECT
+    case 'deep': return AFTER_DEEP
+    case 'personal': return AFTER_PERSONAL
+    case 'action': return AFTER_ACTION
+    case 'meta': return AFTER_META
+  }
+}
+
+// Track what was already asked across the session
+const askedSet = new Set<string>()
+
+export function getChips(route: string, questionCount: number, lastQuestion?: string): string[] {
+  // Record what was asked
   if (lastQuestion) {
-    const q = lastQuestion.toLowerCase().trim().replace(/[?.!,]+$/, '')
-    // Check for "show me X" pattern
-    const showMe = q.match(/^show me (.+)/)
-    const key = showMe ? showMe[1] : q
+    askedSet.add(lastQuestion.toLowerCase().trim().replace(/[?.!,]+$/, ''))
+  }
 
-    if (CHIP_FLOWS[key]) return CHIP_FLOWS[key]
+  // First interaction, page-specific
+  if (questionCount === 0 || !lastQuestion) {
+    const slug = route.replace(/^\//, '')
 
-    // Check partial matches (e.g. "tell me about mentra" matches "mentra")
-    for (const [k, chips] of Object.entries(CHIP_FLOWS)) {
-      if (q.includes(k)) return chips
+    if (route === '/') return ['Best projects', 'About Parth', 'Something surprising']
+    if (route === '/work') return ['Best projects', 'AI work', 'Installations']
+    if (route === '/about') return ['Fun facts', 'Daily practices', 'Hire Parth']
+
+    // Project page
+    if (slug && !['work', 'about'].includes(slug)) {
+      return ['What was the hardest part?', 'Key insight', 'Related work']
+    }
+
+    // Category page
+    const cat = categories.find(c => c.slug === slug)
+    if (cat) return [`Best ${cat.title} project`, 'Design approach', 'Something surprising']
+
+    return ['Best projects', 'About Parth', 'Something surprising']
+  }
+
+  // Categorize what was just asked
+  const q = lastQuestion.toLowerCase().trim().replace(/[?.!,]+$/, '')
+  const cat = categorizeQuestion(q)
+  const pool = getPool(cat)
+
+  // Filter out already-asked chips and the current question
+  const available = pool.filter(chip => {
+    const normalized = chip.label.toLowerCase()
+    return !askedSet.has(normalized) && normalized !== q
+  })
+
+  // If we've exhausted the primary pool, mix in from other pools
+  if (available.length < 3) {
+    const allPools = [AFTER_PROJECT, AFTER_DEEP, AFTER_PERSONAL, AFTER_META, AFTER_ACTION]
+    for (const p of allPools) {
+      for (const chip of p) {
+        const n = chip.label.toLowerCase()
+        if (!askedSet.has(n) && n !== q && !available.find(a => a.label === chip.label)) {
+          available.push(chip)
+        }
+        if (available.length >= 6) break
+      }
+      if (available.length >= 6) break
     }
   }
 
-  // Page-specific defaults
-  if (PAGE_CHIPS[route]) return PAGE_CHIPS[route]
+  // Pick 3, prefer variety in categories
+  const picked: ChipOption[] = []
+  const usedCats = new Set<ChipCategory>()
 
-  // Project page
-  const slug = route.replace(/^\//, '')
-  if (slug && !['work', 'about'].includes(slug)) {
-    return ['The challenge', 'Key insight', 'Related work']
+  // First pass: one from each category
+  for (const chip of available) {
+    if (picked.length >= 3) break
+    if (!usedCats.has(chip.cat)) {
+      picked.push(chip)
+      usedCats.add(chip.cat)
+    }
   }
 
-  // Category page
-  const cat = categories.find(c => c.slug === slug)
-  if (cat) return [`Best ${cat.title} project`, 'Design approach', 'All categories']
+  // Second pass: fill remaining slots
+  for (const chip of available) {
+    if (picked.length >= 3) break
+    if (!picked.includes(chip)) picked.push(chip)
+  }
 
-  return ['Best projects', 'About Parth', 'Something surprising']
+  // Last resort
+  if (picked.length === 0) return ['Best projects', 'About Parth', 'Hire Parth']
+
+  return picked.map(c => c.label)
 }
 
 /* ── Response actions, what to do after responding ───── */
