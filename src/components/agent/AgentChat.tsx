@@ -76,7 +76,7 @@ function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavig
 function MiniAvatar() {
   return (
     <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex-shrink-0 mb-0.5 overflow-hidden">
-      <img src="/Assets/character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="" className="w-full h-full object-cover object-top" />
+      <img src="/Assets/Character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="" className="w-full h-full object-cover object-top" />
     </div>
   )
 }
@@ -204,7 +204,7 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--ink-06)]">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-full bg-[var(--ink-04)] flex-shrink-0 overflow-hidden">
-            <img src="/Assets/character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="Folio" className="w-full h-full object-cover object-top" />
+            <img src="/Assets/Character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="Folio" className="w-full h-full object-cover object-top" />
           </div>
           <div>
             <span className="block text-[13px] font-semibold text-[var(--ink)] leading-none font-[var(--sans)]">Folio</span>

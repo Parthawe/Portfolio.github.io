@@ -10,10 +10,10 @@ interface Props {
 
 // Different poses for different states
 const POSES = {
-  standing: '/Assets/character/folio-standing.png',
-  walking:  '/Assets/character/folio-walking.png',
-  sitting:  '/Assets/character/folio-sitting.png',
-  half:     '/Assets/character/folio-half.png',
+  standing: '/Assets/Character/folio-standing.png',
+  walking:  '/Assets/Character/folio-walking.png',
+  sitting:  '/Assets/Character/folio-sitting.png',
+  half:     '/Assets/Character/folio-half.png',
 }
 
 function getPose(state: AgentState): string {
