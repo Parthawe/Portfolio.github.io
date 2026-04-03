@@ -265,7 +265,9 @@
 .agent-chat {
   position: fixed;
   bottom: 12px;
+  left: 12px;
   right: 12px;
+  margin: 0 auto;
   width: min(360px, calc(100vw - 24px));
   height: min(480px, calc(100vh - 24px));
   background: var(--surface);
@@ -528,8 +530,9 @@
 
   .agent-chat {
     bottom: 8px;
+    left: 8px;
     right: 8px;
-    width: calc(100vw - 16px);
+    width: auto;
     height: min(440px, calc(100vh - 16px));
     border-radius: 16px;
   }
@@ -541,11 +544,13 @@
 
   .agent-chat {
     bottom: 0;
+    left: 0;
     right: 0;
     width: 100vw;
     height: calc(100vh - 60px);
     border-radius: 16px 16px 0 0;
     max-height: none;
+    margin: 0;
   }
 }
 

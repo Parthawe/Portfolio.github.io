@@ -95,16 +95,15 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
 
     const onDown = (e: PointerEvent) => {
       const target = e.target as HTMLElement
-      // Only drag from the header area (not close button)
       if (!target.closest('.agent-chat-header') || target.closest('.agent-chat-close-btn')) return
 
       dragging = true
       startX = e.clientX
       startY = e.clientY
 
-      const style = getComputedStyle(chat)
-      startRight = parseInt(style.right) || 12
-      startBottom = parseInt(style.bottom) || 12
+      const rect = chat.getBoundingClientRect()
+      startRight = rect.left  // use left position
+      startBottom = window.innerHeight - rect.bottom
 
       chat.style.transition = 'none'
       chat.setPointerCapture(e.pointerId)
@@ -116,10 +115,13 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       const dx = e.clientX - startX
       const dy = e.clientY - startY
 
-      const newRight = Math.max(0, Math.min(startRight - dx, window.innerWidth - chat.offsetWidth))
-      const newBottom = Math.max(0, Math.min(startBottom + dy, window.innerHeight - chat.offsetHeight))
+      const newLeft = Math.max(0, Math.min(startRight + dx, window.innerWidth - chat.offsetWidth))
+      const newBottom = Math.max(0, Math.min(startBottom - dy, window.innerHeight - chat.offsetHeight))
 
-      chat.style.right = `${newRight}px`
+      // Switch to left positioning when dragging
+      chat.style.left = `${newLeft}px`
+      chat.style.right = 'auto'
+      chat.style.margin = '0'
       chat.style.bottom = `${newBottom}px`
     }
 

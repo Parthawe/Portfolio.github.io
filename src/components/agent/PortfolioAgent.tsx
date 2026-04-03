@@ -33,9 +33,7 @@ function SpeechBubble({ text, typing, onDone, onClick, wrapRef }: {
     if (!isTyping && typing) onDone()
   }, [isTyping, typing, onDone])
 
-  const [positioned, setPositioned] = useState(false)
-
-  // Reposition on every render
+  // Position: above the character, clamped to viewport
   useEffect(() => {
     const el = bubbleRef.current
     const wrap = wrapRef.current
@@ -44,35 +42,29 @@ function SpeechBubble({ text, typing, onDone, onClick, wrapRef }: {
     const reposition = () => {
       const charRect = wrap.getBoundingClientRect()
       const vw = window.innerWidth
-      const pad = 20
+      const pad = 12
 
-      // Force a max width so it never exceeds viewport
-      const maxW = Math.min(280, vw - pad * 2)
-      el.style.maxWidth = `${maxW}px`
+      // Max width: never wider than viewport minus padding
+      el.style.maxWidth = `${Math.min(250, vw - pad * 2)}px`
 
-      // Read width AFTER setting max-width
       const bubbleW = el.offsetWidth
 
-      // Anchor: character center X
+      // Try to center above character, clamp to viewport
       let left = charRect.left + charRect.width / 2 - bubbleW / 2
-
-      // Clamp: keep fully inside viewport
       left = Math.max(pad, Math.min(left, vw - bubbleW - pad))
 
-      // Bottom: just above the character
-      const bottom = window.innerHeight - charRect.top + 8
+      // Above the character
+      const bottom = window.innerHeight - charRect.top + 6
 
       el.style.left = `${left}px`
-      el.style.bottom = `${Math.max(40, bottom)}px`
-      setPositioned(true)
+      el.style.bottom = `${Math.max(20, bottom)}px`
     }
 
-    // Double RAF to ensure layout is settled
-    requestAnimationFrame(() => requestAnimationFrame(reposition))
-  }) // no deps — runs every render
+    requestAnimationFrame(reposition)
+  })
 
   return (
-    <div ref={bubbleRef} className="agent-speech" onClick={onClick} role="status" style={{ visibility: positioned ? 'visible' : 'hidden' }}>
+    <div ref={bubbleRef} className="agent-speech" onClick={onClick} role="status">
       {typing ? (
         <>
           {displayed}
