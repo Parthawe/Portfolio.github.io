@@ -23,8 +23,8 @@
 .nav-left-pill {
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding: 5px 6px;
+  gap: 4px;
+  padding: 6px 8px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
@@ -79,12 +79,12 @@
   align-items: center;
   justify-content: center;
   transition: color var(--dur-base), background var(--dur-base), border-color var(--dur-base);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
 }
 .nav-right > .theme-toggle:hover {
   color: var(--ink);
   background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: var(--ink-12);
 }
 
 /* Desktop CTA, pill button style */
@@ -97,21 +97,17 @@
   text-decoration: none;
   padding: 0.5rem 1.25rem;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--ink-08);
   background: var(--surface);
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.03);
-  transition: background var(--dur-base), box-shadow var(--dur-base), border-color var(--dur-base), transform var(--dur-base);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--dur-base);
   white-space: nowrap;
 }
 .nav-cta:hover {
   background: var(--ink);
   color: var(--surface);
   border-color: var(--ink);
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.12),
-    0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
   transform: translateY(-1px);
 }
 

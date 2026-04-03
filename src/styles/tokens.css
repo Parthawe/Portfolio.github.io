@@ -34,8 +34,7 @@
   --accent-hi-15: rgba(168, 184, 216, 0.15);
   --accent-hi-08: rgba(168, 184, 216, 0.08);
   --accent-hi-05: rgba(168, 184, 216, 0.05);
-  --gray-mid:     #ababab;
-  --footer-dark:  rgb(32, 32, 32);
+  --footer-dark:  rgb(28, 28, 28);
 
   --ink-50:   rgba(26,26,26,0.58); /* WCAG AA: ~4.8:1 on #FAFAF8 */
 
@@ -43,9 +42,9 @@
   --gutter:   clamp(1.25rem, 4vw, 3rem);
 
   /* Type scale */
-  --text-2xs:  0.6rem;      /* 9.6px, tiny labels */
-  --text-xs:   0.72rem;     /* 11.5px, captions, tags */
-  --text-sm:   0.85rem;     /* 13.6px, secondary text */
+  --text-2xs:  0.6875rem;   /* 11px, smallest readable */
+  --text-xs:   0.75rem;     /* 12px, captions, tags */
+  --text-sm:   0.8125rem;   /* 13px, secondary text */
   --text-base: 1rem;        /* 16px, body */
   --text-lg:   1.125rem;    /* 18px, emphasized body */
   --text-xl:   1.5rem;      /* 24px */
@@ -58,8 +57,8 @@
   --ls-normal: -0.01em;     /* headings */
   --ls-body:   0;           /* body text */
   --ls-wide:   0.06em;      /* labels, tags, uppercase */
-  --ls-wider:  0.1em;       /* small mono labels */
-  --ls-widest: 0.12em;     /* section labels, approach labels */
+  --ls-wider:  0.08em;      /* small mono labels */
+  --ls-widest: 0.1em;      /* section labels */
 
   /* Line-height scale */
   --lh-display: 1.05;    /* hero/display headings */
@@ -257,7 +256,7 @@
 [data-theme="dark"] .theme-icon-moon { display: none; }
 [data-theme="dark"] .theme-icon-sun { display: block; }
 .theme-toggle svg {
-  transition: transform 0.5s var(--ease-spring), opacity 0.3s;
+  transition: transform var(--dur-slow) var(--ease-spring), opacity var(--dur-base);
 }
 .theme-toggle:active svg {
   transform: rotate(90deg) scale(0.8);

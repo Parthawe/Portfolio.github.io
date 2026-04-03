@@ -23,20 +23,9 @@
   margin-bottom: 0;
   position: relative;
 }
-/* Figma-style node label */
+/* Figma-style node label, hidden, dev-only artifact */
 .work-page-title::before {
-  content: 'Source Serif 4 · display';
-  position: absolute;
-  top: -2px;
-  left: 0;
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--ink-15);
-  line-height: 14px;
-  pointer-events: none;
-  white-space: nowrap;
+  display: none;
 }
 
 /* Work group label, typography via .mono-label in base.css */
@@ -73,10 +62,10 @@
   transition: opacity var(--dur-slow) cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s var(--ease-spring);
 }
 .pcard:hover {
-  transform: translateY(-2px) scale(1.01);
+  transform: translateY(-3px);
 }
 .pcard:active {
-  transform: translateY(-2px) scale(0.995);
+  transform: translateY(-1px);
   transition-duration: 0.1s;
 }
 
@@ -103,7 +92,7 @@
   transition: transform 0.7s var(--ease-spring);
 }
 .pcard:hover .pcard-visual img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 /* Top row, category + year, overlaid */
