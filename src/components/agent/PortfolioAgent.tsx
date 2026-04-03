@@ -3,7 +3,7 @@ import AgentCharacter from './AgentCharacter'
 import { useAgentBehavior } from '../../hooks/useAgentBehavior'
 import { useAgentMovement } from '../../hooks/useAgentMovement'
 import { useTypewriter } from '../../hooks/useTypewriter'
-import { getGreeting, extractTarget, sendMessage, getChips, createChatHistory, type ChatHistory } from '../../services/agentAI'
+import { getGreeting, getResponseAction, sendMessage, getChips, createChatHistory, type ChatHistory } from '../../services/agentAI'
 import type { AgentState } from './AgentCharacter'
 
 const AgentChat = lazy(() => import('./AgentChat'))
@@ -150,21 +150,36 @@ export default function PortfolioAgent() {
   // Handle quick response via speech bubble (when chat is closed)
   const handleBubbleResponse = useCallback(async (question: string) => {
     historyRef.current.route = route
+
+    // Get the action before the response (what to do after)
+    const action = getResponseAction(question)
+
     const response = await sendMessage(question, historyRef.current)
 
     // Show in speech bubble, keep it short
-    let bubbleText = response.split(/[.!?]\s/)[0].replace(/\n/g, ' ').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    if (bubbleText.length > 100) bubbleText = bubbleText.slice(0, 97) + '...'
-    if (!bubbleText.endsWith('.') && !bubbleText.endsWith('...')) bubbleText += '.'
+    let bubbleText = response.replace(/\n/g, ' ').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    if (bubbleText.length > 80) bubbleText = bubbleText.slice(0, 77) + '...'
 
     showSpeech(bubbleText)
 
-    // Try to walk to the target mentioned in the response
-    const target = extractTarget(response)
-    if (target && window.innerWidth > 768) {
-      setTimeout(() => movement.walkTo(target), 300)
-    }
-  }, [route, showSpeech, movement])
+    // Execute action after a short delay
+    setTimeout(() => {
+      if (action.type === 'scroll' && action.element) {
+        // Scroll the page to the project card
+        action.element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        // Briefly highlight it
+        action.element.style.outline = '2px solid var(--ink-15)'
+        action.element.style.outlineOffset = '4px'
+        action.element.style.transition = 'outline-color 0.3s'
+        setTimeout(() => {
+          if (action.element) {
+            action.element.style.outline = ''
+            action.element.style.outlineOffset = ''
+          }
+        }, 2000)
+      }
+    }, 800)
+  }, [route, showSpeech])
 
   const handleClick = useCallback(() => {
     if (didDrag.current) return
