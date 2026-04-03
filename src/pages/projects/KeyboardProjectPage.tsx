@@ -18,7 +18,7 @@ export default function KeyboardProjectPage() {
     <>
       <Helmet>
         <title>BreakGen &middot; Parth Pawar</title>
-        <meta name="description" content="BreakGen, a modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, intuitive layout tools, and automated PCB generation. ITP Thesis at NYU." />
+        <meta name="description" content="BreakGen. ITP Thesis at NYU Tisch. A modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, layout tools, and automated PCB generation." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="BreakGen &middot; Parth Pawar" />
         <meta property="og:description" content="Modular keyboard design platform, AI-generated keycaps, layout tools, and automated PCB generation." />
@@ -45,6 +45,23 @@ export default function KeyboardProjectPage() {
           heroImage="/Assets/images/keyboard.jpg"
           heroAlt="BreakGen, modular keyboard design platform"
         />
+
+        {/* ITP Thesis Video */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-section-label">ITP Thesis Presentation</div>
+            <h2 className="cs-section-title">Watch the full thesis</h2>
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 'var(--radius-lg)', marginTop: '1.5rem' }}>
+              <iframe
+                src="https://player.vimeo.com/video/1091963037?h=&title=0&byline=0&portrait=0"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="BreakGen ITP Thesis"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* Overview */}
         <section className="cs-section reveal">

@@ -425,6 +425,8 @@ const PROJECT_RESPONSES: Record<string, string> = {
   'ballah': "AI-native IDE. 17 production tools. Built by using it.",
   'oncall': "Sentry alert to auto-generated PR fix. Built in 24 hours.",
   'enigma': "Light sculpture that shows how a neural network thinks.",
+  'breakgen': "ITP Thesis. Custom keyboard design platform. AI keycaps, auto PCB generation.",
+  'keyboard': "ITP Thesis. Custom keyboard design platform. AI keycaps, auto PCB generation.",
 }
 
 // Project-specific deep answers (when you're ON that project's page)
@@ -469,6 +471,15 @@ const PROJECT_DEEP: Record<string, Record<string, string>> = {
     'key insight': 'Designing for the most constrained user makes it better for everyone.',
     'how did you approach it': 'Rode the NYC subway blindfolded. Interviewed 12 people.',
     'how did you test it': 'Haptic prototypes in real stations. Sighted users preferred it too.',
+  },
+  'keyboard-project': {
+    'what was the hardest part': 'PCB auto-generation. Translating a visual layout into electrical engineering.',
+    'what was the challenge': 'Custom keyboards need EDA software, programming, and spatial reasoning. Most people give up.',
+    'key insight': 'Break the process into steps anyone can follow. AI handles the hard parts.',
+    'how did you approach it': 'React + Three.js for the configurator. Meshy AI for keycaps. KiCad for PCB auto-gen.',
+    'who was the team': 'Solo. Design, dev, fabrication, thesis defense. Advised by Luisa Pereira at NYU ITP.',
+    'your take on it': 'This is where design meets engineering meets fabrication. The full stack.',
+    'how did you test it': 'Physical prototypes: 3D printed, laser cut, CNC. Real keyboards that work.',
   },
   'jugalbandi': {
     'what was the hardest part': 'Making strangers interact without instructions or language.',
@@ -895,6 +906,7 @@ const PROJECT_GREETINGS: Record<string, string> = {
   'oncall-lens': "OnCall Lens. Sentry alert to PR fix in 24 hours.",
   'ballah-code': "Ballah Code. AI isn't a sidebar, it's the foundation.",
   'tedx': "TEDxVITPune. One brand system for 1500 people.",
+  'keyboard-project': "BreakGen. ITP Thesis. Design a keyboard from scratch, AI does the rest.",
 }
 
 export function getGreeting(route: string): string {

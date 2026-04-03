@@ -26,6 +26,7 @@ function getProactiveComment(path: string): string | null {
     'ballah-code': 'AI isn\'t a sidebar here. It\'s everything.',
     'tedx': '1500 people. One brand system.',
     'revolving-stage': 'Kinetic installation. Handmade.',
+    'keyboard-project': 'ITP Thesis. Keyboards you design from scratch.',
   }
   if (projectComments[slug]) return projectComments[slug]
 
