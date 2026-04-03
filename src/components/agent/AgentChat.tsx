@@ -17,10 +17,9 @@ interface Props {
   route: string
   initialGreeting: string
   onAgentState: (state: 'thinking' | 'talking' | 'idle') => void
-  charRef?: React.RefObject<HTMLDivElement | null>
 }
 
-/* ── Rich text renderer ──────────────────────────────── */
+/* ── Rich text ───────────────────────────────────────── */
 
 function RichText({ text, onNavigate }: { text: string; onNavigate: (path: string) => void }) {
   const parts: ReactNode[] = []
@@ -35,12 +34,11 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
     if (seg.startsWith('**')) {
       parts.push(<strong key={key++} className="font-semibold text-[var(--ink)]">{seg.slice(2, -2)}</strong>)
     } else if (seg.startsWith('[')) {
-      const linkMatch = seg.match(/\[([^\]]+)\]\(([^)]+)\)/)
-      if (linkMatch) {
-        const [, label, href] = linkMatch
-        const isInternal = href.startsWith('/')
+      const lm = seg.match(/\[([^\]]+)\]\(([^)]+)\)/)
+      if (lm) {
+        const [, label, href] = lm
         parts.push(
-          isInternal ? (
+          href.startsWith('/') ? (
             <button key={key++} className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)] transition-colors cursor-pointer bg-transparent border-none font-inherit p-0" onClick={() => onNavigate(href)} type="button">{label}</button>
           ) : (
             <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)] transition-colors">{label}</a>
@@ -54,15 +52,11 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
   return <>{parts}</>
 }
 
-/* ── Typewriter message ──────────────────────────────── */
+/* ── Typewriter ──────────────────────────────────────── */
 
 function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavigate: (path: string) => void; onDone: () => void }) {
   const { displayed, isTyping, skip } = useTypewriter({ text, speed: 40 })
-
-  useEffect(() => {
-    if (!isTyping) onDone()
-  }, [isTyping, onDone])
-
+  useEffect(() => { if (!isTyping) onDone() }, [isTyping, onDone])
   return (
     <span onClick={isTyping ? skip : undefined} className={isTyping ? 'cursor-pointer' : ''}>
       <RichText text={displayed} onNavigate={onNavigate} />
@@ -71,46 +65,9 @@ function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavig
   )
 }
 
-/* ── Main chat component ─────────────────────────────── */
+/* ── Chat ────────────────────────────────────────────── */
 
-export default function AgentChat({ open, onClose, route, initialGreeting, onAgentState, charRef }: Props) {
-  const chatRef = useRef<HTMLDivElement>(null)
-
-  // Position chat panel near the character, clamped to viewport
-  useEffect(() => {
-    const el = chatRef.current
-    const wrap = charRef?.current
-    if (!el || !wrap || !open) return
-
-    const position = () => {
-      const charRect = wrap.getBoundingClientRect()
-      const vw = window.innerWidth
-      const vh = window.innerHeight
-      const chatW = el.offsetWidth
-      const chatH = el.offsetHeight
-      const pad = 12
-
-      // Bottom: above the character
-      let bottom = vh - charRect.top + 8
-      bottom = Math.max(pad, Math.min(bottom, vh - chatH - pad))
-
-      // Left: try to align with character center, clamp to viewport
-      let left = charRect.left + charRect.width / 2 - chatW / 2
-      left = Math.max(pad, Math.min(left, vw - chatW - pad))
-
-      el.style.left = `${left}px`
-      el.style.bottom = `${bottom}px`
-      el.style.right = 'auto'
-    }
-
-    position()
-    const raf = requestAnimationFrame(position)
-    window.addEventListener('resize', position, { passive: true })
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', position)
-    }
-  }, [open, charRef])
+export default function AgentChat({ open, onClose, route, initialGreeting, onAgentState }: Props) {
   const navigate = useNavigate()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -147,68 +104,48 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
 
   useEffect(() => {
     if (!open) return
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
+    const h = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', h)
+    return () => window.removeEventListener('keydown', h)
   }, [open, onClose])
 
-  const handleNav = useCallback((path: string) => { navigate(path); onClose() }, [navigate, onClose])
+  const handleNav = useCallback((p: string) => { navigate(p); onClose() }, [navigate, onClose])
 
-  const markTypingDone = useCallback((msgId: number) => {
-    setMessages(prev => prev.map(m => m.id === msgId ? { ...m, typing: false } : m))
+  const markDone = useCallback((id: number) => {
+    setMessages(prev => prev.map(m => m.id === id ? { ...m, typing: false } : m))
     onAgentState('idle')
   }, [onAgentState])
 
   const handleSend = useCallback(async (text: string) => {
-    const trimmed = text.trim()
-    if (!trimmed || thinking || streaming) return
-
-    setMessages(prev => [...prev, { id: ++idCounter.current, content: trimmed, sender: 'user' }])
+    const t = text.trim()
+    if (!t || thinking || streaming) return
+    setMessages(prev => [...prev, { id: ++idCounter.current, content: t, sender: 'user' }])
     setInput('')
     setThinking(true)
     onAgentState('thinking')
     questionCount.current++
-
-    const streamMsgId = ++idCounter.current
-
+    const sid = ++idCounter.current
     try {
-      setMessages(prev => [...prev, { id: streamMsgId, content: '', sender: 'agent', raw: '', typing: true }])
+      setMessages(prev => [...prev, { id: sid, content: '', sender: 'agent', raw: '', typing: true }])
       setThinking(false)
       setStreaming(true)
       onAgentState('talking')
-
-      const finalText = await sendMessage(trimmed, historyRef.current, (partialText) => {
-        setMessages(prev => prev.map(m =>
-          m.id === streamMsgId ? { ...m, raw: partialText, typing: true } : m
-        ))
+      const final = await sendMessage(t, historyRef.current, (pt) => {
+        setMessages(prev => prev.map(m => m.id === sid ? { ...m, raw: pt, typing: true } : m))
       })
-
-      setMessages(prev => prev.map(m =>
-        m.id === streamMsgId ? { ...m, raw: finalText, typing: true } : m
-      ))
+      setMessages(prev => prev.map(m => m.id === sid ? { ...m, raw: final, typing: true } : m))
       setChips(getChips(route, questionCount.current))
     } catch {
-      setMessages(prev => prev.map(m =>
-        m.id === streamMsgId ? { ...m, content: 'Something went wrong. Try again.', raw: '', typing: false } : m
-      ))
+      setMessages(prev => prev.map(m => m.id === sid ? { ...m, content: 'Something went wrong.', raw: '', typing: false } : m))
       onAgentState('idle')
-    } finally {
-      setStreaming(false)
-    }
+    } finally { setStreaming(false) }
   }, [thinking, streaming, onAgentState, route])
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); handleSend(input) }
   const anyTyping = messages.some(m => m.typing)
 
   return (
-    <div
-      ref={chatRef}
-      className={`agent-chat ${open ? 'agent-chat--open' : ''}`}
-      role="dialog"
-      aria-label="Chat with Folio"
-      aria-hidden={!open}
-    >
-      {/* ── Header ── */}
+    <div className={`agent-chat ${open ? 'agent-chat--open' : ''}`} role="dialog" aria-label="Chat with Folio" aria-hidden={!open}>
+      {/* Header */}
       <div className="agent-chat-header">
         <div className="agent-chat-header-left">
           <div className="agent-chat-avatar">
@@ -216,71 +153,46 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
           </div>
           <div>
             <span className="agent-chat-name">Folio</span>
-            <span className="agent-chat-status">
-              <span className="agent-chat-online" />
-              Portfolio guide
-            </span>
+            <span className="agent-chat-status"><span className="agent-chat-online" />Portfolio guide</span>
           </div>
         </div>
         <button onClick={onClose} aria-label="Close" type="button" className="agent-chat-close-btn">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
         </button>
       </div>
 
-      {/* ── Messages ── */}
+      {/* Messages */}
       <div ref={messagesRef} className="agent-chat-body" aria-live="polite">
         {messages.map(msg => (
           <div key={msg.id} className={`agent-msg-row ${msg.sender === 'user' ? 'agent-msg-row--user' : ''}`}>
             <div className={`agent-msg ${msg.sender === 'user' ? 'agent-msg--user' : 'agent-msg--agent'}`}>
               {msg.sender === 'agent' && msg.raw && msg.typing ? (
-                <TypewriterMessage text={msg.raw} onNavigate={handleNav} onDone={() => markTypingDone(msg.id)} />
+                <TypewriterMessage text={msg.raw} onNavigate={handleNav} onDone={() => markDone(msg.id)} />
               ) : msg.sender === 'agent' && msg.raw ? (
                 <RichText text={msg.raw} onNavigate={handleNav} />
-              ) : (
-                msg.content
-              )}
+              ) : msg.content}
             </div>
           </div>
         ))}
-
         {thinking && (
           <div className="agent-msg-row">
-            <div className="agent-msg agent-msg--agent agent-msg--dots">
-              <span /><span /><span />
-            </div>
+            <div className="agent-msg agent-msg--agent agent-msg--dots"><span /><span /><span /></div>
           </div>
         )}
       </div>
 
-      {/* ── Chips ── */}
+      {/* Chips */}
       {chips.length > 0 && !thinking && !anyTyping && (
         <div className="agent-chips">
-          {chips.map(chip => (
-            <button key={chip} onClick={() => handleSend(chip)} type="button" className="agent-chip">
-              {chip}
-            </button>
-          ))}
+          {chips.map(c => <button key={c} onClick={() => handleSend(c)} type="button" className="agent-chip">{c}</button>)}
         </div>
       )}
 
-      {/* ── Input ── */}
-      <form onSubmit={handleSubmit} className="agent-chat-input-area">
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Ask me anything..."
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          autoComplete="off"
-          disabled={thinking || streaming}
-          className="agent-chat-input"
-        />
+      {/* Input */}
+      <form onSubmit={e => { e.preventDefault(); handleSend(input) }} className="agent-chat-input-area">
+        <input ref={inputRef} type="text" placeholder="Ask me anything..." value={input} onChange={e => setInput(e.target.value)} autoComplete="off" disabled={thinking || streaming} className="agent-chat-input" />
         <button type="submit" disabled={!input.trim() || thinking || streaming} className="agent-chat-send">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M2.5 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </form>
     </div>

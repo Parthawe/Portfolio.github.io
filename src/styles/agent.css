@@ -259,20 +259,21 @@
 
 
 /* ══════════════════════════════════════════════════════════
-   CHAT PANEL — position: fixed, JS-positioned near character
+   CHAT PANEL — always bottom-right, safe from overflow
    ══════════════════════════════════════════════════════════ */
 
 .agent-chat {
   position: fixed;
+  bottom: 12px;
+  right: 12px;
   width: min(360px, calc(100vw - 24px));
-  max-height: min(480px, calc(100vh - 200px));
-  min-height: 300px;
+  height: min(480px, calc(100vh - 24px));
   background: var(--surface);
   border: 1px solid var(--ink-06);
   border-radius: 20px;
   box-shadow:
-    0 8px 32px rgba(0,0,0,0.08),
-    0 24px 64px rgba(0,0,0,0.04);
+    0 8px 32px rgba(0,0,0,0.1),
+    0 2px 8px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -280,7 +281,7 @@
   transform: translateY(8px) scale(0.97);
   transition: opacity 0.2s ease, transform 0.25s var(--ease-spring);
   pointer-events: none;
-  z-index: 91;
+  z-index: 100;
 }
 
 .agent-chat--open {
@@ -520,11 +521,28 @@
 @media (max-width: 768px) {
   .agent-root { right: 12px; }
   .agent-img-wrap { width: 70px; }
+
+  .agent-chat {
+    bottom: 8px;
+    right: 8px;
+    width: calc(100vw - 16px);
+    height: min(440px, calc(100vh - 16px));
+    border-radius: 16px;
+  }
 }
 
 @media (max-width: 480px) {
-  .agent-root { right: 8px; }
+  .agent-root { right: 6px; }
   .agent-img-wrap { width: 56px; }
+
+  .agent-chat {
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    border-radius: 16px 16px 0 0;
+    max-height: none;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════
