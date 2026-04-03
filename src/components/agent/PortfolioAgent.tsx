@@ -17,20 +17,68 @@ function getProactiveComment(path: string): string | null {
   return null
 }
 
-/* ── Typed speech bubble ─────────────────────────────── */
+/* ── Typed speech bubble with viewport-aware positioning ── */
 
-function TypedBubble({ text, onDone }: { text: string; onDone: () => void }) {
-  const { displayed, isTyping } = useTypewriter({ text, speed: 50 })
+function SpeechBubble({ text, typing, onDone, onClick, wrapRef }: {
+  text: string
+  typing: boolean
+  onDone: () => void
+  onClick: () => void
+  wrapRef: React.RefObject<HTMLDivElement | null>
+}) {
+  const { displayed, isTyping } = useTypewriter({ text, speed: 50, enabled: typing })
+  const bubbleRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!isTyping) onDone()
-  }, [isTyping, onDone])
+    if (!isTyping && typing) onDone()
+  }, [isTyping, typing, onDone])
+
+  // Position bubble above character, clamped to viewport
+  useEffect(() => {
+    const el = bubbleRef.current
+    const wrap = wrapRef.current
+    if (!el || !wrap) return
+
+    const update = () => {
+      const charRect = wrap.getBoundingClientRect()
+      const bubbleW = el.offsetWidth
+      const bubbleH = el.offsetHeight
+
+      // Center above character
+      let left = charRect.left + charRect.width / 2 - bubbleW / 2
+      let bottom = window.innerHeight - charRect.top + 12
+
+      // Clamp horizontally
+      left = Math.max(12, Math.min(left, window.innerWidth - bubbleW - 12))
+      // Clamp vertically — don't go off top
+      if (window.innerHeight - bottom + bubbleH > window.innerHeight - 20) {
+        bottom = bubbleH + 20
+      }
+
+      el.style.left = `${left}px`
+      el.style.bottom = `${bottom}px`
+    }
+
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [wrapRef, text])
 
   return (
-    <>
-      {displayed}
-      {isTyping && <span className="agent-typing-cursor">|</span>}
-    </>
+    <div ref={bubbleRef} className="agent-speech" onClick={onClick} role="status">
+      {typing ? (
+        <>
+          {displayed}
+          {isTyping && <span className="agent-typing-cursor">|</span>}
+        </>
+      ) : (
+        text
+      )}
+    </div>
   )
 }
 
@@ -166,15 +214,15 @@ export default function PortfolioAgent() {
         facingLeft={facingLeft}
       />
 
-      {/* Speech bubble — above character, typed word-by-word */}
+      {/* Speech bubble — positioned to stay in viewport */}
       {speechText && !chatOpen && (
-        <div className="agent-speech" onClick={handleBubbleClick} role="status">
-          {speechTyping ? (
-            <TypedBubble text={speechText} onDone={handleSpeechDone} />
-          ) : (
-            speechText
-          )}
-        </div>
+        <SpeechBubble
+          text={speechText}
+          typing={speechTyping}
+          onDone={handleSpeechDone}
+          onClick={handleBubbleClick}
+          wrapRef={wrapRef}
+        />
       )}
 
       {chatLoaded && (

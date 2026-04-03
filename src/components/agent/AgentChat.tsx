@@ -8,7 +8,7 @@ interface Message {
   content: ReactNode
   sender: 'agent' | 'user'
   raw?: string
-  typing?: boolean  // true = typewriter active
+  typing?: boolean
 }
 
 interface Props {
@@ -31,9 +31,8 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIdx) parts.push(text.slice(lastIdx, match.index))
     const seg = match[0]
-
     if (seg.startsWith('**')) {
-      parts.push(<strong key={key++} className="font-semibold">{seg.slice(2, -2)}</strong>)
+      parts.push(<strong key={key++} className="font-semibold text-[var(--ink)]">{seg.slice(2, -2)}</strong>)
     } else if (seg.startsWith('[')) {
       const linkMatch = seg.match(/\[([^\]]+)\]\(([^)]+)\)/)
       if (linkMatch) {
@@ -41,9 +40,9 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
         const isInternal = href.startsWith('/')
         parts.push(
           isInternal ? (
-            <button key={key++} className="inline underline underline-offset-2 decoration-[var(--ink-30)] hover:decoration-[var(--ink)] transition-colors cursor-pointer bg-transparent border-none font-inherit p-0" onClick={() => onNavigate(href)} type="button">{label}</button>
+            <button key={key++} className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)] transition-colors cursor-pointer bg-transparent border-none font-inherit p-0" onClick={() => onNavigate(href)} type="button">{label}</button>
           ) : (
-            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="inline underline underline-offset-2 decoration-[var(--ink-30)] hover:decoration-[var(--ink)] transition-colors">{label}</a>
+            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)] transition-colors">{label}</a>
           )
         )
       }
@@ -54,7 +53,7 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
   return <>{parts}</>
 }
 
-/* ── Typewriter message — types word-by-word ──────────── */
+/* ── Typewriter message ──────────────────────────────── */
 
 function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavigate: (path: string) => void; onDone: () => void }) {
   const { displayed, isTyping, skip } = useTypewriter({ text, speed: 40 })
@@ -68,16 +67,6 @@ function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavig
       <RichText text={displayed} onNavigate={onNavigate} />
       {isTyping && <span className="agent-typing-cursor">|</span>}
     </span>
-  )
-}
-
-/* ── Mini Folio avatar for messages ──────────────────── */
-
-function MiniAvatar() {
-  return (
-    <div className="w-5 h-5 rounded-full bg-[var(--ink-06)] flex-shrink-0 mb-0.5 overflow-hidden">
-      <img src="/Assets/Character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="" className="w-full h-full object-cover object-top" />
-    </div>
   )
 }
 
@@ -105,21 +94,13 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       historyRef.current = createChatHistory(route)
       questionCount.current = 0
       const greeting = getGreeting(route)
-      setMessages([{
-        id: ++idCounter.current,
-        content: greeting,
-        sender: 'agent',
-        raw: greeting,
-        typing: true,
-      }])
+      setMessages([{ id: ++idCounter.current, content: greeting, sender: 'agent', raw: greeting, typing: true }])
       setChips(getChips(route, 0))
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, route])
 
-  useEffect(() => {
-    if (open) setTimeout(() => inputRef.current?.focus(), 150)
-  }, [open])
+  useEffect(() => { if (open) setTimeout(() => inputRef.current?.focus(), 150) }, [open])
 
   useEffect(() => {
     const el = messagesRef.current
@@ -133,15 +114,10 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
     return () => window.removeEventListener('keydown', handler)
   }, [open, onClose])
 
-  const handleNav = useCallback((path: string) => {
-    navigate(path)
-    onClose()
-  }, [navigate, onClose])
+  const handleNav = useCallback((path: string) => { navigate(path); onClose() }, [navigate, onClose])
 
   const markTypingDone = useCallback((msgId: number) => {
-    setMessages(prev => prev.map(m =>
-      m.id === msgId ? { ...m, typing: false } : m
-    ))
+    setMessages(prev => prev.map(m => m.id === msgId ? { ...m, typing: false } : m))
     onAgentState('idle')
   }, [onAgentState])
 
@@ -158,7 +134,6 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
     const streamMsgId = ++idCounter.current
 
     try {
-      // Add placeholder
       setMessages(prev => [...prev, { id: streamMsgId, content: '', sender: 'agent', raw: '', typing: true }])
       setThinking(false)
       setStreaming(true)
@@ -170,7 +145,6 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
         ))
       })
 
-      // Set final text — typewriter will handle reveal
       setMessages(prev => prev.map(m =>
         m.id === streamMsgId ? { ...m, raw: finalText, typing: true } : m
       ))
@@ -185,58 +159,44 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
     }
   }, [thinking, streaming, onAgentState, route])
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    handleSend(input)
-  }
-
-  // Check if any message is currently typing
+  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); handleSend(input) }
   const anyTyping = messages.some(m => m.typing)
 
   return (
     <div
       className={`agent-chat ${open ? 'agent-chat--open' : ''}`}
       role="dialog"
-      aria-label="Chat with Folio, portfolio guide"
+      aria-label="Chat with Folio"
       aria-hidden={!open}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--ink-06)]">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-[var(--ink-04)] flex-shrink-0 overflow-hidden">
-            <img src="/Assets/Character/hf_20260402_220117_5f47f762-e0b1-4f21-aaca-91672752f2c6.png" alt="Folio" className="w-full h-full object-cover object-top" />
+      {/* ── Header ── */}
+      <div className="agent-chat-header">
+        <div className="agent-chat-header-left">
+          <div className="agent-chat-avatar">
+            <img src="/Assets/Character/folio-half.png" alt="" />
           </div>
           <div>
-            <span className="block text-[13px] font-semibold text-[var(--ink)] leading-none font-[var(--sans)]">Folio</span>
-            <span className="flex items-center gap-1 mt-0.5 text-[10px] text-[var(--ink-40)] font-[var(--sans)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-              Parth's portfolio guide
+            <span className="agent-chat-name">Folio</span>
+            <span className="agent-chat-status">
+              <span className="agent-chat-online" />
+              Portfolio guide
             </span>
           </div>
         </div>
-        <button onClick={onClose} aria-label="Close chat" type="button" className="w-7 h-7 flex items-center justify-center rounded-lg text-[var(--ink-30)] hover:text-[var(--ink)] hover:bg-[var(--ink-04)] transition-all cursor-pointer border-none bg-transparent">
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+        <button onClick={onClose} aria-label="Close" type="button" className="agent-chat-close-btn">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </button>
       </div>
 
-      {/* Messages */}
-      <div ref={messagesRef} className="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-3 min-h-0 scroll-smooth" style={{ scrollbarWidth: 'thin', scrollbarColor: 'var(--ink-06) transparent' }} aria-live="polite" aria-atomic="false">
+      {/* ── Messages ── */}
+      <div ref={messagesRef} className="agent-chat-body" aria-live="polite">
         {messages.map(msg => (
-          <div key={msg.id} className={`flex gap-2 items-end ${msg.sender === 'user' ? 'justify-end' : ''}`}>
-            {msg.sender === 'agent' && <MiniAvatar />}
-            <div className={`max-w-[85%] px-3.5 py-2.5 text-[13px] leading-relaxed font-[var(--sans)] whitespace-pre-line break-words ${
-              msg.sender === 'agent'
-                ? 'bg-[var(--ink-04)] text-[var(--ink)] rounded-2xl rounded-bl-md'
-                : 'bg-[var(--ink)] text-[var(--bg)] rounded-2xl rounded-br-md'
-            }`}>
+          <div key={msg.id} className={`agent-msg-row ${msg.sender === 'user' ? 'agent-msg-row--user' : ''}`}>
+            <div className={`agent-msg ${msg.sender === 'user' ? 'agent-msg--user' : 'agent-msg--agent'}`}>
               {msg.sender === 'agent' && msg.raw && msg.typing ? (
-                <TypewriterMessage
-                  text={msg.raw}
-                  onNavigate={handleNav}
-                  onDone={() => markTypingDone(msg.id)}
-                />
+                <TypewriterMessage text={msg.raw} onNavigate={handleNav} onDone={() => markTypingDone(msg.id)} />
               ) : msg.sender === 'agent' && msg.raw ? (
                 <RichText text={msg.raw} onNavigate={handleNav} />
               ) : (
@@ -247,33 +207,41 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
         ))}
 
         {thinking && (
-          <div className="flex gap-2 items-end">
-            <MiniAvatar />
-            <div className="flex gap-1 px-3.5 py-3 bg-[var(--ink-04)] rounded-2xl rounded-bl-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-30)] animate-[chatdot_1.2s_ease-in-out_infinite]" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-30)] animate-[chatdot_1.2s_ease-in-out_infinite_0.15s]" />
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--ink-30)] animate-[chatdot_1.2s_ease-in-out_infinite_0.3s]" />
+          <div className="agent-msg-row">
+            <div className="agent-msg agent-msg--agent agent-msg--dots">
+              <span /><span /><span />
             </div>
           </div>
         )}
       </div>
 
-      {/* Chips */}
+      {/* ── Chips ── */}
       {chips.length > 0 && !thinking && !anyTyping && (
-        <div className="flex flex-wrap gap-1.5 px-4 pb-2 animate-[chips-in_0.2s_ease]">
+        <div className="agent-chips">
           {chips.map(chip => (
-            <button key={chip} onClick={() => handleSend(chip)} type="button" className="px-3 py-1.5 rounded-full border border-[var(--ink-08)] bg-transparent text-[11px] font-medium text-[var(--ink-50)] font-[var(--sans)] cursor-pointer transition-all hover:border-[var(--ink-15)] hover:text-[var(--ink)] hover:bg-[var(--ink-04)] whitespace-nowrap">
+            <button key={chip} onClick={() => handleSend(chip)} type="button" className="agent-chip">
               {chip}
             </button>
           ))}
         </div>
       )}
 
-      {/* Input */}
-      <form onSubmit={handleSubmit} className="flex items-center gap-2 px-3 py-2.5 border-t border-[var(--ink-06)]">
-        <input ref={inputRef} type="text" placeholder="Ask about any project..." value={input} onChange={e => setInput(e.target.value)} aria-label="Type your question" autoComplete="off" disabled={thinking || streaming} className="flex-1 bg-transparent border-none text-[13px] text-[var(--ink)] font-[var(--sans)] outline-none placeholder:text-[var(--ink-30)] disabled:opacity-40 py-1" />
-        <button type="submit" disabled={!input.trim() || thinking || streaming} aria-label="Send message" className="w-8 h-8 rounded-xl bg-[var(--ink)] text-[var(--bg)] flex items-center justify-center flex-shrink-0 cursor-pointer transition-all hover:scale-105 disabled:opacity-20 disabled:cursor-default border-none">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 8L3 3V6.5L9 8L3 9.5V13Z" fill="currentColor" /></svg>
+      {/* ── Input ── */}
+      <form onSubmit={handleSubmit} className="agent-chat-input-area">
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Ask me anything..."
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          autoComplete="off"
+          disabled={thinking || streaming}
+          className="agent-chat-input"
+        />
+        <button type="submit" disabled={!input.trim() || thinking || streaming} className="agent-chat-send">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2.5 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </button>
       </form>
     </div>
