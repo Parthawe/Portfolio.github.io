@@ -1,1 +1,0 @@
-import{j as s}from"./vendor-motion-D-QS5Tde.js";function i({items:e}){return s.jsx("div",{className:"cs-info-grid",children:e.map(a=>s.jsxs("div",{className:"cs-info-item",children:[s.jsx("span",{className:"cs-info-key",children:a.key}),s.jsx("span",{className:"cs-info-value",children:a.value})]},a.key))})}export{i as C};

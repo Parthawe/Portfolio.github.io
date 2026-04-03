@@ -1,1 +1,0 @@
-import{j as i,m as o}from"./vendor-motion-D-QS5Tde.js";function s({quote:e,cite:t}){return i.jsxs(o.blockquote,{className:"cs-pullquote",initial:{opacity:0,y:24},whileInView:{opacity:1,y:0},viewport:{once:!0,margin:"-40px"},transition:{duration:.7,ease:[.4,0,.2,1]},children:[i.jsx("p",{children:e}),t&&i.jsx("cite",{children:t})]})}export{s as C};

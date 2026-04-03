@@ -1,1 +1,0 @@
-import{j as o,m as a}from"./vendor-motion-D-QS5Tde.js";function s({children:i,style:t}){return o.jsx(a.div,{className:"cs-callout",style:t,initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0,margin:"-40px"},transition:{duration:.6,ease:[.4,0,.2,1]},children:i})}export{s as C};
