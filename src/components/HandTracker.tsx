@@ -18,12 +18,12 @@ const PINKY_MCP = 17
 type Gesture = 'none' | 'point' | 'pinch' | 'fist' | 'palm'
 
 /* ── Tuning ── */
-const SMOOTH = 0.3             // cursor lerp factor (lower = smoother but laggier)
-const PINCH_THRESHOLD = 0.055  // normalised distance for pinch
-const CLICK_MAX_MS = 300       // max pinch duration to count as "tap" vs "drag"
-const CLICK_MAX_MOVE = 0.03    // max cursor movement during pinch to count as tap
-const SCROLL_MULTIPLIER = 22   // pixels per normalised-unit of hand movement in fist
-const DEAD_ZONE = 0.12         // ignore this much of the camera edges for cursor mapping
+const SMOOTH = 0.45            // cursor lerp factor (higher = more responsive)
+const PINCH_THRESHOLD = 0.06   // normalised distance for pinch
+const CLICK_MAX_MS = 400       // max pinch duration to count as "tap" vs "drag"
+const CLICK_MAX_MOVE = 0.06    // max cursor movement during pinch to count as tap (more forgiving)
+const SCROLL_MULTIPLIER = 8    // pixels per normalised-unit of hand movement in fist (was 22, way too fast)
+const DEAD_ZONE = 0.08         // ignore this much of the camera edges (smaller = more usable area)
 
 /* ── Helpers ── */
 function dist(a: { x: number; y: number }, b: { x: number; y: number }) {
@@ -142,6 +142,7 @@ export default function HandTracker() {
   const pinchStartPos = useRef({ x: 0, y: 0 })
   const isDragging = useRef(false)
   const fistScrollAnchor = useRef<number | null>(null)
+  const lastHoveredRef = useRef<HTMLElement | null>(null)
 
   // ── Initialise MediaPipe ──
   const init = useCallback(async () => {
@@ -238,12 +239,18 @@ export default function HandTracker() {
             cursorRef.current.style.transform = `translate(${cx}px, ${cy}px)`
           }
 
-          // Dispatch mousemove so hover styles work on elements under hand cursor
+          // Dispatch mouseover only when hovered element changes (not every frame)
           const hoveredEl = document.elementFromPoint(cx, cy)
-          if (hoveredEl) {
+          if (hoveredEl && hoveredEl !== lastHoveredRef.current) {
+            if (lastHoveredRef.current) {
+              lastHoveredRef.current.dispatchEvent(new MouseEvent('mouseout', {
+                bubbles: true, clientX: cx, clientY: cy
+              }))
+            }
             hoveredEl.dispatchEvent(new MouseEvent('mouseover', {
               bubbles: true, clientX: cx, clientY: cy
             }))
+            lastHoveredRef.current = hoveredEl as HTMLElement
           }
 
           // ── Gesture detection ──
@@ -326,8 +333,8 @@ export default function HandTracker() {
               fistScrollAnchor.current = rawY
             } else {
               const delta = rawY - fistScrollAnchor.current
-              if (Math.abs(delta) > 0.008) {
-                const scrollAmt = delta * SCROLL_MULTIPLIER * 60
+              if (Math.abs(delta) > 0.012) {
+                const scrollAmt = delta * SCROLL_MULTIPLIER * window.innerHeight
                 // Use Lenis if available, else native
                 const lenis = (window as unknown as Record<string, { scrollTo: (target: number, opts?: Record<string, unknown>) => void }>).__lenis
                 if (lenis) {
@@ -335,8 +342,8 @@ export default function HandTracker() {
                 } else {
                   window.scrollBy({ top: scrollAmt })
                 }
-                // Slowly re-anchor to avoid runaway scroll
-                fistScrollAnchor.current += delta * 0.15
+                // Re-anchor at half speed to prevent runaway
+                fistScrollAnchor.current += delta * 0.4
               }
             }
           } else {
