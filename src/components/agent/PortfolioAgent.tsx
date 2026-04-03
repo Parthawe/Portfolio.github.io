@@ -20,56 +20,20 @@ function getProactiveComment(path: string): string | null {
 
 /* ── Typed speech bubble with viewport-aware positioning ── */
 
-function SpeechBubble({ text, typing, onDone, onClick, wrapRef }: {
+function SpeechBubble({ text, typing, onDone, onClick }: {
   text: string
   typing: boolean
   onDone: () => void
   onClick: () => void
-  wrapRef: React.RefObject<HTMLDivElement | null>
 }) {
   const { displayed, isTyping } = useTypewriter({ text, speed: 50, enabled: typing })
-  const bubbleRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!isTyping && typing) onDone()
   }, [isTyping, typing, onDone])
 
-  // Position: above the character, clamped to viewport
-  useEffect(() => {
-    const el = bubbleRef.current
-    const wrap = wrapRef.current
-    if (!el || !wrap) return
-
-    const reposition = () => {
-      const charRect = wrap.getBoundingClientRect()
-      const vw = window.innerWidth
-      const vh = window.innerHeight
-      const pad = 10
-
-      // Let CSS handle max-width, just read the actual size
-      const bubbleW = el.offsetWidth
-
-      // Position: above character, horizontally centered on character
-      let left = charRect.left + charRect.width / 2 - bubbleW / 2
-
-      // Clamp so bubble stays fully inside viewport
-      if (left < pad) left = pad
-      if (left + bubbleW > vw - pad) left = vw - bubbleW - pad
-
-      const bottom = vh - charRect.top + 4
-
-      el.style.left = `${left}px`
-      el.style.bottom = `${Math.max(10, Math.min(bottom, vh - 60))}px`
-    }
-
-    // Run positioning after layout
-    let raf2 = 0
-    const raf1 = requestAnimationFrame(() => { raf2 = requestAnimationFrame(reposition) })
-    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2) }
-  })
-
   return (
-    <div ref={bubbleRef} className="agent-speech" onClick={onClick} role="status">
+    <div className="agent-speech" onClick={onClick} role="status">
       {typing ? (
         <>
           {displayed}
@@ -229,24 +193,26 @@ export default function PortfolioAgent() {
       ref={wrapRef}
       className={`agent-root ${showChar ? 'agent-root--in' : 'agent-root--out'} ${dragging ? 'agent-root--dragging' : ''}`}
     >
-      <AgentCharacter
-        state={chatOpen ? (state === 'idle' ? 'idle' : state) : state}
-        onClick={handleClick}
-        speechBubble={null}
-        chatOpen={chatOpen}
-        facingLeft={facingLeft}
-      />
+      {/* Character with speech bubble above */}
+      <div className="agent-char-wrap">
+        {/* Speech bubble, sits above character via CSS */}
+        {speechText && !chatOpen && (
+          <SpeechBubble
+            text={speechText}
+            typing={speechTyping}
+            onDone={handleSpeechDone}
+            onClick={handleBubbleClick}
+          />
+        )}
 
-      {/* Speech bubble, positioned to stay in viewport */}
-      {speechText && !chatOpen && (
-        <SpeechBubble
-          text={speechText}
-          typing={speechTyping}
-          onDone={handleSpeechDone}
-          onClick={handleBubbleClick}
-          wrapRef={wrapRef}
+        <AgentCharacter
+          state={chatOpen ? (state === 'idle' ? 'idle' : state) : state}
+          onClick={handleClick}
+          speechBubble={null}
+          chatOpen={chatOpen}
+          facingLeft={facingLeft}
         />
-      )}
+      </div>
 
       {chatLoaded && (
         <Suspense fallback={null}>
