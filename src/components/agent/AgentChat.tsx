@@ -5,9 +5,8 @@ import { useTypewriter } from '../../hooks/useTypewriter'
 
 interface Message {
   id: number
-  content: ReactNode
   sender: 'agent' | 'user'
-  raw?: string
+  raw: string
   typing?: boolean
 }
 
@@ -17,6 +16,7 @@ interface Props {
   route: string
   initialGreeting: string
   onAgentState: (state: 'thinking' | 'talking' | 'idle') => void
+  charRef: React.RefObject<HTMLDivElement | null>
 }
 
 /* ── Rich text ───────────────────────────────────────── */
@@ -39,9 +39,9 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
         const [, label, href] = lm
         parts.push(
           href.startsWith('/') ? (
-            <button key={key++} className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)] transition-colors cursor-pointer bg-transparent border-none font-inherit p-0" onClick={() => onNavigate(href)} type="button">{label}</button>
+            <button key={key++} className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)] cursor-pointer bg-transparent border-none font-inherit p-0" onClick={() => onNavigate(href)} type="button">{label}</button>
           ) : (
-            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)] transition-colors">{label}</a>
+            <a key={key++} href={href} target="_blank" rel="noopener noreferrer" className="inline text-[var(--ink)] underline decoration-[var(--ink-15)] underline-offset-2 hover:decoration-[var(--ink)]">{label}</a>
           )
         )
       }
@@ -52,9 +52,9 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
   return <>{parts}</>
 }
 
-/* ── Typewriter ──────────────────────────────────────── */
+/* ── Typewriter bubble ───────────────────────────────── */
 
-function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavigate: (path: string) => void; onDone: () => void }) {
+function TypewriterBubble({ text, onNavigate, onDone }: { text: string; onNavigate: (path: string) => void; onDone: () => void }) {
   const { displayed, isTyping, skip } = useTypewriter({ text, speed: 40 })
   useEffect(() => { if (!isTyping) onDone() }, [isTyping, onDone])
   return (
@@ -65,18 +65,17 @@ function TypewriterMessage({ text, onNavigate, onDone }: { text: string; onNavig
   )
 }
 
-/* ── Chat ────────────────────────────────────────────── */
+/* ── Floating chat, no container ─────────────────────── */
 
-export default function AgentChat({ open, onClose, route, initialGreeting, onAgentState }: Props) {
+export default function AgentChat({ open, onClose, route, initialGreeting, onAgentState, charRef }: Props) {
   const navigate = useNavigate()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [thinking, setThinking] = useState(false)
   const [streaming, setStreaming] = useState(false)
   const [chips, setChips] = useState<string[]>([])
-  const messagesRef = useRef<HTMLDivElement>(null)
+  const wrapRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const chatRef = useRef<HTMLDivElement>(null)
   const idCounter = useRef(0)
   const historyRef = useRef<ChatHistory>(createChatHistory(route))
   const initializedRoute = useRef('')
@@ -84,83 +83,45 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
 
   useEffect(() => { historyRef.current.route = route }, [route])
 
-  // ── Drag chat panel by its header ─────────────────────
-  useEffect(() => {
-    const chat = chatRef.current
-    if (!chat) return
-
-    let dragging = false
-    let startX = 0, startY = 0
-    let startRight = 0, startBottom = 0
-
-    const onDown = (e: PointerEvent) => {
-      const target = e.target as HTMLElement
-      if (!target.closest('.agent-chat-header') || target.closest('.agent-chat-close-btn')) return
-
-      dragging = true
-      startX = e.clientX
-      startY = e.clientY
-
-      const rect = chat.getBoundingClientRect()
-      startRight = rect.left  // use left position
-      startBottom = window.innerHeight - rect.bottom
-
-      chat.style.transition = 'none'
-      chat.setPointerCapture(e.pointerId)
-      e.preventDefault()
-    }
-
-    const onMove = (e: PointerEvent) => {
-      if (!dragging) return
-      const dx = e.clientX - startX
-      const dy = e.clientY - startY
-
-      const newLeft = Math.max(0, Math.min(startRight + dx, window.innerWidth - chat.offsetWidth))
-      const newBottom = Math.max(0, Math.min(startBottom - dy, window.innerHeight - chat.offsetHeight))
-
-      // Switch to left positioning when dragging
-      chat.style.left = `${newLeft}px`
-      chat.style.right = 'auto'
-      chat.style.margin = '0'
-      chat.style.bottom = `${newBottom}px`
-    }
-
-    const onUp = () => {
-      dragging = false
-      chat.style.transition = ''
-    }
-
-    chat.addEventListener('pointerdown', onDown)
-    chat.addEventListener('pointermove', onMove)
-    chat.addEventListener('pointerup', onUp)
-    chat.addEventListener('pointercancel', onUp)
-
-    return () => {
-      chat.removeEventListener('pointerdown', onDown)
-      chat.removeEventListener('pointermove', onMove)
-      chat.removeEventListener('pointerup', onUp)
-      chat.removeEventListener('pointercancel', onUp)
-    }
-  }, [])
-
   useEffect(() => {
     if (open && initializedRoute.current !== route) {
       initializedRoute.current = route
       historyRef.current = createChatHistory(route)
       questionCount.current = 0
       const greeting = getGreeting(route)
-      setMessages([{ id: ++idCounter.current, content: greeting, sender: 'agent', raw: greeting, typing: true }])
+      setMessages([{ id: ++idCounter.current, sender: 'agent', raw: greeting, typing: true }])
       setChips(getChips(route, 0))
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, route])
 
-  useEffect(() => { if (open) setTimeout(() => inputRef.current?.focus(), 150) }, [open])
+  useEffect(() => { if (open) setTimeout(() => inputRef.current?.focus(), 200) }, [open])
 
+  // Keep bubble stack positioned above character
   useEffect(() => {
-    const el = messagesRef.current
-    if (el) requestAnimationFrame(() => { el.scrollTop = el.scrollHeight })
-  }, [messages, thinking, streaming])
+    const el = wrapRef.current
+    const char = charRef.current
+    if (!el || !char || !open) return
+
+    const reposition = () => {
+      const r = char.getBoundingClientRect()
+      const vw = window.innerWidth
+      const vh = window.innerHeight
+      const elW = el.offsetWidth
+
+      let left = r.left + r.width / 2 - elW / 2
+      left = Math.max(8, Math.min(left, vw - elW - 8))
+
+      const bottom = vh - r.top + 8
+      el.style.left = `${left}px`
+      el.style.bottom = `${Math.max(8, Math.min(bottom, vh - 100))}px`
+    }
+
+    reposition()
+    const raf = requestAnimationFrame(reposition)
+    window.addEventListener('resize', reposition, { passive: true })
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', reposition) }
+  }, [open, charRef, messages])
 
   useEffect(() => {
     if (!open) return
@@ -179,14 +140,14 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const handleSend = useCallback(async (text: string) => {
     const t = text.trim()
     if (!t || thinking || streaming) return
-    setMessages(prev => [...prev, { id: ++idCounter.current, content: t, sender: 'user' }])
+    setMessages(prev => [...prev, { id: ++idCounter.current, sender: 'user', raw: t }])
     setInput('')
     setThinking(true)
     onAgentState('thinking')
     questionCount.current++
     const sid = ++idCounter.current
     try {
-      setMessages(prev => [...prev, { id: sid, content: '', sender: 'agent', raw: '', typing: true }])
+      setMessages(prev => [...prev, { id: sid, sender: 'agent', raw: '', typing: true }])
       setThinking(false)
       setStreaming(true)
       onAgentState('talking')
@@ -196,63 +157,64 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       setMessages(prev => prev.map(m => m.id === sid ? { ...m, raw: final, typing: true } : m))
       setChips(getChips(route, questionCount.current))
     } catch {
-      setMessages(prev => prev.map(m => m.id === sid ? { ...m, content: 'Something went wrong.', raw: '', typing: false } : m))
+      setMessages(prev => prev.map(m => m.id === sid ? { ...m, raw: 'Something went wrong.', typing: false } : m))
       onAgentState('idle')
     } finally { setStreaming(false) }
   }, [thinking, streaming, onAgentState, route])
 
   const anyTyping = messages.some(m => m.typing)
 
-  return (
-    <div ref={chatRef} className={`agent-chat ${open ? 'agent-chat--open' : ''}`} role="dialog" aria-label="Chat with Folio" aria-hidden={!open}>
-      {/* Header */}
-      <div className="agent-chat-header">
-        <div className="agent-chat-header-left">
-          <div className="agent-chat-avatar">
-            <img src="/Assets/Character/folio-half.png" alt="" />
-          </div>
-          <div>
-            <span className="agent-chat-name">Folio</span>
-            <span className="agent-chat-status"><span className="agent-chat-online" />Portfolio guide</span>
-          </div>
-        </div>
-        <button onClick={onClose} aria-label="Close" type="button" className="agent-chat-close-btn">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-        </button>
-      </div>
+  // Only show last 3 messages to keep it clean
+  const visible = messages.slice(-3)
 
-      {/* Messages */}
-      <div ref={messagesRef} className="agent-chat-body" aria-live="polite">
-        {messages.map(msg => (
-          <div key={msg.id} className={`agent-msg-row ${msg.sender === 'user' ? 'agent-msg-row--user' : ''}`}>
-            <div className={`agent-msg ${msg.sender === 'user' ? 'agent-msg--user' : 'agent-msg--agent'}`}>
-              {msg.sender === 'agent' && msg.raw && msg.typing ? (
-                <TypewriterMessage text={msg.raw} onNavigate={handleNav} onDone={() => markDone(msg.id)} />
-              ) : msg.sender === 'agent' && msg.raw ? (
-                <RichText text={msg.raw} onNavigate={handleNav} />
-              ) : msg.content}
-            </div>
+  if (!open) return null
+
+  return (
+    <div ref={wrapRef} className="agent-floating" aria-label="Chat with Folio">
+
+      {/* Close button */}
+      <button onClick={onClose} type="button" className="agent-float-close" aria-label="Close">
+        <svg width="10" height="10" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+      </button>
+
+      {/* Message bubbles, floating freely */}
+      <div className="agent-float-msgs">
+        {visible.map(msg => (
+          <div key={msg.id} className={`agent-float-bubble ${msg.sender === 'user' ? 'agent-float-bubble--user' : 'agent-float-bubble--agent'}`}>
+            {msg.sender === 'agent' && msg.typing ? (
+              <TypewriterBubble text={msg.raw} onNavigate={handleNav} onDone={() => markDone(msg.id)} />
+            ) : (
+              <RichText text={msg.raw} onNavigate={handleNav} />
+            )}
           </div>
         ))}
         {thinking && (
-          <div className="agent-msg-row">
-            <div className="agent-msg agent-msg--agent agent-msg--dots"><span /><span /><span /></div>
+          <div className="agent-float-bubble agent-float-bubble--agent agent-float-dots">
+            <span /><span /><span />
           </div>
         )}
       </div>
 
       {/* Chips */}
       {chips.length > 0 && !thinking && !anyTyping && (
-        <div className="agent-chips">
-          {chips.map(c => <button key={c} onClick={() => handleSend(c)} type="button" className="agent-chip">{c}</button>)}
+        <div className="agent-float-chips">
+          {chips.map(c => <button key={c} onClick={() => handleSend(c)} type="button" className="agent-float-chip">{c}</button>)}
         </div>
       )}
 
       {/* Input */}
-      <form onSubmit={e => { e.preventDefault(); handleSend(input) }} className="agent-chat-input-area">
-        <input ref={inputRef} type="text" placeholder="Ask me anything..." value={input} onChange={e => setInput(e.target.value)} autoComplete="off" disabled={thinking || streaming} className="agent-chat-input" />
-        <button type="submit" disabled={!input.trim() || thinking || streaming} className="agent-chat-send">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      <form onSubmit={e => { e.preventDefault(); handleSend(input) }} className="agent-float-input">
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Ask me anything..."
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          autoComplete="off"
+          disabled={thinking || streaming}
+        />
+        <button type="submit" disabled={!input.trim() || thinking || streaming} className="agent-float-send">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
       </form>
     </div>
