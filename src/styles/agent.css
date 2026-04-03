@@ -6,8 +6,8 @@
 
 .agent-root {
   position: fixed;
-  bottom: 56px;  /* sits above the bottom nav bar (~48px + gap) */
-  right: 24px;
+  bottom: 56px;  /* sits above the bottom nav bar */
+  left: 24px;    /* default left for homepage, JS overrides for other pages */
   z-index: 91;   /* above bottom nav (z-index 90) */
   display: flex;
   flex-direction: column;

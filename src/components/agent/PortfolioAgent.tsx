@@ -64,8 +64,18 @@ export default function PortfolioAgent() {
     setAgentState(s as AgentState)
   }, [setAgentState]))
 
-  // Walk patrol disabled, character stays in corner
-  const walk = { stop: () => {} }
+  // Walk patrol: only on non-homepage pages (walks on the nav bar)
+  const isHome = route === '/'
+  const walkEnabled = showChar && !chatOpen && !dragging && !movement.isMoving && !isHome
+  const walk = useAgentWalk(wrapRef, walkEnabled, useCallback((isWalking: boolean, facingRight: boolean) => {
+    if (isWalking) {
+      setAgentState('walking')
+      setFacingLeft(!facingRight)
+    } else {
+      setAgentState('idle')
+      setFacingLeft(!facingRight)
+    }
+  }, [setAgentState]))
 
   // Proactive speech bubble, once per route
   useEffect(() => {

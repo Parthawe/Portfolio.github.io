@@ -96,7 +96,23 @@ export function useAgentBehavior() {
     return () => { if (microTimer.current) clearTimeout(microTimer.current) }
   }, [])
 
-  // Position is handled by CSS (bottom-right corner)
+  // ── Position based on route ──────────────────────────
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el || hasMoved.current) return
+
+    const isHome = location.pathname === '/'
+    if (isHome) {
+      // Homepage: bottom-left
+      el.style.left = '24px'
+      el.style.right = 'auto'
+    } else {
+      // Other pages: center of viewport (on the nav bar)
+      el.style.left = ''
+      el.style.right = ''
+      el.style.left = 'calc(50% - 24px)'
+    }
+  }, [location.pathname])
 
   // ── Drag to reposition (long-press to activate) ──────
   // Normal click/tap = toggle chat. Hold 300ms+ then drag = reposition.

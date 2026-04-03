@@ -11,10 +11,10 @@ interface WalkState {
   paused: boolean
 }
 
-const WALK_SPEED = 0.8          // pixels per frame (~48px/sec at 60fps)
+const WALK_SPEED = 0.6          // pixels per frame (~36px/sec at 60fps, gentle pace)
 const PAUSE_MIN = 3000          // min pause at each end (ms)
-const PAUSE_MAX = 7000          // max pause at each end
-const MARGIN = 20               // don't walk off-screen
+const PAUSE_MAX = 6000          // max pause at each end
+const NAV_INSET = 0.25          // walk within center 50% of viewport (25% from each edge)
 
 export function useAgentWalk(
   wrapRef: React.RefObject<HTMLDivElement | null>,
@@ -51,24 +51,22 @@ export function useAgentWalk(
         const vw = window.innerWidth
         const elW = rect.width
 
-        // Get current left position
-        const currentLeft = rect.left
+        // Walk within the center portion of the viewport (where the nav bar is)
+        const leftBound = vw * NAV_INSET
+        const rightBound = vw * (1 - NAV_INSET) - elW
 
-        // Move in the current direction
+        const currentLeft = rect.left
         const dir = stateRef.current.facingRight ? 1 : -1
         const newLeft = currentLeft + WALK_SPEED * dir
 
-        // Check bounds
-        if (newLeft >= vw - elW - MARGIN) {
-          // Hit right edge, stop and pause
+        if (newLeft >= rightBound) {
           stateRef.current.walking = false
           stateRef.current.facingRight = false
           onWalkStateChange(false, false)
           pauseAndResume()
           return
         }
-        if (newLeft <= MARGIN) {
-          // Hit left edge, stop and pause
+        if (newLeft <= leftBound) {
           stateRef.current.walking = false
           stateRef.current.facingRight = true
           onWalkStateChange(false, true)
