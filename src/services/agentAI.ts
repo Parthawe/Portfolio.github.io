@@ -402,13 +402,13 @@ const INSTANT: Record<string, string> = {
   'show me jugalbandi': "Two strangers collaborate through sound without speaking.",
   'show me zentipay': "Fee anxiety > transfer speed. 30% higher completion.",
   'show me raahi': "Navigation for blind transit riders. Sighted users preferred it too.",
-  'what was the challenge?': "Which project? Every one started with an impossible constraint.",
-  'what was the hardest part?': "Which project? Every one started with an impossible constraint.",
-  'what was the insight?': "The best insights are counterintuitive. Which project?",
-  'how did you test it?': "15 interviews, 4 countries, journey mapping, A/B tests with 40+ participants.",
-  'how did you approach it?': "Constraint-driven. Find the hardest problem, solve that first, everything else follows.",
-  'what would you change?': "Honestly? Ship faster. The best learning comes from real users, not more iteration.",
-  'who was the team?': "Depends on the project. Mentra: 4 engineers + product. ZentiPay: solo designer. TransFi: led the design team.",
+  'what was the challenge': "Which project? Every one started with an impossible constraint.",
+  'what was the hardest part': "Which project? Every one started with an impossible constraint.",
+  'what was the insight': "The best insights are counterintuitive. Which project?",
+  'how did you test it': "15 interviews, 4 countries, journey mapping, A/B tests with 40+ participants.",
+  'how did you approach it': "Constraint-driven. Find the hardest problem, solve that first, everything else follows.",
+  'what would you change': "Honestly? Ship faster. The best learning comes from real users, not more iteration.",
+  'who was the team': "Depends on the project. Mentra: 4 engineers + product. ZentiPay: solo designer. TransFi: led the design team.",
   'show me something different': "Check out the installations. Physical + digital, completely different medium.",
 }
 
@@ -433,7 +433,12 @@ function getInstantResponse(message: string): string | null {
   // Exact chip match
   if (INSTANT[q]) return INSTANT[q]
 
-  // Project name match (handles "tell me about mentra", "show me transfi", "mentra?", etc.)
+  // Partial match against INSTANT keys (handles slight variations)
+  for (const [key, response] of Object.entries(INSTANT)) {
+    if (q.includes(key) || key.includes(q)) return response
+  }
+
+  // Project name match
   for (const [name, response] of Object.entries(PROJECT_RESPONSES)) {
     if (q === name || q.includes(name) || q === `show me ${name}`) return response
   }
