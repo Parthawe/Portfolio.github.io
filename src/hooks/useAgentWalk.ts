@@ -1,37 +1,33 @@
 import { useEffect, useRef, useCallback } from 'react'
 
 /**
- * Makes the character walk back and forth across the bottom of the screen.
- * Returns the current facing direction so the image can be flipped.
+ * Smooth walk patrol using CSS transitions instead of RAF.
+ * Character glides from one position to another, pauses, turns, repeats.
  */
 
-interface WalkState {
-  walking: boolean
-  facingRight: boolean
-  paused: boolean
-}
-
-const WALK_SPEED = 0.6          // pixels per frame (~36px/sec at 60fps, gentle pace)
-const PAUSE_MIN = 3000          // min pause at each end (ms)
-const PAUSE_MAX = 6000          // max pause at each end
-const NAV_INSET = 0.25          // walk within center 50% of viewport (25% from each edge)
+const SPEED_PX_PER_SEC = 30     // walking speed in px/sec
+const PAUSE_MIN = 2500
+const PAUSE_MAX = 5000
+const NAV_INSET = 0.22          // walk within center 56% of viewport
 
 export function useAgentWalk(
   wrapRef: React.RefObject<HTMLDivElement | null>,
   enabled: boolean,
   onWalkStateChange: (walking: boolean, facingRight: boolean) => void,
 ) {
-  const stateRef = useRef<WalkState>({ walking: false, facingRight: true, paused: false })
-  const rafRef = useRef(0)
-  const pauseTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const facingRight = useRef(true)
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const walking = useRef(false)
 
   const stop = useCallback(() => {
-    cancelAnimationFrame(rafRef.current)
-    if (pauseTimer.current) clearTimeout(pauseTimer.current)
-    stateRef.current.walking = false
-    stateRef.current.paused = false
-    onWalkStateChange(false, stateRef.current.facingRight)
-  }, [onWalkStateChange])
+    if (timer.current) clearTimeout(timer.current)
+    walking.current = false
+    const el = wrapRef.current
+    if (el) {
+      el.style.transition = ''
+    }
+    onWalkStateChange(false, facingRight.current)
+  }, [wrapRef, onWalkStateChange])
 
   useEffect(() => {
     if (!enabled) { stop(); return }
@@ -40,69 +36,66 @@ export function useAgentWalk(
     if (!el) return
 
     const startWalk = () => {
-      stateRef.current.walking = true
-      stateRef.current.paused = false
-      onWalkStateChange(true, stateRef.current.facingRight)
+      const vw = window.innerWidth
+      const leftBound = vw * NAV_INSET
+      const rightBound = vw * (1 - NAV_INSET) - 48 // 48 = avatar width
 
-      const tick = () => {
-        if (!stateRef.current.walking) return
+      const rect = el.getBoundingClientRect()
+      const currentLeft = rect.left
 
-        const rect = el.getBoundingClientRect()
-        const vw = window.innerWidth
-        const elW = rect.width
+      // Pick target: opposite end from current position
+      const targetLeft = facingRight.current ? rightBound : leftBound
+      const distance = Math.abs(targetLeft - currentLeft)
+      const duration = distance / SPEED_PX_PER_SEC // seconds
 
-        // Walk within the center portion of the viewport (where the nav bar is)
-        const leftBound = vw * NAV_INSET
-        const rightBound = vw * (1 - NAV_INSET) - elW
-
-        const currentLeft = rect.left
-        const dir = stateRef.current.facingRight ? 1 : -1
-        const newLeft = currentLeft + WALK_SPEED * dir
-
-        if (newLeft >= rightBound) {
-          stateRef.current.walking = false
-          stateRef.current.facingRight = false
-          onWalkStateChange(false, false)
-          pauseAndResume()
-          return
-        }
-        if (newLeft <= leftBound) {
-          stateRef.current.walking = false
-          stateRef.current.facingRight = true
-          onWalkStateChange(false, true)
-          pauseAndResume()
-          return
-        }
-
-        // Apply position
-        el.style.left = `${newLeft}px`
-        el.style.right = 'auto'
-        el.style.transition = 'none'
-
-        rafRef.current = requestAnimationFrame(tick)
+      if (distance < 20) {
+        // Already at the edge, flip and walk back
+        facingRight.current = !facingRight.current
+        onWalkStateChange(false, facingRight.current)
+        pause()
+        return
       }
 
-      rafRef.current = requestAnimationFrame(tick)
+      // Start walking
+      walking.current = true
+      onWalkStateChange(true, facingRight.current)
+
+      // Use CSS transition for smooth glide
+      el.style.transition = `left ${duration}s linear`
+      el.style.left = `${targetLeft}px`
+      el.style.right = 'auto'
+
+      // When walk completes, pause and turn
+      timer.current = setTimeout(() => {
+        walking.current = false
+        facingRight.current = !facingRight.current
+        onWalkStateChange(false, facingRight.current)
+        el.style.transition = ''
+        pause()
+      }, duration * 1000)
     }
 
-    const pauseAndResume = () => {
-      stateRef.current.paused = true
+    const pause = () => {
       const delay = PAUSE_MIN + Math.random() * (PAUSE_MAX - PAUSE_MIN)
-      pauseTimer.current = setTimeout(() => {
+      timer.current = setTimeout(() => {
         if (!enabled) return
         startWalk()
       }, delay)
     }
 
     // Initial pause before first walk
-    pauseTimer.current = setTimeout(startWalk, 2000)
+    timer.current = setTimeout(startWalk, 2000)
 
-    return stop
+    return () => {
+      if (timer.current) clearTimeout(timer.current)
+      walking.current = false
+      if (el) el.style.transition = ''
+    }
   }, [enabled, wrapRef, onWalkStateChange, stop])
 
   return {
     stop,
-    get isWalking() { return stateRef.current.walking },
-    get facingRight() { return stateRef.current.facingRight },
+    get facingRight() { return facingRight.current },
+    get isWalking() { return walking.current },
   }
 }

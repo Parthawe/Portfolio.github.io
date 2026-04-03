@@ -20,20 +20,30 @@ function getProactiveComment(path: string): string | null {
 
 /* ── Typed speech bubble with viewport-aware positioning ── */
 
-function SpeechBubble({ text, typing, onDone, onClick }: {
+function SpeechBubble({ text, typing, onDone, onClick, wrapRef }: {
   text: string
   typing: boolean
   onDone: () => void
   onClick: () => void
+  wrapRef: React.RefObject<HTMLDivElement | null>
 }) {
   const { displayed, isTyping } = useTypewriter({ text, speed: 50, enabled: typing })
+  const [side, setSide] = useState<'left' | 'right'>('right')
 
   useEffect(() => {
     if (!isTyping && typing) onDone()
   }, [isTyping, typing, onDone])
 
+  // Detect which side of screen character is on, position bubble accordingly
+  useEffect(() => {
+    const el = wrapRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    setSide(rect.left < window.innerWidth / 2 ? 'right' : 'left')
+  }, [wrapRef, text])
+
   return (
-    <div className="agent-speech" onClick={onClick} role="status">
+    <div className={`agent-speech agent-speech--${side}`} onClick={onClick} role="status">
       {typing ? (
         <>
           {displayed}
@@ -203,6 +213,7 @@ export default function PortfolioAgent() {
             typing={speechTyping}
             onDone={handleSpeechDone}
             onClick={handleBubbleClick}
+            wrapRef={wrapRef}
           />
         )}
 

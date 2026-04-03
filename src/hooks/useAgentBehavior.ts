@@ -3,17 +3,15 @@ import { useLocation } from 'react-router-dom'
 import type { AgentState } from '../components/agent/AgentCharacter'
 
 const IDLE_TIMEOUT = 45_000
-const MICRO_MIN = 4_000
-const MICRO_MAX = 10_000
+const MICRO_MIN = 6_000
+const MICRO_MAX = 14_000
 
-// Random micro-actions to keep Folio alive
+// Micro-actions: no walking (patrol handles that), just personality
 const MICRO_ACTIONS: { state: AgentState; duration: number }[] = [
-  { state: 'waving', duration: 1200 },
-  { state: 'walking', duration: 1800 },
-  { state: 'thinking', duration: 2500 },
-  { state: 'talking', duration: 1500 },
-  { state: 'walking', duration: 1200 },
-  { state: 'waving', duration: 800 },
+  { state: 'thinking', duration: 3000 },
+  { state: 'waving', duration: 1500 },
+  { state: 'thinking', duration: 2000 },
+  { state: 'waving', duration: 1000 },
 ]
 
 function randomDelay() {
