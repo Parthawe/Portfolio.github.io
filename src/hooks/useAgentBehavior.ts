@@ -68,7 +68,8 @@ export function useAgentBehavior() {
       microTimer.current = setTimeout(() => {
         // Don't interrupt chat states or sleeping
         setState(prev => {
-          if (prev !== 'idle' || chatActive.current) {
+          // Don't interrupt walking, chat, or sleep
+          if (prev !== 'idle' || chatActive.current || prev === 'walking') {
             scheduleNext()
             return prev
           }
@@ -101,14 +102,9 @@ export function useAgentBehavior() {
     if (!el) return
 
     if (!hasMoved.current) {
-      const isHome = location.pathname === '/'
-      if (isHome) {
-        el.style.left = '24px'
-        el.style.right = 'auto'
-      } else {
-        el.style.left = ''
-        el.style.right = ''
-      }
+      // Start from the left side
+      el.style.left = '24px'
+      el.style.right = 'auto'
     }
   }, [location.pathname])
 

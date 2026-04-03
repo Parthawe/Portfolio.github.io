@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react'
 import AgentCharacter from './AgentCharacter'
 import { useAgentBehavior } from '../../hooks/useAgentBehavior'
 import { useAgentMovement } from '../../hooks/useAgentMovement'
+import { useAgentWalk } from '../../hooks/useAgentWalk'
 import { useTypewriter } from '../../hooks/useTypewriter'
 import { getGreeting, getResponseAction, sendMessage, getChips, createChatHistory, type ChatHistory } from '../../services/agentAI'
 import type { AgentState } from './AgentCharacter'
@@ -94,15 +95,22 @@ export default function PortfolioAgent() {
 
   const showChar = entered && dockVisible
 
-  // Movement hook
+  // Movement hook (for walking to targets)
   const movement = useAgentMovement(wrapRef, useCallback((s: 'walking' | 'pointing' | 'idle') => {
     setAgentState(s as AgentState)
   }, [setAgentState]))
 
-  // Update facing direction from movement
-  useEffect(() => {
-    setFacingLeft(movement.facingLeft)
-  }, [movement.facingLeft])
+  // Patrol walk hook, character walks left-right when idle
+  const walkEnabled = showChar && !chatOpen && !dragging && !movement.isMoving
+  const walk = useAgentWalk(wrapRef, walkEnabled, useCallback((isWalking: boolean, facingRight: boolean) => {
+    if (isWalking) {
+      setAgentState('walking')
+      setFacingLeft(!facingRight)
+    } else {
+      setAgentState('idle')
+      setFacingLeft(!facingRight)
+    }
+  }, [setAgentState]))
 
   // Proactive speech bubble, once per route
   useEffect(() => {
@@ -185,6 +193,7 @@ export default function PortfolioAgent() {
     if (didDrag.current) return
 
     if (state === 'sleeping') wake()
+    walk.stop()
     setSpeechText(null)
 
     // If there's no chat loaded yet and on homepage, respond via bubble first
