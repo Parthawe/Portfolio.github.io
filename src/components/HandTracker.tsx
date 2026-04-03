@@ -13,24 +13,27 @@ const RING_TIP = 16
 const RING_MCP = 13
 const PINKY_TIP = 20
 const PINKY_MCP = 17
+const WRIST = 0
 
 /* ── Gesture types ── */
 type Gesture = 'none' | 'point' | 'pinch' | 'fist' | 'palm'
 
 /* ── Tuning ── */
-const SMOOTH = 0.45            // cursor lerp factor (higher = more responsive)
-const PINCH_THRESHOLD = 0.06   // normalised distance for pinch
-const CLICK_MAX_MS = 400       // max pinch duration to count as "tap" vs "drag"
-const CLICK_MAX_MOVE = 0.06    // max cursor movement during pinch to count as tap (more forgiving)
-const SCROLL_MULTIPLIER = 8    // pixels per normalised-unit of hand movement in fist (was 22, way too fast)
-const DEAD_ZONE = 0.08         // ignore this much of the camera edges (smaller = more usable area)
+const SMOOTH = 0.5               // cursor lerp (higher = snappier)
+const PINCH_THRESHOLD = 0.07     // generous pinch detection
+const PINCH_RELEASE = 0.09       // hysteresis: must open wider to "release" pinch
+const CLICK_MAX_MS = 500         // generous tap window
+const CLICK_MAX_MOVE = 0.08      // very forgiving movement during tap
+const SCROLL_SPEED = 15          // scroll pixels per frame when fist moves
+const DEAD_ZONE = 0.06           // minimal camera edge dead zone
+const GESTURE_HOLD_FRAMES = 3    // frames a gesture must be held to switch (debounce)
 
 /* ── Helpers ── */
 function dist(a: { x: number; y: number }, b: { x: number; y: number }) {
   return Math.hypot(a.x - b.x, a.y - b.y)
 }
 function fingerCurled(tip: { x: number; y: number }, mcp: { x: number; y: number }) {
-  return tip.y > mcp.y - 0.02 // tip is below (or near) knuckle
+  return tip.y > mcp.y - 0.03
 }
 function mapRange(v: number, inMin: number, inMax: number, outMin: number, outMax: number) {
   return outMin + ((v - inMin) / (inMax - inMin)) * (outMax - outMin)
@@ -39,68 +42,66 @@ function clamp(v: number, min: number, max: number) {
   return Math.max(min, Math.min(max, v))
 }
 
-function detectGesture(lm: { x: number; y: number; z: number }[]): Gesture {
+function detectGestureRaw(lm: { x: number; y: number; z: number }[], wasPinching: boolean): Gesture {
   const pinchDist = dist(lm[THUMB_TIP], lm[INDEX_TIP])
-  if (pinchDist < PINCH_THRESHOLD) return 'pinch'
+
+  // Hysteresis for pinch: easier to enter, harder to exit
+  if (wasPinching) {
+    if (pinchDist < PINCH_RELEASE) return 'pinch'
+  } else {
+    if (pinchDist < PINCH_THRESHOLD) return 'pinch'
+  }
 
   const indexCurled = fingerCurled(lm[INDEX_TIP], lm[INDEX_MCP])
   const middleCurled = fingerCurled(lm[MIDDLE_TIP], lm[MIDDLE_MCP])
   const ringCurled = fingerCurled(lm[RING_TIP], lm[RING_MCP])
   const pinkyCurled = fingerCurled(lm[PINKY_TIP], lm[PINKY_MCP])
 
-  if (indexCurled && middleCurled && ringCurled && pinkyCurled) return 'fist'
-  if (!indexCurled && !middleCurled && !ringCurled && !pinkyCurled) return 'palm'
-  if (!indexCurled && middleCurled && ringCurled && pinkyCurled) return 'point'
+  const curledCount = [indexCurled, middleCurled, ringCurled, pinkyCurled].filter(Boolean).length
 
-  return 'point' // default to point for anything ambiguous
+  // Fist: at least 3 fingers curled (more forgiving)
+  if (curledCount >= 3) return 'fist'
+
+  // Palm: at least 3 fingers open
+  if (curledCount <= 1) return 'palm'
+
+  // Point: index extended, others mostly curled
+  if (!indexCurled && curledCount >= 2) return 'point'
+
+  return 'point'
 }
 
-/* ── Gesture tutorial content ── */
+/* ── Gesture tutorial ── */
 const GESTURES = [
   {
     name: 'Move',
-    desc: 'Point index finger to move cursor',
+    desc: 'Point to move cursor',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
         <path d="M16 28V14a2 2 0 1 1 4 0v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M20 16v-4a2 2 0 1 1 4 0v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
-        <path d="M12 28v-8a2 2 0 1 1 4 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
-        <path d="M18 35a8 8 0 0 1-8-8v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
         <circle cx="18" cy="10" r="1.5" fill="currentColor" opacity="0.6" />
-        <path d="M18 6v-2M14 8l-1.5-1.5M22 8l1.5-1.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
       </svg>
     ),
   },
   {
-    name: 'Tap',
-    desc: 'Pinch thumb + index quickly to click',
+    name: 'Click',
+    desc: 'Pinch thumb + index to tap',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
-        <path d="M14 22V16a2 2 0 1 1 4 0v-2a2 2 0 1 1 4 0v-2a2 2 0 1 1 4 0v12a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="20" cy="30" r="2" fill="currentColor" opacity="0.3" />
-        <path d="M17 30h6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
+        <circle cx="20" cy="18" r="5" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" />
+        <path d="M20 25v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
   },
   {
     name: 'Scroll',
-    desc: 'Make a fist and move up or down',
+    desc: 'Fist + move up/down',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
         <rect x="13" y="14" width="14" height="16" rx="7" stroke="currentColor" strokeWidth="1.5" />
         <path d="M20 18v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <path d="M20 6l-3 3h6l-3-3z" fill="currentColor" opacity="0.4" />
         <path d="M20 34l-3-3h6l-3 3z" fill="currentColor" opacity="0.4" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Drag',
-    desc: 'Pinch and hold, then move hand',
-    icon: (
-      <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
-        <path d="M14 22V16a2 2 0 1 1 4 0v-2a2 2 0 1 1 4 0v-2a2 2 0 1 1 4 0v12a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M28 20l3-3M28 20l3 3M28 20h-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
       </svg>
     ),
   },
@@ -119,75 +120,76 @@ export default function HandTracker() {
   const [error, setError] = useState<string | null>(null)
   const [detected, setDetected] = useState(false)
   const [gesture, setGesture] = useState<Gesture>('none')
-  const [tutorialStep, setTutorialStep] = useState(-1) // -1 = hidden
+  const [tutorialStep, setTutorialStep] = useState(-1)
   const [hasSeenTutorial, setHasSeenTutorial] = useState(() => {
     try { return localStorage.getItem('ht-tutorial-seen') === '1' } catch { return false }
   })
 
-  // Hide default custom cursor when hand tracking is active
   useEffect(() => {
     const dots = document.querySelectorAll('.cursor-dot, .cursor-ring')
-    dots.forEach((el) => {
-      ;(el as HTMLElement).style.display = active ? 'none' : ''
-    })
-    // Also toggle body cursor
+    dots.forEach((el) => { ;(el as HTMLElement).style.display = active ? 'none' : '' })
     document.body.style.cursor = active && detected ? 'none' : ''
     return () => { document.body.style.cursor = '' }
   }, [active, detected])
 
-  // Refs for gesture state machine
+  // State machine refs
   const pos = useRef({ x: 0.5, y: 0.5 })
   const gestureRef = useRef<Gesture>('none')
   const pinchStartTime = useRef(0)
   const pinchStartPos = useRef({ x: 0, y: 0 })
   const isDragging = useRef(false)
-  const fistScrollAnchor = useRef<number | null>(null)
+  const fistPrevY = useRef<number | null>(null)
   const lastHoveredRef = useRef<HTMLElement | null>(null)
 
-  // ── Initialise MediaPipe ──
+  // Debounce: track how many consecutive frames a gesture is seen
+  const pendingGesture = useRef<Gesture>('none')
+  const pendingFrames = useRef(0)
+
+  function debouncedGesture(raw: Gesture): Gesture {
+    if (raw === pendingGesture.current) {
+      pendingFrames.current++
+    } else {
+      pendingGesture.current = raw
+      pendingFrames.current = 1
+    }
+    // Only switch after N consistent frames
+    if (pendingFrames.current >= GESTURE_HOLD_FRAMES) {
+      return raw
+    }
+    return gestureRef.current // keep previous
+  }
+
+  // ── Init MediaPipe ──
   const init = useCallback(async () => {
     if (handLandmarkerRef.current) return handLandmarkerRef.current
     const vision = await FilesetResolver.forVisionTasks(
       'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.33/wasm'
     )
-
-    // Try GPU first, fall back to CPU if WebGPU unavailable
     let hl: HandLandmarker
     try {
       hl = await HandLandmarker.createFromOptions(vision, {
         baseOptions: {
-          modelAssetPath:
-            'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task',
+          modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task',
           delegate: 'GPU',
         },
-        runningMode: 'VIDEO',
-        numHands: 1,
-        minHandDetectionConfidence: 0.6,
-        minHandPresenceConfidence: 0.6,
-        minTrackingConfidence: 0.5,
+        runningMode: 'VIDEO', numHands: 1,
+        minHandDetectionConfidence: 0.6, minHandPresenceConfidence: 0.6, minTrackingConfidence: 0.5,
       })
     } catch {
-      // GPU delegate failed, retry with CPU
-      console.warn('HandTracker: GPU delegate unavailable, falling back to CPU')
       hl = await HandLandmarker.createFromOptions(vision, {
         baseOptions: {
-          modelAssetPath:
-            'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task',
+          modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task',
           delegate: 'CPU',
         },
-        runningMode: 'VIDEO',
-        numHands: 1,
-        minHandDetectionConfidence: 0.6,
-        minHandPresenceConfidence: 0.6,
-        minTrackingConfidence: 0.5,
+        runningMode: 'VIDEO', numHands: 1,
+        minHandDetectionConfidence: 0.6, minHandPresenceConfidence: 0.6, minTrackingConfidence: 0.5,
       })
     }
-
     handLandmarkerRef.current = hl
     return hl
   }, [])
 
-  // ── Start camera + detection loop ──
+  // ── Start ──
   const start = useCallback(async () => {
     setLoading(true)
     try {
@@ -196,12 +198,10 @@ export default function HandTracker() {
         video: { width: 640, height: 480, facingMode: 'user' },
       })
       streamRef.current = stream
-
       const video = videoRef.current!
       video.srcObject = stream
       await video.play()
 
-      // Show inline tutorial on first use
       if (!hasSeenTutorial) {
         setTutorialStep(0)
         setHasSeenTutorial(true)
@@ -209,10 +209,7 @@ export default function HandTracker() {
       }
 
       const detect = () => {
-        if (!video.videoWidth) {
-          rafRef.current = requestAnimationFrame(detect)
-          return
-        }
+        if (!video.videoWidth) { rafRef.current = requestAnimationFrame(detect); return }
 
         const result = hl.detectForVideo(video, performance.now())
         const hasHand = result.landmarks && result.landmarks.length > 0
@@ -222,9 +219,8 @@ export default function HandTracker() {
           const lm = result.landmarks[0]
           const now = performance.now()
 
-          // ── Cursor position from index finger tip ──
-          // Map with dead zone so you don't need to reach camera edges
-          const rawX = 1 - lm[INDEX_TIP].x // mirror
+          // ── Cursor from index tip ──
+          const rawX = 1 - lm[INDEX_TIP].x
           const rawY = lm[INDEX_TIP].y
           const mappedX = clamp(mapRange(rawX, DEAD_ZONE, 1 - DEAD_ZONE, 0, 1), 0, 1)
           const mappedY = clamp(mapRange(rawY, DEAD_ZONE, 1 - DEAD_ZONE, 0, 1), 0, 1)
@@ -239,124 +235,83 @@ export default function HandTracker() {
             cursorRef.current.style.transform = `translate(${cx}px, ${cy}px)`
           }
 
-          // Dispatch mouseover only when hovered element changes (not every frame)
+          // Hover (only on element change)
           const hoveredEl = document.elementFromPoint(cx, cy)
           if (hoveredEl && hoveredEl !== lastHoveredRef.current) {
             if (lastHoveredRef.current) {
-              lastHoveredRef.current.dispatchEvent(new MouseEvent('mouseout', {
-                bubbles: true, clientX: cx, clientY: cy
-              }))
+              lastHoveredRef.current.dispatchEvent(new MouseEvent('mouseout', { bubbles: true, clientX: cx, clientY: cy }))
             }
-            hoveredEl.dispatchEvent(new MouseEvent('mouseover', {
-              bubbles: true, clientX: cx, clientY: cy
-            }))
+            hoveredEl.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, clientX: cx, clientY: cy }))
             lastHoveredRef.current = hoveredEl as HTMLElement
           }
 
-          // ── Gesture detection ──
-          const g = detectGesture(lm)
-          const prevGesture = gestureRef.current
+          // ── Gesture with debounce ──
+          const rawG = detectGestureRaw(lm, gestureRef.current === 'pinch')
+          const g = debouncedGesture(rawG)
+          const prev = gestureRef.current
 
-          // Update visual state (throttled to avoid re-renders every frame)
-          if (g !== prevGesture) {
-            setGesture(g)
-          }
+          if (g !== prev) setGesture(g)
           gestureRef.current = g
 
-          // ── PINCH logic (tap vs drag) ──
+          // ── PINCH: click ──
           if (g === 'pinch') {
-            if (prevGesture !== 'pinch') {
+            if (prev !== 'pinch') {
               // Pinch just started
               pinchStartTime.current = now
               pinchStartPos.current = { x: pos.current.x, y: pos.current.y }
               isDragging.current = false
-
-              // Dispatch mousedown for drag
-              const el = document.elementFromPoint(cx, cy)
-              if (el) {
-                el.dispatchEvent(new MouseEvent('mousedown', {
-                  bubbles: true, clientX: cx, clientY: cy
-                }))
-              }
             } else {
-              // Pinch held, check if moved enough to be a drag
+              // Held: check for drag
               const moveD = dist(pos.current, pinchStartPos.current)
               if (!isDragging.current && moveD > CLICK_MAX_MOVE) {
                 isDragging.current = true
                 if (cursorRef.current) cursorRef.current.classList.add('hand-cursor--drag')
               }
-              if (isDragging.current) {
-                // Dispatch mousemove for drag
-                document.dispatchEvent(new MouseEvent('mousemove', {
-                  bubbles: true, clientX: cx, clientY: cy
-                }))
-              }
             }
-          } else if (prevGesture === 'pinch') {
-            // Pinch just released
+          } else if (prev === 'pinch') {
+            // Pinch released
             const duration = now - pinchStartTime.current
             const moveD = dist(pos.current, pinchStartPos.current)
 
             if (isDragging.current) {
-              // End drag
-              document.dispatchEvent(new MouseEvent('mouseup', {
-                bubbles: true, clientX: cx, clientY: cy
-              }))
               isDragging.current = false
               if (cursorRef.current) cursorRef.current.classList.remove('hand-cursor--drag')
             } else if (duration < CLICK_MAX_MS && moveD < CLICK_MAX_MOVE) {
-              // Quick pinch = tap/click
+              // TAP: just click, no mousedown/mouseup dance
               const el = document.elementFromPoint(cx, cy)
               if (el instanceof HTMLElement) {
                 el.click()
-                // Also dispatch mouseup
-                el.dispatchEvent(new MouseEvent('mouseup', {
-                  bubbles: true, clientX: cx, clientY: cy
-                }))
               }
-              // Visual pulse
               if (cursorRef.current) {
                 cursorRef.current.classList.add('hand-cursor--click')
                 setTimeout(() => cursorRef.current?.classList.remove('hand-cursor--click'), 350)
               }
-            } else {
-              // Long pinch but didn't move, release mouseup
-              document.dispatchEvent(new MouseEvent('mouseup', {
-                bubbles: true, clientX: cx, clientY: cy
-              }))
             }
           }
 
-          // ── FIST logic (continuous scroll) ──
+          // ── FIST: scroll (velocity-based) ──
           if (g === 'fist') {
-            if (fistScrollAnchor.current === null) {
-              fistScrollAnchor.current = rawY
-            } else {
-              const delta = rawY - fistScrollAnchor.current
-              if (Math.abs(delta) > 0.012) {
-                const scrollAmt = delta * SCROLL_MULTIPLIER * window.innerHeight
-                // Use Lenis if available, else native
-                const lenis = (window as unknown as Record<string, { scrollTo: (target: number, opts?: Record<string, unknown>) => void }>).__lenis
+            const wristY = lm[WRIST].y
+            if (fistPrevY.current !== null) {
+              const delta = wristY - fistPrevY.current
+              if (Math.abs(delta) > 0.003) {
+                const scrollAmt = delta * SCROLL_SPEED * window.innerHeight * 0.01
+                const lenis = (window as unknown as Record<string, { scrollTo: (t: number, o?: Record<string, unknown>) => void }>).__lenis
                 if (lenis) {
                   lenis.scrollTo(window.scrollY + scrollAmt, { immediate: true })
                 } else {
                   window.scrollBy({ top: scrollAmt })
                 }
-                // Re-anchor at half speed to prevent runaway
-                fistScrollAnchor.current += delta * 0.4
               }
             }
+            fistPrevY.current = wristY
           } else {
-            fistScrollAnchor.current = null
+            fistPrevY.current = null
           }
 
-          // ── Draw skeleton on mini canvas ──
           drawLandmarks(lm, g)
         } else {
-          if (gestureRef.current !== 'none') {
-            setGesture('none')
-            gestureRef.current = 'none'
-          }
+          if (gestureRef.current !== 'none') { setGesture('none'); gestureRef.current = 'none' }
         }
 
         rafRef.current = requestAnimationFrame(detect)
@@ -366,49 +321,26 @@ export default function HandTracker() {
       setLoading(false)
       setActive(true)
     } catch (err) {
-      console.error('HandTracker:', err)
       const msg = err instanceof Error ? err.message : String(err)
-      if (msg.includes('Permission') || msg.includes('NotAllowed')) {
-        setError('Camera permission denied')
-      } else if (msg.includes('NotFound') || msg.includes('DevicesNotFound')) {
-        setError('No camera found')
-      } else {
-        setError('Could not start hand tracking')
-      }
+      if (msg.includes('Permission') || msg.includes('NotAllowed')) setError('Camera permission denied')
+      else if (msg.includes('NotFound') || msg.includes('DevicesNotFound')) setError('No camera found')
+      else setError('Could not start hand tracking')
       setLoading(false)
       setTimeout(() => setError(null), 4000)
     }
   }, [init, hasSeenTutorial])
 
   // ── Draw skeleton ──
-  const drawLandmarks = (
-    lm: { x: number; y: number; z: number }[],
-    g: Gesture
-  ) => {
+  const drawLandmarks = (lm: { x: number; y: number; z: number }[], g: Gesture) => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-
-    const w = canvas.width
-    const h = canvas.height
+    const w = canvas.width, h = canvas.height
     ctx.clearRect(0, 0, w, h)
 
-    const connections = [
-      [0,1],[1,2],[2,3],[3,4],
-      [0,5],[5,6],[6,7],[7,8],
-      [0,9],[9,10],[10,11],[11,12],
-      [0,13],[13,14],[14,15],[15,16],
-      [0,17],[17,18],[18,19],[19,20],
-      [5,9],[9,13],[13,17],
-    ]
-
-    // Color based on gesture
-    const accentColor =
-      g === 'pinch' ? '#ffd43b' :
-      g === 'fist' ? '#74c0fc' :
-      g === 'palm' ? '#b2f2bb' :
-      '#ff6b6b'
+    const connections = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[0,9],[9,10],[10,11],[11,12],[0,13],[13,14],[14,15],[15,16],[0,17],[17,18],[18,19],[19,20],[5,9],[9,13],[13,17]]
+    const accentColor = g === 'pinch' ? '#ffd43b' : g === 'fist' ? '#74c0fc' : g === 'palm' ? '#b2f2bb' : '#ff6b6b'
 
     ctx.strokeStyle = 'rgba(255,255,255,0.35)'
     ctx.lineWidth = 1
@@ -418,18 +350,14 @@ export default function HandTracker() {
       ctx.lineTo((1 - lm[b].x) * w, lm[b].y * h)
       ctx.stroke()
     }
-
     for (let i = 0; i < lm.length; i++) {
-      const x = (1 - lm[i].x) * w
-      const y = lm[i].y * h
+      const x = (1 - lm[i].x) * w, y = lm[i].y * h
       const isKey = i === INDEX_TIP || i === THUMB_TIP
       ctx.beginPath()
       ctx.arc(x, y, isKey ? 4 : 1.5, 0, Math.PI * 2)
       ctx.fillStyle = isKey ? accentColor : 'rgba(255,255,255,0.5)'
       ctx.fill()
     }
-
-    // Gesture label
     if (g !== 'none') {
       ctx.font = '600 9px system-ui'
       ctx.fillStyle = accentColor
@@ -441,23 +369,13 @@ export default function HandTracker() {
   // ── Stop ──
   const stop = useCallback(() => {
     cancelAnimationFrame(rafRef.current)
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((t) => t.stop())
-      streamRef.current = null
-    }
+    if (streamRef.current) { streamRef.current.getTracks().forEach(t => t.stop()); streamRef.current = null }
     if (videoRef.current) videoRef.current.srcObject = null
-    setActive(false)
-    setDetected(false)
-    setGesture('none')
-    isDragging.current = false
-    fistScrollAnchor.current = null
+    setActive(false); setDetected(false); setGesture('none')
+    isDragging.current = false; fistPrevY.current = null; lastHoveredRef.current = null
   }, [])
 
-  // Cleanup
-  useEffect(() => () => {
-    cancelAnimationFrame(rafRef.current)
-    streamRef.current?.getTracks().forEach((t) => t.stop())
-  }, [])
+  useEffect(() => () => { cancelAnimationFrame(rafRef.current); streamRef.current?.getTracks().forEach(t => t.stop()) }, [])
 
   // Desktop only
   const [isDesktop, setIsDesktop] = useState(false)
@@ -469,71 +387,34 @@ export default function HandTracker() {
     return () => mq.removeEventListener('change', h)
   }, [])
 
-  // Back to top
   const { visible: showBackToTop, scrollToTop } = useBackToTop()
 
   if (!isDesktop) return null
 
-  // Cursor icon based on gesture
   const cursorIcon = (() => {
     switch (gesture) {
-      case 'pinch':
-        return ( // pinch / grabbing
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" />
-            <path d="M8 18v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        )
-      case 'fist':
-        return ( // fist / scroll
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <rect x="7" y="7" width="10" height="12" rx="5" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" />
-            <path d="M12 10v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M12 3l-2 2h4l-2-2z" fill="currentColor" opacity="0.5" />
-            <path d="M12 21l-2-2h4l-2 2z" fill="currentColor" opacity="0.5" />
-          </svg>
-        )
-      default: // point
-        return (
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <path d="M10 19V8a2 2 0 1 1 4 0v11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="12" cy="6" r="1" fill="currentColor" opacity="0.5" />
-          </svg>
-        )
+      case 'pinch': return <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" /><path d="M8 18v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+      case 'fist': return <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="7" y="7" width="10" height="12" rx="5" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" /><path d="M12 10v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><path d="M12 3l-2 2h4l-2-2z" fill="currentColor" opacity="0.5" /><path d="M12 21l-2-2h4l-2 2z" fill="currentColor" opacity="0.5" /></svg>
+      default: return <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M10 19V8a2 2 0 1 1 4 0v11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><circle cx="12" cy="6" r="1" fill="currentColor" opacity="0.5" /></svg>
     }
   })()
 
   return (
     <>
-      {/* ── Hand cursor ── */}
       {active && (
-        <div
-          ref={cursorRef}
-          className={`hand-cursor ${detected ? 'hand-cursor--visible' : ''} hand-cursor--${gesture}`}
-          aria-hidden="true"
-        >
+        <div ref={cursorRef} className={`hand-cursor ${detected ? 'hand-cursor--visible' : ''} hand-cursor--${gesture}`} aria-hidden="true">
           {cursorIcon}
-          {/* Ripple ring on click */}
           <span className="hand-cursor-ring" />
         </div>
       )}
-
-      {/* Hidden video for detection */}
       <video ref={videoRef} playsInline muted style={{ display: 'none' }} />
-
-      {/* ── Camera preview + inline step guide ── */}
       {active && (
         <div className="ht-preview-float">
-          {/* Inline step card, sits left of camera */}
           {tutorialStep >= 0 && tutorialStep < GESTURES.length && (
             <div className="ht-step-card">
               <div className="ht-step-top">
                 <span className="ht-step-label">Step {tutorialStep + 1}/{GESTURES.length}</span>
-                <button
-                  className="ht-step-close"
-                  onClick={() => setTutorialStep(-1)}
-                  aria-label="Close guide"
-                >
+                <button className="ht-step-close" onClick={() => setTutorialStep(-1)} aria-label="Close guide">
                   <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                 </button>
               </div>
@@ -541,103 +422,42 @@ export default function HandTracker() {
               <div className="ht-step-name">{GESTURES[tutorialStep].name}</div>
               <div className="ht-step-desc">{GESTURES[tutorialStep].desc}</div>
               <div className="ht-step-nav">
-                {tutorialStep > 0 && (
-                  <button className="ht-step-btn" onClick={() => setTutorialStep(s => s - 1)}>Back</button>
-                )}
-                <button
-                  className="ht-step-btn ht-step-btn--primary"
-                  onClick={() => {
-                    if (tutorialStep < GESTURES.length - 1) setTutorialStep(s => s + 1)
-                    else setTutorialStep(-1)
-                  }}
-                >
+                {tutorialStep > 0 && <button className="ht-step-btn" onClick={() => setTutorialStep(s => s - 1)}>Back</button>}
+                <button className="ht-step-btn ht-step-btn--primary" onClick={() => tutorialStep < GESTURES.length - 1 ? setTutorialStep(s => s + 1) : setTutorialStep(-1)}>
                   {tutorialStep < GESTURES.length - 1 ? 'Next' : 'Got it'}
                 </button>
               </div>
             </div>
           )}
-
-          {/* Camera preview */}
           <div className="hand-tracker-preview">
-            <video
-              ref={(el) => {
-                if (el && streamRef.current) {
-                  el.srcObject = streamRef.current
-                  el.play().catch(() => {})
-                }
-              }}
-              playsInline muted
-              className="hand-tracker-video"
-            />
+            <video ref={(el) => { if (el && streamRef.current) { el.srcObject = streamRef.current; el.play().catch(() => {}) } }} playsInline muted className="hand-tracker-video" />
             <canvas ref={canvasRef} width={160} height={120} className="hand-tracker-canvas" />
             <div className={`hand-tracker-status ${detected ? 'hand-tracker-status--detected' : ''}`}>
               <span className="hand-tracker-dot" />
               {detected ? gesture === 'none' ? 'Tracking' : gesture : 'Show hand'}
             </div>
-            {/* Show guide button, only when tutorial is dismissed */}
             {tutorialStep < 0 && (
-              <button
-                className="hand-tracker-help"
-                onClick={() => setTutorialStep(0)}
-                aria-label="Show gesture guide"
-                title="Gesture guide"
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                  <path d="M6.5 12.5V9a1.5 1.5 0 0 1 3 0v-2a1.5 1.5 0 0 1 3 0V6a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1 3 0v6.5a5.5 5.5 0 0 1-5.5 5.5h-1A5.5 5.5 0 0 1 6.5 13.5v-1Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <button className="hand-tracker-help" onClick={() => setTutorialStep(0)} aria-label="Show gesture guide" title="Gesture guide">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6.5 12.5V9a1.5 1.5 0 0 1 3 0v-2a1.5 1.5 0 0 1 3 0V6a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1 3 0v6.5a5.5 5.5 0 0 1-5.5 5.5h-1A5.5 5.5 0 0 1 6.5 13.5v-1Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
             )}
           </div>
         </div>
       )}
-
-      {/* ── Unified bottom-right toolbar ── */}
       <div className="bt-toolbar">
-        {/* Back to top */}
-        <button
-          className={`bt-toolbar-btn bt-toolbar-btn--top ${showBackToTop ? 'bt-toolbar-btn--visible' : ''}`}
-          onClick={scrollToTop}
-          aria-label="Back to top"
-          title="Back to top"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 14V4M4 7l4-4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+        <button className={`bt-toolbar-btn bt-toolbar-btn--top ${showBackToTop ? 'bt-toolbar-btn--visible' : ''}`} onClick={scrollToTop} aria-label="Back to top" title="Back to top">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14V4M4 7l4-4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
-
-        {/* Divider, only shows when back-to-top is visible */}
         <span className={`bt-toolbar-divider ${showBackToTop ? 'bt-toolbar-divider--visible' : ''}`} />
-
-        {/* Hand tracker toggle */}
-        <button
-          className={`bt-toolbar-btn bt-toolbar-btn--hand ${active ? 'bt-toolbar-btn--active' : ''} ${loading ? 'bt-toolbar-btn--loading' : ''}`}
-          onClick={active ? stop : start}
-          disabled={loading}
-          aria-label={active ? 'Disable hand tracking' : 'Enable hand tracking'}
-          title={active ? 'Stop hand tracking' : 'Control with your hand'}
-        >
+        <button className={`bt-toolbar-btn bt-toolbar-btn--hand ${active ? 'bt-toolbar-btn--active' : ''} ${loading ? 'bt-toolbar-btn--loading' : ''}`} onClick={active ? stop : start} disabled={loading} aria-label={active ? 'Disable hand tracking' : 'Enable hand tracking'} title={active ? 'Stop hand tracking' : 'Control with your hand'}>
           {loading ? (
-            <svg className="hand-tracker-spinner" width="16" height="16" viewBox="0 0 20 20">
-              <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="40 20" />
-            </svg>
+            <svg className="hand-tracker-spinner" width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="40 20" /></svg>
           ) : (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M6.5 12.5V9a1.5 1.5 0 0 1 3 0v-2a1.5 1.5 0 0 1 3 0V6a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1 3 0v6.5a5.5 5.5 0 0 1-5.5 5.5h-1A5.5 5.5 0 0 1 6.5 13.5v-1Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6.5 12.5V9a1.5 1.5 0 0 1 3 0v-2a1.5 1.5 0 0 1 3 0V6a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1 3 0v6.5a5.5 5.5 0 0 1-5.5 5.5h-1A5.5 5.5 0 0 1 6.5 13.5v-1Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           )}
           <span className="bt-toolbar-label">{active ? 'Stop' : 'Use your hands'}</span>
         </button>
-
-        {/* Error toast */}
-        {error && (
-          <span className="bt-toolbar-error">{error}</span>
-        )}
+        {error && <span className="bt-toolbar-error">{error}</span>}
       </div>
     </>
   )
