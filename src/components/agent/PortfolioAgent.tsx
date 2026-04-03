@@ -33,43 +33,46 @@ function SpeechBubble({ text, typing, onDone, onClick, wrapRef }: {
     if (!isTyping && typing) onDone()
   }, [isTyping, typing, onDone])
 
-  // Position bubble above character, clamped to viewport
+  const [positioned, setPositioned] = useState(false)
+
+  // Reposition on every render
   useEffect(() => {
     const el = bubbleRef.current
     const wrap = wrapRef.current
     if (!el || !wrap) return
 
-    const update = () => {
+    const reposition = () => {
       const charRect = wrap.getBoundingClientRect()
+      const vw = window.innerWidth
+      const pad = 20
+
+      // Force a max width so it never exceeds viewport
+      const maxW = Math.min(280, vw - pad * 2)
+      el.style.maxWidth = `${maxW}px`
+
+      // Read width AFTER setting max-width
       const bubbleW = el.offsetWidth
-      const bubbleH = el.offsetHeight
 
-      // Center above character
+      // Anchor: character center X
       let left = charRect.left + charRect.width / 2 - bubbleW / 2
-      let bottom = window.innerHeight - charRect.top + 12
 
-      // Clamp horizontally
-      left = Math.max(12, Math.min(left, window.innerWidth - bubbleW - 12))
-      // Clamp vertically — don't go off top
-      if (window.innerHeight - bottom + bubbleH > window.innerHeight - 20) {
-        bottom = bubbleH + 20
-      }
+      // Clamp: keep fully inside viewport
+      left = Math.max(pad, Math.min(left, vw - bubbleW - pad))
+
+      // Bottom: just above the character
+      const bottom = window.innerHeight - charRect.top + 8
 
       el.style.left = `${left}px`
-      el.style.bottom = `${bottom}px`
+      el.style.bottom = `${Math.max(40, bottom)}px`
+      setPositioned(true)
     }
 
-    update()
-    window.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
-    }
-  }, [wrapRef, text])
+    // Double RAF to ensure layout is settled
+    requestAnimationFrame(() => requestAnimationFrame(reposition))
+  }) // no deps — runs every render
 
   return (
-    <div ref={bubbleRef} className="agent-speech" onClick={onClick} role="status">
+    <div ref={bubbleRef} className="agent-speech" onClick={onClick} role="status" style={{ visibility: positioned ? 'visible' : 'hidden' }}>
       {typing ? (
         <>
           {displayed}
@@ -153,10 +156,10 @@ export default function PortfolioAgent() {
     historyRef.current.route = route
     const response = await sendMessage(question, historyRef.current)
 
-    // Show in speech bubble (truncate if long)
-    const firstSentence = response.split(/[.!?]\s/)[0] + '.'
-    const isShort = response.length < 140
-    const bubbleText = isShort ? response.replace(/\n/g, ' ') : firstSentence.replace(/\n/g, ' ')
+    // Show in speech bubble — keep it short
+    let bubbleText = response.split(/[.!?]\s/)[0].replace(/\n/g, ' ').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    if (bubbleText.length > 100) bubbleText = bubbleText.slice(0, 97) + '...'
+    if (!bubbleText.endsWith('.') && !bubbleText.endsWith('...')) bubbleText += '.'
 
     showSpeech(bubbleText)
 
