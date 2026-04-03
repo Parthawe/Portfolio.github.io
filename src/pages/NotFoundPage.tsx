@@ -8,7 +8,7 @@ export default function NotFoundPage() {
   return (
     <>
       <Helmet>
-        <title>404 — Page Not Found · Parth Pawar</title>
+        <title>404, Page Not Found · Parth Pawar</title>
         <meta name="description" content="This page doesn't exist, but great design work does. Browse Parth Pawar's portfolio." />
       </Helmet>
       <Nav />

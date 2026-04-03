@@ -13,10 +13,10 @@ export default function TedxPage() {
     <>
       <Helmet>
         <title>TEDx VIT Pune &middot; Parth Pawar</title>
-        <meta name="description" content="Art Director for TEDx VIT Pune — led a team of 65+ people to design, fabricate, and build a parallax cityscape stage for 800+ attendees. From brand identity to structural construction." />
+        <meta name="description" content="Art Director for TEDx VIT Pune, led a team of 65+ people to design, fabricate, and build a parallax cityscape stage for 800+ attendees. From brand identity to structural construction." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TEDx VITPUNE &middot; Parth Pawar" />
-        <meta property="og:description" content="Art Director for TEDx VIT Pune — led 65+ people to build a parallax cityscape stage for 800+ attendees." />
+        <meta property="og:description" content="Art Director for TEDx VIT Pune, led 65+ people to build a parallax cityscape stage for 800+ attendees." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/tedx.png" />
       </Helmet>
 
@@ -102,7 +102,7 @@ export default function TedxPage() {
           <div className="wrap">
             <h2 className="cs-display" style={{ opacity: 0.25, fontSize: 'clamp(3rem,8vw,7rem)', marginBottom: '2rem' }}>Stage Design</h2>
             <figure className="cs-img-full" style={{ background: 'transparent' }}>
-              <img src="/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="TEDxVITPune stage design — speakers and performers on the parallax cityscape stage" loading="lazy" />
+              <img src="/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="TEDxVITPune stage design, speakers and performers on the parallax cityscape stage" loading="lazy" />
             </figure>
           </div>
         </section>

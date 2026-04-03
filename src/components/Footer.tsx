@@ -69,7 +69,7 @@ export default function Footer() {
   return (
     <footer className="footer" ref={footerRef}>
       <div className="wrap ft-compact">
-        {/* CTA row — headline + email side by side */}
+        {/* CTA row, headline + email side by side */}
         <motion.div className="ft-cta-row" style={a(ctaY, ctaOpacity)}>
           <div className="ft-cta-left">
             <h2 className="ft-headline-sm">
@@ -86,7 +86,7 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        {/* Info row — nav, socials, location — all in one line */}
+        {/* Info row, nav, socials, location, all in one line */}
         <motion.div className="ft-info-row" style={a(0, infoOpacity)}>
           <div className="ft-info-segment">
             {navLinks.map(l => (

@@ -1,8 +1,8 @@
 /* ══════════════════════════════════════════════════════════
-   Folio — Parth's illustrated avatar + chat
+   Folio, Parth's illustrated avatar + chat
    ══════════════════════════════════════════════════════════ */
 
-/* ── Root — fixed to bottom ──────────────────────────── */
+/* ── Root, fixed to bottom ──────────────────────────── */
 
 .agent-root {
   position: fixed;
@@ -29,7 +29,7 @@
 
 .agent-char-wrap { position: relative; flex-shrink: 0; }
 
-/* ── Speech bubble — position: fixed, JS-controlled ──── */
+/* ── Speech bubble, position: fixed, JS-controlled ──── */
 
 .agent-speech {
   position: fixed;
@@ -258,7 +258,7 @@
 
 
 /* ══════════════════════════════════════════════════════════
-   CHAT PANEL — always bottom-right, safe from overflow
+   CHAT PANEL, always bottom-right, safe from overflow
    ══════════════════════════════════════════════════════════ */
 
 .agent-chat {

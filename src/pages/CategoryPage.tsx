@@ -129,7 +129,7 @@ export default function CategoryPage() {
                 </motion.div>
               </div>
 
-              {/* 3D Object — only on the 6 real categories */}
+              {/* 3D Object, only on the 6 real categories */}
               {has3D && (
                 <motion.div
                   className="lp-hero-3d"
@@ -147,13 +147,13 @@ export default function CategoryPage() {
 
           <hr className="lp-divider" />
 
-          {/* All projects — featured first (full-width), then rest in masonry */}
+          {/* All projects, featured first (full-width), then rest in masonry */}
           {(() => {
             const feat = category.featured
             const allMore = category.moreProjects.flat()
             return (
               <>
-                {/* Featured — full-width pcard */}
+                {/* Featured, full-width pcard */}
                 <Reveal>
                   <TiltCard intensity={4}>
                   <Link
@@ -176,8 +176,8 @@ export default function CategoryPage() {
                       <h2 className="pcard-name">{feat.title}</h2>
                       <div className="pcard-marquee">
                         <div className="pcard-marquee-track">
-                          <span>{feat.desc} — {feat.desc} — {feat.desc} — </span>
-                          <span>{feat.desc} — {feat.desc} — {feat.desc} — </span>
+                          <span>{feat.desc}, {feat.desc}, {feat.desc}, </span>
+                          <span>{feat.desc}, {feat.desc}, {feat.desc}, </span>
                         </div>
                       </div>
                     </div>
@@ -185,7 +185,7 @@ export default function CategoryPage() {
                   </TiltCard>
                 </Reveal>
 
-                {/* More Projects — masonry */}
+                {/* More Projects, masonry */}
                 {allMore.length > 0 && (
                   <>
                     <p className="lp-section-label">More Projects</p>
@@ -212,8 +212,8 @@ export default function CategoryPage() {
                               <h2 className="pcard-name">{project.name}</h2>
                               <div className="pcard-marquee">
                                 <div className="pcard-marquee-track">
-                                  <span>{project.desc || project.result} — {project.desc || project.result} — {project.desc || project.result} — </span>
-                                  <span>{project.desc || project.result} — {project.desc || project.result} — {project.desc || project.result} — </span>
+                                  <span>{project.desc || project.result}, {project.desc || project.result}, {project.desc || project.result}, </span>
+                                  <span>{project.desc || project.result}, {project.desc || project.result}, {project.desc || project.result}, </span>
                                 </div>
                               </div>
                             </div>

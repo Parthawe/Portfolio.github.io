@@ -1,5 +1,5 @@
 /* ================================================
-   HERO — 3D card fan
+   HERO, 3D card fan
    ================================================ */
 .hero {
   min-height: 100vh;
@@ -210,7 +210,7 @@
   margin-top: 0.75rem;
 }
 
-/* Hero section counter — wildyriftian 01/06 */
+/* Hero section counter, wildyriftian 01/06 */
 .hero-counter {
   position: absolute;
   bottom: 4rem;

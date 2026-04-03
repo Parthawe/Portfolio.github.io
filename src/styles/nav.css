@@ -1,5 +1,5 @@
 /* ================================================
-   NAVIGATION — Dia-style: left pill + right CTA
+   NAVIGATION, Dia-style: left pill + right CTA
    ================================================ */
 .nav {
   position: fixed;
@@ -19,7 +19,7 @@
   pointer-events: none;
 }
 
-/* ── Left pill — logo + nav links grouped together ── */
+/* ── Left pill, logo + nav links grouped together ── */
 .nav-left-pill {
   display: flex;
   align-items: center;
@@ -56,7 +56,7 @@
   padding: 0.45rem 0.85rem;
 }
 
-/* ── Right side — theme toggle + CTA button ── */
+/* ── Right side, theme toggle + CTA button ── */
 .nav-right {
   display: flex;
   align-items: center;
@@ -87,7 +87,7 @@
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Desktop CTA — pill button style */
+/* Desktop CTA, pill button style */
 .nav-cta {
   font-family: var(--sans);
   font-size: var(--text-sm);
@@ -115,7 +115,7 @@
   transform: translateY(-1px);
 }
 
-/* ── Scrolled state — more opaque glass ── */
+/* ── Scrolled state, more opaque glass ── */
 .nav.scrolled .nav-left-pill {
   background: rgba(255, 255, 255, 0.72);
   border-color: rgba(0, 0, 0, 0.08);

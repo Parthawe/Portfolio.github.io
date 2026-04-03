@@ -37,7 +37,7 @@ export default function BookViewer({
   const containerRef = useRef<HTMLDivElement>(null);
   const aspectRef = useRef(840 / 650);
 
-  /* Calculate optimal dimensions — large, consume most of the screen */
+  /* Calculate optimal dimensions, large, consume most of the screen */
   const calcDimensions = useCallback((aspect: number) => {
     const vw = window.innerWidth;
     const vh = window.innerHeight;
@@ -92,7 +92,7 @@ export default function BookViewer({
     return () => { cancelled = true; };
   }, [pdfUrl, calcDimensions]);
 
-  /* Resize handler — debounced */
+  /* Resize handler, debounced */
   useEffect(() => {
     if (!pages.length) return;
     let timer: ReturnType<typeof setTimeout>;

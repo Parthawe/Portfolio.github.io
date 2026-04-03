@@ -165,17 +165,17 @@ function SvgFilters() {
 }
 
 /* ═══════════════════════════════════════
-   ATMOSPHERE — Painterly Ghibli-style
+   ATMOSPHERE, Painterly Ghibli-style
    ═══════════════════════════════════════ */
 
-/* PaintNoise removed — cleaner look */
+/* PaintNoise removed, cleaner look */
 
-/* Sun — flat paper-cut style */
+/* Sun, flat paper-cut style */
 function Sun() {
   return (
     <div className="gy-sun" aria-hidden="true">
       <svg className="gy-sun-svg" viewBox="0 0 120 120" fill="none">
-        {/* Paper rays — triangular spikes */}
+        {/* Paper rays, triangular spikes */}
         {Array.from({ length: 16 }).map((_, i) => (
           <polygon
             key={i}
@@ -196,16 +196,16 @@ function Sun() {
   );
 }
 
-/* Moon — flat paper-cut crescent */
+/* Moon, flat paper-cut crescent */
 function Moon() {
   return (
     <div className="gy-moon" aria-hidden="true">
       <svg className="gy-moon-svg" viewBox="0 0 80 80" fill="none">
         {/* Full disc */}
         <circle cx="40" cy="40" r="28" fill="#E8E4D8" />
-        {/* Shadow circle creates crescent — offset to carve out a crescent shape */}
+        {/* Shadow circle creates crescent, offset to carve out a crescent shape */}
         <circle cx="52" cy="32" r="24" fill="#0A0F20" className="gy-moon-shadow-circle" />
-        {/* Paper craters — flat circles */}
+        {/* Paper craters, flat circles */}
         <circle cx="32" cy="44" r="4" fill="#D8D4C8" opacity="0.5" />
         <circle cx="28" cy="56" r="2.5" fill="#D8D4C8" opacity="0.4" />
         <circle cx="38" cy="52" r="3" fill="#D8D4C8" opacity="0.35" />
@@ -250,7 +250,7 @@ function Stars() {
   );
 }
 
-/* Fireflies — floating in lower scene */
+/* Fireflies, floating in lower scene */
 function Fireflies() {
   const flies = useMemo(() =>
     Array.from({ length: 18 }).map((_, i) => ({
@@ -280,7 +280,7 @@ function Fireflies() {
   );
 }
 
-/* Clouds — flat paper-cut shapes with clean edges */
+/* Clouds, flat paper-cut shapes with clean edges */
 function CloudA({ className }: { className?: string }) {
   return (
     <svg className={`gy-cloud ${className || ''}`} viewBox="0 0 260 80" fill="currentColor" aria-hidden="true">
@@ -296,7 +296,7 @@ function CloudB({ className }: { className?: string }) {
   );
 }
 
-/* Light rays — diagonal golden beams from sun */
+/* Light rays, diagonal golden beams from sun */
 function LightRays() {
   return (
     <div className="gy-light-rays" aria-hidden="true">
@@ -308,14 +308,14 @@ function LightRays() {
   );
 }
 
-/* Trees — organic watercolor-style with varied canopy shapes */
+/* Trees, organic watercolor-style with varied canopy shapes */
 function TreeLarge({ className }: { className?: string }) {
   return (
     <svg className={`gy-tree ${className || ''}`} viewBox="0 0 300 450" aria-hidden="true">
-      {/* Trunk — thick, gnarled, organic */}
+      {/* Trunk, thick, gnarled, organic */}
       <path d="M130 450 C128 400 120 360 115 330 C108 300 100 280 95 265 Q105 275 115 290 C110 260 105 240 98 225 Q110 240 118 255 C115 230 112 215 108 200 Q115 210 120 225 L120 190 Q118 175 115 165 Q120 175 125 190 L125 450Z" fill="var(--gy-trunk, #5C4033)" />
       <path d="M140 450 C142 400 148 360 152 330 C155 300 160 280 165 265 Q158 275 150 290 C153 260 158 240 162 225 Q155 240 148 255 C150 230 152 215 155 200 Q150 210 145 225 L145 190 Q147 175 150 165 Q145 175 140 190 L140 450Z" fill="var(--gy-trunk-dark, #4A3428)" />
-      {/* Main canopy — large overlapping organic shapes */}
+      {/* Main canopy, large overlapping organic shapes */}
       <path d="M135 160 C80 158 30 130 45 90 C55 60 90 35 135 30 C180 25 220 50 230 85 C240 120 200 155 135 160Z" fill="var(--gy-leaf-1, #3A6B28)" />
       <path d="M80 170 C30 165 0 140 15 105 C25 80 55 60 90 55 C125 50 155 65 160 95 C168 130 135 170 80 170Z" fill="var(--gy-leaf-2, #2D5A1E)" />
       <path d="M190 155 C235 148 270 120 258 85 C250 60 220 42 185 40 C155 38 130 55 125 80 C118 110 150 150 190 155Z" fill="var(--gy-leaf-3, #4A7B35)" />
@@ -331,10 +331,10 @@ function TreeLarge({ className }: { className?: string }) {
 function TreeMedium({ className }: { className?: string }) {
   return (
     <svg className={`gy-tree ${className || ''}`} viewBox="0 0 220 360" aria-hidden="true">
-      {/* Trunk — slightly curved */}
+      {/* Trunk, slightly curved */}
       <path d="M100 360 C98 320 95 290 92 270 C88 250 84 235 80 225 Q90 232 96 245 C93 225 90 210 86 200 Q94 210 100 225 L100 360Z" fill="var(--gy-trunk, #5C4033)" />
       <path d="M112 360 C114 320 118 290 120 270 C122 250 125 235 128 225 Q122 232 116 245 C118 225 120 210 123 200 Q118 210 112 225 L112 360Z" fill="var(--gy-trunk-dark, #4A3428)" />
-      {/* Canopy — rounder, softer */}
+      {/* Canopy, rounder, softer */}
       <path d="M108 135 C60 132 25 108 38 72 C48 45 78 25 110 22 C142 19 170 38 178 68 C186 98 155 132 108 135Z" fill="var(--gy-leaf-1, #3A6B28)" />
       <path d="M65 148 C22 142 -2 118 12 88 C22 65 48 48 78 46 C108 44 132 58 136 82 C142 112 105 145 65 148Z" fill="var(--gy-leaf-2, #2D5A1E)" />
       <path d="M155 140 C192 134 215 110 205 80 C198 58 172 42 145 40 C120 38 100 52 96 72 C90 98 125 135 155 140Z" fill="var(--gy-leaf-3, #4A7B35)" />
@@ -382,11 +382,11 @@ function Bushes() {
   );
 }
 
-/* Rolling hills — 3 layers for depth */
+/* Rolling hills, 3 layers for depth */
 function Hills() {
   return (
     <div className="gy-hills-wrap" aria-hidden="true">
-      {/* Far hills — blurred for depth */}
+      {/* Far hills, blurred for depth */}
       <svg className="gy-hill gy-hill--far" viewBox="0 0 1440 200" preserveAspectRatio="none">
         <path d="M0 100 C160 40, 340 20, 520 70 C700 120, 840 30, 1020 60 C1200 90, 1350 30, 1440 80 L1440 200 L0 200Z" fill="var(--gy-hill-far, #8BAF6A)" />
       </svg>
@@ -402,7 +402,7 @@ function Hills() {
   );
 }
 
-/* Wildflowers — colorful dots scattered on ground */
+/* Wildflowers, colorful dots scattered on ground */
 function Wildflowers() {
   const flowers = useMemo(() => {
     const colors = ['#E87B7B', '#F4A261', '#E9C46A', '#D4A5E5', '#F8E1EE', '#FFFFFF', '#FFD6E0', '#C4E8A8'];
@@ -436,7 +436,7 @@ function Wildflowers() {
   );
 }
 
-/* Birds — small V shapes in the sky */
+/* Birds, small V shapes in the sky */
 function Birds() {
   return (
     <div className="gy-birds" aria-hidden="true">
@@ -469,20 +469,20 @@ function GraveyardAtmosphere() {
       <div className="gy-sky" />
       <div className="gy-color-wash" />
 
-      {/* Both always in DOM — CSS handles the sunset/moonrise transition */}
+      {/* Both always in DOM, CSS handles the sunset/moonrise transition */}
       <Sun />
       <Moon />
       <Stars />
       <LightRays />
       <Birds />
 
-      {/* Clouds — blurred for softness */}
+      {/* Clouds, blurred for softness */}
       <CloudA className="gy-cloud--1" />
       <CloudB className="gy-cloud--2" />
       <CloudA className="gy-cloud--3" />
       <CloudB className="gy-cloud--4" />
 
-      {/* Trees — layered for depth */}
+      {/* Trees, layered for depth */}
       <TreeLarge className="gy-tree--1" />
       <TreeMedium className="gy-tree--2" />
       <TreeSmall className="gy-tree--3" />
@@ -539,7 +539,7 @@ function GraveCard({ version, onPreview }: { version: PortfolioVersion; onPrevie
 
   return (
     <motion.article className={`gy-tomb gy-tomb--${version.status}`} variants={tombItem}>
-      {/* The gravestone — click to unearth */}
+      {/* The gravestone, click to unearth */}
       <div className="gy-tomb-stone" onClick={handleStoneClick} role="button" tabIndex={0}>
         {/* Engraved inscription */}
         <div className="gy-tomb-inscription">
@@ -585,7 +585,7 @@ function GraveCard({ version, onPreview }: { version: PortfolioVersion; onPrevie
         <span className="gy-tomb-ground-flower gy-tomb-ground-flower--3" />
       </div>
 
-      {/* Unearthed details — revealed when clicking the stone */}
+      {/* Unearthed details, revealed when clicking the stone */}
       <div className={`gy-tomb-details ${dug ? 'gy-tomb-details--open' : ''}`}>
         <p className="gy-tomb-desc">{version.description}</p>
         <div className="gy-tomb-tags">
@@ -677,8 +677,8 @@ export default function GraveyardPage() {
   return (
     <>
       <Helmet>
-        <title>Portfolio Graveyard — Parth Pawar</title>
-        <meta name="description" content="Every portfolio I've ever built. A graveyard of past designs — from Webflow exports to React rewrites." />
+        <title>Portfolio Graveyard, Parth Pawar</title>
+        <meta name="description" content="Every portfolio I've ever built. A graveyard of past designs, from Webflow exports to React rewrites." />
       </Helmet>
 
       <Nav />

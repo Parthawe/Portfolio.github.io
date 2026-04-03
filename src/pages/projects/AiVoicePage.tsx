@@ -20,10 +20,10 @@ export default function AiVoicePage() {
     <>
       <Helmet>
         <title>AI Voice Selection &middot; Parth Pawar</title>
-        <meta name="description" content="Redefining AI Voice Selection For Enterprise — Integrating Emotional Intelligence and Expressive Voice Selection through intuitive, emotionally intelligent interactions." />
+        <meta name="description" content="Redefining AI Voice Selection For Enterprise, Integrating Emotional Intelligence and Expressive Voice Selection through intuitive, emotionally intelligent interactions." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI Voice Interface · Parth Pawar" />
-        <meta property="og:description" content="Redefining AI Voice Selection for Enterprise — emotional intelligence and expressive voice design." />
+        <meta property="og:description" content="Redefining AI Voice Selection for Enterprise, emotional intelligence and expressive voice design." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/ai-voice.png" />
       </Helmet>
 
@@ -46,7 +46,7 @@ export default function AiVoicePage() {
             { label: 'Year', value: '2025' },
           ]}
           heroImage="/Assets/Projects/AI VOICE/AI.jpg"
-          heroAlt="AI Voice Selection — hero"
+          heroAlt="AI Voice Selection, hero"
         />
 
         <ProjectOverview
@@ -87,8 +87,8 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/1.png" alt="AI Voice Selection — project overview slide" />
-        <p className="cs-caption">Project overview — the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
+        <CsImage src="/Assets/Projects/AI VOICE/1.png" alt="AI Voice Selection, project overview slide" />
+        <p className="cs-caption">Project overview, the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
 
         {/* Research */}
         <section className="cs-section reveal" id="cs-research">
@@ -168,8 +168,8 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/4.png" alt="Voice DNA Builder — sketch and final dark UI mockup" />
-        <p className="cs-caption">Concept A: Voice DNA Builder — from initial sketch to high-fidelity dark UI. Users build a voice through parameter sliders that form an animated DNA helix.</p>
+        <CsImage src="/Assets/Projects/AI VOICE/4.png" alt="Voice DNA Builder, sketch and final dark UI mockup" />
+        <p className="cs-caption">Concept A: Voice DNA Builder, from initial sketch to high-fidelity dark UI. Users build a voice through parameter sliders that form an animated DNA helix.</p>
 
         {/* Concept B */}
         <section className="cs-section reveal" id="cs-concept-b">
@@ -189,8 +189,8 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/5.png" alt="Mood-Based Voice Matching — sketch and final dark UI mockup" />
-        <p className="cs-caption">Concept B: Mood-Based Voice Matching — the user speaks, the AI analyzes emotion and tone, then suggests three voices that match their energy.</p>
+        <CsImage src="/Assets/Projects/AI VOICE/5.png" alt="Mood-Based Voice Matching, sketch and final dark UI mockup" />
+        <p className="cs-caption">Concept B: Mood-Based Voice Matching, the user speaks, the AI analyzes emotion and tone, then suggests three voices that match their energy.</p>
 
         {/* Voice DNA Deep Dive */}
         <section className="cs-section reveal" id="cs-voice-dna">
@@ -213,10 +213,10 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/6.png" alt="Voice DNA Builder — detailed feature breakdown and UI" />
-        <p className="cs-caption">DNA Builder deep dive — six key features including live persona preview, transcript panel, global accent map, and real-time parameter sliders.</p>
+        <CsImage src="/Assets/Projects/AI VOICE/6.png" alt="Voice DNA Builder, detailed feature breakdown and UI" />
+        <p className="cs-caption">DNA Builder deep dive, six key features including live persona preview, transcript panel, global accent map, and real-time parameter sliders.</p>
 
-        {/* UX Benefits — DNA Builder */}
+        {/* UX Benefits, DNA Builder */}
         <section className="cs-section reveal">
           <div className="wrap">
             <span className="cs-section-label">UX Benefits &mdash; Voice DNA Builder</span>
@@ -266,10 +266,10 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/8.png" alt="Mood-Based Voice Matching — three screens: listening, thinking, talking" />
+        <CsImage src="/Assets/Projects/AI VOICE/8.png" alt="Mood-Based Voice Matching, three screens: listening, thinking, talking" />
         <p className="cs-caption">Mood Matching&rsquo;s three-stage flow: a glowing circle captures voice input, a silhouette processes emotion, and three matched personas appear with mood summaries.</p>
 
-        {/* UX Benefits — Mood Matching */}
+        {/* UX Benefits, Mood Matching */}
         <section className="cs-section reveal">
           <div className="wrap">
             <span className="cs-section-label">UX Benefits &mdash; Mood-Based Matching</span>

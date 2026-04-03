@@ -15,7 +15,7 @@ export default function BlackHolePage() {
     <>
       <Helmet>
         <title>Black Hole &middot; Parth Pawar</title>
-        <meta name="description" content="Physical models exploring five black hole phenomena — time dilation, spacetime fabric, gravitational lensing, wormholes, and binary mergers. Exhibited at the Horological Society of New York." />
+        <meta name="description" content="Physical models exploring five black hole phenomena, time dilation, spacetime fabric, gravitational lensing, wormholes, and binary mergers. Exhibited at the Horological Society of New York." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Black Hole · Parth Pawar" />
         <meta property="og:description" content="Physical models exploring five black hole phenomena. Exhibited at the Horological Society of New York." />
@@ -42,8 +42,8 @@ export default function BlackHolePage() {
           ]}
         />
 
-        {/* Hero — Time Trap */}
-        <CsImage src="/Assets/Projects/BlackHole/time-trap.jpg" alt="The Black Hole's Time Trap — circular platform with clocks at different distances demonstrating time dilation" />
+        {/* Hero, Time Trap */}
+        <CsImage src="/Assets/Projects/BlackHole/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
 
         {/* Challenge */}
         <CsSection id="cs-challenge" label="The Challenge" title="Making the Invisible Tangible">
@@ -53,7 +53,7 @@ export default function BlackHolePage() {
           </CsBody>
         </CsSection>
 
-        {/* 01 — Time Trap */}
+        {/* 01, Time Trap */}
         <CsSection id="cs-time-trap" label="01 &mdash; Phenomenon" title="The Black Hole&rsquo;s Time Trap">
           <CsBody>
             <p>Near a black hole, time behaves strangely. Gravity stretches and warps spacetime, causing time to slow down dramatically near the black hole compared to far away. If you hover just above the event horizon &mdash; the black hole&rsquo;s point of no return &mdash; minutes for you could be years for a distant observer. The closer you get, the slower time moves.</p>
@@ -75,9 +75,9 @@ export default function BlackHolePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/BlackHole/time-trap.jpg" alt="Time Trap model — clocks at varying distances from a central black hole, each running at different speeds" />
+        <CsImage src="/Assets/Projects/BlackHole/time-trap.jpg" alt="Time Trap model, clocks at varying distances from a central black hole, each running at different speeds" />
 
-        {/* 02 — Fabric of the Universe */}
+        {/* 02, Fabric of the Universe */}
         <CsSection id="cs-fabric" label="02 &mdash; Phenomenon" title="The Invisible Fabric of the Universe">
           <CsBody>
             <p>Imagine spacetime as a giant, invisible sheet stretched across the universe. Massive objects like stars and planets sit on this sheet, bending it under their weight. This bending creates what we experience as gravity.</p>
@@ -85,9 +85,9 @@ export default function BlackHolePage() {
           </CsBody>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/BlackHole/fabric-of-universe.jpg" alt="Fabric of the Universe model — a stool with stretched fabric and a weighted sphere showing spacetime deformation" />
+        <CsImage src="/Assets/Projects/BlackHole/fabric-of-universe.jpg" alt="Fabric of the Universe model, a stool with stretched fabric and a weighted sphere showing spacetime deformation" />
 
-        {/* 03 — Gravitational Lensing + Wormholes */}
+        {/* 03, Gravitational Lensing + Wormholes */}
         <CsSection id="cs-lensing" label="03 &amp; 04 &mdash; Phenomena" title="Gravity&rsquo;s Grip on Light &amp; Wormholes">
           <CsBody>
             <p>A black hole&rsquo;s influence isn&rsquo;t just about matter &mdash; it bends light itself. This phenomenon, called gravitational lensing, occurs when light from a distant star travels around a massive object, creating distorted, magnified, and sometimes duplicated images. Predicted by Einstein&rsquo;s General Relativity, it allows astronomers to map distant galaxies and black holes themselves, revealing the invisible forces shaping our universe.</p>
@@ -95,9 +95,9 @@ export default function BlackHolePage() {
           </CsBody>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/BlackHole/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes model — a glass lens demonstrating light bending and a fabric wormhole model" />
+        <CsImage src="/Assets/Projects/BlackHole/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes model, a glass lens demonstrating light bending and a fabric wormhole model" />
 
-        {/* 04 — Binary Mergers */}
+        {/* 04, Binary Mergers */}
         <CsSection id="cs-mergers" label="05 &mdash; Phenomenon" title="When Giants Collide: Binary Black Hole Mergers">
           <CsBody>
             <p>Binary black holes are pairs of black holes locked in a cosmic dance. As they orbit each other, they spiral closer, releasing energy as ripples in spacetime called gravitational waves. The model shows the final moments of their merger in three stages:</p>
@@ -110,7 +110,7 @@ export default function BlackHolePage() {
           </CsBody>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/BlackHole/binary-mergers.jpg" alt="Binary Black Hole Mergers model — three 3D-printed stages showing Inspiral, Merger, and Ringdown" />
+        <CsImage src="/Assets/Projects/BlackHole/binary-mergers.jpg" alt="Binary Black Hole Mergers model, three 3D-printed stages showing Inspiral, Merger, and Ringdown" />
 
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="Exhibition" title="Horological Society of New York">

@@ -26,8 +26,8 @@ export default function BookPage() {
   return (
     <>
       <Helmet>
-        <title>Book Portfolio — Parth Pawar</title>
-        <meta name="description" content="Parth Pawar's 2022 Book Portfolio — a collection of UX, interaction design, and engineering projects presented as a flipbook." />
+        <title>Book Portfolio, Parth Pawar</title>
+        <meta name="description" content="Parth Pawar's 2022 Book Portfolio, a collection of UX, interaction design, and engineering projects presented as a flipbook." />
       </Helmet>
 
       <Nav />
@@ -54,7 +54,7 @@ export default function BookPage() {
           <span className="book-hero-label">BOOK PORTFOLIO</span>
           <h1 className="book-hero-title">2022 Collection</h1>
           <p className="book-hero-subtitle">
-            62 pages of UX design, interaction design, and engineering projects — presented as a bound portfolio book.
+            62 pages of UX design, interaction design, and engineering projects, presented as a bound portfolio book.
           </p>
         </section>
 

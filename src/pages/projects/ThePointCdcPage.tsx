@@ -19,10 +19,10 @@ export default function ThePointCdcPage() {
     <>
       <Helmet>
         <title>The Point CDC &middot; Parth Pawar</title>
-        <meta name="description" content="Revitalizing The Point CDC — A digital transformation for community empowerment in Hunts Point, Bronx. Redesigning their website to streamline services, foster innovation, and enhance community engagement." />
+        <meta name="description" content="Revitalizing The Point CDC, A digital transformation for community empowerment in Hunts Point, Bronx. Redesigning their website to streamline services, foster innovation, and enhance community engagement." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
-        <meta property="og:description" content="Digital transformation for community empowerment in Hunts Point, Bronx — website redesign." />
+        <meta property="og:description" content="Digital transformation for community empowerment in Hunts Point, Bronx, website redesign." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/the-point-cdc.png" />
       </Helmet>
 
@@ -46,7 +46,7 @@ export default function ThePointCdcPage() {
           ]}
           liveUrl="https://thepoint.org"
           heroImage="/Assets/Projects/ThePointCDC/Desktop/Slice 1.png"
-          heroAlt="The Point CDC — Revitalizing a community website with device mockups showing the redesigned homepage"
+          heroAlt="The Point CDC, Revitalizing a community website with device mockups showing the redesigned homepage"
         />
 
         {/* Overview with label-rows */}
@@ -99,7 +99,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 3.png" alt="The Point CDC community work — WiFi installation and community members" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 3.png" alt="The Point CDC community work, WiFi installation and community members" loading="lazy" />
               </div>
             </div>
           </div>
@@ -259,7 +259,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 8.png" alt="Design system components — typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 8.png" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}
@@ -279,7 +279,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 9.png" alt="Final high-fidelity design — desktop and mobile responsive views with annotated improvements" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 9.png" alt="Final high-fidelity design, desktop and mobile responsive views with annotated improvements" loading="lazy" />
         </div>
 
         <div className="cs-slide reveal">

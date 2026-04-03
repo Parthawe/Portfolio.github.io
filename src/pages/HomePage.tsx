@@ -18,29 +18,29 @@ interface HomePcard {
 }
 
 const featuredProjects: HomePcard[] = [
-  { slug: 'mentra', image: `${'/Assets/images'}/mentra.png`, name: 'Mentra', tag: 'AI WEARABLES', year: '2026', desc: 'Designed the OS, companion app, and app store for AI smart glasses — shipping at $299' },
-  { slug: 'transfi-project', image: `${'/Assets/images'}/transfi.jpg`, name: 'TransFi', tag: 'WEB3 PAYMENTS', year: '2023', desc: 'Redesigned crypto payment rails across 6 Asian markets — $50M+ monthly volume' },
-  { slug: 'zentipay', image: `${'/Assets/images'}/zentipay.png`, name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Built a fintech super app from scratch — 30% higher transaction completion' },
-  { slug: 'clawed-chat', image: `${'/Assets/images'}/clawed.png`, name: 'Clawed', tag: 'AI ASSISTANT', year: '2026', desc: 'AI assistant with receipts for every action — safety-first on glasses and web' },
+  { slug: 'mentra', image: `${'/Assets/images'}/mentra.png`, name: 'Mentra', tag: 'AI WEARABLES', year: '2026', desc: 'Designed the OS, companion app, and app store for AI smart glasses, shipping at $299' },
+  { slug: 'transfi-project', image: `${'/Assets/images'}/transfi.jpg`, name: 'TransFi', tag: 'WEB3 PAYMENTS', year: '2023', desc: 'Redesigned crypto payment rails across 6 Asian markets, $50M+ monthly volume' },
+  { slug: 'zentipay', image: `${'/Assets/images'}/zentipay.png`, name: 'ZentiPay', tag: 'FINTECH', year: '2025', desc: 'Built a fintech super app from scratch, 30% higher transaction completion' },
+  { slug: 'clawed-chat', image: `${'/Assets/images'}/clawed.png`, name: 'Clawed', tag: 'AI ASSISTANT', year: '2026', desc: 'AI assistant with receipts for every action, safety-first on glasses and web' },
 ];
 
 const archiveProjects: HomePcard[] = [
-  { slug: 'executivelens', image: `${'/Assets/images'}/executivelens.png`, name: 'ExecutiveLens', tag: 'AI ANALYTICS', year: '2026', desc: 'Saved executives 5.2 hrs/week with AI meeting intelligence — 87% adoption in 2 weeks' },
-  { slug: 'black-hole', image: `${'/Assets/images'}/black-hole.jpg`, name: 'Black Hole', tag: 'SCIENCE + FABRICATION', year: '2026', desc: 'Five physical models of black hole phenomena — exhibited at Horological Society of NY' },
-  { slug: 'keyboard-project', image: `${'/Assets/images'}/keyboard.jpg`, name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors at ITP Thesis Show' },
-  { slug: 'jugalbandi', image: `${'/Assets/images'}/jugalbandi.png`, name: 'Jugalbandi', tag: 'ML + MUSIC', year: '2024', desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024' },
+  { slug: 'executivelens', image: `${'/Assets/images'}/executivelens.png`, name: 'ExecutiveLens', tag: 'AI ANALYTICS', year: '2026', desc: 'Saved executives 5.2 hrs/week with AI meeting intelligence, 87% adoption in 2 weeks' },
+  { slug: 'black-hole', image: `${'/Assets/images'}/black-hole.jpg`, name: 'Black Hole', tag: 'SCIENCE + FABRICATION', year: '2026', desc: 'Five physical models of black hole phenomena, exhibited at Horological Society of NY' },
+  { slug: 'keyboard-project', image: `${'/Assets/images'}/keyboard.jpg`, name: 'BreakGen', tag: 'ITP THESIS', year: '2025', desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards, 200+ visitors at ITP Thesis Show' },
+  { slug: 'jugalbandi', image: `${'/Assets/images'}/jugalbandi.png`, name: 'Jugalbandi', tag: 'ML + MUSIC', year: '2024', desc: 'Neural network instrument that duets with human musicians, Maker Faire 2024' },
   { slug: 'tedx', image: `${'/Assets/images'}/tedx.png`, name: 'TEDxVITPune', tag: 'ART DIRECTION', year: '2021', desc: 'Art directed a 65-person team to build a parallax cityscape stage for 800+ attendees' },
   { slug: 'the-point-cdc', image: `${'/Assets/images'}/the-point-cdc.png`, name: 'The Point CDC', tag: 'COMMUNITY', year: '2024', desc: 'Redesigned digital platform for a Bronx community development nonprofit' },
   { slug: 'uv-light', image: `${'/Assets/images'}/uv-light.jpg`, name: 'UV Light', tag: 'LIGHT ART', year: '2023', desc: 'Multi-room blacklight installation with hidden messages and live projection' },
-  { slug: 'cuetv', image: `${'/Assets/images'}/cuetv.jpg`, name: 'CueTV', tag: 'PRODUCT DESIGN', year: '2022', desc: 'OTT streaming platform — built a retargeting system generating 30K+ ad variations' },
+  { slug: 'cuetv', image: `${'/Assets/images'}/cuetv.jpg`, name: 'CueTV', tag: 'PRODUCT DESIGN', year: '2022', desc: 'OTT streaming platform, built a retargeting system generating 30K+ ad variations' },
   { slug: 'enigma', image: `${'/Assets/images'}/enigma.jpg`, name: 'Enigma', tag: 'DEEP LEARNING', year: '2023', desc: '200-neuron light sculpture visualizing a functioning neural network' },
   { slug: 'revolving-stage', image: `${'/Assets/images'}/revolving-stage.jpg`, name: 'Revolving Stage', tag: 'FABRICATION', year: '2022', desc: 'Engineered a 15 ft. rotating stage supporting 250+ kgs for live theatre' },
   { slug: 'shuffle', image: `${'/Assets/images'}/shuffle.jpg`, name: 'Shuffle', tag: 'INTERACTIVE', year: '2024', desc: 'Weight-sensor LED grid where players compete through physical strategy' },
-  { slug: 'making-of-time', image: `${'/Assets/images'}/making-of-time.jpg`, name: 'Making of Time', tag: 'PHYSICAL COMPUTING', year: '2024', desc: 'Sundial → mechanical watch → software clock — building three ways to measure time' },
-  { slug: 'moniac-machine', image: `${'/Assets/images'}/moniac-machine.jpg`, name: 'Moniac Machine', tag: 'GAME DESIGN', year: '2024', desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education' },
-  { slug: 'typeface', image: `${'/Assets/images'}/typeface.jpg`, name: "Butler's Slice", tag: 'TYPE DESIGN', year: '2022', desc: 'Variable display typeface with geometric slice cuts — 400+ glyphs' },
-  { slug: 'ballah-code', image: `${'/Assets/images'}/ballah-code.png`, name: 'Ballah Code', tag: 'AI DEV TOOLS', year: '2026', desc: 'AI-native IDE treating AI as a senior engineer — 17 production tools' },
-  { slug: 'oncall-lens', image: `${'/Assets/images'}/oncall-lens.png`, name: 'OnCall Lens', tag: 'AI WEARABLE', year: '2026', desc: 'Sentry alert → Claude analysis → auto PR fix via smart glasses — built in 24 hours' },
+  { slug: 'making-of-time', image: `${'/Assets/images'}/making-of-time.jpg`, name: 'Making of Time', tag: 'PHYSICAL COMPUTING', year: '2024', desc: 'Sundial → mechanical watch → software clock, building three ways to measure time' },
+  { slug: 'moniac-machine', image: `${'/Assets/images'}/moniac-machine.jpg`, name: 'Moniac Machine', tag: 'GAME DESIGN', year: '2024', desc: 'Board game based on a 1949 hydraulic economic computer, strategy meets education' },
+  { slug: 'typeface', image: `${'/Assets/images'}/typeface.jpg`, name: "Butler's Slice", tag: 'TYPE DESIGN', year: '2022', desc: 'Variable display typeface with geometric slice cuts, 400+ glyphs' },
+  { slug: 'ballah-code', image: `${'/Assets/images'}/ballah-code.png`, name: 'Ballah Code', tag: 'AI DEV TOOLS', year: '2026', desc: 'AI-native IDE treating AI as a senior engineer, 17 production tools' },
+  { slug: 'oncall-lens', image: `${'/Assets/images'}/oncall-lens.png`, name: 'OnCall Lens', tag: 'AI WEARABLE', year: '2026', desc: 'Sentry alert → Claude analysis → auto PR fix via smart glasses, built in 24 hours' },
   { slug: 'sea-of-salt', image: `${'/Assets/images'}/sea-of-salt.jpg`, name: 'Sea of Salt', tag: 'INSTALLATION', year: '2024', desc: 'Kinetic salt installation reacting to real-time ocean data' },
 ];
 
@@ -126,29 +126,29 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Parth Pawar — Design Engineer</title>
-        <meta name="description" content="Portfolio of Parth Pawar — Design Engineer crafting intuitive, user-centered experiences across UX, fintech, creative technology, and physical computing." />
+        <title>Parth Pawar, Design Engineer</title>
+        <meta name="description" content="Portfolio of Parth Pawar, Design Engineer crafting intuitive, user-centered experiences across UX, fintech, creative technology, and physical computing." />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Parth Pawar — Design Engineer" />
+        <meta property="og:title" content="Parth Pawar, Design Engineer" />
         <meta property="og:description" content="Design Engineer specializing in AI wearables, fintech, and interactive systems. Head of UI/UX at Mentra. NYU ITP '24." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.png" />
         <link rel="canonical" href="https://parthpawar.com" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      {/* ═══ DARK HERO — 3D centerpiece ═══ */}
+      {/* ═══ DARK HERO, 3D centerpiece ═══ */}
       <section className="wr-hero" id="hero" ref={heroRef}>
         {/* Aurora gradient bottom blob */}
         <div className="wr-hero-aurora-bottom" />
 
-        {/* 3D Scene — constellation of discipline objects */}
+        {/* 3D Scene, constellation of discipline objects */}
         <div className="wr-hero-3d">
           <Suspense fallback={null}>
             <HeroScene onNavigate={navigate} />
           </Suspense>
         </div>
 
-        {/* Flanking labels — wildyriftian style */}
+        {/* Flanking labels, wildyriftian style */}
         <span className="wr-hero-left hero-reveal hero-reveal-1">A PORTFOLIO OF DESIGN WORK</span>
         <span className="wr-hero-right hero-reveal hero-reveal-2">PARTH PAWAR 2026</span>
 
@@ -194,7 +194,7 @@ export default function HomePage() {
           <div className="abt-ruler abt-ruler--left" aria-hidden="true" />
           <div className="abt-ruler abt-ruler--right" aria-hidden="true" />
 
-        {/* ═══ KEYWORD MARQUEE — visual energy strip ═══ */}
+        {/* ═══ KEYWORD MARQUEE, visual energy strip ═══ */}
         <div className="wr-keyword-strip" aria-hidden="true">
           <div className="wr-keyword-track">
             <span>UX DESIGN</span><span>·</span>
@@ -212,7 +212,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ═══ ABOUT CARD — cycling skills ═══ */}
+        {/* ═══ ABOUT CARD, cycling skills ═══ */}
         <section className="wr-about-section">
           <div className="wr-about-card" id="about-card">
             {/* Dashed border SVG */}
@@ -292,7 +292,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══ FEATURED PROJECTS — editorial full-width rows ═══ */}
+        {/* ═══ FEATURED PROJECTS, editorial full-width rows ═══ */}
         <section className="wr-featured-v2" id="works">
           <div className="wr-featured-v2-inner">
             <div className="wr-section-head">
@@ -328,7 +328,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══ ARCHIVE — image card grid ═══ */}
+        {/* ═══ ARCHIVE, image card grid ═══ */}
         <section className="wr-archive">
           <div className="wr-archive-inner">
             <div className="wr-section-head">
@@ -358,8 +358,8 @@ export default function HomePage() {
                         <h2 className="pcard-name">{p.name}</h2>
                         <div className="pcard-marquee">
                           <div className="pcard-marquee-track">
-                            <span>{p.desc} — {p.desc} — {p.desc} — </span>
-                            <span>{p.desc} — {p.desc} — {p.desc} — </span>
+                            <span>{p.desc}, {p.desc}, {p.desc}, </span>
+                            <span>{p.desc}, {p.desc}, {p.desc}, </span>
                           </div>
                         </div>
                       </div>

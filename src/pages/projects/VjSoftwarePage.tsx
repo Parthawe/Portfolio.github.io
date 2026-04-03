@@ -17,10 +17,10 @@ export default function VjSoftwarePage() {
     <>
       <Helmet>
         <title>VJ Parivar &middot; Parth Pawar</title>
-        <meta name="description" content="Designing the digital forefront of Vilas Javdekar — a vehicle parking management app for homeowners in VJ residential societies. User research, UI/UX design and prototyping for a seamless parking experience." />
+        <meta name="description" content="Designing the digital forefront of Vilas Javdekar, a vehicle parking management app for homeowners in VJ residential societies. User research, UI/UX design and prototyping for a seamless parking experience." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VJ Software &middot; Parth Pawar" />
-        <meta property="og:description" content="Vehicle parking management app for VJ residential societies — user research, UI/UX and prototyping." />
+        <meta property="og:description" content="Vehicle parking management app for VJ residential societies, user research, UI/UX and prototyping." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/vj.jpg" />
       </Helmet>
 
@@ -43,7 +43,7 @@ export default function VjSoftwarePage() {
             { label: 'Year', value: '2022' },
           ]}
           heroImage="/Assets/Projects/vj/Desktop/1.jpg"
-          heroAlt="VJ Parivar — Vehicle Parking Made Easy hero with app screens"
+          heroAlt="VJ Parivar, Vehicle Parking Made Easy hero with app screens"
         />
 
         {/* Overview */}
@@ -192,7 +192,7 @@ export default function VjSoftwarePage() {
                 </CsBody>
               </div>
             </div>
-            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/5.jpg" alt="Current methods — flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/5.jpg" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
           </div>
         </section>
 
@@ -228,7 +228,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Mapped the complete user journey covering first-time users booking a parking spot, adding RFID or FastTag details, editing vehicle details, renting a parking spot, and filing complaints for incorrect vehicle parking. Each flow includes decision points, success states, and error handling.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/7.jpg" alt="User journey map — full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/7.jpg" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
 
             <h3 className="cs-section-subtitle">Features</h3>
             <div className="cs-tags">
@@ -305,7 +305,7 @@ export default function VjSoftwarePage() {
               </div>
             </div>
 
-            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/9.jpg" alt="Visual style — color palette, typography, icons, and layout system" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/9.jpg" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
           </div>
         </section>
 
@@ -330,7 +330,7 @@ export default function VjSoftwarePage() {
               <p>After selecting a spot, users proceed through the booking process, choose a payment method, receive confirmation of their payment, and get a detailed summary of their parking reservation.</p>
             </CsBody>
 
-            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/10.jpg" alt="Final high-fidelity screens — onboarding, spot selection, and payment flows" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Assets/Projects/vj/Desktop/10.jpg" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
           </div>
         </section>
 

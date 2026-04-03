@@ -70,7 +70,7 @@ function SceneInner({ slug, dark, mouse }: { slug: string; dark: boolean; mouse:
     const baseY = delta * 0.15;
     groupRef.current.rotation.y += baseY;
 
-    // Cursor-reactive tilt (subtle — max ±0.25 radians)
+    // Cursor-reactive tilt (subtle, max ±0.25 radians)
     const targetTiltX = smoothMouse.current.y * 0.25;
     const targetTiltZ = -smoothMouse.current.x * 0.12;
     groupRef.current.rotation.x += (targetTiltX + Math.sin(groupRef.current.rotation.y * 0.3) * 0.1 - groupRef.current.rotation.x) * 0.04;

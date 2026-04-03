@@ -13,7 +13,7 @@ export default function ShufflePage() {
     <>
       <Helmet>
         <title>Shuffle &middot; Parth Pawar</title>
-        <meta name="description" content="Shuffle — an interactive installation proposing a strategy simulation of student life at ITP, built with Arduino, addressable LEDs, and custom PCB." />
+        <meta name="description" content="Shuffle, an interactive installation proposing a strategy simulation of student life at ITP, built with Arduino, addressable LEDs, and custom PCB." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Shuffle · Parth Pawar" />
         <meta property="og:description" content="Interactive installation proposing a strategy simulation of student life at ITP." />
@@ -79,17 +79,17 @@ export default function ShufflePage() {
         {/* Images 1-3 */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/L1909464353160286896185627968022/1.jpg" alt="Shuffle installation — overview" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2160/i/L1909464353160286896185627968022/1.jpg" alt="Shuffle installation, overview" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/Z1909464353307860848775304380950/2.jpg" alt="Shuffle installation — detail" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2160/i/Z1909464353307860848775304380950/2.jpg" alt="Shuffle installation, detail" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/B1909464353289414104701594829334/3.jpg" alt="Shuffle installation — tokens" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2160/i/B1909464353289414104701594829334/3.jpg" alt="Shuffle installation, tokens" loading="lazy" />
           </div>
         </section>
 
@@ -121,12 +121,12 @@ export default function ShufflePage() {
         {/* Images 4-5 */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/W1909464353270967360627885277718/4.jpg" alt="Shuffle — process and electronics" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2160/i/W1909464353270967360627885277718/4.jpg" alt="Shuffle, process and electronics" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/M1909464353252520616554175726102/5.jpg" alt="Shuffle — PCB and fabrication" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2160/i/M1909464353252520616554175726102/5.jpg" alt="Shuffle, PCB and fabrication" loading="lazy" />
           </div>
         </section>
 
@@ -142,12 +142,12 @@ export default function ShufflePage() {
         {/* Images 6-7 */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/R1909464353234073872480466174486/6.jpg" alt="Shuffle — exhibition at ITP Winter Show" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2160/i/R1909464353234073872480466174486/6.jpg" alt="Shuffle, exhibition at ITP Winter Show" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/L1909464353215627128406756622870/7.jpg" alt="Shuffle — visitors interacting with the installation" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2160/i/L1909464353215627128406756622870/7.jpg" alt="Shuffle, visitors interacting with the installation" loading="lazy" />
           </div>
         </section>
 

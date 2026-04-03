@@ -23,7 +23,7 @@ export default function TransfiPage() {
     <>
       <Helmet>
         <title>TransFi &middot; Parth Pawar</title>
-        <meta name="description" content="TransFi — Lead Product Designer case study. Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets, reducing enterprise onboarding from 2 weeks to 3 days." />
+        <meta name="description" content="TransFi, Lead Product Designer case study. Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets, reducing enterprise onboarding from 2 weeks to 3 days." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets." />
@@ -50,7 +50,7 @@ export default function TransfiPage() {
           ]}
           liveUrl="https://www.transfi.com"
           heroImage="/Assets/Projects/Transfi/Desktop/1.jpg"
-          heroAlt="TransFi hero — dashboard and buy crypto widget"
+          heroAlt="TransFi hero, dashboard and buy crypto widget"
         />
 
         {/* Overview section with label-row layout */}
@@ -202,7 +202,7 @@ export default function TransfiPage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/Transfi/Desktop/5.jpg" alt="Product overview — widget mockup with feature cards and color palette" loading="lazy" />
+          <img src="/Assets/Projects/Transfi/Desktop/5.jpg" alt="Product overview, widget mockup with feature cards and color palette" loading="lazy" />
           <p className="cs-caption">The redesigned consumer widget prioritized simplicity for crypto-novice users, featuring localized language, familiar e-commerce patterns, and local payment method integration across six Asian markets.</p>
         </div>
 
@@ -265,7 +265,7 @@ export default function TransfiPage() {
             items: [
               'Automated KYB with real-time document upload',
               'Progress dashboard with clear status indicators',
-              'Instant sandbox access — API keys on signup',
+              'Instant sandbox access, API keys on signup',
               'Interactive docs with in-dashboard guidance',
             ],
           }}

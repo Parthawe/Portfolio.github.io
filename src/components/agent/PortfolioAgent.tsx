@@ -104,7 +104,7 @@ export default function PortfolioAgent() {
     setFacingLeft(movement.facingLeft)
   }, [movement.facingLeft])
 
-  // Proactive speech bubble — once per route
+  // Proactive speech bubble, once per route
   useEffect(() => {
     if (chatOpen || !entered || shownRoutes.current.has(route)) return
     speechTimer.current = setTimeout(() => {
@@ -152,7 +152,7 @@ export default function PortfolioAgent() {
     historyRef.current.route = route
     const response = await sendMessage(question, historyRef.current)
 
-    // Show in speech bubble — keep it short
+    // Show in speech bubble, keep it short
     let bubbleText = response.split(/[.!?]\s/)[0].replace(/\n/g, ' ').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     if (bubbleText.length > 100) bubbleText = bubbleText.slice(0, 97) + '...'
     if (!bubbleText.endsWith('.') && !bubbleText.endsWith('...')) bubbleText += '.'
@@ -213,7 +213,7 @@ export default function PortfolioAgent() {
         facingLeft={facingLeft}
       />
 
-      {/* Speech bubble — positioned to stay in viewport */}
+      {/* Speech bubble, positioned to stay in viewport */}
       {speechText && !chatOpen && (
         <SpeechBubble
           text={speechText}

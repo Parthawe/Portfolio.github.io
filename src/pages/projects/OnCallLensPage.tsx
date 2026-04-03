@@ -23,7 +23,7 @@ export default function OnCallLensPage() {
     <>
       <Helmet>
         <title>OnCall Lens &middot; Parth Pawar</title>
-        <meta name="description" content="OnCall Lens — Transforming Sentry alerts into automated PR patches via smart glasses. Built at Daytona HackSprint SF, Jan 2026 at Sentry HQ. Case study by Parth Pawar." />
+        <meta name="description" content="OnCall Lens, Transforming Sentry alerts into automated PR patches via smart glasses. Built at Daytona HackSprint SF, Jan 2026 at Sentry HQ. Case study by Parth Pawar." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OnCall Lens · Parth Pawar" />
         <meta property="og:description" content="Transforming Sentry alerts into automated PR patches via smart glasses. AI agent fixes bugs while humans approve from their wrist." />
@@ -48,7 +48,7 @@ export default function OnCallLensPage() {
             { label: 'Platform', value: 'MentraOS Glasses + Web' },
           ]}
           heroImage="/Assets/images/oncall-lens/hero.png"
-          heroAlt="Pager Lens — Stay present. Handle incidents anywhere."
+          heroAlt="Pager Lens, Stay present. Handle incidents anywhere."
         />
 
         <ProjectOverview

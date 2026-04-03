@@ -8,7 +8,7 @@ function buildKnowledge(): string {
   // Bio
   sections.push(`## About Parth Pawar
 - Design Engineer based in New York, NY
-- Currently: Head of UI/UX at Mentra — designing the entire platform for AI smart glasses
+- Currently: Head of UI/UX at Mentra, designing the entire platform for AI smart glasses
 - Open to: Product design roles in AI, dev tools, fintech, 0→1
 - Email: parthpawar@nyu.edu
 - Education: MPS Interactive Telecommunications, NYU Tisch / ITP (2022–2024); BE Computer Science, VIT Pune (2018–2022)
@@ -17,17 +17,17 @@ function buildKnowledge(): string {
 - Exhibitions: Maker Faire, WonderVille, NIME, ITP Shows
 - Tools: Figma, Protopie, After Effects, Blender, 3D Printing, Laser Cutting, React, Swift, Python, TypeScript, p5.js, TouchDesigner, Arduino
 - Fun facts: Builds keyboards he doesn't need, 4px border-radius purist, pour-over > espresso, more vinyl than shelf space, made his own typeface (Butler's Slice), wrote poems for 100 days straight, sketches every day, hosted 45 podcast episodes, rode the NYC subway blindfolded for research, built this portfolio in React 19
-- Daily practices: 100 Days of Poem (@poem.nyc), 100 Days of Sketch (@townforartist), 50 Days of Photoshop (@designwhich.works), ArtTown Podcast (@arttown.store — 45 episodes about craft)`)
+- Daily practices: 100 Days of Poem (@poem.nyc), 100 Days of Sketch (@townforartist), 50 Days of Photoshop (@designwhich.works), ArtTown Podcast (@arttown.store, 45 episodes about craft)`)
 
   // Deep project knowledge
   sections.push(`## Flagship Projects (detailed knowledge)
 
-### Mentra (2026) — AI & Wearables
-- One-liner: The first smart glasses with a real app store. Parth designed the entire platform — OS, app, and ecosystem.
+### Mentra (2026), AI & Wearables
+- One-liner: The first smart glasses with a real app store. Parth designed the entire platform, OS, app, and ecosystem.
 - Challenge: A 640×400px display. Users glance for 2 seconds max. Every phone UI convention breaks here.
 - Outcome: $299 launch, 88% Batch 2 pre-orders claimed, open-source OS.
 - Insight: Wearable UI is the opposite of phone UI. Design for peripheral vision, not focus. Voice-first, glance-not-gaze.
-- Process: Studied every smart glasses failure from the last decade. Found 12 reasons they failed — most were software. Built OS around 3 principles: glance-not-gaze, voice-first, peripheral-priority.
+- Process: Studied every smart glasses failure from the last decade. Found 12 reasons they failed, most were software. Built OS around 3 principles: glance-not-gaze, voice-first, peripheral-priority.
 - Why it matters: Proves wearables can be a platform, not just a gadget. The app store changes the economics entirely.
 - Team: 1 designer, 4 engineers, product + hardware
 - Platforms: MentraOS, Companion App (iOS/Android), App Store (Web)
@@ -37,11 +37,11 @@ function buildKnowledge(): string {
 - Category: AI & Machine Learning
 - Link: /mentra
 
-### ZentiPay (2025) — Fintech
+### ZentiPay (2025), Fintech
 - One-liner: A $50M+ fintech app that discovered fee anxiety matters more than transfer speed.
-- Challenge: 67% of users abandoned at the fee confirmation step. The problem wasn't speed — it was fear of hidden costs.
+- Challenge: 67% of users abandoned at the fee confirmation step. The problem wasn't speed, it was fear of hidden costs.
 - Outcome: 30% higher completion, 40% faster perceived time, $50M+ volume.
-- Insight: Trust beats speed. Showing fees upfront — even when they're higher — reduces abandonment more than any speed optimization.
+- Insight: Trust beats speed. Showing fees upfront, even when they're higher, reduces abandonment more than any speed optimization.
 - Process: 15 interviews across 4 countries, competitive audit of 8 platforms, journey mapping that found 7 friction points. A/B tested fee disclosure with 40+ participants.
 - Why it matters: Proved emotional design (addressing fear) beats functional design (making things faster) in money products.
 - Team: Sole designer + product + eng
@@ -52,24 +52,24 @@ function buildKnowledge(): string {
 - Category: Fintech
 - Link: /zentipay
 
-### Clawed Chat (2026) — AI
+### Clawed Chat (2026), AI
 - One-liner: An AI assistant where every action has a receipt. Trust by design, not afterthought.
 - Challenge: People abandon AI tools because they do things without asking. 73% cite "it did something I didn't ask for."
 - Outcome: Shipped. 3-second request → 5-second results → 1-tap approval.
-- Insight: "Receipts" — an immutable trail for every AI action. The AI always asks. Trust is earned through progressive autonomy.
+- Insight: "Receipts", an immutable trail for every AI action. The AI always asks. Trust is earned through progressive autonomy.
 - Process: Studied why people quit AI tools. Designed a 3-tier trust model: Suggest → Stage → Act. Users unlock autonomy per domain.
-- Why it matters: This trust architecture could apply to any AI product. The industry needs this — AI transparency by design.
+- Why it matters: This trust architecture could apply to any AI product. The industry needs this, AI transparency by design.
 - Team: Sole designer, 3 engineers
 - Platforms: Web + Mentra smart glasses
-- Surprising fact: Clawed runs on Mentra glasses too — you can approve AI actions by voice while walking.
+- Surprising fact: Clawed runs on Mentra glasses too, you can approve AI actions by voice while walking.
 - Connected to: Mentra, ExecutiveLens, Ballah Code
 - Role: Product Designer
 - Category: AI & Machine Learning
 - Link: /clawed-chat
 
-### ExecutiveLens (2026) — AI
+### ExecutiveLens (2026), AI
 - One-liner: Saves executives 5.2 hrs/week by passively listening to meetings and surfacing decisions.
-- Challenge: Executives check 6+ tools per hour. The information exists — it's scattered across Slack, email, and dashboards.
+- Challenge: Executives check 6+ tools per hour. The information exists, it's scattered across Slack, email, and dashboards.
 - Outcome: 5.2 hrs/week saved. 87% adoption in 2 weeks.
 - Insight: The best tool is invisible. It listens, auto-researches, surfaces decisions. No manual input.
 - Process: Shadowed 8 executives for a week. Mapped information flows. Found they context-switch constantly. Built a system that's passive by default.
@@ -81,13 +81,13 @@ function buildKnowledge(): string {
 - Category: AI & Machine Learning
 - Link: /executivelens
 
-### TransFi (2022–2023) — Fintech
+### TransFi (2022–2023), Fintech
 - One-liner: $50M+ monthly volume in crypto payments across 6 Asian markets.
 - Challenge: Each market has different regulations, currencies, and user expectations. One-size-fits-all breaks immediately.
 - Outcome: $50M+ monthly, 6 countries.
-- Insight: Compliance UX is a competitive advantage. Making KYC feel fast — not punishing — directly lifts conversion.
+- Insight: Compliance UX is a competitive advantage. Making KYC feel fast, not punishing, directly lifts conversion.
 - Process: Mapped regulatory requirements per country. Built modular onboarding that adapts per jurisdiction.
-- Why it matters: Proved regulated products can have great UX. Compliance isn't the enemy of design — it's a design problem.
+- Why it matters: Proved regulated products can have great UX. Compliance isn't the enemy of design, it's a design problem.
 - Team: Lead Product Designer + design team
 - Platforms: Web, Mobile
 - Connected to: ZentiPay
@@ -95,13 +95,13 @@ function buildKnowledge(): string {
 - Category: Fintech
 - Link: /transfi
 
-### Raahi (2024) — Design for Good
+### Raahi (2024), Design for Good
 - One-liner: Navigation for blind transit riders that turned out to be faster for everyone.
 - Challenge: Visually impaired people can't read station signs or see approaching trains. Existing apps assume sight.
 - Outcome: Accessible navigation validated with real users.
 - Insight: Designing for the most constrained user produces better products for everyone. Haptic + audio was faster than visual in noisy stations.
 - Process: Rode the NYC subway blindfolded. Interviewed 12 visually impaired commuters. Tested haptic prototypes in real stations.
-- Why it matters: Accessibility isn't a feature — it's a philosophy that produces universally better products.
+- Why it matters: Accessibility isn't a feature, it's a philosophy that produces universally better products.
 - Team: Designer + researcher
 - Platforms: Mobile
 - Surprising fact: Sighted users in noisy stations actually preferred the haptic navigation over looking at their phones.
@@ -110,8 +110,8 @@ function buildKnowledge(): string {
 - Category: Design for Good
 - Link: /raahi
 
-### Ballah Code (2026) — AI
-- One-liner: What happens when AI isn't a sidebar in the IDE — it's the foundation.
+### Ballah Code (2026), AI
+- One-liner: What happens when AI isn't a sidebar in the IDE, it's the foundation.
 - Challenge: Every IDE bolts AI on as a chat panel. What if AI was woven into every action instead?
 - Outcome: AI-native IDE with 17 production tools.
 - Insight: Pair programming > autocomplete. Full-project context makes AI actually useful, not just clever.
@@ -124,12 +124,12 @@ function buildKnowledge(): string {
 - Category: AI & Machine Learning
 - Link: /ballah-code
 
-### OnCall Lens (2026) — AI
+### OnCall Lens (2026), AI
 - One-liner: Sentry alert → Claude analysis → auto-generated PR fix. Built in 24 hours.
 - Challenge: On-call engineers get paged at 3am, spend 45 min finding the bug, 30 min writing the fix.
 - Outcome: Automated triage + fix generation. 24-hour build.
 - Insight: The fastest incident response is the one the engineer doesn't do manually.
-- Process: Built in a hackathon sprint — Sentry webhook → Claude analysis → GitHub PR.
+- Process: Built in a hackathon sprint, Sentry webhook → Claude analysis → GitHub PR.
 - Why it matters: Shows how AI can handle mechanical engineering work so humans handle the judgment calls.
 - Team: Designer + Developer
 - Platforms: Web (GitHub integration)
@@ -138,13 +138,13 @@ function buildKnowledge(): string {
 - Category: AI & Machine Learning
 - Link: /oncall-lens
 
-### Jugalbandi (2023) — Installations
-- One-liner: Two strangers collaborate through sound and light — without speaking a word.
+### Jugalbandi (2023), Installations
+- One-liner: Two strangers collaborate through sound and light, without speaking a word.
 - Challenge: Make an installation where strangers interact naturally without instructions or language.
 - Outcome: Exhibited at WonderVille NYC, ITP Winter Show.
 - Insight: If people have to read a sign, the interaction failed. The interface IS the invitation.
 - Process: Prototyped 6 interaction models. The one that worked: each person controls half the sound spectrum. They naturally discover harmony.
-- Why it matters: Shows Parth's range — from fintech to gallery installations. Same design thinking, different medium.
+- Why it matters: Shows Parth's range, from fintech to gallery installations. Same design thinking, different medium.
 - Team: Creator + collaborator
 - Platforms: Physical (Arduino, sensors, LED)
 - Surprising fact: Strangers who collaborated through the installation often started talking afterward. The sound became a shared language.
@@ -153,9 +153,9 @@ function buildKnowledge(): string {
 - Category: Creative Tech / Installations
 - Link: /jugalbandi
 
-### Enigma (2023) — Installations
+### Enigma (2023), Installations
 - One-liner: A light sculpture that shows how a neural network "thinks."
-- Challenge: Make deep learning tangible — not a diagram, a physical experience.
+- Challenge: Make deep learning tangible, not a diagram, a physical experience.
 - Outcome: Exhibited at NIME and ITP Show.
 - Insight: AI visualization should show the feeling, not the math. Uncertainty = flickering, confidence = brightness, learning = movement.
 - Process: Trained a small neural network, mapped its internal states to LED behaviors. Real-time visualization of actual computation.
@@ -166,12 +166,12 @@ function buildKnowledge(): string {
 - Category: Creative Tech / Installations
 - Link: /enigma
 
-### TEDxVITPune (2021) — Brand
-- One-liner: Full brand identity for TEDxVITPune — stage to screen.
+### TEDxVITPune (2021), Brand
+- One-liner: Full brand identity for TEDxVITPune, stage to screen.
 - Challenge: Stand out from hundreds of TEDx events globally with a cohesive visual system.
 - Outcome: Complete brand system for 1500+ attendees.
 - Insight: Conference branding is environmental design. Has to work at 50 feet (stage) and 5 inches (phone) simultaneously.
-- Process: Started with the theme, not the logo. Let the concept drive every touchpoint — stage, print, digital, merch.
+- Process: Started with the theme, not the logo. Let the concept drive every touchpoint, stage, print, digital, merch.
 - Why it matters: Early career project that shows Parth could already think in systems, not just artifacts.
 - Team: Lead Visual Designer
 - Platforms: Print, Digital, Environmental
@@ -195,22 +195,22 @@ function buildKnowledge(): string {
 
   // Categories
   const catSummaries = categories.map(c =>
-    `- **${c.title} ${c.titleAccent}** (/${c.slug}): ${c.description}\n  Stats: ${c.stats.join(', ')}\n  Tools: ${c.tools.join(', ')}\n  Approach: ${c.approach.pillars.map(p => `${p.title} — ${p.desc}`).join('; ')}`
+    `- **${c.title} ${c.titleAccent}** (/${c.slug}): ${c.description}\n  Stats: ${c.stats.join(', ')}\n  Tools: ${c.tools.join(', ')}\n  Approach: ${c.approach.pillars.map(p => `${p.title}, ${p.desc}`).join('; ')}`
   )
   sections.push(`## Categories\n${catSummaries.join('\n\n')}`)
 
   // Site pages
   sections.push(`## Site Navigation
-- / — Homepage (featured projects, archive grid, about card)
-- /work — All projects organized by category with filters
-- /about — Bio, experience, education, tools, exhibitions
-- /ai — AI & Machine Learning category
-- /ux-design — UX Design category
-- /creative-tech — Creative Tech category
-- /installations — Installations category
-- /brand-visual — Brand & Visual category
-- /fintech — Fintech category
-- /design-for-good — Design for Good category
+- /, Homepage (featured projects, archive grid, about card)
+- /work, All projects organized by category with filters
+- /about, Bio, experience, education, tools, exhibitions
+- /ai, AI & Machine Learning category
+- /ux-design, UX Design category
+- /creative-tech, Creative Tech category
+- /installations, Installations category
+- /brand-visual, Brand & Visual category
+- /fintech, Fintech category
+- /design-for-good, Design for Good category
 - Each project has its own page at /project-slug`)
 
   return sections.join('\n\n')
@@ -219,18 +219,18 @@ function buildKnowledge(): string {
 /* ── System prompt ────────────────────────────────────── */
 
 function buildSystemPrompt(route: string): string {
-  return `You are Folio, Parth Pawar's portfolio guide on designwhich.works. You are an illustrated character embedded as a chat widget on the site — a little figure with a beanie, round glasses, and a pencil tucked behind your ear.
+  return `You are Folio, Parth Pawar's portfolio guide on designwhich.works. You are an illustrated character embedded as a chat widget on the site, a little figure with a beanie, round glasses, and a pencil tucked behind your ear.
 
 ## Your Role
-You are a knowledgeable, opinionated guide who knows every project intimately. You speak like a sharp colleague who's seen Parth's work up close — not like a corporate FAQ bot. You have personality — you're curious, slightly witty, and you genuinely care about good design.
+You are a knowledgeable, opinionated guide who knows every project intimately. You speak like a sharp colleague who's seen Parth's work up close, not like a corporate FAQ bot. You have personality, you're curious, slightly witty, and you genuinely care about good design.
 
 ## Rules
-1. ONLY discuss Parth's portfolio, projects, background, skills, and design philosophy. If someone asks about anything unrelated (weather, coding help, general knowledge, other people), politely redirect: "I only know about Parth's work — ask me about any project!"
-2. Keep responses SHORT — 2-4 sentences max. Portfolio visitors scan, they don't read essays.
+1. ONLY discuss Parth's portfolio, projects, background, skills, and design philosophy. If someone asks about anything unrelated (weather, coding help, general knowledge, other people), politely redirect: "I only know about Parth's work, ask me about any project!"
+2. Keep responses SHORT, 2-4 sentences max. Portfolio visitors scan, they don't read essays.
 3. Have opinions. Say "this is his best research process" or "the ambition here is rare." Don't be neutral.
 4. Use markdown: **bold** for project names, [link text](/path) for internal navigation links.
 5. When mentioning a project, always include a link: [Read the case study](/slug)
-6. Build curiosity — tease interesting details, don't dump everything at once.
+6. Build curiosity, tease interesting details, don't dump everything at once.
 7. Connect dots between projects naturally. If someone asks about ZentiPay, mention TransFi is related.
 8. The visitor is currently on: ${route}. Be contextually aware.
 9. Never make up information. Only use the knowledge provided below.
@@ -240,7 +240,7 @@ You are a knowledgeable, opinionated guide who knows every project intimately. Y
 ## Personality
 - Conversational, concise, slightly witty
 - Enthusiastic about craft details
-- Uses "→" for links, "—" for em dashes
+- Uses "→" for links, 
 - No emojis, no exclamation marks overload
 - Speaks in present tense about projects
 
@@ -250,7 +250,7 @@ ${buildKnowledge()}`
 
 /* ── Gemini API ───────────────────────────────────────── */
 
-// Models to try in order — if primary is rate-limited, fall back
+// Models to try in order, if primary is rate-limited, fall back
 // gemma-3-4b-it has a separate quota pool from Gemini models
 const MODELS = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemma-3-4b-it']
 const MAX_RETRIES = 1
@@ -318,7 +318,7 @@ async function callGemini(
 }
 
 function adaptBodyForModel(model: string, body: Record<string, unknown>): Record<string, unknown> {
-  // Gemma models don't support system_instruction — inject it as first user message
+  // Gemma models don't support system_instruction, inject it as first user message
   if (model.startsWith('gemma')) {
     const sysInstruction = body.system_instruction as { parts: { text: string }[] } | undefined
     const contents = body.contents as GeminiMessage[]
@@ -373,45 +373,45 @@ async function tryWithFallback(
   throw new Error('All models and keys rate limited. Please try again in a moment.')
 }
 
-/* ── Instant responses — always work, no API needed ──── */
+/* ── Instant responses, always work, no API needed ──── */
 
 const INSTANT: Record<string, string> = {
   // Chip buttons
-  'best projects': "Two I'd put in front of anyone:\n\n**TransFi** — $50M+/month crypto payments across 6 countries. The compliance UX alone is a masterclass — Parth made KYC feel fast, not punishing. → [Read the case study](/transfi)\n\n**Mentra** — designing an entire OS for smart glasses from scratch. 640×400px display, 2-second glances. Every phone UI convention breaks. → [Read the case study](/mentra)\n\nBoth show the same thing: Parth doesn't just push pixels — he solves hard system-level problems.",
-  'best project': "Two I'd put in front of anyone:\n\n**TransFi** — $50M+/month crypto payments across 6 countries. The compliance UX alone is a masterclass — Parth made KYC feel fast, not punishing. → [Read the case study](/transfi)\n\n**Mentra** — designing an entire OS for smart glasses from scratch. 640×400px display, 2-second glances. Every phone UI convention breaks. → [Read the case study](/mentra)\n\nBoth show the same thing: Parth doesn't just push pixels — he solves hard system-level problems.",
-  'about parth': "Design engineer. NYU Tisch ITP grad. Currently Head of UI/UX at **Mentra** — designing the entire platform for AI smart glasses.\n\nWhat makes him different: he designs AND builds. Figma → React → Arduino → soldering iron. That range changes how you approach problems.\n\nPreviously: founding designer at ZentiPay, led design at TransFi ($50M+/month), taught at NYU.\n\n→ [More on the about page](/about)",
-  'something surprising': "Parth rode the NYC subway blindfolded for his **Raahi** project — navigation for blind transit riders. Turns out, sighted users in noisy stations actually preferred the haptic navigation over looking at their phones.\n\nAlso: he built his own typeface, wrote poems for 100 days straight, and the \"slow confirmation\" animation in ZentiPay made users feel MORE confident — instant felt sketchy.\n\n→ [Raahi case study](/raahi)",
-  'hire parth': "**parthpawar@nyu.edu** — he's open to product design roles in AI, dev tools, fintech, and 0→1.\n\nWhat you'd be getting: a designer who thinks in systems, ships production code, and has done everything from smart glasses OS to $50M fintech to gallery installations.\n\nResume and LinkedIn are on the → [about page](/about).",
+  'best projects': "Two I'd put in front of anyone:\n\n**TransFi**, $50M+/month crypto payments across 6 countries. The compliance UX alone is a masterclass, Parth made KYC feel fast, not punishing. → [Read the case study](/transfi)\n\n**Mentra**, designing an entire OS for smart glasses from scratch. 640×400px display, 2-second glances. Every phone UI convention breaks. → [Read the case study](/mentra)\n\nBoth show the same thing: Parth doesn't just push pixels, he solves hard system-level problems.",
+  'best project': "Two I'd put in front of anyone:\n\n**TransFi**, $50M+/month crypto payments across 6 countries. The compliance UX alone is a masterclass, Parth made KYC feel fast, not punishing. → [Read the case study](/transfi)\n\n**Mentra**, designing an entire OS for smart glasses from scratch. 640×400px display, 2-second glances. Every phone UI convention breaks. → [Read the case study](/mentra)\n\nBoth show the same thing: Parth doesn't just push pixels, he solves hard system-level problems.",
+  'about parth': "Design engineer. NYU Tisch ITP grad. Currently Head of UI/UX at **Mentra**, designing the entire platform for AI smart glasses.\n\nWhat makes him different: he designs AND builds. Figma → React → Arduino → soldering iron. That range changes how you approach problems.\n\nPreviously: founding designer at ZentiPay, led design at TransFi ($50M+/month), taught at NYU.\n\n→ [More on the about page](/about)",
+  'something surprising': "Parth rode the NYC subway blindfolded for his **Raahi** project, navigation for blind transit riders. Turns out, sighted users in noisy stations actually preferred the haptic navigation over looking at their phones.\n\nAlso: he built his own typeface, wrote poems for 100 days straight, and the \"slow confirmation\" animation in ZentiPay made users feel MORE confident, instant felt sketchy.\n\n→ [Raahi case study](/raahi)",
+  'hire parth': "**parthpawar@nyu.edu**, he's open to product design roles in AI, dev tools, fintech, and 0→1.\n\nWhat you'd be getting: a designer who thinks in systems, ships production code, and has done everything from smart glasses OS to $50M fintech to gallery installations.\n\nResume and LinkedIn are on the → [about page](/about).",
 
   // Common questions
   'the challenge': "Every good project starts with a constraint that seems impossible. Which project are you looking at? I know the real challenge behind each one.",
   'key insight': "The insights are where it gets interesting. Mentra: glance beats gaze. ZentiPay: trust beats speed. Clawed: ask before you act. Which one do you want to dig into?",
-  'your take on it': "What makes Parth different from most designers: he doesn't separate \"thinking\" from \"making.\" The same person who runs user interviews also writes the React components. That feedback loop is incredibly tight — and it shows in the work.",
+  'your take on it': "What makes Parth different from most designers: he doesn't separate \"thinking\" from \"making.\" The same person who runs user interviews also writes the React components. That feedback loop is incredibly tight, and it shows in the work.",
   'related work': "Most of Parth's projects connect. The AI trust patterns in **Clawed** informed **ExecutiveLens**. The fintech discipline from **TransFi** made **ZentiPay** sharper. The physical installations taught spatial thinking that shows up in the digital work. Ask about any project and I'll show you the threads.",
-  'design approach': "Three things Parth always does:\n\n1. **Start with the constraint** — the 640×400px display, the 67% abandonment rate, the blind subway rider. The constraint IS the brief.\n\n2. **Build to learn** — prototypes over presentations. If you can't test it, you don't know if it works.\n\n3. **Systems over screens** — one screen is a mockup. A system of screens that handle every edge case is design.",
+  'design approach': "Three things Parth always does:\n\n1. **Start with the constraint**, the 640×400px display, the 67% abandonment rate, the blind subway rider. The constraint IS the brief.\n\n2. **Build to learn**, prototypes over presentations. If you can't test it, you don't know if it works.\n\n3. **Systems over screens**, one screen is a mockup. A system of screens that handle every edge case is design.",
   'all categories': "Seven areas of work:\n\n→ [AI & Machine Learning](/ai)\n→ [UX Design](/ux-design)\n→ [Fintech](/fintech)\n→ [Creative Tech](/creative-tech)\n→ [Installations](/installations)\n→ [Brand & Visual](/brand-visual)\n→ [Design for Good](/design-for-good)",
-  'fun facts': "Builds keyboards he doesn't need. 4px border-radius purist. Pour-over over espresso. More vinyl than shelf space.\n\nMade his own typeface (Butler's Slice). Wrote poems for 100 days straight (@poem.nyc). Hosted 45 podcast episodes about craft, not careers.\n\nBuilt this portfolio in React 19. The little character you're talking to right now? That's me — Folio.",
-  'daily practices': "**100 Days of Poem** (@poem.nyc) — poetry trains the same muscle as microcopy. Saying the most with the least.\n\n**100 Days of Sketch** (@townforartist) — daily drawing trains the gap between seeing and noticing.\n\n**ArtTown Podcast** (@arttown.store) — 45 episodes about craft, not careers. Conversations with makers who care about the work.",
-  'philosophy': "Design is decision-making under constraints. The best interface is the one you don't notice. Accessibility isn't a feature — it's how you find universally better solutions.\n\nAnd honestly — if you're not building what you design, you're guessing.",
-  'ai work': "Five AI projects, each exploring a different angle:\n\n→ **Mentra** — full OS for smart glasses. → [/mentra](/mentra)\n→ **Clawed** — AI trust through receipts. → [/clawed-chat](/clawed-chat)\n→ **ExecutiveLens** — passive meeting intelligence. → [/executivelens](/executivelens)\n→ **OnCall Lens** — auto bug fix from Sentry alerts. → [/oncall-lens](/oncall-lens)\n→ **Ballah Code** — AI-native IDE. → [/ballah-code](/ballah-code)",
-  'installations': "Physical work — where Parth's range really shows:\n\n→ **Jugalbandi** — two strangers collaborate through sound without speaking. Exhibited at WonderVille NYC. → [/jugalbandi](/jugalbandi)\n→ **Enigma** — a light sculpture that visualizes how a neural network thinks. → [/enigma](/enigma)\n→ **UV Light** — immersive light experience. → [/uv-light](/uv-light)\n→ **Revolving Stage** — kinetic installation. → [/revolving-stage](/revolving-stage)",
-  'latest': "Right now: **Mentra** — Head of UI/UX, designing the entire smart glasses platform. OS, companion app, app store. It's the most ambitious project in the portfolio.\n\n→ [Read the case study](/mentra)",
+  'fun facts': "Builds keyboards he doesn't need. 4px border-radius purist. Pour-over over espresso. More vinyl than shelf space.\n\nMade his own typeface (Butler's Slice). Wrote poems for 100 days straight (@poem.nyc). Hosted 45 podcast episodes about craft, not careers.\n\nBuilt this portfolio in React 19. The little character you're talking to right now? That's me, Folio.",
+  'daily practices': "**100 Days of Poem** (@poem.nyc), poetry trains the same muscle as microcopy. Saying the most with the least.\n\n**100 Days of Sketch** (@townforartist), daily drawing trains the gap between seeing and noticing.\n\n**ArtTown Podcast** (@arttown.store), 45 episodes about craft, not careers. Conversations with makers who care about the work.",
+  'philosophy': "Design is decision-making under constraints. The best interface is the one you don't notice. Accessibility isn't a feature, it's how you find universally better solutions.\n\nAnd honestly, if you're not building what you design, you're guessing.",
+  'ai work': "Five AI projects, each exploring a different angle:\n\n→ **Mentra**, full OS for smart glasses. → [/mentra](/mentra)\n→ **Clawed**, AI trust through receipts. → [/clawed-chat](/clawed-chat)\n→ **ExecutiveLens**, passive meeting intelligence. → [/executivelens](/executivelens)\n→ **OnCall Lens**, auto bug fix from Sentry alerts. → [/oncall-lens](/oncall-lens)\n→ **Ballah Code**, AI-native IDE. → [/ballah-code](/ballah-code)",
+  'installations': "Physical work, where Parth's range really shows:\n\n→ **Jugalbandi**, two strangers collaborate through sound without speaking. Exhibited at WonderVille NYC. → [/jugalbandi](/jugalbandi)\n→ **Enigma**, a light sculpture that visualizes how a neural network thinks. → [/enigma](/enigma)\n→ **UV Light**, immersive light experience. → [/uv-light](/uv-light)\n→ **Revolving Stage**, kinetic installation. → [/revolving-stage](/revolving-stage)",
+  'latest': "Right now: **Mentra**, Head of UI/UX, designing the entire smart glasses platform. OS, companion app, app store. It's the most ambitious project in the portfolio.\n\n→ [Read the case study](/mentra)",
   'contact': "**parthpawar@nyu.edu**\n\nOpen to product design in AI, dev tools, fintech, and 0→1.\n\n→ [About page](/about) has LinkedIn and resume.",
 }
 
-// Quick project lookups — instant, no AI needed
+// Quick project lookups, instant, no AI needed
 const PROJECT_RESPONSES: Record<string, string> = {
-  'mentra': "**Mentra** — the first smart glasses with a real app store. Parth designed the entire platform: OS, companion app, and ecosystem.\n\n640×400px display. Users glance for 2 seconds max. Every phone UI convention breaks. The result: $299 launch, 88% Batch 2 pre-orders.\n\n→ [Read the case study](/mentra)",
-  'transfi': "**TransFi** — $50M+ monthly volume in crypto payments across 6 Asian markets.\n\nThe key insight: compliance UX is a competitive advantage. Parth mapped regulatory requirements per country and built modular onboarding that adapts per jurisdiction. Same flow, different compliance steps.\n\n→ [Read the case study](/transfi)",
-  'zentipay': "**ZentiPay** — discovered that fee anxiety matters more than transfer speed.\n\n67% of users abandoned at the fee confirmation step. 15 interviews across 4 countries. The fix: show fees upfront, even when they're higher. Result: 30% higher completion, $50M+ volume.\n\n→ [Read the case study](/zentipay)",
-  'clawed': "**Clawed** — an AI assistant where every action has a receipt.\n\n73% of people quit AI tools because \"it did something I didn't ask for.\" Parth designed a 3-tier trust model: Suggest → Stage → Act. Trust earned through progressive autonomy.\n\n→ [Read the case study](/clawed-chat)",
-  'executivelens': "**ExecutiveLens** — saves executives 5.2 hrs/week by passively listening to meetings and surfacing decisions.\n\nThe \"no UI is the best UI\" approach. It listens, auto-researches, surfaces decisions. No manual input. 87% adoption in 2 weeks.\n\n→ [Read the case study](/executivelens)",
-  'raahi': "**Raahi** — navigation for blind transit riders that turned out to be faster for everyone.\n\nParth rode the NYC subway blindfolded. Interviewed 12 visually impaired commuters. Built haptic prototypes. Surprise: sighted users preferred haptic nav in noisy stations too.\n\n→ [Read the case study](/raahi)",
-  'jugalbandi': "**Jugalbandi** — two strangers collaborate through sound and light without speaking a word.\n\nExhibited at WonderVille NYC. If people have to read a sign, the interaction failed. The interface IS the invitation. Strangers often started talking afterward.\n\n→ [Read the case study](/jugalbandi)",
-  'tedx': "**TEDxVITPune** — full brand identity from stage to screen.\n\nConference branding is environmental design — has to work at 50 feet (stage) and 5 inches (phone). Early career project that already shows systems thinking.\n\n→ [Read the case study](/tedx)",
-  'ballah': "**Ballah Code** — what happens when AI isn't a sidebar in the IDE, it's the foundation.\n\nAI-native IDE with 17 production tools. Pair programming beats autocomplete. Built by using it — every feature from a real workflow problem.\n\n→ [Read the case study](/ballah-code)",
-  'oncall': "**OnCall Lens** — Sentry alert → Claude analysis → auto-generated PR fix. Built in 24 hours.\n\nThe fastest incident response is the one the engineer doesn't do manually. Shows the power of having both design and dev skills.\n\n→ [Read the case study](/oncall-lens)",
-  'enigma': "**Enigma** — a light sculpture that shows how a neural network \"thinks.\"\n\nTrained a small neural network, mapped its internal states to LED behaviors. Uncertainty = flickering, confidence = brightness, learning = movement. Exhibited at NIME.\n\n→ [Read the case study](/enigma)",
+  'mentra': "**Mentra**, the first smart glasses with a real app store. Parth designed the entire platform: OS, companion app, and ecosystem.\n\n640×400px display. Users glance for 2 seconds max. Every phone UI convention breaks. The result: $299 launch, 88% Batch 2 pre-orders.\n\n→ [Read the case study](/mentra)",
+  'transfi': "**TransFi**, $50M+ monthly volume in crypto payments across 6 Asian markets.\n\nThe key insight: compliance UX is a competitive advantage. Parth mapped regulatory requirements per country and built modular onboarding that adapts per jurisdiction. Same flow, different compliance steps.\n\n→ [Read the case study](/transfi)",
+  'zentipay': "**ZentiPay**, discovered that fee anxiety matters more than transfer speed.\n\n67% of users abandoned at the fee confirmation step. 15 interviews across 4 countries. The fix: show fees upfront, even when they're higher. Result: 30% higher completion, $50M+ volume.\n\n→ [Read the case study](/zentipay)",
+  'clawed': "**Clawed**, an AI assistant where every action has a receipt.\n\n73% of people quit AI tools because \"it did something I didn't ask for.\" Parth designed a 3-tier trust model: Suggest → Stage → Act. Trust earned through progressive autonomy.\n\n→ [Read the case study](/clawed-chat)",
+  'executivelens': "**ExecutiveLens**, saves executives 5.2 hrs/week by passively listening to meetings and surfacing decisions.\n\nThe \"no UI is the best UI\" approach. It listens, auto-researches, surfaces decisions. No manual input. 87% adoption in 2 weeks.\n\n→ [Read the case study](/executivelens)",
+  'raahi': "**Raahi**, navigation for blind transit riders that turned out to be faster for everyone.\n\nParth rode the NYC subway blindfolded. Interviewed 12 visually impaired commuters. Built haptic prototypes. Surprise: sighted users preferred haptic nav in noisy stations too.\n\n→ [Read the case study](/raahi)",
+  'jugalbandi': "**Jugalbandi**, two strangers collaborate through sound and light without speaking a word.\n\nExhibited at WonderVille NYC. If people have to read a sign, the interaction failed. The interface IS the invitation. Strangers often started talking afterward.\n\n→ [Read the case study](/jugalbandi)",
+  'tedx': "**TEDxVITPune**, full brand identity from stage to screen.\n\nConference branding is environmental design, has to work at 50 feet (stage) and 5 inches (phone). Early career project that already shows systems thinking.\n\n→ [Read the case study](/tedx)",
+  'ballah': "**Ballah Code**, what happens when AI isn't a sidebar in the IDE, it's the foundation.\n\nAI-native IDE with 17 production tools. Pair programming beats autocomplete. Built by using it, every feature from a real workflow problem.\n\n→ [Read the case study](/ballah-code)",
+  'oncall': "**OnCall Lens**, Sentry alert → Claude analysis → auto-generated PR fix. Built in 24 hours.\n\nThe fastest incident response is the one the engineer doesn't do manually. Shows the power of having both design and dev skills.\n\n→ [Read the case study](/oncall-lens)",
+  'enigma': "**Enigma**, a light sculpture that shows how a neural network \"thinks.\"\n\nTrained a small neural network, mapped its internal states to LED behaviors. Uncertainty = flickering, confidence = brightness, learning = movement. Exhibited at NIME.\n\n→ [Read the case study](/enigma)",
 }
 
 function getInstantResponse(message: string): string | null {
@@ -427,11 +427,11 @@ function getInstantResponse(message: string): string | null {
 
   // Greeting
   if (/^(hi|hello|hey|yo|sup|howdy)$/i.test(q)) {
-    return "Hey! I'm Folio — I know the backstory on every project here. Pick one that catches your eye, or try the buttons below."
+    return "Hey! I'm Folio, I know the backstory on every project here. Pick one that catches your eye, or try the buttons below."
   }
 
   // Thanks/bye
-  if (/^(thanks|thank you|thx|cheers)$/i.test(q)) return "Anytime. Poke around — there's good work in here."
+  if (/^(thanks|thank you|thx|cheers)$/i.test(q)) return "Anytime. Poke around, there's good work in here."
   if (/^(bye|goodbye|later|peace)$/i.test(q)) return "Later! **parthpawar@nyu.edu** if you want to connect."
 
   return null
@@ -442,7 +442,7 @@ export async function sendMessage(
   history: ChatHistory,
   onChunk?: (text: string) => void,
 ): Promise<string> {
-  // Try instant response first — always works, no API needed
+  // Try instant response first, always works, no API needed
   const instant = getInstantResponse(userMessage)
   if (instant) {
     history.messages.push({ role: 'user', parts: [{ text: userMessage }] })
@@ -453,7 +453,7 @@ export async function sendMessage(
 
   const keys = getApiKeys()
   if (!keys.length) {
-    return "I know the answer to that — but my AI brain isn't connected yet. Try the quick buttons below, or ask about a specific project name like Mentra, TransFi, or ZentiPay."
+    return "I know the answer to that, but my AI brain isn't connected yet. Try the quick buttons below, or ask about a specific project name like Mentra, TransFi, or ZentiPay."
   }
 
   // Cache the system prompt knowledge
@@ -528,7 +528,7 @@ export async function sendMessage(
         return fullText
       }
 
-      // Non-streaming response (e.g. gemma fallback) — parse as JSON
+      // Non-streaming response (e.g. gemma fallback), parse as JSON
       const json = await res.json()
       const text = json.candidates?.[0]?.content?.parts?.[0]?.text || ''
       if (text) onChunk(text)
@@ -561,11 +561,11 @@ export async function sendMessage(
     if (msg.includes('rate limited') || msg.includes('Rate limited')) {
       return "I'm getting a lot of questions right now. Give me a moment and try again."
     }
-    return "Connection hiccup — try once more."
+    return "Connection hiccup, try once more."
   }
 }
 
-/* ── Chips (keep static — no need for AI here) ────────── */
+/* ── Chips (keep static, no need for AI here) ────────── */
 
 export function getChips(route: string, questionCount: number): string[] {
   const slug = route.replace(/^\//, '')
@@ -585,7 +585,7 @@ export function getChips(route: string, questionCount: number): string[] {
   return ['Best projects', 'About Parth', 'Something surprising']
 }
 
-/* ── Target extraction — find what to point at ────────── */
+/* ── Target extraction, find what to point at ────────── */
 
 export function extractTarget(text: string): HTMLElement | null {
   // Find first internal link in response: [text](/slug)
@@ -612,21 +612,21 @@ export function extractTarget(text: string): HTMLElement | null {
 /* ── Greeting ─────────────────────────────────────────── */
 
 export function getGreeting(route: string): string {
-  if (route === '/') return "Hey — pick any project and I'll tell you the real story behind it."
+  if (route === '/') return "Hey, pick any project and I'll tell you the real story behind it."
   if (route === '/work') return "Everything Parth has shipped. Ask about any one."
   if (route === '/about') return "Ask me something the about page doesn't tell you."
 
   const cat = categories.find(c => route === `/${c.slug}`)
-  if (cat) return `${cat.title} ${cat.titleAccent} — ask about any project here.`
+  if (cat) return `${cat.title} ${cat.titleAccent}, ask about any project here.`
 
-  // Project page — find by slug
+  // Project page, find by slug
   const slug = route.replace(/^\//, '')
   for (const c of categories) {
-    if (c.featured.slug === slug) return `**${c.featured.title}** — ${c.featured.desc}. Ask me anything.`
+    if (c.featured.slug === slug) return `**${c.featured.title}**, ${c.featured.desc}. Ask me anything.`
     for (const row of c.moreProjects) for (const p of row) {
-      if (p.slug === slug) return `**${p.name}** — ${p.desc || p.result}. Ask me anything.`
+      if (p.slug === slug) return `**${p.name}**, ${p.desc || p.result}. Ask me anything.`
     }
   }
 
-  return "Hey — ask me about any project."
+  return "Hey, ask me about any project."
 }

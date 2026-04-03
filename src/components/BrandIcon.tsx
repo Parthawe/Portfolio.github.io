@@ -1,4 +1,4 @@
-/* Inline SVG brand icons — keeps bundle small, no external deps */
+/* Inline SVG brand icons, keeps bundle small, no external deps */
 import type { ReactNode } from 'react'
 
 const icons: Record<string, (size: number) => ReactNode> = {

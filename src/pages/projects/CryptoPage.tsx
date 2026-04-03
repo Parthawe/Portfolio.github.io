@@ -8,10 +8,10 @@ export default function CryptoPage() {
     <>
       <Helmet>
         <title>Crypto &amp; Web3 &middot; Parth Pawar</title>
-        <meta name="description" content="Product design for crypto and Web3 — secure, user-friendly interfaces for DeFi, cross-border payments, and blockchain products." />
+        <meta name="description" content="Product design for crypto and Web3, secure, user-friendly interfaces for DeFi, cross-border payments, and blockchain products." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Crypto & Web3 · Parth Pawar" />
-        <meta property="og:description" content="Product design for crypto and Web3 — secure, user-friendly interfaces for DeFi and blockchain." />
+        <meta property="og:description" content="Product design for crypto and Web3, secure, user-friendly interfaces for DeFi and blockchain." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/zentipay.png" />
       </Helmet>
 

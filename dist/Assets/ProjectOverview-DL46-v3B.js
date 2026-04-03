@@ -1,0 +1,1 @@
+import{j as e}from"./vendor-motion-D-QS5Tde.js";function l({id:s,sections:a}){return e.jsx("div",{className:"wrap project-overview reveal",id:s,children:e.jsx("div",{className:"proj-overview-grid",children:a.map(r=>e.jsxs("div",{children:[e.jsx("h2",{className:"section-label",children:r.label}),e.jsx("p",{className:"proj-desc",children:r.content})]},r.label))})})}export{l as P};

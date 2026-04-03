@@ -59,14 +59,14 @@ export function useTypewriter({ text, speed = 35, enabled = true }: UseTypewrite
 
     // If text grew (streaming), keep current index, just update tokens
     if (text.startsWith(prevTextRef.current) && wordIndex > 0) {
-      // Text grew — continue from where we are
+      // Text grew, continue from where we are
       if (wordIndex >= newTokens.length) {
         setDone(true)
       } else {
         setDone(false)
       }
     } else if (text !== prevTextRef.current) {
-      // Completely new text — restart
+      // Completely new text, restart
       setWordIndex(0)
       setDone(false)
     }

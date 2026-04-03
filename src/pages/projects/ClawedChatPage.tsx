@@ -23,7 +23,7 @@ export default function ClawedChatPage() {
     <>
       <Helmet>
         <title>Clawed &middot; Parth Pawar</title>
-        <meta name="description" content="Clawed.chat — Personal AI assistant for people on the go. Smart glasses integration, safety-first design, and receipts for every action. Case study by Parth Pawar, Product Designer." />
+        <meta name="description" content="Clawed.chat, Personal AI assistant for people on the go. Smart glasses integration, safety-first design, and receipts for every action. Case study by Parth Pawar, Product Designer." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Clawed · Parth Pawar" />
         <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action." />
@@ -49,7 +49,7 @@ export default function ClawedChatPage() {
           ]}
           liveUrl="https://clawed.chat"
           heroImage="/Assets/images/clawed.png"
-          heroAlt="Clawed.chat — Personal AI assistant with smart glasses integration"
+          heroAlt="Clawed.chat, Personal AI assistant with smart glasses integration"
         />
 
         <ProjectOverview
@@ -94,7 +94,7 @@ export default function ClawedChatPage() {
                 'Immutable receipt for every action taken',
                 'Staging area catches mistakes before they ship',
                 'Context-aware safety modes (driving vs. desk)',
-                'Trust builds gradually — users opt into more autonomy',
+                'Trust builds gradually, users opt into more autonomy',
               ],
             }}
           />
@@ -132,8 +132,8 @@ export default function ClawedChatPage() {
             <p>The glasses handle the moments. The web hub handles the thinking. It is where you manage your inbox, review AI-drafted responses, configure safety modes, browse your timeline of actions, and connect third-party services. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure.</p>
             <p>The Dashboard is the home screen &mdash; a single-glance summary of pending approvals, recent actions, inbox count, and active safety mode. No widgets to configure, no drag-and-drop customization. The AI decides what is important based on context and recency. If you have three emails waiting for approval, that is the first thing you see. If your glasses are disconnected, that surfaces as an alert. The Dashboard is not a canvas &mdash; it is an opinionated briefing.</p>
           </CsBody>
-          <CsImage src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.png" alt="Clawed.chat full website — hero section with 3D lobster mascot, deployment steps, comparison table, smart glasses integration, community testimonials, and CTA" />
-          <p className="cs-caption">The live clawed.chat marketing site — designed to communicate the safety-first AI philosophy with clear deployment steps, comparison tables, and smart glasses integration messaging</p>
+          <CsImage src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.png" alt="Clawed.chat full website, hero section with 3D lobster mascot, deployment steps, comparison table, smart glasses integration, community testimonials, and CTA" />
+          <p className="cs-caption">The live clawed.chat marketing site, designed to communicate the safety-first AI philosophy with clear deployment steps, comparison tables, and smart glasses integration messaging</p>
           <h3 className="cs-section-subtitle">Inbox &amp; Ask</h3>
           <CsBody>
             <p>The Inbox is not an email client. It is a triage interface. Every incoming message is pre-analyzed by the AI, tagged with urgency and suggested action, and presented as a card with three options: approve the AI&rsquo;s draft, edit before sending, or dismiss. You can clear your inbox without reading a single full email &mdash; the AI summaries are that good &mdash; but every action generates a receipt so you can audit later.</p>
@@ -171,7 +171,7 @@ export default function ClawedChatPage() {
               { feature: 'Execute actions', values: [false, false, true] },
               { feature: 'Requires approval per action', values: ['N/A', 'Always', 'Pre-approved types only'] },
               { feature: 'Generates receipts', values: [false, true, true] },
-              { feature: 'Best context', values: ['Driving, meetings', 'Default — daily use', 'Trusted, repetitive tasks'] },
+              { feature: 'Best context', values: ['Driving, meetings', 'Default, daily use', 'Trusted, repetitive tasks'] },
             ]}
           />
           <details className="cs-details">
@@ -228,8 +228,8 @@ export default function ClawedChatPage() {
         <CsSection id="cs-learnings" label="08 &mdash; Key Learnings" title="What Designing a Safety-First AI Taught Me">
           <CsFeatureGrid features={[
             { title: 'Constraints compress quality', desc: 'The "3 seconds to ask, 5 seconds to results, 1 tap to approve" constraint forced every interaction to be lean and decisive. Without it, Clawed would have become another general-purpose chat. With it, every screen had a job.' },
-            { title: 'Trust is a design material', desc: 'Receipts, safety modes, and approval workflows are not features bolted on. They are the product. Trust is not the absence of risk — it is the presence of transparency. Users need an AI that shows its work.' },
-            { title: 'Multi-device ≠ responsive', desc: 'Resizing layouts for different screens is solved. Making the same information architecture work across glasses, phone, and desktop — each with fundamentally different interaction models — requires rethinking, not resizing.' },
+            { title: 'Trust is a design material', desc: 'Receipts, safety modes, and approval workflows are not features bolted on. They are the product. Trust is not the absence of risk, it is the presence of transparency. Users need an AI that shows its work.' },
+            { title: 'Multi-device ≠ responsive', desc: 'Resizing layouts for different screens is solved. Making the same information architecture work across glasses, phone, and desktop, each with fundamentally different interaction models, requires rethinking, not resizing.' },
             { title: 'Principles > components', desc: 'The five design principles saved more time than any design system component. When a feature violated "Glanceable," we pointed at the principle and moved on. Good principles are operational, not aspirational.' },
           ]} />
         </CsSection>
@@ -240,7 +240,7 @@ export default function ClawedChatPage() {
           </CsBody>
           <CsSteps steps={[
             { num: '1', title: 'Workflow Automation', desc: 'Let users chain multiple actions into repeatable workflows: "Every Monday, summarize my unread emails, draft replies to urgent ones, and archive newsletters." The receipt system already supports multi-step audit trails.' },
-            { num: '2', title: 'Team Mode', desc: 'Extend safety modes to shared accounts. A team lead could set permission boundaries for the whole team — e.g., junior members use Draft First, senior members use Assisted — with receipts rolling up to a team dashboard.' },
+            { num: '2', title: 'Team Mode', desc: 'Extend safety modes to shared accounts. A team lead could set permission boundaries for the whole team, e.g., junior members use Draft First, senior members use Assisted, with receipts rolling up to a team dashboard.' },
             { num: '3', title: 'Context-Aware Auto-Switching', desc: 'Use location + calendar signals to automatically adjust safety modes. When your calendar says "Driving," the system switches to Read Only. When you arrive at the office, it reverts to your default. No manual toggle needed.' },
           ]} />
         </CsSection>

@@ -1,5 +1,5 @@
 /* ================================================
-   PORTFOLIO GRAVEYARD — painterly Ghibli atmosphere
+   PORTFOLIO GRAVEYARD, painterly Ghibli atmosphere
    ================================================ */
 
 .gy-page {
@@ -46,7 +46,7 @@
   z-index: 0;
 }
 
-/* ── Sky gradient — warm golden hour ── */
+/* ── Sky gradient, warm golden hour ── */
 .gy-sky {
   position: absolute;
   inset: 0;
@@ -78,7 +78,7 @@
 }
 
 /* ══════════════════════════════════════
-   SUN — flat paper-cut style
+   SUN, flat paper-cut style
    ══════════════════════════════════════ */
 .gy-sun {
   position: absolute;
@@ -101,7 +101,7 @@
 }
 
 /* ══════════════════════════════════════
-   MOON — flat paper-cut crescent
+   MOON, flat paper-cut crescent
    ══════════════════════════════════════ */
 .gy-moon {
   position: absolute;
@@ -130,7 +130,7 @@
 }
 
 /* ══════════════════════════════════════
-   STARS — hidden in light, visible in dark
+   STARS, hidden in light, visible in dark
    ══════════════════════════════════════ */
 .gy-stars {
   position: absolute;
@@ -184,7 +184,7 @@
 }
 
 /* ══════════════════════════════════════
-   FIREFLIES — dark mode only
+   FIREFLIES, dark mode only
    ══════════════════════════════════════ */
 .gy-fireflies {
   position: absolute;
@@ -214,7 +214,7 @@
 }
 
 /* ══════════════════════════════════════
-   CLOUDS — flat paper-cut style
+   CLOUDS, flat paper-cut style
    ══════════════════════════════════════ */
 .gy-cloud {
   position: absolute;
@@ -235,7 +235,7 @@
 }
 
 /* ══════════════════════════════════════
-   LIGHT RAYS — light mode only
+   LIGHT RAYS, light mode only
    ══════════════════════════════════════ */
 .gy-light-rays {
   position: absolute;
@@ -277,7 +277,7 @@
 }
 
 /* ══════════════════════════════════════
-   BIRDS — light mode only
+   BIRDS, light mode only
    ══════════════════════════════════════ */
 .gy-birds {
   position: absolute;
@@ -298,7 +298,7 @@
 }
 
 /* ══════════════════════════════════════
-   TREES — blurred + sketchy for hand-drawn watercolor
+   TREES, blurred + sketchy for hand-drawn watercolor
    ══════════════════════════════════════ */
 .gy-tree {
   position: absolute;
@@ -308,7 +308,7 @@
   opacity: 0.85;
 }
 
-/* Large tree — left side, framing */
+/* Large tree, left side, framing */
 .gy-tree--1 {
   left: -6%;
   bottom: 8%;
@@ -318,7 +318,7 @@
   z-index: 12;
 }
 
-/* Medium tree — right side */
+/* Medium tree, right side */
 .gy-tree--2 {
   right: -3%;
   bottom: 10%;
@@ -328,7 +328,7 @@
   z-index: 11;
 }
 
-/* Small tree — background center-left */
+/* Small tree, background center-left */
 .gy-tree--3 {
   left: 20%;
   bottom: 18%;
@@ -338,7 +338,7 @@
   z-index: 6;
 }
 
-/* Large tree — far right background */
+/* Large tree, far right background */
 .gy-tree--4 {
   right: 18%;
   bottom: 15%;
@@ -348,7 +348,7 @@
   z-index: 6;
 }
 
-/* Small tree — left mid */
+/* Small tree, left mid */
 .gy-tree--5 {
   left: 8%;
   bottom: 16%;
@@ -359,7 +359,7 @@
 }
 
 /* ══════════════════════════════════════
-   BUSHES — ground-level vegetation
+   BUSHES, ground-level vegetation
    ══════════════════════════════════════ */
 .gy-bushes {
   position: absolute;
@@ -395,7 +395,7 @@
 }
 
 /* ══════════════════════════════════════
-   HILLS — 3 layers for depth
+   HILLS, 3 layers for depth
    ══════════════════════════════════════ */
 .gy-hills-wrap {
   position: absolute;
@@ -428,7 +428,7 @@
 }
 
 /* ══════════════════════════════════════
-   WILDFLOWERS — scattered color dots
+   WILDFLOWERS, scattered color dots
    ══════════════════════════════════════ */
 .gy-flowers {
   position: absolute;
@@ -451,7 +451,7 @@
 }
 
 /* ══════════════════════════════════════
-   MIST — ground fog layer
+   MIST, ground fog layer
    ══════════════════════════════════════ */
 .gy-mist {
   position: absolute;
@@ -474,7 +474,7 @@
   to   { transform: translateX(3%); }
 }
 
-/* ── Atmospheric fade into ground — smooth blend ── */
+/* ── Atmospheric fade into ground, smooth blend ── */
 .gy-atmo-fade {
   position: absolute;
   bottom: 0;
@@ -547,7 +547,7 @@
 }
 
 /* ═══════════════════════════════════
-   TOMBSTONE — actual gravestone
+   TOMBSTONE, actual gravestone
    ═══════════════════════════════════ */
 .gy-tomb {
   --gy-soil: #7B6B58;
@@ -557,7 +557,7 @@
   align-items: center;
 }
 
-/* The stone itself — textured, rounded top, clickable */
+/* The stone itself, textured, rounded top, clickable */
 .gy-tomb-stone {
   position: relative;
   width: 100%;
@@ -607,7 +607,7 @@
   pointer-events: none;
 }
 
-/* Cracks — subtle weathering on dead stones */
+/* Cracks, subtle weathering on dead stones */
 .gy-tomb-crack {
   position: absolute;
   top: 15%;
@@ -676,7 +676,7 @@
   background: #D4A5E5;
 }
 
-/* ── Engraved inscription — carved into stone ── */
+/* ── Engraved inscription, carved into stone ── */
 .gy-tomb-inscription {
   display: flex;
   flex-direction: column;
@@ -721,7 +721,7 @@
   line-height: 1.2;
 }
 
-/* Decorative rule — engraved line */
+/* Decorative rule, engraved line */
 .gy-tomb-rule-engrave {
   width: 50px;
   height: 1px;
@@ -767,7 +767,7 @@
   margin-top: 4px;
 }
 
-/* ── Unearthed details — revealed on click ── */
+/* ── Unearthed details, revealed on click ── */
 .gy-tomb-details {
   width: 90%;
   max-height: 0;
@@ -968,7 +968,7 @@
 }
 
 /* ══════════════════════════════════════
-   DARK MODE — moonlit graveyard
+   DARK MODE, moonlit graveyard
    ══════════════════════════════════════ */
 [data-theme="dark"] .gy-page {
   --gy-ground-color: #0E1A0E;
@@ -1036,7 +1036,7 @@
 [data-theme="dark"] .gy-hero-title em { color: rgba(255, 255, 255, 0.25); }
 [data-theme="dark"] .gy-hero-subtitle { color: rgba(255, 255, 255, 0.35); }
 
-/* Tombstones — dark mode: darker stone with lighter engravings */
+/* Tombstones, dark mode: darker stone with lighter engravings */
 [data-theme="dark"] .gy-tomb {
   --gy-soil: #3A3228;
   --gy-soil-dark: #2E2820;
@@ -1104,7 +1104,7 @@
 [data-theme="dark"] .gy-epitaph-text { color: rgba(255, 255, 255, 0.35); }
 [data-theme="dark"] .gy-epitaph-sig { color: rgba(255, 255, 255, 0.2); }
 
-/* Remove dark nav overlay on graveyard — let it blend with the sky */
+/* Remove dark nav overlay on graveyard, let it blend with the sky */
 [data-theme="dark"] .page-graveyard .nav-left-pill {
   background: transparent;
   border-color: rgba(255, 255, 255, 0.06);

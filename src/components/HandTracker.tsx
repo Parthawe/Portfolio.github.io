@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { useBackToTop } from '../hooks/useBackToTop'
-// @ts-ignore — no type declarations available
+// @ts-ignore, no type declarations available
 import { HandLandmarker, FilesetResolver } from '@mediapipe/tasks-vision'
 
 /* ── Landmark indices ── */
@@ -166,7 +166,7 @@ export default function HandTracker() {
         minTrackingConfidence: 0.5,
       })
     } catch {
-      // GPU delegate failed — retry with CPU
+      // GPU delegate failed, retry with CPU
       console.warn('HandTracker: GPU delegate unavailable, falling back to CPU')
       hl = await HandLandmarker.createFromOptions(vision, {
         baseOptions: {
@@ -272,7 +272,7 @@ export default function HandTracker() {
                 }))
               }
             } else {
-              // Pinch held — check if moved enough to be a drag
+              // Pinch held, check if moved enough to be a drag
               const moveD = dist(pos.current, pinchStartPos.current)
               if (!isDragging.current && moveD > CLICK_MAX_MOVE) {
                 isDragging.current = true
@@ -313,7 +313,7 @@ export default function HandTracker() {
                 setTimeout(() => cursorRef.current?.classList.remove('hand-cursor--click'), 350)
               }
             } else {
-              // Long pinch but didn't move — release mouseup
+              // Long pinch but didn't move, release mouseup
               document.dispatchEvent(new MouseEvent('mouseup', {
                 bubbles: true, clientX: cx, clientY: cy
               }))
@@ -517,7 +517,7 @@ export default function HandTracker() {
       {/* ── Camera preview + inline step guide ── */}
       {active && (
         <div className="ht-preview-float">
-          {/* Inline step card — sits left of camera */}
+          {/* Inline step card, sits left of camera */}
           {tutorialStep >= 0 && tutorialStep < GESTURES.length && (
             <div className="ht-step-card">
               <div className="ht-step-top">
@@ -567,7 +567,7 @@ export default function HandTracker() {
               <span className="hand-tracker-dot" />
               {detected ? gesture === 'none' ? 'Tracking' : gesture : 'Show hand'}
             </div>
-            {/* Show guide button — only when tutorial is dismissed */}
+            {/* Show guide button, only when tutorial is dismissed */}
             {tutorialStep < 0 && (
               <button
                 className="hand-tracker-help"
@@ -598,7 +598,7 @@ export default function HandTracker() {
           </svg>
         </button>
 
-        {/* Divider — only shows when back-to-top is visible */}
+        {/* Divider, only shows when back-to-top is visible */}
         <span className={`bt-toolbar-divider ${showBackToTop ? 'bt-toolbar-divider--visible' : ''}`} />
 
         {/* Hand tracker toggle */}

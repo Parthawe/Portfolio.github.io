@@ -7,7 +7,7 @@ export default function PageLoader() {
     const onLoad = () => setLoaded(true);
 
     if (document.readyState === 'complete') {
-      // Document already loaded — fire immediately on next tick
+      // Document already loaded, fire immediately on next tick
       const timer = setTimeout(onLoad, 0);
       return () => clearTimeout(timer);
     }

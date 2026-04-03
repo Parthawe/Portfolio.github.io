@@ -19,10 +19,10 @@ export default function JugalbandiPage() {
     <>
       <Helmet>
         <title>Jugalbandi &middot; Parth Pawar</title>
-        <meta name="description" content="Jugalbandi showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments — a physical computing art installation created at NYU ITP." />
+        <meta name="description" content="Jugalbandi showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments, a physical computing art installation created at NYU ITP." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Jugalbandi · Parth Pawar" />
-        <meta property="og:description" content="Blending traditional analog instruments with modern digital MIDI — a physical computing installation." />
+        <meta property="og:description" content="Blending traditional analog instruments with modern digital MIDI, a physical computing installation." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/jugalbandi.png" />
       </Helmet>
 
@@ -46,7 +46,7 @@ export default function JugalbandiPage() {
         />
 
         {/* Hero Image */}
-        <CsImage src="/Assets/images/jugalbandi.png" alt="Jugalbandi — performer playing the Hexa-18 instrument on a dark stage with mechanized instruments" />
+        <CsImage src="/Assets/images/jugalbandi.png" alt="Jugalbandi, performer playing the Hexa-18 instrument on a dark stage with mechanized instruments" />
 
         {/* Overview */}
         <CsSection label="Overview" title="A duet in Hindi">

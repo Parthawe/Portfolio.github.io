@@ -13,7 +13,7 @@ export default function DrowningPage() {
     <>
       <Helmet>
         <title>Drowning &middot; Parth Pawar</title>
-        <meta name="description" content="Scenic design for stage production inspired by abandoned greenhouse aesthetics — a set design and creative technology project." />
+        <meta name="description" content="Scenic design for stage production inspired by abandoned greenhouse aesthetics, a set design and creative technology project." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Drowning · Parth Pawar" />
         <meta property="og:description" content="Scenic design for stage production inspired by abandoned greenhouse aesthetics." />
@@ -74,10 +74,10 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/N2050663334867775366614256779798/1.jpg" alt="Drowning — concept" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/N2050663334867775366614256779798/1.jpg" alt="Drowning, concept" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/Q2050663335033796063277642744342/2.jpg" alt="Drowning — concept detail" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/Q2050663335033796063277642744342/2.jpg" alt="Drowning, concept detail" loading="lazy" />
           </div>
         </section>
 
@@ -94,10 +94,10 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/W2050663335015349319203933192726/3.jpg" alt="Drowning — design" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/W2050663335015349319203933192726/3.jpg" alt="Drowning, design" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/F2050663334996902575130223641110/4.jpg" alt="Drowning — design detail" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/F2050663334996902575130223641110/4.jpg" alt="Drowning, design detail" loading="lazy" />
           </div>
         </section>
 
@@ -114,15 +114,15 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/J2050663334978455831056514089494/5.jpg" alt="Drowning — production" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/J2050663334978455831056514089494/5.jpg" alt="Drowning, production" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/N2050663334960009086982804537878/6.jpg" alt="Drowning — production detail" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/N2050663334960009086982804537878/6.jpg" alt="Drowning, production detail" loading="lazy" />
           </div>
         </section>
 
         {/* Reflections */}
-        <CsSection label="04 — Reflections" title="Designing for Physical Space">
+        <CsSection label="04, Reflections" title="Designing for Physical Space">
           <CsBody>
             <p><strong>Materials have opinions that pixels do not.</strong> In screen-based design, every surface behaves exactly as specified. Physical materials push back. The salvaged window frames we sourced were never perfectly square, the steel pipe had slight bends from previous use, and the live plants grew in directions we did not plan for. I learned to design with tolerances rather than absolutes &mdash; to set up a system sturdy enough to hold its intent while flexible enough to absorb the imperfections of real matter. This has since influenced how I approach digital design too: I now build with more resilient layouts that accommodate content variation rather than demanding pixel-perfect inputs.</p>
             <p><strong>A body in space changes everything.</strong> Scale models and renderings can approximate a set, but they cannot replicate what it feels like to stand inside one. During the first full walk-through with actors, I realized that the canopy beam I had set at 9 feet &mdash; which looked proportionally elegant in the model &mdash; created a powerful sense of compression when a 6-foot actor stood beneath it. That was an accident that became a feature: we kept it and lowered it further in certain zones. The lesson is that spatial design is fundamentally about the relationship between human bodies and structure, and that relationship can only be tested at full scale. In screen design, we can simulate scroll and interaction, but there is no substitute for putting a person in the space.</p>

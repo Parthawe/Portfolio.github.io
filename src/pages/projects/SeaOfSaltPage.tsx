@@ -14,7 +14,7 @@ export default function SeaOfSaltPage() {
     <>
       <Helmet>
         <title>Sea of Salt &middot; Parth Pawar</title>
-        <meta name="description" content="Sea of Salt — a kinetic installation where salt landscapes shift in response to real-time ocean data, visualizing the invisible connection between land and sea." />
+        <meta name="description" content="Sea of Salt, a kinetic installation where salt landscapes shift in response to real-time ocean data, visualizing the invisible connection between land and sea." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Sea of Salt &middot; Parth Pawar" />
         <meta property="og:description" content="Kinetic salt installation reacting to real-time ocean data." />
@@ -38,7 +38,7 @@ export default function SeaOfSaltPage() {
             { label: 'Tools', value: 'Arduino, Servo Motors, NOAA API, Laser Cutting' },
           ]}
           heroImage="/Assets/images/sea-of-salt.jpg"
-          heroAlt="Sea of Salt installation — kinetic salt landscape responding to ocean data"
+          heroAlt="Sea of Salt installation, kinetic salt landscape responding to ocean data"
         />
 
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Making the Ocean Visible on Land">

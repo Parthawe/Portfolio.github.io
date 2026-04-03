@@ -1,8 +1,8 @@
 /* ================================================
-   BACKWARDS COMPAT — old class names still in HTML
+   BACKWARDS COMPAT, old class names still in HTML
    ================================================ */
-/* Hero v2 classes from index.html — remap to new hero */
-/* CTA v2 from existing pages — restyle as new CTA */
+/* Hero v2 classes from index.html, remap to new hero */
+/* CTA v2 from existing pages, restyle as new CTA */
 .cta-v2 {
   padding: 6rem 0;
   text-align: center;

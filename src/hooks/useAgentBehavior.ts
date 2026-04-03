@@ -50,7 +50,7 @@ export function useAgentBehavior() {
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 
-  // ── Route change — walk briefly ──────────────────────
+  // ── Route change, walk briefly ──────────────────────
   useEffect(() => {
     if (prevRoute.current === location.pathname) return
     prevRoute.current = location.pathname
@@ -62,7 +62,7 @@ export function useAgentBehavior() {
     return () => clearTimeout(t)
   }, [location.pathname])
 
-  // ── Micro-actions loop — keeps Folio alive ───────────
+  // ── Micro-actions loop, keeps Folio alive ───────────
   useEffect(() => {
     const scheduleNext = () => {
       microTimer.current = setTimeout(() => {
@@ -138,7 +138,7 @@ export function useAgentBehavior() {
       startElLeft = rect.left
       startElBottom = window.innerHeight - rect.bottom
 
-      // Start long-press timer — 300ms hold activates drag mode
+      // Start long-press timer, 300ms hold activates drag mode
       longPressTimer = setTimeout(() => {
         dragReady = true
         setDragging(true)

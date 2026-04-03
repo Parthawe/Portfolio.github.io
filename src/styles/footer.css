@@ -1,5 +1,5 @@
 /* ================================================
-   FOOTER — compact, clean
+   FOOTER, compact, clean
    ================================================ */
 .footer {
   background: var(--bg, #fafaf8);
@@ -12,7 +12,7 @@
   padding: clamp(3rem, 5vw, 4rem) 0 0;
 }
 
-/* ── CTA row — headline left, email right ── */
+/* ── CTA row, headline left, email right ── */
 .ft-cta-row {
   display: flex;
   align-items: center;
@@ -79,7 +79,7 @@
   border-color: rgba(0, 0, 0, 0.12);
 }
 
-/* ── Info row — nav, socials, location in one bar ── */
+/* ── Info row, nav, socials, location in one bar ── */
 .ft-info-row {
   display: flex;
   align-items: center;
@@ -199,7 +199,7 @@
 [data-theme="dark"] .ft-info-muted { color: rgba(245, 245, 245, 0.2); }
 [data-theme="dark"] .ft-bottom span { color: rgba(245, 245, 245, 0.15); }
 
-/* ── Footer reveal — for pages that use it ── */
+/* ── Footer reveal, for pages that use it ── */
 .footer-reveal {
   position: fixed;
   bottom: 0;

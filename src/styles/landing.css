@@ -1,8 +1,8 @@
 /* ================================================
-   LANDING PAGES — category & audience (lp- prefix)
+   LANDING PAGES, category & audience (lp- prefix)
    ================================================ */
 
-/* Hero — split layout */
+/* Hero, split layout */
 .lp-hero {
   padding: calc(var(--nav-h) + 5rem) 0 0;
   margin-bottom: 3.5rem;
@@ -53,7 +53,7 @@
   margin-bottom: 2rem;
 }
 
-/* Stats pills — bigger, bolder */
+/* Stats pills, bigger, bolder */
 .lp-stats {
   display: flex;
   flex-wrap: wrap;
@@ -81,7 +81,7 @@
 [data-theme="dark"] .lp-stat { border-color: var(--ink-15); }
 [data-theme="dark"] .lp-stat:first-child { color: var(--bg); }
 
-/* Tools tags — bigger */
+/* Tools tags, bigger */
 .lp-tools {
   display: flex;
   flex-wrap: wrap;
@@ -110,7 +110,7 @@
   margin: 0 0 3rem;
 }
 
-/* Featured project — full-width hero card */
+/* Featured project, full-width hero card */
 .lp-featured {
   position: relative;
   display: block;
@@ -190,7 +190,7 @@
   white-space: nowrap;
 }
 
-/* ── Approach — editorial horizontal strip ── */
+/* ── Approach, editorial horizontal strip ── */
 .lp-approach {
   margin: 4.5rem 0 3rem;
   padding: 0;
@@ -266,7 +266,7 @@
   border-bottom: 1px solid var(--ink-08);
 }
 
-/* Tailored CTA — more prominent */
+/* Tailored CTA, more prominent */
 .lp-cta-headline {
   font-family: var(--serif);
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -286,7 +286,7 @@
   line-height: 1.6;
 }
 
-/* Dark mode — featured card tints */
+/* Dark mode, featured card tints */
 [data-theme="dark"] .lp-featured {
   border-color: var(--ink-06);
   box-shadow: var(--shadow-md);

@@ -17,7 +17,7 @@ export default function CodeForBuildPage() {
         <meta name="description" content="Helping Kids learn Coding through Visual Block building and developing Website. A mobile app that uses 3D castle blocks to gamify coding education for teenagers." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Code for Build &middot; Parth Pawar" />
-        <meta property="og:description" content="Helping kids learn coding through visual block building — 3D castle blocks to gamify coding education." />
+        <meta property="og:description" content="Helping kids learn coding through visual block building, 3D castle blocks to gamify coding education." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/code-for-build.jpg" />
       </Helmet>
 
@@ -40,7 +40,7 @@ export default function CodeForBuildPage() {
             { label: 'Year', value: '2021' },
           ]}
           heroImage="/Assets/Projects/CodeforBuild/Desktop/1.jpg"
-          heroAlt="Code for Build — Learn Coding By Building Blocks hero with 3D block illustrations and mobile mockups"
+          heroAlt="Code for Build, Learn Coding By Building Blocks hero with 3D block illustrations and mobile mockups"
         />
 
         {/* Summary / Challenges / Role / Tools */}
@@ -185,7 +185,7 @@ export default function CodeForBuildPage() {
             <h2 className="cs-section-title">Goals</h2>
           </div>
           <div className="cs-slide reveal">
-            <img src="/Assets/Projects/CodeforBuild/Desktop/4.jpg" alt="Goals — castle block illustration, user journey flowchart on blue background" loading="lazy" />
+            <img src="/Assets/Projects/CodeforBuild/Desktop/4.jpg" alt="Goals, castle block illustration, user journey flowchart on blue background" loading="lazy" />
           </div>
         </section>
 
@@ -260,7 +260,7 @@ export default function CodeForBuildPage() {
             ]} />
 
             <div className="cs-img-full">
-              <img src="/Assets/Projects/CodeforBuild/Desktop/6.jpg" alt="Design System — Colors, typography, and 3D block components" loading="lazy" />
+              <img src="/Assets/Projects/CodeforBuild/Desktop/6.jpg" alt="Design System, Colors, typography, and 3D block components" loading="lazy" />
             </div>
           </div>
         </section>
@@ -282,7 +282,7 @@ export default function CodeForBuildPage() {
             </CsBody>
 
             <div className="cs-img-full">
-              <img src="/Assets/Projects/CodeforBuild/Desktop/7.jpg" alt="Illustration Code — app mockup with 3D block illustrations showing code structure" loading="lazy" />
+              <img src="/Assets/Projects/CodeforBuild/Desktop/7.jpg" alt="Illustration Code, app mockup with 3D block illustrations showing code structure" loading="lazy" />
             </div>
           </div>
         </section>
@@ -296,7 +296,7 @@ export default function CodeForBuildPage() {
                 <p>In the Output Window user will be able to see the Preview of the Frontend Layout &amp; 3D Model representing the same. Its an interactive 3D Block Model to help learn Code by clicking on the 3D Block Model.</p>
               </CsBody>
               <div className="cs-img">
-                <img src="/Assets/Projects/CodeforBuild/Desktop/8.jpg" alt="Code Learning — output window and 3D block model interaction with multiple phone mockups" loading="lazy" />
+                <img src="/Assets/Projects/CodeforBuild/Desktop/8.jpg" alt="Code Learning, output window and 3D block model interaction with multiple phone mockups" loading="lazy" />
               </div>
             </div>
 
@@ -306,7 +306,7 @@ export default function CodeForBuildPage() {
                 <p>Multiple Layouts will help you get a deeper understanding and reflecting on different Coding 3D Models. You can interact with the 3D Layout to change and reflect on Code changes.</p>
               </CsBody>
               <div className="cs-img">
-                <img src="/Assets/Projects/CodeforBuild/Desktop/8.jpg" alt="Multiple Layouts — different coding 3D models across multiple screens" loading="lazy" />
+                <img src="/Assets/Projects/CodeforBuild/Desktop/8.jpg" alt="Multiple Layouts, different coding 3D models across multiple screens" loading="lazy" />
               </div>
             </div>
           </div>
@@ -319,7 +319,7 @@ export default function CodeForBuildPage() {
             <h2 className="cs-section-title">Final Screens</h2>
           </div>
           <div className="cs-slide reveal">
-            <img src="/Assets/Projects/CodeforBuild/Desktop/9.jpg" alt="Final screen showcase — all app screens arranged diagonally on blue background" loading="lazy" />
+            <img src="/Assets/Projects/CodeforBuild/Desktop/9.jpg" alt="Final screen showcase, all app screens arranged diagonally on blue background" loading="lazy" />
           </div>
         </section>
 

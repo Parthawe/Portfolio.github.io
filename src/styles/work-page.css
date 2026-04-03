@@ -1,5 +1,5 @@
 /* ================================================
-   WORK PAGE — 24px grid system
+   WORK PAGE, 24px grid system
    ================================================ */
 
 /* Content above grid */
@@ -11,7 +11,7 @@
 }
 
 .work-page-header {
-  padding-top: 168px; /* 7 units — clears nav, sits on grid */
+  padding-top: 168px; /* 7 units, clears nav, sits on grid */
   padding-bottom: 48px; /* 2 units */
 }
 .work-page-title {
@@ -39,7 +39,7 @@
   white-space: nowrap;
 }
 
-/* Work group label — typography via .mono-label in base.css */
+/* Work group label, typography via .mono-label in base.css */
 .work-group-label {
   display: block;
   line-height: 24px; /* 1 unit */
@@ -52,7 +52,7 @@
   padding-top: 0;
 }
 
-/* ── Masonry grid — 3 columns ── */
+/* ── Masonry grid, 3 columns ── */
 .pcard-masonry {
   columns: 3;
   column-gap: 24px; /* 1 unit */
@@ -63,7 +63,7 @@
   margin-bottom: 24px; /* 1 unit */
 }
 
-/* ── Project card — image fills entire card, text overlaid ── */
+/* ── Project card, image fills entire card, text overlaid ── */
 .pcard {
   display: block;
   text-decoration: none;
@@ -106,7 +106,7 @@
   transform: scale(1.05);
 }
 
-/* Top row — category + year, overlaid */
+/* Top row, category + year, overlaid */
 .pcard-top-row {
   position: absolute;
   top: 0.85rem;
@@ -149,7 +149,7 @@
   -webkit-backdrop-filter: blur(8px);
 }
 
-/* Project title — overlaid on image */
+/* Project title, overlaid on image */
 .pcard-name {
   position: absolute;
   bottom: 2.75rem;
@@ -202,7 +202,7 @@
   100% { transform: translateX(-50%); }
 }
 
-/* ── Light image variant — dark text/UI ── */
+/* ── Light image variant, dark text/UI ── */
 .pcard--light .pcard-tag {
   color: rgba(0, 0, 0, 0.75);
   background: rgba(255, 255, 255, 0.45);
@@ -228,7 +228,7 @@
   border-color: rgba(0, 0, 0, 0.12);
 }
 
-/* ── Featured card — full width on category pages ── */
+/* ── Featured card, full width on category pages ── */
 .pcard--featured {
   margin-bottom: 2rem;
 }
@@ -239,7 +239,7 @@
   font-size: clamp(1.6rem, 3vw, 2.2rem);
 }
 
-/* ── Varying heights — 6-item cycle for visual rhythm ── */
+/* ── Varying heights, 6-item cycle for visual rhythm ── */
 .pcard-masonry > *:nth-child(6n+1) .pcard-visual img {
   aspect-ratio: 3 / 4;
 }
@@ -281,7 +281,7 @@
     radial-gradient(circle at 100% 100%, black 22px, transparent 22px);
 }
 
-/* ── Floating bottom category nav — unified pill (matches .nav-pill) ── */
+/* ── Floating bottom category nav, unified pill (matches .nav-pill) ── */
 .work-bottom-nav {
   position: fixed;
   bottom: 1.25rem;
@@ -315,7 +315,7 @@
   padding: 0.5rem 1rem;
 }
 
-/* ── Dark mode — bottom nav ── */
+/* ── Dark mode, bottom nav ── */
 [data-theme="dark"] .work-bottom-nav {
   border-color: var(--glass-border);
   background: var(--glass-bg);

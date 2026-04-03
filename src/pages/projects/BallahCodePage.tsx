@@ -17,10 +17,10 @@ export default function BallahCodePage() {
     <>
       <Helmet>
         <title>Ballah Code &middot; Parth Pawar</title>
-        <meta name="description" content="Ballah Code — AI-native desktop IDE where the AI works as a senior engineer, not a chatbot. Case study by Parth Pawar, Creator & Designer." />
+        <meta name="description" content="Ballah Code, AI-native desktop IDE where the AI works as a senior engineer, not a chatbot. Case study by Parth Pawar, Creator & Designer." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Ballah Code &middot; Parth Pawar" />
-        <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer — not a chatbot." />
+        <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer, not a chatbot." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/ballah-code.png" />
       </Helmet>
 
@@ -42,10 +42,10 @@ export default function BallahCodePage() {
             { label: 'Team', value: 'Solo / Founder' },
           ]}
           heroImage="/Assets/images/ballah-code.png"
-          heroAlt="Ballah Code — AI-native desktop IDE"
+          heroAlt="Ballah Code, AI-native desktop IDE"
         />
 
-        {/* 01 — Overview */}
+        {/* 01, Overview */}
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="A Development Environment That Treats AI as a Senior Engineer">
           <CsBody>
             <p>Ballah Code is a native desktop development environment that treats AI as a trusted senior engineer architect &mdash; not a disposable chatbot. The AI plans, writes specifications, delegates to workers, reviews output, and maintains decision records. Core philosophy: context is sacred, documents are first-class, and your time is spent on decisions, not management.</p>
@@ -57,7 +57,7 @@ export default function BallahCodePage() {
           <p className="cs-caption">Desktop app interface &mdash; the AI-native development environment</p>
         </CsSection>
 
-        {/* 02 — The Problem */}
+        {/* 02, The Problem */}
         <CsSection id="cs-problem" label="02 &mdash; The Problem" title="Context Is Disposable and AI Is Replaceable">
           <CsBody>
             <p>Existing AI coding tools treat context as disposable and AI as replaceable. Every conversation starts from zero. There&rsquo;s no persistent memory of why decisions were made, no living documents that evolve with the codebase, and no structured delegation between architect-level thinking and implementation-level execution.</p>
@@ -68,14 +68,14 @@ export default function BallahCodePage() {
           />
         </CsSection>
 
-        {/* 03 — Design Decisions */}
+        {/* 03, Design Decisions */}
         <CsSection id="cs-decisions" label="03 &mdash; Design Decisions" title="Two-Process Architecture, One Seamless Experience">
           <CsBody>
             <p>The interface is built around a two-process architecture: a Bun backend handling AI calls, file system operations, and tool execution, connected to a React frontend in a native WebKit webview via typed RPC. The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. Every interaction is designed to keep the developer in flow state while giving the AI full context.</p>
           </CsBody>
         </CsSection>
 
-        {/* 04 — Technical Architecture */}
+        {/* 04, Technical Architecture */}
         <CsSection id="cs-architecture" label="04 &mdash; Technical Architecture" title="Native Performance, Minimal Footprint">
           <CsBody>
             <p>Built with Electrobun for tiny ~14MB bundles and native performance. Features 17 production-ready AI tools (read, write, search, execute, diagnose, screenshot), a custom agentic loop using direct Anthropic Messages API streaming (not framework abstractions), prompt caching for long contexts, and workspace multiplexing for parallel workstreams. The standalone @ballah/agent package can run in CLI, desktop, or any frontend.</p>
@@ -89,7 +89,7 @@ export default function BallahCodePage() {
           ]} />
         </CsSection>
 
-        {/* 05 — Key Features */}
+        {/* 05, Key Features */}
         <CsSection id="cs-features" label="05 &mdash; Key Features" title="Built for Real Engineering Workflows">
           <CsFeatureGrid features={[
             { title: 'Multi-Workspace, Multi-Chat', desc: 'Persistent history across workspaces and chat sessions. Switch between projects without losing context or conversation state.' },
@@ -101,7 +101,7 @@ export default function BallahCodePage() {
           ]} />
         </CsSection>
 
-        {/* 06 — Results & Status */}
+        {/* 06, Results & Status */}
         <CsSection id="cs-results" label="06 &mdash; Results &amp; Status" title="Functional Core, Ambitious Roadmap">
           <CsBody>
             <p>Core desktop app is functional with all 17 tools operational, streaming AI agent loop, terminal integration, and settings persistence. The project includes an evaluation harness benchmarking against SWE-PolyBench. Living documents, architect/worker delegation, and decision ledger are in the roadmap.</p>

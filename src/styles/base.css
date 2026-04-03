@@ -93,7 +93,7 @@ hr.divider {
   margin: 0;
 }
 
-/* Dashed separator line — used between sections */
+/* Dashed separator line, used between sections */
 .dashed-line {
   border: none;
   height: 1px;
@@ -236,7 +236,7 @@ hr.divider {
   .page-loader-logo { animation: none; opacity: 1; }
 }
 
-/* ── Mono Label — unified section label pattern ── */
+/* ── Mono Label, unified section label pattern ── */
 .mono-label {
   font-family: var(--mono);
   font-size: var(--text-xs);
@@ -248,7 +248,7 @@ hr.divider {
   letter-spacing: var(--ls-widest);
 }
 
-/* ── Pill Link — unified pill button pattern ── */
+/* ── Pill Link, unified pill button pattern ── */
 .pill-link {
   font-family: var(--sans);
   font-size: var(--text-sm);

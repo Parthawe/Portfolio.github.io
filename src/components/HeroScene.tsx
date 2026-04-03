@@ -56,7 +56,7 @@ const NODES: NodeConfig[] = [
   { position: [1.8, -1.4, 0.2], label: 'Creative Technology', labelOffset: [0, -0.85, 0], route: '/creative-tech' },
 ];
 
-/* ─── Constellation threads — invisible curves that glow as energy passes ─── */
+/* ─── Constellation threads, invisible curves that glow as energy passes ─── */
 
 const THREADS_PER_LINK = 5;
 const TUBE_SEGMENTS = 32;
@@ -88,7 +88,7 @@ const threadFragmentShader = /* glsl */ `
   void main() {
     float d = abs(vProgress - uGlowCenter);
     d = min(d, 1.0 - d);
-    // Sharp bright glow — pow makes it concentrated and shiny
+    // Sharp bright glow, pow makes it concentrated and shiny
     float glow = smoothstep(uGlowWidth, 0.0, d);
     glow = pow(glow, 1.5); // sharper falloff = more defined shine
     // White-hot center, colored edges
@@ -113,7 +113,7 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
     const result: ThreadInfo[] = [];
     const color = dark ? new THREE.Color('#ccddf8') : new THREE.Color('#aabbdd');
 
-    // Build connection pairs — nearest 2 neighbors per node (no full mesh)
+    // Build connection pairs, nearest 2 neighbors per node (no full mesh)
     const vecs = positions.map(p => new THREE.Vector3(...p));
     const pairSet = new Set<string>();
     const pairs: [number, number][] = [];
@@ -161,7 +161,7 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
         const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
         const tubeGeo = new THREE.TubeGeometry(curve, TUBE_SEGMENTS, 0.0018, RADIAL_SEGMENTS, false);
 
-        // Add curveProgress attribute — 0 at start, 1 at end
+        // Add curveProgress attribute, 0 at start, 1 at end
         const count = tubeGeo.attributes.position.count;
         const progressArr = new Float32Array(count);
         const vertsPerRing = RADIAL_SEGMENTS + 1;
@@ -222,11 +222,11 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
   );
 }
 
-/* ─── Global navigate ref — set by parent via onNavigate prop ─── */
+/* ─── Global navigate ref, set by parent via onNavigate prop ─── */
 let _navigate: ((path: string) => void) | null = null;
 export function setHeroNavigate(fn: (path: string) => void) { _navigate = fn; }
 
-/* ─── Clickable wrapper — passes hovered state to children via render prop ─── */
+/* ─── Clickable wrapper, passes hovered state to children via render prop ─── */
 /* Also handles drag-to-spin: dragging on an object spins it in that direction */
 
 function ClickableObject({
@@ -251,7 +251,7 @@ function ClickableObject({
     if (Math.abs(sv.x) > 0.001 || Math.abs(sv.y) > 0.001) {
       spinGroupRef.current.rotation.x += sv.x * delta;
       spinGroupRef.current.rotation.y += sv.y * delta;
-      // Momentum decay — slows down naturally
+      // Momentum decay, slows down naturally
       sv.x *= 0.96;
       sv.y *= 0.96;
     }
@@ -298,7 +298,7 @@ function ClickableObject({
       onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
     >
       <group ref={spinGroupRef}>
-        {/* Invisible hit area — ensures all objects are draggable */}
+        {/* Invisible hit area, ensures all objects are draggable */}
         <mesh visible={false}>
           <sphereGeometry args={[0.55, 8, 8]} />
           <meshBasicMaterial />
@@ -309,7 +309,7 @@ function ClickableObject({
   );
 }
 
-/* ─── Smooth hover lerp hook — intentionally slow for elegance ─── */
+/* ─── Smooth hover lerp hook, intentionally slow for elegance ─── */
 function useHoverLerp(hovered: boolean, speed = 3) {
   const t = useRef(0);
   useFrame((_, delta) => {
@@ -322,9 +322,9 @@ function useHoverLerp(hovered: boolean, speed = 3) {
 /* ─── Lerp helper ─── */
 function mix(a: number, b: number, t: number) { return a + (b - a) * t; }
 
-/* ─── Interactive Label — morphs into 3D mini-object on hover ─── */
+/* ─── Interactive Label, morphs into 3D mini-object on hover ─── */
 
-/* Mini 3D objects for each category — visually distinct from parent */
+/* Mini 3D objects for each category, visually distinct from parent */
 function MiniInstallation({ dark }: { dark: boolean }) {
   const ref = useRef<THREE.Group>(null!);
   useFrame(({ clock }) => {
@@ -346,7 +346,7 @@ function MiniInstallation({ dark }: { dark: boolean }) {
         </mesh>
       ))}
       {lineGeos.map((geo, i) => (
-        // @ts-expect-error — R3F `line` conflicts with SVG line type
+        // @ts-expect-error, R3F `line` conflicts with SVG line type
         <line key={i} geometry={geo}><lineBasicMaterial color={dark ? '#8899bb' : '#667799'} transparent opacity={0.5} /></line>
       ))}
     </group>
@@ -454,7 +454,7 @@ function MiniAIWearables({ dark }: { dark: boolean }) {
         <torusGeometry args={[0.06, 0.015, 12, 32]} />
         <meshPhysicalMaterial color={dark ? '#c0c0d0' : '#a0a0b0'} metalness={1} roughness={0.04} clearcoat={1} envMapIntensity={3} />
       </mesh>
-      {/* Pupil — glass sphere */}
+      {/* Pupil, glass sphere */}
       <mesh ref={pupilRef}>
         <sphereGeometry args={[0.035, 24, 24]} />
         <meshPhysicalMaterial
@@ -562,7 +562,7 @@ function InteractiveLabel({ position, text, offset, dark, index, route, parentRe
         onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
         onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
       >
-      {/* Text label — always renders on top so 3D objects don't occlude it */}
+      {/* Text label, always renders on top so 3D objects don't occlude it */}
       <Text
         ref={textRef}
         fontSize={0.14}
@@ -575,7 +575,7 @@ function InteractiveLabel({ position, text, offset, dark, index, route, parentRe
       >
         {text}
       </Text>
-      {/* Mini 3D object — scales in on hover */}
+      {/* Mini 3D object, scales in on hover */}
       <group ref={objectRef} scale={0}>
         <MiniComponent dark={dark} />
       </group>
@@ -584,7 +584,7 @@ function InteractiveLabel({ position, text, offset, dark, index, route, parentRe
   );
 }
 
-/* ─── Virtual time that freezes on hover — rotation stops in place, no jump ─── */
+/* ─── Virtual time that freezes on hover, rotation stops in place, no jump ─── */
 function useVirtualTime(ht: React.RefObject<number>) {
   const vt = useRef(0);
   useFrame((_, delta) => {
@@ -594,7 +594,7 @@ function useVirtualTime(ht: React.RefObject<number>) {
 }
 
 /* ═══════════════════════════════════════════════════
-   INSTALLATIONS — metallic rod truss (KEEP — user likes this)
+   INSTALLATIONS, metallic rod truss (KEEP, user likes this)
    ═══════════════════════════════════════════════════ */
 
 function TrussStructure({ dark, hovered }: { dark: boolean; hovered: boolean }) {
@@ -647,7 +647,7 @@ function TrussStructure({ dark, hovered }: { dark: boolean; hovered: boolean }) 
       const mat = mesh.material as THREE.MeshPhysicalMaterial;
       mat.emissiveIntensity = mix(0, 0.6, h);
     });
-    // Rods fade on hover (they'd break with expanded joints — becoming wireframe ghost)
+    // Rods fade on hover (they'd break with expanded joints, becoming wireframe ghost)
     rodRefs.current.forEach((mesh) => {
       if (!mesh) return;
       const mat = mesh.material as THREE.MeshPhysicalMaterial;
@@ -702,7 +702,7 @@ function TrussStructure({ dark, hovered }: { dark: boolean; hovered: boolean }) 
 }
 
 /* ═══════════════════════════════════════════════════
-   DESIGN FOR GOOD — chrome torus knot with glass shell
+   DESIGN FOR GOOD, chrome torus knot with glass shell
    ═══════════════════════════════════════════════════ */
 
 function PetalRose({ dark, hovered }: { dark: boolean; hovered: boolean }) {
@@ -774,12 +774,12 @@ function PetalRose({ dark, hovered }: { dark: boolean; hovered: boolean }) {
 }
 
 /* ═══════════════════════════════════════════════════
-   PRODUCT DESIGN — Morphing chrome sculpture
+   PRODUCT DESIGN, Morphing chrome sculpture
 
    Cycles between 3 abstract forms:
-   Form 0 (Layers):  Discs stacked horizontally — layered interfaces
-   Form 1 (Orrery):  Discs tilted at angles around center — interconnected systems
-   Form 2 (Column):  Discs vertical, spread along Y — information architecture
+   Form 0 (Layers):  Discs stacked horizontally, layered interfaces
+   Form 1 (Orrery):  Discs tilted at angles around center, interconnected systems
+   Form 2 (Column):  Discs vertical, spread along Y, information architecture
 
    On hover: layers separate, ring expands, core brightens
    Same visual language as every other object.
@@ -812,17 +812,17 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
   // Form 1 (Orrery): tilted at 120° around center, spread radially
   // Form 2 (Column): vertical discs, spaced along Y
   const forms = useMemo(() => [
-    // Form 0 — Layers
+    // Form 0, Layers
     { discs: [[0, -0.1, 0, 0, 0, 1], [0, 0, 0, 0, 0, 1], [0, 0.1, 0, 0, 0, 1]] as number[][],
       ring: [0.8, 0.5] as [number, number],   // [tiltX base, tiltZ base]
       cross: 0,
       nodeR: 0.32, nodeSpreadY: 0 },
-    // Form 1 — Orrery
+    // Form 1, Orrery
     { discs: [[0.22, 0.08, 0, 1.1, 0.3, 0.85], [-0.12, -0.06, 0.2, 0.4, -0.5, 0.9], [-0.1, -0.02, -0.2, -0.7, 0.8, 0.95]] as number[][],
       ring: [1.5, 0.2] as [number, number],
       cross: 0.4,
       nodeR: 0.25, nodeSpreadY: 0.14 },
-    // Form 2 — Column
+    // Form 2, Column
     { discs: [[0, -0.26, 0, Math.PI * 0.48, 0, 0.8], [0, 0, 0, Math.PI * 0.48, Math.PI * 0.25, 0.9], [0, 0.26, 0, Math.PI * 0.48, Math.PI * 0.5, 0.75]] as number[][],
       ring: [0.3, 1.4] as [number, number],
       cross: Math.PI * 0.15,
@@ -839,7 +839,7 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
     const v = vt.current;
     const h = ht.current;
 
-    // Gentle rotation — matches other objects
+    // Gentle rotation, matches other objects
     ref.current.rotation.y = v * 0.06;
     ref.current.rotation.x = Math.sin(v * 0.035) * 0.06;
     ref.current.rotation.z = Math.cos(v * 0.03) * 0.03;
@@ -946,7 +946,7 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
     <Float speed={0.6} floatIntensity={0.4} rotationIntensity={0.12}>
       <group ref={ref}>
 
-        {/* Stacked chrome discs — UI layers */}
+        {/* Stacked chrome discs, UI layers */}
         {discConfigs.map((disc, i) => (
           <mesh
             key={`disc${i}`}
@@ -964,7 +964,7 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
           </mesh>
         ))}
 
-        {/* Cross bars through center — structural spine */}
+        {/* Cross bars through center, structural spine */}
         <group ref={crossRef}>
           <mesh rotation={[0, 0, 0]}>
             <cylinderGeometry args={[0.012, 0.012, 0.55, 8]} />
@@ -981,13 +981,13 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
           </mesh>
         </group>
 
-        {/* Orbiting chrome ring — interaction cycle */}
+        {/* Orbiting chrome ring, interaction cycle */}
         <mesh ref={ringRef}>
           <torusGeometry args={[0.42, 0.014, 16, 64]} />
           <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} {...chrome} />
         </mesh>
 
-        {/* Glass shell — subtle enclosure */}
+        {/* Glass shell, subtle enclosure */}
         <mesh ref={shellRef}>
           <sphereGeometry args={[0.46, 48, 48]} />
           <meshPhysicalMaterial
@@ -1011,7 +1011,7 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
           />
         </mesh>
 
-        {/* Small chrome spheres — node accents (animated per form) */}
+        {/* Small chrome spheres, node accents (animated per form) */}
         {[0, 1, 2, 3].map(i => {
           const angle = (i / 4) * Math.PI * 2 + 0.4;
           return (
@@ -1037,7 +1037,7 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
 }
 
 /* ═══════════════════════════════════════════════════
-   BRAND & VISUAL — Bauhaus composition: chrome primitives
+   BRAND & VISUAL, Bauhaus composition: chrome primitives
    ═══════════════════════════════════════════════════ */
 
 function StackedPlates({ dark, hovered }: { dark: boolean; hovered: boolean }) {
@@ -1113,13 +1113,13 @@ function StackedPlates({ dark, hovered }: { dark: boolean; hovered: boolean }) {
   return (
     <Float speed={0.5} floatIntensity={0.35} rotationIntensity={0.12}>
       <group ref={ref}>
-        {/* Central chrome cylinder — pillar */}
+        {/* Central chrome cylinder, pillar */}
         <mesh>
           <cylinderGeometry args={[0.055, 0.055, 0.65, 32]} />
           <meshPhysicalMaterial color={dark ? '#d0d0d8' : '#b8b8c0'} {...chrome} />
         </mesh>
 
-        {/* Horizontal disc — dark mirror */}
+        {/* Horizontal disc, dark mirror */}
         <mesh ref={discRef} position={[0, 0, 0]}>
           <cylinderGeometry args={[0.32, 0.32, 0.018, 48]} />
           <meshPhysicalMaterial color={dark ? '#404048' : '#606068'} {...darkChrome} />
@@ -1131,7 +1131,7 @@ function StackedPlates({ dark, hovered }: { dark: boolean; hovered: boolean }) {
           <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} {...chrome} />
         </mesh>
 
-        {/* Glass sphere — sitting on disc */}
+        {/* Glass sphere, sitting on disc */}
         <mesh ref={sphereRef} position={[0.17, 0.12, 0.06]}>
           <sphereGeometry args={[0.1, 48, 48]} />
           <meshPhysicalMaterial
@@ -1166,7 +1166,7 @@ function StackedPlates({ dark, hovered }: { dark: boolean; hovered: boolean }) {
 }
 
 /* ═══════════════════════════════════════════════════
-   AI & WEARABLES — camera lens with chrome barrel and glass optics
+   AI & WEARABLES, camera lens with chrome barrel and glass optics
    ═══════════════════════════════════════════════════ */
 
 function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
@@ -1193,7 +1193,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
       const scale = mix(base, 1.8, h);
       apertureRef.current.scale.set(scale, scale, 1);
     }
-    // Lens elements separate — exploded view
+    // Lens elements separate, exploded view
     if (frontLensRef.current) frontLensRef.current.position.z = mix(0.08, 0.25, h);
     if (rearLensRef.current) rearLensRef.current.position.z = mix(-0.06, -0.25, h);
     if (frontBezelRef.current) frontBezelRef.current.position.z = mix(0.14, 0.35, h);
@@ -1219,7 +1219,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
   return (
     <Float speed={0.5} floatIntensity={0.3} rotationIntensity={0.1}>
       <group ref={ref}>
-        {/* Outer barrel — chrome cylinder */}
+        {/* Outer barrel, chrome cylinder */}
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.5, 0.46, 0.28, 48, 1, true]} />
           <meshPhysicalMaterial
@@ -1244,7 +1244,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
           />
         </mesh>
 
-        {/* Front glass element — convex lens */}
+        {/* Front glass element, convex lens */}
         <mesh ref={frontLensRef} position={[0, 0, 0.08]}>
           <sphereGeometry args={[0.32, 48, 48, 0, Math.PI * 2, 0, Math.PI / 3.5]} />
           <meshPhysicalMaterial
@@ -1254,7 +1254,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
           />
         </mesh>
 
-        {/* Rear glass — concave */}
+        {/* Rear glass, concave */}
         <mesh ref={rearLensRef} position={[0, 0, -0.06]} rotation={[Math.PI, 0, 0]}>
           <sphereGeometry args={[0.24, 32, 32, 0, Math.PI * 2, 0, Math.PI / 4]} />
           <meshPhysicalMaterial
@@ -1263,7 +1263,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
           />
         </mesh>
 
-        {/* Aperture blades — chrome */}
+        {/* Aperture blades, chrome */}
         <group ref={apertureRef}>
           {Array.from({ length: 9 }, (_, i) => {
             const angle = (i / 9) * Math.PI * 2;
@@ -1283,7 +1283,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
           })}
         </group>
 
-        {/* Center bright point — sensor indicator */}
+        {/* Center bright point, sensor indicator */}
         <mesh ref={centerRef} position={[0, 0, 0.01]}>
           <sphereGeometry args={[0.025, 16, 16]} />
           <meshPhysicalMaterial
@@ -1292,7 +1292,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
           />
         </mesh>
 
-        {/* Focus ring grooves — detail rings on barrel */}
+        {/* Focus ring grooves, detail rings on barrel */}
         {[-0.04, 0.04].map((z, i) => (
           <mesh key={`gr${i}`} position={[0, 0, z]} rotation={[Math.PI / 2, 0, 0]}>
             <torusGeometry args={[0.505, 0.006, 8, 48]} />
@@ -1311,7 +1311,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
 }
 
 /* ═══════════════════════════════════════════════════
-   CREATIVE TECHNOLOGY — geodesic wireframe + chrome octahedron core
+   CREATIVE TECHNOLOGY, geodesic wireframe + chrome octahedron core
    ═══════════════════════════════════════════════════ */
 
 function GlassCrystal({ dark, hovered }: { dark: boolean; hovered: boolean }) {
@@ -1323,7 +1323,7 @@ function GlassCrystal({ dark, hovered }: { dark: boolean; hovered: boolean }) {
   const coreRef = useRef<THREE.Mesh>(null!);
   const ht = useHoverLerp(hovered);
   const vt = useVirtualTime(ht);
-  // Inner octahedron keeps its own time — it spins gently even on hover
+  // Inner octahedron keeps its own time, it spins gently even on hover
   const innerTime = useRef(0);
 
   const outerEdges = useMemo(() => {
@@ -1381,12 +1381,12 @@ function GlassCrystal({ dark, hovered }: { dark: boolean; hovered: boolean }) {
   return (
     <Float speed={0.8} floatIntensity={0.45} rotationIntensity={0.15}>
       <group ref={ref}>
-        {/* Outer wireframe — silver */}
+        {/* Outer wireframe, silver */}
         <lineSegments ref={wireRef} geometry={outerEdges}>
           <lineBasicMaterial color={dark ? '#9aaccc' : '#778899'} transparent opacity={dark ? 0.35 : 0.3} />
         </lineSegments>
 
-        {/* Glass shell — barely visible refraction */}
+        {/* Glass shell, barely visible refraction */}
         <mesh ref={shellRef}>
           <icosahedronGeometry args={[0.53, 1]} />
           <meshPhysicalMaterial
@@ -1506,7 +1506,7 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
     const m = mouse.current;
     t.x += (m.x - t.x) * 0.012;
     t.y += (m.y - t.y) * 0.012;
-    // Continuous slow orbit — whole constellation rotates around Z axis
+    // Continuous slow orbit, whole constellation rotates around Z axis
     const elapsed = clock.getElapsedTime();
     const orbitZ = elapsed * 0.015; // very slow continuous rotation around Z
     const orbitX = Math.cos(elapsed * 0.03) * 0.02; // subtle drift
@@ -1521,54 +1521,54 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
     <>
       {/* Dramatic lighting for real reflections */}
       <ambientLight intensity={dark ? 0.08 : 0.2} />
-      {/* Key light — bright, high, from front-right */}
+      {/* Key light, bright, high, from front-right */}
       <directionalLight intensity={dark ? 1.2 : 1} position={[5, 8, 6]} color={dark ? '#e8e8ff' : '#ffffff'} />
-      {/* Fill light — softer, from left */}
+      {/* Fill light, softer, from left */}
       <directionalLight intensity={dark ? 0.4 : 0.35} position={[-6, 3, -4]} color={dark ? '#8899cc' : '#bbc8dd'} />
-      {/* Rim light — from behind for edge highlights */}
+      {/* Rim light, from behind for edge highlights */}
       <directionalLight intensity={dark ? 0.6 : 0.5} position={[0, -2, -8]} color={dark ? '#aabbee' : '#99aacc'} />
       {/* Top accent */}
       <pointLight intensity={dark ? 0.8 : 0.5} color="#ffffff" distance={20} position={[0, 6, 4]} />
       {/* Warm bottom bounce */}
       <pointLight intensity={0.2} color={dark ? '#6677aa' : '#8899bb'} distance={15} position={[-3, -4, 3]} />
 
-      {/* High-quality environment for reflections — CRUCIAL */}
+      {/* High-quality environment for reflections, CRUCIAL */}
       <Environment preset="studio" environmentIntensity={dark ? 0.6 : 0.8} />
 
       <group ref={groupRef} scale={0.7}>
         <ConstellationLines positions={positions} dark={dark} />
 
-        {/* 0: Installations — Truss (top) */}
+        {/* 0: Installations, Truss (top) */}
         <ClickableObject route={NODES[0].route} position={NODES[0].position}>
           {(hovered) => <TrussStructure dark={dark} hovered={hovered} />}
         </ClickableObject>
 
-        {/* 1: Design for Good — Chrome knot (right) */}
+        {/* 1: Design for Good, Chrome knot (right) */}
         <ClickableObject route={NODES[1].route} position={NODES[1].position}>
           {(hovered) => <PetalRose dark={dark} hovered={hovered} />}
         </ClickableObject>
 
-        {/* 2: Product Design — Morphing screens (center) */}
+        {/* 2: Product Design, Morphing screens (center) */}
         <ClickableObject route={NODES[2].route} position={NODES[2].position}>
           {(hovered) => <MorphingScreens dark={dark} hovered={hovered} />}
         </ClickableObject>
 
-        {/* 3: Brand & Visual — Bauhaus (left) */}
+        {/* 3: Brand & Visual, Bauhaus (left) */}
         <ClickableObject route={NODES[3].route} position={NODES[3].position}>
           {(hovered) => <StackedPlates dark={dark} hovered={hovered} />}
         </ClickableObject>
 
-        {/* 4: AI & Wearables — Lens (bottom left) */}
+        {/* 4: AI & Wearables, Lens (bottom left) */}
         <ClickableObject route={NODES[4].route} position={NODES[4].position}>
           {(hovered) => <LensAssembly dark={dark} hovered={hovered} />}
         </ClickableObject>
 
-        {/* 5: Creative Technology — Geodesic (bottom right) */}
+        {/* 5: Creative Technology, Geodesic (bottom right) */}
         <ClickableObject route={NODES[5].route} position={NODES[5].position}>
           {(hovered) => <GlassCrystal dark={dark} hovered={hovered} />}
         </ClickableObject>
 
-        {/* Interactive Labels — morph into mini 3D objects on hover */}
+        {/* Interactive Labels, morph into mini 3D objects on hover */}
         {NODES.map((n, i) => (
           <InteractiveLabel key={i} position={n.position} text={n.label} offset={n.labelOffset} dark={dark} index={i} route={n.route} parentRef={groupRef} />
         ))}

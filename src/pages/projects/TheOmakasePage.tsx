@@ -13,7 +13,7 @@ export default function TheOmakasePage() {
     <>
       <Helmet>
         <title>The Omakase &middot; Parth Pawar</title>
-        <meta name="description" content="The Omakase is a 2-player party arcade game where sushi chefs compete to serve customers — a creative technology and game design project." />
+        <meta name="description" content="The Omakase is a 2-player party arcade game where sushi chefs compete to serve customers, a creative technology and game design project." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Omakase · Parth Pawar" />
         <meta property="og:description" content="2-player party arcade game where sushi chefs compete to serve customers." />

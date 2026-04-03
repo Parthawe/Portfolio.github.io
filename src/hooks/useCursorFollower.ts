@@ -29,7 +29,7 @@ export function useCursorFollower() {
     let rafId: number;
     let visible = true;
 
-    // State machine — single source of truth, prevents flicker
+    // State machine, single source of truth, prevents flicker
     let cursorState: 'default' | 'view' | 'cta' | 'hover' = 'default';
 
     const resolveState = (el: Element | null): 'default' | 'view' | 'cta' | 'hover' => {

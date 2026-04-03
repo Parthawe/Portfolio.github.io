@@ -13,7 +13,7 @@ export default function MoniacMachinePage() {
     <>
       <Helmet>
         <title>Moniac Machine &middot; Parth Pawar</title>
-        <meta name="description" content="Economic strategy game inspired by the legendary 1949 Phillips hydraulic computer — a creative technology and game design project." />
+        <meta name="description" content="Economic strategy game inspired by the legendary 1949 Phillips hydraulic computer, a creative technology and game design project." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Moniac Machine &middot; Parth Pawar" />
         <meta property="og:description" content="Economic strategy game inspired by the legendary 1949 Phillips hydraulic computer." />
@@ -75,12 +75,12 @@ export default function MoniacMachinePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/t/original/i/H1909522268650214435062429319702/1.jpg" alt="Moniac Machine — inspiration" loading="lazy" />
+            <img src="https://freight.cargo.site/t/original/i/H1909522268650214435062429319702/1.jpg" alt="Moniac Machine, inspiration" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/t/original/i/F1909522268834681875799524835862/2.jpg" alt="Moniac Machine — reference" loading="lazy" />
+            <img src="https://freight.cargo.site/t/original/i/F1909522268834681875799524835862/2.jpg" alt="Moniac Machine, reference" loading="lazy" />
           </div>
         </section>
 
@@ -95,12 +95,12 @@ export default function MoniacMachinePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/t/original/i/Y1909522268816235131725815284246/3.jpg" alt="Moniac Machine — mechanics" loading="lazy" />
+            <img src="https://freight.cargo.site/t/original/i/Y1909522268816235131725815284246/3.jpg" alt="Moniac Machine, mechanics" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/t/original/i/I1909522268797788387652105732630/4.jpg" alt="Moniac Machine — controls" loading="lazy" />
+            <img src="https://freight.cargo.site/t/original/i/I1909522268797788387652105732630/4.jpg" alt="Moniac Machine, controls" loading="lazy" />
           </div>
         </section>
 
@@ -115,12 +115,12 @@ export default function MoniacMachinePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/t/original/i/F1909522268779341643578396181014/5.jpg" alt="Moniac Machine — result" loading="lazy" />
+            <img src="https://freight.cargo.site/t/original/i/F1909522268779341643578396181014/5.jpg" alt="Moniac Machine, result" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/t/original/i/X1909522268760894899504686629398/6.jpg" alt="Moniac Machine — final" loading="lazy" />
+            <img src="https://freight.cargo.site/t/original/i/X1909522268760894899504686629398/6.jpg" alt="Moniac Machine, final" loading="lazy" />
           </div>
         </section>
 

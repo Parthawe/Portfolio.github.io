@@ -1,5 +1,5 @@
 /* ============================================
-   Parth Pawar — Portfolio
+   Parth Pawar, Portfolio
    Light · type-driven · restrained
    ============================================ */
 
@@ -99,7 +99,7 @@
 [data-theme="dark"] .nav.scrolled {
   background: rgba(17,17,16,0.92);
 }
-/* Footer is always dark — no theme override needed */
+/* Footer is always dark, no theme override needed */
 [data-theme="dark"] .footer {
   background: var(--footer-dark);
   color: var(--accent);
@@ -439,7 +439,7 @@ hr.divider {
 .mobile-nav-links a:hover { opacity: 0.5; }
 
 /* ================================================
-   HERO — 3D card fan
+   HERO, 3D card fan
    ================================================ */
 .hero {
   min-height: 100vh;
@@ -673,7 +673,7 @@ hr.divider {
 }
 
 /* ================================================
-   SELECTED WORK — editorial rows (homepage)
+   SELECTED WORK, editorial rows (homepage)
    ================================================ */
 .work-sec {
   padding: 6rem 0 2rem;
@@ -703,7 +703,7 @@ hr.divider {
 .sec-more:hover { color: var(--ink); }
 .sec-more svg { width: 10px; height: 10px; }
 
-/* Project row — alternating text + image */
+/* Project row, alternating text + image */
 .project-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -764,7 +764,7 @@ hr.divider {
   transform: scale(1.02);
 }
 
-/* Row dimming — hover one, others fade */
+/* Row dimming, hover one, others fade */
 .work-sec .project-row {
   transition: opacity 0.4s var(--ease-out), border-color 0.2s;
 }
@@ -805,7 +805,7 @@ hr.divider {
 }
 
 /* ================================================
-   FOOTER — full-height dark (wildyriftian style)
+   FOOTER, full-height dark (wildyriftian style)
    ================================================ */
 .footer {
   background: var(--footer-dark);
@@ -862,7 +862,7 @@ hr.divider {
   transform: translateY(-100%);
 }
 
-/* Footer watermark — large serif text behind content */
+/* Footer watermark, large serif text behind content */
 .footer-watermark {
   position: absolute;
   bottom: 3rem;
@@ -881,7 +881,7 @@ hr.divider {
   overflow: hidden;
 }
 
-/* Footer CTA — inside footer dark area */
+/* Footer CTA, inside footer dark area */
 .footer-cta {
   text-align: center;
   padding: 0 0 4rem;
@@ -908,7 +908,7 @@ hr.divider {
   text-decoration-color: var(--accent);
 }
 
-/* Dashed separator line — used between sections */
+/* Dashed separator line, used between sections */
 .dashed-line {
   border: none;
   height: 1px;
@@ -965,7 +965,7 @@ hr.divider {
   margin-bottom: 2rem;
 }
 
-/* Hover dimming — work page (wildyriftian signature) */
+/* Hover dimming, work page (wildyriftian signature) */
 .pcard-text-row:hover .pcard-text {
   opacity: 0.35;
   transition: opacity 0.4s var(--ease-out), border-color 0.2s, border-left-color 0.3s var(--ease-spring), background 0.2s, box-shadow 0.2s, transform 0.2s;
@@ -996,7 +996,7 @@ hr.divider {
   gap: 1.5rem;
 }
 
-/* Project cards — used on work page */
+/* Project cards, used on work page */
 .pcard {
   display: block;
   text-decoration: none;
@@ -1064,7 +1064,7 @@ hr.divider {
   margin: 0;
 }
 .pcard-role {
-  display: none; /* clean up — role in card is noise */
+  display: none; /* clean up, role in card is noise */
 }
 
 /* Hero card on work page */
@@ -1414,9 +1414,9 @@ hr.divider {
   object-fit: contain;
 }
 
-/* Read time — see styling in interactive components section */
+/* Read time, see styling in interactive components section */
 
-/* Color chapter — neutralize */
+/* Color chapter, neutralize */
 .color-chapter,
 .color-chapter--light,
 .color-chapter--dark {
@@ -1635,7 +1635,7 @@ hr.divider {
   color: var(--ink);
 }
 
-/* Stat cards — prominent metrics */
+/* Stat cards, prominent metrics */
 .cs-stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -2398,7 +2398,7 @@ hr.divider {
   transform-style: preserve-3d;
 }
 
-/* ── Footer reveal — content scrolls away, dark footer underneath ── */
+/* ── Footer reveal, content scrolls away, dark footer underneath ── */
 .footer-reveal {
   position: fixed;
   bottom: 0;
@@ -2704,12 +2704,12 @@ body.has-footer-reveal .cta {
 }
 
 /* ================================================
-   BACKWARDS COMPAT — old class names still in HTML
+   BACKWARDS COMPAT, old class names still in HTML
    ================================================ */
-/* Hero v2 classes from index.html — remap to new hero */
+/* Hero v2 classes from index.html, remap to new hero */
 .hero-v2.hero-v2--split { display: none !important; }
 
-/* CTA v2 from existing pages — restyle as new CTA */
+/* CTA v2 from existing pages, restyle as new CTA */
 .cta-v2 {
   display: block !important;
   padding: 6rem 0;
@@ -2751,7 +2751,7 @@ body.has-footer-reveal .cta {
 }
 .cta-v2-btn svg { display: none; }
 
-/* Footer v2 from existing pages — restyle as new footer */
+/* Footer v2 from existing pages, restyle as new footer */
 .footer-v2 {
   display: block !important;
   padding: 1.5rem 0;

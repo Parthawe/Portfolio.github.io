@@ -23,7 +23,7 @@ export default function ZentipayPage() {
     <>
       <Helmet>
         <title>ZentiPay &middot; Parth Pawar</title>
-        <meta name="description" content="ZentiPay — Founding Product Designer for an AI-driven fintech super app serving migrant workers and international students. Increased transaction completion by 30% and reduced perceived transfer time by 40%." />
+        <meta name="description" content="ZentiPay, Founding Product Designer for an AI-driven fintech super app serving migrant workers and international students. Increased transaction completion by 30% and reduced perceived transfer time by 40%." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Fintech super app that increased transaction completion by 30% and reduced perceived transfer time by 40%." />
@@ -49,7 +49,7 @@ export default function ZentipayPage() {
             { label: 'Timeline', value: 'Q2 \u2013 Q3 2025 (~15 weeks)' },
           ]}
           heroImage="/Assets/images/zentipay.png"
-          heroAlt="ZentiPay — fintech super app for cross-border payments"
+          heroAlt="ZentiPay, fintech super app for cross-border payments"
         />
 
         {/* The Hook */}
@@ -301,7 +301,7 @@ export default function ZentipayPage() {
           <CsSteps steps={[
             { num: '1', title: 'Recurring Transfers', desc: 'Most remittance users send the same amount to the same person every month. The next feature: one-tap recurring transfers with locked-in rates, automatic fee optimization, and delivery confirmation notifications for recipients.' },
             { num: '2', title: 'Recipient Experience', desc: 'The current product focuses on the sender. The next phase designs for the person receiving money: real-time delivery tracking, flexible pickup options, and in-language notifications. If the recipient trusts the platform, the sender does too.' },
-            { num: '3', title: 'Financial Literacy Integration', desc: 'Research revealed many users did not understand exchange rates or fee structures. The next iteration embeds contextual financial literacy — explaining what an exchange margin is at the moment it appears, not in a help center no one reads.' },
+            { num: '3', title: 'Financial Literacy Integration', desc: 'Research revealed many users did not understand exchange rates or fee structures. The next iteration embeds contextual financial literacy, explaining what an exchange margin is at the moment it appears, not in a help center no one reads.' },
           ]} />
         </CsSection>
 

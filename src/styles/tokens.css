@@ -1,5 +1,5 @@
 /* ============================================
-   Parth Pawar — Portfolio
+   Parth Pawar, Portfolio
    Light · type-driven · restrained
    ============================================ */
 
@@ -43,11 +43,11 @@
   --gutter:   clamp(1.25rem, 4vw, 3rem);
 
   /* Type scale */
-  --text-2xs:  0.6rem;      /* 9.6px — tiny labels */
-  --text-xs:   0.72rem;     /* 11.5px — captions, tags */
-  --text-sm:   0.85rem;     /* 13.6px — secondary text */
-  --text-base: 1rem;        /* 16px — body */
-  --text-lg:   1.125rem;    /* 18px — emphasized body */
+  --text-2xs:  0.6rem;      /* 9.6px, tiny labels */
+  --text-xs:   0.72rem;     /* 11.5px, captions, tags */
+  --text-sm:   0.85rem;     /* 13.6px, secondary text */
+  --text-base: 1rem;        /* 16px, body */
+  --text-lg:   1.125rem;    /* 18px, emphasized body */
   --text-xl:   1.5rem;      /* 24px */
   --text-2xl:  2rem;        /* 32px */
   --text-3xl:  3rem;        /* 48px */
@@ -135,7 +135,7 @@
   --ink:      #EDEDEC;
   --ink-70:   rgba(237,237,236,0.7);
   --ink-50:   rgba(237,237,236,0.58); /* WCAG AA: ~4.9:1 on #111110 */
-  --ink-40:   rgba(237,237,236,0.5);  /* WCAG AA: ~4.3:1 on #111110 — large text OK */
+  --ink-40:   rgba(237,237,236,0.5);  /* WCAG AA: ~4.3:1 on #111110, large text OK */
   --ink-30:   rgba(237,237,236,0.3);
   --ink-15:   rgba(237,237,236,0.15);
   --ink-12:   rgba(237,237,236,0.12);
@@ -144,13 +144,13 @@
   --ink-04:   rgba(237,237,236,0.04);
   color-scheme: dark;
 
-  /* Shadow elevation — dark */
+  /* Shadow elevation, dark */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
   --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
 
-  /* Glass-morphism — dark */
+  /* Glass-morphism, dark */
   --glass-bg: rgba(30, 30, 30, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
@@ -190,7 +190,7 @@
 [data-theme="dark"] .nav.scrolled {
   background: rgba(17,17,16,0.92);
 }
-/* Footer is always dark — no theme override needed */
+/* Footer is always dark, no theme override needed */
 [data-theme="dark"] .footer {
   background: var(--footer-dark);
   color: var(--accent);

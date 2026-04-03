@@ -22,10 +22,10 @@ export default function ExecutiveLensPage() {
     <>
       <Helmet>
         <title>ExecutiveLens &middot; Parth Pawar</title>
-        <meta name="description" content="ExecutiveLens.ai — AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time decision tracking. Case study by Parth Pawar, Product Designer." />
+        <meta name="description" content="ExecutiveLens.ai, AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time decision tracking. Case study by Parth Pawar, Product Designer." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
-        <meta property="og:description" content="AI-powered business intelligence for executives — from meeting insights to strategic recommendations in real time." />
+        <meta property="og:description" content="AI-powered business intelligence for executives, from meeting insights to strategic recommendations in real time." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/executivelens.png" />
       </Helmet>
 
@@ -48,7 +48,7 @@ export default function ExecutiveLensPage() {
           ]}
           liveUrl="https://www.executivelens.ai"
           heroImage="/Assets/images/executivelens.png"
-          heroAlt="ExecutiveLens.ai — AI-powered business intelligence for executives"
+          heroAlt="ExecutiveLens.ai, AI-powered business intelligence for executives"
         />
 
         <ProjectOverview
@@ -119,11 +119,11 @@ export default function ExecutiveLensPage() {
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-website" label="Live Product" title="executivelens.ai — The Product Site">
+        <CsSection id="cs-website" label="Live Product" title="executivelens.ai, The Product Site">
           <CsBody>
             <p>The marketing site follows the same design philosophy as the product: clarity over cleverness. Clean typography, structured information hierarchy, and a narrative that walks executives from problem to solution without buzzword bingo. The hero shows the real product, not mockups.</p>
           </CsBody>
-          <CsImage src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.png" alt="ExecutiveLens.ai full marketing website — hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
+          <CsImage src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.png" alt="ExecutiveLens.ai full marketing website, hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
         </CsSection>
 
         <CsSection id="cs-insights" label="Insight Engine" title="AI That Connects Dots You Did Not Know Existed">

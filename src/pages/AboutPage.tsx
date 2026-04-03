@@ -10,20 +10,20 @@ import Footer from '../components/Footer'
 type Row = { date: string; role: string; co?: string; desc?: string; link?: string; section?: string }
 
 const rows: Row[] = [
-  { section: 'Experience', date: 'Q3 2025 —', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'Designing the entire OS for AI smart glasses — a screen the size of a postage stamp that has to feel effortless.' },
-  { date: 'Q2 — Q3 2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: '0 → 1 fintech super app. 30% higher transaction completion.' },
-  { date: '2022 — 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Crypto payments across six Asian markets. $50M+ monthly volume.' },
+  { section: 'Experience', date: 'Q3 2025 -', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'Designing the entire OS for AI smart glasses, a screen the size of a postage stamp that has to feel effortless.' },
+  { date: 'Q2, Q3 2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: '0 → 1 fintech super app. 30% higher transaction completion.' },
+  { date: '2022, 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Crypto payments across six Asian markets. $50M+ monthly volume.' },
   { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc' },
-  { date: '2023 — 2024', role: 'Graduate Teaching Assistant', co: 'NYU Tisch / ITP', desc: 'Helped students break things on purpose — honestly, how I learn best too.' },
-  { date: '2020 — 2022', role: 'Co-founder & Director', co: 'ArtTown Podcast', link: '/atps', desc: '45 episodes across 3 seasons — interviewing designers from Puma, Royal College of Arts, Google, and Bollywood.' },
-  { date: '2020 — 2021', role: 'Research Intern', co: 'IBM' },
-  { section: 'Education', date: '2022 — 2024', role: 'MPS, Interactive Telecommunications', co: 'NYU Tisch School of the Arts', desc: 'Where I learned that a designer who can solder is a dangerous thing.' },
-  { date: '2018 — 2022', role: 'BE, Computer Science', co: 'VIT Pune' },
+  { date: '2023, 2024', role: 'Graduate Teaching Assistant', co: 'NYU Tisch / ITP', desc: 'Helped students break things on purpose, honestly, how I learn best too.' },
+  { date: '2020, 2022', role: 'Co-founder & Director', co: 'ArtTown Podcast', link: '/atps', desc: '45 episodes across 3 seasons, interviewing designers from Puma, Royal College of Arts, Google, and Bollywood.' },
+  { date: '2020, 2021', role: 'Research Intern', co: 'IBM' },
+  { section: 'Education', date: '2022, 2024', role: 'MPS, Interactive Telecommunications', co: 'NYU Tisch School of the Arts', desc: 'Where I learned that a designer who can solder is a dangerous thing.' },
+  { date: '2018, 2022', role: 'BE, Computer Science', co: 'VIT Pune' },
   { section: 'Recognition', date: '2024', role: 'Red Burn + ITP Scholarships', co: 'NYU' },
   { date: '2023', role: 'Tisch Graduate Scholarship', co: 'NYU Tisch' },
-  { date: '2021', role: 'Smart India Hackathon — Winner', co: 'Govt. of India' },
+  { date: '2021', role: 'Smart India Hackathon, Winner', co: 'Govt. of India' },
   { section: 'Exhibitions', date: '2024', role: 'Maker Faire, WonderVille, NIME', co: 'New York' },
-  { date: '2023 — 24', role: 'ITP Shows (Spring, Winter, Camp)', co: 'NYU ITP' },
+  { date: '2023, 24', role: 'ITP Shows (Spring, Winter, Camp)', co: 'NYU ITP' },
 ]
 
 const tools = [
@@ -63,7 +63,7 @@ export default function AboutPage() {
     <>
       <Helmet>
         <title>About &middot; Parth Pawar</title>
-        <meta name="description" content="Parth Pawar — Design Engineer. Head of UI/UX at Mentra. Making complex systems feel simple. NYU ITP MPS '24." />
+        <meta name="description" content="Parth Pawar, Design Engineer. Head of UI/UX at Mentra. Making complex systems feel simple. NYU ITP MPS '24." />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="About &middot; Parth Pawar" />
         <meta property="og:description" content="Design Engineer. Head of UI/UX at Mentra. Making complex systems feel simple." />
@@ -114,17 +114,17 @@ export default function AboutPage() {
                 <span>to a creative.</span>
               </div>
 
-              {/* Headline — handwritten style */}
+              {/* Headline, handwritten style */}
               <h1 className="abt-collage-title hero-anim hero-anim-2">
                 Be the Creative<br /><em>you</em>
               </h1>
 
-              {/* Main portrait — center, largest */}
+              {/* Main portrait, center, largest */}
               <div className="abt-collage-main hero-anim hero-anim-1">
                 <img src="/Assets/ParthAboutus.png" alt="Parth Pawar" loading="eager" />
               </div>
 
-              {/* Scattered polaroid photos — position via CSS */}
+              {/* Scattered polaroid photos, position via CSS */}
               <div className="abt-polaroid abt-polaroid--1 hero-anim hero-anim-2">
                 <div className="abt-polaroid-inner" />
                 <span className="abt-pin" />
@@ -155,7 +155,7 @@ export default function AboutPage() {
 
               {/* Right-side text block */}
               <div className="abt-collage-text hero-anim hero-anim-3">
-                <p>The world will tell you to be this or that. And sometimes, it's hard to choose your own path — with all the pressure, expectations, and "shoulds." But you're more than what you think you are. It's never too late to start, to create, or to become the person your younger self dreamed of being.</p>
+                <p>The world will tell you to be this or that. And sometimes, it's hard to choose your own path, with all the pressure, expectations, and "shoulds." But you're more than what you think you are. It's never too late to start, to create, or to become the person your younger self dreamed of being.</p>
               </div>
 
               {/* Issue line */}
@@ -290,7 +290,7 @@ export default function AboutPage() {
               </div>
             </section>
 
-            {/* ── Creative Practice — daily disciplines ── */}
+            {/* ── Creative Practice, daily disciplines ── */}
             <section className="abt-practice reveal">
               <div className="sec-head">
                 <span className="sec-label">Creative practice</span>
@@ -369,7 +369,7 @@ export default function AboutPage() {
               </Link>
             </section>
 
-            {/* ── Typography showcase — Butler's Slice ── */}
+            {/* ── Typography showcase, Butler's Slice ── */}
             <section className="abt-type reveal">
               <div className="abt-type-intro">
                 <span className="abt-type-label">Made this typeface</span>

@@ -74,13 +74,13 @@ export default function EnigmaPage() {
 
         {/* Images 1-3 */}
         <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/G1896202568057018034140303655446/1.jpg" alt="Enigma sculpture — overview of the illuminated neural network" loading="lazy" />
+          <img src="https://freight.cargo.site/w/2000/i/G1896202568057018034140303655446/1.jpg" alt="Enigma sculpture, overview of the illuminated neural network" loading="lazy" />
         </section>
         <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/K1896202568075464778214013207062/2.jpg" alt="Enigma sculpture — close-up of LED neurons" loading="lazy" />
+          <img src="https://freight.cargo.site/w/2000/i/K1896202568075464778214013207062/2.jpg" alt="Enigma sculpture, close-up of LED neurons" loading="lazy" />
         </section>
         <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/S1896202568093911522287722758678/3.jpg" alt="Enigma sculpture — network topology detail" loading="lazy" />
+          <img src="https://freight.cargo.site/w/2000/i/S1896202568093911522287722758678/3.jpg" alt="Enigma sculpture, network topology detail" loading="lazy" />
         </section>
 
         {/* Technology */}
@@ -94,10 +94,10 @@ export default function EnigmaPage() {
 
         {/* Images 4-5 */}
         <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/E1896202568112358266361432310294/4.jpg" alt="Enigma — technology and wiring detail" loading="lazy" />
+          <img src="https://freight.cargo.site/w/2000/i/E1896202568112358266361432310294/4.jpg" alt="Enigma, technology and wiring detail" loading="lazy" />
         </section>
         <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/S1896202568130805010435141861910/5.jpg" alt="Enigma — LED driver and Arduino setup" loading="lazy" />
+          <img src="https://freight.cargo.site/w/2000/i/S1896202568130805010435141861910/5.jpg" alt="Enigma, LED driver and Arduino setup" loading="lazy" />
         </section>
 
         {/* Exhibition */}
@@ -111,10 +111,10 @@ export default function EnigmaPage() {
 
         {/* Images 6-7 */}
         <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/O1896202568186145242656270516758/8.jpg" alt="Enigma at ITP Winter Show — audience interaction" loading="lazy" />
+          <img src="https://freight.cargo.site/w/2000/i/O1896202568186145242656270516758/8.jpg" alt="Enigma at ITP Winter Show, audience interaction" loading="lazy" />
         </section>
         <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/D1896202568204591986729980068374/9.jpg" alt="Enigma at ITP Winter Show — exhibition view" loading="lazy" />
+          <img src="https://freight.cargo.site/w/2000/i/D1896202568204591986729980068374/9.jpg" alt="Enigma at ITP Winter Show, exhibition view" loading="lazy" />
         </section>
 
         {/* Thanks */}

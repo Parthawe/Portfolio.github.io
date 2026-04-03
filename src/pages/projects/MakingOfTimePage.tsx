@@ -13,7 +13,7 @@ export default function MakingOfTimePage() {
     <>
       <Helmet>
         <title>Making of Time &middot; Parth Pawar</title>
-        <meta name="description" content="Exploring the essence of time from ancient methods to contemporary technology — a creative technology and physical computing project." />
+        <meta name="description" content="Exploring the essence of time from ancient methods to contemporary technology, a creative technology and physical computing project." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Making of Time &middot; Parth Pawar" />
         <meta property="og:description" content="Exploring the essence of time from ancient methods to contemporary technology." />
@@ -75,12 +75,12 @@ export default function MakingOfTimePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/O2050785415862777034195880706582/1.jpg" alt="Sundial — Making of Time" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2000/i/O2050785415862777034195880706582/1.jpg" alt="Sundial, Making of Time" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/D2050785416028797730859266671126/2.jpg" alt="Sundial detail — Making of Time" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2000/i/D2050785416028797730859266671126/2.jpg" alt="Sundial detail, Making of Time" loading="lazy" />
           </div>
         </section>
 
@@ -95,12 +95,12 @@ export default function MakingOfTimePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/A2050785416010350986785557119510/3.jpg" alt="Mechanical watch — Making of Time" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2000/i/A2050785416010350986785557119510/3.jpg" alt="Mechanical watch, Making of Time" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/I2050787120876885023096027021846/4.jpg" alt="Mechanical detail — Making of Time" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2000/i/I2050787120876885023096027021846/4.jpg" alt="Mechanical detail, Making of Time" loading="lazy" />
           </div>
         </section>
 
@@ -115,12 +115,12 @@ export default function MakingOfTimePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/M2050785415973457498638138016278/5.jpg" alt="Digital timepiece — Making of Time" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2000/i/M2050785415973457498638138016278/5.jpg" alt="Digital timepiece, Making of Time" loading="lazy" />
           </div>
         </section>
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/J2050785415955010754564428464662/6.jpg" alt="Digital detail — Making of Time" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2000/i/J2050785415955010754564428464662/6.jpg" alt="Digital detail, Making of Time" loading="lazy" />
           </div>
         </section>
 

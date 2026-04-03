@@ -15,7 +15,7 @@ export default function TypefacePage() {
         <meta name="description" content="Butler's Slice is a free variable display typeface created as a customised Butler font by slicing alphabets. Designed for editorial applications with three weights: Ultralight, Regular, and Bold." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Butler's Slice · Parth Pawar" />
-        <meta property="og:description" content="Free variable display typeface — customised Butler font with three weights for editorial applications." />
+        <meta property="og:description" content="Free variable display typeface, customised Butler font with three weights for editorial applications." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/typeface.jpg" />
       </Helmet>
 
@@ -77,7 +77,7 @@ export default function TypefacePage() {
         </section>
 
         {/* Types of Slices */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/3.jpg" alt="Character specimens — Ag in three weights, types of slices: Angle, Vertical, and Linear" />
+        <CsImage src="/Assets/Projects/Typeface/Desktop/3.jpg" alt="Character specimens, Ag in three weights, types of slices: Angle, Vertical, and Linear" />
 
         {/* The Glyphs */}
         <section className="cs-section reveal">
@@ -104,7 +104,7 @@ export default function TypefacePage() {
         </section>
 
         {/* The Weights */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/5.jpg" alt="The weights — Bold, Regular, Ultralight with character grid on purple background" />
+        <CsImage src="/Assets/Projects/Typeface/Desktop/5.jpg" alt="The weights, Bold, Regular, Ultralight with character grid on purple background" />
 
         {/* The Usage */}
         <CsImage src="/Assets/Projects/Typeface/Desktop/6.jpg" alt="Packaging mockups showing Butler's Slice on various products" />

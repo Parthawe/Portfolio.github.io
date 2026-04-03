@@ -18,10 +18,10 @@ export default function KeyboardProjectPage() {
     <>
       <Helmet>
         <title>BreakGen &middot; Parth Pawar</title>
-        <meta name="description" content="BreakGen — a modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, intuitive layout tools, and automated PCB generation. ITP Thesis at NYU." />
+        <meta name="description" content="BreakGen, a modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, intuitive layout tools, and automated PCB generation. ITP Thesis at NYU." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="BreakGen &middot; Parth Pawar" />
-        <meta property="og:description" content="Modular keyboard design platform — AI-generated keycaps, layout tools, and automated PCB generation." />
+        <meta property="og:description" content="Modular keyboard design platform, AI-generated keycaps, layout tools, and automated PCB generation." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/keyboard.jpg" />
       </Helmet>
 
@@ -43,7 +43,7 @@ export default function KeyboardProjectPage() {
             { label: 'Stack', value: 'React, Three.js, Meshy AI, KiCad' },
           ]}
           heroImage="/Assets/images/keyboard.jpg"
-          heroAlt="BreakGen — modular keyboard design platform"
+          heroAlt="BreakGen, modular keyboard design platform"
         />
 
         {/* Overview */}
@@ -81,7 +81,7 @@ export default function KeyboardProjectPage() {
           </div>
         </section>
 
-        {/* 01 — Concept */}
+        {/* 01, Concept */}
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Breaking Things to Understand Them">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>BreakGen started with something personal: the childhood practice of disassembling toys, electronics, and household objects to understand how they work. That impulse&mdash;to crack open a black box and see the mechanism inside&mdash;is the same one that drives the mechanical keyboard community.</p>
@@ -94,7 +94,7 @@ export default function KeyboardProjectPage() {
           </CsCallout>
         </CsSection>
 
-        {/* 02 — Research */}
+        {/* 02, Research */}
         <CsSection id="cs-research" label="02 &mdash; Research" title="Understanding the Landscape">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>Before building, I spent weeks embedded in the mechanical keyboard community &mdash; reading build logs on r/MechanicalKeyboards, joining Discord servers, attending ITP open labs with keyboard enthusiasts, and cataloging the tools people actually used (and the points where they gave up).</p>
@@ -118,7 +118,7 @@ export default function KeyboardProjectPage() {
           ]} />
         </CsSection>
 
-        {/* 03 — Architecture */}
+        {/* 03, Architecture */}
         <CsSection id="cs-architecture" label="03 &mdash; Architecture" title="The Stack">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>BreakGen is built as a single-page React application with a real-time 3D preview powered by Three.js and Spline. The interface guides users through a sequential design flow: select switches, design keycaps, arrange layout, generate PCB. Each step feeds into the next, and the 3D preview updates in real time so users always see the consequence of their decisions.</p>
@@ -133,7 +133,7 @@ export default function KeyboardProjectPage() {
 
         </CsSection>
 
-        {/* 04 — Process */}
+        {/* 04, Process */}
         <CsSection id="cs-process" label="04 &mdash; Process" title="From Digital Design to Physical Assembly">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>The design process mirrors the user journey itself. Early prototypes tested whether non-technical users could navigate the full keyboard design pipeline without documentation. Iterative user testing at ITP refined the flow: reducing decision fatigue by sequencing choices logically (feel before aesthetics, aesthetics before layout, layout before electronics) and surfacing real-time feedback at every step.</p>
@@ -158,7 +158,7 @@ export default function KeyboardProjectPage() {
 
         </CsSection>
 
-        {/* 05 — Fabrication */}
+        {/* 05, Fabrication */}
         <CsSection id="cs-fabrication" label="05 &mdash; Fabrication" title="Making It Real">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>BreakGen is not purely digital. Physical prototyping was central to validating the platform &mdash; every claim the software makes about &ldquo;production-ready&rdquo; exports had to be verified by actually producing keyboards. This cycle of digital design to physical artifact, repeated dozens of times, surfaced constraints that pure software testing would never reveal.</p>
@@ -179,7 +179,7 @@ export default function KeyboardProjectPage() {
 
         </CsSection>
 
-        {/* 06 — ML Integration */}
+        {/* 06, ML Integration */}
         <section className="cs-section reveal">
           <div className="wrap">
             <span className="cs-section-label">06 &mdash; ML Integration</span>
@@ -202,7 +202,7 @@ export default function KeyboardProjectPage() {
           </div>
         </section>
 
-        {/* 07 — Outcome */}
+        {/* 07, Outcome */}
         <CsSection id="cs-outcome" label="07 &mdash; Outcome" title="ITP Thesis Show">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>BreakGen was exhibited at the NYU ITP Thesis Show, where visitors designed their own keyboards live on the platform and handled physical prototypes produced through the pipeline. The exhibition demonstrated the full loop: digital design to physical artifact, completed in minutes rather than weeks.</p>
@@ -232,7 +232,7 @@ export default function KeyboardProjectPage() {
           </CsCallout>
         </CsSection>
 
-        {/* 08 — Reflections */}
+        {/* 08, Reflections */}
         <CsSection id="cs-reflections" label="08 &mdash; Reflections" title="What I'd Carry Forward">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>BreakGen was the most technically complex project I have built, spanning web development, 3D graphics, machine learning, electronics design, and physical fabrication. Working across all of these domains as a sole practitioner taught me lessons that no single-discipline project could.</p>

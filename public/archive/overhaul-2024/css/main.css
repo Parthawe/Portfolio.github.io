@@ -1,5 +1,5 @@
 /* ============================================
-   Parth Pawar — Portfolio
+   Parth Pawar, Portfolio
    Light · type-driven · restrained
    ============================================ */
 
@@ -96,7 +96,7 @@
 [data-theme="dark"] .nav.scrolled {
   background: rgba(17,17,16,0.92);
 }
-/* Footer is always dark — no theme override needed */
+/* Footer is always dark, no theme override needed */
 [data-theme="dark"] .footer {
   background: var(--footer-dark);
   color: var(--accent);
@@ -434,7 +434,7 @@ hr.divider {
 .mobile-nav-links a:hover { opacity: 0.5; }
 
 /* ================================================
-   HERO — 3D card fan
+   HERO, 3D card fan
    ================================================ */
 .hero {
   min-height: 100vh;
@@ -642,7 +642,7 @@ hr.divider {
   margin-top: 0.75rem;
 }
 
-/* Hero section counter — wildyriftian 01/06 */
+/* Hero section counter, wildyriftian 01/06 */
 .hero-counter {
   position: absolute;
   bottom: 4rem;
@@ -871,7 +871,7 @@ hr.divider {
 }
 
 /* ================================================
-   SELECTED WORK — editorial rows (homepage)
+   SELECTED WORK, editorial rows (homepage)
    ================================================ */
 .work-sec {
   padding: 6rem 0 2rem;
@@ -901,7 +901,7 @@ hr.divider {
 .sec-more:hover { color: var(--ink); }
 .sec-more svg { width: 10px; height: 10px; }
 
-/* Project row — alternating text + image */
+/* Project row, alternating text + image */
 .project-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -993,7 +993,7 @@ hr.divider {
   transform: scale(1.02);
 }
 
-/* Row dimming — hover one, others fade */
+/* Row dimming, hover one, others fade */
 .work-sec .project-row {
   transition: opacity 0.4s var(--ease-out), border-color 0.2s;
 }
@@ -1005,7 +1005,7 @@ hr.divider {
 }
 
 /* ================================================
-   FEATURED WORK CARDS — wildyriftian style
+   FEATURED WORK CARDS, wildyriftian style
    ================================================ */
 .featured-work {
   margin-bottom: 6rem;
@@ -1171,7 +1171,7 @@ hr.divider {
 }
 
 /* ================================================
-   FOOTER — full-height dark (wildyriftian style)
+   FOOTER, full-height dark (wildyriftian style)
    ================================================ */
 .footer {
   background: var(--footer-dark);
@@ -1269,7 +1269,7 @@ hr.divider {
   transform: translateY(-100%);
 }
 
-/* Footer watermark — large serif text behind content */
+/* Footer watermark, large serif text behind content */
 .footer-watermark {
   position: absolute;
   bottom: 3rem;
@@ -1288,7 +1288,7 @@ hr.divider {
   overflow: hidden;
 }
 
-/* Footer CTA — inside footer dark area */
+/* Footer CTA, inside footer dark area */
 .footer-cta {
   text-align: center;
   padding: 0 0 4rem;
@@ -1315,7 +1315,7 @@ hr.divider {
   text-decoration-color: var(--accent);
 }
 
-/* Dashed separator line — used between sections */
+/* Dashed separator line, used between sections */
 .dashed-line {
   border: none;
   height: 1px;
@@ -1358,10 +1358,10 @@ hr.divider {
 /* ── Landing page ── */
 
 /* ================================================
-   LANDING PAGES — category & audience (lp- prefix)
+   LANDING PAGES, category & audience (lp- prefix)
    ================================================ */
 
-/* Hero — split layout */
+/* Hero, split layout */
 .lp-hero {
   padding: calc(var(--nav-h) + 5rem) 0 0;
   margin-bottom: 3.5rem;
@@ -1397,7 +1397,7 @@ hr.divider {
   margin-bottom: 2rem;
 }
 
-/* Stats pills — bigger, bolder */
+/* Stats pills, bigger, bolder */
 .lp-stats {
   display: flex;
   flex-wrap: wrap;
@@ -1425,7 +1425,7 @@ hr.divider {
 [data-theme="dark"] .lp-stat { border-color: var(--ink-15); }
 [data-theme="dark"] .lp-stat:first-child { color: #111; }
 
-/* Tools tags — bigger */
+/* Tools tags, bigger */
 .lp-tools {
   display: flex;
   flex-wrap: wrap;
@@ -1454,7 +1454,7 @@ hr.divider {
   margin: 0 0 3rem;
 }
 
-/* Featured project — full-width hero card */
+/* Featured project, full-width hero card */
 .lp-featured {
   position: relative;
   display: block;
@@ -1534,7 +1534,7 @@ hr.divider {
   white-space: nowrap;
 }
 
-/* Approach — numbered pillars with card treatment */
+/* Approach, numbered pillars with card treatment */
 .lp-approach {
   margin: 4rem 0 3rem;
   padding: 3rem 0;
@@ -1605,7 +1605,7 @@ hr.divider {
   border-bottom: 1px solid var(--ink-08);
 }
 
-/* Tailored CTA — more prominent */
+/* Tailored CTA, more prominent */
 .lp-cta-headline {
   font-family: var(--serif);
   font-size: clamp(2.5rem, 5vw, 4rem);
@@ -1625,7 +1625,7 @@ hr.divider {
   line-height: 1.6;
 }
 
-/* Dark mode — featured card tints */
+/* Dark mode, featured card tints */
 [data-theme="dark"] .lp-featured {
   border-color: rgba(255,255,255,0.06);
   box-shadow: 0 4px 24px rgba(0,0,0,0.2);
@@ -1679,7 +1679,7 @@ hr.divider {
   margin-bottom: 2rem;
 }
 
-/* Hover dimming — work page (wildyriftian signature) */
+/* Hover dimming, work page (wildyriftian signature) */
 .pcard-text-row:hover .pcard-text {
   opacity: 0.35;
   transition: opacity 0.4s var(--ease-out), border-color 0.2s, border-left-color 0.3s var(--ease-spring), background 0.2s, box-shadow 0.2s, transform 0.2s;
@@ -1710,7 +1710,7 @@ hr.divider {
   gap: 1.5rem;
 }
 
-/* Project cards — used on work page */
+/* Project cards, used on work page */
 .pcard {
   display: block;
   text-decoration: none;
@@ -2132,9 +2132,9 @@ hr.divider {
   object-fit: contain;
 }
 
-/* Read time — see styling in interactive components section */
+/* Read time, see styling in interactive components section */
 
-/* Color chapter — neutralize */
+/* Color chapter, neutralize */
 .color-chapter,
 .color-chapter--light,
 .color-chapter--dark {
@@ -2378,7 +2378,7 @@ hr.divider {
   color: var(--ink);
 }
 
-/* Stat cards — prominent metrics */
+/* Stat cards, prominent metrics */
 .cs-stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -3058,7 +3058,7 @@ hr.divider {
   transform-style: preserve-3d;
 }
 
-/* ── Footer reveal — content scrolls away, dark footer underneath ── */
+/* ── Footer reveal, content scrolls away, dark footer underneath ── */
 .footer-reveal {
   position: fixed;
   bottom: 0;
@@ -3558,10 +3558,10 @@ body.has-footer-reveal .cta {
 }
 
 /* ================================================
-   BACKWARDS COMPAT — old class names still in HTML
+   BACKWARDS COMPAT, old class names still in HTML
    ================================================ */
-/* Hero v2 classes from index.html — remap to new hero */
-/* CTA v2 from existing pages — restyle as new CTA */
+/* Hero v2 classes from index.html, remap to new hero */
+/* CTA v2 from existing pages, restyle as new CTA */
 .cta-v2 {
   padding: 6rem 0;
   text-align: center;
@@ -3640,7 +3640,7 @@ body.has-footer-reveal .cta {
 }
 
 /* ================================================
-   HOMEPAGE — wildyriftian style (hp- prefix)
+   HOMEPAGE, wildyriftian style (hp- prefix)
    ================================================ */
 
 /* ── Nav pills ── */
@@ -3699,7 +3699,7 @@ body.has-footer-reveal .cta {
 [data-theme="dark"] .np-menu { background: rgba(17,17,16,0.92); filter: drop-shadow(0 0 2rem rgba(0,0,0,0.3)); }
 [data-theme="dark"] .np-menu-mobile { background: rgba(17,17,16,0.92); filter: drop-shadow(0 0 2rem rgba(0,0,0,0.4)); }
 
-/* Nav on dark hero — always dark pills */
+/* Nav on dark hero, always dark pills */
 body:has(.wr-hero) .np-brand,
 body:has(.wr-hero) .np-contact { background: rgba(17,17,16,0.92); color: rgba(245,245,245,0.85); }
 body:has(.wr-hero) .np-menu { background: rgba(17,17,16,0.92); filter: drop-shadow(0 0 2rem rgba(0,0,0,0.3)); }
@@ -3709,7 +3709,7 @@ body:has(.wr-hero) .np-menu-mobile { background: rgba(17,17,16,0.92); filter: dr
 body:has(.wr-hero) .np-menu-mobile a { color: rgba(245,245,245,0.85); }
 
 /* ================================================
-   DARK HERO — full-screen intro (wr- prefix)
+   DARK HERO, full-screen intro (wr- prefix)
    ================================================ */
 .wr-hero {
   position: sticky; top: 0; z-index: 0;
@@ -3719,7 +3719,7 @@ body:has(.wr-hero) .np-menu-mobile a { color: rgba(245,245,245,0.85); }
   overflow: hidden;
 }
 
-/* Nav spread across top — hidden since pill nav is active */
+/* Nav spread across top, hidden since pill nav is active */
 .wr-hero-nav { display: none; }
 
 /* Side labels */
@@ -3870,7 +3870,7 @@ body:has(.hp) main {
 }
 
 /* ================================================
-   FEATURED WORKS — sticky stacking cards (wr- prefix)
+   FEATURED WORKS, sticky stacking cards (wr- prefix)
    ================================================ */
 .wr-featured {
   position: relative; z-index: 2; background: var(--bg);
@@ -4020,7 +4020,7 @@ body:has(.hp) main {
 .wr-card-images a:hover img { transform: scale(1.03); }
 
 /* ================================================
-   ABOUT CARD — cycling skills (wr- prefix)
+   ABOUT CARD, cycling skills (wr- prefix)
    ================================================ */
 .wr-about-section {
   position: relative; z-index: 4;
@@ -4200,7 +4200,7 @@ body:has(.hp) main {
 }
 
 /* ================================================
-   MORE WORK — grid section (wr- prefix)
+   MORE WORK, grid section (wr- prefix)
    ================================================ */
 .wr-more {
   position: relative; z-index: 2;
@@ -4271,7 +4271,7 @@ body:has(.hp) main {
 }
 
 /* ================================================
-   FOOTER — parallax reveal (wr- prefix)
+   FOOTER, parallax reveal (wr- prefix)
    ================================================ */
 .wr-footer-reveal {
   position: relative; height: 100vh;
@@ -4363,7 +4363,7 @@ body:has(.hp) main {
    RESPONSIVE
    ================================================ */
 @media (max-width: 1200px) {
-  .cs-toc { display: none; } /* legacy — replaced by .cs-bottom-nav */
+  .cs-toc { display: none; } /* legacy, replaced by .cs-bottom-nav */
 }
 
 @media (max-width: 768px) {

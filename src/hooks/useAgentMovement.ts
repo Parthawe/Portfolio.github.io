@@ -63,7 +63,7 @@ export function useAgentMovement(
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(tick)
       } else {
-        // Arrived — point at the target
+        // Arrived, point at the target
         stateRef.current.walking = false
         onStateChange('pointing')
 

@@ -8,10 +8,10 @@ export default function AiWearablesPage() {
     <>
       <Helmet>
         <title>AI &amp; Wearables &middot; Parth Pawar</title>
-        <meta name="description" content="Intelligent interfaces for AI-powered products — smart glasses, voice assistants, developer tools, and conversational AI." />
+        <meta name="description" content="Intelligent interfaces for AI-powered products, smart glasses, voice assistants, developer tools, and conversational AI." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI & Wearables · Parth Pawar" />
-        <meta property="og:description" content="Intelligent interfaces for AI-powered products — smart glasses, voice assistants, and conversational AI." />
+        <meta property="og:description" content="Intelligent interfaces for AI-powered products, smart glasses, voice assistants, and conversational AI." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/oncall-lens.png" />
       </Helmet>
 
@@ -26,7 +26,7 @@ export default function AiWearablesPage() {
                 <h1 className="lp-hero-title">AI &amp;<br /><span className="lp-hero-accent">Wearables</span></h1>
               </div>
               <div className="lp-hero-right">
-                <p className="lp-hero-intro">Intelligent interfaces for AI-powered products — smart glasses, voice assistants, developer tools, and conversational AI.</p>
+                <p className="lp-hero-intro">Intelligent interfaces for AI-powered products, smart glasses, voice assistants, developer tools, and conversational AI.</p>
                 <div className="lp-stats">
                   <span className="lp-stat">4 AI/wearable products</span>
                   <span className="lp-stat">Smart glasses to voice</span>
@@ -106,7 +106,7 @@ export default function AiWearablesPage() {
               <div>
                 <span className="lp-pillar-num">03</span>
                 <p className="lp-pillar-title">Beyond the screen</p>
-                <p className="lp-pillar-desc">Voice, gesture, spatial — interactions that feel natural.</p>
+                <p className="lp-pillar-desc">Voice, gesture, spatial, interactions that feel natural.</p>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function AiWearablesPage() {
         <section className="cta-v2">
           <div className="wrap cta-v2-inner">
             <h2 className="lp-cta-headline">Designing wearable AI?</h2>
-            <p className="lp-cta-sub">From HUD overlays to voice interfaces — I design the future of interaction.</p>
+            <p className="lp-cta-sub">From HUD overlays to voice interfaces, I design the future of interaction.</p>
             <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic">
               parthpawar@nyu.edu
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>

@@ -1,8 +1,8 @@
 /* ================================================
-   HAND TRACKER + BACK-TO-TOP — unified toolbar
+   HAND TRACKER + BACK-TO-TOP, unified toolbar
    ================================================ */
 
-/* ── Unified toolbar — bottom right, aligned with nav padding ── */
+/* ── Unified toolbar, bottom right, aligned with nav padding ── */
 .bt-toolbar {
   position: fixed;
   bottom: calc(var(--pad, 1.5rem) / 2);
@@ -128,7 +128,7 @@
   animation: htSlideIn 0.25s ease-out;
 }
 
-/* ── Preview float — contains step card + camera ── */
+/* ── Preview float, contains step card + camera ── */
 .ht-preview-float {
   position: fixed;
   bottom: calc(var(--pad, 1.5rem) / 2 + 52px);
@@ -229,7 +229,7 @@
   color: #fff;
 }
 
-/* ── Inline step card — colorstory style ── */
+/* ── Inline step card, colorstory style ── */
 .ht-step-card {
   width: 200px;
   background: var(--surface, #fff);

@@ -33,7 +33,7 @@ export default function RootLayout() {
     }
   }, [location.pathname]);
 
-  // Persistent scroll-reveal observer — mounted once, never torn down between routes
+  // Persistent scroll-reveal observer, mounted once, never torn down between routes
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -94,7 +94,7 @@ export default function RootLayout() {
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Re-scan after route change — catches elements revealed after CSS transition
+  // Re-scan after route change, catches elements revealed after CSS transition
   useEffect(() => {
     const io = ioRef.current;
     if (!io) return;

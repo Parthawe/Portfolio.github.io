@@ -16,10 +16,10 @@ export default function RaahiPage() {
     <>
       <Helmet>
         <title>Raahi &middot; Parth Pawar</title>
-        <meta name="description" content="Raahi — Streamlining Pune's public transport system to make it accessible and convenient. A service design project integrating buses, metro, auto-rickshaws and shared cabs." />
+        <meta name="description" content="Raahi, Streamlining Pune's public transport system to make it accessible and convenient. A service design project integrating buses, metro, auto-rickshaws and shared cabs." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Raahi · Parth Pawar" />
-        <meta property="og:description" content="Streamlining Pune's public transport — integrating buses, metro, auto-rickshaws and shared cabs." />
+        <meta property="og:description" content="Streamlining Pune's public transport, integrating buses, metro, auto-rickshaws and shared cabs." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/raahi.jpg" />
       </Helmet>
 
@@ -44,7 +44,7 @@ export default function RaahiPage() {
         />
 
         {/* Hero slide */}
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/1.jpg" alt="Raahi hero — 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/1.jpg" alt="Raahi hero, 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
 
         {/* Summary section with label-rows */}
         <section className="cs-section reveal">
@@ -104,7 +104,7 @@ export default function RaahiPage() {
 
         {/* Image slides */}
         <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/3.jpg" alt="Empathy maps, customer journey maps, service blueprint and task flows" loading="lazy" /></div>
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/4.jpg" alt="Brand Identity — mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/4.jpg" alt="Brand Identity, mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
         <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/5.jpg" alt="Raahi nomenclature in multiple Indian scripts and logo design iterations" loading="lazy" /></div>
 
         {/* Design System */}
@@ -115,7 +115,7 @@ export default function RaahiPage() {
             <CsBody>
               <p>A comprehensive color system was built around transport modes -- each mode (cab, bus, walk, bike-share, local, cycle, auto, metro) received its own distinct color pair for instant recognition. The typography scale ranges from 50px ExtraBold headings down to 10px labels.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Assets/Projects/Raahi/Desktop/6.jpg" alt="Raahi project styleguide — colors, typography scale" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Assets/Projects/Raahi/Desktop/6.jpg" alt="Raahi project styleguide, colors, typography scale" loading="lazy" /></div>
           </div>
         </section>
 

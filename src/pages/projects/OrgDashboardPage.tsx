@@ -21,10 +21,10 @@ export default function OrgDashboardPage() {
     <>
       <Helmet>
         <title>OrgDashboard &middot; Parth Pawar</title>
-        <meta name="description" content="OrgDashboard — Designing the SaaS platform that gives AI agents organizational context. Knowledge base, integrations dashboard, and action approval system. Case study by Parth Pawar." />
+        <meta name="description" content="OrgDashboard, Designing the SaaS platform that gives AI agents organizational context. Knowledge base, integrations dashboard, and action approval system. Case study by Parth Pawar." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OrgDashboard · Parth Pawar" />
-        <meta property="og:description" content="SaaS platform that gives AI agents a brain for your company — designing for two users simultaneously." />
+        <meta property="og:description" content="SaaS platform that gives AI agents a brain for your company, designing for two users simultaneously." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/org-dashboard.png" />
       </Helmet>
 
@@ -47,7 +47,7 @@ export default function OrgDashboardPage() {
             { label: 'Year', value: '2026' },
           ]}
           heroImage="/Assets/images/org-dashboard.png"
-          heroAlt="OrgDashboard — SaaS platform giving AI agents organizational context"
+          heroAlt="OrgDashboard, SaaS platform giving AI agents organizational context"
         />
 
         <ProjectOverview

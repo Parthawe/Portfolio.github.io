@@ -14,10 +14,10 @@ export default function AtpsPage() {
     <>
       <Helmet>
         <title>ATPS &middot; Parth Pawar</title>
-        <meta name="description" content="ArtTown Podcast Series (ATPS) — a weekly podcast hosted by Parth Pawar, featuring 40+ conversations with art and design professionals worldwide. 50k+ views and 18,000 hours of playtime." />
+        <meta name="description" content="ArtTown Podcast Series (ATPS), a weekly podcast hosted by Parth Pawar, featuring 40+ conversations with art and design professionals worldwide. 50k+ views and 18,000 hours of playtime." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ATPS · Parth Pawar" />
-        <meta property="og:description" content="ArtTown Podcast Series — 40+ conversations with art and design professionals. 50k+ views." />
+        <meta property="og:description" content="ArtTown Podcast Series, 40+ conversations with art and design professionals. 50k+ views." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/atps.png" />
       </Helmet>
 
@@ -40,7 +40,7 @@ export default function AtpsPage() {
         />
 
         {/* Hero image */}
-        <CsImage src="/Assets/Projects/ATPS/Desktop/1.jpg" alt="ArtTown Podcast Series hero — microphone with a grid of episode artwork and 50k+ listeners" />
+        <CsImage src="/Assets/Projects/ATPS/Desktop/1.jpg" alt="ArtTown Podcast Series hero, microphone with a grid of episode artwork and 50k+ listeners" />
 
         {/* Distribution */}
         <section className="cs-section reveal">

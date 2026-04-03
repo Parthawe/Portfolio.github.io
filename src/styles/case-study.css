@@ -91,7 +91,7 @@
   flex-direction: column;
   gap: 0.3rem;
 }
-/* typography aliases — inherits from .mono-label pattern */
+/* typography aliases, inherits from .mono-label pattern */
 .proj-info-label,
 .section-label,
 .cs-section-label {
@@ -171,9 +171,9 @@
   object-fit: contain;
 }
 
-/* Read time — see styling in interactive components section */
+/* Read time, see styling in interactive components section */
 
-/* Color chapter — neutralize */
+/* Color chapter, neutralize */
 .color-chapter,
 .color-chapter--light,
 .color-chapter--dark {
@@ -208,7 +208,7 @@
 }
 
 /* ── Bottom section nav (Awwwards-style pill bar) ── */
-/* ── Bottom nav — unified pill (matches .nav-pill) ── */
+/* ── Bottom nav, unified pill (matches .nav-pill) ── */
 .cs-bottom-nav {
   position: fixed;
   bottom: 1.25rem;
@@ -233,7 +233,7 @@
 }
 .cs-bottom-nav::-webkit-scrollbar { display: none; }
 
-/* Reading progress bar — sits on top edge of the pill */
+/* Reading progress bar, sits on top edge of the pill */
 .cs-bnav-progress {
   position: absolute;
   top: 0;
@@ -253,7 +253,7 @@
   pointer-events: none;
 }
 
-/* Auto-hide on scroll pause — shrinks to a thin pill */
+/* Auto-hide on scroll pause, shrinks to a thin pill */
 .cs-bottom-nav.is-idle:not(.is-hidden) {
   opacity: 0;
   transform: translateX(-50%) translateY(10px);
@@ -293,7 +293,7 @@
   font-weight: 600;
 }
 
-/* Live site button — highlighted */
+/* Live site button, highlighted */
 .cs-bnav-live {
   display: inline-flex;
   align-items: center;
@@ -308,7 +308,7 @@
   opacity: 0.85;
 }
 
-/* ── Dark mode — bottom nav ── */
+/* ── Dark mode, bottom nav ── */
 [data-theme="dark"] .cs-bottom-nav {
   border-color: var(--glass-border);
   background: var(--glass-bg);
@@ -400,7 +400,7 @@
 .cs-two-col--reverse { direction: rtl; }
 .cs-two-col--reverse > * { direction: ltr; }
 
-/* Full-width image — constrained with side padding */
+/* Full-width image, constrained with side padding */
 .cs-img-full {
   width: 100%;
   max-width: var(--w);
@@ -454,7 +454,7 @@
   margin: 2rem 0;
 }
 
-/* Slide — constrained with padding */
+/* Slide, constrained with padding */
 .cs-slide {
   width: 100%;
   max-width: var(--w);
@@ -504,7 +504,7 @@
   color: var(--ink);
 }
 
-/* Stat cards — prominent metrics */
+/* Stat cards, prominent metrics */
 .cs-stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
@@ -1646,7 +1646,7 @@
 }
 
 /* ═══════════════════════════════════════
-   BEFORE / AFTER — split comparison
+   BEFORE / AFTER, split comparison
    ═══════════════════════════════════════ */
 .cs-before-after {
   margin: 2.5rem 0;
@@ -1734,7 +1734,7 @@
 }
 
 /* ═══════════════════════════════════════
-   COMPARE TABLE — feature matrix
+   COMPARE TABLE, feature matrix
    ═══════════════════════════════════════ */
 .cs-compare-table-wrap {
   margin: 2.5rem 0;
@@ -1802,7 +1802,7 @@
 }
 
 /* ═══════════════════════════════════════
-   ANNOTATED IMAGE — callouts on screenshot
+   ANNOTATED IMAGE, callouts on screenshot
    ═══════════════════════════════════════ */
 .cs-annotated-img {
   margin: 2.5rem 0;
@@ -1933,7 +1933,7 @@
 }
 
 /* ═══════════════════════════════════════
-   FLOW DIAGRAM — horizontal/vertical process
+   FLOW DIAGRAM, horizontal/vertical process
    ═══════════════════════════════════════ */
 .cs-flow-diagram {
   margin: 2.5rem 0;
@@ -2072,7 +2072,7 @@
 }
 
 /* ═══════════════════════════════════════
-   DARK MODE — comprehensive refinements
+   DARK MODE, comprehensive refinements
    ═══════════════════════════════════════ */
 [data-theme="dark"] .project-main::before { opacity: 0.08; }
 [data-theme="dark"] .proj-info-row { border-top-color: var(--ink-06); }
@@ -2187,7 +2187,7 @@
 }
 
 /* ═══════════════════════════════════════
-   RESPONSIVE — new layout refinements
+   RESPONSIVE, new layout refinements
    ═══════════════════════════════════════ */
 @media (max-width: 768px) {
   .proj-info-row {

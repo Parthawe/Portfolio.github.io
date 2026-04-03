@@ -40,7 +40,7 @@ export default function UvLightPage() {
             { label: 'Year', value: '2023' },
           ]}
           heroImage="/Assets/Projects/UVLight/Desktop/1.jpg"
-          heroAlt="UV Light Experience — immersive blacklight installation with participants"
+          heroAlt="UV Light Experience, immersive blacklight installation with participants"
         />
 
         {/* The Concept */}

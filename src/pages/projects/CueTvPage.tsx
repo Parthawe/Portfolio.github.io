@@ -20,7 +20,7 @@ export default function CueTvPage() {
         <meta name="description" content="CueTV is an OTT platform for opera, ballet, symphonies, and classical music. Designed the discovery, playback, and retargeting ads system with MonsoonFish." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="CueTV · Parth Pawar" />
-        <meta property="og:description" content="OTT platform for opera, ballet, symphonies — designed discovery, playback, and retargeting ads." />
+        <meta property="og:description" content="OTT platform for opera, ballet, symphonies, designed discovery, playback, and retargeting ads." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/cuetv.jpg" />
       </Helmet>
 
@@ -45,7 +45,7 @@ export default function CueTvPage() {
           liveUrl="https://www.cuetv.online"
         />
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/1.jpg" alt="CueTV hero — Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/1.jpg" alt="CueTV hero, Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
 
         {/* Overview */}
         <ProjectOverview
@@ -114,7 +114,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/2.jpg" alt="About CueTV — overview, challenges, role, tools, and genre categories: Opera, Ballet, Symphonies, Classical" />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/2.jpg" alt="About CueTV, overview, challenges, role, tools, and genre categories: Opera, Ballet, Symphonies, Classical" />
 
         {/* Problem Statement */}
         <section className="cs-section reveal">
@@ -144,7 +144,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/3.jpg" alt="Problem statement — How to identify audience, create awareness, engage user. Identified use cases mapped by payment, categories, genres, content, duplicates, and recognition." />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/3.jpg" alt="Problem statement, How to identify audience, create awareness, engage user. Identified use cases mapped by payment, categories, genres, content, duplicates, and recognition." />
 
         {/* Process */}
         <section className="cs-section reveal">
@@ -162,7 +162,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/4.jpg" alt="Process ahead — multi-device platform design for Amazon Fire TV, Apple TV, Roku, Xbox, Android TV, Tizen, iPhone, iPad, and Web" />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/4.jpg" alt="Process ahead, multi-device platform design for Amazon Fire TV, Apple TV, Roku, Xbox, Android TV, Tizen, iPhone, iPad, and Web" />
 
         {/* Awareness Strategy */}
         <section className="cs-section reveal">
@@ -200,7 +200,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/5.jpg" alt="Awareness strategy — experiments, plan of action flow (Awareness, Discovery, Validation, Targeting), campaign details, and organic traffic flow" />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/5.jpg" alt="Awareness strategy, experiments, plan of action flow (Awareness, Discovery, Validation, Targeting), campaign details, and organic traffic flow" />
 
         {/* Customer Segments */}
         <CsSection label="Research" title="Customer Segments">
@@ -215,7 +215,7 @@ export default function CueTvPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/6.jpg" alt="Customer segments detailed breakdown — 3 sets with motivations, pain points, reach strategies. Types of ads: Google Ads, Facebook Ads, and other networks." />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/6.jpg" alt="Customer segments detailed breakdown, 3 sets with motivations, pain points, reach strategies. Types of ads: Google Ads, Facebook Ads, and other networks." />
 
         {/* 30,000+ Ads */}
         <section className="cs-section reveal">
@@ -233,7 +233,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/7.jpg" alt="30,000+ different ad creatives collage and engagement results chart — before and after comparison showing trialist views and subscriber views growth" />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/7.jpg" alt="30,000+ different ad creatives collage and engagement results chart, before and after comparison showing trialist views and subscriber views growth" />
 
         {/* Platform Optimization */}
         <CsSection label="Product Design" title="Platform Optimization">
@@ -246,7 +246,7 @@ export default function CueTvPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/8.jpg" alt="Platform optimization — CueTV mobile app showing explore screen with Siberia opera, and search for Macbeth with results. Watch Live Streams and Find Musical Works." />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/8.jpg" alt="Platform optimization, CueTV mobile app showing explore screen with Siberia opera, and search for Macbeth with results. Watch Live Streams and Find Musical Works." />
 
         {/* More Features */}
         <section className="cs-section reveal">
@@ -259,7 +259,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/9.jpg" alt="Platform features continued — find composers (Mozart), find companies and festivals (Royal Opera House), save and watch offline" />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/9.jpg" alt="Platform features continued, find composers (Mozart), find companies and festivals (Royal Opera House), save and watch offline" />
 
         {/* Credits */}
         <section className="cs-section reveal">
@@ -286,7 +286,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/10.jpg" alt="Credits — performance stills from opera, ballet, and classical productions. Thanks for Watching! Typeface: Butler's Slice. Done with MonsoonFish." />
+        <CsImage src="/Assets/Projects/CueTV/Desktop/10.jpg" alt="Credits, performance stills from opera, ballet, and classical productions. Thanks for Watching! Typeface: Butler's Slice. Done with MonsoonFish." />
 
         {/* Reflections */}
         <section className="cs-section reveal">
