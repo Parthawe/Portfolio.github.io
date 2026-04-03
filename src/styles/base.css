@@ -475,3 +475,118 @@ hr.divider {
   transform: translate(2px, -2px);
 }
 
+
+/* ═══════════════════════════════════════
+   GLOBAL RULERS, fixed to viewport sides
+   3-tier tick marks: minor (24px), medium (120px), major (480px)
+   ═══════════════════════════════════════ */
+
+.site-ruler {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.site-ruler--left {
+  left: 0;
+  border-right: 1px solid var(--ink-04);
+  /* Minor ticks every 24px */
+  background-image:
+    repeating-linear-gradient(to bottom,
+      var(--ink-04) 0px, var(--ink-04) 1px,
+      transparent 1px, transparent 24px);
+  background-size: 7px 24px;
+  background-position: right top;
+  background-repeat: repeat-y;
+}
+/* Medium ticks every 120px */
+.site-ruler--left::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 16px;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(to bottom,
+      var(--ink-06) 0px, var(--ink-06) 1px,
+      transparent 1px, transparent 120px);
+}
+/* Major ticks every 480px */
+.site-ruler--left::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(to bottom,
+      var(--ink-12) 0px, var(--ink-12) 1px,
+      transparent 1px, transparent 480px);
+}
+
+.site-ruler--right {
+  right: 0;
+  border-left: 1px solid var(--ink-04);
+  background-image:
+    repeating-linear-gradient(to bottom,
+      var(--ink-04) 0px, var(--ink-04) 1px,
+      transparent 1px, transparent 24px);
+  background-size: 7px 24px;
+  background-position: left top;
+  background-repeat: repeat-y;
+}
+.site-ruler--right::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 16px;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(to bottom,
+      var(--ink-06) 0px, var(--ink-06) 1px,
+      transparent 1px, transparent 120px);
+}
+.site-ruler--right::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(to bottom,
+      var(--ink-12) 0px, var(--ink-12) 1px,
+      transparent 1px, transparent 480px);
+}
+
+/* Hide on small screens, not enough room */
+@media (max-width: 768px) {
+  .site-ruler { display: none; }
+}
+
+/* Dark mode */
+[data-theme="dark"] .site-ruler--left { border-right-color: rgba(255,255,255,0.03); }
+[data-theme="dark"] .site-ruler--right { border-left-color: rgba(255,255,255,0.03); }
+[data-theme="dark"] .site-ruler--left,
+[data-theme="dark"] .site-ruler--right {
+  background-image:
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px,
+      transparent 1px, transparent 24px);
+}
+[data-theme="dark"] .site-ruler--left::before,
+[data-theme="dark"] .site-ruler--right::before {
+  background-image:
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px,
+      transparent 1px, transparent 120px);
+}
+[data-theme="dark"] .site-ruler--left::after,
+[data-theme="dark"] .site-ruler--right::after {
+  background-image:
+    repeating-linear-gradient(to bottom,
+      rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px,
+      transparent 1px, transparent 480px);
+}

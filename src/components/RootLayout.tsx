@@ -117,6 +117,8 @@ export default function RootLayout() {
     <>
       <div className="grain" aria-hidden="true"></div>
       <div className="dot-grid" aria-hidden="true"></div>
+      <div className="site-ruler site-ruler--left" aria-hidden="true" />
+      <div className="site-ruler site-ruler--right" aria-hidden="true" />
       <PageLoader />
       <div
         style={{
