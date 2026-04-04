@@ -39,6 +39,7 @@ const RevolvingStagePage = lazy(() => import('./pages/projects/RevolvingStagePag
 const UvLightPage = lazy(() => import('./pages/projects/UvLightPage'))
 const VjSoftwarePage = lazy(() => import('./pages/projects/VjSoftwarePage'))
 const BlackHolePage = lazy(() => import('./pages/projects/BlackHolePage'))
+const BreakGenPage = lazy(() => import('./pages/projects/BreakGenPage'))
 const SeaOfSaltPage = lazy(() => import('./pages/projects/SeaOfSaltPage'))
 const BookPage = lazy(() => import('./pages/BookPage'))
 const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
@@ -91,6 +92,7 @@ export default function App() {
           <Route path="/tedx" element={<TedxPage />} />
           <Route path="/code-for-build" element={<CodeForBuildPage />} />
           <Route path="/keyboard-project" element={<KeyboardProjectPage />} />
+          <Route path="/breakgen" element={<BreakGenPage />} />
           <Route path="/making-of-time" element={<MakingOfTimePage />} />
           <Route path="/moniac-machine" element={<MoniacMachinePage />} />
           <Route path="/revolving-stage" element={<RevolvingStagePage />} />

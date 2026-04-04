@@ -472,14 +472,14 @@ const PROJECT_DEEP: Record<string, Record<string, string>> = {
     'how did you approach it': 'Rode the NYC subway blindfolded. Interviewed 12 people.',
     'how did you test it': 'Haptic prototypes in real stations. Sighted users preferred it too.',
   },
-  'keyboard-project': {
+  'breakgen': {
     'what was the hardest part': 'PCB auto-generation. Translating a visual layout into electrical engineering.',
-    'what was the challenge': 'Custom keyboards need EDA software, programming, and spatial reasoning. Most people give up.',
+    'what was the challenge': 'Custom keyboards need EDA software, programming, spatial reasoning. Most give up.',
     'key insight': 'Break the process into steps anyone can follow. AI handles the hard parts.',
-    'how did you approach it': 'React + Three.js for the configurator. Meshy AI for keycaps. KiCad for PCB auto-gen.',
-    'who was the team': 'Solo. Design, dev, fabrication, thesis defense. Advised by Luisa Pereira at NYU ITP.',
-    'your take on it': 'This is where design meets engineering meets fabrication. The full stack.',
-    'how did you test it': 'Physical prototypes: 3D printed, laser cut, CNC. Real keyboards that work.',
+    'how did you approach it': 'React + Three.js for the configurator. Meshy AI for keycaps. KiCad for PCB.',
+    'who was the team': 'Solo. Design, dev, fabrication, thesis defense. Advised by Luisa Pereira.',
+    'your take on it': 'Design meets engineering meets fabrication. The full stack.',
+    'how did you test it': '3D printed, laser cut, CNC. Real keyboards that work. 200+ at thesis show.',
   },
   'jugalbandi': {
     'what was the hardest part': 'Making strangers interact without instructions or language.',
@@ -906,7 +906,8 @@ const PROJECT_GREETINGS: Record<string, string> = {
   'oncall-lens': "OnCall Lens. Sentry alert to PR fix in 24 hours.",
   'ballah-code': "Ballah Code. AI isn't a sidebar, it's the foundation.",
   'tedx': "TEDxVITPune. One brand system for 1500 people.",
-  'keyboard-project': "BreakGen. ITP Thesis. Design a keyboard from scratch, AI does the rest.",
+  'keyboard-project': "The keyboard project. A deep dive into mechanical keyboard design.",
+  'breakgen': "BreakGen. ITP Thesis. AI turns text prompts into real keyboards.",
 }
 
 export function getGreeting(route: string): string {
