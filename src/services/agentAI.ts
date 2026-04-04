@@ -1127,40 +1127,92 @@ export interface TourStep {
 
 const TOURS: Record<string, TourStep[]> = {
   '/': [
-    { text: "Welcome to Parth's portfolio. Let me show you around.", delay: 3000 },
-    { text: "These are the featured projects. TransFi and Mentra are the standouts.", scrollTo: '.hp-pcard-grid, .wr-sticky-card', delay: 4000 },
-    { text: "Scroll down and you'll see the full archive. 30+ projects spanning AI, fintech, installations.", scrollTo: '.wr-more, .wr-archive', delay: 4000 },
-    { text: "That's the overview. Click any project to dive deeper, or ask me about one.", delay: 3000 },
+    { text: "Hey! I'm Folio, Parth's portfolio guide. Let me give you a quick tour.", delay: 0 },
+    { text: "Parth is a design engineer. He designs and builds. Figma to React to Arduino to soldering iron.", delay: 0 },
+    { text: "Here are the featured projects. Mentra is the most ambitious, he designed an entire OS for smart glasses.", scrollTo: '.hp-pcard-grid, .wr-sticky-card, .wr-card', delay: 0 },
+    { text: "TransFi handles 50 million dollars a month. He proved that compliance UX can actually be a competitive advantage.", delay: 0 },
+    { text: "The archive has 30 plus projects. AI, fintech, physical installations, brand design. The range is the point.", scrollTo: '.wr-more, .wr-archive, .wr-grid-2', delay: 0 },
+    { text: "If you're a recruiter, check out Mentra for ambition, ZentiPay for research rigor, and Jugalbandi for creative range.", delay: 0 },
+    { text: "That's the overview. Click any project, or just ask me. I know the story behind every single one.", delay: 0 },
   ],
   '/work': [
-    { text: "This is everything Parth has shipped.", delay: 2500 },
-    { text: "The work spans AI and wearables, UX design, fintech, creative tech, and installations.", scrollTo: '.work-group', delay: 4000 },
-    { text: "The best ones? TransFi for fintech rigor, Mentra for ambition, Jugalbandi for range.", scrollTo: '.pcard-masonry', delay: 4000 },
-    { text: "Ask me about any project you see.", delay: 2000 },
+    { text: "This is everything Parth has shipped. Over 30 projects across 7 categories.", delay: 0 },
+    { text: "AI and Wearables. He designed the entire Mentra smart glasses platform. OS, companion app, app store.", scrollTo: '.work-group', delay: 0 },
+    { text: "Fintech. TransFi at 50 million a month, ZentiPay with 30 percent higher completion. Real numbers.", scrollTo: '.pcard-masonry', delay: 0 },
+    { text: "Creative Tech and Installations. Jugalbandi is a neural network turned into playable instruments. Enigma is 200 LEDs that show AI thinking.", delay: 0 },
+    { text: "For the ITP thesis, BreakGen lets you design custom keyboards with AI. Text prompt to fabrication-ready PCB.", delay: 0 },
+    { text: "What makes Parth different? He doesn't just design, he builds. He doesn't just build, he tests with real users. Ask me about any project.", delay: 0 },
   ],
   '/about': [
-    { text: "Parth is a design engineer at Mentra, designing the OS for AI smart glasses.", delay: 3500 },
-    { text: "NYU Tisch ITP grad. He designs AND builds. Figma to React to Arduino.", scrollTo: '.abt-status-row, .abt-collage', delay: 4000 },
-    { text: "Scroll down for experience, tools, education, and some fun facts.", scrollTo: '.abt-exp, .sec-head', delay: 3500 },
-    { text: "Want to work with him? parthpawar@nyu.edu", scrollTo: '.abt-cta', delay: 2000 },
+    { text: "Parth Pawar. Design engineer. Currently Head of UI and UX at Mentra, designing the OS for AI smart glasses.", delay: 0 },
+    { text: "NYU Tisch ITP graduate. Before that, Computer Science at VIT Pune. He bridges design and engineering.", scrollTo: '.abt-collage, .abt-hero', delay: 0 },
+    { text: "He's led design at TransFi handling 50 million monthly. Founded ZentiPay. Taught at NYU.", scrollTo: '.abt-status-row, .abt-status-card', delay: 0 },
+    { text: "Tools? Figma, Protopie, After Effects for design. React, Swift, Python, TypeScript for code. Blender, Arduino, laser cutting for physical work.", scrollTo: '.abt-tools, .abt-skills, .sec-head', delay: 0 },
+    { text: "He writes poems for 100 days straight, sketches every day, and hosted 45 podcast episodes about craft.", scrollTo: '.abt-practice-grid, .abt-aside', delay: 0 },
+    { text: "Open to product design roles in AI, developer tools, fintech, and zero to one. Email: parthpawar@nyu.edu.", scrollTo: '.abt-cta, .cta-v2', delay: 0 },
   ],
 }
 
-// Generic project page tour
+// Project page tour: tells the story
 function getProjectTour(slug: string): TourStep[] {
   const greeting = PROJECT_GREETINGS[slug]
   const deep = PROJECT_DEEP[slug]
   const steps: TourStep[] = []
 
-  if (greeting) steps.push({ text: greeting, delay: 3000 })
-  if (deep?.['what was the challenge']) steps.push({ text: `The challenge: ${deep['what was the challenge']}`, scrollTo: '#cs-background, .cs-section', delay: 4000 })
-  if (deep?.['key insight']) steps.push({ text: `The key insight: ${deep['key insight']}`, scrollTo: '.cs-feature-grid, .cs-callout', delay: 4000 })
-  if (deep?.['how did you approach it']) steps.push({ text: `Approach: ${deep['how did you approach it']}`, scrollTo: '#cs-process, .cs-steps', delay: 4000 })
-  if (deep?.['your take on it']) steps.push({ text: deep['your take on it'], delay: 3000 })
+  // Introduction
+  if (greeting) {
+    steps.push({ text: greeting, delay: 0 })
+  }
+
+  // The challenge
+  if (deep?.['what was the challenge']) {
+    steps.push({
+      text: `Here's what made this hard: ${deep['what was the challenge']}`,
+      scrollTo: '#cs-background, .cs-section:nth-child(2), .cs-label-row',
+      delay: 0,
+    })
+  }
+
+  // The approach
+  if (deep?.['how did you approach it']) {
+    steps.push({
+      text: `How Parth solved it: ${deep['how did you approach it']}`,
+      scrollTo: '#cs-process, .cs-steps, .cs-feature-grid',
+      delay: 0,
+    })
+  }
+
+  // The insight
+  if (deep?.['key insight']) {
+    steps.push({
+      text: `The key insight: ${deep['key insight']}`,
+      scrollTo: '.cs-callout, .cs-pullquote, .cs-stat-grid',
+      delay: 0,
+    })
+  }
+
+  // Team
+  if (deep?.['who was the team']) {
+    steps.push({ text: `Team: ${deep['who was the team']}`, delay: 0 })
+  }
+
+  // Personal take
+  if (deep?.['your take on it']) {
+    steps.push({
+      text: `My take: ${deep['your take on it']}`,
+      scrollTo: '#cs-reflection, .cs-thanks',
+      delay: 0,
+    })
+  }
+
+  // Related work
+  if (deep?.['related work']) {
+    steps.push({ text: `Connected to: ${deep['related work']}`, delay: 0 })
+  }
 
   if (steps.length === 0) {
-    steps.push({ text: "Let me walk you through this project.", delay: 2000 })
-    steps.push({ text: "Scroll down to see the full case study.", scrollTo: '.cs-section', delay: 3000 })
+    steps.push({ text: "Let me walk you through this project.", delay: 0 })
+    steps.push({ text: "Scroll down to see the full case study.", scrollTo: '.cs-section', delay: 0 })
   }
 
   return steps

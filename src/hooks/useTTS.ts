@@ -1,32 +1,52 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
 
 /**
- * Text-to-Speech hook using Web Speech API.
- * Strips markdown, picks the best English voice, supports mute toggle.
+ * Text-to-Speech hook.
+ * Uses Web Speech API with male voice preference.
+ * Strips markdown before speaking.
  */
 
-// Strip markdown: **bold**, [link](url), →, *, etc.
 function cleanForSpeech(text: string): string {
   return text
-    .replace(/\*\*([^*]+)\*\*/g, '$1')       // **bold** -> bold
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')  // [text](url) -> text
-    .replace(/→/g, '')                         // remove arrows
-    .replace(/\n+/g, '. ')                     // newlines to pauses
-    .replace(/\s+/g, ' ')                      // collapse whitespace
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/→/g, '')
+    .replace(/↗/g, '')
+    .replace(/\n+/g, '. ')
+    .replace(/\s+/g, ' ')
+    .replace(/\.\s*\./g, '.')
     .trim()
 }
 
-// Pick the best English voice available
+// Pick the best MALE English voice
 function getBestVoice(): SpeechSynthesisVoice | null {
   const voices = speechSynthesis.getVoices()
-  // Prefer these voices in order (high quality ones)
-  const preferred = ['Samantha', 'Alex', 'Daniel', 'Karen', 'Moira', 'Google US English', 'Google UK English']
-  for (const name of preferred) {
+
+  // Male voices preferred, in order of quality
+  const maleNames = [
+    'Rishi',           // Indian English male (macOS)
+    'Aaron',           // US male (macOS)
+    'Daniel',          // UK male (macOS)
+    'Alex',            // US male (macOS, older but deep)
+    'Tom',             // UK male
+    'Fred',            // US male
+    'Google UK English Male',
+    'Google US English',
+    'Microsoft David', // Windows male
+    'Microsoft Mark',  // Windows male
+    'Microsoft Ravi',  // Indian English male (Windows)
+  ]
+
+  for (const name of maleNames) {
     const v = voices.find(v => v.name.includes(name))
     if (v) return v
   }
-  // Fallback: any English voice
-  return voices.find(v => v.lang.startsWith('en')) || voices[0] || null
+
+  // Fallback: any English male-sounding voice (avoid known female names)
+  const femaleNames = ['Samantha', 'Karen', 'Moira', 'Tessa', 'Victoria', 'Zira', 'Cortana', 'Siri']
+  const english = voices.filter(v => v.lang.startsWith('en'))
+  const notFemale = english.find(v => !femaleNames.some(f => v.name.includes(f)))
+  return notFemale || english[0] || voices[0] || null
 }
 
 export function useTTS() {
@@ -36,21 +56,21 @@ export function useTTS() {
   const [speaking, setSpeaking] = useState(false)
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null)
 
-  // Save mute preference
   useEffect(() => {
     try { localStorage.setItem('folio-tts-muted', muted ? '1' : '0') } catch {}
   }, [muted])
 
-  // Ensure voices are loaded
+  // Load voices (some browsers load async)
   useEffect(() => {
-    speechSynthesis.getVoices()
-    speechSynthesis.addEventListener?.('voiceschanged', () => speechSynthesis.getVoices())
+    const load = () => speechSynthesis.getVoices()
+    load()
+    speechSynthesis.addEventListener?.('voiceschanged', load)
+    return () => speechSynthesis.removeEventListener?.('voiceschanged', load)
   }, [])
 
   const speak = useCallback((text: string) => {
     if (muted || !text || typeof speechSynthesis === 'undefined') return
 
-    // Cancel any current speech
     speechSynthesis.cancel()
 
     const clean = cleanForSpeech(text)
@@ -59,9 +79,11 @@ export function useTTS() {
     const utterance = new SpeechSynthesisUtterance(clean)
     const voice = getBestVoice()
     if (voice) utterance.voice = voice
-    utterance.rate = 1.05   // slightly faster than default
-    utterance.pitch = 1.0
-    utterance.volume = 0.85 // not too loud
+
+    // Young male Indian English vibe: slightly faster, natural pitch
+    utterance.rate = 1.1
+    utterance.pitch = 0.95
+    utterance.volume = 0.9
 
     utterance.onstart = () => setSpeaking(true)
     utterance.onend = () => setSpeaking(false)
@@ -71,6 +93,35 @@ export function useTTS() {
     speechSynthesis.speak(utterance)
   }, [muted])
 
+  // Speak with a promise that resolves when done
+  const speakAsync = useCallback((text: string): Promise<void> => {
+    return new Promise(resolve => {
+      if (muted || !text || typeof speechSynthesis === 'undefined') {
+        // Even if muted, wait a bit so tour pacing works
+        setTimeout(resolve, Math.max(1000, text.length * 40))
+        return
+      }
+
+      speechSynthesis.cancel()
+      const clean = cleanForSpeech(text)
+      if (!clean) { resolve(); return }
+
+      const utterance = new SpeechSynthesisUtterance(clean)
+      const voice = getBestVoice()
+      if (voice) utterance.voice = voice
+      utterance.rate = 1.1
+      utterance.pitch = 0.95
+      utterance.volume = 0.9
+
+      utterance.onstart = () => setSpeaking(true)
+      utterance.onend = () => { setSpeaking(false); resolve() }
+      utterance.onerror = () => { setSpeaking(false); resolve() }
+
+      utteranceRef.current = utterance
+      speechSynthesis.speak(utterance)
+    })
+  }, [muted])
+
   const cancel = useCallback(() => {
     speechSynthesis.cancel()
     setSpeaking(false)
@@ -78,10 +129,10 @@ export function useTTS() {
 
   const toggleMute = useCallback(() => {
     setMuted(prev => {
-      if (!prev) speechSynthesis.cancel() // muting cancels current speech
+      if (!prev) speechSynthesis.cancel()
       return !prev
     })
   }, [])
 
-  return { speak, cancel, muted, speaking, toggleMute }
+  return { speak, speakAsync, cancel, muted, speaking, toggleMute }
 }

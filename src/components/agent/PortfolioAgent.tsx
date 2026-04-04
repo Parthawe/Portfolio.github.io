@@ -187,42 +187,49 @@ export default function PortfolioAgent() {
   }, [state, setAgentState, speechText, tts])
 
   // Handle quick response via speech bubble (when chat is closed)
-  // Tour playback
-  const tourTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
-  const playTour = useCallback(() => {
+  // Tour playback: speak -> scroll -> wait -> next step
+  const tourActive = useRef(false)
+  const playTour = useCallback(async () => {
     const steps = getTourSteps(route)
-    let i = 0
+    tourActive.current = true
 
-    const playStep = () => {
-      if (i >= steps.length) return
-      const step = steps[i]
+    for (const step of steps) {
+      if (!tourActive.current) break
 
-      // Show speech + speak
-      showSpeech(step.text, step.delay + 1000)
+      // Show text in bubble
+      setSpeechText(step.text)
+      setSpeechTyping(false)
+      setAgentState('talking')
 
-      // Scroll to target if specified
+      // Scroll to target
       if (step.scrollTo) {
-        setTimeout(() => {
-          const el = document.querySelector(step.scrollTo!) as HTMLElement
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        }, 500)
+        const selectors = step.scrollTo.split(',').map(s => s.trim())
+        for (const sel of selectors) {
+          const el = document.querySelector(sel) as HTMLElement
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            break
+          }
+        }
       }
 
-      i++
-      if (i < steps.length) {
-        tourTimer.current = setTimeout(playStep, step.delay + 1500)
-      }
+      // Speak and WAIT until speech finishes
+      await tts.speakAsync(step.text)
+
+      // Brief pause between steps
+      await new Promise(r => setTimeout(r, 800))
     }
 
-    playStep()
-  }, [route, showSpeech])
+    // Tour done
+    tourActive.current = false
+    setSpeechText(null)
+    setAgentState('idle')
+  }, [route, tts, setAgentState])
 
   const handleBubbleResponse = useCallback(async (question: string) => {
-    // Check if it's a tour request
     const q = question.toLowerCase().trim()
     if (q === 'take me on a tour' || q === 'give me a tour' || q === 'tour') {
-      showSpeech("Let me walk you through this page!")
-      setTimeout(playTour, 2000)
+      playTour()
       return
     }
 
@@ -258,6 +265,10 @@ export default function PortfolioAgent() {
   const handleClick = useCallback(() => {
     if (didDrag.current) return
 
+    // Stop tour if running
+    tourActive.current = false
+    tts.cancel()
+
     if (state === 'sleeping') wake()
     walk.stop()
     setSpeechText(null)
@@ -281,10 +292,12 @@ export default function PortfolioAgent() {
   }, [chatLoaded])
 
   const handleClose = useCallback(() => {
+    tourActive.current = false
+    tts.cancel()
     setChatOpen(false)
     setAgentState('idle')
     movement.cancel()
-  }, [setAgentState, movement])
+  }, [setAgentState, movement, tts])
 
   const handleAgentState = useCallback((s: 'thinking' | 'talking' | 'idle') => {
     setAgentState(s as AgentState)
