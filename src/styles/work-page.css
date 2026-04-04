@@ -73,11 +73,61 @@
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--ink-06);
   transition: border-color var(--dur-base);
 }
 .pcard:hover .pcard-inner {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--ink-15);
+}
+
+/* Arrow that appears on hover */
+.pcard-inner::after {
+  content: '↗';
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--surface);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s, transform 0.25s var(--ease-spring);
+  z-index: 3;
+  box-shadow: var(--shadow-sm);
+}
+.pcard:hover .pcard-inner::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Corner marks (Figma selection style) */
+.pcard-inner::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.25s;
+  background:
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 0 0 / 1px 12px,
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 0 0 / 12px 1px,
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 100% 0 / 1px 12px,
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 100% 0 / 12px 1px,
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 0 100% / 1px 12px,
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 0 100% / 12px 1px,
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 100% 100% / 1px 12px,
+    linear-gradient(var(--ink-15), var(--ink-15)) no-repeat 100% 100% / 12px 1px;
+}
+.pcard:hover .pcard-inner::before {
+  opacity: 1;
 }
 
 /* Image fills the entire card background */

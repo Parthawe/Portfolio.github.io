@@ -103,6 +103,16 @@
   transition: all var(--dur-base);
   white-space: nowrap;
 }
+/* Arrow after CTA text */
+.nav-cta::after {
+  content: ' ↗';
+  font-size: 0.85em;
+  opacity: 0.5;
+  transition: opacity 0.2s, transform 0.2s;
+  display: inline-block;
+}
+.nav-cta:hover::after { opacity: 1; transform: translate(1px, -1px); }
+
 .nav-cta:hover {
   background: var(--ink);
   color: var(--surface);
