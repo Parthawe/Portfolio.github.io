@@ -28,6 +28,18 @@ function getProactiveComment(path: string): string | null {
     'revolving-stage': 'Kinetic installation. Handmade.',
     'keyboard-project': 'The keyboard deep dive.',
     'breakgen': 'ITP Thesis. AI-designed keyboards. Watch the presentation.',
+    'enigma': '200 LEDs. One neural network. Watch it think.',
+    'making-of-time': 'Three clocks, three relationships with time.',
+    'uv-light': 'What you can\'t see matters. Blacklight installation.',
+    'shuffle': 'Where does your time actually go? This game shows you.',
+    'drowning': 'Abandoned greenhouse on a stage. $1800 budget.',
+    'moniac-machine': 'Raise taxes. Watch spending collapse. Economics you feel.',
+    'the-omakase': 'Two players, no instructions. The game teaches itself.',
+    'vj-software': 'Parking as a design problem.',
+    'code-for-build': 'Teaching kids to code with building blocks.',
+    'typeface': 'Parth made this typeface. It\'s on this site.',
+    'atps': 'ArtTown Podcast. 45 episodes about craft.',
+    'crypto': 'Web3 exploration.',
   }
   if (projectComments[slug]) return projectComments[slug]
 
