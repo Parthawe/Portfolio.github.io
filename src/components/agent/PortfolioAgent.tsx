@@ -4,7 +4,8 @@ import { useAgentBehavior } from '../../hooks/useAgentBehavior'
 import { useAgentMovement } from '../../hooks/useAgentMovement'
 import { useAgentWalk } from '../../hooks/useAgentWalk'
 import { useTypewriter } from '../../hooks/useTypewriter'
-import { getGreeting, getResponseAction, sendMessage, getChips, createChatHistory, type ChatHistory } from '../../services/agentAI'
+import { useTTS } from '../../hooks/useTTS'
+import { getGreeting, getResponseAction, sendMessage, getChips, createChatHistory, getTourSteps, type ChatHistory } from '../../services/agentAI'
 import type { AgentState } from './AgentCharacter'
 
 const AgentChat = lazy(() => import('./AgentChat'))
@@ -121,6 +122,7 @@ export default function PortfolioAgent() {
   const historyRef = useRef<ChatHistory>(createChatHistory(route))
 
   const showChar = entered && dockVisible
+  const tts = useTTS()
 
   // Movement hook (for walking to targets)
   const movement = useAgentMovement(wrapRef, useCallback((s: 'walking' | 'pointing' | 'idle') => {
@@ -179,20 +181,56 @@ export default function PortfolioAgent() {
   // Handle speech bubble typing done
   const handleSpeechDone = useCallback(() => {
     setSpeechTyping(false)
-    // Only go idle if not pointing at something
     if (state === 'talking') setAgentState('idle')
-  }, [state, setAgentState])
+    // Speak the bubble text aloud
+    if (speechText) tts.speak(speechText)
+  }, [state, setAgentState, speechText, tts])
 
   // Handle quick response via speech bubble (when chat is closed)
+  // Tour playback
+  const tourTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const playTour = useCallback(() => {
+    const steps = getTourSteps(route)
+    let i = 0
+
+    const playStep = () => {
+      if (i >= steps.length) return
+      const step = steps[i]
+
+      // Show speech + speak
+      showSpeech(step.text, step.delay + 1000)
+
+      // Scroll to target if specified
+      if (step.scrollTo) {
+        setTimeout(() => {
+          const el = document.querySelector(step.scrollTo!) as HTMLElement
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }, 500)
+      }
+
+      i++
+      if (i < steps.length) {
+        tourTimer.current = setTimeout(playStep, step.delay + 1500)
+      }
+    }
+
+    playStep()
+  }, [route, showSpeech])
+
   const handleBubbleResponse = useCallback(async (question: string) => {
+    // Check if it's a tour request
+    const q = question.toLowerCase().trim()
+    if (q === 'take me on a tour' || q === 'give me a tour' || q === 'tour') {
+      showSpeech("Let me walk you through this page!")
+      setTimeout(playTour, 2000)
+      return
+    }
+
     historyRef.current.route = route
 
-    // Get the action before the response (what to do after)
     const action = getResponseAction(question)
-
     const response = await sendMessage(question, historyRef.current)
 
-    // Show in speech bubble, keep it short
     let bubbleText = response.replace(/\n/g, ' ').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     if (bubbleText.length > 80) bubbleText = bubbleText.slice(0, 77) + '...'
 

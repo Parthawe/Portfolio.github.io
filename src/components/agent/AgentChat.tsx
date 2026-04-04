@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { sendMessage, getChips, getGreeting, createChatHistory, type ChatHistory } from '../../services/agentAI'
 import { useTypewriter } from '../../hooks/useTypewriter'
+import { useTTS } from '../../hooks/useTTS'
 
 interface Message {
   id: number
@@ -81,6 +82,9 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const initializedRoute = useRef('')
   const questionCount = useRef(0)
 
+  const tts = useTTS()
+  const autoSubmitTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
+
   useEffect(() => { historyRef.current.route = route }, [route])
 
   useEffect(() => {
@@ -141,9 +145,13 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const handleNav = useCallback((p: string) => { navigate(p); onClose() }, [navigate, onClose])
 
   const markDone = useCallback((id: number) => {
-    setMessages(prev => prev.map(m => m.id === id ? { ...m, typing: false } : m))
+    setMessages(prev => {
+      const msg = prev.find(m => m.id === id)
+      if (msg?.raw && msg.sender === 'agent') tts.speak(msg.raw)
+      return prev.map(m => m.id === id ? { ...m, typing: false } : m)
+    })
     onAgentState('idle')
-  }, [onAgentState])
+  }, [onAgentState, tts])
 
   const handleSend = useCallback(async (text: string) => {
     const t = text.trim()
@@ -210,17 +218,42 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
         </div>
       )}
 
-      {/* Input */}
+      {/* Input with voice controls */}
       <form onSubmit={e => { e.preventDefault(); handleSend(input) }} className="agent-float-input">
+        {/* Mute toggle */}
+        <button type="button" onClick={tts.toggleMute} className="agent-float-voice-btn" aria-label={tts.muted ? 'Unmute' : 'Mute'} title={tts.muted ? 'Unmute voice' : 'Mute voice'}>
+          {tts.muted ? (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+          ) : (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><path d="M15.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><path d="M19 6a9 9 0 0 1 0 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+          )}
+        </button>
+
         <input
           ref={inputRef}
           type="text"
-          placeholder="Ask me anything..."
+          placeholder="Ask or speak..."
           value={input}
-          onChange={e => setInput(e.target.value)}
+          onChange={e => {
+            setInput(e.target.value)
+            // Auto-submit for voice: when text appears and stops changing, submit
+            if (autoSubmitTimer.current) clearTimeout(autoSubmitTimer.current)
+            if (e.target.value.trim()) {
+              autoSubmitTimer.current = setTimeout(() => {
+                const val = e.target.value.trim()
+                if (val && !thinking && !streaming) handleSend(val)
+              }, 1500) // 1.5s after last keystroke
+            }
+          }}
           autoComplete="off"
           disabled={thinking || streaming}
         />
+
+        {/* Mic button: focuses input for SuperWhisper */}
+        <button type="button" onClick={() => inputRef.current?.focus()} className="agent-float-voice-btn" aria-label="Voice input" title="Speak (SuperWhisper)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" strokeWidth="1.5" /><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+        </button>
+
         <button type="submit" disabled={!input.trim() || thinking || streaming} className="agent-float-send">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>

@@ -394,6 +394,9 @@ const INSTANT: Record<string, string> = {
   'installations': "Jugalbandi, Enigma, UV Light, Revolving Stage. Physical + digital.",
   'latest': "Mentra. Designing the entire smart glasses OS. Most ambitious project here.",
   'contact': "parthpawar@nyu.edu. Open to new opportunities.",
+  'take me on a tour': "Let me walk you through this page!",
+  'give me a tour': "Let me walk you through this page!",
+  'tour': "Let me walk you through this page!",
   // "Show me X" variants
   'show me mentra': "Smart glasses OS. 640x400px display, 2-second glances. Let me take you there.",
   'show me transfi': "$50M+/month crypto payments across 6 countries. Let me show you.",
@@ -909,9 +912,9 @@ export function getChips(route: string, questionCount: number, lastQuestion?: st
   if (questionCount === 0 || !lastQuestion) {
     const slug = route.replace(/^\//, '')
 
-    if (route === '/') return ['Best projects', 'About Parth', 'Something surprising']
-    if (route === '/work') return ['Best projects', 'AI work', 'Installations']
-    if (route === '/about') return ['Fun facts', 'Daily practices', 'Hire Parth']
+    if (route === '/') return ['Take me on a tour', 'Best projects', 'About Parth']
+    if (route === '/work') return ['Take me on a tour', 'Best projects', 'AI work']
+    if (route === '/about') return ['Take me on a tour', 'Fun facts', 'Hire Parth']
 
     // Project page: context-specific chips
     if (slug && PROJECT_DEEP[slug]) {
@@ -1112,4 +1115,60 @@ export function getGreeting(route: string): string {
   }
 
   return "Ask me about any project."
+}
+
+/* ── Tour scripts per page ─────────────────────────── */
+
+export interface TourStep {
+  text: string
+  scrollTo?: string  // CSS selector to scroll to
+  delay: number      // ms to wait after speaking before next step
+}
+
+const TOURS: Record<string, TourStep[]> = {
+  '/': [
+    { text: "Welcome to Parth's portfolio. Let me show you around.", delay: 3000 },
+    { text: "These are the featured projects. TransFi and Mentra are the standouts.", scrollTo: '.hp-pcard-grid, .wr-sticky-card', delay: 4000 },
+    { text: "Scroll down and you'll see the full archive. 30+ projects spanning AI, fintech, installations.", scrollTo: '.wr-more, .wr-archive', delay: 4000 },
+    { text: "That's the overview. Click any project to dive deeper, or ask me about one.", delay: 3000 },
+  ],
+  '/work': [
+    { text: "This is everything Parth has shipped.", delay: 2500 },
+    { text: "The work spans AI and wearables, UX design, fintech, creative tech, and installations.", scrollTo: '.work-group', delay: 4000 },
+    { text: "The best ones? TransFi for fintech rigor, Mentra for ambition, Jugalbandi for range.", scrollTo: '.pcard-masonry', delay: 4000 },
+    { text: "Ask me about any project you see.", delay: 2000 },
+  ],
+  '/about': [
+    { text: "Parth is a design engineer at Mentra, designing the OS for AI smart glasses.", delay: 3500 },
+    { text: "NYU Tisch ITP grad. He designs AND builds. Figma to React to Arduino.", scrollTo: '.abt-status-row, .abt-collage', delay: 4000 },
+    { text: "Scroll down for experience, tools, education, and some fun facts.", scrollTo: '.abt-exp, .sec-head', delay: 3500 },
+    { text: "Want to work with him? parthpawar@nyu.edu", scrollTo: '.abt-cta', delay: 2000 },
+  ],
+}
+
+// Generic project page tour
+function getProjectTour(slug: string): TourStep[] {
+  const greeting = PROJECT_GREETINGS[slug]
+  const deep = PROJECT_DEEP[slug]
+  const steps: TourStep[] = []
+
+  if (greeting) steps.push({ text: greeting, delay: 3000 })
+  if (deep?.['what was the challenge']) steps.push({ text: `The challenge: ${deep['what was the challenge']}`, scrollTo: '#cs-background, .cs-section', delay: 4000 })
+  if (deep?.['key insight']) steps.push({ text: `The key insight: ${deep['key insight']}`, scrollTo: '.cs-feature-grid, .cs-callout', delay: 4000 })
+  if (deep?.['how did you approach it']) steps.push({ text: `Approach: ${deep['how did you approach it']}`, scrollTo: '#cs-process, .cs-steps', delay: 4000 })
+  if (deep?.['your take on it']) steps.push({ text: deep['your take on it'], delay: 3000 })
+
+  if (steps.length === 0) {
+    steps.push({ text: "Let me walk you through this project.", delay: 2000 })
+    steps.push({ text: "Scroll down to see the full case study.", scrollTo: '.cs-section', delay: 3000 })
+  }
+
+  return steps
+}
+
+export function getTourSteps(route: string): TourStep[] {
+  if (TOURS[route]) return TOURS[route]
+  const slug = route.replace(/^\//, '')
+  if (slug) return getProjectTour(slug)
+  return [{ text: "Let me show you around.", delay: 2000 }]
 }
