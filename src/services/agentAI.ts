@@ -420,7 +420,7 @@ const PROJECT_RESPONSES: Record<string, string> = {
   'clawed': "AI assistant where every action has a receipt. Trust by design.",
   'executivelens': "Saves executives 5.2 hrs/week. No UI is the best UI.",
   'raahi': "Navigation for blind transit riders. Sighted users preferred it too.",
-  'jugalbandi': "Two strangers collaborate through sound without speaking. WonderVille NYC.",
+  'jugalbandi': "Neural network turned into playable instruments. Hexa-18: wind, string, percussion. ITP + Maker Faire.",
   'tedx': "Full brand identity, stage to screen. 1500+ attendees.",
   'ballah': "AI-native IDE. 17 production tools. Built by using it.",
   'oncall': "Sentry alert to auto-generated PR fix. Built in 24 hours.",
@@ -482,10 +482,14 @@ const PROJECT_DEEP: Record<string, Record<string, string>> = {
     'how did you test it': '3D printed, laser cut, CNC. Real keyboards that work. 200+ at thesis show.',
   },
   'jugalbandi': {
-    'what was the hardest part': 'Making strangers interact without instructions or language.',
-    'what was the challenge': 'Making strangers interact without instructions or language.',
-    'key insight': 'If people read a sign, the interaction failed. Interface IS the invitation.',
-    'how did you approach it': '6 interaction models tested. Half-spectrum control worked best.',
+    'what was the hardest part': 'The automated flute. Air angle had to be precise within degrees or the note dropped out.',
+    'what was the challenge': 'Translating neural network outputs into music that sounds intentional, not random.',
+    'key insight': 'Embodiment changes comprehension. People spent 10+ minutes with physical computation vs scrolling past screens.',
+    'how did you approach it': 'Mapped each neural network layer to a different instrument. Servos pluck strings, solenoids drive air, vibration motors pulse.',
+    'who was the team': 'Solo artist. Mentored by David Rios and Phil Caridi at NYU ITP.',
+    'how did you test it': 'Exhibited at ITP Spring Show and Maker Faire Coney Island, 2024.',
+    'your take on it': 'The Hexa-18 instrument, 18 active faces, wind + string + percussion. Neural network you can hear think.',
+    'related work': 'Inspired by panGenerator Studio\'s Abacus. Enigma explores similar neural network visualization.',
   },
 }
 

@@ -20,7 +20,7 @@ function getProactiveComment(path: string): string | null {
     'clawed-chat': 'Every AI action gets a receipt. Smart.',
     'executivelens': '5.2 hours saved per week. No manual input.',
     'raahi': 'He rode the subway blindfolded for this.',
-    'jugalbandi': 'Two strangers, no words, just sound.',
+    'jugalbandi': 'Neural network you can hear think. Watch the performance.',
     'enigma': 'A neural network you can feel, not just see.',
     'oncall-lens': 'Built in 24 hours. Sentry to PR.',
     'ballah-code': 'AI isn\'t a sidebar here. It\'s everything.',

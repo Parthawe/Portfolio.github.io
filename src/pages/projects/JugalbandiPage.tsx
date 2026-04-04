@@ -48,6 +48,21 @@ export default function JugalbandiPage() {
         {/* Hero Image */}
         <CsImage src="/Assets/images/jugalbandi.png" alt="Jugalbandi, performer playing the Hexa-18 instrument on a dark stage with mechanized instruments" />
 
+        {/* Performance Video */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 'var(--radius-lg)', background: 'var(--ink-04)' }}>
+              <iframe
+                src="https://player.vimeo.com/video/996020149?title=0&byline=0&portrait=0"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Jugalbandi Performance"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Overview */}
         <CsSection label="Overview" title="A duet in Hindi">
           <CsBody>
