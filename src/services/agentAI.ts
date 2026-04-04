@@ -434,6 +434,14 @@ const PROJECT_RESPONSES: Record<string, string> = {
   'vj-software': "Vehicle parking UX for Vilas Javdekar. Society layout as spatial design problem.",
   'code-for-build': "Teaching coding to kids through 3D building blocks. Mobile app, no computer needed.",
   'uv-light': "Immersive blacklight installation. Hidden messages at different UV wavelengths. ITP 2023.",
+  'ai-voice': "Enterprise AI voice selection reimagined. Emotion-driven, not dropdowns. NDA client.",
+  'cuetv': "OTT platform for opera and ballet connoisseurs. Curation over quantity. Live at cuetv.online.",
+  'org-dashboard': "Shared brain for AI agents. SaaS for developer tools. React + MCP. 2026.",
+  'the-point-cdc': "Digital transformation for Hunts Point, Bronx. Community empowerment. Live at thepoint.org.",
+  'office-of-diversity': "Interactive diversity data visualization for NYU Tisch. IDBEA report, 2024.",
+  'black-hole': "Five black hole phenomena as physical models. Exhibited at Horological Society of NY.",
+  'sea-of-salt': "Kinetic salt installation driven by real-time NOAA ocean data. Land meets sea.",
+  'atps': "ArtTown Podcast. 40+ episodes, 50k views, 18k hours. Craft conversations.",
   'breakgen': "ITP Thesis. Custom keyboard design platform. AI keycaps, auto PCB generation.",
   'keyboard': "ITP Thesis. Custom keyboard design platform. AI keycaps, auto PCB generation.",
 }
@@ -586,6 +594,57 @@ const PROJECT_DEEP: Record<string, Record<string, string>> = {
     'key insight': 'Free variable display typeface. Three weights: Ultralight, Regular, Bold. Inspired by fine-cut elements.',
     'how did you approach it': 'Glyphs App, FontForge, Adobe Illustrator. Customized from Butler font. 1 month.',
     'your take on it': 'Butler\'s Slice. It\'s used on this portfolio for display headings.',
+  },
+  'ai-voice': {
+    'what was the hardest part': 'Replacing dropdown-based voice selection with something expressive and intuitive.',
+    'what was the challenge': 'Enterprise AI voice tools are powerful but the UX is clinical. How do you add emotional intelligence?',
+    'key insight': 'Users explore, test, and build voices through personalized, context-aware flows. Not dropdowns.',
+    'how did you approach it': 'Reimagined the selection as guided exploration. Emotion-driven, not technical-first.',
+    'who was the team': 'Product Designer. Voice AI client (NDA). 3 months, 2025.',
+  },
+  'cuetv': {
+    'what was the hardest part': 'OTT platform for a niche audience: opera, ballet, symphony connoisseurs.',
+    'what was the challenge': 'Figure out the target audience and tailor the platform + retargeting ads for them.',
+    'key insight': 'Connoisseurs want curation, not quantity. The discovery UX is the product.',
+    'how did you approach it': 'User research, identity design, Figma prototyping. 7 months for Operabase.',
+    'who was the team': 'UI Designer & Researcher. Live at cuetv.online.',
+  },
+  'org-dashboard': {
+    'what was the hardest part': 'AI agents are powerful but amnesiac. What one learns never benefits the team.',
+    'what was the challenge': 'Give AI agents organizational context. A shared brain for every agent in your company.',
+    'key insight': 'Engineers paste context into prompts manually. This automates that. SaaS for developer tools.',
+    'how did you approach it': 'React, Tailwind, shadcn/ui. Web + CLI + MCP integration. 2026.',
+  },
+  'the-point-cdc': {
+    'what was the hardest part': 'Modernizing a community org\'s digital presence without losing its identity.',
+    'what was the challenge': 'Digital transformation for The Point CDC in Hunts Point, Bronx.',
+    'key insight': 'Streamline access to community services. Showcase initiatives. Empower the neighborhood.',
+    'how did you approach it': 'Full website revamp. Product Designer, 3 months. Live at thepoint.org.',
+  },
+  'office-of-diversity': {
+    'what was the hardest part': 'Visualizing complex diversity data accurately while keeping it explorable.',
+    'what was the challenge': 'Interactive IDBEA report for NYU Tisch School of the Arts.',
+    'key insight': 'Dynamic components encourage exploration. Static reports get skimmed.',
+    'how did you approach it': 'Website Publishing Designer. 3 months. 2024.',
+  },
+  'black-hole': {
+    'what was the hardest part': 'Making five black hole phenomena physically tangible. Time dilation, gravitational lensing.',
+    'what was the challenge': 'Abstract astrophysics needs to be accessible to general audiences.',
+    'key insight': 'Each model is scientifically grounded but touchable. Physics you can hold.',
+    'how did you approach it': 'Physical fabrication. With Saee Joshi. Professor Jeffrey Feddersen at NYU ITP, 2026.',
+    'your take on it': 'Will be exhibited at the Horological Society of New York\'s museum.',
+  },
+  'sea-of-salt': {
+    'what was the hardest part': 'Real-time NOAA ocean data driving physical salt landscapes. Hardware + API + kinetics.',
+    'what was the challenge': 'Visualize the invisible connection between land and sea. Make data physical.',
+    'key insight': 'Salt is both medium and metaphor. Coastlines are made of salt, shaped by water.',
+    'how did you approach it': 'Arduino, servo motors, NOAA API, laser cutting. NYU ITP, 2024.',
+  },
+  'atps': {
+    'what was the hardest part': '40+ conversations over years. Keeping each one fresh and meaningful.',
+    'what was the challenge': 'Unravel hidden talents and inspire young minds through real conversations with creatives.',
+    'key insight': '50k+ views, 18,000 hours playtime. Craft conversations, not career advice.',
+    'how did you approach it': 'ArtTown Podcast. Spotify, Apple, Google. Running since 2020.',
   },
 }
 
@@ -1020,6 +1079,14 @@ const PROJECT_GREETINGS: Record<string, string> = {
   'code-for-build': "Code for Build. Teaching 10-16 year olds to code with building blocks.",
   'typeface': "Butler's Slice. A display typeface Parth designed. Used on this site.",
   'tedx': "TEDxVITPune. Rotating parallax stage for 800 people. Art directed at 19.",
+  'ai-voice': "AI Voice Selection. Emotion-driven voice UX for enterprise.",
+  'cuetv': "CueTV. OTT for classical music lovers. Live at cuetv.online.",
+  'org-dashboard': "OrgDashboard. A shared brain for AI agents in your company.",
+  'the-point-cdc': "The Point CDC. Digital transformation for the Bronx.",
+  'office-of-diversity': "NYU Tisch diversity report. Interactive data visualization.",
+  'black-hole': "Black Hole. Five astrophysics phenomena as physical models.",
+  'sea-of-salt': "Sea of Salt. Real-time ocean data reshaping salt landscapes.",
+  'atps': "ArtTown Podcast. 40+ conversations about craft, not careers.",
 }
 
 export function getGreeting(route: string): string {

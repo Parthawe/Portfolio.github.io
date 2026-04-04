@@ -38,8 +38,17 @@ function getProactiveComment(path: string): string | null {
     'vj-software': 'Parking as a design problem.',
     'code-for-build': 'Teaching kids to code with building blocks.',
     'typeface': 'Parth made this typeface. It\'s on this site.',
-    'atps': 'ArtTown Podcast. 45 episodes about craft.',
-    'crypto': 'Web3 exploration.',
+    'atps': 'ArtTown Podcast. 40+ episodes about craft.',
+    'crypto': 'Web3 + DeFi. $50M+ monthly volume.',
+    'ai-voice': 'Voice AI for enterprise. Emotion over dropdowns.',
+    'cuetv': 'OTT for opera lovers. Live now.',
+    'org-dashboard': 'Shared brain for AI agents. Developer tools.',
+    'the-point-cdc': 'Community digital transformation. Live at thepoint.org.',
+    'office-of-diversity': 'NYU Tisch diversity data. Interactive report.',
+    'black-hole': 'Astrophysics you can hold. Five phenomena.',
+    'sea-of-salt': 'Real ocean data driving salt landscapes.',
+    'ai-wearables': 'Smart glasses, voice UI, gesture design.',
+    'ai-voice': 'Enterprise voice AI. Emotion-driven selection.',
   }
   if (projectComments[slug]) return projectComments[slug]
 
