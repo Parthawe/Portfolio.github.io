@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useCallback, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { sendMessage, getChips, getGreeting, createChatHistory, type ChatHistory } from '../../services/agentAI'
 import { useTypewriter } from '../../hooks/useTypewriter'
-import { useTTS } from '../../hooks/useTTS'
 
 interface Message {
   id: number
@@ -53,7 +52,7 @@ function RichText({ text, onNavigate }: { text: string; onNavigate: (path: strin
   return <>{parts}</>
 }
 
-/* ── Typewriter bubble ───────────────────────────────── */
+/* ── Typewriter ──────────────────────────────────────── */
 
 function TypewriterBubble({ text, onNavigate, onDone }: { text: string; onNavigate: (path: string) => void; onDone: () => void }) {
   const { displayed, isTyping, skip } = useTypewriter({ text, speed: 40 })
@@ -66,7 +65,7 @@ function TypewriterBubble({ text, onNavigate, onDone }: { text: string; onNaviga
   )
 }
 
-/* ── Floating chat, no container ─────────────────────── */
+/* ── Chat ────────────────────────────────────────────── */
 
 export default function AgentChat({ open, onClose, route, initialGreeting, onAgentState, charRef }: Props) {
   const navigate = useNavigate()
@@ -81,9 +80,6 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const historyRef = useRef<ChatHistory>(createChatHistory(route))
   const initializedRoute = useRef('')
   const questionCount = useRef(0)
-
-  const tts = useTTS()
-  const autoSubmitTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   useEffect(() => { historyRef.current.route = route }, [route])
 
@@ -101,7 +97,7 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
 
   useEffect(() => { if (open) setTimeout(() => inputRef.current?.focus(), 200) }, [open])
 
-  // Keep bubble stack positioned above character
+  // Position floating chat above character
   useEffect(() => {
     const el = wrapRef.current
     const char = charRef.current
@@ -114,15 +110,11 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
       const elW = el.offsetWidth
       const elH = el.offsetHeight
 
-      // Horizontal: center on character, clamp to viewport
       let left = r.left + r.width / 2 - elW / 2
       left = Math.max(8, Math.min(left, vw - elW - 8))
 
-      // Vertical: above character, but never off-screen top or overlapping bottom nav
-      let bottom = vh - r.top + 4
-      // Don't let it go above viewport
+      let bottom = vh - r.top + 8
       if (vh - bottom < elH + 10) bottom = vh - elH - 10
-      // Don't let it go below 80px (above bottom navs)
       bottom = Math.max(80, bottom)
 
       el.style.left = `${left}px`
@@ -145,13 +137,9 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   const handleNav = useCallback((p: string) => { navigate(p); onClose() }, [navigate, onClose])
 
   const markDone = useCallback((id: number) => {
-    setMessages(prev => {
-      const msg = prev.find(m => m.id === id)
-      if (msg?.raw && msg.sender === 'agent') tts.speak(msg.raw)
-      return prev.map(m => m.id === id ? { ...m, typing: false } : m)
-    })
+    setMessages(prev => prev.map(m => m.id === id ? { ...m, typing: false } : m))
     onAgentState('idle')
-  }, [onAgentState, tts])
+  }, [onAgentState])
 
   const handleSend = useCallback(async (text: string) => {
     const t = text.trim()
@@ -179,21 +167,16 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
   }, [thinking, streaming, onAgentState, route])
 
   const anyTyping = messages.some(m => m.typing)
-
-  // Only show last 3 messages to keep it clean
   const visible = messages.slice(-3)
 
   if (!open) return null
 
   return (
     <div ref={wrapRef} className="agent-floating" aria-label="Chat with Folio">
-
-      {/* Close button */}
       <button onClick={onClose} type="button" className="agent-float-close" aria-label="Close">
         <svg width="10" height="10" viewBox="0 0 14 14" fill="none"><path d="M1 1L13 13M1 13L13 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
       </button>
 
-      {/* Message bubbles, floating freely */}
       <div className="agent-float-msgs">
         {visible.map(msg => (
           <div key={msg.id} className={`agent-float-bubble ${msg.sender === 'user' ? 'agent-float-bubble--user' : 'agent-float-bubble--agent'}`}>
@@ -211,49 +194,14 @@ export default function AgentChat({ open, onClose, route, initialGreeting, onAge
         )}
       </div>
 
-      {/* Chips */}
       {chips.length > 0 && !thinking && !anyTyping && (
         <div className="agent-float-chips">
           {chips.map(c => <button key={c} onClick={() => handleSend(c)} type="button" className="agent-float-chip">{c}</button>)}
         </div>
       )}
 
-      {/* Input with voice controls */}
       <form onSubmit={e => { e.preventDefault(); handleSend(input) }} className="agent-float-input">
-        {/* Mute toggle */}
-        <button type="button" onClick={tts.toggleMute} className="agent-float-voice-btn" aria-label={tts.muted ? 'Unmute' : 'Mute'} title={tts.muted ? 'Unmute voice' : 'Mute voice'}>
-          {tts.muted ? (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-          ) : (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><path d="M15.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><path d="M19 6a9 9 0 0 1 0 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-          )}
-        </button>
-
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Ask or speak..."
-          value={input}
-          onChange={e => {
-            setInput(e.target.value)
-            // Auto-submit for voice: when text appears and stops changing, submit
-            if (autoSubmitTimer.current) clearTimeout(autoSubmitTimer.current)
-            if (e.target.value.trim()) {
-              autoSubmitTimer.current = setTimeout(() => {
-                const val = e.target.value.trim()
-                if (val && !thinking && !streaming) handleSend(val)
-              }, 1500) // 1.5s after last keystroke
-            }
-          }}
-          autoComplete="off"
-          disabled={thinking || streaming}
-        />
-
-        {/* Mic button: focuses input for SuperWhisper */}
-        <button type="button" onClick={() => inputRef.current?.focus()} className="agent-float-voice-btn" aria-label="Voice input" title="Speak (SuperWhisper)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="2" width="6" height="12" rx="3" stroke="currentColor" strokeWidth="1.5" /><path d="M5 10a7 7 0 0 0 14 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-        </button>
-
+        <input ref={inputRef} type="text" placeholder="Ask me anything..." value={input} onChange={e => setInput(e.target.value)} autoComplete="off" disabled={thinking || streaming} />
         <button type="submit" disabled={!input.trim() || thinking || streaming} className="agent-float-send">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2.5 8H13.5M9 3.5L13.5 8L9 12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
