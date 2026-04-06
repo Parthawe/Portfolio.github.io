@@ -408,7 +408,7 @@ hr.divider {
   color: var(--ink-40);
 }
 
-/* ── Comet Cursor — dot head + iridescent trail ── */
+/* ── Sparkle Cursor — dot head + shimmering particles ── */
 .cursor-dot {
   position: fixed;
   top: -3px; left: -3px;
@@ -428,23 +428,24 @@ hr.divider {
   width: 8px; height: 8px;
   top: -4px; left: -4px;
 }
-.cursor-trail {
+/* Sparkle particles — tiny dots that fade + shrink + float upward */
+.cursor-sparkle {
   position: fixed;
-  top: -3px; left: -3px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
+  will-change: opacity, transform;
 }
 /* Hide cursor when spotlight is active */
 .spotlight-active .cursor-dot,
-.spotlight-active .cursor-trail {
+.spotlight-active .cursor-sparkle {
   opacity: 0 !important;
 }
 @media (max-width: 768px) {
-  .cursor-dot, .cursor-trail { display: none !important; }
+  .cursor-dot, .cursor-sparkle { display: none !important; }
 }
 @media (pointer: coarse) {
-  .cursor-dot, .cursor-trail { display: none !important; }
+  .cursor-dot, .cursor-sparkle { display: none !important; }
 }
 
 /* ── Reduced Motion ── */

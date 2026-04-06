@@ -18,10 +18,17 @@ export default function FigmaZoom() {
         wrapper.style.transform = ''
         wrapper.style.transformOrigin = ''
         wrapper.style.width = ''
+        wrapper.style.minHeight = ''
+        document.body.style.overflow = ''
       } else {
-        wrapper.style.transform = `scale(${level / 100})`
-        wrapper.style.transformOrigin = 'top left'
-        wrapper.style.width = `${100 / (level / 100)}%`
+        const scale = level / 100
+        wrapper.style.transform = `scale(${scale})`
+        wrapper.style.transformOrigin = 'top center'
+        wrapper.style.width = `${100 / scale}%`
+        // Prevent white space below by adjusting the wrapper's visual height
+        wrapper.style.minHeight = `${100 / scale}vh`
+        // Let the body scroll naturally
+        document.body.style.overflow = ''
       }
     }
   }, [])
@@ -63,14 +70,5 @@ export default function FigmaZoom() {
   )
   if (isMobile) return null
 
-  return (
-    <button
-      className="figma-zoom-badge"
-      onClick={zoomReset}
-      title="Click to reset zoom (⌘0)"
-      aria-label={`Zoom ${zoom}%, click to reset`}
-    >
-      {zoom}%
-    </button>
-  )
+  return null // zoom controlled via keyboard only (⌘+, ⌘-, ⌘0)
 }
