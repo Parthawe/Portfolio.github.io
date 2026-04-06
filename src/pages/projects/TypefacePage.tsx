@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { motion, AnimatePresence } from 'framer-motion'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -6,8 +8,17 @@ import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
 import CsCredits from '../../components/case-study/CsCredits'
 import NextProject from '../../components/case-study/NextProject'
+import GlyphPlayground from '../../components/GlyphPlayground'
+import GlyphEditor from '../../components/GlyphEditor'
 
 export default function TypefacePage() {
+  /* Animate between "Butler" and "Butler's Slice" in the hero */
+  const [showSlice, setShowSlice] = useState(false)
+  useEffect(() => {
+    const id = setInterval(() => setShowSlice(s => !s), 3000)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <>
       <Helmet>
@@ -38,147 +49,119 @@ export default function TypefacePage() {
           ]}
         />
 
-        {/* Hero */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/1.jpg" alt="Butler's Slice typeface cover with project details on purple gradient" />
+        {/* ── Hero: animated morph between Butler → Butler's Slice ── */}
+        <section className="cs-section reveal">
+          <div className="wrap" style={{ textAlign: 'center', padding: '4rem 0' }}>
+            <div style={{ position: 'relative', minHeight: 'clamp(80px, 15vw, 160px)' }}>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={showSlice ? 'slice' : 'butler'}
+                  style={{
+                    fontFamily: showSlice ? '"Butlers Slice", Georgia, serif' : 'Georgia, "Times New Roman", serif',
+                    fontSize: 'clamp(3rem, 10vw, 9rem)',
+                    fontWeight: 400,
+                    lineHeight: 1,
+                    letterSpacing: '-0.03em',
+                    color: 'var(--ink)',
+                    margin: 0,
+                  }}
+                  initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -20, filter: 'blur(4px)' }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {showSlice ? "Butler's Slice" : 'Butler'}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+            <motion.span
+              style={{
+                fontFamily: 'var(--mono)',
+                fontSize: 'var(--text-2xs)',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase' as const,
+                color: 'var(--ink-30)',
+                display: 'block',
+                marginTop: '1rem',
+              }}
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              {showSlice ? 'sliced · display typeface' : 'original · serif typeface'}
+            </motion.span>
+          </div>
+        </section>
+
+        {/* Hero image */}
+        <CsImage src="/Assets/Projects/Typeface/Desktop/1.jpg" alt="Butler's Slice typeface cover" />
 
         {/* The Concept */}
         <section className="cs-section reveal">
           <div className="wrap">
             <h2 className="cs-display">the concept</h2>
             <CsBody style={{ maxWidth: '680px' }}>
-              <p>Butler&rsquo;s Slice &mdash; is a free display font created as a customised Butler font by Slicing alphabets.</p>
+              <p>Butler&rsquo;s Slice is a free display font created as a customised Butler font by slicing alphabets. Inspired by elements which have been fine cut &mdash; precision blades, diamond facets, architectural edges.</p>
             </CsBody>
-          </div>
-        </section>
-
-        {/* The Inspiration */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <h2 className="cs-display">the inspiration</h2>
-            <CsBody>
-              <p>Butler&rsquo;s Slice was inspired by elements which have been fine cut.</p>
-            </CsBody>
-          </div>
-        </section>
-
-        {/* The Character Set */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <h2 className="cs-display">the character set</h2>
-            <div className="cs-two-col">
-              <CsBody>
-                <p>Butler&rsquo;s Slice consists of 26 letters of Uppercase and 26 letters of a Lowercase, 10 numbers. with 3 weights Ultralight, Regular and Bold.</p>
-              </CsBody>
-              <div>
-                <p className="cs-display" style={{ fontSize: 'clamp(1.8rem,4vw,2.8rem)', margin: 0 }}>Butler&rsquo;s Slice</p>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* Types of Slices */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/3.jpg" alt="Character specimens, Ag in three weights, types of slices: Angle, Vertical, and Linear" />
+        <CsImage src="/Assets/Projects/Typeface/Desktop/3.jpg" alt="Character specimens, Ag in three weights, types of slices" />
 
-        {/* The Glyphs */}
+        {/* ── Interactive Playground ── */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">the glyphs looks</h2>
-            <div style={{ marginTop: '2rem' }}>
-              <p style={{ fontSize: 'clamp(1.8rem,5vw,4rem)', lineHeight: 1.3, letterSpacing: '0.02em', fontFamily: 'var(--display)', color: 'var(--ink-40)', margin: '0 0 1.5rem' }}>
-                Aa&ensp;<span style={{ color: 'var(--project-color)' }}>Bb</span>&ensp;Cc&ensp;Dd&ensp;Ee&ensp;Ff&ensp;Gg&ensp;Hh
-              </p>
-              <hr style={{ border: 'none', borderTop: '1px solid var(--ink-08)', margin: '0 0 1.5rem' }} />
-              <p style={{ fontSize: 'clamp(1.8rem,5vw,4rem)', lineHeight: 1.3, letterSpacing: '0.02em', fontFamily: 'var(--display)', color: 'var(--ink-40)', margin: '0 0 1.5rem' }}>
-                Ii&ensp;Jj&ensp;Kk&ensp;Ll&ensp;Mm&ensp;Nn&ensp;Oo&ensp;Pp
-              </p>
-              <hr style={{ border: 'none', borderTop: '1px solid var(--ink-08)', margin: '0 0 1.5rem' }} />
-              <p style={{ fontSize: 'clamp(1.8rem,5vw,4rem)', lineHeight: 1.3, letterSpacing: '0.02em', fontFamily: 'var(--display)', color: 'var(--ink-40)', margin: '0 0 1.5rem' }}>
-                Qq&ensp;Rr&ensp;Ss&ensp;Tt&ensp;Uu&ensp;Vv&ensp;Ww&ensp;Xx
-              </p>
-              <hr style={{ border: 'none', borderTop: '1px solid var(--ink-08)', margin: '0 0 1.5rem' }} />
-              <p style={{ fontSize: 'clamp(1.8rem,5vw,4rem)', lineHeight: 1.3, letterSpacing: '0.02em', fontFamily: 'var(--display)', color: 'var(--ink-40)', margin: 0 }}>
-                Yy&ensp;Zz
-              </p>
-            </div>
+            <h2 className="cs-display">try it yourself</h2>
+            <CsBody style={{ maxWidth: '680px', marginBottom: '2rem' }}>
+              <p>Type anything to see it rendered in Butler&rsquo;s Slice. Switch weights, resize, click individual glyphs to inspect them. Toggle between the original Butler and the sliced version to see the difference.</p>
+            </CsBody>
           </div>
         </section>
 
-        {/* The Weights */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/5.jpg" alt="The weights, Bold, Regular, Ultralight with character grid on purple background" />
+        <GlyphPlayground />
 
-        {/* The Usage */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/6.jpg" alt="Packaging mockups showing Butler's Slice on various products" />
-
-        {/* How Butler's Slice Works */}
+        {/* ── Vector Editor ── */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-two-col">
-              <div>
-                <h2 className="cs-display">how<br />Butler&rsquo;s Slice works</h2>
-              </div>
-              <CsBody style={{ marginTop: 'auto' }}>
-                <p>Have a look on how Butler works in different sizes and purposes</p>
-              </CsBody>
-            </div>
+            <h2 className="cs-display">pull the points</h2>
+            <CsBody style={{ maxWidth: '680px', marginBottom: '2rem' }}>
+              <p>Explore the actual vector outlines of Butler&rsquo;s Slice. Each letter is built from bezier curves &mdash; drag the anchor points and control handles to reshape any glyph in real time.</p>
+            </CsBody>
+          </div>
+        </section>
+
+        <GlyphEditor />
+
+        {/* The Weights */}
+        <CsImage src="/Assets/Projects/Typeface/Desktop/5.jpg" alt="The weights: Bold, Regular, Ultralight" />
+
+        {/* The Usage */}
+        <CsImage src="/Assets/Projects/Typeface/Desktop/6.jpg" alt="Packaging mockups showing Butler's Slice" />
+
+        {/* How it works in context */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <h2 className="cs-display">in context</h2>
           </div>
         </section>
 
         <section className="cs-section reveal" style={{ paddingTop: 0 }}>
           <div className="wrap">
-            <p style={{ fontFamily: 'var(--display)', fontSize: 'clamp(4rem,12vw,12rem)', lineHeight: 1, letterSpacing: '-0.02em', color: 'var(--ink)', margin: 0 }}>A<span style={{ color: 'var(--project-color)' }}>b</span>cdefgh</p>
-          </div>
-        </section>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">in headlines</span>
-              <span className="cs-label-row-val">The typeface is display, so it works great in big and extremely big sizes</span>
+              <span className="cs-label-row-val">Display typeface, works great at big sizes</span>
             </div>
-            <div style={{ textAlign: 'right', paddingTop: '0.5rem' }}>
-              <span style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', color: 'var(--ink-40)' }}>330pt</span>
-            </div>
+            <p style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontSize: 'clamp(4rem,12vw,12rem)', lineHeight: 1, letterSpacing: '-0.02em', color: 'var(--ink)', margin: '1rem 0 0' }}>A<span style={{ color: 'var(--project-color)' }}>b</span>cdefgh</p>
           </div>
         </section>
 
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p style={{ fontFamily: 'var(--display)', fontSize: 'clamp(2.5rem,6vw,5rem)', lineHeight: 1.15, letterSpacing: '-0.03em', color: 'var(--ink)', margin: 0 }}>Typography is the craft of endowing human language with a durable visual form.</p>
-          </div>
-        </section>
-
-        {/* Short texts */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">in short texts</span>
-              <span className="cs-label-row-val">Butler&rsquo;s Slice is suitable for short sentences and fazes</span>
+              <span className="cs-label-row-val">Suitable for short sentences and phrases</span>
             </div>
-            <div style={{ textAlign: 'right', paddingTop: '0.5rem' }}>
-              <span style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', color: 'var(--ink-40)' }}>140pt</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <CsBody style={{ maxWidth: '680px' }}>
-              <p>&ldquo;In a badly designed book, the letters mill and stand like starving horses in a field. In a book designed by rote, they sit like stale bread and mutton on the page. In a well-made book, where designer, compositor and printer have all done their jobs, no matter how many thousands of lines and pages, the letters are alive. They dance in their seats. Sometimes they rise and dance in the margins and aisles.&rdquo;</p>
-              <p>&mdash; Robert Bringhurst, The Elements of Typographic Style</p>
-            </CsBody>
-          </div>
-        </section>
-
-        {/* Long texts */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">in long texts</span>
-              <span className="cs-label-row-val">You can use it however you like. I&rsquo;m not here to tell you what to do.</span>
-            </div>
-            <div style={{ textAlign: 'right', paddingTop: '0.5rem' }}>
-              <span style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', color: 'var(--ink-40)' }}>45pt</span>
-            </div>
+            <p style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontSize: 'clamp(2.5rem,6vw,5rem)', lineHeight: 1.15, letterSpacing: '-0.03em', color: 'var(--ink)', margin: '1rem 0 0' }}>Typography is the craft of endowing human language with a durable visual form.</p>
           </div>
         </section>
 
@@ -186,14 +169,12 @@ export default function TypefacePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <h2 className="cs-display">the numbers</h2>
-            <div style={{ marginTop: '2rem' }}>
-              <p style={{ fontFamily: 'var(--display)', fontSize: 'clamp(4rem,12vw,10rem)', lineHeight: 1.2, letterSpacing: '0.02em', color: 'var(--ink)', margin: 0 }}>
-                0&ensp;<span style={{ color: 'var(--project-color)' }}>1</span>&ensp;2&ensp;3&ensp;4
-              </p>
-              <p style={{ fontFamily: 'var(--display)', fontSize: 'clamp(4rem,12vw,10rem)', lineHeight: 1.2, letterSpacing: '0.02em', color: 'var(--ink)', margin: 0 }}>
-                5&ensp;6&ensp;<span style={{ color: 'var(--project-color)' }}>7</span>&ensp;8&ensp;9
-              </p>
-            </div>
+            <p style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontSize: 'clamp(4rem,12vw,10rem)', lineHeight: 1.2, letterSpacing: '0.02em', color: 'var(--ink)', margin: '2rem 0 0' }}>
+              0&ensp;<span style={{ color: 'var(--project-color)' }}>1</span>&ensp;2&ensp;3&ensp;4
+            </p>
+            <p style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontSize: 'clamp(4rem,12vw,10rem)', lineHeight: 1.2, letterSpacing: '0.02em', color: 'var(--ink)', margin: 0 }}>
+              5&ensp;6&ensp;<span style={{ color: 'var(--project-color)' }}>7</span>&ensp;8&ensp;9
+            </p>
           </div>
         </section>
 
@@ -203,9 +184,23 @@ export default function TypefacePage() {
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What Designing a Typeface Taught Me</h2>
             <CsBody style={{ maxWidth: '720px' }}>
-              <p>Designing Butler&rsquo;s Slice was an exercise in constraint. Every glyph needed to maintain legibility while incorporating the diagonal slice motif&mdash;and the two goals constantly fought each other. Some letters (A, K, X) accepted slices naturally because their geometry already contained angles. Others (O, S, C) required creative reinterpretation to make the slice feel intentional rather than destructive.</p>
-              <p>The biggest lesson was that type design is systems thinking at the smallest scale. A single glyph means nothing in isolation&mdash;it only works when every character in the set shares the same visual logic. Adjusting the slice angle on one letter meant revisiting every other letter to maintain consistency. This is the same challenge I encounter in product design: every component must cohere with the whole system.</p>
+              <p>Designing Butler&rsquo;s Slice was an exercise in constraint. Every glyph needed to maintain legibility while incorporating the diagonal slice motif &mdash; and the two goals constantly fought each other. Some letters (A, K, X) accepted slices naturally because their geometry already contained angles. Others (O, S, C) required creative reinterpretation.</p>
+              <p>The biggest lesson was that type design is systems thinking at the smallest scale. A single glyph means nothing in isolation &mdash; it only works when every character in the set shares the same visual logic. This is the same challenge I encounter in product design: every component must cohere with the whole system.</p>
             </CsBody>
+          </div>
+        </section>
+
+        {/* Download CTA */}
+        <section className="cs-section reveal">
+          <div className="wrap" style={{ textAlign: 'center', padding: '3rem 0' }}>
+            <a
+              href="/Assets/Projects/Typeface/butlers-slice.zip"
+              download
+              className="cta-v2-btn"
+              style={{ fontFamily: '"Butlers Slice", Georgia, serif' }}
+            >
+              Download Butler&rsquo;s Slice &darr;
+            </a>
           </div>
         </section>
 

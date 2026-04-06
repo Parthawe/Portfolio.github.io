@@ -31,7 +31,7 @@
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
-  transition: background var(--dur-slow), border-color var(--dur-slow), box-shadow var(--dur-slow), transform var(--dur-slow) var(--ease-in-out), backdrop-filter var(--dur-slow);
+  transition: background var(--dur-slow), border-color var(--dur-slow), box-shadow var(--dur-slow), transform var(--dur-slow) var(--ease-in-out);
   pointer-events: auto;
 }
 

@@ -1,9 +1,11 @@
-import { useRef, useState, useCallback, useEffect } from 'react'
+import { useRef, useCallback, useEffect, useState } from 'react'
 
 /**
- * Spotlight: cursor dot grows smoothly into orange circle.
- * Circle is ALWAYS mounted (not conditional) — CSS handles show/hide via opacity.
- * This ensures the size transition from 8px → 320px is always visible.
+ * Spotlight text reveal.
+ *
+ * Frosted moon circle follows cursor (position: fixed, never clipped).
+ * Behind text inside the circle is offset so it aligns perfectly
+ * with the front text underneath.
  */
 
 interface Props {
@@ -12,91 +14,108 @@ interface Props {
   className?: string
 }
 
+const SIZE = 380
+
 export default function TextReveal({ front, behind, className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
-  const mouseRef = useRef({ x: -200, y: -200 })
+  const behindRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
-  const fullSize = 320
+  // Store viewport coords for fixed positioning
+  const posRef = useRef({ x: 0, y: 0 })
+  const smoothRef = useRef({ x: 0, y: 0 })
+  const sizeRef = useRef(0)
+  const targetRef = useRef(0)
+  const rafRef = useRef(0)
+  const runningRef = useRef(false)
 
-  // Track cursor position on the circle element directly (no React re-renders)
-  const updateCircle = useCallback(() => {
-    const el = circleRef.current
-    if (!el) return
-    el.style.left = `${mouseRef.current.x}px`
-    el.style.top = `${mouseRef.current.y}px`
+  const tick = useCallback(() => {
+    const circle = circleRef.current
+    const behindEl = behindRef.current
+    const container = containerRef.current
+    if (!circle || !behindEl || !container) return
 
-    // Update text offset
-    const rect = containerRef.current?.getBoundingClientRect()
-    const textEl = el.querySelector('.spotlight-text') as HTMLElement | null
-    if (rect && textEl) {
-      const half = fullSize / 2
-      textEl.style.left = `${rect.left - (mouseRef.current.x - half)}px`
-      textEl.style.top = `${rect.top - (mouseRef.current.y - half)}px`
-      textEl.style.width = `${rect.width}px`
-      textEl.style.height = `${rect.height}px`
+    // Smooth position (viewport coords)
+    smoothRef.current.x += (posRef.current.x - smoothRef.current.x) * 0.18
+    smoothRef.current.y += (posRef.current.y - smoothRef.current.y) * 0.18
+
+    // Smooth size
+    sizeRef.current += (targetRef.current - sizeRef.current) * 0.12
+    if (Math.abs(sizeRef.current - targetRef.current) < 0.5) {
+      sizeRef.current = targetRef.current
+    }
+
+    const s = sizeRef.current
+    const vx = smoothRef.current.x // viewport X
+    const vy = smoothRef.current.y // viewport Y
+    const half = s / 2
+
+    if (s < 2) {
+      circle.style.opacity = '0'
+      circle.style.transform = `translate(${vx}px, ${vy}px) scale(0)`
+    } else {
+      circle.style.opacity = '1'
+      circle.style.width = `${s}px`
+      circle.style.height = `${s}px`
+      circle.style.transform = `translate(${vx - half}px, ${vy - half}px)`
+
+      // Behind text offset: align with front text position
+      // Container rect gives us the front text's viewport position
+      const rect = container.getBoundingClientRect()
+      behindEl.style.left = `${rect.left - (vx - half)}px`
+      behindEl.style.top = `${rect.top - (vy - half)}px`
+      behindEl.style.width = `${rect.width}px`
+      behindEl.style.height = `${rect.height}px`
+    }
+
+    const stillMoving = Math.abs(sizeRef.current - targetRef.current) > 0.5
+    if (targetRef.current > 0 || stillMoving) {
+      rafRef.current = requestAnimationFrame(tick)
+    } else {
+      runningRef.current = false
     }
   }, [])
+
+  const startLoop = useCallback(() => {
+    if (runningRef.current) return
+    runningRef.current = true
+    rafRef.current = requestAnimationFrame(tick)
+  }, [tick])
 
   const handleMove = useCallback((e: React.MouseEvent) => {
-    mouseRef.current = { x: e.clientX, y: e.clientY }
-    requestAnimationFrame(updateCircle)
-  }, [updateCircle])
-
-  const handleEnter = useCallback((e: React.MouseEvent) => {
-    mouseRef.current = { x: e.clientX, y: e.clientY }
-    updateCircle()
-    // Force the circle to start at dot size BEFORE adding the open class
-    const el = circleRef.current
-    if (el) {
-      el.style.width = '8px'
-      el.style.height = '8px'
-      el.style.opacity = '1'
-      // Force reflow so the browser registers the 8px size
-      void el.offsetWidth
-      // NOW grow to full size — CSS transition animates it
-      el.style.width = `${fullSize}px`
-      el.style.height = `${fullSize}px`
-    }
-    setHovered(true)
-  }, [updateCircle])
-
-  const handleLeave = useCallback(() => {
-    const el = circleRef.current
-    if (el) {
-      // Shrink back to dot
-      el.style.width = '8px'
-      el.style.height = '8px'
-      // After shrink animation, hide
-      setTimeout(() => {
-        if (!circleRef.current) return
-        circleRef.current.style.opacity = '0'
-      }, 400)
-    }
-    setHovered(false)
+    posRef.current = { x: e.clientX, y: e.clientY }
   }, [])
 
-  // Track cursor during leave too
+  const handleEnter = useCallback((e: React.MouseEvent) => {
+    posRef.current = { x: e.clientX, y: e.clientY }
+    smoothRef.current = { x: e.clientX, y: e.clientY }
+    targetRef.current = SIZE
+    setHovered(true)
+    document.body.classList.add('spotlight-active')
+    startLoop()
+  }, [startLoop])
+
+  const handleLeave = useCallback(() => {
+    targetRef.current = 0
+    setHovered(false)
+    document.body.classList.remove('spotlight-active')
+    startLoop()
+  }, [startLoop])
+
+  // Global mouse tracking while hovered
   useEffect(() => {
     if (!hovered) return
     const onMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY }
-      requestAnimationFrame(updateCircle)
+      posRef.current = { x: e.clientX, y: e.clientY }
     }
-    // Use document-level listener so it tracks even as mouse leaves the container
     document.addEventListener('mousemove', onMove, { passive: true })
     return () => document.removeEventListener('mousemove', onMove)
-  }, [hovered, updateCircle])
-
-  // Hide comet cursor while hovering
-  useEffect(() => {
-    if (hovered) {
-      document.body.classList.add('spotlight-active')
-    } else {
-      document.body.classList.remove('spotlight-active')
-    }
-    return () => document.body.classList.remove('spotlight-active')
   }, [hovered])
+
+  useEffect(() => () => {
+    cancelAnimationFrame(rafRef.current)
+    document.body.classList.remove('spotlight-active')
+  }, [])
 
   return (
     <>
@@ -112,14 +131,9 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
         </div>
       </div>
 
-      {/* Always mounted — opacity controls visibility, CSS transition handles size */}
-      <div
-        ref={circleRef}
-        className="spotlight-overlay"
-        style={{ opacity: 0, width: 8, height: 8 }}
-        aria-hidden="true"
-      >
-        <div className="spotlight-text" style={{ opacity: 1 }}>
+      {/* Circle lives outside container — fixed, never clipped */}
+      <div ref={circleRef} className="spotlight-circle" aria-hidden="true">
+        <div ref={behindRef} className="spotlight-behind">
           <span>{behind}</span>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -20,7 +21,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function TransfiPage() {
   return (
-    <>
+    <NdaGate slug="transfi-project" projectName="TransFi">
       <Helmet>
         <title>TransFi &middot; Parth Pawar</title>
         <meta name="description" content="TransFi, Lead Product Designer case study. Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets, reducing enterprise onboarding from 2 weeks to 3 days." />
@@ -384,6 +385,6 @@ export default function TransfiPage() {
 
       <NextProject slug="cuetv" title="CueTV" image="/Assets/images/cuetv.jpg" />
       <Footer />
-    </>
+    </NdaGate>
   )
 }

@@ -1,10 +1,13 @@
 import { Fragment, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import FigmaSelect from '../components/FigmaSelect'
+import TextReveal from '../components/TextReveal'
+import PortalReveal from '../components/PortalReveal'
+import ToolsCanvas from '../components/ToolsCanvas'
 
 /* ── Data ── */
 
@@ -60,19 +63,6 @@ export default function AboutPage() {
     return () => document.body.classList.remove('page-about')
   }, [])
 
-  /* Polaroid parallax — each photo drifts at a different rate */
-  const collageRef = useRef<HTMLElement>(null)
-  const { scrollYProgress: collageProgress } = useScroll({
-    target: collageRef,
-    offset: ['start start', 'end start'],
-  })
-  const polY1 = useTransform(collageProgress, [0, 1], [0, -40])
-  const polY2 = useTransform(collageProgress, [0, 1], [0, -70])
-  const polY3 = useTransform(collageProgress, [0, 1], [0, -30])
-  const polY4 = useTransform(collageProgress, [0, 1], [0, -55])
-  const polY5 = useTransform(collageProgress, [0, 1], [0, -45])
-  const polY6 = useTransform(collageProgress, [0, 1], [0, -60])
-  const polaroidYs = [polY1, polY2, polY3, polY4, polY5, polY6]
 
   return (
     <>
@@ -91,50 +81,28 @@ export default function AboutPage() {
         {/* ── Paper canvas wraps entire page ── */}
         <div className="abt-paper">
 
-          {/* ── Collage Hero ── */}
+          {/* ── Photo ── */}
+          <div className="abt-photo-hero">
+            <PortalReveal
+              images={[
+                '/Assets/character/me/1.png',
+                '/Assets/character/me/2.png',
+                '/Assets/character/me/3.png',
+              ]}
+              alt="Parth Pawar"
+              className="abt-portal-img"
+            />
+          </div>
+
           <div className="wrap">
-            <header className="abt-collage" ref={collageRef}>
-              {/* Top-right label */}
-              <div className="abt-collage-label hero-anim hero-anim-1">
-                <span>Notes from</span>
-                <span>a creative</span>
-                <span>to a creative.</span>
-              </div>
 
-              {/* Headline, handwritten style */}
-              <h1 className="abt-collage-title hero-anim hero-anim-2">
-                Be the Creative<br /><em>you</em>
-              </h1>
-
-              {/* Main portrait, center, largest */}
-              <div className="abt-collage-main hero-anim hero-anim-1">
-                <img src="/Assets/ParthAboutus.png" alt="Parth Pawar" loading="eager" />
-              </div>
-
-              {/* Scattered polaroid photos — parallax at different rates */}
-              {[1,2,3,4,5,6].map((n, i) => (
-                <motion.div key={n} className={`abt-polaroid abt-polaroid--${n} hero-anim hero-anim-${n <= 2 || n === 5 ? 2 : 3}`} style={{ y: polaroidYs[i] }}>
-                  <div className="abt-polaroid-inner" />
-                  {n !== 4 && n !== 6 && <span className="abt-pin" />}
-                </motion.div>
-              ))}
-
-              {/* Bottom caption on main photo */}
-              <p className="abt-collage-caption hero-anim hero-anim-3">
-                you wanted your younger<br />self to know
-              </p>
-
-              {/* Right-side text block */}
-              <div className="abt-collage-text hero-anim hero-anim-3">
-                <p>The world will tell you to be this or that. And sometimes, it's hard to choose your own path, with all the pressure, expectations, and "shoulds." But you're more than what you think you are. It's never too late to start, to create, or to become the person your younger self dreamed of being.</p>
-              </div>
-
-              {/* Issue line */}
-              <div className="abt-collage-issue hero-anim hero-anim-3">
-                <span>ISSUE 2026</span>
-                <span>@DESIGNWHICH.WORKS</span>
-              </div>
-            </header>
+            {/* ── Spotlight: after hero ── */}
+            <section className="wr-reveal-section">
+              <TextReveal
+                front="I bounce between two worlds — shipping polished fintech products and building weird, wonderful things at NYU ITP."
+                behind="Right now I need both. AI smart glasses have no established design patterns. It's the hardest problem I've ever loved."
+              />
+            </section>
 
             {/* ── Now + Open To ── */}
             <div className="abt-status-row reveal">
@@ -168,35 +136,9 @@ export default function AboutPage() {
               </div>
             </section>
 
-            {/* ── Tools ── */}
-            <section className="abt-tools reveal">
-              <div className="sec-head">
-                <span className="sec-label">Tools I reach for</span>
-              </div>
-              <motion.div
-                className="abt-tools-grid"
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: '-30px' }}
-                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.045 } } }}
-              >
-                {tools.map(tool => (
-                  <motion.span
-                    key={tool.name}
-                    className="abt-tool"
-                    style={{ '--tool-color': tool.color } as React.CSSProperties}
-                    variants={{
-                      hidden: { opacity: 0, scale: 0.85, rotate: -4 },
-                      show: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
-                    }}
-                    whileHover={{ scale: 1.08, y: -3, transition: { duration: 0.2 } }}
-                  >
-                    <svg className="abt-tool-icon" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" dangerouslySetInnerHTML={{ __html: tool.svg }} />
-                    {tool.name}
-                  </motion.span>
-                ))}
-              </motion.div>
-            </section>
+
+            {/* ── Tools — Figma-canvas scattered layout ── */}
+            <ToolsCanvas />
 
             {/* ── Unified experience table ── */}
             <section className="abt-table-wrap reveal">
@@ -227,6 +169,15 @@ export default function AboutPage() {
                 </tbody>
               </table>
             </section>
+
+            {/* ── Spotlight: after experience ── */}
+            <section className="wr-reveal-section">
+              <TextReveal
+                front="Mentra, ZentiPay, TransFi, NYU — each one taught me something I couldn't learn from a tutorial."
+                behind="When your payment flow fails, someone doesn't get paid. When your glasses UI fails, someone walks into a wall."
+              />
+            </section>
+
 
             {/* ── Off the clock ── */}
             <section className="abt-beyond reveal">
@@ -325,6 +276,15 @@ export default function AboutPage() {
               </motion.div>
             </section>
 
+            {/* ── Spotlight: after creative practice ── */}
+            <section className="wr-reveal-section">
+              <TextReveal
+                front="Making things is a daily discipline — 100 days of poems, 100 days of sketches, 50 days of Photoshop."
+                behind="Proof that creativity is a habit you build, not a talent you're born with. Show up every day."
+              />
+            </section>
+
+
             {/* ── Graveyard banner ── */}
             <section className="abt-graveyard reveal">
               <Link to="/graveyard" className="abt-graveyard-card">
@@ -345,7 +305,7 @@ export default function AboutPage() {
               <div className="abt-type-intro">
                 <span className="abt-type-label">Made this typeface</span>
                 <div className="abt-type-links">
-                  <a href="/Assets/Projects/Typeface/Butler's Slice.zip" download className="abt-type-link figma-hover">
+                  <a href="/Assets/Projects/Typeface/butlers-slice.zip" download className="abt-type-link figma-hover">
                     <svg viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5.5l3 3 3-3M2 10h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     Download .zip
                     <FigmaSelect />
@@ -381,6 +341,7 @@ export default function AboutPage() {
             </section>
 
           </div>
+
 
           {/* ── CTA ── */}
           <section className="abt-cta reveal">

@@ -177,6 +177,16 @@
   }
 }
 
+@media (max-width: 480px) {
+  .ft-compact { padding: 1.5rem 0 0; }
+  .ft-headline-sm { font-size: clamp(1.4rem, 6vw, 1.8rem); }
+  .ft-email { font-size: var(--text-sm); }
+  .ft-cta-row { padding-bottom: var(--space-5); }
+  .ft-info-row { padding: var(--space-4) 0; }
+  .ft-info-text { font-size: var(--text-xs); }
+  .ft-info-link { font-size: var(--text-xs); }
+}
+
 /* ══════════════════════════════════════
    DARK MODE
    ══════════════════════════════════════ */

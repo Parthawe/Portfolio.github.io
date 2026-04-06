@@ -43,7 +43,7 @@ export default function BlackHolePage() {
         />
 
         {/* Hero, Time Trap */}
-        <CsImage src="/Assets/Projects/BlackHole/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
+        <CsImage src="/Assets/Projects/blackhole/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
 
         {/* Challenge */}
         <CsSection id="cs-challenge" label="The Challenge" title="Making the Invisible Tangible">
@@ -65,7 +65,7 @@ export default function BlackHolePage() {
         <section className="cs-slide reveal">
           <div className="wrap">
             <video
-              src="/Assets/Projects/BlackHole/time-dilation.mp4"
+              src="/Assets/Projects/blackhole/time-dilation.mp4"
               autoPlay
               loop
               muted
@@ -75,7 +75,7 @@ export default function BlackHolePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/BlackHole/time-trap.jpg" alt="Time Trap model, clocks at varying distances from a central black hole, each running at different speeds" />
+        <CsImage src="/Assets/Projects/blackhole/time-trap.jpg" alt="Time Trap model, clocks at varying distances from a central black hole, each running at different speeds" />
 
         {/* 02, Fabric of the Universe */}
         <CsSection id="cs-fabric" label="02 &mdash; Phenomenon" title="The Invisible Fabric of the Universe">
@@ -85,7 +85,7 @@ export default function BlackHolePage() {
           </CsBody>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/BlackHole/fabric-of-universe.jpg" alt="Fabric of the Universe model, a stool with stretched fabric and a weighted sphere showing spacetime deformation" />
+        <CsImage src="/Assets/Projects/blackhole/fabric-of-universe.jpg" alt="Fabric of the Universe model, a stool with stretched fabric and a weighted sphere showing spacetime deformation" />
 
         {/* 03, Gravitational Lensing + Wormholes */}
         <CsSection id="cs-lensing" label="03 &amp; 04 &mdash; Phenomena" title="Gravity&rsquo;s Grip on Light &amp; Wormholes">
@@ -95,7 +95,7 @@ export default function BlackHolePage() {
           </CsBody>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/BlackHole/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes model, a glass lens demonstrating light bending and a fabric wormhole model" />
+        <CsImage src="/Assets/Projects/blackhole/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes model, a glass lens demonstrating light bending and a fabric wormhole model" />
 
         {/* 04, Binary Mergers */}
         <CsSection id="cs-mergers" label="05 &mdash; Phenomenon" title="When Giants Collide: Binary Black Hole Mergers">
@@ -110,7 +110,7 @@ export default function BlackHolePage() {
           </CsBody>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/BlackHole/binary-mergers.jpg" alt="Binary Black Hole Mergers model, three 3D-printed stages showing Inspiral, Merger, and Ringdown" />
+        <CsImage src="/Assets/Projects/blackhole/binary-mergers.jpg" alt="Binary Black Hole Mergers model, three 3D-printed stages showing Inspiral, Merger, and Ringdown" />
 
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="Exhibition" title="Horological Society of New York">

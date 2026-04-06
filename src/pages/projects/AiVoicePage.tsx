@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -17,7 +18,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function AiVoicePage() {
   return (
-    <>
+    <NdaGate slug="ai-voice" projectName="AI Voice">
       <Helmet>
         <title>AI Voice Selection &middot; Parth Pawar</title>
         <meta name="description" content="Redefining AI Voice Selection For Enterprise, Integrating Emotional Intelligence and Expressive Voice Selection through intuitive, emotionally intelligent interactions." />
@@ -45,7 +46,7 @@ export default function AiVoicePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2025' },
           ]}
-          heroImage="/Assets/Projects/AI VOICE/AI.jpg"
+          heroImage="/Assets/Projects/ai-voice/AI.jpg"
           heroAlt="AI Voice Selection, hero"
         />
 
@@ -87,7 +88,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/1.png" alt="AI Voice Selection, project overview slide" />
+        <CsImage src="/Assets/Projects/ai-voice/1.png" alt="AI Voice Selection, project overview slide" />
         <p className="cs-caption">Project overview, the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
 
         {/* Research */}
@@ -114,7 +115,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/2.png" alt="Comparative UX analysis and market research across voice AI platforms" />
+        <CsImage src="/Assets/Projects/ai-voice/2.png" alt="Comparative UX analysis and market research across voice AI platforms" />
         <p className="cs-caption">Comparative UX analysis across three competing platforms revealed critical gaps in voice discovery, onboarding flow, and personality customization.</p>
 
         {/* Define */}
@@ -146,7 +147,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/3.png" alt="Problem definition, pain points, and customer journey map" />
+        <CsImage src="/Assets/Projects/ai-voice/3.png" alt="Problem definition, pain points, and customer journey map" />
         <p className="cs-caption">Five pain points distilled from research, mapped against an enterprise manager&rsquo;s journey from awareness through handoff to engineering.</p>
 
         {/* Concept A */}
@@ -168,7 +169,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/4.png" alt="Voice DNA Builder, sketch and final dark UI mockup" />
+        <CsImage src="/Assets/Projects/ai-voice/4.png" alt="Voice DNA Builder, sketch and final dark UI mockup" />
         <p className="cs-caption">Concept A: Voice DNA Builder, from initial sketch to high-fidelity dark UI. Users build a voice through parameter sliders that form an animated DNA helix.</p>
 
         {/* Concept B */}
@@ -189,7 +190,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/5.png" alt="Mood-Based Voice Matching, sketch and final dark UI mockup" />
+        <CsImage src="/Assets/Projects/ai-voice/5.png" alt="Mood-Based Voice Matching, sketch and final dark UI mockup" />
         <p className="cs-caption">Concept B: Mood-Based Voice Matching, the user speaks, the AI analyzes emotion and tone, then suggests three voices that match their energy.</p>
 
         {/* Voice DNA Deep Dive */}
@@ -213,7 +214,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/6.png" alt="Voice DNA Builder, detailed feature breakdown and UI" />
+        <CsImage src="/Assets/Projects/ai-voice/6.png" alt="Voice DNA Builder, detailed feature breakdown and UI" />
         <p className="cs-caption">DNA Builder deep dive, six key features including live persona preview, transcript panel, global accent map, and real-time parameter sliders.</p>
 
         {/* UX Benefits, DNA Builder */}
@@ -245,7 +246,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/7.png" alt="Persona movements and UX benefits for Voice DNA Builder" />
+        <CsImage src="/Assets/Projects/ai-voice/7.png" alt="Persona movements and UX benefits for Voice DNA Builder" />
         <p className="cs-caption">Persona movement states (Listen, Think, Talk) bring the voice character to life. The DNA Builder balances creative freedom with technical control.</p>
 
         {/* Mood Matching Deep Dive */}
@@ -266,7 +267,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/8.png" alt="Mood-Based Voice Matching, three screens: listening, thinking, talking" />
+        <CsImage src="/Assets/Projects/ai-voice/8.png" alt="Mood-Based Voice Matching, three screens: listening, thinking, talking" />
         <p className="cs-caption">Mood Matching&rsquo;s three-stage flow: a glowing circle captures voice input, a silhouette processes emotion, and three matched personas appear with mood summaries.</p>
 
         {/* UX Benefits, Mood Matching */}
@@ -297,7 +298,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/9.png" alt="Persona silhouettes and UX benefits for Mood-Based Voice Matching" />
+        <CsImage src="/Assets/Projects/ai-voice/9.png" alt="Persona silhouettes and UX benefits for Mood-Based Voice Matching" />
         <p className="cs-caption">Persona silhouettes give each voice a visual identity. Voice-first onboarding eliminates clicks entirely &mdash; users just speak, and the system adapts.</p>
 
         {/* Validate */}
@@ -335,7 +336,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/AI VOICE/10.png" alt="A/B testing results and reflections" />
+        <CsImage src="/Assets/Projects/ai-voice/10.png" alt="A/B testing results and reflections" />
         <p className="cs-caption">A/B test results across 7 participants: DNA Builder won on customization, playfulness, and visual engagement; Mood Matching won on onboarding ease and emotional connection.</p>
 
         {/* Reflections */}
@@ -350,7 +351,7 @@ export default function AiVoicePage() {
 
         <CsThanks />
 
-        <CsImage src="/Assets/Projects/AI VOICE/11.png" alt="Credits and thank you slide" />
+        <CsImage src="/Assets/Projects/ai-voice/11.png" alt="Credits and thank you slide" />
         <p className="cs-caption">Final recommendation: layer Mood-Based Matching as the emotional onboarding, then graduate users to the Voice DNA Builder for full creative control.</p>
 
         <BottomNav sections={[
@@ -368,6 +369,6 @@ export default function AiVoicePage() {
 
       <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/images/ballah-code.png" />
       <Footer />
-    </>
+    </NdaGate>
   )
 }

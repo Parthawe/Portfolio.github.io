@@ -336,3 +336,18 @@
   .lp-stats { gap: var(--space-1); }
   .lp-stat { font-size: var(--text-xs); padding: 0.4rem var(--space-4); }
 }
+
+@media (max-width: 480px) {
+  .lp-hero { padding-top: calc(var(--nav-h) + var(--space-5)); }
+  .lp-hero-title { font-size: clamp(2rem, 10vw, 3rem); }
+  .lp-hero-intro { font-size: var(--text-sm); }
+  .lp-stats { flex-wrap: wrap; }
+  .lp-stat { font-size: var(--text-2xs); padding: 0.3rem 0.5rem; }
+  .lp-tools { flex-wrap: wrap; gap: 0.35rem; }
+  .lp-tool { font-size: var(--text-2xs); padding: 0.25rem 0.5rem; }
+  .lp-approach-label { font-size: var(--text-sm); }
+  .lp-pillar-title { font-size: var(--text-sm); }
+  .lp-pillar-desc { font-size: var(--text-xs); }
+  .lp-cta-headline { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .lp-section-label { font-size: var(--text-xs); }
+}

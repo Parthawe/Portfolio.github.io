@@ -50,3 +50,8 @@
 .cta-v2-inner:has(.lp-cta-headline) .cta-v2-btn:hover svg {
   transform: translate(3px, -3px);
 }
+
+@media (max-width: 480px) {
+  .cta-v2 { padding: var(--space-8) 0; }
+  .cta-v2-btn { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+}

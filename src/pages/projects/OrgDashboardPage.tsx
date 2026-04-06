@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -18,7 +19,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function OrgDashboardPage() {
   return (
-    <>
+    <NdaGate slug="org-dashboard" projectName="OrgDashboard">
       <Helmet>
         <title>OrgDashboard &middot; Parth Pawar</title>
         <meta name="description" content="OrgDashboard, Designing the SaaS platform that gives AI agents organizational context. Knowledge base, integrations dashboard, and action approval system. Case study by Parth Pawar." />
@@ -193,6 +194,6 @@ export default function OrgDashboardPage() {
 
       <NextProject slug="raahi-project" title="Raahi" image="/Assets/images/raahi.jpg" />
       <Footer />
-    </>
+    </NdaGate>
   )
 }

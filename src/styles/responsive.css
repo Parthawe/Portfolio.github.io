@@ -39,7 +39,7 @@
   .wr-corner-tab { right: 16px; }
   .wr-card-tags { margin: 0 -16px 1.5rem; }
   .wr-card-layout { flex-direction: column; gap: 1.5rem; }
-  .wr-card-title { font-size: clamp(1.5rem, 7vw, 28px); line-height: 1.25; }
+  .wr-card-title { font-size: clamp(1.5rem, 7vw, 1.75rem); line-height: 1.25; }
   .wr-card-images { flex: none; }
 
   /* More work grid */
@@ -60,30 +60,108 @@
   .work-page-header { padding-top: calc(var(--nav-h) + 2rem); }
 }
 
+@media (max-width: 540px) {
+  /* Status row: stack on small screens */
+  .abt-status-row { grid-template-columns: 1fr; }
+
+  /* Featured project indices */
+  .wr-feat-idx { font-size: clamp(1.5rem, 8vw, 2.5rem); }
+
+  /* Section head: stack label + link */
+  .wr-section-head { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+}
+
 @media (max-width: 480px) {
+  :root { --pad: 1rem; }
   .cs-img-grid { grid-template-columns: 1fr; }
   .cs-stat-grid { grid-template-columns: 1fr; }
   .cs-img-placeholder { aspect-ratio: 4/3; }
   .cs-timeline-content h4 { font-size: var(--text-sm); }
+  .cs-timeline-track { max-width: calc(100vw - 1rem); }
   .cs-details-summary { padding: 1rem; font-size: var(--text-sm); }
   .cs-details-content { padding: 0 1rem 1rem; }
   .next-project-img { display: none; }
   .next-project-title { font-size: clamp(1.4rem, 6vw, 2rem); }
   .proj-overview-grid { gap: 1.5rem; }
-}
+  .project-header { padding: 1.25rem 0 0.75rem; }
 
-@media (max-width: 480px) {
+  /* Counter labels */
+  .wr-counter-label { font-size: var(--text-xs); }
+  .wr-counter-value { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+
+  /* Grids collapse to 1 col */
   .wr-grid-3 { grid-template-columns: 1fr; }
+
+  /* Footer tighter on small screens */
+  .ft-compact { padding: 2rem 0 0; }
+  .ft-headline-sm { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .ft-cta-row { gap: 1rem; padding-bottom: 1.5rem; }
+
+  /* Spotlight reveals */
+  .wr-reveal-section { padding: 2rem 0; }
+
+  /* Featured project padding */
+  .wr-featured-v2-inner { padding-left: 1rem; padding-right: 1rem; }
+  .wr-archive-inner { padding-left: 1rem; padding-right: 1rem; }
+
+  /* About page tools grid */
+  .abt-tools-grid { gap: 0.5rem; }
+  .abt-tool { font-size: var(--text-xs); padding: 0.35rem 0.6rem; }
+
+  /* Back to top — tighter position, slightly smaller */
+  .back-to-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; }
+  .back-to-top svg { width: 14px; height: 14px; }
+
+  /* Ambient toggle — don't overlap with back-to-top */
+  .ambient-toggle { bottom: 1rem; right: auto; left: 1rem; font-size: 10px; padding: 4px 8px; }
+
+  /* Work bottom nav: fit all pills on small screen */
+  .work-bottom-nav {
+    gap: 3px;
+    padding: 4px 5px;
+    max-width: calc(100vw - 1rem);
+    bottom: 0.75rem;
+  }
+  .work-bnav-link {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.55rem;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Case study bottom nav: tighter on small screens */
+  .cs-bottom-nav {
+    gap: 3px;
+    padding: 4px 5px;
+    max-width: calc(100vw - 1rem);
+    bottom: 0.75rem;
+  }
+  .cs-bnav-link {
+    font-size: var(--text-xs);
+    padding: 0.4rem 0.55rem;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Category page hero */
+  .lp-hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .lp-hero-intro { font-size: var(--text-sm); }
+  .lp-stats { gap: 0.5rem; flex-wrap: wrap; }
+  .lp-stat { font-size: var(--text-xs); padding: 0.3rem 0.5rem; }
+  .lp-tools { gap: 0.35rem; flex-wrap: wrap; }
+  .lp-tool { font-size: var(--text-2xs); padding: 0.25rem 0.4rem; }
 }
 
 @media (max-width: 360px) {
-  :root { --pad: 1rem; }
   .cs-pullquote { padding-left: 1rem; }
   .cs-pullquote p { font-size: 1.1rem; }
   .cs-timeline { padding-left: 1.25rem; }
   .cs-timeline-item::before { left: -1.25rem; width: 8px; height: 8px; }
-  .pcard-body { padding: 1rem; }
-  .pcard-name { font-size: var(--text-lg); }
+  .pcard-body { padding: 0.75rem; }
+  .pcard-name { font-size: var(--text-base); }
+  .pcard-tag { font-size: var(--text-2xs); }
   .cs-section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
 }
 

@@ -1,0 +1,166 @@
+/* ══════════════════════════════════════
+   NDA Gate — password protection overlay
+   ══════════════════════════════════════ */
+
+.nda-gate {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: var(--pad);
+}
+
+.nda-gate-inner {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Lock icon */
+.nda-lock-icon {
+  color: var(--ink-20);
+  margin-bottom: 1.5rem;
+}
+
+/* Badge */
+.nda-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--ink-40);
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Title */
+.nda-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+/* Description */
+.nda-desc {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  color: var(--ink-40);
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+/* Form */
+.nda-form {
+  margin-bottom: 1.5rem;
+}
+
+.nda-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--ink-10);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  transition: border-color 0.2s;
+}
+.nda-input-wrap:focus-within {
+  border-color: var(--ink-30);
+}
+
+.nda-input {
+  flex: 1;
+  font-family: var(--mono);
+  font-size: var(--text-sm);
+  padding: 0.85rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  outline: none;
+  letter-spacing: 0.15em;
+}
+.nda-input::placeholder {
+  color: var(--ink-20);
+  letter-spacing: 0.04em;
+}
+.nda-input--error {
+  color: #E53E3E;
+}
+
+.nda-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--ink-08);
+  color: var(--ink-30);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.nda-submit:not(:disabled):hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+.nda-submit:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Error text */
+.nda-error {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  color: #E53E3E;
+  margin-top: 0.75rem;
+}
+
+/* Contact link */
+.nda-contact {
+  font-family: var(--sans);
+  font-size: var(--text-xs);
+  color: var(--ink-25);
+}
+.nda-contact a {
+  color: var(--ink-50);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.nda-contact a:hover {
+  color: var(--ink);
+}
+
+/* Background pattern */
+.nda-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 1px 1px, var(--ink-04) 1px, transparent 0);
+  background-size: 32px 32px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .nda-input--error { color: #FC8181; }
+[data-theme="dark"] .nda-error { color: #FC8181; }
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .nda-gate-inner { padding: 0 0.5rem; }
+  .nda-title { font-size: 1.8rem; }
+}

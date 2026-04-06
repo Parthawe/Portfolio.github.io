@@ -1,0 +1,532 @@
+/**
+ * Central project registry — single source of truth.
+ *
+ * To add a new project:
+ *  1. Add an entry here
+ *  2. Create the page component in src/pages/projects/
+ *  3. Done — routes, cards, and listings are auto-generated.
+ *
+ * To mark a project as NDA:
+ *  Set `nda: true` and optionally `ndaPassword: 'custom'`.
+ *  Default password: "parth2026"
+ */
+
+export interface Project {
+  /** URL slug — becomes the route path */
+  slug: string
+  /** Display name */
+  name: string
+  /** Card thumbnail image */
+  image: string
+  /** Category tag shown on card (uppercase) */
+  tag: string
+  /** Year or year range */
+  year: string
+  /** One-line description for card marquee / meta */
+  desc: string
+  /** Category key for filtering */
+  category: ProjectCategory
+  /** Lazy import factory for the page component */
+  page: () => Promise<{ default: React.ComponentType }>
+  /** Mark as NDA / password-protected */
+  nda?: boolean
+  /** Custom password (default: "parth2026") */
+  ndaPassword?: string
+  /** Show in featured grid on homepage */
+  featured?: boolean
+  /** Featured order (lower = first) */
+  featuredOrder?: number
+  /** Archive order on homepage (lower = first) */
+  archiveOrder?: number
+  /** Hide from work page entirely */
+  hidden?: boolean
+  /** Loading priority */
+  loading?: 'eager' | 'lazy'
+}
+
+export type ProjectCategory = 'ux' | 'ai' | 'creative' | 'install' | 'brand' | 'good'
+
+export interface CategoryFilter {
+  key: string
+  label: string
+}
+
+export const CATEGORIES: CategoryFilter[] = [
+  { key: 'all', label: 'All' },
+  { key: 'ux', label: 'UX Design' },
+  { key: 'good', label: 'Design for Good' },
+  { key: 'ai', label: 'AI & Wearables' },
+  { key: 'creative', label: 'Creative Tech' },
+  { key: 'install', label: 'Installations' },
+  { key: 'brand', label: 'Brand & Visual' },
+]
+
+export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
+  ux: 'UX Design',
+  ai: 'AI & Wearables',
+  creative: 'Creative Technology',
+  install: 'Installations',
+  brand: 'Brand & Visual',
+  good: 'Design for Good',
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   Project Registry
+   ────────────────────────────────────────────────────────────────────── */
+
+const IMG = '/Assets/images'
+
+export const projects: Project[] = [
+  /* ── Featured (homepage hero grid) ── */
+  {
+    slug: 'mentra',
+    name: 'Mentra',
+    image: `${IMG}/mentra.png`,
+    tag: 'AI WEARABLES',
+    year: '2025–Present',
+    desc: 'Designed the OS, companion app, and app store for AI smart glasses shipping at $299',
+    category: 'ux',
+    page: () => import('../pages/projects/MentraPage'),
+    featured: true,
+    featuredOrder: 1,
+    loading: 'eager',
+  },
+  {
+    slug: 'transfi-project',
+    name: 'TransFi',
+    image: `${IMG}/transfi.jpg`,
+    tag: 'WEB3 PAYMENTS',
+    year: '2023',
+    desc: 'Redesigned crypto payment rails across 6 Asian markets, $50M+ monthly volume',
+    category: 'ux',
+    page: () => import('../pages/projects/TransfiPage'),
+    featured: true,
+    featuredOrder: 2,
+    nda: true,
+    loading: 'eager',
+  },
+  {
+    slug: 'zentipay',
+    name: 'ZentiPay',
+    image: `${IMG}/zentipay.png`,
+    tag: 'FINTECH',
+    year: '2025',
+    desc: 'Built a fintech super-app from scratch — 30% higher transaction completion',
+    category: 'ux',
+    page: () => import('../pages/projects/ZentipayPage'),
+    featured: true,
+    featuredOrder: 3,
+    nda: true,
+    loading: 'eager',
+  },
+  {
+    slug: 'clawed-chat',
+    name: 'Clawed',
+    image: `${IMG}/clawed.png`,
+    tag: 'AI ASSISTANT',
+    year: '2026',
+    desc: 'AI assistant with receipts for every action — safety-first on glasses and web',
+    category: 'ai',
+    page: () => import('../pages/projects/ClawedChatPage'),
+    featured: true,
+    featuredOrder: 4,
+  },
+
+  /* ── UX Design ── */
+  {
+    slug: 'executivelens',
+    name: 'ExecutiveLens',
+    image: `${IMG}/executivelens.png`,
+    tag: 'AI ANALYTICS',
+    year: '2025–26',
+    desc: 'Saved executives 5.2 hrs/week with AI meeting intelligence — 87% adoption in 2 weeks',
+    category: 'ux',
+    page: () => import('../pages/projects/ExecutiveLensPage'),
+    nda: true,
+    archiveOrder: 1,
+  },
+  {
+    slug: 'org-dashboard',
+    name: 'OrgDashboard',
+    image: `${IMG}/org-dashboard.png`,
+    tag: 'B2B SAAS',
+    year: '2026',
+    desc: 'SaaS giving AI agents organizational context — dual-user admin and agent design',
+    category: 'ux',
+    page: () => import('../pages/projects/OrgDashboardPage'),
+    nda: true,
+    archiveOrder: 17,
+  },
+  {
+    slug: 'cuetv',
+    name: 'CueTV',
+    image: `${IMG}/cuetv.jpg`,
+    tag: 'PRODUCT DESIGN',
+    year: '2022',
+    desc: 'OTT platform with a retargeting system generating 30K+ ad variations',
+    category: 'ux',
+    page: () => import('../pages/projects/CueTvPage'),
+    archiveOrder: 8,
+  },
+  {
+    slug: 'healthapp',
+    name: 'VJ Parivar',
+    image: '/Assets/Projects/health-app/1.jpg',
+    tag: 'UX DESIGN',
+    year: '2020',
+    desc: 'Post-purchase services app for VJ Real Estate homeowners',
+    category: 'ux',
+    page: () => import('../pages/projects/HealthAppPage'),
+    nda: true,
+    archiveOrder: 18,
+  },
+  {
+    slug: 'ibm',
+    name: 'IBM Cancer Prognosis',
+    image: '/Assets/Projects/ibm/1.jpg',
+    tag: 'HEALTHCARE AI',
+    year: '2020',
+    desc: 'Secure genomic data transfer to identify life expectancy of cancer patients',
+    category: 'ux',
+    page: () => import('../pages/projects/IbmPage'),
+    nda: true,
+    archiveOrder: 19,
+  },
+
+  /* ── AI & Wearables ── */
+  {
+    slug: 'ballah-code',
+    name: 'Ballah Code',
+    image: `${IMG}/ballah-code.png`,
+    tag: 'AI DEV TOOLS',
+    year: '2026',
+    desc: 'AI-native IDE treating AI as a senior engineer — 17 production tools',
+    category: 'ai',
+    page: () => import('../pages/projects/BallahCodePage'),
+    archiveOrder: 15,
+  },
+  {
+    slug: 'oncall-lens',
+    name: 'OnCall Lens',
+    image: `${IMG}/oncall-lens.png`,
+    tag: 'AI WEARABLE',
+    year: '2026',
+    desc: 'Sentry alert → Claude analysis → auto PR fix via smart glasses — built in 24 hours',
+    category: 'ai',
+    page: () => import('../pages/projects/OnCallLensPage'),
+    archiveOrder: 16,
+  },
+  {
+    slug: 'ai-voice',
+    name: 'AI Voice',
+    image: `${IMG}/ai-voice.png`,
+    tag: 'CONVERSATIONAL AI',
+    year: '2025',
+    desc: 'Enterprise voice selection with emotional intelligence — A/B tested with 7 users',
+    category: 'ai',
+    page: () => import('../pages/projects/AiVoicePage'),
+    nda: true,
+    archiveOrder: 22,
+  },
+
+  /* ── Design for Good ── */
+  {
+    slug: 'raahi-project',
+    name: 'Raahi',
+    image: `${IMG}/raahi.jpg`,
+    tag: 'CIVIC DESIGN',
+    year: '2022',
+    desc: 'Service design for Pune public transit — app, kiosk, and in-vehicle systems',
+    category: 'good',
+    page: () => import('../pages/projects/RaahiPage'),
+    archiveOrder: 5,
+  },
+  {
+    slug: 'the-point-cdc',
+    name: 'The Point CDC',
+    image: `${IMG}/the-point-cdc.png`,
+    tag: 'COMMUNITY',
+    year: '2024',
+    desc: 'Redesigned digital platform for a Bronx community development nonprofit',
+    category: 'good',
+    page: () => import('../pages/projects/ThePointCdcPage'),
+    archiveOrder: 6,
+  },
+  {
+    slug: 'office-of-diversity',
+    name: 'Office of Diversity',
+    image: `${IMG}/office-of-diversity.png`,
+    tag: 'EDUCATION',
+    year: '2024',
+    desc: 'Interactive IDBEA report for NYU Tisch — WCAG 2.1 AA accessible',
+    category: 'good',
+    page: () => import('../pages/projects/OfficeOfDiversityPage'),
+    archiveOrder: 21,
+  },
+
+  /* ── Creative Technology ── */
+  {
+    slug: 'jugalbandi',
+    name: 'Jugalbandi',
+    image: `${IMG}/jugalbandi.png`,
+    tag: 'ML + MUSIC',
+    year: '2024',
+    desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024',
+    category: 'creative',
+    page: () => import('../pages/projects/JugalbandiPage'),
+    archiveOrder: 4,
+  },
+  {
+    slug: 'keyboard-project',
+    name: 'BreakGen',
+    image: `${IMG}/keyboard.jpg`,
+    tag: 'ITP THESIS',
+    year: '2025',
+    desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors',
+    category: 'creative',
+    page: () => import('../pages/projects/KeyboardProjectPage'),
+    archiveOrder: 3,
+  },
+  {
+    slug: 'vj-software',
+    name: 'VJ Software',
+    image: `${IMG}/vj.jpg`,
+    tag: 'REAL-TIME VISUALS',
+    year: '2022',
+    desc: 'Audio-reactive visual performance tool — 5 competitor analysis, 2 personas',
+    category: 'creative',
+    page: () => import('../pages/projects/VjSoftwarePage'),
+    archiveOrder: 15,
+  },
+  {
+    slug: 'enigma',
+    name: 'Enigma',
+    image: `${IMG}/enigma.jpg`,
+    tag: 'DEEP LEARNING',
+    year: '2023',
+    desc: '200-neuron light sculpture visualizing a functioning neural network',
+    category: 'creative',
+    page: () => import('../pages/projects/EnigmaPage'),
+    archiveOrder: 9,
+  },
+  {
+    slug: 'shuffle',
+    name: 'Shuffle',
+    image: `${IMG}/shuffle.jpg`,
+    tag: 'INTERACTIVE',
+    year: '2024',
+    desc: 'Weight-sensor LED grid where players compete through physical strategy',
+    category: 'creative',
+    page: () => import('../pages/projects/ShufflePage'),
+    archiveOrder: 11,
+  },
+  {
+    slug: 'making-of-time',
+    name: 'Making of Time',
+    image: `${IMG}/making-of-time.jpg`,
+    tag: 'PHYSICAL COMPUTING',
+    year: '2024',
+    desc: 'Sundial → mechanical watch → software clock — building three ways to measure time',
+    category: 'creative',
+    page: () => import('../pages/projects/MakingOfTimePage'),
+    archiveOrder: 12,
+  },
+  {
+    slug: 'sea-of-salt',
+    name: 'Sea of Salt',
+    image: `${IMG}/sea-of-salt.jpg`,
+    tag: 'DATA INSTALLATION',
+    year: '2024',
+    desc: 'Kinetic salt installation shifting in response to real-time ocean data',
+    category: 'creative',
+    page: () => import('../pages/projects/SeaOfSaltPage'),
+    archiveOrder: 17,
+  },
+
+  /* ── Installations ── */
+  {
+    slug: 'black-hole',
+    name: 'Black Hole',
+    image: `${IMG}/black-hole.jpg`,
+    tag: 'SCIENCE + FABRICATION',
+    year: '2026',
+    desc: 'Five physical models of black hole phenomena — exhibited at Horological Society of NY',
+    category: 'install',
+    page: () => import('../pages/projects/BlackHolePage'),
+    archiveOrder: 2,
+  },
+  {
+    slug: 'uv-light',
+    name: 'UV Light',
+    image: `${IMG}/uv-light.jpg`,
+    tag: 'LIGHT ART',
+    year: '2023',
+    desc: 'Multi-room blacklight installation with hidden messages and live projection',
+    category: 'install',
+    page: () => import('../pages/projects/UvLightPage'),
+    archiveOrder: 7,
+  },
+  {
+    slug: 'the-omakase',
+    name: 'The Omakase',
+    image: `${IMG}/the-omakase.jpg`,
+    tag: 'ARCADE GAME',
+    year: '2024',
+    desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille',
+    category: 'install',
+    page: () => import('../pages/projects/TheOmakasePage'),
+    archiveOrder: 16,
+  },
+  {
+    slug: 'revolving-stage',
+    name: 'Revolving Stage',
+    image: `${IMG}/revolving-stage.jpg`,
+    tag: 'FABRICATION',
+    year: '2022',
+    desc: '15 ft. rotating stage supporting 250+ kgs — engineered for live theatre',
+    category: 'install',
+    page: () => import('../pages/projects/RevolvingStagePage'),
+    archiveOrder: 10,
+  },
+  {
+    slug: 'moniac-machine',
+    name: 'Moniac Machine',
+    image: `${IMG}/moniac-machine.jpg`,
+    tag: 'GAME DESIGN',
+    year: '2024',
+    desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education',
+    category: 'install',
+    page: () => import('../pages/projects/MoniacMachinePage'),
+    archiveOrder: 13,
+  },
+  {
+    slug: 'drowning',
+    name: 'Drowning',
+    image: `${IMG}/drowning.jpg`,
+    tag: 'SCENIC DESIGN',
+    year: '2024',
+    desc: 'Abandoned greenhouse set for NYU theatre — multi-layer lighting for 100+ audience',
+    category: 'install',
+    page: () => import('../pages/projects/DrowningPage'),
+    archiveOrder: 20,
+  },
+  {
+    slug: 'sculpture',
+    name: 'Sculpture',
+    image: '/Assets/Projects/Sculpture/1.jpg',
+    tag: 'SCULPTURE',
+    year: '2020',
+    desc: 'Competition sculptures for Firodia Karandak, Pune',
+    category: 'install',
+    page: () => import('../pages/projects/SculpturePage'),
+    archiveOrder: 21,
+  },
+
+  /* ── Brand & Visual ── */
+  {
+    slug: 'tedx',
+    name: 'TEDxVITPune',
+    image: `${IMG}/tedx.png`,
+    tag: 'ART DIRECTION',
+    year: '2021',
+    desc: 'Art directed a 65-person team to build a parallax cityscape stage for 800+ attendees',
+    category: 'brand',
+    page: () => import('../pages/projects/TedxPage'),
+    archiveOrder: 5,
+  },
+  {
+    slug: 'code-for-build',
+    name: 'Code for Build',
+    image: `${IMG}/code-for-build.jpg`,
+    tag: 'BRAND + PRODUCT',
+    year: '2021',
+    desc: 'Brand system and developer platform for Istanbul open-source startup',
+    category: 'brand',
+    page: () => import('../pages/projects/CodeForBuildPage'),
+    archiveOrder: 18,
+  },
+  {
+    slug: 'typeface',
+    name: "Butler's Slice",
+    image: `${IMG}/typeface.jpg`,
+    tag: 'TYPE DESIGN',
+    year: '2022',
+    desc: 'Variable display typeface with geometric slice cuts — 400+ glyphs, 3 weights',
+    category: 'brand',
+    page: () => import('../pages/projects/TypefacePage'),
+    archiveOrder: 14,
+  },
+  {
+    slug: 'atps',
+    name: 'ArtTown Podcast',
+    image: `${IMG}/atps.png`,
+    tag: 'MEDIA',
+    year: '2021',
+    desc: 'Visual identity and motion graphics for an art and design podcast series',
+    category: 'brand',
+    page: () => import('../pages/projects/AtpsPage'),
+    archiveOrder: 19,
+  },
+  {
+    slug: 'vishwaconclave',
+    name: 'VishwaConclave',
+    image: '/Assets/Projects/VishwaConclave/1.jpg',
+    tag: 'CREATIVE DIRECTION',
+    year: '2021',
+    desc: 'Creative direction, branding, and web design for a student conference',
+    category: 'brand',
+    page: () => import('../pages/projects/VishwaConclavePage'),
+    archiveOrder: 20,
+  },
+]
+
+/* ──────────────────────────────────────────────────────────────────────
+   Helper selectors
+   ────────────────────────────────────────────────────────────────────── */
+
+/** Featured projects for homepage hero grid */
+export const featuredProjects = projects
+  .filter(p => p.featured)
+  .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99))
+
+/** Archive projects for homepage (non-featured, sorted) */
+export const archiveProjects = projects
+  .filter(p => !p.featured && !p.hidden)
+  .sort((a, b) => (a.archiveOrder ?? 99) - (b.archiveOrder ?? 99))
+
+/** All projects for the Work page in curated mixed order */
+export const allProjectsCurated = (() => {
+  // Interleave categories for visual variety
+  const byCat: Record<string, Project[]> = {}
+  for (const cat of ['ux', 'ai', 'good', 'creative', 'install', 'brand']) {
+    byCat[cat] = projects.filter(p => p.category === cat && !p.hidden)
+  }
+  const order: ProjectCategory[] = ['ux', 'ai', 'ux', 'creative', 'good', 'install', 'ux', 'ai', 'brand', 'ux', 'creative', 'install', 'good', 'ai', 'creative', 'install', 'ux', 'brand', 'install', 'creative', 'good', 'ai', 'ux', 'brand', 'install', 'creative', 'brand', 'creative', 'install', 'ux', 'brand', 'ux', 'install']
+  const used = new Set<string>()
+  const result: Project[] = []
+  for (const cat of order) {
+    const next = byCat[cat]?.find(p => !used.has(p.slug))
+    if (next) {
+      used.add(next.slug)
+      result.push(next)
+    }
+  }
+  // Append any remaining
+  for (const p of projects) {
+    if (!used.has(p.slug) && !p.hidden) {
+      used.add(p.slug)
+      result.push(p)
+    }
+  }
+  return result
+})()
+
+/** Get projects by category */
+export function projectsByCategory(cat: ProjectCategory): Project[] {
+  return projects.filter(p => p.category === cat && !p.hidden)
+}
+
+/** Find a single project by slug */
+export function getProject(slug: string): Project | undefined {
+  return projects.find(p => p.slug === slug)
+}

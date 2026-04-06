@@ -3,68 +3,96 @@
    Inspired by editorial portfolio craft (Minh Pham et al.)
    ══════════════════════════════════════════════════════════ */
 
-/* ── Spotlight text reveal — fixed circle, never clips ──── */
+/* ── Spotlight text reveal ── */
 
 .spotlight-reveal {
   position: relative;
-  cursor: crosshair;
-  padding: 1rem 0;
+  cursor: none;
+  padding: 1.5rem 0;
 }
 
+/* Front text — normal site serif, centered */
 .spotlight-front span {
   display: block;
-  font-family: var(--serif, Georgia, serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: var(--ink);
+  text-align: center;
 }
 
-/* Fixed circle — centered on cursor, CSS transitions handle grow/shrink */
-.spotlight-overlay {
+/* The circle — luminous frosted moon, clips behind text */
+.spotlight-circle {
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 9995;
   border-radius: 50%;
-  background: #E85D26;
+  background:
+    radial-gradient(ellipse at 35% 30%, rgba(255,255,255,0.45) 0%, transparent 55%),
+    linear-gradient(160deg, #e8ecf8 0%, #c8cee4 100%);
   overflow: hidden;
   pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.5s cubic-bezier(0.22, 1.2, 0.36, 1),
-    height 0.5s cubic-bezier(0.22, 1.2, 0.36, 1),
-    opacity 0.25s ease,
-    box-shadow 0.5s ease;
-  box-shadow: 0 0 40px rgba(232, 93, 38, 0.2), 0 0 100px rgba(232, 93, 38, 0.06);
+  opacity: 0;
+  will-change: transform;
+  box-shadow:
+    inset -6px -4px 18px rgba(0, 0, 0, 0.06),
+    0 0 50px rgba(160, 175, 220, 0.25);
 }
 
-/* Hidden text — positioned to align with front text, always visible */
-.spotlight-text {
+/* Behind text — dark on moon surface */
+.spotlight-behind {
   position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
+  padding: 1.5rem 0;
 }
-.spotlight-text span {
+.spotlight-behind span {
   display: block;
-  font-family: var(--serif, Georgia, serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #fff;
-  white-space: nowrap;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #1a1e2e;
+  text-align: center;
 }
 
-/* Hide cursor dots/ring when spotlight is active */
+/* Dark mode */
+[data-theme="dark"] .spotlight-circle {
+  background:
+    radial-gradient(ellipse at 35% 30%, rgba(255,255,255,0.08) 0%, transparent 55%),
+    linear-gradient(160deg, #2a2d38 0%, #1e2028 100%);
+  box-shadow:
+    inset -6px -4px 18px rgba(0, 0, 0, 0.2),
+    0 0 50px rgba(80, 90, 130, 0.2);
+}
+[data-theme="dark"] .spotlight-behind span {
+  color: #e0e2ea;
+}
+
+/* Hide cursor/comet when spotlight active */
 .spotlight-active .cursor-dot,
-.spotlight-active .cursor-ring {
+.spotlight-active .cursor-comet {
   opacity: 0 !important;
+  pointer-events: none;
 }
 
-/* Mobile */
+/* Mobile — no circle, show front text normally */
 @media (max-width: 768px) {
   .spotlight-reveal { cursor: auto; }
-  .spotlight-overlay { display: none; }
+  .spotlight-circle { display: none; }
+}
+@media (max-width: 480px) {
+  .wr-reveal-section { padding: 2rem 1rem; }
+  .spotlight-front span {
+    font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+  }
 }
 
 /* ── Text highlight (scroll-driven marker pen) ────────── */
@@ -101,7 +129,7 @@ h3.text-highlight .text-highlight-text {
   position: fixed;
   bottom: 20px;
   right: 80px;
-  z-index: 89;
+  z-index: 92;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -326,18 +354,15 @@ h3.text-highlight .text-highlight-text {
   transform: translateY(-4px) scale(1.02);
 }
 
-/* ── Reveal section (homepage) ─────────────────────────── */
+/* ── Reveal section wrapper ─────────────────────────── */
 
 .wr-reveal-section {
-  padding: 4rem 0;
   position: relative;
-  overflow: hidden;
-}
-
-.wr-reveal-section .wrap {
-  max-width: var(--w, 1120px);
-  margin: 0 auto;
-  padding: 0 var(--pad, clamp(1.25rem, 4vw, 3rem));
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem var(--pad, clamp(1.25rem, 4vw, 3rem));
+  text-align: center;
 }
 
 /* Highlight that sits beside the section label */
@@ -349,15 +374,35 @@ h3.text-highlight .text-highlight-text {
   margin-left: 12px;
 }
 
+/* ── Pixelated scroll transition ──────────────────────── */
+
+.pixel-transition {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--px-cols, 16), 1fr);
+  pointer-events: none;
+}
+.pixel-transition-cell {
+  aspect-ratio: 1;
+  background: var(--bg);
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixel-transition { display: none; }
+}
+
 /* ── Responsive ───────────────────────────────────────── */
 
 @media (max-width: 768px) {
   .ambient-toggle { bottom: 14px; right: 14px; }
   .edge-float { display: none; }
-  .spotlight-front span,
-  .spotlight-behind span {
-    font-size: clamp(1.5rem, 7vw, 2.5rem);
-  }
+}
+@media (max-width: 480px) {
+  .wr-disciplines-grid { gap: var(--space-2); }
+  .wr-discipline-obj { width: 50px; height: 50px; }
+  .wr-discipline-label { font-size: var(--text-3xs, 0.6rem); }
 }
 
 /* ── Reduced motion ───────────────────────────────────── */
@@ -369,5 +414,12 @@ h3.text-highlight .text-highlight-text {
   }
   .text-highlight-mark {
     transition: none;
+  }
+  .spotlight-behind {
+    display: none;
+  }
+  .cursor-dot,
+  .cursor-comet {
+    display: none !important;
   }
 }

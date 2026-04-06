@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -19,7 +20,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function ExecutiveLensPage() {
   return (
-    <>
+    <NdaGate slug="executivelens" projectName="ExecutiveLens">
       <Helmet>
         <title>ExecutiveLens &middot; Parth Pawar</title>
         <meta name="description" content="ExecutiveLens.ai, AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time decision tracking. Case study by Parth Pawar, Product Designer." />
@@ -195,6 +196,6 @@ export default function ExecutiveLensPage() {
 
       <NextProject slug="zentipay" title="ZentiPay" image="/Assets/images/zentipay.png" />
       <Footer />
-    </>
+    </NdaGate>
   )
 }

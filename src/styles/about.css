@@ -1,24 +1,24 @@
 /* ── Butler's Slice @font-face (Parth's custom typeface) ── */
 @font-face {
   font-family: "Butlers Slice";
-  src: url("/Assets/Projects/Typeface/Butler's Slice/Butler's_Slice-UltraLight.woff2") format("woff2"),
-       url("/Assets/Projects/Typeface/Butler's Slice/Butler's_Slice-UltraLight.woff") format("woff");
+  src: url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff2") format("woff2"),
+       url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Butlers Slice";
-  src: url("/Assets/Projects/Typeface/Butler's Slice/Butler's_Slice.woff2") format("woff2"),
-       url("/Assets/Projects/Typeface/Butler's Slice/Butler's_Slice.woff") format("woff");
+  src: url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff2") format("woff2"),
+       url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Butlers Slice";
-  src: url("/Assets/Projects/Typeface/Butler's Slice/Butler's_Slice-Bold.woff2") format("woff2"),
-       url("/Assets/Projects/Typeface/Butler's Slice/Butler's_Slice-Bold.woff") format("woff");
+  src: url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff2") format("woff2"),
+       url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -93,8 +93,8 @@
   top: 120px; /* 5 units, sits on grid */
   left: 50%;
   transform: translateX(-50%);
-  width: 960px;
-  height: 960px;
+  width: min(960px, 90vw);
+  height: min(960px, 90vw);
   border-radius: 50%;
   border: 1px solid var(--ink-04);
   pointer-events: none;
@@ -515,6 +515,46 @@
   filter: grayscale(0.05);
 }
 
+/* ── Portal Hero — centered photo, full viewport ── */
+.abt-photo-hero {
+  height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.abt-portal-img {
+  width: clamp(500px, 65vw, 850px);
+  aspect-ratio: 1 / 1;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+
+/* Portal Reveal — canvas composited */
+.portal-reveal {
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  z-index: 2;
+}
+.portal-reveal-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-reveal { cursor: auto; }
+}
+@media (max-width: 768px) {
+  .abt-portal-img { width: clamp(350px, 85vw, 550px); cursor: auto; }
+}
+@media (max-width: 480px) {
+  .abt-portal-img { width: clamp(300px, 95vw, 450px); }
+}
+
 /* Caption under main photo */
 .abt-collage-caption {
   font-family: var(--serif);
@@ -809,6 +849,365 @@
 }
 .abt-tool:hover .abt-tool-icon {
   transform: scale(1.3);
+}
+
+/* ── Tools Canvas (Figma-style scattered layout) ── */
+.tools-canvas { margin-bottom: var(--space-12); }
+.tools-canvas-area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background:
+    radial-gradient(circle at 1px 1px, var(--ink-06) 1px, transparent 0);
+  background-size: 24px 24px;
+  border: 1px solid var(--ink-06);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* ── Main typography centerpiece ── */
+.tools-typo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 10%;
+  pointer-events: none;
+  z-index: 1;
+}
+.tools-typo-line {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.tools-typo-my       { font-size: clamp(3rem, 10vw, 8rem); font-style: italic; align-self: flex-start; margin-left: 8%; }
+.tools-typo-everyday { font-size: clamp(2.5rem, 8vw, 6.5rem); font-style: italic; }
+.tools-typo-tools    { font-size: clamp(3.5rem, 12vw, 10rem); font-style: normal; letter-spacing: -0.04em; }
+.tools-typo-in       { font-size: clamp(2.5rem, 8vw, 7rem); font-style: italic; align-self: flex-start; margin-left: 25%; }
+.tools-typo-design   { font-size: clamp(3.5rem, 12vw, 10rem); font-style: italic; }
+
+/* ── Floating UI elements ── */
+.tools-float {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Comment bubble — Figma style with avatar */
+.tools-ui-comment {
+  display: flex;
+  gap: 8px;
+  background: #0D99FF;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px 12px 12px 2px;
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.4;
+  box-shadow: 0 4px 16px rgba(13, 153, 255, 0.3);
+  max-width: 240px;
+}
+.tools-ui-comment-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.tools-ui-comment-body { display: flex; flex-direction: column; gap: 2px; }
+.tools-ui-comment-meta { font-weight: 700; font-size: 10px; }
+.tools-ui-comment-meta em { font-weight: 400; opacity: 0.7; margin-left: 4px; font-style: normal; }
+.tools-ui-comment-text { opacity: 0.92; font-size: 11px; }
+
+/* Color swatch — with opacity field */
+.tools-ui-color {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--ink-08);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-60);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.tools-ui-color-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.tools-ui-color-hex { letter-spacing: 0.04em; }
+.tools-ui-color-opacity {
+  margin-left: 6px;
+  padding: 2px 6px;
+  border: 1px solid var(--ink-08);
+  border-radius: 3px;
+  font-size: 11px;
+}
+.tools-ui-color-pct { font-size: 10px; color: var(--ink-30); margin-left: 2px; }
+
+/* Export dropdown */
+.tools-ui-export {
+  background: #1e1e1e;
+  border-radius: 10px;
+  padding: 6px 0;
+  min-width: 85px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.tools-ui-export-row {
+  display: block;
+  padding: 6px 16px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: #888;
+}
+.tools-ui-export-row.active {
+  color: #fff;
+  background: #0D99FF;
+  border-radius: 5px;
+  margin: 2px 5px;
+  padding: 6px 11px;
+}
+
+/* Toggle */
+.tools-ui-toggle-track {
+  display: block;
+  width: 40px;
+  height: 22px;
+  background: #0D99FF;
+  border-radius: 11px;
+  position: relative;
+}
+.tools-ui-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Cursor */
+.tools-ui-cursor {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+/* Blue ruler / measurement line */
+.tools-ui-ruler {
+  width: clamp(140px, 22vw, 280px);
+}
+.tools-ui-ruler-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 14px;
+  background: #0D99FF;
+  border-radius: 7px;
+  padding: 0 6px;
+}
+.tools-ui-ruler-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+}
+
+/* Code icon */
+.tools-ui-code {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: #0D99FF;
+  border: 1.5px solid #0D99FF;
+  border-radius: 5px;
+  padding: 4px 8px;
+  background: rgba(13, 153, 255, 0.06);
+}
+
+/* Date picker */
+.tools-ui-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-50);
+  border: 1px solid var(--ink-10);
+  border-radius: 6px;
+  padding: 6px 12px;
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.tools-ui-date-sep { color: var(--ink-15); font-size: 10px; }
+
+/* URL bar */
+.tools-ui-url {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-30);
+  background: #1e1e1e;
+  color: #666;
+  padding: 7px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  white-space: nowrap;
+}
+
+/* Follower badge */
+.tools-ui-badge {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.tools-ui-badge-count {
+  background: linear-gradient(135deg, #A259FF, #7B61FF);
+  color: #fff;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+.tools-ui-badge-tag {
+  background: #1DB954;
+  color: #fff;
+  padding: 6px 10px;
+}
+
+/* Selection handles */
+.tools-ui-selection {
+  width: 80px;
+  height: 80px;
+  border: 1.5px solid #0D99FF;
+  position: relative;
+}
+.sel-dot {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border: 1.5px solid #0D99FF;
+  border-radius: 1px;
+}
+.sel-tl { top: -4px; left: -4px; }
+.sel-tr { top: -4px; right: -4px; }
+.sel-bl { bottom: -4px; left: -4px; }
+.sel-br { bottom: -4px; right: -4px; }
+.sel-tm { top: -4px; left: 50%; transform: translateX(-50%); }
+.sel-bm { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.sel-ml { top: 50%; left: -4px; transform: translateY(-50%); }
+.sel-mr { top: 50%; right: -4px; transform: translateY(-50%); }
+
+/* Toolbar (left edge) */
+.tools-ui-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--ink-08);
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.tb-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+}
+.tb-item:first-child { background: var(--ink-06); }
+.tb-sep { margin: 2px 0; border-top: 1px solid var(--ink-06); }
+
+/* Name tag cursor */
+.tools-ui-nametag {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+.tools-ui-nametag-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-left: -4px;
+  margin-top: 14px;
+  white-space: nowrap;
+}
+
+/* Arrow buttons */
+.tools-ui-arrows {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tools-ui-arrow-btn {
+  width: 32px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink-10);
+  border-radius: 5px;
+  background: var(--surface);
+  font-size: 12px;
+  color: var(--ink-40);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.tools-ui-arrow-text {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-30);
+  margin-left: 4px;
+}
+
+/* ── Mobile: simpler layout ── */
+@media (max-width: 768px) {
+  .tools-canvas-area { aspect-ratio: 3 / 4; }
+  .tools-typo-my       { font-size: clamp(2rem, 10vw, 4rem); }
+  .tools-typo-everyday { font-size: clamp(1.8rem, 8vw, 3.5rem); }
+  .tools-typo-tools    { font-size: clamp(2.5rem, 14vw, 5rem); }
+  .tools-typo-in       { font-size: clamp(1.8rem, 8vw, 3.5rem); }
+  .tools-typo-design   { font-size: clamp(2.5rem, 14vw, 5rem); }
+  .tools-ui-comment { max-width: 160px; font-size: 9px; padding: 8px 10px; }
+  .tools-ui-ruler { width: 100px; }
+  .tools-ui-toolbar { display: none; }
+  .tools-ui-selection { width: 50px; height: 50px; }
+  .tools-ui-badge { font-size: 9px; }
+  .tools-ui-arrows { display: none; }
+}
+@media (max-width: 480px) {
+  .tools-canvas-area { aspect-ratio: 2 / 3; }
+  .tools-typo { padding: 8% 5%; }
+  .tools-float--comment,
+  .tools-float--badge,
+  .tools-float--url { display: none; }
 }
 
 /* ── Experience table ── */

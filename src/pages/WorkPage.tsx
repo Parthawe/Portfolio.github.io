@@ -4,25 +4,12 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectCardComponent from '../components/ProjectCard'
 import FigmaSelect from '../components/FigmaSelect'
+import TextReveal from '../components/TextReveal'
+import { projects, allProjectsCurated, projectsByCategory, CATEGORIES, CATEGORY_LABELS, type Project, type ProjectCategory } from '../data/projects'
 
-interface ProjectCardData {
-  slug: string
-  image: string
-  name: string
-  tag: string
-  year: string
-  desc: string
-  category: string
-  loading?: 'eager' | 'lazy'
-}
 
-interface WorkGroup {
-  category: string
-  label: string
-  projects: ProjectCardData[]
-}
-
-const workGroups: WorkGroup[] = [
+/* Old inline data removed — now sourced from src/data/projects.ts
+const _workGroups = [
   {
     category: 'ux',
     label: 'UX Design',
@@ -33,6 +20,8 @@ const workGroups: WorkGroup[] = [
       { slug: 'executivelens', image: '/Assets/images/executivelens.png', name: 'ExecutiveLens', tag: 'AI ANALYTICS', year: '2026', desc: 'AI meeting intelligence saving executives 5.2 hrs/week, 87% adoption', category: 'ux' },
       { slug: 'org-dashboard', image: '/Assets/images/org-dashboard.png', name: 'OrgDashboard', tag: 'B2B SAAS', year: '2026', desc: 'SaaS giving AI agents organizational context, dual-user design', category: 'ux' },
       { slug: 'cuetv', image: '/Assets/images/cuetv.jpg', name: 'CueTV', tag: 'PRODUCT DESIGN', year: '2022', desc: 'OTT streaming platform, retargeting system generating 30K+ ad variations', category: 'ux' },
+      { slug: 'healthapp', image: '/Assets/Projects/health-app/1.jpg', name: 'VJ Parivar', tag: 'UX DESIGN', year: '2020', desc: 'Post-purchase services app for VJ Real Estate homeowners', category: 'ux' },
+      { slug: 'ibm', image: '/Assets/Projects/ibm/1.jpg', name: 'IBM Cancer Prognosis', tag: 'HEALTHCARE', year: '2020', desc: 'Securely transfer genomic data and identify life expectancy of cancer patients', category: 'ux' },
     ],
   },
   {
@@ -77,6 +66,7 @@ const workGroups: WorkGroup[] = [
       { slug: 'revolving-stage', image: '/Assets/images/revolving-stage.jpg', name: 'Revolving Stage', tag: 'FABRICATION', year: '2022', desc: '15 ft. rotating stage supporting 250+ kgs, engineered for live theatre', category: 'install' },
       { slug: 'moniac-machine', image: '/Assets/images/moniac-machine.jpg', name: 'Moniac Machine', tag: 'GAME DESIGN', year: '2024', desc: 'Board game based on a 1949 hydraulic economic computer, strategy meets education', category: 'install' },
       { slug: 'drowning', image: '/Assets/images/drowning.jpg', name: 'Drowning', tag: 'SCENIC DESIGN', year: '2024', desc: 'Abandoned greenhouse set for NYU theatre, multi-layer lighting for 100+ audience', category: 'install' },
+      { slug: 'sculpture', image: '/Assets/Projects/Sculpture/1.jpg', name: 'Sculpture', tag: 'SCULPTURE', year: '2020', desc: 'Competition sculptures for Firodia Karandak, Pune', category: 'install' },
     ],
   },
   {
@@ -87,52 +77,13 @@ const workGroups: WorkGroup[] = [
       { slug: 'code-for-build', image: '/Assets/images/code-for-build.jpg', name: 'Code for Build', tag: 'BRAND + PRODUCT', year: '2021', desc: 'Brand system and developer platform for Istanbul open-source startup', category: 'brand' },
       { slug: 'typeface', image: '/Assets/images/typeface.jpg', name: "Butler's Slice", tag: 'TYPE DESIGN', year: '2022', desc: 'Variable display typeface with geometric slice cuts, 400+ glyphs', category: 'brand' },
       { slug: 'atps', image: '/Assets/images/atps.png', name: 'ArtTown Podcast', tag: 'MEDIA', year: '2021', desc: 'Visual identity and motion graphics for an art and design podcast series', category: 'brand' },
+      { slug: 'vishwaconclave', image: '/Assets/Projects/VishwaConclave/1.jpg', name: 'VishwaConclave', tag: 'CREATIVE DIRECTION', year: '2021', desc: 'Creative direction, branding, and web design for a student conference', category: 'brand' },
     ],
   },
 ]
+*/
 
-/* Curated mixed order for "All", interleaves categories, strongest first */
-const allProjectsMixed: ProjectCardData[] = [
-  workGroups[0].projects[0],  // Mentra (ux)
-  workGroups[2].projects[0],  // Clawed (ai)
-  workGroups[0].projects[1],  // TransFi (ux)
-  workGroups[3].projects[0],  // Jugalbandi (creative)
-  workGroups[1].projects[0],  // Raahi (good)
-  workGroups[4].projects[0],  // Black Hole (install)
-  workGroups[0].projects[2],  // ZentiPay (ux)
-  workGroups[2].projects[1],  // Ballah Code (ai)
-  workGroups[5].projects[0],  // TEDxVITPune (brand)
-  workGroups[0].projects[3],  // ExecutiveLens (ux)
-  workGroups[3].projects[1],  // BreakGen (creative)
-  workGroups[4].projects[1],  // UV Light (install)
-  workGroups[1].projects[1],  // The Point CDC (good)
-  workGroups[2].projects[2],  // OnCall Lens (ai)
-  workGroups[3].projects[2],  // VJ Software (creative)
-  workGroups[4].projects[2],  // The Omakase (install)
-  workGroups[0].projects[4],  // OrgDashboard (ux)
-  workGroups[5].projects[1],  // Code for Build (brand)
-  workGroups[4].projects[3],  // Revolving Stage (install)
-  workGroups[3].projects[3],  // Enigma (creative)
-  workGroups[1].projects[2],  // Office of Diversity (good)
-  workGroups[2].projects[3],  // AI Voice (ai)
-  workGroups[0].projects[5],  // CueTV (ux)
-  workGroups[5].projects[2],  // Butler's Slice (brand)
-  workGroups[4].projects[4],  // Moniac Machine (install)
-  workGroups[3].projects[4],  // Shuffle (creative)
-  workGroups[5].projects[3],  // ArtTown Podcast (brand)
-  workGroups[3].projects[5],  // Making of Time (creative)
-  workGroups[4].projects[5],  // Drowning (install)
-]
-
-const filters = [
-  { key: 'all', label: 'All' },
-  { key: 'ux', label: 'UX Design' },
-  { key: 'good', label: 'Design for Good' },
-  { key: 'ai', label: 'AI & Wearables' },
-  { key: 'creative', label: 'Creative Tech' },
-  { key: 'install', label: 'Installations' },
-  { key: 'brand', label: 'Brand & Visual' },
-]
+const filters = CATEGORIES
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState('all')
@@ -155,14 +106,10 @@ export default function WorkPage() {
     return () => observer.disconnect()
   }, [])
 
-  const filteredGroups = activeFilter === 'all'
-    ? workGroups
-    : workGroups.filter(g => g.category === activeFilter)
-
   const isAll = activeFilter === 'all'
 
-  const renderCard = (project: ProjectCardData) => (
-    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} />
+  const renderCard = (project: Project) => (
+    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} />
   )
 
   return (
@@ -182,21 +129,40 @@ export default function WorkPage() {
               <h1 className="work-page-title">Work</h1>
             </header>
 
+            {/* ── Spotlight: after header ── */}
+            <section className="wr-reveal-section">
+              <TextReveal
+                front="33 projects across 6 disciplines — from $50M payment rails to 200-neuron light sculptures."
+                behind="UX design, AI wearables, creative tech, installations, brand, and design for good. All shipped."
+              />
+            </section>
+
             {isAll ? (
               <div className="pcard-masonry">
-                {allProjectsMixed.map(renderCard)}
+                {allProjectsCurated.map(renderCard)}
               </div>
             ) : (
-              filteredGroups.map(group => (
-                <section key={group.category} className="work-group" data-category={group.category}>
-                  <span className="mono-label work-group-label">{group.label}</span>
-                  <div className="pcard-masonry">
-                    {group.projects.map(renderCard)}
-                  </div>
-                </section>
-              ))
+              (() => {
+                const catProjects = projectsByCategory(activeFilter as ProjectCategory)
+                return (
+                  <section className="work-group" data-category={activeFilter}>
+                    <span className="mono-label work-group-label">{CATEGORY_LABELS[activeFilter as ProjectCategory]}</span>
+                    <div className="pcard-masonry">
+                      {catProjects.map(renderCard)}
+                    </div>
+                  </section>
+                )
+              })()
             )}
           </div>
+
+          {/* ── Spotlight: before CTA ── */}
+          <section className="wr-reveal-section">
+            <TextReveal
+              front="If you scrolled this far, we should probably talk — I'm always up for hard problems and good conversation."
+              behind="Full-time product design where the interface is the product. SF preferred. Let's make something together."
+            />
+          </section>
 
           <section className="cta-v2">
             <div className="wrap cta-v2-inner">

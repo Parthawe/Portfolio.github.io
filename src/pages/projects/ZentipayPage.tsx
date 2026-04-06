@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -20,7 +21,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function ZentipayPage() {
   return (
-    <>
+    <NdaGate slug="zentipay" projectName="ZentiPay">
       <Helmet>
         <title>ZentiPay &middot; Parth Pawar</title>
         <meta name="description" content="ZentiPay, Founding Product Designer for an AI-driven fintech super app serving migrant workers and international students. Increased transaction completion by 30% and reduced perceived transfer time by 40%." />
@@ -332,6 +333,6 @@ export default function ZentipayPage() {
 
       <NextProject slug="transfi" title="TransFi" image="/Assets/images/transfi.jpg" />
       <Footer />
-    </>
+    </NdaGate>
   )
 }

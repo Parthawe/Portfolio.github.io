@@ -44,7 +44,7 @@ export default function OfficeOfDiversityPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2024' },
           ]}
-          heroImage="/Assets/Projects/Office of Diversity/1.jpg"
+          heroImage="/Assets/Projects/office-of-diversity/1.jpg"
           heroAlt="Office of Diversity Report, mobile and laptop mockups of the IDBEA 2024 report"
         />
 
@@ -86,7 +86,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/Office of Diversity/2.jpg" alt="Summary, challenges, role, and tools overview for the IDBEA report project" />
+        <CsImage src="/Assets/Projects/office-of-diversity/2.jpg" alt="Summary, challenges, role, and tools overview for the IDBEA report project" />
 
         {/* IDBEA Context */}
         <section className="cs-section reveal">
@@ -99,7 +99,7 @@ export default function OfficeOfDiversityPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/Office of Diversity/3.jpg" alt="IDBEA report context, Tisch Office of Diversity values and process overview" loading="lazy" />
+                <img src="/Assets/Projects/office-of-diversity/3.jpg" alt="IDBEA report context, Tisch Office of Diversity values and process overview" loading="lazy" />
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/Office of Diversity/4.jpg" alt="Process steps, understanding scope, design conceptualization, and data visualization approach" />
+        <CsImage src="/Assets/Projects/office-of-diversity/4.jpg" alt="Process steps, understanding scope, design conceptualization, and data visualization approach" />
 
         {/* Process Step 4 */}
         <CsSection label="04 \u2014 Process" title="Interactivity & User Engagement">
@@ -199,7 +199,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/Office of Diversity/5.jpg" alt="Process steps, interactivity, collaboration sessions, and accessibility compliance" />
+        <CsImage src="/Assets/Projects/office-of-diversity/5.jpg" alt="Process steps, interactivity, collaboration sessions, and accessibility compliance" />
 
         {/* Impact */}
         <CsSection id="cs-impact" label="Impact" title="Outcome">
@@ -220,7 +220,7 @@ export default function OfficeOfDiversityPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/Projects/Office of Diversity/6.jpg" alt="Outcome, 74% increase in user interaction, accessibility success, and key learnings" />
+        <CsImage src="/Assets/Projects/office-of-diversity/6.jpg" alt="Outcome, 74% increase in user interaction, accessibility success, and key learnings" />
 
         {/* The Report */}
         <CsSection id="cs-report" label="The Report" title="IDBEA 2024 Report">
@@ -260,7 +260,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/Office of Diversity/7.jpg" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
+        <CsImage src="/Assets/Projects/office-of-diversity/7.jpg" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
 
         {/* Advisement */}
         <CsSection label="Structure" title="Advisement & Feedback Groups">
@@ -286,7 +286,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/Office of Diversity/8.jpg" alt="Report, advisement groups, focus areas, and data visualization charts showing engagement metrics" />
+        <CsImage src="/Assets/Projects/office-of-diversity/8.jpg" alt="Report, advisement groups, focus areas, and data visualization charts showing engagement metrics" />
 
         {/* Data Highlights */}
         <CsSection label="Data Highlights" title="Report Data at a Glance">
@@ -311,11 +311,11 @@ export default function OfficeOfDiversityPage() {
           </details>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/Office of Diversity/9.jpg" alt="Report, restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" />
+        <CsImage src="/Assets/Projects/office-of-diversity/9.jpg" alt="Report, restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" />
 
         <CsThanks contactCta />
 
-        <CsImage src="/Assets/Projects/Office of Diversity/10.jpg" alt="Credits, Parth Pawar, UI/UX Designer" />
+        <CsImage src="/Assets/Projects/office-of-diversity/10.jpg" alt="Credits, Parth Pawar, UI/UX Designer" />
 
         <BottomNav sections={[
           { id: 'cs-goals', label: 'Goals' },

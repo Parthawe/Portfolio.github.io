@@ -45,7 +45,7 @@ export default function ThePointCdcPage() {
             { label: 'Year', value: '2024' },
           ]}
           liveUrl="https://thepoint.org"
-          heroImage="/Assets/Projects/ThePointCDC/Desktop/Slice 1.png"
+          heroImage="/Assets/Projects/ThePointCDC/Desktop/slice-1.png"
           heroAlt="The Point CDC, Revitalizing a community website with device mockups showing the redesigned homepage"
         />
 
@@ -99,7 +99,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 3.png" alt="The Point CDC community work, WiFi installation and community members" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/Desktop/slice-3.png" alt="The Point CDC community work, WiFi installation and community members" loading="lazy" />
               </div>
             </div>
           </div>
@@ -203,7 +203,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 5.png" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-5.png" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
         {/* Design Direction */}
@@ -237,14 +237,14 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">User Journey</h2>
             <div className="cs-img-full">
-              <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 6.png" alt="User journey map and information architecture flow diagram" loading="lazy" />
+              <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.png" alt="User journey map and information architecture flow diagram" loading="lazy" />
             </div>
           </div>
         </section>
 
         {/* Wireframe slide */}
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
         </div>
 
         {/* Visual Style */}
@@ -259,7 +259,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 8.png" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-8.png" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}
@@ -279,11 +279,11 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 9.png" alt="Final high-fidelity design, desktop and mobile responsive views with annotated improvements" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-9.png" alt="Final high-fidelity design, desktop and mobile responsive views with annotated improvements" loading="lazy" />
         </div>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/Slice 10.png" alt="Additional page designs showing various sections of the redesigned website" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-10.png" alt="Additional page designs showing various sections of the redesigned website" loading="lazy" />
         </div>
 
         {/* Results */}
