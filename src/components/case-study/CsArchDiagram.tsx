@@ -37,7 +37,7 @@ export default function CsArchDiagram({ nodes, connections, cols = 3, title }: C
       ])
     : null
 
-  const maxRow = Math.max(...nodes.map(n => n.row))
+  const maxRow = nodes.length > 0 ? Math.max(...nodes.map(n => n.row)) : 0
 
   return (
     <div className="cs-arch">

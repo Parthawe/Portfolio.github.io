@@ -4,7 +4,7 @@
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 200;
+  z-index: var(--z-toast);
   display: flex;
   align-items: flex-start;
   pointer-events: none;
@@ -23,15 +23,15 @@
 .nav-left-pill {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px 8px;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-pill);
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-shadow);
-  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+  transition: background var(--dur-slow), border-color var(--dur-slow), box-shadow var(--dur-slow), transform var(--dur-slow) var(--ease-in-out), backdrop-filter var(--dur-slow);
   pointer-events: auto;
 }
 
@@ -48,7 +48,7 @@
 }
 .nav-logo:hover {
   opacity: 0.6;
-  background: rgba(0, 0, 0, 0.03);
+  background: var(--ink-04);
 }
 
 /* extends .pill-link from base.css */
@@ -60,7 +60,7 @@
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
   pointer-events: auto;
 }
 
@@ -83,9 +83,29 @@
 }
 .nav-right > .theme-toggle:hover {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--overlay-light);
   border-color: var(--ink-12);
 }
+
+/* Grid toggle in nav — outline only, no background, matches theme toggle */
+.nav-grid-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink-08);
+  background: none;
+  color: var(--ink-40);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--dur-base), border-color var(--dur-base);
+  padding: 0;
+  flex-shrink: 0;
+}
+.nav-grid-toggle:hover { color: var(--ink); border-color: var(--ink-15); }
+.figma-grid-on .nav-grid-toggle { color: var(--select-blue); border-color: var(--select-blue); }
+@media (max-width: 768px) { .nav-grid-toggle { display: none; } }
 
 /* Desktop CTA, pill button style */
 .nav-cta {
@@ -95,12 +115,12 @@
   letter-spacing: 0;
   color: var(--ink);
   text-decoration: none;
-  padding: 0.5rem 1.25rem;
+  padding: var(--btn-md);
   border-radius: var(--radius-pill);
   border: 1px solid var(--ink-08);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
-  transition: all var(--dur-base);
+  transition: color var(--dur-base), background var(--dur-base), border-color var(--dur-base), box-shadow var(--dur-base), transform var(--dur-base);
   white-space: nowrap;
 }
 /* Arrow after CTA text */
@@ -108,7 +128,7 @@
   content: ' ↗';
   font-size: 0.85em;
   opacity: 0.5;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
   display: inline-block;
 }
 .nav-cta:hover::after { opacity: 1; transform: translate(1px, -1px); }
@@ -123,15 +143,23 @@
 
 /* ── Scrolled state, more opaque glass ── */
 .nav.scrolled .nav-left-pill {
-  background: rgba(255, 255, 255, 0.72);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.05),
-    0 8px 32px rgba(0, 0, 0, 0.04);
+  background: var(--glass-scrolled);
+  border-color: var(--glass-scrolled-border);
+  box-shadow: var(--glass-scrolled-shadow);
 }
 .nav.scrolled .nav-right > .theme-toggle {
-  background: rgba(255, 255, 255, 0.72);
-  border-color: rgba(0, 0, 0, 0.08);
+  background: var(--glass-scrolled);
+  border-color: var(--glass-scrolled-border);
+}
+
+/* ── Deep scroll — compact + stronger glass ── */
+.nav.scrolled-deep .nav-left-pill {
+  transform: scale(0.97);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+}
+.nav.scrolled-deep .nav-cta {
+  transform: scale(0.97);
 }
 
 /* ── Mobile toggle ── */
@@ -143,7 +171,7 @@
   gap: 6px;
   width: 44px;
   height: 44px;
-  padding: 12px;
+  padding: var(--space-3);
   cursor: pointer;
   background: none;
   border: none;
@@ -193,7 +221,7 @@
   margin: 0;
 }
 .mobile-nav-links li {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 .mobile-nav-links a {
   font-family: var(--serif);
@@ -203,7 +231,7 @@
   color: var(--ink);
   transition: opacity var(--dur-base);
   display: inline-block;
-  padding: 0.25rem 0;
+  padding: var(--space-1) 0;
   text-decoration: none;
 }
 .mobile-nav-links a:hover {
@@ -216,38 +244,37 @@
   background: var(--glass-bg);
   box-shadow:
     var(--glass-shadow),
-    inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+    inset 0 0.5px 0 var(--text-on-dark-06);
 }
 [data-theme="dark"] .nav.scrolled .nav-left-pill {
-  background: rgba(30, 30, 30, 0.75);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--glass-scrolled);
+  border-color: var(--glass-scrolled-border);
   box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+    var(--glass-scrolled-shadow),
+    inset 0 0.5px 0 var(--text-on-dark-06);
 }
 [data-theme="dark"] .nav-pill-link:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--ink-08);
 }
 [data-theme="dark"] .nav-pill-link.active {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: var(--ink-12);
+  box-shadow: var(--shadow-sm);
   color: var(--ink);
 }
 [data-theme="dark"] .nav-right > .theme-toggle {
   border-color: var(--glass-border);
   background: var(--glass-bg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
 }
 [data-theme="dark"] .nav-right > .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--ink-08);
   color: var(--ink);
 }
 [data-theme="dark"] .nav-cta {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(30, 30, 30, 0.6);
+  border-color: var(--ink-12);
+  background: var(--glass-bg);
   color: var(--ink);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
 }
 [data-theme="dark"] .nav-cta:hover {
   background: var(--ink);
@@ -255,8 +282,8 @@
   border-color: var(--ink);
 }
 [data-theme="dark"] .nav.scrolled .nav-right > .theme-toggle {
-  background: rgba(30, 30, 30, 0.75);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--glass-scrolled);
+  border-color: var(--glass-scrolled-border);
 }
 [data-theme="dark"] .mobile-overlay {
   background: rgba(17, 17, 16, 0.94);

@@ -6,11 +6,9 @@ export function useNavScroll(navRef: RefObject<HTMLElement | null>) {
     if (!nav) return;
 
     const update = () => {
-      if (window.scrollY > 20) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 20);
+      nav.classList.toggle('scrolled-deep', y > 100);
     };
 
     // Set initial state

@@ -7,7 +7,7 @@ interface CsBodyProps {
 
 export default function CsBody({ children, style }: CsBodyProps) {
   return (
-    <div className="cs-body" style={style}>
+    <div className="cs-body reveal" style={style}>
       {children}
     </div>
   );

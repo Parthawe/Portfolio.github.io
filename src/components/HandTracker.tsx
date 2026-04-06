@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { useBackToTop } from '../hooks/useBackToTop'
+import FigmaSelect from './FigmaSelect'
 // @ts-ignore, no type declarations available
 import { HandLandmarker, FilesetResolver } from '@mediapipe/tasks-vision'
 
@@ -19,21 +20,27 @@ const WRIST = 0
 type Gesture = 'none' | 'point' | 'pinch' | 'fist' | 'palm'
 
 /* ── Tuning ── */
-const SMOOTH = 0.5               // cursor lerp (higher = snappier)
-const PINCH_THRESHOLD = 0.07     // generous pinch detection
-const PINCH_RELEASE = 0.09       // hysteresis: must open wider to "release" pinch
-const CLICK_MAX_MS = 500         // generous tap window
-const CLICK_MAX_MOVE = 0.08      // very forgiving movement during tap
-const SCROLL_SPEED = 15          // scroll pixels per frame when fist moves
+const SMOOTH = 0.45              // cursor lerp (higher = snappier)
+const GRAB_THRESHOLD = 3         // curled fingers needed for "grab" (click)
+const CLICK_MAX_MS = 700         // generous tap window
+const CLICK_MAX_MOVE = 0.12      // very forgiving movement during tap
+const SCROLL_SPEED = 18          // scroll multiplier for two-finger gesture
 const DEAD_ZONE = 0.06           // minimal camera edge dead zone
-const GESTURE_HOLD_FRAMES = 3    // frames a gesture must be held to switch (debounce)
+const GESTURE_HOLD_FRAMES = 4    // frames a gesture must be held to switch
 
 /* ── Helpers ── */
 function dist(a: { x: number; y: number }, b: { x: number; y: number }) {
   return Math.hypot(a.x - b.x, a.y - b.y)
 }
+// Tilt-safe curl detection: measures if fingertip is closer to wrist than knuckle is.
+// Works regardless of hand orientation.
+let _wristRef: { x: number; y: number } = { x: 0, y: 0 }
+function setWristRef(wrist: { x: number; y: number }) { _wristRef = wrist }
 function fingerCurled(tip: { x: number; y: number }, mcp: { x: number; y: number }) {
-  return tip.y > mcp.y - 0.03
+  const tipToWrist = dist(tip, _wristRef)
+  const mcpToWrist = dist(mcp, _wristRef)
+  // Finger is curled when tip is closer to wrist than the knuckle
+  return tipToWrist < mcpToWrist * 0.85
 }
 function mapRange(v: number, inMin: number, inMax: number, outMin: number, outMax: number) {
   return outMin + ((v - inMin) / (inMax - inMin)) * (outMax - outMin)
@@ -42,16 +49,18 @@ function clamp(v: number, min: number, max: number) {
   return Math.max(min, Math.min(max, v))
 }
 
-function detectGestureRaw(lm: { x: number; y: number; z: number }[], wasPinching: boolean): Gesture {
-  const pinchDist = dist(lm[THUMB_TIP], lm[INDEX_TIP])
+// Returns hand tilt: 1 = tilted down, -1 = tilted up, 0 = neutral
+// Uses middle finger tip vs wrist — reliable regardless of individual finger curl
+function getHandTilt(lm: { x: number; y: number; z: number }[]): number {
+  const fingersY = (lm[MIDDLE_TIP].y + lm[INDEX_TIP].y) / 2
+  const wristY = lm[WRIST].y
+  const diff = fingersY - wristY // positive = fingers below wrist = hand tilted down
+  if (diff > 0.15) return 1    // tilted down → scroll down
+  if (diff < -0.15) return -1  // tilted up → scroll up
+  return 0                     // level — move cursor
+}
 
-  // Hysteresis for pinch: easier to enter, harder to exit
-  if (wasPinching) {
-    if (pinchDist < PINCH_RELEASE) return 'pinch'
-  } else {
-    if (pinchDist < PINCH_THRESHOLD) return 'pinch'
-  }
-
+function detectGestureRaw(lm: { x: number; y: number; z: number }[], wasGrabbing: boolean): Gesture {
   const indexCurled = fingerCurled(lm[INDEX_TIP], lm[INDEX_MCP])
   const middleCurled = fingerCurled(lm[MIDDLE_TIP], lm[MIDDLE_MCP])
   const ringCurled = fingerCurled(lm[RING_TIP], lm[RING_MCP])
@@ -59,49 +68,48 @@ function detectGestureRaw(lm: { x: number; y: number; z: number }[], wasPinching
 
   const curledCount = [indexCurled, middleCurled, ringCurled, pinkyCurled].filter(Boolean).length
 
-  // Fist: at least 3 fingers curled (more forgiving)
-  if (curledCount >= 3) return 'fist'
+  // Grab (click): close your hand — 3+ fingers curled
+  if (wasGrabbing) {
+    if (curledCount >= 2) return 'fist'
+  } else {
+    if (curledCount >= GRAB_THRESHOLD) return 'fist'
+  }
 
-  // Palm: at least 3 fingers open
-  if (curledCount <= 1) return 'palm'
-
-  // Point: index extended, others mostly curled
-  if (!indexCurled && curledCount >= 2) return 'point'
-
-  return 'point'
+  // Open hand — either cursor or scroll depending on tilt (handled in main loop)
+  return 'palm'
 }
 
 /* ── Gesture tutorial ── */
 const GESTURES = [
   {
-    name: 'Move',
-    desc: 'Point to move cursor',
+    name: 'Open Hand',
+    desc: 'Hold your hand up with fingers spread to move the cursor',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
-        <path d="M16 28V14a2 2 0 1 1 4 0v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="18" cy="10" r="1.5" fill="currentColor" opacity="0.6" />
+        <path d="M12 24V16a1.5 1.5 0 0 1 3 0V13a1.5 1.5 0 0 1 3 0V12a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1 3 0v11a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
   {
-    name: 'Click',
-    desc: 'Pinch thumb + index to tap',
+    name: 'Grab',
+    desc: 'Close your hand into a fist to click. Quick grab = tap, hold = drag',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
-        <circle cx="20" cy="18" r="5" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" />
-        <path d="M20 25v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M14 22V18a2 2 0 0 1 4 0v-1a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v4a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6z" stroke="currentColor" strokeWidth="1.3" fill="currentColor" fillOpacity="0.1" strokeLinecap="round" />
+        <path d="M15 18l3-3 3 3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
       </svg>
     ),
   },
   {
     name: 'Scroll',
-    desc: 'Fist + move up/down',
+    desc: 'Tilt your open hand down to scroll down, tilt up to scroll up',
     icon: (
       <svg viewBox="0 0 40 40" fill="none" width="40" height="40">
-        <rect x="13" y="14" width="14" height="16" rx="7" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M20 18v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M20 6l-3 3h6l-3-3z" fill="currentColor" opacity="0.4" />
-        <path d="M20 34l-3-3h6l-3 3z" fill="currentColor" opacity="0.4" />
+        <path d="M10 20h20" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" opacity="0.3" />
+        <path d="M12 14l8 6 8-6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16 7l-2 3h4l-2-3z" fill="currentColor" opacity="0.4" />
+        <path d="M12 26l8-6 8 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16 33l-2-3h4l-2 3z" fill="currentColor" opacity="0.4" />
       </svg>
     ),
   },
@@ -138,7 +146,7 @@ export default function HandTracker() {
   const pinchStartTime = useRef(0)
   const pinchStartPos = useRef({ x: 0, y: 0 })
   const isDragging = useRef(false)
-  const fistPrevY = useRef<number | null>(null)
+  // scroll via point direction — no tracking ref needed
   const lastHoveredRef = useRef<HTMLElement | null>(null)
 
   // Debounce: track how many consecutive frames a gesture is seen
@@ -246,38 +254,33 @@ export default function HandTracker() {
           }
 
           // ── Gesture with debounce ──
-          const rawG = detectGestureRaw(lm, gestureRef.current === 'pinch')
+          setWristRef(lm[WRIST])
+          const rawG = detectGestureRaw(lm, gestureRef.current === 'fist')
           const g = debouncedGesture(rawG)
           const prev = gestureRef.current
 
           if (g !== prev) setGesture(g)
           gestureRef.current = g
 
-          // ── PINCH: click ──
-          if (g === 'pinch') {
-            if (prev !== 'pinch') {
-              // Pinch just started
+          // ── GRAB (fist): click — close hand to click, open to release ──
+          if (g === 'fist') {
+            if (prev !== 'fist') {
+              // Grab just started
               pinchStartTime.current = now
               pinchStartPos.current = { x: pos.current.x, y: pos.current.y }
               isDragging.current = false
-            } else {
-              // Held: check for drag
-              const moveD = dist(pos.current, pinchStartPos.current)
-              if (!isDragging.current && moveD > CLICK_MAX_MOVE) {
-                isDragging.current = true
-                if (cursorRef.current) cursorRef.current.classList.add('hand-cursor--drag')
-              }
+              if (cursorRef.current) cursorRef.current.classList.add('hand-cursor--drag')
             }
-          } else if (prev === 'pinch') {
-            // Pinch released
+          } else if (prev === 'fist') {
+            // Hand opened — release
             const duration = now - pinchStartTime.current
             const moveD = dist(pos.current, pinchStartPos.current)
 
-            if (isDragging.current) {
-              isDragging.current = false
-              if (cursorRef.current) cursorRef.current.classList.remove('hand-cursor--drag')
-            } else if (duration < CLICK_MAX_MS && moveD < CLICK_MAX_MOVE) {
-              // TAP: just click, no mousedown/mouseup dance
+            if (cursorRef.current) cursorRef.current.classList.remove('hand-cursor--drag')
+            isDragging.current = false
+
+            if (duration < CLICK_MAX_MS && moveD < CLICK_MAX_MOVE) {
+              // Quick grab-release = tap/click
               const el = document.elementFromPoint(cx, cy)
               if (el instanceof HTMLElement) {
                 el.click()
@@ -289,24 +292,22 @@ export default function HandTracker() {
             }
           }
 
-          // ── FIST: scroll (velocity-based) ──
-          if (g === 'fist') {
-            const wristY = lm[WRIST].y
-            if (fistPrevY.current !== null) {
-              const delta = wristY - fistPrevY.current
-              if (Math.abs(delta) > 0.003) {
-                const scrollAmt = delta * SCROLL_SPEED * window.innerHeight * 0.01
-                const lenis = (window as unknown as Record<string, { scrollTo: (t: number, o?: Record<string, unknown>) => void }>).__lenis
-                if (lenis) {
-                  lenis.scrollTo(window.scrollY + scrollAmt, { immediate: true })
-                } else {
-                  window.scrollBy({ top: scrollAmt })
-                }
+          // ── PALM: tilt hand to scroll, level hand to move cursor ──
+          if (g === 'palm') {
+            const tilt = getHandTilt(lm)
+            if (tilt !== 0) {
+              // Hand tilted — scroll
+              const fingersY = (lm[MIDDLE_TIP].y + lm[INDEX_TIP].y) / 2
+              const tiltAmount = Math.abs(fingersY - lm[WRIST].y)
+              const scrollAmt = tilt * tiltAmount * SCROLL_SPEED * 6
+              const lenis = (window as unknown as Record<string, { scrollTo: (t: number, o?: Record<string, unknown>) => void }>).__lenis
+              if (lenis) {
+                lenis.scrollTo(window.scrollY + scrollAmt, { immediate: true })
+              } else {
+                window.scrollBy({ top: scrollAmt })
               }
             }
-            fistPrevY.current = wristY
-          } else {
-            fistPrevY.current = null
+            // When level (tilt === 0), cursor movement already handled above
           }
 
           drawLandmarks(lm, g)
@@ -372,7 +373,7 @@ export default function HandTracker() {
     if (streamRef.current) { streamRef.current.getTracks().forEach(t => t.stop()); streamRef.current = null }
     if (videoRef.current) videoRef.current.srcObject = null
     setActive(false); setDetected(false); setGesture('none')
-    isDragging.current = false; fistPrevY.current = null; lastHoveredRef.current = null
+    isDragging.current = false; lastHoveredRef.current = null
   }, [])
 
   useEffect(() => () => { cancelAnimationFrame(rafRef.current); streamRef.current?.getTracks().forEach(t => t.stop()) }, [])
@@ -449,13 +450,14 @@ export default function HandTracker() {
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14V4M4 7l4-4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </button>
         <span className={`bt-toolbar-divider ${showBackToTop ? 'bt-toolbar-divider--visible' : ''}`} />
-        <button className={`bt-toolbar-btn bt-toolbar-btn--hand ${active ? 'bt-toolbar-btn--active' : ''} ${loading ? 'bt-toolbar-btn--loading' : ''}`} onClick={active ? stop : start} disabled={loading} aria-label={active ? 'Disable hand tracking' : 'Enable hand tracking'} title={active ? 'Stop hand tracking' : 'Control with your hand'}>
+        <button className={`bt-toolbar-btn bt-toolbar-btn--hand figma-hover ${active ? 'bt-toolbar-btn--active' : ''} ${loading ? 'bt-toolbar-btn--loading' : ''}`} onClick={active ? stop : start} disabled={loading} aria-label={active ? 'Disable hand tracking' : 'Enable hand tracking'} title={active ? 'Stop hand tracking' : 'Control with your hand'}>
           {loading ? (
             <svg className="hand-tracker-spinner" width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2" fill="none" strokeDasharray="40 20" /></svg>
           ) : (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6.5 12.5V9a1.5 1.5 0 0 1 3 0v-2a1.5 1.5 0 0 1 3 0V6a1.5 1.5 0 0 1 3 0v1a1.5 1.5 0 0 1 3 0v6.5a5.5 5.5 0 0 1-5.5 5.5h-1A5.5 5.5 0 0 1 6.5 13.5v-1Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           )}
           <span className="bt-toolbar-label">{active ? 'Stop' : 'Use your hands'}</span>
+          <FigmaSelect />
         </button>
         {error && <span className="bt-toolbar-error">{error}</span>}
       </div>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useReadingProgress } from '../../hooks/useReadingProgress';
+import FigmaSelect from '../FigmaSelect';
 
 interface BottomNavProps {
   sections: { id: string; label: string }[];
@@ -120,10 +121,11 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
         <a
           key={s.id}
           href={`#${s.id}`}
-          className="cs-bnav-link"
+          className="cs-bnav-link figma-hover"
           onClick={(e) => handleClick(e, s.id)}
         >
           {s.label}
+          <FigmaSelect />
         </a>
       ))}
       {liveUrl && (
@@ -131,10 +133,11 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
           href={liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="cs-bnav-link cs-bnav-live"
+          className="cs-bnav-link cs-bnav-live figma-hover"
         >
           Live Site
           <svg width="10" height="10" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <FigmaSelect />
         </a>
       )}
     </nav>

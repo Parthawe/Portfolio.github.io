@@ -13,7 +13,8 @@ export default function AgentCharacter({ state, onClick, chatOpen }: Props) {
     <button
       onClick={onClick}
       type="button"
-      aria-label="Chat with Folio"
+      aria-label={chatOpen ? 'Close chat' : 'Chat with Folio'}
+      aria-expanded={chatOpen}
       className={`agent-trigger agent-trigger--${state} ${chatOpen ? 'agent-trigger--open' : ''}`}
     >
       <div className="agent-avatar">

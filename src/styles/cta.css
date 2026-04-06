@@ -4,7 +4,7 @@
 /* Hero v2 classes from index.html, remap to new hero */
 /* CTA v2 from existing pages, restyle as new CTA */
 .cta-v2 {
-  padding: 6rem 0;
+  padding: var(--space-12) 0;
   text-align: center;
 }
 .cta-v2-inner {
@@ -17,7 +17,7 @@
   font-size: var(--text-base);
   font-weight: 400;
   color: var(--ink-40);
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3);
 }
 .cta-v2-btn {
   font-family: var(--serif);
@@ -43,7 +43,7 @@
 .cta-v2-btn svg { display: none; }
 .cta-v2-inner:has(.lp-cta-headline) .cta-v2-btn svg {
   display: inline-block !important;
-  margin-left: 0.5rem;
+  margin-left: var(--space-2);
   vertical-align: middle;
   transition: transform 0.25s;
 }

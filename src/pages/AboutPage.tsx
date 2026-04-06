@@ -1,9 +1,10 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import FigmaSelect from '../components/FigmaSelect'
 
 /* ── Data ── */
 
@@ -16,12 +17,12 @@ const rows: Row[] = [
   { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc' },
   { date: '2023, 2024', role: 'Graduate Teaching Assistant', co: 'NYU Tisch / ITP', desc: 'Helped students break things on purpose, honestly, how I learn best too.' },
   { date: '2020, 2022', role: 'Co-founder & Director', co: 'ArtTown Podcast', link: '/atps', desc: '45 episodes across 3 seasons, interviewing designers from Puma, Royal College of Arts, Google, and Bollywood.' },
+  { date: '2021, 2022', role: 'Designer', co: 'Monson Fish' },
   { date: '2020, 2021', role: 'Research Intern', co: 'IBM' },
   { section: 'Education', date: '2022, 2024', role: 'MPS, Interactive Telecommunications', co: 'NYU Tisch School of the Arts', desc: 'Where I learned that a designer who can solder is a dangerous thing.' },
   { date: '2018, 2022', role: 'BE, Computer Science', co: 'VIT Pune' },
   { section: 'Recognition', date: '2024', role: 'Red Burn + ITP Scholarships', co: 'NYU' },
   { date: '2023', role: 'Tisch Graduate Scholarship', co: 'NYU Tisch' },
-  { date: '2021', role: 'Smart India Hackathon, Winner', co: 'Govt. of India' },
   { section: 'Exhibitions', date: '2024', role: 'Maker Faire, WonderVille, NIME', co: 'New York' },
   { date: '2023, 24', role: 'ITP Shows (Spring, Winter, Camp)', co: 'NYU ITP' },
 ]
@@ -59,6 +60,20 @@ export default function AboutPage() {
     return () => document.body.classList.remove('page-about')
   }, [])
 
+  /* Polaroid parallax — each photo drifts at a different rate */
+  const collageRef = useRef<HTMLElement>(null)
+  const { scrollYProgress: collageProgress } = useScroll({
+    target: collageRef,
+    offset: ['start start', 'end start'],
+  })
+  const polY1 = useTransform(collageProgress, [0, 1], [0, -40])
+  const polY2 = useTransform(collageProgress, [0, 1], [0, -70])
+  const polY3 = useTransform(collageProgress, [0, 1], [0, -30])
+  const polY4 = useTransform(collageProgress, [0, 1], [0, -55])
+  const polY5 = useTransform(collageProgress, [0, 1], [0, -45])
+  const polY6 = useTransform(collageProgress, [0, 1], [0, -60])
+  const polaroidYs = [polY1, polY2, polY3, polY4, polY5, polY6]
+
   return (
     <>
       <Helmet>
@@ -75,38 +90,10 @@ export default function AboutPage() {
 
         {/* ── Paper canvas wraps entire page ── */}
         <div className="abt-paper">
-          {/* SVG pattern for dashed grid */}
-          <svg className="abt-grid-defs" aria-hidden="true">
-            <defs>
-              <pattern id="abt-minor-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="18" x2="24" y2="18" className="abt-grid-h-minor" />
-                <line x1="24" y1="0" x2="24" y2="24" className="abt-grid-v-minor" strokeDasharray="3 5" />
-              </pattern>
-              <pattern id="abt-major-grid" width="120" height="120" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="18" x2="120" y2="18" className="abt-grid-h-major" />
-                <line x1="120" y1="0" x2="120" y2="120" className="abt-grid-v-major" strokeDasharray="4 4" />
-              </pattern>
-            </defs>
-          </svg>
-
-          {/* Grid layers */}
-          <svg className="abt-grid-layer" aria-hidden="true">
-            <rect width="100%" height="100%" fill="url(#abt-minor-grid)" />
-          </svg>
-          <svg className="abt-grid-layer abt-grid-layer--major" aria-hidden="true">
-            <rect width="100%" height="100%" fill="url(#abt-major-grid)" />
-          </svg>
-
-          {/* Decorative arc */}
-          <div className="abt-arc" aria-hidden="true" />
-
-          {/* Ruler marks */}
-          <div className="abt-ruler abt-ruler--left" aria-hidden="true" />
-          <div className="abt-ruler abt-ruler--right" aria-hidden="true" />
 
           {/* ── Collage Hero ── */}
           <div className="wrap">
-            <header className="abt-collage">
+            <header className="abt-collage" ref={collageRef}>
               {/* Top-right label */}
               <div className="abt-collage-label hero-anim hero-anim-1">
                 <span>Notes from</span>
@@ -124,29 +111,13 @@ export default function AboutPage() {
                 <img src="/Assets/ParthAboutus.png" alt="Parth Pawar" loading="eager" />
               </div>
 
-              {/* Scattered polaroid photos, position via CSS */}
-              <div className="abt-polaroid abt-polaroid--1 hero-anim hero-anim-2">
-                <div className="abt-polaroid-inner" />
-                <span className="abt-pin" />
-              </div>
-              <div className="abt-polaroid abt-polaroid--2 hero-anim hero-anim-2">
-                <div className="abt-polaroid-inner" />
-                <span className="abt-pin" />
-              </div>
-              <div className="abt-polaroid abt-polaroid--3 hero-anim hero-anim-3">
-                <div className="abt-polaroid-inner" />
-                <span className="abt-pin" />
-              </div>
-              <div className="abt-polaroid abt-polaroid--4 hero-anim hero-anim-3">
-                <div className="abt-polaroid-inner" />
-              </div>
-              <div className="abt-polaroid abt-polaroid--5 hero-anim hero-anim-2">
-                <div className="abt-polaroid-inner" />
-                <span className="abt-pin" />
-              </div>
-              <div className="abt-polaroid abt-polaroid--6 hero-anim hero-anim-3">
-                <div className="abt-polaroid-inner" />
-              </div>
+              {/* Scattered polaroid photos — parallax at different rates */}
+              {[1,2,3,4,5,6].map((n, i) => (
+                <motion.div key={n} className={`abt-polaroid abt-polaroid--${n} hero-anim hero-anim-${n <= 2 || n === 5 ? 2 : 3}`} style={{ y: polaroidYs[i] }}>
+                  <div className="abt-polaroid-inner" />
+                  {n !== 4 && n !== 6 && <span className="abt-pin" />}
+                </motion.div>
+              ))}
 
               {/* Bottom caption on main photo */}
               <p className="abt-collage-caption hero-anim hero-anim-3">
@@ -307,49 +278,49 @@ export default function AboutPage() {
                   href="https://www.instagram.com/poem.nyc"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="abt-practice-card"
+                  className="abt-practice-card figma-hover"
                   variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } } }}
                 >
                   <span className="abt-practice-num">100</span>
                   <span className="abt-practice-title">Days of Poem</span>
                   <span className="abt-practice-desc">A poem every day for 100 days. Writing as a design tool &mdash; compression, rhythm, saying more with less.</span>
-                  <span className="abt-practice-handle">@poem.nyc</span>
+                  <span className="abt-practice-handle">@poem.nyc</span><FigmaSelect />
                 </motion.a>
                 <motion.a
                   href="https://www.instagram.com/townforartist"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="abt-practice-card"
+                  className="abt-practice-card figma-hover"
                   variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } } }}
                 >
                   <span className="abt-practice-num">100</span>
                   <span className="abt-practice-title">Days of Sketch</span>
                   <span className="abt-practice-desc">Daily sketching practice. Observation, hand-eye coordination, and the discipline of showing up whether the drawing is good or not.</span>
-                  <span className="abt-practice-handle">@townforartist</span>
+                  <span className="abt-practice-handle">@townforartist</span><FigmaSelect />
                 </motion.a>
                 <motion.a
                   href="https://www.instagram.com/designwhich.works"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="abt-practice-card"
+                  className="abt-practice-card figma-hover"
                   variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } } }}
                 >
                   <span className="abt-practice-num">50</span>
                   <span className="abt-practice-title">Days of Photoshop</span>
                   <span className="abt-practice-desc">Daily visual explorations in Photoshop. Compositing, manipulation, and finding a personal visual language through repetition.</span>
-                  <span className="abt-practice-handle">@designwhich.works</span>
+                  <span className="abt-practice-handle">@designwhich.works</span><FigmaSelect />
                 </motion.a>
                 <motion.a
                   href="https://open.spotify.com/show/15NJs12QEkUFUax80KndG3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="abt-practice-card"
+                  className="abt-practice-card figma-hover"
                   variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } } }}
                 >
                   <span className="abt-practice-num">45</span>
                   <span className="abt-practice-title">Episodes &middot; ArtTown Podcast</span>
                   <span className="abt-practice-desc">Co-founded a podcast interviewing designers from Puma, Royal College of Arts, Google, Asana, and Bollywood. 3 seasons, 45 episodes.</span>
-                  <span className="abt-practice-handle">@arttown.store</span>
+                  <span className="abt-practice-handle">@arttown.store</span><FigmaSelect />
                 </motion.a>
               </motion.div>
             </section>
@@ -374,13 +345,15 @@ export default function AboutPage() {
               <div className="abt-type-intro">
                 <span className="abt-type-label">Made this typeface</span>
                 <div className="abt-type-links">
-                  <a href="/Assets/Projects/Typeface/Butler's Slice.zip" download className="abt-type-link">
+                  <a href="/Assets/Projects/Typeface/Butler's Slice.zip" download className="abt-type-link figma-hover">
                     <svg viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5.5l3 3 3-3M2 10h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     Download .zip
+                    <FigmaSelect />
                   </a>
-                  <Link to="/typeface" className="abt-type-link">
+                  <Link to="/typeface" className="abt-type-link figma-hover">
                     Case study
                     <svg viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <FigmaSelect />
                   </Link>
                 </div>
               </div>
@@ -415,12 +388,12 @@ export default function AboutPage() {
               <h2 className="abt-cta-headline">Let's make something together</h2>
               <p className="abt-cta-sub">Always up for hard problems and good conversation.</p>
               <div className="abt-cta-links">
-                <a href="mailto:parthpawar@nyu.edu" className="abt-cta-email">
+                <a href="mailto:parthpawar@nyu.edu" className="abt-cta-email magnetic">
                   parthpawar@nyu.edu
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </a>
-                <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener noreferrer" className="abt-cta-link">LinkedIn</a>
-                <a href="/Assets/Application_Resume.pdf" target="_blank" rel="noopener noreferrer" className="abt-cta-link">Resume</a>
+                <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">LinkedIn<FigmaSelect /></a>
+                <a href="/Assets/Application_Resume.pdf" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">Resume<FigmaSelect /></a>
               </div>
             </div>
           </section>

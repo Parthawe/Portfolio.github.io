@@ -1,6 +1,35 @@
-import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { lazy, Suspense, Component, type ReactNode } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import RootLayout from './components/RootLayout'
+
+class ErrorBoundaryInner extends Component<{ children: ReactNode; resetKey: string }, { hasError: boolean; prevKey: string }> {
+  state = { hasError: false, prevKey: '' }
+  static getDerivedStateFromError() { return { hasError: true } }
+  static getDerivedStateFromProps(props: { resetKey: string }, state: { hasError: boolean; prevKey: string }) {
+    // Reset error state when route changes
+    if (props.resetKey !== state.prevKey) {
+      return { hasError: false, prevKey: props.resetKey }
+    }
+    return { prevKey: props.resetKey }
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--ff-sans, system-ui)', color: 'var(--ink, #111)', background: 'var(--bg, #faf9f6)' }}>
+          <span style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>PP</span>
+          <p style={{ marginBottom: '1rem', opacity: 0.6 }}>Something went wrong.</p>
+          <a href="/" style={{ textDecoration: 'underline' }}>Go home</a>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}
+
+function ErrorBoundary({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation()
+  return <ErrorBoundaryInner resetKey={pathname}>{children}</ErrorBoundaryInner>
+}
 
 // Pages
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -43,6 +72,7 @@ const BreakGenPage = lazy(() => import('./pages/projects/BreakGenPage'))
 const SeaOfSaltPage = lazy(() => import('./pages/projects/SeaOfSaltPage'))
 const BookPage = lazy(() => import('./pages/BookPage'))
 const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
+const StudioPage = lazy(() => import('./pages/StudioPage'))
 
 function Loading() {
   return <div className="page-loader"><span className="page-loader-logo">PP</span></div>
@@ -50,6 +80,7 @@ function Loading() {
 
 export default function App() {
   return (
+    <ErrorBoundary>
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route element={<RootLayout />}>
@@ -102,11 +133,13 @@ export default function App() {
           <Route path="/sea-of-salt" element={<SeaOfSaltPage />} />
           <Route path="/book" element={<BookPage />} />
           <Route path="/graveyard" element={<GraveyardPage />} />
+          <Route path="/studio" element={<StudioPage />} />
 
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Suspense>
+    </ErrorBoundary>
   )
 }

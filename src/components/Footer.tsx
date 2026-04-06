@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, useInView } from 'framer-motion'
 import BrandIcon from './BrandIcon'
+import FigmaSelect from './FigmaSelect'
 
 const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/parth-pawar-1501/' },
@@ -55,7 +56,10 @@ export default function Footer() {
 
   const ctaY = useTransform(scrollYProgress, [0, 0.5], [40, 0])
   const ctaOpacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
-  const infoOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0, 1])
+  const infoY = useTransform(scrollYProgress, [0.1, 0.55], [24, 0])
+  const infoOpacity = useTransform(scrollYProgress, [0.15, 0.55], [0, 1])
+  const bottomY = useTransform(scrollYProgress, [0.25, 0.65], [16, 0])
+  const bottomOpacity = useTransform(scrollYProgress, [0.25, 0.65], [0, 1])
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email)
@@ -77,27 +81,29 @@ export default function Footer() {
             </h2>
           </div>
           <div className="ft-cta-right">
-            <a className="ft-email" href={`mailto:${email}`}>{email}</a>
-            <button className="ft-copy-btn" onClick={handleCopy} aria-label="Copy email">
+            <a className="ft-email figma-hover" href={`mailto:${email}`}>{email}<FigmaSelect /></a>
+            <button className="ft-copy-btn magnetic figma-hover" onClick={handleCopy} aria-label="Copy email">
               {copied ? (
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               ) : 'Copy'}
+              <FigmaSelect />
             </button>
           </div>
         </motion.div>
 
         {/* Info row, nav, socials, location, all in one line */}
-        <motion.div className="ft-info-row" style={a(0, infoOpacity)}>
+        <motion.div className="ft-info-row" style={a(infoY, infoOpacity)}>
           <div className="ft-info-segment">
             {navLinks.map(l => (
-              <Link key={l.to} to={l.to} className="ft-info-link">{l.label}</Link>
+              <Link key={l.to} to={l.to} className="ft-info-link figma-hover">{l.label}<FigmaSelect /></Link>
             ))}
           </div>
           <div className="ft-info-segment">
             {socials.map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="ft-info-link">
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="ft-info-link figma-hover">
                 <BrandIcon name={s.label} size={14} />
                 {s.label}
+                <FigmaSelect />
               </a>
             ))}
           </div>
@@ -108,7 +114,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom bar */}
-        <div className="ft-bottom">
+        <motion.div className="ft-bottom" style={a(bottomY, bottomOpacity)}>
           <span>&copy; {new Date().getFullYear()} Parth Pawar</span>
           <span className="ft-coded">
             <BrandIcon name="React" size={12} /> React
@@ -117,7 +123,7 @@ export default function Footer() {
             <span className="ft-dot">·</span>
             <BrandIcon name="Three.js" size={12} /> Three.js
           </span>
-        </div>
+        </motion.div>
       </div>
     </footer>
   )

@@ -1,11 +1,12 @@
 import { useBackToTop } from '../hooks/useBackToTop';
+import FigmaSelect from './FigmaSelect';
 
 export default function BackToTop() {
   const { visible, scrollToTop } = useBackToTop();
 
   return (
     <button
-      className={`back-to-top${visible ? ' visible' : ''}`}
+      className={`back-to-top figma-hover${visible ? ' visible' : ''}`}
       onClick={scrollToTop}
       aria-label="Back to top"
     >
@@ -18,6 +19,7 @@ export default function BackToTop() {
           strokeLinejoin="round"
         />
       </svg>
+      <FigmaSelect />
     </button>
   );
 }

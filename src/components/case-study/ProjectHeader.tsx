@@ -1,6 +1,7 @@
 import { lazy, Suspense, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import FigmaSelect from '../FigmaSelect'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
@@ -40,8 +41,9 @@ export default function ProjectHeader({
   return (
     <div className="wrap project-header">
       <div className="proj-back">
-        <Link to={backLink} className="back-link">
+        <Link to={backLink} className="back-link figma-hover">
           &larr; {backLabel}
+          <FigmaSelect />
         </Link>
       </div>
       <div className="proj-meta">
@@ -74,10 +76,11 @@ export default function ProjectHeader({
             href={liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="proj-live-link hero-anim hero-anim-4"
+            className="proj-live-link hero-anim hero-anim-4 figma-hover"
           >
             Visit Live Site
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <FigmaSelect />
           </a>
         )}
       </div>
@@ -85,7 +88,7 @@ export default function ProjectHeader({
         <div className="proj-hero-img hero-anim hero-anim-4" ref={heroRef}>
           <motion.img
             src={heroImage}
-            alt={heroAlt || ''}
+            alt={heroAlt || `${title} project preview`}
             loading="eager"
             style={{ y: heroY, scale: heroScale }}
           />

@@ -290,7 +290,13 @@ export interface ChatHistory {
 }
 
 export function createChatHistory(route: string): ChatHistory {
+  clearAskedSet()
   return { messages: [], route }
+}
+
+// Module-level function to clear asked chips on new conversation
+function clearAskedSet() {
+  if (typeof _askedSetRef !== 'undefined') _askedSetRef.clear()
 }
 
 async function callGemini(
@@ -357,7 +363,7 @@ async function tryWithFallback(
         if (result.ok && result.data) return result.data
 
         if (result.status === 429) {
-          console.warn(`Rate limited on ${model} (key ${keyAttempt + 1}), attempt ${attempt + 1}`)
+          // Rate limited — retry silently
           if (attempt < MAX_RETRIES) {
             await new Promise(r => setTimeout(r, RETRY_DELAY * (attempt + 1)))
             continue
@@ -697,6 +703,8 @@ export async function sendMessage(
   if (instant) {
     history.messages.push({ role: 'user', parts: [{ text: userMessage }] })
     history.messages.push({ role: 'model', parts: [{ text: instant }] })
+    // Yield to React render cycle so typewriter can animate the response
+    await new Promise(r => setTimeout(r, 0))
     if (onChunk) onChunk(instant)
     return instant
   }
@@ -770,8 +778,9 @@ export async function sendMessage(
         }
 
         if (!fullText) {
-          history.messages.pop()
-          return "Hmm, I didn't get a response. Try asking again."
+          const fallback = "Hmm, I didn't get a response. Try asking again."
+          history.messages.push({ role: 'model', parts: [{ text: fallback }] })
+          return fallback
         }
 
         history.messages.push({ role: 'model', parts: [{ text: fullText }] })
@@ -784,8 +793,9 @@ export async function sendMessage(
       if (text) onChunk(text)
 
       if (!text) {
-        history.messages.pop()
-        return "Hmm, I didn't get a response. Try asking again."
+        const fallback = "Hmm, I didn't get a response. Try asking again."
+        history.messages.push({ role: 'model', parts: [{ text: fallback }] })
+        return fallback
       }
 
       history.messages.push({ role: 'model', parts: [{ text }] })
@@ -797,21 +807,33 @@ export async function sendMessage(
       const text = json.candidates?.[0]?.content?.parts?.[0]?.text
 
       if (!text) {
-        history.messages.pop()
-        return "I don't have an answer for that. Try asking about a specific project."
+        const fallback = "I don't have an answer for that. Try asking about a specific project."
+        history.messages.push({ role: 'model', parts: [{ text: fallback }] })
+        return fallback
       }
 
       history.messages.push({ role: 'model', parts: [{ text }] })
       return text
     }
   } catch (e) {
-    console.error('Agent AI error:', e)
-    history.messages.pop()
-    const msg = (e as Error).message || ''
-    if (msg.includes('rate limited') || msg.includes('Rate limited')) {
-      return "I'm getting a lot of questions right now. Give me a moment and try again."
+    // API failed — fall back to local knowledge base
+    try {
+      const { getResponse, createContext } = await import('../data/agentKnowledge')
+      const ctx = createContext(history.route)
+      const localResult = getResponse(userMessage, ctx)
+      const text = localResult.text
+      history.messages.push({ role: 'model', parts: [{ text }] })
+      if (onChunk) onChunk(text)
+      return text
+    } catch {
+      // Local fallback also failed — give generic error
+      const msg = (e as Error).message || ''
+      const fallback = msg.includes('rate limited') || msg.includes('Rate limited')
+        ? "I'm getting a lot of questions right now. Give me a moment and try again."
+        : "Connection hiccup, try once more."
+      history.messages.push({ role: 'model', parts: [{ text: fallback }] })
+      return fallback
     }
-    return "Connection hiccup, try once more."
   }
 }
 
@@ -901,6 +923,7 @@ function getPool(cat: ChipCategory): ChipOption[] {
 
 // Track what was already asked across the session
 const askedSet = new Set<string>()
+const _askedSetRef = askedSet
 
 export function getChips(route: string, questionCount: number, lastQuestion?: string): string[] {
   // Record what was asked
@@ -1015,28 +1038,44 @@ const PROJECT_IMAGES: Record<string, string> = {
   'enigma': '/Assets/Projects/Enigma/enigma-cover.jpg',
 }
 
+// Slug → actual route path (for projects where slug ≠ route)
+const SLUG_TO_ROUTE: Record<string, string> = {
+  'transfi': 'transfi-project',
+  'raahi': 'raahi-project',
+  'ballah': 'ballah-code',
+  'oncall': 'oncall-lens',
+  'clawed': 'clawed-chat',
+  'keyboard': 'keyboard-project',
+  'breakgen': 'keyboard-project',
+}
+
+function slugToRoute(slug: string): string {
+  return SLUG_TO_ROUTE[slug] || slug
+}
+
 export function getResponseAction(question: string): ResponseAction {
   const q = question.toLowerCase().trim().replace(/[?.!,]+$/, '')
 
   // Check if it's a project name, scroll to it on the current page
   for (const name of Object.keys(PROJECT_RESPONSES)) {
     if (q === name || q.includes(name)) {
-      const slug = name === 'ballah' ? 'ballah-code' : name === 'oncall' ? 'oncall-lens' : name === 'clawed' ? 'clawed-chat' : name
-      const card = document.querySelector(`a[href="/${slug}"]`) as HTMLElement | null
+      const rawSlug = name === 'ballah' ? 'ballah-code' : name === 'oncall' ? 'oncall-lens' : name === 'clawed' ? 'clawed-chat' : name
+      const routeSlug = slugToRoute(rawSlug)
+      const card = document.querySelector(`a[href="/${routeSlug}"]`) as HTMLElement | null
       const pcard = card?.closest('.pcard') as HTMLElement | null
       return {
         type: pcard ? 'scroll' : 'navigate',
-        slug,
+        slug: routeSlug,
         element: pcard,
-        image: PROJECT_IMAGES[slug],
+        image: PROJECT_IMAGES[rawSlug] || PROJECT_IMAGES[routeSlug],
       }
     }
   }
 
   // "best projects" should scroll to TransFi card if on work page
   if (q === 'best projects' || q === 'best project') {
-    const card = document.querySelector('a[href="/transfi"]')?.closest('.pcard') as HTMLElement | null
-    return { type: card ? 'scroll' : 'none', element: card, slug: 'transfi', image: PROJECT_IMAGES['transfi'] }
+    const card = document.querySelector('a[href="/transfi-project"]')?.closest('.pcard') as HTMLElement | null
+    return { type: card ? 'scroll' : 'none', element: card, slug: 'transfi-project', image: PROJECT_IMAGES['transfi'] }
   }
 
   // "about parth" should navigate to /about
@@ -1045,13 +1084,6 @@ export function getResponseAction(question: string): ResponseAction {
   return { type: 'none' }
 }
 
-export function extractTarget(text: string): HTMLElement | null {
-  const linkMatch = text.match(/\]\(\/([^)]+)\)/)
-  if (!linkMatch) return null
-  const slug = linkMatch[1]
-  const card = document.querySelector(`a[href="/${slug}"]`)?.closest('.pcard') as HTMLElement | null
-  return card || document.querySelector(`a[href="/${slug}"]`) as HTMLElement | null
-}
 
 /* ── Greeting ─────────────────────────────────────────── */
 
@@ -1067,10 +1099,9 @@ const PROJECT_GREETINGS: Record<string, string> = {
   'enigma': "Enigma. A neural network you can see and feel.",
   'oncall-lens': "OnCall Lens. Sentry alert to PR fix in 24 hours.",
   'ballah-code': "Ballah Code. AI isn't a sidebar, it's the foundation.",
-  'tedx': "TEDxVITPune. One brand system for 1500 people.",
+  'tedx': "TEDxVITPune. One brand system for 1500 people. Art directed at 19.",
   'keyboard-project': "The keyboard project. A deep dive into mechanical keyboard design.",
   'breakgen': "BreakGen. ITP Thesis. AI turns text prompts into real keyboards.",
-  'enigma': "Enigma. 200 LEDs in neural network topology. Write a character, watch it think.",
   'making-of-time': "Making of Time. Sundial, watch, digital clock. Three ways to experience time.",
   'uv-light': "UV Light Experience. Hidden messages visible only under blacklight.",
   'shuffle': "Shuffle. Time management as a strategy game with physical tokens.",
@@ -1081,7 +1112,6 @@ const PROJECT_GREETINGS: Record<string, string> = {
   'vj-software': "VJ Parivar. Parking UX for a real estate company. Spatial problem solving.",
   'code-for-build': "Code for Build. Teaching 10-16 year olds to code with building blocks.",
   'typeface': "Butler's Slice. A display typeface Parth designed. Used on this site.",
-  'tedx': "TEDxVITPune. Rotating parallax stage for 800 people. Art directed at 19.",
   'ai-voice': "AI Voice Selection. Emotion-driven voice UX for enterprise.",
   'cuetv': "CueTV. OTT for classical music lovers. Live at cuetv.online.",
   'org-dashboard': "OrgDashboard. A shared brain for AI agents in your company.",
@@ -1153,67 +1183,108 @@ const TOURS: Record<string, TourStep[]> = {
   ],
 }
 
-// Project page tour: tells the story
+// Helper: find the best selector that actually exists on the page
+function findSection(selectors: string): string | undefined {
+  for (const sel of selectors.split(',').map(s => s.trim())) {
+    if (document.querySelector(sel)) return sel
+  }
+  return undefined
+}
+
+// Project page tour: walks through real sections on the page
 function getProjectTour(slug: string): TourStep[] {
   const greeting = PROJECT_GREETINGS[slug]
   const deep = PROJECT_DEEP[slug]
   const steps: TourStep[] = []
 
-  // Introduction
-  if (greeting) {
-    steps.push({ text: greeting, delay: 0 })
-  }
+  // Scroll to top first
+  steps.push({
+    text: greeting || `This is the ${slug.replace(/-/g, ' ')} project. Let me walk you through it.`,
+    scrollTo: findSection('.project-header, .cs-header, main'),
+    delay: 500,
+  })
 
-  // The challenge
+  // Dynamically find sections on the actual page
+  const allSections = document.querySelectorAll('.cs-section[id]')
+  const sectionIds = Array.from(allSections).map(el => el.id)
+
+  // Walk through each real section
   if (deep?.['what was the challenge']) {
+    const challengeSel = findSection(
+      sectionIds.filter(id => /context|challenge|background|problem|bet/.test(id)).map(id => `#${id}`).join(', ')
+      || '.cs-section:nth-of-type(2)'
+    )
     steps.push({
-      text: `Here's what made this hard: ${deep['what was the challenge']}`,
-      scrollTo: '#cs-background, .cs-section:nth-child(2), .cs-label-row',
-      delay: 0,
+      text: `Here's what made this hard. ${deep['what was the challenge']}`,
+      scrollTo: challengeSel,
+      delay: 500,
     })
   }
 
-  // The approach
   if (deep?.['how did you approach it']) {
+    const approachSel = findSection(
+      sectionIds.filter(id => /process|approach|solution|companion|os|design/.test(id)).map(id => `#${id}`).join(', ')
+      || '.cs-section:nth-of-type(3)'
+    )
     steps.push({
-      text: `How Parth solved it: ${deep['how did you approach it']}`,
-      scrollTo: '#cs-process, .cs-steps, .cs-feature-grid',
-      delay: 0,
+      text: `How Parth solved it. ${deep['how did you approach it']}`,
+      scrollTo: approachSel,
+      delay: 500,
     })
   }
 
-  // The insight
   if (deep?.['key insight']) {
+    const insightSel = findSection(
+      sectionIds.filter(id => /insight|impact|result|store|learn/.test(id)).map(id => `#${id}`).join(', ')
+      || '.cs-callout, .cs-pullquote'
+    )
     steps.push({
-      text: `The key insight: ${deep['key insight']}`,
-      scrollTo: '.cs-callout, .cs-pullquote, .cs-stat-grid',
-      delay: 0,
+      text: `The key insight. ${deep['key insight']}`,
+      scrollTo: insightSel,
+      delay: 500,
     })
   }
 
-  // Team
   if (deep?.['who was the team']) {
-    steps.push({ text: `Team: ${deep['who was the team']}`, delay: 0 })
+    steps.push({ text: `The team: ${deep['who was the team']}`, delay: 400 })
   }
 
-  // Personal take
   if (deep?.['your take on it']) {
+    const reflectSel = findSection(
+      sectionIds.filter(id => /reflect|learn|next|whats/.test(id)).map(id => `#${id}`).join(', ')
+      || '.cs-thanks, .cs-credits'
+    )
     steps.push({
-      text: `My take: ${deep['your take on it']}`,
-      scrollTo: '#cs-reflection, .cs-thanks',
-      delay: 0,
+      text: `My take. ${deep['your take on it']}`,
+      scrollTo: reflectSel,
+      delay: 500,
     })
   }
 
-  // Related work
   if (deep?.['related work']) {
-    steps.push({ text: `Connected to: ${deep['related work']}`, delay: 0 })
+    steps.push({
+      text: `This connects to: ${deep['related work']}`,
+      scrollTo: findSection('.cs-next-project, .cs-bottom-nav'),
+      delay: 400,
+    })
   }
 
-  if (steps.length === 0) {
-    steps.push({ text: "Let me walk you through this project.", delay: 0 })
-    steps.push({ text: "Scroll down to see the full case study.", scrollTo: '.cs-section', delay: 0 })
+  if (steps.length <= 1) {
+    // Fallback: walk through all sections generically
+    allSections.forEach((el, i) => {
+      const title = el.querySelector('.cs-section-title')?.textContent || `Section ${i + 1}`
+      steps.push({
+        text: title,
+        scrollTo: `#${el.id}`,
+        delay: 400,
+      })
+    })
   }
+
+  steps.push({
+    text: "That's the full story. Feel free to ask me anything about this project, or say show me another one.",
+    delay: 0,
+  })
 
   return steps
 }

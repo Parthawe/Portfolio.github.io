@@ -103,8 +103,8 @@ export function useAgentBehavior() {
       didDrag.current = true
       hasMoved.current = true
       el.style.right = 'auto'
+      // Constrain to horizontal movement only — character walks on the platform bar
       el.style.left = `${Math.max(0, Math.min(startLeft + dx, window.innerWidth - 64))}px`
-      el.style.bottom = `${Math.max(0, Math.min(startBottom - dy, window.innerHeight - 150))}px`
     }
 
     const onUp = () => {

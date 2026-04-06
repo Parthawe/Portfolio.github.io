@@ -1,13 +1,13 @@
-import { useCallback, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { categories } from '../data/categories'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import TiltCard from '../components/TiltCard'
+import ProjectCard from '../components/ProjectCard'
 import { Reveal } from '../components/Reveal'
-import { getImageBrightness } from '../utils/imageBrightness'
+import FigmaSelect from '../components/FigmaSelect'
 
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'))
 
@@ -19,19 +19,6 @@ export default function CategoryPage() {
   const has3D = CATEGORIES_WITH_3D.has(slug)
   const category = categories.find((c) => c.slug === slug)
 
-  const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget
-    const card = img.closest('.pcard')
-    if (!card) return
-    try {
-      const brightness = getImageBrightness(img)
-      if (brightness > 140) {
-        card.classList.add('pcard--light')
-      }
-    } catch {
-      // cross-origin or canvas error
-    }
-  }, [])
 
   if (!category) {
     return (
@@ -155,34 +142,7 @@ export default function CategoryPage() {
               <>
                 {/* Featured, full-width pcard */}
                 <Reveal>
-                  <TiltCard intensity={4}>
-                  <Link
-                    className="pcard pcard--featured"
-                    to={`/${feat.slug}`}
-                  >
-                    <div className="pcard-inner">
-                      <div className="pcard-top-row">
-                        <span className="pcard-tag">{feat.tag || ''}</span>
-                        <span className="pcard-year">{feat.year || ''}</span>
-                      </div>
-                      <div className="pcard-visual">
-                        <img
-                          src={feat.image}
-                          alt={feat.title}
-                          loading="eager"
-                          onLoad={handleImgLoad}
-                        />
-                      </div>
-                      <h2 className="pcard-name">{feat.title}</h2>
-                      <div className="pcard-marquee">
-                        <div className="pcard-marquee-track">
-                          <span>{feat.desc}, {feat.desc}, {feat.desc}, </span>
-                          <span>{feat.desc}, {feat.desc}, {feat.desc}, </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                  </TiltCard>
+                  <ProjectCard slug={feat.slug} name={feat.title} image={feat.image} tag={feat.tag} year={feat.year} desc={feat.desc} loading="eager" featured tiltIntensity={4} />
                 </Reveal>
 
                 {/* More Projects, masonry */}
@@ -192,32 +152,7 @@ export default function CategoryPage() {
                     <div className="pcard-masonry">
                       {allMore.map((project) => (
                         <Reveal key={project.slug}>
-                          <Link
-                            className="pcard"
-                            to={`/${project.slug}`}
-                          >
-                            <div className="pcard-inner">
-                              <div className="pcard-top-row">
-                                <span className="pcard-tag">{project.tag || ''}</span>
-                                <span className="pcard-year">{project.year || ''}</span>
-                              </div>
-                              <div className="pcard-visual">
-                                <img
-                                  src={project.image}
-                                  alt={project.alt}
-                                  loading="lazy"
-                                  onLoad={handleImgLoad}
-                                />
-                              </div>
-                              <h2 className="pcard-name">{project.name}</h2>
-                              <div className="pcard-marquee">
-                                <div className="pcard-marquee-track">
-                                  <span>{project.desc || project.result}, {project.desc || project.result}, {project.desc || project.result}, </span>
-                                  <span>{project.desc || project.result}, {project.desc || project.result}, {project.desc || project.result}, </span>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
+                          <ProjectCard slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc || project.result} tilt={false} />
                         </Reveal>
                       ))}
                     </div>
@@ -261,7 +196,7 @@ export default function CategoryPage() {
           <div className="wrap cta-v2-inner">
             <h2 className="lp-cta-headline">{category.cta.headline}</h2>
             <p className="lp-cta-sub">{category.cta.sub}</p>
-            <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic">
+            <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic figma-hover">
               parthpawar@nyu.edu
               <svg
                 width="14"
@@ -277,6 +212,7 @@ export default function CategoryPage() {
                   strokeLinejoin="round"
                 />
               </svg>
+              <FigmaSelect />
             </a>
           </div>
         </section>

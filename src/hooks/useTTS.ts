@@ -90,7 +90,7 @@ export function useTTS() {
     utterance.onerror = () => setSpeaking(false)
 
     utteranceRef.current = utterance
-    speechSynthesis.speak(utterance)
+    try { speechSynthesis.speak(utterance) } catch { setSpeaking(false) }
   }, [muted])
 
   // Speak with a promise that resolves when done
@@ -118,7 +118,7 @@ export function useTTS() {
       utterance.onerror = () => { setSpeaking(false); resolve() }
 
       utteranceRef.current = utterance
-      speechSynthesis.speak(utterance)
+      try { speechSynthesis.speak(utterance) } catch { setSpeaking(false); resolve() }
     })
   }, [muted])
 

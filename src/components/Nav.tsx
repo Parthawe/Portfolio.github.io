@@ -2,6 +2,7 @@ import { useRef, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavScroll } from '../hooks/useNavScroll';
 import ThemeToggle from './ThemeToggle';
+import FigmaSelect from './FigmaSelect';
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
@@ -81,16 +82,36 @@ export default function Nav() {
       <nav className="nav" id="nav" ref={navRef}>
         <div className="nav-inner">
           {/* Left group, logo + links in a single pill */}
-          <div className="nav-left-pill">
-            <Link to="/" className="nav-logo">PP</Link>
-            <Link to="/work" className={`pill-link nav-pill-link${isWork ? ' active' : ''}`}>Work</Link>
-            <Link to="/about" className={`pill-link nav-pill-link${isAbout ? ' active' : ''}`}>About</Link>
+          <div className="nav-left-pill figma-hover">
+            <Link to="/" className="nav-logo figma-hover">PP<FigmaSelect /></Link>
+            <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWork ? ' active' : ''}`}>Work<FigmaSelect /></Link>
+            <Link to="/about" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}>About<FigmaSelect /></Link>
+            <FigmaSelect />
           </div>
 
-          {/* Right group, theme toggle + CTA */}
+          {/* Right group, Figma tools + theme toggle + CTA */}
           <div className="nav-right">
-            <ThemeToggle />
-            <a href="mailto:parthpawar@nyu.edu" className="nav-cta">Let's Talk</a>
+            {/* Figma tool buttons */}
+            <button
+              className="figma-hover nav-grid-toggle"
+              onClick={() => document.body.classList.toggle('figma-grid-on')}
+              aria-label="Toggle grid"
+              title="Toggle grid (⌘')"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M0 4.67h14M0 9.33h14M4.67 0v14M9.33 0v14" stroke="currentColor" strokeWidth="0.75" /></svg>
+              <FigmaSelect />
+            </button>
+            <button
+              className="figma-hover nav-grid-toggle"
+              onClick={() => document.body.classList.toggle('figma-rulers-off')}
+              aria-label="Toggle rulers"
+              title="Toggle rulers"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M0 0v14h14M3 14v-3M6 14v-5M9 14v-3M12 14v-4" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round" /></svg>
+              <FigmaSelect />
+            </button>
+            <span className="figma-hover" style={{ display: 'flex' }}><ThemeToggle /><FigmaSelect /></span>
+            <a href="mailto:parthpawar@nyu.edu" className="nav-cta magnetic figma-hover">Let's Talk<FigmaSelect /></a>
             <button
               ref={toggleRef}
               className="nav-toggle"

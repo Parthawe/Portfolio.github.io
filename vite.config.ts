@@ -13,6 +13,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     chunkSizeWarningLimit: 1100,
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {

@@ -8,6 +8,10 @@ import { useKeyboardNav } from '../hooks/useKeyboardNav';
 
 const HandTracker = lazy(() => import('./HandTracker'));
 const PortfolioAgent = lazy(() => import('./agent/PortfolioAgent'));
+import FigmaContextMenu from './FigmaContextMenu';
+import FigmaHUD from './FigmaHUD';
+import FigmaRuler from './FigmaRuler';
+import FigmaZoom from './FigmaZoom';
 
 export default function RootLayout() {
   const location = useLocation();
@@ -94,14 +98,27 @@ export default function RootLayout() {
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Re-scan after route change, catches elements revealed after CSS transition
+  // Re-scan after route change — unobserve stale elements, observe new ones
+  const observedRef = useRef(new Set<Element>());
+
   useEffect(() => {
     const io = ioRef.current;
     if (!io) return;
 
+    // Unobserve elements no longer in the DOM (stale from prev route)
+    observedRef.current.forEach(el => {
+      if (!el.isConnected) {
+        io.unobserve(el);
+        observedRef.current.delete(el);
+      }
+    });
+
     const timer = setTimeout(() => {
       document.querySelectorAll('.reveal:not(.visible), .reveal-image:not(.visible)').forEach((el) => {
-        io.observe(el);
+        if (!observedRef.current.has(el)) {
+          io.observe(el);
+          observedRef.current.add(el);
+        }
       });
     }, 350);
 
@@ -116,9 +133,7 @@ export default function RootLayout() {
   return (
     <>
       <div className="grain" aria-hidden="true"></div>
-      <div className="dot-grid" aria-hidden="true"></div>
-      <div className="site-ruler site-ruler--left" aria-hidden="true" />
-      <div className="site-ruler site-ruler--right" aria-hidden="true" />
+      <div className="dot-bg" aria-hidden="true"></div>
       <PageLoader />
       <div
         style={{
@@ -129,6 +144,10 @@ export default function RootLayout() {
         <Outlet />
       </div>
       <Lightbox />
+      <FigmaContextMenu />
+      <FigmaHUD />
+      <FigmaRuler />
+      <FigmaZoom />
       <Suspense fallback={null}>
         <HandTracker />
       </Suspense>

@@ -83,7 +83,7 @@ export default function BookViewer({
         }
         if (!cancelled) { setPages(rendered); setLoading(false); onReady?.(); }
       } catch (err) {
-        console.error('PDF render error:', err);
+        // PDF render error — fail silently in production
         if (!cancelled) setLoading(false);
       }
     }

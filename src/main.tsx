@@ -19,9 +19,10 @@ createRoot(document.getElementById('root')!).render(
 requestAnimationFrame(() => {
   import('lenis').then(({ default: Lenis }) => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
+      duration: 0.8,          // faster, more responsive (was 1.2)
+      easing: (t: number) => 1 - Math.pow(1 - t, 3), // ease-out cubic, natural feel
+      touchMultiplier: 1.5,   // less aggressive on trackpad (was 2)
+      wheelMultiplier: 1,     // native wheel speed
     })
 
     function raf(time: number) {

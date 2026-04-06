@@ -26,6 +26,10 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       el.style.transform = `perspective(800px) rotateY(${x * intensity}deg) rotateX(${-y * intensity}deg) scale(1.02)`;
+      // Dynamic glow that follows tilt direction — uses filter (composited, no repaint)
+      const shadowX = x * 20;
+      const shadowY = y * 20;
+      el.style.filter = `drop-shadow(${-shadowX}px ${-shadowY}px 16px rgba(0,0,0,0.08))`;
     });
   }, [intensity, isTouch]);
 
@@ -34,6 +38,7 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
     if (!el) return;
     cancelAnimationFrame(rafId.current);
     el.style.transform = '';
+    el.style.filter = '';
   }, []);
 
   return (
@@ -42,7 +47,7 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       className={className}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      style={isTouch ? undefined : { transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
+      style={isTouch ? undefined : { transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
     >
       {children}
     </div>

@@ -60,7 +60,7 @@ const deepMap: Record<string, ProjectDeep> = {
     team: 'Sole designer + product + eng',
     platforms: 'Mobile (iOS/Android), Web dashboard',
     opinion: 'The research process here is textbook. Starting with a human story (migrant worker losing $25/month) and ending with a systemic fix.',
-    connectedTo: ['transfi'],
+    connectedTo: ['transfi-project'],
     surprisingFact: 'The "slow confirmation" animation actually made users feel MORE confident. Instant felt sketchy.',
   },
   'clawed-chat': {
@@ -90,7 +90,7 @@ const deepMap: Record<string, ProjectDeep> = {
     opinion: 'The "no UI is the best UI" approach here is bold. Most products add features; this one removes the need for them.',
     connectedTo: ['mentra', 'clawed-chat', 'oncall-lens'],
   },
-  transfi: {
+  'transfi-project': {
     oneLiner: '$50M+ monthly volume in crypto payments across 6 Asian markets.',
     challenge: 'Each market has different regulations, currencies, and user expectations. One-size-fits-all breaks immediately.',
     outcome: '$50M+ monthly, 6 countries.',
@@ -102,8 +102,9 @@ const deepMap: Record<string, ProjectDeep> = {
     platforms: 'Web, Mobile',
     opinion: 'This was Parth\'s first time leading a design team. The scale, 6 countries, real money, forced real discipline.',
     connectedTo: ['zentipay'],
+    surprisingFact: 'Each country needed different compliance flows, but users never noticed — same feel, different regulations under the hood.',
   },
-  raahi: {
+  'raahi-project': {
     oneLiner: 'Navigation for blind transit riders that turned out to be faster for everyone.',
     challenge: 'Visually impaired people can\'t read station signs or see approaching trains. Existing apps assume sight.',
     outcome: 'Accessible navigation validated with real users.',
@@ -187,14 +188,15 @@ const deepMap: Record<string, ProjectDeep> = {
 
 for (const cat of categories) {
   const add = (p: { slug: string; name?: string; title?: string; desc?: string; result?: string; role: string; year?: string }) => {
-    const name = (p as { name?: string }).name || (p as { title?: string }).title || p.slug
-    const desc = (p as { desc?: string }).desc || (p as { result?: string }).result || ''
-    projectIndex.set(p.slug, {
+    const name = p.name || p.title || p.slug
+    const desc = p.desc || p.result || ''
+    const info: ProjectInfo = {
       slug: p.slug, name, desc, role: p.role,
       category: `${cat.title} ${cat.titleAccent}`, categorySlug: cat.slug,
       year: p.year || '', link: `/${p.slug}`, deep: deepMap[p.slug],
-    })
-    nameIndex.set(name.toLowerCase(), projectIndex.get(p.slug)!)
+    }
+    projectIndex.set(p.slug, info)
+    nameIndex.set(name.toLowerCase(), info)
   }
   add({ ...cat.featured, name: cat.featured.title })
   for (const row of cat.moreProjects) for (const p of row) add(p)
@@ -217,9 +219,10 @@ const bio = {
     { period: '2022–2023', role: 'Lead Designer', co: 'TransFi' },
     { period: '2024', role: 'Designer', co: 'The Point CDC' },
     { period: '2023–2024', role: 'TA', co: 'NYU Tisch' },
+    { period: '2021–2022', role: 'Designer', co: 'Monson Fish' },
     { period: '2020–2022', role: 'Co-founder', co: 'ArtTown Podcast' },
   ],
-  awards: ['Red Burn + ITP Scholarships (2024)', 'Tisch Scholarship (2023)', 'Smart India Hackathon Winner (2021)', 'Exhibited: Maker Faire, WonderVille, NIME'],
+  awards: ['Red Burn + ITP Scholarships (2024)', 'Tisch Scholarship (2023)', 'Exhibited: Maker Faire, WonderVille, NIME'],
   tools: { design: ['Figma', 'Protopie', 'After Effects'], threeD: ['Blender', '3D Printing', 'Laser Cutting'], code: ['React', 'Swift', 'Python', 'TypeScript'], creative: ['p5.js', 'TouchDesigner', 'Arduino'] },
   funFacts: [
     'Builds keyboards he doesn\'t need', '4px border-radius purist',
@@ -259,7 +262,10 @@ function fuzzyFind(query: string): ProjectInfo | undefined {
   return undefined
 }
 
-function pick<T>(arr: T[]): T { return arr[Math.floor(Math.random() * arr.length)] }
+function pick<T>(arr: T[]): T {
+  if (arr.length === 0) throw new Error('pick() called on empty array')
+  return arr[Math.floor(Math.random() * arr.length)]
+}
 
 function getRelated(p: ProjectInfo): ProjectInfo[] {
   return (p.deep?.connectedTo || []).map(s => projectIndex.get(s)).filter((x): x is ProjectInfo => !!x).slice(0, 3)
@@ -270,6 +276,7 @@ function getRelated(p: ProjectInfo): ProjectInfo[] {
 export type VisibleSection = 'hero' | 'work' | 'about' | 'skills' | 'experience' | 'practices' | 'cta' | 'credits' | 'overview' | 'process' | 'features' | 'unknown'
 
 export function detectSection(): VisibleSection {
+  if (typeof window === 'undefined') return 'unknown'
   const mid = window.innerHeight * 0.4
   const checks: [string, VisibleSection][] = [
     ['.hero, .hp-hero, .hero-3d-wrap', 'hero'],
@@ -457,7 +464,7 @@ const rules: Rule[] = [
   },
 
   // Related / similar
-  { patterns: [/(?:related|similar|like this|connected|see also|more like|recommend)/i],
+  { patterns: [/(?:related|similar|like this|connected|see also|more like)/i],
     handler: (_, ctx) => {
       const p = cp(ctx)
       if (p) {

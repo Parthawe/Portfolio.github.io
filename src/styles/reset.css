@@ -18,8 +18,8 @@ ul { list-style:none; }
 /* --- Custom scrollbar (thin, 4px) --- */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--gray-mid); border-radius: 2px; }
-html { scrollbar-width: thin; scrollbar-color: var(--gray-mid) var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--ink-12); border-radius: 2px; }
+html { scrollbar-width: thin; scrollbar-color: var(--ink-12) var(--bg); }
 
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }

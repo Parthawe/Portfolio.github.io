@@ -95,7 +95,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   transform: rotateZ(var(--rz, 0deg)) translateZ(var(--tz, 0px));
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-lg);
   transition: filter 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring), transform 0.5s var(--ease-spring);
   text-decoration: none;
   color: inherit;
@@ -228,14 +228,14 @@
 }
 .hero-counter-label {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: var(--text-micro);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--ink-40);
 }
 .hero-counter-fraction {
   font-family: var(--mono);
-  font-size: 0.55rem;
+  font-size: var(--text-nano);
   letter-spacing: 0.08em;
   color: var(--ink-15);
   margin-top: 0.25rem;
@@ -268,7 +268,7 @@
 }
 .hero-location-coords {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: var(--text-2xs);
   letter-spacing: var(--ls-wide);
   color: var(--ink-40);
   opacity: 0.6;
@@ -342,7 +342,7 @@
 }
 .home-about-location-coords {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: var(--text-micro);
   letter-spacing: var(--ls-wide);
   color: var(--ink-40);
   opacity: 0.5;
@@ -372,7 +372,7 @@
   gap: 0.5rem;
   color: var(--ink-40);
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: var(--text-micro);
   letter-spacing: var(--ls-widest);
   text-transform: uppercase;
   transition: opacity 0.6s var(--ease-out);

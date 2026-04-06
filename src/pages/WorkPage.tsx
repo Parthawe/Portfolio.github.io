@@ -1,12 +1,11 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import TiltCard from '../components/TiltCard'
-import { getImageBrightness } from '../utils/imageBrightness'
+import ProjectCardComponent from '../components/ProjectCard'
+import FigmaSelect from '../components/FigmaSelect'
 
-interface ProjectCard {
+interface ProjectCardData {
   slug: string
   image: string
   name: string
@@ -20,7 +19,7 @@ interface ProjectCard {
 interface WorkGroup {
   category: string
   label: string
-  projects: ProjectCard[]
+  projects: ProjectCardData[]
 }
 
 const workGroups: WorkGroup[] = [
@@ -93,7 +92,7 @@ const workGroups: WorkGroup[] = [
 ]
 
 /* Curated mixed order for "All", interleaves categories, strongest first */
-const allProjectsMixed: ProjectCard[] = [
+const allProjectsMixed: ProjectCardData[] = [
   workGroups[0].projects[0],  // Mentra (ux)
   workGroups[2].projects[0],  // Clawed (ai)
   workGroups[0].projects[1],  // TransFi (ux)
@@ -156,47 +155,14 @@ export default function WorkPage() {
     return () => observer.disconnect()
   }, [])
 
-  const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget
-    const card = img.closest('.pcard')
-    if (!card) return
-    try {
-      const brightness = getImageBrightness(img)
-      if (brightness > 140) {
-        card.classList.add('pcard--light')
-      }
-    } catch {
-      // cross-origin or canvas error, default to dark (white text)
-    }
-  }, [])
-
   const filteredGroups = activeFilter === 'all'
     ? workGroups
     : workGroups.filter(g => g.category === activeFilter)
 
   const isAll = activeFilter === 'all'
 
-  const renderCard = (project: ProjectCard) => (
-    <TiltCard key={project.slug} intensity={5}>
-      <Link className="pcard reveal" to={`/${project.slug}`}>
-        <div className="pcard-inner">
-          <div className="pcard-top-row">
-            <span className="pcard-tag">{project.tag}</span>
-            <span className="pcard-year">{project.year}</span>
-          </div>
-          <div className="pcard-visual">
-            <img src={project.image} alt={project.name} loading={project.loading || 'lazy'} onLoad={handleImgLoad} />
-          </div>
-          <h2 className="pcard-name">{project.name}</h2>
-          <div className="pcard-marquee">
-            <div className="pcard-marquee-track">
-              <span>{project.desc}, {project.desc}, {project.desc}, </span>
-              <span>{project.desc}, {project.desc}, {project.desc}, </span>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </TiltCard>
+  const renderCard = (project: ProjectCardData) => (
+    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} />
   )
 
   return (
@@ -210,34 +176,6 @@ export default function WorkPage() {
 
       <main id="main-content">
         <div className="abt-paper">
-          {/* SVG grid pattern defs */}
-          <svg className="abt-grid-defs" aria-hidden="true">
-            <defs>
-              <pattern id="wk-minor-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="18" x2="24" y2="18" className="abt-grid-h-minor" />
-                <line x1="24" y1="0" x2="24" y2="24" className="abt-grid-v-minor" strokeDasharray="3 5" />
-              </pattern>
-              <pattern id="wk-major-grid" width="120" height="120" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="18" x2="120" y2="18" className="abt-grid-h-major" />
-                <line x1="120" y1="0" x2="120" y2="120" className="abt-grid-v-major" strokeDasharray="4 4" />
-              </pattern>
-            </defs>
-          </svg>
-
-          {/* Grid layers */}
-          <svg className="abt-grid-layer" aria-hidden="true">
-            <rect width="100%" height="100%" fill="url(#wk-minor-grid)" />
-          </svg>
-          <svg className="abt-grid-layer abt-grid-layer--major" aria-hidden="true">
-            <rect width="100%" height="100%" fill="url(#wk-major-grid)" />
-          </svg>
-
-          {/* Decorative arc */}
-          <div className="abt-arc" aria-hidden="true" />
-
-          {/* Ruler marks */}
-          <div className="abt-ruler abt-ruler--left" aria-hidden="true" />
-          <div className="abt-ruler abt-ruler--right" aria-hidden="true" />
 
           <div className="wrap">
             <header className="work-page-header">
@@ -263,29 +201,36 @@ export default function WorkPage() {
           <section className="cta-v2">
             <div className="wrap cta-v2-inner">
               <h2 className="cta-v2-headline">Let's work together</h2>
-              <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic">
+              <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic figma-hover">
                 parthpawar@nyu.edu
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <FigmaSelect />
               </a>
             </div>
           </section>
         </div>
       </main>
 
-      <nav className={`work-bottom-nav${footerVisible ? ' is-hidden' : ''}`} ref={bottomNavRef} aria-label="Filter projects">
+      <nav className={`work-bottom-nav${footerVisible ? ' is-hidden' : ''}`} ref={bottomNavRef} aria-label="Filter projects" role="tablist">
         {filters.map(f => (
           <button
             key={f.key}
-            className={`pill-link work-bnav-link${activeFilter === f.key ? ' active' : ''}`}
+            role="tab"
+            aria-selected={activeFilter === f.key}
+            className={`pill-link work-bnav-link figma-hover${activeFilter === f.key ? ' active' : ''}`}
             onClick={() => {
               setActiveFilter(f.key)
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
             {f.label}
+            <FigmaSelect />
           </button>
         ))}
       </nav>
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {activeFilter === 'all' ? 'Showing all projects' : `Showing ${activeFilter} projects`}
+      </div>
 
       <Footer />
     </>

@@ -12,6 +12,19 @@
 }
 
 /* --- Skip to content --- */
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .skip-to-content {
   position: fixed; top: -100%; left: 50%;
   transform: translateX(-50%);
@@ -27,6 +40,238 @@
   top: 1rem;
 }
 
+/* --- Figma selection — blue border flush + 4 corner handles --- */
+.figma-select {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+.figma-select-border {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--select-blue);
+}
+.figma-select-handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border: 1.5px solid var(--select-blue);
+}
+[data-theme="dark"] .figma-select-handle {
+  background: var(--surface);
+}
+.figma-select-handle--tl { top: -1px; left: -1px; }
+.figma-select-handle--tr { top: -1px; right: -1px; }
+.figma-select-handle--bl { bottom: -1px; left: -1px; }
+.figma-select-handle--br { bottom: -1px; right: -1px; }
+
+/* Show on parent hover */
+.figma-hover {
+  position: relative;
+}
+.figma-hover:hover > .figma-select { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .figma-select { transition: none; }
+}
+
+/* --- Figma right-click context menu --- */
+.figma-ctx {
+  position: fixed;
+  z-index: 10000;
+  min-width: 220px;
+  padding: 4px 0;
+  background: var(--surface);
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
+  animation: figma-ctx-in 0.12s ease-out;
+}
+[data-theme="dark"] .figma-ctx {
+  background: var(--surface);
+  border-color: var(--ink-12);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
+}
+@keyframes figma-ctx-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.figma-ctx-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 16px;
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  gap: 24px;
+  transition: background 0.1s;
+}
+.figma-ctx-item:hover:not(:disabled) {
+  background: var(--select-blue);
+  color: #fff;
+}
+.figma-ctx-item:hover:not(:disabled) .figma-ctx-shortcut {
+  color: rgba(255,255,255,0.7);
+}
+.figma-ctx-item:disabled {
+  cursor: default;
+  color: var(--ink-30);
+}
+.figma-ctx-shortcut {
+  font-family: var(--sans);
+  font-size: var(--text-xs);
+  color: var(--ink-30);
+  white-space: nowrap;
+}
+.figma-ctx-divider {
+  height: 1px;
+  margin: 4px 0;
+  background: var(--ink-06);
+}
+
+/* --- Figma cursor label: follows the cursor, fades on idle --- */
+.figma-cursor-label {
+  position: fixed;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 6px;
+  background: var(--select-blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+.figma-cursor-label--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.figma-cursor-dim {
+  opacity: 0.7;
+  padding-left: 6px;
+  border-left: 1px solid rgba(255,255,255,0.3);
+}
+
+/* --- Dot pattern — subtle, always visible, fixed behind content --- */
+.dot-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, var(--ink-06) 0.5px, transparent 0.5px);
+  background-size: 16px 16px;
+  opacity: 0.5;
+}
+[data-theme="dark"] .dot-bg {
+  background-image: radial-gradient(circle, rgba(237,237,236,0.04) 0.5px, transparent 0.5px);
+}
+
+/* --- Figma grid — applied to body background so it scrolls with content --- */
+.figma-grid-on {
+  background-image:
+    linear-gradient(to right, rgba(77, 158, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(77, 158, 255, 0.05) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* --- Figma rulers — left (vertical) + top (horizontal) --- */
+.figma-ruler {
+  position: fixed;
+  top: 22px; /* below top ruler */
+  left: 0;
+  z-index: 201;
+  pointer-events: none;
+  border-right: 1px solid var(--ink-06);
+}
+.figma-ruler-top {
+  position: fixed;
+  top: 0;
+  left: 22px; /* right of left ruler */
+  z-index: 201;
+  pointer-events: none;
+  border-bottom: 1px solid var(--ink-06);
+}
+
+/* Shift all content inward so rulers don't overlap */
+body {
+  padding-left: 22px;
+  padding-top: 22px;
+  transition: padding 0.3s ease;
+}
+@media (max-width: 768px) {
+  body { padding-left: 0; padding-top: 0; }
+  .figma-ruler, .figma-ruler-top { display: none; }
+}
+
+/* --- Figma frame labels — artboard names above sections --- */
+.figma-frame-label {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--select-blue);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+}
+.figma-rulers-off .figma-frame-label { opacity: 0; }
+
+/* Ruler toggle — hide rulers + remove body padding */
+.figma-rulers-off .figma-ruler,
+.figma-rulers-off .figma-ruler-top { opacity: 0; pointer-events: none; }
+body.figma-rulers-off { padding-left: 0 !important; padding-top: 0 !important; }
+
+/* --- Figma zoom badge --- */
+.figma-zoom-badge {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 202;
+  padding: 3px 8px;
+  background: var(--surface);
+  border: 1px solid var(--ink-06);
+  border-radius: var(--radius-sm);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-40);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.figma-zoom-badge:hover { color: var(--ink); border-color: var(--ink-12); }
+[data-theme="dark"] .figma-zoom-badge { background: var(--surface); border-color: var(--ink-08); }
+
+/* Mobile: hide cursor HUD */
+@media (max-width: 768px) {
+  .figma-cursor-label { display: none; }
+}
+
 /* --- Background textures --- */
 .grain {
   position: fixed;
@@ -34,10 +279,25 @@
   width: 200%; height: 200%;
   pointer-events: none;
   z-index: 900;
-  opacity: 0.22;
+  opacity: 0.28;
   mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 512px 512px;
+}
+/* Section-level grain — heavier, warm, for hero/CTA/graveyard sections */
+.grain-section {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+[data-theme="dark"] .grain-section {
+  opacity: 0.18;
+  mix-blend-mode: soft-light;
 }
 .dot-grid {
   position: fixed;
@@ -119,7 +379,7 @@ hr.divider {
   right: 2rem;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: var(--radius);
   background: var(--surface);
   border: 1px solid var(--ink-08);
   display: flex;
@@ -148,81 +408,43 @@ hr.divider {
   color: var(--ink-40);
 }
 
-/* ── Custom Cursor Follower ── */
+/* ── Comet Cursor — dot head + iridescent trail ── */
 .cursor-dot {
   position: fixed;
-  top: -4px; left: -4px;
-  width: 8px;
-  height: 8px;
+  top: -3px; left: -3px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--accent-hi);
+  background: var(--ink);
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
-  transition: width 0.3s var(--ease-spring), height 0.3s var(--ease-spring),
-              top 0.3s var(--ease-spring), left 0.3s var(--ease-spring),
-              background var(--dur-base), opacity var(--dur-base),
-              border 0.3s var(--ease-spring);
   opacity: 0;
+  transition: opacity var(--dur-base);
 }
-.cursor-ring {
-  position: fixed;
-  top: -20px; left: -20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--accent-hi-30);
-  pointer-events: none;
-  z-index: 9998;
-  transition: width 0.35s var(--ease-spring), height 0.35s var(--ease-spring),
-              top 0.35s var(--ease-spring), left 0.35s var(--ease-spring),
-              border-color var(--dur-base), opacity var(--dur-base), background var(--dur-base);
-  opacity: 0;
+[data-theme="dark"] .cursor-dot {
+  background: #fff;
 }
 .cursor-dot.hover, .cursor-dot.cta {
-  width: 12px; height: 12px;
-  top: -6px; left: -6px;
+  width: 8px; height: 8px;
+  top: -4px; left: -4px;
 }
-.cursor-ring.hover {
-  width: 56px; height: 56px;
-  top: -28px; left: -28px;
-  border-color: var(--accent-hi-50);
+.cursor-trail {
+  position: fixed;
+  top: -3px; left: -3px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
 }
-.cursor-ring.cta {
-  width: 64px; height: 64px;
-  top: -32px; left: -32px;
-  border-color: var(--accent-hi-70);
-  background: var(--accent-hi-05);
-}
-.cursor-dot.view {
-  width: 60px; height: 60px;
-  top: -30px; left: -30px;
-  background: var(--accent-hi-08);
-  border: 1px solid var(--accent-hi-30);
-  mix-blend-mode: normal;
-}
-.cursor-dot.view::after {
-  content: 'View';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--mono);
-  font-size: var(--text-2xs);
-  text-transform: uppercase;
-  letter-spacing: var(--ls-wider);
-  color: var(--accent-hi-70);
-  white-space: nowrap;
-}
-.cursor-ring.view {
-  width: 80px; height: 80px;
-  top: -40px; left: -40px;
-  border-color: var(--accent-hi-15);
+/* Hide cursor when spotlight is active */
+.spotlight-active .cursor-dot,
+.spotlight-active .cursor-trail {
+  opacity: 0 !important;
 }
 @media (max-width: 768px) {
-  .cursor-dot, .cursor-ring { display: none !important; }
+  .cursor-dot, .cursor-trail { display: none !important; }
 }
 @media (pointer: coarse) {
-  .cursor-dot, .cursor-ring { display: none !important; }
+  .cursor-dot, .cursor-trail { display: none !important; }
 }
 
 /* ── Reduced Motion ── */
@@ -278,8 +500,8 @@ hr.divider {
 .lightbox-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.92);
-  z-index: 1000;
+  background: var(--overlay-heavy);
+  z-index: calc(var(--z-toast) + 100);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -298,43 +520,43 @@ hr.divider {
   max-width: 90vw;
   max-height: 88vh;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
   transform: scale(0.92);
-  transition: transform 0.4s var(--ease-spring);
+  transition: transform var(--dur-slow) var(--ease-spring);
 }
 .lightbox-overlay.active img {
   transform: scale(1);
 }
 .lightbox-close {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: var(--space-5);
+  right: var(--space-5);
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
+  border-radius: var(--radius);
+  background: var(--ink-08);
+  border: 1px solid var(--ink-15);
+  color: var(--text-on-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: background var(--dur-base), transform var(--dur-base);
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
 }
 .lightbox-close:hover {
-  background: rgba(255,255,255,0.2);
+  background: var(--ink-15);
   transform: scale(1.1);
 }
 .lightbox-caption {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: var(--space-5);
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--sans);
   font-size: var(--text-sm);
-  color: rgba(255,255,255,0.6);
+  color: var(--text-on-dark-50);
   text-align: center;
   max-width: 60ch;
 }

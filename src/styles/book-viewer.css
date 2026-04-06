@@ -91,7 +91,7 @@
   font-size: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: all 0.25s;
+  transition: opacity 0.25s, transform 0.25s;
 }
 .book-ctrl-btn:hover:not(:disabled) {
   background: rgba(0, 0, 0, 0.04);

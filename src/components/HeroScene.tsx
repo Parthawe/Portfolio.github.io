@@ -50,7 +50,7 @@ interface NodeConfig {
 const NODES: NodeConfig[] = [
   { position: [0, 1.9, 0], label: 'Installations', labelOffset: [0, 0.95, 0], route: '/installations' },
   { position: [2.4, 0.6, -0.2], label: 'Design for Good', labelOffset: [0.1, 0.85, 0], route: '/design-for-good' },
-  { position: [0, 0.15, 0.3], label: 'Product Design', labelOffset: [0, -0.75, 0], route: '/ux-design' },
+  { position: [0, 0.15, 0.3], label: 'Product Design', labelOffset: [0, -0.85, 0], route: '/ux-design' },
   { position: [-2.4, 0.1, 0.3], label: 'Brand & Visual', labelOffset: [0, -0.5, 0], route: '/brand-visual' },
   { position: [-1.3, -1.6, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.85, 0], route: '/ai' },
   { position: [1.8, -1.4, 0.2], label: 'Creative Technology', labelOffset: [0, -0.85, 0], route: '/creative-tech' },
@@ -58,11 +58,11 @@ const NODES: NodeConfig[] = [
 
 /* ─── Constellation threads, invisible curves that glow as energy passes ─── */
 
-const THREADS_PER_LINK = 5;
-const TUBE_SEGMENTS = 32;
+const THREADS_PER_LINK = 18;
+const TUBE_SEGMENTS = 64;
 const RADIAL_SEGMENTS = 3;
 const PRODUCT_DESIGN_IDX = 2;
-const GLOW_WIDTH = 0.10;
+const GLOW_WIDTH = 0.09;
 
 function seededRand(seed: number) {
   const x = Math.sin(seed * 127.1 + seed * 311.7) * 43758.5453;
@@ -88,14 +88,17 @@ const threadFragmentShader = /* glsl */ `
   void main() {
     float d = abs(vProgress - uGlowCenter);
     d = min(d, 1.0 - d);
-    // Sharp bright glow, pow makes it concentrated and shiny
+    // Premium glass thread: always faintly visible, bright traveling glow
     float glow = smoothstep(uGlowWidth, 0.0, d);
-    glow = pow(glow, 1.5); // sharper falloff = more defined shine
-    // White-hot center, colored edges
+    float core = pow(glow, 3.0);          // tight bright center
+    float halo = pow(glow, 0.6) * 0.3;    // wide soft aura
+    float combined = core + halo;
+    // Nearly white everywhere, pure white at glow center
     vec3 white = vec3(1.0);
-    vec3 col = mix(uColor, white, glow * 0.6);
-    float alpha = glow * 0.55 + uBaseAlpha;
-    gl_FragColor = vec4(col, alpha);
+    vec3 tint = mix(uColor * 0.5 + 0.5, white, combined * 0.85);
+    // Base visibility higher so threads are always faintly seen
+    float alpha = combined * 0.7 + uBaseAlpha;
+    gl_FragColor = vec4(tint, alpha);
   }
 `;
 
@@ -111,7 +114,7 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
 
   const threadData = useMemo(() => {
     const result: ThreadInfo[] = [];
-    const color = dark ? new THREE.Color('#ccddf8') : new THREE.Color('#aabbdd');
+    const color = dark ? new THREE.Color('#f0f4ff') : new THREE.Color('#d8e0f0');
 
     // Build connection pairs, nearest 2 neighbors per node (no full mesh)
     const vecs = positions.map(p => new THREE.Vector3(...p));
@@ -159,7 +162,7 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
         mid.add(perp2.clone().multiplyScalar(Math.sin(angle) * bowAmount));
 
         const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
-        const tubeGeo = new THREE.TubeGeometry(curve, TUBE_SEGMENTS, 0.0018, RADIAL_SEGMENTS, false);
+        const tubeGeo = new THREE.TubeGeometry(curve, TUBE_SEGMENTS, 0.0012, RADIAL_SEGMENTS, false);
 
         // Add curveProgress attribute, 0 at start, 1 at end
         const count = tubeGeo.attributes.position.count;
@@ -178,7 +181,7 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
             uGlowCenter: { value: 0 },
             uGlowWidth: { value: GLOW_WIDTH },
             uColor: { value: color },
-            uBaseAlpha: { value: 0.008 },
+            uBaseAlpha: { value: 0.04 },
           },
           transparent: true,
           depthWrite: false,
@@ -554,7 +557,6 @@ function InteractiveLabel({ position, text, offset, dark, index, route, parentRe
   const lx = position[0] + offset[0];
   const ly = position[1] + offset[1];
   const lz = position[2] + offset[2];
-
   return (
     <group ref={groupRef} position={[lx, ly, lz]}>
       <group
@@ -562,18 +564,18 @@ function InteractiveLabel({ position, text, offset, dark, index, route, parentRe
         onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
         onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
       >
-      {/* Text label, always renders on top so 3D objects don't occlude it */}
       <Text
         ref={textRef}
-        fontSize={0.14}
+        fontSize={0.13}
         color={dark ? '#e8e4df' : '#1a1a1a'}
         anchorX="center"
         anchorY={offset[1] > 0 ? 'bottom' : 'top'}
-        letterSpacing={0.08}
-        fillOpacity={dark ? 0.55 : 0.65}
+        letterSpacing={0.12}
+        fillOpacity={dark ? 0.45 : 0.5}
         renderOrder={999}
+        textAlign="center"
       >
-        {text}
+        {text.toUpperCase()}
       </Text>
       {/* Mini 3D object, scales in on hover */}
       <group ref={objectRef} scale={0}>
@@ -669,13 +671,16 @@ function TrussStructure({ dark, hovered }: { dark: boolean; hovered: boolean }) 
             <mesh key={i} position={mid} quaternion={quat} ref={(el) => { if (el) rodRefs.current[i] = el; }}>
               <cylinderGeometry args={[isEdge ? 0.02 : 0.009, isEdge ? 0.02 : 0.009, len, 6]} />
               <meshPhysicalMaterial
-                color={isEdge ? (dark ? '#c8c8d0' : '#a8a8b0') : (dark ? '#888890' : '#999')}
-                metalness={0.95}
-                roughness={isEdge ? 0.08 : 0.2}
+                color={isEdge ? (dark ? '#e0e0e8' : '#c0c0c8') : (dark ? '#a0a0a8' : '#b0b0b8')}
+                metalness={0.85}
+                roughness={isEdge ? 0.05 : 0.12}
                 clearcoat={1}
-                clearcoatRoughness={0.05}
-                envMapIntensity={dark ? 1.5 : 2}
+                clearcoatRoughness={0.03}
+                envMapIntensity={dark ? 2.5 : 3}
                 reflectivity={1}
+                transmission={isEdge ? 0 : 0.3}
+                transparent={!isEdge}
+                opacity={isEdge ? 1 : 0.7}
               />
             </mesh>
           );
@@ -684,14 +689,18 @@ function TrussStructure({ dark, hovered }: { dark: boolean; hovered: boolean }) 
           <mesh key={`j${i}`} position={p} ref={(el) => { if (el) jointRefs.current[i] = el; }}>
             <sphereGeometry args={[0.035, 16, 16]} />
             <meshPhysicalMaterial
-              color={dark ? '#e0e0e8' : '#d0d0d8'}
-              metalness={1}
-              roughness={0.03}
+              color={dark ? '#f0f0f8' : '#e0e0e8'}
+              metalness={0.6}
+              roughness={0.02}
               clearcoat={1}
-              clearcoatRoughness={0.02}
-              envMapIntensity={dark ? 2 : 2.5}
+              clearcoatRoughness={0.01}
+              envMapIntensity={dark ? 3 : 3.5}
               reflectivity={1}
-              emissive={dark ? '#6688bb' : '#4466aa'}
+              transmission={0.4}
+              transparent
+              opacity={0.9}
+              ior={1.8}
+              emissive={dark ? '#8899cc' : '#6677aa'}
               emissiveIntensity={0}
             />
           </mesh>
@@ -720,24 +729,21 @@ function PetalRose({ dark, hovered }: { dark: boolean; hovered: boolean }) {
     ref.current.rotation.y = v * 0.07;
     ref.current.rotation.x = Math.sin(v * 0.03) * 0.05;
     ref.current.rotation.z = Math.cos(v * 0.025) * 0.03;
-    // Knot squashes flat
     if (knotRef.current) {
       knotRef.current.scale.set(mix(1, 1.3, h), mix(1, 0.3, h), mix(1, 1.3, h));
     }
-    // Shell expands
     if (shellRef.current) {
       const s = mix(1, 1.5, h) + Math.sin(v * 0.5) * 0.04;
       shellRef.current.scale.set(s, s, s);
       const mat = shellRef.current.material as THREE.MeshPhysicalMaterial;
-      mat.opacity = mix(0.15, 0.35, h);
-      mat.ior = mix(1.5, 2.2, h);
+      mat.opacity = mix(0.08, 0.25, h);
+      mat.ior = mix(1.3, 2.2, h);
     }
-    // Core brightens
     if (coreRef.current) {
       const s = mix(1, 1.8, h);
       coreRef.current.scale.setScalar(s);
       const mat = coreRef.current.material as THREE.MeshPhysicalMaterial;
-      mat.emissiveIntensity = mix(dark ? 0.6 : 0.3, dark ? 1.2 : 0.8, h);
+      mat.emissiveIntensity = mix(dark ? 0.8 : 0.4, dark ? 1.4 : 1.0, h);
     }
   });
 
@@ -748,24 +754,24 @@ function PetalRose({ dark, hovered }: { dark: boolean; hovered: boolean }) {
           <torusKnotGeometry args={[0.3, 0.065, 200, 32, 2, 3]} />
           <meshPhysicalMaterial
             color={dark ? '#e0e0f0' : '#c8c8d8'}
-            metalness={1} roughness={0.04} clearcoat={1} clearcoatRoughness={0.03}
-            envMapIntensity={dark ? 2.5 : 3} reflectivity={1}
+            metalness={1} roughness={0.03} clearcoat={1} clearcoatRoughness={0.02}
+            envMapIntensity={dark ? 3 : 3.5} reflectivity={1}
           />
         </mesh>
         <mesh ref={shellRef}>
           <sphereGeometry args={[0.48, 64, 64]} />
           <meshPhysicalMaterial
-            color={dark ? '#a0b0d0' : '#c0d0e8'}
-            metalness={0} roughness={0} transmission={0.96} transparent opacity={0.15}
-            ior={1.5} thickness={0.5} envMapIntensity={dark ? 0.8 : 1}
-            specularIntensity={1} specularColor={dark ? '#aabbdd' : '#8899bb'}
+            color={dark ? '#d8e0f0' : '#e0e8f8'}
+            metalness={0} roughness={0.02} transmission={0.92} transparent opacity={0.12}
+            ior={1.5} thickness={1.2} envMapIntensity={dark ? 2 : 2.5}
+            specularIntensity={2} specularColor={dark ? '#ddeeff' : '#bbccee'}
           />
         </mesh>
         <mesh ref={coreRef}>
           <sphereGeometry args={[0.04, 16, 16]} />
           <meshPhysicalMaterial
             color="#ffffff" emissive={dark ? '#8899cc' : '#6677aa'}
-            emissiveIntensity={dark ? 0.6 : 0.3} metalness={0.3} roughness={0.1}
+            emissiveIntensity={dark ? 0.8 : 0.4} metalness={0.3} roughness={0.1}
           />
         </mesh>
       </group>
@@ -794,243 +800,233 @@ function easeInOutCubic(t: number) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
+// Multicolor iridescent gradient — deep navy center, rainbow edges
+function cubeGradientColor(x: number, z: number, radius: number, _dark: boolean): string {
+  const angle = (Math.atan2(z, x) + Math.PI) / (Math.PI * 2)
+  const d = Math.min(1, Math.sqrt(x * x + z * z) / radius)
+  const coreMix = Math.max(0, 1 - d * 1.8)
+
+  let er: number, eg: number, eb: number
+  if (angle < 0.2) {
+    const t = angle / 0.2
+    er = mix(220, 200, t); eg = mix(40, 60, t); eb = mix(160, 220, t)
+  } else if (angle < 0.4) {
+    const t = (angle - 0.2) / 0.2
+    er = mix(200, 50, t); eg = mix(60, 40, t); eb = mix(220, 230, t)
+  } else if (angle < 0.6) {
+    const t = (angle - 0.4) / 0.2
+    er = mix(50, 30, t); eg = mix(40, 200, t); eb = mix(230, 180, t)
+  } else if (angle < 0.8) {
+    const t = (angle - 0.6) / 0.2
+    er = mix(30, 230, t); eg = mix(200, 140, t); eb = mix(180, 50, t)
+  } else {
+    const t = (angle - 0.8) / 0.2
+    er = mix(230, 220, t); eg = mix(140, 40, t); eb = mix(50, 160, t)
+  }
+
+  const r = Math.round(mix(25, er, 1 - coreMix))
+  const g = Math.round(mix(25, eg, 1 - coreMix))
+  const b = Math.round(mix(180, eb, 1 - coreMix))
+
+  return `rgb(${r},${g},${b})`
+}
+
 function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean }) {
   const ref = useRef<THREE.Group>(null!);
   const ht = useHoverLerp(hovered);
   const vt = useVirtualTime(ht);
 
-  const discRefs = useRef<THREE.Mesh[]>([]);
   const ringRef = useRef<THREE.Mesh>(null!);
   const shellRef = useRef<THREE.Mesh>(null!);
   const coreRef = useRef<THREE.Mesh>(null!);
   const crossRef = useRef<THREE.Group>(null!);
   const nodeRefs = useRef<THREE.Mesh[]>([]);
+  const pixelRefs = useRef<THREE.Mesh[]>([]);
 
-  // Pre-compute form data to avoid allocation in useFrame
-  // Each disc: [posX, posY, posZ, rotX, rotZ, scaleXZ]
-  // Form 0 (Layers): horizontal stack
-  // Form 1 (Orrery): tilted at 120° around center, spread radially
-  // Form 2 (Column): vertical discs, spaced along Y
-  const forms = useMemo(() => [
-    // Form 0, Layers
-    { discs: [[0, -0.1, 0, 0, 0, 1], [0, 0, 0, 0, 0, 1], [0, 0.1, 0, 0, 0, 1]] as number[][],
-      ring: [0.8, 0.5] as [number, number],   // [tiltX base, tiltZ base]
-      cross: 0,
-      nodeR: 0.32, nodeSpreadY: 0 },
-    // Form 1, Orrery
-    { discs: [[0.22, 0.08, 0, 1.1, 0.3, 0.85], [-0.12, -0.06, 0.2, 0.4, -0.5, 0.9], [-0.1, -0.02, -0.2, -0.7, 0.8, 0.95]] as number[][],
-      ring: [1.5, 0.2] as [number, number],
-      cross: 0.4,
-      nodeR: 0.25, nodeSpreadY: 0.14 },
-    // Form 2, Column
-    { discs: [[0, -0.26, 0, Math.PI * 0.48, 0, 0.8], [0, 0, 0, Math.PI * 0.48, Math.PI * 0.25, 0.9], [0, 0.26, 0, Math.PI * 0.48, Math.PI * 0.5, 0.75]] as number[][],
-      ring: [0.3, 1.4] as [number, number],
-      cross: Math.PI * 0.15,
-      nodeR: 0.2, nodeSpreadY: 0.24 },
-  ], []);
+  // Build cubes that fill 3 disc shapes — each cube has a "solid" position (forming the disc)
+  // and a "scattered" position (exploded outward like the flower reference)
+  const pixelData = useMemo(() => {
+    const cubeSize = 0.04;
+    const gap = 0.003;
+    const step = cubeSize + gap;
+    const data: { solidPos: [number, number, number]; scatterPos: [number, number, number]; color: string; delay: number }[] = [];
 
-  // Hover explode directions per disc (unit vectors pointing outward)
-  const explodeDirs = useMemo(() => [
-    [-0.4, -1, 0], [0.5, 0, 0.5], [-0.1, 1, -0.5],
-  ] as [number, number, number][], []);
+    // 3 discs: bottom, middle, top — fill each with cubes in a circular pattern
+    const discs = [
+      { y: -0.08, radius: 0.28 },
+      { y: 0.0,   radius: 0.35 },
+      { y: 0.08,  radius: 0.22 },
+    ];
+
+    for (const disc of discs) {
+      const gridR = Math.ceil(disc.radius / step);
+      for (let gx = -gridR; gx <= gridR; gx++) {
+        for (let gz = -gridR; gz <= gridR; gz++) {
+          const x = gx * step;
+          const z = gz * step;
+          if (Math.sqrt(x * x + z * z) > disc.radius - cubeSize * 0.5) continue;
+
+          const idx = data.length;
+          const angle = Math.atan2(z, x);
+          const d = Math.sqrt(x * x + z * z);
+          const r1 = seededRand(idx * 17 + 3);
+          const r2 = seededRand(idx * 31 + 7);
+          const r3 = seededRand(idx * 47 + 11);
+          const scatter = 0.4 + r1 * 0.6;
+
+          data.push({
+            solidPos: [x, disc.y, z],
+            scatterPos: [
+              x + Math.cos(angle + r2 * 2) * scatter,
+              disc.y + (r3 - 0.5) * 0.8,
+              z + Math.sin(angle + r2 * 2) * scatter,
+            ],
+            color: cubeGradientColor(x, z, disc.radius, dark),
+            delay: d / disc.radius,
+          });
+        }
+      }
+    }
+    return data;
+  }, [dark]);
 
   useFrame(() => {
     if (!ref.current) return;
     const v = vt.current;
     const h = ht.current;
-
-    // Gentle rotation, matches other objects
     ref.current.rotation.y = v * 0.06;
     ref.current.rotation.x = Math.sin(v * 0.035) * 0.06;
     ref.current.rotation.z = Math.cos(v * 0.03) * 0.03;
 
-    // ── Morph phase ──
-    const cycle = v % PD_CYCLE;
-    const block = PD_HOLD + PD_MORPH;
-    const form = Math.floor(cycle / block);
-    const within = cycle - form * block;
-    const rawM = within < PD_HOLD ? 0 : (within - PD_HOLD) / PD_MORPH;
-    const m = easeInOutCubic(Math.min(1, Math.max(0, rawM)));
-    const next = (form + 1) % PD_FORMS;
-    const F = forms[form];
-    const N = forms[next];
-
-    // ── Discs ──
-    discRefs.current.forEach((mesh, i) => {
+    // Pixel cubes: solid disc → scattered cloud
+    pixelRefs.current.forEach((mesh, i) => {
       if (!mesh) return;
-      const fd = F.discs[i];
-      const nd = N.discs[i];
-      // Position
-      const px = mix(fd[0], nd[0], m);
-      const py = mix(fd[1], nd[1], m);
-      const pz = mix(fd[2], nd[2], m);
-      // Hover: push along explode direction
-      const ex = h * 0.25;
-      const ed = explodeDirs[i];
-      mesh.position.set(px + ed[0] * ex, py + ed[1] * ex, pz + ed[2] * ex);
-      // Rotation: morph between forms + gentle continuous spin
-      mesh.rotation.set(
-        mix(fd[3], nd[3], m),
-        v * (i === 1 ? -0.06 : 0.04),
-        mix(fd[4], nd[4], m),
+      const pd = pixelData[i];
+
+      // Stagger: center cubes move first, edge cubes follow — ease-out for organic feel
+      const raw = Math.min(1, Math.max(0, h * 2.5 - pd.delay * 0.8));
+      const eased = 1 - Math.pow(1 - raw, 3); // ease-out cubic
+
+      // Position: lerp solid → scatter
+      mesh.position.set(
+        mix(pd.solidPos[0], pd.scatterPos[0], eased),
+        mix(pd.solidPos[1], pd.scatterPos[1], eased),
+        mix(pd.solidPos[2], pd.scatterPos[2], eased),
       );
-      // Scale: morph + breathing
-      const sc = mix(fd[5], nd[5], m);
-      const breath = 1 + Math.sin(v * 0.6 + i * 1.5) * 0.02;
-      mesh.scale.set(sc * breath, 1, sc * breath);
-      // Emissive on hover
+
+      // At rest: subtle breathing wave across the disc surface
+      if (h < 0.1) {
+        const wave = Math.sin(v * 1.5 + pd.solidPos[0] * 8 + pd.solidPos[2] * 8) * 0.008;
+        mesh.position.y += wave;
+      }
+
+      // Rotation: none at rest, each cube spins uniquely when scattered
+      const spinSpeed = seededRand(i * 7) * 0.3 + 0.1;
+      mesh.rotation.x = eased * v * spinSpeed;
+      mesh.rotation.z = eased * v * spinSpeed * 0.7;
+
+      // Scale: cubes grow slightly when scattering, shrink back when reforming
+      const scaleBoost = 1 + eased * 0.3;
+      mesh.scale.setScalar(scaleBoost);
+
+      // Iridescent glow when scattered
       const mat = mesh.material as THREE.MeshPhysicalMaterial;
-      mat.emissiveIntensity = mix(0, i === 1 ? 0.5 : 0.3, h);
+      mat.emissiveIntensity = eased * (dark ? 0.6 : 0.35);
     });
 
-    // ── Ring: smooth tilt morph + continuous orbit ──
+    // Ring expands and spins faster on hover
     if (ringRef.current) {
-      const tiltX = mix(F.ring[0], N.ring[0], m);
-      const tiltZ = mix(F.ring[1], N.ring[1], m);
-      ringRef.current.rotation.x = tiltX + v * 0.1;
-      ringRef.current.rotation.z = tiltZ + v * 0.07;
-      ringRef.current.scale.setScalar(mix(1, 1.4, h));
+      ringRef.current.rotation.x = 0.8 + v * mix(0.1, 0.25, h);
+      ringRef.current.rotation.z = 0.5 + v * mix(0.07, 0.15, h);
+      ringRef.current.scale.setScalar(mix(1, 1.5, h));
     }
-
-    // ── Node spheres: orbit around center ──
-    const nr = mix(F.nodeR, N.nodeR, m);
-    const nsy = mix(F.nodeSpreadY, N.nodeSpreadY, m);
+    // Nodes orbit wider on hover
     nodeRefs.current.forEach((mesh, i) => {
       if (!mesh) return;
-      const angle = (i / 4) * Math.PI * 2 + 0.4 + v * 0.04;
-      const r = nr + h * 0.1;
-      // Spread along Y based on form
-      const yOff = nsy * (i % 2 === 0 ? 1 : -1) * (i < 2 ? 1 : 0.5);
-      mesh.position.set(Math.cos(angle) * r, yOff, Math.sin(angle) * r);
+      const angle = (i / 4) * Math.PI * 2 + 0.4 + v * mix(0.04, 0.1, h);
+      const r = mix(0.32, 0.5, h);
+      mesh.position.set(Math.cos(angle) * r, Math.sin(v * 0.3 + i) * h * 0.1, Math.sin(angle) * r);
+      const s = mix(1, 1.3, h);
+      mesh.scale.setScalar(s);
     });
-
-    // ── Shell ──
+    // Shell breathes
     if (shellRef.current) {
-      shellRef.current.scale.setScalar(mix(1, 1.35, h));
+      const breathe = 1 + Math.sin(v * 0.8) * 0.02;
+      shellRef.current.scale.setScalar(mix(breathe, 1.4, h));
       const mat = shellRef.current.material as THREE.MeshPhysicalMaterial;
-      mat.opacity = mix(0.12, 0.25, h);
-      mat.ior = mix(1.5, 2.0, h);
+      mat.opacity = mix(0.06, 0.15, h);
     }
-
-    // ── Core ──
+    // Core pulses
     if (coreRef.current) {
       const mat = coreRef.current.material as THREE.MeshPhysicalMaterial;
-      mat.emissiveIntensity = mix(dark ? 0.6 : 0.3, dark ? 1.4 : 0.9, h);
-      coreRef.current.scale.setScalar(mix(1, 1.5, h));
+      const pulse = 1 + Math.sin(v * 2) * 0.15 * h;
+      mat.emissiveIntensity = mix(dark ? 0.8 : 0.4, dark ? 2 : 1.2, h) * pulse;
+      coreRef.current.scale.setScalar(mix(1, 1.6, h));
     }
-
-    // ── Cross bars: tilt morphs between forms ──
+    // Cross spins
     if (crossRef.current) {
-      crossRef.current.rotation.y = -v * 0.04;
-      crossRef.current.rotation.x = mix(F.cross, N.cross, m);
-      crossRef.current.scale.setScalar(mix(1, 1.2, h));
+      crossRef.current.rotation.y = -v * mix(0.04, 0.12, h);
+      crossRef.current.scale.setScalar(mix(1, 1.15, h));
     }
   });
 
-  const chrome = {
-    metalness: 1,
-    roughness: 0.03,
-    clearcoat: 1,
-    clearcoatRoughness: 0.02,
-    envMapIntensity: dark ? 2.5 : 3,
-    reflectivity: 1,
-  };
-
-  const discConfigs = [
-    { radius: 0.28, height: 0.02, color: dark ? '#555565' : '#808090', opacity: 0.9 },
-    { radius: 0.35, height: 0.015, color: dark ? '#d0d0d8' : '#b8b8c0', opacity: 1 },
-    { radius: 0.22, height: 0.018, color: dark ? '#888898' : '#a0a0a8', opacity: 0.85 },
-  ];
+  const iriChrome = { metalness: 1, roughness: 0.04, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: dark ? 4 : 5, reflectivity: 1, iridescence: 0.8, iridescenceIOR: 1.6 };
 
   return (
     <Float speed={0.6} floatIntensity={0.4} rotationIntensity={0.12}>
       <group ref={ref}>
-
-        {/* Stacked chrome discs, UI layers */}
-        {discConfigs.map((disc, i) => (
+        {/* The discs ARE made of cubes — iridescent metallic */}
+        {pixelData.map((pd, i) => (
           <mesh
-            key={`disc${i}`}
-            ref={(el) => { if (el) discRefs.current[i] = el; }}
-            position={[0, [-0.08, 0, 0.08][i], 0]}
+            key={`px${i}`}
+            ref={(el) => { if (el) pixelRefs.current[i] = el; }}
+            position={pd.solidPos}
           >
-            <cylinderGeometry args={[disc.radius, disc.radius, disc.height, 48]} />
+            <boxGeometry args={[0.038, 0.015, 0.038]} />
             <meshPhysicalMaterial
-              color={disc.color}
-              {...chrome}
-              transparent opacity={disc.opacity}
-              emissive={dark ? '#6688bb' : '#4466aa'}
+              color={pd.color}
+              metalness={1}
+              roughness={0.05}
+              clearcoat={1}
+              clearcoatRoughness={0.02}
+              envMapIntensity={dark ? 4 : 5}
+              reflectivity={1}
+              specularIntensity={2}
+              specularColor={dark ? '#aa88ff' : '#8866ee'}
+              iridescence={1}
+              iridescenceIOR={1.8}
+              emissive={dark ? '#3344aa' : '#2233aa'}
               emissiveIntensity={0}
             />
           </mesh>
         ))}
-
-        {/* Cross bars through center, structural spine */}
+        {/* Cross bars — iridescent */}
         <group ref={crossRef}>
-          <mesh rotation={[0, 0, 0]}>
-            <cylinderGeometry args={[0.012, 0.012, 0.55, 8]} />
-            <meshPhysicalMaterial color={dark ? '#c0c0c8' : '#a8a8b0'} {...chrome} />
-          </mesh>
-          <mesh rotation={[0, 0, Math.PI / 2]}>
-            <cylinderGeometry args={[0.008, 0.008, 0.4, 8]} />
-            <meshPhysicalMaterial
-              color={dark ? '#888898' : '#707078'}
-              metalness={0.95} roughness={0.08}
-              clearcoat={1} clearcoatRoughness={0.05}
-              envMapIntensity={dark ? 2 : 2.5}
-            />
-          </mesh>
+          <mesh><cylinderGeometry args={[0.012, 0.012, 0.55, 8]} /><meshPhysicalMaterial color={dark ? '#5060b0' : '#4050a0'} {...iriChrome} /></mesh>
+          <mesh rotation={[0, 0, Math.PI / 2]}><cylinderGeometry args={[0.008, 0.008, 0.4, 8]} /><meshPhysicalMaterial color={dark ? '#4050a0' : '#304090'} {...iriChrome} /></mesh>
         </group>
-
-        {/* Orbiting chrome ring, interaction cycle */}
-        <mesh ref={ringRef}>
-          <torusGeometry args={[0.42, 0.014, 16, 64]} />
-          <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} {...chrome} />
-        </mesh>
-
-        {/* Glass shell, subtle enclosure */}
+        {/* Ring — iridescent blue */}
+        <mesh ref={ringRef}><torusGeometry args={[0.42, 0.014, 16, 64]} /><meshPhysicalMaterial color={dark ? '#6070c0' : '#5060b0'} {...iriChrome} iridescence={1} /></mesh>
+        {/* Glass shell — blue-tinted */}
         <mesh ref={shellRef}>
           <sphereGeometry args={[0.46, 48, 48]} />
-          <meshPhysicalMaterial
-            color={dark ? '#a0b0d0' : '#c0d0e8'}
-            metalness={0} roughness={0}
-            transmission={0.96} transparent opacity={0.12}
-            ior={1.5} thickness={0.5}
-            envMapIntensity={dark ? 0.8 : 1}
-            specularIntensity={1} specularColor={dark ? '#aabbdd' : '#8899bb'}
-          />
+          <meshPhysicalMaterial color={dark ? '#4060c0' : '#5070d0'} metalness={0} roughness={0} transmission={0.94} transparent opacity={0.06} ior={1.5} thickness={1.0} envMapIntensity={dark ? 2 : 2.5} specularIntensity={2} specularColor={dark ? '#aabbff' : '#8899ee'} />
         </mesh>
-
-        {/* Core glow sphere */}
+        {/* Core glow — bright blue/purple */}
         <mesh ref={coreRef}>
           <sphereGeometry args={[0.04, 16, 16]} />
-          <meshPhysicalMaterial
-            color="#ffffff"
-            emissive={dark ? '#8899cc' : '#6677aa'}
-            emissiveIntensity={dark ? 0.6 : 0.3}
-            metalness={0.3} roughness={0.1}
-          />
+          <meshPhysicalMaterial color="#ffffff" emissive={dark ? '#4466dd' : '#3355cc'} emissiveIntensity={dark ? 0.8 : 0.4} metalness={0.3} roughness={0.1} />
         </mesh>
-
-        {/* Small chrome spheres, node accents (animated per form) */}
+        {/* Orbiting nodes — iridescent */}
         {[0, 1, 2, 3].map(i => {
           const angle = (i / 4) * Math.PI * 2 + 0.4;
           return (
-            <mesh
-              key={`node${i}`}
-              ref={(el) => { if (el) nodeRefs.current[i] = el; }}
-              position={[Math.cos(angle) * 0.3, 0, Math.sin(angle) * 0.3]}
-            >
+            <mesh key={`node${i}`} ref={(el) => { if (el) nodeRefs.current[i] = el; }} position={[Math.cos(angle) * 0.3, 0, Math.sin(angle) * 0.3]}>
               <sphereGeometry args={[0.025, 12, 12]} />
-              <meshPhysicalMaterial
-                color={dark ? '#e0e0e8' : '#d0d0d8'}
-                {...chrome}
-                emissive={dark ? '#6688bb' : '#4466aa'}
-                emissiveIntensity={0.15}
-              />
+              <meshPhysicalMaterial color={dark ? '#5568cc' : '#4458bb'} {...iriChrome} iridescence={1} emissive={dark ? '#3350aa' : '#2240aa'} emissiveIntensity={0.15} />
             </mesh>
           );
         })}
-
       </group>
     </Float>
   );
@@ -1135,10 +1131,10 @@ function StackedPlates({ dark, hovered }: { dark: boolean; hovered: boolean }) {
         <mesh ref={sphereRef} position={[0.17, 0.12, 0.06]}>
           <sphereGeometry args={[0.1, 48, 48]} />
           <meshPhysicalMaterial
-            color={dark ? '#b0c0e0' : '#c8d8f0'}
-            metalness={0} roughness={0} transmission={0.95} transparent opacity={0.2}
-            ior={1.8} thickness={0.6} envMapIntensity={dark ? 1 : 1.2}
-            specularIntensity={1} specularColor="#ffffff" clearcoat={0.5} clearcoatRoughness={0.02}
+            color={dark ? '#c8d8f0' : '#d0e0ff'}
+            metalness={0} roughness={0} transmission={0.97} transparent opacity={0.1}
+            ior={2.0} thickness={0.8} envMapIntensity={dark ? 1.5 : 1.8}
+            specularIntensity={1.5} specularColor="#ffffff" clearcoat={0.5} clearcoatRoughness={0.02}
             emissive={dark ? '#6688bb' : '#4466aa'} emissiveIntensity={0}
           />
         </mesh>
@@ -1223,7 +1219,7 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.5, 0.46, 0.28, 48, 1, true]} />
           <meshPhysicalMaterial
-            color={dark ? '#c0c0c8' : '#a8a8b0'}
+            color={dark ? '#d0d0d8' : '#b8b8c0'}
             {...chrome}
             side={THREE.DoubleSide}
           />
@@ -1248,9 +1244,9 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
         <mesh ref={frontLensRef} position={[0, 0, 0.08]}>
           <sphereGeometry args={[0.32, 48, 48, 0, Math.PI * 2, 0, Math.PI / 3.5]} />
           <meshPhysicalMaterial
-            color={dark ? '#6080b0' : '#80a0d0'} metalness={0} roughness={0}
-            transmission={0.94} transparent opacity={0.15} ior={2.2} thickness={0.8}
-            envMapIntensity={dark ? 1 : 1.5} specularIntensity={1} specularColor={dark ? '#aaccff' : '#8899cc'}
+            color={dark ? '#80a0d0' : '#90b0e0'} metalness={0} roughness={0}
+            transmission={0.96} transparent opacity={0.08} ior={2.2} thickness={1.0}
+            envMapIntensity={dark ? 1.5 : 2} specularIntensity={1.5} specularColor={dark ? '#ccddff' : '#aabbdd'}
           />
         </mesh>
 
@@ -1258,8 +1254,9 @@ function LensAssembly({ dark, hovered }: { dark: boolean; hovered: boolean }) {
         <mesh ref={rearLensRef} position={[0, 0, -0.06]} rotation={[Math.PI, 0, 0]}>
           <sphereGeometry args={[0.24, 32, 32, 0, Math.PI * 2, 0, Math.PI / 4]} />
           <meshPhysicalMaterial
-            color={dark ? '#7090c0' : '#90b0e0'} metalness={0} roughness={0}
-            transmission={0.92} transparent opacity={0.12} ior={1.9} thickness={0.5} specularIntensity={0.8}
+            color={dark ? '#8899cc' : '#99aadd'} metalness={0} roughness={0}
+            transmission={0.95} transparent opacity={0.06} ior={1.9} thickness={0.7}
+            specularIntensity={1.2} specularColor={dark ? '#bbccee' : '#99aacc'}
           />
         </mesh>
 
@@ -1383,16 +1380,17 @@ function GlassCrystal({ dark, hovered }: { dark: boolean; hovered: boolean }) {
       <group ref={ref}>
         {/* Outer wireframe, silver */}
         <lineSegments ref={wireRef} geometry={outerEdges}>
-          <lineBasicMaterial color={dark ? '#9aaccc' : '#778899'} transparent opacity={dark ? 0.35 : 0.3} />
+          <lineBasicMaterial color={dark ? '#b8c8e0' : '#8899aa'} transparent opacity={dark ? 0.5 : 0.4} />
         </lineSegments>
 
-        {/* Glass shell, barely visible refraction */}
+        {/* Glass shell, translucent refraction */}
         <mesh ref={shellRef}>
           <icosahedronGeometry args={[0.53, 1]} />
           <meshPhysicalMaterial
-            color={dark ? '#a0b0d0' : '#c0d0e8'} metalness={0} roughness={0}
-            transmission={0.97} transparent opacity={0.06} ior={1.4} thickness={0.3}
-            envMapIntensity={dark ? 0.5 : 0.7} specularIntensity={0.8}
+            color={dark ? '#c0d0e8' : '#d0ddf0'} metalness={0} roughness={0}
+            transmission={0.96} transparent opacity={0.08} ior={1.4} thickness={0.6}
+            envMapIntensity={dark ? 1.0 : 1.2} specularIntensity={1.2}
+            specularColor={dark ? '#ccddff' : '#aabbdd'}
           />
         </mesh>
 
@@ -1467,9 +1465,9 @@ function ParticleDust({ count, reduced, dark }: { count: number; reduced: boolea
       </bufferGeometry>
       <pointsMaterial
         color={dark ? '#ffffff' : '#333333'}
-        size={0.012}
+        size={0.015}
         transparent
-        opacity={dark ? 0.2 : 0.15}
+        opacity={dark ? 0.25 : 0.18}
         sizeAttenuation
         depthWrite={false}
       />
@@ -1519,21 +1517,23 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
 
   return (
     <>
-      {/* Dramatic lighting for real reflections */}
-      <ambientLight intensity={dark ? 0.08 : 0.2} />
-      {/* Key light, bright, high, from front-right */}
-      <directionalLight intensity={dark ? 1.2 : 1} position={[5, 8, 6]} color={dark ? '#e8e8ff' : '#ffffff'} />
-      {/* Fill light, softer, from left */}
-      <directionalLight intensity={dark ? 0.4 : 0.35} position={[-6, 3, -4]} color={dark ? '#8899cc' : '#bbc8dd'} />
-      {/* Rim light, from behind for edge highlights */}
-      <directionalLight intensity={dark ? 0.6 : 0.5} position={[0, -2, -8]} color={dark ? '#aabbee' : '#99aacc'} />
-      {/* Top accent */}
-      <pointLight intensity={dark ? 0.8 : 0.5} color="#ffffff" distance={20} position={[0, 6, 4]} />
-      {/* Warm bottom bounce */}
-      <pointLight intensity={0.2} color={dark ? '#6677aa' : '#8899bb'} distance={15} position={[-3, -4, 3]} />
+      {/* Dramatic lighting for glass reflections + refractions */}
+      <ambientLight intensity={dark ? 0.08 : 0.18} />
+      {/* Key light — strong, creates primary glass highlights */}
+      <directionalLight intensity={dark ? 2.0 : 1.5} position={[5, 8, 6]} color={dark ? '#eef0ff' : '#ffffff'} />
+      {/* Fill light — opens up shadows on glass */}
+      <directionalLight intensity={dark ? 0.7 : 0.5} position={[-6, 3, -4]} color={dark ? '#99aadd' : '#c0ccdd'} />
+      {/* Rim light — glass edge highlights, critical for glass look */}
+      <directionalLight intensity={dark ? 1.2 : 0.9} position={[0, -2, -8]} color={dark ? '#bbccee' : '#aabbcc'} />
+      {/* Top accent — specular crown on glass */}
+      <pointLight intensity={dark ? 1.5 : 0.9} color="#ffffff" distance={20} position={[0, 6, 4]} />
+      {/* Bottom bounce */}
+      <pointLight intensity={0.4} color={dark ? '#7788bb' : '#99aabb'} distance={15} position={[-3, -4, 3]} />
+      {/* Side accent — catches glass transmission */}
+      <pointLight intensity={dark ? 0.6 : 0.4} color={dark ? '#aabbee' : '#bbccdd'} distance={12} position={[4, -1, -2]} />
 
-      {/* High-quality environment for reflections, CRUCIAL */}
-      <Environment preset="studio" environmentIntensity={dark ? 0.6 : 0.8} />
+      {/* Environment reflections — city preset gives complex glass reflections */}
+      <Environment preset="city" environmentIntensity={dark ? 1.0 : 1.2} />
 
       <group ref={groupRef} scale={0.7}>
         <ConstellationLines positions={positions} dark={dark} />
@@ -1613,7 +1613,7 @@ export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) 
       <Canvas
         frameloop={visible ? 'always' : 'never'}
         dpr={[1, 2]}
-        gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.2 }}
+        gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.4 }}
         camera={{ fov: 40, near: 0.1, far: 100, position: [0, 0.3, 7.5] }}
         style={{ background: 'transparent' }}
       >

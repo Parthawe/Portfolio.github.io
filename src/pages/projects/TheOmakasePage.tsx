@@ -56,7 +56,7 @@ export default function TheOmakasePage() {
           <CsBody>
             <p>The Omakase is a 2-player competitive arcade game where two sushi chefs race to serve customers their feast before their opponent does. Built from scratch as a custom arcade cabinet, the game combines physical computing, game design, and fabrication into a single cohesive experience. Each player commands a set of 8 RGB LED buttons that shift color throughout gameplay, requiring fast pattern recognition, sharp reflexes, and a willingness to get a little messy under pressure.</p>
             <p>The project was conceived as a thesis exploration into how physical arcade games can create spontaneous social moments between strangers. It was exhibited at the ITP Spring Show 2024 at NYU and later shown at Wonderville Brooklyn, an indie arcade bar in Bushwick.</p>
-            <p><a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener">Play at vill4n3lle.itch.io/the-omakase &rarr;</a></p>
+            <p><a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer">Play at vill4n3lle.itch.io/the-omakase &rarr;</a></p>
           </CsBody>
         </CsSection>
 

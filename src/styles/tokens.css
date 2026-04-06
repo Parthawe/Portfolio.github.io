@@ -66,11 +66,11 @@
   --lh-base:    1.65;    /* body text */
   --lh-relaxed: 1.75;    /* long-form reading */
 
-  /* Radius scale */
-  --radius-sm:   6px;
-  --radius:      10px;
-  --radius-lg:   14px;
-  --radius-pill: 100px;
+  /* Radius scale — squircle, not circular */
+  --radius-sm:   4px;
+  --radius:      8px;
+  --radius-lg:   12px;
+  --radius-pill: 10px;
 
   /* Button padding scale */
   --btn-sm:   0.35rem 0.75rem;
@@ -80,12 +80,28 @@
   /* Spacing */
   --nav-h:    56px;
   --w:        1120px;
+  --max-w:    1200px;
   --narrow:   720px;
   --pad:      clamp(1.25rem, 4vw, 3rem);
 
   /* Easing */
   --ease-out: cubic-bezier(0,0,0.3,1);
   --ease-spring: cubic-bezier(0.16,1,0.3,1);
+  --ease-in-out: cubic-bezier(0.4,0,0.2,1);
+
+  /* Z-index scale */
+  --z-base: 0;
+  --z-raised: 1;
+  --z-sticky: 10;
+  --z-nav: 20;
+  --z-overlay: 50;
+  --z-modal: 100;
+  --z-toast: 200;
+  --z-cursor: 9999;
+
+  /* Figma selection */
+  --select-blue: #4D9EFF;
+  --select-handle: 6px;
 
   /* Status colors */
   --green: #34C759;
@@ -124,6 +140,23 @@
   /* Overlays */
   --overlay-dark: rgba(0, 0, 0, 0.35);
   --overlay-light: rgba(255, 255, 255, 0.55);
+  --overlay-heavy: rgba(0, 0, 0, 0.92);
+
+  /* Glass scrolled state */
+  --glass-scrolled: rgba(255, 255, 255, 0.72);
+  --glass-scrolled-border: rgba(0, 0, 0, 0.08);
+  --glass-scrolled-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.04);
+
+  /* Card overlay text */
+  --text-on-dark: #fff;
+  --text-on-dark-90: rgba(255, 255, 255, 0.9);
+  --text-on-dark-70: rgba(255, 255, 255, 0.7);
+  --text-on-dark-50: rgba(255, 255, 255, 0.5);
+  --text-on-dark-06: rgba(255, 255, 255, 0.06);
+
+  /* Micro font sizes (below text-2xs) */
+  --text-micro: 0.625rem;    /* 10px, hero labels */
+  --text-nano: 0.5625rem;    /* 9px, ruler ticks */
 }
 
 /* --- Dark mode tokens --- */
@@ -153,6 +186,11 @@
   --glass-bg: rgba(30, 30, 30, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
+
+  /* Glass scrolled, dark */
+  --glass-scrolled: rgba(30, 30, 30, 0.75);
+  --glass-scrolled-border: rgba(255, 255, 255, 0.1);
+  --glass-scrolled-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2);
 }
 
 /* OS preference fallback when JS is disabled */
@@ -225,7 +263,7 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  border-radius: var(--radius);
   border: 1px solid var(--ink-08);
   color: var(--ink-40);
   cursor: pointer;
@@ -240,7 +278,7 @@
   content: '';
   position: absolute;
   inset: -4px;
-  border-radius: 50%;
+  border-radius: var(--radius-lg);
 }
 .theme-toggle:hover {
   color: var(--ink);

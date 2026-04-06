@@ -1,0 +1,21 @@
+{
+  "name": "Parth Pawar — Design Engineer",
+  "short_name": "Parth Pawar",
+  "description": "Portfolio of Parth Pawar, Design Engineer crafting AI wearables, fintech, and interactive systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FAFAF8",
+  "background_color": "#FAFAF8",
+  "icons": [
+    {
+      "src": "/Assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/Assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

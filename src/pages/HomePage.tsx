@@ -1,12 +1,18 @@
-import { useState, useEffect, lazy, Suspense, useRef, useCallback } from 'react';
+import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import TiltCard from '../components/TiltCard';
-import { getImageBrightness } from '../utils/imageBrightness';
+import ProjectCard from '../components/ProjectCard';
+import AnimatedCounter from '../components/AnimatedCounter';
+import TextReveal from '../components/TextReveal';
+import TextHighlight from '../components/TextHighlight';
+import AmbientAudio from '../components/AmbientAudio';
+import FigmaSelect from '../components/FigmaSelect';
+import FigmaFrameLabel from '../components/FigmaFrameLabel';
 const HeroScene = lazy(() => import('../components/HeroScene'));
+const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
 
 interface HomePcard {
   slug: string;
@@ -99,20 +105,14 @@ export default function HomePage() {
   const [skillPaused, setSkillPaused] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
-  /* --- auto light/dark card text based on image brightness --- */
-  const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    const card = img.closest('.pcard');
-    if (!card) return;
-    try {
-      const brightness = getImageBrightness(img);
-      if (brightness > 140) {
-        card.classList.add('pcard--light');
-      }
-    } catch {
-      // cross-origin or canvas error
-    }
-  }, []);
+  /* --- hero scroll parallax (Lenis-safe: uses target ref) --- */
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const auroraY = useTransform(heroProgress, [0, 1], ['0%', '-15%']);
+  const sceneScale = useTransform(heroProgress, [0, 1], [1, 0.92]);
+  const sceneOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
 
   /* --- skill cycling --- */
   useEffect(() => {
@@ -137,26 +137,33 @@ export default function HomePage() {
       </Helmet>
 
       {/* ═══ DARK HERO, 3D centerpiece ═══ */}
-      <section className="wr-hero" id="hero" ref={heroRef}>
-        {/* Aurora gradient bottom blob */}
-        <div className="wr-hero-aurora-bottom" />
+      <section className="wr-hero" id="hero" ref={heroRef} style={{position:"relative"}}><FigmaFrameLabel name="Hero" />
+        {/* Grain overlay for hero warmth */}
+        <div className="grain-section" aria-hidden="true" />
 
-        {/* 3D Scene, constellation of discipline objects */}
-        <div className="wr-hero-3d">
+        {/* Aurora gradient bottom blob — parallax layer */}
+        <motion.div className="wr-hero-aurora-bottom" style={{ y: auroraY }} />
+
+        {/* 3D Scene — parallax scale + fade on scroll */}
+        <motion.div className="wr-hero-3d" style={{ scale: sceneScale, opacity: sceneOpacity }}>
           <Suspense fallback={null}>
             <HeroScene onNavigate={navigate} />
           </Suspense>
-        </div>
+        </motion.div>
 
-        {/* Flanking labels, wildyriftian style */}
-        <span className="wr-hero-left hero-reveal hero-reveal-1">A PORTFOLIO OF DESIGN WORK</span>
-        <span className="wr-hero-right hero-reveal hero-reveal-2">PARTH PAWAR 2026</span>
+        {/* Flanking labels — word-by-word staggered reveal */}
+        <span className="wr-hero-left hero-reveal hero-reveal-1">
+          {'A PORTFOLIO OF DESIGN WORK'.split(' ').map((word, i) => (
+            <span key={i} className="hero-word" style={{ animationDelay: `${0.6 + i * 0.08}s` }}>{word} </span>
+          ))}
+        </span>
+        <span className="wr-hero-right hero-reveal hero-reveal-2">
+          {'PARTH PAWAR 2026'.split(' ').map((word, i) => (
+            <span key={i} className="hero-word" style={{ animationDelay: `${0.8 + i * 0.08}s` }}>{word} </span>
+          ))}
+        </span>
 
-        {/* Bottom bar */}
-        <div className="wr-hero-bottom hero-reveal hero-reveal-3">
-          <span className="wr-hero-bottom-label">DESIGN ENGINEER · SAN FRANCISCO</span>
-          <span className="wr-hero-bottom-label">HEAD OF UI/UX AT MENTRA</span>
-        </div>
+        {/* Bottom bar removed — cleaner hero */}
       </section>
 
       {/* ═══ PILL NAV ═══ */}
@@ -165,34 +172,30 @@ export default function HomePage() {
       <main id="main-content">
         {/* ── Paper canvas wraps everything below hero ── */}
         <div className="abt-paper">
-          {/* SVG pattern for dashed grid */}
-          <svg className="abt-grid-defs" aria-hidden="true">
-            <defs>
-              <pattern id="hp-minor-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="18" x2="24" y2="18" className="abt-grid-h-minor" />
-                <line x1="24" y1="0" x2="24" y2="24" className="abt-grid-v-minor" strokeDasharray="3 5" />
-              </pattern>
-              <pattern id="hp-major-grid" width="120" height="120" patternUnits="userSpaceOnUse">
-                <line x1="0" y1="18" x2="120" y2="18" className="abt-grid-h-major" />
-                <line x1="120" y1="0" x2="120" y2="120" className="abt-grid-v-major" strokeDasharray="4 4" />
-              </pattern>
-            </defs>
-          </svg>
 
-          {/* Grid layers */}
-          <svg className="abt-grid-layer" aria-hidden="true">
-            <rect width="100%" height="100%" fill="url(#hp-minor-grid)" />
-          </svg>
-          <svg className="abt-grid-layer abt-grid-layer--major" aria-hidden="true">
-            <rect width="100%" height="100%" fill="url(#hp-major-grid)" />
-          </svg>
-
-          {/* Decorative arc */}
-          <div className="abt-arc" aria-hidden="true" />
-
-          {/* Ruler marks */}
-          <div className="abt-ruler abt-ruler--left" aria-hidden="true" />
-          <div className="abt-ruler abt-ruler--right" aria-hidden="true" />
+        {/* ═══ DISCIPLINE INDEX — 3D objects with category names ═══ */}
+        <section className="wr-disciplines" style={{position:"relative"}}><FigmaFrameLabel name="Disciplines" />
+          <div className="wrap wr-disciplines-grid">
+            {[
+              { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
+              { label: 'AI & Wearables', slug: 'ai', link: '/ai' },
+              { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
+              { label: 'Installations', slug: 'installations', link: '/installations' },
+              { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
+              { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
+            ].map(d => (
+              <Link key={d.slug} to={d.link} className="wr-discipline-item figma-hover">
+                <div className="wr-discipline-obj" aria-hidden="true">
+                  <Suspense fallback={null}>
+                    <CategoryObject3D slug={d.slug} size={80} />
+                  </Suspense>
+                </div>
+                <span className="wr-discipline-label">{d.label}</span>
+                <FigmaSelect />
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* ═══ KEYWORD MARQUEE, visual energy strip ═══ */}
         <div className="wr-keyword-strip" aria-hidden="true">
@@ -212,8 +215,18 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* ═══ MASK REVEAL — cheeky text behind headline ═══ */}
+        <section className="wr-reveal-section">
+          <div className="wrap">
+            <TextReveal
+              front="I design systems that disappear."
+              behind="(and occasionally keyboards I don't need)"
+            />
+          </div>
+        </section>
+
         {/* ═══ ABOUT CARD, cycling skills ═══ */}
-        <section className="wr-about-section">
+        <section className="wr-about-section" style={{position:"relative"}}><FigmaFrameLabel name="About" />
           <div className="wr-about-card" id="about-card">
             {/* Dashed border SVG */}
             <svg className="wr-about-border" preserveAspectRatio="none">
@@ -246,7 +259,7 @@ export default function HomePage() {
             <div className="wr-about-body">
               <div className="wr-about-img-col">
                 <div className="wr-about-img-wrap" id="about-img-wrap">
-                  <img src={skills[skillIdx].img} alt="" draggable={false} key={skillIdx} />
+                  <img src={skills[skillIdx].img} alt={`Showcase of ${skills[skillIdx].label}`} draggable={false} key={skillIdx} />
                 </div>
               </div>
               <div className="wr-about-text">
@@ -293,11 +306,12 @@ export default function HomePage() {
         </section>
 
         {/* ═══ FEATURED PROJECTS, editorial full-width rows ═══ */}
-        <section className="wr-featured-v2" id="works">
+        <section className="wr-featured-v2" id="works" style={{position:"relative"}}><FigmaFrameLabel name="Featured Work" />
           <div className="wr-featured-v2-inner">
             <div className="wr-section-head">
               <span className="wr-label">FEATURED PROJECTS</span>
-              <Link to="/work" className="wr-arrow-btn">View All &rarr;</Link>
+              <TextHighlight as="span" className="wr-section-highlight">Work that shipped</TextHighlight>
+              <Link to="/work" className="wr-arrow-btn figma-hover">View All &rarr;<FigmaSelect /></Link>
             </div>
 
             {featuredProjects.map((p, i) => (
@@ -308,7 +322,7 @@ export default function HomePage() {
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Link to={`/${p.slug}`} className={`wr-feat-row ${i % 2 === 1 ? 'wr-feat-row--reverse' : ''}`}>
+                <Link to={`/${p.slug}`} className={`wr-feat-row figma-hover ${i % 2 === 1 ? 'wr-feat-row--reverse' : ''}`}>
                   <div className="wr-feat-img">
                     <img src={p.image} alt={p.name} loading={i < 2 ? 'eager' : 'lazy'} />
                   </div>
@@ -319,62 +333,96 @@ export default function HomePage() {
                     <p className="wr-feat-desc">{p.desc}</p>
                     <div className="wr-feat-meta">
                       <span>{p.year}</span>
-                      <span className="wr-arrow-btn">VIEW PROJECT &rarr;</span>
+                      <span className="wr-arrow-btn figma-hover">VIEW PROJECT &rarr;<FigmaSelect /></span>
                     </div>
                   </div>
+                  <FigmaSelect />
                 </Link>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ═══ ARCHIVE, image card grid ═══ */}
-        <section className="wr-archive">
-          <div className="wr-archive-inner">
-            <div className="wr-section-head">
-              <span className="wr-label">ARCHIVE &middot; 2021&ndash;2026</span>
-              <Link to="/work" className="wr-arrow-btn">View All &rarr;</Link>
-            </div>
+        {/* ═══ SPOTLIGHT REVEAL ═══ */}
+        <section className="wr-reveal-section">
+          <div className="wrap">
+            <TextReveal
+              front="Every pixel has a reason."
+              behind="(except the ones I put there at 2am)"
+            />
+          </div>
+        </section>
 
-            <div className="wr-archive-grid">
-              {archiveProjects.map((p, i) => (
-                <motion.div
-                  key={p.slug}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.5, delay: i * 0.05, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  <TiltCard intensity={5}>
-                    <Link className="pcard reveal" to={`/${p.slug}`}>
-                      <div className="pcard-inner">
-                        <div className="pcard-top-row">
-                          <span className="pcard-tag">{p.tag}</span>
-                          <span className="pcard-year">{p.year}</span>
-                        </div>
-                        <div className="pcard-visual">
-                          <img src={p.image} alt={p.name} loading="lazy" onLoad={handleImgLoad} />
-                        </div>
-                        <h2 className="pcard-name">{p.name}</h2>
-                        <div className="pcard-marquee">
-                          <div className="pcard-marquee-track">
-                            <span>{p.desc}, {p.desc}, {p.desc}, </span>
-                            <span>{p.desc}, {p.desc}, {p.desc}, </span>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </TiltCard>
-                </motion.div>
-              ))}
+        {/* ═══ COUNTERS ═══ */}
+        <section className="wr-counters" style={{position:"relative"}}><FigmaFrameLabel name="Stats" />
+          <div className="wr-counters-inner">
+            <div className="wr-counter-item">
+              <AnimatedCounter value={33} suffix="+" />
+              <span className="wr-counter-label">Projects shipped</span>
+            </div>
+            <div className="wr-counter-item">
+              <AnimatedCounter value={6} />
+              <span className="wr-counter-label">Disciplines</span>
+            </div>
+            <div className="wr-counter-item">
+              <AnimatedCounter value={50} suffix="M+" />
+              <span className="wr-counter-label">$ Volume designed</span>
+            </div>
+            <div className="wr-counter-item">
+              <AnimatedCounter value={3} />
+              <span className="wr-counter-label">Countries</span>
             </div>
           </div>
         </section>
+
+        {/* ═══ ARCHIVE, image card grid ═══ */}
+        <section className="wr-archive" style={{position:"relative"}}><FigmaFrameLabel name="Archive" />
+          <div className="wr-archive-inner">
+            <div className="wr-section-head">
+              <span className="wr-label">ARCHIVE &middot; 2021&ndash;2026</span>
+              <Link to="/work" className="wr-arrow-btn figma-hover">View All &rarr;<FigmaSelect /></Link>
+            </div>
+
+            <div className="wr-archive-grid">
+              {archiveProjects.map((p, i) => {
+                // Waterfall cascade: column-based stagger (3 cols)
+                const col = i % 3
+                const row = Math.floor(i / 3)
+                const delay = col * 0.1 + row * 0.06
+                return (
+                <motion.div
+                  key={p.slug}
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} />
+                </motion.div>
+              )})}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ SPOTLIGHT REVEAL ═══ */}
+        <section className="wr-reveal-section">
+          <div className="wrap">
+            <TextReveal
+              front="Move fast and break things."
+              behind="(means someone walks into a wall)"
+            />
+          </div>
+        </section>
+
         </div>{/* end .abt-paper */}
       </main>
 
       {/* ═══ FOOTER ═══ */}
       <Footer />
+
+
+      {/* ═══ Ambient music toggle ═══ */}
+      <AmbientAudio />
     </>
   );
 }
