@@ -1,9 +1,9 @@
 import { useRef, useState, useCallback, useEffect } from 'react'
 
 /**
- * Spotlight: cursor dot grows into orange circle on enter,
- * follows cursor while inside, shrinks back to dot on leave.
- * Circle always stays centered on the actual cursor position.
+ * Spotlight: cursor dot grows smoothly into orange circle.
+ * Circle is ALWAYS mounted (not conditional) — CSS handles show/hide via opacity.
+ * This ensures the size transition from 8px → 320px is always visible.
  */
 
 interface Props {
@@ -15,27 +15,24 @@ interface Props {
 export default function TextReveal({ front, behind, className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
-  const mouseRef = useRef({ x: 0, y: 0 })
-  const rafRef = useRef(0)
-  const [phase, setPhase] = useState<'idle' | 'growing' | 'open' | 'shrinking'>('idle')
+  const mouseRef = useRef({ x: -200, y: -200 })
+  const [hovered, setHovered] = useState(false)
+  const fullSize = 320
 
-  const fullSize = 320 // diameter
-  const dotSize = 8    // cursor dot diameter
-
-  // Continuously update circle position to follow cursor (via RAF, no React re-renders)
-  const trackCursor = useCallback(() => {
+  // Track cursor position on the circle element directly (no React re-renders)
+  const updateCircle = useCallback(() => {
     const el = circleRef.current
     if (!el) return
     el.style.left = `${mouseRef.current.x}px`
     el.style.top = `${mouseRef.current.y}px`
 
-    // Also update text offset
+    // Update text offset
     const rect = containerRef.current?.getBoundingClientRect()
     const textEl = el.querySelector('.spotlight-text') as HTMLElement | null
     if (rect && textEl) {
-      const halfFull = fullSize / 2
-      textEl.style.left = `${rect.left - (mouseRef.current.x - halfFull)}px`
-      textEl.style.top = `${rect.top - (mouseRef.current.y - halfFull)}px`
+      const half = fullSize / 2
+      textEl.style.left = `${rect.left - (mouseRef.current.x - half)}px`
+      textEl.style.top = `${rect.top - (mouseRef.current.y - half)}px`
       textEl.style.width = `${rect.width}px`
       textEl.style.height = `${rect.height}px`
     }
@@ -43,48 +40,63 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
 
   const handleMove = useCallback((e: React.MouseEvent) => {
     mouseRef.current = { x: e.clientX, y: e.clientY }
-    cancelAnimationFrame(rafRef.current)
-    rafRef.current = requestAnimationFrame(trackCursor)
-  }, [trackCursor])
+    requestAnimationFrame(updateCircle)
+  }, [updateCircle])
 
   const handleEnter = useCallback((e: React.MouseEvent) => {
     mouseRef.current = { x: e.clientX, y: e.clientY }
-    setPhase('growing')
-    // After grow animation completes, switch to open
-    setTimeout(() => setPhase(prev => prev === 'growing' ? 'open' : prev), 500)
-  }, [])
+    updateCircle()
+    // Force the circle to start at dot size BEFORE adding the open class
+    const el = circleRef.current
+    if (el) {
+      el.style.width = '8px'
+      el.style.height = '8px'
+      el.style.opacity = '1'
+      // Force reflow so the browser registers the 8px size
+      void el.offsetWidth
+      // NOW grow to full size — CSS transition animates it
+      el.style.width = `${fullSize}px`
+      el.style.height = `${fullSize}px`
+    }
+    setHovered(true)
+  }, [updateCircle])
 
   const handleLeave = useCallback(() => {
-    setPhase('shrinking')
-    // After shrink animation, go idle
-    setTimeout(() => setPhase('idle'), 450)
+    const el = circleRef.current
+    if (el) {
+      // Shrink back to dot
+      el.style.width = '8px'
+      el.style.height = '8px'
+      // After shrink animation, hide
+      setTimeout(() => {
+        if (!circleRef.current) return
+        circleRef.current.style.opacity = '0'
+      }, 400)
+    }
+    setHovered(false)
   }, [])
 
-  // Track cursor even during shrink (so it shrinks AT the cursor)
+  // Track cursor during leave too
   useEffect(() => {
-    if (phase === 'shrinking') {
-      const onMove = (e: MouseEvent) => {
-        mouseRef.current = { x: e.clientX, y: e.clientY }
-        requestAnimationFrame(trackCursor)
-      }
-      document.addEventListener('mousemove', onMove, { passive: true })
-      return () => document.removeEventListener('mousemove', onMove)
+    if (!hovered) return
+    const onMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY }
+      requestAnimationFrame(updateCircle)
     }
-  }, [phase, trackCursor])
+    // Use document-level listener so it tracks even as mouse leaves the container
+    document.addEventListener('mousemove', onMove, { passive: true })
+    return () => document.removeEventListener('mousemove', onMove)
+  }, [hovered, updateCircle])
 
-  // Hide custom cursor dots
+  // Hide comet cursor while hovering
   useEffect(() => {
-    if (phase !== 'idle') {
+    if (hovered) {
       document.body.classList.add('spotlight-active')
     } else {
       document.body.classList.remove('spotlight-active')
     }
     return () => document.body.classList.remove('spotlight-active')
-  }, [phase])
-
-  const isVisible = phase !== 'idle'
-  const isOpen = phase === 'open' || phase === 'growing'
-  const currentSize = isOpen ? fullSize : dotSize
+  }, [hovered])
 
   return (
     <>
@@ -100,26 +112,17 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
         </div>
       </div>
 
-      {isVisible && (
-        <div
-          ref={circleRef}
-          className={`spotlight-overlay${isOpen ? ' spotlight-overlay--open' : ''}`}
-          style={{
-            left: mouseRef.current.x,
-            top: mouseRef.current.y,
-            width: currentSize,
-            height: currentSize,
-          }}
-          aria-hidden="true"
-        >
-          <div
-            className="spotlight-text"
-            style={{ opacity: 1 }}
-          >
-            <span>{behind}</span>
-          </div>
+      {/* Always mounted — opacity controls visibility, CSS transition handles size */}
+      <div
+        ref={circleRef}
+        className="spotlight-overlay"
+        style={{ opacity: 0, width: 8, height: 8 }}
+        aria-hidden="true"
+      >
+        <div className="spotlight-text" style={{ opacity: 1 }}>
+          <span>{behind}</span>
         </div>
-      )}
+      </div>
     </>
   )
 }

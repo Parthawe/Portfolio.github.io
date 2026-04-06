@@ -432,7 +432,11 @@ hr.divider {
   box-shadow: 0 0 12px rgba(140, 180, 255, 0.6), 0 0 24px rgba(100, 140, 255, 0.3);
 }
 .cursor-comet {
-  transition: opacity 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  pointer-events: none;
 }
 /* Hide cursor when spotlight is active */
 .spotlight-active .cursor-dot,
