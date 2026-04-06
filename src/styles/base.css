@@ -408,44 +408,42 @@ hr.divider {
   color: var(--ink-40);
 }
 
-/* ── Sparkle Cursor — dot head + shimmering particles ── */
+/* ── Comet Cursor — bright head + flowing gradient tail ── */
 .cursor-dot {
   position: fixed;
-  top: -3px; left: -3px;
-  width: 6px;
-  height: 6px;
+  top: -4px; left: -4px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: var(--ink);
+  background: radial-gradient(circle, #fff 30%, rgba(140, 180, 255, 0.8) 70%, transparent 100%);
   pointer-events: none;
   z-index: 9999;
   opacity: 0;
   transition: opacity var(--dur-base);
+  box-shadow: 0 0 8px rgba(140, 180, 255, 0.5), 0 0 16px rgba(100, 140, 255, 0.2);
 }
 [data-theme="dark"] .cursor-dot {
-  background: #fff;
+  background: radial-gradient(circle, #fff 30%, rgba(180, 200, 255, 0.9) 70%, transparent 100%);
+  box-shadow: 0 0 10px rgba(180, 200, 255, 0.6), 0 0 24px rgba(120, 160, 255, 0.3);
 }
 .cursor-dot.hover, .cursor-dot.cta {
-  width: 8px; height: 8px;
-  top: -4px; left: -4px;
+  width: 10px; height: 10px;
+  top: -5px; left: -5px;
+  box-shadow: 0 0 12px rgba(140, 180, 255, 0.6), 0 0 24px rgba(100, 140, 255, 0.3);
 }
-/* Sparkle particles — tiny dots that fade + shrink + float upward */
-.cursor-sparkle {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  will-change: opacity, transform;
+.cursor-comet {
+  transition: opacity 0.3s;
 }
 /* Hide cursor when spotlight is active */
 .spotlight-active .cursor-dot,
-.spotlight-active .cursor-sparkle {
+.spotlight-active .cursor-comet {
   opacity: 0 !important;
 }
 @media (max-width: 768px) {
-  .cursor-dot, .cursor-sparkle { display: none !important; }
+  .cursor-dot, .cursor-comet { display: none !important; }
 }
 @media (pointer: coarse) {
-  .cursor-dot, .cursor-sparkle { display: none !important; }
+  .cursor-dot, .cursor-comet { display: none !important; }
 }
 
 /* ── Reduced Motion ── */
