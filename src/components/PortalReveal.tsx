@@ -112,22 +112,25 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
       if (arr.length > 200) arr.splice(0, arr.length - 200)
     }
 
-    const drawMask = (mCtx: CanvasRenderingContext2D, arr: Blob[]) => {
+    const drawMask = (mCtx: CanvasRenderingContext2D, arr: Blob[], isActive: boolean) => {
+      // Fade mask: slow while hovering, much faster when cursor leaves
+      const fadeAlpha = isActive ? 0.003 : 0.025
       mCtx.globalCompositeOperation = 'destination-out'
-      mCtx.fillStyle = 'rgba(0,0,0,0.005)'
+      mCtx.fillStyle = `rgba(0,0,0,${fadeAlpha})`
       mCtx.fillRect(0, 0, w, h)
       mCtx.globalCompositeOperation = 'source-over'
       for (const b of arr) {
         const t = b.life / b.max
+        // Smooth easing: ease-in on appear, long sustain, ease-out on fade
         let s: number
-        if (t < 0.06) s = t / 0.06
-        else if (t < 0.45) s = 1
-        else s = 1 - (t - 0.45) / 0.55
-        const r = b.r * s
+        if (t < 0.08) s = t / 0.08 * t / 0.08  // ease-in (quadratic)
+        else if (t < 0.4) s = 1
+        else { const f = (t - 0.4) / 0.6; s = 1 - f * f }  // ease-out (quadratic)
+        const r = b.r * Math.max(s, 0)
         if (r < 1) continue
         const g = mCtx.createRadialGradient(b.x, b.y, r * 0.08, b.x, b.y, r)
-        g.addColorStop(0, `rgba(255,255,255,${s})`)
-        g.addColorStop(0.45, `rgba(255,255,255,${0.55 * s})`)
+        g.addColorStop(0, `rgba(255,255,255,${s * 0.85})`)
+        g.addColorStop(0.4, `rgba(255,255,255,${0.5 * s})`)
         g.addColorStop(1, 'rgba(255,255,255,0)')
         mCtx.fillStyle = g
         mCtx.beginPath()
@@ -160,19 +163,20 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
         const target = useLayer2 ? blobs.layer2 : blobs.layer1
         for (let i = 0; i < 2; i++) {
           target.push({
-            x: mouse.x + (Math.random() - 0.5) * 16,
-            y: mouse.y + (Math.random() - 0.5) * 16,
-            r: 45 + Math.random() * 45,
+            x: mouse.x + (Math.random() - 0.5) * 20,
+            y: mouse.y + (Math.random() - 0.5) * 20,
+            r: 55 + Math.random() * 55,
             life: 0,
-            max: 140 + Math.random() * 80,
+            max: 100 + Math.random() * 60,
           })
         }
       }
 
       updateBlobs(blobs.layer1)
       updateBlobs(blobs.layer2)
-      drawMask(m1, blobs.layer1)
-      if (m2) drawMask(m2, blobs.layer2)
+      const isHovering = mouse.inside
+      drawMask(m1, blobs.layer1, isHovering && !useLayer2)
+      if (m2) drawMask(m2, blobs.layer2, isHovering && useLayer2)
 
       // Draw
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
