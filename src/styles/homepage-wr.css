@@ -260,7 +260,13 @@
   top: 15%;
   height: 70%;
   width: 1px;
-  background: var(--ink-06);
+  background: linear-gradient(180deg, transparent, var(--ink-12), transparent);
+}
+.wr-counter-item {
+  transition: transform 0.3s var(--ease-spring);
+}
+.wr-counter-item:hover {
+  transform: scale(1.04);
 }
 .wr-counter-value {
   font-family: var(--ff-sans);
@@ -345,6 +351,9 @@
   animation: wr-keyword-scroll 25s linear infinite;
   gap: 0;
 }
+.wr-keyword-strip:hover .wr-keyword-track {
+  animation-play-state: paused;
+}
 .wr-keyword-track span {
   font-family: var(--mono);
   font-size: var(--text-2xs);
@@ -368,7 +377,17 @@
   align-items: center;
   padding-bottom: 1rem;
   margin-bottom: clamp(2rem, 4vw, 3.5rem);
-  border-bottom: 1px solid var(--ink-08);
+  border-bottom: 1px solid var(--ink-06);
+  position: relative;
+}
+.wr-section-head::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ink-20), transparent 60%);
 }
 
 /* ================================================
@@ -407,6 +426,13 @@
   position: relative; max-width: 1400px; margin: 0 auto;
   background: var(--bg-alt); border-radius: var(--radius-sm);
   overflow: hidden;
+  transition: box-shadow 0.5s var(--ease-spring);
+}
+.wr-about-card:hover {
+  box-shadow: 0 16px 64px rgba(0,0,0,0.08);
+}
+[data-theme="dark"] .wr-about-card:hover {
+  box-shadow: 0 16px 64px rgba(0,0,0,0.35);
 }
 .wr-about-border {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -488,9 +514,10 @@
   font-family: var(--mono); font-size: 16px;
   color: var(--ink-40); background: none; border: none;
   cursor: pointer; padding: 0.25rem;
-  transition: opacity 0.2s;
+  transition: color 0.2s, transform 0.2s var(--ease-spring);
 }
-.wr-about-arrow:hover { opacity: 0.5; }
+.wr-about-arrow:hover { color: var(--ink); transform: scale(1.15); }
+.wr-about-arrow:active { transform: scale(0.9); transition-duration: 0.08s; }
 .wr-about-skill-wrap {
   flex: 1; overflow: hidden; height: clamp(40px, 8vw, 56px);
   position: relative;
@@ -513,9 +540,21 @@
   font-size: 1.75rem; color: var(--ink);
   text-decoration: none; display: inline-block;
   margin-bottom: 1.5rem;
-  transition: opacity 0.3s;
+  position: relative;
+  transition: color 0.3s;
 }
-.wr-about-readmore:hover { opacity: 0.6; }
+.wr-about-readmore::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ink-30);
+  transition: width 0.5s var(--ease-spring);
+}
+.wr-about-readmore:hover::after { width: 100%; }
+.wr-about-readmore:hover { color: var(--ink-70); }
 .wr-about-site {
   display: block; font-family: var(--mono); font-size: var(--text-micro);
   text-transform: uppercase; letter-spacing: var(--ls-wider);

@@ -1837,8 +1837,8 @@
   background: var(--ink-04);
   border-color: var(--ink-40);
 }
-.abt-cta-email svg { transition: transform 0.2s; }
-.abt-cta-email:hover svg { transform: translate(2px, -2px); }
+.abt-cta-email svg { transition: transform 0.3s var(--ease-spring); }
+.abt-cta-email:hover svg { transform: translate(3px, -3px); }
 .abt-cta-link {
   font-family: var(--sans);
   font-size: var(--text-sm);
@@ -1847,7 +1847,7 @@
   text-decoration-color: var(--ink-15);
   text-underline-offset: 3px;
   line-height: 24px;
-  transition: color 0.2s, text-decoration-color 0.2s;
+  transition: color 0.3s, text-decoration-color 0.3s, transform 0.3s var(--ease-spring);
 }
 .abt-cta-link:hover {
   color: var(--ink);

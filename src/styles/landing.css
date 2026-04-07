@@ -71,7 +71,11 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--ink);
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.25s var(--ease-spring), background 0.25s, transform 0.25s var(--ease-spring);
+}
+.lp-stat:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink-15);
 }
 .lp-stat:first-child {
   background: var(--lp-accent, var(--ink));
@@ -97,9 +101,9 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink-40);
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.25s, color 0.25s, transform 0.25s var(--ease-spring);
 }
-.lp-tool:hover { background: var(--ink-12); color: var(--ink-70); }
+.lp-tool:hover { background: var(--ink-12); color: var(--ink-70); transform: translateY(-1px); }
 [data-theme="dark"] .lp-tool { background: var(--ink-06); }
 [data-theme="dark"] .lp-tool:hover { background: var(--ink-12); color: var(--ink); }
 

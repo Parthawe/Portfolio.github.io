@@ -128,10 +128,10 @@
   content: ' ↗';
   font-size: 0.85em;
   opacity: 0.5;
-  transition: opacity var(--dur-fast), transform var(--dur-fast);
+  transition: opacity var(--dur-base) var(--ease-spring), transform var(--dur-base) var(--ease-spring);
   display: inline-block;
 }
-.nav-cta:hover::after { opacity: 1; transform: translate(1px, -1px); }
+.nav-cta:hover::after { opacity: 1; transform: translate(2px, -2px); }
 
 .nav-cta:hover {
   background: var(--ink);

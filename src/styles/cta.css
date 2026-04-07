@@ -27,7 +27,7 @@
   text-decoration: underline;
   text-decoration-color: var(--ink-15);
   text-underline-offset: 6px;
-  transition: text-decoration-color 0.25s;
+  transition: text-decoration-color 0.4s var(--ease-spring), letter-spacing 0.4s;
   background: none;
   border: none;
   padding: 0;
@@ -38,6 +38,7 @@
 .cta-v2-btn:hover {
   text-decoration-color: var(--ink);
   color: var(--ink);
+  letter-spacing: 0.01em;
 }
 /* SVG arrow hidden by default, shown on landing page CTAs via lp- selectors */
 .cta-v2-btn svg { display: none; }
