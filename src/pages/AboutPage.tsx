@@ -340,6 +340,60 @@ export default function AboutPage() {
               <p className="abt-type-alphabet">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
             </section>
 
+            {/* ── F1 telemetry strip — hidden in plain sight ── */}
+            <section className="abt-f1 reveal">
+              <div className="abt-f1-strip">
+                <div className="abt-f1-ticker">
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">DRS</span>
+                    <span className="abt-f1-val abt-f1-active">OPEN</span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">SPD</span>
+                    <span className="abt-f1-val">338</span>
+                    <span className="abt-f1-unit">km/h</span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">GEAR</span>
+                    <span className="abt-f1-val">8</span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">THROTTLE</span>
+                    <span className="abt-f1-bar"><span className="abt-f1-bar-fill" style={{ width: '100%' }} /></span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">BRAKE</span>
+                    <span className="abt-f1-bar abt-f1-bar--brake"><span className="abt-f1-bar-fill" style={{ width: '0%' }} /></span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">ERS</span>
+                    <span className="abt-f1-val">DEPLOY</span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">LAP</span>
+                    <span className="abt-f1-val">1:18.235</span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">TYRE</span>
+                    <span className="abt-f1-tyre">S</span>
+                  </span>
+                  <span className="abt-f1-sep" />
+                  <span className="abt-f1-data">
+                    <span className="abt-f1-label">SECTOR 3</span>
+                    <span className="abt-f1-val abt-f1-purple">PB</span>
+                  </span>
+                </div>
+              </div>
+              <p className="abt-f1-footnote">If you know, you know.</p>
+            </section>
+
           </div>
 
 

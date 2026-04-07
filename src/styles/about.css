@@ -1663,6 +1663,123 @@
   word-break: break-all;
 }
 
+/* ═══════════════════════════════════════
+   F1 TELEMETRY STRIP
+   ═══════════════════════════════════════ */
+.abt-f1 {
+  margin-top: var(--space-12);
+  padding: 0;
+}
+.abt-f1-strip {
+  border: 1px solid var(--ink-06);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.abt-f1-strip::-webkit-scrollbar { display: none; }
+
+.abt-f1-ticker {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.6rem 1.25rem;
+  white-space: nowrap;
+  min-width: max-content;
+}
+.abt-f1-data {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.75rem;
+}
+.abt-f1-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-25);
+}
+.abt-f1-val {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-60);
+}
+.abt-f1-unit {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ink-20);
+  margin-left: -2px;
+}
+.abt-f1-active {
+  color: #1DB954;
+}
+.abt-f1-purple {
+  color: #A259FF;
+}
+.abt-f1-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--ink-06);
+  flex-shrink: 0;
+}
+
+/* Throttle / brake bars */
+.abt-f1-bar {
+  width: 48px;
+  height: 6px;
+  background: var(--ink-06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.abt-f1-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: #1DB954;
+  transition: width 0.3s;
+}
+.abt-f1-bar--brake .abt-f1-bar-fill {
+  background: #E53E3E;
+}
+
+/* Tyre compound badge */
+.abt-f1-tyre {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #E53E3E;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Footnote */
+.abt-f1-footnote {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  color: var(--ink-15);
+  text-align: right;
+  margin-top: 0.5rem;
+  letter-spacing: 0.03em;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .abt-f1-ticker { padding: 0.5rem 0.75rem; }
+  .abt-f1-data { padding: 0 0.5rem; }
+}
+
 /* ── CTA ── */
 .abt-cta {
   border-top: 1px solid var(--ink-06);
