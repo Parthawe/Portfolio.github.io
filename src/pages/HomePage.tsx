@@ -148,16 +148,24 @@ export default function HomePage() {
               { label: 'Installations', slug: 'installations', link: '/installations' },
               { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
               { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
-            ].map(d => (
-              <Link key={d.slug} to={d.link} className="wr-discipline-item figma-hover">
-                <div className="wr-discipline-obj" aria-hidden="true">
-                  <Suspense fallback={null}>
-                    <CategoryObject3D slug={d.slug} size={80} />
-                  </Suspense>
-                </div>
-                <span className="wr-discipline-label">{d.label}</span>
-                <FigmaSelect />
-              </Link>
+            ].map((d, i) => (
+              <motion.div
+                key={d.slug}
+                initial={{ opacity: 0, y: 24, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Link to={d.link} className="wr-discipline-item figma-hover">
+                  <div className="wr-discipline-obj" aria-hidden="true">
+                    <Suspense fallback={null}>
+                      <CategoryObject3D slug={d.slug} size={80} />
+                    </Suspense>
+                  </div>
+                  <span className="wr-discipline-label">{d.label}</span>
+                  <FigmaSelect />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -302,26 +310,36 @@ export default function HomePage() {
         </section>
 
         {/* ═══ COUNTERS ═══ */}
-        <section className="wr-counters" style={{position:"relative"}}><FigmaFrameLabel name="Stats" />
+        <motion.section
+          className="wr-counters"
+          style={{position:"relative"}}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <FigmaFrameLabel name="Stats" />
           <div className="wr-counters-inner">
-            <div className="wr-counter-item">
-              <AnimatedCounter value={33} suffix="+" />
-              <span className="wr-counter-label">Projects shipped</span>
-            </div>
-            <div className="wr-counter-item">
-              <AnimatedCounter value={6} />
-              <span className="wr-counter-label">Disciplines</span>
-            </div>
-            <div className="wr-counter-item">
-              <AnimatedCounter value={50} suffix="M+" />
-              <span className="wr-counter-label">$ Volume designed</span>
-            </div>
-            <div className="wr-counter-item">
-              <AnimatedCounter value={3} />
-              <span className="wr-counter-label">Countries</span>
-            </div>
+            {[
+              { value: 33, suffix: '+', label: 'Projects shipped' },
+              { value: 6, suffix: '', label: 'Disciplines' },
+              { value: 50, suffix: 'M+', label: '$ Volume designed' },
+              { value: 3, suffix: '', label: 'Countries' },
+            ].map((c, i) => (
+              <motion.div
+                key={c.label}
+                className="wr-counter-item"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <AnimatedCounter value={c.value} suffix={c.suffix} />
+                <span className="wr-counter-label">{c.label}</span>
+              </motion.div>
+            ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* ═══ ARCHIVE, image card grid ═══ */}
         <section className="wr-archive" style={{position:"relative"}}><FigmaFrameLabel name="Archive" />

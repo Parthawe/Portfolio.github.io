@@ -230,23 +230,37 @@
 
 /* ── Scroll counters ── */
 .wr-counters {
-  padding: var(--gutter) 0;
+  padding: var(--space-12) 0;
   position: relative;
   z-index: 1;
 }
 .wr-counters-inner {
   max-width: var(--max-w, 1200px);
   margin: 0 auto;
-  padding: 0 var(--gutter);
+  padding: 2.5rem var(--gutter);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--gutter);
+  gap: 0;
   text-align: center;
+  border: 1px solid var(--ink-06);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .wr-counter-item {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  padding: 1rem 0;
+  position: relative;
+}
+.wr-counter-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: var(--ink-06);
 }
 .wr-counter-value {
   font-family: var(--ff-sans);
@@ -568,6 +582,15 @@
   position: relative; z-index: 2;
   border-top: 1px solid var(--ink-06);
 }
+/* Gradient fade at top edge of section */
+.wr-featured-v2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-15), transparent);
+  z-index: 1;
+}
 .wr-featured-v2-inner {
   max-width: 1400px; margin: 0 auto;
   padding: clamp(3rem, 6vw, 5rem) clamp(24px, 5vw, 80px);
@@ -725,6 +748,14 @@
 .wr-archive {
   position: relative; z-index: 2;
   border-top: 1px solid var(--ink-06);
+}
+.wr-archive::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ink-15), transparent);
+  z-index: 1;
 }
 .wr-archive-inner {
   max-width: 1400px; margin: 0 auto;

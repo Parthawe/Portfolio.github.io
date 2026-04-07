@@ -62,7 +62,7 @@
   transition: opacity var(--dur-slow) var(--ease-in-out), transform 0.5s var(--ease-spring);
 }
 .pcard:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
 }
 .pcard:active {
   transform: translateY(-1px);
@@ -74,10 +74,14 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--ink-06);
-  transition: border-color var(--dur-base);
+  transition: border-color var(--dur-base), box-shadow 0.5s var(--ease-spring);
 }
 .pcard:hover .pcard-inner {
   border-color: var(--ink-15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+}
+[data-theme="dark"] .pcard:hover .pcard-inner {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* Arrow removed — Figma selection handles replace it */
@@ -154,10 +158,30 @@
   object-fit: cover;
   position: relative;
   z-index: 1;
-  transition: transform 0.7s var(--ease-spring);
+  transition: transform 0.7s var(--ease-spring), filter 0.5s;
 }
 .pcard:hover .pcard-visual img {
   transform: scale(1.05);
+}
+
+/* Gradient overlay on hover — more visual depth */
+.pcard-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(0,0,0,0.35) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.pcard:hover .pcard-visual::after {
+  opacity: 1;
 }
 
 /* Top row, category + year, overlaid */
@@ -251,11 +275,13 @@
   color: var(--text-on-dark);
   margin: 0;
   line-height: 1.15;
-  z-index: 2;
-  transition: transform 0.5s var(--ease-spring);
+  z-index: 3;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  transition: transform 0.5s var(--ease-spring), text-shadow 0.4s;
 }
 .pcard:hover .pcard-name {
   transform: translateY(-4px);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.6);
 }
 
 /* Infinite scrolling subtitle strip at bottom */

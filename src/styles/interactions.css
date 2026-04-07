@@ -265,15 +265,24 @@ h3.text-highlight .text-highlight-text {
   color: inherit;
   padding: var(--space-4) var(--space-2);
   border-radius: var(--radius);
-  transition: transform 0.3s var(--ease-spring);
+  border: 1px solid transparent;
+  background: transparent;
+  transition: transform 0.4s var(--ease-spring), border-color 0.3s, background 0.3s, box-shadow 0.4s;
 }
 .wr-discipline-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.04);
+  border-color: var(--ink-08);
+  background: var(--surface);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06), 0 0 0 1px var(--ink-04);
 }
 .wr-discipline-obj {
   width: 80px;
   height: 80px;
   flex-shrink: 0;
+  transition: transform 0.4s var(--ease-spring);
+}
+.wr-discipline-item:hover .wr-discipline-obj {
+  transform: scale(1.12);
 }
 .wr-discipline-label {
   font-family: var(--mono);
@@ -283,10 +292,11 @@ h3.text-highlight .text-highlight-text {
   text-transform: uppercase;
   color: var(--ink-40);
   text-align: center;
-  transition: color 0.2s;
+  transition: color 0.2s, letter-spacing 0.3s;
 }
 .wr-discipline-item:hover .wr-discipline-label {
   color: var(--ink);
+  letter-spacing: 0.1em;
 }
 @media (max-width: 768px) {
   .wr-disciplines-grid {
