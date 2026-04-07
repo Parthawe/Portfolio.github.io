@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useInView } from 'framer-motion'
+import { motion, useScroll, useTransform, useInView, type MotionValue } from 'framer-motion'
 import BrandIcon from './BrandIcon'
 import FigmaSelect from './FigmaSelect'
 
@@ -67,7 +67,7 @@ export default function Footer() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const a = (y: number, opacity: number) =>
+  const a = (y: MotionValue<number>, opacity: MotionValue<number>) =>
     skipAnim ? { y: 0, opacity: 1 } : { y, opacity }
 
   return (

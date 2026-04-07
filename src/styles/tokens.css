@@ -105,6 +105,16 @@
 
   /* Status colors */
   --green: #34C759;
+  --error: #E55555;
+  --error-light: #FFEEEE;
+  --error-dark: #CC3333;
+
+  /* Spotlight colors */
+  --spotlight-light-start: #e8ecf8;
+  --spotlight-light-end: #c8cee4;
+  --spotlight-dark-start: #2a2d38;
+  --spotlight-dark-end: #1e2028;
+  --spotlight-text-dark: #e0e2ea;
 
   --project-color: var(--ink);
 

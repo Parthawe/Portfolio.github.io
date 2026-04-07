@@ -142,7 +142,6 @@ export const projects: Project[] = [
     desc: 'Saved executives 5.2 hrs/week with AI meeting intelligence — 87% adoption in 2 weeks',
     category: 'ux',
     page: () => import('../pages/projects/ExecutiveLensPage'),
-    nda: true,
     archiveOrder: 1,
   },
   {
@@ -154,7 +153,6 @@ export const projects: Project[] = [
     desc: 'SaaS giving AI agents organizational context — dual-user admin and agent design',
     category: 'ux',
     page: () => import('../pages/projects/OrgDashboardPage'),
-    nda: true,
     archiveOrder: 17,
   },
   {
@@ -166,6 +164,7 @@ export const projects: Project[] = [
     desc: 'OTT platform with a retargeting system generating 30K+ ad variations',
     category: 'ux',
     page: () => import('../pages/projects/CueTvPage'),
+    nda: true,
     archiveOrder: 8,
   },
   {
@@ -189,7 +188,6 @@ export const projects: Project[] = [
     desc: 'Secure genomic data transfer to identify life expectancy of cancer patients',
     category: 'ux',
     page: () => import('../pages/projects/IbmPage'),
-    nda: true,
     archiveOrder: 19,
   },
 

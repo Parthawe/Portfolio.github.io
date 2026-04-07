@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -65,8 +64,6 @@ export default function ExecutiveLensPage() {
             },
           ]}
         />
-
-        <NdaGate slug="executivelens" projectName="ExecutiveLens">
 
         <CsSection id="cs-context" label="Context" title="The Executive Information Overload Problem">
           <CsBody>
@@ -193,8 +190,6 @@ export default function ExecutiveLensPage() {
           { id: 'cs-impact', label: 'Impact' },
           { id: 'cs-reflections', label: 'Reflections' },
         ]} liveUrl="https://www.executivelens.ai" />
-
-        </NdaGate>
 
       </main>
 

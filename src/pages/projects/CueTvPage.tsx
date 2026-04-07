@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -86,6 +87,8 @@ export default function CueTvPage() {
             </div>
           </div>
         </section>
+
+        <NdaGate slug="cuetv" projectName="CueTV">
 
         {/* About CueTV */}
         <section className="cs-section reveal">
@@ -302,6 +305,8 @@ export default function CueTvPage() {
         </section>
 
         <CsThanks contactCta />
+
+        </NdaGate>
 
       </main>
 

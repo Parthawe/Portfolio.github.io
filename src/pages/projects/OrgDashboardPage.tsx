@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -64,8 +63,6 @@ export default function OrgDashboardPage() {
             },
           ]}
         />
-
-        <NdaGate slug="org-dashboard" projectName="OrgDashboard">
 
         <CsSection id="cs-concept" label="Concept" title="Give Your AI Agents a Brain for Your Company">
           <CsBody>
@@ -191,8 +188,6 @@ export default function OrgDashboardPage() {
           { id: 'cs-results', label: 'Results' },
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
-
-        </NdaGate>
 
       </main>
 

@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -44,16 +43,13 @@ export default function IbmPage() {
           </div>
         </section>
 
-        {/* Protected content */}
-        <NdaGate slug="ibm" projectName="IBM Cancer Prognosis">
-          {Array.from({ length: 7 }, (_, i) => (
-            <div className="cs-slide reveal" key={i}>
-              <img src={`/Assets/Projects/ibm/${i + 1}.jpg`} alt={`IBM Cancer Prognosis, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
-            </div>
-          ))}
+        {Array.from({ length: 7 }, (_, i) => (
+          <div className="cs-slide reveal" key={i}>
+            <img src={`/Assets/Projects/ibm/${i + 1}.jpg`} alt={`IBM Cancer Prognosis, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+          </div>
+        ))}
 
-          <CsThanks />
-        </NdaGate>
+        <CsThanks />
 
       </main>
 

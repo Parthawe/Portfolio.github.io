@@ -342,8 +342,8 @@
 .agent-float-mute:hover,
 .agent-float-stop:hover { color: var(--ink); background: var(--ink-04); }
 
-.agent-float-stop { color: #e55; }
-.agent-float-stop:hover { background: #fee; color: #c33; }
+.agent-float-stop { color: var(--error); }
+.agent-float-stop:hover { background: var(--error-light); color: var(--error-dark); }
 
 /* Speaking pulse indicator */
 .agent-float-speaking {
@@ -468,7 +468,7 @@
 }
 .agent-float-mic:hover { color: var(--ink); }
 .agent-float-mic--on {
-  color: #e55;
+  color: var(--error);
   animation: ag-mic-pulse 1s ease-in-out infinite;
 }
 

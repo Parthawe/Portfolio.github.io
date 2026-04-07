@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from 'react'
-import { Canvas, IText, Rect, Ellipse, Line, PencilBrush, FabricImage, Group, FabricText, ActiveSelection, Point, type FabricObject } from 'fabric'
+import { Canvas, IText, Rect, Ellipse, Line, PencilBrush, FabricImage, Group, FabricText, ActiveSelection, Point, type FabricObject, type TPointerEventInfo, type TPointerEvent } from 'fabric'
 
 export type ToolType = 'select' | 'direct' | 'text' | 'rect' | 'ellipse' | 'line' | 'pencil' | 'hand' | 'zoom' | 'eyedropper'
 
@@ -219,7 +219,7 @@ const StudioCanvas = forwardRef<StudioCanvasRef, Props>(
       if (!c) return
       if (!['rect', 'ellipse', 'line', 'text', 'hand', 'zoom', 'eyedropper'].includes(activeTool)) return
 
-      const onDown = (opt: any) => {
+      const onDown = (opt: TPointerEventInfo<TPointerEvent>) => {
         const { x, y } = opt.scenePoint || { x: 0, y: 0 }
 
         if (activeTool === 'hand') {
@@ -269,7 +269,7 @@ const StudioCanvas = forwardRef<StudioCanvasRef, Props>(
         }
       }
 
-      const onMove = (opt: any) => {
+      const onMove = (opt: TPointerEventInfo<TPointerEvent>) => {
         if (activeTool === 'hand' && isPanning.current) {
           const e = opt.e as MouseEvent
           const vpt = c.viewportTransform!

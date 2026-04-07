@@ -32,7 +32,7 @@
   border-radius: 50%;
   background:
     radial-gradient(ellipse at 35% 30%, rgba(255,255,255,0.45) 0%, transparent 55%),
-    linear-gradient(160deg, #e8ecf8 0%, #c8cee4 100%);
+    linear-gradient(160deg, var(--spotlight-light-start) 0%, var(--spotlight-light-end) 100%);
   overflow: hidden;
   pointer-events: none;
   opacity: 0;
@@ -67,13 +67,13 @@
 [data-theme="dark"] .spotlight-circle {
   background:
     radial-gradient(ellipse at 35% 30%, rgba(255,255,255,0.08) 0%, transparent 55%),
-    linear-gradient(160deg, #2a2d38 0%, #1e2028 100%);
+    linear-gradient(160deg, var(--spotlight-dark-start) 0%, var(--spotlight-dark-end) 100%);
   box-shadow:
     inset -6px -4px 18px rgba(0, 0, 0, 0.2),
     0 0 50px rgba(80, 90, 130, 0.2);
 }
 [data-theme="dark"] .spotlight-behind span {
-  color: #e0e2ea;
+  color: var(--spotlight-text-dark);
 }
 
 /* Hide cursor/comet when spotlight active */
