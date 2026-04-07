@@ -19,7 +19,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function OrgDashboardPage() {
   return (
-    <NdaGate slug="org-dashboard" projectName="OrgDashboard">
+    <>
       <Helmet>
         <title>OrgDashboard &middot; Parth Pawar</title>
         <meta name="description" content="OrgDashboard, Designing the SaaS platform that gives AI agents organizational context. Knowledge base, integrations dashboard, and action approval system. Case study by Parth Pawar." />
@@ -64,6 +64,8 @@ export default function OrgDashboardPage() {
             },
           ]}
         />
+
+        <NdaGate slug="org-dashboard" projectName="OrgDashboard">
 
         <CsSection id="cs-concept" label="Concept" title="Give Your AI Agents a Brain for Your Company">
           <CsBody>
@@ -190,10 +192,12 @@ export default function OrgDashboardPage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
 
+        </NdaGate>
+
       </main>
 
       <NextProject slug="raahi-project" title="Raahi" image="/Assets/images/raahi.jpg" />
       <Footer />
-    </NdaGate>
+    </>
   )
 }

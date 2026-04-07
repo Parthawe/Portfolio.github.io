@@ -8,7 +8,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function IbmPage() {
   return (
-    <NdaGate slug="ibm" projectName="IBM Cancer Prognosis">
+    <>
       <Helmet>
         <title>IBM Cancer Prognosis &middot; Parth Pawar</title>
         <meta name="description" content="Securely transfer genomic data and identify life expectancy of cancer patients. Exploring secure transfer of Personal Health Information using encryption techniques." />
@@ -35,7 +35,7 @@ export default function IbmPage() {
           ]}
         />
 
-        {/* Overview */}
+        {/* Overview — public */}
         <section className="cs-section reveal">
           <div className="wrap">
             <p className="cs-body" style={{ maxWidth: '720px' }}>
@@ -44,19 +44,21 @@ export default function IbmPage() {
           </div>
         </section>
 
-        {/* Image sequence */}
-        {Array.from({ length: 7 }, (_, i) => (
-          <div className="cs-slide reveal" key={i}>
-            <img src={`/Assets/Projects/ibm/${i + 1}.jpg`} alt={`IBM Cancer Prognosis, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
-          </div>
-        ))}
+        {/* Protected content */}
+        <NdaGate slug="ibm" projectName="IBM Cancer Prognosis">
+          {Array.from({ length: 7 }, (_, i) => (
+            <div className="cs-slide reveal" key={i}>
+              <img src={`/Assets/Projects/ibm/${i + 1}.jpg`} alt={`IBM Cancer Prognosis, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+            </div>
+          ))}
 
-        <CsThanks />
+          <CsThanks />
+        </NdaGate>
 
       </main>
 
       <NextProject slug="sculpture" title="Sculpture" image="/Assets/Projects/Sculpture/1.jpg" />
       <Footer />
-    </NdaGate>
+    </>
   )
 }

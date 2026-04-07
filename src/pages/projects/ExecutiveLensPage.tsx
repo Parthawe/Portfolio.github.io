@@ -20,7 +20,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function ExecutiveLensPage() {
   return (
-    <NdaGate slug="executivelens" projectName="ExecutiveLens">
+    <>
       <Helmet>
         <title>ExecutiveLens &middot; Parth Pawar</title>
         <meta name="description" content="ExecutiveLens.ai, AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time decision tracking. Case study by Parth Pawar, Product Designer." />
@@ -65,6 +65,8 @@ export default function ExecutiveLensPage() {
             },
           ]}
         />
+
+        <NdaGate slug="executivelens" projectName="ExecutiveLens">
 
         <CsSection id="cs-context" label="Context" title="The Executive Information Overload Problem">
           <CsBody>
@@ -192,10 +194,12 @@ export default function ExecutiveLensPage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} liveUrl="https://www.executivelens.ai" />
 
+        </NdaGate>
+
       </main>
 
       <NextProject slug="zentipay" title="ZentiPay" image="/Assets/images/zentipay.png" />
       <Footer />
-    </NdaGate>
+    </>
   )
 }

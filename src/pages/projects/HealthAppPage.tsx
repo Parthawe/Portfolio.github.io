@@ -8,7 +8,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function HealthAppPage() {
   return (
-    <NdaGate slug="healthapp" projectName="VJ Parivar">
+    <>
       <Helmet>
         <title>VJ Parivar &middot; Parth Pawar</title>
         <meta name="description" content="VJ Parivar is a post-purchase services app for VJ Real Estate homeowners. Designing the digital forefront of a real estate company." />
@@ -35,7 +35,7 @@ export default function HealthAppPage() {
           ]}
         />
 
-        {/* Overview */}
+        {/* Overview — public */}
         <section className="cs-section reveal">
           <div className="wrap">
             <p className="cs-body" style={{ maxWidth: '720px' }}>
@@ -44,19 +44,21 @@ export default function HealthAppPage() {
           </div>
         </section>
 
-        {/* Image sequence */}
-        {Array.from({ length: 11 }, (_, i) => (
-          <div className="cs-slide reveal" key={i}>
-            <img src={`/Assets/Projects/health-app/${i + 1}.jpg`} alt={`VJ Parivar, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
-          </div>
-        ))}
+        {/* Protected content */}
+        <NdaGate slug="healthapp" projectName="VJ Parivar">
+          {Array.from({ length: 11 }, (_, i) => (
+            <div className="cs-slide reveal" key={i}>
+              <img src={`/Assets/Projects/health-app/${i + 1}.jpg`} alt={`VJ Parivar, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+            </div>
+          ))}
 
-        <CsThanks />
+          <CsThanks />
+        </NdaGate>
 
       </main>
 
       <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Assets/Projects/ibm/1.jpg" />
       <Footer />
-    </NdaGate>
+    </>
   )
 }

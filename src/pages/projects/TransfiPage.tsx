@@ -21,7 +21,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function TransfiPage() {
   return (
-    <NdaGate slug="transfi-project" projectName="TransFi">
+    <>
       <Helmet>
         <title>TransFi &middot; Parth Pawar</title>
         <meta name="description" content="TransFi, Lead Product Designer case study. Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets, reducing enterprise onboarding from 2 weeks to 3 days." />
@@ -88,6 +88,8 @@ export default function TransfiPage() {
             </div>
           </div>
         </section>
+
+        <NdaGate slug="transfi-project" projectName="TransFi">
 
         {/* Problem section */}
         <section className="cs-section reveal" id="cs-problem" style={{ paddingTop: 0 }}>
@@ -381,10 +383,12 @@ export default function TransfiPage() {
           { id: 'cs-whats-next', label: 'What\u2019s Next' },
         ]} liveUrl="https://www.transfi.com" />
 
+        </NdaGate>
+
       </main>
 
       <NextProject slug="cuetv" title="CueTV" image="/Assets/images/cuetv.jpg" />
       <Footer />
-    </NdaGate>
+    </>
   )
 }

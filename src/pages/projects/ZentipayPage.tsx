@@ -21,7 +21,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function ZentipayPage() {
   return (
-    <NdaGate slug="zentipay" projectName="ZentiPay">
+    <>
       <Helmet>
         <title>ZentiPay &middot; Parth Pawar</title>
         <meta name="description" content="ZentiPay, Founding Product Designer for an AI-driven fintech super app serving migrant workers and international students. Increased transaction completion by 30% and reduced perceived transfer time by 40%." />
@@ -76,6 +76,8 @@ export default function ZentipayPage() {
             },
           ]}
         />
+
+        <NdaGate slug="zentipay" projectName="ZentiPay">
 
         <CsSection id="cs-problem" label="01 &mdash; Problem" title="$700B+ in remittances annually. Migrants still pay an average of 6.3% in fees.">
           <div className="cs-two-col">
@@ -329,10 +331,12 @@ export default function ZentipayPage() {
           { id: 'cs-whats-next', label: 'What\u2019s Next' },
         ]} />
 
+        </NdaGate>
+
       </main>
 
       <NextProject slug="transfi" title="TransFi" image="/Assets/images/transfi.jpg" />
       <Footer />
-    </NdaGate>
+    </>
   )
 }

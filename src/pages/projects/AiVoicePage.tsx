@@ -18,7 +18,7 @@ import NextProject from '../../components/case-study/NextProject'
 
 export default function AiVoicePage() {
   return (
-    <NdaGate slug="ai-voice" projectName="AI Voice">
+    <>
       <Helmet>
         <title>AI Voice Selection &middot; Parth Pawar</title>
         <meta name="description" content="Redefining AI Voice Selection For Enterprise, Integrating Emotional Intelligence and Expressive Voice Selection through intuitive, emotionally intelligent interactions." />
@@ -87,6 +87,8 @@ export default function AiVoicePage() {
             </div>
           </div>
         </section>
+
+        <NdaGate slug="ai-voice" projectName="AI Voice">
 
         <CsImage src="/Assets/Projects/ai-voice/1.png" alt="AI Voice Selection, project overview slide" />
         <p className="cs-caption">Project overview, the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
@@ -365,10 +367,12 @@ export default function AiVoicePage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
 
+        </NdaGate>
+
       </main>
 
       <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/images/ballah-code.png" />
       <Footer />
-    </NdaGate>
+    </>
   )
 }
