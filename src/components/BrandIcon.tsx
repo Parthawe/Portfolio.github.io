@@ -1,4 +1,5 @@
 /* Inline SVG brand icons, keeps bundle small, no external deps */
+import { memo } from 'react'
 import type { ReactNode } from 'react'
 
 const icons: Record<string, (size: number) => ReactNode> = {
@@ -218,7 +219,7 @@ interface BrandIconProps {
   className?: string
 }
 
-export default function BrandIcon({ name, size = 16, className }: BrandIconProps) {
+export default memo(function BrandIcon({ name, size = 16, className }: BrandIconProps) {
   const key = normalize(name)
   const render = icons[key]
   if (!render) return null
@@ -227,7 +228,7 @@ export default function BrandIcon({ name, size = 16, className }: BrandIconProps
       {render(size)}
     </span>
   )
-}
+})
 
 export function hasBrandIcon(name: string): boolean {
   return !!icons[normalize(name)]

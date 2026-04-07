@@ -92,9 +92,19 @@ export default function RootLayout() {
     });
     mo.observe(document.body, { childList: true, subtree: true });
 
+    // Auto-hide shimmer on case study images when loaded
+    const onImgLoad = (e: Event) => {
+      const img = e.target as HTMLImageElement;
+      if (img.tagName !== 'IMG') return;
+      const wrapper = img.closest('.cs-img');
+      if (wrapper) wrapper.classList.add('loaded');
+    };
+    document.addEventListener('load', onImgLoad, true); // capture phase
+
     return () => {
       io.disconnect();
       mo.disconnect();
+      document.removeEventListener('load', onImgLoad, true);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

@@ -335,6 +335,8 @@ export default function GlyphEditor() {
                           cx={pt.cp1x} cy={pt.cp1y} r={cpRadius}
                           fill="#0D99FF" stroke="#fff" strokeWidth={pointRadius * 0.15}
                           className="ge-handle"
+                          role="button"
+                          aria-label={`Control point 1 for point ${i}`}
                           onPointerDown={e => handlePointerDown(i, 'cp1', e)}
                         />
                       )
@@ -355,6 +357,8 @@ export default function GlyphEditor() {
                           cx={pt.cp2x} cy={pt.cp2y} r={cpRadius}
                           fill="#A259FF" stroke="#fff" strokeWidth={pointRadius * 0.15}
                           className="ge-handle"
+                          role="button"
+                          aria-label={`Control point 2 for point ${i}`}
                           onPointerDown={e => handlePointerDown(i, 'cp2', e)}
                         />
                       )
@@ -369,6 +373,8 @@ export default function GlyphEditor() {
                         fill="#fff" stroke="var(--ink)" strokeWidth={pointRadius * 0.2}
                         rx={pt.type === 'C' || pt.type === 'Q' ? 0 : pointRadius * 0.3}
                         className="ge-handle"
+                        role="button"
+                        aria-label={`Anchor point ${i}`}
                         onPointerDown={e => handlePointerDown(i, 'main', e)}
                       />
                     )

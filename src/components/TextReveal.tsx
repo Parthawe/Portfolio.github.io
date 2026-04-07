@@ -28,6 +28,7 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
   const targetRef = useRef(0)
   const rafRef = useRef(0)
   const runningRef = useRef(false)
+  const rectRef = useRef<DOMRect | null>(null)
 
   const tick = useCallback(() => {
     const circle = circleRef.current
@@ -60,8 +61,8 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
       circle.style.transform = `translate(${vx - half}px, ${vy - half}px)`
 
       // Behind text offset: align with front text position
-      // Container rect gives us the front text's viewport position
-      const rect = container.getBoundingClientRect()
+      // Use cached rect, updated on resize/enter
+      const rect = rectRef.current || container.getBoundingClientRect()
       behindEl.style.left = `${rect.left - (vx - half)}px`
       behindEl.style.top = `${rect.top - (vy - half)}px`
       behindEl.style.width = `${rect.width}px`
@@ -90,6 +91,7 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     posRef.current = { x: e.clientX, y: e.clientY }
     smoothRef.current = { x: e.clientX, y: e.clientY }
     targetRef.current = SIZE
+    rectRef.current = containerRef.current?.getBoundingClientRect() ?? null
     setHovered(true)
     document.body.classList.add('spotlight-active')
     startLoop()
@@ -102,14 +104,21 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     startLoop()
   }, [startLoop])
 
-  // Global mouse tracking while hovered
+  // Global mouse tracking while hovered + update cached rect on resize
   useEffect(() => {
     if (!hovered) return
     const onMove = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY }
     }
+    const onResize = () => {
+      rectRef.current = containerRef.current?.getBoundingClientRect() ?? null
+    }
     document.addEventListener('mousemove', onMove, { passive: true })
-    return () => document.removeEventListener('mousemove', onMove)
+    window.addEventListener('resize', onResize, { passive: true })
+    return () => {
+      document.removeEventListener('mousemove', onMove)
+      window.removeEventListener('resize', onResize)
+    }
   }, [hovered])
 
   useEffect(() => () => {

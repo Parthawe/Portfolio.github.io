@@ -465,6 +465,10 @@
   background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 37%, rgba(255,255,255,0.03) 63%);
   background-size: 200% 100%;
 }
+.cs-img.loaded::before {
+  opacity: 0;
+  animation: none;
+}
 
 /* Image pair */
 .cs-img-pair {

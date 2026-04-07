@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { useBackToTop } from '../hooks/useBackToTop';
 import FigmaSelect from './FigmaSelect';
 
-export default function BackToTop() {
+export default memo(function BackToTop() {
   const { visible, scrollToTop } = useBackToTop();
 
   return (
@@ -22,4 +23,4 @@ export default function BackToTop() {
       <FigmaSelect />
     </button>
   );
-}
+})

@@ -7,8 +7,8 @@
  *  3. Done — routes, cards, and listings are auto-generated.
  *
  * To mark a project as NDA:
- *  Set `nda: true` and optionally `ndaPassword: 'custom'`.
- *  Default password: "parth2026"
+ *  Set `nda: true`.
+ *  Password: "designportfolio" + today's date (DDMMYY), e.g. designportfolio070426
  */
 
 export interface Project {
@@ -30,8 +30,6 @@ export interface Project {
   page: () => Promise<{ default: React.ComponentType }>
   /** Mark as NDA / password-protected */
   nda?: boolean
-  /** Custom password (default: "parth2026") */
-  ndaPassword?: string
   /** Show in featured grid on homepage */
   featured?: boolean
   /** Featured order (lower = first) */

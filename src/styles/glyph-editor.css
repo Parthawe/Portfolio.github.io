@@ -254,3 +254,15 @@
 
 /* ── Dark mode ── */
 [data-theme="dark"] .ge-weight-tab.active { background: var(--ink); color: var(--bg); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .ge-handle,
+  .ge-weight-tab,
+  .ge-toggle,
+  .ge-char-btn,
+  .ge-reset,
+  .ge-char-input {
+    transition: none;
+  }
+}

@@ -125,7 +125,7 @@
 }
 .figma-ctx-item:disabled {
   cursor: default;
-  color: var(--ink-30);
+  color: var(--ink-50);
 }
 .figma-ctx-shortcut {
   font-family: var(--sans);
@@ -491,6 +491,10 @@ hr.divider {
 .pill-link:hover {
   color: var(--ink);
   background: var(--ink-04);
+}
+.pill-link:focus-visible {
+  outline: 2px solid var(--ink-70);
+  outline-offset: 2px;
 }
 .pill-link.active {
   color: var(--ink);

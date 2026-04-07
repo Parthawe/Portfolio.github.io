@@ -4,27 +4,43 @@ import { motion, AnimatePresence } from 'framer-motion'
 /**
  * Inline NDA content gate for project case studies.
  *
- * Placed WITHIN a project page after the public preview content
- * (header, hero, overview, key results). Only the deep-dive
- * process/design content sits inside as children.
+ * Password: "designportfolio" + today's date in DDMMYY format.
+ * e.g. on April 7, 2026 → "designportfolio070426"
+ * This rotates daily — yesterday's password won't work today.
  *
- * When locked: shows a branded inline card asking for the password.
- * When unlocked: smoothly reveals the protected children.
- * Unlock state persists in sessionStorage.
+ * Unlock state persists in sessionStorage (per-tab, clears on close).
  */
 
-const DEFAULT_PASSWORD = 'parth2026'
+function getTodayPassword(): string {
+  const now = new Date()
+  const dd = String(now.getDate()).padStart(2, '0')
+  const mm = String(now.getMonth() + 1).padStart(2, '0')
+  const yy = String(now.getFullYear()).slice(-2)
+  return `designportfolio${dd}${mm}${yy}`
+}
 
 interface NdaGateProps {
   slug: string
   projectName: string
-  password?: string
   children: ReactNode
 }
 
-export default function NdaGate({ slug, projectName, password = DEFAULT_PASSWORD, children }: NdaGateProps) {
+export default function NdaGate({ slug, projectName, children }: NdaGateProps) {
   const storageKey = `nda-unlock-${slug}`
-  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem(storageKey) === '1')
+
+  // Check if previously unlocked in this session AND the stored date matches today
+  const [unlocked, setUnlocked] = useState(() => {
+    try {
+      const stored = sessionStorage.getItem(storageKey)
+      if (!stored) return false
+      const { date } = JSON.parse(stored)
+      const today = new Date().toISOString().slice(0, 10)
+      return date === today
+    } catch {
+      return false
+    }
+  })
+
   const [value, setValue] = useState('')
   const [error, setError] = useState(false)
   const [shake, setShake] = useState(false)
@@ -33,22 +49,23 @@ export default function NdaGate({ slug, projectName, password = DEFAULT_PASSWORD
 
   useEffect(() => {
     if (!unlocked && gateRef.current) {
-      // Small delay so the page renders first
       setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 300)
     }
   }, [unlocked])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    const password = getTodayPassword()
     if (value.trim().toLowerCase() === password.toLowerCase()) {
-      sessionStorage.setItem(storageKey, '1')
+      const today = new Date().toISOString().slice(0, 10)
+      sessionStorage.setItem(storageKey, JSON.stringify({ date: today }))
       setUnlocked(true)
     } else {
       setError(true)
       setShake(true)
       setValue('')
       setTimeout(() => setShake(false), 500)
-      setTimeout(() => setError(false), 2000)
+      setTimeout(() => setError(false), 2500)
     }
   }
 

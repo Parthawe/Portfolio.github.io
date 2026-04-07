@@ -139,10 +139,10 @@
   position: relative;
 }
 .gp-glyph:hover {
-  color: var(--project-color, #744210);
+  color: var(--project-color, var(--ink));
 }
 .gp-glyph.active {
-  color: var(--project-color, #744210);
+  color: var(--project-color, var(--ink));
 }
 .gp-glyph.active::after {
   content: '';
@@ -151,7 +151,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--project-color, #744210);
+  background: var(--project-color, var(--ink));
   border-radius: 1px;
 }
 
@@ -235,7 +235,7 @@
   padding: 0.25rem 0;
 }
 .gp-alphabet-char:hover {
-  color: var(--project-color, #744210);
+  color: var(--project-color, var(--ink));
   transform: scale(1.15);
 }
 
@@ -254,3 +254,18 @@
 /* ── Dark mode ── */
 [data-theme="dark"] .gp-weight-tab.active { background: var(--ink); color: var(--bg); }
 [data-theme="dark"] .gp-toggle-btn.active .gp-toggle-switch { background: var(--ink); color: var(--bg); }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .gp-glyph,
+  .gp-alphabet-char,
+  .gp-weight-tab,
+  .gp-toggle-btn,
+  .gp-sample,
+  .gp-input {
+    transition: none;
+  }
+  .gp-alphabet-char:hover {
+    transform: none;
+  }
+}

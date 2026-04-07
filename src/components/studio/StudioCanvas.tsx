@@ -319,8 +319,8 @@ const StudioCanvas = forwardRef<StudioCanvasRef, Props>(
           c.defaultCursor = 'grab'
           isPanning.current = false
 
-          const pd = (opt: any) => { isPanning.current = true; lastPan.current = { x: (opt.e as MouseEvent).clientX, y: (opt.e as MouseEvent).clientY }; c.defaultCursor = 'grabbing' }
-          const pm = (opt: any) => { if (!isPanning.current) return; const me = opt.e as MouseEvent; const vpt = c.viewportTransform!; vpt[4] += me.clientX - lastPan.current.x; vpt[5] += me.clientY - lastPan.current.y; lastPan.current = { x: me.clientX, y: me.clientY }; c.requestRenderAll() }
+          const pd = (opt: TPointerEventInfo<TPointerEvent>) => { isPanning.current = true; lastPan.current = { x: (opt.e as MouseEvent).clientX, y: (opt.e as MouseEvent).clientY }; c.defaultCursor = 'grabbing' }
+          const pm = (opt: TPointerEventInfo<TPointerEvent>) => { if (!isPanning.current) return; const me = opt.e as MouseEvent; const vpt = c.viewportTransform!; vpt[4] += me.clientX - lastPan.current.x; vpt[5] += me.clientY - lastPan.current.y; lastPan.current = { x: me.clientX, y: me.clientY }; c.requestRenderAll() }
           const pu = () => { isPanning.current = false; c.defaultCursor = 'grab' }
           c.on('mouse:down', pd); c.on('mouse:move', pm); c.on('mouse:up', pu)
 

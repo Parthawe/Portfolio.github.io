@@ -14,6 +14,8 @@
   --color-ink-06: var(--ink-06);
   --color-ink-04: var(--ink-04);
   --color-accent: var(--accent-hi);
+  --color-error: var(--error);
+  --color-green: var(--green);
 }
 
 @layer base {
