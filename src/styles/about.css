@@ -865,9 +865,12 @@
   overflow: hidden;
 }
 
-/* ── Scattered tool names ── */
+/* ── Scattered tool names with logos ── */
 .tools-word {
   position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
   font-family: var(--serif);
   font-weight: 700;
   font-style: italic;
@@ -876,6 +879,10 @@
   pointer-events: none;
   white-space: nowrap;
   z-index: 1;
+}
+.tools-word-icon {
+  flex-shrink: 0;
+  vertical-align: middle;
 }
 .tools-word--xl { font-size: clamp(3rem, 7vw, 5.5rem); }
 .tools-word--lg { font-size: clamp(2rem, 5vw, 4rem); }
