@@ -5,6 +5,15 @@
   --color-bg-alt: var(--bg-alt);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
+  --color-ink-70: var(--ink-70);
+  --color-ink-50: var(--ink-50);
+  --color-ink-40: var(--ink-40);
+  --color-ink-30: var(--ink-30);
+  --color-ink-15: var(--ink-15);
+  --color-ink-08: var(--ink-08);
+  --color-ink-06: var(--ink-06);
+  --color-ink-04: var(--ink-04);
+  --color-accent: var(--accent-hi);
 }
 
 @layer base {

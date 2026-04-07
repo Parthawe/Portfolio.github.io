@@ -235,7 +235,8 @@
 [data-theme="dark"] :focus-visible {
   outline-color: rgba(237,237,236,0.65);
 }
-[data-theme="dark"] img:not(.lightbox img) {
+/* Subtle brightness reduction only on project/content images — not logos or brand assets */
+[data-theme="dark"] :is(.pcard-visual, .cs-img, .cs-img-full, .cs-slide, .proj-hero-img) img {
   filter: brightness(0.92);
 }
 /* Dark mode: elevate cards with stronger borders since shadows are invisible on dark bg */

@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import TiltCard from './TiltCard'
 import FigmaSelect from './FigmaSelect'
@@ -18,7 +18,7 @@ interface ProjectCardProps {
   nda?: boolean
 }
 
-export default function ProjectCard({
+export default memo(function ProjectCard({
   slug, name, image, tag, year, desc,
   loading = 'lazy', featured = false, tilt = true, tiltIntensity = 5,
   nda = false,
@@ -33,6 +33,12 @@ export default function ProjectCard({
       const brightness = getImageBrightness(img)
       if (brightness > 140) card.classList.add('pcard--light')
     } catch { /* cross-origin or canvas error */ }
+  }, [])
+
+  const handleImgError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    const visual = e.currentTarget.closest('.pcard-visual')
+    if (visual) visual.classList.add('loaded') // hide shimmer
+    e.currentTarget.style.display = 'none'
   }, [])
 
   const card = (
@@ -55,7 +61,7 @@ export default function ProjectCard({
           </span>
         </div>
         <div className="pcard-visual">
-          <img src={image} alt={name} loading={loading} onLoad={handleImgLoad} />
+          <img src={image} alt={name} loading={loading} onLoad={handleImgLoad} onError={handleImgError} />
         </div>
         <h2 className="pcard-name">{name}</h2>
         {desc && (
@@ -73,4 +79,4 @@ export default function ProjectCard({
 
   if (!tilt) return card
   return <TiltCard intensity={tiltIntensity}>{card}</TiltCard>
-}
+})

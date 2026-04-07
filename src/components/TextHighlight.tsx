@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function TextHighlight({ children, color, as: Tag = 'span', className = '' }: Props) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start 90%', 'center 60%'],
@@ -25,7 +25,7 @@ export default function TextHighlight({ children, color, as: Tag = 'span', class
   const width = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (
-    <Tag ref={ref as any} className={`text-highlight ${className}`}>
+    <Tag ref={ref as React.Ref<never>} className={`text-highlight ${className}`}>
       <span className="text-highlight-text">{children}</span>
       <motion.span
         className="text-highlight-mark"

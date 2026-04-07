@@ -33,7 +33,8 @@ export default function BookViewer({
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [dimensions, setDimensions] = useState({ width: 650, height: 840 });
-  const flipBookRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- HTMLFlipBook has no exported instance type
+  const flipBookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void; getCurrentPageIndex: () => number } } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const aspectRef = useRef(840 / 650);
 
@@ -124,7 +125,7 @@ export default function BookViewer({
     return () => window.removeEventListener('keydown', handle);
   }, []);
 
-  const onFlip = useCallback((e: any) => { setCurrentPage(e.data); }, []);
+  const onFlip = useCallback((e: { data: number }) => { setCurrentPage(e.data); }, []);
   const goNext = () => flipBookRef.current?.pageFlip()?.flipNext();
   const goPrev = () => flipBookRef.current?.pageFlip()?.flipPrev();
   const totalPages = pages.length;
@@ -138,7 +139,7 @@ export default function BookViewer({
           <div className="book-loading">
             <div className="book-loading-spinner" />
             <span>Preparing your book...</span>
-            <span className="book-loading-sub">62 pages of design work</span>
+            <span className="book-loading-sub">{totalPages || 62} pages of design work</span>
           </div>
         ) : (
           <div className="book-flip-wrapper">

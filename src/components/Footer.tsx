@@ -67,7 +67,7 @@ export default function Footer() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const a = (y: any, opacity: any) =>
+  const a = (y: number, opacity: number) =>
     skipAnim ? { y: 0, opacity: 1 } : { y, opacity }
 
   return (

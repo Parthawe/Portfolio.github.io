@@ -183,8 +183,8 @@
 .color-chapter,
 .color-chapter--light,
 .color-chapter--dark {
-  background: var(--bg) !important;
-  color: var(--ink) !important;
+  background: var(--bg);
+  color: var(--ink);
 }
 
 /* Overview section */
@@ -1462,115 +1462,57 @@
 }
 
 /* ── Neutralize dark/blue section variants ── */
-.cs-section--blue,
-.cs-section--dark,
-.cs-section--gray,
-.project-header--blue,
-.project-header--dark {
-  background: inherit !important;
-  color: var(--ink) !important;
-  border-top-color: var(--ink-12) !important;
+/* ── Color neutralization for themed sections ──
+   Uses :is() for double specificity so these beat base styles
+   without needing !important flags.
+   ────────────────────────────────────────────────────────── */
+:is(.cs-section--blue, .cs-section--dark, .cs-section--gray, .project-header--blue, .project-header--dark) {
+  background: inherit;
+  color: var(--ink);
+  border-top-color: var(--ink-12);
 }
-.cs-section--blue .cs-section-label,
-.cs-section--dark .cs-section-label { color: var(--ink-40) !important; opacity: 1; }
-.cs-section--blue .cs-section-title,
-.cs-section--dark .cs-section-title { color: var(--ink) !important; }
-.cs-section--blue .cs-section-subtitle,
-.cs-section--dark .cs-section-subtitle { color: var(--ink) !important; }
-.cs-section--blue .cs-body,
-.cs-section--blue .cs-body p,
-.cs-section--dark .cs-body,
-.cs-section--dark .cs-body p { color: var(--ink-70) !important; opacity: 1; }
-.cs-section--blue .cs-info-key,
-.cs-section--dark .cs-info-key { color: var(--ink-40) !important; opacity: 1; }
-.cs-section--blue .cs-info-value,
-.cs-section--dark .cs-info-value { color: var(--ink) !important; }
-.cs-section--blue .cs-tag-item,
-.cs-section--dark .cs-tag-item { border-color: var(--ink-08) !important; color: var(--ink-70) !important; background: var(--ink-04) !important; opacity: 1; }
-.cs-section--blue .cs-list li,
-.cs-section--dark .cs-list li { color: var(--ink-70) !important; opacity: 1; }
-.cs-section--blue .cs-list li::before,
-.cs-section--dark .cs-list li::before { background: var(--ink-40) !important; }
-.cs-section--blue .cs-num-list li,
-.cs-section--dark .cs-num-list li { color: var(--ink-70) !important; opacity: 1; }
-.cs-section--blue .cs-num-list li::before,
-.cs-section--dark .cs-num-list li::before { color: var(--ink-40) !important; }
-.cs-section--blue .cs-callout,
-.cs-section--dark .cs-callout {
-  background: transparent !important;
-  border-left-color: var(--ink-15) !important;
-}
-.cs-section--blue .cs-callout p,
-.cs-section--dark .cs-callout p { color: var(--ink-70) !important; opacity: 1; }
-.cs-section--blue .cs-credit-role,
-.cs-section--dark .cs-credit-role { color: var(--ink-40) !important; opacity: 1; }
-.cs-section--blue .cs-credit-name,
-.cs-section--dark .cs-credit-name { color: var(--ink) !important; }
-.cs-section--blue .cs-img-full img,
-.cs-section--blue .cs-img,
-.cs-section--dark .cs-img-full img,
-.cs-section--dark .cs-img { background: var(--bg-alt) !important; }
-.cs-section--blue .cs-display,
-.cs-section--dark .cs-display { color: var(--ink) !important; }
-.cs-section--blue .cs-thanks-title,
-.cs-section--dark .cs-thanks-title { color: var(--ink) !important; }
-.cs-section--blue .cs-step-num,
-.cs-section--dark .cs-step-num { background: var(--ink) !important; color: var(--bg) !important; }
-.cs-section--blue .cs-step-title,
-.cs-section--dark .cs-step-title { color: var(--ink) !important; }
-.cs-section--blue .cs-feature-card,
-.cs-section--dark .cs-feature-card {
-  background: var(--surface) !important;
-  border: 1px solid var(--ink-06) !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-.cs-section--blue .cs-feature-card-title,
-.cs-section--dark .cs-feature-card-title { color: var(--ink) !important; }
-.cs-section--blue .cs-quote-card,
-.cs-section--dark .cs-quote-card {
-  background: var(--surface) !important;
-  border: 1px solid var(--ink-06) !important;
-}
-.cs-section--blue .cs-quote-card p,
-.cs-section--dark .cs-quote-card p { color: var(--ink-70) !important; }
-.cs-section--blue .cs-quote-card cite,
-.cs-section--dark .cs-quote-card cite { color: var(--ink-40) !important; }
-.cs-section--blue .cs-process-pill,
-.cs-section--dark .cs-process-pill {
-  background: transparent !important;
-  border: 1px solid var(--ink-15) !important;
-  color: var(--ink) !important;
-}
-.cs-section--blue .cs-label-row,
-.cs-section--dark .cs-label-row { border-bottom-color: var(--ink-12) !important; }
-.cs-section--blue .cs-label-row:first-child,
-.cs-section--dark .cs-label-row:first-child { border-top-color: var(--ink-12) !important; }
-.cs-section--blue .cs-label-row-key,
-.cs-section--dark .cs-label-row-key { color: var(--ink) !important; }
-.cs-section--blue .cs-label-row-val,
-.cs-section--dark .cs-label-row-val { color: var(--ink-70) !important; }
-.cs-section--blue .cs-swatch-color,
-.cs-section--dark .cs-swatch-color { border-color: var(--ink-08) !important; }
-.cs-section--blue .cs-swatch-hex,
-.cs-section--dark .cs-swatch-hex { color: var(--ink-40) !important; }
-.cs-section--blue .cs-spectrum-dot,
-.cs-section--dark .cs-spectrum-dot { background: var(--ink) !important; }
+:is(.cs-section--blue, .cs-section--dark) .cs-section-label { color: var(--ink-40); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-section-title { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-section-subtitle { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) :is(.cs-body, .cs-body p) { color: var(--ink-70); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-info-key { color: var(--ink-40); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-info-value { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-tag-item { border-color: var(--ink-08); color: var(--ink-70); background: var(--ink-04); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-list li { color: var(--ink-70); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-list li::before { background: var(--ink-40); }
+:is(.cs-section--blue, .cs-section--dark) .cs-num-list li { color: var(--ink-70); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-num-list li::before { color: var(--ink-40); }
+:is(.cs-section--blue, .cs-section--dark) .cs-callout { background: transparent; border-left-color: var(--ink-15); }
+:is(.cs-section--blue, .cs-section--dark) .cs-callout p { color: var(--ink-70); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-credit-role { color: var(--ink-40); opacity: 1; }
+:is(.cs-section--blue, .cs-section--dark) .cs-credit-name { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) :is(.cs-img-full img, .cs-img) { background: var(--bg-alt); }
+:is(.cs-section--blue, .cs-section--dark) .cs-display { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-thanks-title { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-step-num { background: var(--ink); color: var(--bg); }
+:is(.cs-section--blue, .cs-section--dark) .cs-step-title { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-feature-card { background: var(--surface); border: 1px solid var(--ink-06); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+:is(.cs-section--blue, .cs-section--dark) .cs-feature-card-title { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-quote-card { background: var(--surface); border: 1px solid var(--ink-06); }
+:is(.cs-section--blue, .cs-section--dark) .cs-quote-card p { color: var(--ink-70); }
+:is(.cs-section--blue, .cs-section--dark) .cs-quote-card cite { color: var(--ink-40); }
+:is(.cs-section--blue, .cs-section--dark) .cs-process-pill { background: transparent; border: 1px solid var(--ink-15); color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-label-row { border-bottom-color: var(--ink-12); }
+:is(.cs-section--blue, .cs-section--dark) .cs-label-row:first-child { border-top-color: var(--ink-12); }
+:is(.cs-section--blue, .cs-section--dark) .cs-label-row-key { color: var(--ink); }
+:is(.cs-section--blue, .cs-section--dark) .cs-label-row-val { color: var(--ink-70); }
+:is(.cs-section--blue, .cs-section--dark) .cs-swatch-color { border-color: var(--ink-08); }
+:is(.cs-section--blue, .cs-section--dark) .cs-swatch-hex { color: var(--ink-40); }
+:is(.cs-section--blue, .cs-section--dark) .cs-spectrum-dot { background: var(--ink); }
 
 /* Colored header neutralization */
-.project-header--blue .proj-title,
-.project-header--dark .proj-title { color: var(--ink) !important; }
-.project-header--blue .proj-subtitle,
-.project-header--dark .proj-subtitle { color: var(--ink-70) !important; }
-.project-header--blue .proj-info-label,
-.project-header--dark .proj-info-label { color: var(--ink-40) !important; }
-.project-header--blue .proj-info-val,
-.project-header--dark .proj-info-val { color: var(--ink) !important; }
-.project-header--blue .proj-tag,
-.project-header--dark .proj-tag { border-color: var(--ink-15) !important; color: var(--ink-70) !important; }
-.project-header--blue .back-link,
-.project-header--dark .back-link { color: var(--ink-40) !important; }
-.project-header--blue .back-link:hover,
-.project-header--dark .back-link:hover { color: var(--ink) !important; }
+:is(.project-header--blue, .project-header--dark) .proj-title { color: var(--ink); }
+:is(.project-header--blue, .project-header--dark) .proj-subtitle { color: var(--ink-70); }
+:is(.project-header--blue, .project-header--dark) .proj-info-label { color: var(--ink-40); }
+:is(.project-header--blue, .project-header--dark) .proj-info-val { color: var(--ink); }
+:is(.project-header--blue, .project-header--dark) .proj-tag { border-color: var(--ink-15); color: var(--ink-70); }
+:is(.project-header--blue, .project-header--dark) .back-link { color: var(--ink-40); }
+:is(.project-header--blue, .project-header--dark) .back-link:hover { color: var(--ink); }
 
 /* Next project */
 .next-project {

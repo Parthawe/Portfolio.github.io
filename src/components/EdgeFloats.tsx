@@ -19,7 +19,7 @@ export default function EdgeFloats() {
     <>
       {shapes.map((s, i) => (
         <div
-          key={i}
+          key={`${s.side}-${s.top}`}
           className={`edge-float edge-float--${s.side} edge-float--${s.anim}`}
           style={{ top: s.top }}
           aria-hidden="true"

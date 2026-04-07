@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from 'react'
-import type { Canvas } from 'fabric'
+import type { Canvas, FabricObject } from 'fabric'
 
 interface Props {
   canvas: Canvas | null
-  selectedObject: any | null
+  selectedObject: FabricObject | null
 }
 
 export default function StudioProperties({ canvas, selectedObject }: Props) {
   const [tab, setTab] = useState<'properties' | 'layers'>('properties')
-  const [objects, setObjects] = useState<any[]>([])
+  const [objects, setObjects] = useState<FabricObject[]>([])
   const [, setTick] = useState(0)
 
   // Refresh object list
@@ -35,7 +35,7 @@ export default function StudioProperties({ canvas, selectedObject }: Props) {
     }
   }, [canvas])
 
-  const setProp = (key: string, value: any) => {
+  const setProp = (key: string, value: string | number | boolean) => {
     if (!selectedObject || !canvas) return
     selectedObject.set(key, value)
     canvas.renderAll()
