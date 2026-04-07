@@ -115,7 +115,10 @@ export default function GlyphPlayground() {
               <span
                 key={`${char}-${i}`}
                 className={`gp-glyph ${activeGlyph === char ? 'active' : ''}`}
+                role="button"
+                tabIndex={char === ' ' ? -1 : 0}
                 onClick={() => handleGlyphClick(char)}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGlyphClick(char) } }}
               >
                 {char}
               </span>
@@ -167,8 +170,11 @@ export default function GlyphPlayground() {
               <span
                 key={c}
                 className="gp-alphabet-char"
+                role="button"
+                tabIndex={0}
                 style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontWeight: weight.value }}
                 onClick={() => handleGlyphClick(c)}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGlyphClick(c) } }}
               >
                 {c}
               </span>
@@ -179,8 +185,11 @@ export default function GlyphPlayground() {
               <span
                 key={c}
                 className="gp-alphabet-char"
+                role="button"
+                tabIndex={0}
                 style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontWeight: weight.value }}
                 onClick={() => handleGlyphClick(c)}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGlyphClick(c) } }}
               >
                 {c}
               </span>
@@ -191,8 +200,11 @@ export default function GlyphPlayground() {
               <span
                 key={c}
                 className="gp-alphabet-char"
+                role="button"
+                tabIndex={0}
                 style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontWeight: weight.value }}
                 onClick={() => handleGlyphClick(c)}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGlyphClick(c) } }}
               >
                 {c}
               </span>

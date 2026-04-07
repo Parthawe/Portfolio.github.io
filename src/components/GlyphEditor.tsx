@@ -92,7 +92,7 @@ export default function GlyphEditor() {
     const url = FONT_URLS[fontIdx].url
     opentype.load(url, (err, loadedFont) => {
       if (err || !loadedFont) {
-        console.error('Font load error:', err)
+        if (import.meta.env.DEV) console.error('Font load error:', err)
         setLoading(false)
         return
       }

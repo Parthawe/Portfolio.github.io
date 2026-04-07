@@ -441,8 +441,30 @@
   background: var(--bg-alt);
   box-shadow: var(--shadow-md);
   border: 1px solid var(--ink-06);
+  position: relative;
 }
-.cs-img img { width: 100%; height: auto; display: block; }
+.cs-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--ink-04) 25%, var(--ink-06) 37%, var(--ink-04) 63%);
+  background-size: 200% 100%;
+  animation: cs-shimmer 1.5s ease-in-out infinite;
+  z-index: 0;
+}
+@keyframes cs-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.cs-img img {
+  width: 100%; height: auto; display: block;
+  position: relative; z-index: 1;
+  transition: opacity 0.4s;
+}
+[data-theme="dark"] .cs-img::before {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 37%, rgba(255,255,255,0.03) 63%);
+  background-size: 200% 100%;
+}
 
 /* Image pair */
 .cs-img-pair {
