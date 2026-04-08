@@ -91,5 +91,6 @@ export function isPortfolioQuestion(
   if (PAGE_TERMS.some(term => query.includes(normalize(term)))) return true
   if (PROFILE_TERMS.some(term => query.includes(normalize(term)))) return true
 
-  return KNOWLEDGE_TERMS.some(term => query === term || query.includes(term) || term.includes(query))
+  // Require 4+ char overlap to prevent false positives on short words
+  return KNOWLEDGE_TERMS.some(term => query === term || (term.length >= 4 && query.includes(term)) || (query.length >= 4 && term.includes(query)))
 }

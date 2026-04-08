@@ -121,14 +121,14 @@ const deepMap: Record<string, ProjectDeep> = {
   'ballah-code': {
     oneLiner: 'What happens when AI isn\'t a sidebar in the IDE, it\'s the foundation.',
     challenge: 'Every IDE bolts AI on as a chat panel. What if AI was woven into every action instead?',
-    outcome: 'AI-native IDE with 17 production tools.',
+    outcome: 'AI-native IDE with 17 production tools — designed the full product UX.',
     insight: 'Pair programming > autocomplete. Full-project context makes AI actually useful, not just clever.',
-    process: 'Built it by using it. Every feature came from a real workflow problem, not a spec doc.',
+    process: 'Joined as product designer alongside creator Isaiah Ballah. Designed the multi-workspace layout, AI tool interactions, streaming feedback patterns, and terminal integration UX.',
     whyItMatters: 'Explores what dev tools look like when AI is primary, not secondary.',
     duration: '2026',
-    team: 'Solo',
+    team: 'Isaiah Ballah (Creator/Founder) + Parth Pawar (Product Designer)',
     platforms: 'Desktop (macOS/Win/Linux)',
-    opinion: 'Parth built this for himself and it shows, it solves real problems, not hypothetical ones.',
+    opinion: 'Parth designed the UX for Isaiah Ballah\'s vision — the product solves real workflow problems because it was built by someone who lives in the terminal.',
     connectedTo: ['clawed-chat', 'oncall-lens'],
   },
   'oncall-lens': {
@@ -356,24 +356,31 @@ export function getRouteGreeting(path: string): string {
   const section = detectSection()
 
   if (path === '/') return pick([
-    "I can shortlist the right case studies fast. Try a hiring shortlist, best research process, or most ambitious project.",
-    "Pick a project, or ask me where to start. I know the useful version of every story here.",
+    "Hey, I'm Folio. I know every project here. Tell me what you're looking for and I'll point you to the right ones, or say 'tour' and I'll walk the whole page.",
+    "Welcome. I can shortlist the three strongest projects for what you care about, walk you through a case study, or just answer anything. What's useful?",
+    "Pick a project, ask for a hiring shortlist, or say 'tour' and I'll guide you through. I have opinions about all of this.",
   ])
-  if (path === '/work') return "This is the full archive. Ask for a shortlist, creative range, or the strongest research story."
+  if (path === '/work') return pick([
+    "Full archive, 34 projects. I can filter by discipline, recommend a shortlist, or walk you through the categories. What are you looking for?",
+    "This is everything. Six disciplines, from fintech to light sculptures. Say 'tour' and I'll explain each one, or just tell me what you care about.",
+  ])
   if (path === '/about') {
-    if (section === 'skills') return "Those tools? Ask me how any of them gets used in a real project."
-    if (section === 'experience') return "Want to know what actually happened at any of those roles?"
-    if (section === 'practices') return "100 days of poems, 100 days of sketches. Ask me why."
-    return "The resume is here. I can tell you where the interesting parts actually are."
+    if (section === 'skills') return "Those tools? They're not decorative. Ask me how any of them gets used in a real shipped project."
+    if (section === 'experience') return "Want the real story behind any of these roles? The Mentra and ZentiPay ones are the most interesting."
+    if (section === 'practices') return "100 days of poems, 100 days of sketches, 45 podcast episodes. These explain where the consistency comes from. Ask me about any of them."
+    return pick([
+      "This is the person behind the work. I can tell you about the roles, the tools, the practices, or just what makes Parth different. What's useful?",
+      "Resume, tools, daily practices, it's all here. Say 'tour' and I'll walk it, or ask me anything specific.",
+    ])
   }
 
   const cat = categories.find(c => path === `/${c.slug}`)
-  if (cat) return `${cat.title} ${cat.titleAccent}, ask about any project here.`
+  if (cat) return `${cat.title} ${cat.titleAccent}. I know every project here, ask about any of them or say 'tour' for the guided version.`
 
   const slug = path.replace(/^\//, '')
   const p = projectIndex.get(slug)
-  if (p?.deep) return p.deep.oneLiner
-  if (p) return `**${p.name}**, ${p.desc}. Ask me anything.`
+  if (p?.deep) return `${p.deep.oneLiner} Say 'tour' and I'll walk the case study, or ask about the challenge, process, or why it matters.`
+  if (p) return `**${p.name}**, ${p.desc}. Ask me anything or say 'tour' for the walkthrough.`
 
   return "Hey, ask me about any project."
 }
