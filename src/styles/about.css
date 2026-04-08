@@ -525,7 +525,7 @@
 }
 
 .abt-portal-img {
-  width: clamp(500px, 65vw, 850px);
+  width: min(65vw, 850px);
   aspect-ratio: 1 / 1;
   border-radius: 0;
   margin-bottom: 0;
@@ -549,10 +549,10 @@
   .portal-reveal { cursor: auto; }
 }
 @media (max-width: 768px) {
-  .abt-portal-img { width: clamp(350px, 85vw, 550px); cursor: auto; }
+  .abt-portal-img { width: min(85vw, 550px); cursor: auto; }
 }
 @media (max-width: 480px) {
-  .abt-portal-img { width: clamp(300px, 95vw, 450px); }
+  .abt-portal-img { width: min(95vw, 450px); }
 }
 
 /* Caption under main photo */

@@ -115,7 +115,10 @@
   border-color: var(--select-blue);
   background: color-mix(in srgb, var(--select-blue) 10%, transparent);
 }
-@media (max-width: 768px) { .nav-grid-toggle { display: none; } }
+@media (max-width: 768px) {
+  .nav-grid-toggle { display: none; }
+  .ambient-toggle { display: none; }
+}
 
 /* Desktop CTA, pill button style */
 .nav-cta {

@@ -171,6 +171,9 @@
 @media (max-width: 480px) {
   .hero-3d-wrap { height: 320px; }
 }
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-3d-wrap { height: 380px; }
+}
 @media (min-width: 769px) {
   .hero-3d-wrap { height: 480px; }
 }
