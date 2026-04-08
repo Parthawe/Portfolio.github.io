@@ -126,55 +126,47 @@ h3.text-highlight .text-highlight-text {
 /* ── Ambient audio toggle ─────────────────────────────── */
 
 .ambient-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 80px;
-  z-index: 92;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  background: var(--surface);
-  border: 1px solid var(--ink-06);
-  border-radius: var(--radius-pill, 100px);
+  justify-content: center;
+  gap: 4px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius);
   color: var(--ink-40);
   cursor: pointer;
-  font-size: 11px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  transition: color 0.2s, background 0.2s, opacity 0.2s;
+  flex-shrink: 0;
+  position: relative;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+/* Touch target */
+.ambient-toggle::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-lg);
+}
+
+.ambient-toggle > span:not(.ambient-bars) {
+  display: none;
 }
 
 .ambient-toggle:hover {
   color: var(--ink);
-  border-color: var(--ink-12);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border-color: var(--ink-15);
+  background: var(--ink-04);
 }
 
-.ambient-bars {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 12px;
+.ambient-toggle.is-active {
+  color: var(--select-blue);
+  border-color: rgba(77, 158, 255, 0.22);
+  background: rgba(77, 158, 255, 0.08);
 }
 
-.ambient-bar {
-  width: 2px;
-  height: 12px;
-  background: currentColor;
-  border-radius: 1px;
-  transform: scaleY(0.33);
-  transform-origin: bottom;
-  transition: transform 0.15s;
-}
-
-.ambient-bar--on {
-  animation: ambient-eq 0.8s ease-in-out infinite;
-}
-
-@keyframes ambient-eq {
-  0%, 100% { transform: scaleY(0.33); }
-  50%      { transform: scaleY(1); }
-}
+/* ambient wave animation handled by SVG SMIL */
 
 /* ── Skill card hover effect (image peek + tilt) ──────── */
 
@@ -408,7 +400,6 @@ h3.text-highlight .text-highlight-text {
 /* ── Responsive ───────────────────────────────────────── */
 
 @media (max-width: 768px) {
-  .ambient-toggle { bottom: 14px; right: 14px; }
   .edge-float { display: none; }
 }
 @media (max-width: 480px) {
@@ -420,9 +411,11 @@ h3.text-highlight .text-highlight-text {
 /* ── Reduced motion ───────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .edge-float,
-  .ambient-bar--on {
+  .edge-float {
     animation: none !important;
+  }
+  .ambient-toggle svg animate {
+    /* SMIL animations respect prefers-reduced-motion natively */
   }
   .text-highlight-mark {
     transition: none;

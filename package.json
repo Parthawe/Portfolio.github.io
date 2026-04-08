@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
-    "preview": "vite preview"
+    "dev": "node scripts/sync-pdf-worker.mjs && vite",
+    "build": "node scripts/sync-pdf-worker.mjs && tsc -b && vite build && cp dist/index.html dist/404.html",
+    "preview": "node scripts/sync-pdf-worker.mjs && vite preview"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.33",

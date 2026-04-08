@@ -110,7 +110,11 @@
   flex-shrink: 0;
 }
 .nav-grid-toggle:hover { color: var(--ink); border-color: var(--ink-15); }
-.figma-grid-on .nav-grid-toggle { color: var(--select-blue); border-color: var(--select-blue); }
+.nav-grid-toggle--active {
+  color: var(--select-blue);
+  border-color: var(--select-blue);
+  background: color-mix(in srgb, var(--select-blue) 10%, transparent);
+}
 @media (max-width: 768px) { .nav-grid-toggle { display: none; } }
 
 /* Desktop CTA, pill button style */

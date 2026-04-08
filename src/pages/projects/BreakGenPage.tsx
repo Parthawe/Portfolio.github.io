@@ -121,7 +121,7 @@ export default function BreakGenPage() {
           </div>
         </section>
 
-        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.jpg" />
+        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.png" />
 
       </main>
 

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -9,6 +10,9 @@ import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+
+const SpacetimeFabricScene = lazy(() => import('../../components/SpacetimeFabricScene'))
+const IS_MOBILE = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
 
 export default function BlackHolePage() {
   return (
@@ -87,6 +91,62 @@ export default function BlackHolePage() {
 
         <CsImage src="/Assets/Projects/blackhole/fabric-of-universe.jpg" alt="Fabric of the Universe model, a stool with stretched fabric and a weighted sphere showing spacetime deformation" />
 
+        {/* Interactive spacetime fabric */}
+        <CsSection id="cs-interactive" label="Interactive" title="Warp Spacetime">
+          <CsBody>
+            <p>Drag the mass across the grid to see how massive objects bend spacetime. Click anywhere on the fabric to add more masses (up to 3) and watch their gravitational wells compound. Double-click a mass to remove it. Watch the cyan test particle follow spacetime curvature &mdash; it rolls along the warped grid toward masses, showing how gravity is geometry.</p>
+          </CsBody>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Drag</span>
+            <span className="cs-label-row-val">Move masses to see spacetime deform in real-time</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Click</span>
+            <span className="cs-label-row-val">Add a new mass (up to 3)</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Double-click</span>
+            <span className="cs-label-row-val">Remove a mass</span>
+          </div>
+          <div style={{ marginTop: 'var(--space-5)' }}>
+            {IS_MOBILE ? (
+              <div style={{
+                width: '100%', aspectRatio: '16 / 10',
+                borderRadius: 'var(--radius-lg)', overflow: 'hidden',
+                position: 'relative', border: '1px solid rgba(100,100,200,0.15)',
+                boxShadow: '0 8px 40px rgba(30,20,80,0.3)',
+              }}>
+                <img src="/Assets/Projects/blackhole/fabric-of-universe.jpg" alt="Spacetime fabric model" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(135deg, rgba(5,5,16,0.7) 0%, rgba(26,26,46,0.5) 100%)',
+                  display: 'flex', flexDirection: 'column',
+                  alignItems: 'center', justifyContent: 'center', gap: 'var(--space-2)',
+                  color: '#fff', textAlign: 'center', padding: 'var(--space-6)',
+                }}>
+                  <span style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: 300 }}>Interactive spacetime fabric</span>
+                  <span style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-xs)', opacity: 0.6 }}>Available on desktop</span>
+                </div>
+              </div>
+            ) : (
+              <Suspense fallback={
+                <div style={{
+                  width: '100%', aspectRatio: '16 / 10',
+                  borderRadius: 'var(--radius-lg)', background: '#050510',
+                  border: '1px solid rgba(100,100,200,0.15)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: 'rgba(150,150,220,0.3)', fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)',
+                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                }}>
+                  Loading spacetime fabric&#8230;
+                </div>
+              }>
+                <SpacetimeFabricScene />
+              </Suspense>
+            )}
+          </div>
+        </CsSection>
+
         {/* 03, Gravitational Lensing + Wormholes */}
         <CsSection id="cs-lensing" label="03 &amp; 04 &mdash; Phenomena" title="Gravity&rsquo;s Grip on Light &amp; Wormholes">
           <CsBody>
@@ -132,6 +192,7 @@ export default function BlackHolePage() {
           { id: 'cs-challenge', label: 'Challenge' },
           { id: 'cs-time-trap', label: 'Time Trap' },
           { id: 'cs-fabric', label: 'Fabric' },
+          { id: 'cs-interactive', label: 'Interactive' },
           { id: 'cs-lensing', label: 'Lensing' },
           { id: 'cs-mergers', label: 'Mergers' },
           { id: 'cs-exhibition', label: 'Exhibition' },

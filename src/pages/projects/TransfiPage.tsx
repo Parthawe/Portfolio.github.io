@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
+import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -89,7 +90,8 @@ export default function TransfiPage() {
           </div>
         </section>
 
-        <NdaGate slug="transfi-project" projectName="TransFi">
+        {NDA_DETAILS_ENABLED ? (
+        <>
 
         {/* Problem section */}
         <section className="cs-section reveal" id="cs-problem" style={{ paddingTop: 0 }}>
@@ -383,7 +385,10 @@ export default function TransfiPage() {
           { id: 'cs-whats-next', label: 'What\u2019s Next' },
         ]} liveUrl="https://www.transfi.com" />
 
-        </NdaGate>
+        </>
+        ) : (
+          <NdaGate slug="transfi-project" projectName="TransFi" />
+        )}
 
       </main>
 

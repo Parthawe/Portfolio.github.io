@@ -10,9 +10,6 @@ export default function FigmaHUD() {
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const [dim, setDim] = useState<{ w: number; h: number } | null>(null)
   const [visible, setVisible] = useState(false)
-  const [gridOn, setGridOn] = useState(true) // on by default
-  // Set grid on mount
-  useEffect(() => { document.body.classList.add('figma-grid-on') }, [])
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const rafRef = useRef(0)
 
@@ -51,10 +48,8 @@ export default function FigmaHUD() {
 
   // Grid toggle
   const toggleGrid = useCallback(() => {
-    setGridOn(prev => {
-      document.body.classList.toggle('figma-grid-on', !prev)
-      return !prev
-    })
+    const isOn = document.body.classList.contains('figma-grid-on')
+    document.body.classList.toggle('figma-grid-on', !isOn)
   }, [])
 
   useEffect(() => {

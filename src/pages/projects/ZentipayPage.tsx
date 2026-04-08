@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
+import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -77,7 +78,8 @@ export default function ZentipayPage() {
           ]}
         />
 
-        <NdaGate slug="zentipay" projectName="ZentiPay">
+        {NDA_DETAILS_ENABLED ? (
+        <>
 
         <CsSection id="cs-problem" label="01 &mdash; Problem" title="$700B+ in remittances annually. Migrants still pay an average of 6.3% in fees.">
           <div className="cs-two-col">
@@ -331,11 +333,14 @@ export default function ZentipayPage() {
           { id: 'cs-whats-next', label: 'What\u2019s Next' },
         ]} />
 
-        </NdaGate>
+        </>
+        ) : (
+          <NdaGate slug="zentipay" projectName="ZentiPay" />
+        )}
 
       </main>
 
-      <NextProject slug="transfi" title="TransFi" image="/Assets/images/transfi.jpg" />
+      <NextProject slug="transfi-project" title="TransFi" image="/Assets/images/transfi.jpg" />
       <Footer />
     </>
   )

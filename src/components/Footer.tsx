@@ -109,7 +109,7 @@ export default function Footer() {
           </div>
           <div className="ft-info-segment ft-info-segment--right">
             <span className="ft-info-text">San Francisco, CA</span>
-            <span className="ft-info-muted"><LiveClock /> PST</span>
+            <span className="ft-info-muted"><LiveClock /> PT</span>
           </div>
         </motion.div>
 

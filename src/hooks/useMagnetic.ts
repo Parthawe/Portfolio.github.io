@@ -3,8 +3,9 @@ import { useEffect } from 'react';
 const MAGNETIC_STRENGTH = 0.35;
 const MAGNETIC_RADIUS = 80;
 
-export function useMagnetic() {
+export function useMagnetic(enabled = true) {
   useEffect(() => {
+    if (!enabled) return;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (isTouchDevice || isMobile) return;
@@ -73,5 +74,5 @@ export function useMagnetic() {
       document.removeEventListener('mousemove', onMouseMove);
       mo.disconnect();
     };
-  }, []);
+  }, [enabled]);
 }

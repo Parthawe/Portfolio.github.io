@@ -380,7 +380,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sea-of-salt',
-          image: '/Assets/images/sea-of-salt.jpg',
+          image: '/Assets/images/sea-of-salt.svg',
           alt: 'Sea of Salt',
           name: 'Sea of Salt',
           result: 'Kinetic salt installation reacting to ocean data',

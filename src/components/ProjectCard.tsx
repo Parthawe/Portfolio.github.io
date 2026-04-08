@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import TiltCard from './TiltCard'
 import FigmaSelect from './FigmaSelect'
 import { getImageBrightness } from '../utils/imageBrightness'
+import { normalizeCopy } from '../utils/normalizeCopy'
 
 interface ProjectCardProps {
   slug: string
@@ -23,6 +24,10 @@ export default memo(function ProjectCard({
   loading = 'lazy', featured = false, tilt = true, tiltIntensity = 5,
   nda = false,
 }: ProjectCardProps) {
+  const safeTag = tag ? normalizeCopy(tag) : ''
+  const safeYear = year ? normalizeCopy(year) : ''
+  const safeDesc = desc ? normalizeCopy(desc) : ''
+
   const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget
     const visual = img.closest('.pcard-visual')
@@ -49,7 +54,7 @@ export default memo(function ProjectCard({
     >
       <div className="pcard-inner">
         <div className="pcard-top-row">
-          <span className="pcard-tag">{tag || ''}</span>
+          <span className="pcard-tag">{safeTag}</span>
           <span className="pcard-year">
             {nda && (
               <span className="pcard-nda" title="Password protected">
@@ -57,18 +62,18 @@ export default memo(function ProjectCard({
                 NDA
               </span>
             )}
-            {year || ''}
+            {safeYear}
           </span>
         </div>
         <div className="pcard-visual">
           <img src={image} alt={name} loading={loading} onLoad={handleImgLoad} onError={handleImgError} />
         </div>
         <h2 className="pcard-name">{name}</h2>
-        {desc && (
+        {safeDesc && (
           <div className="pcard-marquee">
             <div className="pcard-marquee-track">
-              <span>{desc}, {desc}, {desc}, </span>
-              <span>{desc}, {desc}, {desc}, </span>
+              <span>{safeDesc}, {safeDesc}, {safeDesc}, </span>
+              <span>{safeDesc}, {safeDesc}, {safeDesc}, </span>
             </div>
           </div>
         )}

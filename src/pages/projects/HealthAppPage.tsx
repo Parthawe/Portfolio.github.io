@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
+import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -45,15 +46,19 @@ export default function HealthAppPage() {
         </section>
 
         {/* Protected content */}
-        <NdaGate slug="healthapp" projectName="VJ Parivar">
-          {Array.from({ length: 11 }, (_, i) => (
-            <div className="cs-slide reveal" key={i}>
-              <img src={`/Assets/Projects/health-app/${i + 1}.jpg`} alt={`VJ Parivar, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
-            </div>
-          ))}
+        {NDA_DETAILS_ENABLED ? (
+          <>
+            {Array.from({ length: 11 }, (_, i) => (
+              <div className="cs-slide reveal" key={i}>
+                <img src={`/Assets/Projects/health-app/${i + 1}.jpg`} alt={`VJ Parivar, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+              </div>
+            ))}
 
-          <CsThanks />
-        </NdaGate>
+            <CsThanks />
+          </>
+        ) : (
+          <NdaGate slug="healthapp" projectName="VJ Parivar" />
+        )}
 
       </main>
 

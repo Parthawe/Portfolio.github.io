@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -28,21 +28,6 @@ const rows: Row[] = [
   { date: '2023', role: 'Tisch Graduate Scholarship', co: 'NYU Tisch' },
   { section: 'Exhibitions', date: '2024', role: 'Maker Faire, WonderVille, NIME', co: 'New York' },
   { date: '2023, 24', role: 'ITP Shows (Spring, Winter, Camp)', co: 'NYU ITP' },
-]
-
-const tools: { name: string; color: string; svg: string }[] = [
-  { name: 'Figma', color: '#a259ff', svg: '<path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4zm0-12h4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4zm0-12C5.8 0 4 1.8 4 4s1.8 4 4 4h4V0H8zm8 0h-4v8h4c2.2 0 4-1.8 4-4s-1.8-4-4-4zm0 12a4 4 0 100 8 4 4 0 000-8z"/>' },
-  { name: 'Protopie', color: '#ff6262', svg: '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" fill="currentColor"/>' },
-  { name: 'Blender', color: '#ea7600', svg: '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3l6 5h-4v4h-4v-4H6l6-5z"/>' },
-  { name: 'After Effects', color: '#9999ff', svg: '<path d="M3 4h18v16H3V4zm6 12l2-4 2 4m-3.5-2h3M17 8v8"/>' },
-  { name: 'React', color: '#61dafb', svg: '<circle cx="12" cy="12" r="2.5" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" stroke-width="1" fill="none"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(120 12 12)"/>' },
-  { name: 'TypeScript', color: '#3178c6', svg: '<rect x="2" y="2" width="20" height="20" rx="2" fill="currentColor" opacity="0.15"/><path d="M14.5 17v-4.8c0-.9-.5-1.4-1.3-1.4-.9 0-1.5.6-1.5 1.5V17h-1.5v-7h1.4v1c.5-.7 1.2-1.1 2.1-1.1 1.5 0 2.3 1 2.3 2.6V17h-1.5zM7 11.3h1.7V17H7v-5.7zM9 10H5.5v-1H9v1z" fill="currentColor"/>' },
-  { name: 'Python', color: '#3776ab', svg: '<path d="M12 2c-1.7 0-3 .5-3.9 1.3C7.2 4 7 5 7 6.3V8h5v1H6.5C4.6 9 3 10.3 3 13s1.6 4 3.5 4H9v-2.7c0-1.9 1.6-3.3 3.5-3.3h4c1.4 0 2.5-1.1 2.5-2.5V6c0-2.2-2-4-7-4zm-2.5 2.5a1 1 0 110 2 1 1 0 010-2zM12 22c1.7 0 3-.5 3.9-1.3.9-.7 1.1-1.7 1.1-3V16h-5v-1h5.5c1.9 0 3.5-1.3 3.5-4s-1.6-4-3.5-4H15v2.7c0 1.9-1.6 3.3-3.5 3.3h-4C6.1 13 5 14.1 5 15.5V18c0 2.2 2 4 7 4zm2.5-2.5a1 1 0 110-2 1 1 0 010 2z"/>' },
-  { name: 'Arduino', color: '#00979d', svg: '<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-3 11H5v-2h4V9h2v2h4v2h-4v2H9v-2zm8 0h-2v-2h2v2z"/>' },
-  { name: 'p5.js', color: '#ed225d', svg: '<path d="M4 4l4.5 16h3l2-7 2 7h3L23 4M8 12h8"/>' },
-  { name: 'TouchDesigner', color: '#888', svg: '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1" fill="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/>' },
-  { name: 'Laser Cutting', color: '#e74c3c', svg: '<path d="M12 2v10M8 8l4 4 4-4M4 14h16M6 18h12M8 22h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>' },
-  { name: '3D Printing', color: '#27ae60', svg: '<path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 4l5 3-5 3-5-3 5-3zM3 7l9 5v10M21 7l-9 5v10" stroke="currentColor" stroke-width="1" fill="none"/>' },
 ]
 
 const asides = [
@@ -85,9 +70,11 @@ export default function AboutPage() {
           <div className="abt-photo-hero">
             <PortalReveal
               images={[
-                '/Assets/character/me/1.png',
-                '/Assets/character/me/2.png',
-                '/Assets/character/me/3.png',
+                '/Assets/Character/me/1.png',
+                '/Assets/Character/me/2.png',
+                '/Assets/Character/me/3.png',
+                '/Assets/Character/me/4.png',
+                '/Assets/Character/me/5.png',
               ]}
               alt="Parth Pawar"
               className="abt-portal-img"
@@ -99,7 +86,7 @@ export default function AboutPage() {
             {/* ── Spotlight: after hero ── */}
             <section className="wr-reveal-section">
               <TextReveal
-                front="I bounce between two worlds — shipping polished fintech products and building weird, wonderful things at NYU ITP."
+                front="I bounce between two worlds, shipping polished fintech products and building weird, wonderful things at NYU ITP."
                 behind="Right now I need both. AI smart glasses have no established design patterns. It's the hardest problem I've ever loved."
               />
             </section>
@@ -108,11 +95,11 @@ export default function AboutPage() {
             <div className="abt-status-row reveal">
               <div className="abt-status-card abt-status--active">
                 <span className="abt-status-label">Currently</span>
-                <p className="abt-status-text">Leading UI/UX at <Link to="/mentra">Mentra</Link> &mdash; designing the OS, companion app, and app store for AI-powered smart glasses. The kind of problem where &ldquo;move fast and break things&rdquo; means someone walks into a wall.</p>
+                <p className="abt-status-text">Leading UI/UX at <Link to="/mentra">Mentra</Link>, designing the OS, companion app, and app store for AI-powered smart glasses. The kind of problem where &ldquo;move fast and break things&rdquo; means someone walks into a wall.</p>
               </div>
               <div className="abt-status-card">
                 <span className="abt-status-label">Open to</span>
-                <p className="abt-status-text">Full-time product design where the problems are hard and the team actually ships. AI, dev tools, fintech &mdash; anything where the interface <em>is</em> the product. SF preferred. Drawn to 0&rarr;1.</p>
+                <p className="abt-status-text">Full-time product design where the problems are hard and the team actually ships. AI, dev tools, fintech, anything where the interface <em>is</em> the product. SF preferred. Drawn to 0&rarr;1.</p>
               </div>
             </div>
           </div>
@@ -122,7 +109,7 @@ export default function AboutPage() {
 
             {/* ── Pull quote ── */}
             <blockquote className="abt-pull reveal">
-              <p>The fintech work taught me <strong>rigor</strong> &mdash; when your payment flow fails, someone doesn't get paid.<br />The ITP work taught me <strong>imagination</strong> &mdash; when you're designing for a form factor that doesn't exist yet, you can't reference Dribbble.</p>
+              <p>The fintech work taught me <strong>rigor</strong>, when your payment flow fails, someone doesn't get paid.<br />The ITP work taught me <strong>imagination</strong>, when you're designing for a form factor that doesn't exist yet, you can't reference Dribbble.</p>
             </blockquote>
 
             {/* ── Bio ── */}
@@ -131,7 +118,7 @@ export default function AboutPage() {
                 <span className="sec-label">The short version</span>
               </div>
               <div className="abt-bio-body">
-                <p>I've spent the last few years bouncing between two worlds: shipping polished fintech products used by real people with real money, and building weird, wonderful things at <a href="https://itp.nyu.edu" target="_blank" rel="noopener noreferrer">NYU&nbsp;ITP</a> &mdash; neural-network music installations, mechanical theatre stages, VJ software that generates visuals from sound.</p>
+                <p>I've spent the last few years bouncing between two worlds: shipping polished fintech products used by real people with real money, and building weird, wonderful things at <a href="https://itp.nyu.edu" target="_blank" rel="noopener noreferrer">NYU&nbsp;ITP</a>, neural-network music installations, mechanical theatre stages, VJ software that generates visuals from sound.</p>
                 <p>Right now at <Link to="/mentra">Mentra</Link>, I need both. AI smart glasses have a display the size of your thumbnail, voice as the primary input, and zero established design patterns. It's the hardest design problem I've ever loved.</p>
               </div>
             </section>
@@ -173,7 +160,7 @@ export default function AboutPage() {
             {/* ── Spotlight: after experience ── */}
             <section className="wr-reveal-section">
               <TextReveal
-                front="Mentra, ZentiPay, TransFi, NYU — each one taught me something I couldn't learn from a tutorial."
+                front="Mentra, ZentiPay, TransFi, NYU, each one taught me something I couldn't learn from a tutorial."
                 behind="When your payment flow fails, someone doesn't get paid. When your glasses UI fails, someone walks into a wall."
               />
             </section>
@@ -217,7 +204,7 @@ export default function AboutPage() {
               <div className="sec-head">
                 <span className="sec-label">Creative practice</span>
               </div>
-              <p className="abt-practice-intro">Outside of product work, I maintain daily creative disciplines &mdash; proof that making things is a habit, not just a job.</p>
+              <p className="abt-practice-intro">Outside of product work, I maintain daily creative disciplines, proof that making things is a habit, not just a job.</p>
               <motion.div
                 className="abt-practice-grid"
                 initial="hidden"
@@ -234,7 +221,7 @@ export default function AboutPage() {
                 >
                   <span className="abt-practice-num">100</span>
                   <span className="abt-practice-title">Days of Poem</span>
-                  <span className="abt-practice-desc">A poem every day for 100 days. Writing as a design tool &mdash; compression, rhythm, saying more with less.</span>
+                  <span className="abt-practice-desc">A poem every day for 100 days. Writing as a design tool, compression, rhythm, saying more with less.</span>
                   <span className="abt-practice-handle">@poem.nyc</span><FigmaSelect />
                 </motion.a>
                 <motion.a
@@ -279,7 +266,7 @@ export default function AboutPage() {
             {/* ── Spotlight: after creative practice ── */}
             <section className="wr-reveal-section">
               <TextReveal
-                front="Making things is a daily discipline — 100 days of poems, 100 days of sketches, 50 days of Photoshop."
+                front="Making things is a daily discipline, 100 days of poems, 100 days of sketches, 50 days of Photoshop."
                 behind="Proof that creativity is a habit you build, not a talent you're born with. Show up every day."
               />
             </section>

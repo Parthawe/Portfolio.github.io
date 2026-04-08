@@ -105,18 +105,18 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'Each country needed different compliance flows, but users never noticed — same feel, different regulations under the hood.',
   },
   'raahi-project': {
-    oneLiner: 'Navigation for blind transit riders that turned out to be faster for everyone.',
-    challenge: 'Visually impaired people can\'t read station signs or see approaching trains. Existing apps assume sight.',
-    outcome: 'Accessible navigation validated with real users.',
-    insight: 'Designing for the most constrained user produces better products for everyone. Haptic + audio was faster than visual in noisy stations.',
-    process: 'Rode the NYC subway blindfolded. Interviewed 12 visually impaired commuters. Tested haptic prototypes in real stations.',
-    whyItMatters: 'Accessibility isn\'t a feature, it\'s a philosophy that produces universally better products.',
-    duration: '2024',
+    oneLiner: 'Service design that made Pune\'s chaotic public transit system accessible and connected.',
+    challenge: 'Pune has buses, metro, auto-rickshaws, and shared cabs, but zero intermodal connectivity. Users can\'t plan multi-mode journeys or pay digitally.',
+    outcome: 'End-to-end service design: mobile app, kiosk system, in-vehicle monitors, and a unified color system for 8 transport modes.',
+    insight: 'Transit design is a service design problem, not just an app problem. The kiosk, the in-vehicle screen, and the phone all need to speak the same language.',
+    process: 'Field research across Pune\'s transit network. Mapped pain points in route complexity, payment friction, and wayfinding. Designed a unified system spanning app, kiosk, and in-vehicle displays with a per-mode color system.',
+    whyItMatters: 'Shows how civic design at scale works: the same user journey spans physical and digital touchpoints, and every one has to be simple.',
+    duration: '2022',
     team: 'Designer + researcher',
-    platforms: 'Mobile',
-    opinion: 'The blindfolded subway ride is the kind of research that changes how you think about design permanently.',
+    platforms: 'Mobile app, Kiosk, In-vehicle monitors',
+    opinion: 'This is the project that shows Parth can think in service design, not just screens. Every touchpoint connects.',
     connectedTo: ['the-point-cdc'],
-    surprisingFact: 'Sighted users in noisy stations actually preferred the haptic navigation over looking at their phones.',
+    surprisingFact: 'The color system assigned distinct pairs to 8 transport modes, so users could identify their bus or metro line at a glance without reading.',
   },
   'ballah-code': {
     oneLiner: 'What happens when AI isn\'t a sidebar in the IDE, it\'s the foundation.',
@@ -147,11 +147,11 @@ const deepMap: Record<string, ProjectDeep> = {
   jugalbandi: {
     oneLiner: 'Two strangers collaborate through sound and light, without speaking a word.',
     challenge: 'Make an installation where strangers interact naturally without instructions or language.',
-    outcome: 'Exhibited at WonderVille NYC, ITP Winter Show.',
+    outcome: 'Exhibited at Maker Faire Coney Island 2024, ITP Winter Show.',
     insight: 'If people have to read a sign, the interaction failed. The interface IS the invitation.',
     process: 'Prototyped 6 interaction models. The one that worked: each person controls half the sound spectrum. They naturally discover harmony.',
     whyItMatters: 'Shows Parth\'s range, from fintech to gallery installations. Same design thinking, different medium.',
-    duration: '2023',
+    duration: '2024',
     team: 'Creator + collaborator',
     platforms: 'Physical (Arduino, sensors, LED)',
     opinion: 'This is where you see that Parth isn\'t just a product designer. He thinks about human interaction at a fundamental level.',
@@ -174,7 +174,7 @@ const deepMap: Record<string, ProjectDeep> = {
   tedx: {
     oneLiner: 'Full brand identity for TEDxVITPune, stage to screen.',
     challenge: 'Stand out from hundreds of TEDx events globally with a cohesive visual system.',
-    outcome: 'Complete brand system for 1500+ attendees.',
+    outcome: 'Complete brand system for 800+ attendees.',
     insight: 'Conference branding is environmental design. Has to work at 50 feet (stage) and 5 inches (phone) simultaneously.',
     process: 'Started with the theme, not the logo. Let the concept drive every touchpoint, stage, print, digital, merch.',
     whyItMatters: 'Early career project that shows Parth could already think in systems, not just artifacts.',
@@ -183,6 +183,59 @@ const deepMap: Record<string, ProjectDeep> = {
     platforms: 'Print, Digital, Environmental',
     opinion: 'For an early project, the systems thinking here is impressive. Every piece connects.',
     connectedTo: ['typeface'],
+  },
+  'keyboard-project': {
+    oneLiner: 'An AI platform that turns text prompts into fabrication-ready custom keyboards.',
+    challenge: 'Custom keyboards require CAD expertise, weeks of iteration, and fabrication knowledge. What if anyone could describe a keyboard and have it built?',
+    outcome: 'Working platform, 200+ visitors at ITP thesis show. Text to fabrication-ready output.',
+    insight: 'Generative design works best when the AI handles mechanical constraints and the human handles aesthetics and feel.',
+    process: 'Built the pipeline end-to-end: prompt parsing, key layout generation, case design, fabrication file export. Each keyboard is structurally valid and printable.',
+    whyItMatters: 'It is the thesis project, the capstone of ITP. It proves that design and engineering converge when the system is smart enough.',
+    duration: '2025',
+    team: 'Solo (ITP thesis)',
+    platforms: 'Web + physical fabrication',
+    opinion: 'This is where the design-engineer identity becomes undeniable. He built the AI, designed the product, and fabricated the output.',
+    connectedTo: ['ballah-code', 'jugalbandi'],
+    surprisingFact: 'Every generated keyboard is structurally valid and can be 3D printed without modification.',
+  },
+  'black-hole': {
+    oneLiner: 'Five physical models of black hole phenomena, exhibited at the Horological Society of NY.',
+    challenge: 'Make the physics of black holes tangible, not as a diagram but as a physical object you can hold.',
+    outcome: 'Five models exhibited at the Horological Society of New York.',
+    insight: 'Scientific visualization is most powerful when it uses the body, not the screen. Weight, texture, and light teach faster than equations.',
+    process: 'Researched 5 black hole phenomena (accretion, lensing, jets, spaghettification, Hawking radiation). Modeled each in Blender, fabricated with 3D printing and mixed media.',
+    whyItMatters: 'Shows the fabrication range: from digital to physical, from design to science communication.',
+    duration: '2026',
+    team: 'Solo',
+    platforms: 'Physical (3D printing, mixed media)',
+    opinion: 'The venue alone, Horological Society of NY, says something about the quality bar. These aren\'t school projects, they\'re exhibition pieces.',
+    connectedTo: ['enigma', 'making-of-time'],
+  },
+  'the-omakase': {
+    oneLiner: '2-player sushi arcade cabinet with custom RGB controllers, exhibited at ITP and WonderVille.',
+    challenge: 'Build a fully playable arcade game with custom hardware controllers and exhibit it publicly.',
+    outcome: 'Playable cabinet exhibited at ITP Winter Show and WonderVille NYC.',
+    insight: 'Physical game design is a different discipline from screen design. The controller IS the interface, not a proxy for it.',
+    process: 'Designed the game mechanics, fabricated the cabinet, built custom RGB button controllers from scratch using Arduino. The game runs in browser but the experience is entirely physical.',
+    whyItMatters: 'Shows that Parth can design end-to-end: game logic, physical fabrication, electronics, and exhibition design.',
+    duration: '2024',
+    team: 'Collaborator',
+    platforms: 'Physical arcade cabinet, Web (p5.js)',
+    opinion: 'WonderVille is a real arcade bar in Brooklyn. Getting exhibited there means the game was genuinely fun, not just a school demo.',
+    connectedTo: ['jugalbandi', 'shuffle'],
+  },
+  typeface: {
+    oneLiner: 'Butler\'s Slice, a variable display typeface with geometric slice cuts. 400+ glyphs, 3 weights.',
+    challenge: 'Design a typeface that has a distinctive visual identity without sacrificing readability at display sizes.',
+    outcome: '400+ glyphs across 3 weights (Light, Regular, Bold). Functional variable font.',
+    insight: 'Type design is the purest form of systems design: every glyph follows the same rules but must feel individually balanced.',
+    process: 'Defined the slice cut system (45-degree geometric cuts on stems and bowls). Applied it across uppercase, lowercase, numerals, and punctuation. Tested at display and body sizes.',
+    whyItMatters: 'Making your own typeface is the equivalent of a musician writing their own instrument. It proves design thinking at the atomic level.',
+    duration: '2022',
+    team: 'Solo',
+    platforms: 'Glyphs, FontForge',
+    opinion: 'The portfolio uses this typeface. That level of craft, designing the letters your own portfolio is set in, is rare.',
+    connectedTo: ['tedx'],
   },
 }
 
@@ -303,15 +356,15 @@ export function getRouteGreeting(path: string): string {
   const section = detectSection()
 
   if (path === '/') return pick([
-    "Hey, pick any project and I'll tell you the real story.",
-    "Welcome! I know the backstory on every project. What catches your eye?",
+    "I can shortlist the right case studies fast. Try a hiring shortlist, best research process, or most ambitious project.",
+    "Pick a project, or ask me where to start. I know the useful version of every story here.",
   ])
-  if (path === '/work') return "Everything Parth has shipped. Ask about any one."
+  if (path === '/work') return "This is the full archive. Ask for a shortlist, creative range, or the strongest research story."
   if (path === '/about') {
     if (section === 'skills') return "Those tools? Ask me how any of them gets used in a real project."
     if (section === 'experience') return "Want to know what actually happened at any of those roles?"
     if (section === 'practices') return "100 days of poems, 100 days of sketches. Ask me why."
-    return "Ask me something the about page doesn't tell you."
+    return "The resume is here. I can tell you where the interesting parts actually are."
   }
 
   const cat = categories.find(c => path === `/${c.slug}`)
@@ -327,15 +380,41 @@ export function getRouteGreeting(path: string): string {
 
 /* ── Dynamic chips ─────────────────────────────────────── */
 
-export function getDynamicChips(path: string, qCount: number, lastSlug?: string): string[] {
+export function getDynamicChips(path: string, qCount: number, lastSlug?: string, ctx?: ChatContext): string[] {
   const section = detectSection()
   const slug = path.replace(/^\//, '')
   const p = projectIndex.get(slug) || (lastSlug ? projectIndex.get(lastSlug) : undefined)
+  const persona = ctx?.persona || 'unknown'
+  const scrollDepth = ctx?.scrollDepth || 0
+  const timeOnPage = ctx?.timeOnPage || 0
+  const visited = ctx?.visitHistory || []
 
-  if (qCount > 4 && p) return ['Why it matters', 'Related work', 'Surprising fact', 'Hire Parth']
-  if (qCount > 4) return ['Best project', 'Something unexpected', 'Daily practices', 'Contact']
+  // Deep in conversation + on a project
+  if (qCount > 4 && p) {
+    const chips = ['Why it matters', 'Related work', 'Surprising fact']
+    chips.push(persona === 'recruiter' || persona === 'hm' ? 'Role fit' : 'Hire Parth')
+    if (timeOnPage > 120) chips.push('Export summary')
+    return chips.slice(0, 4)
+  }
 
+  // Deep in conversation, no project
+  if (qCount > 4) {
+    const chips = ['Best project', 'Something unexpected']
+    if (visited.length > 3) {
+      const last2 = visited.filter(v => v !== '/' && v !== '/work' && v !== '/about').slice(-2)
+      if (last2.length === 2) {
+        const a = projectIndex.get(last2[0].replace(/^\//, ''))
+        const b = projectIndex.get(last2[1].replace(/^\//, ''))
+        if (a && b) chips.push(`Compare ${a.name} and ${b.name}`)
+      }
+    }
+    chips.push('Contact')
+    return chips.slice(0, 4)
+  }
+
+  // On a project page with deep story
   if (p?.deep) {
+    if (scrollDepth > 80) return ['Key insight', 'Related work', 'Why it matters', 'Export summary']
     if (section === 'overview') return ['The real challenge', 'Key insight', 'How it was built', 'Team']
     if (section === 'process') return ['Why this approach?', 'What surprised you?', 'Outcome', 'Related']
     if (section === 'cta') return ['Similar work', 'Best project overall', 'Hire Parth', 'Surprising fact']
@@ -346,20 +425,64 @@ export function getDynamicChips(path: string, qCount: number, lastSlug?: string)
   const cat = categories.find(c => path === `/${c.slug}`)
   if (cat) return [`Best ${cat.title} project`, 'Design approach', 'All categories', 'Contact']
 
+  if (path === '/') {
+    if (persona === 'recruiter' || persona === 'hm') return ['Hiring shortlist', 'Role fit', 'Best research process', 'Most ambitious project']
+    return ['Hiring shortlist', 'Most ambitious project', 'Best research process', 'Creative range']
+  }
+  if (path === '/work') return ['Start with three projects', 'AI work', 'Best research process', 'Creative range']
   if (path === '/about') {
     if (section === 'skills') return ['How he uses Figma', 'Code + design?', 'Favorite tool', 'Physical work']
     if (section === 'experience') return ['Best role?', 'Mentra story', 'ZentiPay story', 'Teaching at NYU']
     if (section === 'practices') return ['Why poetry?', 'The podcast', 'Sketching habit', 'Fun facts']
-    return ['Fun facts', 'Practices', 'Philosophy', 'Hire Parth']
+    if (persona === 'recruiter' || persona === 'hm') return ['Role fit', 'Can he code too?', 'Mentra story', 'Contact']
+    return ['What kind of roles fit him?', 'Can he code too?', 'Daily practices', 'Contact']
   }
-  if (path === '/work') return ['Best project', 'AI work', 'Installations', 'Latest']
-  return ['Best projects', 'About Parth', 'Philosophy', 'Hire Parth']
+  return ['Best projects', 'About Parth', 'Hidden gem', 'Hire Parth']
 }
 
 /* ── Context ───────────────────────────────────────────── */
 
-export interface ChatContext { route: string; lastProject?: string; mentionedProjects: string[]; questionCount: number; lastTopic?: string }
-export function createContext(route: string): ChatContext { return { route, mentionedProjects: [], questionCount: 0 } }
+export type Persona = 'recruiter' | 'hm' | 'peer' | 'founder' | 'student' | 'unknown'
+
+export interface ChatContext {
+  route: string
+  lastProject?: string
+  mentionedProjects: string[]
+  questionCount: number
+  lastTopic?: string
+  // Phase 1: behavioral signals
+  scrollDepth: number
+  timeOnPage: number
+  visitHistory: string[]
+  referrer?: string
+  utmSource?: string
+  utmMedium?: string
+  utmCampaign?: string
+  persona: Persona
+}
+
+export function createContext(route: string): ChatContext {
+  return {
+    route,
+    mentionedProjects: [],
+    questionCount: 0,
+    scrollDepth: 0,
+    timeOnPage: 0,
+    visitHistory: [],
+    persona: 'unknown',
+  }
+}
+
+export function getProjectNarrative(slug: string) {
+  const project = projectIndex.get(slug)
+  if (!project) return undefined
+
+  return {
+    name: project.name,
+    link: project.link,
+    deep: project.deep,
+  }
+}
 
 /* ── Response engine ───────────────────────────────────── */
 // KEY PRINCIPLES:
@@ -378,13 +501,79 @@ function cp(ctx: ChatContext): ProjectInfo | undefined {
 }
 
 const rules: Rule[] = [
+  // Where to start / hiring shortlist — persona-aware
+  { patterns: [/(?:hiring shortlist|recruiter|hiring manager|where should i start|what should i start with|start with three|shortlist)/i],
+    handler: (_, ctx) => {
+      const visited = new Set(ctx.visitHistory.map(v => v.replace(/^\//, '')))
+      const unseen = (slug: string) => !visited.has(slug)
+
+      if (ctx.persona === 'founder') {
+        return "For a founder evaluating 0→1 ownership:\n\n• **[Mentra](/mentra)**, full platform from scratch, OS + app + app store.\n• **[Clawed](/clawed-chat)**, AI trust architecture designed and shipped.\n• **[ZentiPay](/zentipay)**, founding designer, research to shipped product."
+      }
+      if (ctx.persona === 'peer') {
+        const picks = [
+          unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)**, neural network that duets with humans, Maker Faire.' : '• **[Enigma](/enigma)**, 200-neuron light sculpture at NIME.',
+          unseen('keyboard-project') ? '• **[BreakGen](/keyboard-project)**, AI platform that fabricates custom keyboards.' : '• **[Making of Time](/making-of-time)**, sundial to software clock.',
+          '• **[Mentra](/mentra)**, the systems ambition piece, full OS design.',
+        ]
+        return "For creative range:\n\n" + picks.join('\n')
+      }
+      // Default / recruiter / hm
+      const picks = [
+        unseen('mentra') ? '• **[Mentra](/mentra)** for systems ambition, full OS, companion app, and app store.' : '• **[ExecutiveLens](/executivelens)** for AI meeting intelligence, 87% adoption.',
+        unseen('zentipay') ? '• **[ZentiPay](/zentipay)** for research rigor and trust-driven fintech thinking.' : '• **[TransFi](/transfi-project)** for scale, $50M+ monthly, 6 countries.',
+        unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)** for creative range beyond product UI.' : '• **[Clawed](/clawed-chat)** for AI trust architecture.',
+      ]
+      return "Start with these three:\n\n" + picks.join('\n')
+    }
+  },
+
+  // Best research process
+  { patterns: [/(?:best research|research process|research rigor|strongest research)/i],
+    handler: () => "If you care about research depth, start with **[ZentiPay](/zentipay)**. The fee-anxiety insight is sharp and commercially real.\n\nThen look at **[Raahi](/raahi-project)** for embodied field research and accessibility thinking."
+  },
+
+  // Creative range
+  { patterns: [/(?:creative range|experimental|unexpected|show me something different|range)/i],
+    handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[BreakGen](/keyboard-project)**.\n\nThat trio makes the point fast: product systems, physical computing, and fabrication all live in the same practice."
+  },
+
+  // Most ambitious
+  { patterns: [/(?:most ambitious|biggest swing|highest ambition|largest scope)/i],
+    handler: () => "**[Mentra](/mentra)**. Designing an OS for smart glasses, plus the companion app and app store, is the biggest systems problem in the portfolio."
+  },
+
+  // Role fit — evidence-based with honest gaps
+  { patterns: [/(?:what kind of roles|where would he fit|what should i hire him for|best fit|role fit|design systems role|senior product|staff designer|0.to.1|design engineer role)/i],
+    handler: (match) => {
+      const q = (match.input || '').toLowerCase()
+
+      if (/design system/i.test(q)) {
+        return "**Design systems fit:** Strong. ZentiPay had a 140-component Figma system. Mentra required a cross-platform design language (glasses + phone + web). Butler's Slice (400+ glyphs) shows systematic precision.\n\n**Gap:** He hasn't worked on a design system as a standalone product, his systems work is always embedded in product design."
+      }
+      if (/0.to.1|founding|early.stage|startup/i.test(q)) {
+        return "**0→1 fit:** Very strong. ZentiPay (founding designer, built from scratch), Mentra (first-ever smart glasses app store), Clawed (AI trust model from zero).\n\nThe pattern: he doesn't wait for specs, he defines the product shape."
+      }
+      if (/staff|principal|lead/i.test(q)) {
+        return "**Senior/Staff fit:** Led design at TransFi (6 markets, design team). Head of UI/UX at Mentra (full platform ownership). The portfolio shows IC depth AND the ability to set direction for a team.\n\n**Gap:** Hasn't managed a design team larger than 3."
+      }
+
+      return "Best fit: design engineer or senior product designer in AI, wearables, developer tools, fintech, or 0→1 teams.\n\nEvidence: systems thinking (Mentra OS), research rigor (ZentiPay), technical depth (React, Arduino, Swift). The throughline is closing the gap between concept and shipped product.\n\n**Gap:** Less experience in enterprise B2B SaaS at scale."
+    }
+  },
+
+  // Design + code
+  { patterns: [/(?:can he code|does he code|code too|design and build|build too|engineering depth)/i],
+    handler: () => "Yes. React, TypeScript, Python, Swift, Arduino, and physical prototyping are all part of the practice.\n\nThe useful distinction is that Parth doesn't just hand off polished files, he can prototype the product logic, interaction edge cases, and physical behavior too."
+  },
+
   // Greeting
   { patterns: [/^(hi|hello|hey|sup|yo|howdy|hiya|what'?s up|heya|good\s)/i],
     handler: (_, ctx) => {
       if (ctx.questionCount > 0) return "What else?"
       const p = cp(ctx)
       if (p?.deep) return `${p.deep.oneLiner}\n\nWant the challenge or the insight?`
-      return "Hey, I know the real story behind every project. What are you curious about?"
+      return "Ask where to start, open a project, or tell me what you want to understand."
     }
   },
 
@@ -486,28 +675,70 @@ const rules: Rule[] = [
     }
   },
 
-  // Compare
+  // Compare — synthesis, not just side-by-side
   { patterns: [/(?:compare|difference|vs|versus)/i],
-    handler: (match) => {
+    handler: (match, ctx) => {
       const t = (match.input || '').toLowerCase()
       const found: ProjectInfo[] = []
       for (const [, info] of projectIndex) { if (t.includes(info.name.toLowerCase()) && !found.includes(info)) found.push(info); if (found.length >= 2) break }
+
+      // If no projects named, suggest comparing last two visited
+      if (found.length < 2) {
+        const projectSlugs = ctx.visitHistory
+          .map(v => v.replace(/^\//, ''))
+          .filter(s => projectIndex.has(s))
+        const unique = [...new Set(projectSlugs)].slice(-2)
+        for (const s of unique) { const p = projectIndex.get(s); if (p && !found.includes(p)) found.push(p) }
+      }
+
       if (found.length >= 2) {
         const a = found[0], b = found[1]
         let r = `**${a.name}**, ${a.deep?.oneLiner || a.desc}\n\n**${b.name}**, ${b.deep?.oneLiner || b.desc}`
-        if (a.deep && b.deep) r += `\n\nBoth show systems thinking, different domains, same rigor.`
+
+        if (a.deep && b.deep) {
+          // Find cross-threads
+          const sharedConnections = (a.deep.connectedTo || []).filter(s => (b.deep?.connectedTo || []).includes(s))
+          const sameCategory = a.categorySlug === b.categorySlug
+
+          if (sameCategory) {
+            r += `\n\nBoth are **${a.category}** work but test different muscles. ${a.name} approaches it through ${a.deep.insight.split('.')[0].toLowerCase()}, while ${b.name} approaches it through ${b.deep.insight.split('.')[0].toLowerCase()}.`
+          } else if (sharedConnections.length > 0) {
+            const shared = projectIndex.get(sharedConnections[0])
+            r += `\n\nDifferent domains, shared thread. Both connect to **${shared?.name || sharedConnections[0]}**. The throughline is systems thinking applied to different scales.`
+          } else {
+            r += `\n\nThis pair shows the range. ${a.name} is ${a.category}, ${b.name} is ${b.category}. Same designer, same rigor, completely different problem spaces.`
+          }
+        }
         return r
       }
-      return "Name two projects and I'll compare them."
+      return "Name two projects and I'll compare them. Or ask to compare the last two you visited."
     }
   },
 
-  // Best / favorite
+  // Best / favorite — persona-aware
   { patterns: [/(?:best|favorite|top|flagship|proudest|must.see|recommend)/i],
     handler: (_, ctx) => {
       const cat = categories.find(c => ctx.route.replace(/^\//, '') === c.slug)
       if (cat) { const f = cat.featured; return `**${f.title}**, ${f.desc}\n\n→ [/${f.slug}](/${f.slug})` }
-      return "If I had to pick three:\n\n• **Mentra**, most ambitious (full OS)\n• **ZentiPay**, best research process\n• **Jugalbandi**, most unexpected\n\nWhich one?"
+
+      if (ctx.persona === 'founder') return "If I had to pick three for a founder:\n\n• **[Mentra](/mentra)**, full platform ownership from zero\n• **[Clawed](/clawed-chat)**, AI trust architecture, shipped\n• **[ZentiPay](/zentipay)**, founding designer, research to product\n\nWhich one?"
+      if (ctx.persona === 'peer') return "If I had to pick three for creative range:\n\n• **[Jugalbandi](/jugalbandi)**, neural network that duets with humans\n• **[Enigma](/enigma)**, 200-neuron light sculpture\n• **[Mentra](/mentra)**, systems ambition at platform scale\n\nWhich one?"
+
+      return "If I had to pick three:\n\n• **[Mentra](/mentra)**, most ambitious\n• **[ZentiPay](/zentipay)**, best research process\n• **[Jugalbandi](/jugalbandi)**, strongest creative range\n\nWhich one?"
+    }
+  },
+
+  // Underrated / hidden gem — editorial picks
+  { patterns: [/(?:underrated|hidden gem|overlooked|sleeper|what.*miss|editorial|most people skip)/i],
+    handler: () => "**[Raahi](/raahi-project)** is the one most people skip. It's filed under civic design, but the service design thinking, spanning app, kiosk, and in-vehicle screens across 8 transport modes, is the most systems-complete project outside the flagship work.\n\nAlso: **[Enigma](/enigma)**. Most AI visualization is charts. This makes you *feel* what a neural network does."
+  },
+
+  // Single best project
+  { patterns: [/(?:if you had to pick one|one project|single project|best single|just one)/i],
+    handler: (_, ctx) => {
+      if (ctx.persona === 'founder') return "**[Mentra](/mentra)**. Designing an entire OS, companion app, and app store for a device that doesn't have established design patterns. That's the hardest systems problem here."
+      if (ctx.persona === 'peer') return "**[Jugalbandi](/jugalbandi)**. Two strangers collaborate through sound without speaking. If the interaction needs instructions, it failed. That's a design philosophy, not just a project."
+      return "**[Mentra](/mentra)**. Full platform from scratch, $299 launch, 88% pre-orders. It proves systems thinking, research depth, and shipping under real hardware constraints."
     }
   },
 
@@ -530,14 +761,35 @@ const rules: Rule[] = [
     }
   },
 
+  // Export summary
+  { patterns: [/(?:send.*summary|export summary|share.*summary|clipboard|copy.*summary|email.*summary|mailto|summary for)/i],
+    handler: (_, ctx) => {
+      const discussed = [...new Set(ctx.mentionedProjects)].map(s => projectIndex.get(s)).filter((p): p is ProjectInfo => !!p)
+      const visited = [...new Set(ctx.visitHistory.map(v => v.replace(/^\//, '')).filter(s => projectIndex.has(s)))].map(s => projectIndex.get(s)!).filter((p): p is ProjectInfo => !!p)
+      const all = [...new Set([...discussed, ...visited])]
+      const names = all.length ? all.map(p => p.name).join(', ') : 'Mentra, ZentiPay, Jugalbandi'
+      const insights = all.filter(p => p.deep).slice(0, 3).map(p => `• ${p.name}: ${p.deep!.insight.split('.')[0]}.`).join('\n')
+
+      return `[EXPORT]\n**Parth Pawar, Portfolio Summary**\n\n**Projects reviewed:** ${names}\n\n${insights ? `**Key insights:**\n${insights}\n\n` : ''}**Themes:** Systems thinking, research rigor, design-engineering fluency\n**Contact:** ${bio.email}\n**Portfolio:** https://parthpawar.com`
+    }
+  },
+
   // Current
   { patterns: [/(?:currently|right now|doing now|working on|current|latest)/i],
     handler: () => `${bio.current}\n\n${bio.status}` },
 
-  // Tools
+  // Tools — redirect to project if one is mentioned
   { patterns: [/(?:tools?|skills?|tech|what.*use|figma|react|python|swift|arduino|blender)/i],
-    handler: (match) => {
+    handler: (match, ctx) => {
       const q = (match.input || '').toLowerCase()
+      // If the query mentions a specific project, give project-scoped answer
+      const mentioned = fuzzyFind(q)
+      if (mentioned && mentioned.slug !== ctx.lastProject) {
+        ctx.lastProject = mentioned.slug; ctx.mentionedProjects.push(mentioned.slug)
+        if (mentioned.deep) return `**${mentioned.name}:** ${mentioned.deep.process}\n\n→ [Read more](${mentioned.link})`
+        return `**${mentioned.name}**, ${mentioned.desc}\n\n→ [View](${mentioned.link})`
+      }
+      // Specific tool queries
       if (q.includes('figma')) return "Primary tool. He's built 140+ component systems (ZentiPay alone had 140 components). Design systems, prototyping, handoff."
       if (q.includes('react')) return "React + TypeScript for production UI. This portfolio is React 19 + Vite + Tailwind v4. He codes what he designs."
       if (q.includes('python')) return "Python for AI/ML, TensorFlow, data analysis. Used in Enigma (neural network sculpture) and AI voice projects."
@@ -632,14 +884,34 @@ const rules: Rule[] = [
   { patterns: [/(?:how many|number|count|total)\s*(?:project|work|case)/i],
     handler: () => `${projectIndex.size} projects, ${categories.length} categories.` },
 
+  // Portfolio itself
+  { patterns: [/(?:how.*(?:built|made|build).*(?:portfolio|site|website)|portfolio.*(?:stack|tech)|what.*(?:portfolio|site).*(?:built|made))/i],
+    handler: () => "This portfolio is React 19 + TypeScript + Tailwind v4 + Vite, deployed on GitHub Pages. The 3D scenes use Three.js. The agent you're talking to is a local rules engine, no API calls, instant responses. Even the ambient sound is procedurally generated with Web Audio API."
+  },
+
+  // Location
+  { patterns: [/(?:where.*(?:based|located|live)|location|city|remote|sf|san francisco|new york|india)/i],
+    handler: () => `San Francisco. Open to SF-based roles, hybrid, or remote for the right team.\n\n${bio.status}`
+  },
+
+  // Availability
+  { patterns: [/(?:when.*start|availab|notice period|timeline.*hire|start date|ready to)/i],
+    handler: () => `Currently at Mentra. Open to conversations about what's next.\n\nBest way: **${bio.email}**`
+  },
+
+  // Design philosophy
+  { patterns: [/(?:design philosophy|approach to design|design thinking|how.*think.*design|principles)/i],
+    handler: () => "Three principles run through the work:\n\n• **Constraint-driven**, the tighter the constraint, the sharper the solution (640px glasses display, $25/month migrant worker fees)\n• **Systems over screens**, design the system first, the screens follow\n• **Ship to learn**, the prototype teaches you what the spec couldn't"
+  },
+
   // Thanks/bye
   { patterns: [/(?:thanks|thank|thx|cheers)/i], handler: () => pick(["Sure thing.", "Anytime."]) },
   { patterns: [/(?:bye|goodbye|see ya|later|peace)/i], handler: () => `Later! **${bio.email}** if you want to connect.` },
 ]
 
 const fallbacks = [
-  "Try asking about a specific project, Mentra, ZentiPay, Clawed. That's where the interesting stories are.",
-  "I know the backstory on every project here. Ask about one, or try 'best projects' or 'something surprising'.",
+  "Ask about a specific project like Mentra, ZentiPay, or Clawed. That is where the useful detail is.",
+  "Ask where to start, ask for a shortlist, or open a project and I will keep it concrete.",
 ]
 
 export function getResponse(message: string, ctx: ChatContext): { text: string; chips?: string[] } {
@@ -652,16 +924,24 @@ export function getResponse(message: string, ctx: ChatContext): { text: string; 
       const m = t.match(pat)
       if (m) {
         const text = rule.handler(m, ctx)
-        // After answering, naturally suggest the next step
+        // After answering, naturally suggest a connection — contextual phrasing
         let finalText = text
         const p = cp(ctx)
-        if (p?.deep && ctx.questionCount > 1 && ctx.lastTopic && Math.random() > 0.5) {
-          const rel = getRelated(p)
-          if (rel.length && !ctx.mentionedProjects.includes(rel[0].slug)) {
-            finalText += `\n\nBy the way, **${rel[0].name}** connects to this.`
+        if (p?.deep && ctx.questionCount > 1 && ctx.lastTopic && Math.random() > 0.4) {
+          const rel = getRelated(p).filter(r => !ctx.mentionedProjects.includes(r.slug) && !ctx.visitHistory.includes(`/${r.slug}`))
+          if (rel.length) {
+            const r = rel[0]
+            const phrases: Record<string, string> = {
+              challenge: `If the constraint interests you, **[${r.name}](${r.link})** had a similar problem in a different domain.`,
+              process: `The process connects to **[${r.name}](${r.link})**, similar systems thinking, different medium.`,
+              insight: `That insight carries into **[${r.name}](${r.link})** too.`,
+              whyItMatters: `For more on why this matters: **[${r.name}](${r.link})** builds on the same idea.`,
+              outcome: `Related outcome story: **[${r.name}](${r.link})**.`,
+            }
+            finalText += '\n\n' + (phrases[ctx.lastTopic] || `By the way, **[${r.name}](${r.link})** connects to this.`)
           }
         }
-        return { text: finalText, chips: getDynamicChips(ctx.route, ctx.questionCount, ctx.lastProject) }
+        return { text: finalText, chips: getDynamicChips(ctx.route, ctx.questionCount, ctx.lastProject, ctx) }
       }
     }
   }
@@ -670,8 +950,8 @@ export function getResponse(message: string, ctx: ChatContext): { text: string; 
   if (p) {
     ctx.lastProject = p.slug; ctx.mentionedProjects.push(p.slug)
     const text = p.deep ? p.deep.oneLiner + `\n\n→ [Case study](${p.link})` : `**${p.name}**, ${p.desc}\n\n→ [View](${p.link})`
-    return { text, chips: getDynamicChips(ctx.route, ctx.questionCount, p.slug) }
+    return { text, chips: getDynamicChips(ctx.route, ctx.questionCount, p.slug, ctx) }
   }
 
-  return { text: pick(fallbacks), chips: getDynamicChips(ctx.route, ctx.questionCount) }
+  return { text: pick(fallbacks), chips: getDynamicChips(ctx.route, ctx.questionCount, undefined, ctx) }
 }

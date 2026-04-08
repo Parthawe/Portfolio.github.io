@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
+import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -88,7 +89,8 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <NdaGate slug="ai-voice" projectName="AI Voice">
+        {NDA_DETAILS_ENABLED ? (
+        <>
 
         <CsImage src="/Assets/Projects/ai-voice/1.png" alt="AI Voice Selection, project overview slide" />
         <p className="cs-caption">Project overview, the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
@@ -367,7 +369,10 @@ export default function AiVoicePage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
 
-        </NdaGate>
+        </>
+        ) : (
+          <NdaGate slug="ai-voice" projectName="AI Voice" />
+        )}
 
       </main>
 

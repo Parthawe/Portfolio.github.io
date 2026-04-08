@@ -7,6 +7,7 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import EnigmaInteractive from '../../components/EnigmaInteractive'
 
 export default function EnigmaPage() {
   return (
@@ -62,6 +63,24 @@ export default function EnigmaPage() {
             </CsBody>
           </div>
         </section>
+
+        {/* Interactive */}
+        <CsSection id="cs-interactive" label="Interactive" title="Type a Letter">
+          <CsBody>
+            <p>Press any key A&ndash;Z to trigger inference through a 106-neuron network. Watch activations cascade layer by layer &mdash; brightness is activation strength, the path light travels is the decision the model makes.</p>
+          </CsBody>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Input</span>
+            <span className="cs-label-row-val">Press any letter A&ndash;Z on your keyboard (or tap &ldquo;Tap to type&rdquo; on mobile)</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Layers</span>
+            <span className="cs-label-row-val">16 input &rarr; 32 hidden &rarr; 32 hidden &rarr; 26 output (A&ndash;Z)</span>
+          </div>
+          <div style={{ marginTop: 'var(--space-5)' }}>
+            <EnigmaInteractive />
+          </div>
+        </CsSection>
 
         {/* Concept */}
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Illuminated Neural Architecture">
@@ -121,6 +140,7 @@ export default function EnigmaPage() {
         <CsThanks />
 
         <BottomNav sections={[
+          { id: 'cs-interactive', label: 'Interactive' },
           { id: 'cs-concept', label: 'Concept' },
           { id: 'cs-technology', label: 'Technology' },
           { id: 'cs-exhibition', label: 'Exhibition' },

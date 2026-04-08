@@ -7,6 +7,7 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import ShuffleInteractive from '../../components/ShuffleInteractive'
 
 export default function ShufflePage() {
   return (
@@ -66,6 +67,16 @@ export default function ShufflePage() {
             </CsBody>
           </div>
         </section>
+
+        {/* Interactive demo */}
+        <CsSection id="cs-interactive" label="Interactive" title="Redistribute Your Time">
+          <CsBody>
+            <p>Drag any slider and watch the others respond &mdash; every choice has consequences. More class improves finals but steals social time. Less sleep drains energy. A heavier job means better food but less of everything else. The small arrows beneath each slider hint at what it affects. Try to find your ideal balance &mdash; or discover why you can&rsquo;t have it all.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-5)' }}>
+            <ShuffleInteractive />
+          </div>
+        </CsSection>
 
         {/* Concept */}
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Physical Redistribution of Time">
@@ -154,6 +165,7 @@ export default function ShufflePage() {
         <CsThanks />
 
         <BottomNav sections={[
+          { id: 'cs-interactive', label: 'Interactive' },
           { id: 'cs-concept', label: 'Concept' },
           { id: 'cs-process', label: 'Process' },
           { id: 'cs-exhibition', label: 'Exhibition' },

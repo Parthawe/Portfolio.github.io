@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import opentype from 'opentype.js'
+import opentype, { type Font, type PathCommand } from 'opentype.js'
 
 /**
  * Interactive glyph vector editor for Butler's Slice.
@@ -33,7 +33,7 @@ const FONT_URLS = [
 const SUGGESTED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('')
 
 /** Convert opentype path commands into our Point[] format */
-function parseCommands(commands: opentype.PathCommand[]): Point[] {
+function parseCommands(commands: PathCommand[]): Point[] {
   const pts: Point[] = []
   for (const cmd of commands) {
     switch (cmd.type) {
@@ -73,7 +73,7 @@ function buildPathD(points: Point[]): string {
 }
 
 export default function GlyphEditor() {
-  const [font, setFont] = useState<opentype.Font | null>(null)
+  const [font, setFont] = useState<Font | null>(null)
   const [fontIdx, setFontIdx] = useState(0)
   const [loading, setLoading] = useState(true)
   const [char, setChar] = useState('A')
@@ -90,7 +90,7 @@ export default function GlyphEditor() {
   useEffect(() => {
     setLoading(true)
     const url = FONT_URLS[fontIdx].url
-    opentype.load(url, (err, loadedFont) => {
+    opentype.load(url, (err: Error | null, loadedFont: Font | null) => {
       if (err || !loadedFont) {
         if (import.meta.env.DEV) console.error('Font load error:', err)
         setLoading(false)

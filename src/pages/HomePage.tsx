@@ -8,7 +8,6 @@ import ProjectCard from '../components/ProjectCard';
 import AnimatedCounter from '../components/AnimatedCounter';
 import TextReveal from '../components/TextReveal';
 import TextHighlight from '../components/TextHighlight';
-import AmbientAudio from '../components/AmbientAudio';
 import FigmaSelect from '../components/FigmaSelect';
 import FigmaFrameLabel from '../components/FigmaFrameLabel';
 import { featuredProjects, archiveProjects } from '../data/projects';
@@ -34,34 +33,6 @@ const skills: Skill[] = [
   { label: 'Physical Computing',   img: `${IMG}/enigma.jpg` },
   { label: 'Installations',        img: `${IMG}/keyboard.jpg` },
 ];
-
-/* ------------------------------------------------------------------ */
-/*  JSON-LD                                                            */
-/* ------------------------------------------------------------------ */
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  mainEntity: {
-    '@type': 'Person',
-    name: 'Parth Pawar',
-    jobTitle: 'Design Engineer',
-    url: 'https://parthpawar.com',
-    sameAs: [
-      'https://www.linkedin.com/in/parth-pawar-1501/',
-      'https://www.instagram.com/designwhich.works',
-    ],
-    alumniOf: {
-      '@type': 'CollegeOrUniversity',
-      name: 'New York University, Tisch School of the Arts',
-    },
-    knowsAbout: ['UX Design', 'Product Design', 'Fintech', 'Creative Technology', 'Physical Computing'],
-  },
-};
-
-/* ------------------------------------------------------------------ */
-/*  Component                                                          */
-/* ------------------------------------------------------------------ */
 
 export default function HomePage() {
   /* --- state --- */
@@ -98,7 +69,6 @@ export default function HomePage() {
         <meta property="og:description" content="Design Engineer specializing in AI wearables, fintech, and interactive systems. Head of UI/UX at Mentra. NYU ITP '24." />
         <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.png" />
         <link rel="canonical" href="https://parthpawar.com" />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
       {/* ═══ DARK HERO, 3D centerpiece ═══ */}
@@ -115,6 +85,15 @@ export default function HomePage() {
             <HeroScene onNavigate={navigate} />
           </Suspense>
         </motion.div>
+
+        <h1 className="sr-only">Parth Pawar designs product systems for AI wearables, fintech, and creative technology.</h1>
+
+        <div className="wr-hero-caption">
+          <div className="wr-hero-caption-main">
+            <p className="wr-hero-kicker">Parth Pawar / Design Engineer</p>
+            <p className="wr-hero-caption-line">AI wearables, fintech, and creative technology</p>
+          </div>
+        </div>
 
         {/* Flanking labels — word-by-word staggered reveal */}
         <span className="wr-hero-left hero-reveal hero-reveal-1">
@@ -191,7 +170,7 @@ export default function HomePage() {
         {/* ═══ SPOTLIGHT REVEAL ═══ */}
         <section className="wr-reveal-section">
             <TextReveal
-              front="I design systems that disappear — the kind where people stop noticing the software."
+              front="I design systems that disappear, the kind where people stop noticing the software."
               behind="Head of UI/UX at Mentra, building an OS for AI glasses that fits on a postage stamp."
             />
         </section>
@@ -248,7 +227,7 @@ export default function HomePage() {
                 </div>
 
                 <p className="wr-about-desc">
-                  I design interfaces that disappear &mdash; earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi. NYU ITP &rsquo;24.
+                  I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi. NYU ITP &rsquo;24.
                 </p>
 
                 <Link to="/about" className="wr-about-readmore">read more.</Link>
@@ -304,7 +283,7 @@ export default function HomePage() {
         {/* ═══ SPOTLIGHT REVEAL ═══ */}
         <section className="wr-reveal-section">
             <TextReveal
-              front="Every pixel has a reason — 33 projects, $50M+ in payment volume, 3 countries, one obsession."
+              front="Every pixel has a reason, 33 projects across 6 core disciplines, $50M+ in payment volume, 3 countries, one obsession."
               behind="Fintech rigor meets ITP imagination. I ship polished products and build weird wonderful things."
             />
         </section>
@@ -322,7 +301,7 @@ export default function HomePage() {
           <div className="wr-counters-inner">
             {[
               { value: 33, suffix: '+', label: 'Projects shipped' },
-              { value: 6, suffix: '', label: 'Disciplines' },
+              { value: 6, suffix: '', label: 'Core disciplines' },
               { value: 50, suffix: 'M+', label: '$ Volume designed' },
               { value: 3, suffix: '', label: 'Countries' },
             ].map((c, i) => (
@@ -373,7 +352,7 @@ export default function HomePage() {
         {/* ═══ SPOTLIGHT REVEAL ═══ */}
         <section className="wr-reveal-section">
             <TextReveal
-              front="If you scrolled this far, we should probably talk — I make coffee, you bring the hard problem."
+              front="If you scrolled this far, we should probably talk, I make coffee, you bring the hard problem."
               behind="Full-time, contract, or just a conversation. Always up for people who ship."
             />
         </section>
@@ -383,10 +362,6 @@ export default function HomePage() {
 
       {/* ═══ FOOTER ═══ */}
       <Footer />
-
-
-      {/* ═══ Ambient music toggle ═══ */}
-      <AmbientAudio />
     </>
   );
 }

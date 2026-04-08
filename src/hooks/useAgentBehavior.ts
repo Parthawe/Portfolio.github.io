@@ -76,7 +76,7 @@ export function useAgentBehavior() {
     let pointerId: number | null = null
     let longPressTimer: ReturnType<typeof setTimeout> | null = null
     let dragReady = false
-    let startLeft = 0, startBottom = 0
+    let startLeft = 0
 
     const onDown = (e: PointerEvent) => {
       if (!(e.target as HTMLElement)?.closest('.agent-trigger')) return
@@ -86,7 +86,6 @@ export function useAgentBehavior() {
       dragStart.current = { x: e.clientX, y: e.clientY }
       const rect = el.getBoundingClientRect()
       startLeft = rect.left
-      startBottom = window.innerHeight - rect.bottom
       longPressTimer = setTimeout(() => { dragReady = true; setDragging(true); el.style.transition = 'none' }, 300)
     }
 

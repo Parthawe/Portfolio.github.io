@@ -3,13 +3,9 @@ import { useRef, useEffect, useCallback } from 'react'
 /**
  * Portal Reveal — fluid cursor mask over stacked photos.
  *
- * Image 1 is ALWAYS the base. Images 2 and 3 are only ever
- * partially revealed through the fluid blob mask — they never
- * fully replace the base.
- *
- * Hover: blobs reveal image 2.
- * Leave + re-enter: blobs reveal image 3.
- * Image 1 always stays underneath.
+ * Image 1 is always the base. Each hover-enter advances to the
+ * next image in the array, revealed through the fluid blob mask.
+ * Cycles back to image 2 after the last one.
  */
 
 interface Props {
@@ -27,8 +23,8 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef(0)
   const mouseRef = useRef({ x: -999, y: -999, inside: false })
-  const blobsRef = useRef<{ layer1: Blob[]; layer2: Blob[] }>({ layer1: [], layer2: [] })
-  const enterCountRef = useRef(0)
+  const blobsRef = useRef<Blob[]>([])
+  const revealIndexRef = useRef(1) // start revealing image index 1
 
   const loadedImgs = useRef<HTMLImageElement[]>([])
   const readyCount = useRef(0)
@@ -44,15 +40,21 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
   }, [images])
 
   const handleEnter = useCallback(() => {
-    enterCountRef.current++
     mouseRef.current.inside = true
     document.body.classList.add('spotlight-active')
+    // Clear old blobs so the new image starts fresh
+    blobsRef.current = []
   }, [])
 
   const handleLeave = useCallback(() => {
     mouseRef.current.inside = false
     document.body.classList.remove('spotlight-active')
-  }, [])
+    // Advance to next image for the next hover (skip index 0, that's the base)
+    if (images.length > 2) {
+      const next = revealIndexRef.current + 1
+      revealIndexRef.current = next >= images.length ? 1 : next
+    }
+  }, [images.length])
 
   const handleMove = useCallback((e: React.MouseEvent) => {
     const rect = wrapRef.current?.getBoundingClientRect()
@@ -66,14 +68,10 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
     const canvas = canvasRef.current
     if (!wrap || !canvas) return
     const ctx = canvas.getContext('2d')!
-    const hasThird = images.length >= 3
 
-    // Offscreen: mask for layer 2, mask for layer 3, tmp for compositing
-    const mask1 = document.createElement('canvas')
-    const mask2 = hasThird ? document.createElement('canvas') : null
+    const mask = document.createElement('canvas')
     const tmp = document.createElement('canvas')
-    const m1 = mask1.getContext('2d')!
-    const m2 = mask2?.getContext('2d') || null
+    const mCtx = mask.getContext('2d')!
     const tmpCtx = tmp.getContext('2d')!
 
     let w = 0, h = 0, dpr = 1
@@ -84,10 +82,8 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
       w = rect.width; h = rect.height
       canvas.width = w * dpr; canvas.height = h * dpr
       canvas.style.width = w + 'px'; canvas.style.height = h + 'px'
-      for (const c of [mask1, mask2, tmp]) {
-        if (!c) continue
-        c.width = w; c.height = h
-      }
+      mask.width = w; mask.height = h
+      tmp.width = w; tmp.height = h
     }
     resize()
     window.addEventListener('resize', resize)
@@ -102,30 +98,48 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
       target.drawImage(img, sx, sy, sw, sh, 0, 0, tw, th)
     }
 
-    const updateBlobs = (arr: Blob[]) => {
-      for (let i = arr.length - 1; i >= 0; i--) {
-        arr[i].life++
-        if (arr[i].life > arr[i].max) { arr.splice(i, 1); continue }
-        arr[i].x += (Math.random() - 0.5) * 0.3
-        arr[i].y += (Math.random() - 0.5) * 0.3
+    const loop = () => {
+      if (readyCount.current < 2 || !loadedImgs.current[0] || !loadedImgs.current[1]) {
+        rafRef.current = requestAnimationFrame(loop); return
       }
-      if (arr.length > 200) arr.splice(0, arr.length - 200)
-    }
 
-    const drawMask = (mCtx: CanvasRenderingContext2D, arr: Blob[], isActive: boolean) => {
-      // Fade mask: slow while hovering, much faster when cursor leaves
-      const fadeAlpha = isActive ? 0.003 : 0.025
+      const mouse = mouseRef.current
+      const blobs = blobsRef.current
+
+      // Spawn blobs while hovering
+      if (mouse.inside && mouse.x > 0) {
+        for (let i = 0; i < 2; i++) {
+          blobs.push({
+            x: mouse.x + (Math.random() - 0.5) * 20,
+            y: mouse.y + (Math.random() - 0.5) * 20,
+            r: 55 + Math.random() * 55,
+            life: 0,
+            max: 100 + Math.random() * 60,
+          })
+        }
+      }
+
+      // Update blobs
+      for (let i = blobs.length - 1; i >= 0; i--) {
+        blobs[i].life++
+        if (blobs[i].life > blobs[i].max) { blobs.splice(i, 1); continue }
+        blobs[i].x += (Math.random() - 0.5) * 0.3
+        blobs[i].y += (Math.random() - 0.5) * 0.3
+      }
+      if (blobs.length > 200) blobs.splice(0, blobs.length - 200)
+
+      // Draw mask
+      const fadeAlpha = mouse.inside ? 0.003 : 0.025
       mCtx.globalCompositeOperation = 'destination-out'
       mCtx.fillStyle = `rgba(0,0,0,${fadeAlpha})`
       mCtx.fillRect(0, 0, w, h)
       mCtx.globalCompositeOperation = 'source-over'
-      for (const b of arr) {
+      for (const b of blobs) {
         const t = b.life / b.max
-        // Smooth easing: ease-in on appear, long sustain, ease-out on fade
         let s: number
-        if (t < 0.08) s = t / 0.08 * t / 0.08  // ease-in (quadratic)
+        if (t < 0.08) s = (t / 0.08) ** 2
         else if (t < 0.4) s = 1
-        else { const f = (t - 0.4) / 0.6; s = 1 - f * f }  // ease-out (quadratic)
+        else { const f = (t - 0.4) / 0.6; s = 1 - f * f }
         const r = b.r * Math.max(s, 0)
         if (r < 1) continue
         const g = mCtx.createRadialGradient(b.x, b.y, r * 0.08, b.x, b.y, r)
@@ -137,63 +151,22 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
         mCtx.arc(b.x, b.y, r, 0, Math.PI * 2)
         mCtx.fill()
       }
-    }
 
-    const compositeLayer = (maskCvs: HTMLCanvasElement, img: HTMLImageElement, arr: Blob[]): boolean => {
-      if (arr.length === 0 || !img.naturalWidth) return false
-      tmpCtx.clearRect(0, 0, w, h)
-      tmpCtx.globalCompositeOperation = 'source-over'
-      tmpCtx.drawImage(maskCvs, 0, 0)
-      tmpCtx.globalCompositeOperation = 'source-in'
-      coverDraw(tmpCtx, img, w, h)
-      return true
-    }
-
-    const loop = () => {
-      if (readyCount.current < 2 || !loadedImgs.current[0] || !loadedImgs.current[1]) {
-        rafRef.current = requestAnimationFrame(loop); return
+      // Composite: reveal image through mask
+      const revealImg = loadedImgs.current[revealIndexRef.current]
+      if (revealImg?.naturalWidth && blobs.length > 0) {
+        tmpCtx.clearRect(0, 0, w, h)
+        tmpCtx.globalCompositeOperation = 'source-over'
+        tmpCtx.drawImage(mask, 0, 0)
+        tmpCtx.globalCompositeOperation = 'source-in'
+        coverDraw(tmpCtx, revealImg, w, h)
       }
 
-      const mouse = mouseRef.current
-      const blobs = blobsRef.current
-      // Determine which layer to paint into based on enter count
-      const useLayer2 = hasThird && enterCountRef.current > 1
-
-      if (mouse.inside && mouse.x > 0) {
-        const target = useLayer2 ? blobs.layer2 : blobs.layer1
-        for (let i = 0; i < 2; i++) {
-          target.push({
-            x: mouse.x + (Math.random() - 0.5) * 20,
-            y: mouse.y + (Math.random() - 0.5) * 20,
-            r: 55 + Math.random() * 55,
-            life: 0,
-            max: 100 + Math.random() * 60,
-          })
-        }
-      }
-
-      updateBlobs(blobs.layer1)
-      updateBlobs(blobs.layer2)
-      const isHovering = mouse.inside
-      drawMask(m1, blobs.layer1, isHovering && !useLayer2)
-      if (m2) drawMask(m2, blobs.layer2, isHovering && useLayer2)
-
-      // Draw
+      // Final draw
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, w, h)
-
-      // Always draw image 1 as base
       coverDraw(ctx, loadedImgs.current[0], w, h)
-
-      // Image 2 masked by layer1 blobs
-      if (compositeLayer(mask1, loadedImgs.current[1], blobs.layer1)) {
-        ctx.drawImage(tmp, 0, 0)
-      }
-
-      // Image 3 masked by layer2 blobs (on top of everything)
-      if (hasThird && mask2 && loadedImgs.current[2] && compositeLayer(mask2, loadedImgs.current[2], blobs.layer2)) {
-        ctx.drawImage(tmp, 0, 0)
-      }
+      if (blobs.length > 0) ctx.drawImage(tmp, 0, 0)
 
       rafRef.current = requestAnimationFrame(loop)
     }

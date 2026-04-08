@@ -37,14 +37,15 @@ export function useSpeechRecognition(onResult: (text: string) => void) {
 
   const supported = typeof window !== 'undefined' && !!(window.SpeechRecognition || window.webkitSpeechRecognition)
 
-  const toggle = useCallback(() => {
-    if (!supported || denied) return
-
-    if (listening && recRef.current) {
+  const stop = useCallback(() => {
+    if (recRef.current) {
       recRef.current.stop()
       setListening(false)
-      return
     }
+  }, [])
+
+  const start = useCallback(() => {
+    if (!supported || denied) return
 
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition
     if (!SR) return
@@ -78,7 +79,15 @@ export function useSpeechRecognition(onResult: (text: string) => void) {
       setListening(false)
       setDenied(true)
     }
-  }, [listening, supported, denied, onResult])
+  }, [supported, denied, onResult])
 
-  return { toggle, listening, supported: supported && !denied, denied }
+  const toggle = useCallback(() => {
+    if (listening) {
+      stop()
+    } else {
+      start()
+    }
+  }, [listening, start, stop])
+
+  return { start, stop, toggle, listening, supported: supported && !denied, denied }
 }

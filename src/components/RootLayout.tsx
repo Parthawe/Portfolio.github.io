@@ -2,9 +2,11 @@ import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import PageLoader from './PageLoader';
 import Lightbox from './Lightbox';
+import RouteSeo from './RouteSeo';
 import { useCursorFollower } from '../hooks/useCursorFollower';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
+import { normalizeCopy } from '../utils/normalizeCopy';
 
 const HandTracker = lazy(() => import('./HandTracker'));
 const PortfolioAgent = lazy(() => import('./agent/PortfolioAgent'));
@@ -17,6 +19,11 @@ export default function RootLayout() {
   const location = useLocation();
   const ioRef = useRef<IntersectionObserver | null>(null);
   const [visible, setVisible] = useState(false);
+  const isStudioRoute = location.pathname === '/studio';
+  const isUtilityRoute = location.pathname === '/book' || location.pathname === '/graveyard';
+  const enablePortfolioInteractions = !isStudioRoute && !isUtilityRoute;
+  const enableAgent = enablePortfolioInteractions;
+  const enableHandTracker = !isUtilityRoute;
 
   // Fade-in on mount and route change (CSS-driven, replaces Framer Motion)
   useEffect(() => {
@@ -35,6 +42,34 @@ export default function RootLayout() {
     } else {
       window.scrollTo(0, 0);
     }
+  }, [location.pathname]);
+
+  // Normalize visible copy so long dashes do not leak into the rendered site.
+  useEffect(() => {
+    const normalizeTextNodes = () => {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          const parent = node.parentElement
+          if (!parent) return NodeFilter.FILTER_REJECT
+          if (['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT
+          return /[—–]/.test(node.nodeValue || '') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP
+        },
+      })
+
+      const nodes: Text[] = []
+      let current = walker.nextNode()
+      while (current) {
+        nodes.push(current as Text)
+        current = walker.nextNode()
+      }
+
+      nodes.forEach(node => {
+        node.nodeValue = normalizeCopy(node.nodeValue || '')
+      })
+    }
+
+    const timer = window.setTimeout(normalizeTextNodes, 0)
+    return () => window.clearTimeout(timer)
   }, [location.pathname]);
 
   // Persistent scroll-reveal observer, mounted once, never torn down between routes
@@ -136,12 +171,13 @@ export default function RootLayout() {
   }, [location.pathname]);
 
   // Custom cursor + magnetic buttons (desktop only)
-  useCursorFollower();
-  useMagnetic();
-  useKeyboardNav();
+  useCursorFollower(enablePortfolioInteractions);
+  useMagnetic(enablePortfolioInteractions);
+  useKeyboardNav(enablePortfolioInteractions);
 
   return (
     <>
+      <RouteSeo />
       <div className="grain" aria-hidden="true"></div>
       <div className="dot-bg" aria-hidden="true"></div>
       <PageLoader />
@@ -154,16 +190,25 @@ export default function RootLayout() {
         <Outlet />
       </div>
       <Lightbox />
-      <FigmaContextMenu />
-      <FigmaHUD />
-      <FigmaRuler />
-      <FigmaZoom />
-      <Suspense fallback={null}>
-        <HandTracker />
-      </Suspense>
-      <Suspense fallback={null}>
-        <PortfolioAgent />
-      </Suspense>
+      {/* AmbientAudio moved to Nav */}
+      {!isUtilityRoute && (
+        <>
+          <FigmaContextMenu />
+          <FigmaHUD />
+          <FigmaRuler />
+          <FigmaZoom />
+        </>
+      )}
+      {enableHandTracker && (
+        <Suspense fallback={null}>
+          <HandTracker />
+        </Suspense>
+      )}
+      {enableAgent && (
+        <Suspense fallback={null}>
+          <PortfolioAgent />
+        </Suspense>
+      )}
     </>
   );
 }

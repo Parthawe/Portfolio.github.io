@@ -3,10 +3,7 @@ import HTMLFlipBook from 'react-pageflip';
 // @ts-ignore
 import * as pdfjsLib from 'pdfjs-dist/build/pdf.min.mjs';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 /* ─── Single PDF page ─── */
 const PageImage = forwardRef<HTMLDivElement, { src: string; pageNum: number; total: number }>(

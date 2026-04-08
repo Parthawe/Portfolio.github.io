@@ -17,7 +17,7 @@ const shapes = [
 export default function EdgeFloats() {
   return (
     <>
-      {shapes.map((s, i) => (
+      {shapes.map((s) => (
         <div
           key={`${s.side}-${s.top}`}
           className={`edge-float edge-float--${s.side} edge-float--${s.anim}`}

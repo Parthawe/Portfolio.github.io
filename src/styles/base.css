@@ -201,6 +201,7 @@
   z-index: 201;
   pointer-events: none;
   border-right: 1px solid var(--ink-06);
+  background: var(--bg);
 }
 .figma-ruler-top {
   position: fixed;
@@ -208,6 +209,19 @@
   left: 22px; /* right of left ruler */
   z-index: 201;
   pointer-events: none;
+  border-bottom: 1px solid var(--ink-06);
+  background: var(--bg);
+}
+/* Corner square where both rulers meet */
+.figma-ruler-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -22px;
+  width: 22px;
+  height: 22px;
+  background: var(--bg);
+  border-right: 1px solid var(--ink-06);
   border-bottom: 1px solid var(--ink-06);
 }
 

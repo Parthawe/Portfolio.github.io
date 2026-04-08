@@ -1,6 +1,16 @@
 import { useState, useEffect, useCallback } from 'react'
 import type { Canvas, FabricObject } from 'fabric'
 
+type StudioObject = FabricObject & {
+  name?: string
+  fill?: string | null
+  stroke?: string | null
+  strokeWidth?: number
+  fontSize?: number
+  fontWeight?: string | number
+  fontFamily?: string
+}
+
 interface Props {
   canvas: Canvas | null
   selectedObject: FabricObject | null
@@ -41,7 +51,10 @@ export default function StudioProperties({ canvas, selectedObject }: Props) {
     canvas.renderAll()
   }
 
-  const obj = selectedObject
+  const obj = selectedObject as StudioObject | null
+  const fillValue = typeof obj?.fill === 'string' ? obj.fill : '#000000'
+  const strokeValue = typeof obj?.stroke === 'string' ? obj.stroke : '#000000'
+  const isTextObject = obj?.type === 'i-text' || obj?.type === 'text' || obj?.type === 'textbox'
 
   return (
     <div className="studio-properties">
@@ -78,18 +91,18 @@ export default function StudioProperties({ canvas, selectedObject }: Props) {
                 <div className="studio-props-title">Appearance</div>
                 <div className="studio-props-row">
                   <span>Fill</span>
-                  <input type="color" value={typeof obj.fill === 'string' ? obj.fill : '#000000'} onChange={e => setProp('fill', e.target.value)} />
-                  <input type="text" className="studio-props-hex" value={typeof obj.fill === 'string' ? obj.fill : ''} onChange={e => setProp('fill', e.target.value)} />
+                  <input type="color" value={fillValue} onChange={e => setProp('fill', e.target.value)} />
+                  <input type="text" className="studio-props-hex" value={fillValue} onChange={e => setProp('fill', e.target.value)} />
                 </div>
                 <div className="studio-props-row">
                   <span>Stroke</span>
-                  <input type="color" value={obj.stroke || '#000000'} onChange={e => setProp('stroke', e.target.value)} />
+                  <input type="color" value={strokeValue} onChange={e => setProp('stroke', e.target.value)} />
                   <input type="number" className="studio-props-small" value={obj.strokeWidth || 0} min={0} onChange={e => setProp('strokeWidth', +e.target.value)} />
                 </div>
               </div>
 
               {/* Text properties */}
-              {(obj.type === 'i-text' || obj.type === 'text' || obj.type === 'textbox') && (
+              {isTextObject && (
                 <div className="studio-props-section">
                   <div className="studio-props-title">Text</div>
                   <div className="studio-props-row">

@@ -1,3 +1,4 @@
+import { useRef, useState, useCallback, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -7,6 +8,173 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+
+const IS_TOUCH = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+
+function GameEmbed() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [loaded, setLoaded] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  useEffect(() => {
+    const onChange = () => setIsFullscreen(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', onChange)
+    return () => document.removeEventListener('fullscreenchange', onChange)
+  }, [])
+
+  const toggleFullscreen = useCallback(() => {
+    const el = containerRef.current
+    if (!el) return
+    if (document.fullscreenElement) document.exitFullscreen()
+    else el.requestFullscreen()
+  }, [])
+
+  // itch.io blocks iframes from their main page URL (X-Frame-Options).
+  // Use the direct HTML embed endpoint with the upload ID instead.
+  const GAME_URL = 'https://html-classic.itch.zone/html/5754166/index.html'
+
+  return (
+    <CsSection id="cs-play" label="Play" title="Try The Omakase">
+      <CsBody>
+        <p>Two players, one keyboard, 90 seconds. Race to serve sushi orders faster than your opponent. Each button maps to an ingredient &mdash; press the right sequence to complete orders and earn combo multipliers.</p>
+      </CsBody>
+
+      {/* Game container */}
+      <div
+        ref={containerRef}
+        style={{
+          position: 'relative', width: '100%', aspectRatio: '16 / 9',
+          borderRadius: 'var(--radius-lg)', overflow: 'hidden',
+          background: '#1a1a2e',
+          border: '1px solid var(--ink-06)',
+          boxShadow: 'var(--shadow-lg)',
+          marginTop: 'var(--space-5)',
+        }}
+      >
+        {IS_TOUCH ? (
+          <div style={{
+            position: 'absolute', inset: 0, display: 'flex',
+            flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            gap: 'var(--space-4)', padding: 'var(--space-6)', textAlign: 'center',
+            background: 'linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 100%)',
+          }}>
+            <span style={{ fontSize: '2.5rem' }}>🍣</span>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: 300, color: '#fff', lineHeight: 1.3, maxWidth: '24ch' }}>
+              The Omakase needs a keyboard for 2-player action
+            </p>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.5)', maxWidth: '32ch', lineHeight: 1.6 }}>
+              Visit on desktop to play, or try it directly on itch.io
+            </p>
+            <a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer" className="pill-link" style={{ color: '#fff', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.08)', marginTop: 'var(--space-2)', textDecoration: 'none' }}>
+              Play on itch.io &rarr;
+            </a>
+          </div>
+        ) : !loaded ? (
+          <button
+            onClick={() => setLoaded(true)}
+            style={{
+              position: 'absolute', inset: 0, width: '100%', height: '100%',
+              border: 'none', cursor: 'pointer',
+              background: 'linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #C94C4C 150%)',
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center', gap: 'var(--space-3)',
+              transition: 'filter 0.3s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.15)' }}
+            onMouseLeave={e => { e.currentTarget.style.filter = '' }}
+          >
+            <div style={{
+              width: 64, height: 64, borderRadius: '50%',
+              background: 'rgba(255,255,255,0.12)', border: '2px solid rgba(255,255,255,0.25)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              backdropFilter: 'blur(8px)',
+            }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19" /></svg>
+            </div>
+            <span style={{ fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)' }}>
+              Click to load game
+            </span>
+            <span style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.35)', marginTop: '-0.25rem' }}>
+              Built with Unity &middot; 2-player local multiplayer
+            </span>
+          </button>
+        ) : (
+          <>
+            <iframe
+              src={GAME_URL}
+              allowFullScreen
+              allow="autoplay; fullscreen"
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              title="Play The Omakase"
+            />
+            <div style={{ position: 'absolute', top: 8, right: 8, zIndex: 2, display: 'flex', gap: 4 }}>
+              <button
+                onClick={toggleFullscreen}
+                aria-label={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+                style={{
+                  width: 28, height: 28, borderRadius: 'var(--radius)',
+                  background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.15)',
+                  color: 'rgba(255,255,255,0.7)', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  {isFullscreen
+                    ? <path d="M4 1v3H1M12 1v3h3M4 15v-3H1M12 15v-3h3" />
+                    : <path d="M1 5V1h4M15 5V1h-4M1 11v4h4M15 11v4h-4" />}
+                </svg>
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* How to play — detailed guide below the game */}
+      <div style={{ marginTop: 'var(--space-6)' }}>
+        <h3 className="cs-section-subtitle" style={{ marginBottom: 'var(--space-4)' }}>How to Play</h3>
+
+        <div className="cs-label-row">
+          <span className="cs-label-row-key">Goal</span>
+          <span className="cs-label-row-val">Complete more sushi orders than your opponent in 90 seconds</span>
+        </div>
+        <div className="cs-label-row">
+          <span className="cs-label-row-key">Player 1</span>
+          <span className="cs-label-row-val">Left-side keys (Q, W, E, R, A, S, D, F) &mdash; each maps to an ingredient</span>
+        </div>
+        <div className="cs-label-row">
+          <span className="cs-label-row-key">Player 2</span>
+          <span className="cs-label-row-val">Right-side keys (U, I, O, P, J, K, L, ;) &mdash; each maps to an ingredient</span>
+        </div>
+        <div className="cs-label-row">
+          <span className="cs-label-row-key">Gameplay</span>
+          <span className="cs-label-row-val">Orders appear on screen. Press the matching ingredient buttons in the correct sequence.</span>
+        </div>
+        <div className="cs-label-row">
+          <span className="cs-label-row-key">Combos</span>
+          <span className="cs-label-row-val">Complete orders without mistakes to earn combo multipliers for bonus points</span>
+        </div>
+        <div className="cs-label-row">
+          <span className="cs-label-row-key">Mistakes</span>
+          <span className="cs-label-row-val">Wrong ingredient = red flash + brief cooldown penalty. Don&rsquo;t mash!</span>
+        </div>
+        <div className="cs-label-row">
+          <span className="cs-label-row-key">Tip</span>
+          <span className="cs-label-row-val">Watch the button colors &mdash; each glows in its ingredient&rsquo;s color. Salmon = pink, wasabi = green, etc.</span>
+        </div>
+      </div>
+
+      {!IS_TOUCH && (
+        <p style={{
+          fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)',
+          color: 'var(--ink-30)', letterSpacing: '0.06em',
+          textAlign: 'center', marginTop: 'var(--space-4)',
+        }}>
+          Game not loading? <a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-50)', textDecoration: 'underline' }}>Play directly on itch.io</a>
+        </p>
+      )}
+    </CsSection>
+  )
+}
 
 export default function TheOmakasePage() {
   return (
@@ -59,6 +227,9 @@ export default function TheOmakasePage() {
             <p><a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer">Play at vill4n3lle.itch.io/the-omakase &rarr;</a></p>
           </CsBody>
         </CsSection>
+
+        {/* Play the game */}
+        <GameEmbed />
 
         {/* Challenge */}
         <section className="cs-section reveal" id="cs-challenge">
@@ -146,6 +317,7 @@ export default function TheOmakasePage() {
         <CsThanks />
 
         <BottomNav sections={[
+          { id: 'cs-play', label: 'Play' },
           { id: 'cs-challenge', label: 'Challenge' },
           { id: 'cs-gameplay', label: 'Gameplay' },
           { id: 'cs-fabrication', label: 'Fabrication' },

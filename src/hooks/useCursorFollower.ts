@@ -17,8 +17,9 @@ const STREAMS = [
   { hueStart: 190, hueEnd: 230, lightness: 65, saturation: 60, maxWidth: 2, alpha: 0.2, offset: -5 },         // teal outer
 ];
 
-export function useCursorFollower() {
+export function useCursorFollower(enabled = true) {
   useEffect(() => {
+    if (!enabled) return;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -300,5 +301,5 @@ export function useCursorFollower() {
       dot.remove();
       canvas.remove();
     };
-  }, []);
+  }, [enabled]);
 }

@@ -1,4 +1,5 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
+import { normalizeCopy } from '../utils/normalizeCopy'
 
 /**
  * Spotlight text reveal.
@@ -126,6 +127,9 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     document.body.classList.remove('spotlight-active')
   }, [])
 
+  const safeFront = normalizeCopy(front)
+  const safeBehind = normalizeCopy(behind)
+
   return (
     <>
       <div
@@ -136,14 +140,14 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
         onMouseMove={handleMove}
       >
         <div className="spotlight-front">
-          <span>{front}</span>
+          <span>{safeFront}</span>
         </div>
       </div>
 
       {/* Circle lives outside container — fixed, never clipped */}
       <div ref={circleRef} className="spotlight-circle" aria-hidden="true">
         <div ref={behindRef} className="spotlight-behind">
-          <span>{behind}</span>
+          <span>{safeBehind}</span>
         </div>
       </div>
     </>

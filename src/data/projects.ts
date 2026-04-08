@@ -8,7 +8,8 @@
  *
  * To mark a project as NDA:
  *  Set `nda: true`.
- *  Password: "designportfolio" + today's date (DDMMYY), e.g. designportfolio070426
+ *  Detailed content is excluded from public production builds unless
+ *  `VITE_ENABLE_NDA_DETAILS=true` is set for an internal preview build.
  */
 
 export interface Project {
@@ -330,7 +331,7 @@ export const projects: Project[] = [
   {
     slug: 'sea-of-salt',
     name: 'Sea of Salt',
-    image: `${IMG}/sea-of-salt.jpg`,
+    image: `${IMG}/sea-of-salt.svg`,
     tag: 'DATA INSTALLATION',
     year: '2024',
     desc: 'Kinetic salt installation shifting in response to real-time ocean data',

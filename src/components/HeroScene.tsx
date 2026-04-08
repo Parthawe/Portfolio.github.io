@@ -791,15 +791,6 @@ function PetalRose({ dark, hovered }: { dark: boolean; hovered: boolean }) {
    Same visual language as every other object.
    ═══════════════════════════════════════════════════ */
 
-const PD_HOLD = 4.0;
-const PD_MORPH = 2.5;
-const PD_FORMS = 3;
-const PD_CYCLE = (PD_HOLD + PD_MORPH) * PD_FORMS;
-
-function easeInOutCubic(t: number) {
-  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-}
-
 // Multicolor iridescent gradient — deep navy center, rainbow edges
 function cubeGradientColor(x: number, z: number, radius: number, _dark: boolean): string {
   const angle = (Math.atan2(z, x) + Math.PI) / (Math.PI * 2)

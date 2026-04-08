@@ -37,7 +37,7 @@ export default function SeaOfSaltPage() {
             { label: 'Context', value: 'NYU ITP' },
             { label: 'Tools', value: 'Arduino, Servo Motors, NOAA API, Laser Cutting' },
           ]}
-          heroImage="/Assets/images/sea-of-salt.jpg"
+          heroImage="/Assets/images/sea-of-salt.svg"
           heroAlt="Sea of Salt installation, kinetic salt landscape responding to ocean data"
         />
 

@@ -15,8 +15,11 @@ const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolea
   installations: TrussStructure,
   'design-for-good': PetalRose,
   'ux-design': MorphingScreens,
+  fintech: MorphingScreens,
+  crypto: MorphingScreens,
   'brand-visual': StackedPlates,
   ai: LensAssembly,
+  'ai-wearables': LensAssembly,
   'creative-tech': GlassCrystal,
 };
 

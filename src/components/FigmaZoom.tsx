@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useState } from 'react'
 
 /**
  * Figma-style zoom: Cmd+/- to zoom page, badge shows percentage.
@@ -8,9 +8,10 @@ import { useState, useEffect, useCallback } from 'react'
 const STEPS = [50, 67, 75, 80, 90, 100, 110, 125, 150, 200]
 
 export default function FigmaZoom() {
-  const [zoom, setZoom] = useState(100)
+  const zoomRef = useRef(100)
 
   const applyZoom = useCallback((level: number) => {
+    zoomRef.current = level
     document.documentElement.style.setProperty('--page-zoom', String(level / 100))
     const wrapper = document.getElementById('root')
     if (wrapper) {
@@ -34,23 +35,16 @@ export default function FigmaZoom() {
   }, [])
 
   const zoomIn = useCallback(() => {
-    setZoom(prev => {
-      const next = STEPS.find(s => s > prev) || prev
-      applyZoom(next)
-      return next
-    })
+    const next = STEPS.find(s => s > zoomRef.current) || zoomRef.current
+    applyZoom(next)
   }, [applyZoom])
 
   const zoomOut = useCallback(() => {
-    setZoom(prev => {
-      const next = [...STEPS].reverse().find(s => s < prev) || prev
-      applyZoom(next)
-      return next
-    })
+    const next = [...STEPS].reverse().find(s => s < zoomRef.current) || zoomRef.current
+    applyZoom(next)
   }, [applyZoom])
 
   const zoomReset = useCallback(() => {
-    setZoom(100)
     applyZoom(100)
   }, [applyZoom])
 

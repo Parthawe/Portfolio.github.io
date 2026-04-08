@@ -95,6 +95,11 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
     if (!target) return;
     const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 56;
     const top = target.getBoundingClientRect().top + window.scrollY - navH - 24;
+    const lenis = (window as unknown as Record<string, { scrollTo?: (target: number, options?: { duration?: number }) => void }>).__lenis
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(top, { duration: 1 })
+      return
+    }
     window.scrollTo({ top, behavior: 'smooth' });
   };
 
