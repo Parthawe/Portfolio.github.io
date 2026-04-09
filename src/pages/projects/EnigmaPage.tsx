@@ -38,7 +38,17 @@ export default function EnigmaPage() {
           ]}
         />
 
-        {/* Hero Video */}
+        {/* Hero photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/person-viewing.png" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-c.png" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Video */}
         <section className="cs-slide reveal">
           <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
             <iframe
@@ -78,6 +88,24 @@ export default function EnigmaPage() {
           </div>
         </CsSection>
 
+        {/* Detail photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/alphabet-layer.png" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/wire-detail.png" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/neuron-closeup.png" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Wide shot */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-wide.png" alt="Enigma sculpture wide shot: full neural network with alphabet output layer visible" loading="lazy" /></div>
+          </div>
+        </section>
+
         {/* Concept */}
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Illuminated Neural Architecture">
           <CsBody>
@@ -87,16 +115,6 @@ export default function EnigmaPage() {
           </CsBody>
         </CsSection>
 
-        {/* Images 1-3 */}
-        <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/G1896202568057018034140303655446/1.jpg" alt="Enigma sculpture, overview of the illuminated neural network" loading="lazy" />
-        </section>
-        <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/K1896202568075464778214013207062/2.jpg" alt="Enigma sculpture, close-up of LED neurons" loading="lazy" />
-        </section>
-        <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/S1896202568093911522287722758678/3.jpg" alt="Enigma sculpture, network topology detail" loading="lazy" />
-        </section>
 
         {/* Technology */}
         <CsSection id="cs-technology" label="02 &mdash; Technology" title="From Model to Light">
@@ -107,13 +125,6 @@ export default function EnigmaPage() {
           </CsBody>
         </CsSection>
 
-        {/* Images 4-5 */}
-        <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/E1896202568112358266361432310294/4.jpg" alt="Enigma, technology and wiring detail" loading="lazy" />
-        </section>
-        <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/S1896202568130805010435141861910/5.jpg" alt="Enigma, LED driver and Arduino setup" loading="lazy" />
-        </section>
 
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="03 &mdash; Exhibition" title="ITP Winter Show 2023">
@@ -124,13 +135,6 @@ export default function EnigmaPage() {
           </CsBody>
         </CsSection>
 
-        {/* Images 6-7 */}
-        <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/O1896202568186145242656270516758/8.jpg" alt="Enigma at ITP Winter Show, audience interaction" loading="lazy" />
-        </section>
-        <section className="cs-slide reveal">
-          <img src="https://freight.cargo.site/w/2000/i/D1896202568204591986729980068374/9.jpg" alt="Enigma at ITP Winter Show, exhibition view" loading="lazy" />
-        </section>
 
         {/* Thanks */}
         <CsThanks />

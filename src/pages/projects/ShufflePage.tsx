@@ -111,23 +111,6 @@ export default function ShufflePage() {
           </CsBody>
         </CsSection>
 
-        {/* Images 1-3 */}
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/L1909464353160286896185627968022/1.jpg" alt="Shuffle installation, overview" loading="lazy" />
-          </div>
-        </section>
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/Z1909464353307860848775304380950/2.jpg" alt="Shuffle installation, detail" loading="lazy" />
-          </div>
-        </section>
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/B1909464353289414104701594829334/3.jpg" alt="Shuffle installation, tokens" loading="lazy" />
-          </div>
-        </section>
-
         {/* Process */}
         <CsSection id="cs-process" label="02 &mdash; Process" title="Hardware &amp; Fabrication">
           <CsBody>
@@ -153,18 +136,6 @@ export default function ShufflePage() {
           </div>
         </CsSection>
 
-        {/* Images 4-5 */}
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/W1909464353270967360627885277718/4.jpg" alt="Shuffle, process and electronics" loading="lazy" />
-          </div>
-        </section>
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/M1909464353252520616554175726102/5.jpg" alt="Shuffle, PCB and fabrication" loading="lazy" />
-          </div>
-        </section>
-
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="03 &mdash; Exhibition" title="ITP Winter Show 2023">
           <CsBody>
@@ -173,18 +144,6 @@ export default function ShufflePage() {
             <p>One of the most rewarding outcomes was observing how groups of friends would compare their token distributions side by side, laughing at differences and debating trade-offs. Faculty members also engaged deeply, noting that the installation surfaced tensions around workload that are difficult to articulate in conventional feedback channels. The piece demonstrated that playful, tactile interfaces can open up reflective dialogue in ways that surveys and forms simply cannot.</p>
           </CsBody>
         </CsSection>
-
-        {/* Images 6-7 */}
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/R1909464353234073872480466174486/6.jpg" alt="Shuffle, exhibition at ITP Winter Show" loading="lazy" />
-          </div>
-        </section>
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2160/i/L1909464353215627128406756622870/7.jpg" alt="Shuffle, visitors interacting with the installation" loading="lazy" />
-          </div>
-        </section>
 
         <CsThanks />
 
