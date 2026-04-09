@@ -40,7 +40,7 @@ export default function RevolvingStagePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2022' },
           ]}
-          heroImage="/Assets/Projects/RevolvingStage/Desktop/1.jpg"
+          heroImage="/Assets/Projects/RevolvingStage/photos/performance-collage.png"
           heroAlt="Revolving Stage, designing a revolving stage for theatre play with stage photo and 3D render"
         />
 
@@ -83,10 +83,7 @@ export default function RevolvingStagePage() {
 
         {/* Slide images */}
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/2.jpg" alt="Overview slide, summary, challenges, role, tools and 3D stage rotation diagrams" loading="lazy" />
-        </div>
-        <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/3.jpg" alt="Isometric view showing the revolving stage rotating anticlockwise 135 degrees above the audience seating area" loading="lazy" />
+          <img src="/Assets/Projects/RevolvingStage/photos/isometric-stage.png" alt="Isometric view showing the revolving stage rotating anticlockwise 135 degrees above the audience seating area" loading="lazy" />
         </div>
 
         {/* Mechanical Design */}
@@ -99,7 +96,7 @@ export default function RevolvingStagePage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/4.jpg" alt="Exploded isometric view, wooden revolving stage, axle, caster wheel bearing assembly, and wooden base with dimensions" loading="lazy" />
+          <img src="/Assets/Projects/RevolvingStage/photos/stage-vs-render.png" alt="Exploded isometric view, wooden revolving stage, axle, caster wheel bearing assembly, and wooden base with dimensions" loading="lazy" />
         </div>
 
         {/* Axle */}
@@ -125,7 +122,7 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/5.jpg" alt="Exploded view of the axle assembly, steel plates, shaft, thrust bearing, ball bearing, and bearing components" loading="lazy" />
+          <img src="/Assets/Projects/RevolvingStage/photos/axle-exploded.png" alt="Exploded view of the axle assembly, steel plates, shaft, thrust bearing, ball bearing, and bearing components" loading="lazy" />
         </div>
 
         {/* Caster Wheel */}
@@ -141,7 +138,7 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/6.jpg" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" />
+          <img src="/Assets/Projects/RevolvingStage/photos/caster-engineering.png" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" />
         </div>
 
         {/* Revolving Stage Physics */}
@@ -160,7 +157,7 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/7.jpg" alt="Revolving stage shown at multiple rotation angles, clockwise 45 degrees, angle 0 degrees, anti-clockwise 45 and 90 degrees" loading="lazy" />
+          <img src="/Assets/Projects/RevolvingStage/photos/stage-rotation.png" alt="Revolving stage shown at multiple rotation angles, clockwise 45 degrees, angle 0 degrees, anti-clockwise 45 and 90 degrees" loading="lazy" />
         </div>
 
         {/* Final Stage Design */}
@@ -176,10 +173,6 @@ export default function RevolvingStagePage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/8.jpg" alt="Final stage design, front elevation showing Cafe 1, central revolving stage with umbrella, and Cafe 2" loading="lazy" />
-        </div>
-
         {/* In Action */}
         <CsSection id="cs-result" label="Result" title={'In \u2013 Action'}>
           <CsBody>
@@ -190,7 +183,7 @@ export default function RevolvingStagePage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/Desktop/9.jpg" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" />
+          <img src="/Assets/Projects/RevolvingStage/photos/performance-collage.png" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" />
         </div>
 
         {/* Credits */}
