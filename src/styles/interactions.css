@@ -243,7 +243,8 @@ h3.text-highlight .text-highlight-text {
 .wr-disciplines {
   padding: var(--space-8) 0;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  background: var(--bg);
 }
 .wr-disciplines-grid {
   display: grid;
@@ -362,11 +363,13 @@ h3.text-highlight .text-highlight-text {
 
 .wr-reveal-section {
   position: relative;
+  z-index: 2;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   padding: 3rem var(--pad, clamp(1.25rem, 4vw, 3rem));
   text-align: center;
+  background: var(--bg);
 }
 
 /* Highlight that sits beside the section label */

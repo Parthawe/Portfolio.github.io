@@ -6,6 +6,9 @@
 .cta-v2 {
   padding: var(--space-12) 0;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
 }
 .cta-v2-inner {
   display: flex;
