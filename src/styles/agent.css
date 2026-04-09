@@ -113,7 +113,7 @@
 
 .agent-root {
   position: fixed;
-  bottom: calc(var(--pad) / 2 + 6px);
+  bottom: calc(var(--pad) / 2 + 28px);
   left: calc(var(--pad) / 2 + 4px);
   z-index: 89;
   display: flex;
