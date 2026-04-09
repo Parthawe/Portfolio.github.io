@@ -91,6 +91,7 @@ export const projects: Project[] = [
     featured: true,
     featuredOrder: 1,
     loading: 'eager',
+    tier: 's',
   },
   {
     slug: 'transfi-project',
@@ -105,6 +106,7 @@ export const projects: Project[] = [
     featuredOrder: 2,
     nda: true,
     loading: 'eager',
+    tier: 's',
   },
   {
     slug: 'zentipay',
@@ -115,9 +117,9 @@ export const projects: Project[] = [
     desc: 'Built a fintech super-app from scratch — 30% higher transaction completion',
     category: 'ux',
     page: () => import('../pages/projects/ZentipayPage'),
-    featured: true,
-    featuredOrder: 3,
     nda: true,
+    archiveOrder: 2,
+    tier: 'a',
     loading: 'eager',
   },
   {
@@ -130,7 +132,8 @@ export const projects: Project[] = [
     category: 'ai',
     page: () => import('../pages/projects/ClawedChatPage'),
     featured: true,
-    featuredOrder: 4,
+    featuredOrder: 3,
+    tier: 's',
   },
 
   /* ── UX Design ── */
@@ -284,7 +287,8 @@ export const projects: Project[] = [
     desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024',
     category: 'creative',
     page: () => import('../pages/projects/JugalbandiPage'),
-    archiveOrder: 4,
+    featured: true,
+    featuredOrder: 4,
     tier: 's',
   },
   {
