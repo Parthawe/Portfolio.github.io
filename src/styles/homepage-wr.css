@@ -760,14 +760,21 @@
   padding: clamp(3rem, 6vw, 5rem) clamp(24px, 5vw, 80px);
 }
 
-/* 4-column grid — compact flagship cards */
+/* 2-column grid — alternating heights */
 .wr-feat-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
 }
-.wr-feat-grid .pcard-visual {
-  aspect-ratio: 4 / 5;
+/* 1 and 4: taller */
+.wr-feat-grid > *:nth-child(1) .pcard-visual,
+.wr-feat-grid > *:nth-child(4) .pcard-visual {
+  aspect-ratio: 3 / 4;
+}
+/* 2 and 3: shorter */
+.wr-feat-grid > *:nth-child(2) .pcard-visual,
+.wr-feat-grid > *:nth-child(3) .pcard-visual {
+  aspect-ratio: 4 / 3;
 }
 
 /* ── Featured row, editorial layout ── */
@@ -894,18 +901,14 @@
   color: var(--ink-40);
 }
 
-/* Tablet featured */
-@media (max-width: 900px) {
-  .wr-feat-grid { grid-template-columns: repeat(2, 1fr); }
-}
 /* Mobile featured */
 @media (max-width: 768px) {
-  .wr-feat-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .wr-feat-grid .pcard-visual { aspect-ratio: 4 / 3; }
+  .wr-feat-grid { gap: 1rem; }
   .wr-featured-v2-inner { padding: 2rem 1.25rem; }
 }
 @media (max-width: 480px) {
   .wr-feat-grid { grid-template-columns: 1fr; }
+  .wr-feat-grid > * .pcard-visual { aspect-ratio: 16 / 10; }
 }
 
 /* ================================================
