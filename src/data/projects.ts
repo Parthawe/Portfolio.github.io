@@ -95,7 +95,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'mentra-miniapps',
-    name: 'Mentra MiniApps',
+    name: 'MiniApps in OS',
     image: '/Assets/images/mentra/appstore-hero.png',
     tag: 'PLATFORM DESIGN',
     year: '2025\u201326',
