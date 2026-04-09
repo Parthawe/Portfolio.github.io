@@ -47,7 +47,7 @@ export default function CueTvPage() {
           liveUrl="https://www.cuetv.online"
         />
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/1.jpg" alt="CueTV hero, Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
+        <CsImage src="/Assets/Projects/CueTV/photos/platform-overview.png" alt="CueTV hero, Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
 
         {/* Overview */}
         <ProjectOverview
@@ -119,8 +119,6 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/2.jpg" alt="About CueTV, overview, challenges, role, tools, and genre categories: Opera, Ballet, Symphonies, Classical" />
-
         {/* Problem Statement */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -149,8 +147,6 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/3.jpg" alt="Problem statement, How to identify audience, create awareness, engage user. Identified use cases mapped by payment, categories, genres, content, duplicates, and recognition." />
-
         {/* Process */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -166,8 +162,6 @@ export default function CueTvPage() {
             ]} />
           </div>
         </section>
-
-        <CsImage src="/Assets/Projects/CueTV/Desktop/4.jpg" alt="Process ahead, multi-device platform design for Amazon Fire TV, Apple TV, Roku, Xbox, Android TV, Tizen, iPhone, iPad, and Web" />
 
         {/* Awareness Strategy */}
         <section className="cs-section reveal">
@@ -205,8 +199,6 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/5.jpg" alt="Awareness strategy, experiments, plan of action flow (Awareness, Discovery, Validation, Targeting), campaign details, and organic traffic flow" />
-
         {/* Customer Segments */}
         <CsSection label="Research" title="Customer Segments">
           <CsBody>
@@ -219,8 +211,6 @@ export default function CueTvPage() {
             { title: 'Types of Ads', desc: 'Google Ads (responsive, image, video, app promotion), Facebook Ads (carousel, image, instant experience, video, collection), and other networks including Criteo, Skim Links, Out Brain, and AppNexus.' },
           ]} />
         </CsSection>
-
-        <CsImage src="/Assets/Projects/CueTV/Desktop/6.jpg" alt="Customer segments detailed breakdown, 3 sets with motivations, pain points, reach strategies. Types of ads: Google Ads, Facebook Ads, and other networks." />
 
         {/* 30,000+ Ads */}
         <section className="cs-section reveal">
@@ -238,7 +228,17 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/7.jpg" alt="30,000+ different ad creatives collage and engagement results chart, before and after comparison showing trialist views and subscriber views growth" />
+        <CsImage src="/Assets/Projects/CueTV/photos/ad-creatives-grid.png" alt="30,000+ different ad creatives for opera, ballet, and classical performances" />
+
+        {/* Retargeting + banner */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/retargeting-ads.png" alt="Retargeting ad variations across performance categories" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/performance-banner.png" alt="Performance banner: opera, ballet, classical live stills" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         {/* Platform Optimization */}
         <CsSection label="Product Design" title="Platform Optimization">
@@ -251,7 +251,7 @@ export default function CueTvPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/8.jpg" alt="Platform optimization, CueTV mobile app showing explore screen with Siberia opera, and search for Macbeth with results. Watch Live Streams and Find Musical Works." />
+        <CsImage src="/Assets/Projects/CueTV/photos/app-browse.png" alt="Platform optimization, CueTV mobile app showing explore screen with Siberia opera, and search for Macbeth with results. Watch Live Streams and Find Musical Works." />
 
         {/* More Features */}
         <section className="cs-section reveal">
@@ -264,7 +264,15 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/Desktop/9.jpg" alt="Platform features continued, find composers (Mozart), find companies and festivals (Royal Opera House), save and watch offline" />
+        {/* Mobile detail */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/mobile-player.png" alt="Mobile player: Le Carnaval des Animaux live stream on iPhone" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/app-detail.png" alt="App detail: video download and offline viewing interface" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         {/* Credits */}
         <section className="cs-section reveal">
@@ -290,8 +298,6 @@ export default function CueTvPage() {
             </div>
           </div>
         </section>
-
-        <CsImage src="/Assets/Projects/CueTV/Desktop/10.jpg" alt="Credits, performance stills from opera, ballet, and classical productions. Thanks for Watching! Typeface: Butler's Slice. Done with MonsoonFish." />
 
         {/* Reflections */}
         <section className="cs-section reveal">
