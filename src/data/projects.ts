@@ -41,6 +41,8 @@ export interface Project {
   hidden?: boolean
   /** Loading priority */
   loading?: 'eager' | 'lazy'
+  /** Quality tier: s=flagship, a=strong, b=good, c=thin, d=filler */
+  tier?: 's' | 'a' | 'b' | 'c' | 'd'
 }
 
 export type ProjectCategory = 'ux' | 'ai' | 'creative' | 'install' | 'brand' | 'good'
@@ -142,6 +144,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/ExecutiveLensPage'),
     archiveOrder: 1,
+    tier: 'a',
   },
   {
     slug: 'org-dashboard',
@@ -153,6 +156,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/OrgDashboardPage'),
     archiveOrder: 21,
+    tier: 'b',
   },
   {
     slug: 'cuetv',
@@ -165,6 +169,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/CueTvPage'),
     nda: true,
     archiveOrder: 9,
+    tier: 'c',
   },
   {
     slug: 'healthapp',
@@ -177,6 +182,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/HealthAppPage'),
     nda: true,
     archiveOrder: 23,
+    tier: 'c',
   },
   {
     slug: 'ibm',
@@ -188,6 +194,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/IbmPage'),
     archiveOrder: 25,
+    tier: 'c',
   },
 
   /* ── AI & Wearables ── */
@@ -201,6 +208,7 @@ export const projects: Project[] = [
     category: 'ai',
     page: () => import('../pages/projects/BallahCodePage'),
     archiveOrder: 17,
+    tier: 'b',
   },
   {
     slug: 'oncall-lens',
@@ -212,6 +220,7 @@ export const projects: Project[] = [
     category: 'ai',
     page: () => import('../pages/projects/OnCallLensPage'),
     archiveOrder: 19,
+    tier: 'c',
   },
   {
     slug: 'ai-voice',
@@ -224,6 +233,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/AiVoicePage'),
     nda: true,
     archiveOrder: 32,
+    tier: 'b',
   },
 
   /* ── Design for Good ── */
@@ -237,6 +247,7 @@ export const projects: Project[] = [
     category: 'good',
     page: () => import('../pages/projects/RaahiPage'),
     archiveOrder: 5,
+    tier: 'a',
   },
   {
     slug: 'the-point-cdc',
@@ -248,6 +259,7 @@ export const projects: Project[] = [
     category: 'good',
     page: () => import('../pages/projects/ThePointCdcPage'),
     archiveOrder: 7,
+    tier: 'b',
   },
   {
     slug: 'office-of-diversity',
@@ -259,6 +271,7 @@ export const projects: Project[] = [
     category: 'good',
     page: () => import('../pages/projects/OfficeOfDiversityPage'),
     archiveOrder: 30,
+    tier: 'c',
   },
 
   /* ── Creative Technology ── */
@@ -272,6 +285,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/JugalbandiPage'),
     archiveOrder: 4,
+    tier: 's',
   },
   {
     slug: 'keyboard-project',
@@ -283,6 +297,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/KeyboardProjectPage'),
     archiveOrder: 3,
+    tier: 'a',
   },
   {
     slug: 'vj-software',
@@ -294,6 +309,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/VjSoftwarePage'),
     archiveOrder: 18,
+    tier: 'b',
   },
   {
     slug: 'enigma',
@@ -305,6 +321,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/EnigmaPage'),
     archiveOrder: 10,
+    tier: 'a',
   },
   {
     slug: 'shuffle',
@@ -316,6 +333,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/ShufflePage'),
     archiveOrder: 12,
+    tier: 'b',
   },
   {
     slug: 'making-of-time',
@@ -327,6 +345,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/MakingOfTimePage'),
     archiveOrder: 13,
+    tier: 'b',
   },
   {
     slug: 'sea-of-salt',
@@ -338,6 +357,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/SeaOfSaltPage'),
     archiveOrder: 22,
+    tier: 'b',
   },
 
   {
@@ -350,6 +370,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/CanvasForCodersPage'),
     archiveOrder: 14,
+    tier: 'd',
   },
   {
     slug: 'embodied-web',
@@ -361,6 +382,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/EmbodiedWebPage'),
     archiveOrder: 33,
+    tier: 'd',
   },
   {
     slug: 'feeling-patterns',
@@ -372,6 +394,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/FeelingPatternsPage'),
     archiveOrder: 34,
+    tier: 'd',
   },
   {
     slug: 'performance-by-design',
@@ -383,6 +406,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/PerformanceByDesignPage'),
     archiveOrder: 35,
+    tier: 'd',
   },
   {
     slug: 'on-becoming',
@@ -394,6 +418,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/OnBecomingPage'),
     archiveOrder: 36,
+    tier: 'd',
   },
   {
     slug: 'storytelling',
@@ -405,6 +430,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/StorytellingPage'),
     archiveOrder: 37,
+    tier: 'd',
   },
   {
     slug: 'dna-speculative',
@@ -416,6 +442,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/DnaPage'),
     archiveOrder: 38,
+    tier: 'c',
   },
   {
     slug: 'comp-media',
@@ -427,6 +454,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/IntroCompMediaPage'),
     archiveOrder: 38,
+    tier: 'd',
   },
   {
     slug: 'hypercinema',
@@ -438,6 +466,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/HypercinemaPage'),
     archiveOrder: 39,
+    tier: 'd',
   },
   {
     slug: 'applications',
@@ -449,6 +478,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/ApplicationsPage'),
     archiveOrder: 40,
+    tier: 'd',
   },
   {
     slug: 'messy-humans',
@@ -460,6 +490,7 @@ export const projects: Project[] = [
     category: 'good',
     page: () => import('../pages/projects/MessyHumansPage'),
     archiveOrder: 41,
+    tier: 'd',
   },
   {
     slug: 'production-studio',
@@ -471,6 +502,7 @@ export const projects: Project[] = [
     category: 'creative',
     page: () => import('../pages/projects/ProductionStudioPage'),
     archiveOrder: 42,
+    tier: 'd',
   },
 
   {
@@ -483,6 +515,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/ArcadeLabPage'),
     archiveOrder: 27,
+    tier: 'd',
   },
 
   /* ── Installations ── */
@@ -496,6 +529,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/BlackHolePage'),
     archiveOrder: 2,
+    tier: 'a',
   },
   {
     slug: 'uv-light',
@@ -507,6 +541,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/UvLightPage'),
     archiveOrder: 8,
+    tier: 'b',
   },
   {
     slug: 'the-omakase',
@@ -518,6 +553,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/TheOmakasePage'),
     archiveOrder: 20,
+    tier: 'a',
   },
   {
     slug: 'revolving-stage',
@@ -529,6 +565,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/RevolvingStagePage'),
     archiveOrder: 11,
+    tier: 'b',
   },
   {
     slug: 'moniac-machine',
@@ -540,6 +577,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/MoniacMachinePage'),
     archiveOrder: 15,
+    tier: 'b',
   },
   {
     slug: 'drowning',
@@ -551,6 +589,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/DrowningPage'),
     archiveOrder: 28,
+    tier: 'd',
   },
   {
     slug: 'sculpture',
@@ -562,6 +601,7 @@ export const projects: Project[] = [
     category: 'install',
     page: () => import('../pages/projects/SculpturePage'),
     archiveOrder: 31,
+    tier: 'd',
   },
 
   /* ── Brand & Visual ── */
@@ -575,6 +615,7 @@ export const projects: Project[] = [
     category: 'brand',
     page: () => import('../pages/projects/TedxPage'),
     archiveOrder: 6,
+    tier: 'a',
   },
   {
     slug: 'code-for-build',
@@ -586,6 +627,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/CodeForBuildPage'),
     archiveOrder: 24,
+    tier: 'c',
   },
   {
     slug: 'typeface',
@@ -597,6 +639,7 @@ export const projects: Project[] = [
     category: 'brand',
     page: () => import('../pages/projects/TypefacePage'),
     archiveOrder: 16,
+    tier: 'b',
   },
   {
     slug: 'atps',
@@ -608,6 +651,7 @@ export const projects: Project[] = [
     category: 'brand',
     page: () => import('../pages/projects/AtpsPage'),
     archiveOrder: 26,
+    tier: 'd',
   },
   {
     slug: 'vishwaconclave',
@@ -619,6 +663,7 @@ export const projects: Project[] = [
     category: 'brand',
     page: () => import('../pages/projects/VishwaConclavePage'),
     archiveOrder: 29,
+    tier: 'd',
   },
 ]
 
@@ -626,14 +671,14 @@ export const projects: Project[] = [
    Helper selectors
    ────────────────────────────────────────────────────────────────────── */
 
-/** Featured projects for homepage hero grid */
+/** S-Tier: flagship projects for homepage featured grid */
 export const featuredProjects = projects
-  .filter(p => p.featured)
-  .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99))
+  .filter(p => p.tier === 's')
+  .sort((a, b) => (a.featuredOrder ?? a.archiveOrder ?? 99) - (b.featuredOrder ?? b.archiveOrder ?? 99))
 
-/** Archive projects for homepage (non-featured, sorted) */
+/** A+B Tier: homepage archive (strong + good work) */
 export const archiveProjects = projects
-  .filter(p => !p.featured && !p.hidden)
+  .filter(p => (p.tier === 'a' || p.tier === 'b') && !p.hidden)
   .sort((a, b) => (a.archiveOrder ?? 99) - (b.archiveOrder ?? 99))
 
 /** All projects for the Work page in curated mixed order */

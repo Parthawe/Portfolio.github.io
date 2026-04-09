@@ -262,8 +262,8 @@ export default function HomePage() {
         <section className="wr-featured-v2" id="works" style={{position:"relative"}}><FigmaFrameLabel name="Featured Work" />
           <div className="wr-featured-v2-inner">
             <div className="wr-section-head">
-              <span className="wr-label">FEATURED PROJECTS</span>
-              <TextHighlight as="span" className="wr-section-highlight">Work that shipped</TextHighlight>
+              <span className="wr-label">FLAGSHIP WORK</span>
+              <TextHighlight as="span" className="wr-section-highlight">The strongest four</TextHighlight>
               <Link to="/work" className="wr-arrow-btn figma-hover">View All &rarr;<FigmaSelect /></Link>
             </div>
 
@@ -327,7 +327,7 @@ export default function HomePage() {
         <section className="wr-archive" style={{position:"relative"}}><FigmaFrameLabel name="Archive" />
           <div className="wr-archive-inner">
             <div className="wr-section-head">
-              <span className="wr-label">ARCHIVE &middot; 2021&ndash;2026</span>
+              <span className="wr-label">SELECTED WORK</span>
               <Link to="/work" className="wr-arrow-btn figma-hover">View All &rarr;<FigmaSelect /></Link>
             </div>
 
