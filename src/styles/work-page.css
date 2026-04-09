@@ -155,11 +155,12 @@
 }
 .pcard-visual img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center;
-  position: relative;
+  object-position: center top;
+  position: absolute;
+  inset: 0;
   z-index: 1;
   transition: transform 0.7s var(--ease-spring), filter 0.5s, opacity 0.4s;
   opacity: 0;
@@ -365,25 +366,13 @@
   font-size: clamp(1.6rem, 3vw, 2.2rem);
 }
 
-/* ── Varying heights, 6-item cycle for visual rhythm ── */
-.pcard-masonry > *:nth-child(6n+1) .pcard-visual img {
-  aspect-ratio: 3 / 4;
-}
-.pcard-masonry > *:nth-child(6n+2) .pcard-visual img {
-  aspect-ratio: 1 / 1;
-}
-.pcard-masonry > *:nth-child(6n+3) .pcard-visual img {
-  aspect-ratio: 4 / 5;
-}
-.pcard-masonry > *:nth-child(6n+4) .pcard-visual img {
-  aspect-ratio: 5 / 4;
-}
-.pcard-masonry > *:nth-child(6n+5) .pcard-visual img {
-  aspect-ratio: 3 / 4;
-}
-.pcard-masonry > *:nth-child(6n+6) .pcard-visual img {
-  aspect-ratio: 9 / 16;
-}
+/* ── Varying heights on container, 6-item cycle for visual rhythm ── */
+.pcard-masonry > *:nth-child(6n+1) .pcard-visual { aspect-ratio: 3 / 4; }
+.pcard-masonry > *:nth-child(6n+2) .pcard-visual { aspect-ratio: 1 / 1; }
+.pcard-masonry > *:nth-child(6n+3) .pcard-visual { aspect-ratio: 4 / 5; }
+.pcard-masonry > *:nth-child(6n+4) .pcard-visual { aspect-ratio: 5 / 4; }
+.pcard-masonry > *:nth-child(6n+5) .pcard-visual { aspect-ratio: 3 / 4; }
+.pcard-masonry > *:nth-child(6n+6) .pcard-visual { aspect-ratio: 9 / 16; }
 
 
 /* Figma-style radius arcs on bottom nav (work page only) */
