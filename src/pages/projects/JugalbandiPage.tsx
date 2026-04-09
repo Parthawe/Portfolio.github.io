@@ -7,7 +7,6 @@ import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsImage from '../../components/case-study/CsImage'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -44,9 +43,6 @@ export default function JugalbandiPage() {
             { label: 'Duration', value: '5 Months' },
           ]}
         />
-
-        {/* Hero Image */}
-        <CsImage src="/Assets/images/jugalbandi.png" alt="Jugalbandi, performer playing the Hexa-18 instrument on a dark stage with mechanized instruments" />
 
         {/* Instrument overview photos */}
         <section className="cs-section reveal">
