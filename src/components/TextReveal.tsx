@@ -1,4 +1,5 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { normalizeCopy } from '../utils/normalizeCopy'
 
 /**
@@ -144,12 +145,15 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
         </div>
       </div>
 
-      {/* Circle lives outside container — fixed, never clipped */}
-      <div ref={circleRef} className="spotlight-circle" aria-hidden="true">
-        <div ref={behindRef} className="spotlight-behind">
-          <span>{safeBehind}</span>
-        </div>
-      </div>
+      {/* Circle portaled to body — escapes all stacking contexts */}
+      {createPortal(
+        <div ref={circleRef} className="spotlight-circle" aria-hidden="true">
+          <div ref={behindRef} className="spotlight-behind">
+            <span>{safeBehind}</span>
+          </div>
+        </div>,
+        document.body
+      )}
     </>
   )
 }
