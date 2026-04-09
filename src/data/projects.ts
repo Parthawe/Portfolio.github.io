@@ -125,7 +125,7 @@ export const projects: Project[] = [
   {
     slug: 'clawed-chat',
     name: 'Clawed',
-    image: `${IMG}/clawed.png`,
+    image: '/Assets/Projects/Clawed.chat/claw-3d.png',
     tag: 'AI ASSISTANT',
     year: '2026',
     desc: 'AI assistant with receipts for every action — safety-first on glasses and web',
