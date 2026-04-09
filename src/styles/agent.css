@@ -113,8 +113,8 @@
 
 .agent-root {
   position: fixed;
-  bottom: calc(var(--pad) / 2 + 28px);
-  left: calc(var(--pad) / 2 + 4px);
+  bottom: calc(var(--pad) / 2 + 30px);
+  left: calc(var(--pad) / 2);
   z-index: 89;
   display: flex;
   flex-direction: column;
@@ -174,7 +174,7 @@
 
 .agent-avatar {
   position: relative;
-  width: 64px;
+  width: 52px;
   transform-origin: bottom center;
 }
 
@@ -292,15 +292,12 @@
   to   { transform: rotate(-5deg) translateX(4px) translateY(-2px); }
 }
 
-/* ── Chat open: shrink and fade ──────────────────────── */
+/* ── Chat open: hide character completely ──────────────── */
 .agent-trigger--open {
-  transform: scale(0.85);
-  opacity: 0.45;
+  transform: scale(0.5);
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s var(--ease-spring), transform 0.3s var(--ease-spring);
-}
-.agent-trigger--open:hover {
-  opacity: 0.75;
-  transform: scale(0.9) translateY(-2px);
 }
 
 
