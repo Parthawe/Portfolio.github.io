@@ -44,7 +44,7 @@ export default function RaahiPage() {
         />
 
         {/* Hero slide */}
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/1.jpg" alt="Raahi hero, 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/hero-3d.png" alt="Raahi hero, 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
 
         {/* Summary section with label-rows */}
         <section className="cs-section reveal">
@@ -103,9 +103,9 @@ export default function RaahiPage() {
         </section>
 
         {/* Image slides */}
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/3.jpg" alt="Empathy maps, customer journey maps, service blueprint and task flows" loading="lazy" /></div>
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/4.jpg" alt="Brand Identity, mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/5.jpg" alt="Raahi nomenclature in multiple Indian scripts and logo design iterations" loading="lazy" /></div>
+        
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/brand-moodboard.png" alt="Brand Identity, mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
+        
 
         {/* Design System */}
         <section className="cs-section reveal" id="cs-system">
@@ -115,7 +115,7 @@ export default function RaahiPage() {
             <CsBody>
               <p>A comprehensive color system was built around transport modes -- each mode (cab, bus, walk, bike-share, local, cycle, auto, metro) received its own distinct color pair for instant recognition. The typography scale ranges from 50px ExtraBold headings down to 10px labels.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Assets/Projects/Raahi/Desktop/6.jpg" alt="Raahi project styleguide, colors, typography scale" loading="lazy" /></div>
+            
           </div>
         </section>
 
@@ -127,11 +127,11 @@ export default function RaahiPage() {
             <CsBody>
               <p>Bright and accent illustrations stand out noticeably against the general background, guiding users through the app experience with warmth and clarity.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Assets/Projects/Raahi/Desktop/7.jpg" alt="Raahi UI illustrations and app screen mockups" loading="lazy" /></div>
+            
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/8.jpg" alt="Isometric 3D view of all Raahi app screens on blue background" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/all-screens.png" alt="Isometric 3D view of all Raahi app screens on blue background" loading="lazy" /></div>
 
         {/* Features */}
         <section className="cs-section reveal" id="cs-features">
@@ -144,7 +144,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/9.jpg" alt="Raahi homepage, welcome screen, and customisation screens" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/app-home.png" alt="Raahi homepage, welcome screen, and customisation screens" loading="lazy" /></div>
 
         <section className="cs-section reveal">
           <div className="wrap">
@@ -166,7 +166,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/10.jpg" alt="Digital payment setup, QR code screens, and real-time journey guidance" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/bus-qr-ticket.png" alt="Digital payment setup, QR code screens, and real-time journey guidance" loading="lazy" /></div>
 
         <section className="cs-section reveal">
           <div className="wrap">
@@ -188,7 +188,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/Desktop/11.jpg" alt="Insights dashboard with commute trends, carbon footprint, and in-vehicle monitor" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/insights.png" alt="Insights dashboard with commute trends, carbon footprint, and in-vehicle monitor" loading="lazy" /></div>
 
         <section className="cs-section reveal">
           <div className="wrap">
@@ -205,7 +205,10 @@ export default function RaahiPage() {
           <div className="wrap">
             <span className="cs-section-label">Touchpoints</span>
             <h2 className="cs-section-title">Kiosk &amp; Welcome Experience</h2>
-            <div className="cs-img-full"><img src="/Assets/Projects/Raahi/Desktop/12.jpg" alt="Kiosk welcome screen, route check, and multi-language support" loading="lazy" /></div>
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/kiosk-home.png" alt="Kiosk: next stop Mundhwa Gaon, live route tracking" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/route-details.png" alt="Route details with stops, timings, and connections" loading="lazy" /></div>
+            </div>
           </div>
         </section>
 
