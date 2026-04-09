@@ -11,7 +11,8 @@ function highlightSection(scrollTo?: string) {
   if (!scrollTo) return
   const el = document.querySelector(scrollTo) as HTMLElement | null
   if (!el) return
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  el.style.scrollMarginTop = 'calc(var(--nav-h, 56px) + 1.5rem)'
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   el.style.outline = '2px solid var(--select-blue)'
   el.style.outlineOffset = '4px'
   el.style.transition = 'outline 0.25s ease, outline-offset 0.25s ease'

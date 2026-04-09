@@ -119,7 +119,8 @@ function resolveElement(selectors?: string[], existing?: HTMLElement | null) {
 
 function highlightElement(element: HTMLElement | null) {
   if (!element) return
-  element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  element.style.scrollMarginTop = 'calc(var(--nav-h, 56px) + 1.5rem)'
+  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
   element.style.outline = '2px solid var(--select-blue)'
   element.style.outlineOffset = '4px'
   element.style.transition = 'outline 0.25s ease, outline-offset 0.25s ease'
