@@ -340,6 +340,30 @@ export const projects: Project[] = [
     archiveOrder: 17,
   },
 
+  {
+    slug: 'flow-fields',
+    name: 'Flow Fields',
+    image: `${IMG}/sea-of-salt.svg`, // placeholder until hero image is created
+    tag: 'GENERATIVE ART',
+    year: '2024',
+    desc: 'Perlin noise flow fields — 2000 particles creating organic, ever-changing patterns',
+    category: 'creative',
+    page: () => import('../pages/projects/CanvasForCodersPage'),
+    archiveOrder: 13,
+  },
+
+  {
+    slug: 'arcade-lab',
+    name: 'Arcade Lab',
+    image: `${IMG}/the-omakase.jpg`, // shares image with Omakase (it's the ancestor)
+    tag: 'GAME PROTOTYPING',
+    year: '2023',
+    desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
+    category: 'install',
+    page: () => import('../pages/projects/ArcadeLabPage'),
+    archiveOrder: 20,
+  },
+
   /* ── Installations ── */
   {
     slug: 'black-hole',

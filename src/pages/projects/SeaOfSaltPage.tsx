@@ -32,9 +32,9 @@ export default function SeaOfSaltPage() {
           title="Sea of Salt"
           subtitle="A kinetic installation where salt landscapes shift in response to real-time ocean data &mdash; visualizing the invisible connection between land and sea"
           info={[
-            { label: 'Role', value: 'Creator &amp; Designer' },
-            { label: 'Timeline', value: '2024' },
-            { label: 'Context', value: 'NYU ITP' },
+            { label: 'Role', value: 'Creator & Designer' },
+            { label: 'Context', value: 'Bio Art, NYU ITP' },
+            { label: 'Year', value: '2024' },
             { label: 'Tools', value: 'Arduino, Servo Motors, NOAA API, Laser Cutting' },
           ]}
           heroImage="/Assets/images/sea-of-salt.svg"
