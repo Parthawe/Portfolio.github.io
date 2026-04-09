@@ -10,7 +10,6 @@ import CsSteps from '../../components/case-study/CsSteps'
 import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsCredits from '../../components/case-study/CsCredits'
-import CsImage from '../../components/case-study/CsImage'
 import CsCompareTable from '../../components/case-study/CsCompareTable'
 import CsFlowDiagram from '../../components/case-study/CsFlowDiagram'
 import CsBeforeAfter from '../../components/case-study/CsBeforeAfter'
@@ -48,9 +47,19 @@ export default function ClawedChatPage() {
             { label: 'Platform', value: 'Web + Smart Glasses (via Mentra integration)' },
           ]}
           liveUrl="https://clawed.chat"
-          heroImage="/Assets/images/clawed.png"
-          heroAlt="Clawed.chat, Personal AI assistant with smart glasses integration"
+          heroImage="/Assets/Projects/Clawed.chat/landing-hero.png"
+          heroAlt="Clawed.chat landing page: Your AI agent, live in 30 seconds"
         />
+
+        {/* 3D mascot + logo */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/claw-3d.png" alt="Clawed 3D mascot, red sculptural claw character" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/claw-logo-dark.png" alt="Clawed logo glowing on dark background" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         <ProjectOverview
           id="cs-vision"
@@ -132,8 +141,11 @@ export default function ClawedChatPage() {
             <p>The glasses handle the moments. The web hub handles the thinking. It is where you manage your inbox, review AI-drafted responses, configure safety modes, browse your timeline of actions, and connect third-party services. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure.</p>
             <p>The Dashboard is the home screen &mdash; a single-glance summary of pending approvals, recent actions, inbox count, and active safety mode. No widgets to configure, no drag-and-drop customization. The AI decides what is important based on context and recency. If you have three emails waiting for approval, that is the first thing you see. If your glasses are disconnected, that surfaces as an alert. The Dashboard is not a canvas &mdash; it is an opinionated briefing.</p>
           </CsBody>
-          <CsImage src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.png" alt="Clawed.chat full website, hero section with 3D lobster mascot, deployment steps, comparison table, smart glasses integration, community testimonials, and CTA" />
-          <p className="cs-caption">The live clawed.chat marketing site, designed to communicate the safety-first AI philosophy with clear deployment steps, comparison tables, and smart glasses integration messaging</p>
+          <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/docs-page.png" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
+          <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
+
+          <div className="cs-img reveal" style={{ marginTop: '2rem' }}><img src="/Assets/Projects/Clawed.chat/deploy-options.png" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
+          <p className="cs-caption">Cloud Deploy vs Mac Companion, two deployment paths designed for different trust and control preferences</p>
           <h3 className="cs-section-subtitle">Inbox &amp; Ask</h3>
           <CsBody>
             <p>The Inbox is not an email client. It is a triage interface. Every incoming message is pre-analyzed by the AI, tagged with urgency and suggested action, and presented as a card with three options: approve the AI&rsquo;s draft, edit before sending, or dismiss. You can clear your inbox without reading a single full email &mdash; the AI summaries are that good &mdash; but every action generates a receipt so you can audit later.</p>
