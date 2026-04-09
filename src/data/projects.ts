@@ -82,7 +82,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra',
     name: 'Mentra',
-    image: `${IMG}/mentra.png`,
+    image: '/Assets/images/mentra/render-transparent.png',
     tag: 'AI WEARABLES',
     year: '2025–Present',
     desc: 'Designed the OS, companion app, and app store for AI smart glasses shipping at $299',
@@ -92,6 +92,18 @@ export const projects: Project[] = [
     featuredOrder: 1,
     loading: 'eager',
     tier: 's',
+  },
+  {
+    slug: 'mentra-miniapps',
+    name: 'Mentra MiniApps',
+    image: '/Assets/images/mentra/appstore-hero.png',
+    tag: 'PLATFORM DESIGN',
+    year: '2025\u201326',
+    desc: 'First app store for smart glasses \u2014 voice-first discovery, intent-based browsing, developer SDK',
+    category: 'ai',
+    page: () => import('../pages/projects/MentraMiniAppsPage'),
+    archiveOrder: 2,
+    tier: 'a',
   },
   {
     slug: 'transfi-project',
