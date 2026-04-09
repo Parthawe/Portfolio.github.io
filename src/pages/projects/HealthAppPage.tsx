@@ -4,6 +4,8 @@ import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsSection from '../../components/case-study/CsSection'
+import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -11,11 +13,11 @@ export default function HealthAppPage() {
   return (
     <>
       <Helmet>
-        <title>VJ Parivar &middot; Parth Pawar</title>
-        <meta name="description" content="VJ Parivar is a post-purchase services app for VJ Real Estate homeowners. Designing the digital forefront of a real estate company." />
+        <title>Health App &middot; Parth Pawar</title>
+        <meta name="description" content="Reimagining Google Tasks with health integration — balancing productivity with personal well-being through time division, sleep regulation, food tracking, and physical activity." />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="VJ Parivar · Parth Pawar" />
-        <meta property="og:description" content="Post-purchase services app for VJ Real Estate homeowners." />
+        <meta property="og:title" content="Health App · Parth Pawar" />
+        <meta property="og:description" content="Reimagining Google Tasks with health and wellness integration." />
         <meta property="og:image" content="https://parthpawar.com/Assets/Projects/health-app/1.jpg" />
       </Helmet>
 
@@ -27,37 +29,48 @@ export default function HealthAppPage() {
           backLink="/work"
           categorySlug="ux-design"
           backLabel="Back to Work"
-          tags={['UX Design', 'Mobile App']}
-          title="VJ Parivar"
-          subtitle="Post-purchase services app for VJ Real Estate homeowners"
+          tags={['UX Design', 'Mobile App', 'Health']}
+          title="Health App"
+          subtitle="Reimagining Google Tasks with health integration &mdash; balancing productivity with personal well-being"
           info={[
-            { label: 'Year', value: '2020' },
-            { label: 'Role', value: 'UX Designer' },
+            { label: 'Year', value: '2024' },
+            { label: 'Role', value: 'UI/UX Designer' },
+            { label: 'Duration', value: '4 Months' },
           ]}
         />
 
         {/* Overview — public */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-body" style={{ maxWidth: '720px' }}>
-              VJ Parivar is an app for the homeowners of VJ Real Estate and constructions company. It aims to be the face of VJ services to their homeowners after their purchase of a house from VJ. Designing the digital forefront of a real estate company &mdash; to be the face of its post-payment services.
-            </p>
+        <CsSection id="cs-overview" label="Overview" title="Integrating Health &amp; Productivity">
+          <CsBody>
+            <p>The reimagined Google Tasks app integrates health and well-being elements into task management, helping users balance productivity with personal health. The solution merges daily tasks with health insights, personalized recommendations, and wellness tracking to reduce stress and enhance overall quality of life.</p>
+          </CsBody>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Health Points</span>
+            <span className="cs-label-row-val">Time Division, Sleep Regulation, Food Consumption, Physical Tracking</span>
           </div>
-        </section>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Challenge</span>
+            <span className="cs-label-row-val">Simplify the integration of wellness goals without overwhelming users &mdash; bridging the gap between task management and health priorities</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Tools</span>
+            <span className="cs-label-row-val">Figma, Jira, User Research &amp; Testing, Health Integration Analytics, User Flows, Workflow Optimization</span>
+          </div>
+        </CsSection>
 
         {/* Protected content */}
         {NDA_DETAILS_ENABLED ? (
           <>
             {Array.from({ length: 11 }, (_, i) => (
               <div className="cs-slide reveal" key={i}>
-                <img src={`/Assets/Projects/health-app/${i + 1}.jpg`} alt={`VJ Parivar, slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+                <img src={`/Assets/Projects/health-app/${i + 1}.jpg`} alt={`Health App, design slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
               </div>
             ))}
 
             <CsThanks />
           </>
         ) : (
-          <NdaGate slug="healthapp" projectName="VJ Parivar" />
+          <NdaGate slug="healthapp" projectName="Health App" />
         )}
 
       </main>

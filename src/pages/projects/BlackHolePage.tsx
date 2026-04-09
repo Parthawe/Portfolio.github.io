@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -10,11 +10,25 @@ import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import { TimeDilation, GravLensing, BinaryMerger } from '../../components/BlackHoleInteractives'
 
 const SpacetimeFabricScene = lazy(() => import('../../components/SpacetimeFabricScene'))
-const IS_MOBILE = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+  )
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const onChange = (e: MediaQueryListEvent) => setMobile(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  return mobile
+}
 
 export default function BlackHolePage() {
+  const IS_MOBILE = useIsMobile()
   return (
     <>
       <Helmet>
@@ -46,55 +60,42 @@ export default function BlackHolePage() {
           ]}
         />
 
-        {/* Hero, Time Trap */}
+        {/* Hero */}
         <CsImage src="/Assets/Projects/blackhole/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
 
-        {/* Challenge */}
+        {/* Overview */}
         <CsSection id="cs-challenge" label="The Challenge" title="Making the Invisible Tangible">
           <CsBody>
-            <p>A black hole is a region of spacetime where gravity is so strong that nothing &mdash; not even light &mdash; can escape. These are among the most extreme objects in the universe, yet their effects are entirely invisible to the naked eye. The challenge was to create physical representations of five black hole phenomena that make abstract astrophysics something you can see, touch, and understand intuitively.</p>
-            <p>Each model had to be scientifically grounded while remaining accessible to a general audience. The project will be exhibited at the Horological Society of New York&rsquo;s museum this winter, bringing these cosmic phenomena into a space traditionally dedicated to the craft of timekeeping &mdash; a fitting pairing, since black holes fundamentally distort time itself.</p>
+            <p>A black hole is a region of spacetime where gravity is so strong that nothing &mdash; not even light &mdash; can escape. The challenge was to create physical representations of five black hole phenomena that make abstract astrophysics something you can see, touch, and understand intuitively.</p>
+            <p>Each model is scientifically grounded while remaining accessible to a general audience. The project will be exhibited at the Horological Society of New York&rsquo;s museum this winter &mdash; a fitting pairing, since black holes fundamentally distort time itself.</p>
           </CsBody>
         </CsSection>
 
-        {/* 01, Time Trap */}
+        {/* ═══ 01: TIME DILATION ═══ */}
         <CsSection id="cs-time-trap" label="01 &mdash; Phenomenon" title="The Black Hole&rsquo;s Time Trap">
           <CsBody>
-            <p>Near a black hole, time behaves strangely. Gravity stretches and warps spacetime, causing time to slow down dramatically near the black hole compared to far away. If you hover just above the event horizon &mdash; the black hole&rsquo;s point of no return &mdash; minutes for you could be years for a distant observer. The closer you get, the slower time moves.</p>
-            <p>The model places clocks at different distances from a central black hole. At each position, the flow of time changes &mdash; closer to the black hole, time slows dramatically; further away, time flows more normally. This fascinating effect, predicted by Einstein&rsquo;s General Relativity, reminds us that even time itself bends under gravity&rsquo;s influence.</p>
+            <p>Near a black hole, gravity stretches spacetime, causing time to slow down dramatically. If you hover just above the event horizon, minutes for you could be years for a distant observer. The closer you get, the slower time moves.</p>
           </CsBody>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Slider</span>
+            <span className="cs-label-row-val">Drag to move the clock closer to or farther from the black hole &mdash; watch the second hand slow down</span>
+          </div>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <TimeDilation />
+          </div>
         </CsSection>
 
-        {/* Time dilation video */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <video
-              src="/Assets/Projects/blackhole/time-dilation.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{ width: '100%', borderRadius: 'var(--radius-lg)' }}
-            />
+            <video src="/Assets/Projects/blackhole/time-dilation.mp4" autoPlay loop muted playsInline
+              style={{ width: '100%', borderRadius: 'var(--radius-lg)' }} />
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/blackhole/time-trap.jpg" alt="Time Trap model, clocks at varying distances from a central black hole, each running at different speeds" />
-
-        {/* 02, Fabric of the Universe */}
+        {/* ═══ 02: SPACETIME FABRIC ═══ */}
         <CsSection id="cs-fabric" label="02 &mdash; Phenomenon" title="The Invisible Fabric of the Universe">
           <CsBody>
-            <p>Imagine spacetime as a giant, invisible sheet stretched across the universe. Massive objects like stars and planets sit on this sheet, bending it under their weight. This bending creates what we experience as gravity.</p>
-            <p>The model shows how objects like the Sun create &ldquo;dents&rdquo; in this fabric, causing nearby objects to orbit them. The heavier the object, the deeper the dent. Black holes create the deepest dents of all &mdash; so deep that nothing can escape. This concept, from Einstein&rsquo;s General Relativity, explains everything from Earth&rsquo;s orbit to how galaxies form. It is a simple but powerful idea about the invisible forces shaping our universe.</p>
-          </CsBody>
-        </CsSection>
-
-        <CsImage src="/Assets/Projects/blackhole/fabric-of-universe.jpg" alt="Fabric of the Universe model, a stool with stretched fabric and a weighted sphere showing spacetime deformation" />
-
-        {/* Interactive spacetime fabric */}
-        <CsSection id="cs-interactive" label="Interactive" title="Warp Spacetime">
-          <CsBody>
-            <p>Drag the mass across the grid to see how massive objects bend spacetime. Click anywhere on the fabric to add more masses (up to 3) and watch their gravitational wells compound. Double-click a mass to remove it. Watch the cyan test particle follow spacetime curvature &mdash; it rolls along the warped grid toward masses, showing how gravity is geometry.</p>
+            <p>Imagine spacetime as a giant, invisible sheet stretched across the universe. Massive objects sit on this sheet, bending it under their weight. This bending creates what we experience as gravity. Black holes create the deepest dents of all.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Drag</span>
@@ -102,24 +103,19 @@ export default function BlackHolePage() {
           </div>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Click</span>
-            <span className="cs-label-row-val">Add a new mass (up to 3)</span>
+            <span className="cs-label-row-val">Add a new mass (up to 3) &middot; Double-click to remove</span>
           </div>
-          <div className="cs-label-row">
-            <span className="cs-label-row-key">Double-click</span>
-            <span className="cs-label-row-val">Remove a mass</span>
-          </div>
-          <div style={{ marginTop: 'var(--space-5)' }}>
+          <div style={{ marginTop: 'var(--space-4)' }}>
             {IS_MOBILE ? (
               <div style={{
                 width: '100%', aspectRatio: '16 / 10',
                 borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-                position: 'relative', border: '1px solid rgba(100,100,200,0.15)',
-                boxShadow: '0 8px 40px rgba(30,20,80,0.3)',
+                position: 'relative', border: '1px solid rgba(255,255,255,0.06)',
               }}>
                 <img src="/Assets/Projects/blackhole/fabric-of-universe.jpg" alt="Spacetime fabric model" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 <div style={{
                   position: 'absolute', inset: 0,
-                  background: 'linear-gradient(135deg, rgba(5,5,16,0.7) 0%, rgba(26,26,46,0.5) 100%)',
+                  background: 'linear-gradient(135deg, rgba(5,5,16,0.7), rgba(26,26,46,0.5))',
                   display: 'flex', flexDirection: 'column',
                   alignItems: 'center', justifyContent: 'center', gap: 'var(--space-2)',
                   color: '#fff', textAlign: 'center', padding: 'var(--space-6)',
@@ -131,12 +127,10 @@ export default function BlackHolePage() {
             ) : (
               <Suspense fallback={
                 <div style={{
-                  width: '100%', aspectRatio: '16 / 10',
-                  borderRadius: 'var(--radius-lg)', background: '#050510',
-                  border: '1px solid rgba(100,100,200,0.15)',
+                  width: '100%', aspectRatio: '16 / 10', borderRadius: 'var(--radius-lg)',
+                  background: '#050508', border: '1px solid rgba(255,255,255,0.06)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: 'rgba(150,150,220,0.3)', fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)',
-                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                  color: 'rgba(255,255,255,0.2)', fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)',
                 }}>
                   Loading spacetime fabric&#8230;
                 </div>
@@ -147,39 +141,47 @@ export default function BlackHolePage() {
           </div>
         </CsSection>
 
-        {/* 03, Gravitational Lensing + Wormholes */}
+        <CsImage src="/Assets/Projects/blackhole/fabric-of-universe.jpg" alt="Fabric of the Universe physical model" />
+
+        {/* ═══ 03 & 04: GRAVITATIONAL LENSING + WORMHOLE ═══ */}
         <CsSection id="cs-lensing" label="03 &amp; 04 &mdash; Phenomena" title="Gravity&rsquo;s Grip on Light &amp; Wormholes">
           <CsBody>
-            <p>A black hole&rsquo;s influence isn&rsquo;t just about matter &mdash; it bends light itself. This phenomenon, called gravitational lensing, occurs when light from a distant star travels around a massive object, creating distorted, magnified, and sometimes duplicated images. Predicted by Einstein&rsquo;s General Relativity, it allows astronomers to map distant galaxies and black holes themselves, revealing the invisible forces shaping our universe.</p>
-            <p>Alongside the lensing model sits a representation of a wormhole &mdash; a hypothetical tunnel connecting two distant points in spacetime. Imagine folding a piece of paper and punching a hole through it: this is how a wormhole works in theory, creating a shortcut for travel across the universe. While wormholes remain a fascinating solution to Einstein&rsquo;s equations, they have not been observed &mdash; yet the physics that predicts them is the same physics we have confirmed through gravitational wave detection.</p>
+            <p>A black hole bends light itself. Gravitational lensing creates distorted, magnified, and duplicated images of distant stars. The faint ring of light around a black hole &mdash; the Einstein ring &mdash; is where photons orbit the mass.</p>
           </CsBody>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Drag</span>
+            <span className="cs-label-row-val">Move the black hole through the star field &mdash; watch stars distort and the Einstein ring form</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Mass</span>
+            <span className="cs-label-row-val">Increase mass to see stronger lensing effects</span>
+          </div>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <GravLensing />
+          </div>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/blackhole/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes model, a glass lens demonstrating light bending and a fabric wormhole model" />
+        <CsImage src="/Assets/Projects/blackhole/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes physical model" />
 
-        {/* 04, Binary Mergers */}
+        {/* ═══ 05: BINARY MERGER ═══ */}
         <CsSection id="cs-mergers" label="05 &mdash; Phenomenon" title="When Giants Collide: Binary Black Hole Mergers">
           <CsBody>
-            <p>Binary black holes are pairs of black holes locked in a cosmic dance. As they orbit each other, they spiral closer, releasing energy as ripples in spacetime called gravitational waves. The model shows the final moments of their merger in three stages:</p>
-            <ul>
-              <li><strong>Inspiral</strong> &mdash; The black holes get closer, spinning faster and emitting stronger gravitational waves.</li>
-              <li><strong>Merger</strong> &mdash; They collide, forming a single, larger black hole.</li>
-              <li><strong>Ringdown</strong> &mdash; The new black hole settles, releasing faint ripples as it stabilizes.</li>
-            </ul>
-            <p>This phenomenon, first detected in 2015 by LIGO, confirmed Einstein&rsquo;s predictions and opened a new window into understanding the universe.</p>
+            <p>Binary black holes spiral closer, releasing energy as gravitational waves. The simulation shows three stages: <strong>Inspiral</strong> (orbiting closer), <strong>Merger</strong> (collision), and <strong>Ringdown</strong> (settling). First detected in 2015 by LIGO.</p>
           </CsBody>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <BinaryMerger />
+          </div>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/blackhole/binary-mergers.jpg" alt="Binary Black Hole Mergers model, three 3D-printed stages showing Inspiral, Merger, and Ringdown" />
+        <CsImage src="/Assets/Projects/blackhole/binary-mergers.jpg" alt="Binary Black Hole Mergers physical model, three stages" />
 
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="Exhibition" title="Horological Society of New York">
           <CsBody>
-            <p>This project will be exhibited at the Horological Society of New York&rsquo;s museum this winter. The pairing is intentional &mdash; black holes are fundamentally about the distortion of time, and the Horological Society is dedicated to the art and science of measuring it. The models bridge astrophysics and horology, inviting visitors to experience cosmic phenomena through the lens of precision craft.</p>
+            <p>This project will be exhibited at the Horological Society of New York&rsquo;s museum this winter. The pairing is intentional &mdash; black holes are fundamentally about the distortion of time, and the Horological Society is dedicated to the art and science of measuring it.</p>
           </CsBody>
         </CsSection>
 
-        {/* Credits */}
         <CsCredits credits={[
           { role: 'Design & Fabrication', name: 'Parth Pawar' },
           { role: 'Applied Mathematics', name: 'Saee Joshi' },
@@ -189,10 +191,9 @@ export default function BlackHolePage() {
         <CsThanks />
 
         <BottomNav sections={[
-          { id: 'cs-challenge', label: 'Challenge' },
-          { id: 'cs-time-trap', label: 'Time Trap' },
+          { id: 'cs-challenge', label: 'Overview' },
+          { id: 'cs-time-trap', label: 'Time Dilation' },
           { id: 'cs-fabric', label: 'Fabric' },
-          { id: 'cs-interactive', label: 'Interactive' },
           { id: 'cs-lensing', label: 'Lensing' },
           { id: 'cs-mergers', label: 'Mergers' },
           { id: 'cs-exhibition', label: 'Exhibition' },

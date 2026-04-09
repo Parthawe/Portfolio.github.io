@@ -1,0 +1,106 @@
+/* ================================================
+   WRITING / ARTICLES
+   ================================================ */
+
+.wr-article-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.wr-article-card {
+  border-top: 1px solid var(--ink-06);
+}
+.wr-article-card:last-child {
+  border-bottom: 1px solid var(--ink-06);
+}
+
+.wr-article-link {
+  display: block;
+  padding: var(--space-6) 0;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: padding-left var(--dur-base) var(--ease-spring);
+}
+.wr-article-link:hover {
+  padding-left: var(--space-4);
+}
+
+.wr-article-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.wr-article-tag {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--ink-40);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-sm);
+}
+
+.wr-article-date,
+.wr-article-read {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--ink-30);
+}
+
+.wr-article-title {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 300;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  color: var(--ink);
+  margin: 0 0 var(--space-2);
+  transition: color var(--dur-base);
+}
+.wr-article-link:hover .wr-article-title {
+  color: var(--ink-70);
+}
+
+.wr-article-excerpt {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  line-height: var(--lh-base);
+  color: var(--ink-50);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* Article body */
+.wr-article-body {
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  line-height: 1.8;
+  color: var(--ink-70);
+}
+.wr-article-body p {
+  margin: 0 0 1.5rem;
+}
+.wr-article-body p:first-child {
+  font-size: var(--text-lg);
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wr-article-link { padding: var(--space-5) 0; }
+  .wr-article-title { font-size: clamp(1.2rem, 4vw, 1.6rem); }
+}
+@media (max-width: 480px) {
+  .wr-article-link { padding: var(--space-4) 0; }
+  .wr-article-meta { gap: var(--space-2); }
+  .wr-article-excerpt { font-size: var(--text-xs); }
+}

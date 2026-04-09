@@ -18,7 +18,7 @@ const categoryReveals: Record<string, { front: string; behind: string; label: st
   'ux-design': { front: 'The interface is the product, when it works, nobody notices the software.', behind: 'Mentra, TransFi, ZentiPay. $50M+ in payment volume. Interfaces that earned trust.', label: 'UX Design' },
   'ai': { front: 'AI that augments, not replaces, the best tools disappear into your workflow.', behind: 'From Clawed to OnCall Lens. AI as a collaborator, not a replacement.', label: 'AI & Wearables' },
   'creative-tech': { front: 'Code is just another material, like wood or clay, but it compiles.', behind: 'Neural network instruments, AI keyboards, audio-reactive visuals. Making the intangible tangible.', label: 'Creative Tech' },
-  'installations': { front: 'Art you can walk through, scale changes everything about how you feel.', behind: 'Black holes, blacklight rooms, rotating stages. Physical experiences that stay with you.', label: 'Installations' },
+  'installations': { front: 'If people have to read a sign, the installation already failed. The space should teach.', behind: 'Black holes you can hold, blacklight rooms with hidden messages, a 15-foot rotating stage. Built and exhibited.', label: 'Installations' },
   'brand-visual': { front: 'Every brand tells a story, typography is the tone of voice.', behind: 'TEDx art direction, custom typefaces, podcast identities. Visual systems that communicate.', label: 'Brand & Visual' },
   'design-for-good': { front: 'Design should serve everyone, not just the ones who can afford it.', behind: 'Community platforms, civic transit, accessibility reports. Design as a public good.', label: 'Design for Good' },
 }

@@ -17,7 +17,7 @@ export default function BallahCodePage() {
     <>
       <Helmet>
         <title>Ballah Code &middot; Parth Pawar</title>
-        <meta name="description" content="Ballah Code, AI-native desktop IDE where the AI works as a senior engineer, not a chatbot. Case study by Parth Pawar, Creator & Designer." />
+        <meta name="description" content="Ballah Code, AI-native desktop IDE where the AI works as a senior engineer, not a chatbot. Product design case study by Parth Pawar." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Ballah Code &middot; Parth Pawar" />
         <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer, not a chatbot." />
@@ -36,10 +36,10 @@ export default function BallahCodePage() {
           title="Ballah Code"
           subtitle="AI-native desktop IDE where the AI works as a senior engineer &mdash; not a chatbot"
           info={[
-            { label: 'Role', value: 'Creator & Designer' },
+            { label: 'Role', value: 'Product Designer' },
+            { label: 'Creator', value: 'Isaiah Ballah' },
             { label: 'Timeline', value: '2026' },
             { label: 'Type', value: 'Dev Tools \u00b7 AI' },
-            { label: 'Team', value: 'Solo / Founder' },
           ]}
           heroImage="/Assets/images/ballah-code.png"
           heroAlt="Ballah Code, AI-native desktop IDE"
@@ -119,8 +119,8 @@ export default function BallahCodePage() {
             <span className="cs-section-label">Credits</span>
             <h2 className="cs-section-title">Team</h2>
             <CsCredits credits={[
-              { role: 'Creator & Designer', name: 'Parth Pawar' },
-              { role: 'Project', name: 'Ballah Code' },
+              { role: 'Creator & Founder', name: 'Isaiah Ballah' },
+              { role: 'Product Designer', name: 'Parth Pawar' },
               { role: 'Tools', name: 'Electrobun, Bun, React, TypeScript, Anthropic Claude, Tailwind CSS' },
               { role: 'Platform', name: 'Desktop (macOS)' },
             ]} />

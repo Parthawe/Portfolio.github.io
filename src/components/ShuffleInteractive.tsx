@@ -52,8 +52,22 @@ for (const [src, tgt, w] of RELATIONS) {
   ADJ.get(src)!.push({ target: tgt, weight: w })
 }
 
+// Realistic starting profile: a stressed student who goes to class
+// and works part-time, but is running low on sleep and hobbies.
+// Immediately shows the system is interconnected.
+const INITIAL: Record<Key, number> = {
+  'CLASS':       72,
+  'SLEEP':       35,
+  'SOCIAL LIFE': 42,
+  'JOB':         58,
+  'FINALS':      62,
+  'FOOD':        38,
+  'ENERGY':      28,
+  'HOBBY':       22,
+}
+
 function initValues(): Record<Key, number> {
-  return Object.fromEntries(KEYS.map(k => [k, 50])) as Record<Key, number>
+  return { ...INITIAL }
 }
 
 // Propagate a change through the relationship graph (1 hop, no recursion)
@@ -436,6 +450,9 @@ function SliderPanel({ labels, values, onChange, amber, glowColor, dark, transit
                   onChange={e => onChange(label, Number(e.target.value))}
                   className="shuffle-range"
                   aria-label={`${label} time allocation`}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round(v)}
                 />
               </div>
 

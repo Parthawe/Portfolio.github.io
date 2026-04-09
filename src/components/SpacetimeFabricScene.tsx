@@ -3,20 +3,21 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
 /* ═══════════════════════════════════════════════════════════
-   Spacetime Fabric — interactive gravitational well
-   visualization inspired by the Black Hole "Fabric of
-   the Universe" physical model.
+   Spacetime Fabric — interactive gravitational well.
 
-   Drag masses on a wireframe grid. Watch spacetime warp.
+   Matches the physical installation: a stretched fabric
+   (white grid) on a dark background with heavy dark spheres
+   creating visible depressions. Clean, minimal, physical.
+
+   Drag masses on the fabric. Watch spacetime warp.
    ═══════════════════════════════════════════════════════════ */
 
-const GRID_SIZE = 6
-const GRID_SEGS = 80
+const GRID_SIZE = 7
+const GRID_SEGS = 64
 const MAX_MASSES = 3
-const MASS_RADIUS = 0.18
-const SOFTENING = 0.25
+const MASS_RADIUS = 0.22
+const SOFTENING = 0.3
 
-// Shared gravity formula — used by grid, masses, and particle
 function computeGravityY(px: number, pz: number, masses: Mass[]): number {
   let y = 0
   for (const mass of masses) {
@@ -34,18 +35,26 @@ interface Mass {
   strength: number
 }
 
-// ── Deformable grid ──
+// ── Deformable fabric grid ──
+// Two layers: solid surface (slight opacity) + wireframe on top
+// Gives the appearance of a real stretched fabric with visible grid lines
 
 function FabricGrid({ masses }: { masses: Mass[] }) {
-  const meshRef = useRef<THREE.Mesh>(null!)
+  const wireRef = useRef<THREE.Mesh>(null!)
+  const surfaceRef = useRef<THREE.Mesh>(null!)
   const posAttr = useRef<THREE.BufferAttribute>(null!)
+  const surfacePosAttr = useRef<THREE.BufferAttribute>(null!)
   const origPositions = useRef<Float32Array>(null!)
 
   useEffect(() => {
-    if (!meshRef.current) return
-    const geo = meshRef.current.geometry as THREE.PlaneGeometry
+    if (!wireRef.current) return
+    const geo = wireRef.current.geometry as THREE.PlaneGeometry
     posAttr.current = geo.attributes.position as THREE.BufferAttribute
     origPositions.current = new Float32Array(posAttr.current.array)
+    // Surface shares same geometry data
+    if (surfaceRef.current) {
+      surfacePosAttr.current = (surfaceRef.current.geometry as THREE.PlaneGeometry).attributes.position as THREE.BufferAttribute
+    }
   }, [])
 
   useFrame(() => {
@@ -56,29 +65,52 @@ function FabricGrid({ masses }: { masses: Mass[] }) {
     for (let i = 0; i < pos.count; i++) {
       const ox = orig[i * 3]
       const oz = orig[i * 3 + 2]
-      pos.setY(i, computeGravityY(ox, oz, masses))
+      const y = computeGravityY(ox, oz, masses)
+      pos.setY(i, y)
     }
-
     pos.needsUpdate = true
-    // No computeVertexNormals — wireframe doesn't use normals
+
+    // Copy deformation to surface mesh
+    if (surfacePosAttr.current) {
+      const sPos = surfacePosAttr.current
+      for (let i = 0; i < sPos.count; i++) {
+        sPos.setY(i, pos.getY(i))
+      }
+      sPos.needsUpdate = true
+      surfaceRef.current.geometry.computeVertexNormals()
+    }
   })
 
   return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[GRID_SIZE, GRID_SIZE, GRID_SEGS, GRID_SEGS]} />
-      <meshStandardMaterial
-        color="#3355cc"
-        wireframe
-        transparent
-        opacity={0.5}
-        emissive="#3366ff"
-        emissiveIntensity={0.25}
-      />
-    </mesh>
+    <group>
+      {/* Subtle solid surface for depth/lighting */}
+      <mesh ref={surfaceRef} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[GRID_SIZE, GRID_SIZE, GRID_SEGS, GRID_SEGS]} />
+        <meshStandardMaterial
+          color="#1a1a22"
+          transparent
+          opacity={0.5}
+          side={THREE.DoubleSide}
+          roughness={0.9}
+          metalness={0}
+        />
+      </mesh>
+      {/* Wireframe grid on top — the "fabric" lines */}
+      <mesh ref={wireRef} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[GRID_SIZE, GRID_SIZE, GRID_SEGS, GRID_SEGS]} />
+        <meshBasicMaterial
+          color="#ffffff"
+          wireframe
+          transparent
+          opacity={0.18}
+        />
+      </mesh>
+    </group>
   )
 }
 
 // ── Draggable mass sphere ──
+// Dark matte sphere — like the physical black ball on the fabric
 
 function MassSphere({ mass, masses, onDrag, onRemove }: {
   mass: Mass
@@ -95,12 +127,11 @@ function MassSphere({ mass, masses, onDrag, onRemove }: {
   const hit = useMemo(() => new THREE.Vector3(), [])
   const cleanupRef = useRef<(() => void) | null>(null)
 
-  // Mass sits in its own gravitational well
   useFrame((state) => {
     if (!ref.current) return
     const wellY = computeGravityY(mass.x, mass.z, masses)
-    const bob = dragging.current ? 0 : Math.sin(state.clock.elapsedTime * 1.5 + mass.id) * 0.04
-    ref.current.position.set(mass.x, wellY + MASS_RADIUS + 0.02 + bob, mass.z)
+    const bob = dragging.current ? 0 : Math.sin(state.clock.elapsedTime * 1.2 + mass.id) * 0.02
+    ref.current.position.set(mass.x, wellY + MASS_RADIUS * 0.6 + bob, mass.z)
   })
 
   const onDown = useCallback((e: { stopPropagation: () => void }) => {
@@ -114,7 +145,7 @@ function MassSphere({ mass, masses, onDrag, onRemove }: {
       pt.set(((ev.clientX - rect.left) / rect.width) * 2 - 1, -((ev.clientY - rect.top) / rect.height) * 2 + 1)
       rc.setFromCamera(pt, camera)
       rc.ray.intersectPlane(plane, hit)
-      const half = GRID_SIZE / 2 - 0.3
+      const half = GRID_SIZE / 2 - 0.4
       const nx = Math.max(-half, Math.min(half, hit.x))
       const nz = Math.max(-half, Math.min(half, hit.z))
       onDrag(mass.id, nx, nz)
@@ -131,7 +162,6 @@ function MassSphere({ mass, masses, onDrag, onRemove }: {
     cleanupRef.current = up
   }, [camera, gl, mass.id, onDrag, plane, rc, pt, hit])
 
-  // Cleanup window listeners on unmount
   useEffect(() => {
     return () => { cleanupRef.current?.() }
   }, [])
@@ -145,30 +175,26 @@ function MassSphere({ mass, masses, onDrag, onRemove }: {
       onPointerOver={() => { gl.domElement.style.cursor = 'grab' }}
       onPointerOut={() => { if (!dragging.current) gl.domElement.style.cursor = '' }}
     >
-      <sphereGeometry args={[MASS_RADIUS, 24, 24]} />
-      <meshPhysicalMaterial
-        color="#0a0a18"
-        roughness={0.05}
-        metalness={1}
-        emissive="#5533bb"
-        emissiveIntensity={0.4}
-        clearcoat={1}
-        clearcoatRoughness={0.02}
+      <sphereGeometry args={[MASS_RADIUS, 32, 32]} />
+      <meshStandardMaterial
+        color="#0a0a0e"
+        roughness={0.4}
+        metalness={0.1}
       />
     </mesh>
   )
 }
 
-// ── Star particles background ──
+// ── Subtle stars ──
 
 function Stars() {
-  const count = 200
+  const count = 150
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 20
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 12 + 3
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 20
+      arr[i * 3] = (Math.random() - 0.5) * 24
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 10 + 4
+      arr[i * 3 + 2] = (Math.random() - 0.5) * 24
     }
     return arr
   }, [])
@@ -178,12 +204,12 @@ function Stars() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#8888cc" size={0.03} transparent opacity={0.6} sizeAttenuation />
+      <pointsMaterial color="#ffffff" size={0.02} transparent opacity={0.3} sizeAttenuation />
     </points>
   )
 }
 
-// ── Click-to-add handler (on the grid plane) ──
+// ── Click-to-add ──
 
 function ClickPlane({ onAdd }: { onAdd: (x: number, z: number) => void }) {
   return (
@@ -192,8 +218,7 @@ function ClickPlane({ onAdd }: { onAdd: (x: number, z: number) => void }) {
       position={[0, -0.01, 0]}
       onClick={(e) => {
         e.stopPropagation()
-        // R3F provides world-space intersection point directly
-        const half = GRID_SIZE / 2 - 0.5
+        const half = GRID_SIZE / 2 - 0.6
         if (Math.abs(e.point.x) < half && Math.abs(e.point.z) < half) {
           onAdd(e.point.x, e.point.z)
         }
@@ -205,9 +230,9 @@ function ClickPlane({ onAdd }: { onAdd: (x: number, z: number) => void }) {
   )
 }
 
-// ── Test Particle — rolls along spacetime curvature ──
+// ── Test Particle — rolls along curved spacetime ──
 
-const TRAIL_MAX = 40
+const TRAIL_MAX = 50
 
 function TestParticle({ masses }: { masses: Mass[] }) {
   const ref = useRef<THREE.Mesh>(null!)
@@ -215,31 +240,41 @@ function TestParticle({ masses }: { masses: Mass[] }) {
   const pos = useRef({ x: 0, z: 0 })
   const trailRef = useRef<THREE.Line>(null!)
   const trailCount = useRef(0)
-  // Pre-allocate trail buffer (reused every frame — no GC churn)
   const trailBuffer = useMemo(() => new Float32Array(TRAIL_MAX * 3), [])
   const trailPositions = useRef<{ x: number; y: number; z: number }[]>([])
   const absorbed = useRef(false)
   const respawnTimer = useRef(0)
 
-  // Spawn at random edge
   const spawn = useCallback(() => {
     const side = Math.floor(Math.random() * 4)
     const half = GRID_SIZE / 2 - 0.5
     const r = (Math.random() - 0.5) * GRID_SIZE * 0.6
-    if (side === 0) { pos.current = { x: -half, z: r }; vel.current = { x: 0.3, z: 0 } }
-    else if (side === 1) { pos.current = { x: half, z: r }; vel.current = { x: -0.3, z: 0 } }
-    else if (side === 2) { pos.current = { x: r, z: -half }; vel.current = { x: 0, z: 0.3 } }
-    else { pos.current = { x: r, z: half }; vel.current = { x: 0, z: -0.3 } }
+    let px: number, pz: number
+    if (side === 0) { px = -half; pz = r }
+    else if (side === 1) { px = half; pz = r }
+    else if (side === 2) { px = r; pz = -half }
+    else { px = r; pz = half }
+
+    let tx = 0, tz = 0
+    if (masses.length > 0) {
+      tx = masses.reduce((s, m) => s + m.x, 0) / masses.length
+      tz = masses.reduce((s, m) => s + m.z, 0) / masses.length
+    }
+    const dx = tx - px, dz = tz - pz
+    const d = Math.sqrt(dx * dx + dz * dz) || 1
+    const speed = 0.2 + Math.random() * 0.15
+    vel.current = { x: (dx / d) * speed, z: (dz / d) * speed }
+
+    pos.current = { x: px, z: pz }
     trailPositions.current = []
     trailCount.current = 0
     absorbed.current = false
-  }, [])
+  }, [masses])
 
   useEffect(() => { spawn() }, [spawn])
 
   useFrame((_, rawDt) => {
     if (!ref.current) return
-    // Clamp dt to prevent physics explosions on tab switch
     const dt = Math.min(rawDt, 0.05)
     const p = pos.current
     const v = vel.current
@@ -252,13 +287,12 @@ function TestParticle({ masses }: { masses: Mass[] }) {
     }
     ref.current.visible = true
 
-    // Gravitational acceleration from masses
     let ax = 0, az = 0
     for (const mass of masses) {
       const dx = mass.x - p.x
       const dz = mass.z - p.z
       const dist = Math.sqrt(dx * dx + dz * dz)
-      if (dist < 0.3) {
+      if (dist < 0.35) {
         absorbed.current = true
         respawnTimer.current = 1.5
         return
@@ -268,34 +302,27 @@ function TestParticle({ masses }: { masses: Mass[] }) {
       az += force * dz / (dist + 0.01)
     }
 
-    // Update velocity + frame-rate independent damping
     v.x += ax * dt * 2
     v.z += az * dt * 2
-    // damping: 0.995^60 ≈ 0.74 per second → use exp(-0.3 * dt) for frame-rate independence
     const damp = Math.exp(-0.3 * dt * 60)
     v.x *= damp
     v.z *= damp
 
-    // Clamp speed
     const speed = Math.sqrt(v.x * v.x + v.z * v.z)
     if (speed > 2) { v.x *= 2 / speed; v.z *= 2 / speed }
 
-    // Update position
     p.x += v.x * dt
     p.z += v.z * dt
 
-    // Bounce off grid edges
     const half = GRID_SIZE / 2 - 0.2
     if (Math.abs(p.x) > half) { p.x = Math.sign(p.x) * half; v.x *= -0.5 }
     if (Math.abs(p.z) > half) { p.z = Math.sign(p.z) * half; v.z *= -0.5 }
 
-    // Compute Y from gravity field
     const y = computeGravityY(p.x, p.z, masses)
-    ref.current.position.set(p.x, y + 0.06, p.z)
+    ref.current.position.set(p.x, y + 0.05, p.z)
 
-    // Trail — push into ring buffer, reuse pre-allocated Float32Array
     const tp = trailPositions.current
-    tp.push({ x: p.x, y: y + 0.06, z: p.z })
+    tp.push({ x: p.x, y: y + 0.05, z: p.z })
     if (tp.length > TRAIL_MAX) tp.shift()
 
     if (trailRef.current) {
@@ -313,17 +340,43 @@ function TestParticle({ masses }: { masses: Mass[] }) {
 
   return (
     <>
+      {/* Small white particle — represents a photon/small mass */}
       <mesh ref={ref}>
-        <sphereGeometry args={[0.06, 12, 12]} />
-        <meshStandardMaterial color="#00ddff" emissive="#00bbff" emissiveIntensity={1.5} />
+        <sphereGeometry args={[0.05, 12, 12]} />
+        <meshStandardMaterial
+          color="#ffffff"
+          emissive="#ffffff"
+          emissiveIntensity={0.8}
+        />
       </mesh>
+      {/* Fading trail */}
       <line ref={trailRef as React.RefObject<THREE.Line>}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[trailBuffer, 3]} />
         </bufferGeometry>
-        <lineBasicMaterial color="#00bbff" transparent opacity={0.3} />
+        <lineBasicMaterial color="#ffffff" transparent opacity={0.15} />
       </line>
     </>
+  )
+}
+
+// ── Grid edge frame — thin border around the fabric ──
+
+function GridFrame() {
+  const half = GRID_SIZE / 2
+  const points = useMemo(() => [
+    new THREE.Vector3(-half, 0, -half),
+    new THREE.Vector3(half, 0, -half),
+    new THREE.Vector3(half, 0, half),
+    new THREE.Vector3(-half, 0, half),
+    new THREE.Vector3(-half, 0, -half),
+  ], [half])
+  const geo = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points])
+
+  return (
+    <line geometry={geo}>
+      <lineBasicMaterial color="#ffffff" transparent opacity={0.06} />
+    </line>
   )
 }
 
@@ -337,15 +390,16 @@ function GravityScene({ masses, onDrag, onRemove, onAdd }: {
 }) {
   return (
     <>
-      <ambientLight intensity={0.15} />
-      <hemisphereLight args={['#1122aa', '#000000', 0.1]} />
-      <pointLight position={[0, 5, 0]} intensity={0.6} color="#6644cc" />
-      <directionalLight position={[3, 4, 2]} intensity={0.35} />
+      {/* Lighting: subtle, top-down, slightly warm */}
+      <ambientLight intensity={0.08} />
+      <directionalLight position={[0, 8, 2]} intensity={0.4} color="#f0ece0" />
+      <directionalLight position={[-3, 5, -2]} intensity={0.15} color="#e0e4f0" />
 
       <Stars />
 
       <group>
         <FabricGrid masses={masses} />
+        <GridFrame />
         <ClickPlane onAdd={onAdd} />
         {masses.map(m => (
           <MassSphere key={m.id} mass={m} masses={masses} onDrag={onDrag} onRemove={onRemove} />
@@ -364,7 +418,7 @@ export default function SpacetimeFabricScene() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
   const [masses, setMasses] = useState<Mass[]>([
-    { id: 1, x: 0, z: 0, strength: 1.2 },
+    { id: 1, x: 0, z: 0, strength: 1.4 },
   ])
   const nextId = useRef(2)
 
@@ -380,7 +434,7 @@ export default function SpacetimeFabricScene() {
     setMasses(prev => {
       if (prev.length >= MAX_MASSES) return prev
       const id = nextId.current++
-      return [...prev, { id, x, z, strength: 0.8 + Math.random() * 0.6 }]
+      return [...prev, { id, x, z, strength: 0.9 + Math.random() * 0.5 }]
     })
   }, [])
 
@@ -398,17 +452,17 @@ export default function SpacetimeFabricScene() {
       style={{
         width: '100%', aspectRatio: '16 / 10',
         borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-        border: '1px solid rgba(100,100,200,0.15)',
-        boxShadow: '0 8px 40px rgba(30,20,80,0.3), 0 2px 8px rgba(0,0,0,0.2)',
-        background: '#050510',
+        border: '1px solid rgba(255,255,255,0.06)',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.4)',
+        background: '#050508',
         position: 'relative',
       }}
     >
       <Canvas
         dpr={[1, 1.5]}
-        camera={{ position: [0, 4.5, 6], fov: 40 }}
-        gl={{ antialias: true, alpha: false, toneMapping: THREE.ACESFilmicToneMapping }}
-        style={{ background: '#050510' }}
+        camera={{ position: [0, 5, 5.5], fov: 38 }}
+        gl={{ antialias: true, alpha: false }}
+        style={{ background: '#050508' }}
         frameloop={inView ? 'always' : 'never'}
       >
         <Suspense fallback={null}>
@@ -430,9 +484,9 @@ export default function SpacetimeFabricScene() {
         <span style={{
           fontFamily: 'var(--mono)', fontSize: '9px',
           letterSpacing: '0.1em', textTransform: 'uppercase',
-          color: 'rgba(150,150,220,0.4)',
+          color: 'rgba(255,255,255,0.2)',
           padding: '4px 10px', borderRadius: 'var(--radius-pill)',
-          background: 'rgba(100,100,200,0.08)',
+          background: 'rgba(255,255,255,0.03)',
         }}>
           Drag mass &middot; Click to add ({masses.length}/{MAX_MASSES}) &middot; Double-click to remove
         </span>

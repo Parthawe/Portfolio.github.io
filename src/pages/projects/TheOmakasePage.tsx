@@ -9,11 +9,108 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const IS_TOUCH = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+function useIsTouch() {
+  const [touch, setTouch] = useState(() =>
+    typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  )
+  useEffect(() => {
+    // Re-check on pointer type change (2-in-1 devices, tablets with keyboards)
+    const check = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') setTouch(true)
+      else if (e.pointerType === 'mouse') setTouch(false)
+    }
+    window.addEventListener('pointerdown', check, { passive: true })
+    return () => window.removeEventListener('pointerdown', check)
+  }, [])
+  return touch
+}
+
+// ── Visual keyboard diagram showing both players' controls ──
+function KeyboardDiagram() {
+  // Darker, more saturated colors that read well on both light and dark backgrounds
+  const ingredients = [
+    { label: 'Tuna',    color: '#D32F2F' },
+    { label: 'Salmon',  color: '#E64A19' },
+    { label: 'Tamago',  color: '#F9A825' },
+    { label: 'Wasabi',  color: '#2E7D32' },
+    { label: 'Shrimp',  color: '#1565C0' },
+    { label: 'Octopus', color: '#7B1FA2' },
+    { label: 'Rice',    color: '#6D4C41' },
+    { label: 'Nori',    color: '#1B5E20' },
+  ]
+  const p1 = ['Q', 'W', 'E', 'R', 'A', 'S', 'D', 'F']
+  const p2 = ['U', 'I', 'O', 'P', 'J', 'K', 'L', ';']
+
+  const KeyCap = ({ letter, ing }: { letter: string; ing: typeof ingredients[0] }) => (
+    <div style={{
+      width: 52, height: 48, borderRadius: 8,
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      background: `${ing.color}15`, border: `2px solid ${ing.color}`,
+      fontFamily: 'var(--mono)', lineHeight: 1, gap: 3,
+      position: 'relative',
+    }}>
+      {/* Key letter */}
+      <span style={{ fontSize: '16px', fontWeight: 700, color: ing.color }}>
+        {letter}
+      </span>
+      {/* Ingredient label */}
+      <span style={{
+        fontSize: '6.5px', fontWeight: 500, letterSpacing: '0.04em',
+        textTransform: 'uppercase', color: ing.color, opacity: 0.8,
+      }}>
+        {ing.label}
+      </span>
+      {/* Color dot */}
+      <div style={{
+        position: 'absolute', top: 4, right: 4,
+        width: 5, height: 5, borderRadius: '50%',
+        background: ing.color,
+      }} />
+    </div>
+  )
+
+  const Player = ({ keys, label }: { keys: string[]; label: string }) => (
+    <div style={{
+      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
+    }}>
+      <span style={{
+        fontFamily: 'var(--mono)', fontSize: '10px', fontWeight: 600,
+        letterSpacing: '0.08em', textTransform: 'uppercase',
+        color: 'var(--ink-50)',
+      }}>
+        {label}
+      </span>
+      <div style={{
+        display: 'grid', gridTemplateColumns: 'repeat(4, 52px)', gap: 5,
+        padding: '12px',
+        borderRadius: 'var(--radius-md)',
+        background: 'var(--ink-03)',
+        border: '1px solid var(--ink-06)',
+      }}>
+        {keys.map((k, i) => (
+          <KeyCap key={k} letter={k} ing={ingredients[i]} />
+        ))}
+      </div>
+    </div>
+  )
+
+  return (
+    <div style={{
+      display: 'flex', justifyContent: 'center', alignItems: 'flex-start',
+      gap: 'clamp(20px, 5vw, 48px)',
+      flexWrap: 'wrap', padding: 'var(--space-4) 0',
+    }}>
+      <Player keys={p1} label="Player 1 (Left)" />
+      <Player keys={p2} label="Player 2 (Right)" />
+    </div>
+  )
+}
 
 function GameEmbed() {
+  const IS_TOUCH = useIsTouch()
   const containerRef = useRef<HTMLDivElement>(null)
   const [loaded, setLoaded] = useState(false)
+  const [iframeReady, setIframeReady] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
   useEffect(() => {
@@ -100,10 +197,31 @@ function GameEmbed() {
           </button>
         ) : (
           <>
+            {/* Loading spinner while Unity boots */}
+            {!iframeReady && (
+              <div style={{
+                position: 'absolute', inset: 0, zIndex: 1,
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                gap: 12, background: '#1a1a2e',
+              }}>
+                <div style={{
+                  width: 32, height: 32, border: '2px solid rgba(255,255,255,0.1)',
+                  borderTopColor: 'rgba(255,255,255,0.5)', borderRadius: '50%',
+                  animation: 'omakase-spin 0.8s linear infinite',
+                }} />
+                <span style={{
+                  fontFamily: 'var(--mono)', fontSize: '8px', letterSpacing: '0.08em',
+                  textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)',
+                }}>
+                  Loading Unity game&hellip;
+                </span>
+              </div>
+            )}
             <iframe
               src={GAME_URL}
               allowFullScreen
               allow="autoplay; fullscreen"
+              onLoad={() => setIframeReady(true)}
               style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
               title="Play The Omakase"
             />
@@ -128,6 +246,14 @@ function GameEmbed() {
           </>
         )}
       </div>
+
+      {/* Visual keyboard layout */}
+      {!IS_TOUCH && (
+        <div style={{ marginTop: 'var(--space-6)' }}>
+          <h3 className="cs-section-subtitle" style={{ marginBottom: 'var(--space-3)' }}>Controls</h3>
+          <KeyboardDiagram />
+        </div>
+      )}
 
       {/* How to play — detailed guide below the game */}
       <div style={{ marginTop: 'var(--space-6)' }}>
@@ -172,6 +298,15 @@ function GameEmbed() {
           Game not loading? <a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-50)', textDecoration: 'underline' }}>Play directly on itch.io</a>
         </p>
       )}
+
+      <style>{`
+        @keyframes omakase-spin {
+          to { transform: rotate(360deg); }
+        }
+        @media (max-width: 480px) {
+          .omakase-divider { display: none; }
+        }
+      `}</style>
     </CsSection>
   )
 }

@@ -93,6 +93,7 @@ export default function GlyphEditor() {
     opentype.load(url, (err: Error | null, loadedFont: Font | null) => {
       if (err || !loadedFont) {
         if (import.meta.env.DEV) console.error('Font load error:', err)
+        setFont(null)
         setLoading(false)
         return
       }
@@ -184,6 +185,26 @@ export default function GlyphEditor() {
   // Point size relative to viewBox
   const pointRadius = Math.max(viewBox.w, viewBox.h) * 0.008
   const cpRadius = pointRadius * 0.7
+
+  // Show loading or error state
+  if (loading) {
+    return (
+      <section className="glyph-editor reveal">
+        <div className="wrap" style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--ink-30)', fontFamily: 'var(--mono)', fontSize: 'var(--text-xs)' }}>
+          Loading font&hellip;
+        </div>
+      </section>
+    )
+  }
+  if (!font) {
+    return (
+      <section className="glyph-editor reveal">
+        <div className="wrap" style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--ink-30)', fontFamily: 'var(--mono)', fontSize: 'var(--text-xs)' }}>
+          Font could not be loaded. Try refreshing.
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="glyph-editor reveal">

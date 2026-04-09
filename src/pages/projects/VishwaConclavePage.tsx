@@ -127,7 +127,7 @@ export default function VishwaConclavePage() {
 
       </main>
 
-      <NextProject slug="healthapp" title="VJ Parivar" image="/Assets/Projects/health-app/1.jpg" />
+      <NextProject slug="healthapp" title="Health App" image="/Assets/Projects/health-app/1.jpg" />
       <Footer />
     </>
   )

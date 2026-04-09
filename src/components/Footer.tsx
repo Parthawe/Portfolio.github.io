@@ -13,6 +13,7 @@ const socials = [
 const navLinks = [
   { label: 'Work', to: '/work' },
   { label: 'About', to: '/about' },
+  { label: 'Writing', to: '/writing' },
   { label: 'Installations', to: '/installations' },
 ]
 

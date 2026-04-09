@@ -59,23 +59,19 @@ export default function EnigmaPage() {
             <h2 className="cs-display">200 Neurons of Light</h2>
             <CsBody>
               <p>Enigma is an interactive light sculpture that intricately embodies a real functioning deep learning network, using 200 unique illuminated neurons to artistically elucidate the complexity of neural networks, inviting audiences to explore the convergence of art and science in a captivating visual experience.</p>
-              <p>The genesis of this project drew inspiration from the &lsquo;Abacus&rsquo; project undertaken at panGenerator Studio. While &lsquo;the Abacus&rsquo; focused on recognizing digits, Enigma operates on a similar concept but with alphabetic characters instead of digits.</p>
+              <p>The genesis of this project drew inspiration from <a href="https://pangenerator.com/projects/the-abacus/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>The Abacus</a> by <a href="https://pangenerator.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>panGenerator Studio</a> &mdash; a pioneering art installation that physically materializes a neural network trained on handwritten digits. While the Abacus focused on recognizing numerals (0&ndash;9), Enigma extends the concept to the full English alphabet (A&ndash;Z), requiring a deeper network and a more complex physical structure to accommodate 200 neurons across four layers.</p>
             </CsBody>
           </div>
         </section>
 
         {/* Interactive */}
-        <CsSection id="cs-interactive" label="Interactive" title="Type a Letter">
+        <CsSection id="cs-interactive" label="Interactive" title="See the Network Think">
           <CsBody>
-            <p>Press any key A&ndash;Z to trigger inference through a 106-neuron network. Watch activations cascade layer by layer &mdash; brightness is activation strength, the path light travels is the decision the model makes.</p>
+            <p>This is a working simulation of Enigma&rsquo;s neural network. Draw a letter on the tablet below (just like visitors did at the exhibition), or press any key A&ndash;Z. Watch the input propagate through four layers &mdash; <span style={{ color: 'rgb(0, 200, 255)' }}>cyan wires</span> carry positive signals, <span style={{ color: 'rgb(220, 60, 30)' }}>red wires</span> carry negative. The pixelated input on the left shows what the network &ldquo;sees.&rdquo;</p>
           </CsBody>
           <div className="cs-label-row">
-            <span className="cs-label-row-key">Input</span>
-            <span className="cs-label-row-val">Press any letter A&ndash;Z on your keyboard (or tap &ldquo;Tap to type&rdquo; on mobile)</span>
-          </div>
-          <div className="cs-label-row">
-            <span className="cs-label-row-key">Layers</span>
-            <span className="cs-label-row-val">16 input &rarr; 32 hidden &rarr; 32 hidden &rarr; 26 output (A&ndash;Z)</span>
+            <span className="cs-label-row-key">Network</span>
+            <span className="cs-label-row-val">28 input &rarr; 12 hidden &rarr; 8 hidden &rarr; 26 output (A&ndash;Z)</span>
           </div>
           <div style={{ marginTop: 'var(--space-5)' }}>
             <EnigmaInteractive />

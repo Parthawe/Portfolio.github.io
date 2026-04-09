@@ -7,6 +7,7 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import MoniacSimulator from '../../components/MoniacSimulator'
 
 export default function MoniacMachinePage() {
   return (
@@ -63,6 +64,28 @@ export default function MoniacMachinePage() {
             </CsBody>
           </div>
         </section>
+
+        {/* Interactive simulator */}
+        <CsSection id="cs-interactive" label="Interactive" title="Run the Economy">
+          <CsBody>
+            <p>Step into the role of an economic policymaker. Adjust 7 levers &mdash; tax rates, government spending, interest rates, investment, consumer spending, imports, and exports &mdash; and watch how the economy responds in real-time. Keep GDP and employment high while controlling inflation and debt. Random events will force you to adapt. You have 60 seconds.</p>
+          </CsBody>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Goal</span>
+            <span className="cs-label-row-val">Maintain a healthy economy for 60 seconds &mdash; balance growth against stability</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Controls</span>
+            <span className="cs-label-row-val">7 knobs: Tax Rate, Gov Spending, Interest, Investment, Consumer, Imports, Exports</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Events</span>
+            <span className="cs-label-row-val">Random economic shocks (trade wars, pandemics, booms) test your strategy</span>
+          </div>
+          <div style={{ marginTop: 'var(--space-5)' }}>
+            <MoniacSimulator />
+          </div>
+        </CsSection>
 
         {/* Inspiration */}
         <CsSection id="cs-inspiration" label="01 &mdash; Inspiration" title="Inspiration">
@@ -128,6 +151,7 @@ export default function MoniacMachinePage() {
         <CsThanks />
 
         <BottomNav sections={[
+          { id: 'cs-interactive', label: 'Simulator' },
           { id: 'cs-inspiration', label: 'Inspiration' },
           { id: 'cs-mechanics', label: 'Mechanics' },
           { id: 'cs-result', label: 'Result' },

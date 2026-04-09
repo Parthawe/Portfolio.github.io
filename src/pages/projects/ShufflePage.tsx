@@ -38,10 +38,6 @@ export default function ShufflePage() {
           ]}
         />
 
-        {/* Hero Image placeholder */}
-        <section className="cs-slide reveal">
-        </section>
-
         {/* Video */}
         <section className="cs-section reveal">
           <div className="wrap">

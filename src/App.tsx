@@ -41,6 +41,8 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const BookPage = lazy(() => import('./pages/BookPage'))
 const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 const StudioPage = lazy(() => import('./pages/StudioPage'))
+const WritingPage = lazy(() => import('./pages/WritingPage'))
+const WritingArticlePage = lazy(() => import('./pages/WritingPage').then(m => ({ default: m.WritingArticlePage })))
 
 // Project page components — auto-generated from registry
 const projectPages = projects.map(p => ({
@@ -79,6 +81,8 @@ export default function App() {
           ))}
 
           {/* Misc pages */}
+          <Route path="/writing" element={<WritingPage />} />
+          <Route path="/writing/:slug" element={<WritingArticlePage />} />
           <Route path="/book" element={<BookPage />} />
           <Route path="/graveyard" element={<GraveyardPage />} />
           <Route path="/studio" element={<StudioPage />} />
