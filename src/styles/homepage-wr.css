@@ -756,7 +756,7 @@
   z-index: 1;
 }
 .wr-featured-v2-inner {
-  max-width: 1400px; margin: 0 auto;
+  max-width: 900px; margin: 0 auto;
   padding: clamp(3rem, 6vw, 5rem) clamp(24px, 5vw, 80px);
 }
 
