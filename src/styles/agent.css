@@ -174,18 +174,23 @@
 
 .agent-avatar {
   position: relative;
-  width: 48px;
+  width: 44px;
+  height: 44px;
   transform-origin: bottom center;
 }
 
 .agent-avatar-img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
 }
 
 .agent-avatar-shadow {
