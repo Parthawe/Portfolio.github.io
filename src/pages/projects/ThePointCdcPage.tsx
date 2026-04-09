@@ -45,9 +45,16 @@ export default function ThePointCdcPage() {
             { label: 'Year', value: '2024' },
           ]}
           liveUrl="https://thepoint.org"
-          heroImage="/Assets/Projects/ThePointCDC/Desktop/slice-1.png"
-          heroAlt="The Point CDC, Revitalizing a community website with device mockups showing the redesigned homepage"
+          heroImage="/Assets/Projects/ThePointCDC/photos/homepage-hero.png"
+          heroAlt="The Point CDC redesigned homepage: Empowering Community, Hunts Point, Where Bronx Breathes Brighter"
         />
+
+        {/* All pages mockup */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.png" alt="All redesigned pages: team, programs, news, community resources, events" loading="lazy" /></div>
+          </div>
+        </section>
 
         {/* Overview with label-rows */}
         <section className="cs-section reveal">
@@ -99,7 +106,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/ThePointCDC/Desktop/slice-3.png" alt="The Point CDC community work, WiFi installation and community members" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/community-photo.png" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
               </div>
             </div>
           </div>
@@ -278,13 +285,20 @@ export default function ThePointCdcPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-9.png" alt="Final high-fidelity design, desktop and mobile responsive views with annotated improvements" loading="lazy" />
-        </div>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.png" alt="Annotated redesign: streamlined navigation, responsive design, improved readability, cohesive color scheme" loading="lazy" /></div>
+          </div>
+        </section>
 
-        <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-10.png" alt="Additional page designs showing various sections of the redesigned website" loading="lazy" />
-        </div>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         {/* Results */}
         <section className="cs-section reveal" id="cs-results">
