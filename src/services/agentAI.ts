@@ -82,6 +82,7 @@ const STARTER_CHIPS: Record<string, string[]> = {
   '/': ['Tour this page', 'Open Mentra', 'Start with three projects', 'Best research process'],
   '/work': ['Tour this page', 'Show AI work', 'Start with three projects', 'Best research process'],
   '/about': ['Tour this page', 'Role fit', 'Tell me about Mentra', 'Contact'],
+  '/writing': ['Tour this page', 'Best article', 'Design philosophy', 'About Parth'],
 }
 
 interface FocusTopic {
@@ -455,6 +456,12 @@ const STATIC_TOURS: Record<string, TourStep[]> = {
     { text: 'Here\'s the thing that matters: he\'s at Mentra right now designing an entire operating system for a 640-pixel-wide display. Before that, founding designer at ZentiPay, lead at TransFi. The trajectory is 0-to-1 product work at increasing scale.', scrollTo: '.abt-status-row, .abt-status-card', delay: 350 },
     { text: 'The tools section is worth a look. It\'s not just Figma, it\'s React, Python, Arduino, Blender, laser cutters. He designs it, codes it, and sometimes physically builds it. That range is why the installations and creative tech projects exist alongside the fintech work.', scrollTo: '.abt-tools, .abt-skills', delay: 350 },
     { text: 'The daily practices at the bottom explain the consistency. 100 days of poems, 100 days of sketches, 45 podcast episodes. It\'s not hustle content, it\'s a designer who actually does the reps. If you want to talk, his email is here. Or ask me anything else.', scrollTo: '.abt-practice-grid, .abt-practice', delay: 0 },
+  ],
+  '/writing': [
+    { text: 'This is where the thinking behind the projects gets unpacked. Every article comes from a real design decision, not theory.', scrollTo: '.wr-writing-header', delay: 300 },
+    { text: 'Start with the featured one at the top. **Designing for Glance, Not Gaze** is about what happens when every phone UI convention breaks on smart glasses. It is the most concrete piece about the Mentra work.', scrollTo: '.wr-article-featured', delay: 350 },
+    { text: 'If you care about research, read **Trust Beats Speed**. The ZentiPay fee-anxiety story. The finding that users preferred a *slower* confirmation because instant felt sketchy. That one surprises people.', scrollTo: '.wr-article-grid', delay: 350 },
+    { text: 'The rest range from AI trust architecture to why writing poetry makes you better at button labels. Each one is 3-5 minutes. Pick whatever sounds interesting, or ask me which one matters most for what you care about.', scrollTo: '.wr-article-grid', delay: 0 },
   ],
 }
 

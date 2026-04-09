@@ -230,7 +230,10 @@ export default function HomePage() {
                   I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi. NYU ITP &rsquo;24.
                 </p>
 
-                <Link to="/about" className="wr-about-readmore">read more.</Link>
+                <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                  <Link to="/about" className="wr-about-readmore">read more.</Link>
+                  <Link to="/writing" className="wr-about-readmore">writing.</Link>
+                </div>
 
                 <span className="wr-about-site">PARTHPAWAR.COM</span>
               </div>

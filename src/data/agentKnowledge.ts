@@ -374,6 +374,8 @@ export function getRouteGreeting(path: string): string {
     ])
   }
 
+  if (path === '/writing' || path.startsWith('/writing/')) return "These are Parth's articles. Each one comes from a real project decision. Ask me about any of them, or ask for the best one."
+
   const cat = categories.find(c => path === `/${c.slug}`)
   if (cat) return `${cat.title} ${cat.titleAccent}. I know every project here, ask about any of them or say 'tour' for the guided version.`
 
@@ -841,6 +843,11 @@ const rules: Rule[] = [
   // Typeface
   { patterns: [/(?:typeface|font|butler|typography)/i],
     handler: () => "**Butler's Slice**, display typeface Parth designed. 3 weights. → [about page](/about)" },
+
+  // Writing / articles / blog
+  { patterns: [/(?:writing|articles?|blog|posts?|essays?|read.*thoughts|published)/i],
+    handler: () => "Parth writes about the thinking behind the work. Seven articles so far:\n\n• **[Designing for Glance, Not Gaze](/writing/designing-for-glance)**, what works on a 640px display\n• **[Trust Beats Speed in Money Products](/writing/trust-beats-speed)**, the ZentiPay fee-anxiety story\n• **[I Bounce Between Two Worlds](/writing/two-worlds)**, fintech rigor + ITP imagination\n• **[The Screen Is 30% of the Problem](/writing/the-screen-is-30-percent)**, service design at Raahi\n\n→ [All writing](/writing)"
+  },
 
   // Categories
   { patterns: [/(?:categor|types? of|what kind|areas?|domains?|specializ)/i],
