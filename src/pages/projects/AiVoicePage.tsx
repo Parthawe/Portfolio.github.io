@@ -173,8 +173,23 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/4.png" alt="Voice DNA Builder, sketch and final dark UI mockup" />
-        <p className="cs-caption">Concept A: Voice DNA Builder, from initial sketch to high-fidelity dark UI. Users build a voice through parameter sliders that form an animated DNA helix.</p>
+        {/* Real product photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-personas.png" alt="Voice DNA Builder wireframe with persona selection" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-builder.png" alt="Voice DNA Builder wireframe with parameter sliders and global map" loading="lazy" /></div>
+            </div>
+            <p className="cs-caption">Early wireframes: persona selection and DNA parameter layout with global accent map</p>
+          </div>
+        </section>
+
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-dna-builder.png" alt="Voice DNA Builder: dark UI with parameter sliders, DNA helix animation, and global accent map" loading="lazy" /></div>
+            <p className="cs-caption">Final Voice DNA Builder: dark theme with parameter sliders for tone, speed, quality, and pitch, real-time DNA strand animation, and interactive global accent map</p>
+          </div>
+        </section>
 
         {/* Concept B */}
         <section className="cs-section reveal" id="cs-concept-b">
@@ -194,8 +209,15 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/5.png" alt="Mood-Based Voice Matching, sketch and final dark UI mockup" />
-        <p className="cs-caption">Concept B: Mood-Based Voice Matching, the user speaks, the AI analyzes emotion and tone, then suggests three voices that match their energy.</p>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/console-speak.png" alt="Voice Matching console: Hi, How can I help you today? Speak your mind" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-matching-gallery.png" alt="Voice Matching: three persona silhouettes with mood-match results" loading="lazy" /></div>
+            </div>
+            <p className="cs-caption">Mood Matching flow: the console listens, then presents three matched voice personas with silhouette identities</p>
+          </div>
+        </section>
 
         {/* Voice DNA Deep Dive */}
         <section className="cs-section reveal" id="cs-voice-dna">
@@ -218,8 +240,12 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/6.png" alt="Voice DNA Builder, detailed feature breakdown and UI" />
-        <p className="cs-caption">DNA Builder deep dive, six key features including live persona preview, transcript panel, global accent map, and real-time parameter sliders.</p>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/product-flow.png" alt="Full product flow: Voice DNA Builder screens with parameter details and different configurations" loading="lazy" /></div>
+            <p className="cs-caption">Complete product flow showing how the Voice DNA Builder adapts across different parameter configurations</p>
+          </div>
+        </section>
 
         {/* UX Benefits, DNA Builder */}
         <section className="cs-section reveal">
@@ -250,8 +276,15 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/7.png" alt="Persona movements and UX benefits for Voice DNA Builder" />
-        <p className="cs-caption">Persona movement states (Listen, Think, Talk) bring the voice character to life. The DNA Builder balances creative freedom with technical control.</p>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/persona-movements.png" alt="Persona Movements: Listen, Think, Talk states with DNA-inspired animation" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-personas.png" alt="Three voice persona silhouettes with distinct visual identities" loading="lazy" /></div>
+            </div>
+            <p className="cs-caption">Persona movement states (Listen, Think, Talk) and the three persona silhouette system giving each voice a visual identity</p>
+          </div>
+        </section>
 
         {/* Mood Matching Deep Dive */}
         <section className="cs-section reveal" id="cs-mood">
@@ -271,8 +304,15 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/8.png" alt="Mood-Based Voice Matching, three screens: listening, thinking, talking" />
-        <p className="cs-caption">Mood Matching&rsquo;s three-stage flow: a glowing circle captures voice input, a silhouette processes emotion, and three matched personas appear with mood summaries.</p>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-conversation.png" alt="Voice conversation with silhouette persona and transcript" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-conversation-dark.png" alt="Voice conversation dark variant with persona silhouette" loading="lazy" /></div>
+            </div>
+            <p className="cs-caption">Voice conversation interface: the silhouette persona responds with emotional intelligence, shown in two lighting variants</p>
+          </div>
+        </section>
 
         {/* UX Benefits, Mood Matching */}
         <section className="cs-section reveal">
@@ -302,8 +342,12 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/9.png" alt="Persona silhouettes and UX benefits for Mood-Based Voice Matching" />
-        <p className="cs-caption">Persona silhouettes give each voice a visual identity. Voice-first onboarding eliminates clicks entirely &mdash; users just speak, and the system adapts.</p>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/persona-avatars.png" alt="Six persona silhouettes with distinct poses and warm gradient backgrounds" loading="lazy" /></div>
+            <p className="cs-caption">Six persona silhouettes, each with a distinct pose and personality, giving every AI voice a visual identity that users connect with emotionally</p>
+          </div>
+        </section>
 
         {/* Validate */}
         <section className="cs-section reveal" id="cs-validate">
@@ -340,8 +384,12 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/10.png" alt="A/B testing results and reflections" />
-        <p className="cs-caption">A/B test results across 7 participants: DNA Builder won on customization, playfulness, and visual engagement; Mood Matching won on onboarding ease and emotional connection.</p>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-matching-detail.png" alt="Voice Matching detail: three personas with mood-match percentages and voice preview" loading="lazy" /></div>
+            <p className="cs-caption">A/B test results across 7 participants: DNA Builder won on customization and playfulness; Mood Matching won on onboarding ease and emotional connection</p>
+          </div>
+        </section>
 
         {/* Reflections */}
         <CsSection id="cs-reflections" label="Reflections" title="Designing for a voice-first world">

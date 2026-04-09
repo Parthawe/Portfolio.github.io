@@ -72,8 +72,9 @@ export default function UvLightPage() {
               <p>The ideation phase involved extensive material testing &mdash; experimenting with different brands of invisible ink, UV-reactive paints, and fluorescent tapes to determine which materials produced the most vivid and reliable results under blacklight. We tested across several UV wavelength ranges (365nm to 395nm) and discovered that ink visibility varied dramatically depending on the light source, which informed our choice of blacklight fixtures for the final installation.</p>
               <p>Early prototypes explored small-scale &ldquo;elevator&rdquo; enclosures where a single participant would enter a confined space and discover hidden messages on the walls. We iterated on the spatial design through paper mockups and cardboard prototypes at ITP, testing how different room sizes, lighting angles, and message densities affected the sense of discovery. The hidden camera concept emerged as a way to create an asymmetry of knowledge &mdash; some participants exploring while others observed &mdash; reinforcing the installation&rsquo;s theme of visible and invisible layers.</p>
             </CsBody>
-            <div className="cs-img-full">
-              <img src="/Assets/Projects/UVLight/Desktop/2.jpg" alt="Ideation sketches, whiteboard brainstorming, and early process photos" loading="lazy" />
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/1000051727.png" alt="Whiteboard brainstorming: room layouts, puzzle concepts, and interaction flow sketches" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/1000051740.png" alt="Observation whiteboard: show rather than tell, bias, monitoring concepts" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -124,14 +125,25 @@ export default function UvLightPage() {
           </div>
         </section>
 
-        {/* Experience photos */}
+        {/* Van Gogh inspiration */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-4.png" alt="Van Gogh Almond Blossom pamphlet held during the experience setup" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/letter---1.png" alt="Van Gogh letter pamphlet: Paint the Soul" loading="lazy" /></div>
+            </div>
+            <p className="cs-caption">Van Gogh's Almond Blossom and letters served as the thematic anchor, connecting art, observation, and hidden meaning</p>
+          </div>
+        </section>
+
+        {/* UV room experience */}
         <section className="cs-section reveal">
           <div className="wrap">
             <p className="cs-section-label">Documentation</p>
-            <h2 className="cs-section-title">Experience</h2>
-            <div className="cs-img-pair">
-              <div className="cs-img"><img src="/Assets/Projects/UVLight/Desktop/3.jpg" alt="Participants discovering hidden UV drawings and assembling the puzzle painting under blacklight" loading="lazy" /></div>
-              <div className="cs-img"><img src="/Assets/Projects/UVLight/Desktop/4.jpg" alt="Second room with Van Gogh pamphlets, poetry, and seated attendees" loading="lazy" /></div>
+            <h2 className="cs-section-title">The Experience</h2>
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-1.png" alt="UV-lit room: participants discovering hidden projections under blacklight" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-2.png" alt="Participant discovering hidden UV drawings on the floor" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -149,9 +161,15 @@ export default function UvLightPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal">
-          <img src="/Assets/Projects/UVLight/Desktop/5.jpg" alt="Portrait cards with hidden UV messages and the blacklight-lit stage floor" loading="lazy" />
-        </div>
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-6.png" alt="Participants sitting around glowing UV puzzle on the floor" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-7.png" alt="Close-up: glowing UV element in participant's hand" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-5.png" alt="UV-lit room with Starry Night projection and participants" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         {/* The Blacklight Stage */}
         <section className="cs-section reveal">
