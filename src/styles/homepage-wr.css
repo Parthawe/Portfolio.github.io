@@ -760,11 +760,14 @@
   padding: clamp(3rem, 6vw, 5rem) clamp(24px, 5vw, 80px);
 }
 
-/* 2-column grid — alternating heights */
+/* 2-column masonry — alternating heights, no row gaps */
 .wr-feat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  columns: 2;
+  column-gap: 1.25rem;
+}
+.wr-feat-grid > * {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
 }
 /* 1 and 4: taller */
 .wr-feat-grid > *:nth-child(1) .pcard-visual,
@@ -903,11 +906,12 @@
 
 /* Mobile featured */
 @media (max-width: 768px) {
-  .wr-feat-grid { gap: 1rem; }
+  .wr-feat-grid { column-gap: 1rem; }
+  .wr-feat-grid > * { margin-bottom: 1rem; }
   .wr-featured-v2-inner { padding: 2rem 1.25rem; }
 }
 @media (max-width: 480px) {
-  .wr-feat-grid { grid-template-columns: 1fr; }
+  .wr-feat-grid { columns: 1; }
   .wr-feat-grid > * .pcard-visual { aspect-ratio: 16 / 10; }
 }
 
