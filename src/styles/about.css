@@ -37,7 +37,6 @@
 .abt-paper {
   position: relative;
   background: var(--bg);
-  overflow: hidden;
   line-height: 24px;
 }
 /* Grid shows on the paper surface too */
