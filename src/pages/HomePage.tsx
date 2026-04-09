@@ -175,89 +175,6 @@ export default function HomePage() {
             />
         </section>
 
-        {/* ═══ ABOUT CARD, cycling skills ═══ */}
-        <section className="wr-about-section" style={{position:"relative"}}><FigmaFrameLabel name="About" />
-          <div className="wr-about-card" id="about-card">
-            {/* Dashed border SVG */}
-            <svg className="wr-about-border" preserveAspectRatio="none">
-              <line x1="12" y1="12" x2="12" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
-              <line x1="100%" y1="12" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(-12,0)" />
-              <line x1="12" y1="12" x2="100%" y2="12" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
-              <line x1="12" y1="100%" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(0,-12)" />
-            </svg>
-            {/* Circle cutouts */}
-            <div className="wr-about-dot" style={{ top: '11px' }} />
-            <div className="wr-about-dot" style={{ top: '28%' }} />
-            <div className="wr-about-dot" style={{ top: '50%' }} />
-            <div className="wr-about-dot" style={{ top: '72%' }} />
-            <div className="wr-about-dot" style={{ bottom: '11px' }} />
-
-            {/* Top bar */}
-            <div className="wr-about-top">
-              <div className="wr-about-top-left">
-                <span className="wr-about-num">{String(skillIdx + 1).padStart(2, '0')}</span>
-                <span className="wr-about-skill-label">{skills[skillIdx].label.toUpperCase()}</span>
-              </div>
-              <div className="wr-about-top-right">
-                <span className="wr-about-dot-sq" />
-                <span className="wr-label">ABOUT</span>
-                <span className="wr-about-dot-sq" />
-              </div>
-            </div>
-
-            {/* Main content */}
-            <div className="wr-about-body">
-              <div className="wr-about-img-col">
-                <div className="wr-about-img-wrap" id="about-img-wrap">
-                  <img src={skills[skillIdx].img} alt={`Showcase of ${skills[skillIdx].label}`} draggable={false} key={skillIdx} />
-                </div>
-              </div>
-              <div className="wr-about-text">
-                <h2 className="wr-about-heading">Parth Pawar</h2>
-                <h2 className="wr-about-heading">does</h2>
-
-                {/* Cycling skill */}
-                <div className="wr-about-cycle">
-                  <button className="wr-about-arrow" onClick={() => { setSkillPaused(true); setSkillIdx(prev => (prev - 1 + skills.length) % skills.length); }} aria-label="Previous skill">&lt;</button>
-                  <div className="wr-about-skill-wrap">
-                    <span className="wr-about-skill" key={skillIdx}>{skills[skillIdx].label}</span>
-                  </div>
-                  <button className="wr-about-arrow" onClick={() => { setSkillPaused(true); setSkillIdx(prev => (prev + 1) % skills.length); }} aria-label="Next skill">&gt;</button>
-                  <button className="wr-about-arrow" onClick={() => setSkillPaused(p => !p)} aria-label={skillPaused ? 'Play' : 'Pause'}>{skillPaused ? '▶' : '❚❚'}</button>
-                </div>
-
-                <p className="wr-about-desc">
-                  I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi. NYU ITP &rsquo;24.
-                </p>
-
-                <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                  <Link to="/about" className="wr-about-readmore">read more.</Link>
-                  <Link to="/writing" className="wr-about-readmore">writing.</Link>
-                </div>
-
-                <span className="wr-about-site">PARTHPAWAR.COM</span>
-              </div>
-            </div>
-
-            {/* Vertical text */}
-            <div className="wr-about-vert" aria-hidden="true">PARTHPAWARWORKS</div>
-
-            {/* Bottom strip */}
-            <div className="wr-about-bottom">
-              <div className="wr-about-bottom-left">
-                <span className="wr-about-dot-circle" />
-                <span className="wr-about-num">{String(skillIdx + 1).padStart(2, '0')} / {String(skills.length).padStart(2, '0')}</span>
-              </div>
-              <div className="wr-about-bottom-right">
-                <span className="wr-about-dot-sq" />
-                <span className="wr-about-meta-label">CURRENTLY BASED IN</span>
-                <span className="wr-about-meta-val">SAN FRANCISCO, CA</span>
-                <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ═══ FEATURED PROJECTS, editorial full-width rows ═══ */}
         <section className="wr-featured-v2" id="works" style={{position:"relative"}}><FigmaFrameLabel name="Featured Work" />
           <div className="wr-featured-v2-inner">
@@ -352,7 +269,90 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══ SPOTLIGHT REVEAL ═══ */}
+        {/* ═══ ABOUT CARD, cycling skills ═══ */}
+        <section className="wr-about-section" style={{position:"relative"}}><FigmaFrameLabel name="About" />
+          <div className="wr-about-card" id="about-card">
+            {/* Dashed border SVG */}
+            <svg className="wr-about-border" preserveAspectRatio="none">
+              <line x1="12" y1="12" x2="12" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
+              <line x1="100%" y1="12" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(-12,0)" />
+              <line x1="12" y1="12" x2="100%" y2="12" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
+              <line x1="12" y1="100%" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(0,-12)" />
+            </svg>
+            {/* Circle cutouts */}
+            <div className="wr-about-dot" style={{ top: '11px' }} />
+            <div className="wr-about-dot" style={{ top: '28%' }} />
+            <div className="wr-about-dot" style={{ top: '50%' }} />
+            <div className="wr-about-dot" style={{ top: '72%' }} />
+            <div className="wr-about-dot" style={{ bottom: '11px' }} />
+
+            {/* Top bar */}
+            <div className="wr-about-top">
+              <div className="wr-about-top-left">
+                <span className="wr-about-num">{String(skillIdx + 1).padStart(2, '0')}</span>
+                <span className="wr-about-skill-label">{skills[skillIdx].label.toUpperCase()}</span>
+              </div>
+              <div className="wr-about-top-right">
+                <span className="wr-about-dot-sq" />
+                <span className="wr-label">ABOUT</span>
+                <span className="wr-about-dot-sq" />
+              </div>
+            </div>
+
+            {/* Main content */}
+            <div className="wr-about-body">
+              <div className="wr-about-img-col">
+                <div className="wr-about-img-wrap" id="about-img-wrap">
+                  <img src={skills[skillIdx].img} alt={`Showcase of ${skills[skillIdx].label}`} draggable={false} key={skillIdx} />
+                </div>
+              </div>
+              <div className="wr-about-text">
+                <h2 className="wr-about-heading">Parth Pawar</h2>
+                <h2 className="wr-about-heading">does</h2>
+
+                {/* Cycling skill */}
+                <div className="wr-about-cycle">
+                  <button className="wr-about-arrow" onClick={() => { setSkillPaused(true); setSkillIdx(prev => (prev - 1 + skills.length) % skills.length); }} aria-label="Previous skill">&lt;</button>
+                  <div className="wr-about-skill-wrap">
+                    <span className="wr-about-skill" key={skillIdx}>{skills[skillIdx].label}</span>
+                  </div>
+                  <button className="wr-about-arrow" onClick={() => { setSkillPaused(true); setSkillIdx(prev => (prev + 1) % skills.length); }} aria-label="Next skill">&gt;</button>
+                  <button className="wr-about-arrow" onClick={() => setSkillPaused(p => !p)} aria-label={skillPaused ? 'Play' : 'Pause'}>{skillPaused ? '▶' : '❚❚'}</button>
+                </div>
+
+                <p className="wr-about-desc">
+                  I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi. NYU ITP &rsquo;24.
+                </p>
+
+                <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                  <Link to="/about" className="wr-about-readmore">read more.</Link>
+                  <Link to="/writing" className="wr-about-readmore">writing.</Link>
+                </div>
+
+                <span className="wr-about-site">PARTHPAWAR.COM</span>
+              </div>
+            </div>
+
+            {/* Vertical text */}
+            <div className="wr-about-vert" aria-hidden="true">PARTHPAWARWORKS</div>
+
+            {/* Bottom strip */}
+            <div className="wr-about-bottom">
+              <div className="wr-about-bottom-left">
+                <span className="wr-about-dot-circle" />
+                <span className="wr-about-num">{String(skillIdx + 1).padStart(2, '0')} / {String(skills.length).padStart(2, '0')}</span>
+              </div>
+              <div className="wr-about-bottom-right">
+                <span className="wr-about-dot-sq" />
+                <span className="wr-about-meta-label">CURRENTLY BASED IN</span>
+                <span className="wr-about-meta-val">SAN FRANCISCO, CA</span>
+                <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+                {/* ═══ SPOTLIGHT REVEAL ═══ */}
         <section className="wr-reveal-section">
             <TextReveal
               front="If you scrolled this far, we should probably talk, I make coffee, you bring the hard problem."
