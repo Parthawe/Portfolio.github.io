@@ -846,7 +846,7 @@ const rules: Rule[] = [
 
   // Writing / articles / blog
   { patterns: [/(?:writing|articles?|blog|posts?|essays?|read.*thoughts|published)/i],
-    handler: () => "Parth writes about the thinking behind the work. Seven articles so far:\n\n• **[Designing for Glance, Not Gaze](/writing/designing-for-glance)**, what works on a 640px display\n• **[Trust Beats Speed in Money Products](/writing/trust-beats-speed)**, the ZentiPay fee-anxiety story\n• **[I Bounce Between Two Worlds](/writing/two-worlds)**, fintech rigor + ITP imagination\n• **[The Screen Is 30% of the Problem](/writing/the-screen-is-30-percent)**, service design at Raahi\n\n→ [All writing](/writing)"
+    handler: () => "Parth writes about the thinking behind the work. 13 articles so far. Highlights:\n\n• **[Designing for Glance, Not Gaze](/writing/designing-for-glance)**, what works on a 640px display\n• **[Trust Beats Speed](/writing/trust-beats-speed)**, the ZentiPay fee-anxiety story\n• **[The Figma File Is Not the Product](/writing/the-figma-file-is-not-the-product)**, why he codes what he designs\n• **[Strong Opinions on Border-Radius](/writing/four-pixel-border-radius)**, 4px and why\n\n→ [All writing](/writing)"
   },
 
   // Categories
