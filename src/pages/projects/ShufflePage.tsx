@@ -38,6 +38,16 @@ export default function ShufflePage() {
           ]}
         />
 
+        {/* Product photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* Video */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -61,6 +71,24 @@ export default function ShufflePage() {
             <CsBody>
               <p>Shuffle is an interactive installation which proposes a contemporary interpretation of students&rsquo; lives: a strategy simulation tool inspired by G80, aimed at an equitable distribution of your time as a student on an ITP scale.</p>
             </CsBody>
+          </div>
+        </section>
+
+        {/* Interaction photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Slider detail */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
           </div>
         </section>
 

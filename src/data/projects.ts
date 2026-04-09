@@ -407,6 +407,17 @@ export const projects: Project[] = [
     archiveOrder: 37,
   },
   {
+    slug: 'dna-speculative',
+    name: 'DNA: Speculative Design',
+    image: '/Assets/Projects/DNA/photos/boxes-closed.png',
+    tag: 'BIOART',
+    year: '2024',
+    desc: 'Would you take a pill to live forever? Speculative pharmaceutical packaging exploring immortality and mortality',
+    category: 'creative',
+    page: () => import('../pages/projects/DnaPage'),
+    archiveOrder: 38,
+  },
+  {
     slug: 'comp-media',
     name: 'Computational Media',
     image: `${IMG}/sea-of-salt.svg`,
