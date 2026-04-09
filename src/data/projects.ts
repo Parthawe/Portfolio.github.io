@@ -169,7 +169,7 @@ export const projects: Project[] = [
   {
     slug: 'healthapp',
     name: 'Health App',
-    image: '/Assets/Projects/health-app/1.jpg',
+    image: '/Assets/Projects/health-app/photos/home-screen.png',
     tag: 'UX DESIGN',
     year: '2024',
     desc: 'Reimagining Google Tasks with health integration — productivity meets personal well-being',
@@ -181,7 +181,7 @@ export const projects: Project[] = [
   {
     slug: 'ibm',
     name: 'IBM Cancer Prognosis',
-    image: '/Assets/Projects/ibm/1.jpg',
+    image: '/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
     tag: 'HEALTHCARE AI',
     year: '2020',
     desc: 'Secure genomic data transfer to identify life expectancy of cancer patients',
@@ -216,7 +216,7 @@ export const projects: Project[] = [
   {
     slug: 'ai-voice',
     name: 'AI Voice',
-    image: `${IMG}/ai-voice.png`,
+    image: '/Assets/Projects/ai-voice/photos/voice-dna-builder.png',
     tag: 'CONVERSATIONAL AI',
     year: '2025',
     desc: 'Enterprise voice selection with emotional intelligence — A/B tested with 7 users',
@@ -241,7 +241,7 @@ export const projects: Project[] = [
   {
     slug: 'the-point-cdc',
     name: 'The Point CDC',
-    image: `${IMG}/the-point-cdc.png`,
+    image: '/Assets/Projects/ThePointCDC/photos/homepage-hero.png',
     tag: 'COMMUNITY',
     year: '2024',
     desc: 'Redesigned digital platform for a Bronx community development nonprofit',
@@ -252,7 +252,7 @@ export const projects: Project[] = [
   {
     slug: 'office-of-diversity',
     name: 'Office of Diversity',
-    image: `${IMG}/office-of-diversity.png`,
+    image: '/Assets/Projects/office-of-diversity/photos/responsive-preview.png',
     tag: 'EDUCATION',
     year: '2024',
     desc: 'Interactive IDBEA report for NYU Tisch — WCAG 2.1 AA accessible',
@@ -265,7 +265,7 @@ export const projects: Project[] = [
   {
     slug: 'jugalbandi',
     name: 'Jugalbandi',
-    image: `${IMG}/jugalbandi.png`,
+    image: '/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.png',
     tag: 'ML + MUSIC',
     year: '2024',
     desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024',
@@ -276,7 +276,7 @@ export const projects: Project[] = [
   {
     slug: 'keyboard-project',
     name: 'BreakGen',
-    image: `${IMG}/keyboard.jpg`,
+    image: '/Assets/Projects/Keyboard/photos/keyboard-data-hero.png',
     tag: 'ITP THESIS',
     year: '2025',
     desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors',
@@ -320,7 +320,7 @@ export const projects: Project[] = [
   {
     slug: 'making-of-time',
     name: 'Making of Time',
-    image: `${IMG}/making-of-time.jpg`,
+    image: '/Assets/Projects/making-of-time/photos/blue-dial-hero.png',
     tag: 'PHYSICAL COMPUTING',
     year: '2024',
     desc: 'Sundial → mechanical watch → software clock — building three ways to measure time',
@@ -476,7 +476,7 @@ export const projects: Project[] = [
   {
     slug: 'arcade-lab',
     name: 'Arcade Lab',
-    image: `${IMG}/the-omakase.jpg`, // shares image with Omakase (it's the ancestor)
+    image: '/Assets/Projects/the-omakase/photos/cabinet-front.png', // shares image with Omakase (it's the ancestor)
     tag: 'GAME PROTOTYPING',
     year: '2023',
     desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
@@ -511,7 +511,7 @@ export const projects: Project[] = [
   {
     slug: 'the-omakase',
     name: 'The Omakase',
-    image: `${IMG}/the-omakase.jpg`,
+    image: '/Assets/Projects/the-omakase/photos/cabinet-front.png',
     tag: 'ARCADE GAME',
     year: '2024',
     desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille',
@@ -533,7 +533,7 @@ export const projects: Project[] = [
   {
     slug: 'moniac-machine',
     name: 'Moniac Machine',
-    image: `${IMG}/moniac-machine.jpg`,
+    image: '/Assets/Projects/Moniac/photos/hero-cabinet.png',
     tag: 'GAME DESIGN',
     year: '2024',
     desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education',
