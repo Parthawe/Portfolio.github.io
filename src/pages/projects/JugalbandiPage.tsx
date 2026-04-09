@@ -6,7 +6,6 @@ import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
-import CsCallout from '../../components/case-study/CsCallout'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -99,26 +98,6 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
-        {/* Research */}
-        <section className="cs-section reveal" id="cs-research">
-          <div className="wrap">
-            <p className="cs-section-label">02 &mdash; Research</p>
-            <h3 className="cs-section-title">Materialise Neural Networks</h3>
-            <CsBody>
-              <p>Deep learning networks are a type of artificial neural network (ANN) with multiple layers of processing units. Each layer learns to perform a specific task, and the layers work together to learn complex patterns in data. Jugalbandi maps these layers to physical sound-making mechanisms &mdash; each layer of the network controls a different instrument or actuator.</p>
-              <p>The research phase involved two parallel tracks. On the technical side, I studied convolutional neural network architectures and trained custom models using ML5.js and TensorFlow, experimenting with how intermediate layer activations could be extracted in real time and converted to MIDI signals. On the cultural side, I researched Indian classical music structures &mdash; particularly the concepts of tala (rhythmic cycles), raga (melodic frameworks), and jugalbandi itself as a performance format &mdash; to find meaningful ways to map computational processes onto musical traditions that already have a language for structured improvisation.</p>
-              <p>A key insight from the research was that neural network activations are not random noise; they have structure, clustering, and dynamics that shift as data moves through the model. By assigning specific ragas to different activation ranges and tying rhythmic density to confidence scores, the output became musically coherent rather than chaotic. The mapping was not purely algorithmic &mdash; it required hundreds of hours of listening, tuning, and compositional judgment to find assignments that sounded intentional.</p>
-            </CsBody>
-            <CsCallout>
-              <p>Original artform inspired by panGenerator Studio &mdash; called &ldquo;The Abacus,&rdquo; which uses digits as the final output. Jugalbandi replaces digits with musical notes.</p>
-            </CsCallout>
-            <CsInfoGrid items={[
-              { key: 'Reference Year', value: '2021' },
-              { key: 'Credits', value: 'Krzysztof Cybulski, Krzysztof Goli\u0144ski, Jakub Ko\u017Aniewski, Wojciech Stokowiec' },
-              { key: 'Reference', value: 'pangenerator.com/projects/the-abacus/' },
-            ]} />
-          </div>
-        </section>
 
         {/* The Instrument */}
         <section className="cs-section reveal" id="cs-instrument">
@@ -322,7 +301,6 @@ export default function JugalbandiPage() {
 
         <BottomNav sections={[
           { id: 'cs-background', label: 'Background' },
-          { id: 'cs-research', label: 'Research' },
           { id: 'cs-instrument', label: 'The Instrument' },
           { id: 'cs-process', label: 'Process' },
           { id: 'cs-reflection', label: 'Reflection' },
