@@ -152,7 +152,7 @@ export const projects: Project[] = [
     desc: 'SaaS giving AI agents organizational context — dual-user admin and agent design',
     category: 'ux',
     page: () => import('../pages/projects/OrgDashboardPage'),
-    archiveOrder: 17,
+    archiveOrder: 21,
   },
   {
     slug: 'cuetv',
@@ -164,7 +164,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/CueTvPage'),
     nda: true,
-    archiveOrder: 8,
+    archiveOrder: 9,
   },
   {
     slug: 'healthapp',
@@ -176,7 +176,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/HealthAppPage'),
     nda: true,
-    archiveOrder: 18,
+    archiveOrder: 23,
   },
   {
     slug: 'ibm',
@@ -187,7 +187,7 @@ export const projects: Project[] = [
     desc: 'Secure genomic data transfer to identify life expectancy of cancer patients',
     category: 'ux',
     page: () => import('../pages/projects/IbmPage'),
-    archiveOrder: 19,
+    archiveOrder: 25,
   },
 
   /* ── AI & Wearables ── */
@@ -200,7 +200,7 @@ export const projects: Project[] = [
     desc: 'AI-native IDE treating AI as a senior engineer — designed the UX for 17 production tools',
     category: 'ai',
     page: () => import('../pages/projects/BallahCodePage'),
-    archiveOrder: 15,
+    archiveOrder: 17,
   },
   {
     slug: 'oncall-lens',
@@ -211,7 +211,7 @@ export const projects: Project[] = [
     desc: 'Sentry alert → Claude analysis → auto PR fix via smart glasses — built in 24 hours',
     category: 'ai',
     page: () => import('../pages/projects/OnCallLensPage'),
-    archiveOrder: 16,
+    archiveOrder: 19,
   },
   {
     slug: 'ai-voice',
@@ -223,7 +223,7 @@ export const projects: Project[] = [
     category: 'ai',
     page: () => import('../pages/projects/AiVoicePage'),
     nda: true,
-    archiveOrder: 22,
+    archiveOrder: 32,
   },
 
   /* ── Design for Good ── */
@@ -247,7 +247,7 @@ export const projects: Project[] = [
     desc: 'Redesigned digital platform for a Bronx community development nonprofit',
     category: 'good',
     page: () => import('../pages/projects/ThePointCdcPage'),
-    archiveOrder: 6,
+    archiveOrder: 7,
   },
   {
     slug: 'office-of-diversity',
@@ -258,7 +258,7 @@ export const projects: Project[] = [
     desc: 'Interactive IDBEA report for NYU Tisch — WCAG 2.1 AA accessible',
     category: 'good',
     page: () => import('../pages/projects/OfficeOfDiversityPage'),
-    archiveOrder: 21,
+    archiveOrder: 30,
   },
 
   /* ── Creative Technology ── */
@@ -293,7 +293,7 @@ export const projects: Project[] = [
     desc: 'Audio-reactive visual performance tool — 5 competitor analysis, 2 personas',
     category: 'ux',
     page: () => import('../pages/projects/VjSoftwarePage'),
-    archiveOrder: 15,
+    archiveOrder: 18,
   },
   {
     slug: 'enigma',
@@ -304,7 +304,7 @@ export const projects: Project[] = [
     desc: '200-neuron light sculpture visualizing a functioning neural network',
     category: 'creative',
     page: () => import('../pages/projects/EnigmaPage'),
-    archiveOrder: 9,
+    archiveOrder: 10,
   },
   {
     slug: 'shuffle',
@@ -315,7 +315,7 @@ export const projects: Project[] = [
     desc: 'Weight-sensor LED grid where players compete through physical strategy',
     category: 'creative',
     page: () => import('../pages/projects/ShufflePage'),
-    archiveOrder: 11,
+    archiveOrder: 12,
   },
   {
     slug: 'making-of-time',
@@ -326,7 +326,7 @@ export const projects: Project[] = [
     desc: 'Sundial → mechanical watch → software clock — building three ways to measure time',
     category: 'creative',
     page: () => import('../pages/projects/MakingOfTimePage'),
-    archiveOrder: 12,
+    archiveOrder: 13,
   },
   {
     slug: 'sea-of-salt',
@@ -337,7 +337,7 @@ export const projects: Project[] = [
     desc: 'Kinetic salt installation shifting in response to real-time ocean data',
     category: 'creative',
     page: () => import('../pages/projects/SeaOfSaltPage'),
-    archiveOrder: 17,
+    archiveOrder: 22,
   },
 
   {
@@ -349,7 +349,7 @@ export const projects: Project[] = [
     desc: 'Perlin noise flow fields — 2000 particles creating organic, ever-changing patterns',
     category: 'creative',
     page: () => import('../pages/projects/CanvasForCodersPage'),
-    archiveOrder: 13,
+    archiveOrder: 14,
   },
   {
     slug: 'embodied-web',
@@ -360,7 +360,7 @@ export const projects: Project[] = [
     desc: 'Browser experiments using the body as input — webcam, motion sensors, spatial audio',
     category: 'creative',
     page: () => import('../pages/projects/EmbodiedWebPage'),
-    archiveOrder: 23,
+    archiveOrder: 33,
   },
   {
     slug: 'feeling-patterns',
@@ -371,7 +371,7 @@ export const projects: Project[] = [
     desc: 'Textile interfaces translating emotion into tactile patterns — haptic vests & pressure fabrics',
     category: 'creative',
     page: () => import('../pages/projects/FeelingPatternsPage'),
-    archiveOrder: 24,
+    archiveOrder: 34,
   },
   {
     slug: 'performance-by-design',
@@ -382,7 +382,7 @@ export const projects: Project[] = [
     desc: 'Designing invisible systems for live performance — lighting, spatial audio, audience flow',
     category: 'creative',
     page: () => import('../pages/projects/PerformanceByDesignPage'),
-    archiveOrder: 25,
+    archiveOrder: 35,
   },
   {
     slug: 'on-becoming',
@@ -393,7 +393,7 @@ export const projects: Project[] = [
     desc: 'A reflective design journal on identity, craft, and evolving from designer to design engineer',
     category: 'creative',
     page: () => import('../pages/projects/OnBecomingPage'),
-    archiveOrder: 26,
+    archiveOrder: 36,
   },
   {
     slug: 'storytelling',
@@ -404,7 +404,7 @@ export const projects: Project[] = [
     desc: 'How structure, pacing, and medium shape the stories products tell',
     category: 'creative',
     page: () => import('../pages/projects/StorytellingPage'),
-    archiveOrder: 27,
+    archiveOrder: 37,
   },
 
   {
@@ -416,7 +416,7 @@ export const projects: Project[] = [
     desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
     category: 'install',
     page: () => import('../pages/projects/ArcadeLabPage'),
-    archiveOrder: 20,
+    archiveOrder: 27,
   },
 
   /* ── Installations ── */
@@ -440,7 +440,7 @@ export const projects: Project[] = [
     desc: 'Multi-room blacklight installation with hidden messages and live projection',
     category: 'install',
     page: () => import('../pages/projects/UvLightPage'),
-    archiveOrder: 7,
+    archiveOrder: 8,
   },
   {
     slug: 'the-omakase',
@@ -451,7 +451,7 @@ export const projects: Project[] = [
     desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille',
     category: 'install',
     page: () => import('../pages/projects/TheOmakasePage'),
-    archiveOrder: 16,
+    archiveOrder: 20,
   },
   {
     slug: 'revolving-stage',
@@ -462,7 +462,7 @@ export const projects: Project[] = [
     desc: '15 ft. rotating stage supporting 250+ kgs — engineered for live theatre',
     category: 'install',
     page: () => import('../pages/projects/RevolvingStagePage'),
-    archiveOrder: 10,
+    archiveOrder: 11,
   },
   {
     slug: 'moniac-machine',
@@ -473,7 +473,7 @@ export const projects: Project[] = [
     desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education',
     category: 'install',
     page: () => import('../pages/projects/MoniacMachinePage'),
-    archiveOrder: 13,
+    archiveOrder: 15,
   },
   {
     slug: 'drowning',
@@ -484,7 +484,7 @@ export const projects: Project[] = [
     desc: 'Abandoned greenhouse set for NYU theatre — multi-layer lighting for 100+ audience',
     category: 'install',
     page: () => import('../pages/projects/DrowningPage'),
-    archiveOrder: 20,
+    archiveOrder: 28,
   },
   {
     slug: 'sculpture',
@@ -495,7 +495,7 @@ export const projects: Project[] = [
     desc: 'Competition sculptures for Firodia Karandak, Pune',
     category: 'install',
     page: () => import('../pages/projects/SculpturePage'),
-    archiveOrder: 21,
+    archiveOrder: 31,
   },
 
   /* ── Brand & Visual ── */
@@ -508,7 +508,7 @@ export const projects: Project[] = [
     desc: 'Art directed a 65-person team to build a parallax cityscape stage for 800+ attendees',
     category: 'brand',
     page: () => import('../pages/projects/TedxPage'),
-    archiveOrder: 5,
+    archiveOrder: 6,
   },
   {
     slug: 'code-for-build',
@@ -519,7 +519,7 @@ export const projects: Project[] = [
     desc: 'Brand system and developer platform for Istanbul open-source startup',
     category: 'ux',
     page: () => import('../pages/projects/CodeForBuildPage'),
-    archiveOrder: 18,
+    archiveOrder: 24,
   },
   {
     slug: 'typeface',
@@ -530,7 +530,7 @@ export const projects: Project[] = [
     desc: 'Variable display typeface with geometric slice cuts — 400+ glyphs, 3 weights',
     category: 'brand',
     page: () => import('../pages/projects/TypefacePage'),
-    archiveOrder: 14,
+    archiveOrder: 16,
   },
   {
     slug: 'atps',
@@ -541,7 +541,7 @@ export const projects: Project[] = [
     desc: 'Visual identity and motion graphics for an art and design podcast series',
     category: 'brand',
     page: () => import('../pages/projects/AtpsPage'),
-    archiveOrder: 19,
+    archiveOrder: 26,
   },
   {
     slug: 'vishwaconclave',
@@ -552,7 +552,7 @@ export const projects: Project[] = [
     desc: 'Creative direction, branding, and web design for a student conference',
     category: 'brand',
     page: () => import('../pages/projects/VishwaConclavePage'),
-    archiveOrder: 20,
+    archiveOrder: 29,
   },
 ]
 

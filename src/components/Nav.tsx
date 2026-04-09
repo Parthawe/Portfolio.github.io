@@ -160,6 +160,7 @@ export default function Nav() {
         <ul className="mobile-nav-links">
           <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+          <li><Link to="/writing" onClick={closeMenu}>Writing</Link></li>
           <li><a href="mailto:parthpawar@nyu.edu" onClick={closeMenu}>Let's Talk</a></li>
         </ul>
       </div>
