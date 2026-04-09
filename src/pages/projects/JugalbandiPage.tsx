@@ -48,6 +48,16 @@ export default function JugalbandiPage() {
         {/* Hero Image */}
         <CsImage src="/Assets/images/jugalbandi.png" alt="Jugalbandi, performer playing the Hexa-18 instrument on a dark stage with mechanized instruments" />
 
+        {/* Instrument overview photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.png" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* Performance Video */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -133,6 +143,17 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
+        {/* Hexa-18 detail photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* Mechanized Harp */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -158,6 +179,16 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
+        {/* Harp + Flute photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.png" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* Automated Flute */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -174,6 +205,13 @@ export default function JugalbandiPage() {
               { key: 'Controller', value: 'Mega Arduino' },
               { key: 'Structure', value: 'Legos, Clamp, Blowing Hole' },
             ]} />
+          </div>
+        </section>
+
+        {/* Flute photo */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
           </div>
         </section>
 
@@ -202,6 +240,24 @@ export default function JugalbandiPage() {
             <div className="cs-label-row">
               <span className="cs-label-row-key">Electronics</span>
               <span className="cs-label-row-val">Circuit Board</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Rainstick photo */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
+          </div>
+        </section>
+
+        {/* Remaining detail shots */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-2.png" alt="Detail: hexagonal body construction" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-3.png" alt="Detail: sensor and wiring close-up" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64-1.png" alt="Detail: component assembly" loading="lazy" /></div>
             </div>
           </div>
         </section>
