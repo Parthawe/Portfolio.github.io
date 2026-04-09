@@ -44,9 +44,26 @@ export default function OfficeOfDiversityPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2024' },
           ]}
-          heroImage="/Assets/Projects/office-of-diversity/1.jpg"
-          heroAlt="Office of Diversity Report, mobile and laptop mockups of the IDBEA 2024 report"
+          heroImage="/Assets/Projects/office-of-diversity/photos/responsive-preview.png"
+          heroAlt="Tisch IDBEA 2024 Report: desktop and mobile responsive views"
         />
+
+        {/* Product photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/full-report-page.png" alt="Full IDBEA report page: data visualizations, timelines, statistics, and milestones" loading="lazy" /></div>
+          </div>
+        </section>
+
+        {/* Research + testing */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/research-wall.png" alt="Research: sticky note wall with timeline mapping and information architecture" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/user-testing.png" alt="User testing session with participants reviewing the report" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         <ProjectOverview
           sections={[

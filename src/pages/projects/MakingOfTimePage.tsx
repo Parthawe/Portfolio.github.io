@@ -37,6 +37,16 @@ export default function MakingOfTimePage() {
           ]}
         />
 
+        {/* Hero photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-hero.png" alt="Custom mechanical watch: octagonal bezel, blue guilloche dial, steel bracelet" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/white-watch.png" alt="Minimalist sundial-inspired watch: white face, leather strap" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* Hero Video */}
         <section className="cs-slide reveal">
           <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
@@ -73,14 +83,13 @@ export default function MakingOfTimePage() {
           </CsBody>
         </CsSection>
 
-        <section className="cs-slide reveal">
+        
+        
+
+        {/* Tools + components */}
+        <section className="cs-section reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/O2050785415862777034195880706582/1.jpg" alt="Sundial, Making of Time" loading="lazy" />
-          </div>
-        </section>
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/D2050785416028797730859266671126/2.jpg" alt="Sundial detail, Making of Time" loading="lazy" />
+            <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/tools-layout.png" alt="Watchmaking tools: calipers, tweezers, pliers, screwdrivers, locking pliers, and a mechanical watch" loading="lazy" /></div>
           </div>
         </section>
 
@@ -93,14 +102,16 @@ export default function MakingOfTimePage() {
           </CsBody>
         </CsSection>
 
-        <section className="cs-slide reveal">
+        
+        
+
+        {/* Watch detail photos */}
+        <section className="cs-section reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/A2050785416010350986785557119510/3.jpg" alt="Mechanical watch, Making of Time" loading="lazy" />
-          </div>
-        </section>
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/I2050787120876885023096027021846/4.jpg" alt="Mechanical detail, Making of Time" loading="lazy" />
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-angle.png" alt="Mechanical watch: blue guilloche dial, octagonal bezel, steel bracelet from side angle" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-top.png" alt="Mechanical watch from above: blue dial with applied hour markers" loading="lazy" /></div>
+            </div>
           </div>
         </section>
 
@@ -113,14 +124,13 @@ export default function MakingOfTimePage() {
           </CsBody>
         </CsSection>
 
-        <section className="cs-slide reveal">
+        
+        
+
+        {/* Components photo */}
+        <section className="cs-section reveal">
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/M2050785415973457498638138016278/5.jpg" alt="Digital timepiece, Making of Time" loading="lazy" />
-          </div>
-        </section>
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/J2050785415955010754564428464662/6.jpg" alt="Digital detail, Making of Time" loading="lazy" />
+            <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/watch-components.png" alt="Watch assembly: movement, dial, hands, and bracelet components" loading="lazy" /></div>
           </div>
         </section>
 
