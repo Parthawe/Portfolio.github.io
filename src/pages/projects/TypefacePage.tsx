@@ -93,7 +93,7 @@ export default function TypefacePage() {
         </section>
 
         {/* Hero image */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/1.jpg" alt="Butler's Slice typeface cover" />
+        <CsImage src="/Assets/Projects/Typeface/photos/hero-title.jpg" alt="Butler's Slice typeface cover" />
 
         {/* The Concept */}
         <section className="cs-section reveal">
@@ -106,7 +106,7 @@ export default function TypefacePage() {
         </section>
 
         {/* Types of Slices */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/3.jpg" alt="Character specimens, Ag in three weights, types of slices" />
+        <CsImage src="/Assets/Projects/Typeface/photos/slice-types.jpg" alt="Character specimens, Ag in three weights, types of slices" />
 
         {/* ── Interactive Playground ── */}
         <section className="cs-section reveal">
@@ -133,10 +133,10 @@ export default function TypefacePage() {
         <GlyphEditor />
 
         {/* The Weights */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/5.jpg" alt="The weights: Bold, Regular, Ultralight" />
+        <CsImage src="/Assets/Projects/Typeface/photos/weights-grid.jpg" alt="The weights: Bold, Regular, Ultralight" />
 
         {/* The Usage */}
-        <CsImage src="/Assets/Projects/Typeface/Desktop/6.jpg" alt="Packaging mockups showing Butler's Slice" />
+        <CsImage src="/Assets/Projects/Typeface/photos/specimen-usage.jpg" alt="Packaging mockups showing Butler's Slice" />
 
         {/* How it works in context */}
         <section className="cs-section reveal">
