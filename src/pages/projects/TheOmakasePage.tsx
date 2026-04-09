@@ -340,6 +340,16 @@ export default function TheOmakasePage() {
           ]}
         />
 
+        {/* Hero photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-front.png" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-workshop.png" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* Video */}
         <section className="cs-slide reveal">
           <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
@@ -362,6 +372,27 @@ export default function TheOmakasePage() {
             <p><a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer">Play at vill4n3lle.itch.io/the-omakase &rarr;</a></p>
           </CsBody>
         </CsSection>
+
+        {/* Gameplay photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.png" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.png" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.png" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Players and exhibition */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/two-players.png" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/team-photo.png" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         {/* Play the game */}
         <GameEmbed />
