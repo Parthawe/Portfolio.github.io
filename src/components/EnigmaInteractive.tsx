@@ -42,7 +42,8 @@ function buildNodes() {
 }
 
 // Build weighted connections with sign (for color)
-function buildConnections(nodes: ReturnType<typeof buildNodes>) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function buildConnections(_nodes: ReturnType<typeof buildNodes>) {
   const conns: { from: number; to: number; weight: number }[] = []
   const rand = rng(42)
   let nodeOffset = 0
@@ -176,8 +177,8 @@ export default function EnigmaInteractive() {
   const reduced = usePrefersReduced()
   const [activeLetter, setActiveLetter] = useState('')
   const [isAuto, setIsAuto] = useState(true)
-  const autoTimer = useRef<ReturnType<typeof setTimeout>>()
-  const idleTimer = useRef<ReturnType<typeof setTimeout>>()
+  const autoTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const idleTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const cascadeTimers = useRef<ReturnType<typeof setTimeout>[]>([])
   const currentAct = useRef<Float32Array | null>(null)
   const targetAct = useRef<Float32Array | null>(null)

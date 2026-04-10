@@ -12,11 +12,13 @@
 
 // MediaPipe landmark indices
 const WRIST = 0
-const THUMB_CMC = 1, THUMB_MCP = 2, THUMB_IP = 3, THUMB_TIP = 4
+// MediaPipe hand landmark indices (unused indices kept as comments for reference)
+// THUMB: CMC=1, MCP=2, IP=3, TIP=4
+const THUMB_IP = 3, THUMB_TIP = 4
 const INDEX_MCP = 5, INDEX_PIP = 6, INDEX_DIP = 7, INDEX_TIP = 8
-const MIDDLE_MCP = 9, MIDDLE_PIP = 10, MIDDLE_DIP = 11, MIDDLE_TIP = 12
-const RING_MCP = 13, RING_PIP = 14, RING_DIP = 15, RING_TIP = 16
-const PINKY_MCP = 17, PINKY_PIP = 18, PINKY_DIP = 19, PINKY_TIP = 20
+const MIDDLE_MCP = 9, MIDDLE_PIP = 10, MIDDLE_TIP = 12
+const RING_MCP = 13, RING_PIP = 14, RING_TIP = 16
+const PINKY_MCP = 17, PINKY_PIP = 18, PINKY_TIP = 20
 
 type Lm = { x: number; y: number; z: number }
 
@@ -43,11 +45,6 @@ function isThumbOut(lm: Lm[]): boolean {
   const thumbDist = dist3(lm[THUMB_TIP], lm[INDEX_MCP])
   const palmWidth = dist3(lm[INDEX_MCP], lm[PINKY_MCP])
   return thumbDist > palmWidth * 0.8
-}
-
-// Is thumb across palm (touching other side)?
-function isThumbAcross(lm: Lm[]): boolean {
-  return lm[THUMB_TIP].x > lm[MIDDLE_MCP].x // thumb tip past middle finger base
 }
 
 // Are two tips touching (within threshold)?
@@ -94,12 +91,10 @@ export function classifyASL(landmarks: Lm[]): ASLResult {
   const middleRingSpread = fingerSpread(lm, MIDDLE_TIP, MIDDLE_MCP, RING_TIP, RING_MCP)
 
   const thumbIndexDist = dist3(lm[THUMB_TIP], lm[INDEX_TIP])
-  const thumbMiddleDist = dist3(lm[THUMB_TIP], lm[MIDDLE_TIP])
   const palmSize = dist3(lm[INDEX_MCP], lm[PINKY_MCP])
 
   // Normalized distances
   const thumbIndexNorm = thumbIndexDist / (palmSize + 1e-6)
-  const thumbTipY = lm[THUMB_TIP].y
   const indexTipY = lm[INDEX_TIP].y
   const wristY = lm[WRIST].y
 

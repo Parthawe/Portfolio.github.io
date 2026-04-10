@@ -591,24 +591,96 @@ hr.divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.5s var(--ease-out), visibility 0.5s;
+  overflow: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 .page-loader.loaded {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
-.page-loader-logo {
+
+/* Curtain halves — slide apart to reveal the page */
+.loader-curtain {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50%;
+  background: var(--bg);
+  z-index: 2;
+}
+.loader-curtain--left { left: 0; }
+.loader-curtain--right { right: 0; }
+
+/* Center content */
+.loader-center {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: loaderFadeIn 0.5s 0.1s ease both;
+}
+
+/* PP mark */
+.loader-mark {
+  display: flex;
+  gap: 0.1em;
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 300;
   color: var(--ink);
-  opacity: 0;
-  animation: loaderFade 0.8s var(--ease-spring) forwards;
+  line-height: 1;
 }
-@keyframes loaderFade {
-  from { opacity: 0; transform: translateY(8px); }
+.loader-mark-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: loaderLetterIn 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.loader-mark-letter--2 {
+  animation-delay: 0.35s;
+}
+
+/* Expanding line under the mark */
+.loader-line {
+  width: 0;
+  height: 1px;
+  background: var(--ink-20);
+  animation: loaderLineExpand 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Label */
+.loader-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-30);
+  opacity: 0;
+  animation: loaderFadeIn 0.5s 0.8s ease forwards;
+}
+
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes loaderLetterIn {
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes loaderLineExpand {
+  from { width: 0; }
+  to   { width: clamp(60px, 8vw, 100px); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .loader-mark-letter,
+  .loader-line,
+  .loader-label,
+  .loader-center { animation: none; opacity: 1; transform: none; }
+  .loader-line { width: 60px; }
 }
 
 /* ── View Transitions ── */

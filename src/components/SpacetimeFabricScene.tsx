@@ -241,6 +241,12 @@ function TestParticle({ masses }: { masses: Mass[] }) {
   const trailRef = useRef<THREE.Line>(null!)
   const trailCount = useRef(0)
   const trailBuffer = useMemo(() => new Float32Array(TRAIL_MAX * 3), [])
+  const trailLine = useMemo(() => {
+    const geo = new THREE.BufferGeometry()
+    geo.setAttribute('position', new THREE.BufferAttribute(trailBuffer, 3))
+    const mat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.15 })
+    return new THREE.Line(geo, mat)
+  }, [trailBuffer])
   const trailPositions = useRef<{ x: number; y: number; z: number }[]>([])
   const absorbed = useRef(false)
   const respawnTimer = useRef(0)
@@ -350,12 +356,7 @@ function TestParticle({ masses }: { masses: Mass[] }) {
         />
       </mesh>
       {/* Fading trail */}
-      <line ref={trailRef as React.RefObject<THREE.Line>}>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[trailBuffer, 3]} />
-        </bufferGeometry>
-        <lineBasicMaterial color="#ffffff" transparent opacity={0.15} />
-      </line>
+      <primitive object={trailLine} ref={trailRef} />
     </>
   )
 }
@@ -364,20 +365,20 @@ function TestParticle({ masses }: { masses: Mass[] }) {
 
 function GridFrame() {
   const half = GRID_SIZE / 2
-  const points = useMemo(() => [
-    new THREE.Vector3(-half, 0, -half),
-    new THREE.Vector3(half, 0, -half),
-    new THREE.Vector3(half, 0, half),
-    new THREE.Vector3(-half, 0, half),
-    new THREE.Vector3(-half, 0, -half),
-  ], [half])
-  const geo = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points])
+  const frameLine = useMemo(() => {
+    const points = [
+      new THREE.Vector3(-half, 0, -half),
+      new THREE.Vector3(half, 0, -half),
+      new THREE.Vector3(half, 0, half),
+      new THREE.Vector3(-half, 0, half),
+      new THREE.Vector3(-half, 0, -half),
+    ]
+    const geo = new THREE.BufferGeometry().setFromPoints(points)
+    const mat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.06 })
+    return new THREE.Line(geo, mat)
+  }, [half])
 
-  return (
-    <line geometry={geo}>
-      <lineBasicMaterial color="#ffffff" transparent opacity={0.06} />
-    </line>
-  )
+  return <primitive object={frameLine} />
 }
 
 // ── Main scene ──

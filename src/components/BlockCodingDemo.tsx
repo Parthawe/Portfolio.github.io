@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, type ReactElement } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
    Block Coding Demo — isometric block builder.
@@ -92,7 +92,7 @@ function IsoBlock({ x, z, y, w, d, h, color, darkColor, topColor, label, tag, on
 
 // Grid floor
 function IsoGrid() {
-  const lines: JSX.Element[] = []
+  const lines: ReactElement[] = []
   for (let i = 0; i <= 6; i++) {
     const a = iso(i, 0, 0), b = iso(i, 0, 6)
     lines.push(<line key={`x${i}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="rgba(255,255,255,0.04)" strokeWidth={0.5} />)

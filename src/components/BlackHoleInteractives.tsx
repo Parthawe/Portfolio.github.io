@@ -293,6 +293,7 @@ export function GravLensing() {
 
       const mx = massPos.current.x * w, my = massPos.current.y * h
       const strength = massStrength / 100
+      const einsteinR = 50 * strength + 15
 
       // Draw lensed stars
       for (const star of STARS) {
@@ -306,7 +307,6 @@ export function GravLensing() {
         }
 
         // Einstein ring brightening
-        const einsteinR = 50 * strength + 15
         const ringDist = Math.abs(dist - einsteinR)
         const ringBoost = ringDist < 25 ? (1 - ringDist / 25) * 0.6 : 0
 

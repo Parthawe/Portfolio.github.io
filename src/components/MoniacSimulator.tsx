@@ -153,9 +153,9 @@ export default function MoniacSimulator() {
   const [timeLeft, setTimeLeft] = useState(60)
   const [gameOver, setGameOver] = useState(false)
   const [event, setEvent] = useState<typeof EVENTS[0] | null>(null)
-  const timerRef = useRef<ReturnType<typeof setInterval>>()
-  const simRef = useRef<ReturnType<typeof setInterval>>()
-  const evRef = useRef<ReturnType<typeof setTimeout>>()
+  const timerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined)
+  const simRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined)
+  const evRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const start = useCallback(() => {
     setC(INIT_C); setE(INIT_E); setTimeLeft(60)
