@@ -25,11 +25,11 @@ export default function FigmaContextMenu() {
   useEffect(() => {
     document.addEventListener('contextmenu', handleContext)
     document.addEventListener('click', close)
-    document.addEventListener('scroll', close, true)
+    document.addEventListener('scroll', close, { capture: true, passive: true })
     return () => {
       document.removeEventListener('contextmenu', handleContext)
       document.removeEventListener('click', close)
-      document.removeEventListener('scroll', close, true)
+      document.removeEventListener('scroll', close, { capture: true } as EventListenerOptions)
     }
   }, [handleContext, close])
 

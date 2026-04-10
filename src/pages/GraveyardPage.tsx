@@ -540,7 +540,7 @@ function GraveCard({ version, onPreview }: { version: PortfolioVersion; onPrevie
   return (
     <motion.article className={`gy-tomb gy-tomb--${version.status}`} variants={tombItem}>
       {/* The gravestone, click to unearth */}
-      <div className="gy-tomb-stone" onClick={handleStoneClick} role="button" tabIndex={0}>
+      <div className="gy-tomb-stone" onClick={handleStoneClick} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleStoneClick(); } }} role="button" tabIndex={0}>
         {/* Engraved inscription */}
         <div className="gy-tomb-inscription">
           <span className="gy-tomb-symbol">

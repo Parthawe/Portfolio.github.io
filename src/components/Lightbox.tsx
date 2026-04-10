@@ -23,6 +23,7 @@ export default function Lightbox() {
   // Listen for clicks on case study images
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
+      if (e.button !== 0) return // only left-click opens lightbox
       const img = (e.target as Element).closest('.cs-img-full img, .proj-hero-img img') as HTMLImageElement | null
       if (!img) return
       e.preventDefault()

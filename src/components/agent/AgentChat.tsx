@@ -223,7 +223,7 @@ function TypewriterBubble({
   }, [isTyping, onDone])
 
   return (
-    <span onClick={isTyping ? skip : undefined} className={isTyping ? 'cursor-pointer' : ''}>
+    <span onClick={isTyping ? skip : undefined} onKeyDown={isTyping ? (e) => { if (e.key === 'Enter' || e.key === ' ') skip(); } : undefined} role={isTyping ? 'button' : undefined} tabIndex={isTyping ? 0 : undefined} className={isTyping ? 'cursor-pointer' : ''}>
       <RichText text={displayed} onNavigate={onNavigate} />
       {isTyping && <span className="agent-typing-cursor">|</span>}
     </span>

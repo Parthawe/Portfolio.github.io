@@ -34,6 +34,15 @@ const skills: Skill[] = [
   { label: 'Installations',        img: `${IMG}/keyboard.jpg` },
 ];
 
+const disciplines = [
+  { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
+  { label: 'AI & Wearables', slug: 'ai', link: '/ai' },
+  { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
+  { label: 'Installations', slug: 'installations', link: '/installations' },
+  { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
+  { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
+] as const;
+
 export default function HomePage() {
   /* --- state --- */
   const navigate = useNavigate();
@@ -120,14 +129,7 @@ export default function HomePage() {
         {/* ═══ DISCIPLINE INDEX — 3D objects with category names ═══ */}
         <section className="wr-disciplines" style={{position:"relative"}}><FigmaFrameLabel name="Disciplines" />
           <div className="wrap wr-disciplines-grid">
-            {[
-              { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
-              { label: 'AI & Wearables', slug: 'ai', link: '/ai' },
-              { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
-              { label: 'Installations', slug: 'installations', link: '/installations' },
-              { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
-              { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
-            ].map((d, i) => (
+            {disciplines.map((d, i) => (
               <motion.div
                 key={d.slug}
                 initial={{ opacity: 0, y: 24, scale: 0.95 }}
