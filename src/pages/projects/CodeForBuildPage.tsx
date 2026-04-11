@@ -54,7 +54,7 @@ export default function CodeForBuildPage() {
             </div>
             <div className="cs-label-row" style={{ borderBottomColor: 'var(--ink-12)' }}>
               <span className="cs-label-row-key">The Challenges</span>
-              <span className="cs-label-row-val">Challenge was to build visual elements which could translate and help kids understand the body, container, images, text, and div-block.</span>
+              <span className="cs-label-row-val">Challenge was to build visual elements which could translate and help kids understand the body, container, images, text, and div-block. Inspired by <a href="https://scratch.mit.edu/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Scratch</a> and <a href="https://developers.google.com/blockly" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Google Blockly</a>&rsquo;s block-based approach, but adapted for web development concepts rather than general programming.</span>
             </div>
             <div className="cs-label-row" style={{ borderBottomColor: 'var(--ink-12)' }}>
               <span className="cs-label-row-key">My Role</span>

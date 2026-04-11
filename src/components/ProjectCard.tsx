@@ -4,6 +4,7 @@ import TiltCard from './TiltCard'
 import FigmaSelect from './FigmaSelect'
 import { getImageBrightness } from '../utils/imageBrightness'
 import { normalizeCopy } from '../utils/normalizeCopy'
+import { projects } from '../data/projects'
 
 interface ProjectCardProps {
   slug: string
@@ -46,11 +47,19 @@ export default memo(function ProjectCard({
     e.currentTarget.style.display = 'none'
   }, [])
 
+  // Prefetch the page chunk on hover so navigation is instant
+  const handlePrefetch = useCallback(() => {
+    const project = projects.find(p => p.slug === slug)
+    if (project?.page) project.page() // triggers the dynamic import
+  }, [slug])
+
   const card = (
     <Link
       className={`pcard figma-hover${featured ? ' pcard--featured' : ''}`}
       to={`/${slug}`}
       aria-label={`View ${name} project`}
+      onMouseEnter={handlePrefetch}
+      onFocus={handlePrefetch}
     >
       <div className="pcard-inner">
         <div className="pcard-top-row">

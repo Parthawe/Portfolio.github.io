@@ -365,11 +365,11 @@ export const projects: Project[] = [
   },
   {
     slug: 'sea-of-salt',
-    name: 'Sea of Salt',
-    image: `${IMG}/sea-of-salt.svg`,
-    tag: 'DATA INSTALLATION',
+    name: 'Why the Sea is Salt',
+    image: '/Assets/Projects/sea-of-salt/photos/salt-ground.jpg',
+    tag: 'STORYTELLING MACHINE',
     year: '2024',
-    desc: 'Kinetic salt installation shifting in response to real-time ocean data',
+    desc: 'A salt mill grinds real salt as you advance through a Norse folktale — story as physical material',
     category: 'creative',
     page: () => import('../pages/projects/SeaOfSaltPage'),
     archiveOrder: 22,
@@ -379,7 +379,7 @@ export const projects: Project[] = [
   {
     slug: 'flow-fields',
     name: 'Flow Fields',
-    image: `${IMG}/sea-of-salt.svg`, // placeholder until hero image is created
+    image: `${IMG}/flow-fields.svg`,
     tag: 'GENERATIVE ART',
     year: '2024',
     desc: 'Perlin noise flow fields — 2000 particles creating organic, ever-changing patterns',
@@ -391,7 +391,7 @@ export const projects: Project[] = [
   {
     slug: 'embodied-web',
     name: 'Embodied Web',
-    image: `${IMG}/sea-of-salt.svg`,
+    image: `${IMG}/embodied-web.svg`,
     tag: 'WEB EXPERIMENTS',
     year: '2023',
     desc: 'Browser experiments using the body as input — webcam, motion sensors, spatial audio',
@@ -403,7 +403,7 @@ export const projects: Project[] = [
   {
     slug: 'feeling-patterns',
     name: 'Feeling Patterns',
-    image: `${IMG}/sea-of-salt.svg`,
+    image: `${IMG}/feeling-patterns.svg`,
     tag: 'WEARABLE HAPTICS',
     year: '2023',
     desc: 'Textile interfaces translating emotion into tactile patterns — haptic vests & pressure fabrics',
@@ -427,7 +427,7 @@ export const projects: Project[] = [
   {
     slug: 'on-becoming',
     name: 'On Becoming',
-    image: `${IMG}/sea-of-salt.svg`,
+    image: `${IMG}/on-becoming.svg`,
     tag: 'WRITING',
     year: '2024',
     desc: 'A reflective design journal on identity, craft, and evolving from designer to design engineer',
@@ -439,7 +439,7 @@ export const projects: Project[] = [
   {
     slug: 'storytelling',
     name: 'Storytelling',
-    image: `${IMG}/sea-of-salt.svg`,
+    image: `${IMG}/storytelling.svg`,
     tag: 'NARRATIVE DESIGN',
     year: '2025',
     desc: 'How structure, pacing, and medium shape the stories products tell',
@@ -463,7 +463,7 @@ export const projects: Project[] = [
   {
     slug: 'comp-media',
     name: 'Computational Media',
-    image: `${IMG}/sea-of-salt.svg`,
+    image: `${IMG}/comp-media.svg`,
     tag: 'CREATIVE CODING',
     year: '2023',
     desc: 'Weekly p5.js sketches — generative portraits, data landscapes, interactive typography',
@@ -475,7 +475,7 @@ export const projects: Project[] = [
   {
     slug: 'hypercinema',
     name: 'Hypercinema',
-    image: `${IMG}/uv-light.jpg`,
+    image: `${IMG}/hypercinema.svg`,
     tag: 'IMMERSIVE MEDIA',
     year: '2023',
     desc: '360° documentary, spatial sound walk, and multi-screen interactive projection',
@@ -487,7 +487,7 @@ export const projects: Project[] = [
   {
     slug: 'applications',
     name: 'Applications',
-    image: `${IMG}/sea-of-salt.svg`,
+    image: `${IMG}/applications.svg`,
     tag: 'FULL-STACK',
     year: '2023',
     desc: 'Shipped two deployed web apps — collaborative storytelling + campus mood mapping',
@@ -499,7 +499,7 @@ export const projects: Project[] = [
   {
     slug: 'messy-humans',
     name: 'Designing for Messy Humans',
-    image: `${IMG}/sea-of-salt.svg`,
+    image: `${IMG}/messy-humans.svg`,
     tag: 'INCLUSIVE DESIGN',
     year: '2023',
     desc: 'Inclusive design research — edge cases, emotional states, and the humans personas miss',
@@ -621,6 +621,18 @@ export const projects: Project[] = [
   },
 
   /* ── Brand & Visual ── */
+  {
+    slug: 'mentra-brand',
+    name: 'Mentra Brand & Packaging',
+    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.png',
+    tag: 'BRAND & PACKAGING',
+    year: '2025–26',
+    desc: 'End-to-end brand identity and packaging for AI smart glasses — logo, box, booklet, ads, and 24 social templates',
+    category: 'brand',
+    page: () => import('../pages/projects/MentraBrandPage'),
+    archiveOrder: 4,
+    tier: 'a',
+  },
   {
     slug: 'tedx',
     name: 'TEDxVITPune',

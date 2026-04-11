@@ -312,6 +312,25 @@ const articles: Article[] = [
       'I keep a sketchbook on my desk. It sits right next to my MacBook. Both are tools. One makes things precise. The other makes things honest.',
     ],
   },
+  {
+    slug: 'art-for-the-people',
+    title: 'Art for the People: Art Funds & Financial Technology',
+    date: 'Dec 2024',
+    tag: 'FINTECH + ART',
+    readTime: '7 min',
+    excerpt: 'Wealthy people have invested in art since time immemorial. Fintech could change who gets to play. But the market has gatekeepers who like the gates.',
+    pullQuote: '"Making money is art, and working is art, and good business is the best art." \u2014 Andy Warhol',
+    body: [
+      '"Making money is art, and working is art, and good business is the best art." Andy Warhol said that, and he was right about all three. Wealthy people have invested in art since time immemorial. The modern art market emerged in the late 19th century with the rise of the bourgeoisie, and art funds have been used as investment vehicles since La Peau de l\u2019Ours was founded in 1904 \u2014 a syndicate of 13 members investing in modern art, including early works by Picasso and Matisse.',
+      'The art market has two faces. The primary market is exclusive and opaque: only insiders have access to the most desirable works, and confidentiality around prices and sales is the norm, not the exception. The secondary market is more transparent \u2014 auction results provide some data \u2014 but private sales remain opaque, creating arbitrage opportunities for the connected few. This is not a bug in the system. It\u2019s the system.',
+      'The most instructive case study is the British Rail Pension Fund. Between 1974 and 1980, the fund invested \u00A340 million in art as a hedge against inflation \u2014 diversification into "hard assets." They bought 2,400 artworks across Old Masters, Chinese art, books and manuscripts, and Impressionist paintings. They deliberately avoided contemporary art due to its volatility. The result: when they sold between 1987 and 2000, total profit was \u00A3168 million, a 4% annual return. Respectable, but lower than traditional investments and equity markets over the same period. The lesson: art as an asset class is real, but it\u2019s not magic.',
+      'Modern art funds operate like hedge funds: private offerings open to accredited investors, high minimum investments, closed-end terms of 5\u201310 years. Their strategies fall into three buckets. Diversification: invest widely across periods and styles. Focus: specialize in a region, movement, or artist. Opportunism: buy undervalued works from distressed sales. Notable examples include the Fine Art Fund (2004) and Artemundi Global Fund.',
+      'Financial technology could theoretically democratize this. Crowdfunding platforms for art investment. Data analytics to identify promising investments. Real-time pricing transparency. But here\u2019s the problem: insiders control access to the primary market, data analytics are ineffective without accurate information (and the market thrives on opacity), and art index funds have been compared to lottery tickets because the value of individual works is fundamentally unpredictable.',
+      'The challenges are structural, not technical. Information reliability: most sales data is self-reported or invisible. Transaction costs: buying, storing, insuring, and authenticating art is expensive. Insider access: the best deals happen in private, and the gatekeepers benefit from keeping it that way. No amount of blockchain or AI changes the fact that a Basquiat\u2019s value is determined by a conversation between three dealers at Art Basel, not an algorithm.',
+      'Still, I\u2019m cautiously optimistic. Greater transparency and technological advancement may enhance viability. The potential for broader access and more informed investment decisions is real. The $700B+ global art market is too large and too culturally significant to remain the exclusive playground of accredited investors forever. But disrupting a market that actively resists transparency requires more than good technology. It requires changing the incentive structure that makes opacity profitable.',
+      'The parallel to fintech is direct. In cross-border payments, the same dynamics play out: opaque fees, insider access to better rates, information asymmetry that hurts retail users. ZentiPay\u2019s approach \u2014 radical fee transparency as a product feature \u2014 is the same philosophy applied to art investment. Show people the real cost. Let them decide. Trust is the product.',
+    ],
+  },
 ]
 
 /* ── Article Card ── */

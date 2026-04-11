@@ -1,16 +1,18 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
-   Generative Canvas — live flow field + particle system.
+   Generative Canvas — multiple visual modes.
 
-   Perlin-noise flow field drives thousands of particles.
-   Mouse/touch creates attraction wells. Click to change
-   color palette. Particles leave trails that fade slowly.
+   1. Flow Field — Perlin noise particle trails
+   2. Constellation — nodes + edges forming and dissolving
+   3. Waves — layered sine waves with interference
+   4. Orbits — gravity simulator with mass attraction
+   5. Grid — responsive dot grid that warps near cursor
 
-   From Canvas for Coders — NYU ITP Fall 2024.
+   Canvas for Coders — NYU ITP Fall 2024.
    ═══════════════════════════════════════════════════════════ */
 
-// Simple Perlin noise (2D)
+// Perlin noise
 const PERM = new Uint8Array(512)
 const GRAD = [[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[0,1],[0,-1]]
 ;(() => {
@@ -18,7 +20,6 @@ const GRAD = [[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[0,1],[0,-1]]
   for (let i = 255; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [p[i], p[j]] = [p[j], p[i]] }
   for (let i = 0; i < 512; i++) PERM[i] = p[i & 255]
 })()
-
 function noise2d(x: number, y: number): number {
   const xi = Math.floor(x) & 255, yi = Math.floor(y) & 255
   const xf = x - Math.floor(x), yf = y - Math.floor(y)
@@ -26,152 +27,225 @@ function noise2d(x: number, y: number): number {
   const dot = (g: number[], fx: number, fy: number) => g[0] * fx + g[1] * fy
   const aa = PERM[PERM[xi] + yi], ab = PERM[PERM[xi] + yi + 1]
   const ba = PERM[PERM[xi + 1] + yi], bb = PERM[PERM[xi + 1] + yi + 1]
-  const x1 = dot(GRAD[aa & 7], xf, yf) * (1 - u) + dot(GRAD[ba & 7], xf - 1, yf) * u
-  const x2 = dot(GRAD[ab & 7], xf, yf - 1) * (1 - u) + dot(GRAD[bb & 7], xf - 1, yf - 1) * u
-  return x1 * (1 - v) + x2 * v
+  return (dot(GRAD[aa&7],xf,yf)*(1-u)+dot(GRAD[ba&7],xf-1,yf)*u)*(1-v) +
+         (dot(GRAD[ab&7],xf,yf-1)*(1-u)+dot(GRAD[bb&7],xf-1,yf-1)*u)*v
 }
 
-const PALETTES = [
-  { name: 'Ocean', bg: '#020810', colors: ['#0077b6', '#00b4d8', '#48cae4', '#90e0ef', '#caf0f8'] },
-  { name: 'Ember', bg: '#0a0604', colors: ['#e63946', '#f4845f', '#f7b267', '#f8d06b', '#ffd6a5'] },
-  { name: 'Forest', bg: '#040a04', colors: ['#2d6a4f', '#40916c', '#52b788', '#74c69d', '#b7e4c7'] },
-  { name: 'Neon', bg: '#050008', colors: ['#7400b8', '#6930c3', '#5390d9', '#48bfe3', '#72efdd'] },
-  { name: 'Mono', bg: '#000000', colors: ['#ffffff', '#e0e0e0', '#b0b0b0', '#808080', '#505050'] },
+const MODES = [
+  { name: 'Flow Field', icon: '〰️' },
+  { name: 'Constellation', icon: '✦' },
+  { name: 'Waves', icon: '≈' },
+  { name: 'Orbits', icon: '◎' },
+  { name: 'Grid', icon: '⊞' },
 ]
 
-const PARTICLE_COUNT = 2000
-const TRAIL_ALPHA = 0.012 // lower = longer trails
-
-interface Particle {
-  x: number; y: number
-  vx: number; vy: number
-  color: string
-  life: number
-  maxLife: number
-}
+const PALETTES = [
+  { name: 'Ocean', bg: '#080e14', colors: ['#0a7ec2','#1ba8d8','#4dd8e8','#88e8f0','#c8f4f8'], accent: '#1ba8d8' },
+  { name: 'Aurora', bg: '#060810', colors: ['#22d3ee','#a78bfa','#f472b6','#34d399','#60a5fa'], accent: '#a78bfa' },
+  { name: 'Ember', bg: '#100804', colors: ['#dc2626','#ea580c','#f59e0b','#fbbf24','#fde68a'], accent: '#f59e0b' },
+  { name: 'Forest', bg: '#040a06', colors: ['#166534','#22c55e','#4ade80','#86efac','#d1fae5'], accent: '#22c55e' },
+  { name: 'Mono', bg: '#000000', colors: ['#fff','#d4d4d8','#a1a1aa','#71717a','#52525b'], accent: '#a1a1aa' },
+]
 
 export default function GenerativeCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [paletteIdx, setPaletteIdx] = useState(0)
-  const [particleCount, setParticleCount] = useState(PARTICLE_COUNT)
+  const [modeIdx, setModeIdx] = useState(0)
+  const [palIdx, setPalIdx] = useState(0)
   const mouseRef = useRef({ x: -1, y: -1, active: false })
   const rafRef = useRef(0)
-  const timeRef = useRef(0)
-  const particlesRef = useRef<Particle[]>([])
+  const stateRef = useRef<Record<string, unknown>>({})
 
-  const palette = PALETTES[paletteIdx]
+  const pal = PALETTES[palIdx]
 
-  const nextPalette = useCallback(() => {
-    setPaletteIdx(i => (i + 1) % PALETTES.length)
-  }, [])
+  const resetState = useCallback(() => { stateRef.current = {} }, [])
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')!
-
-    // Init particles
-    const initParticles = (w: number, h: number) => {
-      const colors = PALETTES[paletteIdx].colors
-      particlesRef.current = Array.from({ length: particleCount }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: 0, vy: 0,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        life: Math.random() * 300,
-        maxLife: 200 + Math.random() * 200,
-      }))
-    }
-
-    let w = 0, h = 0
+    let w = 0, h = 0, t = 0
+    stateRef.current = {}
 
     const draw = () => {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
-      const newW = rect.width, newH = rect.height
-      if (newW < 10 || newH < 10) { rafRef.current = requestAnimationFrame(draw); return }
-
-      if (canvas.width !== newW * dpr || canvas.height !== newH * dpr) {
-        canvas.width = newW * dpr; canvas.height = newH * dpr
-        canvas.style.width = `${newW}px`; canvas.style.height = `${newH}px`
-        w = newW; h = newH
-        initParticles(w, h)
+      const nw = rect.width, nh = rect.height
+      if (nw < 10 || nh < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (canvas.width !== nw * dpr || canvas.height !== nh * dpr) {
+        canvas.width = nw * dpr; canvas.height = nh * dpr
+        canvas.style.width = `${nw}px`; canvas.style.height = `${nh}px`
+        w = nw; h = nh; stateRef.current = {}
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      t += 0.016
+      const m = mouseRef.current
+      const colors = pal.colors
 
-      // Fade trails
-      ctx.fillStyle = `${palette.bg}${Math.round(TRAIL_ALPHA * 255).toString(16).padStart(2, '0')}`
-      ctx.fillRect(0, 0, w, h)
-
-      timeRef.current += 0.003
-      const t = timeRef.current
-      const mouse = mouseRef.current
-      const noiseScale = 0.003
-      const particles = particlesRef.current
-
-      for (const p of particles) {
-        // Flow field angle from noise
-        const angle = noise2d(p.x * noiseScale + t, p.y * noiseScale + t * 0.5) * Math.PI * 4
-        const speed = 0.8
-
-        p.vx += Math.cos(angle) * speed * 0.1
-        p.vy += Math.sin(angle) * speed * 0.1
-
-        // Mouse attraction
-        if (mouse.active && mouse.x > 0) {
-          const dx = mouse.x - p.x, dy = mouse.y - p.y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 200 && dist > 5) {
-            const force = 2 / (dist * 0.1 + 1)
-            p.vx += (dx / dist) * force
-            p.vy += (dy / dist) * force
-          }
+      // ── MODE 0: Flow Field ──
+      if (modeIdx === 0) {
+        type P = { x:number;y:number;vx:number;vy:number;c:string;life:number;ml:number }
+        let ps = stateRef.current.ps as P[] | undefined
+        if (!ps || ps.length === 0) {
+          ps = Array.from({length:1800},()=>({x:Math.random()*w,y:Math.random()*h,vx:0,vy:0,c:colors[Math.floor(Math.random()*colors.length)],life:Math.random()*300,ml:250+Math.random()*250}))
+          stateRef.current.ps = ps
         }
-
-        // Damping
-        p.vx *= 0.96
-        p.vy *= 0.96
-
-        // Speed limit
-        const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy)
-        if (spd > 3) { p.vx *= 3 / spd; p.vy *= 3 / spd }
-
-        p.x += p.vx
-        p.y += p.vy
-        p.life++
-
-        // Wrap edges
-        if (p.x < 0) p.x = w
-        if (p.x > w) p.x = 0
-        if (p.y < 0) p.y = h
-        if (p.y > h) p.y = 0
-
-        // Reset old particles
-        if (p.life > p.maxLife) {
-          p.x = Math.random() * w
-          p.y = Math.random() * h
-          p.vx = 0; p.vy = 0
-          p.life = 0
-          p.color = palette.colors[Math.floor(Math.random() * palette.colors.length)]
+        ctx.fillStyle = pal.bg; ctx.globalAlpha = 0.01; ctx.fillRect(0,0,w,h); ctx.globalAlpha = 1
+        for (const p of ps) {
+          const a = noise2d(p.x*0.003+t*0.4,p.y*0.003+t*0.15)*Math.PI*4
+          p.vx += Math.cos(a)*0.12; p.vy += Math.sin(a)*0.12
+          if (m.active) { const dx=m.x-p.x,dy=m.y-p.y,d=Math.sqrt(dx*dx+dy*dy); if(d<250&&d>5){const f=3/(d*0.08+1);p.vx+=dx/d*f;p.vy+=dy/d*f} }
+          p.vx*=0.96;p.vy*=0.96;const s=Math.sqrt(p.vx*p.vx+p.vy*p.vy);if(s>4){p.vx*=4/s;p.vy*=4/s}
+          const ox=p.x,oy=p.y;p.x+=p.vx;p.y+=p.vy;p.life++
+          if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0
+          if(p.life>p.ml){p.x=Math.random()*w;p.y=Math.random()*h;p.vx=0;p.vy=0;p.life=0;p.c=colors[Math.floor(Math.random()*colors.length)]}
+          const al=Math.min(1,p.life/30)*Math.min(1,(p.ml-p.life)/40)
+          ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(p.x,p.y);ctx.strokeStyle=p.c;ctx.globalAlpha=al*0.6;ctx.lineWidth=0.5+s*0.3;ctx.stroke()
         }
-
-        // Draw
-        const alpha = Math.min(1, p.life / 20) * Math.min(1, (p.maxLife - p.life) / 30)
-        const size = 0.5 + spd * 0.4
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, size, 0, Math.PI * 2)
-        ctx.fillStyle = p.color
-        ctx.globalAlpha = alpha * 0.7
-        ctx.fill()
+        ctx.globalAlpha=1
       }
 
-      ctx.globalAlpha = 1
+      // ── MODE 1: Constellation ──
+      else if (modeIdx === 1) {
+        type N = { x:number;y:number;vx:number;vy:number;r:number;c:string }
+        let ns = stateRef.current.ns as N[] | undefined
+        if (!ns) {
+          ns = Array.from({length:60},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,r:2+Math.random()*3,c:colors[Math.floor(Math.random()*colors.length)]}))
+          stateRef.current.ns = ns
+        }
+        ctx.fillStyle = pal.bg; ctx.globalAlpha = 0.08; ctx.fillRect(0,0,w,h); ctx.globalAlpha = 1
+        // Move nodes
+        for (const n of ns) {
+          if (m.active) { const dx=m.x-n.x,dy=m.y-n.y,d=Math.sqrt(dx*dx+dy*dy); if(d<200){n.vx+=(dx/d)*0.05;n.vy+=(dy/d)*0.05} }
+          n.x+=n.vx;n.y+=n.vy;n.vx*=0.99;n.vy*=0.99
+          if(n.x<0||n.x>w)n.vx*=-1;if(n.y<0||n.y>h)n.vy*=-1
+          n.x=Math.max(0,Math.min(w,n.x));n.y=Math.max(0,Math.min(h,n.y))
+        }
+        // Draw edges
+        for (let i=0;i<ns.length;i++) for (let j=i+1;j<ns.length;j++) {
+          const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy)
+          if (d<150) {
+            const al=(1-d/150)*0.3
+            ctx.beginPath();ctx.moveTo(ns[i].x,ns[i].y);ctx.lineTo(ns[j].x,ns[j].y)
+            ctx.strokeStyle=ns[i].c;ctx.globalAlpha=al;ctx.lineWidth=0.5;ctx.stroke()
+          }
+        }
+        ctx.globalAlpha=1
+        // Draw nodes
+        for (const n of ns) {
+          ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2)
+          ctx.fillStyle=n.c;ctx.globalAlpha=0.8;ctx.fill()
+          ctx.beginPath();ctx.arc(n.x,n.y,n.r*3,0,Math.PI*2)
+          ctx.fillStyle=n.c;ctx.globalAlpha=0.04;ctx.fill()
+        }
+        ctx.globalAlpha=1
+      }
+
+      // ── MODE 2: Waves ──
+      else if (modeIdx === 2) {
+        ctx.fillStyle = pal.bg; ctx.fillRect(0,0,w,h)
+        const layers = 8
+        for (let l=0;l<layers;l++) {
+          const yBase = h*0.2 + (h*0.6)*(l/(layers-1))
+          const freq = 0.003 + l*0.001
+          const amp = 20 + l*8
+          const phase = t*0.8 + l*0.5
+          const mouseInfl = m.active ? Math.sin((m.x||0)*0.01)*30*(1-l/layers) : 0
+
+          ctx.beginPath()
+          ctx.moveTo(0, h)
+          for (let x=0;x<=w;x+=2) {
+            const y = yBase + Math.sin(x*freq+phase)*amp + Math.sin(x*freq*2.5+phase*1.3)*amp*0.3 + mouseInfl*Math.sin(x*0.005+t)
+            if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y)
+          }
+          ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath()
+          ctx.fillStyle=colors[l%colors.length];ctx.globalAlpha=0.08+l*0.02;ctx.fill()
+          // Stroke the top edge
+          ctx.beginPath()
+          for(let x=0;x<=w;x+=2){const y=yBase+Math.sin(x*freq+phase)*amp+Math.sin(x*freq*2.5+phase*1.3)*amp*0.3+mouseInfl*Math.sin(x*0.005+t);if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}
+          ctx.strokeStyle=colors[l%colors.length];ctx.globalAlpha=0.3+l*0.05;ctx.lineWidth=1;ctx.stroke()
+        }
+        ctx.globalAlpha=1
+      }
+
+      // ── MODE 3: Orbits ──
+      else if (modeIdx === 3) {
+        type O = {x:number;y:number;vx:number;vy:number;c:string;trail:{x:number;y:number}[]}
+        let os = stateRef.current.os as O[] | undefined
+        if (!os) {
+          os = Array.from({length:30},()=>{
+            const angle=Math.random()*Math.PI*2,dist=50+Math.random()*150
+            const cx=w/2,cy=h/2
+            return {x:cx+Math.cos(angle)*dist,y:cy+Math.sin(angle)*dist,vx:Math.cos(angle+Math.PI/2)*1.5,vy:Math.sin(angle+Math.PI/2)*1.5,c:colors[Math.floor(Math.random()*colors.length)],trail:[]}
+          })
+          stateRef.current.os=os
+        }
+        ctx.fillStyle=pal.bg;ctx.globalAlpha=0.03;ctx.fillRect(0,0,w,h);ctx.globalAlpha=1
+        const gx=m.active?m.x:w/2, gy=m.active?m.y:h/2
+        for(const o of os){
+          const dx=gx-o.x,dy=gy-o.y,d=Math.sqrt(dx*dx+dy*dy)+1
+          const f=200/(d*d+100)
+          o.vx+=dx/d*f;o.vy+=dy/d*f;o.vx*=0.998;o.vy*=0.998
+          o.x+=o.vx;o.y+=o.vy
+          o.trail.push({x:o.x,y:o.y});if(o.trail.length>80)o.trail.shift()
+          // Draw trail
+          if(o.trail.length>2){
+            ctx.beginPath();ctx.moveTo(o.trail[0].x,o.trail[0].y)
+            for(let i=1;i<o.trail.length;i++)ctx.lineTo(o.trail[i].x,o.trail[i].y)
+            ctx.strokeStyle=o.c;ctx.globalAlpha=0.3;ctx.lineWidth=1.5;ctx.stroke()
+          }
+          // Head
+          ctx.beginPath();ctx.arc(o.x,o.y,3,0,Math.PI*2);ctx.fillStyle=o.c;ctx.globalAlpha=0.9;ctx.fill()
+          ctx.beginPath();ctx.arc(o.x,o.y,8,0,Math.PI*2);ctx.fillStyle=o.c;ctx.globalAlpha=0.06;ctx.fill()
+        }
+        // Central mass
+        ctx.beginPath();ctx.arc(gx,gy,6,0,Math.PI*2);ctx.fillStyle='#fff';ctx.globalAlpha=0.15;ctx.fill()
+        ctx.globalAlpha=1
+      }
+
+      // ── MODE 4: Grid ──
+      else if (modeIdx === 4) {
+        ctx.fillStyle=pal.bg;ctx.fillRect(0,0,w,h)
+        const spacing=Math.max(20,Math.min(35,w/25))
+        const cols=Math.ceil(w/spacing)+1,rows=Math.ceil(h/spacing)+1
+        for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+          let x=c*spacing,y=r*spacing
+          // Warp near mouse
+          if(m.active){
+            const dx=m.x-x,dy=m.y-y,d=Math.sqrt(dx*dx+dy*dy)
+            if(d<180){const push=1-d/180;x-=dx/d*push*25;y-=dy/d*push*25}
+          }
+          // Noise displacement
+          const nx=noise2d(c*0.15+t*0.3,r*0.15+t*0.2)*6
+          const ny=noise2d(c*0.15+100+t*0.2,r*0.15+100+t*0.3)*6
+          x+=nx;y+=ny
+          const ci=(r*cols+c)%colors.length
+          const dist=m.active?Math.sqrt((m.x-x)**2+(m.y-y)**2):999
+          const sz=dist<150?2+3*(1-dist/150):2
+          ctx.beginPath();ctx.arc(x,y,sz,0,Math.PI*2)
+          ctx.fillStyle=colors[ci];ctx.globalAlpha=dist<150?0.6:0.15;ctx.fill()
+        }
+        // Connecting lines near cursor
+        if(m.active){
+          for(let r=0;r<rows-1;r++)for(let c=0;c<cols-1;c++){
+            const x=c*spacing,y=r*spacing
+            const d=Math.sqrt((m.x-x)**2+(m.y-y)**2)
+            if(d<120){
+              ctx.beginPath();ctx.moveTo(x+noise2d(c*0.15+t*0.3,r*0.15+t*0.2)*6,y+noise2d(c*0.15+100+t*0.2,r*0.15+100+t*0.3)*6)
+              const x2=(c+1)*spacing+noise2d((c+1)*0.15+t*0.3,r*0.15+t*0.2)*6
+              const y2=r*spacing+noise2d((c+1)*0.15+100+t*0.2,r*0.15+100+t*0.3)*6
+              ctx.lineTo(x2,y2);ctx.strokeStyle=colors[c%colors.length];ctx.globalAlpha=0.08;ctx.lineWidth=0.5;ctx.stroke()
+            }
+          }
+        }
+        ctx.globalAlpha=1
+      }
+
       rafRef.current = requestAnimationFrame(draw)
     }
 
     rafRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(rafRef.current)
-  }, [paletteIdx, particleCount, palette])
+  }, [modeIdx, palIdx, pal])
 
   const handlePointer = useCallback((e: React.PointerEvent) => {
     const rect = canvasRef.current?.parentElement?.getBoundingClientRect()
@@ -186,43 +260,81 @@ export default function GenerativeCanvas() {
           width: '100%', aspectRatio: '16 / 10',
           borderRadius: 'var(--radius-lg)', overflow: 'hidden',
           border: '1px solid rgba(255,255,255,0.04)',
-          cursor: 'crosshair', touchAction: 'none',
+          cursor: 'crosshair', touchAction: 'none', position: 'relative',
         }}
         onPointerMove={handlePointer}
         onPointerDown={handlePointer}
         onPointerLeave={() => { mouseRef.current.active = false }}
       >
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
-      </div>
 
-      {/* Controls */}
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        gap: 8, padding: '10px 0', flexWrap: 'wrap',
-      }}>
-        {/* Palette switcher */}
-        {PALETTES.map((p, i) => (
-          <button key={p.name} onClick={() => setPaletteIdx(i)} style={{
-            padding: '4px 10px', borderRadius: 'var(--radius-pill)',
-            border: `1px solid ${i === paletteIdx ? p.colors[0] + '60' : 'rgba(255,255,255,0.06)'}`,
-            background: i === paletteIdx ? p.colors[0] + '15' : 'rgba(255,255,255,0.02)',
-            color: i === paletteIdx ? p.colors[0] : 'rgba(255,255,255,0.2)',
-            fontFamily: 'var(--mono)', fontSize: '7px',
+        {/* Mode selector — top center */}
+        <div style={{
+          position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)',
+          display: 'flex', gap: 2,
+          padding: '3px',
+          borderRadius: 'var(--radius-pill)',
+          background: 'rgba(0,0,0,0.45)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.05)',
+        }}>
+          {MODES.map((mode, i) => (
+            <button key={mode.name} onClick={() => { setModeIdx(i); resetState() }} style={{
+              padding: '4px 10px', borderRadius: 12,
+              border: 'none',
+              background: i === modeIdx ? 'rgba(255,255,255,0.1)' : 'transparent',
+              color: i === modeIdx ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.2)',
+              fontFamily: 'var(--mono)', fontSize: '7px',
+              letterSpacing: '0.04em', textTransform: 'uppercase',
+              cursor: 'pointer', transition: 'all 0.2s',
+              display: 'flex', alignItems: 'center', gap: 4,
+            }}>
+              <span style={{ fontSize: '9px' }}>{mode.icon}</span>
+              {mode.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Bottom controls */}
+        <div style={{
+          position: 'absolute', bottom: 12, left: '50%', transform: 'translateX(-50%)',
+          display: 'flex', alignItems: 'center', gap: 5,
+          padding: '5px 8px',
+          borderRadius: 'var(--radius-pill)',
+          background: 'rgba(0,0,0,0.45)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.05)',
+        }}>
+          {PALETTES.map((p, i) => (
+            <button key={p.name} onClick={() => { setPalIdx(i); resetState() }} title={p.name} style={{
+              width: 14, height: 14, borderRadius: '50%', padding: 0,
+              border: i === palIdx ? `2px solid ${p.accent}` : '1.5px solid rgba(255,255,255,0.08)',
+              background: p.colors[1], cursor: 'pointer',
+              boxShadow: i === palIdx ? `0 0 6px ${p.accent}40` : 'none',
+              transition: 'all 0.2s',
+            }} />
+          ))}
+          <div style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.06)' }} />
+          <button onClick={resetState} style={{
+            padding: '2px 8px', borderRadius: 10,
+            border: '1px solid rgba(255,255,255,0.06)',
+            background: 'rgba(255,255,255,0.03)',
+            color: 'rgba(255,255,255,0.25)',
+            fontFamily: 'var(--mono)', fontSize: '6px',
             letterSpacing: '0.06em', textTransform: 'uppercase',
             cursor: 'pointer',
-          }}>
-            {p.name}
-          </button>
-        ))}
+          }}>Clear</button>
+        </div>
 
-        <span style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.06)', margin: '0 4px' }} />
-
-        {/* Particle density */}
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '7px', color: 'rgba(255,255,255,0.15)', textTransform: 'uppercase' }}>Density</span>
-        <input type="range" min={500} max={5000} step={500} value={particleCount}
-          onChange={e => setParticleCount(Number(e.target.value))}
-          style={{ width: 80, accentColor: palette.colors[0] }}
-        />
+        {/* Hint */}
+        <div style={{
+          position: 'absolute', bottom: 12, left: 14,
+          fontFamily: 'var(--mono)', fontSize: '6px',
+          color: 'rgba(255,255,255,0.08)',
+          letterSpacing: '0.06em', textTransform: 'uppercase',
+        }}>
+          Move cursor to interact
+        </div>
       </div>
     </div>
   )

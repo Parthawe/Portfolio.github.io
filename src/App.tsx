@@ -51,7 +51,23 @@ const projectPages = projects.map(p => ({
 }))
 
 function Loading() {
-  return <div className="page-loader"><span className="page-loader-logo">PP</span></div>
+  return (
+    <div className="page-loader">
+      {/* Curtain wipe — two halves slide apart */}
+      <div className="loader-curtain loader-curtain--left" />
+      <div className="loader-curtain loader-curtain--right" />
+
+      {/* Center content */}
+      <div className="loader-center">
+        <div className="loader-mark">
+          <span className="loader-mark-letter">P</span>
+          <span className="loader-mark-letter loader-mark-letter--2">P</span>
+        </div>
+        <div className="loader-line" />
+        <span className="loader-label">Design Engineer</span>
+      </div>
+    </div>
+  )
 }
 
 export default function App() {
