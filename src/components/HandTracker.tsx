@@ -370,13 +370,14 @@ export default function HandTracker() {
   // ── Stop ──
   const stop = useCallback(() => {
     cancelAnimationFrame(rafRef.current)
-    if (streamRef.current) { streamRef.current.getTracks().forEach(t => t.stop()); streamRef.current = null }
+    try { streamRef.current?.getTracks().forEach(t => t.stop()) } catch { /* stream already ended */ }
+    streamRef.current = null
     if (videoRef.current) videoRef.current.srcObject = null
     setActive(false); setDetected(false); setGesture('none')
     isDragging.current = false; lastHoveredRef.current = null
   }, [])
 
-  useEffect(() => () => { cancelAnimationFrame(rafRef.current); streamRef.current?.getTracks().forEach(t => t.stop()) }, [])
+  useEffect(() => () => { cancelAnimationFrame(rafRef.current); try { streamRef.current?.getTracks().forEach(t => t.stop()) } catch { /* */ } }, [])
 
   // Desktop only
   const [isDesktop, setIsDesktop] = useState(false)

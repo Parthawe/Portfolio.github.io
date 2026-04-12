@@ -143,6 +143,10 @@ export async function speak(
     // Check if we were cancelled during fetch
     if (mySession !== sessionId) return
 
+    // Close any lingering context before creating a new one
+    if (currentAudioCtx && currentAudioCtx.state !== 'closed') {
+      void currentAudioCtx.close()
+    }
     const ctx = new AudioContext()
     currentAudioCtx = ctx
 

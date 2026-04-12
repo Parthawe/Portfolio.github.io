@@ -7,6 +7,7 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import LightingSlider from '../../components/LightingSlider'
 
 export default function DrowningPage() {
   return (
@@ -62,6 +63,21 @@ export default function DrowningPage() {
         </CsSection>
 
         {/* Concept */}
+        {/* Interactive — lighting transformation */}
+        <CsSection id="cs-lighting" label="Interactive" title="Light Transforms the Space">
+          <CsBody>
+            <p>Set design is about light. Drag the slider to see how the abandoned greenhouse emerges from darkness &mdash; the same physical space, transformed entirely by lighting design.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <LightingSlider
+              beforeSrc="https://freight.cargo.site/w/2880/i/N2050663334867775366614256779798/1.jpg"
+              afterSrc="https://freight.cargo.site/w/2880/i/J2050663334978455831056514089494/5.jpg"
+              beforeLabel="Unlit stage"
+              afterLabel="Greenhouse revealed"
+            />
+          </div>
+        </CsSection>
+
         <section className="cs-section reveal" id="cs-concept">
           <div className="wrap">
             <p className="cs-section-label">01 &mdash; Concept</p>
