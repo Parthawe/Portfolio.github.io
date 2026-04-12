@@ -90,29 +90,6 @@ export default function HealthAppPage() {
               </div>
             </section>
 
-            {/* VJ Parivar real estate screens */}
-            <section className="cs-section reveal">
-              <div className="wrap">
-                <div className="cs-img reveal"><img src="/Assets/Projects/vj/photos/all-screens-wireframes.png" alt="All screens: wireframes for parking, legal, post-possession flows" loading="lazy" /></div>
-              </div>
-            </section>
-
-            <section className="cs-section reveal">
-              <div className="wrap">
-                <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/vj/photos/car-parking.png" alt="Vehicle Parking: spot selection with availability countdown" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/vj/photos/post-possession.png" alt="Post Possession: vehicle parking details with owner info" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/vj/photos/legal-pay.png" alt="Legal & Pay: landing page with payment options" loading="lazy" /></div>
-                </div>
-              </div>
-            </section>
-
-            <section className="cs-section reveal">
-              <div className="wrap">
-                <div className="cs-img reveal"><img src="/Assets/Projects/vj/photos/all-screens-ui.png" alt="Final UI: all screens with high-fidelity design" loading="lazy" /></div>
-              </div>
-            </section>
-
             <CsThanks />
           </>
         ) : (

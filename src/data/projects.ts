@@ -638,7 +638,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra-brand',
     name: 'Mentra Brand & Packaging',
-    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.jpg',
+    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.png',
     tag: 'BRAND & PACKAGING',
     year: '2025–26',
     desc: 'End-to-end brand identity and packaging for AI smart glasses — logo, box, booklet, ads, and 24 social templates',

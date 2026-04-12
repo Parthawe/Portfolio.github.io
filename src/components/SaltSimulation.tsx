@@ -43,7 +43,9 @@ export default function SaltSimulation() {
 
     const draw = () => {
       const dpr = Math.min(window.devicePixelRatio, 2)
-      const rect = canvas.parentElement!.getBoundingClientRect()
+      const parent = canvas.parentElement
+      if (!parent) { rafRef.current = requestAnimationFrame(draw); return }
+      const rect = parent.getBoundingClientRect()
       const w = rect.width, h = rect.height
       if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(draw); return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
