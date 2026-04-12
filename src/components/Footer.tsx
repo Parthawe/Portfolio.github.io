@@ -85,7 +85,10 @@ export default function Footer() {
             <a className="ft-email figma-hover" href={`mailto:${email}`}>{email}<FigmaSelect /></a>
             <button className="ft-copy-btn magnetic figma-hover" onClick={handleCopy} aria-label="Copy email">
               {copied ? (
-                <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <>
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <span className="sr-only" role="status">Email copied</span>
+                </>
               ) : 'Copy'}
               <FigmaSelect />
             </button>
