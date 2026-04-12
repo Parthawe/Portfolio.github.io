@@ -5,11 +5,9 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsSection from '../../components/case-study/CsSection'
 import CsCredits from '../../components/case-study/CsCredits'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-import BlockCodingDemo from '../../components/BlockCodingDemo'
 
 export default function CodeForBuildPage() {
   return (
@@ -90,15 +88,14 @@ export default function CodeForBuildPage() {
           </div>
         </section>
 
-        {/* Interactive prototype */}
-        <CsSection id="cs-prototype" label="Interactive" title="Try It: Build a Page with Blocks">
-          <CsBody>
-            <p>Drag or click blocks from the palette into the build area. Each colored block maps to an HTML element &mdash; Body, Container, Header, Image, Text, Button. The output preview renders your layout in real-time. Try the presets to see complete layouts, or build your own.</p>
-          </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
-            <BlockCodingDemo />
+        {/* App screens — the actual product */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal">
+              <img src="/Assets/Projects/CodeforBuild/photos/two-phones.png" alt="Code for Build app: code view with 3D block illustration and output preview" loading="lazy" />
+            </div>
           </div>
-        </CsSection>
+        </section>
 
         {/* Process */}
         <section className="cs-section reveal">

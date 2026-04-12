@@ -203,10 +203,10 @@
 [data-theme="dark"] .ft-copy-btn:hover { color: var(--ink-70); background: var(--ink-08); }
 [data-theme="dark"] .ft-cta-row { border-bottom-color: var(--ink-06); }
 [data-theme="dark"] .ft-info-row { border-bottom-color: var(--ink-04); }
-[data-theme="dark"] .ft-info-link { color: var(--ink-40); }
+[data-theme="dark"] .ft-info-link { color: var(--ink-50); }
 [data-theme="dark"] .ft-info-link:hover { color: var(--ink); }
-[data-theme="dark"] .ft-info-text { color: var(--ink-40); }
-[data-theme="dark"] .ft-info-muted { color: var(--ink-15); }
+[data-theme="dark"] .ft-info-text { color: var(--ink-50); }
+[data-theme="dark"] .ft-info-muted { color: var(--ink-30); }
 [data-theme="dark"] .ft-bottom span { color: var(--ink-12); }
 
 /* ── Footer reveal, for pages that use it ── */

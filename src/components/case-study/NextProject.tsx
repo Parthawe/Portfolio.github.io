@@ -29,7 +29,7 @@ export default function NextProject({ slug, title, image }: NextProjectProps) {
             <div className="next-project-title">{title}</div>
           </div>
           <div className="next-project-img">
-            <img src={image} alt={title} loading="lazy" />
+            <img src={image} alt={title} loading="lazy" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
           </div>
         </div>
       </Link>
