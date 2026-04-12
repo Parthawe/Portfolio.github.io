@@ -9,6 +9,7 @@ import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import StageRotation from '../../components/StageRotation'
 
 export default function RevolvingStagePage() {
   return (
@@ -87,6 +88,16 @@ export default function RevolvingStagePage() {
         </div>
 
         {/* Mechanical Design */}
+        {/* Interactive — stage rotation */}
+        <CsSection id="cs-rotate" label="Interactive" title="Spin the Stage">
+          <CsBody>
+            <p>Drag to rotate the 15-foot platform. Four scene zones are painted on the stage &mdash; as it turns, different scenes face the audience. This is how the director used rotation as a narrative tool: one smooth spin = one scene transition, no blackout needed.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <StageRotation />
+          </div>
+        </CsSection>
+
         <CsSection id="cs-engineering" label="Engineering" title="Mechanical Design">
           <CsBody>
             <p>The stage assembly consists of four main components: the wooden revolving stage (15 ft. expansion), a central axle, a caster wheel bearing assembly arranged in a circular pattern, and an 8 ft. &times; 8 ft. wooden base. The entire structure is designed for disassembly and transport.</p>

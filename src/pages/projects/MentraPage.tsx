@@ -175,6 +175,17 @@ export default function MentraPage() {
           <CsImage src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
         </CsSection>
 
+        {/* Product gallery */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-front.jpg" alt="Mentra smart glasses from front — transparent display, minimal frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-angle.jpg" alt="Mentra smart glasses angled view showing temple arm and hinge" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-folded.jpg" alt="Mentra smart glasses folded, compact form factor" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         <CsSection id="cs-store" label="MiniApp Store" title="The App Store That Lives on Your Face">
           <CsBody>
             <p>This is what separates Mentra from everything else. Meta Ray-Ban Gen 2 ships at the same $299 price point but is a closed system. Mentra is the opposite: an open marketplace where any developer can ship.</p>

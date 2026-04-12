@@ -39,7 +39,7 @@ export default function UvLightPage() {
             { label: 'Duration', value: '2 Weeks' },
             { label: 'Year', value: '2023' },
           ]}
-          heroImage="/Assets/Projects/UVLight/Desktop/1.jpg"
+          heroImage="/Assets/Projects/UVLight/photos/image-5.png"
           heroAlt="UV Light Experience, immersive blacklight installation with participants"
         />
 
@@ -183,7 +183,7 @@ export default function UvLightPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/UVLight/Desktop/6.jpg" alt="UV-lit stage with fluorescent floor markings and participants assembling puzzle pieces" loading="lazy" />
+          <img src="/Assets/Projects/UVLight/photos/image-8.png" alt="UV-lit stage with fluorescent floor markings and participants assembling puzzle pieces" loading="lazy" />
         </div>
 
         {/* Participant Interaction */}
@@ -198,10 +198,10 @@ export default function UvLightPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/UVLight/Desktop/7.jpg" alt="Close-ups of UV-revealed messages on cards and participant portraits under blacklight" loading="lazy" />
+          <img src="/Assets/Projects/UVLight/photos/image-7-1.png" alt="Close-ups of UV-revealed messages on cards and participant portraits under blacklight" loading="lazy" />
         </div>
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/UVLight/Desktop/8.jpg" alt="Participants exploring the UV space, filled-in portrait cards, and live camera feed in the auditorium" loading="lazy" />
+          <img src="/Assets/Projects/UVLight/photos/image-3.png" alt="Participants exploring the UV space, filled-in portrait cards, and live camera feed in the auditorium" loading="lazy" />
         </div>
 
         {/* Credits */}

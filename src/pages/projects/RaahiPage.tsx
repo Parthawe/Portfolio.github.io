@@ -85,6 +85,17 @@ export default function RaahiPage() {
           </div>
         </section>
 
+        {/* App screens */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/app-home.png" alt="Raahi home screen — Hey Parth greeting, transport modes, recent trips, carbon footprint" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/route-details.png" alt="Route details — multimodal journey with color-coded segments, timings, and price" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/kiosk-home.png" alt="Kiosk interface — transit information display for bus stops" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* Research */}
         <section className="cs-section reveal" id="cs-research">
           <div className="wrap">

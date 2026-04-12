@@ -89,7 +89,7 @@ export default function GenerativeCanvas() {
           ps = Array.from({length:1800},()=>({x:Math.random()*w,y:Math.random()*h,vx:0,vy:0,c:colors[Math.floor(Math.random()*colors.length)],life:Math.random()*300,ml:250+Math.random()*250}))
           stateRef.current.ps = ps
         }
-        ctx.fillStyle = pal.bg; ctx.globalAlpha = 0.01; ctx.fillRect(0,0,w,h); ctx.globalAlpha = 1
+        ctx.fillStyle = pal.bg; ctx.globalAlpha = 0.025; ctx.fillRect(0,0,w,h); ctx.globalAlpha = 1
         for (const p of ps) {
           const a = noise2d(p.x*0.003+t*0.4,p.y*0.003+t*0.15)*Math.PI*4
           p.vx += Math.cos(a)*0.12; p.vy += Math.sin(a)*0.12
@@ -112,7 +112,7 @@ export default function GenerativeCanvas() {
           ns = Array.from({length:60},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,r:2+Math.random()*3,c:colors[Math.floor(Math.random()*colors.length)]}))
           stateRef.current.ns = ns
         }
-        ctx.fillStyle = pal.bg; ctx.globalAlpha = 0.08; ctx.fillRect(0,0,w,h); ctx.globalAlpha = 1
+        ctx.fillStyle = pal.bg; ctx.globalAlpha = 0.04; ctx.fillRect(0,0,w,h); ctx.globalAlpha = 1
         // Move nodes
         for (const n of ns) {
           if (m.active) { const dx=m.x-n.x,dy=m.y-n.y,d=Math.sqrt(dx*dx+dy*dy); if(d<200){n.vx+=(dx/d)*0.05;n.vy+=(dy/d)*0.05} }
@@ -179,7 +179,7 @@ export default function GenerativeCanvas() {
           })
           stateRef.current.os=os
         }
-        ctx.fillStyle=pal.bg;ctx.globalAlpha=0.03;ctx.fillRect(0,0,w,h);ctx.globalAlpha=1
+        ctx.fillStyle=pal.bg;ctx.globalAlpha=0.015;ctx.fillRect(0,0,w,h);ctx.globalAlpha=1
         const gx=m.active?m.x:w/2, gy=m.active?m.y:h/2
         for(const o of os){
           const dx=gx-o.x,dy=gy-o.y,d=Math.sqrt(dx*dx+dy*dy)+1

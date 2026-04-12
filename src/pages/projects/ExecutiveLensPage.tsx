@@ -16,6 +16,7 @@ import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import MeetingTimeline from '../../components/MeetingTimeline'
 
 export default function ExecutiveLensPage() {
   return (
@@ -93,6 +94,16 @@ export default function ExecutiveLensPage() {
             { title: 'A Dashboard That Tells a Story', desc: 'Most dashboards are graveyards of disconnected charts. The executive dashboard needed to tell a narrative: here is what happened this week, here is why it matters, here is what you should do about it. I designed a feed-based dashboard that prioritizes narrative over numbers and connects meetings to metrics.' },
             { title: 'Mobile-First for Executives on the Move', desc: 'Executives check their phones between meetings, in the back of cars, and at airport gates. The mobile experience could not be a shrunken desktop dashboard. I designed a mobile-native interface with glanceable cards, voice-triggered summaries, and a prep mode that briefs you on your next meeting in 30 seconds flat.' },
           ]} />
+        </CsSection>
+
+        {/* Interactive — meeting replay */}
+        <CsSection id="cs-demo" label="Interactive" title="Watch AI Process a Meeting">
+          <CsBody>
+            <p>Press play to watch a simulated Q3 review meeting. The transcript builds in real-time on the left. When the meeting ends, the AI summary appears on the right &mdash; decisions, action items with owners and deadlines, key metrics extracted automatically.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <MeetingTimeline />
+          </div>
         </CsSection>
 
         <CsSection id="cs-meeting" label="Meeting Assistant" title="Your AI Co-Pilot in Every Conversation">

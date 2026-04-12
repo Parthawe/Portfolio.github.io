@@ -387,6 +387,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/CanvasForCodersPage'),
     archiveOrder: 14,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'embodied-web',
@@ -399,6 +400,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/EmbodiedWebPage'),
     archiveOrder: 33,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'feeling-patterns',
@@ -411,6 +413,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/FeelingPatternsPage'),
     archiveOrder: 34,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'performance-by-design',
@@ -423,6 +426,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/PerformanceByDesignPage'),
     archiveOrder: 35,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'on-becoming',
@@ -435,6 +439,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/OnBecomingPage'),
     archiveOrder: 36,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'storytelling',
@@ -447,6 +452,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/StorytellingPage'),
     archiveOrder: 37,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'dna-speculative',
@@ -471,6 +477,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/IntroCompMediaPage'),
     archiveOrder: 38,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'hypercinema',
@@ -483,6 +490,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/HypercinemaPage'),
     archiveOrder: 39,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'applications',
@@ -495,6 +503,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/ApplicationsPage'),
     archiveOrder: 40,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'messy-humans',
@@ -507,6 +516,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/MessyHumansPage'),
     archiveOrder: 41,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'production-studio',
@@ -519,6 +529,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/ProductionStudioPage'),
     archiveOrder: 42,
     tier: 'd',
+    hidden: true,
   },
 
   {
@@ -532,6 +543,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/ArcadeLabPage'),
     archiveOrder: 27,
     tier: 'd',
+    hidden: true,
   },
 
   /* ── Installations ── */
@@ -606,6 +618,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/DrowningPage'),
     archiveOrder: 28,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'sculpture',
@@ -618,13 +631,14 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/SculpturePage'),
     archiveOrder: 31,
     tier: 'd',
+    hidden: true,
   },
 
   /* ── Brand & Visual ── */
   {
     slug: 'mentra-brand',
     name: 'Mentra Brand & Packaging',
-    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.png',
+    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.jpg',
     tag: 'BRAND & PACKAGING',
     year: '2025–26',
     desc: 'End-to-end brand identity and packaging for AI smart glasses — logo, box, booklet, ads, and 24 social templates',
@@ -680,6 +694,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/AtpsPage'),
     archiveOrder: 26,
     tier: 'd',
+    hidden: true,
   },
   {
     slug: 'vishwaconclave',
@@ -692,6 +707,7 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/VishwaConclavePage'),
     archiveOrder: 29,
     tier: 'd',
+    hidden: true,
   },
 ]
 

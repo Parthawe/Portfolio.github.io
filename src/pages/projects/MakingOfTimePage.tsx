@@ -7,6 +7,7 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import ClockTrio from '../../components/ClockTrio'
 
 export default function MakingOfTimePage() {
   return (
@@ -74,6 +75,16 @@ export default function MakingOfTimePage() {
             </CsBody>
           </div>
         </section>
+
+        {/* Interactive — three clocks running in real time */}
+        <CsSection id="cs-interactive" label="Interactive" title="Three Ways to Read This Moment">
+          <CsBody>
+            <p>The same moment, measured three ways. A sundial shadow, a mechanical escapement, and an abstract color field &mdash; all showing your current time right now. Watch how each medium changes your relationship with the same information.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <ClockTrio />
+          </div>
+        </CsSection>
 
         {/* Sundial */}
         <CsSection id="cs-sundial" label="01 &mdash; Sundial" title="Sundial">

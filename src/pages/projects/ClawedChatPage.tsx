@@ -212,6 +212,16 @@ export default function ClawedChatPage() {
           />
         </CsSection>
 
+        {/* Website */}
+        <CsSection id="cs-website" label="Live Product" title="clawed.chat">
+          <CsBody>
+            <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 20 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
+          </CsBody>
+          <div className="cs-slide reveal" style={{ marginTop: 'var(--space-4)' }}>
+            <img src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.png" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--ink-06)', width: '100%' }} />
+          </div>
+        </CsSection>
+
         <CsSection id="cs-impact" label="07 &mdash; Impact" title="Early Signals &amp; Honest Assessment">
           <CsBody style={{ marginBottom: '2rem' }}>
             <p>Clawed shipped to production in Q1 2026 and is in early user testing. I want to be transparent: we do not have large-scale analytics yet. What follows are qualitative signals from 6 moderated testing sessions (45 minutes each, mix of technical and non-technical participants) and internal team observations from the 10-week build.</p>

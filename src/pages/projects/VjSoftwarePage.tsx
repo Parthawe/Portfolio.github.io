@@ -42,7 +42,7 @@ export default function VjSoftwarePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2022' },
           ]}
-          heroImage="/Assets/Projects/vj/Desktop/1.jpg"
+          heroImage="/Assets/Projects/vj/photos/all-screens-ui.png"
           heroAlt="VJ Parivar, Vehicle Parking Made Easy hero with app screens"
         />
 
