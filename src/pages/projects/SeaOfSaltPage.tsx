@@ -10,6 +10,7 @@ import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import SaltSimulation from '../../components/SaltSimulation'
 
 export default function SeaOfSaltPage() {
   return (
@@ -80,6 +81,16 @@ export default function SeaOfSaltPage() {
             <p>Slide the story forward. The mill turns. Real coarse sea salt grinds through the mechanism and scatters across the black surface. The further into the tale you go, the faster the mill grinds. By the climax &mdash; when the captain can&rsquo;t stop the mill &mdash; salt is pouring out. By the end, the platform is covered.</p>
             <p>The question the piece asks is simple: <strong>what if advancing a story had physical consequences?</strong> In a book, you turn a page and nothing changes in the room. Here, every inch of the slider adds salt to the world. The story&rsquo;s tragedy (the mill can&rsquo;t stop) becomes the installation&rsquo;s reality (the salt keeps accumulating). Reading becomes grinding. The folktale becomes material.</p>
           </CsBody>
+        </CsSection>
+
+        {/* Interactive — salt simulation */}
+        <CsSection id="cs-try" label="Interactive" title="Grind the Story">
+          <CsBody>
+            <p>Slide from &ldquo;Start of the Story&rdquo; to &ldquo;End of the Story&rdquo; and watch salt accumulate &mdash; just like the physical installation. The further you go, the more salt piles up. There&rsquo;s no undo.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <SaltSimulation />
+          </div>
         </CsSection>
 
         {/* Mill detail photos */}
