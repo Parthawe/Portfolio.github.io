@@ -361,7 +361,7 @@ export function getRouteGreeting(path: string): string {
     "Pick a project, ask for a hiring shortlist, or say 'tour' and I'll guide you through. I have opinions about all of this.",
   ])
   if (path === '/work') return pick([
-    "Full archive, 34 projects. I can filter by discipline, recommend a shortlist, or walk you through the categories. What are you looking for?",
+    "Full archive. I can filter by discipline, recommend a shortlist, or walk you through the categories. What are you looking for?",
     "This is everything. Six disciplines, from fintech to light sculptures. Say 'tour' and I'll explain each one, or just tell me what you care about.",
   ])
   if (path === '/about') {

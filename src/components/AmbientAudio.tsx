@@ -157,7 +157,8 @@ export default function AmbientAudio() {
 
   useEffect(() => {
     if (muted) return
-    const events: Array<keyof WindowEventMap> = ['pointerdown', 'keydown', 'touchstart', 'scroll']
+    // Explicit opt-in only — no scroll trigger (scroll feels surprising)
+    const events: Array<keyof WindowEventMap> = ['pointerdown', 'keydown', 'touchstart']
     const opts: AddEventListenerOptions = { passive: true, once: true }
     const trigger = () => firstGesture()
     for (const e of events) window.addEventListener(e, trigger, opts)

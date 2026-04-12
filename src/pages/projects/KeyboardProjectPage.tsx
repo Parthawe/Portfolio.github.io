@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
+import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
@@ -310,9 +311,11 @@ export default function KeyboardProjectPage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
 
+      <CsThanks />
+
       </main>
 
-      <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.png" />
+        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.png" />
       <Footer />
     </>
   )

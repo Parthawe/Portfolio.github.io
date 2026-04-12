@@ -46,6 +46,8 @@ export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
               className={`cs-pflow-node${activeIdx === i ? ' active' : ''}`}
               variants={nodeVariant}
               onClick={() => setActiveIdx(activeIdx === i ? null : i)}
+              onFocus={() => setActiveIdx(i)}
+              onBlur={() => setActiveIdx(null)}
               onMouseEnter={() => setActiveIdx(i)}
               onMouseLeave={() => setActiveIdx(null)}
             >

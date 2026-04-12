@@ -97,6 +97,17 @@ export default function MentraBrandPage() {
           </div>
         </section>
 
+        {/* 3D logo explorations — the mark as a physical object */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src={`${P}/logo-3d-green.png`} alt="3D logo: glossy green on white — the primary brand mark rendered as physical object" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/logo-3d-black.jpg`} alt="3D logo: glossy black on dark — premium variant for dark contexts" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/logo-3d-iridescent.png`} alt="3D logo: iridescent blue crystal — exploration for special editions and events" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
         {/* ================================================================
             02 — COLOR & TYPE
             ================================================================ */}
@@ -174,6 +185,29 @@ export default function MentraBrandPage() {
               { title: 'Charging Case', desc: 'Logomark engraved on exterior lid. Vector strokes converted from fill to 0.3mm outlines for CNC compatibility at factory.' },
               { title: 'Lens Cloth', desc: '150 x 150mm black microfiber. Heat-pressed logo in Pantone Black 6 UP — subtle enough to look premium, visible enough to reinforce the brand.' },
             ]} />
+          </div>
+        </section>
+
+        {/* Brand in the wild — YouTubers unboxing the packaging I designed */}
+        <CsSection id="cs-wild" label="In the Wild" title="The Packaging, Unboxed by Strangers">
+          <CsBody>
+            <p>The real test of packaging design is watching someone who had no part in making it hold it up to a camera. These YouTube thumbnails show creators unboxing Mentra Live &mdash; the box I designed, the case I designed, the booklet I designed &mdash; all in the hands of people I&rsquo;ve never met. The brand pattern is visible. The product name reads. The case looks premium next to the box. It works.</p>
+          </CsBody>
+        </CsSection>
+
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src={`${P}/yt-unboxing-1.jpg`} alt="YouTube thumbnail: creator holding Mentra Live box and charging case — UNBOXING MENTRA LIVE" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/yt-unboxing-2.jpg`} alt="YouTube thumbnail: creator revealing glasses from box — SMART GLASSES REVEALED" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
+
+        {/* Text bubble — messaging UI design for marketing */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img reveal"><img src={`${P}/text-bubble-1.jpg`} alt="Mentra marketing asset: lifestyle photo with text bubble UI overlay showing real-time voice transcription — brand language in product context" loading="lazy" /></div>
           </div>
         </section>
 
@@ -379,6 +413,7 @@ export default function MentraBrandPage() {
           { id: 'cs-logo', label: 'Logo' },
           { id: 'cs-color', label: 'Color & Type' },
           { id: 'cs-packaging', label: 'Packaging' },
+          { id: 'cs-wild', label: 'In the Wild' },
           { id: 'cs-manual', label: 'Booklet' },
           { id: 'cs-photography', label: 'Photography' },
           { id: 'cs-social', label: 'Social & Ads' },

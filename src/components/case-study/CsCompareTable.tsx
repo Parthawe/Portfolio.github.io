@@ -39,12 +39,12 @@ export default function CsCompareTable({ columns, rows, title }: CsCompareTableP
                   <td key={i} className="cs-ct-cell">
                     {typeof v === 'boolean' ? (
                       v ? (
-                        <svg className="cs-ct-check" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <svg className="cs-ct-check" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-label="Yes" role="img">
                           <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2" />
                           <path d="M5 8l2 2 4-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       ) : (
-                        <svg className="cs-ct-cross" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <svg className="cs-ct-cross" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-label="No" role="img">
                           <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2" />
                           <path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                         </svg>

@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
+import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
@@ -357,9 +358,11 @@ export default function CodeForBuildPage() {
           { id: 'cs-deliver', label: 'Deliver' },
         ]} />
 
+      <CsThanks />
+
       </main>
 
-      <NextProject slug="typeface" title="Butler's Slice" image="/Assets/images/typeface.jpg" />
+        <NextProject slug="typeface" title="Butler's Slice" image="/Assets/images/typeface.jpg" />
       <Footer />
     </>
   )

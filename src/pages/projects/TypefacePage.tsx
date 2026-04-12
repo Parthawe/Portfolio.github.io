@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'framer-motion'
 import Nav from '../../components/Nav'
+import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
@@ -216,9 +217,11 @@ export default function TypefacePage() {
           </div>
         </section>
 
+      <CsThanks />
+
       </main>
 
-      <NextProject slug="atps" title="ArtTown Podcast" image="/Assets/images/atps.png" />
+        <NextProject slug="atps" title="ArtTown Podcast" image="/Assets/images/atps.png" />
       <Footer />
     </>
   )

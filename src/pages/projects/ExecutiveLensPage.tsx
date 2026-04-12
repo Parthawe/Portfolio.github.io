@@ -134,7 +134,7 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>The marketing site follows the same design philosophy as the product: clarity over cleverness. Clean typography, structured information hierarchy, and a narrative that walks executives from problem to solution without buzzword bingo. The hero shows the real product, not mockups.</p>
           </CsBody>
-          <CsImage src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.png" alt="ExecutiveLens.ai full marketing website, hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
+          <CsImage src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" alt="ExecutiveLens.ai full marketing website, hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
         </CsSection>
 
         <CsSection id="cs-insights" label="Insight Engine" title="AI That Connects Dots You Did Not Know Existed">

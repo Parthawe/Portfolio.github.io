@@ -433,7 +433,7 @@ export default function HandTracker() {
           )}
           <div className="hand-tracker-preview">
             <video ref={(el) => { if (el && streamRef.current) { el.srcObject = streamRef.current; el.play().catch(() => {}) } }} playsInline muted className="hand-tracker-video" />
-            <canvas ref={canvasRef} width={160} height={120} className="hand-tracker-canvas" />
+            <canvas ref={canvasRef} width={160} height={120} className="hand-tracker-canvas" aria-hidden="true" />
             <div className={`hand-tracker-status ${detected ? 'hand-tracker-status--detected' : ''}`}>
               <span className="hand-tracker-dot" />
               {detected ? gesture === 'none' ? 'Tracking' : gesture : 'Show hand'}

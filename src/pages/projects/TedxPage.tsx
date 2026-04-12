@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
+import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
@@ -177,9 +178,11 @@ export default function TedxPage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
 
+      <CsThanks />
+
       </main>
 
-      <NextProject slug="code-for-build" title="Code for Build" image="/Assets/images/code-for-build.jpg" />
+        <NextProject slug="code-for-build" title="Code for Build" image="/Assets/images/code-for-build.jpg" />
       <Footer />
     </>
   )

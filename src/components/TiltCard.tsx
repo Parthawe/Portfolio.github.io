@@ -10,13 +10,15 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
   const ref = useRef<HTMLDivElement>(null);
   const rafId = useRef<number>(0);
   const [isTouch, setIsTouch] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   }, []);
 
   const handleMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (isTouch) return;
+    if (isTouch || prefersReducedMotion) return;
     const el = ref.current;
     if (!el) return;
 
@@ -31,7 +33,7 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       const shadowY = y * 20;
       el.style.filter = `drop-shadow(${-shadowX}px ${-shadowY}px 16px rgba(0,0,0,0.08))`;
     });
-  }, [intensity, isTouch]);
+  }, [intensity, isTouch, prefersReducedMotion]);
 
   const handleLeave = useCallback(() => {
     const el = ref.current;
@@ -47,7 +49,7 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       className={className}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      style={isTouch ? undefined : { transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
+      style={isTouch || prefersReducedMotion ? undefined : { transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
     >
       {children}
     </div>

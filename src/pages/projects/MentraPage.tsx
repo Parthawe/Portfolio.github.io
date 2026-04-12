@@ -226,7 +226,7 @@ export default function MentraPage() {
           <CsBody>
             <p>The marketing site mirrors the product philosophy: show, don&rsquo;t tell. Open-source positioning, developer-friendly messaging, and hardware specs presented with the clarity executives and developers both expect. Every section reinforces the core thesis &mdash; the only smart glasses with an app store.</p>
           </CsBody>
-          <CsImage src="/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.png" alt="Mentra Glass full marketing website, hero section, product features, app store showcase, specifications, and pricing" />
+          <CsImage src="/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp" alt="Mentra Glass full marketing website, hero section, product features, app store showcase, specifications, and pricing" />
         </CsSection>
 
         <CsSection id="cs-impact" label="Impact" title="Shipping, Not Pitching">

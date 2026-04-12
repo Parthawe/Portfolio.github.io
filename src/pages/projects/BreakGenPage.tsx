@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
+import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -121,6 +122,8 @@ export default function BreakGenPage() {
             </a>
           </div>
         </section>
+
+        <CsThanks />
 
         <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.png" />
 

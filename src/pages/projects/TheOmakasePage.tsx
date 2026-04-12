@@ -423,10 +423,10 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/B1899182472545304968837588124182/1.jpg" alt="The Omakase gameplay" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/cabinet-front.png" alt="The Omakase gameplay" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/T1899182472600645201058716779030/3.jpg" alt="The Omakase gameplay detail" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.png" alt="The Omakase gameplay detail" loading="lazy" />
           </div>
         </section>
 
@@ -443,10 +443,10 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/K1899182472619091945132426330646/4.jpg" alt="The Omakase fabrication" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.png" alt="The Omakase fabrication" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/O1899182472637538689206135882262/5.jpg" alt="The Omakase cabinet detail" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.png" alt="The Omakase cabinet detail" loading="lazy" />
           </div>
         </section>
 
@@ -463,7 +463,7 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2000/i/P1899182472655985433279845433878/6.jpg" alt="The Omakase at ITP Spring Show" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/team-photo.png" alt="The Omakase at ITP Spring Show" loading="lazy" />
           </div>
         </section>
 

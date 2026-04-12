@@ -141,7 +141,7 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
           className="cs-bnav-link cs-bnav-live figma-hover"
         >
           Live Site
-          <svg width="10" height="10" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <FigmaSelect />
         </a>
       )}

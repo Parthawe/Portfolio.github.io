@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
+import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
@@ -278,9 +279,11 @@ export default function RaahiPage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
 
+      <CsThanks />
+
       </main>
 
-      <NextProject slug="the-point-cdc" title="The Point CDC" image="/Assets/images/the-point-cdc.png" />
+        <NextProject slug="the-point-cdc" title="The Point CDC" image="/Assets/images/the-point-cdc.png" />
       <Footer />
     </>
   )

@@ -57,6 +57,8 @@ export default function CsArchDiagram({ nodes, connections, cols = 3, title }: C
             style={{ gridColumn: node.col + 1, gridRow: node.row + 1 }}
             variants={nodeVariant}
             onClick={() => setActiveNode(activeNode === node.id ? null : node.id)}
+            onFocus={() => setActiveNode(node.id)}
+            onBlur={() => setActiveNode(null)}
             onMouseEnter={() => setActiveNode(node.id)}
             onMouseLeave={() => setActiveNode(null)}
           >
