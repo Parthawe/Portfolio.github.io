@@ -658,29 +658,31 @@ function TrussStructure({ dark, hovered }: { dark: boolean; hovered: boolean }) 
     });
   });
 
+  const rodTransforms = useMemo(() => rods.map((rod, i) => ({
+    mid: new THREE.Vector3().addVectors(rod.start, rod.end).multiplyScalar(0.5),
+    len: rod.start.distanceTo(rod.end),
+    quat: new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3().subVectors(rod.end, rod.start).normalize()),
+    isEdge: i < 12,
+  })), [rods]);
+
   return (
     <Float speed={0.7} floatIntensity={0.5} rotationIntensity={0.15}>
       <group rotation={[0.4, 0.3, 0.15]} ref={ref}>
-        {rods.map((rod, i) => {
-          const mid = new THREE.Vector3().addVectors(rod.start, rod.end).multiplyScalar(0.5);
-          const len = rod.start.distanceTo(rod.end);
-          const dir = new THREE.Vector3().subVectors(rod.end, rod.start).normalize();
-          const quat = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
-          const isEdge = i < 12;
+        {rodTransforms.map((rt, i) => {
           return (
-            <mesh key={i} position={mid} quaternion={quat} ref={(el) => { if (el) rodRefs.current[i] = el; }}>
-              <cylinderGeometry args={[isEdge ? 0.02 : 0.009, isEdge ? 0.02 : 0.009, len, 6]} />
+            <mesh key={i} position={rt.mid} quaternion={rt.quat} ref={(el) => { if (el) rodRefs.current[i] = el; }}>
+              <cylinderGeometry args={[rt.isEdge ? 0.02 : 0.009, rt.isEdge ? 0.02 : 0.009, rt.len, 6]} />
               <meshPhysicalMaterial
-                color={isEdge ? (dark ? '#e0e0e8' : '#c0c0c8') : (dark ? '#a0a0a8' : '#b0b0b8')}
+                color={rt.isEdge ? (dark ? '#e0e0e8' : '#c0c0c8') : (dark ? '#a0a0a8' : '#b0b0b8')}
                 metalness={0.85}
-                roughness={isEdge ? 0.05 : 0.12}
+                roughness={rt.isEdge ? 0.05 : 0.12}
                 clearcoat={1}
                 clearcoatRoughness={0.03}
                 envMapIntensity={dark ? 2.5 : 3}
                 reflectivity={1}
-                transmission={isEdge ? 0 : 0.3}
-                transparent={!isEdge}
-                opacity={isEdge ? 1 : 0.7}
+                transmission={rt.isEdge ? 0 : 0.3}
+                transparent={!rt.isEdge}
+                opacity={rt.isEdge ? 1 : 0.7}
               />
             </mesh>
           );

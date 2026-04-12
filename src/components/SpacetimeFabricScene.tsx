@@ -247,6 +247,8 @@ function TestParticle({ masses }: { masses: Mass[] }) {
     const mat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.15 })
     return new THREE.Line(geo, mat)
   }, [trailBuffer])
+  // Dispose geometry+material on unmount to free VRAM
+  useEffect(() => () => { trailLine.geometry.dispose(); (trailLine.material as THREE.Material).dispose() }, [trailLine])
   const trailPositions = useRef<{ x: number; y: number; z: number }[]>([])
   const absorbed = useRef(false)
   const respawnTimer = useRef(0)
@@ -377,6 +379,8 @@ function GridFrame() {
     const mat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.06 })
     return new THREE.Line(geo, mat)
   }, [half])
+
+  useEffect(() => () => { frameLine.geometry.dispose(); (frameLine.material as THREE.Material).dispose() }, [frameLine])
 
   return <primitive object={frameLine} />
 }

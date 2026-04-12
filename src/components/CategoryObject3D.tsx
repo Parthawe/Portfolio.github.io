@@ -57,6 +57,7 @@ function SceneInner({ slug, dark, mouse }: { slug: string; dark: boolean; mouse:
   const spinVel = useRef({ x: 0, y: 0 });
   const isDragging = useRef(false);
   const smoothMouse = useRef({ x: 0, y: 0 });
+  const dragCleanup = useRef<(() => void) | null>(null);
 
   const Component = CATEGORY_OBJECTS[slug];
   if (!Component) return null;
@@ -89,6 +90,9 @@ function SceneInner({ slug, dark, mouse }: { slug: string; dark: boolean; mouse:
     }
   });
 
+  // Cleanup drag listeners on unmount to prevent leaks
+  useEffect(() => () => { dragCleanup.current?.() }, []);
+
   const handlePointerDown = useCallback((e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     isDragging.current = true;
@@ -101,10 +105,12 @@ function SceneInner({ slug, dark, mouse }: { slug: string; dark: boolean; mouse:
 
     const onUp = () => {
       isDragging.current = false;
+      dragCleanup.current = null;
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
     };
 
+    dragCleanup.current = onUp;
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
   }, []);
