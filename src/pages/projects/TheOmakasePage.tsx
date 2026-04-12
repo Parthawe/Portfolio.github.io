@@ -344,8 +344,8 @@ export default function TheOmakasePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-front.png" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-workshop.png" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-workshop.webp" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -388,8 +388,8 @@ export default function TheOmakasePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/two-players.png" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/team-photo.png" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/two-players.webp" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/team-photo.webp" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -423,7 +423,7 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="/Assets/Projects/the-omakase/photos/cabinet-front.png" alt="The Omakase gameplay" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase gameplay" loading="lazy" />
           </div>
           <div className="wrap">
             <img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.png" alt="The Omakase gameplay detail" loading="lazy" />
@@ -463,7 +463,7 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="/Assets/Projects/the-omakase/photos/team-photo.png" alt="The Omakase at ITP Spring Show" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/team-photo.webp" alt="The Omakase at ITP Spring Show" loading="lazy" />
           </div>
         </section>
 

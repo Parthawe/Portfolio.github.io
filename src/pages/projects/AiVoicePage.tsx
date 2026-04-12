@@ -47,7 +47,7 @@ export default function AiVoicePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2025' },
           ]}
-          heroImage="/Assets/Projects/ai-voice/AI.jpg"
+          heroImage="/Assets/Projects/ai-voice/AI.webp"
           heroAlt="AI Voice Selection, hero"
         />
 

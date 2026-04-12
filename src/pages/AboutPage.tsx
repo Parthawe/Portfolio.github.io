@@ -73,8 +73,8 @@ export default function AboutPage() {
                 '/Assets/Character/me/1.png',
                 '/Assets/Character/me/2.png',
                 '/Assets/Character/me/3.png',
-                '/Assets/Character/me/4.png',
-                '/Assets/Character/me/5.png',
+                '/Assets/Character/me/4.webp',
+                '/Assets/Character/me/5.webp',
               ]}
               alt="Parth Pawar"
               className="abt-portal-img"

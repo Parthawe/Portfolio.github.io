@@ -212,7 +212,7 @@ export default function MentraBrandPage() {
         </section>
 
         {/* ── Exploded view ── */}
-        <CsImage src={`${P}/render-exploded.png`} alt="Mentra Live exploded view: every internal component — camera, circuit board, battery, speakers, hinges — laid out in assembly order" />
+        <CsImage src={`${P}/render-exploded.webp`} alt="Mentra Live exploded view: every internal component — camera, circuit board, battery, speakers, hinges — laid out in assembly order" />
 
         {/* ================================================================
             04 — INSTRUCTION BOOKLET

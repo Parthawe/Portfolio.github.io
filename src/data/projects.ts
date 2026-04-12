@@ -82,7 +82,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra',
     name: 'Mentra',
-    image: '/Assets/images/mentra/render-transparent.png',
+    image: '/Assets/images/mentra/render-transparent.webp',
     tag: 'AI WEARABLES',
     year: '2025–Present',
     desc: 'Designed the OS, companion app, and app store for AI smart glasses shipping at $299',
@@ -535,7 +535,7 @@ export const projects: Project[] = [
   {
     slug: 'arcade-lab',
     name: 'Arcade Lab',
-    image: '/Assets/Projects/the-omakase/photos/cabinet-front.png', // shares image with Omakase (it's the ancestor)
+    image: '/Assets/Projects/the-omakase/photos/cabinet-front.webp', // shares image with Omakase (it's the ancestor)
     tag: 'GAME PROTOTYPING',
     year: '2023',
     desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
@@ -574,7 +574,7 @@ export const projects: Project[] = [
   {
     slug: 'the-omakase',
     name: 'The Omakase',
-    image: '/Assets/Projects/the-omakase/photos/cabinet-front.png',
+    image: '/Assets/Projects/the-omakase/photos/cabinet-front.webp',
     tag: 'ARCADE GAME',
     year: '2024',
     desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille',

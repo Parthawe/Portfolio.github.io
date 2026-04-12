@@ -171,7 +171,7 @@ export default function MentraMiniAppsPage() {
 
       </main>
 
-      <NextProject slug="mentra" title="Mentra Glass" image="/Assets/images/mentra/render-transparent.png" />
+      <NextProject slug="mentra" title="Mentra Glass" image="/Assets/images/mentra/render-transparent.webp" />
       <Footer />
     </>
   )

@@ -51,7 +51,7 @@ export default function MentraPage() {
           { label: 'Platform', value: 'Wearable OS, Mobile, Web' },
         ]}
         liveUrl="https://www.mentra.glass"
-        heroImage="/Assets/images/mentra/render-camera-detail.png"
+        heroImage="/Assets/images/mentra/render-camera-detail.webp"
         heroAlt="Mentra Glass, AI-powered smart glasses with camera detail and Mentra logo"
       />
 
@@ -219,7 +219,7 @@ export default function MentraPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/images/mentra/render-transparent.png" alt="Mentra Live transparent frame render, showing internal components, camera module, and circuit board" />
+        <CsImage src="/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render, showing internal components, camera module, and circuit board" />
         <CsImage src="/Assets/images/mentra/photo-front.jpg" alt="Mentra Live smart glasses, real product photo showing lens display and black frame" />
 
         <CsSection id="cs-website" label="Live Product" title="mentraglass.com, The Marketing Site I Designed">
