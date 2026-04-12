@@ -10,6 +10,7 @@ import {
   LensAssembly,
   GlassCrystal,
 } from './HeroScene';
+import { useThemeMode } from '../hooks/useThemeMode';
 
 const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolean }>> = {
   installations: TrussStructure,
@@ -134,7 +135,9 @@ function SceneInner({ slug, dark, mouse }: { slug: string; dark: boolean; mouse:
   );
 }
 
-export default function CategoryObject3D({ slug, dark = false, size = 200, className, style }: Props) {
+export default function CategoryObject3D({ slug, dark: darkProp, size = 200, className, style }: Props) {
+  const themeDark = useThemeMode();
+  const dark = darkProp ?? themeDark;
   const mouseRef = useRef({ x: 0, y: 0 });
 
   if (!CATEGORY_OBJECTS[slug]) return null;

@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, Navigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
@@ -449,7 +449,7 @@ export { articles }
 export function WritingArticlePage() {
   const { slug } = useParams<{ slug: string }>()
   const article = articles.find(a => a.slug === slug)
-  if (!article) return <WritingIndexPage />
+  if (!article) return <Navigate to="/writing" replace />
   return <ArticlePage article={article} />
 }
 
