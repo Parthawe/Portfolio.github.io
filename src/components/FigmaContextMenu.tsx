@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface MenuItem {
   label: string
@@ -11,6 +12,7 @@ export default function FigmaContextMenu() {
   const [open, setOpen] = useState(false)
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const menuRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
 
   const handleContext = useCallback((e: MouseEvent) => {
     e.preventDefault()
@@ -41,7 +43,7 @@ export default function FigmaContextMenu() {
   }, [open, close])
 
   const copyUrl = useCallback(() => {
-    navigator.clipboard.writeText(window.location.href)
+    navigator.clipboard.writeText(window.location.href).catch(() => {})
     close()
   }, [close])
 
@@ -50,20 +52,10 @@ export default function FigmaContextMenu() {
     close()
   }, [close])
 
-  const goHome = useCallback(() => {
-    window.location.href = '/'
+  const go = useCallback((path: string) => {
+    navigate(path)
     close()
-  }, [close])
-
-  const goWork = useCallback(() => {
-    window.location.href = '/work'
-    close()
-  }, [close])
-
-  const goAbout = useCallback(() => {
-    window.location.href = '/about'
-    close()
-  }, [close])
+  }, [navigate, close])
 
   const toggleTheme = useCallback(() => {
     const current = document.documentElement.dataset.theme
@@ -73,19 +65,20 @@ export default function FigmaContextMenu() {
   }, [close])
 
   const items: MenuItem[] = [
-    { label: 'Copy Link', shortcut: '⌘C', action: copyUrl },
-    { label: 'View Source', shortcut: '⌘U', action: viewSource },
+    { label: 'Copy Link', shortcut: '\u2318C', action: copyUrl },
+    { label: 'View Source', shortcut: '\u2318U', action: viewSource },
     { label: 'divider', divider: true },
-    { label: 'Home', shortcut: '⌘1', action: goHome },
-    { label: 'Work', shortcut: '⌘2', action: goWork },
-    { label: 'About', shortcut: '⌘3', action: goAbout },
+    { label: 'Home', shortcut: '\u23181', action: () => go('/') },
+    { label: 'Work', shortcut: '\u23182', action: () => go('/work') },
+    { label: 'About', shortcut: '\u23183', action: () => go('/about') },
+    { label: 'Writing', shortcut: '\u23184', action: () => go('/writing') },
     { label: 'divider', divider: true },
-    { label: 'Zoom In', shortcut: '⌘+', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '=', metaKey: true })); close() } },
-    { label: 'Zoom Out', shortcut: '⌘−', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '-', metaKey: true })); close() } },
-    { label: 'Zoom to 100%', shortcut: '⌘0', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '0', metaKey: true })); close() } },
+    { label: 'Zoom In', shortcut: '\u2318+', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '=', metaKey: true })); close() } },
+    { label: 'Zoom Out', shortcut: '\u2318\u2212', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '-', metaKey: true })); close() } },
+    { label: 'Zoom to 100%', shortcut: '\u23180', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '0', metaKey: true })); close() } },
     { label: 'divider', divider: true },
-    { label: 'Toggle Theme', shortcut: '⌘D', action: toggleTheme },
-    { label: 'Made with React + Three.js', shortcut: '' },
+    { label: 'Toggle Theme', shortcut: '\u2318D', action: toggleTheme },
+    { label: 'React 19 + Three.js + Tailwind v4', shortcut: '' },
   ]
 
   if (!open) return null

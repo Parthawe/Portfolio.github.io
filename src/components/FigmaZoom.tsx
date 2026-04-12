@@ -1,17 +1,17 @@
-import { useEffect, useRef, useCallback, useState } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 
 /**
  * Figma-style zoom: Cmd+/- to zoom page, badge shows percentage.
- * Click badge to reset to 100%. Applies CSS transform to body.
+ * Badge only visible when zoom !== 100%. Click to reset.
  */
 
 const STEPS = [50, 67, 75, 80, 90, 100, 110, 125, 150, 200]
 
 export default function FigmaZoom() {
-  const zoomRef = useRef(100)
+  const [zoom, setZoom] = useState(100)
 
   const applyZoom = useCallback((level: number) => {
-    zoomRef.current = level
+    setZoom(level)
     document.documentElement.style.setProperty('--page-zoom', String(level / 100))
     const wrapper = document.getElementById('root')
     if (wrapper) {
@@ -26,23 +26,23 @@ export default function FigmaZoom() {
         wrapper.style.transform = `scale(${scale})`
         wrapper.style.transformOrigin = 'top center'
         wrapper.style.width = `${100 / scale}%`
-        // Prevent white space below by adjusting the wrapper's visual height
         wrapper.style.minHeight = `${100 / scale}vh`
-        // Let the body scroll naturally
         document.body.style.overflow = ''
       }
     }
   }, [])
 
   const zoomIn = useCallback(() => {
-    const next = STEPS.find(s => s > zoomRef.current) || zoomRef.current
+    const current = zoom
+    const next = STEPS.find(s => s > current) || current
     applyZoom(next)
-  }, [applyZoom])
+  }, [zoom, applyZoom])
 
   const zoomOut = useCallback(() => {
-    const next = [...STEPS].reverse().find(s => s < zoomRef.current) || zoomRef.current
+    const current = zoom
+    const next = [...STEPS].reverse().find(s => s < current) || current
     applyZoom(next)
-  }, [applyZoom])
+  }, [zoom, applyZoom])
 
   const zoomReset = useCallback(() => {
     applyZoom(100)
@@ -64,5 +64,17 @@ export default function FigmaZoom() {
   )
   if (isMobile) return null
 
-  return null // zoom controlled via keyboard only (⌘+, ⌘-, ⌘0)
+  // Only show badge when zoomed (not at 100%)
+  if (zoom === 100) return null
+
+  return (
+    <button
+      className="figma-zoom-badge figma-hover"
+      onClick={zoomReset}
+      title="Reset zoom (\u23180)"
+      aria-label={`Zoom ${zoom}%, click to reset`}
+    >
+      {zoom}%
+    </button>
+  )
 }

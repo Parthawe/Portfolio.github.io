@@ -96,9 +96,12 @@ export default function Nav() {
     document.body.classList.toggle('figma-rulers-off');
   }, []);
 
-  const isAbout = pathname === '/about';
   const isHome = pathname === '/';
-  const isWork = !isHome && !isAbout;
+  const isAbout = pathname === '/about';
+  const isWriting = pathname === '/writing' || pathname.startsWith('/writing/');
+  const isWork = pathname === '/work' || pathname.startsWith('/work/');
+  // Project and category pages also count as "work"
+  const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !['studio', 'book', 'graveyard'].some(r => pathname === `/${r}`));
 
   return (
     <>
@@ -108,8 +111,9 @@ export default function Nav() {
           {/* Left group, logo + links in a single pill */}
           <div className="nav-left-pill figma-hover">
             <Link to="/" className="nav-logo figma-hover">PP<FigmaSelect /></Link>
-            <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWork ? ' active' : ''}`}>Work<FigmaSelect /></Link>
+            <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
             <Link to="/about" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}>About<FigmaSelect /></Link>
+            <Link to="/writing" className={`pill-link nav-pill-link figma-hover${isWriting ? ' active' : ''}`}>Writing<FigmaSelect /></Link>
             <FigmaSelect />
           </div>
 
