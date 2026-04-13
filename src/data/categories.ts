@@ -65,7 +65,7 @@ export const categories: CategoryData[] = [
       title: 'Mentra',
       desc: "AI smart glasses with the world's first wearable app store",
       role: 'Head of UI/UX · 2026',
-      image: '/Assets/images/mentra.png',
+      image: '/Assets/images/mentra.webp',
       bgColor: '#fef2f2',
       tag: 'AI WEARABLES',
       year: '2026',
@@ -74,7 +74,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'clawed-chat',
-          image: '/Assets/images/clawed.png',
+          image: '/Assets/images/clawed.webp',
           alt: 'Clawed',
           name: 'Clawed',
           result: 'AI assistant with receipts for every action, 3-tier trust architecture',
@@ -85,7 +85,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'ballah-code',
-          image: '/Assets/images/ballah-code.png',
+          image: '/Assets/images/ballah-code.webp',
           alt: 'Ballah Code',
           name: 'Ballah Code',
           result: 'AI-native desktop IDE with 17 production tools',
@@ -98,7 +98,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'executivelens',
-          image: '/Assets/images/executivelens.png',
+          image: '/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'Saved executives 5.2 hrs/week, 87% adoption in 2 weeks',
@@ -109,7 +109,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'oncall-lens',
-          image: '/Assets/images/oncall-lens.png',
+          image: '/Assets/images/oncall-lens.webp',
           alt: 'OnCall Lens',
           name: 'OnCall Lens',
           result: 'Sentry alert → Claude → auto PR fix, built in 24 hours',
@@ -122,7 +122,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ai-voice',
-          image: '/Assets/images/ai-voice.png',
+          image: '/Assets/images/ai-voice.webp',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Enterprise voice selection with emotional intelligence, A/B tested',
@@ -194,7 +194,7 @@ export const categories: CategoryData[] = [
       title: 'Mentra',
       desc: "AI smart glasses with the world's first wearable app store",
       role: 'Head of UI/UX · 2026',
-      image: '/Assets/images/mentra.png',
+      image: '/Assets/images/mentra.webp',
       bgColor: '#eff6ff',
       tag: 'AI WEARABLES',
       year: '2026',
@@ -214,7 +214,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'zentipay',
-          image: '/Assets/images/zentipay.png',
+          image: '/Assets/images/zentipay.webp',
           alt: 'ZentiPay',
           name: 'ZentiPay',
           result: 'Fintech super app from scratch, 30% higher transaction completion',
@@ -227,7 +227,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'executivelens',
-          image: '/Assets/images/executivelens.png',
+          image: '/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'Saved executives 5.2 hrs/week, 87% adoption in 2 weeks',
@@ -251,7 +251,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'org-dashboard',
-          image: '/Assets/images/org-dashboard.png',
+          image: '/Assets/images/org-dashboard.webp',
           alt: 'OrgDashboard',
           name: 'OrgDashboard',
           result: 'SaaS giving AI agents organizational context, dual-user design',
@@ -584,7 +584,7 @@ export const categories: CategoryData[] = [
       title: 'TEDxVITPune',
       desc: 'Brand identity and event design',
       role: 'Art Director · 2021',
-      image: '/Assets/images/tedx.png',
+      image: '/Assets/images/tedx.webp',
       bgColor: '#fdf4ff',
       tag: 'ART DIRECTION',
       year: '2021',
@@ -606,7 +606,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'mentra',
-          image: '/Assets/images/mentra.png',
+          image: '/Assets/images/mentra.webp',
           alt: 'Mentra Glass',
           name: 'Mentra Glass',
           result: 'Packaging, motion design, and visual identity for AI smart glasses',
@@ -678,7 +678,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, 30% higher transaction completion rate',
       role: 'Founding Product Designer · 2025',
-      image: '/Assets/images/zentipay.png',
+      image: '/Assets/images/zentipay.webp',
       bgColor: '#e8f4fd',
       tag: 'FINTECH',
       year: '2025',
@@ -698,7 +698,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'executivelens',
-          image: '/Assets/images/executivelens.png',
+          image: '/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'Saved executives 5.2 hrs/week, 87% adoption in 2 weeks',
@@ -711,7 +711,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'org-dashboard',
-          image: '/Assets/images/org-dashboard.png',
+          image: '/Assets/images/org-dashboard.webp',
           alt: 'OrgDashboard',
           name: 'OrgDashboard',
           result: 'SaaS giving AI agents organizational context, dual-user design',
@@ -792,7 +792,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'the-point-cdc',
-          image: '/Assets/images/the-point-cdc.png',
+          image: '/Assets/images/the-point-cdc.webp',
           alt: 'The Point CDC',
           name: 'The Point CDC',
           result: 'Redesigned digital platform for a Bronx community nonprofit',
@@ -803,7 +803,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'office-of-diversity',
-          image: '/Assets/images/office-of-diversity.png',
+          image: '/Assets/images/office-of-diversity.webp',
           alt: 'Office of Diversity',
           name: 'Office of Diversity',
           result: 'IDBEA report and interactive timeline, WCAG 2.1 AA compliant',
@@ -857,7 +857,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, 30% higher transaction completion',
       role: 'Founding Product Designer · 2025',
-      image: '/Assets/images/zentipay.png',
+      image: '/Assets/images/zentipay.webp',
       bgColor: '#f0ecff',
       tag: 'FINTECH',
       year: '2025',
@@ -908,7 +908,7 @@ export const categories: CategoryData[] = [
       title: 'Clawed',
       desc: 'Safety-first AI assistant for glasses and web',
       role: 'Product Designer · 2026',
-      image: '/Assets/images/clawed.png',
+      image: '/Assets/images/clawed.webp',
       bgColor: '#fdf2f8',
       tag: 'AI ASSISTANT',
       year: '2026',
@@ -917,7 +917,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'oncall-lens',
-          image: '/Assets/images/oncall-lens.png',
+          image: '/Assets/images/oncall-lens.webp',
           alt: 'OnCall Lens',
           name: 'OnCall Lens',
           result: 'Sentry alerts to automated PR fixes via smart glasses',
@@ -928,7 +928,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'ai-voice',
-          image: '/Assets/images/ai-voice.png',
+          image: '/Assets/images/ai-voice.webp',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Conversational AI and voice-driven interaction',
@@ -941,7 +941,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ballah-code',
-          image: '/Assets/images/ballah-code.png',
+          image: '/Assets/images/ballah-code.webp',
           alt: 'Ballah Code',
           name: 'Ballah Code',
           result: 'AI-powered dev tools platform',

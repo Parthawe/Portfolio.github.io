@@ -247,7 +247,7 @@ export default function AtpsPage() {
 
       </main>
 
-      <NextProject slug="mentra" title="Mentra" image="/Assets/images/mentra.png" />
+      <NextProject slug="mentra" title="Mentra" image="/Assets/images/mentra.webp" />
       <Footer />
     </>
   )

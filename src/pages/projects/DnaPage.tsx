@@ -60,7 +60,7 @@ export default function DnaPage() {
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/card-final-message.png" alt="Card: Final Message for Embracing Death, held in hand" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/pill-pack.png" alt="Pill blister pack inside the Live Immortal box: Unlock More Life" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/pill-pack.webp" alt="Pill blister pack inside the Live Immortal box: Unlock More Life" loading="lazy" /></div>
             </div>
           </div>
         </section>

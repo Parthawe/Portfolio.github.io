@@ -24,7 +24,7 @@ export default function ThePointCdcPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
         <meta property="og:description" content="Digital transformation for community empowerment in Hunts Point, Bronx, website redesign." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/the-point-cdc.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/the-point-cdc.webp" />
       </Helmet>
 
       <Nav />
@@ -364,7 +364,7 @@ export default function ThePointCdcPage() {
 
       </main>
 
-        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Assets/images/office-of-diversity.png" />
+        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Assets/images/office-of-diversity.webp" />
       <Footer />
     </>
   )

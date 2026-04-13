@@ -26,7 +26,7 @@ export default function AiVoicePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI Voice Interface · Parth Pawar" />
         <meta property="og:description" content="Redefining AI Voice Selection for Enterprise, emotional intelligence and expressive voice design." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/ai-voice.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/ai-voice.webp" />
       </Helmet>
 
       <Nav />
@@ -424,7 +424,7 @@ export default function AiVoicePage() {
 
       </main>
 
-      <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/images/ballah-code.png" />
+      <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/images/ballah-code.webp" />
       <Footer />
     </>
   )

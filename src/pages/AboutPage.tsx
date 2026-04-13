@@ -70,9 +70,9 @@ export default function AboutPage() {
           <div className="abt-photo-hero">
             <PortalReveal
               images={[
-                '/Assets/Character/me/1.png',
+                '/Assets/Character/me/1.webp',
                 '/Assets/Character/me/2.png',
-                '/Assets/Character/me/3.png',
+                '/Assets/Character/me/3.webp',
                 '/Assets/Character/me/4.webp',
                 '/Assets/Character/me/5.webp',
               ]}

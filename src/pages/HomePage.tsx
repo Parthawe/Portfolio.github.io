@@ -76,7 +76,7 @@ export default function HomePage() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Parth Pawar, Design Engineer" />
         <meta property="og:description" content="Design Engineer specializing in AI wearables, fintech, and interactive systems. Head of UI/UX at Mentra. NYU ITP '24." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.webp" />
         <link rel="canonical" href="https://parthpawar.com" />
       </Helmet>
 

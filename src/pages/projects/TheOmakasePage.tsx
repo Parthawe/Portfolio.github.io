@@ -377,9 +377,9 @@ export default function TheOmakasePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.png" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.png" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.png" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -426,7 +426,7 @@ export default function TheOmakasePage() {
             <img src="/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase gameplay" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.png" alt="The Omakase gameplay detail" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="The Omakase gameplay detail" loading="lazy" />
           </div>
         </section>
 
@@ -443,10 +443,10 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.png" alt="The Omakase fabrication" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="The Omakase fabrication" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.png" alt="The Omakase cabinet detail" loading="lazy" />
+            <img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="The Omakase cabinet detail" loading="lazy" />
           </div>
         </section>
 

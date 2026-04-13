@@ -149,7 +149,7 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/RevolvingStage/photos/caster-engineering.png" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" />
+          <img src="/Assets/Projects/RevolvingStage/photos/caster-engineering.webp" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" />
         </div>
 
         {/* Revolving Stage Physics */}

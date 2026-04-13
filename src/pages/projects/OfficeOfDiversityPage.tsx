@@ -23,7 +23,7 @@ export default function OfficeOfDiversityPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Office of Diversity · Parth Pawar" />
         <meta property="og:description" content="Interactive IDBEA data visualization report for NYU Tisch, translating data into accessible visuals." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/office-of-diversity.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/office-of-diversity.webp" />
       </Helmet>
 
       <Nav />
@@ -51,7 +51,7 @@ export default function OfficeOfDiversityPage() {
         {/* Product photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/full-report-page.png" alt="Full IDBEA report page: data visualizations, timelines, statistics, and milestones" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/full-report-page.webp" alt="Full IDBEA report page: data visualizations, timelines, statistics, and milestones" loading="lazy" /></div>
           </div>
         </section>
 
@@ -344,7 +344,7 @@ export default function OfficeOfDiversityPage() {
 
       </main>
 
-      <NextProject slug="clawed-chat" title="Clawed" image="/Assets/images/clawed.png" />
+      <NextProject slug="clawed-chat" title="Clawed" image="/Assets/images/clawed.webp" />
       <Footer />
     </>
   )

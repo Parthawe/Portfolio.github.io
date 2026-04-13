@@ -27,7 +27,7 @@ export default function ExecutiveLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
         <meta property="og:description" content="AI-powered business intelligence for executives, from meeting insights to strategic recommendations in real time." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/executivelens.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/executivelens.webp" />
       </Helmet>
 
       <Nav />
@@ -48,7 +48,7 @@ export default function ExecutiveLensPage() {
             { label: 'Platform', value: 'Web + Mobile' },
           ]}
           liveUrl="https://www.executivelens.ai"
-          heroImage="/Assets/images/executivelens.png"
+          heroImage="/Assets/images/executivelens.webp"
           heroAlt="ExecutiveLens.ai, AI-powered business intelligence for executives"
         />
 
@@ -204,7 +204,7 @@ export default function ExecutiveLensPage() {
 
       </main>
 
-      <NextProject slug="zentipay" title="ZentiPay" image="/Assets/images/zentipay.png" />
+      <NextProject slug="zentipay" title="ZentiPay" image="/Assets/images/zentipay.webp" />
       <Footer />
     </>
   )

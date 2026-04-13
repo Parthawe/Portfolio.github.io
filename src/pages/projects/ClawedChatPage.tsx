@@ -26,7 +26,7 @@ export default function ClawedChatPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Clawed · Parth Pawar" />
         <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/clawed.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/clawed.webp" />
       </Helmet>
 
       <Nav />
@@ -293,7 +293,7 @@ export default function ClawedChatPage() {
 
       </main>
 
-      <NextProject slug="oncall-lens" title="OnCall Lens" image="/Assets/images/oncall-lens.png" />
+      <NextProject slug="oncall-lens" title="OnCall Lens" image="/Assets/images/oncall-lens.webp" />
       <Footer />
     </>
   )

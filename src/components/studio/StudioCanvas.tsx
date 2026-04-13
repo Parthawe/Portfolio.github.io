@@ -133,7 +133,7 @@ const StudioCanvas = forwardRef<StudioCanvasRef, Props>(
       c.add(new Rect({ left: ox + 80, top: oy + 330, width: 14, height: 14, angle: 45, fill: ACCENT }))
 
       // Load images
-      ;['/Assets/images/mentra.png', '/Assets/images/zentipay.png'].forEach((path, i) => {
+      ;['/Assets/images/mentra.webp', '/Assets/images/zentipay.webp'].forEach((path, i) => {
         const imgEl = new Image()
         imgEl.crossOrigin = 'anonymous'
         imgEl.onload = () => {

@@ -29,7 +29,7 @@ export default function ZentipayPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Fintech super app that increased transaction completion by 30% and reduced perceived transfer time by 40%." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/zentipay.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/zentipay.webp" />
       </Helmet>
 
       <Nav />
@@ -50,7 +50,7 @@ export default function ZentipayPage() {
             { label: 'Tools', value: 'Figma, Maze, Hotjar' },
             { label: 'Timeline', value: 'Q2 \u2013 Q3 2025 (~15 weeks)' },
           ]}
-          heroImage="/Assets/images/zentipay.png"
+          heroImage="/Assets/images/zentipay.webp"
           heroAlt="ZentiPay, fintech super app for cross-border payments"
         />
 

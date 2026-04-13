@@ -30,7 +30,7 @@ export default function MentraPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra · Parth Pawar" />
         <meta property="og:description" content="Designing the UX for the only AI-powered smart glasses with an app store. MentraOS, companion app, and developer platform." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.webp" />
       </Helmet>
 
       <Nav />
@@ -123,7 +123,7 @@ export default function MentraPage() {
             { title: "If They Won't Build, Nothing Else Matters", desc: "An app store is only as good as its apps. I designed the SDK docs, developer portal, and submission flow to make building for glasses feel as natural as building for phones." },
             { title: 'A Camera on Your Face Is a Social Contract', desc: 'Post-Google-Glass, face-worn cameras carry social baggage. I designed visual indicators, privacy modes, and interaction patterns that build trust with both the wearer and everyone in the room.' },
           ]} />
-          <CsImage src="/Assets/images/mentra/render-temple-detail.png" alt="Mentra Live temple detail, close-up of hinge mechanism, USB-C port, and Mentra logo" />
+          <CsImage src="/Assets/images/mentra/render-temple-detail.webp" alt="Mentra Live temple detail, close-up of hinge mechanism, USB-C port, and Mentra logo" />
         </CsSection>
 
         <CsSection id="cs-companion" label="Companion App" title="The Control Center in Your Pocket">
@@ -303,7 +303,7 @@ export default function MentraPage() {
 
       </main>
 
-      <NextProject slug="executivelens" title="ExecutiveLens" image="/Assets/images/executivelens.png" />
+      <NextProject slug="executivelens" title="ExecutiveLens" image="/Assets/images/executivelens.webp" />
       <Footer />
     </>
   )

@@ -424,7 +424,7 @@ export default function MentraBrandPage() {
 
       </main>
 
-      <NextProject slug="tedx" title="TEDxVITPune" image="/Assets/images/tedx.png" />
+      <NextProject slug="tedx" title="TEDxVITPune" image="/Assets/images/tedx.webp" />
       <Footer />
     </>
   )

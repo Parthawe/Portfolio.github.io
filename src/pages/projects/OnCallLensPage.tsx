@@ -27,7 +27,7 @@ export default function OnCallLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OnCall Lens · Parth Pawar" />
         <meta property="og:description" content="Transforming Sentry alerts into automated PR patches via smart glasses. AI agent fixes bugs while humans approve from their wrist." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/oncall-lens.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/oncall-lens.webp" />
       </Helmet>
 
       <Nav />
@@ -217,7 +217,7 @@ export default function OnCallLensPage() {
 
       </main>
 
-      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Assets/images/ai-voice.png" />
+      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Assets/images/ai-voice.webp" />
       <Footer />
     </>
   )

@@ -156,7 +156,7 @@ export default function DrowningPage() {
 
       </main>
 
-      <NextProject slug="tedx" title="TEDx VIT Pune" image="/Assets/images/tedx.png" />
+      <NextProject slug="tedx" title="TEDx VIT Pune" image="/Assets/images/tedx.webp" />
       <Footer />
     </>
   )

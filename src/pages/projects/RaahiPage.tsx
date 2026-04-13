@@ -45,7 +45,7 @@ export default function RaahiPage() {
         />
 
         {/* Hero slide */}
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/hero-3d.png" alt="Raahi hero, 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/hero-3d.webp" alt="Raahi hero, 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
 
         {/* Summary section with label-rows */}
         <section className="cs-section reveal">
@@ -143,7 +143,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/all-screens.png" alt="Isometric 3D view of all Raahi app screens on blue background" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/all-screens.webp" alt="Isometric 3D view of all Raahi app screens on blue background" loading="lazy" /></div>
 
         {/* Features */}
         <section className="cs-section reveal" id="cs-features">
@@ -283,7 +283,7 @@ export default function RaahiPage() {
 
       </main>
 
-        <NextProject slug="the-point-cdc" title="The Point CDC" image="/Assets/images/the-point-cdc.png" />
+        <NextProject slug="the-point-cdc" title="The Point CDC" image="/Assets/images/the-point-cdc.webp" />
       <Footer />
     </>
   )

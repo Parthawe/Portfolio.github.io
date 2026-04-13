@@ -321,7 +321,7 @@ export default function CueTvPage() {
 
       </main>
 
-      <NextProject slug="org-dashboard" title="OrgDashboard" image="/Assets/images/org-dashboard.png" />
+      <NextProject slug="org-dashboard" title="OrgDashboard" image="/Assets/images/org-dashboard.webp" />
       <Footer />
     </>
   )

@@ -306,7 +306,7 @@ export const projects: Project[] = [
   {
     slug: 'keyboard-project',
     name: 'BreakGen',
-    image: '/Assets/Projects/Keyboard/photos/keyboard-data-hero.png',
+    image: '/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
     tag: 'ITP THESIS',
     year: '2025',
     desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors',
@@ -638,7 +638,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra-brand',
     name: 'Mentra Brand & Packaging',
-    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.png',
+    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
     tag: 'BRAND & PACKAGING',
     year: '2025–26',
     desc: 'End-to-end brand identity and packaging for AI smart glasses — logo, box, booklet, ads, and 24 social templates',

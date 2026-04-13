@@ -43,7 +43,7 @@ export default function KeyboardProjectPage() {
             { label: 'Timeline', value: '2024\u20132025' },
             { label: 'Stack', value: 'React, Three.js, Meshy AI, KiCad' },
           ]}
-          heroImage="/Assets/Projects/Keyboard/photos/keyboard-data-hero.png"
+          heroImage="/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp"
           heroAlt="KeyData: keyboard with keys at different heights representing data, alongside 3D printed data sculpture"
         />
 
@@ -51,7 +51,7 @@ export default function KeyboardProjectPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/keys-closeup.png" alt="Close-up: keyboard keys at varying heights, some lifted on wooden stems" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up: keyboard keys at varying heights, some lifted on wooden stems" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/data-sculpture.png" alt="3D printed data sculpture: keyboard keys as a bar chart" loading="lazy" /></div>
             </div>
           </div>
