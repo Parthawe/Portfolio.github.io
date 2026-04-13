@@ -69,7 +69,7 @@ export default function FeelingPatternsPage() {
 
       </main>
 
-      <NextProject slug="shuffle" title="Shuffle" image="/Assets/images/shuffle.jpg" />
+      <NextProject slug="shuffle" title="Shuffle" image="/Portfolio.github.io/Assets/images/shuffle.jpg" />
       <Footer />
     </>
   )

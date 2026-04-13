@@ -24,7 +24,7 @@ export default function ThePointCdcPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
         <meta property="og:description" content="Digital transformation for community empowerment in Hunts Point, Bronx, website redesign." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/the-point-cdc.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/the-point-cdc.webp" />
       </Helmet>
 
       <Nav />
@@ -46,14 +46,14 @@ export default function ThePointCdcPage() {
             { label: 'Year', value: '2024' },
           ]}
           liveUrl="https://thepoint.org"
-          heroImage="/Assets/Projects/ThePointCDC/photos/homepage-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.webp"
           heroAlt="The Point CDC redesigned homepage: Empowering Community, Hunts Point, Where Bronx Breathes Brighter"
         />
 
         {/* All pages mockup */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="All redesigned pages: team, programs, news, community resources, events" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="All redesigned pages: team, programs, news, community resources, events" loading="lazy" /></div>
           </div>
         </section>
 
@@ -107,7 +107,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
+                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
               </div>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-5.png" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-5.png" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
         {/* Design Direction */}
@@ -245,14 +245,14 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">User Journey</h2>
             <div className="cs-img-full">
-              <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
+              <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
             </div>
           </div>
         </section>
 
         {/* Wireframe slide */}
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
         </div>
 
         {/* Visual Style */}
@@ -267,7 +267,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}
@@ -288,15 +288,15 @@ export default function ThePointCdcPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign: streamlined navigation, responsive design, improved readability, cohesive color scheme" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign: streamlined navigation, responsive design, improved readability, cohesive color scheme" loading="lazy" /></div>
           </div>
         </section>
 
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.webp" alt="Community engagement at The Point CDC" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/community-photo-2.webp" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -364,7 +364,7 @@ export default function ThePointCdcPage() {
 
       </main>
 
-        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Assets/images/office-of-diversity.webp" />
+        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Portfolio.github.io/Assets/images/office-of-diversity.webp" />
       <Footer />
     </>
   )

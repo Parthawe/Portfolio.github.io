@@ -15,7 +15,7 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const P = '/Assets/Projects/mentra-brand/photos'
+const P = '/Portfolio.github.io/Assets/Projects/mentra-brand/photos'
 
 export default function MentraBrandPage() {
   return (
@@ -424,7 +424,7 @@ export default function MentraBrandPage() {
 
       </main>
 
-      <NextProject slug="tedx" title="TEDxVITPune" image="/Assets/images/tedx.webp" />
+      <NextProject slug="tedx" title="TEDxVITPune" image="/Portfolio.github.io/Assets/images/tedx.webp" />
       <Footer />
     </>
   )

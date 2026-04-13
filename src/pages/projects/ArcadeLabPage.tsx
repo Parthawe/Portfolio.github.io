@@ -101,7 +101,7 @@ export default function ArcadeLabPage() {
 
       </main>
 
-      <NextProject slug="the-omakase" title="The Omakase" image="/Assets/images/the-omakase.jpg" />
+      <NextProject slug="the-omakase" title="The Omakase" image="/Portfolio.github.io/Assets/images/the-omakase.jpg" />
       <Footer />
     </>
   )

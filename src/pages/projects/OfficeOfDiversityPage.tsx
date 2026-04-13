@@ -23,7 +23,7 @@ export default function OfficeOfDiversityPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Office of Diversity · Parth Pawar" />
         <meta property="og:description" content="Interactive IDBEA data visualization report for NYU Tisch, translating data into accessible visuals." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/office-of-diversity.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/office-of-diversity.webp" />
       </Helmet>
 
       <Nav />
@@ -44,14 +44,14 @@ export default function OfficeOfDiversityPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2024' },
           ]}
-          heroImage="/Assets/Projects/office-of-diversity/photos/responsive-preview.png"
+          heroImage="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/responsive-preview.png"
           heroAlt="Tisch IDBEA 2024 Report: desktop and mobile responsive views"
         />
 
         {/* Product photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/full-report-page.webp" alt="Full IDBEA report page: data visualizations, timelines, statistics, and milestones" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/full-report-page.webp" alt="Full IDBEA report page: data visualizations, timelines, statistics, and milestones" loading="lazy" /></div>
           </div>
         </section>
 
@@ -59,8 +59,8 @@ export default function OfficeOfDiversityPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Research: sticky note wall with timeline mapping and information architecture" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/user-testing.png" alt="User testing session with participants reviewing the report" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Research: sticky note wall with timeline mapping and information architecture" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/user-testing.png" alt="User testing session with participants reviewing the report" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -103,7 +103,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/2.jpg" alt="Summary, challenges, role, and tools overview for the IDBEA report project" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/2.jpg" alt="Summary, challenges, role, and tools overview for the IDBEA report project" />
 
         {/* IDBEA Context */}
         <section className="cs-section reveal">
@@ -116,7 +116,7 @@ export default function OfficeOfDiversityPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/office-of-diversity/3.webp" alt="IDBEA report context, Tisch Office of Diversity values and process overview" loading="lazy" />
+                <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/3.webp" alt="IDBEA report context, Tisch Office of Diversity values and process overview" loading="lazy" />
               </div>
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/4.webp" alt="Process steps, understanding scope, design conceptualization, and data visualization approach" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/4.webp" alt="Process steps, understanding scope, design conceptualization, and data visualization approach" />
 
         {/* Process Step 4 */}
         <CsSection label="04 \u2014 Process" title="Interactivity & User Engagement">
@@ -216,7 +216,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/5.webp" alt="Process steps, interactivity, collaboration sessions, and accessibility compliance" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/5.webp" alt="Process steps, interactivity, collaboration sessions, and accessibility compliance" />
 
         {/* Impact */}
         <CsSection id="cs-impact" label="Impact" title="Outcome">
@@ -237,7 +237,7 @@ export default function OfficeOfDiversityPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/6.jpg" alt="Outcome, 74% increase in user interaction, accessibility success, and key learnings" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/6.jpg" alt="Outcome, 74% increase in user interaction, accessibility success, and key learnings" />
 
         {/* The Report */}
         <CsSection id="cs-report" label="The Report" title="IDBEA 2024 Report">
@@ -277,7 +277,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/7.webp" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/7.webp" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
 
         {/* Advisement */}
         <CsSection label="Structure" title="Advisement & Feedback Groups">
@@ -303,7 +303,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/8.webp" alt="Report, advisement groups, focus areas, and data visualization charts showing engagement metrics" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/8.webp" alt="Report, advisement groups, focus areas, and data visualization charts showing engagement metrics" />
 
         {/* Data Highlights */}
         <CsSection label="Data Highlights" title="Report Data at a Glance">
@@ -328,11 +328,11 @@ export default function OfficeOfDiversityPage() {
           </details>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/9.webp" alt="Report, restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/9.webp" alt="Report, restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" />
 
         <CsThanks contactCta />
 
-        <CsImage src="/Assets/Projects/office-of-diversity/10.jpg" alt="Credits, Parth Pawar, UI/UX Designer" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/10.jpg" alt="Credits, Parth Pawar, UI/UX Designer" />
 
         <BottomNav sections={[
           { id: 'cs-goals', label: 'Goals' },
@@ -344,7 +344,7 @@ export default function OfficeOfDiversityPage() {
 
       </main>
 
-      <NextProject slug="clawed-chat" title="Clawed" image="/Assets/images/clawed.webp" />
+      <NextProject slug="clawed-chat" title="Clawed" image="/Portfolio.github.io/Assets/images/clawed.webp" />
       <Footer />
     </>
   )

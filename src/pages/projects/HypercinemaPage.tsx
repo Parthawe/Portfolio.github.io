@@ -57,7 +57,7 @@ export default function HypercinemaPage() {
           { id: 'cs-craft', label: 'Craft' },
         ]} />
       </main>
-      <NextProject slug="uv-light" title="UV Light" image="/Assets/images/uv-light.jpg" />
+      <NextProject slug="uv-light" title="UV Light" image="/Portfolio.github.io/Assets/images/uv-light.jpg" />
       <Footer />
     </>
   )

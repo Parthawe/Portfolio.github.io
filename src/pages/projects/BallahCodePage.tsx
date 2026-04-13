@@ -21,7 +21,7 @@ export default function BallahCodePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Ballah Code &middot; Parth Pawar" />
         <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer, not a chatbot." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/ballah-code.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/ballah-code.webp" />
       </Helmet>
 
       <Nav />
@@ -41,7 +41,7 @@ export default function BallahCodePage() {
             { label: 'Timeline', value: '2026' },
             { label: 'Type', value: 'Dev Tools \u00b7 AI' },
           ]}
-          heroImage="/Assets/images/ballah-code.webp"
+          heroImage="/Portfolio.github.io/Assets/images/ballah-code.webp"
           heroAlt="Ballah Code, AI-native desktop IDE"
         />
 
@@ -52,7 +52,7 @@ export default function BallahCodePage() {
           </CsBody>
 
           <div className="cs-slide reveal">
-            <img src="/Assets/images/ballah-code.webp" alt="Desktop app interface" loading="lazy" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
+            <img src="/Portfolio.github.io/Assets/images/ballah-code.webp" alt="Desktop app interface" loading="lazy" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
           </div>
           <p className="cs-caption">Desktop app interface &mdash; the AI-native development environment</p>
         </CsSection>
@@ -141,7 +141,7 @@ export default function BallahCodePage() {
 
       </main>
 
-      <NextProject slug="keyboard-project" title="BreakGen" image="/Assets/images/keyboard.jpg" />
+      <NextProject slug="keyboard-project" title="BreakGen" image="/Portfolio.github.io/Assets/images/keyboard.jpg" />
       <Footer />
     </>
   )

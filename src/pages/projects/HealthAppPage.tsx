@@ -18,7 +18,7 @@ export default function HealthAppPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Health App · Parth Pawar" />
         <meta property="og:description" content="Reimagining Google Tasks with health and wellness integration." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/Projects/health-app/1.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/health-app/1.webp" />
       </Helmet>
 
       <Nav />
@@ -65,9 +65,9 @@ export default function HealthAppPage() {
             <section className="cs-section reveal">
               <div className="wrap">
                 <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/health-app/photos/home-screen.png" alt="Home screen: Good Morning Steve, daily plan, weekly review, recommendations" loading="eager" /></div>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/health-app/photos/insights-dashboard.png" alt="Insights dashboard: commute trends, carbon footprint, walking stats" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/health-app/photos/daily-updates.png" alt="Daily updates feed with pet content and evening greeting" loading="lazy" /></div>
+                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/home-screen.png" alt="Home screen: Good Morning Steve, daily plan, weekly review, recommendations" loading="eager" /></div>
+                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/insights-dashboard.png" alt="Insights dashboard: commute trends, carbon footprint, walking stats" loading="lazy" /></div>
+                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/daily-updates.png" alt="Daily updates feed with pet content and evening greeting" loading="lazy" /></div>
                 </div>
               </div>
             </section>
@@ -75,7 +75,7 @@ export default function HealthAppPage() {
             {/* Calendar + topic selection */}
             <section className="cs-section reveal">
               <div className="wrap">
-                <div className="cs-img reveal"><img src="/Assets/Projects/health-app/photos/calendar-overlap.png" alt="Calendar view with Overlap Spotted modal: smart schedule conflict resolution" loading="lazy" /></div>
+                <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/calendar-overlap.png" alt="Calendar view with Overlap Spotted modal: smart schedule conflict resolution" loading="lazy" /></div>
                 <p className="cs-caption">Smart schedule conflict detection: the app identifies overlapping events and offers to adjust sleep or move commitments</p>
               </div>
             </section>
@@ -83,9 +83,9 @@ export default function HealthAppPage() {
             <section className="cs-section reveal">
               <div className="wrap">
                 <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/health-app/photos/choose-topic.png" alt="Choose topic: personalization onboarding" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/health-app/photos/signup-signin.png" alt="Sign up and sign in screens" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Assets/Projects/health-app/photos/reminders.png" alt="Reminders and notification settings" loading="lazy" /></div>
+                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/choose-topic.png" alt="Choose topic: personalization onboarding" loading="lazy" /></div>
+                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/signup-signin.png" alt="Sign up and sign in screens" loading="lazy" /></div>
+                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/reminders.png" alt="Reminders and notification settings" loading="lazy" /></div>
                 </div>
               </div>
             </section>
@@ -98,7 +98,7 @@ export default function HealthAppPage() {
 
       </main>
 
-      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Assets/Projects/ibm/1.webp" />
+      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Portfolio.github.io/Assets/Projects/ibm/1.webp" />
       <Footer />
     </>
   )

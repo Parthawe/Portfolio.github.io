@@ -29,7 +29,7 @@ export default function TransfiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/transfi.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/transfi.jpg" />
       </Helmet>
 
       <Nav />
@@ -51,7 +51,7 @@ export default function TransfiPage() {
             { label: 'Location', value: 'Bangalore, India' },
           ]}
           liveUrl="https://www.transfi.com"
-          heroImage="/Assets/Projects/Transfi/photos/dashboard-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/Transfi/photos/dashboard-hero.webp"
           heroAlt="TransFi hero, dashboard and buy crypto widget"
         />
 
@@ -163,7 +163,7 @@ export default function TransfiPage() {
         {/* Product overview */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Transfi/photos/all-dashboards.png" alt="TransFi dashboard screens: onboarding, users, analytics, payment integration" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Transfi/photos/all-dashboards.png" alt="TransFi dashboard screens: onboarding, users, analytics, payment integration" loading="lazy" /></div>
             <p className="cs-caption">TransFi&rsquo;s dashboard ecosystem: onboarding, user management, order analytics, and payment widget integration</p>
           </div>
         </section>
@@ -194,7 +194,7 @@ export default function TransfiPage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/Transfi/photos/mobile-flows.png" alt="Design process workflow and wireframe screens" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/Transfi/photos/mobile-flows.png" alt="Design process workflow and wireframe screens" loading="lazy" />
           <p className="cs-caption">The design process moved from low-fidelity wireframes to high-fidelity prototypes, with each stage validated through merchant usability testing before advancing to the next phase.</p>
         </div>
 
@@ -209,13 +209,13 @@ export default function TransfiPage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/Transfi/photos/mobile-screens-grid.png" alt="Product overview, widget mockup with feature cards and color palette" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/Transfi/photos/mobile-screens-grid.png" alt="Product overview, widget mockup with feature cards and color palette" loading="lazy" />
           <p className="cs-caption">The redesigned consumer widget prioritized simplicity for crypto-novice users, featuring localized language, familiar e-commerce patterns, and local payment method integration across six Asian markets.</p>
         </div>
 
         {/* Design system slide */}
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/Transfi/photos/type-scale.png" alt="Typography scale with DM Sans, button specifications, and card component specs" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/Transfi/photos/type-scale.png" alt="Typography scale with DM Sans, button specifications, and card component specs" loading="lazy" />
           <p className="cs-caption">The design system built around DM Sans established consistent typography scales, button states, and card components &mdash; flexible enough to serve both the merchant dashboard and the consumer-facing widget.</p>
         </div>
 
@@ -235,7 +235,7 @@ export default function TransfiPage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/Transfi/photos/buy-crypto-flow.png" alt="Buy crypto, select crypto, select currency, order summary and status screens" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/Transfi/photos/buy-crypto-flow.png" alt="Buy crypto, select crypto, select currency, order summary and status screens" loading="lazy" />
           <p className="cs-caption">The buy and sell flow guides users through crypto selection, currency pairing, and order confirmation with real-time status tracking &mdash; designed to feel as straightforward as an e-commerce checkout.</p>
         </div>
 
@@ -253,7 +253,7 @@ export default function TransfiPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Transfi/photos/mobile-flows.png" alt="Mobile payment flows: currency selection, wallet address, payment methods, order summary, processing" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Transfi/photos/mobile-flows.png" alt="Mobile payment flows: currency selection, wallet address, payment methods, order summary, processing" loading="lazy" /></div>
             <p className="cs-caption">Complete mobile payment flow: from currency selection through wallet address entry, payment method choice, order summary, and processing confirmation</p>
           </div>
         </section>
@@ -290,7 +290,7 @@ export default function TransfiPage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/Transfi/photos/dashboard-detail.png" alt="TransFi dashboard analytics and developer widget integration" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/Transfi/photos/dashboard-detail.png" alt="TransFi dashboard analytics and developer widget integration" loading="lazy" />
           <p className="cs-caption">The merchant dashboard and developer integration flow &mdash; from instant sandbox access to live deployment in three steps, with analytics that surface conversion rates, failure reasons, and settlement timelines.</p>
         </div>
 
@@ -396,7 +396,7 @@ export default function TransfiPage() {
 
       </main>
 
-      <NextProject slug="cuetv" title="CueTV" image="/Assets/images/cuetv.jpg" />
+      <NextProject slug="cuetv" title="CueTV" image="/Portfolio.github.io/Assets/images/cuetv.jpg" />
       <Footer />
     </>
   )

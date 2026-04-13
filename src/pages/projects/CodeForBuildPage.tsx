@@ -19,7 +19,7 @@ export default function CodeForBuildPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Code for Build &middot; Parth Pawar" />
         <meta property="og:description" content="Helping kids learn coding through visual block building, 3D castle blocks to gamify coding education." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/code-for-build.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/code-for-build.jpg" />
       </Helmet>
 
       <Nav />
@@ -40,7 +40,7 @@ export default function CodeForBuildPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2021' },
           ]}
-          heroImage="/Assets/Projects/CodeforBuild/photos/phone-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/phone-hero.webp"
           heroAlt="Code for Build, Learn Coding By Building Blocks hero with 3D block illustrations and mobile mockups"
         />
 
@@ -93,7 +93,7 @@ export default function CodeForBuildPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img reveal">
-              <img src="/Assets/Projects/CodeforBuild/photos/two-phones.png" alt="Code for Build app: code view with 3D block illustration and output preview" loading="lazy" />
+              <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/two-phones.png" alt="Code for Build app: code view with 3D block illustration and output preview" loading="lazy" />
             </div>
           </div>
         </section>
@@ -195,7 +195,7 @@ export default function CodeForBuildPage() {
             <h2 className="cs-section-title">Goals</h2>
           </div>
           <div className="cs-slide reveal">
-            <img src="/Assets/Projects/CodeforBuild/photos/block-castle.png" alt="Goals, castle block illustration, user journey flowchart on blue background" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/block-castle.png" alt="Goals, castle block illustration, user journey flowchart on blue background" loading="lazy" />
           </div>
         </section>
 
@@ -222,7 +222,7 @@ export default function CodeForBuildPage() {
             <h2 className="cs-section-title">UX &amp; Wireframe</h2>
           </div>
           <div className="cs-slide reveal">
-            <img src="/Assets/Projects/CodeforBuild/photos/wireframe-blueprint.png" alt="UX wireframes and features overview on blue background" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/wireframe-blueprint.png" alt="UX wireframes and features overview on blue background" loading="lazy" />
           </div>
         </section>
 
@@ -292,7 +292,7 @@ export default function CodeForBuildPage() {
             </CsBody>
 
             <div className="cs-img-full">
-              <img src="/Assets/Projects/CodeforBuild/photos/two-phones.png" alt="Illustration Code, app mockup with 3D block illustrations showing code structure" loading="lazy" />
+              <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/two-phones.png" alt="Illustration Code, app mockup with 3D block illustrations showing code structure" loading="lazy" />
             </div>
           </div>
         </section>
@@ -325,7 +325,7 @@ export default function CodeForBuildPage() {
             <h2 className="cs-section-title">Final Screens</h2>
           </div>
           <div className="cs-slide reveal">
-            <img src="/Assets/Projects/CodeforBuild/photos/all-screens-isometric.png" alt="Final screen showcase, all app screens arranged diagonally on blue background" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/all-screens-isometric.png" alt="Final screen showcase, all app screens arranged diagonally on blue background" loading="lazy" />
           </div>
         </section>
 
@@ -362,7 +362,7 @@ export default function CodeForBuildPage() {
 
       </main>
 
-        <NextProject slug="typeface" title="Butler's Slice" image="/Assets/images/typeface.webp" />
+        <NextProject slug="typeface" title="Butler's Slice" image="/Portfolio.github.io/Assets/images/typeface.webp" />
       <Footer />
     </>
   )

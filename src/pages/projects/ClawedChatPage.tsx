@@ -26,7 +26,7 @@ export default function ClawedChatPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Clawed · Parth Pawar" />
         <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/clawed.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/clawed.webp" />
       </Helmet>
 
       <Nav />
@@ -47,7 +47,7 @@ export default function ClawedChatPage() {
             { label: 'Platform', value: 'Web + Smart Glasses (via Mentra integration)' },
           ]}
           liveUrl="https://clawed.chat"
-          heroImage="/Assets/Projects/Clawed.chat/landing-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp"
           heroAlt="Clawed.chat landing page: Your AI agent, live in 30 seconds"
         />
 
@@ -55,8 +55,8 @@ export default function ClawedChatPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/claw-3d.png" alt="Clawed 3D mascot, red sculptural claw character" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/claw-logo-dark.png" alt="Clawed logo glowing on dark background" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-3d.png" alt="Clawed 3D mascot, red sculptural claw character" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-logo-dark.png" alt="Clawed logo glowing on dark background" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -141,10 +141,10 @@ export default function ClawedChatPage() {
             <p>The glasses handle the moments. The web hub handles the thinking. It is where you manage your inbox, review AI-drafted responses, configure safety modes, browse your timeline of actions, and connect third-party services. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure.</p>
             <p>The Dashboard is the home screen &mdash; a single-glance summary of pending approvals, recent actions, inbox count, and active safety mode. No widgets to configure, no drag-and-drop customization. The AI decides what is important based on context and recency. If you have three emails waiting for approval, that is the first thing you see. If your glasses are disconnected, that surfaces as an alert. The Dashboard is not a canvas &mdash; it is an opinionated briefing.</p>
           </CsBody>
-          <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
+          <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
-          <div className="cs-img reveal" style={{ marginTop: '2rem' }}><img src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
+          <div className="cs-img reveal" style={{ marginTop: '2rem' }}><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
           <p className="cs-caption">Cloud Deploy vs Mac Companion, two deployment paths designed for different trust and control preferences</p>
           <h3 className="cs-section-subtitle">Inbox &amp; Ask</h3>
           <CsBody>
@@ -218,7 +218,7 @@ export default function ClawedChatPage() {
             <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 20 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
           </CsBody>
           <div className="cs-slide reveal" style={{ marginTop: 'var(--space-4)' }}>
-            <img src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--ink-06)', width: '100%' }} />
+            <img src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--ink-06)', width: '100%' }} />
           </div>
         </CsSection>
 
@@ -293,7 +293,7 @@ export default function ClawedChatPage() {
 
       </main>
 
-      <NextProject slug="oncall-lens" title="OnCall Lens" image="/Assets/images/oncall-lens.webp" />
+      <NextProject slug="oncall-lens" title="OnCall Lens" image="/Portfolio.github.io/Assets/images/oncall-lens.webp" />
       <Footer />
     </>
   )

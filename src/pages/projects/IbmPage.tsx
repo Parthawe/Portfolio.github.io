@@ -17,7 +17,7 @@ export default function IbmPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="IBM Cancer Prognosis · Parth Pawar" />
         <meta property="og:description" content="Securely transfer genomic data and identify life expectancy of cancer patients using homomorphic encryption." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
       </Helmet>
 
       <Nav />
@@ -42,7 +42,7 @@ export default function IbmPage() {
         {/* Hero */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="IBM Cancer Prognosis — Helping To Secure Cancer Research" loading="eager" />
+            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="IBM Cancer Prognosis — Helping To Secure Cancer Research" loading="eager" />
           </div>
         </section>
 
@@ -57,7 +57,7 @@ export default function IbmPage() {
         {/* Summary image */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/CancerPrognosis/photos/patient-hospital.png" alt="Project summary — challenges, role, and tools including FHE Toolkit, Homomorphic Encryption, Neural Networks, Python, Java" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/patient-hospital.png" alt="Project summary — challenges, role, and tools including FHE Toolkit, Homomorphic Encryption, Neural Networks, Python, Java" loading="lazy" />
           </div>
         </section>
 
@@ -72,7 +72,7 @@ export default function IbmPage() {
         {/* Problem statement diagram */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/CancerPrognosis/photos/genomic-data.png" alt="Problem statement flow — genomic data through encrypted channel to server, showing vulnerability when data is unencrypted during computation" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/genomic-data.png" alt="Problem statement flow — genomic data through encrypted channel to server, showing vulnerability when data is unencrypted during computation" loading="lazy" />
           </div>
         </section>
 
@@ -87,14 +87,14 @@ export default function IbmPage() {
         {/* System flow */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/CancerPrognosis/photos/neural-network.png" alt="System flow — from unencrypted data through FHE encryption, neural network computation on encrypted data, decryption, clustering, and Kaplan-Meier survival curves" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/neural-network.png" alt="System flow — from unencrypted data through FHE encryption, neural network computation on encrypted data, decryption, clustering, and Kaplan-Meier survival curves" loading="lazy" />
           </div>
         </section>
 
         {/* Encryption detail */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/CancerPrognosis/photos/system-architecture.png" alt="Homomorphic encryption in detail — unencrypted data passes through neural network hidden layers while remaining encrypted, outputting Kaplan-Meier curves" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/system-architecture.png" alt="Homomorphic encryption in detail — unencrypted data passes through neural network hidden layers while remaining encrypted, outputting Kaplan-Meier curves" loading="lazy" />
           </div>
         </section>
 
@@ -122,8 +122,8 @@ export default function IbmPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/CancerPrognosis/photos/research-diagram.png" alt="Research methodology: encrypted data flow through neural network layers" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/CancerPrognosis/photos/survival-curves.png" alt="Kaplan-Meier survival curves: 7 treatment groups over time" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/research-diagram.png" alt="Research methodology: encrypted data flow through neural network layers" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/survival-curves.png" alt="Kaplan-Meier survival curves: 7 treatment groups over time" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -139,7 +139,7 @@ export default function IbmPage() {
 
       </main>
 
-      <NextProject slug="sculpture" title="Sculpture" image="/Assets/Projects/Sculpture/1.webp" />
+      <NextProject slug="sculpture" title="Sculpture" image="/Portfolio.github.io/Assets/Projects/Sculpture/1.webp" />
       <Footer />
     </>
   )

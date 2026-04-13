@@ -17,7 +17,7 @@ export default function SculpturePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Sculpture · Parth Pawar" />
         <meta property="og:description" content="Competition sculptures for Firodia Karandak, Pune. From beginner to winner." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/Projects/Sculpture/1.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/Sculpture/1.webp" />
       </Helmet>
 
       <Nav />
@@ -41,7 +41,7 @@ export default function SculpturePage() {
         {/* Hero */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/Sculpture/1.webp" alt="Figurative sculpture — dramatic low-key lighting on plaster figure" loading="eager" />
+            <img src="/Portfolio.github.io/Assets/Projects/Sculpture/1.webp" alt="Figurative sculpture — dramatic low-key lighting on plaster figure" loading="eager" />
           </div>
         </section>
 
@@ -64,7 +64,7 @@ export default function SculpturePage() {
         {/* Moodboard image */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/Sculpture/3.webp" alt="Moodboard — anatomical references, classical sculpture studies, medical imaging, and color palette" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/Sculpture/3.webp" alt="Moodboard — anatomical references, classical sculpture studies, medical imaging, and color palette" loading="lazy" />
           </div>
         </section>
 
@@ -79,7 +79,7 @@ export default function SculpturePage() {
         {/* Process images */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/Sculpture/4.webp" alt="Failed ideas and process — early attempts, metal armature construction, and building up the form" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/Sculpture/4.webp" alt="Failed ideas and process — early attempts, metal armature construction, and building up the form" loading="lazy" />
           </div>
         </section>
 
@@ -94,13 +94,13 @@ export default function SculpturePage() {
         {/* Final sculpture images */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/Sculpture/5.webp" alt="Final sculpture — life-size plaster figure under dramatic lighting, studio and competition display" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/Sculpture/5.webp" alt="Final sculpture — life-size plaster figure under dramatic lighting, studio and competition display" loading="lazy" />
           </div>
         </section>
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/Sculpture/2.jpg" alt="Sculpture documentation — project summary, competition context, and role description" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/Sculpture/2.jpg" alt="Sculpture documentation — project summary, competition context, and role description" loading="lazy" />
           </div>
         </section>
 
@@ -115,7 +115,7 @@ export default function SculpturePage() {
 
       </main>
 
-      <NextProject slug="vishwaconclave" title="VishwaConclave" image="/Assets/Projects/VishwaConclave/1.webp" />
+      <NextProject slug="vishwaconclave" title="VishwaConclave" image="/Portfolio.github.io/Assets/Projects/VishwaConclave/1.webp" />
       <Footer />
     </>
   )

@@ -68,7 +68,7 @@ export default function BookPage() {
             </div>
           }>
             <BookViewer
-              pdfUrl="/Assets/Imagepdfportfolio.pdf"
+              pdfUrl="/Portfolio.github.io/Assets/Imagepdfportfolio.pdf"
               onProgress={handleProgress}
               onReady={handleReady}
             />

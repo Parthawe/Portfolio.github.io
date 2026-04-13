@@ -18,7 +18,7 @@ export default function DrowningPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Drowning · Parth Pawar" />
         <meta property="og:description" content="Scenic design for stage production inspired by abandoned greenhouse aesthetics." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/drowning.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/drowning.jpg" />
       </Helmet>
 
       <Nav />
@@ -156,7 +156,7 @@ export default function DrowningPage() {
 
       </main>
 
-      <NextProject slug="tedx" title="TEDx VIT Pune" image="/Assets/images/tedx.webp" />
+      <NextProject slug="tedx" title="TEDx VIT Pune" image="/Portfolio.github.io/Assets/images/tedx.webp" />
       <Footer />
     </>
   )

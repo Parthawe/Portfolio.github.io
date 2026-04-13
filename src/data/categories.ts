@@ -65,7 +65,7 @@ export const categories: CategoryData[] = [
       title: 'Mentra',
       desc: "AI smart glasses with the world's first wearable app store",
       role: 'Head of UI/UX · 2026',
-      image: '/Assets/images/mentra.webp',
+      image: '/Portfolio.github.io/Assets/images/mentra.webp',
       bgColor: '#fef2f2',
       tag: 'AI WEARABLES',
       year: '2026',
@@ -74,7 +74,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'clawed-chat',
-          image: '/Assets/images/clawed.webp',
+          image: '/Portfolio.github.io/Assets/images/clawed.webp',
           alt: 'Clawed',
           name: 'Clawed',
           result: 'AI assistant with receipts for every action, 3-tier trust architecture',
@@ -85,7 +85,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'ballah-code',
-          image: '/Assets/images/ballah-code.webp',
+          image: '/Portfolio.github.io/Assets/images/ballah-code.webp',
           alt: 'Ballah Code',
           name: 'Ballah Code',
           result: 'AI-native desktop IDE with 17 production tools',
@@ -98,7 +98,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'executivelens',
-          image: '/Assets/images/executivelens.webp',
+          image: '/Portfolio.github.io/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'Saved executives 5.2 hrs/week, 87% adoption in 2 weeks',
@@ -109,7 +109,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'oncall-lens',
-          image: '/Assets/images/oncall-lens.webp',
+          image: '/Portfolio.github.io/Assets/images/oncall-lens.webp',
           alt: 'OnCall Lens',
           name: 'OnCall Lens',
           result: 'Sentry alert → Claude → auto PR fix, built in 24 hours',
@@ -122,7 +122,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ai-voice',
-          image: '/Assets/images/ai-voice.webp',
+          image: '/Portfolio.github.io/Assets/images/ai-voice.webp',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Enterprise voice selection with emotional intelligence, A/B tested',
@@ -133,7 +133,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'enigma',
-          image: '/Assets/images/enigma.jpg',
+          image: '/Portfolio.github.io/Assets/images/enigma.jpg',
           alt: 'Enigma',
           name: 'Enigma',
           result: 'Light sculpture with deep learning neural network',
@@ -194,7 +194,7 @@ export const categories: CategoryData[] = [
       title: 'Mentra',
       desc: "AI smart glasses with the world's first wearable app store",
       role: 'Head of UI/UX · 2026',
-      image: '/Assets/images/mentra.webp',
+      image: '/Portfolio.github.io/Assets/images/mentra.webp',
       bgColor: '#eff6ff',
       tag: 'AI WEARABLES',
       year: '2026',
@@ -203,7 +203,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Assets/images/transfi.jpg',
+          image: '/Portfolio.github.io/Assets/images/transfi.jpg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payments, $50M+ monthly volume',
@@ -214,7 +214,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'zentipay',
-          image: '/Assets/images/zentipay.webp',
+          image: '/Portfolio.github.io/Assets/images/zentipay.webp',
           alt: 'ZentiPay',
           name: 'ZentiPay',
           result: 'Fintech super app from scratch, 30% higher transaction completion',
@@ -227,7 +227,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'executivelens',
-          image: '/Assets/images/executivelens.webp',
+          image: '/Portfolio.github.io/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'Saved executives 5.2 hrs/week, 87% adoption in 2 weeks',
@@ -238,7 +238,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'cuetv',
-          image: '/Assets/images/cuetv.jpg',
+          image: '/Portfolio.github.io/Assets/images/cuetv.jpg',
           alt: 'CueTV',
           name: 'CueTV',
           result: 'OTT streaming, retargeting system generating 30K+ ad variations',
@@ -251,7 +251,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'org-dashboard',
-          image: '/Assets/images/org-dashboard.webp',
+          image: '/Portfolio.github.io/Assets/images/org-dashboard.webp',
           alt: 'OrgDashboard',
           name: 'OrgDashboard',
           result: 'SaaS giving AI agents organizational context, dual-user design',
@@ -264,7 +264,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'vj-software',
-          image: '/Assets/images/vj.jpg',
+          image: '/Portfolio.github.io/Assets/images/vj.jpg',
           alt: 'VJ Software',
           name: 'VJ Software',
           result: 'Audio-reactive visual performance tool',
@@ -275,7 +275,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'code-for-build',
-          image: '/Assets/images/code-for-build.jpg',
+          image: '/Portfolio.github.io/Assets/images/code-for-build.jpg',
           alt: 'Code for Build',
           name: 'Code for Build',
           result: 'Brand system and developer platform for Istanbul open-source startup',
@@ -336,7 +336,7 @@ export const categories: CategoryData[] = [
       title: 'Jugalbandi',
       desc: 'ML-driven musical instrument exhibited at Maker Faire',
       role: 'Creator · 2024',
-      image: '/Assets/images/jugalbandi.webp',
+      image: '/Portfolio.github.io/Assets/images/jugalbandi.webp',
       bgColor: '#fffbeb',
       tag: 'ML + MUSIC',
       year: '2024',
@@ -345,7 +345,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'keyboard-project',
-          image: '/Assets/images/keyboard.jpg',
+          image: '/Portfolio.github.io/Assets/images/keyboard.jpg',
           alt: 'BreakGen',
           name: 'BreakGen',
           result: 'AI platform for designing custom keyboards \u2014 from prompt to fabrication',
@@ -358,7 +358,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'enigma',
-          image: '/Assets/images/enigma.jpg',
+          image: '/Portfolio.github.io/Assets/images/enigma.jpg',
           alt: 'Enigma',
           name: 'Enigma',
           result: 'Light sculpture with deep learning neural network',
@@ -369,7 +369,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'shuffle',
-          image: '/Assets/images/shuffle.jpg',
+          image: '/Portfolio.github.io/Assets/images/shuffle.jpg',
           alt: 'Shuffle',
           name: 'Shuffle',
           result: 'Interactive strategy simulation installation',
@@ -382,7 +382,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'making-of-time',
-          image: '/Assets/images/making-of-time.jpg',
+          image: '/Portfolio.github.io/Assets/images/making-of-time.jpg',
           alt: 'Making of Time',
           name: 'Making of Time',
           result: 'Time exploration through physical computing',
@@ -393,7 +393,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sea-of-salt',
-          image: '/Assets/images/sea-of-salt.svg',
+          image: '/Portfolio.github.io/Assets/images/sea-of-salt.svg',
           alt: 'Sea of Salt',
           name: 'Sea of Salt',
           result: 'Kinetic salt installation reacting to ocean data',
@@ -454,7 +454,7 @@ export const categories: CategoryData[] = [
       title: 'Black Hole',
       desc: 'Five physical models of black hole phenomena, from accretion disks to Hawking radiation, exhibited at the Horological Society of New York',
       role: 'Designer & Fabricator · 2026',
-      image: '/Assets/images/black-hole.jpg',
+      image: '/Portfolio.github.io/Assets/images/black-hole.jpg',
       bgColor: '#f0f0f5',
       tag: 'SCIENCE + FABRICATION',
       year: '2026',
@@ -463,7 +463,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'uv-light',
-          image: '/Assets/images/uv-light.jpg',
+          image: '/Portfolio.github.io/Assets/images/uv-light.jpg',
           alt: 'UV Light',
           name: 'UV Light',
           result: 'Multi-room blacklight installation with hidden messages revealed under UV, plus live projection mapping',
@@ -474,7 +474,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'the-omakase',
-          image: '/Assets/images/the-omakase.jpg',
+          image: '/Portfolio.github.io/Assets/images/the-omakase.jpg',
           alt: 'The Omakase',
           name: 'The Omakase',
           result: '2-player sushi arcade cabinet with custom RGB button controllers, exhibited at ITP Winter Show and WonderVille NYC',
@@ -487,7 +487,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'revolving-stage',
-          image: '/Assets/images/revolving-stage.webp',
+          image: '/Portfolio.github.io/Assets/images/revolving-stage.webp',
           alt: 'Revolving Stage',
           name: 'Revolving Stage',
           result: '15 ft. diameter rotating stage supporting 250+ kgs of live performers, engineered for a university theatre production',
@@ -498,7 +498,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sculpture',
-          image: '/Assets/Projects/Sculpture/1.webp',
+          image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.webp',
           alt: 'Sculpture',
           name: 'Sculpture',
           result: 'Competition sculptures for Firodia Karandak, Pune',
@@ -511,7 +511,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'moniac-machine',
-          image: '/Assets/images/moniac-machine.jpg',
+          image: '/Portfolio.github.io/Assets/images/moniac-machine.jpg',
           alt: 'Moniac Machine',
           name: 'Moniac Machine',
           result: 'Board game based on a 1949 hydraulic economic computer, where players manage an economy through physical resource allocation',
@@ -522,7 +522,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'drowning',
-          image: '/Assets/images/drowning.jpg',
+          image: '/Portfolio.github.io/Assets/images/drowning.jpg',
           alt: 'Drowning',
           name: 'Drowning',
           result: 'Abandoned greenhouse scenic design for NYU theatre, multi-layer lighting for 100+ audience',
@@ -584,7 +584,7 @@ export const categories: CategoryData[] = [
       title: 'TEDxVITPune',
       desc: 'Brand identity and event design',
       role: 'Art Director · 2021',
-      image: '/Assets/images/tedx.webp',
+      image: '/Portfolio.github.io/Assets/images/tedx.webp',
       bgColor: '#fdf4ff',
       tag: 'ART DIRECTION',
       year: '2021',
@@ -593,7 +593,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'typeface',
-          image: '/Assets/images/typeface.webp',
+          image: '/Portfolio.github.io/Assets/images/typeface.webp',
           alt: "Butler's Slice",
           name: "Butler's Slice",
           result: 'Original variable display typeface',
@@ -606,7 +606,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'mentra',
-          image: '/Assets/images/mentra.webp',
+          image: '/Portfolio.github.io/Assets/images/mentra.webp',
           alt: 'Mentra Glass',
           name: 'Mentra Glass',
           result: 'Packaging, motion design, and visual identity for AI smart glasses',
@@ -617,7 +617,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'atps',
-          image: '/Assets/images/atps.webp',
+          image: '/Portfolio.github.io/Assets/images/atps.webp',
           alt: 'ArtTown Podcast',
           name: 'ArtTown Podcast',
           result: '45 episodes interviewing designers from Puma, RCA, Google, and Bollywood',
@@ -678,7 +678,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, 30% higher transaction completion rate',
       role: 'Founding Product Designer · 2025',
-      image: '/Assets/images/zentipay.webp',
+      image: '/Portfolio.github.io/Assets/images/zentipay.webp',
       bgColor: '#e8f4fd',
       tag: 'FINTECH',
       year: '2025',
@@ -687,7 +687,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Assets/images/transfi.jpg',
+          image: '/Portfolio.github.io/Assets/images/transfi.jpg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payments, $50M+ monthly volume',
@@ -698,7 +698,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'executivelens',
-          image: '/Assets/images/executivelens.webp',
+          image: '/Portfolio.github.io/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'Saved executives 5.2 hrs/week, 87% adoption in 2 weeks',
@@ -711,7 +711,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'org-dashboard',
-          image: '/Assets/images/org-dashboard.webp',
+          image: '/Portfolio.github.io/Assets/images/org-dashboard.webp',
           alt: 'OrgDashboard',
           name: 'OrgDashboard',
           result: 'SaaS giving AI agents organizational context, dual-user design',
@@ -722,7 +722,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'cuetv',
-          image: '/Assets/images/cuetv.jpg',
+          image: '/Portfolio.github.io/Assets/images/cuetv.jpg',
           alt: 'CueTV',
           name: 'CueTV',
           result: 'OTT platform, 30K+ ad variations system',
@@ -783,7 +783,7 @@ export const categories: CategoryData[] = [
       title: 'Raahi',
       desc: 'Transit accessibility for underserved commuters',
       role: 'Designer · 2022',
-      image: '/Assets/images/raahi.webp',
+      image: '/Portfolio.github.io/Assets/images/raahi.webp',
       bgColor: '#ecfdf5',
       tag: 'CIVIC DESIGN',
       year: '2022',
@@ -792,7 +792,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'the-point-cdc',
-          image: '/Assets/images/the-point-cdc.webp',
+          image: '/Portfolio.github.io/Assets/images/the-point-cdc.webp',
           alt: 'The Point CDC',
           name: 'The Point CDC',
           result: 'Redesigned digital platform for a Bronx community nonprofit',
@@ -803,7 +803,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'office-of-diversity',
-          image: '/Assets/images/office-of-diversity.webp',
+          image: '/Portfolio.github.io/Assets/images/office-of-diversity.webp',
           alt: 'Office of Diversity',
           name: 'Office of Diversity',
           result: 'IDBEA report and interactive timeline, WCAG 2.1 AA compliant',
@@ -857,7 +857,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, 30% higher transaction completion',
       role: 'Founding Product Designer · 2025',
-      image: '/Assets/images/zentipay.webp',
+      image: '/Portfolio.github.io/Assets/images/zentipay.webp',
       bgColor: '#f0ecff',
       tag: 'FINTECH',
       year: '2025',
@@ -866,7 +866,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Assets/images/transfi.jpg',
+          image: '/Portfolio.github.io/Assets/images/transfi.jpg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payments, $50M+ monthly volume',
@@ -908,7 +908,7 @@ export const categories: CategoryData[] = [
       title: 'Clawed',
       desc: 'Safety-first AI assistant for glasses and web',
       role: 'Product Designer · 2026',
-      image: '/Assets/images/clawed.webp',
+      image: '/Portfolio.github.io/Assets/images/clawed.webp',
       bgColor: '#fdf2f8',
       tag: 'AI ASSISTANT',
       year: '2026',
@@ -917,7 +917,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'oncall-lens',
-          image: '/Assets/images/oncall-lens.webp',
+          image: '/Portfolio.github.io/Assets/images/oncall-lens.webp',
           alt: 'OnCall Lens',
           name: 'OnCall Lens',
           result: 'Sentry alerts to automated PR fixes via smart glasses',
@@ -928,7 +928,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'ai-voice',
-          image: '/Assets/images/ai-voice.webp',
+          image: '/Portfolio.github.io/Assets/images/ai-voice.webp',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Conversational AI and voice-driven interaction',
@@ -941,7 +941,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ballah-code',
-          image: '/Assets/images/ballah-code.webp',
+          image: '/Portfolio.github.io/Assets/images/ballah-code.webp',
           alt: 'Ballah Code',
           name: 'Ballah Code',
           result: 'AI-powered dev tools platform',

@@ -21,7 +21,7 @@ export default function RaahiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Raahi · Parth Pawar" />
         <meta property="og:description" content="Streamlining Pune's public transport, integrating buses, metro, auto-rickshaws and shared cabs." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/raahi.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/raahi.webp" />
       </Helmet>
 
       <Nav />
@@ -45,7 +45,7 @@ export default function RaahiPage() {
         />
 
         {/* Hero slide */}
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/hero-3d.webp" alt="Raahi hero, 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/hero-3d.webp" alt="Raahi hero, 3D render of phone with app and Pune bus on blue background" loading="lazy" /></div>
 
         {/* Summary section with label-rows */}
         <section className="cs-section reveal">
@@ -90,9 +90,9 @@ export default function RaahiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/app-home.webp" alt="Raahi home screen — Hey Parth greeting, transport modes, recent trips, carbon footprint" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/route-details.png" alt="Route details — multimodal journey with color-coded segments, timings, and price" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/kiosk-home.png" alt="Kiosk interface — transit information display for bus stops" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/app-home.webp" alt="Raahi home screen — Hey Parth greeting, transport modes, recent trips, carbon footprint" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/route-details.png" alt="Route details — multimodal journey with color-coded segments, timings, and price" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/kiosk-home.png" alt="Kiosk interface — transit information display for bus stops" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -116,7 +116,7 @@ export default function RaahiPage() {
 
         {/* Image slides */}
         
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/brand-moodboard.webp" alt="Brand Identity, mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/brand-moodboard.webp" alt="Brand Identity, mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
         
 
         {/* Design System */}
@@ -143,7 +143,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/all-screens.webp" alt="Isometric 3D view of all Raahi app screens on blue background" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/all-screens.webp" alt="Isometric 3D view of all Raahi app screens on blue background" loading="lazy" /></div>
 
         {/* Features */}
         <section className="cs-section reveal" id="cs-features">
@@ -156,7 +156,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/app-home.webp" alt="Raahi homepage, welcome screen, and customisation screens" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/app-home.webp" alt="Raahi homepage, welcome screen, and customisation screens" loading="lazy" /></div>
 
         <section className="cs-section reveal">
           <div className="wrap">
@@ -178,7 +178,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/bus-qr-ticket.png" alt="Digital payment setup, QR code screens, and real-time journey guidance" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/bus-qr-ticket.png" alt="Digital payment setup, QR code screens, and real-time journey guidance" loading="lazy" /></div>
 
         <section className="cs-section reveal">
           <div className="wrap">
@@ -200,7 +200,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/insights.png" alt="Insights dashboard with commute trends, carbon footprint, and in-vehicle monitor" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/insights.png" alt="Insights dashboard with commute trends, carbon footprint, and in-vehicle monitor" loading="lazy" /></div>
 
         <section className="cs-section reveal">
           <div className="wrap">
@@ -218,8 +218,8 @@ export default function RaahiPage() {
             <span className="cs-section-label">Touchpoints</span>
             <h2 className="cs-section-title">Kiosk &amp; Welcome Experience</h2>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/kiosk-home.png" alt="Kiosk: next stop Mundhwa Gaon, live route tracking" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/route-details.png" alt="Route details with stops, timings, and connections" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/kiosk-home.png" alt="Kiosk: next stop Mundhwa Gaon, live route tracking" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Raahi/photos/route-details.png" alt="Route details with stops, timings, and connections" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -283,7 +283,7 @@ export default function RaahiPage() {
 
       </main>
 
-        <NextProject slug="the-point-cdc" title="The Point CDC" image="/Assets/images/the-point-cdc.webp" />
+        <NextProject slug="the-point-cdc" title="The Point CDC" image="/Portfolio.github.io/Assets/images/the-point-cdc.webp" />
       <Footer />
     </>
   )

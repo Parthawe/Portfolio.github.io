@@ -27,7 +27,7 @@ export default function OnCallLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OnCall Lens · Parth Pawar" />
         <meta property="og:description" content="Transforming Sentry alerts into automated PR patches via smart glasses. AI agent fixes bugs while humans approve from their wrist." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/oncall-lens.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/oncall-lens.webp" />
       </Helmet>
 
       <Nav />
@@ -47,7 +47,7 @@ export default function OnCallLensPage() {
             { label: 'Team', value: 'Team SOGA' },
             { label: 'Platform', value: 'MentraOS Glasses + Web' },
           ]}
-          heroImage="/Assets/images/oncall-lens/hero.webp"
+          heroImage="/Portfolio.github.io/Assets/images/oncall-lens/hero.webp"
           heroAlt="Pager Lens, Stay present. Handle incidents anywhere."
         />
 
@@ -73,7 +73,7 @@ export default function OnCallLensPage() {
           <CsCallout>
             <p>&ldquo;The best incident response is the one where the engineer never has to open a laptop. The second best is the one where the laptop is already open and the fix is already written.&rdquo;</p>
           </CsCallout>
-          <CsImage src="/Assets/images/oncall-lens/glasses-detail.png" alt="Close-up of smart glasses lens used for OnCall Lens" />
+          <CsImage src="/Portfolio.github.io/Assets/images/oncall-lens/glasses-detail.png" alt="Close-up of smart glasses lens used for OnCall Lens" />
         </CsSection>
 
         <CsSection id="cs-bet" label="The Bet" title="What If the First Responder Was an AI Agent?">
@@ -217,7 +217,7 @@ export default function OnCallLensPage() {
 
       </main>
 
-      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Assets/images/ai-voice.webp" />
+      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Portfolio.github.io/Assets/images/ai-voice.webp" />
       <Footer />
     </>
   )

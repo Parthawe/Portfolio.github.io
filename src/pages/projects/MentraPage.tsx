@@ -30,7 +30,7 @@ export default function MentraPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra · Parth Pawar" />
         <meta property="og:description" content="Designing the UX for the only AI-powered smart glasses with an app store. MentraOS, companion app, and developer platform." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/mentra.webp" />
       </Helmet>
 
       <Nav />
@@ -51,7 +51,7 @@ export default function MentraPage() {
           { label: 'Platform', value: 'Wearable OS, Mobile, Web' },
         ]}
         liveUrl="https://www.mentra.glass"
-        heroImage="/Assets/images/mentra/render-camera-detail.webp"
+        heroImage="/Portfolio.github.io/Assets/images/mentra/render-camera-detail.webp"
         heroAlt="Mentra Glass, AI-powered smart glasses with camera detail and Mentra logo"
       />
 
@@ -82,7 +82,7 @@ export default function MentraPage() {
             quote="Every smart glasses company before us shipped hardware and hoped software would follow. We designed the software ecosystem first and built the hardware to serve it."
             cite="Mentra founding thesis"
           />
-        <CsImage src="/Assets/images/mentra/glasses-angle.png" alt="Mentra Live smart glasses, three-quarter angle showing camera module and Mentra logo on temple" />
+        <CsImage src="/Portfolio.github.io/Assets/images/mentra/glasses-angle.png" alt="Mentra Live smart glasses, three-quarter angle showing camera module and Mentra logo on temple" />
         </CsSection>
 
         <CsProcessFlow
@@ -123,7 +123,7 @@ export default function MentraPage() {
             { title: "If They Won't Build, Nothing Else Matters", desc: "An app store is only as good as its apps. I designed the SDK docs, developer portal, and submission flow to make building for glasses feel as natural as building for phones." },
             { title: 'A Camera on Your Face Is a Social Contract', desc: 'Post-Google-Glass, face-worn cameras carry social baggage. I designed visual indicators, privacy modes, and interaction patterns that build trust with both the wearer and everyone in the room.' },
           ]} />
-          <CsImage src="/Assets/images/mentra/render-temple-detail.webp" alt="Mentra Live temple detail, close-up of hinge mechanism, USB-C port, and Mentra logo" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/render-temple-detail.webp" alt="Mentra Live temple detail, close-up of hinge mechanism, USB-C port, and Mentra logo" />
         </CsSection>
 
         <CsSection id="cs-companion" label="Companion App" title="The Control Center in Your Pocket">
@@ -137,8 +137,8 @@ export default function MentraPage() {
             { num: 3, title: 'Pair', desc: 'Scan the QR code. One tap to confirm. The phone and glasses handshake over Bluetooth LE and the connection is persistent.' },
             { num: 4, title: '"Hey Mentra"', desc: 'The wake word activates the AI. Directions, translation, song ID, calendar, the first interaction sets the tone.' },
           ]} />
-          <CsImage src="/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
-          <CsImage src="/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
           <CsBody style={{ marginTop: '2rem' }}>
             <p>Beyond onboarding, the app is the management layer for the entire ecosystem: browse miniapps, configure per-app notifications, adjust display settings, manage privacy. I built it on a single-tab architecture, everything is two taps away.</p>
           </CsBody>
@@ -149,8 +149,8 @@ export default function MentraPage() {
             <p>MentraOS is open-source, a product decision that became the defining design constraint. An open OS means developers will build things I cannot predict, on a display I cannot control, for users I will never meet. The design system had to be opinionated enough to feel cohesive and flexible enough for miniapps that do not exist yet.</p>
             <p>The HUD operates on a principle I call &ldquo;glance, don&rsquo;t gaze.&rdquo; Every piece of information must be understood in under two seconds of peripheral attention.</p>
           </CsBody>
-          <CsImage src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
-          <CsImage src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
           <h3 className="cs-section-subtitle">Voice-First, Screen-Second</h3>
           <CsBody>
             <p>Voice is the primary input. The AI handles natural language queries, contextual responses from the camera feed, and proactive suggestions from time and location. Visual feedback is minimal by design: a thin amber waveform that pulses while listening and settles when processing.</p>
@@ -171,17 +171,17 @@ export default function MentraPage() {
               { feature: 'User can reassign', values: [true, true, true] },
             ]}
           />
-          <CsImage src="/Assets/images/mentra/os-notes.png" alt="Mentra Notes app, note editor with formatting toolbar, AI summarization button, and quick actions" />
-          <CsImage src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-notes.png" alt="Mentra Notes app, note editor with formatting toolbar, AI summarization button, and quick actions" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
         </CsSection>
 
         {/* Product gallery */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-front.webp" alt="Mentra smart glasses from front — transparent display, minimal frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-angle.webp" alt="Mentra smart glasses angled view showing temple arm and hinge" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-folded.webp" alt="Mentra smart glasses folded, compact form factor" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/photo-front.webp" alt="Mentra smart glasses from front — transparent display, minimal frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/photo-angle.webp" alt="Mentra smart glasses angled view showing temple arm and hinge" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/photo-folded.webp" alt="Mentra smart glasses folded, compact form factor" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -191,7 +191,7 @@ export default function MentraPage() {
             <p>This is what separates Mentra from everything else. Meta Ray-Ban Gen 2 ships at the same $299 price point but is a closed system. Mentra is the opposite: an open marketplace where any developer can ship.</p>
             <p>Designing a store for a HUD meant rethinking every convention. No icon grid. No screenshot carousel. The on-glasses store is voice-navigated and context-curated.</p>
           </CsBody>
-          <CsImage src="/Assets/images/mentra/appstore-translation.webp" alt="MentraOS Translation app, real-time English to Japanese translation through smart glasses with auto-scroll" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-translation.webp" alt="MentraOS Translation app, real-time English to Japanese translation through smart glasses with auto-scroll" />
           <h3 className="cs-section-subtitle">Discoverability Without Browsing</h3>
           <CsBody>
             <p>The store surfaces miniapps from three signals: what you are doing, where you are, and what you are asking for. The result feels less like a catalog and more like a knowledgeable friend who always knows the right tool.</p>
@@ -219,14 +219,14 @@ export default function MentraPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render, showing internal components, camera module, and circuit board" />
-        <CsImage src="/Assets/images/mentra/photo-front.webp" alt="Mentra Live smart glasses, real product photo showing lens display and black frame" />
+        <CsImage src="/Portfolio.github.io/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render, showing internal components, camera module, and circuit board" />
+        <CsImage src="/Portfolio.github.io/Assets/images/mentra/photo-front.webp" alt="Mentra Live smart glasses, real product photo showing lens display and black frame" />
 
         <CsSection id="cs-website" label="Live Product" title="mentraglass.com, The Marketing Site I Designed">
           <CsBody>
             <p>The marketing site mirrors the product philosophy: show, don&rsquo;t tell. Open-source positioning, developer-friendly messaging, and hardware specs presented with the clarity executives and developers both expect. Every section reinforces the core thesis &mdash; the only smart glasses with an app store.</p>
           </CsBody>
-          <CsImage src="/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp" alt="Mentra Glass full marketing website, hero section, product features, app store showcase, specifications, and pricing" />
+          <CsImage src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp" alt="Mentra Glass full marketing website, hero section, product features, app store showcase, specifications, and pricing" />
         </CsSection>
 
         <CsSection id="cs-impact" label="Impact" title="Shipping, Not Pitching">
@@ -303,7 +303,7 @@ export default function MentraPage() {
 
       </main>
 
-      <NextProject slug="executivelens" title="ExecutiveLens" image="/Assets/images/executivelens.webp" />
+      <NextProject slug="executivelens" title="ExecutiveLens" image="/Portfolio.github.io/Assets/images/executivelens.webp" />
       <Footer />
     </>
   )

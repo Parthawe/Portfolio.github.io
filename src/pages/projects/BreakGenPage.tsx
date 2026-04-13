@@ -125,7 +125,7 @@ export default function BreakGenPage() {
 
         <CsThanks />
 
-        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.webp" />
+        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Portfolio.github.io/Assets/images/jugalbandi.webp" />
 
       </main>
 

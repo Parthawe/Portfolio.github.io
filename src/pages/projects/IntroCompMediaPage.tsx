@@ -60,7 +60,7 @@ export default function IntroCompMediaPage() {
           { id: 'cs-reflection', label: 'Reflection' },
         ]} />
       </main>
-      <NextProject slug="flow-fields" title="Flow Fields" image="/Assets/images/sea-of-salt.svg" />
+      <NextProject slug="flow-fields" title="Flow Fields" image="/Portfolio.github.io/Assets/images/sea-of-salt.svg" />
       <Footer />
     </>
   )

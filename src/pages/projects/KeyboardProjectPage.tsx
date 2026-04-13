@@ -23,7 +23,7 @@ export default function KeyboardProjectPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="BreakGen &middot; Parth Pawar" />
         <meta property="og:description" content="Modular keyboard design platform, AI-generated keycaps, layout tools, and automated PCB generation." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/keyboard.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/keyboard.jpg" />
       </Helmet>
 
       <Nav />
@@ -43,7 +43,7 @@ export default function KeyboardProjectPage() {
             { label: 'Timeline', value: '2024\u20132025' },
             { label: 'Stack', value: 'React, Three.js, Meshy AI, KiCad' },
           ]}
-          heroImage="/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp"
           heroAlt="KeyData: keyboard with keys at different heights representing data, alongside 3D printed data sculpture"
         />
 
@@ -51,8 +51,8 @@ export default function KeyboardProjectPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up: keyboard keys at varying heights, some lifted on wooden stems" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/data-sculpture.png" alt="3D printed data sculpture: keyboard keys as a bar chart" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up: keyboard keys at varying heights, some lifted on wooden stems" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/data-sculpture.png" alt="3D printed data sculpture: keyboard keys as a bar chart" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -61,9 +61,9 @@ export default function KeyboardProjectPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/keyboard-angle.png" alt="KeyData from an angle showing the data landscape of raised keys" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/process-grid.png" alt="3D printing process: prints at various stages" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Keyboard/photos/fabrication-process.png" alt="Fabrication process: deconstructed keyboard, keycaps, layout planning" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-angle.png" alt="KeyData from an angle showing the data landscape of raised keys" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/process-grid.png" alt="3D printing process: prints at various stages" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/fabrication-process.png" alt="Fabrication process: deconstructed keyboard, keycaps, layout planning" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -315,7 +315,7 @@ export default function KeyboardProjectPage() {
 
       </main>
 
-        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.webp" />
+        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Portfolio.github.io/Assets/images/jugalbandi.webp" />
       <Footer />
     </>
   )

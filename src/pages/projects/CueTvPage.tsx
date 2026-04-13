@@ -23,7 +23,7 @@ export default function CueTvPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="CueTV · Parth Pawar" />
         <meta property="og:description" content="OTT platform for opera, ballet, symphonies, designed discovery, playback, and retargeting ads." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/cuetv.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/cuetv.jpg" />
       </Helmet>
 
       <Nav />
@@ -47,7 +47,7 @@ export default function CueTvPage() {
           liveUrl="https://www.cuetv.online"
         />
 
-        <CsImage src="/Assets/Projects/CueTV/photos/platform-overview.png" alt="CueTV hero, Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/CueTV/photos/platform-overview.png" alt="CueTV hero, Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
 
         {/* Overview */}
         <ProjectOverview
@@ -228,14 +228,14 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/CueTV/photos/ad-creatives-grid.png" alt="30,000+ different ad creatives for opera, ballet, and classical performances" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/CueTV/photos/ad-creatives-grid.png" alt="30,000+ different ad creatives for opera, ballet, and classical performances" />
 
         {/* Retargeting + banner */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/retargeting-ads.png" alt="Retargeting ad variations across performance categories" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/performance-banner.png" alt="Performance banner: opera, ballet, classical live stills" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CueTV/photos/retargeting-ads.png" alt="Retargeting ad variations across performance categories" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CueTV/photos/performance-banner.png" alt="Performance banner: opera, ballet, classical live stills" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -251,7 +251,7 @@ export default function CueTvPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Assets/Projects/CueTV/photos/app-browse.png" alt="Platform optimization, CueTV mobile app showing explore screen with Siberia opera, and search for Macbeth with results. Watch Live Streams and Find Musical Works." />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/CueTV/photos/app-browse.png" alt="Platform optimization, CueTV mobile app showing explore screen with Siberia opera, and search for Macbeth with results. Watch Live Streams and Find Musical Works." />
 
         {/* More Features */}
         <section className="cs-section reveal">
@@ -268,8 +268,8 @@ export default function CueTvPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/mobile-player.png" alt="Mobile player: Le Carnaval des Animaux live stream on iPhone" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/CueTV/photos/app-detail.png" alt="App detail: video download and offline viewing interface" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CueTV/photos/mobile-player.png" alt="Mobile player: Le Carnaval des Animaux live stream on iPhone" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CueTV/photos/app-detail.png" alt="App detail: video download and offline viewing interface" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -321,7 +321,7 @@ export default function CueTvPage() {
 
       </main>
 
-      <NextProject slug="org-dashboard" title="OrgDashboard" image="/Assets/images/org-dashboard.webp" />
+      <NextProject slug="org-dashboard" title="OrgDashboard" image="/Portfolio.github.io/Assets/images/org-dashboard.webp" />
       <Footer />
     </>
   )

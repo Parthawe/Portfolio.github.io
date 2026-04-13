@@ -18,7 +18,7 @@ export default function ShufflePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Shuffle · Parth Pawar" />
         <meta property="og:description" content="Interactive installation proposing a strategy simulation of student life at ITP." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/shuffle.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/shuffle.jpg" />
       </Helmet>
 
       <Nav />
@@ -42,8 +42,8 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -78,9 +78,9 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -88,7 +88,7 @@ export default function ShufflePage() {
         {/* Slider detail */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
           </div>
         </section>
 
@@ -157,7 +157,7 @@ export default function ShufflePage() {
 
       </main>
 
-      <NextProject slug="enigma" title="Enigma" image="/Assets/images/enigma.jpg" />
+      <NextProject slug="enigma" title="Enigma" image="/Portfolio.github.io/Assets/images/enigma.jpg" />
       <Footer />
     </>
   )

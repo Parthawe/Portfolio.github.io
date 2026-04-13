@@ -41,8 +41,8 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/boxes-closed.png" alt="Two pharmaceutical boxes: Live 50+ Years More (blue) and Embrace Death (red)" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/boxes-open.png" alt="Both boxes opened, revealing inner packaging and booklets" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.png" alt="Two pharmaceutical boxes: Live 50+ Years More (blue) and Embrace Death (red)" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-open.png" alt="Both boxes opened, revealing inner packaging and booklets" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -59,8 +59,8 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/card-final-message.png" alt="Card: Final Message for Embracing Death, held in hand" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/pill-pack.webp" alt="Pill blister pack inside the Live Immortal box: Unlock More Life" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/card-final-message.png" alt="Card: Final Message for Embracing Death, held in hand" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/pill-pack.webp" alt="Pill blister pack inside the Live Immortal box: Unlock More Life" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -77,8 +77,8 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/dosage-card.png" alt="Dosage, Duration of Use, and Precautions card from the pill packaging" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/booklet-detail.png" alt="Detail of the inner booklet with instructions and messaging" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/dosage-card.png" alt="Dosage, Duration of Use, and Precautions card from the pill packaging" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/booklet-detail.png" alt="Detail of the inner booklet with instructions and messaging" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -100,7 +100,7 @@ export default function DnaPage() {
 
       </main>
 
-      <NextProject slug="uv-light" title="UV Light" image="/Assets/images/uv-light.jpg" />
+      <NextProject slug="uv-light" title="UV Light" image="/Portfolio.github.io/Assets/images/uv-light.jpg" />
       <Footer />
     </>
   )

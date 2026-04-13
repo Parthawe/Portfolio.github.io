@@ -70,11 +70,11 @@ export default function AboutPage() {
           <div className="abt-photo-hero">
             <PortalReveal
               images={[
-                '/Assets/Character/me/1.webp',
-                '/Assets/Character/me/2.webp',
-                '/Assets/Character/me/3.webp',
-                '/Assets/Character/me/4.webp',
-                '/Assets/Character/me/5.webp',
+                '/Portfolio.github.io/Assets/Character/me/1.webp',
+                '/Portfolio.github.io/Assets/Character/me/2.webp',
+                '/Portfolio.github.io/Assets/Character/me/3.webp',
+                '/Portfolio.github.io/Assets/Character/me/4.webp',
+                '/Portfolio.github.io/Assets/Character/me/5.webp',
               ]}
               alt="Parth Pawar"
               className="abt-portal-img"
@@ -292,7 +292,7 @@ export default function AboutPage() {
               <div className="abt-type-intro">
                 <span className="abt-type-label">Made this typeface</span>
                 <div className="abt-type-links">
-                  <a href="/Assets/Projects/Typeface/butlers-slice.zip" download className="abt-type-link figma-hover">
+                  <a href="/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice.zip" download className="abt-type-link figma-hover">
                     <svg viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5.5l3 3 3-3M2 10h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     Download .zip
                     <FigmaSelect />
@@ -395,7 +395,7 @@ export default function AboutPage() {
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </a>
                 <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">LinkedIn<FigmaSelect /></a>
-                <a href="/Assets/Application_Resume.pdf" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">Resume<FigmaSelect /></a>
+                <a href="/Portfolio.github.io/Assets/Application_Resume.pdf" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">Resume<FigmaSelect /></a>
               </div>
             </div>
           </section>

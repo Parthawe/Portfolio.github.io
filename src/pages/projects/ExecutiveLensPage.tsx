@@ -27,7 +27,7 @@ export default function ExecutiveLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
         <meta property="og:description" content="AI-powered business intelligence for executives, from meeting insights to strategic recommendations in real time." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/executivelens.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/executivelens.webp" />
       </Helmet>
 
       <Nav />
@@ -48,7 +48,7 @@ export default function ExecutiveLensPage() {
             { label: 'Platform', value: 'Web + Mobile' },
           ]}
           liveUrl="https://www.executivelens.ai"
-          heroImage="/Assets/images/executivelens.webp"
+          heroImage="/Portfolio.github.io/Assets/images/executivelens.webp"
           heroAlt="ExecutiveLens.ai, AI-powered business intelligence for executives"
         />
 
@@ -134,7 +134,7 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>The marketing site follows the same design philosophy as the product: clarity over cleverness. Clean typography, structured information hierarchy, and a narrative that walks executives from problem to solution without buzzword bingo. The hero shows the real product, not mockups.</p>
           </CsBody>
-          <CsImage src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" alt="ExecutiveLens.ai full marketing website, hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
+          <CsImage src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" alt="ExecutiveLens.ai full marketing website, hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
         </CsSection>
 
         <CsSection id="cs-insights" label="Insight Engine" title="AI That Connects Dots You Did Not Know Existed">
@@ -204,7 +204,7 @@ export default function ExecutiveLensPage() {
 
       </main>
 
-      <NextProject slug="zentipay" title="ZentiPay" image="/Assets/images/zentipay.webp" />
+      <NextProject slug="zentipay" title="ZentiPay" image="/Portfolio.github.io/Assets/images/zentipay.webp" />
       <Footer />
     </>
   )

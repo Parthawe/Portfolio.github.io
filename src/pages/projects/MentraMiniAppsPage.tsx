@@ -23,7 +23,7 @@ export default function MentraMiniAppsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra MiniApp Store &middot; Parth Pawar" />
         <meta property="og:description" content="The first app store for smart glasses. Voice-first discovery, developer SDK, and the economics of face-worn computing." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra/appstore-hero.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" />
       </Helmet>
 
       <Nav />
@@ -43,12 +43,12 @@ export default function MentraMiniAppsPage() {
             { label: 'Platform', value: 'MentraOS + Companion App + Web Portal' },
             { label: 'Status', value: 'Shipped with Mentra Glass launch' },
           ]}
-          heroImage="/Assets/images/mentra/appstore-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp"
           heroAlt="Mentra MiniApp Store: companion app showing MentraOS with active apps and smart glasses"
         />
 
         {/* App store on device */}
-        <CsImage src="/Assets/images/mentra/appstore-device.png" alt="MiniApp Store on the glasses display" />
+        <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-device.png" alt="MiniApp Store on the glasses display" />
 
         <ProjectOverview
           id="cs-vision"
@@ -94,7 +94,7 @@ export default function MentraMiniAppsPage() {
         </CsSection>
 
         {/* Translation demo */}
-        <CsImage src="/Assets/images/mentra/appstore-translation.webp" alt="Real-time English to Japanese translation through smart glasses with auto-scroll" />
+        <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-translation.webp" alt="Real-time English to Japanese translation through smart glasses with auto-scroll" />
         <p className="cs-caption">Live translation MiniApp: English to Japanese rendered directly on the glasses display with auto-scroll</p>
 
         {/* Developer Platform */}
@@ -132,9 +132,9 @@ export default function MentraMiniAppsPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS: all installed MiniApps view" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS: currently running MiniApps" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/os-home.png" alt="MentraOS: home screen with active app" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS: all installed MiniApps view" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS: currently running MiniApps" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS: home screen with active app" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -171,7 +171,7 @@ export default function MentraMiniAppsPage() {
 
       </main>
 
-      <NextProject slug="mentra" title="Mentra Glass" image="/Assets/images/mentra/render-transparent.webp" />
+      <NextProject slug="mentra" title="Mentra Glass" image="/Portfolio.github.io/Assets/images/mentra/render-transparent.webp" />
       <Footer />
     </>
   )

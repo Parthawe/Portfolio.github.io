@@ -18,7 +18,7 @@ PageImage.displayName = 'PageImage';
 
 /* ─── Main BookViewer ─── */
 export default function BookViewer({
-  pdfUrl = '/Assets/Imagepdfportfolio.pdf',
+  pdfUrl = '/Portfolio.github.io/Assets/Imagepdfportfolio.pdf',
   onProgress,
   onReady,
 }: {

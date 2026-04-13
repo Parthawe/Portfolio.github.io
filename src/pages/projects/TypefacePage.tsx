@@ -28,7 +28,7 @@ export default function TypefacePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Butler's Slice · Parth Pawar" />
         <meta property="og:description" content="Free variable display typeface, customised Butler font with three weights for editorial applications." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/typeface.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/typeface.webp" />
       </Helmet>
 
       <Nav />
@@ -94,7 +94,7 @@ export default function TypefacePage() {
         </section>
 
         {/* Hero image */}
-        <CsImage src="/Assets/Projects/Typeface/photos/hero-title.jpg" alt="Butler's Slice typeface cover" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/Typeface/photos/hero-title.jpg" alt="Butler's Slice typeface cover" />
 
         {/* The Concept */}
         <section className="cs-section reveal">
@@ -107,7 +107,7 @@ export default function TypefacePage() {
         </section>
 
         {/* Types of Slices */}
-        <CsImage src="/Assets/Projects/Typeface/photos/slice-types.jpg" alt="Character specimens, Ag in three weights, types of slices" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/Typeface/photos/slice-types.jpg" alt="Character specimens, Ag in three weights, types of slices" />
 
         {/* ── Interactive Playground ── */}
         <section className="cs-section reveal">
@@ -134,10 +134,10 @@ export default function TypefacePage() {
         <GlyphEditor />
 
         {/* The Weights */}
-        <CsImage src="/Assets/Projects/Typeface/photos/weights-grid.jpg" alt="The weights: Bold, Regular, Ultralight" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/Typeface/photos/weights-grid.jpg" alt="The weights: Bold, Regular, Ultralight" />
 
         {/* The Usage */}
-        <CsImage src="/Assets/Projects/Typeface/photos/specimen-usage.jpg" alt="Packaging mockups showing Butler's Slice" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/Typeface/photos/specimen-usage.jpg" alt="Packaging mockups showing Butler's Slice" />
 
         {/* How it works in context */}
         <section className="cs-section reveal">
@@ -195,7 +195,7 @@ export default function TypefacePage() {
         <section className="cs-section reveal">
           <div className="wrap" style={{ textAlign: 'center', padding: '3rem 0' }}>
             <a
-              href="/Assets/Projects/Typeface/butlers-slice.zip"
+              href="/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice.zip"
               download
               className="cta-v2-btn"
               style={{ fontFamily: '"Butlers Slice", Georgia, serif' }}
@@ -221,7 +221,7 @@ export default function TypefacePage() {
 
       </main>
 
-        <NextProject slug="atps" title="ArtTown Podcast" image="/Assets/images/atps.webp" />
+        <NextProject slug="atps" title="ArtTown Podcast" image="/Portfolio.github.io/Assets/images/atps.webp" />
       <Footer />
     </>
   )

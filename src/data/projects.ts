@@ -75,14 +75,14 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
    Project Registry
    ────────────────────────────────────────────────────────────────────── */
 
-const IMG = '/Assets/images'
+const IMG = '/Portfolio.github.io/Assets/images'
 
 export const projects: Project[] = [
   /* ── Featured (homepage hero grid) ── */
   {
     slug: 'mentra',
     name: 'Mentra',
-    image: '/Assets/images/mentra/render-transparent.webp',
+    image: '/Portfolio.github.io/Assets/images/mentra/render-transparent.webp',
     tag: 'AI WEARABLES',
     year: '2025–Present',
     desc: 'Designed the OS, companion app, and app store for AI smart glasses shipping at $299',
@@ -96,7 +96,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra-miniapps',
     name: 'MiniApps in OS',
-    image: '/Assets/images/mentra/appstore-hero.webp',
+    image: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
     tag: 'PLATFORM DESIGN',
     year: '2025\u201326',
     desc: 'First app store for smart glasses \u2014 voice-first discovery, intent-based browsing, developer SDK',
@@ -137,7 +137,7 @@ export const projects: Project[] = [
   {
     slug: 'clawed-chat',
     name: 'Clawed',
-    image: '/Assets/Projects/Clawed.chat/claw-3d.png',
+    image: '/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-3d.png',
     tag: 'AI ASSISTANT',
     year: '2026',
     desc: 'AI assistant with receipts for every action — safety-first on glasses and web',
@@ -189,7 +189,7 @@ export const projects: Project[] = [
   {
     slug: 'healthapp',
     name: 'Health App',
-    image: '/Assets/Projects/health-app/photos/home-screen.png',
+    image: '/Portfolio.github.io/Assets/Projects/health-app/photos/home-screen.png',
     tag: 'UX DESIGN',
     year: '2024',
     desc: 'Reimagining Google Tasks with health integration — productivity meets personal well-being',
@@ -202,7 +202,7 @@ export const projects: Project[] = [
   {
     slug: 'ibm',
     name: 'IBM Cancer Prognosis',
-    image: '/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
+    image: '/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
     tag: 'HEALTHCARE AI',
     year: '2020',
     desc: 'Secure genomic data transfer to identify life expectancy of cancer patients',
@@ -240,7 +240,7 @@ export const projects: Project[] = [
   {
     slug: 'ai-voice',
     name: 'AI Voice',
-    image: '/Assets/Projects/ai-voice/photos/voice-dna-builder.png',
+    image: '/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-dna-builder.png',
     tag: 'CONVERSATIONAL AI',
     year: '2025',
     desc: 'Enterprise voice selection with emotional intelligence — A/B tested with 7 users',
@@ -267,7 +267,7 @@ export const projects: Project[] = [
   {
     slug: 'the-point-cdc',
     name: 'The Point CDC',
-    image: '/Assets/Projects/ThePointCDC/photos/homepage-hero.webp',
+    image: '/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.webp',
     tag: 'COMMUNITY',
     year: '2024',
     desc: 'Redesigned digital platform for a Bronx community development nonprofit',
@@ -279,7 +279,7 @@ export const projects: Project[] = [
   {
     slug: 'office-of-diversity',
     name: 'Office of Diversity',
-    image: '/Assets/Projects/office-of-diversity/photos/responsive-preview.png',
+    image: '/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/responsive-preview.png',
     tag: 'EDUCATION',
     year: '2024',
     desc: 'Interactive IDBEA report for NYU Tisch — WCAG 2.1 AA accessible',
@@ -293,7 +293,7 @@ export const projects: Project[] = [
   {
     slug: 'jugalbandi',
     name: 'Jugalbandi',
-    image: '/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.png',
+    image: '/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.png',
     tag: 'ML + MUSIC',
     year: '2024',
     desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024',
@@ -306,7 +306,7 @@ export const projects: Project[] = [
   {
     slug: 'keyboard-project',
     name: 'BreakGen',
-    image: '/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
+    image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
     tag: 'ITP THESIS',
     year: '2025',
     desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors',
@@ -354,7 +354,7 @@ export const projects: Project[] = [
   {
     slug: 'making-of-time',
     name: 'Making of Time',
-    image: '/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
+    image: '/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
     tag: 'PHYSICAL COMPUTING',
     year: '2024',
     desc: 'Sundial → mechanical watch → software clock — building three ways to measure time',
@@ -366,7 +366,7 @@ export const projects: Project[] = [
   {
     slug: 'sea-of-salt',
     name: 'Why the Sea is Salt',
-    image: '/Assets/Projects/sea-of-salt/photos/salt-ground.jpg',
+    image: '/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-ground.jpg',
     tag: 'STORYTELLING MACHINE',
     year: '2024',
     desc: 'A salt mill grinds real salt as you advance through a Norse folktale — story as physical material',
@@ -457,7 +457,7 @@ export const projects: Project[] = [
   {
     slug: 'dna-speculative',
     name: 'DNA: Speculative Design',
-    image: '/Assets/Projects/DNA/photos/boxes-closed.png',
+    image: '/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.png',
     tag: 'BIOART',
     year: '2024',
     desc: 'Would you take a pill to live forever? Speculative pharmaceutical packaging exploring immortality and mortality',
@@ -535,7 +535,7 @@ export const projects: Project[] = [
   {
     slug: 'arcade-lab',
     name: 'Arcade Lab',
-    image: '/Assets/Projects/the-omakase/photos/cabinet-front.webp', // shares image with Omakase (it's the ancestor)
+    image: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp', // shares image with Omakase (it's the ancestor)
     tag: 'GAME PROTOTYPING',
     year: '2023',
     desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
@@ -574,7 +574,7 @@ export const projects: Project[] = [
   {
     slug: 'the-omakase',
     name: 'The Omakase',
-    image: '/Assets/Projects/the-omakase/photos/cabinet-front.webp',
+    image: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp',
     tag: 'ARCADE GAME',
     year: '2024',
     desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille',
@@ -598,7 +598,7 @@ export const projects: Project[] = [
   {
     slug: 'moniac-machine',
     name: 'Moniac Machine',
-    image: '/Assets/Projects/Moniac/photos/hero-cabinet.png',
+    image: '/Portfolio.github.io/Assets/Projects/Moniac/photos/hero-cabinet.png',
     tag: 'GAME DESIGN',
     year: '2024',
     desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education',
@@ -623,7 +623,7 @@ export const projects: Project[] = [
   {
     slug: 'sculpture',
     name: 'Sculpture',
-    image: '/Assets/Projects/Sculpture/1.webp',
+    image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.webp',
     tag: 'SCULPTURE',
     year: '2020',
     desc: 'Competition sculptures for Firodia Karandak, Pune',
@@ -638,7 +638,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra-brand',
     name: 'Mentra Brand & Packaging',
-    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
+    image: '/Portfolio.github.io/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
     tag: 'BRAND & PACKAGING',
     year: '2025–26',
     desc: 'End-to-end brand identity and packaging for AI smart glasses — logo, box, booklet, ads, and 24 social templates',
@@ -699,7 +699,7 @@ export const projects: Project[] = [
   {
     slug: 'vishwaconclave',
     name: 'VishwaConclave',
-    image: '/Assets/Projects/VishwaConclave/1.webp',
+    image: '/Portfolio.github.io/Assets/Projects/VishwaConclave/1.webp',
     tag: 'CREATIVE DIRECTION',
     year: '2021',
     desc: 'Creative direction, branding, and web design for a student conference',

@@ -26,7 +26,7 @@ export default function AiVoicePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI Voice Interface · Parth Pawar" />
         <meta property="og:description" content="Redefining AI Voice Selection for Enterprise, emotional intelligence and expressive voice design." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/ai-voice.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/ai-voice.webp" />
       </Helmet>
 
       <Nav />
@@ -47,7 +47,7 @@ export default function AiVoicePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2025' },
           ]}
-          heroImage="/Assets/Projects/ai-voice/AI.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/ai-voice/AI.webp"
           heroAlt="AI Voice Selection, hero"
         />
 
@@ -92,7 +92,7 @@ export default function AiVoicePage() {
         {NDA_DETAILS_ENABLED ? (
         <>
 
-        <CsImage src="/Assets/Projects/ai-voice/1.png" alt="AI Voice Selection, project overview slide" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ai-voice/1.png" alt="AI Voice Selection, project overview slide" />
         <p className="cs-caption">Project overview, the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
 
         {/* Research */}
@@ -119,7 +119,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/2.webp" alt="Comparative UX analysis and market research across voice AI platforms" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ai-voice/2.webp" alt="Comparative UX analysis and market research across voice AI platforms" />
         <p className="cs-caption">Comparative UX analysis across three competing platforms revealed critical gaps in voice discovery, onboarding flow, and personality customization.</p>
 
         {/* Define */}
@@ -151,7 +151,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/3.png" alt="Problem definition, pain points, and customer journey map" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ai-voice/3.png" alt="Problem definition, pain points, and customer journey map" />
         <p className="cs-caption">Five pain points distilled from research, mapped against an enterprise manager&rsquo;s journey from awareness through handoff to engineering.</p>
 
         {/* Concept A */}
@@ -177,8 +177,8 @@ export default function AiVoicePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-personas.webp" alt="Voice DNA Builder wireframe with persona selection" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-builder.webp" alt="Voice DNA Builder wireframe with parameter sliders and global map" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/wireframe-personas.webp" alt="Voice DNA Builder wireframe with persona selection" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/wireframe-builder.webp" alt="Voice DNA Builder wireframe with parameter sliders and global map" loading="lazy" /></div>
             </div>
             <p className="cs-caption">Early wireframes: persona selection and DNA parameter layout with global accent map</p>
           </div>
@@ -186,7 +186,7 @@ export default function AiVoicePage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-dna-builder.png" alt="Voice DNA Builder: dark UI with parameter sliders, DNA helix animation, and global accent map" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-dna-builder.png" alt="Voice DNA Builder: dark UI with parameter sliders, DNA helix animation, and global accent map" loading="lazy" /></div>
             <p className="cs-caption">Final Voice DNA Builder: dark theme with parameter sliders for tone, speed, quality, and pitch, real-time DNA strand animation, and interactive global accent map</p>
           </div>
         </section>
@@ -212,8 +212,8 @@ export default function AiVoicePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/console-speak.png" alt="Voice Matching console: Hi, How can I help you today? Speak your mind" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-matching-gallery.png" alt="Voice Matching: three persona silhouettes with mood-match results" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/console-speak.png" alt="Voice Matching console: Hi, How can I help you today? Speak your mind" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-matching-gallery.png" alt="Voice Matching: three persona silhouettes with mood-match results" loading="lazy" /></div>
             </div>
             <p className="cs-caption">Mood Matching flow: the console listens, then presents three matched voice personas with silhouette identities</p>
           </div>
@@ -242,7 +242,7 @@ export default function AiVoicePage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/product-flow.png" alt="Full product flow: Voice DNA Builder screens with parameter details and different configurations" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/product-flow.png" alt="Full product flow: Voice DNA Builder screens with parameter details and different configurations" loading="lazy" /></div>
             <p className="cs-caption">Complete product flow showing how the Voice DNA Builder adapts across different parameter configurations</p>
           </div>
         </section>
@@ -279,8 +279,8 @@ export default function AiVoicePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/persona-movements.png" alt="Persona Movements: Listen, Think, Talk states with DNA-inspired animation" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-personas.png" alt="Three voice persona silhouettes with distinct visual identities" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/persona-movements.png" alt="Persona Movements: Listen, Think, Talk states with DNA-inspired animation" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-personas.png" alt="Three voice persona silhouettes with distinct visual identities" loading="lazy" /></div>
             </div>
             <p className="cs-caption">Persona movement states (Listen, Think, Talk) and the three persona silhouette system giving each voice a visual identity</p>
           </div>
@@ -307,8 +307,8 @@ export default function AiVoicePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-conversation.png" alt="Voice conversation with silhouette persona and transcript" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-conversation-dark.png" alt="Voice conversation dark variant with persona silhouette" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-conversation.png" alt="Voice conversation with silhouette persona and transcript" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-conversation-dark.png" alt="Voice conversation dark variant with persona silhouette" loading="lazy" /></div>
             </div>
             <p className="cs-caption">Voice conversation interface: the silhouette persona responds with emotional intelligence, shown in two lighting variants</p>
           </div>
@@ -344,7 +344,7 @@ export default function AiVoicePage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/persona-avatars.png" alt="Six persona silhouettes with distinct poses and warm gradient backgrounds" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/persona-avatars.png" alt="Six persona silhouettes with distinct poses and warm gradient backgrounds" loading="lazy" /></div>
             <p className="cs-caption">Six persona silhouettes, each with a distinct pose and personality, giving every AI voice a visual identity that users connect with emotionally</p>
           </div>
         </section>
@@ -386,7 +386,7 @@ export default function AiVoicePage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/voice-matching-detail.png" alt="Voice Matching detail: three personas with mood-match percentages and voice preview" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-matching-detail.png" alt="Voice Matching detail: three personas with mood-match percentages and voice preview" loading="lazy" /></div>
             <p className="cs-caption">A/B test results across 7 participants: DNA Builder won on customization and playfulness; Mood Matching won on onboarding ease and emotional connection</p>
           </div>
         </section>
@@ -403,7 +403,7 @@ export default function AiVoicePage() {
 
         <CsThanks />
 
-        <CsImage src="/Assets/Projects/ai-voice/11.png" alt="Credits and thank you slide" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ai-voice/11.png" alt="Credits and thank you slide" />
         <p className="cs-caption">Final recommendation: layer Mood-Based Matching as the emotional onboarding, then graduate users to the Voice DNA Builder for full creative control.</p>
 
         <BottomNav sections={[
@@ -424,7 +424,7 @@ export default function AiVoicePage() {
 
       </main>
 
-      <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/images/ballah-code.webp" />
+      <NextProject slug="ballah-code" title="Ballah Code" image="/Portfolio.github.io/Assets/images/ballah-code.webp" />
       <Footer />
     </>
   )

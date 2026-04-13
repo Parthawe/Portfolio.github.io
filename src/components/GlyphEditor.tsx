@@ -25,9 +25,9 @@ interface Point {
 }
 
 const FONT_URLS = [
-  { label: 'Regular', url: "/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.otf" },
-  { label: 'Bold', url: "/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.otf" },
-  { label: 'Ultralight', url: "/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.otf" },
+  { label: 'Regular', url: "/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.otf" },
+  { label: 'Bold', url: "/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.otf" },
+  { label: 'Ultralight', url: "/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.otf" },
 ]
 
 const SUGGESTED_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('')

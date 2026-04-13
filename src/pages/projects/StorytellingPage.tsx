@@ -69,7 +69,7 @@ export default function StorytellingPage() {
 
       </main>
 
-      <NextProject slug="on-becoming" title="On Becoming" image="/Assets/images/sea-of-salt.svg" />
+      <NextProject slug="on-becoming" title="On Becoming" image="/Portfolio.github.io/Assets/images/sea-of-salt.svg" />
       <Footer />
     </>
   )
