@@ -18,7 +18,7 @@ export default function HealthAppPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Health App · Parth Pawar" />
         <meta property="og:description" content="Reimagining Google Tasks with health and wellness integration." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/Projects/health-app/1.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/Projects/health-app/1.webp" />
       </Helmet>
 
       <Nav />
@@ -98,7 +98,7 @@ export default function HealthAppPage() {
 
       </main>
 
-      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Assets/Projects/ibm/1.jpg" />
+      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Assets/Projects/ibm/1.webp" />
       <Footer />
     </>
   )

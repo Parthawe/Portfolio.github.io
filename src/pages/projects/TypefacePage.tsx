@@ -28,7 +28,7 @@ export default function TypefacePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Butler's Slice · Parth Pawar" />
         <meta property="og:description" content="Free variable display typeface, customised Butler font with three weights for editorial applications." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/typeface.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/typeface.webp" />
       </Helmet>
 
       <Nav />
@@ -221,7 +221,7 @@ export default function TypefacePage() {
 
       </main>
 
-        <NextProject slug="atps" title="ArtTown Podcast" image="/Assets/images/atps.png" />
+        <NextProject slug="atps" title="ArtTown Podcast" image="/Assets/images/atps.webp" />
       <Footer />
     </>
   )

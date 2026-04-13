@@ -47,7 +47,7 @@ export default function OnCallLensPage() {
             { label: 'Team', value: 'Team SOGA' },
             { label: 'Platform', value: 'MentraOS Glasses + Web' },
           ]}
-          heroImage="/Assets/images/oncall-lens/hero.png"
+          heroImage="/Assets/images/oncall-lens/hero.webp"
           heroAlt="Pager Lens, Stay present. Handle incidents anywhere."
         />
 

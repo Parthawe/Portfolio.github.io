@@ -17,7 +17,7 @@ export default function AgentCharacter({ state, onClick, chatOpen }: Props) {
     >
       <div className="agent-avatar">
         <img
-          src="/Assets/Character/me/2.png"
+          src="/Assets/Character/me/2.webp"
           alt="Parth"
           className="agent-avatar-img"
           draggable={false}

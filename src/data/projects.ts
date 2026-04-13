@@ -96,7 +96,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra-miniapps',
     name: 'MiniApps in OS',
-    image: '/Assets/images/mentra/appstore-hero.png',
+    image: '/Assets/images/mentra/appstore-hero.webp',
     tag: 'PLATFORM DESIGN',
     year: '2025\u201326',
     desc: 'First app store for smart glasses \u2014 voice-first discovery, intent-based browsing, developer SDK',
@@ -267,7 +267,7 @@ export const projects: Project[] = [
   {
     slug: 'the-point-cdc',
     name: 'The Point CDC',
-    image: '/Assets/Projects/ThePointCDC/photos/homepage-hero.png',
+    image: '/Assets/Projects/ThePointCDC/photos/homepage-hero.webp',
     tag: 'COMMUNITY',
     year: '2024',
     desc: 'Redesigned digital platform for a Bronx community development nonprofit',
@@ -354,7 +354,7 @@ export const projects: Project[] = [
   {
     slug: 'making-of-time',
     name: 'Making of Time',
-    image: '/Assets/Projects/making-of-time/photos/blue-dial-hero.png',
+    image: '/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
     tag: 'PHYSICAL COMPUTING',
     year: '2024',
     desc: 'Sundial → mechanical watch → software clock — building three ways to measure time',
@@ -623,7 +623,7 @@ export const projects: Project[] = [
   {
     slug: 'sculpture',
     name: 'Sculpture',
-    image: '/Assets/Projects/Sculpture/1.jpg',
+    image: '/Assets/Projects/Sculpture/1.webp',
     tag: 'SCULPTURE',
     year: '2020',
     desc: 'Competition sculptures for Firodia Karandak, Pune',
@@ -686,7 +686,7 @@ export const projects: Project[] = [
   {
     slug: 'atps',
     name: 'ArtTown Podcast',
-    image: `${IMG}/atps.png`,
+    image: `${IMG}/atps.webp`,
     tag: 'MEDIA',
     year: '2021',
     desc: 'Visual identity and motion graphics for an art and design podcast series',
@@ -699,7 +699,7 @@ export const projects: Project[] = [
   {
     slug: 'vishwaconclave',
     name: 'VishwaConclave',
-    image: '/Assets/Projects/VishwaConclave/1.jpg',
+    image: '/Assets/Projects/VishwaConclave/1.webp',
     tag: 'CREATIVE DIRECTION',
     year: '2021',
     desc: 'Creative direction, branding, and web design for a student conference',

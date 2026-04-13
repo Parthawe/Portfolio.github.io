@@ -191,7 +191,7 @@ export default function OrgDashboardPage() {
 
       </main>
 
-      <NextProject slug="raahi-project" title="Raahi" image="/Assets/images/raahi.jpg" />
+      <NextProject slug="raahi-project" title="Raahi" image="/Assets/images/raahi.webp" />
       <Footer />
     </>
   )

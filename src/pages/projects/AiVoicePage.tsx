@@ -119,7 +119,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/ai-voice/2.png" alt="Comparative UX analysis and market research across voice AI platforms" />
+        <CsImage src="/Assets/Projects/ai-voice/2.webp" alt="Comparative UX analysis and market research across voice AI platforms" />
         <p className="cs-caption">Comparative UX analysis across three competing platforms revealed critical gaps in voice discovery, onboarding flow, and personality customization.</p>
 
         {/* Define */}
@@ -177,8 +177,8 @@ export default function AiVoicePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-personas.png" alt="Voice DNA Builder wireframe with persona selection" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-builder.png" alt="Voice DNA Builder wireframe with parameter sliders and global map" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-personas.webp" alt="Voice DNA Builder wireframe with persona selection" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ai-voice/photos/wireframe-builder.webp" alt="Voice DNA Builder wireframe with parameter sliders and global map" loading="lazy" /></div>
             </div>
             <p className="cs-caption">Early wireframes: persona selection and DNA parameter layout with global accent map</p>
           </div>

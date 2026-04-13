@@ -173,7 +173,7 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <p className="cs-section-label" style={{ marginBottom: 'var(--space-3)' }}>Bottom Label &mdash; Factory Spec</p>
-            <div className="cs-img reveal"><img src={`${P}/packaging-box-clear-2.png`} alt="Bottom label production spec: FCC ID, CE marking, Prop 65 warning, barcode, model number — red measurement annotations for factory" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src={`${P}/packaging-box-clear-2.webp`} alt="Bottom label production spec: FCC ID, CE marking, Prop 65 warning, barcode, model number — red measurement annotations for factory" loading="lazy" /></div>
           </div>
         </section>
 
@@ -198,7 +198,7 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src={`${P}/yt-unboxing-1.jpg`} alt="YouTube thumbnail: creator holding Mentra Live box and charging case — UNBOXING MENTRA LIVE" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/yt-unboxing-1.webp`} alt="YouTube thumbnail: creator holding Mentra Live box and charging case — UNBOXING MENTRA LIVE" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/yt-unboxing-2.jpg`} alt="YouTube thumbnail: creator revealing glasses from box — SMART GLASSES REVEALED" loading="lazy" /></div>
             </div>
           </div>
@@ -207,7 +207,7 @@ export default function MentraBrandPage() {
         {/* Text bubble — messaging UI design for marketing */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src={`${P}/text-bubble-1.jpg`} alt="Mentra marketing asset: lifestyle photo with text bubble UI overlay showing real-time voice transcription — brand language in product context" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src={`${P}/text-bubble-1.webp`} alt="Mentra marketing asset: lifestyle photo with text bubble UI overlay showing real-time voice transcription — brand language in product context" loading="lazy" /></div>
           </div>
         </section>
 
@@ -229,12 +229,12 @@ export default function MentraBrandPage() {
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem' }}>
               <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-1.png`} alt="Page 1: QR code and Mentra logo — scan to download app" loading="lazy" /></div>
-              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-2.png`} alt="Page 2: Line-art illustration of glasses with intro text" loading="lazy" /></div>
+              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-2.webp`} alt="Page 2: Line-art illustration of glasses with intro text" loading="lazy" /></div>
               <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-3.png`} alt="Page 3: Hardware at a glance — 9 labeled components" loading="lazy" /></div>
             </div>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '0.75rem' }}>
               <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-5.png`} alt="Page 5: Turn on/off — hand holding glasses at power button" loading="lazy" /></div>
-              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-9.png`} alt="Page 9: Charging case — glasses clicking into place" loading="lazy" /></div>
+              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-9.webp`} alt="Page 9: Charging case — glasses clicking into place" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -270,14 +270,14 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src={`${P}/editorial-portrait-1.jpg`} alt="Isarelov shoot: model looking right, minimal studio, black frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/editorial-portrait-1.webp`} alt="Isarelov shoot: model looking right, minimal studio, black frame" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/editorial-portrait-2.jpg`} alt="Isarelov shoot: front-facing, Mentra Live as everyday eyewear" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src={`${P}/editorial-portrait-3.jpg`} alt="Isarelov shoot: button-up shirt, professional context" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/editorial-portrait-3.webp`} alt="Isarelov shoot: button-up shirt, professional context" loading="lazy" /></div>
             </div>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
-              <div className="cs-img reveal"><img src={`${P}/studio-shot-1.jpg`} alt="Studio shoot: dark urban setting, cinematic lighting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/studio-shot-1.webp`} alt="Studio shoot: dark urban setting, cinematic lighting" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/studio-shot-2.jpg`} alt="Studio shoot: product in low-light context" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src={`${P}/studio-shot-3.jpg`} alt="Studio shoot: lifestyle, technology in daily use" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/studio-shot-3.webp`} alt="Studio shoot: lifestyle, technology in daily use" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -332,8 +332,8 @@ export default function MentraBrandPage() {
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '0.75rem' }}>
               <div className="cs-img reveal"><img src={`${P}/ad-stream.jpg`} alt="Stream Your World — birthday through lens" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/ad-hear.jpg`} alt="Hear Your Audio, The World — jogging" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src={`${P}/ad-3.jpg`} alt="Shipping Soon — teaser on green" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src={`${P}/ad-4.jpg`} alt="Focus — autofocus UI on portrait" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/ad-3.webp`} alt="Shipping Soon — teaser on green" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src={`${P}/ad-4.webp`} alt="Focus — autofocus UI on portrait" loading="lazy" /></div>
             </div>
           </div>
         </section>

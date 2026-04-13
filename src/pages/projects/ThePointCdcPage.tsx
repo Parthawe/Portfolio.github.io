@@ -46,14 +46,14 @@ export default function ThePointCdcPage() {
             { label: 'Year', value: '2024' },
           ]}
           liveUrl="https://thepoint.org"
-          heroImage="/Assets/Projects/ThePointCDC/photos/homepage-hero.png"
+          heroImage="/Assets/Projects/ThePointCDC/photos/homepage-hero.webp"
           heroAlt="The Point CDC redesigned homepage: Empowering Community, Hunts Point, Where Bronx Breathes Brighter"
         />
 
         {/* All pages mockup */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.png" alt="All redesigned pages: team, programs, news, community resources, events" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="All redesigned pages: team, programs, news, community resources, events" loading="lazy" /></div>
           </div>
         </section>
 
@@ -107,7 +107,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/ThePointCDC/photos/community-photo.png" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
               </div>
             </div>
           </div>
@@ -245,7 +245,7 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">User Journey</h2>
             <div className="cs-img-full">
-              <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.png" alt="User journey map and information architecture flow diagram" loading="lazy" />
+              <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
             </div>
           </div>
         </section>
@@ -267,7 +267,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-8.png" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}
@@ -288,7 +288,7 @@ export default function ThePointCdcPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.png" alt="Annotated redesign: streamlined navigation, responsive design, improved readability, cohesive color scheme" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign: streamlined navigation, responsive design, improved readability, cohesive color scheme" loading="lazy" /></div>
           </div>
         </section>
 
@@ -296,7 +296,7 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.webp" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
           </div>
         </section>

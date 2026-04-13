@@ -59,7 +59,7 @@ export default function OfficeOfDiversityPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/research-wall.png" alt="Research: sticky note wall with timeline mapping and information architecture" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Research: sticky note wall with timeline mapping and information architecture" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/office-of-diversity/photos/user-testing.png" alt="User testing session with participants reviewing the report" loading="lazy" /></div>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function OfficeOfDiversityPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/office-of-diversity/3.jpg" alt="IDBEA report context, Tisch Office of Diversity values and process overview" loading="lazy" />
+                <img src="/Assets/Projects/office-of-diversity/3.webp" alt="IDBEA report context, Tisch Office of Diversity values and process overview" loading="lazy" />
               </div>
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/4.jpg" alt="Process steps, understanding scope, design conceptualization, and data visualization approach" />
+        <CsImage src="/Assets/Projects/office-of-diversity/4.webp" alt="Process steps, understanding scope, design conceptualization, and data visualization approach" />
 
         {/* Process Step 4 */}
         <CsSection label="04 \u2014 Process" title="Interactivity & User Engagement">
@@ -216,7 +216,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/5.jpg" alt="Process steps, interactivity, collaboration sessions, and accessibility compliance" />
+        <CsImage src="/Assets/Projects/office-of-diversity/5.webp" alt="Process steps, interactivity, collaboration sessions, and accessibility compliance" />
 
         {/* Impact */}
         <CsSection id="cs-impact" label="Impact" title="Outcome">
@@ -277,7 +277,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/7.jpg" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
+        <CsImage src="/Assets/Projects/office-of-diversity/7.webp" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
 
         {/* Advisement */}
         <CsSection label="Structure" title="Advisement & Feedback Groups">
@@ -303,7 +303,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/8.jpg" alt="Report, advisement groups, focus areas, and data visualization charts showing engagement metrics" />
+        <CsImage src="/Assets/Projects/office-of-diversity/8.webp" alt="Report, advisement groups, focus areas, and data visualization charts showing engagement metrics" />
 
         {/* Data Highlights */}
         <CsSection label="Data Highlights" title="Report Data at a Glance">
@@ -328,7 +328,7 @@ export default function OfficeOfDiversityPage() {
           </details>
         </CsSection>
 
-        <CsImage src="/Assets/Projects/office-of-diversity/9.jpg" alt="Report, restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" />
+        <CsImage src="/Assets/Projects/office-of-diversity/9.webp" alt="Report, restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" />
 
         <CsThanks contactCta />
 

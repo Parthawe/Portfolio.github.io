@@ -315,7 +315,7 @@ export default function KeyboardProjectPage() {
 
       </main>
 
-        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.png" />
+        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/images/jugalbandi.webp" />
       <Footer />
     </>
   )

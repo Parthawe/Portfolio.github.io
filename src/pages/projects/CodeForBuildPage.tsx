@@ -40,7 +40,7 @@ export default function CodeForBuildPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2021' },
           ]}
-          heroImage="/Assets/Projects/CodeforBuild/photos/phone-hero.png"
+          heroImage="/Assets/Projects/CodeforBuild/photos/phone-hero.webp"
           heroAlt="Code for Build, Learn Coding By Building Blocks hero with 3D block illustrations and mobile mockups"
         />
 
@@ -362,7 +362,7 @@ export default function CodeForBuildPage() {
 
       </main>
 
-        <NextProject slug="typeface" title="Butler's Slice" image="/Assets/images/typeface.jpg" />
+        <NextProject slug="typeface" title="Butler's Slice" image="/Assets/images/typeface.webp" />
       <Footer />
     </>
   )

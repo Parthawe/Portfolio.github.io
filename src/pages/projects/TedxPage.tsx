@@ -39,7 +39,7 @@ export default function TedxPage() {
             { label: 'Audience', value: '800+ attendees' },
             { label: 'Year', value: '2019' },
           ]}
-          heroImage="/Assets/Projects/Tedxvitpune/Desktop/5.jpg"
+          heroImage="/Assets/Projects/Tedxvitpune/Desktop/5.webp"
           heroAlt="Completed TEDxVITPune stage with parallax cityscape"
         />
 
@@ -103,7 +103,7 @@ export default function TedxPage() {
           <div className="wrap">
             <h2 className="cs-display" style={{ opacity: 0.25, fontSize: 'clamp(3rem,8vw,7rem)', marginBottom: '2rem' }}>Stage Design</h2>
             <figure className="cs-img-full" style={{ background: 'transparent' }}>
-              <img src="/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="TEDxVITPune stage design, speakers and performers on the parallax cityscape stage" loading="lazy" />
+              <img src="/Assets/Projects/Tedxvitpune/Desktop/1.webp" alt="TEDxVITPune stage design, speakers and performers on the parallax cityscape stage" loading="lazy" />
             </figure>
           </div>
         </section>
@@ -133,7 +133,7 @@ export default function TedxPage() {
           <div className="wrap">
             <h2 className="cs-display" style={{ marginBottom: '2rem' }}>Process</h2>
             <figure className="cs-img-full" style={{ background: 'transparent' }}>
-              <img src="/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind-the-scenes process photos showing stage construction, column fabrication, lighting tests, and assembly" loading="lazy" />
+              <img src="/Assets/Projects/Tedxvitpune/Desktop/4.webp" alt="Behind-the-scenes process photos showing stage construction, column fabrication, lighting tests, and assembly" loading="lazy" />
             </figure>
           </div>
         </section>

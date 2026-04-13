@@ -21,7 +21,7 @@ export default function RaahiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Raahi · Parth Pawar" />
         <meta property="og:description" content="Streamlining Pune's public transport, integrating buses, metro, auto-rickshaws and shared cabs." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/raahi.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/raahi.webp" />
       </Helmet>
 
       <Nav />
@@ -90,7 +90,7 @@ export default function RaahiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/app-home.png" alt="Raahi home screen — Hey Parth greeting, transport modes, recent trips, carbon footprint" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/app-home.webp" alt="Raahi home screen — Hey Parth greeting, transport modes, recent trips, carbon footprint" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/route-details.png" alt="Route details — multimodal journey with color-coded segments, timings, and price" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Raahi/photos/kiosk-home.png" alt="Kiosk interface — transit information display for bus stops" loading="lazy" /></div>
             </div>
@@ -116,7 +116,7 @@ export default function RaahiPage() {
 
         {/* Image slides */}
         
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/brand-moodboard.png" alt="Brand Identity, mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/brand-moodboard.webp" alt="Brand Identity, mind map, mood boards, and brand personality spectrum" loading="lazy" /></div>
         
 
         {/* Design System */}
@@ -156,7 +156,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/app-home.png" alt="Raahi homepage, welcome screen, and customisation screens" loading="lazy" /></div>
+        <div className="cs-slide reveal"><img src="/Assets/Projects/Raahi/photos/app-home.webp" alt="Raahi homepage, welcome screen, and customisation screens" loading="lazy" /></div>
 
         <section className="cs-section reveal">
           <div className="wrap">

@@ -139,7 +139,7 @@ export default function IbmPage() {
 
       </main>
 
-      <NextProject slug="sculpture" title="Sculpture" image="/Assets/Projects/Sculpture/1.jpg" />
+      <NextProject slug="sculpture" title="Sculpture" image="/Assets/Projects/Sculpture/1.webp" />
       <Footer />
     </>
   )

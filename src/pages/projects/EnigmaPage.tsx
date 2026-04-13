@@ -42,8 +42,8 @@ export default function EnigmaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/person-viewing.png" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-c.png" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/person-viewing.webp" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -92,9 +92,9 @@ export default function EnigmaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/alphabet-layer.png" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/wire-detail.png" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/neuron-closeup.png" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/alphabet-layer.webp" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/wire-detail.webp" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/neuron-closeup.webp" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -102,7 +102,7 @@ export default function EnigmaPage() {
         {/* Wide shot */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-wide.png" alt="Enigma sculpture wide shot: full neural network with alphabet output layer visible" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-wide.webp" alt="Enigma sculpture wide shot: full neural network with alphabet output layer visible" loading="lazy" /></div>
           </div>
         </section>
 

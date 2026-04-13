@@ -23,7 +23,7 @@ export default function MentraMiniAppsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra MiniApp Store &middot; Parth Pawar" />
         <meta property="og:description" content="The first app store for smart glasses. Voice-first discovery, developer SDK, and the economics of face-worn computing." />
-        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra/appstore-hero.png" />
+        <meta property="og:image" content="https://parthpawar.com/Assets/images/mentra/appstore-hero.webp" />
       </Helmet>
 
       <Nav />
@@ -43,7 +43,7 @@ export default function MentraMiniAppsPage() {
             { label: 'Platform', value: 'MentraOS + Companion App + Web Portal' },
             { label: 'Status', value: 'Shipped with Mentra Glass launch' },
           ]}
-          heroImage="/Assets/images/mentra/appstore-hero.png"
+          heroImage="/Assets/images/mentra/appstore-hero.webp"
           heroAlt="Mentra MiniApp Store: companion app showing MentraOS with active apps and smart glasses"
         />
 
@@ -94,7 +94,7 @@ export default function MentraMiniAppsPage() {
         </CsSection>
 
         {/* Translation demo */}
-        <CsImage src="/Assets/images/mentra/appstore-translation.png" alt="Real-time English to Japanese translation through smart glasses with auto-scroll" />
+        <CsImage src="/Assets/images/mentra/appstore-translation.webp" alt="Real-time English to Japanese translation through smart glasses with auto-scroll" />
         <p className="cs-caption">Live translation MiniApp: English to Japanese rendered directly on the glasses display with auto-scroll</p>
 
         {/* Developer Platform */}

@@ -137,7 +137,7 @@ export default function MentraPage() {
             { num: 3, title: 'Pair', desc: 'Scan the QR code. One tap to confirm. The phone and glasses handshake over Bluetooth LE and the connection is persistent.' },
             { num: 4, title: '"Hey Mentra"', desc: 'The wake word activates the AI. Directions, translation, song ID, calendar, the first interaction sets the tone.' },
           ]} />
-          <CsImage src="/Assets/images/mentra/appstore-hero.png" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
+          <CsImage src="/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
           <CsImage src="/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
           <CsBody style={{ marginTop: '2rem' }}>
             <p>Beyond onboarding, the app is the management layer for the entire ecosystem: browse miniapps, configure per-app notifications, adjust display settings, manage privacy. I built it on a single-tab architecture, everything is two taps away.</p>
@@ -179,9 +179,9 @@ export default function MentraPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-front.jpg" alt="Mentra smart glasses from front — transparent display, minimal frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-angle.jpg" alt="Mentra smart glasses angled view showing temple arm and hinge" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-folded.jpg" alt="Mentra smart glasses folded, compact form factor" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-front.webp" alt="Mentra smart glasses from front — transparent display, minimal frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-angle.webp" alt="Mentra smart glasses angled view showing temple arm and hinge" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/images/mentra/photo-folded.webp" alt="Mentra smart glasses folded, compact form factor" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -191,7 +191,7 @@ export default function MentraPage() {
             <p>This is what separates Mentra from everything else. Meta Ray-Ban Gen 2 ships at the same $299 price point but is a closed system. Mentra is the opposite: an open marketplace where any developer can ship.</p>
             <p>Designing a store for a HUD meant rethinking every convention. No icon grid. No screenshot carousel. The on-glasses store is voice-navigated and context-curated.</p>
           </CsBody>
-          <CsImage src="/Assets/images/mentra/appstore-translation.png" alt="MentraOS Translation app, real-time English to Japanese translation through smart glasses with auto-scroll" />
+          <CsImage src="/Assets/images/mentra/appstore-translation.webp" alt="MentraOS Translation app, real-time English to Japanese translation through smart glasses with auto-scroll" />
           <h3 className="cs-section-subtitle">Discoverability Without Browsing</h3>
           <CsBody>
             <p>The store surfaces miniapps from three signals: what you are doing, where you are, and what you are asking for. The result feels less like a catalog and more like a knowledgeable friend who always knows the right tool.</p>
@@ -220,7 +220,7 @@ export default function MentraPage() {
         </CsSection>
 
         <CsImage src="/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render, showing internal components, camera module, and circuit board" />
-        <CsImage src="/Assets/images/mentra/photo-front.jpg" alt="Mentra Live smart glasses, real product photo showing lens display and black frame" />
+        <CsImage src="/Assets/images/mentra/photo-front.webp" alt="Mentra Live smart glasses, real product photo showing lens display and black frame" />
 
         <CsSection id="cs-website" label="Live Product" title="mentraglass.com, The Marketing Site I Designed">
           <CsBody>

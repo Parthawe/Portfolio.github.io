@@ -71,7 +71,7 @@ export default function AboutPage() {
             <PortalReveal
               images={[
                 '/Assets/Character/me/1.webp',
-                '/Assets/Character/me/2.png',
+                '/Assets/Character/me/2.webp',
                 '/Assets/Character/me/3.webp',
                 '/Assets/Character/me/4.webp',
                 '/Assets/Character/me/5.webp',

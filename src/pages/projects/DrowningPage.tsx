@@ -70,8 +70,8 @@ export default function DrowningPage() {
           </CsBody>
           <div style={{ marginTop: 'var(--space-4)' }}>
             <LightingSlider
-              beforeSrc="https://freight.cargo.site/w/2880/i/N2050663334867775366614256779798/1.jpg"
-              afterSrc="https://freight.cargo.site/w/2880/i/J2050663334978455831056514089494/5.jpg"
+              beforeSrc="https://freight.cargo.site/w/2880/i/N2050663334867775366614256779798/1.webp"
+              afterSrc="https://freight.cargo.site/w/2880/i/J2050663334978455831056514089494/5.webp"
               beforeLabel="Unlit stage"
               afterLabel="Greenhouse revealed"
             />
@@ -90,7 +90,7 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/N2050663334867775366614256779798/1.jpg" alt="Drowning, concept" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/N2050663334867775366614256779798/1.webp" alt="Drowning, concept" loading="lazy" />
           </div>
           <div className="wrap">
             <img src="https://freight.cargo.site/w/2880/i/Q2050663335033796063277642744342/2.jpg" alt="Drowning, concept detail" loading="lazy" />
@@ -110,10 +110,10 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/W2050663335015349319203933192726/3.jpg" alt="Drowning, design" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/W2050663335015349319203933192726/3.webp" alt="Drowning, design" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/F2050663334996902575130223641110/4.jpg" alt="Drowning, design detail" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/F2050663334996902575130223641110/4.webp" alt="Drowning, design detail" loading="lazy" />
           </div>
         </section>
 
@@ -130,7 +130,7 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="https://freight.cargo.site/w/2880/i/J2050663334978455831056514089494/5.jpg" alt="Drowning, production" loading="lazy" />
+            <img src="https://freight.cargo.site/w/2880/i/J2050663334978455831056514089494/5.webp" alt="Drowning, production" loading="lazy" />
           </div>
           <div className="wrap">
             <img src="https://freight.cargo.site/w/2880/i/N2050663334960009086982804537878/6.jpg" alt="Drowning, production detail" loading="lazy" />

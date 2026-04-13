@@ -336,7 +336,7 @@ export const categories: CategoryData[] = [
       title: 'Jugalbandi',
       desc: 'ML-driven musical instrument exhibited at Maker Faire',
       role: 'Creator · 2024',
-      image: '/Assets/images/jugalbandi.png',
+      image: '/Assets/images/jugalbandi.webp',
       bgColor: '#fffbeb',
       tag: 'ML + MUSIC',
       year: '2024',
@@ -487,7 +487,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'revolving-stage',
-          image: '/Assets/images/revolving-stage.jpg',
+          image: '/Assets/images/revolving-stage.webp',
           alt: 'Revolving Stage',
           name: 'Revolving Stage',
           result: '15 ft. diameter rotating stage supporting 250+ kgs of live performers, engineered for a university theatre production',
@@ -498,7 +498,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sculpture',
-          image: '/Assets/Projects/Sculpture/1.jpg',
+          image: '/Assets/Projects/Sculpture/1.webp',
           alt: 'Sculpture',
           name: 'Sculpture',
           result: 'Competition sculptures for Firodia Karandak, Pune',
@@ -593,7 +593,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'typeface',
-          image: '/Assets/images/typeface.jpg',
+          image: '/Assets/images/typeface.webp',
           alt: "Butler's Slice",
           name: "Butler's Slice",
           result: 'Original variable display typeface',
@@ -617,7 +617,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'atps',
-          image: '/Assets/images/atps.png',
+          image: '/Assets/images/atps.webp',
           alt: 'ArtTown Podcast',
           name: 'ArtTown Podcast',
           result: '45 episodes interviewing designers from Puma, RCA, Google, and Bollywood',
@@ -783,7 +783,7 @@ export const categories: CategoryData[] = [
       title: 'Raahi',
       desc: 'Transit accessibility for underserved commuters',
       role: 'Designer · 2022',
-      image: '/Assets/images/raahi.jpg',
+      image: '/Assets/images/raahi.webp',
       bgColor: '#ecfdf5',
       tag: 'CIVIC DESIGN',
       year: '2022',

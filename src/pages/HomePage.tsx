@@ -29,7 +29,7 @@ const skills: Skill[] = [
   { label: 'UX Design',            img: `${IMG}/mentra.png` },
   { label: 'Product Design',       img: `${IMG}/executivelens.png` },
   { label: 'Fintech',              img: `${IMG}/zentipay.png` },
-  { label: 'Creative Technology',   img: `${IMG}/jugalbandi.png` },
+  { label: 'Creative Technology',   img: `${IMG}/jugalbandi.webp` },
   { label: 'Physical Computing',   img: `${IMG}/enigma.jpg` },
   { label: 'Installations',        img: `${IMG}/keyboard.jpg` },
 ];
