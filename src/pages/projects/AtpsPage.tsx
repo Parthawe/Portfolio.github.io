@@ -40,7 +40,7 @@ export default function AtpsPage() {
         />
 
         {/* Hero image */}
-        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/1.webp" alt="ArtTown Podcast Series hero, microphone with a grid of episode artwork and 50k+ listeners" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/1.jpg" alt="ArtTown Podcast Series hero, microphone with a grid of episode artwork and 50k+ listeners" />
 
         {/* Distribution */}
         <section className="cs-section reveal">
@@ -200,7 +200,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Episode grid */}
-        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/5.webp" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/5.jpg" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" />
 
         {/* Notable Guests */}
         <section className="cs-section reveal">

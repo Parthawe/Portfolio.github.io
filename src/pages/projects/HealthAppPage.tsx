@@ -98,7 +98,7 @@ export default function HealthAppPage() {
 
       </main>
 
-      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Portfolio.github.io/Assets/Projects/ibm/1.webp" />
+      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Portfolio.github.io/Assets/Projects/ibm/1.jpg" />
       <Footer />
     </>
   )

@@ -51,7 +51,7 @@ export default function TransfiPage() {
             { label: 'Location', value: 'Bangalore, India' },
           ]}
           liveUrl="https://www.transfi.com"
-          heroImage="/Portfolio.github.io/Assets/Projects/Transfi/photos/dashboard-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/Transfi/photos/dashboard-hero.png"
           heroAlt="TransFi hero, dashboard and buy crypto widget"
         />
 

@@ -92,7 +92,7 @@ export default function AiVoicePage() {
         {NDA_DETAILS_ENABLED ? (
         <>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/ai-voice/1.png" alt="AI Voice Selection, project overview slide" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ai-voice/1.webp" alt="AI Voice Selection, project overview slide" />
         <p className="cs-caption">Project overview, the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
 
         {/* Research */}

@@ -40,7 +40,7 @@ export default function CodeForBuildPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2021' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/phone-hero.webp"
+          heroImage="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/phone-hero.png"
           heroAlt="Code for Build, Learn Coding By Building Blocks hero with 3D block illustrations and mobile mockups"
         />
 

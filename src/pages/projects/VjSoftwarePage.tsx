@@ -162,7 +162,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Analyzed competitor apps including MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety across features like visitor management, parking spots, domestic staff management, utility bill payments, communication management, and more.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.jpg" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
           </div>
         </section>
 
@@ -192,7 +192,7 @@ export default function VjSoftwarePage() {
                 </CsBody>
               </div>
             </div>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.jpg" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
           </div>
         </section>
 
@@ -228,7 +228,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Mapped the complete user journey covering first-time users booking a parking spot, adding RFID or FastTag details, editing vehicle details, renting a parking spot, and filing complaints for incorrect vehicle parking. Each flow includes decision points, success states, and error handling.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.jpg" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
 
             <h3 className="cs-section-subtitle">Features</h3>
             <div className="cs-tags">
@@ -263,7 +263,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Translated wireframes into polished high-fidelity screens featuring the interactive society map, spot selection interface, booking details, payment flow, and confirmation screens.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.jpg" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
           </div>
         </section>
 
@@ -305,7 +305,7 @@ export default function VjSoftwarePage() {
               </div>
             </div>
 
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.jpg" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
           </div>
         </section>
 

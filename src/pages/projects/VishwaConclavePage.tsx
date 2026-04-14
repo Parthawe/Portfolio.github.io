@@ -17,7 +17,7 @@ export default function VishwaConclavePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VishwaConclave · Parth Pawar" />
         <meta property="og:description" content="Creative direction, branding, and web design for India's first multidisciplinary student conference." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/VishwaConclave/1.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" />
       </Helmet>
 
       <Nav />
@@ -41,7 +41,7 @@ export default function VishwaConclavePage() {
         {/* Hero image */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/1.webp" alt="VishwaConclave brand identity overview showing event posters across three years" loading="eager" />
+            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" alt="VishwaConclave brand identity overview showing event posters across three years" loading="eager" />
           </div>
         </section>
 
@@ -73,7 +73,7 @@ export default function VishwaConclavePage() {
         {/* Crafting the Decade */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/4.webp" alt="VishwaConclave Crafting The Decade — speaker campaigns, recruiting team structure across 8 departments" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/4.jpg" alt="VishwaConclave Crafting The Decade — speaker campaigns, recruiting team structure across 8 departments" loading="lazy" />
           </div>
         </section>
 

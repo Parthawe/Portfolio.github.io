@@ -277,7 +277,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/7.webp" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/7.jpg" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
 
         {/* Advisement */}
         <CsSection label="Structure" title="Advisement & Feedback Groups">

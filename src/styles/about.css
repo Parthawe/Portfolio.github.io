@@ -1,24 +1,24 @@
 /* ── Butler's Slice @font-face (Parth's custom typeface) ── */
 @font-face {
   font-family: "Butlers Slice";
-  src: url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff2") format("woff2"),
-       url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff") format("woff");
+  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff2") format("woff2"),
+       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Butlers Slice";
-  src: url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff2") format("woff2"),
-       url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff") format("woff");
+  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff2") format("woff2"),
+       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Butlers Slice";
-  src: url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff2") format("woff2"),
-       url("/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff") format("woff");
+  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff2") format("woff2"),
+       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

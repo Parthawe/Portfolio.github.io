@@ -267,7 +267,7 @@ export const projects: Project[] = [
   {
     slug: 'the-point-cdc',
     name: 'The Point CDC',
-    image: '/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.webp',
+    image: '/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.png',
     tag: 'COMMUNITY',
     year: '2024',
     desc: 'Redesigned digital platform for a Bronx community development nonprofit',
@@ -354,7 +354,7 @@ export const projects: Project[] = [
   {
     slug: 'making-of-time',
     name: 'Making of Time',
-    image: '/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
+    image: '/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-hero.png',
     tag: 'PHYSICAL COMPUTING',
     year: '2024',
     desc: 'Sundial → mechanical watch → software clock — building three ways to measure time',
@@ -623,7 +623,7 @@ export const projects: Project[] = [
   {
     slug: 'sculpture',
     name: 'Sculpture',
-    image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.webp',
+    image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg',
     tag: 'SCULPTURE',
     year: '2020',
     desc: 'Competition sculptures for Firodia Karandak, Pune',
@@ -699,7 +699,7 @@ export const projects: Project[] = [
   {
     slug: 'vishwaconclave',
     name: 'VishwaConclave',
-    image: '/Portfolio.github.io/Assets/Projects/VishwaConclave/1.webp',
+    image: '/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg',
     tag: 'CREATIVE DIRECTION',
     year: '2021',
     desc: 'Creative direction, branding, and web design for a student conference',

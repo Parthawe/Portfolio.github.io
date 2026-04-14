@@ -143,7 +143,7 @@ export default function UvLightPage() {
             <h2 className="cs-section-title">The Experience</h2>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-1.png" alt="UV-lit room: participants discovering hidden projections under blacklight" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-2.webp" alt="Participant discovering hidden UV drawings on the floor" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-2.png" alt="Participant discovering hidden UV drawings on the floor" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -164,7 +164,7 @@ export default function UvLightPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-6.webp" alt="Participants sitting around glowing UV puzzle on the floor" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-6.png" alt="Participants sitting around glowing UV puzzle on the floor" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-7.png" alt="Close-up: glowing UV element in participant's hand" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-5.png" alt="UV-lit room with Starry Night projection and participants" loading="lazy" /></div>
             </div>
@@ -183,7 +183,7 @@ export default function UvLightPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-8.webp" alt="UV-lit stage with fluorescent floor markings and participants assembling puzzle pieces" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-8.png" alt="UV-lit stage with fluorescent floor markings and participants assembling puzzle pieces" loading="lazy" />
         </div>
 
         {/* Participant Interaction */}

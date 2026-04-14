@@ -498,7 +498,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sculpture',
-          image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.webp',
+          image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg',
           alt: 'Sculpture',
           name: 'Sculpture',
           result: 'Competition sculptures for Firodia Karandak, Pune',
