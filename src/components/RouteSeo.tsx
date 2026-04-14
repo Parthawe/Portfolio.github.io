@@ -2,10 +2,9 @@ import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { categories } from '../data/categories'
 import { projects } from '../data/projects'
+import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from '../config/site'
 
-const SITE_NAME = 'Parth Pawar'
-const SITE_URL = 'https://parthpawar.com'
-const DEFAULT_IMAGE = '/Portfolio.github.io/Assets/images/mentra.webp'
+const DEFAULT_IMAGE = DEFAULT_OG_IMAGE
 const NOINDEX_ROUTES = new Set(['/studio', '/graveyard', '/book'])
 
 interface RouteMeta {
@@ -118,7 +117,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     return {
       title: 'About · Parth Pawar',
       description: 'About Parth Pawar, Design Engineer and Head of UI/UX at Mentra. Experience across AI wearables, fintech, and creative technology.',
-      image: toAbsoluteUrl('/Portfolio.github.io/Assets/Character/me/1.webp'),
+      image: toAbsoluteUrl('/Portfolio.github.io/Assets/character/me/1.webp'),
       url,
       type: 'website',
       robots,

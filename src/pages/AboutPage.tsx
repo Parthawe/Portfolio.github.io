@@ -70,11 +70,11 @@ export default function AboutPage() {
           <div className="abt-photo-hero">
             <PortalReveal
               images={[
-                '/Portfolio.github.io/Assets/Character/me/1.webp',
-                '/Portfolio.github.io/Assets/Character/me/2.webp',
-                '/Portfolio.github.io/Assets/Character/me/3.webp',
-                '/Portfolio.github.io/Assets/Character/me/4.webp',
-                '/Portfolio.github.io/Assets/Character/me/5.webp',
+                '/Portfolio.github.io/Assets/character/me/1.webp',
+                '/Portfolio.github.io/Assets/character/me/2.webp',
+                '/Portfolio.github.io/Assets/character/me/3.webp',
+                '/Portfolio.github.io/Assets/character/me/4.webp',
+                '/Portfolio.github.io/Assets/character/me/5.webp',
               ]}
               alt="Parth Pawar"
               className="abt-portal-img"
