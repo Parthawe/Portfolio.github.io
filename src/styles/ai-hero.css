@@ -1,0 +1,206 @@
+/* ================================================
+   CATEGORY HERO (ch-)
+   Clean, readable, informative.
+   Big centered title, 3D object behind for depth,
+   description + stats below.
+   ================================================ */
+
+.ch {
+  padding-top: calc(var(--nav-h) + 2rem);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Header: count + tagline ── */
+.ch-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+.ch-header-count {
+  font-family: var(--sans);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ch-header-tagline {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.03em;
+  line-height: 1.55;
+  color: var(--ink-40);
+  max-width: 56ch;
+}
+
+/* ══════════════════════════
+   STAGE — title + 3D object
+   ══════════════════════════ */
+.ch-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(200px, 36vw, 400px);
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
+  isolation: isolate;
+}
+
+/* ── Title — on top of 3D, inverts through it ── */
+.ch-title {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  mix-blend-mode: difference;
+  cursor: default;
+}
+
+.ch-line1,
+.ch-line2 {
+  display: block;
+  /* White + mix-blend-mode:difference = dark on light bg, white on dark 3D */
+  color: #fff;
+}
+
+/* Line 1 — bold sans */
+.ch-line1 {
+  font-family: var(--sans);
+  font-size: clamp(3rem, 8.5vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+/* Line 2 — serif italic */
+.ch-line2 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8.5vw, 7.5rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  /* Slightly dimmer so it visually reads as accent */
+  color: #ddd;
+}
+
+/* Short titles scale up */
+.ch-stage--short .ch-line1,
+.ch-stage--short .ch-line2 {
+  font-size: clamp(4rem, 11vw, 10rem);
+}
+
+/* ── 3D object — behind text, full visible, not interactive ── */
+.ch-3d {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Description ── */
+.ch-desc {
+  font-family: var(--sans);
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--ink-50);
+  max-width: 52ch;
+  margin-bottom: var(--space-5);
+}
+
+/* ══════════════════════
+   QUICK STATS ROW
+   ══════════════════════ */
+.ch-quick {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.ch-quick-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.ch-quick-label {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-30);
+}
+
+.ch-quick-val {
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ch-quick-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ink-15);
+  flex-shrink: 0;
+}
+
+/* ══════════════
+   TAGS
+   ══════════════ */
+.ch-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ══════════
+   DARK MODE
+   ══════════ */
+[data-theme="dark"] .ch-quick { border-bottom-color: var(--ink-06); }
+[data-theme="dark"] .ch-title { mix-blend-mode: exclusion; }
+[data-theme="dark"] .ch-line1 { color: #ccc; }
+[data-theme="dark"] .ch-line2 { color: #aaa; }
+
+/* ══════════
+   RESPONSIVE
+   ══════════ */
+@media (max-width: 1024px) {
+  .ch-line1, .ch-line2 { font-size: clamp(2.8rem, 7.5vw, 5.5rem); }
+  .ch-stage--short .ch-line1,
+  .ch-stage--short .ch-line2 { font-size: clamp(3.5rem, 9.5vw, 7.5rem); }
+  .ch-3d > * { transform: scale(0.8); }
+}
+
+@media (max-width: 768px) {
+  .ch { padding-top: calc(var(--nav-h) + var(--space-4)); }
+  .ch-header { flex-direction: column; gap: var(--space-2); }
+  .ch-stage { min-height: auto; padding: var(--space-4) 0; }
+  .ch-line1, .ch-line2 { font-size: clamp(2.2rem, 10vw, 4rem); }
+  .ch-stage--short .ch-line1,
+  .ch-stage--short .ch-line2 { font-size: clamp(2.8rem, 12vw, 5rem); }
+  .ch-3d { display: none; }
+  .ch-title { mix-blend-mode: normal; }
+  .ch-line1 { color: var(--ink); }
+  .ch-line2 { color: var(--lp-accent, var(--ink-40)); }
+  .ch-quick { flex-wrap: wrap; gap: var(--space-3); }
+  .ch-quick-dot { display: none; }
+}
+
+@media (max-width: 480px) {
+  .ch-line1, .ch-line2 { font-size: clamp(1.8rem, 9vw, 3rem); }
+  .ch-stage--short .ch-line1,
+  .ch-stage--short .ch-line2 { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+  .ch-header-count { font-size: clamp(1.5rem, 8vw, 2.5rem); }
+}
