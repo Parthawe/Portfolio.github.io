@@ -29,6 +29,7 @@ export default function BookViewer({
   const [pages, setPages] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [dimensions, setDimensions] = useState({ width: 650, height: 840 });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- HTMLFlipBook has no exported instance type
   const flipBookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void; getCurrentPageIndex: () => number } } | null>(null);
@@ -66,6 +67,8 @@ export default function BookViewer({
         aspectRef.current = aspect;
         if (!cancelled) setDimensions(calcDimensions(aspect));
 
+        // Render in batches of 5 to avoid blocking the main thread
+        const BATCH = 5;
         for (let i = 1; i <= total; i++) {
           if (cancelled) return;
           const page = await pdf.getPage(i);
@@ -78,11 +81,12 @@ export default function BookViewer({
           rendered.push(canvas.toDataURL('image/jpeg', 0.88));
 
           if (!cancelled) onProgress?.(i, total);
+          // Yield to the main thread after each batch
+          if (i % BATCH === 0) await new Promise(r => setTimeout(r, 0));
         }
         if (!cancelled) { setPages(rendered); setLoading(false); onReady?.(); }
-      } catch (err) {
-        // PDF render error — fail silently in production
-        if (!cancelled) setLoading(false);
+      } catch {
+        if (!cancelled) { setError('Could not load the book. Please try refreshing.'); setLoading(false); }
       }
     }
 
@@ -133,10 +137,14 @@ export default function BookViewer({
       {/* Book */}
       <div className="book-stage">
         {loading ? (
-          <div className="book-loading">
+          <div className="book-loading" role="status" aria-label="Loading book">
             <div className="book-loading-spinner" />
             <span>Preparing your book...</span>
             <span className="book-loading-sub">{totalPages || 62} pages of design work</span>
+          </div>
+        ) : error ? (
+          <div className="book-loading" role="alert">
+            <span>{error}</span>
           </div>
         ) : (
           <div className="book-flip-wrapper">

@@ -2,41 +2,8 @@ import { useRef, useMemo, useEffect, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Text, Environment } from '@react-three/drei';
 import * as THREE from 'three';
-
-/* ─── Theme detection ─── */
-
-function useThemeMode() {
-  const [dark, setDark] = useState(() =>
-    typeof document !== 'undefined'
-      ? document.documentElement.dataset.theme === 'dark'
-      : false,
-  );
-  useEffect(() => {
-    const obs = new MutationObserver(() => {
-      setDark(document.documentElement.dataset.theme === 'dark');
-    });
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    return () => obs.disconnect();
-  }, []);
-  return dark;
-}
-
-/* ─── Reduced motion ─── */
-
-function usePrefersReduced() {
-  const [r, setR] = useState(() =>
-    typeof window !== 'undefined'
-      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      : false,
-  );
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const h = (e: MediaQueryListEvent) => setR(e.matches);
-    mq.addEventListener('change', h);
-    return () => mq.removeEventListener('change', h);
-  }, []);
-  return r;
-}
+import { useThemeMode } from '../hooks/useThemeMode';
+import { usePrefersReduced } from '../hooks/usePrefersReduced';
 
 /* ─── Node config ─── */
 

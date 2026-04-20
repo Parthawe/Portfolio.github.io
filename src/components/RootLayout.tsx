@@ -112,17 +112,29 @@ export default function RootLayout() {
     // Initial scan
     observeNew(document);
 
-    // Watch for any new elements added to the DOM
+    // Watch for any new elements added to the DOM (batched via microtask)
+    let pendingNodes: HTMLElement[] = [];
+    let flushScheduled = false;
+    const flushPending = () => {
+      flushScheduled = false;
+      const nodes = pendingNodes;
+      pendingNodes = [];
+      for (const node of nodes) {
+        if (node.classList.contains('reveal') || node.classList.contains('reveal-image')) {
+          io.observe(node);
+        }
+        observeNew(node);
+      }
+    };
     const mo = new MutationObserver((mutations) => {
       for (const m of mutations) {
         for (const node of m.addedNodes) {
-          if (node instanceof HTMLElement) {
-            if (node.classList.contains('reveal') || node.classList.contains('reveal-image')) {
-              io.observe(node);
-            }
-            observeNew(node);
-          }
+          if (node instanceof HTMLElement) pendingNodes.push(node);
         }
+      }
+      if (pendingNodes.length && !flushScheduled) {
+        flushScheduled = true;
+        queueMicrotask(flushPending);
       }
     });
     mo.observe(document.body, { childList: true, subtree: true });

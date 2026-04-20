@@ -15,6 +15,7 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
   useEffect(() => {
     setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
     setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    return () => cancelAnimationFrame(rafId.current);
   }, []);
 
   const handleMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {

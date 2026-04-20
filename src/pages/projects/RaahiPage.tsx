@@ -11,6 +11,7 @@ import CsCredits from '../../components/case-study/CsCredits'
 import CsNumList from '../../components/case-study/CsNumList'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import { CONTACT_EMAIL } from '../../config/site'
 
 export default function RaahiPage() {
   return (
@@ -258,7 +259,7 @@ export default function RaahiPage() {
           <div className="wrap">
             <h2 className="cs-thanks-title">Thank You</h2>
             <p className="cs-thanks-cta">Please contact me to view a detailed case study</p>
-            <a href="mailto:parthpawar@nyu.edu" className="cs-thanks-btn">
+            <a href={`mailto:${CONTACT_EMAIL}`} className="cs-thanks-btn">
               Get in Touch
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>

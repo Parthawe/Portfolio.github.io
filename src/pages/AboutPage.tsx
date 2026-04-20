@@ -8,6 +8,7 @@ import FigmaSelect from '../components/FigmaSelect'
 import TextReveal from '../components/TextReveal'
 import PortalReveal from '../components/PortalReveal'
 import ToolsCanvas from '../components/ToolsCanvas'
+import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_URL } from '../config/site'
 
 /* ── Data ── */
 
@@ -57,6 +58,8 @@ export default function AboutPage() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="About &middot; Parth Pawar" />
         <meta property="og:description" content="Design Engineer. Head of UI/UX at Mentra. Making complex systems feel simple." />
+        <meta property="og:image" content={`${SITE_URL}${DEFAULT_OG_IMAGE}`} />
+        <link rel="canonical" href={`${SITE_URL}/about`} />
       </Helmet>
 
       <Nav />
@@ -390,8 +393,8 @@ export default function AboutPage() {
               <h2 className="abt-cta-headline">Let's make something together</h2>
               <p className="abt-cta-sub">Always up for hard problems and good conversation.</p>
               <div className="abt-cta-links">
-                <a href="mailto:parthpawar@nyu.edu" className="abt-cta-email magnetic">
-                  parthpawar@nyu.edu
+                <a href={`mailto:${CONTACT_EMAIL}`} className="abt-cta-email magnetic">
+                  {CONTACT_EMAIL}
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </a>
                 <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">LinkedIn<FigmaSelect /></a>

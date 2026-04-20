@@ -4,6 +4,7 @@ import { useNavScroll } from '../hooks/useNavScroll';
 import ThemeToggle from './ThemeToggle';
 import AmbientAudio from './AmbientAudio';
 import FigmaSelect from './FigmaSelect';
+import { CONTACT_EMAIL } from '../config/site';
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
@@ -113,7 +114,6 @@ export default function Nav() {
             <Link to="/" className="nav-logo figma-hover">PP<FigmaSelect /></Link>
             <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
             <Link to="/about" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}>About<FigmaSelect /></Link>
-            <Link to="/writing" className={`pill-link nav-pill-link figma-hover${isWriting ? ' active' : ''}`}>Writing<FigmaSelect /></Link>
             <FigmaSelect />
           </div>
 
@@ -146,7 +146,7 @@ export default function Nav() {
             </button>
             <AmbientAudio />
             <span className="figma-hover" style={{ display: 'flex' }}><ThemeToggle /><FigmaSelect /></span>
-            <a href="mailto:parthpawar@nyu.edu" className="nav-cta magnetic figma-hover">Let's Talk<FigmaSelect /></a>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="nav-cta magnetic figma-hover">Let's Talk<FigmaSelect /></a>
             <button
               ref={toggleRef}
               className="nav-toggle"
@@ -165,7 +165,7 @@ export default function Nav() {
           <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>
           <li><Link to="/writing" onClick={closeMenu}>Writing</Link></li>
-          <li><a href="mailto:parthpawar@nyu.edu" onClick={closeMenu}>Let's Talk</a></li>
+          <li><a href={`mailto:${CONTACT_EMAIL}`} onClick={closeMenu}>Let's Talk</a></li>
         </ul>
       </div>
     </>

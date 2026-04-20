@@ -38,7 +38,9 @@ export default memo(function ProjectCard({
     try {
       const brightness = getImageBrightness(img)
       if (brightness > 140) card.classList.add('pcard--light')
-    } catch { /* cross-origin or canvas error */ }
+    } catch {
+      // Expected for cross-origin images or tainted canvases — not actionable
+    }
   }, [])
 
   const handleImgError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {

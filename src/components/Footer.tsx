@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, useInView, type MotionValue } from 'framer-motion'
 import BrandIcon from './BrandIcon'
 import FigmaSelect from './FigmaSelect'
+import { CONTACT_EMAIL } from '../config/site'
 
 const socials = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/parth-pawar-1501/' },
@@ -37,7 +38,7 @@ function LiveClock() {
 
 export default function Footer() {
   const [copied, setCopied] = useState(false)
-  const email = 'parthpawar@nyu.edu'
+  const email = CONTACT_EMAIL
   const footerRef = useRef<HTMLElement>(null)
 
   const isInView = useInView(footerRef, { once: true, amount: 0.1 })

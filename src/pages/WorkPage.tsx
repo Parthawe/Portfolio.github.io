@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
@@ -6,6 +6,7 @@ import ProjectCardComponent from '../components/ProjectCard'
 import FigmaSelect from '../components/FigmaSelect'
 import TextReveal from '../components/TextReveal'
 import { allProjectsCurated, projectsByCategory, CATEGORIES, CATEGORY_LABELS, type Project, type ProjectCategory } from '../data/projects'
+import { CONTACT_EMAIL } from '../config/site'
 
 const filters = CATEGORIES
 const WORK_FILTER_EVENT = 'folio:set-work-filter'
@@ -51,9 +52,9 @@ export default function WorkPage() {
 
   const isAll = activeFilter === 'all'
 
-  const renderCard = (project: Project) => (
+  const renderCard = useCallback((project: Project) => (
     <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} />
-  )
+  ), [])
 
   return (
     <>
@@ -110,8 +111,8 @@ export default function WorkPage() {
           <section className="cta-v2">
             <div className="wrap cta-v2-inner">
               <h2 className="cta-v2-headline">Let's work together</h2>
-              <a href="mailto:parthpawar@nyu.edu" className="cta-v2-btn magnetic figma-hover">
-                parthpawar@nyu.edu
+              <a href={`mailto:${CONTACT_EMAIL}`} className="cta-v2-btn magnetic figma-hover">
+                {CONTACT_EMAIL}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 <FigmaSelect />
               </a>

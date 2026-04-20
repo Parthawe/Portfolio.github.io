@@ -11,6 +11,7 @@ import TextHighlight from '../components/TextHighlight';
 import FigmaSelect from '../components/FigmaSelect';
 import FigmaFrameLabel from '../components/FigmaFrameLabel';
 import { featuredProjects, archiveProjects } from '../data/projects';
+import { DEFAULT_OG_IMAGE, SITE_URL } from '../config/site';
 const HeroScene = lazy(() => import('../components/HeroScene'));
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
 
@@ -76,8 +77,8 @@ export default function HomePage() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Parth Pawar, Design Engineer" />
         <meta property="og:description" content="Design Engineer specializing in AI wearables, fintech, and interactive systems. Head of UI/UX at Mentra. NYU ITP '24." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/mentra.webp" />
-        <link rel="canonical" href="https://parthpawar.com" />
+        <meta property="og:image" content={`${SITE_URL}${DEFAULT_OG_IMAGE}`} />
+        <link rel="canonical" href={SITE_URL} />
       </Helmet>
 
       {/* ═══ DARK HERO, 3D centerpiece ═══ */}
@@ -331,7 +332,7 @@ export default function HomePage() {
                   <Link to="/writing" className="wr-about-readmore">writing.</Link>
                 </div>
 
-                <span className="wr-about-site">PARTHPAWAR.COM</span>
+                <span className="wr-about-site" aria-hidden="true">PARTHPAWAR.COM</span>
               </div>
             </div>
 
