@@ -2,6 +2,11 @@
    RESPONSIVE
    ================================================ */
 @media (max-width: 768px) {
+  .project-main {
+    --case-image-max-height: min(50vh, 30rem);
+    --case-image-inline-height: clamp(210px, 54vw, 340px);
+  }
+
   .nav-left-pill .nav-pill-link { display: none; }
   .nav-toggle { display: flex; }
   .nav-right > .theme-toggle { display: none; }
@@ -73,6 +78,10 @@
 
 @media (max-width: 480px) {
   :root { --pad: 1rem; }
+  .project-main {
+    --case-image-max-height: min(44vh, 22rem);
+    --case-image-inline-height: clamp(190px, 60vw, 280px);
+  }
   .cs-img-grid { grid-template-columns: 1fr; }
   .cs-stat-grid { grid-template-columns: 1fr; }
   .cs-img-placeholder { aspect-ratio: 4/3; }

@@ -191,10 +191,11 @@ export default function AmbientAudio() {
 
   return (
     <button
-      className={`ambient-toggle figma-hover${playing ? ' is-active' : ''}`}
+      className={`ambient-toggle surface-glass surface-glass--subtle figma-hover${playing ? ' is-active surface-glass--active' : ''}`}
       onClick={toggle}
       type="button"
       aria-label={playing ? 'Pause ambient sound' : 'Play ambient sound'}
+      aria-pressed={playing}
       title={playing ? 'Pause ambient sound' : 'Play ambient sound'}
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">

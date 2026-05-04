@@ -10,10 +10,10 @@ interface NextProjectProps {
 }
 
 export default function NextProject({ slug, title, image }: NextProjectProps) {
+  const project = projects.find(pr => pr.slug === slug)
   const prefetch = useCallback(() => {
-    const p = projects.find(pr => pr.slug === slug)
-    if (p?.page) p.page()
-  }, [slug])
+    if (project?.page) project.page()
+  }, [project])
 
   return (
     <motion.div
@@ -22,14 +22,16 @@ export default function NextProject({ slug, title, image }: NextProjectProps) {
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.6 }}
     >
-      <Link className="next-project" to={`/${slug}`} onMouseEnter={prefetch}>
+      <Link className="next-project" to={`/${slug}`} onMouseEnter={prefetch} onFocus={prefetch}>
         <div className="wrap next-project-inner">
           <div>
             <div className="next-project-label">Next Project</div>
             <div className="next-project-title">{title}</div>
+            {project?.tag && <div className="next-project-meta">{project.tag}</div>}
+            {project?.desc && <p className="next-project-desc">{project.desc}</p>}
           </div>
           <div className="next-project-img">
-            <img src={image} alt={title} loading="lazy" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+            <img src={image} alt={title} loading="lazy" decoding="async" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
           </div>
         </div>
       </Link>

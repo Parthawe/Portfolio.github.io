@@ -30,7 +30,7 @@ export default function IbmPage() {
           backLabel="Back to Work"
           tags={['Research', 'Healthcare AI', 'Encryption']}
           title="IBM Cancer Prognosis"
-          subtitle="Helping to secure cancer research &mdash; homomorphic encryption for genomic data transfer and survival prediction"
+          subtitle="Designing a safer way to compute on genomic data, so prognosis models could learn without exposing the patient behind the record"
           info={[
             { label: 'Client', value: 'IBM' },
             { label: 'Duration', value: '8 Months' },
@@ -47,10 +47,10 @@ export default function IbmPage() {
         </section>
 
         {/* Overview */}
-        <CsSection id="cs-overview" label="Overview" title="Securing Genomic Computation">
+        <CsSection id="cs-overview" label="Overview" title="Why This Work Mattered">
           <CsBody>
-            <p>The most important clinical process for patients with forms of cancer is the accurate estimation of prognosis and survival duration. Patients who volunteer their genomic data run the risk of privacy invasion. Established encryption techniques such as Advanced Encryption Standard (AES) can secure Personal Health Information (PHI) in acquisition and storage, but can only assure secure storage. Ensuring data privacy in computation is a greater challenge.</p>
-            <p>This 8-month research internship at IBM explored how to securely transfer genomic data and identify life expectancy of cancer patients &mdash; computing on encrypted data without ever decrypting it.</p>
+            <p>Cancer prognosis models need access to genomic data, but the more useful that data becomes, the more dangerous it is to expose. Traditional encryption protects records at rest and in transit. The weak point is computation itself, because most systems still decrypt the data before they can analyze it.</p>
+            <p>This internship at IBM focused on a harder question: could we keep patient data encrypted through the full prediction pipeline and still produce clinically useful outputs? That made the project as much about trust and system design as it was about machine learning.</p>
           </CsBody>
         </CsSection>
 
@@ -62,10 +62,10 @@ export default function IbmPage() {
         </section>
 
         {/* Problem */}
-        <CsSection id="cs-problem" label="01 &mdash; Problem" title="The Privacy Paradox">
+        <CsSection id="cs-problem" label="01 · Problem" title="The Privacy Paradox">
           <CsBody>
-            <p>When genomic data is sent to a server for computation, it must typically be decrypted for processing. This creates a critical vulnerability: third-party services gain access to personal information, can reveal physical traits like eye and skin color, and enable identification of individuals. The data exchange channel may be encrypted in transit, but the server itself sees the raw data.</p>
-            <p>The challenge was to make the neural network system both accurate in its cancer prognosis predictions and secure in its handling of sensitive genomic information &mdash; computing meaningful results on data that remains encrypted throughout the entire pipeline.</p>
+            <p>Most clinical AI pipelines promise privacy, but that promise breaks the moment raw genomic data reaches a server for analysis. At that point, the service can inspect traits, infer identity, and expose some of the most sensitive information a patient can share.</p>
+            <p>The design challenge was to remove that compromise. The system needed to preserve model usefulness while ensuring the computation layer never had access to the unencrypted genome it was learning from.</p>
           </CsBody>
         </CsSection>
 
@@ -77,10 +77,10 @@ export default function IbmPage() {
         </section>
 
         {/* Solution */}
-        <CsSection id="cs-solution" label="02 &mdash; Solution" title="Homomorphic Encryption Pipeline">
+        <CsSection id="cs-solution" label="02 · Solution" title="Compute Without Decrypting">
           <CsBody>
-            <p>Homomorphic encryption is a form of encryption that allows performing computations on encrypted data without ever decrypting it. The result, when decrypted, matches what you would get from computing on the unencrypted data. This was the key insight that made the entire system possible.</p>
-            <p>The system flow processes unencrypted patient data (genomic and clinical) through preprocessing with Random Forest and K-Fold Validation for feature selection. The data is then encrypted using IBM&rsquo;s Fully Homomorphic Encryption (FHE) Toolkit with public key cryptography. A neural network calculates gene scores homomorphically &mdash; on the encrypted data itself. After homomorphic decryption, K-Means clustering groups patients, and the system plots Kaplan-Meier survival curves to recommend cancer therapy.</p>
+            <p>The core bet was homomorphic encryption: a way to run meaningful computation on encrypted data and only decrypt the final result. In simple terms, the model gets to work on the signal without ever seeing the patient in the clear.</p>
+            <p>We structured the pipeline in stages. Clinical and genomic inputs were first prepared through feature selection and validation. The selected data was then encrypted with IBM&rsquo;s FHE toolkit, passed through a neural-network workflow, and only decrypted at the point where downstream analysis, clustering, and survival-curve generation needed to be interpreted. The point was not just technical novelty. It was to design a path where privacy remained intact for as long as possible.</p>
           </CsBody>
         </CsSection>
 
@@ -99,10 +99,10 @@ export default function IbmPage() {
         </section>
 
         {/* Role */}
-        <CsSection id="cs-role" label="03 &mdash; My Role" title="Research &amp; Engineering">
+        <CsSection id="cs-role" label="03 · My Role" title="Research, Analysis, and System Framing">
           <CsBody>
-            <p>As a researcher, my responsibilities revolved around collecting data on cancer patients, genomic data, and analyzing the data to be fed to the neural network securely. We were successfully able to securely transfer genomic data and help to identify the life expectancy of cancer patients and suggest treatments to them.</p>
-            <p>The scope covered the full pipeline: user research into clinical workflows, data analysis and preprocessing, implementing homomorphic encryption using IBM&rsquo;s FHE Toolkit, designing the system flow architecture, and validating the neural network&rsquo;s accuracy against unencrypted baselines.</p>
+            <p>My role sat between research and implementation. I worked on understanding the clinical workflow, shaping how the data pipeline should behave, analyzing the genomic inputs, and helping translate the cryptography constraints into a usable prediction system.</p>
+            <p>The value of the project was not a polished interface. It was the system logic underneath: what should be encrypted, when it could safely be transformed, how the model output should be interpreted, and where trust could fail if the pipeline was careless.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Scope</span>

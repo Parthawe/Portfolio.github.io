@@ -40,6 +40,45 @@
   top: 1rem;
 }
 
+/* --- Shared glass surfaces --- */
+.surface-glass {
+  --surface-glass-bg: var(--glass-default-bg);
+  --surface-glass-border: var(--glass-default-border);
+  --surface-glass-shadow: var(--glass-default-shadow);
+  --surface-glass-blur: var(--glass-default-blur);
+  --surface-glass-highlight: var(--glass-default-highlight);
+  background: var(--surface-glass-bg);
+  border: 1px solid var(--surface-glass-border);
+  box-shadow:
+    var(--surface-glass-shadow),
+    inset 0 1px 0 var(--surface-glass-highlight);
+  backdrop-filter: var(--surface-glass-blur);
+  -webkit-backdrop-filter: var(--surface-glass-blur);
+}
+
+.surface-glass--subtle {
+  --surface-glass-bg: var(--glass-subtle-bg);
+  --surface-glass-border: var(--glass-subtle-border);
+  --surface-glass-shadow: var(--glass-subtle-shadow);
+  --surface-glass-blur: var(--glass-subtle-blur);
+  --surface-glass-highlight: var(--glass-subtle-highlight);
+}
+
+.surface-glass--strong {
+  --surface-glass-bg: var(--glass-strong-bg);
+  --surface-glass-border: var(--glass-strong-border);
+  --surface-glass-shadow: var(--glass-strong-shadow);
+  --surface-glass-blur: var(--glass-strong-blur);
+  --surface-glass-highlight: var(--glass-strong-highlight);
+}
+
+.surface-glass--active {
+  --surface-glass-bg: color-mix(in srgb, var(--glass-default-bg) 88%, var(--select-blue) 12%);
+  --surface-glass-border: color-mix(in srgb, var(--glass-default-border) 72%, var(--select-blue) 28%);
+  --surface-glass-shadow: var(--glass-strong-shadow);
+  --surface-glass-highlight: color-mix(in srgb, var(--glass-default-highlight) 78%, var(--select-blue) 22%);
+}
+
 /* --- Figma selection — blue border flush + 4 corner handles --- */
 .figma-select {
   position: absolute;
@@ -85,16 +124,8 @@
   z-index: 10000;
   min-width: 220px;
   padding: 4px 0;
-  background: var(--surface);
-  border: 1px solid var(--ink-08);
   border-radius: var(--radius);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
   animation: figma-ctx-in 0.12s ease-out;
-}
-[data-theme="dark"] .figma-ctx {
-  background: var(--surface);
-  border-color: var(--ink-12);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
 }
 @keyframes figma-ctx-in {
   from { opacity: 0; transform: scale(0.96); }
@@ -185,12 +216,41 @@
   background-image: radial-gradient(circle, rgba(237,237,236,0.04) 0.5px, transparent 0.5px);
 }
 
-/* --- Figma grid — applied to body background so it scrolls with content --- */
-.figma-grid-on {
+/* --- Figma grid overlay --- */
+.figma-grid-overlay {
+  position: fixed;
+  top: 22px;
+  left: 22px;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
   background-image:
-    linear-gradient(to right, rgba(77, 158, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(77, 158, 255, 0.05) 1px, transparent 1px);
-  background-size: 8px 8px;
+    linear-gradient(to right, rgba(77, 158, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(77, 158, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to right, rgba(77, 158, 255, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(77, 158, 255, 0.075) 1px, transparent 1px);
+  background-size: 8px 8px, 8px 8px, 64px 64px, 64px 64px;
+  background-position: 0 0;
+  transition: opacity var(--dur-base);
+}
+body.figma-grid-on .figma-grid-overlay {
+  opacity: 1;
+}
+body.figma-grid-on .dot-bg {
+  opacity: 0.16;
+}
+body.figma-rulers-off .figma-grid-overlay {
+  top: 0;
+  left: 0;
+}
+[data-theme="dark"] .figma-grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(168, 184, 216, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 184, 216, 0.03) 1px, transparent 1px),
+    linear-gradient(to right, rgba(168, 184, 216, 0.065) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 184, 216, 0.065) 1px, transparent 1px);
 }
 
 /* --- Figma rulers — left (vertical) + top (horizontal) --- */
@@ -225,14 +285,15 @@
   border-bottom: 1px solid var(--ink-06);
 }
 
-/* Shift all content inward so rulers don't overlap */
+/* Shift all content inward so rulers do not overlap the working canvas */
 body {
   padding-left: 22px;
   padding-top: 22px;
-  transition: padding 0.3s ease;
+  transition: padding 0.2s ease;
 }
 @media (max-width: 768px) {
   body { padding-left: 0; padding-top: 0; }
+  .figma-grid-overlay,
   .figma-ruler, .figma-ruler-top { display: none; }
 }
 
@@ -267,8 +328,6 @@ body.figma-rulers-off { padding-left: 0 !important; padding-top: 0 !important; }
   right: 10px;
   z-index: 202;
   padding: 3px 8px;
-  background: var(--surface);
-  border: 1px solid var(--ink-06);
   border-radius: var(--radius-sm);
   font-family: var(--mono);
   font-size: 10px;
@@ -276,10 +335,9 @@ body.figma-rulers-off { padding-left: 0 !important; padding-top: 0 !important; }
   font-variant-numeric: tabular-nums;
   color: var(--ink-40);
   cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 .figma-zoom-badge:hover { color: var(--ink); border-color: var(--ink-12); }
-[data-theme="dark"] .figma-zoom-badge { background: var(--surface); border-color: var(--ink-08); }
 
 /* Mobile: hide cursor HUD */
 @media (max-width: 768px) {

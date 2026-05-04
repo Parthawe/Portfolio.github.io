@@ -12,6 +12,7 @@ import CsSteps from '../../components/case-study/CsSteps'
 import CsImage from '../../components/case-study/CsImage'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
+import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function CueTvPage() {
@@ -51,6 +52,7 @@ export default function CueTvPage() {
 
         {/* Overview */}
         <ProjectOverview
+          id="cs-overview"
           sections={[
             {
               label: 'Summary',
@@ -68,7 +70,7 @@ export default function CueTvPage() {
         />
 
         {/* Tools */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-tools">
           <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
@@ -93,7 +95,7 @@ export default function CueTvPage() {
         <>
 
         {/* About CueTV */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-about">
           <div className="wrap">
             <h3 className="cs-section-title">About CueTV</h3>
             <p className="cs-display" style={{ fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', marginBottom: '2rem' }}>Live Streaming, And Video On Demand Platform For</p>
@@ -120,7 +122,7 @@ export default function CueTvPage() {
         </section>
 
         {/* Problem Statement */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-research">
           <div className="wrap">
             <p className="cs-section-label">Research</p>
             <h3 className="cs-section-title">Problem Statement</h3>
@@ -148,7 +150,7 @@ export default function CueTvPage() {
         </section>
 
         {/* Process */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
             <p className="cs-section-label">Process</p>
             <h3 className="cs-section-title">Process Ahead</h3>
@@ -164,7 +166,7 @@ export default function CueTvPage() {
         </section>
 
         {/* Awareness Strategy */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-strategy">
           <div className="wrap">
             <p className="cs-section-label">Strategy</p>
             <h3 className="cs-section-title">Focusing on Awareness</h3>
@@ -200,7 +202,7 @@ export default function CueTvPage() {
         </section>
 
         {/* Customer Segments */}
-        <CsSection label="Research" title="Customer Segments">
+        <CsSection id="cs-segments" label="Research" title="Customer Segments">
           <CsBody>
             <p>We identified three distinct customer segments, each with different motivations, pain points, and channels to reach them:</p>
           </CsBody>
@@ -213,7 +215,7 @@ export default function CueTvPage() {
         </CsSection>
 
         {/* 30,000+ Ads */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-output">
           <div className="wrap">
             <p className="cs-section-label">Output</p>
             <h3 className="cs-display" style={{ textAlign: 'center' }}><span style={{ color: 'var(--project-color, #D53F8C)', fontSize: 'clamp(3rem,8vw,6rem)' }}>30,000+</span> <span style={{ fontStyle: 'italic' }}>Different Ads</span></h3>
@@ -228,7 +230,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/CueTV/photos/ad-creatives-grid.png" alt="30,000+ different ad creatives for opera, ballet, and classical performances" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/CueTV/photos/ad-creatives-grid.webp" alt="30,000+ different ad creatives for opera, ballet, and classical performances" />
 
         {/* Retargeting + banner */}
         <section className="cs-section reveal">
@@ -241,7 +243,7 @@ export default function CueTvPage() {
         </section>
 
         {/* Platform Optimization */}
-        <CsSection label="Product Design" title="Platform Optimization">
+        <CsSection id="cs-platform" label="Product Design" title="Platform Optimization">
           <CsBody>
             <p>Beyond the ad system, we optimized the CueTV platform experience itself across all touchpoints.</p>
           </CsBody>
@@ -265,7 +267,7 @@ export default function CueTvPage() {
         </section>
 
         {/* Mobile detail */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-reflections">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CueTV/photos/mobile-player.png" alt="Mobile player: Le Carnaval des Animaux live stream on iPhone" loading="lazy" /></div>
@@ -311,6 +313,18 @@ export default function CueTvPage() {
             </CsBody>
           </div>
         </section>
+
+        <BottomNav
+          sections={[
+            { id: 'cs-overview', label: 'Overview' },
+            { id: 'cs-research', label: 'Research' },
+            { id: 'cs-process', label: 'Process' },
+            { id: 'cs-segments', label: 'Segments' },
+            { id: 'cs-platform', label: 'Platform' },
+            { id: 'cs-reflections', label: 'Reflections' },
+          ]}
+          liveUrl="https://www.cuetv.online"
+        />
 
         <CsThanks contactCta />
 

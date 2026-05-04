@@ -3,9 +3,18 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectCardComponent from '../components/ProjectCard'
+import FlagshipProjectShowcase from '../components/FlagshipProjectShowcase'
 import FigmaSelect from '../components/FigmaSelect'
-import TextReveal from '../components/TextReveal'
-import { allProjectsCurated, projectsByCategory, CATEGORIES, CATEGORY_LABELS, type Project, type ProjectCategory } from '../data/projects'
+import {
+  featuredProjects,
+  selectedWorkProjects,
+  archiveWorkProjects,
+  filterProjectsByCategory,
+  CATEGORIES,
+  CATEGORY_LABELS,
+  type Project,
+  type ProjectCategory,
+} from '../data/projects'
 import { CONTACT_EMAIL } from '../config/site'
 
 const filters = CATEGORIES
@@ -51,6 +60,20 @@ export default function WorkPage() {
   }, [])
 
   const isAll = activeFilter === 'all'
+  const flagshipProjects = isAll
+    ? featuredProjects
+    : filterProjectsByCategory(featuredProjects, activeFilter as ProjectCategory)
+  const leadFlagshipProject = flagshipProjects[0]
+  const supportingFlagshipProjects = flagshipProjects.slice(1)
+  const selectedProjects = isAll
+    ? selectedWorkProjects.filter(project => !project.featured)
+    : filterProjectsByCategory(
+        selectedWorkProjects.filter(project => !project.featured),
+        activeFilter as ProjectCategory,
+      )
+  const archiveProjects = isAll
+    ? archiveWorkProjects
+    : filterProjectsByCategory(archiveWorkProjects, activeFilter as ProjectCategory)
 
   const renderCard = useCallback((project: Project) => (
     <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} />
@@ -71,42 +94,82 @@ export default function WorkPage() {
           <div className="wrap">
             <header className="work-page-header">
               <h1 className="work-page-title">Work</h1>
+              <div className="work-page-intro">
+                <p className="work-page-intro-copy">
+                  Flagship product work first, experimental and archive work second. Built for people
+                  hiring for product design, design engineering, and 0 to 1 systems work.
+                </p>
+                <div className="work-page-intro-meta">
+                  <span>{selectedWorkProjects.length} selected projects</span>
+                  <span>{archiveWorkProjects.length} archive projects</span>
+                </div>
+              </div>
             </header>
 
-            {/* ── Spotlight: after header ── */}
-            <section className="wr-reveal-section">
-              <TextReveal
-                front="33 projects across 6 disciplines, from $50M payment rails to 200-neuron light sculptures."
-                behind="UX design, AI wearables, creative tech, installations, brand, and design for good. All shipped."
-              />
+            <section className="work-group work-group--selected" id="work-project-results" aria-label={isAll ? 'Selected projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} selected projects`}>
+              <div className="work-group-head">
+                <span className="mono-label work-group-label">Selected Work</span>
+                <p className="work-group-copy">
+                  The strongest portfolio projects for recruiters and hiring managers: shipped product,
+                  systems thinking, and a small number of flagship bets.
+                </p>
+              </div>
+
+              {flagshipProjects.length ? (
+                <div className="work-flagships-list">
+                  {leadFlagshipProject ? (
+                    <FlagshipProjectShowcase
+                      project={leadFlagshipProject}
+                      index={0}
+                      variant="lead"
+                    />
+                  ) : null}
+
+                  {supportingFlagshipProjects.length ? (
+                    <div className="wr-flagship-grid">
+                      {supportingFlagshipProjects.map((project, index) => (
+                        <FlagshipProjectShowcase
+                          key={project.slug}
+                          project={project}
+                          index={index + 1}
+                          variant="card"
+                        />
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {selectedProjects.length ? (
+                <section className="work-group work-group--selected-grid" aria-label={isAll ? 'More selected projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} more selected projects`}>
+                  <div className="work-group-head">
+                    <span className="mono-label work-group-label">More Selected</span>
+                    <p className="work-group-copy">
+                      Strong supporting work across product, systems, and adjacent disciplines.
+                    </p>
+                  </div>
+                  <div className="pcard-masonry">
+                    {selectedProjects.map(renderCard)}
+                  </div>
+                </section>
+              ) : null}
             </section>
 
-            {isAll ? (
-              <div className="pcard-masonry">
-                {allProjectsCurated.map(renderCard)}
-              </div>
-            ) : (
-              (() => {
-                const catProjects = projectsByCategory(activeFilter as ProjectCategory)
-                return (
-                  <section className="work-group" data-category={activeFilter}>
-                    <span className="mono-label work-group-label">{CATEGORY_LABELS[activeFilter as ProjectCategory]}</span>
-                    <div className="pcard-masonry">
-                      {catProjects.map(renderCard)}
-                    </div>
-                  </section>
-                )
-              })()
-            )}
+            {archiveProjects.length ? (
+              <section className="work-group work-group--archive" aria-label={isAll ? 'Archive projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} archive projects`}>
+                <div className="work-group-head">
+                  <span className="mono-label work-group-label">Archive</span>
+                  <p className="work-group-copy">
+                    Additional work across installations, branding, civic systems, and experiments.
+                    Important context, deliberately secondary.
+                  </p>
+                </div>
+                <div className="pcard-masonry">
+                  {archiveProjects.map(renderCard)}
+                </div>
+              </section>
+            ) : null}
           </div>
-
-          {/* ── Spotlight: before CTA ── */}
-          <section className="wr-reveal-section">
-            <TextReveal
-              front="If you scrolled this far, we should probably talk, I'm always up for hard problems and good conversation."
-              behind="Full-time product design where the interface is the product. SF preferred. Let's make something together."
-            />
-          </section>
 
           <section className="cta-v2">
             <div className="wrap cta-v2-inner">
@@ -121,13 +184,14 @@ export default function WorkPage() {
         </div>
       </main>
 
-      <nav className={`work-bottom-nav${footerVisible ? ' is-hidden' : ''}`} ref={bottomNavRef} aria-label="Filter projects" role="tablist">
+      <nav className={`work-bottom-nav surface-glass${footerVisible ? ' is-hidden' : ''}`} ref={bottomNavRef} aria-label="Filter projects" role="toolbar">
         {filters.map(f => (
           <button
             key={f.key}
+            type="button"
             data-work-filter={f.key}
-            role="tab"
-            aria-selected={activeFilter === f.key}
+            aria-pressed={activeFilter === f.key}
+            aria-controls="work-project-results"
             className={`pill-link work-bnav-link figma-hover${activeFilter === f.key ? ' active' : ''}`}
             onClick={() => {
               setActiveFilter(f.key)
@@ -140,7 +204,9 @@ export default function WorkPage() {
         ))}
       </nav>
       <div aria-live="polite" aria-atomic="true" className="sr-only">
-        {activeFilter === 'all' ? 'Showing all projects' : `Showing ${activeFilter} projects`}
+        {activeFilter === 'all'
+          ? 'Showing selected and archive projects'
+          : `Showing ${CATEGORY_LABELS[activeFilter as ProjectCategory]} projects`}
       </div>
 
       <Footer />

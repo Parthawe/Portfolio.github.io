@@ -15,6 +15,14 @@ export default function FigmaContextMenu() {
   const navigate = useNavigate()
 
   const handleContext = useCallback((e: MouseEvent) => {
+    const target = e.target
+    if (
+      target instanceof HTMLElement &&
+      target.closest('input, textarea, select, [contenteditable="true"], [role="textbox"]')
+    ) {
+      return
+    }
+
     e.preventDefault()
     const x = Math.min(e.clientX, window.innerWidth - 240)
     const y = Math.min(e.clientY, window.innerHeight - 400)
@@ -37,7 +45,36 @@ export default function FigmaContextMenu() {
 
   useEffect(() => {
     if (!open) return
-    const h = (e: KeyboardEvent) => { if (e.key === 'Escape') close() }
+    const buttons = () => Array.from(menuRef.current?.querySelectorAll<HTMLButtonElement>('.figma-ctx-item:not(:disabled)') ?? [])
+    window.requestAnimationFrame(() => {
+      buttons()[0]?.focus()
+    })
+
+    const h = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        close()
+        return
+      }
+
+      const items = buttons()
+      if (!items.length) return
+      const currentIndex = items.indexOf(document.activeElement as HTMLButtonElement)
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        items[(currentIndex + 1 + items.length) % items.length]?.focus()
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        items[(currentIndex - 1 + items.length) % items.length]?.focus()
+      } else if (e.key === 'Home') {
+        e.preventDefault()
+        items[0]?.focus()
+      } else if (e.key === 'End') {
+        e.preventDefault()
+        items[items.length - 1]?.focus()
+      }
+    }
+
     window.addEventListener('keydown', h)
     return () => window.removeEventListener('keydown', h)
   }, [open, close])
@@ -86,9 +123,10 @@ export default function FigmaContextMenu() {
   return (
     <div
       ref={menuRef}
-      className="figma-ctx"
+      className="figma-ctx surface-glass surface-glass--strong"
       style={{ left: pos.x, top: pos.y }}
       role="menu"
+      aria-label="Canvas context menu"
     >
       {items.map((item, i) =>
         item.divider ? (

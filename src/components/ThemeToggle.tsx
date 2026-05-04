@@ -9,9 +9,11 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
 
   return (
     <button
+      type="button"
       className={`theme-toggle${className ? ` ${className}` : ''}`}
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      aria-pressed={theme === 'dark'}
     >
       <svg
         className="theme-icon-moon"

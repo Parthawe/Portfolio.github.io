@@ -29,7 +29,7 @@ export default function DnaPage() {
           backLabel="Back to Work"
           tags={['Speculative Design', 'Bioart', 'Physical Computing']}
           title="Would You Take a Pill to Live Forever?"
-          subtitle="A speculative design experience that forces participants to choose between immortality and mortality, through physical pharmaceutical packaging"
+          subtitle="A speculative pharmaceutical artifact that turns the fantasy of immortality into a physical choice someone has to hold, read, and hesitate over"
           info={[
             { label: 'Year', value: '2024' },
             { label: 'Role', value: 'Creator' },
@@ -41,17 +41,17 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.png" alt="Two pharmaceutical boxes: Live 50+ Years More (blue) and Embrace Death (red)" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.webp" alt="Two pharmaceutical boxes: Live 50+ Years More (blue) and Embrace Death (red)" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-open.png" alt="Both boxes opened, revealing inner packaging and booklets" loading="lazy" /></div>
             </div>
           </div>
         </section>
 
         {/* Overview */}
-        <CsSection label="Overview" title="Blue Pill or Red Pill?">
+        <CsSection label="Overview" title="A Speculation That Needed to Feel Real">
           <CsBody>
-            <p>The experience starts with a question: would you take an anti-aging pill to live forever? Participants submit a biological sample (blood or DNA), receive a customized pharmaceutical box, and face a choice: <strong>Live Immortal</strong>, a pill that adds 50+ years to your life through gene editing inspired by the immortal jellyfish, or <strong>Embrace Death</strong>, a booklet documenting humanity's unsuccessful attempts to beat mortality.</p>
-            <p>The packaging is real. The pills are real (candy). The decision feels real. That's the point. Speculative design works when the artifact is convincing enough to provoke genuine reflection. A thought experiment on a screen is easy to dismiss. A box in your hands with your name on it is not.</p>
+            <p>The project begins with a familiar fantasy: what if medicine could give you fifty more years? Instead of presenting that question as a poster or a deck, I built it as a pharmaceutical decision. Participants receive a customized box and must choose between <strong>Live Immortal</strong>, a speculative anti-aging treatment, and <strong>Embrace Death</strong>, a companion artifact that argues for accepting finitude rather than engineering past it.</p>
+            <p>The point was not to predict the future of biotech. It was to make the ethics feel immediate. Speculative design becomes stronger when the object is credible enough to make someone pause before answering. A thought experiment on screen can be shrugged off. A boxed treatment in your hand cannot.</p>
           </CsBody>
         </CsSection>
 
@@ -59,17 +59,17 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/card-final-message.png" alt="Card: Final Message for Embracing Death, held in hand" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/card-final-message.webp" alt="Card: Final Message for Embracing Death, held in hand" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/pill-pack.webp" alt="Pill blister pack inside the Live Immortal box: Unlock More Life" loading="lazy" /></div>
             </div>
           </div>
         </section>
 
         {/* The Choice */}
-        <CsSection id="cs-choice" label="The Choice" title="Two Paths">
+        <CsSection id="cs-choice" label="The Choice" title="Two Believable Futures">
           <CsBody>
-            <p><strong>Live Immortal:</strong> A pill derived from gene editing techniques inspired by the biological mechanisms of the immortal jellyfish. The packaging includes a booklet with dosage instructions, precautions, and a narrative about how to integrate an additional 50+ years into your current life. The science is speculative but grounded in real telomere research.</p>
-            <p><strong>Embrace Death:</strong> A short book titled "Unsuccessful Efforts of Messy Humans to Beat Death," documenting ten chapters of humanity's failed quests for immortality, from the Epic of Gilgamesh to cryonics to digital mind uploading. The book doesn't argue for death. It simply shows what happens when people try to escape it.</p>
+            <p><strong>Live Immortal</strong> is framed like a real intervention: dosage card, warnings, language of efficacy, and a biologically plausible story rooted in gene editing and longevity research. Everything in that path is designed to feel like a product that just crossed the line from experimental to available.</p>
+            <p><strong>Embrace Death</strong> takes the opposite route. It is not anti-science, and it is not a joke option. It is a deliberately serious artifact about humanity&rsquo;s repeated attempts to outrun mortality, from myth to cryonics to digital afterlife fantasies. Together, the two paths turn an abstract debate into a choice architecture.</p>
           </CsBody>
         </CsSection>
 
@@ -77,17 +77,17 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/dosage-card.png" alt="Dosage, Duration of Use, and Precautions card from the pill packaging" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/booklet-detail.png" alt="Detail of the inner booklet with instructions and messaging" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/dosage-card.webp" alt="Dosage, Duration of Use, and Precautions card from the pill packaging" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/booklet-detail.webp" alt="Detail of the inner booklet with instructions and messaging" loading="lazy" /></div>
             </div>
           </div>
         </section>
 
         {/* Why it matters */}
-        <CsSection id="cs-reflection" label="Reflection" title="Why Physical Artifacts Matter in Speculative Design">
+        <CsSection id="cs-reflection" label="Reflection" title="Why the Artifact Had to Carry the Argument">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p>This project taught me that speculative design lives and dies on the conviction of the artifact. A slide deck about immortality ethics is forgettable. A pharmaceutical box with your name on it, real pills inside, and a card that says "Final Message for Embracing Death" is not. The physical object creates a moment of genuine hesitation, and that hesitation is the design working.</p>
-            <p>The experience drew on Chinese alchemy (the Pill of Immortality, jindan), modern telomere research, and the philosophical tradition of memento mori. But none of that context matters if the box doesn't feel real in your hands. The craft of the packaging, the weight of the paper, the gradient on the print, those details are what make the speculation feel like a real choice instead of an academic exercise.</p>
+            <p>This project taught me that speculative design succeeds or fails on conviction. If the artifact feels flimsy, the argument stays theoretical. If the artifact feels finished, the participant starts negotiating with the scenario instead of observing it from a safe distance.</p>
+            <p>The references mattered, Chinese alchemy, telomere research, memento mori, but only after the object earned attention. The real design work was in the details that made the fiction believable: print quality, dosage language, booklet tone, and the unsettling familiarity of pharmaceutical packaging. That is what turned the project from a concept into a decision.</p>
           </CsBody>
         </CsSection>
 

@@ -141,11 +141,30 @@
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
 
-  /* Glass-morphism */
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-border: rgba(0, 0, 0, 0.06);
-  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.03);
-  --glass-blur: blur(20px) saturate(1.8);
+  /* Glass surfaces */
+  --glass-subtle-bg: rgba(255, 255, 255, 0.42);
+  --glass-subtle-border: rgba(0, 0, 0, 0.05);
+  --glass-subtle-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 6px 20px rgba(0, 0, 0, 0.025);
+  --glass-subtle-blur: blur(14px) saturate(1.45);
+  --glass-subtle-highlight: rgba(255, 255, 255, 0.45);
+
+  --glass-default-bg: rgba(255, 255, 255, 0.56);
+  --glass-default-border: rgba(0, 0, 0, 0.06);
+  --glass-default-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 10px 28px rgba(0, 0, 0, 0.035);
+  --glass-default-blur: blur(20px) saturate(1.8);
+  --glass-default-highlight: rgba(255, 255, 255, 0.62);
+
+  --glass-strong-bg: rgba(255, 255, 255, 0.72);
+  --glass-strong-border: rgba(0, 0, 0, 0.08);
+  --glass-strong-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 16px 40px rgba(0, 0, 0, 0.05);
+  --glass-strong-blur: blur(28px) saturate(1.95);
+  --glass-strong-highlight: rgba(255, 255, 255, 0.78);
+
+  --glass-bg: var(--glass-default-bg);
+  --glass-border: var(--glass-default-border);
+  --glass-shadow: var(--glass-default-shadow);
+  --glass-blur: var(--glass-default-blur);
+  --glass-highlight: var(--glass-default-highlight);
 
   /* Overlays */
   --overlay-dark: rgba(0, 0, 0, 0.35);
@@ -153,9 +172,9 @@
   --overlay-heavy: rgba(0, 0, 0, 0.92);
 
   /* Glass scrolled state */
-  --glass-scrolled: rgba(255, 255, 255, 0.72);
-  --glass-scrolled-border: rgba(0, 0, 0, 0.08);
-  --glass-scrolled-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.04);
+  --glass-scrolled: rgba(255, 255, 255, 0.8);
+  --glass-scrolled-border: rgba(0, 0, 0, 0.09);
+  --glass-scrolled-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 12px 34px rgba(0,0,0,0.045);
 
   /* Card overlay text */
   --text-on-dark: #fff;
@@ -192,15 +211,35 @@
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
   --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
 
-  /* Glass-morphism, dark */
-  --glass-bg: rgba(30, 30, 30, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
+  /* Glass surfaces, dark */
+  --glass-subtle-bg: rgba(28, 28, 28, 0.44);
+  --glass-subtle-border: rgba(255, 255, 255, 0.07);
+  --glass-subtle-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.18);
+  --glass-subtle-blur: blur(16px) saturate(1.35);
+  --glass-subtle-highlight: rgba(255, 255, 255, 0.08);
+
+  --glass-default-bg: rgba(30, 30, 30, 0.6);
+  --glass-default-border: rgba(255, 255, 255, 0.08);
+  --glass-default-shadow: 0 1px 3px rgba(0, 0, 0, 0.22), 0 12px 32px rgba(0, 0, 0, 0.18);
+  --glass-default-blur: blur(22px) saturate(1.5);
+  --glass-default-highlight: rgba(255, 255, 255, 0.1);
+
+  --glass-strong-bg: rgba(34, 34, 32, 0.76);
+  --glass-strong-border: rgba(255, 255, 255, 0.1);
+  --glass-strong-shadow: 0 2px 8px rgba(0, 0, 0, 0.28), 0 18px 42px rgba(0, 0, 0, 0.24);
+  --glass-strong-blur: blur(30px) saturate(1.6);
+  --glass-strong-highlight: rgba(255, 255, 255, 0.12);
+
+  --glass-bg: var(--glass-default-bg);
+  --glass-border: var(--glass-default-border);
+  --glass-shadow: var(--glass-default-shadow);
+  --glass-blur: var(--glass-default-blur);
+  --glass-highlight: var(--glass-default-highlight);
 
   /* Glass scrolled, dark */
-  --glass-scrolled: rgba(30, 30, 30, 0.75);
-  --glass-scrolled-border: rgba(255, 255, 255, 0.1);
-  --glass-scrolled-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.2);
+  --glass-scrolled: rgba(32, 32, 30, 0.82);
+  --glass-scrolled-border: rgba(255, 255, 255, 0.11);
+  --glass-scrolled-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 14px 36px rgba(0,0,0,0.24);
 }
 
 /* OS preference fallback when JS is disabled */
@@ -220,9 +259,26 @@
     --ink-06:   rgba(237,237,236,0.06);
     --ink-04:   rgba(237,237,236,0.04);
     color-scheme: dark;
-    --glass-bg: rgba(30, 30, 30, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
+    --glass-subtle-bg: rgba(28, 28, 28, 0.44);
+    --glass-subtle-border: rgba(255, 255, 255, 0.07);
+    --glass-subtle-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.18);
+    --glass-subtle-blur: blur(16px) saturate(1.35);
+    --glass-subtle-highlight: rgba(255, 255, 255, 0.08);
+    --glass-default-bg: rgba(30, 30, 30, 0.6);
+    --glass-default-border: rgba(255, 255, 255, 0.08);
+    --glass-default-shadow: 0 1px 3px rgba(0, 0, 0, 0.22), 0 12px 32px rgba(0, 0, 0, 0.18);
+    --glass-default-blur: blur(22px) saturate(1.5);
+    --glass-default-highlight: rgba(255, 255, 255, 0.1);
+    --glass-strong-bg: rgba(34, 34, 32, 0.76);
+    --glass-strong-border: rgba(255, 255, 255, 0.1);
+    --glass-strong-shadow: 0 2px 8px rgba(0, 0, 0, 0.28), 0 18px 42px rgba(0, 0, 0, 0.24);
+    --glass-strong-blur: blur(30px) saturate(1.6);
+    --glass-strong-highlight: rgba(255, 255, 255, 0.12);
+    --glass-bg: var(--glass-default-bg);
+    --glass-border: var(--glass-default-border);
+    --glass-shadow: var(--glass-default-shadow);
+    --glass-blur: var(--glass-default-blur);
+    --glass-highlight: var(--glass-default-highlight);
   }
 }
 

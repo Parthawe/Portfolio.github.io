@@ -16,12 +16,14 @@ export default function Nav() {
   useNavScroll(navRef);
 
   const isOpenRef = useRef(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [gridOn, setGridOn] = useState(false);
   const [rulersOn, setRulersOn] = useState(true);
 
   const closeMenu = useCallback(() => {
     if (!isOpenRef.current) return;
     isOpenRef.current = false;
+    setMenuOpen(false);
     overlayRef.current?.classList.remove('open');
     toggleRef.current?.classList.remove('open');
     document.body.style.overflow = '';
@@ -36,6 +38,7 @@ export default function Nav() {
       closeMenu();
     } else {
       isOpenRef.current = true;
+      setMenuOpen(true);
       lastFocusedRef.current = document.activeElement;
       overlayRef.current?.classList.add('open');
       toggleRef.current?.classList.add('open');
@@ -110,7 +113,7 @@ export default function Nav() {
       <nav className="nav" id="nav" ref={navRef}>
         <div className="nav-inner">
           {/* Left group, logo + links in a single pill */}
-          <div className="nav-left-pill figma-hover">
+          <div className="nav-left-pill surface-glass figma-hover">
             <Link to="/" className="nav-logo figma-hover">PP<FigmaSelect /></Link>
             <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
             <Link to="/about" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}>About<FigmaSelect /></Link>
@@ -121,8 +124,9 @@ export default function Nav() {
           <div className="nav-right">
             <button
               type="button"
-              className={`nav-grid-toggle figma-hover${gridOn ? ' nav-grid-toggle--active' : ''}`}
+              className={`nav-grid-toggle surface-glass surface-glass--subtle figma-hover${gridOn ? ' nav-grid-toggle--active surface-glass--active' : ''}`}
               aria-label={gridOn ? 'Hide grid overlay' : 'Show grid overlay'}
+              aria-pressed={gridOn}
               title={gridOn ? 'Hide grid overlay' : 'Show grid overlay'}
               onClick={toggleGrid}
             >
@@ -134,8 +138,9 @@ export default function Nav() {
             </button>
             <button
               type="button"
-              className={`nav-grid-toggle figma-hover${rulersOn ? ' nav-grid-toggle--active' : ''}`}
+              className={`nav-grid-toggle surface-glass surface-glass--subtle figma-hover${rulersOn ? ' nav-grid-toggle--active surface-glass--active' : ''}`}
               aria-label={rulersOn ? 'Hide rulers' : 'Show rulers'}
+              aria-pressed={rulersOn}
               title={rulersOn ? 'Hide rulers' : 'Show rulers'}
               onClick={toggleRulers}
             >
@@ -145,12 +150,15 @@ export default function Nav() {
               <FigmaSelect />
             </button>
             <AmbientAudio />
-            <span className="figma-hover" style={{ display: 'flex' }}><ThemeToggle /><FigmaSelect /></span>
+            <span className="figma-hover" style={{ display: 'flex' }}><ThemeToggle className="surface-glass surface-glass--subtle" /><FigmaSelect /></span>
             <a href={`mailto:${CONTACT_EMAIL}`} className="nav-cta magnetic figma-hover">Let's Talk<FigmaSelect /></a>
             <button
               ref={toggleRef}
               className="nav-toggle"
-              aria-label="Menu"
+              type="button"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
               onClick={toggleMenu}
             >
               <span></span>
@@ -160,7 +168,15 @@ export default function Nav() {
         </div>
       </nav>
 
-      <div className="mobile-overlay" ref={overlayRef}>
+      <div
+        className="mobile-overlay surface-glass surface-glass--strong"
+        ref={overlayRef}
+        id="mobile-navigation"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+        aria-hidden={!menuOpen}
+      >
         <ul className="mobile-nav-links">
           <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>

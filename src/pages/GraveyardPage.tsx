@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
@@ -606,20 +606,52 @@ function GraveCard({ version, onPreview }: { version: PortfolioVersion; onPrevie
 
 /* ── Iframe preview overlay ── */
 function IframePreview({ url, era, onClose }: { url: string; era: string; onClose: () => void }) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<Element | null>(null);
+
   useEffect(() => {
+    previousFocusRef.current = document.activeElement;
+    requestAnimationFrame(() => closeButtonRef.current?.focus());
+
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+
+      if (e.key === 'Tab' && overlayRef.current) {
+        const focusable = overlayRef.current.querySelectorAll<HTMLElement>('button, iframe, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKey);
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKey);
+      if (previousFocusRef.current instanceof HTMLElement) {
+        previousFocusRef.current.focus();
+      }
     };
   }, [onClose]);
 
   return (
-    <div className="gy-preview-overlay" onClick={onClose}>
+    <div
+      ref={overlayRef}
+      className="gy-preview-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Preview of ${era}`}
+    >
       <div className="gy-preview-chrome" onClick={(e) => e.stopPropagation()}>
         <div className="gy-preview-bar">
           <div className="gy-preview-bar-left">
@@ -633,7 +665,7 @@ function IframePreview({ url, era, onClose }: { url: string; era: string; onClos
           <div className="gy-preview-url-bar">
             <span>{url.replace(/^\//, 'parthpawar.github.io/')}</span>
           </div>
-          <button className="gy-preview-close" onClick={onClose} aria-label="Close preview">
+          <button ref={closeButtonRef} className="gy-preview-close" type="button" onClick={onClose} aria-label="Close preview">
             ESC
           </button>
         </div>

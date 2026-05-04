@@ -1,15 +1,25 @@
 import { useEffect, useRef, useState, useCallback, forwardRef } from 'react';
 import HTMLFlipBook from 'react-pageflip';
-// @ts-ignore
-import * as pdfjsLib from 'pdfjs-dist/build/pdf.min.mjs';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+const INITIAL_READY_PAGES = 6
+const RENDER_BATCH = 4
+
+async function canvasToObjectUrl(canvas: HTMLCanvasElement) {
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((value) => {
+      if (value) resolve(value)
+      else reject(new Error('Failed to encode page image'))
+    }, 'image/jpeg', 0.88)
+  })
+
+  return URL.createObjectURL(blob)
+}
 
 /* ─── Single PDF page ─── */
 const PageImage = forwardRef<HTMLDivElement, { src: string; pageNum: number; total: number }>(
   ({ src, pageNum, total }, ref) => (
     <div className="book-page" ref={ref}>
-      <img src={src} alt={`Page ${pageNum}`} className="book-page-img" draggable={false} />
+      <img src={src} alt={`Page ${pageNum}`} className="book-page-img" loading="lazy" decoding="async" draggable={false} />
       <span className="book-page-num">{pageNum} / {total}</span>
     </div>
   )
@@ -27,6 +37,7 @@ export default function BookViewer({
   onReady?: () => void;
 }) {
   const [pages, setPages] = useState<string[]>([]);
+  const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,6 +46,7 @@ export default function BookViewer({
   const flipBookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void; getCurrentPageIndex: () => number } } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const aspectRef = useRef(840 / 650);
+  const pageUrlsRef = useRef<string[]>([])
 
   /* Calculate optimal dimensions, large, consume most of the screen */
   const calcDimensions = useCallback((aspect: number) => {
@@ -57,9 +69,17 @@ export default function BookViewer({
 
     async function renderPdf() {
       try {
+        const pdfjsLib = await import('pdfjs-dist/build/pdf.min.mjs')
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
         const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
         const total = pdf.numPages;
         const rendered: string[] = [];
+        let readyTriggered = false
+
+        if (!cancelled) {
+          setPageCount(total)
+          onProgress?.(0, total)
+        }
 
         const firstPage = await pdf.getPage(1);
         const vp = firstPage.getViewport({ scale: 1 });
@@ -67,8 +87,6 @@ export default function BookViewer({
         aspectRef.current = aspect;
         if (!cancelled) setDimensions(calcDimensions(aspect));
 
-        // Render in batches of 5 to avoid blocking the main thread
-        const BATCH = 5;
         for (let i = 1; i <= total; i++) {
           if (cancelled) return;
           const page = await pdf.getPage(i);
@@ -78,20 +96,42 @@ export default function BookViewer({
           canvas.height = viewport.height;
           const ctx = canvas.getContext('2d')!;
           await page.render({ canvasContext: ctx, viewport }).promise;
-          rendered.push(canvas.toDataURL('image/jpeg', 0.88));
+          const pageUrl = await canvasToObjectUrl(canvas)
+          rendered.push(pageUrl);
+          pageUrlsRef.current.push(pageUrl)
 
           if (!cancelled) onProgress?.(i, total);
-          // Yield to the main thread after each batch
-          if (i % BATCH === 0) await new Promise(r => setTimeout(r, 0));
+          const shouldCommit = i <= INITIAL_READY_PAGES || i % RENDER_BATCH === 0 || i === total
+          if (shouldCommit && !cancelled) {
+            setPages(rendered.slice())
+
+            if (!readyTriggered && i >= Math.min(INITIAL_READY_PAGES, total)) {
+              readyTriggered = true
+              setLoading(false)
+              onReady?.()
+            }
+
+            await new Promise(r => setTimeout(r, 0))
+          }
         }
-        if (!cancelled) { setPages(rendered); setLoading(false); onReady?.(); }
+        if (!cancelled) {
+          setPages(rendered)
+          if (!readyTriggered) {
+            setLoading(false)
+            onReady?.()
+          }
+        }
       } catch {
         if (!cancelled) { setError('Could not load the book. Please try refreshing.'); setLoading(false); }
       }
     }
 
     renderPdf();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      pageUrlsRef.current.forEach((url) => URL.revokeObjectURL(url))
+      pageUrlsRef.current = []
+    };
   }, [pdfUrl, calcDimensions]);
 
   /* Resize handler, debounced */
@@ -129,7 +169,8 @@ export default function BookViewer({
   const onFlip = useCallback((e: { data: number }) => { setCurrentPage(e.data); }, []);
   const goNext = () => flipBookRef.current?.pageFlip()?.flipNext();
   const goPrev = () => flipBookRef.current?.pageFlip()?.flipPrev();
-  const totalPages = pages.length;
+  const totalPages = pageCount || pages.length;
+  const loadedPages = pages.length;
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 700;
 
   return (
@@ -194,9 +235,10 @@ export default function BookViewer({
 
         <div className="book-page-info">
           <span className="book-page-indicator">{currentPage + 1} / {totalPages || '...'}</span>
+          {loadedPages < totalPages && <span className="book-page-indicator">Loaded {loadedPages}</span>}
         </div>
 
-        <button className="book-ctrl-btn" onClick={goNext} disabled={currentPage >= totalPages - 1} aria-label="Next page">
+        <button className="book-ctrl-btn" onClick={goNext} disabled={currentPage >= loadedPages - 1} aria-label="Next page">
           <span>Next</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
         </button>

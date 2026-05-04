@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -13,6 +15,29 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function JugalbandiPage() {
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const sections = viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-overview', label: 'Overview' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-overview', label: 'Overview' },
+        { id: 'cs-background', label: 'Background' },
+        { id: 'cs-instrument', label: 'The Instrument' },
+        { id: 'cs-process', label: 'Process' },
+        { id: 'cs-reflection', label: 'Reflection' },
+      ]
+
+  const handleViewModeChange = (nextMode: 'summary' | 'full') => {
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -41,14 +66,23 @@ export default function JugalbandiPage() {
             { label: 'Context', value: 'NYU \u2013 ITP' },
             { label: 'Duration', value: '5 Months' },
           ]}
+          showHeaderSummary={false}
         />
 
+        <ProjectQuickSummary
+          slug="jugalbandi"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+        />
+
+        {viewMode === 'full' ? (
+        <>
         {/* Instrument overview photos */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.png" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -68,9 +102,11 @@ export default function JugalbandiPage() {
             </div>
           </div>
         </section>
+        </>
+        ) : null}
 
         {/* Overview */}
-        <CsSection label="Overview" title="A duet in Hindi">
+        <CsSection id="cs-overview" label="Overview" title="A duet in Hindi">
           <CsBody>
             <p>Jugalbandi (meaning &ldquo;a duet&rdquo; in Hindi) showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments. The project is a physical computing art installation that materialises the inner workings of neural networks into tangible, playable musical instruments.</p>
             <p>In Indian classical music, a jugalbandi is a performance where two lead musicians engage in a dialogue, trading phrases, responding to each other&rsquo;s improvisations, and building toward a shared climax. This installation reimagines that tradition: one &ldquo;musician&rdquo; is a human performer, and the other is a neural network expressed through mechanized acoustic instruments. The conversation between them unfolds in real time, with the network&rsquo;s outputs driving physical sound-making devices that respond to the performer&rsquo;s gestures.</p>
@@ -79,6 +115,8 @@ export default function JugalbandiPage() {
           </CsBody>
         </CsSection>
 
+        {viewMode === 'full' ? (
+        <>
         {/* Background */}
         <section className="cs-section reveal" id="cs-background">
           <div className="wrap">
@@ -161,7 +199,7 @@ export default function JugalbandiPage() {
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.png" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -300,13 +338,16 @@ export default function JugalbandiPage() {
         </section>
 
         <CsThanks />
+        </>
+        ) : null}
 
-        <BottomNav sections={[
-          { id: 'cs-background', label: 'Background' },
-          { id: 'cs-instrument', label: 'The Instrument' },
-          { id: 'cs-process', label: 'Process' },
-          { id: 'cs-reflection', label: 'Reflection' },
-        ]} />
+        <BottomNav
+          sections={sections}
+          modeAction={{
+            label: viewMode === 'summary' ? 'Full case study' : '2 min summary',
+            onClick: () => handleViewModeChange(viewMode === 'summary' ? 'full' : 'summary'),
+          }}
+        />
 
       </main>
 

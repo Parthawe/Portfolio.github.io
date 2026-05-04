@@ -212,7 +212,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-5.png" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
         {/* Design Direction */}
@@ -246,7 +246,7 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">User Journey</h2>
             <div className="cs-img-full">
-              <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.png" alt="User journey map and information architecture flow diagram" loading="lazy" />
+              <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
             </div>
           </div>
         </section>
@@ -268,7 +268,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-8.png" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}

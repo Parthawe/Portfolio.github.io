@@ -127,8 +127,8 @@ export default function MoniacMachinePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Moniac/photos/valve-detail.png" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Moniac/photos/hand-playing.png" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Moniac/photos/valve-detail.webp" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Moniac/photos/hand-playing.webp" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
             </div>
           </div>
         </section>

@@ -5,9 +5,11 @@ import Nav from '../../components/Nav'
 import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
 import CsCredits from '../../components/case-study/CsCredits'
+import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import GlyphPlayground from '../../components/GlyphPlayground'
 import GlyphEditor from '../../components/GlyphEditor'
@@ -96,8 +98,26 @@ export default function TypefacePage() {
         {/* Hero image */}
         <CsImage src="/Portfolio.github.io/Assets/Projects/Typeface/photos/hero-title.jpg" alt="Butler's Slice typeface cover" />
 
+        <ProjectOverview
+          id="cs-overview"
+          sections={[
+            {
+              label: 'The Intent',
+              content: "Butler's Slice started as a typography exercise in controlled disruption: keep the elegance of Butler, then cut into it just enough to create a new visual identity without breaking readability.",
+            },
+            {
+              label: 'The System',
+              content: 'The typeface had to work as a family, not a collection of clever letters. Every cut, contrast shift, and serif detail needed to feel related across weights and across the full glyph set.',
+            },
+            {
+              label: 'The Experience',
+              content: 'The final outcome is a display face built for editorial scale: expressive in headlines, legible in short phrases, and distinct enough to carry a visual voice across posters, packaging, and specimens.',
+            },
+          ]}
+        />
+
         {/* The Concept */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-concept">
           <div className="wrap">
             <h2 className="cs-display">the concept</h2>
             <CsBody style={{ maxWidth: '680px' }}>
@@ -110,7 +130,7 @@ export default function TypefacePage() {
         <CsImage src="/Portfolio.github.io/Assets/Projects/Typeface/photos/slice-types.jpg" alt="Character specimens, Ag in three weights, types of slices" />
 
         {/* ── Interactive Playground ── */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-playground">
           <div className="wrap">
             <h2 className="cs-display">try it yourself</h2>
             <CsBody style={{ maxWidth: '680px', marginBottom: '2rem' }}>
@@ -122,7 +142,7 @@ export default function TypefacePage() {
         <GlyphPlayground />
 
         {/* ── Vector Editor ── */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-editor">
           <div className="wrap">
             <h2 className="cs-display">pull the points</h2>
             <CsBody style={{ maxWidth: '680px', marginBottom: '2rem' }}>
@@ -140,7 +160,7 @@ export default function TypefacePage() {
         <CsImage src="/Portfolio.github.io/Assets/Projects/Typeface/photos/specimen-usage.jpg" alt="Packaging mockups showing Butler's Slice" />
 
         {/* How it works in context */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-context">
           <div className="wrap">
             <h2 className="cs-display">in context</h2>
           </div>
@@ -180,7 +200,7 @@ export default function TypefacePage() {
         </section>
 
         {/* Reflections */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-reflections">
           <div className="wrap">
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What Designing a Typeface Taught Me</h2>
@@ -217,11 +237,22 @@ export default function TypefacePage() {
           </div>
         </section>
 
-      <CsThanks />
+        <BottomNav
+          sections={[
+            { id: 'cs-overview', label: 'Overview' },
+            { id: 'cs-concept', label: 'Concept' },
+            { id: 'cs-playground', label: 'Playground' },
+            { id: 'cs-editor', label: 'Editor' },
+            { id: 'cs-context', label: 'Context' },
+            { id: 'cs-reflections', label: 'Reflections' },
+          ]}
+        />
+
+        <CsThanks />
 
       </main>
 
-        <NextProject slug="atps" title="ArtTown Podcast" image="/Portfolio.github.io/Assets/images/atps.webp" />
+      <NextProject slug="atps" title="ArtTown Podcast" image="/Portfolio.github.io/Assets/images/atps.webp" />
       <Footer />
     </>
   )

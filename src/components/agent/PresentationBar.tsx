@@ -85,7 +85,7 @@ export default function PresentationBar({ route, onExit }: Props) {
   const ss = String(elapsed % 60).padStart(2, '0')
 
   return (
-    <div className="present-bar" role="region" aria-label="Presentation mode">
+    <div className="present-bar surface-glass" role="region" aria-label="Presentation mode">
       <div className="present-bar-inner">
         <div className="present-bar-meta">
           <span className="present-bar-step">{idx + 1} / {steps.length}</span>

@@ -7,6 +7,7 @@ import CsBody from '../../components/case-study/CsBody'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsImage from '../../components/case-study/CsImage'
 import CsThanks from '../../components/case-study/CsThanks'
+import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function AtpsPage() {
@@ -43,7 +44,7 @@ export default function AtpsPage() {
         <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/1.jpg" alt="ArtTown Podcast Series hero, microphone with a grid of episode artwork and 50k+ listeners" />
 
         {/* Distribution */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-distribution">
           <div className="wrap">
             <p className="cs-section-label">Distribution</p>
             <h2 className="cs-display">Listen from the best podcast platform</h2>
@@ -58,7 +59,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Overview */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-overview">
           <div className="wrap">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
               <h2 className="cs-display" style={{ margin: 0 }}>ArtTown Podcast Series</h2>
@@ -87,7 +88,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Stats */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-impact">
           <div className="wrap">
             <p className="cs-section-label">Impact</p>
             <div className="cs-info-grid" style={{ gridTemplateColumns: 'repeat(3,1fr)', textAlign: 'center', margin: '2rem 0 0' }}>
@@ -108,7 +109,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Plan of Action */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
             <h2 className="cs-display" style={{ textAlign: 'center' }}>Plan of action?</h2>
             <div className="cs-steps" style={{ gridTemplateColumns: 'repeat(6,1fr)', marginTop: '3rem' }}>
@@ -143,7 +144,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Guest Connections */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-guests">
           <div className="wrap">
             <h2 className="cs-display" style={{ textAlign: 'center' }}>Guest Connections</h2>
             <CsBody style={{ maxWidth: '100%', textAlign: 'center', margin: '0 auto 2rem' }}>
@@ -153,7 +154,7 @@ export default function AtpsPage() {
         </section>
 
         {/* How It Works */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-listener-flow">
           <div className="wrap">
             <p className="cs-section-label" style={{ textAlign: 'center' }}>Listener Experience</p>
             <h2 className="cs-section-title" style={{ textAlign: 'center' }}>How It Works</h2>
@@ -200,10 +201,10 @@ export default function AtpsPage() {
         </section>
 
         {/* Episode grid */}
-        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/5.jpg" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/5.webp" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" />
 
         {/* Notable Guests */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-episodes">
           <div className="wrap">
             <p className="cs-section-label">Episodes</p>
             <h2 className="cs-section-title">Notable Guests</h2>
@@ -231,7 +232,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Reflections */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-reflections">
           <div className="wrap">
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What Hosting 40+ Conversations Taught Me</h2>
@@ -242,6 +243,17 @@ export default function AtpsPage() {
             </CsBody>
           </div>
         </section>
+
+        <BottomNav
+          sections={[
+            { id: 'cs-overview', label: 'Overview' },
+            { id: 'cs-impact', label: 'Impact' },
+            { id: 'cs-process', label: 'Process' },
+            { id: 'cs-listener-flow', label: 'Experience' },
+            { id: 'cs-episodes', label: 'Guests' },
+            { id: 'cs-reflections', label: 'Reflections' },
+          ]}
+        />
 
         <CsThanks />
 

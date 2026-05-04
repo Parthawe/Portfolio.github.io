@@ -6,14 +6,40 @@ import RouteSeo from './RouteSeo';
 import { useCursorFollower } from '../hooks/useCursorFollower';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
+import { useDeferredMount } from '../hooks/useDeferredMount';
 import { normalizeCopy } from '../utils/normalizeCopy';
+import FigmaChrome from './FigmaChrome';
+import FigmaGrid from './FigmaGrid';
 
 const HandTracker = lazy(() => import('./HandTracker'));
 const PortfolioAgent = lazy(() => import('./agent/PortfolioAgent'));
-import FigmaContextMenu from './FigmaContextMenu';
-import FigmaHUD from './FigmaHUD';
-import FigmaRuler from './FigmaRuler';
-import FigmaZoom from './FigmaZoom';
+const CASE_MEDIA_SELECTOR = '.cs-img img, .cs-img-full img, .proj-hero-img img';
+
+function syncCaseStudyMediaState(img: HTMLImageElement) {
+  if (!img.matches(CASE_MEDIA_SELECTOR)) return;
+
+  const wrapper = img.closest('.cs-img, .cs-img-full, .proj-hero-img');
+  if (!(wrapper instanceof HTMLElement)) return;
+
+  const width = img.naturalWidth || img.width;
+  const height = img.naturalHeight || img.height;
+  if (!width || !height) return;
+
+  const ratio = width / height;
+  wrapper.classList.remove('is-portrait', 'is-square', 'is-landscape');
+
+  if (ratio < 0.92) {
+    wrapper.classList.add('is-portrait');
+    return;
+  }
+
+  if (ratio < 1.18) {
+    wrapper.classList.add('is-square');
+    return;
+  }
+
+  wrapper.classList.add('is-landscape');
+}
 
 export default function RootLayout() {
   const location = useLocation();
@@ -24,6 +50,8 @@ export default function RootLayout() {
   const enablePortfolioInteractions = !isStudioRoute && !isUtilityRoute;
   const enableAgent = enablePortfolioInteractions;
   const enableHandTracker = !isUtilityRoute;
+  const enableFigmaChrome = !isUtilityRoute;
+  const handTrackerReady = useDeferredMount(enableHandTracker, { timeout: 2400, delayMs: 600 })
 
   // Fade-in on mount and route change (CSS-driven, replaces Framer Motion)
   useEffect(() => {
@@ -43,6 +71,13 @@ export default function RootLayout() {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.classList.toggle('figma-chrome-enabled', enableFigmaChrome);
+    return () => {
+      document.body.classList.remove('figma-chrome-enabled');
+    };
+  }, [enableFigmaChrome]);
 
   // Normalize visible copy so long dashes do not leak into the rendered site.
   useEffect(() => {
@@ -109,8 +144,15 @@ export default function RootLayout() {
       });
     };
 
+    const syncExistingMedia = (root: ParentNode) => {
+      root.querySelectorAll<HTMLImageElement>(CASE_MEDIA_SELECTOR).forEach((img) => {
+        if (img.complete) syncCaseStudyMediaState(img);
+      });
+    };
+
     // Initial scan
     observeNew(document);
+    syncExistingMedia(document);
 
     // Watch for any new elements added to the DOM (batched via microtask)
     let pendingNodes: HTMLElement[] = [];
@@ -124,6 +166,7 @@ export default function RootLayout() {
           io.observe(node);
         }
         observeNew(node);
+        syncExistingMedia(node);
       }
     };
     const mo = new MutationObserver((mutations) => {
@@ -143,6 +186,7 @@ export default function RootLayout() {
     const onImgLoad = (e: Event) => {
       const img = e.target as HTMLImageElement;
       if (img.tagName !== 'IMG') return;
+      syncCaseStudyMediaState(img);
       const wrapper = img.closest('.cs-img');
       if (wrapper) wrapper.classList.add('loaded');
     };
@@ -192,6 +236,7 @@ export default function RootLayout() {
       <RouteSeo />
       <div className="grain" aria-hidden="true"></div>
       <div className="dot-bg" aria-hidden="true"></div>
+      {enableFigmaChrome && <FigmaGrid />}
       <PageLoader />
       <div
         style={{
@@ -203,15 +248,8 @@ export default function RootLayout() {
       </div>
       <Lightbox />
       {/* AmbientAudio moved to Nav */}
-      {!isUtilityRoute && (
-        <>
-          <FigmaContextMenu />
-          <FigmaHUD />
-          <FigmaRuler />
-          <FigmaZoom />
-        </>
-      )}
-      {enableHandTracker && (
+      {enableFigmaChrome && <FigmaChrome />}
+      {enableHandTracker && handTrackerReady && (
         <Suspense fallback={null}>
           <HandTracker />
         </Suspense>

@@ -69,7 +69,7 @@ export default function FigmaZoom() {
 
   return (
     <button
-      className="figma-zoom-badge figma-hover"
+      className="figma-zoom-badge surface-glass surface-glass--subtle figma-hover"
       onClick={zoomReset}
       title="Reset zoom (\u23180)"
       aria-label={`Zoom ${zoom}%, click to reset`}

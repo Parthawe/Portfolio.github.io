@@ -4,9 +4,11 @@ import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
+import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function HealthAppPage() {
@@ -39,8 +41,26 @@ export default function HealthAppPage() {
           ]}
         />
 
+        <ProjectOverview
+          id="cs-overview"
+          sections={[
+            {
+              label: 'The Problem',
+              content: 'Task managers are great at helping people track work, but they rarely understand when the schedule itself is unhealthy. This project asked what happens when time management starts accounting for energy, sleep, nutrition, and physical strain.',
+            },
+            {
+              label: 'The Shift',
+              content: 'Instead of treating wellness as a separate app, the concept folds health prompts directly into daily planning. Conflicts, recovery, and routine all become part of the same workflow.',
+            },
+            {
+              label: 'The Direction',
+              content: 'The resulting product reframes productivity as balance. It helps users plan their day with more awareness, not just more efficiency.',
+            },
+          ]}
+        />
+
         {/* Overview — public */}
-        <CsSection id="cs-overview" label="Overview" title="Integrating Health &amp; Productivity">
+        <CsSection id="cs-approach" label="Approach" title="Integrating health signals into everyday planning">
           <CsBody>
             <p>The reimagined Google Tasks app integrates health and well-being elements into task management, helping users balance productivity with personal health. The solution merges daily tasks with health insights, personalized recommendations, and wellness tracking to reduce stress and enhance overall quality of life.</p>
           </CsBody>
@@ -56,6 +76,13 @@ export default function HealthAppPage() {
             <span className="cs-label-row-key">Tools</span>
             <span className="cs-label-row-val">Figma, Jira, User Research &amp; Testing, Health Integration Analytics, User Flows, Workflow Optimization</span>
           </div>
+        </CsSection>
+
+        <CsSection id="cs-principles" label="Design Principles" title="Wellness support has to feel calm, not corrective">
+          <CsBody>
+            <p>The strongest part of the concept is not the dashboarding. It is the way the system intervenes at the right moment. If the calendar becomes unrealistic, the app surfaces conflicts early. If routines start slipping, the app connects that pattern back to daily planning instead of burying it in a separate health view.</p>
+            <p>That design direction keeps the product from becoming a wellness checklist. It turns health data into context for better decisions, which is what makes the idea useful.</p>
+          </CsBody>
         </CsSection>
 
         {/* Product photos */}
@@ -96,9 +123,17 @@ export default function HealthAppPage() {
           <NdaGate slug="healthapp" projectName="Health App" />
         )}
 
+        <BottomNav
+          sections={[
+            { id: 'cs-overview', label: 'Overview' },
+            { id: 'cs-approach', label: 'Approach' },
+            { id: 'cs-principles', label: 'Principles' },
+          ]}
+        />
+
       </main>
 
-      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Portfolio.github.io/Assets/Projects/ibm/1.jpg" />
+      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Portfolio.github.io/Assets/Projects/ibm/1.webp" />
       <Footer />
     </>
   )

@@ -23,6 +23,15 @@ const NODES: NodeConfig[] = [
   { position: [1.8, -1.4, 0.2], label: 'Creative Technology', labelOffset: [0, -0.85, 0], route: '/creative-tech' },
 ];
 
+const SAFE_DESKTOP_NODES: NodeConfig[] = [
+  { position: [0.2, 1.85, 0], label: 'Installations', labelOffset: [0, 0.92, 0], route: '/installations' },
+  { position: [2.65, 0.78, -0.2], label: 'Design for Good', labelOffset: [0.12, 0.82, 0], route: '/design-for-good' },
+  { position: [0.7, 0.1, 0.3], label: 'Product Design', labelOffset: [0, -0.8, 0], route: '/ux-design' },
+  { position: [-1.35, -0.12, 0.3], label: 'Brand & Visual', labelOffset: [0, -0.58, 0], route: '/brand-visual' },
+  { position: [0.05, -1.85, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.82, 0], route: '/ai' },
+  { position: [2.1, -1.42, 0.2], label: 'Creative Technology', labelOffset: [0, -0.82, 0], route: '/creative-tech' },
+];
+
 /* ─── Constellation threads, invisible curves that glow as energy passes ─── */
 
 const THREADS_PER_LINK = 18;
@@ -1441,12 +1450,16 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
   const groupRef = useRef<THREE.Group>(null!);
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
-  const { camera } = useThree();
+  const { camera, size } = useThree();
+  const useSafeDesktopLayout = !isMobile && size.width < 1480;
+  const nodes = useMemo(() => (useSafeDesktopLayout ? SAFE_DESKTOP_NODES : NODES), [useSafeDesktopLayout]);
+  const sceneScale = useSafeDesktopLayout ? 0.64 : 0.7;
+  const sceneOffsetX = useSafeDesktopLayout ? 0.4 : 0;
 
   useEffect(() => {
-    camera.position.z = isMobile ? 9.5 : 7.5;
-    camera.position.y = 0.3;
-  }, [isMobile, camera]);
+    camera.position.z = isMobile ? 9.5 : useSafeDesktopLayout ? 8.15 : 7.5;
+    camera.position.y = useSafeDesktopLayout ? 0.22 : 0.3;
+  }, [isMobile, useSafeDesktopLayout, camera]);
 
   useEffect(() => {
     if (isMobile) return;
@@ -1473,7 +1486,7 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
     groupRef.current.rotation.z = orbitZ;
   });
 
-  const positions = NODES.map(n => n.position);
+  const positions = nodes.map(n => n.position);
 
   return (
     <>
@@ -1495,41 +1508,41 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
       {/* Environment reflections — city preset gives complex glass reflections */}
       <Environment preset="city" environmentIntensity={dark ? 1.0 : 1.2} />
 
-      <group ref={groupRef} scale={0.7}>
+      <group ref={groupRef} scale={sceneScale} position={[sceneOffsetX, 0, 0]}>
         <ConstellationLines positions={positions} dark={dark} />
 
         {/* 0: Installations, Truss (top) */}
-        <ClickableObject route={NODES[0].route} position={NODES[0].position}>
+        <ClickableObject route={nodes[0].route} position={nodes[0].position}>
           {(hovered) => <TrussStructure dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 1: Design for Good, Chrome knot (right) */}
-        <ClickableObject route={NODES[1].route} position={NODES[1].position}>
+        <ClickableObject route={nodes[1].route} position={nodes[1].position}>
           {(hovered) => <PetalRose dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 2: Product Design, Morphing screens (center) */}
-        <ClickableObject route={NODES[2].route} position={NODES[2].position}>
+        <ClickableObject route={nodes[2].route} position={nodes[2].position}>
           {(hovered) => <MorphingScreens dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 3: Brand & Visual, Bauhaus (left) */}
-        <ClickableObject route={NODES[3].route} position={NODES[3].position}>
+        <ClickableObject route={nodes[3].route} position={nodes[3].position}>
           {(hovered) => <StackedPlates dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 4: AI & Wearables, Lens (bottom left) */}
-        <ClickableObject route={NODES[4].route} position={NODES[4].position}>
+        <ClickableObject route={nodes[4].route} position={nodes[4].position}>
           {(hovered) => <LensAssembly dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 5: Creative Technology, Geodesic (bottom right) */}
-        <ClickableObject route={NODES[5].route} position={NODES[5].position}>
+        <ClickableObject route={nodes[5].route} position={nodes[5].position}>
           {(hovered) => <GlassCrystal dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* Interactive Labels, morph into mini 3D objects on hover */}
-        {NODES.map((n, i) => (
+        {nodes.map((n, i) => (
           <InteractiveLabel key={i} position={n.position} text={n.label} offset={n.labelOffset} dark={dark} index={i} route={n.route} parentRef={groupRef} />
         ))}
       </group>

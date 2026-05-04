@@ -117,8 +117,15 @@ export default function PortfolioAgent() {
   return (
     <>
     {/* Platform bar — bottom of viewport, character walks on it */}
-    <div className={`agent-platform ${showChar ? 'agent-platform--in' : 'agent-platform--out'}${minimized ? ' agent-platform--minimized' : ''}`} ref={platformRef}>
-      <button className="agent-platform-tip figma-hover" onClick={handleClick} type="button" aria-label={minimized ? 'Resume chat' : 'Chat with Folio'}>
+    <div className={`agent-platform surface-glass ${showChar ? 'agent-platform--in' : 'agent-platform--out'}${minimized ? ' agent-platform--minimized' : ''}`} ref={platformRef}>
+      <button
+        className="agent-platform-tip figma-hover"
+        onClick={handleClick}
+        type="button"
+        aria-label={minimized ? 'Resume chat' : 'Chat with Folio'}
+        aria-haspopup="dialog"
+        aria-expanded={chatOpen && !minimized}
+      >
         <span className="agent-platform-dot" />
         <span className="agent-platform-text" key={minimized ? 'resume' : `${route}-${tipIdx}`}>
           {minimized ? 'Resume chat' : tips[tipIdx]}

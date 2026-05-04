@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
+import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -18,6 +20,34 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function ClawedChatPage() {
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const sections = viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-vision', label: 'Vision & Role' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-vision', label: 'Vision & Role' },
+        { id: 'cs-context', label: 'Context' },
+        { id: 'cs-research', label: 'Research' },
+        { id: 'cs-challenges', label: 'Challenges' },
+        { id: 'cs-webhub', label: 'Web Hub & Site' },
+        { id: 'cs-glasses', label: 'Glasses' },
+        { id: 'cs-safety', label: 'Safety' },
+        { id: 'cs-impact', label: 'Impact' },
+        { id: 'cs-learnings', label: 'Learnings' },
+        { id: 'cs-whats-next', label: "What's Next" },
+      ]
+
+  const handleViewModeChange = (nextMode: 'summary' | 'full') => {
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -49,8 +79,17 @@ export default function ClawedChatPage() {
           liveUrl="https://clawed.chat"
           heroImage="/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp"
           heroAlt="Clawed.chat landing page: Your AI agent, live in 30 seconds"
+          showHeaderSummary={false}
         />
 
+        <ProjectQuickSummary
+          slug="clawed-chat"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+        />
+
+        {viewMode === 'full' ? (
+        <>
         {/* 3D mascot + logo */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -60,6 +99,8 @@ export default function ClawedChatPage() {
             </div>
           </div>
         </section>
+        </>
+        ) : null}
 
         <ProjectOverview
           id="cs-vision"
@@ -75,6 +116,8 @@ export default function ClawedChatPage() {
           ]}
         />
 
+        {viewMode === 'full' ? (
+        <>
         <CsSection id="cs-context" label="01 &mdash; Context" title="Why AI Assistants Fail">
           <CsBody>
             <p>Before I designed forward, I studied the failures. AI assistants have a trust problem, and it is entirely self-inflicted. Siri, Alexa, Google Assistant &mdash; each one trained users to expect disappointment. The pattern was always the same: promise the world, deliver a timer and a weather forecast, and quietly lose credibility every time the assistant guessed wrong and acted anyway.</p>
@@ -277,19 +320,17 @@ export default function ClawedChatPage() {
         </CsSection>
 
         <CsThanks contactCta />
+        </>
+        ) : null}
 
-        <BottomNav sections={[
-          { id: 'cs-vision', label: 'Vision & Role' },
-          { id: 'cs-context', label: 'Context' },
-          { id: 'cs-research', label: 'Research' },
-          { id: 'cs-challenges', label: 'Challenges' },
-          { id: 'cs-webhub', label: 'Web Hub & Site' },
-          { id: 'cs-glasses', label: 'Glasses' },
-          { id: 'cs-safety', label: 'Safety' },
-          { id: 'cs-impact', label: 'Impact' },
-          { id: 'cs-learnings', label: 'Learnings' },
-          { id: 'cs-whats-next', label: 'What\u2019s Next' },
-        ]} liveUrl="https://clawed.chat" />
+        <BottomNav
+          sections={sections}
+          liveUrl="https://clawed.chat"
+          modeAction={{
+            label: viewMode === 'summary' ? 'Full case study' : '2 min summary',
+            onClick: () => handleViewModeChange(viewMode === 'summary' ? 'full' : 'summary'),
+          }}
+        />
 
       </main>
 

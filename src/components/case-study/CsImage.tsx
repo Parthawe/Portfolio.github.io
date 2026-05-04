@@ -19,7 +19,7 @@ export default function CsImage({ src, alt, placeholder, className, style }: CsI
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
       >
-        <img src={src} alt={alt || ''} loading="lazy" />
+        <img src={src} alt={alt || ''} loading="lazy" decoding="async" />
       </motion.div>
     );
   }

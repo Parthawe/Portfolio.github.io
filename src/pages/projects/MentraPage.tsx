@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
+import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -22,6 +24,36 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function MentraPage() {
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const sections = viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-vision', label: 'Vision & Role' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-vision', label: 'Vision & Role' },
+        { id: 'cs-context', label: 'Context' },
+        { id: 'cs-bet', label: 'The Bet' },
+        { id: 'cs-challenges', label: 'Challenges' },
+        { id: 'cs-companion', label: 'Companion App' },
+        { id: 'cs-os', label: 'MentraOS' },
+        { id: 'cs-store', label: 'MiniApp Store' },
+        { id: 'cs-timeline', label: 'Timeline' },
+        { id: 'cs-website', label: 'Live Site' },
+        { id: 'cs-impact', label: 'Impact' },
+        { id: 'cs-learnings', label: 'Learnings' },
+        { id: 'cs-whats-next', label: "What's Next" },
+      ]
+
+  const handleViewModeChange = (nextMode: 'summary' | 'full') => {
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -53,7 +85,14 @@ export default function MentraPage() {
         liveUrl="https://www.mentra.glass"
         heroImage="/Portfolio.github.io/Assets/images/mentra/render-camera-detail.webp"
         heroAlt="Mentra Glass, AI-powered smart glasses with camera detail and Mentra logo"
+        showHeaderSummary={false}
       />
+
+        <ProjectQuickSummary
+          slug="mentra"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+        />
 
         <ProjectOverview
           id="cs-vision"
@@ -69,6 +108,8 @@ export default function MentraPage() {
           ]}
         />
 
+        {viewMode === 'full' ? (
+        <>
         <CsSection id="cs-context" label="Context" title="A Decade of Expensive Failures">
           <CsBody>
             <p>Before designing forward, I studied backward. Smart glasses have a decade-long trail of ambitious launches and quiet discontinuations. The pattern never varies: a hardware company ships something technically impressive, bundles a companion app with three features, and waits for the &ldquo;ecosystem&rdquo; to magically appear. It never does.</p>
@@ -285,21 +326,17 @@ export default function MentraPage() {
         </CsSection>
 
         <CsThanks contactCta style={{ marginTop: '4rem' }} />
+        </>
+        ) : null}
 
-        <BottomNav sections={[
-          { id: 'cs-vision', label: 'Vision & Role' },
-          { id: 'cs-context', label: 'Context' },
-          { id: 'cs-bet', label: 'The Bet' },
-          { id: 'cs-challenges', label: 'Challenges' },
-          { id: 'cs-companion', label: 'Companion App' },
-          { id: 'cs-os', label: 'MentraOS' },
-          { id: 'cs-store', label: 'MiniApp Store' },
-          { id: 'cs-timeline', label: 'Timeline' },
-          { id: 'cs-website', label: 'Live Site' },
-          { id: 'cs-impact', label: 'Impact' },
-          { id: 'cs-learnings', label: 'Learnings' },
-          { id: 'cs-whats-next', label: 'What\u2019s Next' },
-        ]} liveUrl="https://www.mentra.glass" />
+        <BottomNav
+          sections={sections}
+          liveUrl="https://www.mentra.glass"
+          modeAction={{
+            label: viewMode === 'summary' ? 'Full case study' : '2 min summary',
+            onClick: () => handleViewModeChange(viewMode === 'summary' ? 'full' : 'summary'),
+          }}
+        />
 
       </main>
 

@@ -46,8 +46,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-ground.jpg" alt="Salt mill grinding salt onto the black platform as the story advances" loading="eager" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/overview.jpg" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="eager" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-ground.webp" alt="Salt mill grinding salt onto the black platform as the story advances" loading="eager" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/overview.webp" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="eager" /></div>
             </div>
           </div>
         </section>
@@ -68,8 +68,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '2fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/detail-salt-slider.jpg" alt="Close-up: ground salt scattered across the slider reading 'Why the Sea is Salt'" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/slider-closeup.jpg" alt="Story slider: 'Start of the Story' to 'End of the Story'" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/detail-salt-slider.webp" alt="Close-up: ground salt scattered across the slider reading 'Why the Sea is Salt'" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/slider-closeup.webp" alt="Story slider: 'Start of the Story' to 'End of the Story'" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -97,9 +97,9 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/mill-front.jpg" alt="White 3D-printed salt mill, wooden dowel handle" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/materials.jpg" alt="Materials: sea salt jar, coarse salt bag, mill on platform" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-overflow.jpg" alt="Salt overflowing after many story tellings" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/mill-front.webp" alt="White 3D-printed salt mill, wooden dowel handle" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/materials.webp" alt="Materials: sea salt jar, coarse salt bag, mill on platform" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-overflow.webp" alt="Salt overflowing after many story tellings" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -118,8 +118,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-pile.jpg" alt="Salt accumulated around the mill base" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-spread.jpg" alt="Salt spread across the platform" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-pile.webp" alt="Salt accumulated around the mill base" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-spread.webp" alt="Salt spread across the platform" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -127,7 +127,7 @@ export default function SeaOfSaltPage() {
         {/* Final wide */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/final-wide.jpg" alt="Complete installation: salt scattered across the dark platform" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/final-wide.webp" alt="Complete installation: salt scattered across the dark platform" loading="lazy" /></div>
           </div>
         </section>
 

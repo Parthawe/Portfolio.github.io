@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
 import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -21,6 +23,37 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function TransfiPage() {
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const fullCaseStudyEnabled = NDA_DETAILS_ENABLED
+  const sections = !fullCaseStudyEnabled || viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-overview', label: 'Overview' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-overview', label: 'Overview' },
+        { id: 'cs-problem', label: 'Problem' },
+        { id: 'cs-research', label: 'Research' },
+        { id: 'cs-timeline', label: 'Timeline' },
+        { id: 'cs-process', label: 'Process' },
+        { id: 'cs-product', label: 'Product' },
+        { id: 'cs-screens', label: 'Screens' },
+        { id: 'cs-gtm', label: 'Go-To-Market' },
+        { id: 'cs-results', label: 'Results' },
+        { id: 'cs-learnings', label: 'Learnings' },
+        { id: 'cs-whats-next', label: "What's Next" },
+      ]
+
+  const handleViewModeChange = (nextMode: 'summary' | 'full') => {
+    if (!fullCaseStudyEnabled && nextMode === 'full') return
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -53,10 +86,18 @@ export default function TransfiPage() {
           liveUrl="https://www.transfi.com"
           heroImage="/Portfolio.github.io/Assets/Projects/Transfi/photos/dashboard-hero.png"
           heroAlt="TransFi hero, dashboard and buy crypto widget"
+          showHeaderSummary={false}
+        />
+
+        <ProjectQuickSummary
+          slug="transfi-project"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          fullCaseStudyEnabled={fullCaseStudyEnabled}
         />
 
         {/* Overview section with label-row layout */}
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-overview">
           <div className="wrap">
             <h2 className="cs-display" style={{ maxWidth: '18ch' }}>Web3 payments access simplified for the next billion users.</h2>
 
@@ -90,7 +131,8 @@ export default function TransfiPage() {
           </div>
         </section>
 
-        {NDA_DETAILS_ENABLED ? (
+        {fullCaseStudyEnabled ? (
+        viewMode === 'full' ? (
         <>
 
         {/* Problem section */}
@@ -376,23 +418,20 @@ export default function TransfiPage() {
           </div>
         </section>
 
-        <BottomNav sections={[
-          { id: 'cs-problem', label: 'Problem' },
-          { id: 'cs-research', label: 'Research' },
-          { id: 'cs-timeline', label: 'Timeline' },
-          { id: 'cs-process', label: 'Process' },
-          { id: 'cs-product', label: 'Product' },
-          { id: 'cs-screens', label: 'Screens' },
-          { id: 'cs-gtm', label: 'Go-To-Market' },
-          { id: 'cs-results', label: 'Results' },
-          { id: 'cs-learnings', label: 'Learnings' },
-          { id: 'cs-whats-next', label: 'What\u2019s Next' },
-        ]} liveUrl="https://www.transfi.com" />
-
         </>
+        ) : null
         ) : (
           <NdaGate slug="transfi-project" projectName="TransFi" />
         )}
+
+        <BottomNav
+          sections={sections}
+          liveUrl="https://www.transfi.com"
+          modeAction={fullCaseStudyEnabled ? {
+            label: viewMode === 'summary' ? 'Full case study' : '2 min summary',
+            onClick: () => handleViewModeChange(viewMode === 'summary' ? 'full' : 'summary'),
+          } : undefined}
+        />
 
       </main>
 

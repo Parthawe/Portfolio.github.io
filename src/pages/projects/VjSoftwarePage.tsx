@@ -34,7 +34,7 @@ export default function VjSoftwarePage() {
           backLabel="Back to Work"
           tags={['UX', 'UI', 'Research', 'Prototyping']}
           title="VJ Parivar"
-          subtitle="Vehicle Parking Made Easy"
+          subtitle="Reframing residential parking as a spatial decision, not a back-office form flow"
           info={[
             { label: 'Client', value: 'Vilas Javdekar' },
             { label: 'Scope', value: 'User Research, UI/UX, Prototyping' },
@@ -49,19 +49,19 @@ export default function VjSoftwarePage() {
         {/* Overview */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display" style={{ maxWidth: '22ch' }}>Designing the digital forefront of a real estate company; to be the face of its post-payment services.</h2>
+            <h2 className="cs-display" style={{ maxWidth: '22ch' }}>A parking flow that had to match how residents actually think about space.</h2>
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">Designing the digital forefront of a real estate company; to be the face of its post-payment services. VJ Parivar is an app for the homeowners of VJ Real Estate and constructions company. It aims to be the face of VJ services to their homeowners after their purchase of a house from VJ.</span>
+              <span className="cs-label-row-val">VJ Parivar was designed as the post-purchase app for homeowners in VJ residential societies. My focus was the parking journey, one of those operational problems that sounds administrative until you watch how much anxiety it creates when people cannot understand the layout they are booking into.</span>
             </div>
             <div className="cs-label-row">
-              <span className="cs-label-row-key">The Challenges</span>
-              <span className="cs-label-row-val">My challenge was to help homeowners understand the need for the layout of the society and make it an easy process for selecting the car parking spot. Also help owners to tackle the secondary needs of the user. Like Complain / Renting Space.</span>
+              <span className="cs-label-row-key">Challenge</span>
+              <span className="cs-label-row-val">Most society tools treated parking like paperwork. Residents did not. They wanted to understand proximity, access, and layout before committing to a spot, while still handling adjacent tasks like complaints, rentals, and vehicle details.</span>
             </div>
             <div className="cs-label-row">
-              <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">My role as UI/UX Designer was to first research the current methods and propose a new system for helping homeowners to select a proper Parking spot by giving a good visual experience and help them understand the layout.</span>
+              <span className="cs-label-row-key">Role</span>
+              <span className="cs-label-row-val">I worked on research, flow strategy, and interface design, helping define a map-first experience that made parking selection feel spatial and legible instead of bureaucratic.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
@@ -85,11 +85,11 @@ export default function VjSoftwarePage() {
         <section className="cs-section reveal" id="cs-context">
           <div className="wrap">
             <span className="cs-section-label">Context</span>
-            <h2 className="cs-section-title">Vilas Javdekar &amp; VJ First</h2>
+            <h2 className="cs-section-title">The Product Context</h2>
             <div className="cs-two-col">
               <div>
                 <CsBody>
-                  <p>Special tie-ups with neighborhood destinations. This includes sports facilities, educational institutions and healthcare destinations. VJ homeowners get priority treatment.</p>
+                  <p>VJ Parivar sat inside a broader resident-services ecosystem. The app was meant to become the digital face of the company after the apartment purchase, covering updates, payments, utilities, and community features, not just sales.</p>
                 </CsBody>
                 <CsInfoGrid items={[
                   { key: 'Construction Updates', value: 'Real-time progress' },
@@ -99,9 +99,9 @@ export default function VjSoftwarePage() {
                 ]} />
               </div>
               <div>
-                <h3 className="cs-section-subtitle">VJ - First Vehicle Parking</h3>
+                <h3 className="cs-section-subtitle">Why Parking Became the Hero Flow</h3>
                 <CsBody>
-                  <p>VJ Vehicle Parking is an elegant solution to help VJ users to Book their Parking Slots and avail services around the Vehicle and society regulations.</p>
+                  <p>Parking stood out because it forced residents to make a decision with real physical consequences. The right spot affects everyday convenience. The wrong one becomes a recurring source of friction. That made it the most design-sensitive post-purchase touchpoint in the system.</p>
                 </CsBody>
               </div>
             </div>
@@ -112,9 +112,9 @@ export default function VjSoftwarePage() {
         <section className="cs-section reveal" id="cs-discover">
           <div className="wrap">
             <span className="cs-section-label">Discover</span>
-            <h2 className="cs-section-title">Problem Statement</h2>
+            <h2 className="cs-section-title">The Core Problem</h2>
             <CsCallout>
-              <p>How can VJ provide a <strong>seamless parking experience</strong> for their residents?</p>
+              <p>How might VJ help residents choose and manage parking with confidence, without forcing them through office-style workflows that ignore the layout of the society itself?</p>
             </CsCallout>
 
             <h3 className="cs-section-subtitle">Process</h3>
@@ -143,8 +143,8 @@ export default function VjSoftwarePage() {
                   <p>&ldquo;I faced difficulty while choosing my parking spot.&rdquo;</p>
                 </CsCallout>
                 <CsBody>
-                  <p><strong>Primary Goal:</strong> To book a parking spot for their vehicle in the society.</p>
-                  <p><strong>Secondary Goal:</strong> To complain for incorrect car parking. Rent his parking space for extra income. Apply for multiple parking (if applicable).</p>
+                  <p><strong>Primary goal:</strong> Book a parking spot with enough context to know whether the choice is actually convenient.</p>
+                  <p><strong>Secondary goals:</strong> Report misuse, rent out unused space, and handle multiple-vehicle cases without visiting the society office.</p>
                 </CsBody>
               </div>
               <div>
@@ -152,8 +152,8 @@ export default function VjSoftwarePage() {
                   <p>&ldquo;I would want an option to choose their parking spot other than the owner&rsquo;s.&rdquo;</p>
                 </CsCallout>
                 <CsBody>
-                  <p><strong>Primary Goal:</strong> To choose a different parking slot other than the available owner&rsquo;s parking.</p>
-                  <p><strong>Secondary Goal:</strong> To complain for incorrect car parking. Apply for multiple parking (if applicable).</p>
+                  <p><strong>Primary goal:</strong> Find a usable option beyond the default owner-assigned slot.</p>
+                  <p><strong>Secondary goals:</strong> Resolve parking conflicts and request additional access without getting trapped in manual escalation.</p>
                 </CsBody>
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Analyzed competitor apps including MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety across features like visitor management, parking spots, domestic staff management, utility bill payments, communication management, and more.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.jpg" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
           </div>
         </section>
 
@@ -192,7 +192,7 @@ export default function VjSoftwarePage() {
                 </CsBody>
               </div>
             </div>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.jpg" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
           </div>
         </section>
 
@@ -202,20 +202,19 @@ export default function VjSoftwarePage() {
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">Insights</h2>
             <CsFeatureGrid features={[
-              { title: '', desc: 'People are interested in renting their parking space when its not in use.' },
-              { title: '', desc: 'Tenants would want an option to choose their parking spot other than the owner\'s.' },
-              { title: '', desc: 'An interactive society\'s layout can be used to help users book their parking spot.' },
-              { title: '', desc: 'Stickers can be removed and RFIDs or FastTag can be leveraged for easy entry and exit in the society.' },
-              { title: '', desc: 'Provide car parking norms of the society and any updates in fare or slots should be communicated.' },
-              { title: '', desc: 'Car document verification is required and an option to get the car owners details is desired.' },
-              { title: '', desc: 'People would want to inform the officials about their guest and can manage with any open parking space for them.' },
+              { title: '', desc: 'Residents think in proximity and movement, not in spot IDs, so the map had to become the primary decision surface.' },
+              { title: '', desc: 'Parking is rarely a one-time booking problem. Conflicts, guest access, rentals, and multiple vehicles all sit around the same flow.' },
+              { title: '', desc: 'Tenants and owners do not always want the same parking outcome, so the system needed more flexibility than the inherited allocation model.' },
+              { title: '', desc: 'Entry and verification could be modernized through RFID or FastTag logic instead of relying on brittle sticker-based processes.' },
+              { title: '', desc: 'Rules, pricing, and slot updates needed to be visible early, not discovered after the user had mentally committed to a spot.' },
+              { title: '', desc: 'The product needed to connect admin requirements such as document verification with a resident experience that still felt understandable.' },
             ]} />
 
             <h3 className="cs-section-subtitle">Goals</h3>
             <CsSteps steps={[
-              { num: '1', title: 'Understand Layout', desc: 'Help the house owner to understand need the layout of the society.' },
-              { num: '2', title: 'Easy Selection', desc: 'Easy process for selecting the car parking spot.' },
-              { num: '3', title: 'Secondary Needs', desc: 'Help to tackle secondary needs of the user. Like Complain / Renting Space.' },
+              { num: '1', title: 'Make the layout legible', desc: 'Help residents understand the society as a physical environment before they select a slot.' },
+              { num: '2', title: 'Reduce booking friction', desc: 'Turn spot selection into a guided decision instead of a confusing office transaction.' },
+              { num: '3', title: 'Support real-life edge cases', desc: 'Handle complaints, rentals, and alternate parking needs within the same system.' },
             ]} />
           </div>
         </section>
@@ -228,7 +227,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Mapped the complete user journey covering first-time users booking a parking spot, adding RFID or FastTag details, editing vehicle details, renting a parking spot, and filing complaints for incorrect vehicle parking. Each flow includes decision points, success states, and error handling.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.jpg" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
 
             <h3 className="cs-section-subtitle">Features</h3>
             <div className="cs-tags">
@@ -263,7 +262,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Translated wireframes into polished high-fidelity screens featuring the interactive society map, spot selection interface, booking details, payment flow, and confirmation screens.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.jpg" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
           </div>
         </section>
 
@@ -305,7 +304,7 @@ export default function VjSoftwarePage() {
               </div>
             </div>
 
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.jpg" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
           </div>
         </section>
 
@@ -330,7 +329,7 @@ export default function VjSoftwarePage() {
               <p>After selecting a spot, users proceed through the booking process, choose a payment method, receive confirmation of their payment, and get a detailed summary of their parking reservation.</p>
             </CsBody>
 
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/10.jpg" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
           </div>
         </section>
 
@@ -352,8 +351,8 @@ export default function VjSoftwarePage() {
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What I Learned</h2>
             <CsBody style={{ maxWidth: '720px' }}>
-              <p>VJ Parivar was a lesson in designing for real-world constraints that no competitive analysis can prepare you for. The biggest insight came from user research: residents did not think about parking as a digital problem. They thought about it as a spatial problem&mdash;&ldquo;I want the spot closest to the elevator.&rdquo; The interactive society map became the core of the experience because it matched the user&rsquo;s mental model: a physical space, not a list of options.</p>
-              <p>The competitive analysis revealed that existing apps (MyGate, NoBrokerHood) treated parking as a secondary feature buried in a larger society management platform. By making parking the hero flow&mdash;visual map first, details second&mdash;we created a more focused experience. This taught me that sometimes the best design strategy is to do one thing well rather than many things adequately.</p>
+              <p>This project sharpened a lesson that still shows up in my later work: when the user experiences a problem spatially, the product cannot reduce it to form fields and dropdowns. The map became the interface because that was how people were already reasoning about the choice.</p>
+              <p>It also showed me that service software often fails by burying the one flow people actually care about. Existing society apps treated parking as a secondary settings page. Making it the hero experience changed the product from administrative software into something genuinely useful.</p>
             </CsBody>
           </div>
         </section>

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, type ReactNode } from 'react'
+import { useState, useRef, useEffect, useCallback, useId, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   sendMessage,
@@ -146,12 +146,12 @@ function ExportActions({ text }: { text: string }) {
   }
   return (
     <div className="agent-export-actions">
-      <button type="button" className="agent-export-btn figma-hover" onClick={handleCopy}>
+      <button type="button" className="agent-export-btn figma-hover" onClick={handleCopy} aria-label="Copy portfolio summary">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.3" /><path d="M11 5V3.5A1.5 1.5 0 009.5 2h-6A1.5 1.5 0 002 3.5v6A1.5 1.5 0 003.5 11H5" stroke="currentColor" strokeWidth="1.3" /></svg>
         {copied ? 'Copied' : 'Copy'}
         <FigmaSelect />
       </button>
-      <button type="button" className="agent-export-btn figma-hover" onClick={handleEmail}>
+      <button type="button" className="agent-export-btn figma-hover" onClick={handleEmail} aria-label="Email portfolio summary">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.3" /><path d="M1.5 4.5L8 9l6.5-4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></svg>
         Email
         <FigmaSelect />
@@ -257,6 +257,8 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
   const routeUpdateTimer = useRef<number | null>(null)
   const sendRef = useRef<(text: string, source?: 'voice' | 'text' | 'chip') => Promise<void>>(async () => {})
   const referrerInfoRef = useRef(getReferrerInfo())
+  const titleId = useId()
+  const introId = useId()
 
   /** Sync behavioral signals into ChatContext before every sendMessage */
   const syncContext = useCallback(() => {
@@ -684,12 +686,19 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
   const anyTyping = messages.some(message => message.typing)
 
   return (
-    <div ref={wrapRef} className="agent-floating" aria-label="Chat with Folio">
-      <div className="agent-panel">
+    <div
+      ref={wrapRef}
+      className="agent-floating"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby={titleId}
+      aria-describedby={introId}
+    >
+      <div className="agent-panel surface-glass surface-glass--strong" aria-busy={thinking || streaming}>
         <div className="agent-panel-head">
           <div>
             <p className="agent-panel-kicker">Parth Pawar / Folio</p>
-            <h2 className="agent-panel-title">Site Guide</h2>
+            <h2 className="agent-panel-title" id={titleId}>Site Guide</h2>
           </div>
 
           <div className="agent-panel-tools">
@@ -698,6 +707,7 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
               className={`agent-panel-tool figma-hover${voiceMode ? ' is-active' : ''}`}
               onClick={() => { void (voiceMode ? disableVoiceMode() : enableVoiceMode()) }}
               aria-label={voiceMode ? 'Disable voice' : 'Enable voice'}
+              aria-pressed={voiceMode}
             >
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M2 6v4h3l4 4V2L5 6H2z" fill="currentColor" />
@@ -711,6 +721,7 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
                 className={`agent-panel-tool figma-hover${muted ? '' : ' is-active'}`}
                 onClick={toggleMute}
                 aria-label={muted ? 'Unmute Folio voice' : 'Mute Folio voice'}
+                aria-pressed={!muted}
               >
                 {muted ? (
                   <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -744,17 +755,24 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
 
         <div className="agent-panel-meta">
           <span className="agent-panel-chip">{getRouteLabel(route)}</span>
-          <span className={`agent-panel-status${thinking || speaking || touring || micListening ? ' is-active' : ''}`}>{statusLabel}</span>
+          <span
+            className={`agent-panel-status${thinking || speaking || touring || micListening ? ' is-active' : ''}`}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {statusLabel}
+          </span>
         </div>
 
-        <p className="agent-panel-intro">{getRouteIntro(route, voiceMode)}</p>
+        <p className="agent-panel-intro" id={introId}>{getRouteIntro(route, voiceMode)}</p>
         <p className="agent-panel-scope">Portfolio scope only.</p>
 
         <div className="agent-scroll-track">
           <div className="agent-scroll-bar" style={{ width: `${pageTracking.scrollDepth}%` }} />
         </div>
 
-        <div className="agent-float-msgs">
+        <div className="agent-float-msgs" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation">
           {messages.map(message => (
             <div key={message.id} className={`agent-float-bubble ${message.sender === 'user' ? 'agent-float-bubble--user' : 'agent-float-bubble--agent'}`}>
               {message.sender === 'agent' && message.typing ? (
@@ -778,7 +796,7 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
         </div>
 
         {chips.length > 0 && !thinking && !anyTyping && (
-          <div className="agent-float-actions">
+          <div className="agent-float-actions surface-glass surface-glass--subtle">
             <p className="agent-float-actions-label">Shortcuts</p>
             <div className="agent-float-chips">
               {chips.map(chip => (
@@ -791,13 +809,14 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
           </div>
         )}
 
-        <form onSubmit={event => { event.preventDefault(); void handleSend(input, 'text') }} className="agent-float-input">
+        <form onSubmit={event => { event.preventDefault(); void handleSend(input, 'text') }} className="agent-float-input surface-glass surface-glass--subtle">
           {micSupported && (
             <button
               type="button"
               onClick={micListening ? stopListening : startListening}
               className={`agent-float-mic${micListening ? ' agent-float-mic--on' : ''}`}
               aria-label={micListening ? 'Stop listening' : 'Speak to Folio'}
+              aria-pressed={micListening}
               title={micListening ? 'Stop listening' : 'Speak to Folio'}
             >
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -812,6 +831,7 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
             ref={inputRef}
             type="text"
             placeholder={getPlaceholder(route, voiceMode)}
+            aria-label="Ask Folio about Parth Pawar's portfolio"
             value={input}
             onChange={event => setInput(event.target.value)}
             autoComplete="off"

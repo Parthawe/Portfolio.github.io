@@ -9,7 +9,7 @@ import {
   StackedPlates,
   LensAssembly,
   GlassCrystal,
-} from './HeroScene';
+} from './HeroObjects3D';
 import { useThemeMode } from '../hooks/useThemeMode';
 
 const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolean }>> = {

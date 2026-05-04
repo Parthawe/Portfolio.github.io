@@ -5,9 +5,10 @@ import FigmaSelect from '../FigmaSelect';
 interface BottomNavProps {
   sections: { id: string; label: string }[];
   liveUrl?: string;
+  modeAction?: { label: string; onClick: () => void };
 }
 
-export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
+export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavProps) {
   const navRef = useRef<HTMLElement>(null);
   const progress = useReadingProgress();
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -106,7 +107,7 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
   return (
     <nav
       ref={navRef}
-      className="cs-bottom-nav"
+      className="cs-bottom-nav surface-glass"
       id="cs-bottom-nav"
       aria-label="Case study sections"
       onMouseEnter={() => {
@@ -133,6 +134,16 @@ export default function BottomNav({ sections, liveUrl }: BottomNavProps) {
           <FigmaSelect />
         </a>
       ))}
+      {modeAction && (
+        <button
+          type="button"
+          className="cs-bnav-link cs-bnav-action figma-hover"
+          onClick={modeAction.onClick}
+        >
+          {modeAction.label}
+          <FigmaSelect />
+        </button>
+      )}
       {liveUrl && (
         <a
           href={liveUrl}

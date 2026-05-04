@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface ArchNode {
@@ -29,6 +29,7 @@ const nodeVariant = {
 
 export default function CsArchDiagram({ nodes, connections, cols = 3, title }: CsArchDiagramProps) {
   const [activeNode, setActiveNode] = useState<string | null>(null)
+  const detailId = useId()
 
   const connectedIds = activeNode
     ? new Set([
@@ -56,6 +57,10 @@ export default function CsArchDiagram({ nodes, connections, cols = 3, title }: C
             className={`cs-arch-node${activeNode === node.id ? ' active' : ''}${connectedIds && !connectedIds.has(node.id) ? ' dimmed' : ''}`}
             style={{ gridColumn: node.col + 1, gridRow: node.row + 1 }}
             variants={nodeVariant}
+            type="button"
+            aria-pressed={activeNode === node.id}
+            aria-expanded={activeNode === node.id}
+            aria-controls={detailId}
             onClick={() => setActiveNode(activeNode === node.id ? null : node.id)}
             onFocus={() => setActiveNode(node.id)}
             onBlur={() => setActiveNode(null)}
@@ -90,7 +95,7 @@ export default function CsArchDiagram({ nodes, connections, cols = 3, title }: C
       )}
 
       {/* Detail panel */}
-      <div className="cs-arch-detail" aria-live="polite">
+      <div className="cs-arch-detail" id={detailId} aria-live="polite" aria-atomic="true">
         {activeNode && (() => {
           const node = nodes.find(n => n.id === activeNode)
           return node ? (

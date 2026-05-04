@@ -133,8 +133,6 @@ h3.text-highlight .text-highlight-text {
   width: 36px;
   height: 36px;
   padding: 0;
-  background: none;
-  border: 1px solid var(--ink-08);
   border-radius: var(--radius);
   color: var(--ink-40);
   cursor: pointer;
@@ -156,14 +154,12 @@ h3.text-highlight .text-highlight-text {
 
 .ambient-toggle:hover {
   color: var(--ink);
-  border-color: var(--ink-15);
-  background: var(--ink-04);
+  --surface-glass-bg: color-mix(in srgb, var(--glass-subtle-bg) 84%, var(--ink-04) 16%);
+  --surface-glass-border: var(--ink-15);
 }
 
 .ambient-toggle.is-active {
   color: var(--select-blue);
-  border-color: rgba(77, 158, 255, 0.22);
-  background: rgba(77, 158, 255, 0.08);
 }
 
 /* ambient wave animation handled by SVG SMIL */

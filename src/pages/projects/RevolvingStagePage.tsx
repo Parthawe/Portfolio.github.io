@@ -41,7 +41,7 @@ export default function RevolvingStagePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2022' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.png"
+          heroImage="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.webp"
           heroAlt="Revolving Stage, designing a revolving stage for theatre play with stage photo and 3D render"
         />
 
@@ -194,7 +194,7 @@ export default function RevolvingStagePage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.png" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.webp" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" />
         </div>
 
         {/* Credits */}

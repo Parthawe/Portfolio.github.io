@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
+import { useDeferredMount } from '../hooks/useDeferredMount'
 
 const CategoryObject3D = lazy(() => import('./CategoryObject3D'))
 
@@ -49,6 +50,7 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
   const meta = HERO_META[slug]
   const [line1, line2] = HERO_TITLES[slug] || [title, titleAccent]
   const isShort = SHORT_TITLES.has(slug)
+  const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
 
   return (
     <section className="ch">
@@ -75,9 +77,11 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.3, delay: 0.05, ease }}
           >
-            <Suspense fallback={null}>
-              <CategoryObject3D slug={slug} size={420} />
-            </Suspense>
+            {show3D ? (
+              <Suspense fallback={null}>
+                <CategoryObject3D slug={slug} size={420} />
+              </Suspense>
+            ) : null}
           </motion.div>
         )}
 

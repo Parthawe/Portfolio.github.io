@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface ProcessStep {
@@ -29,6 +29,7 @@ const lineVariant = {
 
 export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
   const [activeIdx, setActiveIdx] = useState<number | null>(null)
+  const detailId = useId()
 
   return (
     <div className="cs-pflow">
@@ -45,6 +46,10 @@ export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
             <motion.button
               className={`cs-pflow-node${activeIdx === i ? ' active' : ''}`}
               variants={nodeVariant}
+              type="button"
+              aria-pressed={activeIdx === i}
+              aria-expanded={activeIdx === i}
+              aria-controls={detailId}
               onClick={() => setActiveIdx(activeIdx === i ? null : i)}
               onFocus={() => setActiveIdx(i)}
               onBlur={() => setActiveIdx(null)}
@@ -67,7 +72,7 @@ export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
       </motion.div>
 
       {/* Expanded description panel */}
-      <div className="cs-pflow-detail" aria-live="polite">
+      <div className="cs-pflow-detail" id={detailId} aria-live="polite" aria-atomic="true">
         {activeIdx !== null && (
           <motion.div
             key={activeIdx}

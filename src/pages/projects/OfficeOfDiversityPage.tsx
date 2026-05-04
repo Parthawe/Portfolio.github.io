@@ -237,7 +237,7 @@ export default function OfficeOfDiversityPage() {
           ]} />
         </CsSection>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/6.jpg" alt="Outcome, 74% increase in user interaction, accessibility success, and key learnings" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/6.webp" alt="Outcome, 74% increase in user interaction, accessibility success, and key learnings" />
 
         {/* The Report */}
         <CsSection id="cs-report" label="The Report" title="IDBEA 2024 Report">
@@ -277,7 +277,7 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/7.jpg" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/7.webp" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
 
         {/* Advisement */}
         <CsSection label="Structure" title="Advisement & Feedback Groups">
@@ -332,7 +332,7 @@ export default function OfficeOfDiversityPage() {
 
         <CsThanks contactCta />
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/10.jpg" alt="Credits, Parth Pawar, UI/UX Designer" />
+        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/10.webp" alt="Credits, Parth Pawar, UI/UX Designer" />
 
         <BottomNav sections={[
           { id: 'cs-goals', label: 'Goals' },

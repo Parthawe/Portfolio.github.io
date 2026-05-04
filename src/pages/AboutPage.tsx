@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -7,8 +7,11 @@ import Footer from '../components/Footer'
 import FigmaSelect from '../components/FigmaSelect'
 import TextReveal from '../components/TextReveal'
 import PortalReveal from '../components/PortalReveal'
-import ToolsCanvas from '../components/ToolsCanvas'
+import { useDeferredMount } from '../hooks/useDeferredMount'
+import { useInView } from '../hooks/useInView'
 import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_URL } from '../config/site'
+
+const ToolsCanvas = lazy(() => import('../components/ToolsCanvas'))
 
 /* ── Data ── */
 
@@ -48,6 +51,8 @@ export default function AboutPage() {
     document.body.classList.add('page-about')
     return () => document.body.classList.remove('page-about')
   }, [])
+  const [toolsRef, toolsInView] = useInView(0.05, '260px 0px')
+  const mountToolsCanvas = useDeferredMount(toolsInView, { timeout: 1600, delayMs: 200 })
 
 
   return (
@@ -111,6 +116,31 @@ export default function AboutPage() {
           <div className="wrap">
 
             {/* ── Pull quote ── */}
+            <section className="abt-hire reveal">
+              <div className="sec-head">
+                <span className="sec-label">Why recruiters hire me</span>
+              </div>
+              <div className="abt-hire-grid">
+                <article className="abt-hire-card">
+                  <h3>Systems thinking</h3>
+                  <p>I design the whole surface area, product, platform, onboarding, states, and the operational glue between them.</p>
+                </article>
+                <article className="abt-hire-card">
+                  <h3>Shipped product rigor</h3>
+                  <p>Fintech and AI products taught me to design for trust, constraints, failure states, and teams that actually ship.</p>
+                </article>
+                <article className="abt-hire-card">
+                  <h3>Design and engineering fluency</h3>
+                  <p>I can move from strategy to interface detail to implementation quality without treating handoff like the finish line.</p>
+                </article>
+                <article className="abt-hire-card">
+                  <h3>0 to 1 comfort</h3>
+                  <p>My best work happens when there is no playbook yet, new form factors, new markets, or a product category still being defined.</p>
+                </article>
+              </div>
+            </section>
+
+            {/* ── Pull quote ── */}
             <blockquote className="abt-pull reveal">
               <p>The fintech work taught me <strong>rigor</strong>, when your payment flow fails, someone doesn't get paid.<br />The ITP work taught me <strong>imagination</strong>, when you're designing for a form factor that doesn't exist yet, you can't reference Dribbble.</p>
             </blockquote>
@@ -128,7 +158,13 @@ export default function AboutPage() {
 
 
             {/* ── Tools — Figma-canvas scattered layout ── */}
-            <ToolsCanvas />
+            <div ref={toolsRef} style={{ minHeight: mountToolsCanvas ? undefined : 320 }}>
+              {mountToolsCanvas ? (
+                <Suspense fallback={null}>
+                  <ToolsCanvas />
+                </Suspense>
+              ) : null}
+            </div>
 
             {/* ── Unified experience table ── */}
             <section className="abt-table-wrap reveal">
@@ -328,60 +364,6 @@ export default function AboutPage() {
               </div>
 
               <p className="abt-type-alphabet">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
-            </section>
-
-            {/* ── F1 telemetry strip — hidden in plain sight ── */}
-            <section className="abt-f1 reveal">
-              <div className="abt-f1-strip">
-                <div className="abt-f1-ticker">
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">DRS</span>
-                    <span className="abt-f1-val abt-f1-active">OPEN</span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">SPD</span>
-                    <span className="abt-f1-val">338</span>
-                    <span className="abt-f1-unit">km/h</span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">GEAR</span>
-                    <span className="abt-f1-val">8</span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">THROTTLE</span>
-                    <span className="abt-f1-bar"><span className="abt-f1-bar-fill" style={{ width: '100%' }} /></span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">BRAKE</span>
-                    <span className="abt-f1-bar abt-f1-bar--brake"><span className="abt-f1-bar-fill" style={{ width: '0%' }} /></span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">ERS</span>
-                    <span className="abt-f1-val">DEPLOY</span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">LAP</span>
-                    <span className="abt-f1-val">1:18.235</span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">TYRE</span>
-                    <span className="abt-f1-tyre">S</span>
-                  </span>
-                  <span className="abt-f1-sep" />
-                  <span className="abt-f1-data">
-                    <span className="abt-f1-label">SECTOR 3</span>
-                    <span className="abt-f1-val abt-f1-purple">PB</span>
-                  </span>
-                </div>
-              </div>
-              <p className="abt-f1-footnote">If you know, you know.</p>
             </section>
 
           </div>

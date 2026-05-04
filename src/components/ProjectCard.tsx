@@ -77,7 +77,15 @@ export default memo(function ProjectCard({
           </span>
         </div>
         <div className="pcard-visual">
-          <img src={image} alt={name} loading={loading} onLoad={handleImgLoad} onError={handleImgError} />
+          <img
+            src={image}
+            alt={name}
+            loading={loading}
+            decoding="async"
+            fetchPriority={loading === 'eager' ? 'high' : 'auto'}
+            onLoad={handleImgLoad}
+            onError={handleImgError}
+          />
         </div>
         <h2 className="pcard-name">{name}</h2>
         {safeDesc && (
