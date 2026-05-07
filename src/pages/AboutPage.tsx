@@ -44,6 +44,11 @@ const asides = [
   'Thinks in systems, ships in pixels',
 ]
 
+const aboutCharacterFrames = Array.from(
+  { length: 9 },
+  (_, index) => `/Portfolio.github.io/Assets/character/me/${index + 1}.png`,
+)
+
 type AboutModeKey = 'rigor' | 'imagination' | 'overlap'
 type AboutReasonKey = 'systems' | 'rigor' | 'fluency' | 'zeroToOne'
 
@@ -222,13 +227,7 @@ export default function AboutPage() {
           {/* ── Photo ── */}
           <div className="abt-photo-hero">
             <PortalReveal
-              images={[
-                '/Portfolio.github.io/Assets/character/me/1.webp',
-                '/Portfolio.github.io/Assets/character/me/2.webp',
-                '/Portfolio.github.io/Assets/character/me/3.webp',
-                '/Portfolio.github.io/Assets/character/me/4.webp',
-                '/Portfolio.github.io/Assets/character/me/5.webp',
-              ]}
+              images={aboutCharacterFrames}
               alt="Parth Pawar"
               className="abt-portal-img"
             />
