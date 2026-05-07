@@ -8,34 +8,14 @@ import type { AgentState } from './AgentCharacter'
 const AgentChat = lazy(() => import('./AgentChat'))
 const PresentationBar = lazy(() => import('./PresentationBar'))
 
-const PLATFORM_TIPS: Record<string, string[]> = {
-  '/': [
-    'Tour this page.',
-    'Open Mentra.',
-    'Start with three projects.',
-    'Ask for the best research story.',
-  ],
-  '/work': [
-    'Filter the archive.',
-    'Show AI work.',
-    'Open ZentiPay.',
-    'Ask for the strongest three.',
-  ],
-  '/about': [
-    'Tour this page.',
-    'Ask about roles that fit.',
-    'Open the Mentra story.',
-    'Ask how design and code connect.',
-  ],
+const PLATFORM_HINTS: Record<string, string> = {
+  '/': 'Ask for the flagship projects.',
+  '/work': 'Open Playlist view.',
+  '/about': 'Ask about roles that fit.',
 }
 
-function getPlatformTips(route: string) {
-  return PLATFORM_TIPS[route] || [
-    'Tour this page.',
-    'Ask what matters here.',
-    'Open the next project.',
-    'Ask for the key decision.',
-  ]
+function getPlatformHint(route: string) {
+  return PLATFORM_HINTS[route] || 'Tour this page.'
 }
 
 export default function PortfolioAgent() {
@@ -45,22 +25,45 @@ export default function PortfolioAgent() {
   const [chatLoaded, setChatLoaded] = useState(false)
   const [minimized, setMinimized] = useState(false)
   const [presenting, setPresenting] = useState(false)
-  const [tipIdx, setTipIdx] = useState(0)
+  const [homeHintVisible, setHomeHintVisible] = useState(route !== '/')
   const platformRef = useRef<HTMLDivElement>(null)
-  const tips = useMemo(() => getPlatformTips(route), [route])
+  const hint = useMemo(() => getPlatformHint(route), [route])
 
-  const showChar = entered && dockVisible
-
-  // Cycle tips
-  useEffect(() => {
-    if (chatOpen) return
-    const id = setInterval(() => setTipIdx(i => (i + 1) % tips.length), 6000)
-    return () => clearInterval(id)
-  }, [chatOpen, tips])
+  const platformVisible =
+    entered &&
+    dockVisible &&
+    !presenting &&
+    (minimized || route !== '/' || homeHintVisible)
+  const showChar = entered && dockVisible && !presenting
 
   useEffect(() => {
-    setTipIdx(0)
+    if (route !== '/') {
+      setHomeHintVisible(true)
+      return
+    }
+
+    setHomeHintVisible(false)
+    const timer = window.setTimeout(() => setHomeHintVisible(true), 8000)
+    const onScroll = () => {
+      const hero = document.getElementById('hero')
+      if (!hero) return
+      const threshold = Math.max(hero.offsetHeight * 0.55, 320)
+      if (window.scrollY > threshold) {
+        setHomeHintVisible(true)
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [route])
+
+  useEffect(() => {
+    document.body.classList.toggle('agent-presenting', presenting)
+    return () => document.body.classList.remove('agent-presenting')
+  }, [presenting])
 
   // ── Click: toggle chat ──────────────────────────────
   const handleClick = useCallback(() => {
@@ -117,7 +120,7 @@ export default function PortfolioAgent() {
   return (
     <>
     {/* Platform bar — bottom of viewport, character walks on it */}
-    <div className={`agent-platform surface-glass ${showChar ? 'agent-platform--in' : 'agent-platform--out'}${minimized ? ' agent-platform--minimized' : ''}`} ref={platformRef}>
+    <div className={`agent-platform surface-glass ${platformVisible ? 'agent-platform--in' : 'agent-platform--out'}${minimized ? ' agent-platform--minimized' : ''}`} ref={platformRef}>
       <button
         className="agent-platform-tip figma-hover"
         onClick={handleClick}
@@ -127,8 +130,8 @@ export default function PortfolioAgent() {
         aria-expanded={chatOpen && !minimized}
       >
         <span className="agent-platform-dot" />
-        <span className="agent-platform-text" key={minimized ? 'resume' : `${route}-${tipIdx}`}>
-          {minimized ? 'Resume chat' : tips[tipIdx]}
+        <span className="agent-platform-text" key={minimized ? 'resume' : route}>
+          {minimized ? 'Resume chat' : hint}
         </span>
         <FigmaSelect />
       </button>

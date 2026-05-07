@@ -39,7 +39,7 @@ export default function MentraBrandPage() {
           backLabel="Back to Work"
           tags={['Brand Identity', 'Packaging Design', 'Art Direction', 'Smart Glasses']}
           title="Mentra Brand & Packaging"
-          subtitle="End-to-end visual identity for AI smart glasses with an open-source OS — from logo to retail box to the booklet inside it"
+          subtitle="Designing the retail, launch, and packaging system that makes new hardware feel credible before first use"
           info={[
             { label: 'Role', value: 'Head of UI/UX — sole designer across all brand surfaces' },
             { label: 'Timeline', value: 'Q3 2025 – Present' },
@@ -55,11 +55,11 @@ export default function MentraBrandPage() {
           sections={[
             {
               label: 'The Constraint',
-              content: 'Hardware brand design is irreversible in a way software never is. A color choice becomes a Pantone spec sent to a factory. A logo placement becomes a laser engraving file with stroke weights calibrated to the machine. A box layout becomes a die-cut template with fold lines and bleed zones. Every decision costs money, time, and a manufacturing run — there is no cmd+Z after the print plates are cut.',
+              content: 'Hardware brand work gets judged before the product is turned on. The box, booklet, render system, and retail surfaces have to make a young company feel credible against incumbents with far more budget. On top of that, every decision becomes a factory instruction, not a reversible mockup.',
             },
             {
               label: 'My Role',
-              content: 'As the sole designer at Mentra, I owned every surface the brand touches: logo, color system, typography, product packaging for two SKUs, instruction booklet, creator guide, 24 social media templates, advertising campaigns, and the 3D render library that replaced product photography across all channels.',
+              content: 'I owned the full brand surface: logo, packaging, booklet, creator guide, ad language, renders, and the reusable system behind them. The job was not to make things look futuristic. It was to make the product feel trustworthy, premium, and operationally ready across every touchpoint.',
             },
           ]}
         />

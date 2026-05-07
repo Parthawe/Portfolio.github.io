@@ -59,7 +59,7 @@ export default function JugalbandiPage() {
           backLabel="Back to Work"
           tags={['Physical Computing', 'Music', 'Art Installation']}
           title="Jugalbandi"
-          subtitle="A duet between traditional analog instruments and modern digital MIDI \u2014 where neural networks become playable music"
+          subtitle="A playable duet between human improvisation and a neural network expressed through acoustic machines"
           info={[
             { label: 'Year', value: '2024' },
             { label: 'Role', value: 'Artist' },
@@ -108,10 +108,9 @@ export default function JugalbandiPage() {
         {/* Overview */}
         <CsSection id="cs-overview" label="Overview" title="A duet in Hindi">
           <CsBody>
-            <p>Jugalbandi (meaning &ldquo;a duet&rdquo; in Hindi) showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments. The project is a physical computing art installation that materialises the inner workings of neural networks into tangible, playable musical instruments.</p>
-            <p>In Indian classical music, a jugalbandi is a performance where two lead musicians engage in a dialogue, trading phrases, responding to each other&rsquo;s improvisations, and building toward a shared climax. This installation reimagines that tradition: one &ldquo;musician&rdquo; is a human performer, and the other is a neural network expressed through mechanized acoustic instruments. The conversation between them unfolds in real time, with the network&rsquo;s outputs driving physical sound-making devices that respond to the performer&rsquo;s gestures.</p>
-            <p>Exhibited at the ITP Spring Show and Maker Faire Coney Island in 2024, Jugalbandi invited audiences to witness computation as something audible and embodied rather than abstract and screen-bound. The installation occupied a darkened stage where visitors could watch servos pluck strings, solenoids drive air through pipes, and vibration motors pulse against resonant surfaces &mdash; all choreographed by a live neural network.</p>
-            <p>Where <a href="/enigma" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Enigma</a> makes a neural network visible through 200 illuminated neurons, Jugalbandi makes one audible through mechanical instruments. Both projects share the same conviction: that computation becomes comprehensible when it passes through the body &mdash; through your eyes in Enigma, through your ears here. The medium changes. The thesis doesn&rsquo;t.</p>
+            <p>Jugalbandi asks a simple question with a difficult answer: what would it take for a neural network to feel less like code and more like a musical partner? Instead of visualizing computation on a screen, I turned it into a live duet between a human performer and a machine expressed through mechanical instruments.</p>
+            <p>In Indian classical music, a jugalbandi is a conversation between two lead musicians. This project borrows that structure directly. One voice is the performer. The other is a neural network translated into plucked strings, air-driven pipes, and resonant percussion. The result is not a demo about AI. It is a performance where the system has to listen, respond, and hold its side of the exchange.</p>
+            <p>Exhibited at the ITP Spring Show and Maker Faire Coney Island in 2024, the installation let audiences hear computation as timing, pressure, and acoustic behavior. Where <a href="/enigma" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Enigma</a> makes a network visible, Jugalbandi makes one perform.</p>
           </CsBody>
         </CsSection>
 

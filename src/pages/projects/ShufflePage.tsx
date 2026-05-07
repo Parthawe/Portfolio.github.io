@@ -33,7 +33,7 @@ export default function ShufflePage() {
           title="Shuffle"
           subtitle="Interactive installation proposing a strategy simulation of student life at ITP"
           info={[
-            { label: 'Year', value: '2024' },
+                { label: 'Year', value: '2023' },
             { label: 'Role', value: 'Creator' },
           ]}
         />

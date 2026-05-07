@@ -1,17 +1,332 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { CATEGORY_LABELS, getProject, type ProjectCategory } from '../data/projects'
 
 const STORAGE_KEY = 'pp-ambient-muted'
-const TARGET_GAIN = 0.014
+
+type AmbientProfileKey =
+  | 'arrival'
+  | 'focus'
+  | 'signal'
+  | 'reflection'
+  | 'readingRoom'
+  | 'exhibit'
+  | 'stage'
+  | 'surface'
+  | 'civic'
+  | 'afterhours'
+  | 'lab'
+
+interface AmbientProfile {
+  key: AmbientProfileKey
+  label: string
+  reason: string
+  gain: number
+  notes: [number, number, number]
+  noteGains: [number, number, number]
+  detune: [number, number, number]
+  filterFrequency: number
+  filterQ: number
+  noiseGain: number
+  noiseFilter: number
+  lfo1Rate: number
+  lfo1Depth: number
+  lfo2Rate: number
+  lfo2Depth: number
+}
 
 interface AmbientRig {
   ctx: AudioContext
   master: GainNode
+  filter: BiquadFilterNode
+  noteGains: [GainNode, GainNode, GainNode]
+  noiseGain: GainNode
+  noiseFilter: BiquadFilterNode
+  lfo1Gain: GainNode
+  lfo2Gain: GainNode
   osc1: OscillatorNode
   osc2: OscillatorNode
   osc3: OscillatorNode
   noise: AudioBufferSourceNode
   lfo1: OscillatorNode
   lfo2: OscillatorNode
+}
+
+const AMBIENT_PROFILES: Record<AmbientProfileKey, AmbientProfile> = {
+  arrival: {
+    key: 'arrival',
+    label: 'Arrival',
+    reason: 'A wider, calmer bed for first impression. It makes the page feel like an opening scene instead of a feed.',
+    gain: 0.03,
+    notes: [130.81, 164.81, 196],
+    noteGains: [0.13, 0.085, 0.07],
+    detune: [-2, 3, -1],
+    filterFrequency: 320,
+    filterQ: 0.22,
+    noiseGain: 0.022,
+    noiseFilter: 210,
+    lfo1Rate: 1 / 52,
+    lfo1Depth: 0.022,
+    lfo2Rate: 1 / 88,
+    lfo2Depth: 52,
+  },
+  focus: {
+    key: 'focus',
+    label: 'Focus',
+    reason: 'A drier, steadier bed for comparing projects and reading decisions without adding drama.',
+    gain: 0.028,
+    notes: [146.83, 196, 220],
+    noteGains: [0.105, 0.072, 0.056],
+    detune: [-1, 2, -2],
+    filterFrequency: 255,
+    filterQ: 0.16,
+    noiseGain: 0.012,
+    noiseFilter: 190,
+    lfo1Rate: 1 / 58,
+    lfo1Depth: 0.014,
+    lfo2Rate: 1 / 108,
+    lfo2Depth: 28,
+  },
+  signal: {
+    key: 'signal',
+    label: 'Signal',
+    reason: 'A cleaner systems-led tone for AI, product, and platform work. It keeps the page precise and deliberate.',
+    gain: 0.03,
+    notes: [130.81, 174.61, 220],
+    noteGains: [0.115, 0.08, 0.058],
+    detune: [-2, 2, 1],
+    filterFrequency: 295,
+    filterQ: 0.2,
+    noiseGain: 0.013,
+    noiseFilter: 205,
+    lfo1Rate: 1 / 54,
+    lfo1Depth: 0.016,
+    lfo2Rate: 1 / 96,
+    lfo2Depth: 34,
+  },
+  reflection: {
+    key: 'reflection',
+    label: 'Reflection',
+    reason: 'A warmer, slower profile for the personal side of the portfolio. It supports reflection more than performance.',
+    gain: 0.027,
+    notes: [174.61, 220, 261.63],
+    noteGains: [0.095, 0.066, 0.053],
+    detune: [1, -2, 2],
+    filterFrequency: 238,
+    filterQ: 0.18,
+    noiseGain: 0.019,
+    noiseFilter: 185,
+    lfo1Rate: 1 / 68,
+    lfo1Depth: 0.019,
+    lfo2Rate: 1 / 92,
+    lfo2Depth: 32,
+  },
+  readingRoom: {
+    key: 'readingRoom',
+    label: 'Reading Room',
+    reason: 'The quietest profile in the set. It is there to hold the pace of the page without fighting the text.',
+    gain: 0.021,
+    notes: [98, 146.83, 196],
+    noteGains: [0.082, 0.052, 0.043],
+    detune: [-1, 1, -2],
+    filterFrequency: 208,
+    filterQ: 0.14,
+    noiseGain: 0.009,
+    noiseFilter: 165,
+    lfo1Rate: 1 / 74,
+    lfo1Depth: 0.011,
+    lfo2Rate: 1 / 118,
+    lfo2Depth: 18,
+  },
+  exhibit: {
+    key: 'exhibit',
+    label: 'Exhibit',
+    reason: 'A slightly more textural room tone for experimental work. It makes the page feel installed, not just presented.',
+    gain: 0.029,
+    notes: [110, 164.81, 207.65],
+    noteGains: [0.098, 0.064, 0.05],
+    detune: [-3, 1, 2],
+    filterFrequency: 226,
+    filterQ: 0.2,
+    noiseGain: 0.021,
+    noiseFilter: 180,
+    lfo1Rate: 1 / 62,
+    lfo1Depth: 0.017,
+    lfo2Rate: 1 / 82,
+    lfo2Depth: 36,
+  },
+  stage: {
+    key: 'stage',
+    label: 'Stage',
+    reason: 'A darker, more spatial bed for installations and physical builds. It adds room tone without becoming soundtrack.',
+    gain: 0.029,
+    notes: [98, 146.83, 174.61],
+    noteGains: [0.102, 0.062, 0.046],
+    detune: [-2, 2, -1],
+    filterFrequency: 215,
+    filterQ: 0.24,
+    noiseGain: 0.024,
+    noiseFilter: 170,
+    lfo1Rate: 1 / 64,
+    lfo1Depth: 0.016,
+    lfo2Rate: 1 / 86,
+    lfo2Depth: 40,
+  },
+  surface: {
+    key: 'surface',
+    label: 'Surface',
+    reason: 'A tighter, cleaner profile for graphic and brand-led work. The goal is polish, rhythm, and restraint.',
+    gain: 0.025,
+    notes: [164.81, 220, 261.63],
+    noteGains: [0.088, 0.056, 0.046],
+    detune: [0, -1, 2],
+    filterFrequency: 274,
+    filterQ: 0.14,
+    noiseGain: 0.01,
+    noiseFilter: 200,
+    lfo1Rate: 1 / 72,
+    lfo1Depth: 0.012,
+    lfo2Rate: 1 / 112,
+    lfo2Depth: 22,
+  },
+  civic: {
+    key: 'civic',
+    label: 'Civic',
+    reason: 'A warmer, more open tone for public-interest work. It should feel clear, humane, and lightly optimistic.',
+    gain: 0.027,
+    notes: [130.81, 174.61, 207.65],
+    noteGains: [0.1, 0.068, 0.05],
+    detune: [1, -1, 2],
+    filterFrequency: 248,
+    filterQ: 0.18,
+    noiseGain: 0.016,
+    noiseFilter: 188,
+    lfo1Rate: 1 / 60,
+    lfo1Depth: 0.015,
+    lfo2Rate: 1 / 94,
+    lfo2Depth: 26,
+  },
+  afterhours: {
+    key: 'afterhours',
+    label: 'Afterhours',
+    reason: 'A lower, dimmer profile for archive-like or off-axis material. It lets the page feel more nocturnal and private.',
+    gain: 0.024,
+    notes: [87.31, 130.81, 174.61],
+    noteGains: [0.09, 0.057, 0.043],
+    detune: [-2, 1, -1],
+    filterFrequency: 205,
+    filterQ: 0.24,
+    noiseGain: 0.018,
+    noiseFilter: 160,
+    lfo1Rate: 1 / 78,
+    lfo1Depth: 0.013,
+    lfo2Rate: 1 / 104,
+    lfo2Depth: 20,
+  },
+  lab: {
+    key: 'lab',
+    label: 'Lab',
+    reason: 'A slightly more active bed for tools and experiments. It keeps the page exploratory without turning playful.',
+    gain: 0.026,
+    notes: [146.83, 196, 246.94],
+    noteGains: [0.094, 0.06, 0.048],
+    detune: [2, -1, 1],
+    filterFrequency: 286,
+    filterQ: 0.19,
+    noiseGain: 0.012,
+    noiseFilter: 195,
+    lfo1Rate: 1 / 44,
+    lfo1Depth: 0.018,
+    lfo2Rate: 1 / 72,
+    lfo2Depth: 24,
+  },
+}
+
+const CATEGORY_PROFILE_KEYS: Record<ProjectCategory, AmbientProfileKey> = {
+  ux: 'focus',
+  ai: 'signal',
+  creative: 'exhibit',
+  install: 'stage',
+  brand: 'surface',
+  good: 'civic',
+}
+
+const ROUTE_PROFILE_KEYS: Record<string, AmbientProfileKey> = {
+  '/': 'arrival',
+  '/work': 'focus',
+  '/about': 'reflection',
+  '/writing': 'readingRoom',
+  '/book': 'readingRoom',
+  '/graveyard': 'afterhours',
+  '/studio': 'lab',
+  '/ai': 'signal',
+  '/ux-design': 'focus',
+  '/creative-tech': 'exhibit',
+  '/installations': 'stage',
+  '/brand-visual': 'surface',
+  '/design-for-good': 'civic',
+  '/fintech': 'focus',
+  '/crypto': 'signal',
+  '/ai-wearables': 'signal',
+}
+
+const ROUTE_LABELS: Partial<Record<string, string>> = {
+  '/ai': 'AI & Wearables',
+  '/ux-design': 'UX Design',
+  '/creative-tech': 'Creative Technology',
+  '/installations': 'Installations',
+  '/brand-visual': 'Brand & Visual',
+  '/design-for-good': 'Design for Good',
+  '/fintech': 'Fintech',
+  '/crypto': 'Crypto',
+  '/ai-wearables': 'AI Wearables',
+}
+
+function tune(ctx: BaseAudioContext, param: AudioParam, target: number, dur: number) {
+  const t = ctx.currentTime
+  param.cancelScheduledValues(t)
+  param.setValueAtTime(param.value, t)
+  param.linearRampToValueAtTime(target, t + dur)
+}
+
+function getPageLabel(pathname: string): string {
+  if (pathname === '/') return 'Home'
+  if (pathname === '/work') return 'Work'
+  if (pathname === '/about') return 'About'
+  if (pathname === '/writing' || pathname.startsWith('/writing/')) return 'Writing'
+  if (pathname === '/book') return 'Book'
+  if (pathname === '/graveyard') return 'Graveyard'
+  if (pathname === '/studio') return 'Studio'
+  if (ROUTE_LABELS[pathname]) return ROUTE_LABELS[pathname]
+
+  const category = CATEGORY_ROUTE_CATEGORY[pathname]
+  if (category) return CATEGORY_LABELS[category]
+
+  const slug = pathname.replace(/^\/+/, '').split('/')[0]
+  const project = getProject(slug)
+  if (project) return project.name
+
+  return 'This page'
+}
+
+const CATEGORY_ROUTE_CATEGORY: Partial<Record<string, ProjectCategory>> = {
+  '/ai': 'ai',
+  '/ux-design': 'ux',
+  '/creative-tech': 'creative',
+  '/installations': 'install',
+  '/brand-visual': 'brand',
+  '/design-for-good': 'good',
+}
+
+function getAmbientProfile(pathname: string): AmbientProfile {
+  const routeProfileKey = ROUTE_PROFILE_KEYS[pathname]
+  if (routeProfileKey) return AMBIENT_PROFILES[routeProfileKey]
+
+  const slug = pathname.replace(/^\/+/, '').split('/')[0]
+  const project = getProject(slug)
+  if (project) return AMBIENT_PROFILES[CATEGORY_PROFILE_KEYS[project.category]]
+
+  return AMBIENT_PROFILES.focus
 }
 
 /** Very soft brown noise — distant rain / air */
@@ -29,7 +344,7 @@ function createNoiseBuffer(ctx: AudioContext): AudioBuffer {
   return buffer
 }
 
-function buildRig(): AmbientRig {
+function buildRig(profile: AmbientProfile): AmbientRig {
   const ctx = new AudioContext()
 
   const master = ctx.createGain()
@@ -39,33 +354,32 @@ function buildRig(): AmbientRig {
   // Everything passes through a very dark filter — like hearing through a wall
   const lp = ctx.createBiquadFilter()
   lp.type = 'lowpass'
-  lp.frequency.value = 280
-  lp.Q.value = 0.2
+  lp.frequency.value = profile.filterFrequency
+  lp.Q.value = profile.filterQ
   lp.connect(master)
 
-  // ── Three pure sines: C3, E3, G3 (major triad — warm, resolved, calm) ──
-  const notes = [
-    { freq: 130.81, gain: 0.12, detune: -2 },  // C3
-    { freq: 164.81, gain: 0.08, detune: 3 },    // E3
-    { freq: 196.0,  gain: 0.07, detune: -1 },   // G3
+  const oscs: [OscillatorNode, OscillatorNode, OscillatorNode] = [
+    ctx.createOscillator(),
+    ctx.createOscillator(),
+    ctx.createOscillator(),
+  ]
+  const gains: [GainNode, GainNode, GainNode] = [
+    ctx.createGain(),
+    ctx.createGain(),
+    ctx.createGain(),
   ]
 
-  const oscs: OscillatorNode[] = []
-  const gains: GainNode[] = []
-
-  for (const n of notes) {
-    const osc = ctx.createOscillator()
+  profile.notes.forEach((freq, index) => {
+    const osc = oscs[index]
+    const gain = gains[index]
     osc.type = 'sine'
-    osc.frequency.value = n.freq
-    osc.detune.value = n.detune
-    const g = ctx.createGain()
-    g.gain.value = n.gain
-    osc.connect(g)
-    g.connect(lp)
+    osc.frequency.value = freq
+    osc.detune.value = profile.detune[index]
+    gain.gain.value = profile.noteGains[index]
+    osc.connect(gain)
+    gain.connect(lp)
     osc.start()
-    oscs.push(osc)
-    gains.push(g)
-  }
+  })
 
   // ── Noise: barely-there texture ──
   const noise = ctx.createBufferSource()
@@ -73,37 +387,43 @@ function buildRig(): AmbientRig {
   noise.loop = true
   const noiseLp = ctx.createBiquadFilter()
   noiseLp.type = 'lowpass'
-  noiseLp.frequency.value = 200
+  noiseLp.frequency.value = profile.noiseFilter
   noiseLp.Q.value = 0.1
   const noiseGain = ctx.createGain()
-  noiseGain.gain.value = 0.018
+  noiseGain.gain.value = profile.noiseGain
   noise.connect(noiseLp)
   noiseLp.connect(noiseGain)
   noiseGain.connect(master)
   noise.start()
 
-  // ── LFO 1: slow volume breathing on the chord (60s cycle) ──
+  // ── LFO 1: slow volume breathing on the chord ──
   const lfo1 = ctx.createOscillator()
   lfo1.type = 'sine'
-  lfo1.frequency.value = 1 / 60
+  lfo1.frequency.value = profile.lfo1Rate
   const lfo1Gain = ctx.createGain()
-  lfo1Gain.gain.value = 0.02
+  lfo1Gain.gain.value = profile.lfo1Depth
   lfo1.connect(lfo1Gain)
   for (const g of gains) lfo1Gain.connect(g.gain)
   lfo1.start()
 
-  // ── LFO 2: glacial filter sweep (90s cycle) ──
+  // ── LFO 2: glacial filter sweep ──
   const lfo2 = ctx.createOscillator()
   lfo2.type = 'sine'
-  lfo2.frequency.value = 1 / 90
+  lfo2.frequency.value = profile.lfo2Rate
   const lfo2Gain = ctx.createGain()
-  lfo2Gain.gain.value = 40
+  lfo2Gain.gain.value = profile.lfo2Depth
   lfo2.connect(lfo2Gain)
   lfo2Gain.connect(lp.frequency)
   lfo2.start()
 
   return {
     ctx, master,
+    filter: lp,
+    noteGains: gains,
+    noiseGain,
+    noiseFilter: noiseLp,
+    lfo1Gain,
+    lfo2Gain,
     osc1: oscs[0], osc2: oscs[1], osc3: oscs[2],
     noise, lfo1, lfo2,
   }
@@ -117,34 +437,78 @@ function fade(g: GainNode, target: number, dur: number) {
 }
 
 export default function AmbientAudio() {
+  const { pathname } = useLocation()
   const rigRef = useRef<AmbientRig | null>(null)
-  const timerRef = useRef<number | null>(null)
+  const suspendTimerRef = useRef<number | null>(null)
+  const noteTimerRef = useRef<number | null>(null)
   const startedRef = useRef(false)
   const [playing, setPlaying] = useState(false)
+  const [noteVisible, setNoteVisible] = useState(false)
   const [muted, setMuted] = useState(() => {
-    try { return localStorage.getItem(STORAGE_KEY) === '1' } catch { return false }
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      return stored === null ? true : stored === '1'
+    } catch {
+      return true
+    }
   })
+  const profile = getAmbientProfile(pathname)
+  const pageLabel = getPageLabel(pathname)
 
-  const ensureRig = useCallback(() => {
-    if (!rigRef.current) rigRef.current = buildRig()
+  const ensureRig = useCallback((initialProfile: AmbientProfile) => {
+    if (!rigRef.current) rigRef.current = buildRig(initialProfile)
     return rigRef.current
   }, [])
 
+  const retune = useCallback((nextProfile: AmbientProfile, dur = 2.4) => {
+    const rig = rigRef.current
+    if (!rig) return
+
+    const oscillators = [rig.osc1, rig.osc2, rig.osc3] as const
+    oscillators.forEach((osc, index) => {
+      tune(rig.ctx, osc.frequency, nextProfile.notes[index], dur)
+      tune(rig.ctx, osc.detune, nextProfile.detune[index], dur)
+      tune(rig.ctx, rig.noteGains[index].gain, nextProfile.noteGains[index], dur)
+    })
+
+    tune(rig.ctx, rig.filter.frequency, nextProfile.filterFrequency, dur)
+    tune(rig.ctx, rig.filter.Q, nextProfile.filterQ, dur)
+    tune(rig.ctx, rig.noiseGain.gain, nextProfile.noiseGain, dur)
+    tune(rig.ctx, rig.noiseFilter.frequency, nextProfile.noiseFilter, dur)
+    tune(rig.ctx, rig.lfo1.frequency, nextProfile.lfo1Rate, dur)
+    tune(rig.ctx, rig.lfo1Gain.gain, nextProfile.lfo1Depth, dur)
+    tune(rig.ctx, rig.lfo2.frequency, nextProfile.lfo2Rate, dur)
+    tune(rig.ctx, rig.lfo2Gain.gain, nextProfile.lfo2Depth, dur)
+  }, [])
+
+  const showNoteTemporarily = useCallback((duration = 3600) => {
+    setNoteVisible(true)
+    if (noteTimerRef.current) window.clearTimeout(noteTimerRef.current)
+    noteTimerRef.current = window.setTimeout(() => {
+      setNoteVisible(false)
+      noteTimerRef.current = null
+    }, duration)
+  }, [])
+
   const resume = useCallback(async () => {
-    const rig = ensureRig()
-    if (timerRef.current) { window.clearTimeout(timerRef.current); timerRef.current = null }
+    const rig = ensureRig(profile)
+    if (suspendTimerRef.current) { window.clearTimeout(suspendTimerRef.current); suspendTimerRef.current = null }
     await rig.ctx.resume()
-    fade(rig.master, TARGET_GAIN, 4) // 4s fade in
+    retune(profile, 1.8)
+    fade(rig.master, profile.gain, 4)
     setPlaying(true)
-  }, [ensureRig])
+    showNoteTemporarily()
+  }, [ensureRig, profile, retune, showNoteTemporarily])
 
   const pause = useCallback(async () => {
     const rig = rigRef.current
     if (!rig) return
     fade(rig.master, 0, 2.5)
     setPlaying(false)
-    if (timerRef.current) window.clearTimeout(timerRef.current)
-    timerRef.current = window.setTimeout(() => { void rig.ctx.suspend(); timerRef.current = null }, 2800)
+    setNoteVisible(false)
+    if (noteTimerRef.current) { window.clearTimeout(noteTimerRef.current); noteTimerRef.current = null }
+    if (suspendTimerRef.current) window.clearTimeout(suspendTimerRef.current)
+    suspendTimerRef.current = window.setTimeout(() => { void rig.ctx.suspend(); suspendTimerRef.current = null }, 2800)
   }, [])
 
   const firstGesture = useCallback(() => {
@@ -154,6 +518,14 @@ export default function AmbientAudio() {
   }, [muted, resume])
 
   useEffect(() => { try { localStorage.setItem(STORAGE_KEY, muted ? '1' : '0') } catch {} }, [muted])
+
+  useEffect(() => {
+    retune(profile, 2.6)
+    if (playing && rigRef.current) {
+      fade(rigRef.current.master, profile.gain, 2.4)
+      showNoteTemporarily(2600)
+    }
+  }, [playing, profile, retune, showNoteTemporarily])
 
   useEffect(() => {
     if (muted) return
@@ -175,7 +547,8 @@ export default function AmbientAudio() {
   }, [muted, pause, resume])
 
   useEffect(() => () => {
-    if (timerRef.current) window.clearTimeout(timerRef.current)
+    if (suspendTimerRef.current) window.clearTimeout(suspendTimerRef.current)
+    if (noteTimerRef.current) window.clearTimeout(noteTimerRef.current)
     const rig = rigRef.current
     if (!rig) return
     rig.osc1.stop(); rig.osc2.stop(); rig.osc3.stop()
@@ -190,36 +563,47 @@ export default function AmbientAudio() {
   }, [pause, playing, resume])
 
   return (
-    <button
-      className={`ambient-toggle surface-glass surface-glass--subtle figma-hover${playing ? ' is-active surface-glass--active' : ''}`}
-      onClick={toggle}
-      type="button"
-      aria-label={playing ? 'Pause ambient sound' : 'Play ambient sound'}
-      aria-pressed={playing}
-      title={playing ? 'Pause ambient sound' : 'Play ambient sound'}
-    >
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        {playing ? (
-          <>
-            <path d="M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none">
-              <animate attributeName="d" dur="3s" repeatCount="indefinite" values="
-                M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12;
-                M2 12 C4 15, 6 15, 8 12 S12 9, 14 12 S18 15, 20 12;
-                M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12
-              " />
-            </path>
-            <path d="M2 12 C4 10, 6 10, 8 12 S12 14, 14 12 S18 10, 20 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.35">
-              <animate attributeName="d" dur="4s" repeatCount="indefinite" values="
-                M2 12 C4 14, 6 14, 8 12 S12 10, 14 12 S18 14, 20 12;
-                M2 12 C4 9, 6 9, 8 12 S12 15, 14 12 S18 9, 20 12;
-                M2 12 C4 14, 6 14, 8 12 S12 10, 14 12 S18 14, 20 12
-              " />
-            </path>
-          </>
-        ) : (
-          <path d="M2 12 L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-        )}
-      </svg>
-    </button>
+    <div className={`ambient-ui${playing ? ' is-active' : ''}${noteVisible ? ' is-note-visible' : ''}`}>
+      <button
+        className={`ambient-toggle surface-glass surface-glass--subtle figma-hover${playing ? ' is-active surface-glass--active' : ''}`}
+        onClick={toggle}
+        type="button"
+        aria-label={playing ? 'Pause ambient sound' : 'Play ambient sound'}
+        aria-pressed={playing}
+        title={playing ? 'Pause ambient sound' : 'Play ambient sound'}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          {playing ? (
+            <>
+              <path d="M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none">
+                <animate attributeName="d" dur="3s" repeatCount="indefinite" values="
+                  M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12;
+                  M2 12 C4 15, 6 15, 8 12 S12 9, 14 12 S18 15, 20 12;
+                  M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12
+                " />
+              </path>
+              <path d="M2 12 C4 10, 6 10, 8 12 S12 14, 14 12 S18 10, 20 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.35">
+                <animate attributeName="d" dur="4s" repeatCount="indefinite" values="
+                  M2 12 C4 14, 6 14, 8 12 S12 10, 14 12 S18 14, 20 12;
+                  M2 12 C4 9, 6 9, 8 12 S12 15, 14 12 S18 9, 20 12;
+                  M2 12 C4 14, 6 14, 8 12 S12 10, 14 12 S18 14, 20 12
+                " />
+              </path>
+            </>
+          ) : (
+            <path d="M2 12 L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          )}
+        </svg>
+      </button>
+      <div
+        className="ambient-note surface-glass surface-glass--subtle"
+        aria-live="polite"
+      >
+        <p className="ambient-note__title">{pageLabel} / {profile.label}</p>
+        <p className="ambient-note__body">
+          {playing ? profile.reason : `${profile.reason} Turn it on to hear the page-specific bed.`}
+        </p>
+      </div>
+    </div>
   )
 }

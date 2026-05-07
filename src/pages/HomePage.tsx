@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import ProjectCard from '../components/ProjectCard';
-import FlagshipProjectShowcase from '../components/FlagshipProjectShowcase';
 import TextHighlight from '../components/TextHighlight';
 import FigmaSelect from '../components/FigmaSelect';
 import FigmaFrameLabel from '../components/FigmaFrameLabel';
@@ -13,25 +12,23 @@ import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useInView } from '../hooks/useInView';
 import { allProjectsCurated, featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { HOMEPAGE_CONTENT } from '../data/homepageContent';
-import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_URL, RESUME_URL } from '../config/site';
+import { DEFAULT_OG_IMAGE, SITE_URL } from '../config/site';
 
 const HeroScene = lazy(() => import('../components/HeroScene'));
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
 
-const IMG = '/Portfolio.github.io/Assets/images';
-
 interface Skill {
   label: string;
-  img: string;
+  objectSlug: string;
 }
 
 const skills: Skill[] = [
-  { label: 'UX Design', img: `${IMG}/mentra.png` },
-  { label: 'Product Design', img: `${IMG}/executivelens.png` },
-  { label: 'Fintech', img: `${IMG}/zentipay.png` },
-  { label: 'Creative Technology', img: `${IMG}/jugalbandi.webp` },
-  { label: 'Physical Computing', img: `${IMG}/enigma.jpg` },
-  { label: 'Installations', img: `${IMG}/keyboard.jpg` },
+  { label: 'UX Design', objectSlug: 'ux-design' },
+  { label: 'Product Design', objectSlug: 'ux-design' },
+  { label: 'Fintech', objectSlug: 'fintech' },
+  { label: 'Creative Technology', objectSlug: 'creative-tech' },
+  { label: 'Physical Computing', objectSlug: 'installations' },
+  { label: 'Installations', objectSlug: 'installations' },
 ];
 
 const disciplines = [
@@ -50,13 +47,17 @@ export default function HomePage() {
   const [showAllArchiveProjects, setShowAllArchiveProjects] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
+  const [aboutRef, aboutInView] = useInView<HTMLElement>(0.08, '160px 0px');
   const mountHeroScene = useDeferredMount(true, { timeout: 2200, delayMs: 250 });
   const mountDisciplineObjects = useDeferredMount(disciplinesInView, { timeout: 1400, delayMs: 150 });
-  const archiveProjects = showAllArchiveProjects
-    ? allProjectsCurated.filter(project => !project.featured)
-    : homepageSelectedProjects;
-  const leadFlagshipProject = featuredProjects[0];
-  const supportingFlagshipProjects = featuredProjects.slice(1);
+  const mountAboutObject = useDeferredMount(aboutInView, { timeout: 1600, delayMs: 120 });
+  const archiveProjectSlugs = new Set(homepageSelectedProjects.map(project => project.slug));
+  const appendedArchiveProjects = allProjectsCurated.filter(
+    project => !project.featured && !archiveProjectSlugs.has(project.slug),
+  );
+  const fullArchiveProjects = [...homepageSelectedProjects, ...appendedArchiveProjects];
+  const archiveProjects = showAllArchiveProjects ? fullArchiveProjects : homepageSelectedProjects;
+  const fullArchiveCount = fullArchiveProjects.length;
 
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
@@ -99,35 +100,9 @@ export default function HomePage() {
         </motion.div>
 
         <div className="wr-hero-copy">
-          <p className="wr-hero-eyebrow">Parth Pawar / Design Engineer</p>
           <h1 className="wr-hero-title">Designing product systems people trust.</h1>
-          <p className="wr-hero-dek">
-            AI wearables, fintech, and experimental interfaces with the rigor to ship.
-          </p>
-          <div className="wr-hero-actions">
-            <a href="#works" className="wr-hero-action">Best 4 Projects</a>
-            <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="wr-hero-action">Resume</a>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="wr-hero-action">Contact</a>
-          </div>
         </div>
 
-        <div className="wr-hero-caption">
-          <div className="wr-hero-caption-main">
-            <p className="wr-hero-kicker">Currently shipping at Mentra</p>
-            <p className="wr-hero-caption-line">OS, companion app, and miniapp platform for AI smart glasses</p>
-          </div>
-        </div>
-
-        <span className="wr-hero-left hero-reveal hero-reveal-1">
-          {'A PORTFOLIO OF DESIGN WORK'.split(' ').map((word, i) => (
-            <span key={i} className="hero-word" style={{ animationDelay: `${0.6 + i * 0.08}s` }}>{word} </span>
-          ))}
-        </span>
-        <span className="wr-hero-right hero-reveal hero-reveal-2">
-          {'PARTH PAWAR 2026'.split(' ').map((word, i) => (
-            <span key={i} className="hero-word" style={{ animationDelay: `${0.8 + i * 0.08}s` }}>{word} </span>
-          ))}
-        </span>
       </section>
 
       <Nav />
@@ -139,37 +114,45 @@ export default function HomePage() {
             <div className="wr-featured-v2-inner">
               <div className="wr-section-head">
                 <span className="wr-label">FLAGSHIP WORK</span>
-                <TextHighlight as="span" className="wr-section-highlight">Start with the four that best show product judgment, systems thinking, and shipped taste</TextHighlight>
-                <Link to="/work" className="wr-arrow-btn figma-hover">View Selected &rarr;<FigmaSelect /></Link>
+                <TextHighlight as="span" className="wr-section-highlight">Start with these four.</TextHighlight>
+                <Link to="/work" className="wr-arrow-btn figma-hover">View all work &rarr;<FigmaSelect /></Link>
               </div>
 
-              <div className="wr-feat-list">
-                {leadFlagshipProject ? (
+              <div className="wr-feat-grid">
+                {featuredProjects.map((project, index) => {
+                  const featuredInfo = [
+                    project.desc,
+                    project.summaryRole?.replace(/\.$/, ''),
+                    ...(project.summaryStats?.slice(0, 2).map(stat => `${stat.label} ${stat.value}`) ?? []),
+                  ]
+                    .filter(Boolean)
+                    .join(' / ');
+                  const hoverMedia = project.hoverMedia;
+
+                  return (
                   <motion.div
+                    key={project.slug}
                     initial={{ opacity: 0, y: 28 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <FlagshipProjectShowcase project={leadFlagshipProject} index={0} variant="lead" />
+                    <ProjectCard
+                      slug={project.slug}
+                      name={project.name}
+                      image={project.image}
+                      hoverMediaSrc={hoverMedia?.src}
+                      hoverMediaKind={hoverMedia?.kind}
+                      hoverMediaAlt={hoverMedia?.alt}
+                      tag={project.tag}
+                      year={project.year}
+                      marqueeText={featuredInfo}
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                      nda={project.nda}
+                    />
                   </motion.div>
-                ) : null}
-
-                {supportingFlagshipProjects.length ? (
-                  <div className="wr-flagship-grid">
-                    {supportingFlagshipProjects.map((project, index) => (
-                      <motion.div
-                        key={project.slug}
-                        initial={{ opacity: 0, y: 28 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: '-60px' }}
-                        transition={{ duration: 0.7, delay: 0.08 + index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                      >
-                        <FlagshipProjectShowcase project={project} index={index + 1} variant="card" />
-                      </motion.div>
-                    ))}
-                  </div>
-                ) : null}
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -244,16 +227,6 @@ export default function HomePage() {
                   </TextHighlight>
                 </div>
                 <div className="wr-section-actions">
-                  <button
-                    type="button"
-                    className="wr-arrow-btn wr-arrow-btn--button figma-hover"
-                    aria-expanded={showAllArchiveProjects}
-                    aria-controls="homepage-project-archive"
-                    onClick={() => setShowAllArchiveProjects(current => !current)}
-                  >
-                    {showAllArchiveProjects ? 'Show Less' : 'See All Projects'}
-                    <FigmaSelect />
-                  </button>
                   <Link to="/work" className="wr-arrow-btn figma-hover">Browse All &rarr;<FigmaSelect /></Link>
                 </div>
               </div>
@@ -276,63 +249,26 @@ export default function HomePage() {
                   );
                 })}
               </div>
-            </div>
-          </section>
 
-          <section className="wr-latest" style={{ position: 'relative' }}>
-            <FigmaFrameLabel name="Latest" />
-            <div className="wrap">
-              <div className="wr-section-head">
-                <span className="wr-label">COME BACK FOR THIS</span>
-                <TextHighlight as="span" className="wr-section-highlight">Latest thinking and shipped work</TextHighlight>
-                <Link to="/writing" className="wr-arrow-btn figma-hover">Open Writing &rarr;<FigmaSelect /></Link>
-              </div>
-
-              <div className="wr-latest-grid">
-                <div className="wr-latest-column surface-glass">
-                  <div className="wr-latest-column-head">
-                    <span className="wr-label">Latest writing</span>
-                    <p>Three short essays about AI, trust, and interface design under constraints.</p>
-                  </div>
-                  <div className="wr-latest-list">
-                    {HOMEPAGE_CONTENT.latestThinking.map((item) => (
-                      <Link key={item.href} to={item.href} className="wr-latest-item figma-hover">
-                        <div className="wr-latest-meta">
-                          <span>{item.date}</span>
-                          <span>{item.tag}</span>
-                        </div>
-                        <h3>{item.title}</h3>
-                        <p>{item.excerpt}</p>
-                        <FigmaSelect />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="wr-latest-column surface-glass">
-                  <div className="wr-latest-column-head">
-                    <span className="wr-label">Latest shipped</span>
-                    <p>The latest launches, exhibits, and systems work now live in the portfolio.</p>
-                  </div>
-                  <div className="wr-latest-list">
-                    {HOMEPAGE_CONTENT.latestShipped.map((item) => (
-                      <Link key={item.href} to={item.href} className="wr-latest-item figma-hover">
-                        <div className="wr-latest-meta">
-                          <span>{item.date}</span>
-                          <span>{item.tag}</span>
-                        </div>
-                        <h3>{item.title}</h3>
-                        <p>{item.excerpt}</p>
-                        <FigmaSelect />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+              <div className="wr-archive-reveal">
+                <button
+                  type="button"
+                  className="wr-arrow-btn wr-arrow-btn--button figma-hover wr-archive-reveal__button"
+                  aria-expanded={showAllArchiveProjects}
+                  aria-controls="homepage-project-archive"
+                  onClick={() => setShowAllArchiveProjects(current => !current)}
+                >
+                  {showAllArchiveProjects ? 'Collapse archive' : `Reveal all ${fullArchiveCount} projects`}
+                  <FigmaSelect />
+                </button>
+                <p className="wr-archive-reveal__note">
+                  {showAllArchiveProjects ? 'Everything is expanded here now.' : 'Open the full archive right here without leaving the page.'}
+                </p>
               </div>
             </div>
           </section>
 
-          <section className="wr-about-section" style={{ position: 'relative' }}>
+          <section className="wr-about-section" style={{ position: 'relative' }} ref={aboutRef}>
             <FigmaFrameLabel name="About" />
             <div className="wr-about-card" id="about-card">
               <svg className="wr-about-border" preserveAspectRatio="none">
@@ -361,8 +297,24 @@ export default function HomePage() {
 
               <div className="wr-about-body">
                 <div className="wr-about-img-col">
-                  <div className="wr-about-img-wrap" id="about-img-wrap">
-                    <img src={skills[skillIdx].img} alt={`Showcase of ${skills[skillIdx].label}`} loading="lazy" decoding="async" draggable={false} key={skillIdx} />
+                  <div className="wr-about-object-wrap" id="about-img-wrap" aria-hidden="true">
+                    <div className="wr-about-object-stage">
+                      <div className="wr-about-object-label">
+                        <span>{skills[skillIdx].label}</span>
+                        <span>Object study</span>
+                      </div>
+                      <div className="wr-about-object-shell" key={skills[skillIdx].label}>
+                        {mountAboutObject ? (
+                          <Suspense fallback={null}>
+                            <CategoryObject3D
+                              slug={skills[skillIdx].objectSlug}
+                              size={250}
+                              className="wr-about-object-canvas"
+                            />
+                          </Suspense>
+                        ) : null}
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="wr-about-text">

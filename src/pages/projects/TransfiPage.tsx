@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
-import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -21,11 +20,18 @@ import CsBeforeAfter from '../../components/case-study/CsBeforeAfter'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import { getNdaStorageKey } from '../../data/projects'
 
 export default function TransfiPage() {
-  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
-  const fullCaseStudyEnabled = NDA_DETAILS_ENABLED
-  const sections = !fullCaseStudyEnabled || viewMode === 'summary'
+  const ndaStorageKey = getNdaStorageKey('transfi-project')
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>(() => {
+    if (typeof window !== 'undefined' && sessionStorage.getItem(ndaStorageKey) === '1') {
+      return 'full'
+    }
+    return 'summary'
+  })
+  const fullCaseStudyEnabled = true
+  const sections = viewMode === 'summary'
     ? [
         { id: 'cs-summary', label: 'TL;DR' },
         { id: 'cs-overview', label: 'Overview' },
@@ -46,7 +52,6 @@ export default function TransfiPage() {
       ]
 
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
-    if (!fullCaseStudyEnabled && nextMode === 'full') return
     if (nextMode === viewMode) return
     setViewMode(nextMode)
     if (typeof window !== 'undefined') {
@@ -75,7 +80,7 @@ export default function TransfiPage() {
           backLabel="Back to Work"
           tags={['Fintech', 'UX', 'Web3', 'Brand']}
           title="TransFi"
-          subtitle="Led product design for Asia's leading crypto payments platform, owning the full design lifecycle across web and mobile products serving enterprise clients"
+          subtitle="Turned complex crypto payment rails into a merchant product teams could onboard, trust, and run across web and mobile."
           info={[
             { label: 'Company', value: 'TransFi' },
             { label: 'Scope', value: 'Product Design, Brand Identity, Design Systems' },
@@ -99,41 +104,38 @@ export default function TransfiPage() {
         {/* Overview section with label-row layout */}
         <section className="cs-section reveal" id="cs-overview">
           <div className="wrap">
-            <h2 className="cs-display" style={{ maxWidth: '18ch' }}>Web3 payments access simplified for the next billion users.</h2>
+            <h2 className="cs-display" style={{ maxWidth: '18ch' }}>Enterprise crypto had the rails. It did not yet have a product operators could trust.</h2>
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">TransFi provides crypto payment infrastructure &mdash; on-ramp, off-ramp, and cross-border payments &mdash; for enterprise clients across Asia. As Lead Product Designer, I owned the end-to-end design lifecycle for web and mobile products, from research and information architecture through to high-fidelity UI, design systems, and brand identity. I led the redesign of the merchant dashboard and consumer-facing widget, shipping V2 and architecting V3 of the platform.</span>
+              <span className="cs-label-row-val">TransFi sells the infrastructure layer for on-ramp, off-ramp, and cross-border crypto payments. My job was to turn that technically powerful but opaque system into a product merchants could actually understand: a clearer dashboard, a cleaner buy-crypto widget, and a design language that made compliance-heavy flows feel legible instead of risky.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">The Challenge</span>
-              <span className="cs-label-row-val">Crypto payments infrastructure was built for developers, not business users. Enterprise clients needed to integrate cross-border crypto payments but faced interfaces that assumed deep blockchain knowledge. The existing platform had high onboarding drop-off, low merchant self-service rates, and dashboards that surfaced raw data without actionable insights &mdash; all of which slowed adoption in a market where TransFi was competing with MoonPay, Ramp, and Transak.</span>
+              <span className="cs-label-row-val">The product was competing in a category where the underlying rails matter less than trust. Enterprise teams needed to evaluate fees, status, and settlement logic quickly, but the existing experience assumed blockchain literacy and buried the business story under technical noise. That slowed onboarding, reduced self-service, and made the product feel riskier than it needed to be.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">Sole product designer on a team of 8 (product lead + 6 engineers). I owned research, UX flows, visual design, and the component library. Product strategy was collaborative with the founder and product lead. I conducted client interviews directly and participated in sprint planning, but engineering architecture and backend decisions were owned by the eng team.</span>
+              <span className="cs-label-row-val">I was the sole product designer on a team of eight, working directly with the founder, product lead, and engineers. I owned research synthesis, information architecture, merchant flows, UI, and the component system, while partnering closely on product strategy and sprint priorities.</span>
             </div>
             <div className="cs-label-row" style={{ borderBottom: 'none' }}>
-              <span className="cs-label-row-key">Tools &amp; Techniques</span>
-              <span className="cs-label-row-val">
-                <span className="cs-tags" style={{ margin: 0 }}>
-                  <span className="cs-tag-item">Figma</span>
-                  <span className="cs-tag-item">Jira</span>
-                  <span className="cs-tag-item">Transaction System</span>
-                  <span className="cs-tag-item">Blockchain</span>
-                  <span className="cs-tag-item">Cryptocurrency - Exchange</span>
-                  <span className="cs-tag-item">User Flows</span>
-                  <span className="cs-tag-item">User Study</span>
-                  <span className="cs-tag-item">Local Payment Method</span>
-                </span>
-              </span>
+              <span className="cs-label-row-key">Visible Outcome</span>
+              <span className="cs-label-row-val">The public layer of this case study shows the product framing, the business problem, and the design direction behind the dashboard and widget redesign. The NDA section goes deeper into research inputs, internal constraints, and the detailed flows that shipped.</span>
             </div>
           </div>
         </section>
 
-        {fullCaseStudyEnabled ? (
-        viewMode === 'full' ? (
-        <>
+        <NdaGate
+          slug="transfi-project"
+          onUnlock={() => {
+            setViewMode('full')
+            if (typeof window !== 'undefined') {
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }
+          }}
+        >
+          {viewMode === 'full' ? (
+            <>
 
         {/* Problem section */}
         <section className="cs-section reveal" id="cs-problem" style={{ paddingTop: 0 }}>
@@ -418,19 +420,17 @@ export default function TransfiPage() {
           </div>
         </section>
 
-        </>
-        ) : null
-        ) : (
-          <NdaGate slug="transfi-project" projectName="TransFi" />
-        )}
+            </>
+          ) : null}
+        </NdaGate>
 
         <BottomNav
           sections={sections}
           liveUrl="https://www.transfi.com"
-          modeAction={fullCaseStudyEnabled ? {
+          modeAction={{
             label: viewMode === 'summary' ? 'Full case study' : '2 min summary',
             onClick: () => handleViewModeChange(viewMode === 'summary' ? 'full' : 'summary'),
-          } : undefined}
+          }}
         />
 
       </main>

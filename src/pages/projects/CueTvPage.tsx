@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
-import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -37,13 +36,13 @@ export default function CueTvPage() {
           backLabel="Back to Work"
           tags={['UX', 'Brand', 'Product']}
           title="CueTV"
-          subtitle="Making OTT platform a little more accessible, with a service system"
+          subtitle="Reframed a niche performing-arts streaming service so discovery, playback, and growth all spoke to the same audience."
           info={[
             { label: 'Client', value: 'Operabase' },
             { label: 'Scope of Work', value: 'User Research, Retargeting Ads System' },
             { label: 'Role', value: 'UI Designer & Research' },
             { label: 'Duration', value: '7 Months' },
-            { label: 'Year', value: '2022' },
+                { label: 'Year', value: '2021' },
           ]}
           liveUrl="https://www.cuetv.online"
         />
@@ -56,15 +55,19 @@ export default function CueTvPage() {
           sections={[
             {
               label: 'Summary',
-              content: 'CueTV is an OTT platform for connoisseurs and professionals for opera, ballet, symphonies, and classical music. Developed in collaboration with MonsoonFish, the platform provides a seamless streaming experience across all devices \u2014 computers, tablets, smartphones, and smart TVs \u2014 bringing world-class performing arts to audiences globally.',
+              content: 'CueTV is an OTT platform for opera, ballet, symphonies, and classical performance. The product challenge was not just streaming the content. It was helping a very specific audience find, understand, and return to programming that does not behave like mainstream entertainment catalogs.',
             },
             {
               label: 'The Challenges',
-              content: 'The main challenge was to figure out the target audience and tailor the OTT Platform and the Retargeting Ads for the User Audience.',
+              content: 'The team needed the platform and the growth system to work together. Audience segments were fragmented, browsing behavior varied by familiarity with the art form, and retargeting could not be treated as a separate marketing layer with generic OTT assumptions.',
             },
             {
               label: 'My Role',
-              content: 'As a UI Designer & Research, my role was to get to identify the audience and Create Awareness by helping them engage by using Google, Facebook Ads & giving a smooth experience on the OTT Platform for easy movement from Home to the Opera show they want to watch. Also watch across all screens in HD: computers, tablets, smartphones, and smart TVs.',
+              content: 'I worked across audience research, platform UX, and retargeting design. That included clarifying the user segments, shaping the browsing and playback experience, and designing the ad-system logic that helped the product reach and re-engage the right viewers.',
+            },
+            {
+              label: 'Visible Outcome',
+              content: 'This public layer shows the audience model, platform structure, and service-design thinking behind CueTV. The protected section goes deeper into the internal system, campaign mechanics, and supporting process detail.',
             },
           ]}
         />
@@ -91,8 +94,7 @@ export default function CueTvPage() {
           </div>
         </section>
 
-        {NDA_DETAILS_ENABLED ? (
-        <>
+        <NdaGate slug="cuetv">
 
         {/* About CueTV */}
         <section className="cs-section reveal" id="cs-about">
@@ -328,10 +330,7 @@ export default function CueTvPage() {
 
         <CsThanks contactCta />
 
-        </>
-        ) : (
-          <NdaGate slug="cuetv" projectName="CueTV" />
-        )}
+        </NdaGate>
 
       </main>
 

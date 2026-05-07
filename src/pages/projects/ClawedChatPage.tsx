@@ -69,7 +69,7 @@ export default function ClawedChatPage() {
           backLabel="Back to Work"
           tags={['AI Assistant', 'Smart Glasses', 'Product Design', 'Full-stack Design']}
           title="Clawed"
-          subtitle="Personal AI assistant for people on the go &mdash; smart glasses integration for glanceable, hands-free interactions plus a full web hub with safety modes, receipts, and one-tap approvals"
+          subtitle="A trust-first AI assistant for web and smart glasses, built around receipts, approvals, and controlled autonomy"
           info={[
             { label: 'Role', value: 'Product Designer (sole designer + 3 engineers)' },
             { label: 'Timeline', value: 'Jan \u2013 Mar 2026 (~10 weeks)' },
@@ -107,11 +107,11 @@ export default function ClawedChatPage() {
           sections={[
             {
               label: 'The Vision',
-              content: 'AI assistants promise to handle your life. In practice, they handle your patience. You ask them to do something, they hallucinate a confident answer, execute without asking, and leave no trail when things go wrong. Clawed exists to fix that. It is a personal AI assistant built around one conviction: if an AI acts on your behalf, you should be able to ask it under 3 seconds, get results in under 5, approve with one tap, and always have a receipt.',
+              content: 'AI assistants usually fail at the exact moment they become useful: when they stop answering questions and start acting. Clawed is built around the opposite stance. If the AI acts on your behalf, it should move fast, ask clearly, show what changed, and leave a trail you can verify later.',
             },
             {
               label: 'My Role',
-              content: 'As the sole Product Designer, I owned the entire design surface of Clawed: the marketing site, the web application with eight core pages, the smart glasses experience, the safety mode system, and the design language that holds it all together. I worked alongside an engineering team to ship a product built on React 19, TypeScript, and Tailwind \u2014 designing every screen, interaction, and approval flow from first pixel to production.',
+              content: 'I designed the entire product surface: launch site, web hub, command flows, approval system, smart-glasses experience, and the safety architecture that ties them together. The work was not to make AI feel magical. It was to make AI feel legible enough that someone would actually trust it with real actions.',
             },
           ]}
         />

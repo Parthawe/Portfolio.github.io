@@ -98,7 +98,10 @@
   padding: 0;
   flex-shrink: 0;
 }
-.nav-right > .ambient-toggle {
+.nav-right > .ambient-ui {
+  position: relative;
+}
+.nav-right > .ambient-ui .ambient-toggle {
   border-radius: var(--radius-pill);
 }
 .nav-grid-toggle:hover {
@@ -111,7 +114,7 @@
 }
 @media (max-width: 768px) {
   .nav-grid-toggle { display: none; }
-  .ambient-toggle { display: none; }
+  .ambient-ui { display: none; }
 }
 
 /* Desktop CTA, pill button style */
@@ -154,7 +157,7 @@
   --surface-glass-border: var(--glass-scrolled-border);
   --surface-glass-shadow: var(--glass-scrolled-shadow);
 }
-.nav.scrolled :is(.nav-grid-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-toggle) {
+.nav.scrolled :is(.nav-grid-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-bg: var(--glass-scrolled);
   --surface-glass-border: var(--glass-scrolled-border);
   --surface-glass-shadow: var(--glass-scrolled-shadow);
@@ -165,7 +168,7 @@
   transform: scale(0.97);
   --surface-glass-blur: blur(20px) saturate(1.6);
 }
-.nav.scrolled-deep :is(.nav-grid-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-toggle) {
+.nav.scrolled-deep :is(.nav-grid-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-blur: blur(18px) saturate(1.55);
 }
 .nav.scrolled-deep .nav-cta {

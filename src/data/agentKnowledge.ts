@@ -1,4 +1,5 @@
 import { categories } from './categories'
+import { CATEGORY_LABELS, projects, type ProjectCategory } from './projects'
 
 /* ── Types ─────────────────────────────────────────────── */
 
@@ -26,11 +27,25 @@ interface ProjectInfo {
   categorySlug: string
   year: string
   link: string
+  nda?: boolean
+  storyline?: {
+    challenge: string
+    approach: string
+    result: string
+  }
   deep?: ProjectDeep
 }
 
 const projectIndex = new Map<string, ProjectInfo>()
 const nameIndex = new Map<string, ProjectInfo>()
+const PROJECT_CATEGORY_SLUGS: Record<ProjectCategory, string> = {
+  ux: 'ux-design',
+  ai: 'ai',
+  creative: 'creative-tech',
+  install: 'installations',
+  brand: 'brand-visual',
+  good: 'design-for-good',
+}
 
 /* ── Deep project stories ──────────────────────────────── */
 
@@ -239,20 +254,32 @@ const deepMap: Record<string, ProjectDeep> = {
   },
 }
 
-for (const cat of categories) {
-  const add = (p: { slug: string; name?: string; title?: string; desc?: string; result?: string; role: string; year?: string }) => {
-    const name = p.name || p.title || p.slug
-    const desc = p.desc || p.result || ''
-    const info: ProjectInfo = {
-      slug: p.slug, name, desc, role: p.role,
-      category: `${cat.title} ${cat.titleAccent}`, categorySlug: cat.slug,
-      year: p.year || '', link: `/${p.slug}`, deep: deepMap[p.slug],
-    }
-    projectIndex.set(p.slug, info)
-    nameIndex.set(name.toLowerCase(), info)
+for (const project of projects) {
+  const registryStory = project.storyline
+  const deep = deepMap[project.slug]
+  const info: ProjectInfo = {
+    slug: project.slug,
+    name: project.name,
+    desc: project.desc,
+    role: project.summaryRole || deep?.team || 'Designer',
+    category: CATEGORY_LABELS[project.category],
+    categorySlug: PROJECT_CATEGORY_SLUGS[project.category],
+    year: project.year,
+    link: `/${project.slug}`,
+    nda: project.nda,
+    storyline: registryStory,
+    deep: deep
+      ? {
+          ...deep,
+          challenge: registryStory?.challenge || deep.challenge,
+          outcome: project.summaryOutcome || deep.outcome,
+          duration: project.summaryTimeline || deep.duration,
+          team: project.summaryTeam || deep.team,
+        }
+      : undefined,
   }
-  add({ ...cat.featured, name: cat.featured.title })
-  for (const row of cat.moreProjects) for (const p of row) add(p)
+  projectIndex.set(project.slug, info)
+  nameIndex.set(project.name.toLowerCase(), info)
 }
 
 /* ── Bio ───────────────────────────────────────────────── */
@@ -361,8 +388,8 @@ export function getRouteGreeting(path: string): string {
     "Pick a project, ask for a hiring shortlist, or say 'tour' and I'll guide you through. I have opinions about all of this.",
   ])
   if (path === '/work') return pick([
-    "Full archive. I can filter by discipline, recommend a shortlist, or walk you through the categories. What are you looking for?",
-    "This is everything. Six disciplines, from fintech to light sculptures. Say 'tour' and I'll explain each one, or just tell me what you care about.",
+    "Full archive. Four views now, Editorial, Playlist, Index, and Arc. Ask for one and I’ll switch to it, or ask for a shortlist.",
+    "This is everything. Six disciplines, from fintech to light sculptures. I can switch the page into Playlist, Index, or Arc mode if you want a different read.",
   ])
   if (path === '/about') {
     if (section === 'skills') return "Those tools? They're not decorative. Ask me how any of them gets used in a real shipped project."
@@ -438,7 +465,7 @@ export function getDynamicChips(path: string, qCount: number, lastSlug?: string,
     if (persona === 'recruiter' || persona === 'hm') return ['Hiring shortlist', 'Role fit', 'Best research process', 'Most ambitious project']
     return ['Hiring shortlist', 'Most ambitious project', 'Best research process', 'Creative range']
   }
-  if (path === '/work') return ['Start with three projects', 'AI work', 'Best research process', 'Creative range']
+  if (path === '/work') return ['Playlist view', 'Arc view', 'Start with flagship work', 'Best research process']
   if (path === '/about') {
     if (section === 'skills') return ['How he uses Figma', 'Code + design?', 'Favorite tool', 'Physical work']
     if (section === 'experience') return ['Best role?', 'Mentra story', 'ZentiPay story', 'Teaching at NYU']
@@ -545,6 +572,11 @@ const rules: Rule[] = [
   // Creative range
   { patterns: [/(?:creative range|experimental|unexpected|show me something different|range)/i],
     handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[BreakGen](/keyboard-project)**.\n\nThat trio makes the point fast: product systems, physical computing, and fabrication all live in the same practice."
+  },
+
+  // Work views
+  { patterns: [/(?:playlist view|spotify view|index view|library view|arc view|timeline view|editorial view|work views|work modes|browse modes)/i],
+    handler: () => "The Work page now has four reads of the same portfolio:\n\n• **Editorial**, best first read\n• **Playlist**, best for guided comparison\n• **Index**, best for compact scanning\n• **Arc**, best for progression over time\n\nTell me which one you want and I’ll switch it."
   },
 
   // Most ambitious
@@ -657,7 +689,7 @@ const rules: Rule[] = [
         if (related.length) r += `\n\nInteresting connection: **${related[0].name}** builds on a similar idea.`
         return r
       }
-      return "Each flagship project has its own:\n\n• **Mentra:** Glance > gaze\n• **ZentiPay:** Trust > speed\n• **Clawed:** Ask > act\n\nWhich one?"
+      return "Each flagship project has its own:\n\n• **Mentra:** Glance > gaze\n• **TransFi:** Trust > opacity\n• **Clawed:** Ask > act\n• **Jugalbandi:** Embodiment > novelty\n\nWhich one?"
     }
   },
 

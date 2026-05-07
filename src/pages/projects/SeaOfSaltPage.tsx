@@ -37,7 +37,7 @@ export default function SeaOfSaltPage() {
           info={[
             { label: 'Collaborator', value: 'Audrey Oh' },
             { label: 'Context', value: 'Bio Art, NYU ITP' },
-            { label: 'Year', value: '2024' },
+                { label: 'Year', value: '2025' },
             { label: 'Tools', value: 'Arduino, Servo Motor, 3D Printing, Laser Cutting' },
           ]}
         />

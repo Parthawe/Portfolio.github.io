@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
-import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -42,7 +41,7 @@ export default function ZentipayPage() {
           backLabel="Back to Work"
           tags={['Fintech', '0\u21921 Product', 'AI', 'Cross-cultural UX']}
           title="ZentiPay"
-          subtitle="Designed a fintech super app from zero &mdash; research across 5 countries, adaptive onboarding system, and upfront fee transparency that measurably improved transaction completion"
+          subtitle="Built a trust-first remittance product from zero, using five-country research and predictive pricing to make cross-border transfers feel legible before money moved."
           info={[
             { label: 'Role', value: 'Founding Product Designer (sole designer, working with product + eng)' },
             { label: 'Scope', value: '0\u21921 Product Design' },
@@ -69,17 +68,20 @@ export default function ZentipayPage() {
           sections={[
             {
               label: 'Overview',
-              content: 'ZentiPay is a crypto payments platform built for migrant workers and international students \u2014 people who send money home regularly but lose hundreds annually to opaque fees. I joined as the founding product designer on a contract basis (Q2 \u2013 Q3 2025), working alongside a product lead and engineering team. I owned the design end-to-end: research, IA, interaction design, design system, and usability validation across five countries.',
+              content: 'ZentiPay is a remittance product for migrant workers and international students who send money home often enough to notice every hidden fee. I joined as the founding product designer and owned the experience end to end: research, architecture, onboarding, transaction flows, and the trust signals that had to make an unfamiliar financial product feel safe on first use.',
             },
             {
               label: 'The Mandate',
-              content: 'Build a cross-border payment experience so clear and trustworthy that first-time crypto users complete transfers without hesitation. Every design decision had to earn trust in the first 30 seconds \u2014 because in fintech, a confused user is a lost user, and a lost user is a family that doesn\u2019t get their money.',
+              content: 'Build a cross-border transfer experience clear enough for first-time crypto users and credible enough for people sending essential income home. The design bar was not delight. It was reducing doubt in the exact moments where users typically abandon.',
+            },
+            {
+              label: 'Visible Outcome',
+              content: 'The public case study covers the research framing, the central product bets, and the trust architecture that shaped the experience. The protected section goes into the internal flows, detailed validations, and implementation depth behind the product.',
             },
           ]}
         />
 
-        {NDA_DETAILS_ENABLED ? (
-        <>
+        <NdaGate slug="zentipay">
 
         <CsSection id="cs-problem" label="01 &mdash; Problem" title="$700B+ in remittances annually. Migrants still pay an average of 6.3% in fees.">
           <div className="cs-two-col">
@@ -333,10 +335,7 @@ export default function ZentipayPage() {
           { id: 'cs-whats-next', label: 'What\u2019s Next' },
         ]} />
 
-        </>
-        ) : (
-          <NdaGate slug="zentipay" projectName="ZentiPay" />
-        )}
+        </NdaGate>
 
       </main>
 

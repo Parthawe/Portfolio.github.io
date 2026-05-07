@@ -66,7 +66,7 @@ function getRouteLabel(route: string): string {
 function getPlaceholder(route: string, voiceMode: boolean): string {
   if (voiceMode) return 'Voice is on. Type or tap the mic...'
   if (route === '/') return 'Ask for a shortlist, a page tour, or a project...'
-  if (route === '/work') return 'Ask for a filter, a shortlist, or a project...'
+  if (route === '/work') return 'Ask for Playlist, Index, Arc, a shortlist, or a project...'
   if (route === '/about') return 'Ask about roles, practice, or the Mentra story...'
   return 'Ask for the challenge, process, or why it matters...'
 }
@@ -76,7 +76,7 @@ function getRouteIntro(route: string, voiceMode: boolean): string {
     route === '/'
       ? 'Use this like a guide. I can shortlist the work, open a project, or walk the page.'
       : route === '/work'
-        ? 'I can filter the archive, point to the strongest three, or open any case study.'
+        ? 'I can switch between Editorial, Playlist, Index, and Arc, filter the archive, point to the flagship work, or open any case study.'
         : route === '/about'
           ? 'Ask about roles, working style, or how the design and engineering work connect.'
           : 'Ask for the challenge, the key decision, or why this project matters.'
@@ -85,8 +85,8 @@ function getRouteIntro(route: string, voiceMode: boolean): string {
 }
 
 function getArrivalPrompt(route: string): string {
-  if (route === '/') return 'Home ready. Ask for the strongest three or tour this page.'
-  if (route === '/work') return 'Work ready. Ask for a filter, a shortlist, or a project.'
+  if (route === '/') return 'Home ready. Ask for the flagship work or tour this page.'
+  if (route === '/work') return 'Work ready. Ask for Playlist, Index, Arc, a shortlist, or a project.'
   if (route === '/about') return 'About ready. Ask about roles, practice, or the Mentra story.'
   return `${getRouteLabel(route)} ready. Ask for the challenge, process, or a tour.`
 }
@@ -95,7 +95,7 @@ function getUtilityChips(route: string, voiceMode: boolean): string[] {
   const voiceChip = voiceMode ? 'Voice off' : 'Voice on'
 
   if (route === '/') return [voiceChip, 'Tour this page', 'Open Mentra']
-  if (route === '/work') return [voiceChip, 'Tour this page', 'Show AI work']
+  if (route === '/work') return [voiceChip, 'Playlist view', 'Arc view']
   if (route === '/about') return [voiceChip, 'Tour this page', 'Role fit']
 
   return [voiceChip, 'Tour this page']
@@ -525,6 +525,8 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
     }
 
     const action = getResponseAction(trimmed, route)
+    const targetPath = action.path ?? (action.slug !== undefined ? (action.slug ? `/${action.slug}` : '/') : null)
+    const targetRoute = action.routePath ?? (action.slug !== undefined ? (action.slug ? `/${action.slug}` : '/') : null)
     const isGuidedRequest = GUIDED_RE.test(normalized)
     const wantsNavigation = isGuidedRequest || NAVIGATE_RE.test(normalized)
 
@@ -555,27 +557,25 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
       return
     }
 
-    if (TOUR_KEYWORD_RE.test(normalized) && action.slug) {
-      const path = `/${action.slug}`
-      if (route === path) {
+    if (TOUR_KEYWORD_RE.test(normalized) && targetPath && targetRoute) {
+      if (route === targetRoute) {
         await runTour(getTourSteps(route))
       } else {
         const textResponse = `Opening${action.label ? ` **${action.label}**` : ''}. I’ll give you the tour there.`
         pushMessage('agent', textResponse, true)
         await speakIfNeeded(textResponse, 'confirm')
-        pendingTourRoute.current = path
-        navigate(path)
+        pendingTourRoute.current = targetRoute
+        navigate(targetPath)
       }
       return
     }
 
-    if (action.slug && isGuidedRequest && route !== `/${action.slug}` && (action.type === 'scroll' || action.type === 'navigate')) {
-      const path = action.slug ? `/${action.slug}` : '/'
+    if (targetPath && targetRoute && isGuidedRequest && route !== targetRoute && (action.type === 'scroll' || action.type === 'navigate')) {
       const textResponse = `Opening${action.label ? ` **${action.label}**` : ''}. I’ll walk you through it once we land there.`
       pushMessage('agent', textResponse, true)
       await speakIfNeeded(textResponse, 'confirm')
-      pendingTourRoute.current = path
-      navigate(path)
+      pendingTourRoute.current = targetRoute
+      navigate(targetPath)
       return
     }
 
@@ -621,13 +621,38 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
       return
     }
 
-    if (action.type === 'navigate' && action.slug !== undefined && wantsNavigation) {
-      const path = action.slug ? `/${action.slug}` : '/'
+    if (action.type === 'navigate' && targetPath && targetRoute === route) {
+      const textResponse = `Switching to${action.label ? ` **${action.label}**` : ' that view'}.`
+      pushMessage('agent', textResponse, true)
+      await speakIfNeeded(textResponse, 'confirm')
+      navigate(targetPath)
+      window.setTimeout(() => {
+        const target = resolveElement(action.selectors)
+        if (target) highlightElement(target)
+
+        if (action.explanation) {
+          pushMessage('agent', action.explanation, true)
+          void speakIfNeeded(action.explanation, 'reply')
+        }
+      }, 360)
+      setChips(composeChips(route, questionCount.current, trimmed))
+      return
+    }
+
+    if (action.type === 'navigate' && targetPath && wantsNavigation) {
       const textResponse = `Opening${action.label ? ` **${action.label}**` : ''}.${isGuidedRequest ? ' I’ll guide it once we land there.' : ''}`
       pushMessage('agent', textResponse, true)
       await speakIfNeeded(textResponse, 'confirm')
-      pendingTourRoute.current = isGuidedRequest ? path : null
-      navigate(path)
+      if (targetRoute && !isGuidedRequest && action.selectors?.length) {
+        pendingFocus.current = {
+          path: targetRoute,
+          selectors: action.selectors,
+          label: action.label,
+          explanation: action.explanation,
+        }
+      }
+      pendingTourRoute.current = isGuidedRequest ? (targetRoute || null) : null
+      navigate(targetPath)
       return
     }
 

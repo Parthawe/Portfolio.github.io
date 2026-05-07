@@ -19,10 +19,10 @@ export default function MentraMiniAppsPage() {
     <>
       <Helmet>
         <title>Mentra MiniApp Store &middot; Parth Pawar</title>
-        <meta name="description" content="Designing the first app store for smart glasses. Voice-first discovery, intent-based browsing, and a developer platform that turns a gadget into a platform." />
+        <meta name="description" content="Designing the first app ecosystem for smart glasses. Voice-first discovery, captions, translation, notes, Mentra AI, and the platform surfaces that turn hardware into a real product." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra MiniApp Store &middot; Parth Pawar" />
-        <meta property="og:description" content="The first app store for smart glasses. Voice-first discovery, developer SDK, and the economics of face-worn computing." />
+        <meta property="og:description" content="The first app ecosystem for smart glasses. Voice-first discovery, developer SDK, and the product patterns behind captions, translation, notes, and Mentra AI." />
         <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" />
       </Helmet>
 
@@ -36,7 +36,7 @@ export default function MentraMiniAppsPage() {
           backLabel="Back to Work"
           tags={['Product Design', 'AI Wearables', 'Platform Design', 'Developer Experience']}
           title="Mentra MiniApp Store"
-          subtitle="Designing the first app store for smart glasses &mdash; voice-first discovery, intent-based browsing, and a developer platform that turns a $299 gadget into an open ecosystem"
+          subtitle="Designing the first app ecosystem for smart glasses &mdash; voice-first discovery, intent-based browsing, and the platform patterns that let captions, translation, notes, Mentra AI, and future utilities live on the same pair of glasses"
           info={[
             { label: 'Role', value: 'Head of UI/UX (sole designer)' },
             { label: 'Timeline', value: 'Q4 2025 &ndash; Q1 2026' },
@@ -55,15 +55,15 @@ export default function MentraMiniAppsPage() {
           sections={[
             {
               label: 'The Thesis',
-              content: 'The smartphone won because of the App Store. Smart glasses will too. Without a store, Mentra is a pair of glasses that does 10 things. With a store, it does anything a developer builds. That is the same shift that happened with iPhone in 2008. The hardware is the foundation. The store is the economy.',
+              content: 'The smartphone won because of the App Store. Smart glasses will too. Without a MiniApp ecosystem, Mentra is a pair of glasses that does a few clever demos. With one, it becomes a platform for captions, translation, notes, AI assistance, calling, utilities, and whatever developers build next. The hardware is the foundation. The ecosystem is the reason people come back.',
             },
             {
               label: 'The Problem',
-              content: 'You cannot scroll through 500 apps on a see-through display. The user is probably walking. They are not going to browse categories, read reviews, or compare screenshots. The store has to be smarter than the user\'s patience. It has to know what you need before you finish asking.',
+              content: 'You cannot scroll through 500 apps on a see-through display while walking down a street. Users are not going to browse categories, read reviews, or compare screenshots. The store has to be smarter than the user\'s patience, and the apps inside it have to support very different jobs without making the whole system feel inconsistent.',
             },
             {
               label: 'My Role',
-              content: 'I designed every surface of the MiniApp ecosystem: the on-glasses store experience, the companion app store, the developer portal, the SDK documentation, the submission flow, the review system, and the permission model. All while keeping the design language consistent with MentraOS and the companion app.',
+              content: 'I designed every surface of the MiniApp ecosystem: the on-glasses store experience, the companion app store, the developer portal, the SDK documentation, the submission flow, the review system, and the permission model. That meant designing both the marketplace and the patterns that let very different MiniApps coexist inside MentraOS without feeling like a random pile of features.',
             },
           ]}
         />
@@ -93,12 +93,38 @@ export default function MentraMiniAppsPage() {
           ]} />
         </CsSection>
 
+        <CsSection id="cs-app-mix" label="03 &mdash; App Mix" title="It Had To Support More Than One Kind of App">
+          <CsBody>
+            <p>This was never a store for one hero demo. By the time Mentra was taking shape as a real platform, the ecosystem already had to flex across very different jobs: live captions for accessibility, translation for travel, notes for meetings, Mentra AI for open-ended help, and the next wave of communication and utility MiniApps like calling, language helpers, Merge, and dashboard-style tools.</p>
+            <p>That breadth changed the design problem. I was not only designing install and discovery. I was designing the product grammar for MiniApps that behave differently: passive overlays, ongoing recorders, conversational tools, quick utilities, and social or collaborative surfaces. If the store treated all of them the same way, the system would feel generic. If it treated each one as a one-off, the platform would collapse under inconsistency.</p>
+          </CsBody>
+          <CsFeatureGrid features={[
+            { title: 'Captions', desc: 'The instant-value app. Open it and speech becomes text. It forced first-run speed, legibility, and a low-friction path from install to visible payoff.' },
+            { title: 'Translation', desc: 'The flagship wow moment. Live multi-language translation proved the glasses could solve a real problem in seconds, not after setup theater.' },
+            { title: 'Notes', desc: 'A longer-running utility for meetings and capture. It pushed on recording state, listening feedback, summaries, and the idea that search matters more than folders.' },
+            { title: 'Mentra AI', desc: 'The assistant layer. Not just another app, but a system-level capability that raised questions about routing, trust, context, and when the camera should or should not activate.' },
+            { title: 'Dash + Wayfinding', desc: 'Glanceable utilities and navigation-style surfaces proved the ecosystem could not be designed only for one-shot demo apps. Some jobs need to stay ambient and persistent.' },
+            { title: 'Meet + Merge + LinkLingo', desc: 'The next wave widened the platform thesis beyond accessibility into communication, calling, collaboration, and language support.' },
+          ]} />
+        </CsSection>
+
+        <section className="cs-section reveal" aria-label="Mentra MiniApp examples">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/appstore-translation.webp" alt="Translation MiniApp running on Mentra smart glasses with bilingual text overlay" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-notes.png" alt="Mentra Notes MiniApp showing recorded notes and summaries in the OS" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps view showing multiple installed MiniApps" loading="lazy" /></div>
+            </div>
+            <p className="cs-caption">The ecosystem had to make room for immediate overlays like Translation, longer-running utilities like Notes, and a growing installed-app surface that made breadth visible without making the OS feel cluttered.</p>
+          </div>
+        </section>
+
         {/* Translation demo */}
         <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-translation.webp" alt="Real-time English to Japanese translation through smart glasses with auto-scroll" />
         <p className="cs-caption">Live translation MiniApp: English to Japanese rendered directly on the glasses display with auto-scroll</p>
 
         {/* Developer Platform */}
-        <CsSection id="cs-developer" label="03 &mdash; Developer Platform" title="First MiniApp in 15 Minutes">
+        <CsSection id="cs-developer" label="04 &mdash; Developer Platform" title="First MiniApp in 15 Minutes">
           <CsBody>
             <p>The store is only as good as what developers build for it. I designed the developer experience with the same care as the consumer product, because a bad developer portal means an empty store.</p>
           </CsBody>
@@ -113,7 +139,7 @@ export default function MentraMiniAppsPage() {
         </CsSection>
 
         {/* Permission Model */}
-        <CsSection id="cs-permissions" label="04 &mdash; Permissions" title="Transparency by Design">
+        <CsSection id="cs-permissions" label="05 &mdash; Permissions" title="Transparency by Design">
           <CsBody>
             <p>Smart glasses with cameras and microphones require a higher bar of trust than any other device. Every MiniApp must declare exactly what sensors it accesses and why. Users see this declaration before install, not buried in settings after.</p>
           </CsBody>
@@ -140,7 +166,7 @@ export default function MentraMiniAppsPage() {
         </section>
 
         {/* Why It Matters */}
-        <CsSection id="cs-impact" label="05 &mdash; Impact" title="From Gadget to Platform">
+        <CsSection id="cs-impact" label="06 &mdash; Impact" title="From Gadget to Platform">
           <CsBody>
             <p>Meta Ray-Ban Gen 2 ships at $299 and does what Meta decides it does. Mentra ships at $299 and does what anyone with an idea builds for it. That is the difference between a gadget and a platform.</p>
             <p>The MiniApp Store launched with the Mentra Glass hardware. The developer portal is live. The SDK is open-source. The first third-party MiniApps are in review. The store is what makes the glasses worth putting on every morning, because tomorrow they will do something they could not do today.</p>
@@ -163,6 +189,7 @@ export default function MentraMiniAppsPage() {
         <BottomNav sections={[
           { id: 'cs-constraint', label: 'Constraint' },
           { id: 'cs-discovery', label: 'Discovery' },
+          { id: 'cs-app-mix', label: 'App Mix' },
           { id: 'cs-developer', label: 'Developer' },
           { id: 'cs-permissions', label: 'Permissions' },
           { id: 'cs-impact', label: 'Impact' },

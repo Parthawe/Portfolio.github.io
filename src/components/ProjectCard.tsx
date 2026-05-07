@@ -10,9 +10,13 @@ interface ProjectCardProps {
   slug: string
   name: string
   image: string
+  hoverMediaSrc?: string
+  hoverMediaKind?: 'image' | 'video'
+  hoverMediaAlt?: string
   tag?: string
   year?: string
   desc?: string
+  marqueeText?: string
   loading?: 'eager' | 'lazy'
   featured?: boolean
   tilt?: boolean
@@ -21,13 +25,18 @@ interface ProjectCardProps {
 }
 
 export default memo(function ProjectCard({
-  slug, name, image, tag, year, desc,
+  slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
+  tag, year, desc, marqueeText,
   loading = 'lazy', featured = false, tilt = true, tiltIntensity = 5,
   nda = false,
 }: ProjectCardProps) {
+  const project = projects.find(p => p.slug === slug)
+  const resolvedImage = project?.cardMockup || image
+  const resolvedAlt = project?.cardMockupAlt || name
   const safeTag = tag ? normalizeCopy(tag) : ''
   const safeYear = year ? normalizeCopy(year) : ''
   const safeDesc = desc ? normalizeCopy(desc) : ''
+  const safeMarqueeText = marqueeText ? normalizeCopy(marqueeText) : safeDesc
 
   const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget
@@ -46,18 +55,22 @@ export default memo(function ProjectCard({
   const handleImgError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
     const visual = e.currentTarget.closest('.pcard-visual')
     if (visual) visual.classList.add('loaded') // hide shimmer
+    const currentSrc = e.currentTarget.getAttribute('src') || ''
+    if (currentSrc !== image) {
+      e.currentTarget.setAttribute('src', image)
+      return
+    }
     e.currentTarget.style.display = 'none'
-  }, [])
+  }, [image])
 
   // Prefetch the page chunk on hover so navigation is instant
   const handlePrefetch = useCallback(() => {
-    const project = projects.find(p => p.slug === slug)
     if (project?.page) project.page() // triggers the dynamic import
-  }, [slug])
+  }, [project])
 
   const card = (
     <Link
-      className={`pcard figma-hover${featured ? ' pcard--featured' : ''}`}
+      className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${hoverMediaSrc ? ' pcard--has-hover-media' : ''}`}
       to={`/${slug}`}
       aria-label={`View ${name} project`}
       onMouseEnter={handlePrefetch}
@@ -78,21 +91,48 @@ export default memo(function ProjectCard({
         </div>
         <div className="pcard-visual">
           <img
-            src={image}
-            alt={name}
+            src={resolvedImage}
+            alt={resolvedAlt}
             loading={loading}
             decoding="async"
             fetchPriority={loading === 'eager' ? 'high' : 'auto'}
             onLoad={handleImgLoad}
             onError={handleImgError}
           />
+          {hoverMediaSrc ? (
+            hoverMediaKind === 'video' ? (
+              <video
+                className="pcard-hover-media"
+                muted
+                loop
+                playsInline
+                autoPlay
+                preload="metadata"
+                aria-hidden="true"
+              >
+                <source src={hoverMediaSrc} />
+              </video>
+            ) : (
+              <img
+                className="pcard-hover-media"
+                src={hoverMediaSrc}
+                alt=""
+                loading={loading}
+                decoding="async"
+                aria-hidden="true"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+            )
+          ) : null}
         </div>
         <h2 className="pcard-name">{name}</h2>
-        {safeDesc && (
+        {safeMarqueeText && (
           <div className="pcard-marquee">
             <div className="pcard-marquee-track">
-              <span>{safeDesc}, {safeDesc}, {safeDesc}, </span>
-              <span>{safeDesc}, {safeDesc}, {safeDesc}, </span>
+              <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
+              <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
             </div>
           </div>
         )}

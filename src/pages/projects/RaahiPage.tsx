@@ -35,7 +35,7 @@ export default function RaahiPage() {
           backLabel="Back to Work"
           tags={['UX', 'Research', 'Service Design', 'Mobile']}
           title="Raahi"
-          subtitle="Streamlining Pune's public transport system to make it accessible and convenient"
+          subtitle="A service system for Pune transit across app, kiosk, and in-vehicle guidance"
           info={[
             { label: 'Client', value: 'Pune Transportation' },
             { label: 'Scope', value: 'Service Design' },
@@ -55,17 +55,17 @@ export default function RaahiPage() {
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">Having lived in Pune for some years, I&rsquo;ve noticed that the public transport is a highly daunting service for me. Many of my peers share the same opinion as me that the buses were unreliable, confusing and intimidating to navigate through, especially if you&rsquo;re not a localite. With the growing population of outsiders in this city, a fellow designer friend and I thought of working on a passion project as to how this service can be improved to encourage people to use the public transport.<br /><br />Although the scope of this project was massive, I tried to tackle those issues which I had some level of understanding in, in context to digital solutions. I would like to come back to this project sometime, improve it further by extending beyond digital solutions and work on wayfinding and route improvements as well.<br /><br />Raahi (transl. traveller, good companion) is a one stop solution for users who want to commute and travel on a regular basis using local public transport. This service aims to interconnect and seamlessly guide a user through different modes of transport for their daily commute. The objective is to reduce the anxiety and effort one has to take to navigate their way through public transport.</span>
+              <span className="cs-label-row-val">Raahi began with a clear problem: Pune public transport was fragmented, intimidating, and especially hostile to riders who were not already fluent in the system. Instead of treating buses, kiosks, and in-vehicle displays as separate products, we treated the commute as one service. The concept connects route planning, ticketing, live guidance, and physical touchpoints so the rider spends less effort decoding the system and more effort getting where they need to go.</span>
             </div>
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">The Challenges</span>
-              <span className="cs-label-row-val">Narrowing down on the key difficulties and shortcomings of the current system in place<br />Creating an experience that simplifies the current complicated routes and holds the user&rsquo;s hand throughout their journey<br />Defining a simple set of visuals that differentiates and segregates complex sets of transit data</span>
+              <span className="cs-label-row-val">The challenge was not just route planning. It was trust. Riders needed one connected system that could simplify transfers, reduce wayfinding anxiety, and make complex transit data readable across app, kiosk, and onboard contexts.</span>
             </div>
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">I worked with a fellow designer friend on this project from the beginning till the end. I was responsible for:<br /><br />1. User Research: I conducted field visits and interviews as part of our primary research. My job was to gather insights and figure out the user behaviour and requirements from our observations.<br />2. Brand Identity: I further had to develop Brand Identity, Logo &amp; Design System to help a better UI.<br />3. User Interaction: Using the rules set &amp; the wireframes built by my fellow designer, I built an Usable Interface to help a better passenger experience.</span>
+              <span className="cs-label-row-val">I worked with one fellow designer from research through final concept. My lane covered field research, service insights, brand identity, and the interface layer that translated those findings into a usable transit experience.</span>
             </div>
 
             <div className="cs-label-row">

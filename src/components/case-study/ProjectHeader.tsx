@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import FigmaSelect from '../FigmaSelect'
 import { useDeferredMount } from '../../hooks/useDeferredMount'
-import { PROJECT_STORYLINES } from '../../data/projectStorylines'
 import { getProject } from '../../data/projects'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
@@ -55,7 +54,7 @@ export default function ProjectHeader({
   const showCategoryOrnament = useDeferredMount(canShowOrnament, { timeout: 1500, delayMs: 180 })
   const currentSlug = location.pathname.split('/').filter(Boolean).pop() ?? ''
   const project = getProject(currentSlug)
-  const story = PROJECT_STORYLINES[currentSlug]
+  const story = project?.storyline
   const derivedSummary = showHeaderSummary
     ? {
         problem: project?.summaryProblem ?? story?.challenge ?? null,

@@ -7,9 +7,8 @@
  *  3. Done — routes, cards, and listings are auto-generated.
  *
  * To mark a project as NDA:
- *  Set `nda: true`.
- *  Detailed content is excluded from public production builds unless
- *  `VITE_ENABLE_NDA_DETAILS=true` is set for an internal preview build.
+ *  Set `nda: true` and optionally `ndaPassword: 'custom'`.
+ *  Default password: "parth2026"
  */
 
 export interface Project {
@@ -19,6 +18,12 @@ export interface Project {
   name: string
   /** Card thumbnail image */
   image: string
+  /** Generated text-free cover used on card/listing surfaces */
+  cardMockup?: string
+  /** Alt text for the generated cover */
+  cardMockupAlt?: string
+  /** Optional explicit source image for generated card mockups */
+  cardMockupSource?: string
   /** Category tag shown on card (uppercase) */
   tag: string
   /** Year or year range */
@@ -31,6 +36,8 @@ export interface Project {
   page: () => Promise<{ default: React.ComponentType }>
   /** Mark as NDA / password-protected */
   nda?: boolean
+  /** Custom password (default: "parth2026") */
+  ndaPassword?: string
   /** Show in featured grid on homepage */
   featured?: boolean
   /** Featured order (lower = first) */
@@ -65,6 +72,19 @@ export interface Project {
   summaryStats?: { label: string; value: string }[]
   /** Optional short testimonial or stakeholder quote */
   testimonial?: { quote: string; cite: string }
+  /** Homepage hover media */
+  hoverMedia?: { src: string; kind?: 'image' | 'video'; alt?: string }
+  /** Alternate preview media for work-page modes */
+  previewMedia?: {
+    playlist?: { src: string; alt: string }
+    library?: { src: string; alt: string }
+  }
+  /** Shared project story arc used by headers, agent, and summaries */
+  storyline?: {
+    challenge: string
+    approach: string
+    result: string
+  }
 }
 
 export type ProjectCategory = 'ux' | 'ai' | 'creative' | 'install' | 'brand' | 'good'
@@ -98,6 +118,8 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
    ────────────────────────────────────────────────────────────────────── */
 
 const IMG = '/Portfolio.github.io/Assets/images'
+export const DEFAULT_NDA_PASSWORD = 'parth2026'
+const defaultCardMockup = (slug: string) => `/Portfolio.github.io/Assets/mockups/projects/${slug}.webp`
 
 export const projects: Project[] = [
   /* ── Featured (homepage hero grid) ── */
@@ -123,6 +145,7 @@ export const projects: Project[] = [
     summaryOutcome: 'Launched at $299 with onboarding cut from 12 steps to 4 and Batch 2 pre-orders 88% claimed.',
     summaryImage: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
     summaryImageAlt: 'Mentra companion app and app store interface on mobile and smart glasses.',
+    cardMockupSource: `${IMG}/mentra/photo-angle.webp`,
     summaryStats: [
       { label: 'Price at launch', value: '$299' },
       { label: 'Batch 2 claimed', value: '88%' },
@@ -133,6 +156,25 @@ export const projects: Project[] = [
       quote: 'An app store on your face sounds absurd until you use it.',
       cite: 'Early beta tester',
     },
+    hoverMedia: {
+      src: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+      alt: 'Mentra app store and smart-glasses UI preview.',
+    },
+    previewMedia: {
+      playlist: {
+        src: '/Portfolio.github.io/Assets/images/mentra/glasses-angle.png',
+        alt: 'Angled perspective render of Mentra smart glasses.',
+      },
+      library: {
+        src: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+        alt: 'Mentra app store and smart-glasses UI preview.',
+      },
+    },
+    storyline: {
+      challenge: 'AI glasses usually feel like disconnected demos unless the OS, companion app, and ecosystem behave like one product.',
+      approach: 'I designed the operating system, companion app, and app distribution layer together so voice, glanceable UI, and developer workflows reinforced the same mental model.',
+      result: 'The story here is platform-level thinking across hardware, software, and distribution, not just a collection of wearable screens.',
+    },
   },
   {
     slug: 'mentra-miniapps',
@@ -140,26 +182,42 @@ export const projects: Project[] = [
     image: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
     tag: 'PLATFORM DESIGN',
     year: '2025\u201326',
-    desc: 'First app store for smart glasses \u2014 voice-first discovery, intent-based browsing, developer SDK',
+    desc: 'Voice-first miniapp ecosystem for smart glasses spanning captions, translation, notes, AI, and utility apps',
     category: 'ai',
     page: () => import('../pages/projects/MentraMiniAppsPage'),
     archiveOrder: 2,
     tier: 'a',
     selected: true,
     selectedOrder: 6,
-    summaryProblem: 'Smart glasses needed an app ecosystem, but phone-style browse patterns collapse when the screen lives in peripheral vision and input is mostly voice.',
-    summaryRole: 'Designed the miniapp store, install flows, permissions model, and developer-facing experience inside the broader MentraOS platform.',
+    summaryProblem: 'Smart glasses needed an app ecosystem, but phone-style browse patterns collapse when the screen lives in peripheral vision and the apps range from captions and translation to notes, AI, and utilities.',
+    summaryRole: 'Designed the miniapp store, install flows, permissions model, and the platform patterns that let very different MiniApps coexist inside MentraOS.',
     summaryTeam: 'Sole designer partnering with 4 engineers, product, and the MentraOS open-source ecosystem.',
     summaryTimeline: 'Late 2025 to 2026',
-    summaryOutcome: 'Turned Mentra from a single-product device into a platform with voice-first discovery, transparent permissions, and a faster path from SDK to shipped app.',
+    summaryOutcome: 'Turned Mentra from a single-device demo into a platform with voice-first discovery, transparent permissions, and a credible first wave of apps people could actually use.',
     summaryImage: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
     summaryImageAlt: 'Mentra miniapp store and companion app surfaces showing voice-first discovery.',
+    cardMockupSource: `${IMG}/mentra/os-all-apps.png`,
     summaryStats: [
       { label: 'Display canvas', value: '640×400' },
       { label: 'SDK first app', value: '15 min' },
       { label: 'Primary input', value: 'Voice' },
-      { label: 'Browse model', value: 'Intent-led' },
+      { label: 'First-wave apps', value: 'Captions→AI' },
     ],
+    previewMedia: {
+      playlist: {
+        src: '/Portfolio.github.io/Assets/images/mentra/glasses-angle.png',
+        alt: 'Angled perspective render of Mentra smart glasses representing the MiniApps platform.',
+      },
+      library: {
+        src: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+        alt: 'Mentra miniapp store and companion app surfaces showing voice-first discovery.',
+      },
+    },
+    storyline: {
+      challenge: 'A wearable app store cannot rely on phone-era browse patterns because attention is shorter and input is constrained.',
+      approach: 'I framed discovery around voice, intent, and lightweight developer primitives so mini-apps felt native to glasses instead of copied from mobile.',
+      result: 'This turns hardware into an ecosystem and shows product strategy, interaction design, and platform thinking in one system.',
+    },
   },
   {
     slug: 'transfi-project',
@@ -173,6 +231,7 @@ export const projects: Project[] = [
     featured: true,
     featuredOrder: 2,
     nda: true,
+    ndaPassword: DEFAULT_NDA_PASSWORD,
     loading: 'eager',
     tier: 's',
     selected: true,
@@ -194,6 +253,16 @@ export const projects: Project[] = [
       quote: 'You are solving a big problem. And Asia is very attractive for us.',
       cite: 'Top 5 DeFi player',
     },
+    hoverMedia: {
+      src: '/Portfolio.github.io/Assets/featured/transfi-hover.gif',
+      kind: 'image',
+      alt: 'Animated TransFi dashboard preview.',
+    },
+    storyline: {
+      challenge: 'Cross-border crypto payments were operationally powerful but cognitively heavy, especially across six markets with different expectations and constraints.',
+      approach: 'I simplified the flows around trust, clarity, and speed, then aligned the product language across partner, merchant, and user touchpoints.',
+      result: 'The case study ties design to transaction confidence and scale, which is what makes a payment system feel credible.',
+    },
   },
   {
     slug: 'zentipay',
@@ -205,6 +274,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/ZentipayPage'),
     nda: true,
+    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 2,
     tier: 'a',
     loading: 'eager',
@@ -223,11 +293,17 @@ export const projects: Project[] = [
       { label: 'Research countries', value: '5' },
       { label: 'Project span', value: '15 wks' },
     ],
+    storyline: {
+      challenge: 'Super-apps fail when every feature fights for attention and the core money flow becomes harder instead of easier.',
+      approach: 'I treated the product as a system, prioritizing the transaction path first and then layering adjacent utility around it without breaking the core experience.',
+      result: 'This positions the work as end-to-end fintech product design with measurable impact, not just feature assembly.',
+    },
   },
   {
     slug: 'clawed-chat',
     name: 'Clawed',
     image: '/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-3d.png',
+    cardMockupSource: '/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-3d.png',
     tag: 'AI ASSISTANT',
     year: '2026',
     desc: 'AI assistant with receipts for every action — safety-first on glasses and web',
@@ -254,6 +330,15 @@ export const projects: Project[] = [
     testimonial: {
       quote: 'It is like a volume knob for how much I trust the AI right now.',
       cite: 'Stakeholder feedback during internal review',
+    },
+    hoverMedia: {
+      src: '/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp',
+      alt: 'Clawed AI assistant launch visual.',
+    },
+    storyline: {
+      challenge: 'Most AI assistants look capable until the user asks what the system actually did or whether it can be trusted.',
+      approach: 'I designed the assistant around receipts, action traceability, and controlled delegation so every step stayed legible.',
+      result: 'The project signals judgment around safety, transparency, and applied AI, which is what serious AI product work now demands.',
     },
   },
 
@@ -284,6 +369,11 @@ export const projects: Project[] = [
       { label: 'Adoption', value: '87%' },
       { label: 'Decision accuracy', value: '94%' },
     ],
+    storyline: {
+      challenge: 'Executives were drowning in meetings, but summary tools often stop at note-taking and miss the decision layer.',
+      approach: 'I focused the product on synthesis, follow-through, and adoption so the AI felt like a working layer for leadership rather than another dashboard.',
+      result: 'The project shows I can translate AI capability into concrete time savings and operational behavior change.',
+    },
   },
   {
     slug: 'org-dashboard',
@@ -291,46 +381,54 @@ export const projects: Project[] = [
     image: `${IMG}/org-dashboard.png`,
     tag: 'B2B SAAS',
     year: '2026',
-    desc: 'SaaS giving AI agents organizational context — dual-user admin and agent design',
+    desc: 'Dual-surface admin system giving AI agents organizational context without confusing human operators',
     category: 'ux',
     page: () => import('../pages/projects/OrgDashboardPage'),
     archiveOrder: 21,
     tier: 'b',
+    hidden: true,
   },
   {
     slug: 'cuetv',
     name: 'CueTV',
     image: `${IMG}/cuetv.jpg`,
     tag: 'PRODUCT DESIGN',
-    year: '2022',
-    desc: 'OTT platform with a retargeting system generating 30K+ ad variations',
+    year: '2021',
+    desc: 'Designed a niche arts OTT platform and retargeting system for opera, ballet, and classical audiences',
     category: 'ux',
     page: () => import('../pages/projects/CueTvPage'),
     nda: true,
+    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 9,
     tier: 'c',
     summaryProblem: 'Arts streaming audiences browse differently from mainstream OTT audiences, and the platform also needed a growth system that could scale across fragmented segments.',
     summaryRole: 'Product designer across audience research, browsing flows, platform structure, and ad-creative system thinking.',
     summaryTeam: 'Worked with product and growth stakeholders inside a niche streaming context.',
-    summaryTimeline: '2022',
+    summaryTimeline: '2021',
     summaryOutcome: 'Combined product design and retargeting logic into a platform strategy that supported discovery and produced 30K+ ad variations.',
     summaryStats: [
       { label: 'Ad variations', value: '30K+' },
       { label: 'Domain', value: 'Arts OTT' },
       { label: 'Focus', value: 'Discovery + growth' },
-      { label: 'Year', value: '2022' },
+      { label: 'Year', value: '2021' },
     ],
+    storyline: {
+      challenge: 'A niche arts streaming product could not borrow generic OTT patterns because expert viewers search differently and growth had to reach fragmented audiences.',
+      approach: 'I paired audience research with a scalable ad and discovery system, then tightened the platform experience around precise browsing and playback.',
+      result: 'The project shows research, growth thinking, and product design working as one service system.',
+    },
   },
   {
     slug: 'healthapp',
     name: 'Health App',
     image: '/Portfolio.github.io/Assets/Projects/health-app/photos/home-screen.png',
     tag: 'UX DESIGN',
-    year: '2024',
-    desc: 'Reimagining Google Tasks with health integration — productivity meets personal well-being',
+    year: '2023',
+    desc: 'Health-aware task planner using sleep, food, movement, and energy signals to shape daily scheduling',
     category: 'ux',
     page: () => import('../pages/projects/HealthAppPage'),
     nda: true,
+    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 23,
     tier: 'c',
     summaryProblem: 'Task managers optimize output, but they rarely account for whether the schedule itself is harmful to the person following it.',
@@ -344,6 +442,11 @@ export const projects: Project[] = [
       { label: 'Format', value: 'Product concept' },
       { label: 'Year', value: '2024' },
     ],
+    storyline: {
+      challenge: 'Productivity tools optimize output, but they rarely intervene when the schedule itself is unhealthy.',
+      approach: 'I reframed planning as a wellness-aware system, where time, recovery, and behavior patterns influence the task flow itself.',
+      result: 'The page reads as a product hypothesis with a clear point of view, not just a visual redesign exercise.',
+    },
   },
   {
     slug: 'ibm',
@@ -351,7 +454,7 @@ export const projects: Project[] = [
     image: '/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
     tag: 'HEALTHCARE AI',
     year: '2020',
-    desc: 'Secure genomic data transfer to identify life expectancy of cancer patients',
+    desc: 'Explored encrypted genomic workflows for cancer prognosis without exposing raw patient data',
     category: 'ux',
     page: () => import('../pages/projects/IbmPage'),
     archiveOrder: 25,
@@ -376,7 +479,7 @@ export const projects: Project[] = [
     image: `${IMG}/ballah-code.png`,
     tag: 'AI DEV TOOLS',
     year: '2026',
-    desc: 'AI-native IDE treating AI as a senior engineer — designed the UX for 17 production tools',
+    desc: 'Designed an AI-native IDE with 17 production tools and a senior-engineer interaction model',
     category: 'ai',
     page: () => import('../pages/projects/BallahCodePage'),
     archiveOrder: 17,
@@ -386,9 +489,10 @@ export const projects: Project[] = [
     slug: 'oncall-lens',
     name: 'OnCall Lens',
     image: `${IMG}/oncall-lens.png`,
+    cardMockupSource: `${IMG}/oncall-lens/hero.webp`,
     tag: 'AI WEARABLE',
     year: '2026',
-    desc: 'Sentry alert → Claude analysis → auto PR fix via smart glasses — built in 24 hours',
+    desc: 'Smart-glasses incident flow that turns Sentry alerts into AI triage and auto-generated PR fixes',
     category: 'ai',
     page: () => import('../pages/projects/OnCallLensPage'),
     archiveOrder: 19,
@@ -409,14 +513,21 @@ export const projects: Project[] = [
     slug: 'ai-voice',
     name: 'AI Voice',
     image: '/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-dna-builder.png',
+    cardMockupSource: `${IMG}/ai-voice.webp`,
     tag: 'CONVERSATIONAL AI',
     year: '2025',
-    desc: 'Enterprise voice selection with emotional intelligence — A/B tested with 7 users',
+    desc: 'Redesigned enterprise AI voice selection around tone, context, and emotional fit',
     category: 'ai',
     page: () => import('../pages/projects/AiVoicePage'),
     nda: true,
+    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 32,
     tier: 'b',
+    storyline: {
+      challenge: 'Enterprise voice tooling often reduces voice choice to a superficial brand setting instead of a functional design decision.',
+      approach: 'I structured selection around emotional fit, scenario testing, and confidence in how a voice behaves across real customer moments.',
+      result: 'The work shows sensitivity to conversation design, evaluation criteria, and the productization of an emerging AI capability.',
+    },
   },
 
   /* ── Design for Good ── */
@@ -446,14 +557,20 @@ export const projects: Project[] = [
       { label: 'Project span', value: '3 mo' },
       { label: 'Design lanes', value: 'Service + UI' },
     ],
+    storyline: {
+      challenge: 'Public transit systems fail when information breaks across kiosks, vehicles, and mobile touchpoints instead of acting like one journey.',
+      approach: 'I designed the service as a connected system, aligning the app, in-vehicle guidance, and physical interfaces around the rider’s mental model.',
+      result: 'The case study shows service design range and the ability to unify digital and environmental touchpoints.',
+    },
   },
   {
     slug: 'the-point-cdc',
     name: 'The Point CDC',
     image: '/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.png',
+    cardMockupSource: `${IMG}/the-point-cdc.webp`,
     tag: 'COMMUNITY',
-    year: '2024',
-    desc: 'Redesigned digital platform for a Bronx community development nonprofit',
+    year: '2025',
+    desc: 'Rebuilt a Bronx nonprofit platform to make community programs, spaces, and services easier to navigate',
     category: 'good',
     page: () => import('../pages/projects/ThePointCdcPage'),
     archiveOrder: 7,
@@ -463,9 +580,10 @@ export const projects: Project[] = [
     slug: 'office-of-diversity',
     name: 'Office of Diversity',
     image: '/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/responsive-preview.png',
+    cardMockupSource: '/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/research-wall.webp',
     tag: 'EDUCATION',
     year: '2024',
-    desc: 'Interactive IDBEA report for NYU Tisch — WCAG 2.1 AA accessible',
+    desc: 'Turned NYU Tisch’s IDBEA report into an accessible interactive web experience',
     category: 'good',
     page: () => import('../pages/projects/OfficeOfDiversityPage'),
     archiveOrder: 30,
@@ -473,7 +591,7 @@ export const projects: Project[] = [
     summaryProblem: 'Institutional reports often contain important public information, but their PDF-first format makes the content hard to navigate, compare, and trust.',
     summaryRole: 'Designer translating the IDBEA report into an accessible digital experience with clearer structure and interaction.',
     summaryTeam: 'Worked within an NYU Tisch context with accessibility as a core requirement.',
-    summaryTimeline: '2024',
+    summaryTimeline: '2025',
     summaryOutcome: 'Turned a static report into a WCAG-aware interactive experience that made the findings easier to explore and absorb.',
     summaryStats: [
       { label: 'Standard', value: 'WCAG 2.1 AA' },
@@ -511,11 +629,21 @@ export const projects: Project[] = [
       { label: 'Exhibitions', value: '2' },
       { label: 'Instrument scale', value: '1.2m tall' },
     ],
+    hoverMedia: {
+      src: '/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/755.png',
+      alt: 'Jugalbandi installation performance view.',
+    },
+    storyline: {
+      challenge: 'AI music collaborations often feel like novelty unless the machine responds with enough nuance to sustain a real duet.',
+      approach: 'I built the instrument around human improvisation, giving the neural system a performable role instead of a decorative one.',
+      result: 'The case study demonstrates interaction design beyond screens, where behavior, timing, and embodiment carry the experience.',
+    },
   },
   {
     slug: 'keyboard-project',
     name: 'BreakGen',
     image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-angle.png',
     tag: 'ITP THESIS',
     year: '2025',
     desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors',
@@ -538,14 +666,19 @@ export const projects: Project[] = [
       { label: 'Build stack', value: 'React + 3D' },
       { label: 'Fabrication tools', value: '4' },
     ],
+    storyline: {
+      challenge: 'Custom keyboard creation is split across expert-only tools, which keeps most people outside the making process.',
+      approach: 'I collapsed layout, generative design, and fabrication prep into one guided flow so intent could move directly toward a buildable object.',
+      result: 'It reads as a true design-engineering thesis, where concept, system, and prototype all reinforce each other.',
+    },
   },
   {
     slug: 'vj-software',
-    name: 'VJ Software',
+    name: 'VJ Parivar',
     image: `${IMG}/vj.jpg`,
     tag: 'UX DESIGN',
     year: '2022',
-    desc: 'Audio-reactive visual performance tool — 5 competitor analysis, 2 personas',
+    desc: 'Reframed residential parking as a spatial decision instead of a back-office booking flow',
     category: 'ux',
     page: () => import('../pages/projects/VjSoftwarePage'),
     archiveOrder: 18,
@@ -579,12 +712,17 @@ export const projects: Project[] = [
     name: 'Shuffle',
     image: `${IMG}/shuffle.jpg`,
     tag: 'INTERACTIVE',
-    year: '2024',
+    year: '2023',
     desc: 'Weight-sensor LED grid where players compete through physical strategy',
     category: 'creative',
     page: () => import('../pages/projects/ShufflePage'),
     archiveOrder: 12,
     tier: 'b',
+    storyline: {
+      challenge: 'Physical games fall flat when the rules are simple but the body does not actually matter.',
+      approach: 'I designed the LED grid and weight-sensing interaction so strategy emerged from movement, timing, and social pressure.',
+      result: 'It positions the project as embodied game design, where mechanics and hardware are part of the narrative.',
+    },
   },
   {
     slug: 'making-of-time',
@@ -592,7 +730,7 @@ export const projects: Project[] = [
     image: '/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
     tag: 'PHYSICAL COMPUTING',
     year: '2024',
-    desc: 'Sundial → mechanical watch → software clock — building three ways to measure time',
+    desc: 'Built three timekeeping systems, from sundial to mechanical watch to software clock',
     category: 'creative',
     page: () => import('../pages/projects/MakingOfTimePage'),
     archiveOrder: 13,
@@ -620,6 +758,11 @@ export const projects: Project[] = [
       { label: 'Core medium', value: 'Story + machine' },
       { label: 'Setting', value: 'Bio Art' },
     ],
+    storyline: {
+      challenge: 'Folktales are often consumed passively, which makes their material richness disappear.',
+      approach: 'I made the act of reading physical by linking the Norse story to grinding real salt as the narrative unfolds.',
+      result: 'This is strong interaction storytelling because the medium carries the metaphor, not just the text.',
+    },
   },
 
   {
@@ -814,7 +957,7 @@ export const projects: Project[] = [
     name: 'Black Hole',
     image: `${IMG}/black-hole.jpg`,
     tag: 'SCIENCE + FABRICATION',
-    year: '2026',
+    year: '2025',
     desc: 'Five physical models of black hole phenomena — exhibited at Horological Society of NY',
     category: 'install',
     page: () => import('../pages/projects/BlackHolePage'),
@@ -825,7 +968,7 @@ export const projects: Project[] = [
     summaryProblem: 'Black hole phenomena are intellectually famous but physically unintuitive, which makes most explanations memorable as trivia instead of understanding.',
     summaryRole: 'Designed and fabricated the full set of physical models, interactives, and exhibition-ready storytelling surfaces.',
     summaryTeam: 'Built with applied mathematics collaboration from Saee Joshi and mentorship from Jeffrey J Feddersen.',
-    summaryTimeline: '2026',
+    summaryTimeline: '2025',
     summaryOutcome: 'Turned five astrophysics concepts into tangible experiences for museum exhibition, making time dilation, lensing, and mergers legible through form.',
     summaryImage: '/Portfolio.github.io/Assets/Projects/black-hole-assets/time-trap.jpg',
     summaryImageAlt: 'Black Hole installation showing the time dilation physical model.',
@@ -835,6 +978,11 @@ export const projects: Project[] = [
       { label: 'Exhibition', value: 'HSNY' },
       { label: 'Disciplines', value: 'Science + build' },
     ],
+    storyline: {
+      challenge: 'Astrophysics concepts like lensing and time dilation are powerful, but they remain abstract for most audiences.',
+      approach: 'I built five physical models that let people encounter black hole behavior through form, mechanism, and observation.',
+      result: 'The project demonstrates that I can make complex science legible through fabrication and exhibition design.',
+    },
   },
   {
     slug: 'uv-light',
@@ -885,6 +1033,11 @@ export const projects: Project[] = [
       { label: 'Inputs', value: '16 keys' },
       { label: 'Format', value: 'Custom cabinet' },
     ],
+    storyline: {
+      challenge: 'Most indie arcade games treat the cabinet as a container, not as part of the game logic.',
+      approach: 'I designed the controllers, feedback, and pacing together so the physical build shaped the competitive sushi ritual.',
+      result: 'The project proves I can choreograph interaction across software, hardware, and social play.',
+    },
   },
   {
     slug: 'revolving-stage',
@@ -892,19 +1045,26 @@ export const projects: Project[] = [
     image: `${IMG}/revolving-stage.jpg`,
     tag: 'FABRICATION',
     year: '2022',
-    desc: '15 ft. rotating stage supporting 250+ kgs — engineered for live theatre',
+    desc: 'Engineered a 15-foot rotating theatre stage built to carry performers and scenery safely',
     category: 'install',
     page: () => import('../pages/projects/RevolvingStagePage'),
     archiveOrder: 11,
     tier: 'b',
+    summaryProblem: 'The production needed one stage device that could shift scenes quickly in full view of the audience without sacrificing actor safety or structural stability.',
+    summaryRole: 'Designed and engineered the rotating platform, axle system, and stage behavior for live performance.',
+    summaryTimeline: '2022',
+    summaryOutcome: 'Built a 15 ft. revolving stage capable of supporting 250+ kgs while enabling seamless scene transitions during live theatre.',
+    summaryImage: '/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/isometric-stage.png',
+    summaryImageAlt: 'Isometric revolving stage rendering showing the rotating platform and staged scene.',
   },
   {
     slug: 'moniac-machine',
     name: 'Moniac Machine',
     image: '/Portfolio.github.io/Assets/Projects/Moniac/photos/hero-cabinet.png',
+    cardMockupSource: '/Portfolio.github.io/Assets/Projects/Moniac/photos/original-moniac.png',
     tag: 'GAME DESIGN',
     year: '2024',
-    desc: 'Board game based on a 1949 hydraulic economic computer — strategy meets education',
+    desc: 'Turned a 1949 hydraulic economic computer into a playable strategy game about systems',
     category: 'install',
     page: () => import('../pages/projects/MoniacMachinePage'),
     archiveOrder: 15,
@@ -942,6 +1102,7 @@ export const projects: Project[] = [
     slug: 'mentra-brand',
     name: 'Mentra Brand & Packaging',
     image: '/Portfolio.github.io/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/Projects/mentra-brand/photos/product-flat.webp',
     tag: 'BRAND & PACKAGING',
     year: '2025–26',
     desc: 'End-to-end brand identity and packaging for AI smart glasses — logo, box, booklet, ads, and 24 social templates',
@@ -964,6 +1125,11 @@ export const projects: Project[] = [
       { label: 'Social templates', value: '24' },
       { label: 'Render families', value: '3' },
     ],
+    storyline: {
+      challenge: 'New hardware brands need to feel credible before the product is even in someone’s hand.',
+      approach: 'I designed the identity, packaging, printed matter, and launch assets as one coherent system around clarity, confidence, and restraint.',
+      result: 'It shows I can carry a product story from industrial object to shelf experience to launch surface.',
+    },
   },
   {
     slug: 'tedx',
@@ -971,7 +1137,7 @@ export const projects: Project[] = [
     image: `${IMG}/tedx.png`,
     tag: 'ART DIRECTION',
     year: '2021',
-    desc: 'Art directed a 65-person team to build a parallax cityscape stage for 800+ attendees',
+    desc: 'Art directed a 65-person team to build a parallax cityscape stage for 800-plus attendees',
     category: 'brand',
     page: () => import('../pages/projects/TedxPage'),
     archiveOrder: 6,
@@ -983,7 +1149,7 @@ export const projects: Project[] = [
     image: `${IMG}/code-for-build.jpg`,
     tag: 'UX DESIGN',
     year: '2021',
-    desc: 'Brand system and developer platform for Istanbul open-source startup',
+    desc: 'Designed the brand system and developer-facing product surface for an open-source startup',
     category: 'ux',
     page: () => import('../pages/projects/CodeForBuildPage'),
     archiveOrder: 24,
@@ -1029,6 +1195,11 @@ export const projects: Project[] = [
   },
 ]
 
+for (const project of projects) {
+  project.cardMockup ??= defaultCardMockup(project.slug)
+  project.cardMockupAlt ??= `${project.name} project mockup`
+}
+
 /* ──────────────────────────────────────────────────────────────────────
    Helper selectors
    ────────────────────────────────────────────────────────────────────── */
@@ -1046,7 +1217,6 @@ export const selectedWorkProjects = projects
 /** Homepage follow-on grid after flagship work */
 export const homepageSelectedProjects = selectedWorkProjects
   .filter(p => !p.featured)
-  .slice(0, 6)
 
 /** Remaining visible work shown below the fold on /work */
 export const archiveWorkProjects = projects
@@ -1098,4 +1268,12 @@ export function projectsByCategory(cat: ProjectCategory): Project[] {
 /** Find a single project by slug */
 export function getProject(slug: string): Project | undefined {
   return projects.find(p => p.slug === slug)
+}
+
+export function getNdaStorageKey(slug: string): string {
+  return `nda-unlock-${slug}`
+}
+
+export function getProjectNdaPassword(slug: string): string {
+  return getProject(slug)?.ndaPassword || DEFAULT_NDA_PASSWORD
 }

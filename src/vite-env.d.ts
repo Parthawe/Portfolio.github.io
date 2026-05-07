@@ -3,7 +3,6 @@
 interface ImportMetaEnv {
   readonly VITE_ELEVENLABS_API_KEY?: string
   readonly VITE_ELEVENLABS_VOICE_ID?: string
-  readonly VITE_ENABLE_NDA_DETAILS?: string
 }
 
 interface ImportMeta {

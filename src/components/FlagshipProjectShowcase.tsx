@@ -69,6 +69,11 @@ export default function FlagshipProjectShowcase({
   const proofStats = project.summaryStats?.slice(0, variant === 'lead' ? 3 : 2) ?? []
   const primaryStat = proofStats[0]
   const secondaryStat = proofStats[1]
+  const orderedMeta = [
+    String(index + 1).padStart(2, '0'),
+    project.tag,
+    project.summaryTimeline || project.year,
+  ]
   const proofDetails = [
     { label: 'Role', value: compactRole },
     { label: 'Team', value: compactTeam },
@@ -97,11 +102,10 @@ export default function FlagshipProjectShowcase({
         <div className="wr-flagship-lead__copy">
           <div className="wr-flagship-lead__intro">
             <div className="wr-flagship-topline">
-              <span className="wr-flagship-count">{String(index + 1).padStart(2, '0')}</span>
-              <span className="wr-flagship-topline__item">Flagship</span>
-              <span className="wr-flagship-topline__item">{project.tag}</span>
-              <span className="wr-flagship-topline__item">{project.year}</span>
-              {project.nda ? <span className="wr-flagship-topline__item wr-flagship-topline__item--quiet">NDA summary</span> : null}
+              {orderedMeta.map((item) => (
+                <span key={item} className="wr-flagship-topline__item">{item}</span>
+              ))}
+              {project.nda ? <span className="wr-flagship-topline__item wr-flagship-topline__item--quiet">Summary only</span> : null}
             </div>
 
             <div className="wr-flagship-copyblock">
@@ -150,10 +154,7 @@ export default function FlagshipProjectShowcase({
           aria-label={`Open ${project.name} case study`}
         >
           <div className="wr-flagship-media__chrome">
-            <span className="wr-flagship-media__badge">Best place to start</span>
-            <span className="wr-flagship-media__badge wr-flagship-media__badge--quiet">
-              {compactRole || project.tag}
-            </span>
+            <span className="wr-flagship-media__eyebrow">Best place to start</span>
           </div>
 
           <img
@@ -206,12 +207,13 @@ export default function FlagshipProjectShowcase({
         <FigmaSelect />
       </Link>
 
-      <div className="wr-flagship-card__body">
-        <div className="wr-flagship-card__meta">
-          {cardMeta.map((item) => (
-            <span key={item}>{item}</span>
-          ))}
-        </div>
+          <div className="wr-flagship-card__body">
+            <div className="wr-flagship-card__meta">
+              <span className="wr-flagship-card__index">{String(index + 1).padStart(2, '0')}</span>
+              {cardMeta.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
 
         <div className="wr-flagship-card__copy">
           <h3 className="wr-flagship-card__title">{project.name}</h3>

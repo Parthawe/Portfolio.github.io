@@ -333,7 +333,7 @@ export default function TheOmakasePage() {
           backLabel="Back to Work"
           tags={['Creative Technology', 'Game Design']}
           title="The Omakase"
-          subtitle="2-player party arcade game where sushi chefs compete to serve customers"
+          subtitle="A two-player sushi arcade cabinet where the hardware, pacing, and social pressure are the game"
           info={[
             { label: 'Year', value: '2024' },
             { label: 'Role', value: 'Creator' },
@@ -367,8 +367,8 @@ export default function TheOmakasePage() {
         {/* Overview */}
         <CsSection label="Overview" title="Serve or Be Served">
           <CsBody>
-            <p>The Omakase is a 2-player competitive arcade game where two sushi chefs race to serve customers their feast before their opponent does. Built from scratch as a custom arcade cabinet, the game combines physical computing, game design, and fabrication into a single cohesive experience. Each player commands a set of 8 RGB LED buttons that shift color throughout gameplay, requiring fast pattern recognition, sharp reflexes, and a willingness to get a little messy under pressure.</p>
-            <p>The project was conceived as a thesis exploration into how physical arcade games can create spontaneous social moments between strangers. It was exhibited at the ITP Spring Show 2024 at NYU and later shown at Wonderville Brooklyn, an indie arcade bar in Bushwick.</p>
+            <p>The Omakase is a competitive two-player arcade game built around one constraint: two strangers should be able to walk up, understand the ritual fast, and start yelling at each other within a minute. The cabinet, RGB controllers, and timing rules are designed to make that social energy inevitable.</p>
+            <p>Instead of treating the cabinet as a shell around a screen, I designed the hardware, game pacing, and ingredient logic as one system. That is what makes the project work in public. The object teaches the game before a tutorial ever needs to.</p>
             <p><a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer">Play at vill4n3lle.itch.io/the-omakase &rarr;</a></p>
           </CsBody>
         </CsSection>

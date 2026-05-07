@@ -23,7 +23,7 @@
   text-align: center;
 }
 
-/* The circle — luminous frosted moon, clips behind text */
+/* The circle — inset frosted lens, clips behind text */
 .spotlight-circle {
   position: fixed;
   top: 0;
@@ -31,15 +31,25 @@
   z-index: 9995;
   border-radius: 50%;
   background:
-    radial-gradient(ellipse at 35% 30%, rgba(255,255,255,0.45) 0%, transparent 55%),
-    linear-gradient(160deg, var(--spotlight-light-start) 0%, var(--spotlight-light-end) 100%);
+    radial-gradient(circle at 50% 38%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 52%, transparent 72%),
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--spotlight-light-start) 78%, transparent) 0%,
+      color-mix(in srgb, var(--spotlight-light-end) 82%, transparent) 100%
+    );
   overflow: hidden;
   pointer-events: none;
   opacity: 0;
   will-change: transform;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px) saturate(0.92);
+  -webkit-backdrop-filter: blur(14px) saturate(0.92);
   box-shadow:
-    inset -6px -4px 18px rgba(0, 0, 0, 0.06),
-    0 0 50px rgba(160, 175, 220, 0.25);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 16px 28px rgba(255, 255, 255, 0.06),
+    inset 0 -22px 34px rgba(120, 130, 165, 0.16),
+    inset 14px 14px 28px rgba(0, 0, 0, 0.08),
+    inset -10px -10px 20px rgba(255, 255, 255, 0.04);
 }
 
 /* Behind text — dark on moon surface */
@@ -47,12 +57,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
+  box-sizing: border-box;
   padding: 1.5rem 0;
 }
 .spotlight-behind span {
   display: block;
+  width: 100%;
   font-family: var(--serif);
   font-size: clamp(1.5rem, 3.5vw, 2.4rem);
   font-weight: 300;
@@ -66,11 +76,21 @@
 /* Dark mode */
 [data-theme="dark"] .spotlight-circle {
   background:
-    radial-gradient(ellipse at 35% 30%, rgba(255,255,255,0.08) 0%, transparent 55%),
-    linear-gradient(160deg, var(--spotlight-dark-start) 0%, var(--spotlight-dark-end) 100%);
+    radial-gradient(circle at 50% 38%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 52%, transparent 72%),
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--spotlight-dark-start) 84%, transparent) 0%,
+      color-mix(in srgb, var(--spotlight-dark-end) 86%, transparent) 100%
+    );
+  border-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(0.94);
+  -webkit-backdrop-filter: blur(16px) saturate(0.94);
   box-shadow:
-    inset -6px -4px 18px rgba(0, 0, 0, 0.2),
-    0 0 50px rgba(80, 90, 130, 0.2);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 14px 28px rgba(255, 255, 255, 0.02),
+    inset 0 -26px 34px rgba(0, 0, 0, 0.22),
+    inset 16px 16px 30px rgba(0, 0, 0, 0.24),
+    inset -10px -10px 20px rgba(255, 255, 255, 0.02);
 }
 [data-theme="dark"] .spotlight-behind span {
   color: var(--spotlight-text-dark);
@@ -125,6 +145,13 @@ h3.text-highlight .text-highlight-text {
 
 /* ── Ambient audio toggle ─────────────────────────────── */
 
+.ambient-ui {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .ambient-toggle {
   display: flex;
   align-items: center;
@@ -160,6 +187,58 @@ h3.text-highlight .text-highlight-text {
 
 .ambient-toggle.is-active {
   color: var(--select-blue);
+}
+
+.ambient-note {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  right: 0;
+  width: clamp(12rem, 18vw, 15rem);
+  padding: 0.72rem 0.82rem 0.78rem;
+  border-radius: calc(var(--radius-lg) + 2px);
+  opacity: 0;
+  transform: translateY(-0.35rem);
+  pointer-events: none;
+  transition: opacity var(--dur-base), transform var(--dur-base);
+  color: var(--ink-70);
+  --surface-glass-bg: color-mix(in srgb, var(--glass-subtle-bg) 86%, var(--bg) 14%);
+  --surface-glass-border: color-mix(in srgb, var(--glass-subtle-border) 78%, var(--ink-08) 22%);
+  --surface-glass-shadow: 0 18px 34px rgba(18, 18, 18, 0.08);
+}
+
+.ambient-ui:is(:hover, :focus-within) .ambient-note,
+.ambient-ui.is-note-visible .ambient-note {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ambient-note__title {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--text-micro);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.ambient-note__body {
+  margin: 0.38rem 0 0;
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  color: var(--ink-70);
+}
+
+[data-theme="dark"] .ambient-note {
+  --surface-glass-bg: color-mix(in srgb, var(--glass-subtle-bg) 92%, var(--bg) 8%);
+  --surface-glass-border: color-mix(in srgb, var(--glass-subtle-border) 86%, var(--ink-12) 14%);
+  --surface-glass-shadow: 0 22px 40px rgba(0, 0, 0, 0.26);
+}
+
+.agent-presenting .ambient-note {
+  opacity: 0 !important;
+  transform: translateY(-0.35rem) !important;
+  pointer-events: none !important;
 }
 
 /* ambient wave animation handled by SVG SMIL */

@@ -60,6 +60,9 @@ const threadFragmentShader = /* glsl */ `
   uniform float uGlowWidth;
   uniform vec3 uColor;
   uniform float uBaseAlpha;
+  uniform float uGlowAlpha;
+  uniform float uTintLift;
+  uniform float uWhiteMixMax;
   varying float vProgress;
   void main() {
     float d = abs(vProgress - uGlowCenter);
@@ -69,11 +72,12 @@ const threadFragmentShader = /* glsl */ `
     float core = pow(glow, 3.0);          // tight bright center
     float halo = pow(glow, 0.6) * 0.3;    // wide soft aura
     float combined = core + halo;
-    // Nearly white everywhere, pure white at glow center
+    // Theme-tuned tint: light mode keeps more thread color instead of bleaching out
     vec3 white = vec3(1.0);
-    vec3 tint = mix(uColor * 0.5 + 0.5, white, combined * 0.85);
-    // Base visibility higher so threads are always faintly seen
-    float alpha = combined * 0.7 + uBaseAlpha;
+    vec3 tintBase = mix(uColor, white, uTintLift);
+    vec3 tint = mix(tintBase, white, combined * uWhiteMixMax);
+    // Base visibility higher in light mode so the resting thread remains readable
+    float alpha = combined * uGlowAlpha + uBaseAlpha;
     gl_FragColor = vec4(tint, alpha);
   }
 `;
@@ -90,7 +94,21 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
 
   const threadData = useMemo(() => {
     const result: ThreadInfo[] = [];
-    const color = dark ? new THREE.Color('#f0f4ff') : new THREE.Color('#d8e0f0');
+    const appearance = dark
+      ? {
+          color: new THREE.Color('#f0f4ff'),
+          baseAlpha: 0.04,
+          glowAlpha: 0.7,
+          tintLift: 0.5,
+          whiteMixMax: 0.85,
+        }
+      : {
+          color: new THREE.Color('#8b97aa'),
+          baseAlpha: 0.085,
+          glowAlpha: 0.64,
+          tintLift: 0.2,
+          whiteMixMax: 0.58,
+        };
 
     // Build connection pairs, nearest 2 neighbors per node (no full mesh)
     const vecs = positions.map(p => new THREE.Vector3(...p));
@@ -156,8 +174,11 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
           uniforms: {
             uGlowCenter: { value: 0 },
             uGlowWidth: { value: GLOW_WIDTH },
-            uColor: { value: color },
-            uBaseAlpha: { value: 0.04 },
+            uColor: { value: appearance.color },
+            uBaseAlpha: { value: appearance.baseAlpha },
+            uGlowAlpha: { value: appearance.glowAlpha },
+            uTintLift: { value: appearance.tintLift },
+            uWhiteMixMax: { value: appearance.whiteMixMax },
           },
           transparent: true,
           depthWrite: false,

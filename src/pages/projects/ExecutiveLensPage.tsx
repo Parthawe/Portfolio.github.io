@@ -40,7 +40,7 @@ export default function ExecutiveLensPage() {
           backLabel="Back to Work"
           tags={['AI', 'SaaS', 'Product Design', 'Data Visualization']}
           title="ExecutiveLens"
-          subtitle="AI-powered business intelligence for executives &mdash; from meeting insights to strategic recommendations in real time"
+          subtitle="Meeting intelligence that turns conversation into tracked decisions, follow-through, and executive signal"
           info={[
             { label: 'Role', value: 'Product Designer' },
             { label: 'Timeline', value: '2025\u201326' },
@@ -57,11 +57,11 @@ export default function ExecutiveLensPage() {
           sections={[
             {
               label: 'The Vision',
-              content: 'Executives spend 23 hours per week in meetings but retain only 10% of the decisions made. The rest dissolves into half-remembered conversations, buried Slack threads, and action items no one wrote down. ExecutiveLens.ai exists to fix that. It captures everything \u2014 every decision, every commitment, every insight \u2014 and surfaces what matters, when it matters, in a format built for leaders who do not have time to dig.',
+              content: 'Executives do not need another transcript tool. They need a system that remembers what was decided, who committed to what, and what changed because of it. ExecutiveLens turns meetings into operational memory instead of a stream of notes no one returns to.',
             },
             {
               label: 'My Role',
-              content: 'As the sole product designer, I owned the end-to-end experience: from the real-time meeting assistant that captures decisions as they happen, to the executive dashboard that turns raw meeting data into strategic clarity. I designed the interaction patterns, the data visualization system, the mobile experience, and the trust framework that makes executives comfortable letting an AI into their most sensitive conversations.',
+              content: 'I designed the product end to end: live meeting capture, decision extraction, dashboard narrative, and the trust layer that makes high-stakes AI summaries usable in leadership contexts. The core job was not showing more information. It was reducing noise without losing accountability.',
             },
           ]}
         />

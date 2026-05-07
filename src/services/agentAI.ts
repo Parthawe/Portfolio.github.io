@@ -25,12 +25,53 @@ export interface TourStep {
 export interface ResponseAction {
   type: 'scroll' | 'navigate' | 'filter' | 'none'
   slug?: string
+  path?: string
+  routePath?: string
   label?: string
   image?: string
   element?: HTMLElement | null
   filterKey?: 'all' | ProjectCategory
   selectors?: string[]
   explanation?: string
+}
+
+type WorkViewMode = 'editorial' | 'playlist' | 'library' | 'timeline'
+
+const WORK_VIEW_CONFIG: Record<WorkViewMode, {
+  aliases: string[]
+  path: string
+  label: string
+  selectors: string[]
+  explanation: string
+}> = {
+  editorial: {
+    aliases: ['editorial', 'default view', 'default mode', 'grid view', 'main work view'],
+    path: '/work',
+    label: 'Editorial view',
+    selectors: ['.work-group--selected', '.pcard-masonry', '.work-bottom-nav'],
+    explanation: 'Editorial is the reading-first mode. It starts with flagship work, then selected work, then the deeper archive.',
+  },
+  playlist: {
+    aliases: ['playlist', 'playlist view', 'spotify', 'spotify view', 'queue view', 'preview mode'],
+    path: '/work?view=playlist',
+    label: 'Playlist view',
+    selectors: ['.work-playlist-shell', '.work-playlist-stage', '.work-playlist-queue'],
+    explanation: 'Playlist is the comparison mode. The pinned preview keeps one project in focus while the queue lets you scan quickly.',
+  },
+  library: {
+    aliases: ['index', 'index view', 'library', 'library view', 'compact list', 'list view'],
+    path: '/work?view=library',
+    label: 'Index view',
+    selectors: ['.work-library-shell', '.work-library-nav', '.work-library-shelves'],
+    explanation: 'Index is the compact browse mode. It groups the work by discipline and makes the archive easier to scan without the large preview stage.',
+  },
+  timeline: {
+    aliases: ['arc', 'arc view', 'timeline', 'timeline view', 'trajectory', 'career arc'],
+    path: '/work?view=timeline',
+    label: 'Arc view',
+    selectors: ['.work-timeline-shell', '.work-timeline-rail', '.work-timeline-main'],
+    explanation: 'Arc is the progression view. It shows one anchor project per period, then the supporting work around it.',
+  },
 }
 
 const CATEGORY_ALIASES: Record<string, string[]> = {
@@ -87,8 +128,8 @@ const PROJECT_ALIASES: Record<string, string[]> = {
 }
 
 const STARTER_CHIPS: Record<string, string[]> = {
-  '/': ['Tour this page', 'Open Mentra', 'Start with three projects', 'Best research process'],
-  '/work': ['Tour this page', 'Show AI work', 'Start with three projects', 'Best research process'],
+  '/': ['Tour this page', 'Open Mentra', 'Start with flagship work', 'Best research process'],
+  '/work': ['Playlist view', 'Arc view', 'Start with flagship work', 'Best research process'],
   '/about': ['Tour this page', 'Role fit', 'Tell me about Mentra', 'Contact'],
   '/writing': ['Tour this page', 'Best article', 'Design philosophy', 'About Parth'],
 }
@@ -290,6 +331,32 @@ function getExplainedSectionAction(label: string, selectors: string[], explanati
   return { type: 'scroll', label, element, selectors, explanation }
 }
 
+function getCurrentWorkViewMode(): WorkViewMode {
+  if (typeof window !== 'undefined') {
+    const view = new URLSearchParams(window.location.search).get('view')
+    if (view === 'playlist' || view === 'library' || view === 'timeline') return view
+  }
+
+  if (typeof document !== 'undefined') {
+    if (document.querySelector('.work-playlist-shell')) return 'playlist'
+    if (document.querySelector('.work-library-shell')) return 'library'
+    if (document.querySelector('.work-timeline-shell')) return 'timeline'
+  }
+
+  return 'editorial'
+}
+
+function findWorkView(query: string): WorkViewMode | undefined {
+  const q = normalize(query)
+  if (!q) return undefined
+
+  return (Object.entries(WORK_VIEW_CONFIG) as Array<[WorkViewMode, (typeof WORK_VIEW_CONFIG)[WorkViewMode]]>)
+    .find(([, config]) => config.aliases.some(alias => {
+      const term = normalize(alias)
+      return term === q || (term.length >= 4 && q.includes(term))
+    }))?.[0]
+}
+
 function syncRoute(history: ChatHistory) {
   if (history.ctx.route !== history.route) {
     history.ctx.route = history.route
@@ -346,6 +413,27 @@ export function getChips(route: string, questionCount: number, lastQuestion?: st
 export function getResponseAction(question: string, route = ''): ResponseAction {
   const q = normalize(question)
   if (!q) return { type: 'none' }
+
+  if (route === '/work') {
+    const view = findWorkView(q)
+    if (view) {
+      const config = WORK_VIEW_CONFIG[view]
+      const currentView = getCurrentWorkViewMode()
+
+      if (currentView === view) {
+        return getExplainedSectionAction(config.label, config.selectors, config.explanation)
+      }
+
+      return {
+        type: 'navigate',
+        path: config.path,
+        routePath: '/work',
+        label: config.label,
+        selectors: config.selectors,
+        explanation: config.explanation,
+      }
+    }
+  }
 
   // Check for project match FIRST — if a specific project is named, don't filter
   const project = findProject(q)
@@ -405,7 +493,7 @@ export function getResponseAction(question: string, route = ''): ResponseAction 
 
   if (route === '/') {
     if (/\b(hero|top|opening)\b/.test(q)) return getExplainedSectionAction('Hero', ['#hero'], 'This is the opening frame. The object carries the first impression and the caption rail keeps the context light.')
-    if (/\b(featured|featured work|best work|start here|shortlist|start with three)\b/.test(q)) {
+    if (/\b(featured|featured work|best work|start here|shortlist|start with (?:three|four)|start with flagship)\b/.test(q)) {
       return getExplainedSectionAction('Featured work', ['.wr-featured-v2', '#works'], 'This is the flagship work layer. It should prove systems depth, research, and range before the archive appears.')
     }
     if (/\b(disciplines|categories|domains)\b/.test(q)) return getExplainedSectionAction('Disciplines', ['.wr-disciplines'], 'This row broadens the practice quickly. It shows the spread without forcing the homepage to become a directory.')
@@ -415,8 +503,9 @@ export function getResponseAction(question: string, route = ''): ResponseAction 
   }
 
   if (route === '/work') {
-    if (/\b(filters|categories|filter bar|pills)\b/.test(q)) return getExplainedSectionAction('Filters', ['.work-bottom-nav'], 'This rail is the fastest way to reshape the archive. It is the control surface for the whole page.')
-    if (/\b(grid|archive|cards)\b/.test(q)) return getExplainedSectionAction('Project grid', ['.pcard-masonry'], 'This is the full archive view. It works best after you decide whether you want flagship work, domain depth, or range.')
+    if (/\b(views|modes|browse modes|ways to browse|work modes)\b/.test(q)) return getExplainedSectionAction('Work views', ['.work-view-switch'], 'There are four ways to browse this page: Editorial for reading, Playlist for comparison, Index for compact scanning, and Arc for progression.')
+    if (/\b(filters|categories|filter bar|pills)\b/.test(q)) return getExplainedSectionAction('Controls', ['.work-playlist-sidebar', '.work-library-nav', '.work-timeline-rail', '.work-bottom-nav', '.work-view-switch'], 'The control surface changes with the view. Editorial uses the bottom filter rail, Playlist uses the left collections, Index uses the jump bar, and Arc uses the period rail.')
+    if (/\b(grid|archive|cards)\b/.test(q)) return getExplainedSectionAction('Project archive', ['.work-playlist-queue', '.work-library-shelves', '.work-timeline-main', '.pcard-masonry'], 'The same body of work is being read four different ways here. Choose the view that matches how you want to evaluate the portfolio.')
     if (/\b(intro|header)\b/.test(q) && !/\b(project|case)\b/.test(q)) return getExplainedSectionAction('Work intro', ['.work-page-header'], 'The header frames the page as an archive, not a landing page.')
   }
 
@@ -447,17 +536,10 @@ export function getGreeting(route: string): string {
 
 const STATIC_TOURS: Record<string, TourStep[]> = {
   '/': [
-    { text: 'Welcome. I\'ll walk you through Parth\'s work the way he\'d present it himself. These four up top are the headliners, they\'re here because each one proves something different. Mentra is the ambition play, ZentiPay is the research story, and Jugalbandi is the "wait, he does that too?" moment.', scrollTo: '.wr-featured-v2, #works', delay: 300 },
+    { text: 'Welcome. I\'ll walk you through Parth\'s work the way he\'d present it himself. The four projects up top are there to make the case fast: Mentra is the platform ambition play, TransFi is the trust-and-scale fintech story, Clawed is the AI behavior bet, and Jugalbandi is the range check.', scrollTo: '.wr-featured-v2, #works', delay: 300 },
     { text: 'Six disciplines. That\'s not a flex, it\'s the actual range. UX design and fintech pay the bills, but the creative tech and installations? That\'s where you see the thinking that makes the product work different. Parth builds physical things, not just pixels.', scrollTo: '.wr-disciplines', delay: 300 },
     { text: `The archive goes deeper. If you liked a flagship project, there are ${projects.filter(p => !p.hidden && !p.featured).length} more stories here. My suggestion: don't scroll linearly. Ask me for a shortlist based on what you care about and I'll pull the right three.`, scrollTo: '.wr-archive', delay: 300 },
     { text: 'Quick snapshot of who Parth is. Head of UI/UX at Mentra, NYU ITP grad, San Francisco. If the work speaks to you, the contact is right there. Or just ask me anything, I know every project here.', scrollTo: '#about-card, .wr-about-card', delay: 0 },
-  ],
-  '/work': [
-    { text: `Alright, full archive. ${projects.filter(p => !p.hidden).length} projects across six disciplines. Let me orient you so you don't have to scroll blindly.`, scrollTo: '.work-page-header', delay: 300 },
-    { text: 'See the filter bar at the bottom? That\'s your steering wheel. **UX Design** is the core, that\'s where the Mentra, ZentiPay, TransFi caliber work lives. **AI & Wearables** is the frontier stuff, smart glasses, AI trust models. If you\'re a recruiter evaluating product thinking, start there.', scrollTo: '.work-bottom-nav', delay: 400 },
-    { text: '**Creative Technology** is the ITP side, neural networks that make music, custom keyboards generated by AI. **Installations** is physical fabrication, arcade cabinets, light sculptures, rotating stages. These two categories are what separate Parth from a typical product designer.', scrollTo: '.work-bottom-nav', delay: 400 },
-    { text: '**Brand & Visual** has the typography and art direction work, including a full typeface he designed. **Design for Good** is civic design, public transit, community nonprofits. Every category has a different flavor but the same rigor underneath.', scrollTo: '.work-bottom-nav', delay: 300 },
-    { text: 'My recommendation? If you have 5 minutes, open **Mentra** for systems ambition, **ZentiPay** for research depth, and **Jugalbandi** for something you won\'t expect. That trio tells the whole story. Or ask me for a custom shortlist based on what you\'re hiring for.', scrollTo: '.pcard-masonry', delay: 0 },
   ],
   '/about': [
     { text: 'This is Parth. Design engineer, Head of UI/UX at Mentra, building the OS for AI smart glasses in San Francisco. NYU ITP grad. The photo changes if you hover over it, by the way.', scrollTo: '.abt-photo-hero, .abt-paper', delay: 300 },
@@ -471,6 +553,44 @@ const STATIC_TOURS: Record<string, TourStep[]> = {
     { text: 'If you care about research, read **Trust Beats Speed**. The ZentiPay fee-anxiety story. The finding that users preferred a *slower* confirmation because instant felt sketchy. That one surprises people.', scrollTo: '.wr-article-grid', delay: 350 },
     { text: 'The rest range from AI trust architecture to why writing poetry makes you better at button labels. Each one is 3-5 minutes. Pick whatever sounds interesting, or ask me which one matters most for what you care about.', scrollTo: '.wr-article-grid', delay: 0 },
   ],
+}
+
+function getWorkTourSteps(): TourStep[] {
+  const totalProjects = projects.filter(project => !project.hidden).length
+  const view = getCurrentWorkViewMode()
+
+  if (view === 'playlist') {
+    return [
+      { text: `This is Playlist view. Same ${totalProjects} projects, but arranged for comparison instead of scrolling.`, scrollTo: '.work-page-header', delay: 260 },
+      { text: 'The left column switches collections fast. Use it when you already know the slice you care about, AI, UX, installations, or the full queue.', scrollTo: '.work-playlist-sidebar', delay: 320 },
+      { text: 'The pinned stage is the point. One project stays in focus while the queue beneath it changes. That makes tradeoffs visible without opening every case study.', scrollTo: '.work-playlist-stage', delay: 320 },
+      { text: 'The queue is for fast scanning. Hover a row, compare, then open the one worth the deeper read.', scrollTo: '.work-playlist-queue', delay: 0 },
+    ]
+  }
+
+  if (view === 'library') {
+    return [
+      { text: 'This is Index view. It flattens the page into a compact browse surface so you can scan without the heavy editorial rhythm.', scrollTo: '.work-page-header', delay: 260 },
+      { text: 'The jump bar lets you move by discipline instead of by chronology. It is the fastest mode when you know the kind of work you want.', scrollTo: '.work-library-nav', delay: 320 },
+      { text: 'Each section keeps the category explanation light and the project rows compact. This mode is for lookup, not for storytelling.', scrollTo: '.work-library-shelves', delay: 0 },
+    ]
+  }
+
+  if (view === 'timeline') {
+    return [
+      { text: 'This is Arc view. It is less about categories and more about progression, one anchor project per period, then the surrounding work.', scrollTo: '.work-page-header', delay: 260 },
+      { text: 'The left rail jumps by period. It is the quick way to read how the practice evolves over time, not just what categories exist.', scrollTo: '.work-timeline-rail', delay: 320 },
+      { text: 'Each period starts with one anchor project. That is the project carrying the strongest signal for that slice of the portfolio.', scrollTo: '.work-timeline-feature', delay: 320 },
+      { text: 'Below that is the supporting work. It gives breadth without diluting the lead project.', scrollTo: '.work-timeline-support', delay: 0 },
+    ]
+  }
+
+  return [
+    { text: `This is the editorial archive. ${totalProjects} projects, with the strongest work surfaced first.`, scrollTo: '.work-page-header', delay: 260 },
+    { text: 'The view switch changes the way the same body of work is read. Editorial is for the clean portfolio read, Playlist is for comparison, Index is for scanning, and Arc is for progression.', scrollTo: '.work-view-switch', delay: 320 },
+    { text: 'The top section is the flagship layer. It should prove systems depth, research quality, and range before the archive starts asking for more time.', scrollTo: '.work-group--selected, .work-flagships-list', delay: 320 },
+    { text: 'Below that, the archive becomes the depth layer. Ask me for a shortlist if you do not want to scroll linearly.', scrollTo: '.pcard-masonry, .work-bottom-nav', delay: 0 },
+  ]
 }
 
 function getProjectTour(route: string): TourStep[] {
@@ -552,6 +672,10 @@ function getProjectTour(route: string): TourStep[] {
 }
 
 export function getTourSteps(route: string): TourStep[] {
+  if (route === '/work') {
+    return getWorkTourSteps().map(step => ({ ...step, text: normalizeCopy(step.text) }))
+  }
+
   if (STATIC_TOURS[route]) {
     return STATIC_TOURS[route].map(step => ({ ...step, text: normalizeCopy(step.text) }))
   }

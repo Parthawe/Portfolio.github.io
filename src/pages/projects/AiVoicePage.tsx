@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
-import { NDA_DETAILS_ENABLED } from '../../config/nda'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -39,7 +38,7 @@ export default function AiVoicePage() {
           backLabel="Back to Work"
           tags={['Product Design', 'AI', 'Voice UX', 'Enterprise']}
           title="Redefining AI Voice Selection For Enterprise"
-          subtitle="Integrating Emotional Intelligence and Expressive Voice Selection: A Reimagined AI Voice Experience"
+          subtitle="Redesigned enterprise voice selection around tone, context, and emotional fit instead of static dropdowns and demo lists."
           info={[
             { label: 'Client', value: 'Voice AI (NDA)' },
             { label: 'Scope', value: 'Product Design' },
@@ -55,15 +54,19 @@ export default function AiVoicePage() {
           sections={[
             {
               label: 'Summary',
-              content: 'The reimagined AI voice matching experience helps enterprise teams and creatives select AI voices through intuitive, emotionally intelligent interactions. Instead of static dropdowns, users explore, test, and build voices through personalized, context-aware systems. This approach balances technical power with playful creativity and emotional alignment.',
+              content: 'Enterprise voice platforms often treat selection as a settings problem: choose a name from a list, preview a clip, move on. This concept reframed it as a product-design problem where teams need to evaluate personality, fit, and confidence before they commit a voice to a brand or workflow.',
             },
             {
               label: 'The Challenges',
-              content: 'Bridging the gap between enterprise-grade AI voice tools and intuitive, emotion-driven UX. Replacing dropdown-based selection with expressive, guided exploration. Supporting both fast onboarding and deep customization for varied user needs.',
+              content: 'The challenge was to make a technically sophisticated voice platform feel directional rather than overwhelming. The interface had to support fast evaluation, expressive exploration, and deeper customization without collapsing back into generic enterprise controls.',
             },
             {
               label: 'My Role',
-              content: 'Product Design Strategy: Leading concept definition for how users engage with AI voice personalities.\nInteraction & System Design: Designing DNA-based and mood-based systems for selecting and shaping voice outputs.',
+              content: 'I defined the product direction for how users discover, compare, and shape voice personalities. That included the concept strategy, interaction systems, and the selection models used to translate abstract brand tone into a more confident decision flow.',
+            },
+            {
+              label: 'Visible Outcome',
+              content: 'The public section explains the product framing, the key interaction concepts, and the reasons the standard voice-picker model breaks down. The gated section goes deeper into research, system structure, and the richer concept explorations.',
             },
           ]}
         />
@@ -89,8 +92,7 @@ export default function AiVoicePage() {
           </div>
         </section>
 
-        {NDA_DETAILS_ENABLED ? (
-        <>
+        <NdaGate slug="ai-voice">
 
         <CsImage src="/Portfolio.github.io/Assets/Projects/ai-voice/1.webp" alt="AI Voice Selection, project overview slide" />
         <p className="cs-caption">Project overview, the challenge of reimagining enterprise AI voice selection from static dropdowns to emotionally intelligent, expressive interactions.</p>
@@ -417,10 +419,7 @@ export default function AiVoicePage() {
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
 
-        </>
-        ) : (
-          <NdaGate slug="ai-voice" projectName="AI Voice" />
-        )}
+        </NdaGate>
 
       </main>
 

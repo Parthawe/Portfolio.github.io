@@ -50,13 +50,13 @@ export default function BlackHolePage() {
           backLabel="Back to Work"
           tags={['Physical Computing', 'Fabrication', 'Science Communication']}
           title="Black Hole"
-          subtitle="Physical models exploring five phenomena observed near black holes &mdash; from time dilation to gravitational lensing"
+          subtitle="Five physical models that make black hole phenomena legible through form, mechanism, and interaction"
           info={[
             { label: 'Context', value: 'NYU ITP' },
             { label: 'Role', value: 'Designer & Fabricator' },
             { label: 'Collaborator', value: 'Saee Joshi' },
             { label: 'Professor', value: 'Jeffrey Feddersen' },
-            { label: 'Year', value: '2026' },
+            { label: 'Year', value: '2025' },
           ]}
         />
 
@@ -66,8 +66,8 @@ export default function BlackHolePage() {
         {/* Overview */}
         <CsSection id="cs-challenge" label="The Challenge" title="Making the Invisible Tangible">
           <CsBody>
-            <p>A black hole is a region of spacetime where gravity is so strong that nothing &mdash; not even light &mdash; can escape. The challenge was to create physical representations of five black hole phenomena that make abstract astrophysics something you can see, touch, and understand intuitively.</p>
-            <p>Each model is scientifically grounded while remaining accessible to a general audience. The project will be exhibited at the Horological Society of New York&rsquo;s museum this winter &mdash; a fitting pairing, since black holes fundamentally distort time itself.</p>
+            <p>Black holes are culturally famous and physically unintuitive. Most people can repeat the words time dilation or gravitational lensing without ever building a working mental model of what those phenomena feel like. This project turns that gap into the design problem.</p>
+            <p>I built five physical models that let audiences encounter black hole behavior through movement, weight, distortion, and mechanism instead of diagrams alone. The goal was not spectacle. It was understanding that could survive after the visitor walked away.</p>
           </CsBody>
         </CsSection>
 

@@ -75,7 +75,7 @@ export default function MentraPage() {
         backLabel="Back to Work"
         tags={['AI Wearables', 'Head of UI/UX', '0→1 Product', 'Smart Glasses']}
         title="Mentra"
-        subtitle="Designing the UX for the only AI-powered smart glasses with an app store, from companion app to open-source OS to developer marketplace"
+        subtitle="Designing the OS, companion app, and miniapp store that turns AI glasses from a hardware demo into a daily platform"
         info={[
           { label: 'Role', value: 'Head of UI/UX (design team of 1, cross-functional with eng + product)' },
           { label: 'Timeline', value: 'Q3 2025 \u2013 Present (ongoing)' },
@@ -99,11 +99,11 @@ export default function MentraPage() {
           sections={[
             {
               label: 'The Vision',
-              content: 'Smart glasses have been a graveyard of good intentions. Google Glass, Snap Spectacles, North Focals, all shipped impressive hardware and then asked users to figure out why they should wear it. Mentra Glass answers that question with an open-source OS and the first miniapp store for smart glasses, turning a piece of hardware into a platform people put on every morning and never take off.',
+              content: 'Most smart glasses fail for the same reason: the hardware ships first and the software story arrives later, if it arrives at all. Mentra reverses that. The product only makes sense if the OS, companion app, and miniapp ecosystem behave like one coherent platform people can trust every morning, not one more gadget they try for a week.',
             },
             {
               label: 'My Role',
-              content: 'As the sole designer on a cross-functional team, I own every design surface: companion app, MentraOS on-glasses interface, MiniApp Store, and the design system. Product decisions happen collaboratively with the product lead and hardware team, I translate those decisions into interfaces, flows, and interaction patterns. Engineering implements and often pushes back, which makes the work better.',
+              content: 'I am the sole designer across the entire product surface: pairing, onboarding, MentraOS, the companion app, the MiniApp Store, and the shared design language underneath all of it. That means the work is not screen-by-screen styling. It is product definition, systems thinking, and interaction design under real hardware constraints.',
             },
           ]}
         />

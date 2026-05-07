@@ -29,7 +29,6 @@ bun run dev
 | `VITE_GEMINI_API_KEY_3` | No | Second fallback Gemini key |
 | `VITE_ELEVENLABS_API_KEY` | No | ElevenLabs TTS for agent voice |
 | `VITE_ELEVENLABS_VOICE_ID` | No | Voice ID (defaults to Rachel) |
-| `VITE_ENABLE_NDA_DETAILS` | No | Set `true` to show NDA content in prod |
 
 ## Scripts
 
@@ -69,7 +68,7 @@ src/
 ├── pages/              # Route-level pages
 │   └── projects/       # Individual project case studies
 ├── data/               # Project registry, categories, agent knowledge
-├── config/             # Site config, NDA gate
+├── config/             # Site config
 ├── hooks/              # Custom React hooks
 ├── utils/              # Utility functions
 └── styles/             # CSS (tokens, reset, components)

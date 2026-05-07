@@ -36,13 +36,14 @@ export default function KeyboardProjectPage() {
           backLabel="Back to Work"
           tags={['Creative Tech', 'Hardware', 'Machine Learning', 'UX/UI']}
           title="BreakGen"
-          subtitle="A modular keyboard design platform that democratizes hardware creation through AI-generated keycaps, intuitive layout tools, and automated PCB generation"
+          subtitle="A keyboard-creation platform that turns taste, layout, and AI generation into fabrication-ready hardware"
           info={[
             { label: 'Role', value: 'Designer & Developer' },
             { label: 'Context', value: 'ITP Thesis, NYU' },
             { label: 'Timeline', value: '2024\u20132025' },
             { label: 'Stack', value: 'React, Three.js, Meshy AI, KiCad' },
           ]}
+          liveUrl="https://parthawe.github.io/BreakGen/"
           heroImage="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp"
           heroAlt="KeyData: keyboard with keys at different heights representing data, alongside 3D printed data sculpture"
         />
@@ -75,15 +76,15 @@ export default function KeyboardProjectPage() {
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">BreakGen is a web-based platform where users design fully custom mechanical keyboards from scratch. They select key feel, generate AI-personalized keycaps, build ergonomic layouts, and receive auto-generated PCBs ready for fabrication. The project bridges the gap between desire and ability in the DIY keyboard community &mdash; making deep customization accessible to people without engineering backgrounds.</span>
+              <span className="cs-label-row-val">BreakGen turns custom keyboard creation from an expert-only toolchain into a guided product. Users choose feel, generate keycaps, shape the layout, and export fabrication-ready outputs without touching the specialist software that usually blocks them.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">The Challenge</span>
-              <span className="cs-label-row-val">Custom keyboards are one of the most vibrant hardware subcultures online, but the technical barriers to creating one from scratch are enormous. PCB design requires EDA software expertise, ergonomic layout planning demands spatial reasoning and engineering knowledge, and firmware configuration assumes programming fluency. Most enthusiasts end up buying pre-made boards or waiting months for group buys they cannot influence &mdash; never getting the keyboard that truly fits their hands, workflow, and aesthetic.</span>
+              <span className="cs-label-row-val">The hardest part of the keyboard scene is not taste. It is translation. People know what they want their board to feel and look like, but PCB design, firmware, and fabrication workflows turn that intent into a technical wall.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">Sole designer and developer. Responsible for concept development, UX/UI design, frontend development (React + Three.js), AI pipeline integration (Meshy AI), PCB auto-generation logic (KiCad), physical prototyping (3D printing, laser cutting, CNC), and thesis presentation. ITP Thesis project at NYU&rsquo;s Interactive Telecommunications Program, advised by Luisa Pereira.</span>
+              <span className="cs-label-row-val">I designed and built the entire system: product concept, UX, frontend, AI keycap pipeline, PCB export logic, and the physical prototypes that proved the files could become real hardware.</span>
             </div>
             <div className="cs-label-row" style={{ borderBottom: 'none' }}>
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
@@ -102,6 +103,48 @@ export default function KeyboardProjectPage() {
             </div>
           </div>
         </section>
+
+        <CsSection id="cs-live" label="Live Product" title="BreakGen now ships as a public launch surface plus an interactive demo.">
+          <CsBody style={{ maxWidth: '760px' }}>
+            <p>The thesis is no longer just a presentation deck and a fabrication prototype. BreakGen now has a public launch surface that frames the product clearly, plus a separate interactive demo that shows the control logic, live state updates, and artifact-backed workflow in a way visitors can actually inspect.</p>
+            <p>That shift matters. It turns the project from a speculative interface into a product system people can browse, test, and understand on their own.</p>
+          </CsBody>
+
+          <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
+            <div>
+              <div className="cs-img reveal">
+                <img
+                  src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
+                  alt="BreakGen public launch page showing the launch narrative, navigation, and product framing."
+                  loading="lazy"
+                />
+              </div>
+              <p className="cs-caption">Public launch site: a clearer product narrative, tighter positioning, and a surface that explains BreakGen as a real hardware-creation environment instead of just a thesis artifact.</p>
+            </div>
+            <div>
+              <div className="cs-img reveal">
+                <img
+                  src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-demo-live.png"
+                  alt="BreakGen interactive demo showing a live workspace, control surface, preview chamber, and artifact-backed state."
+                  loading="lazy"
+                />
+              </div>
+              <p className="cs-caption">Interactive demo: a public control surface where the layout, preview, provenance, and export logic can be inspected as one product record.</p>
+            </div>
+          </div>
+
+          <CsCallout style={{ marginTop: '2rem' }}>
+            <p>
+              View the shipped surfaces:
+              {' '}
+              <a href="https://parthawe.github.io/BreakGen/" target="_blank" rel="noreferrer">public launch</a>
+              {' '}
+              and
+              {' '}
+              <a href="https://parthawe.github.io/BreakGen/demo" target="_blank" rel="noreferrer">interactive demo</a>.
+            </p>
+          </CsCallout>
+        </CsSection>
 
         {/* 01, Concept */}
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Breaking Things to Understand Them">
@@ -302,6 +345,7 @@ export default function KeyboardProjectPage() {
         </section>
 
         <BottomNav sections={[
+          { id: 'cs-live', label: 'Live Product' },
           { id: 'cs-concept', label: 'Concept' },
           { id: 'cs-research', label: 'Research' },
           { id: 'cs-architecture', label: 'Architecture' },
