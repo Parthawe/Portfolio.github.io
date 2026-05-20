@@ -122,7 +122,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ai-voice',
-          image: '/Portfolio.github.io/Assets/images/ai-voice.webp',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Enterprise voice selection with emotional intelligence, A/B tested',
@@ -203,7 +203,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Portfolio.github.io/Assets/images/transfi.jpg',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payments, $50M+ monthly volume',
@@ -214,7 +214,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'zentipay',
-          image: '/Portfolio.github.io/Assets/images/zentipay.webp',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'ZentiPay',
           name: 'ZentiPay',
           result: 'Fintech super app from scratch, 30% higher transaction completion',
@@ -238,7 +238,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'cuetv',
-          image: '/Portfolio.github.io/Assets/images/cuetv.jpg',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'CueTV',
           name: 'CueTV',
           result: 'OTT streaming, retargeting system generating 30K+ ad variations',
@@ -678,7 +678,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, 30% higher transaction completion rate',
       role: 'Founding Product Designer · 2025',
-      image: '/Portfolio.github.io/Assets/images/zentipay.webp',
+      image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
       bgColor: '#e8f4fd',
       tag: 'FINTECH',
       year: '2025',
@@ -687,7 +687,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Portfolio.github.io/Assets/images/transfi.jpg',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payments, $50M+ monthly volume',
@@ -722,7 +722,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'cuetv',
-          image: '/Portfolio.github.io/Assets/images/cuetv.jpg',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'CueTV',
           name: 'CueTV',
           result: 'OTT platform, 30K+ ad variations system',
@@ -857,7 +857,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, 30% higher transaction completion',
       role: 'Founding Product Designer · 2025',
-      image: '/Portfolio.github.io/Assets/images/zentipay.webp',
+      image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
       bgColor: '#f0ecff',
       tag: 'FINTECH',
       year: '2025',
@@ -866,7 +866,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Portfolio.github.io/Assets/images/transfi.jpg',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payments, $50M+ monthly volume',
@@ -928,7 +928,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'ai-voice',
-          image: '/Portfolio.github.io/Assets/images/ai-voice.webp',
+          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Conversational AI and voice-driven interaction',

@@ -8,6 +8,7 @@
  *
  * To mark a project as NDA:
  *  Set `nda: true` and optionally `ndaPassword: 'custom'`.
+ *  Add the slug to `NDA_PROJECT_SLUGS` so protected work is auditable.
  *  Default password: "parth2026"
  */
 
@@ -119,6 +120,17 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
 
 const IMG = '/Portfolio.github.io/Assets/images'
 export const DEFAULT_NDA_PASSWORD = 'parth2026'
+const NDA_COVER = `${IMG}/nda-cover.svg`
+export const NDA_PROJECT_SLUGS = [
+  'transfi-project',
+  'zentipay',
+  'cuetv',
+  'healthapp',
+  'ai-voice',
+] as const
+
+export type NdaProjectSlug = typeof NDA_PROJECT_SLUGS[number]
+
 const defaultCardMockup = (slug: string) => `/Portfolio.github.io/Assets/mockups/projects/${slug}.webp`
 
 export const projects: Project[] = [
@@ -220,9 +232,43 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'mentra-website',
+    name: 'Mentra Website',
+    image: '/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp',
+    cardMockup: '/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp',
+    cardMockupAlt: 'Mentra Glass marketing website showing the launch story, product sections, app store, specifications, and pricing.',
+    tag: 'LAUNCH WEBSITE',
+    year: '2026',
+    desc: 'Launch website for AI smart glasses, turning a new hardware category into a concrete product story',
+    category: 'brand',
+    page: () => import('../pages/projects/MentraWebsitePage'),
+    archiveOrder: 3,
+    tier: 'a',
+    selected: true,
+    selectedOrder: 6.5,
+    summaryProblem: 'AI smart glasses are unfamiliar enough that the site had to explain the category before it could sell the product.',
+    summaryRole: 'Owned site strategy, product narrative, visual hierarchy, launch imagery, and conversion flow.',
+    summaryTeam: '1 designer working with the Mentra product and hardware team.',
+    summaryTimeline: 'Q1 2026',
+    summaryOutcome: 'Turned hardware, OS, MiniApp Store, specs, pricing, and credibility signals into one live product story.',
+    summaryImage: '/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp',
+    summaryImageAlt: 'Full-page Mentra Glass website screenshot.',
+    summaryStats: [
+      { label: 'Launch price', value: '$299' },
+      { label: 'Primary claim', value: 'App store' },
+      { label: 'Product story', value: 'Hardware + OS' },
+      { label: 'Status', value: 'Live' },
+    ],
+    storyline: {
+      challenge: 'The site had to make a new product category understandable before visitors could evaluate the offer.',
+      approach: 'I sequenced the page from category thesis to product proof, then specs, pricing, and platform credibility.',
+      result: 'It became the public front door for Mentra Glass, connecting buyer confidence, developer interest, and launch storytelling.',
+    },
+  },
+  {
     slug: 'transfi-project',
     name: 'TransFi',
-    image: `${IMG}/transfi.jpg`,
+    image: NDA_COVER,
     tag: 'WEB3 PAYMENTS',
     year: '2023',
     desc: 'Redesigned crypto payment rails across 6 Asian markets, $50M+ monthly volume',
@@ -241,8 +287,8 @@ export const projects: Project[] = [
     summaryTeam: 'Sole designer partnering with product, founder, and a 6-engineer team.',
     summaryTimeline: '2022–23',
     summaryOutcome: 'Reduced merchant onboarding from 2 weeks to 3 days while the platform scaled to $50M+ monthly volume.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Transfi/photos/dashboard-detail.png',
-    summaryImageAlt: 'TransFi merchant dashboard showing analytics, payment flows, and operational detail.',
+    summaryImage: NDA_COVER,
+    summaryImageAlt: 'TransFi public cover image for an NDA-protected payment infrastructure case study.',
     summaryStats: [
       { label: 'Monthly volume', value: '$50M+' },
       { label: 'Markets served', value: '6' },
@@ -254,9 +300,9 @@ export const projects: Project[] = [
       cite: 'Top 5 DeFi player',
     },
     hoverMedia: {
-      src: '/Portfolio.github.io/Assets/featured/transfi-hover.gif',
+      src: NDA_COVER,
       kind: 'image',
-      alt: 'Animated TransFi dashboard preview.',
+      alt: 'TransFi public cover image.',
     },
     storyline: {
       challenge: 'Cross-border crypto payments were operationally powerful but cognitively heavy, especially across six markets with different expectations and constraints.',
@@ -267,7 +313,7 @@ export const projects: Project[] = [
   {
     slug: 'zentipay',
     name: 'ZentiPay',
-    image: `${IMG}/zentipay.png`,
+    image: NDA_COVER,
     tag: 'FINTECH',
     year: '2025',
     desc: 'Built a fintech super-app from scratch — 30% higher transaction completion',
@@ -285,8 +331,8 @@ export const projects: Project[] = [
     summaryTeam: 'Sole designer working with product and engineering across web and mobile.',
     summaryTimeline: 'Q2 to Q3 2025',
     summaryOutcome: 'Increased transaction completion by 30% and reduced perceived transfer time by 40% by making pricing, progress, and trust legible earlier.',
-    summaryImage: '/Portfolio.github.io/Assets/images/zentipay.webp',
-    summaryImageAlt: 'ZentiPay fintech app interface showing transfer, balance, and payment flows.',
+    summaryImage: NDA_COVER,
+    summaryImageAlt: 'ZentiPay public cover image for an NDA-protected fintech case study.',
     summaryStats: [
       { label: 'Completion lift', value: '+30%' },
       { label: 'Perceived time', value: '-40%' },
@@ -391,7 +437,7 @@ export const projects: Project[] = [
   {
     slug: 'cuetv',
     name: 'CueTV',
-    image: `${IMG}/cuetv.jpg`,
+    image: NDA_COVER,
     tag: 'PRODUCT DESIGN',
     year: '2021',
     desc: 'Designed a niche arts OTT platform and retargeting system for opera, ballet, and classical audiences',
@@ -421,7 +467,7 @@ export const projects: Project[] = [
   {
     slug: 'healthapp',
     name: 'Health App',
-    image: '/Portfolio.github.io/Assets/Projects/health-app/photos/home-screen.png',
+    image: NDA_COVER,
     tag: 'UX DESIGN',
     year: '2023',
     desc: 'Health-aware task planner using sleep, food, movement, and energy signals to shape daily scheduling',
@@ -512,8 +558,8 @@ export const projects: Project[] = [
   {
     slug: 'ai-voice',
     name: 'AI Voice',
-    image: '/Portfolio.github.io/Assets/Projects/ai-voice/photos/voice-dna-builder.png',
-    cardMockupSource: `${IMG}/ai-voice.webp`,
+    image: NDA_COVER,
+    cardMockupSource: NDA_COVER,
     tag: 'CONVERSATIONAL AI',
     year: '2025',
     desc: 'Redesigned enterprise AI voice selection around tone, context, and emotional fit',
@@ -1196,8 +1242,13 @@ export const projects: Project[] = [
 ]
 
 for (const project of projects) {
-  project.cardMockup ??= defaultCardMockup(project.slug)
-  project.cardMockupAlt ??= `${project.name} project mockup`
+  if (project.nda) {
+    project.cardMockup = NDA_COVER
+    project.cardMockupAlt = `${project.name} protected project cover`
+  } else {
+    project.cardMockup ??= defaultCardMockup(project.slug)
+    project.cardMockupAlt ??= `${project.name} project mockup`
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────────────
@@ -1274,6 +1325,12 @@ export function getNdaStorageKey(slug: string): string {
   return `nda-unlock-${slug}`
 }
 
-export function getProjectNdaPassword(slug: string): string {
-  return getProject(slug)?.ndaPassword || DEFAULT_NDA_PASSWORD
+export function isNdaProject(slug: string): slug is NdaProjectSlug {
+  return NDA_PROJECT_SLUGS.includes(slug as NdaProjectSlug)
+}
+
+export function getProjectNdaPassword(slug: string): string | null {
+  const project = getProject(slug)
+  if (!project?.nda || !isNdaProject(slug)) return null
+  return project.ndaPassword || DEFAULT_NDA_PASSWORD
 }

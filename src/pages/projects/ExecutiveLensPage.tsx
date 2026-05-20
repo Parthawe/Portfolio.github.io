@@ -204,7 +204,7 @@ export default function ExecutiveLensPage() {
 
       </main>
 
-      <NextProject slug="zentipay" title="ZentiPay" image="/Portfolio.github.io/Assets/images/zentipay.webp" />
+      <NextProject slug="zentipay" title="ZentiPay" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )

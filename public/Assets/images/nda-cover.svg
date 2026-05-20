@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">NDA protected project cover</title>
+  <desc id="desc">Neutral cover art for password-protected portfolio work.</desc>
+  <defs>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.08"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f5ef"/>
+      <stop offset="0.54" stop-color="#ece8dd"/>
+      <stop offset="1" stop-color="#dcd7cc"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111111" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#111111" stop-opacity="0.16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#paper)"/>
+  <rect width="1600" height="1000" fill="url(#shade)"/>
+  <rect width="1600" height="1000" filter="url(#grain)"/>
+  <g fill="none" stroke="#111" stroke-opacity="0.16" stroke-width="1">
+    <path d="M120 130H1480V870H120z"/>
+    <path d="M120 250H1480M120 750H1480M260 130V870M1340 130V870"/>
+    <path d="M210 190H1390" stroke-dasharray="3 13"/>
+    <path d="M210 810H1390" stroke-dasharray="3 13"/>
+  </g>
+  <g transform="translate(690 350)" fill="none" stroke="#111" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.82">
+    <rect x="0" y="105" width="220" height="180" rx="28"/>
+    <path d="M55 105V72a55 55 0 0 1 110 0v33"/>
+    <path d="M110 174v42"/>
+  </g>
+  <g fill="#111">
+    <text x="120" y="190" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" letter-spacing="10" opacity="0.62">PROTECTED WORK</text>
+    <text x="120" y="815" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" letter-spacing="7" opacity="0.42">PUBLIC SUMMARY ONLY</text>
+    <text x="1480" y="815" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" letter-spacing="7" opacity="0.42">NDA</text>
+  </g>
+</svg>

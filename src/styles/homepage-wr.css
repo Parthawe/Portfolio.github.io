@@ -681,15 +681,11 @@
   place-items: center;
   width: 100%;
   aspect-ratio: 1 / 1;
-  border: 1px solid var(--ink-06);
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at 50% 26%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.55) 24%, rgba(255, 255, 255, 0) 56%),
-    linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, var(--bg) 6%) 0%, color-mix(in srgb, var(--bg-alt) 76%, var(--surface) 24%) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    0 18px 40px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
 }
 .wr-about-object-shell::before {
   content: '';
@@ -702,12 +698,7 @@
   pointer-events: none;
 }
 .wr-about-object-shell::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, transparent 24%, transparent 72%, rgba(255, 255, 255, 0.14) 100%);
-  pointer-events: none;
+  content: none;
 }
 .wr-about-object-canvas {
   position: relative;
@@ -715,12 +706,8 @@
   transform: translateY(-6px) scale(1.02);
 }
 [data-theme="dark"] .wr-about-object-shell {
-  background:
-    radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 26%, transparent 56%),
-    linear-gradient(180deg, color-mix(in srgb, var(--surface) 86%, black 14%) 0%, color-mix(in srgb, var(--bg-alt) 80%, black 20%) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 22px 50px rgba(0, 0, 0, 0.32);
+  background: transparent;
+  box-shadow: none;
 }
 [data-theme="dark"] .wr-about-object-shell::before {
   background: radial-gradient(circle, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.14) 42%, transparent 72%);
@@ -1548,7 +1535,7 @@
   padding: clamp(3rem, 5vw, 5rem) clamp(24px, 4vw, 72px);
 }
 
-/* Centered shuffled archive — varied heights without a rigid grid feel */
+/* Centered archive grid — top-aligned with a consistent gap */
 .wr-archive-grid {
   --archive-gap: 1.25rem;
   display: grid;
@@ -1579,13 +1566,6 @@
 .wr-archive-grid > *:nth-child(8n+6) .pcard-visual { aspect-ratio: 1 / 1; }
 .wr-archive-grid > *:nth-child(8n+7) .pcard-visual { aspect-ratio: 4 / 5; }
 .wr-archive-grid > *:nth-child(8n+8) .pcard-visual { aspect-ratio: 3 / 4; }
-
-/* Stagger cards so the section feels shuffled, not boxed into rows */
-.wr-archive-grid > *:nth-child(5n+1) { margin-top: 0; }
-.wr-archive-grid > *:nth-child(5n+2) { margin-top: 1.8rem; }
-.wr-archive-grid > *:nth-child(5n+3) { margin-top: 0.65rem; }
-.wr-archive-grid > *:nth-child(5n+4) { margin-top: 2.5rem; }
-.wr-archive-grid > *:nth-child(5n+5) { margin-top: 1.15rem; }
 
 .wr-archive-reveal {
   display: grid;
@@ -1632,10 +1612,6 @@
     grid-template-columns: repeat(auto-fit, minmax(214px, 1fr));
     max-width: 980px;
   }
-  .wr-archive-grid > *:nth-child(4n+1) { margin-top: 0; }
-  .wr-archive-grid > *:nth-child(4n+2) { margin-top: 1.25rem; }
-  .wr-archive-grid > *:nth-child(4n+3) { margin-top: 0.45rem; }
-  .wr-archive-grid > *:nth-child(4n+4) { margin-top: 1.75rem; }
 }
 @media (max-width: 768px) {
   .wr-archive-grid {
@@ -1643,8 +1619,6 @@
     max-width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .wr-archive-grid > *:nth-child(2n+1) { margin-top: 0; }
-  .wr-archive-grid > *:nth-child(2n+2) { margin-top: 0.9rem; }
 }
 @media (max-width: 480px) {
   .wr-archive-grid {

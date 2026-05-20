@@ -19,7 +19,7 @@ export default function HealthAppPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Health App · Parth Pawar" />
         <meta property="og:description" content="Reimagining Google Tasks with health and wellness integration." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/health-app/1.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />

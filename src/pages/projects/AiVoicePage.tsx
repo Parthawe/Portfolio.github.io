@@ -25,7 +25,7 @@ export default function AiVoicePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI Voice Interface · Parth Pawar" />
         <meta property="og:description" content="Redefining AI Voice Selection for Enterprise, emotional intelligence and expressive voice design." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/ai-voice.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
@@ -46,8 +46,6 @@ export default function AiVoicePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2025' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/ai-voice/AI.webp"
-          heroAlt="AI Voice Selection, hero"
         />
 
         <ProjectOverview

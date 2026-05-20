@@ -28,7 +28,7 @@ export default function ZentipayPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Fintech super app that increased transaction completion by 30% and reduced perceived transfer time by 40%." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/zentipay.webp" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
@@ -49,8 +49,6 @@ export default function ZentipayPage() {
             { label: 'Tools', value: 'Figma, Maze, Hotjar' },
             { label: 'Timeline', value: 'Q2 \u2013 Q3 2025 (~15 weeks)' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/images/zentipay.webp"
-          heroAlt="ZentiPay, fintech super app for cross-border payments"
         />
 
         {/* The Hook */}
@@ -339,7 +337,7 @@ export default function ZentipayPage() {
 
       </main>
 
-      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/images/transfi.jpg" />
+      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )

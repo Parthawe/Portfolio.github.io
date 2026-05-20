@@ -23,7 +23,7 @@ export default function CueTvPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="CueTV · Parth Pawar" />
         <meta property="og:description" content="OTT platform for opera, ballet, symphonies, designed discovery, playback, and retargeting ads." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/cuetv.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
@@ -46,8 +46,6 @@ export default function CueTvPage() {
           ]}
           liveUrl="https://www.cuetv.online"
         />
-
-        <CsImage src="/Portfolio.github.io/Assets/Projects/CueTV/photos/platform-overview.png" alt="CueTV hero, Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
 
         {/* Overview */}
         <ProjectOverview
@@ -95,6 +93,8 @@ export default function CueTvPage() {
         </section>
 
         <NdaGate slug="cuetv">
+
+        <CsImage src="/Portfolio.github.io/Assets/Projects/CueTV/photos/platform-overview.png" alt="CueTV hero, Making OTT Platform a little more accessible, with a service system. Multi-device mockups showing opera streaming on TV, laptop, tablet, and phone." />
 
         {/* About CueTV */}
         <section className="cs-section reveal" id="cs-about">

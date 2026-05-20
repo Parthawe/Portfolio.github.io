@@ -67,7 +67,7 @@ export default function TransfiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Designed crypto payment infrastructure serving $50M+ monthly volume across 6 Asian markets." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/transfi.jpg" />
+        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
@@ -89,8 +89,6 @@ export default function TransfiPage() {
             { label: 'Location', value: 'Bangalore, India' },
           ]}
           liveUrl="https://www.transfi.com"
-          heroImage="/Portfolio.github.io/Assets/Projects/Transfi/photos/dashboard-hero.png"
-          heroAlt="TransFi hero, dashboard and buy crypto widget"
           showHeaderSummary={false}
         />
 
@@ -435,7 +433,7 @@ export default function TransfiPage() {
 
       </main>
 
-      <NextProject slug="cuetv" title="CueTV" image="/Portfolio.github.io/Assets/images/cuetv.jpg" />
+      <NextProject slug="cuetv" title="CueTV" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )

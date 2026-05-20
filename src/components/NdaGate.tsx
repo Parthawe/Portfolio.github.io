@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { getNdaStorageKey, getProject, getProjectNdaPassword } from '../data/projects'
+import { CONTACT_EMAIL } from '../config/site'
 
 interface NdaGateProps {
   slug: string
@@ -32,6 +33,10 @@ export default function NdaGate({
       setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 300)
     }
   }, [unlocked])
+
+  if (!project?.nda || !password) {
+    return <>{children}</>
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -72,11 +77,11 @@ export default function NdaGate({
                 <div className="nda-inline-text">
                   <span className="nda-inline-label">Protected Case Study</span>
                   <p className="nda-inline-desc">
-                    The detailed design process, research, and screens for {projectName} are under NDA.
-                    Enter the password to continue reading.
+                    The public summary stays visible. Detailed research, internal process, and product screens for {projectName} are under NDA.
+                    Enter the password to continue.
                   </p>
                   <p className="nda-inline-contact">
-                    Don&rsquo;t have the password? <a href="mailto:pawarparth99@gmail.com">Request access</a>
+                    Don&rsquo;t have the password? <a href={`mailto:${CONTACT_EMAIL}?subject=Access request: ${encodeURIComponent(projectName)}`}>Request access</a>
                   </p>
                 </div>
               </div>
@@ -94,6 +99,7 @@ export default function NdaGate({
                     value={value}
                     onChange={e => setValue(e.target.value)}
                     placeholder="Password"
+                    aria-label="NDA password"
                     autoComplete="off"
                   />
                   <button type="submit" className="nda-submit" disabled={!value.trim()}>

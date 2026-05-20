@@ -127,7 +127,7 @@ export default function VishwaConclavePage() {
 
       </main>
 
-      <NextProject slug="healthapp" title="Health App" image="/Portfolio.github.io/Assets/Projects/health-app/1.webp" />
+      <NextProject slug="healthapp" title="Health App" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )

@@ -217,7 +217,7 @@ export default function OnCallLensPage() {
 
       </main>
 
-      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Portfolio.github.io/Assets/images/ai-voice.webp" />
+      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )
