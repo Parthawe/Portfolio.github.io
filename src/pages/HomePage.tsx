@@ -40,11 +40,45 @@ const disciplines = [
   { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
 ] as const;
 
+const identityTabs = [
+  {
+    id: 'who-i-am',
+    label: 'Who I am',
+    heading: 'Design engineer who turns ambiguous systems into trusted product experiences.',
+    script: 'who i am',
+  },
+  {
+    id: 'care-about',
+    label: 'What I care about',
+    heading: 'I care about the moment complex technology starts feeling calm, legible, and human.',
+    script: 'care about',
+  },
+  {
+    id: 'believe-in',
+    label: 'What I believe in',
+    heading: 'I believe trust is built by interface behavior, not by marketing language.',
+    script: 'believe in',
+  },
+  {
+    id: 'can-cook',
+    label: 'What I can cook',
+    heading: 'I can cook product strategy, UX systems, prototypes, motion, and shipped front-end.',
+    script: 'can cook',
+  },
+  {
+    id: 'upto',
+    label: "What I'm up to",
+    heading: 'Currently designing MentraOS, the companion app, MiniApp Store, and launch surfaces.',
+    script: 'up to',
+  },
+] as const;
+
 export default function HomePage() {
   const navigate = useNavigate();
   const [skillIdx, setSkillIdx] = useState(0);
   const [skillPaused, setSkillPaused] = useState(false);
   const [showAllArchiveProjects, setShowAllArchiveProjects] = useState(false);
+  const [identityTab, setIdentityTab] = useState<(typeof identityTabs)[number]['id']>('who-i-am');
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
   const [aboutRef, aboutInView] = useInView<HTMLElement>(0.08, '160px 0px');
@@ -58,6 +92,7 @@ export default function HomePage() {
   const fullArchiveProjects = [...homepageSelectedProjects, ...appendedArchiveProjects];
   const archiveProjects = showAllArchiveProjects ? fullArchiveProjects : homepageSelectedProjects;
   const fullArchiveCount = fullArchiveProjects.length;
+  const activeIdentity = identityTabs.find(tab => tab.id === identityTab) ?? identityTabs[0];
 
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
@@ -109,6 +144,50 @@ export default function HomePage() {
 
       <main id="main-content">
         <div className="abt-paper">
+          <section className="wr-identity" aria-labelledby="wr-identity-title" style={{ position: 'relative' }}>
+            <FigmaFrameLabel name="Identity" />
+            <div className="wr-identity-inner">
+              <div className="wr-identity-tabs" role="tablist" aria-label="Identity prompts">
+                {identityTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    id={`identity-tab-${tab.id}`}
+                    className={`wr-identity-tab${activeIdentity.id === tab.id ? ' is-active' : ''}`}
+                    role="tab"
+                    aria-selected={activeIdentity.id === tab.id}
+                    aria-controls="wr-identity-panel"
+                    onClick={() => setIdentityTab(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              <motion.div
+                key={activeIdentity.id}
+                id="wr-identity-panel"
+                className="wr-identity-panel"
+                role="tabpanel"
+                aria-labelledby={`identity-tab-${activeIdentity.id}`}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <h2 className="wr-identity-title" id="wr-identity-title">
+                  {activeIdentity.heading}
+                </h2>
+                <p className="wr-identity-script" aria-hidden="true">{activeIdentity.script}</p>
+              </motion.div>
+
+              <a className="wr-identity-scroll figma-hover" href="#works" aria-label="Scroll to featured work">
+                <span className="wr-identity-scroll-icon" aria-hidden="true">↕</span>
+                <span>scroll to see work</span>
+                <FigmaSelect />
+              </a>
+            </div>
+          </section>
+
           <section className="wr-featured-v2" id="works" style={{ position: 'relative' }}>
             <FigmaFrameLabel name="Featured Work" />
             <div className="wr-featured-v2-inner">
