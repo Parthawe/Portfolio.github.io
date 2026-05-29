@@ -1,141 +1,101 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { getNdaStorageKey, getProject, getProjectNdaPassword } from '../data/projects'
+import { useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
+import { getProject } from '../data/projects'
 import { CONTACT_EMAIL } from '../config/site'
 
 interface NdaGateProps {
   slug: string
-  onUnlock?: () => void
-  children: ReactNode
 }
 
 export default function NdaGate({
   slug,
-  onUnlock,
-  children,
 }: NdaGateProps) {
   const project = getProject(slug)
   const projectName = project?.name || 'this project'
-  const password = getProjectNdaPassword(slug)
-  const storageKey = getNdaStorageKey(slug)
-  const [unlocked, setUnlocked] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return sessionStorage.getItem(storageKey) === '1'
-  })
-  const [value, setValue] = useState('')
-  const [error, setError] = useState(false)
-  const [shake, setShake] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const gateRef = useRef<HTMLDivElement>(null)
+  const [email, setEmail] = useState('')
+  const [context, setContext] = useState('')
+  const [sent, setSent] = useState(false)
 
-  useEffect(() => {
-    if (!unlocked && gateRef.current) {
-      setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 300)
-    }
-  }, [unlocked])
+  const mailtoHref = useMemo(() => {
+    const subject = `Access request: ${projectName}`
+    const body = [
+      `Project: ${projectName}`,
+      '',
+      `Email: ${email.trim()}`,
+      '',
+      'Context:',
+      context.trim() || 'I would like to review the full case study.',
+    ].join('\n')
 
-  if (!project?.nda || !password) {
-    return <>{children}</>
+    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  }, [context, email, projectName])
+
+  if (!project?.nda) {
+    return null
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (value.trim().toLowerCase() === password.toLowerCase()) {
-      sessionStorage.setItem(storageKey, '1')
-      setUnlocked(true)
-      onUnlock?.()
-    } else {
-      setError(true)
-      setShake(true)
-      setValue('')
-      setTimeout(() => setShake(false), 500)
-      setTimeout(() => setError(false), 2000)
+    setSent(true)
+    if (typeof window !== 'undefined') {
+      window.location.href = mailtoHref
     }
   }
 
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {!unlocked && (
-          <motion.div
-            key="gate"
-            ref={gateRef}
-            className="nda-inline"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10, height: 0, marginTop: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="nda-inline-inner">
-              <div className="nda-inline-left">
-                <div className="nda-inline-icon">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" />
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                  </svg>
-                </div>
-                <div className="nda-inline-text">
-                  <span className="nda-inline-label">Protected Case Study</span>
-                  <p className="nda-inline-desc">
-                    The public summary stays visible. Detailed research, internal process, and product screens for {projectName} are under NDA.
-                    Enter the password to continue.
-                  </p>
-                  <p className="nda-inline-contact">
-                    Don&rsquo;t have the password? <a href={`mailto:${CONTACT_EMAIL}?subject=Access request: ${encodeURIComponent(projectName)}`}>Request access</a>
-                  </p>
-                </div>
-              </div>
+    <motion.div
+      id={`case-study-access-${slug}`}
+      className="nda-inline"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="nda-inline-inner">
+        <div className="nda-inline-left">
+          <div className="nda-inline-text">
+            <span className="nda-inline-kicker">Quick glimpse is public</span>
+            <span className="nda-inline-label">Full case study by request</span>
+            <p className="nda-inline-desc">
+              The deeper research, process files, and product screens for {projectName} stay off this public site.
+              Share your email and context, and I&rsquo;ll send the full case study directly after access is approved.
+            </p>
+            <p className="nda-inline-contact">
+              Prefer email? <a href={`mailto:${CONTACT_EMAIL}?subject=Access request: ${encodeURIComponent(projectName)}`}>Request access directly</a>
+            </p>
+          </div>
+        </div>
 
-              <form className="nda-inline-form" onSubmit={handleSubmit}>
-                <motion.div
-                  className="nda-input-wrap"
-                  animate={shake ? { x: [0, -10, 10, -6, 6, -3, 3, 0] } : {}}
-                  transition={{ duration: 0.4 }}
-                >
-                  <input
-                    ref={inputRef}
-                    type="password"
-                    className={`nda-input ${error ? 'nda-input--error' : ''}`}
-                    value={value}
-                    onChange={e => setValue(e.target.value)}
-                    placeholder="Password"
-                    aria-label="NDA password"
-                    autoComplete="off"
-                  />
-                  <button type="submit" className="nda-submit" disabled={!value.trim()}>
-                    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="10" x2="15" y2="10" />
-                      <polyline points="10,5 15,10 10,15" />
-                    </svg>
-                  </button>
-                </motion.div>
-                <AnimatePresence>
-                  {error && (
-                    <motion.p
-                      className="nda-error"
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                    >
-                      Incorrect password
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </form>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {unlocked && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </>
+        <form className="nda-inline-form nda-inline-form--request" onSubmit={handleSubmit}>
+          <label className="nda-field">
+            <span>Email</span>
+            <input
+              type="email"
+              className="nda-input"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="you@company.com"
+              autoComplete="email"
+              required
+            />
+          </label>
+          <label className="nda-field">
+            <span>Context</span>
+            <textarea
+              className="nda-input nda-textarea"
+              value={context}
+              onChange={e => setContext(e.target.value)}
+              placeholder="Hiring, collaboration, or review context"
+              rows={3}
+            />
+          </label>
+          <button type="submit" className="nda-request-submit">
+            Request access
+          </button>
+          {sent ? (
+            <p className="nda-inline-confirmation">Opening your email client with the request.</p>
+          ) : null}
+        </form>
+      </div>
+    </motion.div>
   )
 }

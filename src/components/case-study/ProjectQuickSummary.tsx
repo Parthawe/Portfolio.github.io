@@ -29,6 +29,8 @@ export default function ProjectQuickSummary({
     return null
   }
 
+  const isAccessLimited = Boolean(project.nda)
+
   return (
     <section className="cs-quick-summary wrap reveal" id="cs-summary">
       <div className="cs-quick-summary-shell surface-glass">
@@ -37,7 +39,9 @@ export default function ProjectQuickSummary({
             <span className="cs-section-label">TL;DR</span>
             <h2 className="cs-quick-summary-title">Recruiter-ready summary</h2>
             <p className="cs-quick-summary-copy">
-              Start with the fast read, then open the full case study for the full story.
+              {isAccessLimited
+                ? 'Start with the fast read. Deeper detail is shared directly after access is approved.'
+                : 'Start with the fast read, then open the full case study for the full story.'}
             </p>
           </div>
 
@@ -125,7 +129,7 @@ export default function ProjectQuickSummary({
             className="cs-quick-summary-link figma-hover"
             onClick={() => onViewModeChange('full')}
           >
-            Continue into the full case study
+            {isAccessLimited ? 'Request full case study' : 'Continue into the full case study'}
             <FigmaSelect />
           </button>
         ) : null}

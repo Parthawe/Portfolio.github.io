@@ -6,10 +6,10 @@
  *  2. Create the page component in src/pages/projects/
  *  3. Done — routes, cards, and listings are auto-generated.
  *
- * To mark a project as NDA:
- *  Set `nda: true` and optionally `ndaPassword: 'custom'`.
- *  Add the slug to `NDA_PROJECT_SLUGS` so protected work is auditable.
- *  Default password: "parth2026"
+ * To mark a project as access-limited:
+ *  Set `nda: true`.
+ *  Add the slug to `NDA_PROJECT_SLUGS` so private work is auditable.
+ *  Do not ship private case-study content or access secrets in the static build.
  */
 
 export interface Project {
@@ -35,10 +35,8 @@ export interface Project {
   category: ProjectCategory
   /** Lazy import factory for the page component */
   page: () => Promise<{ default: React.ComponentType }>
-  /** Mark as NDA / password-protected */
+  /** Mark as access-limited/private */
   nda?: boolean
-  /** Custom password (default: "parth2026") */
-  ndaPassword?: string
   /** Show in featured grid on homepage */
   featured?: boolean
   /** Featured order (lower = first) */
@@ -119,7 +117,6 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
    ────────────────────────────────────────────────────────────────────── */
 
 const IMG = '/Portfolio.github.io/Assets/images'
-export const DEFAULT_NDA_PASSWORD = 'parth2026'
 const NDA_COVER = `${IMG}/nda-cover.svg`
 export const NDA_PROJECT_SLUGS = [
   'transfi-project',
@@ -128,8 +125,6 @@ export const NDA_PROJECT_SLUGS = [
   'healthapp',
   'ai-voice',
 ] as const
-
-export type NdaProjectSlug = typeof NDA_PROJECT_SLUGS[number]
 
 const defaultCardMockup = (slug: string) => `/Portfolio.github.io/Assets/mockups/projects/${slug}.webp`
 
@@ -271,33 +266,32 @@ export const projects: Project[] = [
     image: NDA_COVER,
     tag: 'WEB3 PAYMENTS',
     year: '2023',
-    desc: 'Redesigned crypto payment rails across 6 Asian markets, $50M+ monthly volume',
+    desc: 'Public glimpse of a multi-market crypto payment infrastructure redesign',
     category: 'ux',
     page: () => import('../pages/projects/TransfiPage'),
     featured: true,
     featuredOrder: 2,
     nda: true,
-    ndaPassword: DEFAULT_NDA_PASSWORD,
     loading: 'eager',
     tier: 's',
     selected: true,
     selectedOrder: 4,
     summaryProblem: 'Cross-border crypto payments were powerful but opaque, slow to onboard, and hostile to non-crypto-native business users.',
     summaryRole: 'Lead Product Designer across dashboard UX, consumer widget flows, design system, and brand.',
-    summaryTeam: 'Sole designer partnering with product, founder, and a 6-engineer team.',
+    summaryTeam: 'Lead designer partnering with product, founder, and engineering.',
     summaryTimeline: '2022–23',
-    summaryOutcome: 'Reduced merchant onboarding from 2 weeks to 3 days while the platform scaled to $50M+ monthly volume.',
+    summaryOutcome: 'Simplified merchant onboarding and made the payment infrastructure easier to evaluate, trust, and operate.',
     summaryImage: NDA_COVER,
-    summaryImageAlt: 'TransFi public cover image for an NDA-protected payment infrastructure case study.',
+    summaryImageAlt: 'TransFi public preview cover for a payment infrastructure case study.',
     summaryStats: [
-      { label: 'Monthly volume', value: '$50M+' },
-      { label: 'Markets served', value: '6' },
-      { label: 'Onboarding', value: '2wk→3d' },
-      { label: 'Self-service rate', value: '75%' },
+      { label: 'Domain', value: 'Payments' },
+      { label: 'Scope', value: 'Dashboard + widget' },
+      { label: 'Focus', value: 'Trust + onboarding' },
+      { label: 'Access', value: 'By request' },
     ],
     testimonial: {
-      quote: 'You are solving a big problem. And Asia is very attractive for us.',
-      cite: 'Top 5 DeFi player',
+      quote: 'Enterprise buyers needed local rails, clearer onboarding, and payment methods that matched Asian market behavior.',
+      cite: 'Public synthesis',
     },
     hoverMedia: {
       src: NDA_COVER,
@@ -305,7 +299,7 @@ export const projects: Project[] = [
       alt: 'TransFi public cover image.',
     },
     storyline: {
-      challenge: 'Cross-border crypto payments were operationally powerful but cognitively heavy, especially across six markets with different expectations and constraints.',
+      challenge: 'Cross-border crypto payments were operationally powerful but cognitively heavy, with different market expectations and constraints.',
       approach: 'I simplified the flows around trust, clarity, and speed, then aligned the product language across partner, merchant, and user touchpoints.',
       result: 'The case study ties design to transaction confidence and scale, which is what makes a payment system feel credible.',
     },
@@ -316,11 +310,10 @@ export const projects: Project[] = [
     image: NDA_COVER,
     tag: 'FINTECH',
     year: '2025',
-    desc: 'Built a fintech super-app from scratch — 30% higher transaction completion',
+    desc: 'Built a trust-first fintech super-app from scratch',
     category: 'ux',
     page: () => import('../pages/projects/ZentipayPage'),
     nda: true,
-    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 2,
     tier: 'a',
     loading: 'eager',
@@ -329,15 +322,15 @@ export const projects: Project[] = [
     summaryProblem: 'Cross-border payment users abandoned when fees moved late, language felt foreign, and the product behaved like crypto software instead of a trusted money tool.',
     summaryRole: 'Founding product designer across research, onboarding, information architecture, transaction flows, and the core design system.',
     summaryTeam: 'Sole designer working with product and engineering across web and mobile.',
-    summaryTimeline: 'Q2 to Q3 2025',
-    summaryOutcome: 'Increased transaction completion by 30% and reduced perceived transfer time by 40% by making pricing, progress, and trust legible earlier.',
+    summaryTimeline: '2025',
+    summaryOutcome: 'Improved user confidence by making pricing, progress, and trust legible earlier in the transfer flow.',
     summaryImage: NDA_COVER,
-    summaryImageAlt: 'ZentiPay public cover image for an NDA-protected fintech case study.',
+    summaryImageAlt: 'ZentiPay public preview cover for a fintech case study.',
     summaryStats: [
-      { label: 'Completion lift', value: '+30%' },
-      { label: 'Perceived time', value: '-40%' },
-      { label: 'Research countries', value: '5' },
-      { label: 'Project span', value: '15 wks' },
+      { label: 'Domain', value: 'Fintech' },
+      { label: 'Scope', value: '0→1 product' },
+      { label: 'Focus', value: 'Trust architecture' },
+      { label: 'Access', value: 'By request' },
     ],
     storyline: {
       challenge: 'Super-apps fail when every feature fights for attention and the core money flow becomes harder instead of easier.',
@@ -444,16 +437,15 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/CueTvPage'),
     nda: true,
-    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 9,
     tier: 'c',
     summaryProblem: 'Arts streaming audiences browse differently from mainstream OTT audiences, and the platform also needed a growth system that could scale across fragmented segments.',
     summaryRole: 'Product designer across audience research, browsing flows, platform structure, and ad-creative system thinking.',
     summaryTeam: 'Worked with product and growth stakeholders inside a niche streaming context.',
     summaryTimeline: '2021',
-    summaryOutcome: 'Combined product design and retargeting logic into a platform strategy that supported discovery and produced 30K+ ad variations.',
+    summaryOutcome: 'Combined product design and retargeting logic into a platform strategy that supported discovery and re-engagement.',
     summaryStats: [
-      { label: 'Ad variations', value: '30K+' },
+      { label: 'System', value: 'Retargeting' },
       { label: 'Domain', value: 'Arts OTT' },
       { label: 'Focus', value: 'Discovery + growth' },
       { label: 'Year', value: '2021' },
@@ -474,12 +466,11 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/HealthAppPage'),
     nda: true,
-    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 23,
     tier: 'c',
     summaryProblem: 'Task managers optimize output, but they rarely account for whether the schedule itself is harmful to the person following it.',
     summaryRole: 'Product designer exploring how wellness signals could reshape planning, prioritization, and daily task flow.',
-    summaryTeam: 'Independent product concept with protected case-study details.',
+    summaryTeam: 'Independent product concept with access-limited case-study details.',
     summaryTimeline: '2024',
     summaryOutcome: 'Reframed productivity as a health-aware system, using planning mechanics that balanced execution with recovery.',
     summaryStats: [
@@ -566,7 +557,6 @@ export const projects: Project[] = [
     category: 'ai',
     page: () => import('../pages/projects/AiVoicePage'),
     nda: true,
-    ndaPassword: DEFAULT_NDA_PASSWORD,
     archiveOrder: 32,
     tier: 'b',
     storyline: {
@@ -1244,7 +1234,7 @@ export const projects: Project[] = [
 for (const project of projects) {
   if (project.nda) {
     project.cardMockup = NDA_COVER
-    project.cardMockupAlt = `${project.name} protected project cover`
+    project.cardMockupAlt = `${project.name} public preview cover`
   } else {
     project.cardMockup ??= defaultCardMockup(project.slug)
     project.cardMockupAlt ??= `${project.name} project mockup`
@@ -1319,18 +1309,4 @@ export function projectsByCategory(cat: ProjectCategory): Project[] {
 /** Find a single project by slug */
 export function getProject(slug: string): Project | undefined {
   return projects.find(p => p.slug === slug)
-}
-
-export function getNdaStorageKey(slug: string): string {
-  return `nda-unlock-${slug}`
-}
-
-export function isNdaProject(slug: string): slug is NdaProjectSlug {
-  return NDA_PROJECT_SLUGS.includes(slug as NdaProjectSlug)
-}
-
-export function getProjectNdaPassword(slug: string): string | null {
-  const project = getProject(slug)
-  if (!project?.nda || !isNdaProject(slug)) return null
-  return project.ndaPassword || DEFAULT_NDA_PASSWORD
 }

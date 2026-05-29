@@ -2,9 +2,9 @@ export const HOMEPAGE_CONTENT = {
   proofBand: {
     companies: ['Mentra', 'ZentiPay', 'TransFi', 'NYU ITP', 'IBM'],
     outcomes: [
-      { label: 'Payment volume designed', value: '$50M+' },
+      { label: 'Payment systems', value: 'Multi-market' },
       { label: 'Time saved per exec / week', value: '5.2 hrs' },
-      { label: 'Transaction completion lift', value: '+30%' },
+      { label: 'Fintech focus', value: 'Trust-first' },
       { label: 'Countries shipped across', value: '3' },
     ],
     testimonial: {
@@ -33,7 +33,7 @@ export const HOMEPAGE_CONTENT = {
       date: 'Jan 2026',
       tag: 'FINTECH',
       title: 'Trust Beats Speed in Money Products',
-      excerpt: 'Completion improved when the flow slowed down and made the real cost legible.',
+      excerpt: 'Why slowing down a money flow can make it feel more trustworthy.',
     },
   ],
   latestShipped: [

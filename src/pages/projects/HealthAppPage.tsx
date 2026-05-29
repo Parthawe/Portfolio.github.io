@@ -6,7 +6,6 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -53,7 +52,7 @@ export default function HealthAppPage() {
             },
             {
               label: 'Visible Outcome',
-              content: 'The public portion shows the product direction, design principles, and how wellness logic changes the planning experience. The protected section contains the richer screen set and the more detailed interaction system.',
+              content: 'The public portion shows the product direction, design principles, and how wellness logic changes the planning experience. The richer screen set and detailed interaction system are shared directly after access is approved.',
             },
           ]}
         />
@@ -85,38 +84,8 @@ export default function HealthAppPage() {
         </CsSection>
 
         {/* Product photos */}
-        <NdaGate slug="healthapp">
-            {/* Key screens */}
-            <section className="cs-section reveal">
-              <div className="wrap">
-                <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/home-screen.png" alt="Home screen: Good Morning Steve, daily plan, weekly review, recommendations" loading="eager" /></div>
-                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/insights-dashboard.png" alt="Insights dashboard: commute trends, carbon footprint, walking stats" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/daily-updates.png" alt="Daily updates feed with pet content and evening greeting" loading="lazy" /></div>
-                </div>
-              </div>
-            </section>
+        <NdaGate slug="healthapp" />
 
-            {/* Calendar + topic selection */}
-            <section className="cs-section reveal">
-              <div className="wrap">
-                <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/calendar-overlap.png" alt="Calendar view with Overlap Spotted modal: smart schedule conflict resolution" loading="lazy" /></div>
-                <p className="cs-caption">Smart schedule conflict detection: the app identifies overlapping events and offers to adjust sleep or move commitments</p>
-              </div>
-            </section>
-
-            <section className="cs-section reveal">
-              <div className="wrap">
-                <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/choose-topic.png" alt="Choose topic: personalization onboarding" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/signup-signin.png" alt="Sign up and sign in screens" loading="lazy" /></div>
-                  <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/health-app/photos/reminders.png" alt="Reminders and notification settings" loading="lazy" /></div>
-                </div>
-              </div>
-            </section>
-
-            <CsThanks />
-        </NdaGate>
 
         <BottomNav
           sections={[

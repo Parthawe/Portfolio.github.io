@@ -65,18 +65,18 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'The minimum text size on the glasses is 18px. That constraint shaped every single screen.',
   },
   zentipay: {
-    oneLiner: 'A $50M+ fintech app that discovered fee anxiety matters more than transfer speed.',
-    challenge: '67% of users abandoned at the fee confirmation step. The problem wasn\'t speed, it was fear of hidden costs.',
-    outcome: '30% higher completion, 40% faster perceived time, $50M+ volume.',
+    oneLiner: 'A fintech product that discovered fee anxiety matters more than transfer speed.',
+    challenge: 'Users hesitated when pricing arrived late. The problem was not speed, it was fear of hidden costs.',
+    outcome: 'Public glimpse: stronger transfer confidence, clearer pricing, and deeper internals available by request.',
     insight: 'Trust beats speed. Showing fees upfront, even when they\'re higher, reduces abandonment more than any speed optimization.',
-    process: '15 interviews across 4 countries, competitive audit of 8 platforms, journey mapping that found 7 friction points. A/B tested fee disclosure with 40+ participants.',
+    process: 'Public summary covers research framing, pricing confidence, onboarding clarity, and the trust architecture. Deeper validation details are available by access request.',
     whyItMatters: 'Proved emotional design (addressing fear) beats functional design (making things faster) in money products.',
-    duration: '15 weeks, Q2–Q3 2025',
+    duration: '2025, detailed timeline by request',
     team: 'Sole designer + product + eng',
     platforms: 'Mobile (iOS/Android), Web dashboard',
-    opinion: 'The research process here is textbook. Starting with a human story (migrant worker losing $25/month) and ending with a systemic fix.',
+    opinion: 'The strongest part is the product reasoning: money products have to reduce doubt before they optimize speed.',
     connectedTo: ['transfi-project'],
-    surprisingFact: 'The "slow confirmation" animation actually made users feel MORE confident. Instant felt sketchy.',
+    surprisingFact: 'The public case study keeps the quick read visible; deeper internals are shared directly after access is approved.',
   },
   'clawed-chat': {
     oneLiner: 'An AI assistant where every action has a receipt. Trust by design, not afterthought.',
@@ -106,18 +106,18 @@ const deepMap: Record<string, ProjectDeep> = {
     connectedTo: ['mentra', 'clawed-chat', 'oncall-lens'],
   },
   'transfi-project': {
-    oneLiner: '$50M+ monthly volume in crypto payments across 6 Asian markets.',
-    challenge: 'Each market has different regulations, currencies, and user expectations. One-size-fits-all breaks immediately.',
-    outcome: '$50M+ monthly, 6 countries.',
+    oneLiner: 'Crypto payment infrastructure across multi-market merchant flows.',
+    challenge: 'Payment markets have different regulations, currencies, and user expectations. One-size-fits-all breaks immediately.',
+    outcome: 'Public glimpse: multi-market payment infrastructure and merchant onboarding.',
     insight: 'Compliance UX is a competitive advantage. Making KYC feel fast, not punishing, directly lifts conversion.',
-    process: 'Mapped regulatory requirements per country. Built modular onboarding that adapts per jurisdiction. Same flow, different compliance steps.',
+    process: 'Public summary covers the product framing, merchant onboarding problem, and trust-oriented UX direction. Detailed compliance flows are available by access request.',
     whyItMatters: 'Proved regulated products can have great UX. Compliance isn\'t the enemy of design, it\'s a design problem.',
     duration: '2022–2023',
     team: 'Lead Product Designer + design team',
     platforms: 'Web, Mobile',
-    opinion: 'This was Parth\'s first time leading a design team. The scale, 6 countries, real money, forced real discipline.',
+    opinion: 'This was Parth\'s first time leading design in a high-stakes payment environment, which forced real discipline.',
     connectedTo: ['zentipay'],
-    surprisingFact: 'Each country needed different compliance flows, but users never noticed — same feel, different regulations under the hood.',
+    surprisingFact: 'The public glimpse keeps the shape of the payment problem visible while the internal compliance flows stay private.',
   },
   'raahi-project': {
     oneLiner: 'Service design that made Pune\'s chaotic public transit system accessible and connected.',
@@ -557,7 +557,7 @@ const rules: Rule[] = [
       // Default / recruiter / hm
       const picks = [
         unseen('mentra') ? '• **[Mentra](/mentra)** for systems ambition, full OS, companion app, and app store.' : '• **[ExecutiveLens](/executivelens)** for AI meeting intelligence, 87% adoption.',
-        unseen('zentipay') ? '• **[ZentiPay](/zentipay)** for research rigor and trust-driven fintech thinking.' : '• **[TransFi](/transfi-project)** for scale, $50M+ monthly, 6 countries.',
+        unseen('zentipay') ? '• **[ZentiPay](/zentipay)** for research rigor and trust-driven fintech thinking.' : '• **[TransFi](/transfi-project)** for payment-infrastructure scale and merchant UX.',
         unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)** for creative range beyond product UI.' : '• **[Clawed](/clawed-chat)** for AI trust architecture.',
       ]
       return "Start with these three:\n\n" + picks.join('\n')
@@ -566,7 +566,7 @@ const rules: Rule[] = [
 
   // Best research process
   { patterns: [/(?:best research|research process|research rigor|strongest research)/i],
-    handler: () => "If you care about research depth, start with **[ZentiPay](/zentipay)**. The fee-anxiety insight is sharp and commercially real.\n\nThen look at **[Raahi](/raahi-project)** for embodied field research and accessibility thinking."
+    handler: () => "If you care about research depth, start with **[ZentiPay](/zentipay)**. The public glimpse shows how pricing confidence became the product strategy; deeper validation detail is shared by request.\n\nThen look at **[Raahi](/raahi-project)** for embodied field research and accessibility thinking."
   },
 
   // Creative range
@@ -590,13 +590,13 @@ const rules: Rule[] = [
       const q = (match.input || '').toLowerCase()
 
       if (/design system/i.test(q)) {
-        return "**Design systems fit:** Strong. ZentiPay had a 140-component Figma system. Mentra required a cross-platform design language (glasses + phone + web). Butler's Slice (400+ glyphs) shows systematic precision.\n\n**Gap:** He hasn't worked on a design system as a standalone product, his systems work is always embedded in product design."
+        return "**Design systems fit:** Strong. ZentiPay required a scalable fintech component system. Mentra required a cross-platform design language (glasses + phone + web). Butler's Slice (400+ glyphs) shows systematic precision.\n\n**Gap:** He hasn't worked on a design system as a standalone product, his systems work is always embedded in product design."
       }
       if (/0.to.1|founding|early.stage|startup/i.test(q)) {
         return "**0→1 fit:** Very strong. ZentiPay (founding designer, built from scratch), Mentra (first-ever smart glasses app store), Clawed (AI trust model from zero).\n\nThe pattern: he doesn't wait for specs, he defines the product shape."
       }
       if (/staff|principal|lead/i.test(q)) {
-        return "**Senior/Staff fit:** Led design at TransFi (6 markets, design team). Head of UI/UX at Mentra (full platform ownership). The portfolio shows IC depth AND the ability to set direction for a team.\n\n**Gap:** Hasn't managed a design team larger than 3."
+        return "**Senior/Staff fit:** Led design at TransFi in a high-stakes payment context. Head of UI/UX at Mentra (full platform ownership). The portfolio shows IC depth AND the ability to set direction for a team.\n\n**Gap:** Hasn't managed a design team larger than 3."
       }
 
       return "Best fit: design engineer or senior product designer in AI, wearables, developer tools, fintech, or 0→1 teams.\n\nEvidence: systems thinking (Mentra OS), research rigor (ZentiPay), technical depth (React, Arduino, Swift). The throughline is closing the gap between concept and shipped product.\n\n**Gap:** Less experience in enterprise B2B SaaS at scale."
@@ -673,7 +673,7 @@ const rules: Rule[] = [
     handler: (_, ctx) => {
       const p = cp(ctx)
       if (p?.deep) { ctx.lastTopic = 'outcome'; return p.deep.outcome }
-      return "Mentra: 88% pre-orders. ZentiPay: 30% higher completion. TransFi: $50M+/month. Ask about any one."
+      return "Mentra: launch demand. ZentiPay: trust-first transfers. TransFi: payment infrastructure. Ask about any one."
     }
   },
 
@@ -831,7 +831,7 @@ const rules: Rule[] = [
         return `**${mentioned.name}**, ${mentioned.desc}\n\n→ [View](${mentioned.link})`
       }
       // Specific tool queries
-      if (q.includes('figma')) return "Primary tool. He's built 140+ component systems (ZentiPay alone had 140 components). Design systems, prototyping, handoff."
+      if (q.includes('figma')) return "Primary tool. He uses Figma for scalable component systems, prototyping, and handoff."
       if (q.includes('react')) return "React + TypeScript for production UI. This portfolio is React 19 + Vite + Tailwind v4. He codes what he designs."
       if (q.includes('python')) return "Python for AI/ML, TensorFlow, data analysis. Used in Enigma (neural network sculpture) and AI voice projects."
       if (q.includes('arduino')) return "Physical computing, sensors, LEDs, actuators. Powers Jugalbandi, Enigma, and many ITP installations."
@@ -878,7 +878,7 @@ const rules: Rule[] = [
 
   // Writing / articles / blog
   { patterns: [/(?:writing|articles?|blog|posts?|essays?|read.*thoughts|published)/i],
-    handler: () => "Parth writes about the thinking behind the work. 13 articles so far. Highlights:\n\n• **[Designing for Glance, Not Gaze](/writing/designing-for-glance)**, what works on a 640px display\n• **[Trust Beats Speed](/writing/trust-beats-speed)**, the ZentiPay fee-anxiety story\n• **[The Figma File Is Not the Product](/writing/the-figma-file-is-not-the-product)**, why he codes what he designs\n• **[Strong Opinions on Border-Radius](/writing/four-pixel-border-radius)**, 4px and why\n\n→ [All writing](/writing)"
+    handler: () => "Parth writes about the thinking behind the work. 13 articles so far. Highlights:\n\n• **[Designing for Glance, Not Gaze](/writing/designing-for-glance)**, what works on a 640px display\n• **[Trust Beats Speed](/writing/trust-beats-speed)**, the fintech pricing-confidence story\n• **[The Figma File Is Not the Product](/writing/the-figma-file-is-not-the-product)**, why he codes what he designs\n• **[Strong Opinions on Border-Radius](/writing/four-pixel-border-radius)**, 4px and why\n\n→ [All writing](/writing)"
   },
 
   // Categories
@@ -891,7 +891,7 @@ const rules: Rule[] = [
 
   // Fintech
   { patterns: [/(?:fintech|finance|payment|money|bank|crypto|web3)/i],
-    handler: () => "**Fintech:** ZentiPay ($50M+ trust-first), TransFi (crypto, 6 markets). Core insight: compliance UX is a moat. → [/fintech](/fintech)" },
+    handler: () => "**Fintech:** ZentiPay (trust-first transfers), TransFi (crypto payment infrastructure). Core insight: compliance UX is a moat. → [/fintech](/fintech)" },
 
   // Installations
   { patterns: [/(?:install|physical|sculpture|gallery|fabricat|maker)/i],

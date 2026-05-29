@@ -28,7 +28,7 @@ const HERO_META: Record<string, { tagline: string; shipped: string; scope: strin
   'creative-tech':   { tagline: 'Code as material — neural network instruments, audio-reactive visuals, and interactive installations that compile.', shipped: '6 Projects', scope: 'Screen to Stage' },
   'installations':   { tagline: 'Spaces that teach — black holes you can hold, UV rooms with hidden messages, and a 15-foot rotating stage.', shipped: '7 Installations', scope: 'Gallery to Festival' },
   'brand-visual':    { tagline: 'Visual systems that communicate — custom typefaces, event art direction, and identities with staying power.', shipped: '4 Systems', scope: 'Type to Motion' },
-  'fintech':         { tagline: 'High-stakes interfaces for money movement — $50M+ monthly volume, KYC flows, and cross-border rails.', shipped: '5 Products', scope: 'Payments to Analytics' },
+  'fintech':         { tagline: 'High-stakes interfaces for money movement — KYC flows, cross-border rails, and trust-first product systems.', shipped: '5 Products', scope: 'Payments to Analytics' },
   'design-for-good': { tagline: 'Design as public good — civic platforms, accessibility-first interfaces, and community tools that scale.', shipped: '3 Projects', scope: 'Civic to Community' },
   'crypto':          { tagline: 'Trust-first interfaces for high-stakes crypto flows — KYC, multi-rail payments, and cross-border settlement.', shipped: '2 Products', scope: 'DeFi to Compliance' },
   'ai-wearables':    { tagline: 'Intelligent interfaces for smart glasses, voice assistants, and conversational AI — ambient, glanceable, safe.', shipped: '4 Products', scope: 'HUD to Voice' },

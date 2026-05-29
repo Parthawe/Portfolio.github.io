@@ -1234,23 +1234,6 @@
   align-items: center;
   gap: 0.4rem;
 }
-.pcard-nda {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 3px;
-  padding: 1px 5px;
-  line-height: 1.4;
-}
-.pcard-nda svg { opacity: 0.6; }
-
 /* Hover gradient overlay on image */
 .pcard-visual::after {
   content: '';

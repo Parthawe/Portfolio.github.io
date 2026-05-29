@@ -16,7 +16,7 @@ const CategoryHero = lazy(() => import('../components/CategoryHero'))
 const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'brand-visual', 'ai', 'creative-tech', 'fintech', 'crypto', 'ai-wearables'])
 
 const categoryReveals: Record<string, { front: string; behind: string; label: string }> = {
-  'ux-design': { front: 'The interface is the product, when it works, nobody notices the software.', behind: 'Mentra, TransFi, ZentiPay. $50M+ in payment volume. Interfaces that earned trust.', label: 'UX Design' },
+  'ux-design': { front: 'The interface is the product, when it works, nobody notices the software.', behind: 'Mentra, TransFi, ZentiPay. Interfaces where trust is the product.', label: 'UX Design' },
   'ai': { front: 'AI that augments, not replaces, the best tools disappear into your workflow.', behind: 'From Clawed to OnCall Lens. AI as a collaborator, not a replacement.', label: 'AI & Wearables' },
   'creative-tech': { front: 'Code is just another material, like wood or clay, but it compiles.', behind: 'Neural network instruments, AI keyboards, audio-reactive visuals. Making the intangible tangible.', label: 'Creative Tech' },
   'installations': { front: 'If people have to read a sign, the installation already failed. The space should teach.', behind: 'Black holes you can hold, blacklight rooms with hidden messages, a 15-foot rotating stage. Built and exhibited.', label: 'Installations' },

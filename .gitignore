@@ -7,3 +7,26 @@ package-lock.json
 .vite/
 dist/
 .claude/
+
+# Private/NDA material must not ship through GitHub Pages.
+.nda-private/
+private-nda/
+*_nda-private*
+public/archive/
+public/Assets/Projects/AI VOICE/
+public/Assets/Projects/Health App/
+public/Assets/Projects/CueTV/
+public/Assets/Projects/Transfi/
+public/Assets/Projects/ai-voice/
+public/Assets/Projects/health-app/
+public/Assets/images/logos/transfi-logo.png
+public/Assets/featured/transfi-hover.gif
+public/Assets/images/ai-voice.webp
+public/Assets/images/cuetv.jpg
+public/Assets/images/transfi.jpg
+public/Assets/images/zentipay.webp
+public/Assets/mockups/projects/ai-voice.webp
+public/Assets/mockups/projects/cuetv.webp
+public/Assets/mockups/projects/healthapp.webp
+public/Assets/mockups/projects/transfi-project.webp
+public/Assets/mockups/projects/zentipay.webp

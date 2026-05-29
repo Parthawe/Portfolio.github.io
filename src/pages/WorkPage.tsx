@@ -535,7 +535,7 @@ export default function WorkPage() {
                           <span>{playlistPreviewProject.tag}</span>
                           <span>{playlistPreviewProject.summaryTimeline || playlistPreviewProject.year}</span>
                           <span>{CATEGORY_LABELS[playlistPreviewProject.category]}</span>
-                          {playlistPreviewProject.nda ? <span>NDA summary</span> : null}
+                          {playlistPreviewProject.nda ? <span>Quick glimpse</span> : null}
                         </div>
                         <div className="work-playlist-stage__actions">
                           <Link to={`/${playlistPreviewProject.slug}`} className="work-playlist-stage__cta figma-hover">
@@ -575,7 +575,7 @@ export default function WorkPage() {
                             <span className="work-playlist-row__name">{project.name}</span>
                             <span className="work-playlist-row__meta">
                               {project.tag}
-                              {project.nda ? ' / NDA summary' : ''}
+                              {project.nda ? ' / Quick glimpse' : ''}
                             </span>
                           </div>
                           <span className="work-playlist-row__detail">
@@ -659,7 +659,7 @@ export default function WorkPage() {
                                 <span className="work-library-row__name">{project.name}</span>
                                 <span className="work-library-row__meta">
                                   {project.tag}
-                                  {project.nda ? ' / NDA summary' : ''}
+                                  {project.nda ? ' / Quick glimpse' : ''}
                                 </span>
                               </div>
                               <span className="work-library-row__detail">
@@ -738,7 +738,7 @@ export default function WorkPage() {
                             <div className="work-timeline-feature__eyebrow">
                               <span>Anchor project</span>
                               <span>{section.leadProject.tag}</span>
-                              {section.leadProject.nda ? <span>NDA summary</span> : null}
+                              {section.leadProject.nda ? <span>Quick glimpse</span> : null}
                             </div>
                             <h3 className="work-timeline-feature__title">{section.leadProject.name}</h3>
                             <p className="work-timeline-feature__detail">
@@ -783,7 +783,7 @@ export default function WorkPage() {
                                   <div className="work-timeline-support-row__body">
                                     <div className="work-timeline-support-row__eyebrow">
                                       <span>{project.tag}</span>
-                                      {project.nda ? <span>NDA summary</span> : null}
+                                      {project.nda ? <span>Quick glimpse</span> : null}
                                     </div>
                                     <h3 className="work-timeline-support-row__name">{project.name}</h3>
                                   </div>

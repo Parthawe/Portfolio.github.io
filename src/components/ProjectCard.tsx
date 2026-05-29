@@ -28,7 +28,6 @@ export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText,
   loading = 'lazy', featured = false, tilt = true, tiltIntensity = 5,
-  nda = false,
 }: ProjectCardProps) {
   const project = projects.find(p => p.slug === slug)
   const resolvedImage = project?.cardMockup || image
@@ -79,15 +78,7 @@ export default memo(function ProjectCard({
       <div className="pcard-inner">
         <div className="pcard-top-row">
           <span className="pcard-tag">{safeTag}</span>
-          <span className="pcard-year">
-            {nda && (
-              <span className="pcard-nda" title="Password protected">
-                <svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="8" width="12" height="7" rx="1.5" /><path d="M5 8V5a3 3 0 0 1 6 0v3" /></svg>
-                NDA
-              </span>
-            )}
-            {safeYear}
-          </span>
+          <span className="pcard-year">{safeYear}</span>
         </div>
         <div className="pcard-visual">
           <img

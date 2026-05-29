@@ -20,8 +20,8 @@ type Row = { date: string; role: string; co?: string; desc?: string; link?: stri
 
 const rows: Row[] = [
   { section: 'Experience', date: 'Q3 2025 -', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'Designing the entire OS for AI smart glasses, a screen the size of a postage stamp that has to feel effortless.' },
-  { date: 'Q2, Q3 2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: '0 → 1 fintech super app. 30% higher transaction completion.' },
-  { date: '2022, 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Crypto payments across six Asian markets. $50M+ monthly volume.' },
+  { date: 'Q2, Q3 2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: '0 → 1 fintech super app. Trust-first transfer flows.' },
+  { date: '2022, 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Crypto payment infrastructure across multi-market merchant flows.' },
   { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc' },
   { date: '2023, 2024', role: 'Graduate Teaching Assistant', co: 'NYU Tisch / ITP', desc: 'Helped students break things on purpose, honestly, how I learn best too.' },
   { date: '2020, 2022', role: 'Co-founder & Director', co: 'ArtTown Podcast', link: '/atps', desc: '45 episodes across 3 seasons, interviewing designers from Puma, Royal College of Arts, Google, and Bollywood.' },
@@ -91,8 +91,8 @@ const aboutModes: Array<{
     body: 'Fintech taught me to design for trust, recovery, and operational clarity. When money moves, polish is not enough. Every state has to explain itself.',
     chips: ['Trust states', 'Recovery paths', 'Ops clarity'],
     bullets: [
-      'TransFi scaled crypto payments across six Asian markets.',
-      'ZentiPay raised transaction completion by 30 percent.',
+      'TransFi shaped multi-market crypto payment infrastructure.',
+      'ZentiPay sharpened trust in cross-border transfers.',
       'I learned to treat edge cases as the product, not QA leftovers.',
     ],
     projectSlug: 'transfi-project',
@@ -153,7 +153,7 @@ const aboutReasons: Array<{
     kicker: 'Trust under pressure',
     detail: 'AI and fintech work punish hand-wavy design. I care about consequence, latency, failure states, and the difference between a concept that demos well and a product that survives real use.',
     bullets: [
-      'TransFi reduced onboarding from two weeks to three days while scaling monthly volume.',
+      'TransFi turned complex payment rails into clearer merchant onboarding.',
       'ZentiPay focused on legibility, pricing confidence, and completion under pressure.',
       'Mentra treats accessibility and safety as product behavior, not post-launch polish.',
     ],

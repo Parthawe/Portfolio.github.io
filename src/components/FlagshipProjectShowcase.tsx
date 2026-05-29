@@ -83,7 +83,7 @@ export default function FlagshipProjectShowcase({
     (value): value is string => Boolean(value),
   )
   const statusCopy = project.nda
-    ? 'Public summary first. Deeper internals available on request.'
+    ? 'Quick glimpse first. Full details are shared by request.'
     : 'Starts with a 2 min summary, then opens into the full case study.'
   const imageSource = project.summaryImage || project.image
   const imageAlt = project.summaryImageAlt || `${project.name} showcase`
@@ -105,7 +105,7 @@ export default function FlagshipProjectShowcase({
               {orderedMeta.map((item) => (
                 <span key={item} className="wr-flagship-topline__item">{item}</span>
               ))}
-              {project.nda ? <span className="wr-flagship-topline__item wr-flagship-topline__item--quiet">Summary only</span> : null}
+              {project.nda ? <span className="wr-flagship-topline__item wr-flagship-topline__item--quiet">Quick glimpse</span> : null}
             </div>
 
             <div className="wr-flagship-copyblock">
@@ -239,7 +239,7 @@ export default function FlagshipProjectShowcase({
         ) : null}
 
         <div className="wr-flagship-card__footer">
-          <span className="wr-flagship-card__note">{project.nda ? 'NDA summary available' : '2 min summary first'}</span>
+          <span className="wr-flagship-card__note">{project.nda ? 'Quick glimpse first' : '2 min summary first'}</span>
           <Link to={`/${project.slug}`} className="wr-flagship-card__cta figma-hover">
             Case study
             <FigmaSelect />
