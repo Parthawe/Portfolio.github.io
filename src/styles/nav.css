@@ -401,3 +401,65 @@ body.nav-on-dark .nav-toggle span {
 }
 
 /* Responsive handled in responsive.css */
+
+/* ── Work tab expansion: the four Work views surface in the pill while
+   you're on /work, so the modes are discoverable before you find the
+   in-page switcher ── */
+.nav-work-views {
+  display: flex;
+  align-items: center;
+  gap: 0.05rem;
+  margin-left: 0.15rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--ink-10);
+  animation: nav-work-views-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes nav-work-views-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.nav-work-view {
+  padding: 0.32rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-50);
+  white-space: nowrap;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.nav-work-view:hover {
+  color: var(--ink);
+}
+
+.nav-work-view.is-active {
+  color: var(--ink);
+  background: var(--ink-08);
+}
+
+body.nav-on-dark .nav-work-view {
+  color: rgba(247, 252, 253, 0.6);
+}
+
+body.nav-on-dark .nav-work-view:hover,
+body.nav-on-dark .nav-work-view.is-active {
+  color: rgba(247, 252, 253, 0.95);
+}
+
+body.nav-on-dark .nav-work-view.is-active {
+  background: rgba(247, 252, 253, 0.12);
+}
+
+/* The pill runs out of room on smaller screens; the in-page switcher
+   still covers view changes there. */
+@media (max-width: 860px) {
+  .nav-work-views {
+    display: none;
+  }
+}

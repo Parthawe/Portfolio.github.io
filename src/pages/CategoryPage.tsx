@@ -6,6 +6,8 @@ import { categories } from '../data/categories'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
+import ClientsMarquee from '../components/ClientsMarquee'
+import PlaybookSection from '../components/PlaybookSection'
 import { Reveal } from '../components/Reveal'
 import FigmaSelect from '../components/FigmaSelect'
 import { CONTACT_EMAIL } from '../config/site'
@@ -167,6 +169,10 @@ export default function CategoryPage() {
               </>
             )}
           </div>
+
+          <ClientsMarquee />
+
+          <PlaybookSection />
 
           {/* Approach */}
           <Reveal>

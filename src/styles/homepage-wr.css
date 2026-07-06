@@ -1308,7 +1308,7 @@
 
 .wr-feat-grid .pcard-name {
   bottom: 2.7rem;
-  font-family: var(--display-heading);
+  font-family: var(--serif-read);
   font-size: clamp(1.75rem, 2.8vw, 2.35rem);
   font-weight: 400;
   letter-spacing: 0;
@@ -1989,7 +1989,7 @@
 }
 
 .wr-archive-grid .pcard-name {
-  font-family: var(--display-heading);
+  font-family: var(--serif-read);
   font-weight: 400;
   letter-spacing: 0;
 }

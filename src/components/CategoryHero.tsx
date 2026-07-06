@@ -135,14 +135,14 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
       {has3D && (
         <motion.div
           className="ch-3d ch-3d--side"
-          initial={{ opacity: 0, scale: 0.55 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.15, ease }}
           aria-hidden="true"
         >
           {show3D ? (
             <Suspense fallback={null}>
-              <CategoryObject3D slug={slug} size={460} />
+              <CategoryObject3D slug={slug} size={460} style={{ width: 'min(100%, 460px)', height: 'auto', aspectRatio: '1 / 1' }} />
             </Suspense>
           ) : null}
         </motion.div>

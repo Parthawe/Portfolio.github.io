@@ -74,3 +74,10 @@
   font-family: var(--sans);
   font-weight: 400;
 }
+
+/* Project card names render at card scale, where Nikolas is barely
+   legible — they use the readable serif instead. */
+:where(main, .footer) :is(.pcard-name) {
+  font-family: var(--serif-read);
+  font-weight: 400;
+}

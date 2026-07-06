@@ -1,7 +1,8 @@
 import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import Nav from '../components/Nav';
+import Nav from '../components/Nav'
+import ClientsMarquee from '../components/ClientsMarquee';
 import Footer from '../components/Footer';
 import ProjectCard from '../components/ProjectCard';
 import TextHighlight from '../components/TextHighlight';
@@ -13,7 +14,6 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { allProjectsCurated, featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
 
-const LOGOS = '/Portfolio.github.io/Assets/images/logos';
 
 const HeroScene = lazy(() => import('../components/HeroScene'));
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
@@ -217,17 +217,8 @@ export default function HomePage() {
                 })}
               </div>
 
-              <div className="wr-clients reveal" aria-label="Organizations my work made a difference for">
-                <p className="wr-clients-label">
-                  <span aria-hidden="true">{'↘'}</span> Where my work made a difference
-                </p>
-                <div className="wr-clients-row">
-                  <img src={`${LOGOS}/the-point-logo.png`} alt="The Point CDC" loading="lazy" />
-                  <img src={`${LOGOS}/monsoonfish-logo.png`} alt="Monsoonfish" loading="lazy" />
-                  <img src={`${LOGOS}/nyu-tisch.png`} alt="NYU Tisch School of the Arts" loading="lazy" />
-                  <img src={`${LOGOS}/transfi-logo.png`} alt="TransFi" loading="lazy" />
-                  <img src={`${LOGOS}/ibm-logo.png`} alt="IBM" loading="lazy" />
-                </div>
+              <div className="reveal">
+                <ClientsMarquee />
               </div>
             </div>
           </section>

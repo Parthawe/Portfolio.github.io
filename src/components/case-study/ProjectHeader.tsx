@@ -112,66 +112,54 @@ export default function ProjectHeader({
   const heroY = useTransform(scrollYProgress, [0, 1], ['-3%', '3%'])
   const heroScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1, 1.02])
   const proofStats = (headerSummary?.stats ?? []).slice(0, 4)
-  const renderStoryAndSummary = (baseAnimIndex: number) => (
-    <>
-      {story && (
-        <div className={`proj-story hero-anim hero-anim-${baseAnimIndex}`} aria-label="Project story arc">
-          <div className="proj-story-grid">
-            <article className="proj-story-card surface-glass">
-              <span className="proj-story-kicker">Challenge</span>
-              <p className="proj-story-copy">{story.challenge}</p>
-            </article>
-            <article className="proj-story-card surface-glass">
-              <span className="proj-story-kicker">Approach</span>
-              <p className="proj-story-copy">{story.approach}</p>
-            </article>
-            <article className="proj-story-card surface-glass">
-              <span className="proj-story-kicker">Result</span>
-              <p className="proj-story-copy">{story.result}</p>
-            </article>
+  // One editorial narrative instead of two boxed grids: the fast-read summary
+  // wins when present; the storyline arc is the fallback. Never both — they
+  // repeat each other.
+  const narrativeRows = headerSummary
+    ? [
+        { label: 'Problem', copy: headerSummary.problem },
+        { label: 'Role', copy: headerSummary.role },
+        { label: 'Outcome', copy: headerSummary.outcome },
+      ]
+    : story
+      ? [
+          { label: 'Challenge', copy: story.challenge },
+          { label: 'Approach', copy: story.approach },
+          { label: 'Result', copy: story.result },
+        ]
+      : []
+  const renderStoryAndSummary = (baseAnimIndex: number) =>
+    narrativeRows.length ? (
+      <section className={`proj-fastread hero-anim hero-anim-${baseAnimIndex}`} aria-label="Fast read summary">
+        <header className="proj-fastread-head">
+          <div>
+            <span className="proj-fastread-kicker">Fast read</span>
+            <h2 className="proj-fastread-title">Why this project matters</h2>
           </div>
-        </div>
-      )}
+          {headerSummaryMeta ? <p className="proj-fastread-meta">{headerSummaryMeta}</p> : null}
+        </header>
 
-      {headerSummary ? (
-        <section className={`proj-header-summary hero-anim hero-anim-${story ? baseAnimIndex + 1 : baseAnimIndex}`} aria-label="Fast read summary">
-          <div className="proj-header-summary-head">
-            <div>
-              <span className="proj-header-summary-kicker">Fast read</span>
-              <h2 className="proj-header-summary-title">Why this project matters</h2>
+        <dl className="proj-fastread-list">
+          {narrativeRows.map((row) => (
+            <div className="proj-fastread-row" key={row.label}>
+              <dt>{row.label}</dt>
+              <dd>{row.copy}</dd>
             </div>
-            {headerSummaryMeta ? (
-              <p className="proj-header-summary-meta">{headerSummaryMeta}</p>
-            ) : null}
+          ))}
+        </dl>
+
+        {proofStats.length ? (
+          <div className="proj-fastread-stats" aria-label="Project proof points">
+            {proofStats.map((stat) => (
+              <div key={stat.label} className="proj-fastread-stat">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
           </div>
-          <div className="proj-header-summary-grid">
-            <article className="proj-header-summary-card surface-glass surface-glass--subtle">
-              <span className="proj-header-summary-label">Problem</span>
-              <p className="proj-header-summary-copy">{headerSummary.problem}</p>
-            </article>
-            <article className="proj-header-summary-card surface-glass surface-glass--subtle">
-              <span className="proj-header-summary-label">Role</span>
-              <p className="proj-header-summary-copy">{headerSummary.role}</p>
-            </article>
-            <article className="proj-header-summary-card surface-glass surface-glass--subtle">
-              <span className="proj-header-summary-label">Outcome</span>
-              <p className="proj-header-summary-copy">{headerSummary.outcome}</p>
-            </article>
-          </div>
-          {headerSummary.stats.length ? (
-            <div className="proj-header-summary-stats" aria-label="Project proof points">
-              {headerSummary.stats.map((stat) => (
-                <div key={stat.label} className="proj-header-summary-stat">
-                  <span className="proj-header-summary-stat-value">{stat.value}</span>
-                  <span className="proj-header-summary-stat-label">{stat.label}</span>
-                </div>
-              ))}
-            </div>
-          ) : null}
-        </section>
-      ) : null}
-    </>
-  )
+        ) : null}
+      </section>
+    ) : null
 
   if (heroExperience !== undefined || resolvedVisualHeroImage) {
     const visualKicker = heroEyebrow || title

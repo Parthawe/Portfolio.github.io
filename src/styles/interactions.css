@@ -1628,6 +1628,30 @@ body.site-tinted[data-theme="dark"] .site-tint-wash {
   text-overflow: ellipsis;
 }
 
+/* Guide fields double as toggles — same chrome as a field, button semantics. */
+button.site-tools__field--toggle {
+  justify-items: start;
+  color: var(--ink);
+  font-weight: 560;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+
+button.site-tools__field--toggle:hover {
+  border-color: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+button.site-tools__field--toggle.is-active {
+  border-color: color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 55%, transparent);
+  background: color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 9%, var(--site-panel-control));
+}
+
+.site-tools__zoom-menu:disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+
 .site-tools__rotation-row > button,
 .site-tools__icon-strip button {
   display: inline-grid;
@@ -2515,9 +2539,9 @@ body.page-about .wr-reveal-section {
 }
 
 /* Folio must stay usable inside Figma mode: the chat opens in the stage
-   (clear of the left panel) and above both panels. */
+   (clear of the right tools panel) and above both panels. */
 body.site-tools-open .agent-floating {
-  left: calc(var(--site-panel-left-active, 0px) + var(--chrome-inline, 1.5rem) + var(--ruler-inline-offset, 0px));
+  right: calc(var(--site-panel-right-active, 0px) + var(--chrome-inline, 1.5rem));
   z-index: 941;
 }
 

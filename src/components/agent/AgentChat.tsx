@@ -719,11 +719,17 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
       aria-labelledby={titleId}
       aria-describedby={introId}
     >
-      <div className="agent-panel surface-glass surface-glass--strong" aria-busy={thinking || streaming}>
+      <div className={`agent-panel surface-glass surface-glass--strong${voiceMode ? ' agent-panel--voice' : ''}`} aria-busy={thinking || streaming}>
         <div className="agent-panel-head">
-          <div>
-            <p className="agent-panel-kicker">Parth Pawar / Folio</p>
-            <h2 className="agent-panel-title" id={titleId}>Site Guide</h2>
+          <div className="agent-panel-id">
+            <span
+              className={`agent-orb${speaking ? ' agent-orb--speaking' : micListening ? ' agent-orb--listening' : thinking ? ' agent-orb--thinking' : ''}`}
+              aria-hidden="true"
+            />
+            <div>
+              <p className="agent-panel-kicker">Parth Pawar / Folio</p>
+              <h2 className="agent-panel-title" id={titleId}>Site Guide</h2>
+            </div>
           </div>
 
           <div className="agent-panel-tools">
@@ -781,21 +787,47 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
         <div className="agent-panel-meta">
           <span className="agent-panel-chip">{getRouteLabel(route)}</span>
           <span
-            className={`agent-panel-status${thinking || speaking || touring || micListening ? ' is-active' : ''}`}
+            className={`agent-panel-status${thinking || speaking || touring || micListening ? ' is-active' : ''}${micListening ? ' is-listening' : ''}`}
             role="status"
             aria-live="polite"
             aria-atomic="true"
           >
+            <span
+              className={`agent-ribbon${speaking ? ' agent-ribbon--speaking' : ''}${micListening ? ' agent-ribbon--listening' : ''}${thinking ? ' agent-ribbon--thinking' : ''}`}
+              aria-hidden="true"
+            >
+              <i /><i /><i /><i /><i />
+            </span>
             {statusLabel}
           </span>
         </div>
 
         <p className="agent-panel-intro" id={introId}>{getRouteIntro(route, voiceMode)}</p>
-        <p className="agent-panel-scope">Portfolio scope only.</p>
 
         <div className="agent-scroll-track">
           <div className="agent-scroll-bar" style={{ width: `${pageTracking.scrollDepth}%` }} />
         </div>
+
+        {voiceMode && (
+          <div className="agent-voice-stage" aria-hidden={false}>
+            <span
+              className={`agent-orb agent-orb--stage${speaking ? ' agent-orb--speaking' : micListening ? ' agent-orb--listening' : thinking ? ' agent-orb--thinking' : ''}`}
+              aria-hidden="true"
+            />
+            <p className="agent-voice-line" aria-live="polite">
+              {(() => {
+                const lastAgent = [...messages].reverse().find(message => message.sender === 'agent')
+                if (micListening) return 'Listening…'
+                if (thinking) return 'Thinking…'
+                if (!lastAgent) return 'Voice is on. Ask me anything about the work.'
+                return lastAgent.raw
+                  .replace(/^\[EXPORT\]\n?/, '')
+                  .replace(/\*\*/g, '')
+                  .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+              })()}
+            </p>
+          </div>
+        )}
 
         <div className="agent-float-msgs" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation">
           {messages.map(message => (
@@ -844,6 +876,7 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
               aria-pressed={micListening}
               title={micListening ? 'Stop listening' : 'Speak to Folio'}
             >
+              <span className="agent-float-mic-ring" aria-hidden="true" />
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <rect x="5" y="1" width="6" height="9" rx="3" fill="currentColor" />
                 <path d="M3 7v1a5 5 0 0010 0V7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" fill="none" />

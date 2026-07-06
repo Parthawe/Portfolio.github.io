@@ -391,15 +391,15 @@ function layersForPath(pathname: string): LayerItem[] {
   if (currentProject) {
     return [
       { label: currentProject.name, icon: '▣', target: '#main-content, .project-main', info: currentProject.nda ? 'Request-access project' : 'Public project', active: true },
-      { label: 'Case hero', icon: 'T', target: '.proj-hero, .cs-hero, .project-hero', info: 'Opening narrative', depth: 1 },
-      { label: currentProject.nda ? 'NDA public glimpse' : 'Project proof', icon: '◇', target: '#cs-public-story, .cs-quick-summary-card, .proj-overview-card', info: currentProject.nda ? 'Safe public preview' : 'Evidence summary', depth: 1, accent: currentProject.nda },
-      { label: 'Role / Scope / Duration', icon: '▦', target: '.proj-info-grid, .proj-header-summary, .cs-stat-grid', info: 'Project metadata', depth: 1 },
+      { label: 'Case hero', icon: 'T', target: '.proj-hero-system, .proj-visual-hero, .tf-hero', info: 'Opening narrative', depth: 1 },
+      { label: currentProject.nda ? 'NDA public glimpse' : 'Project proof', icon: '◇', target: '#cs-public-story, .cs-quick-summary-shell, .proj-fastread', info: currentProject.nda ? 'Safe public preview' : 'Evidence summary', depth: 1, accent: currentProject.nda },
+      { label: 'Role / Scope / Duration', icon: '▦', target: '.proj-info-row, .proj-fastread, .cs-stat-grid', info: 'Project metadata', depth: 1 },
       { label: 'Media spotlight', icon: '▤', target: '.cs-media-spotlight, .cs-media, .proj-hero-img, video, iframe', info: 'Visual proof', depth: 1 },
       { label: 'Problem', icon: 'T', target: '[id*="problem"], .cs-section:nth-of-type(2)', info: 'Context', depth: 2 },
       { label: 'Move', icon: 'T', target: '[id*="move"], [id*="process"], .cs-section:nth-of-type(3)', info: 'Design action', depth: 2 },
       { label: 'Outcome', icon: 'T', target: '[id*="outcome"], [id*="result"], .cs-section:nth-of-type(4)', info: 'Result', depth: 2 },
-      { label: 'Case controls', icon: '⌘', target: '.cs-bottom-nav, .cs-quick-summary-card', info: 'Navigation', depth: 1 },
-      { label: 'Next project', icon: '↳', target: '.next-project, .cs-next-project', info: 'Next frame', depth: 1 },
+      { label: 'Case controls', icon: '⌘', target: '.cs-bottom-nav, .cs-quick-summary-toggle', info: 'Navigation', depth: 1 },
+      { label: 'Next project', icon: '↳', target: '.next-project', info: 'Next frame', depth: 1 },
     ]
   }
 
@@ -407,13 +407,13 @@ function layersForPath(pathname: string): LayerItem[] {
     return [
       { label: 'Work', icon: '▣', target: '#main-content', info: 'Project index', active: true },
       { label: 'Navigation chrome', icon: '▤', target: '.nav', info: 'Persistent shell', depth: 1 },
-      { label: 'Category filter bar', icon: '⌘', target: '.work-category-rail, .work-bottom-nav', info: 'Browse controls', depth: 1 },
-      { label: 'Intro copy', icon: 'T', target: '.work-hero, .work-intro', info: 'Recruiter framing', depth: 1 },
-      { label: 'Project counts', icon: '#', target: '.work-stat-row, .work-counts', info: 'Selected/archive totals', depth: 1 },
+      { label: 'Category filter bar', icon: '⌘', target: '.work-filter-inline, .work-bottom-nav', info: 'Browse controls', depth: 1 },
+      { label: 'Intro copy', icon: 'T', target: '.work-page-intro, .work-page-header', info: 'Recruiter framing', depth: 1 },
+      { label: 'Project counts', icon: '#', target: '.work-page-intro-meta, .work-filter-inline', info: 'Selected/archive totals', depth: 1 },
       { label: 'View switcher', icon: '▦', target: '.work-view-switch', info: 'Editorial / playlist / index', depth: 1 },
-      { label: 'Selected work grid', icon: '▣', target: '.selected-work, .pcard-masonry, .work-editorial-grid', info: 'Flagship proof', depth: 1 },
-      { label: 'NDA quick glimpse tags', icon: '◇', target: '.pcard-tag--nda, .pcard-access-note', info: 'Access disclosure', depth: 2, accent: true },
-      { label: 'Archive grid', icon: '▧', target: '.archive-work, .work-archive-grid', info: 'Older experiments', depth: 1 },
+      { label: 'Selected work grid', icon: '▣', target: '.work-group--selected, #work-project-results', info: 'Flagship proof', depth: 1 },
+      { label: 'NDA quick glimpse tags', icon: '◇', target: '.pcard-tag--nda', info: 'Access disclosure', depth: 2, accent: true },
+      { label: 'Archive grid', icon: '▧', target: '.work-group--archive', info: 'Older experiments', depth: 1 },
       { label: 'Bottom category controller', icon: '⌘', target: '.work-bottom-nav', info: 'Mobile filter', depth: 1 },
     ]
   }
@@ -421,28 +421,28 @@ function layersForPath(pathname: string): LayerItem[] {
   if (pathname.endsWith('/about')) {
     return [
       { label: 'About', icon: '▣', target: '#main-content', info: 'Profile page', active: true },
-      { label: 'Profile statement', icon: 'T', target: '.about-hero, .about-profile', info: 'Positioning', depth: 1 },
-      { label: 'Experience timeline', icon: '▦', target: '.about-timeline, .experience-timeline', info: 'Career proof', depth: 1 },
-      { label: 'Principles', icon: '◇', target: '.about-principles, .principles', info: 'Design beliefs', depth: 1 },
-      { label: 'Contact block', icon: '↗', target: '.footer, .ft-contact-card', info: 'Reach out', depth: 1 },
+      { label: 'Profile statement', icon: 'T', target: '.abt-photo-hero, .abt-paper', info: 'Positioning', depth: 1 },
+      { label: 'Experience timeline', icon: '▦', target: '.abt-table-wrap', info: 'Career proof', depth: 1 },
+      { label: 'Practice & beliefs', icon: '◇', target: '.abt-practice, .abt-beyond', info: 'Design beliefs', depth: 1 },
+      { label: 'Contact block', icon: '↗', target: '.abt-cta, .footer', info: 'Reach out', depth: 1 },
     ]
   }
 
   if (pathname.endsWith('/writing')) {
     return [
       { label: 'Writing', icon: '▣', target: '#main-content', info: 'Article index', active: true },
-      { label: 'Editorial intro', icon: 'T', target: '.writing-hero, .wr-hero', info: 'Writing premise', depth: 1 },
-      { label: 'Article index', icon: '▤', target: '.writing-list, .article-index', info: 'Posts', depth: 1 },
-      { label: 'Newsletter / contact', icon: '↗', target: '.footer, .ft-contact-card', info: 'Contact footer', depth: 1 },
+      { label: 'Editorial intro', icon: 'T', target: '.wr-writing-header', info: 'Writing premise', depth: 1 },
+      { label: 'Article index', icon: '▤', target: '.wr-article-featured, .wr-article-card', info: 'Posts', depth: 1 },
+      { label: 'Newsletter / contact', icon: '↗', target: '.footer, .ft-top-cta', info: 'Contact footer', depth: 1 },
     ]
   }
 
   if (pathname.endsWith('/accessibility')) {
     return [
       { label: 'Accessibility', icon: '▣', target: '#main-content', info: 'Audit page', active: true },
-      { label: 'Design commitments', icon: '◇', target: '.accessibility-hero, .accessibility-section', info: 'What is handled', depth: 1 },
-      { label: 'Known risks', icon: '!', target: '[id*="risk"], .accessibility-section:nth-of-type(2)', info: 'Remaining concerns', depth: 1 },
-      { label: 'Audit notes', icon: '▤', target: '[id*="audit"], .accessibility-section:nth-of-type(3)', info: 'References', depth: 1 },
+      { label: 'Design commitments', icon: '◇', target: '.a11y-hero, .a11y-section', info: 'What is handled', depth: 1 },
+      { label: 'Known risks', icon: '!', target: '[id*="risk"], .a11y-section:nth-of-type(2)', info: 'Remaining concerns', depth: 1 },
+      { label: 'Audit notes', icon: '▤', target: '[id*="audit"], .a11y-section:nth-of-type(3)', info: 'References', depth: 1 },
     ]
   }
 
@@ -458,12 +458,12 @@ function layersForPath(pathname: string): LayerItem[] {
 
   return [
     { label: 'Home', icon: '▣', target: '#main-content', info: 'Landing canvas', active: true },
-    { label: 'Hero system', icon: 'T', target: '.home-hero, .wr-hero', info: 'Opening position', depth: 1 },
-    { label: '3D object field', icon: '◇', target: '.hero-scene, .hero-visual, canvas', info: 'Interactive identity', depth: 1, accent: true },
-    { label: 'Flagship work', icon: '▦', target: '.flagship-work, .flagship-showcase', info: 'Recruiter proof', depth: 1 },
-    { label: 'Who I am tabs', icon: '▤', target: '.identity-thesis, .who-tabs, .home-identity', info: 'About preview', depth: 1 },
-    { label: 'Latest signals', icon: '↳', target: '.latest-signals, .home-signals', info: 'Current work', depth: 1 },
-    { label: 'Selected archive', icon: '▧', target: '.selected-archive, .archive-section', info: 'Archive preview', depth: 1 },
+    { label: 'Hero system', icon: 'T', target: '.wr-hero', info: 'Opening position', depth: 1 },
+    { label: '3D object field', icon: '◇', target: '.wr-hero-3d, canvas', info: 'Interactive identity', depth: 1, accent: true },
+    { label: 'Flagship work', icon: '▦', target: '.wr-featured-v2', info: 'Recruiter proof', depth: 1 },
+    { label: 'Who I am tabs', icon: '▤', target: '.wr-identity', info: 'About preview', depth: 1 },
+    { label: 'Discipline range', icon: '↳', target: '.wr-disciplines', info: 'Ways of working', depth: 1 },
+    { label: 'Selected archive', icon: '▧', target: '.wr-archive', info: 'Archive preview', depth: 1 },
     { label: 'Footer', icon: '▤', target: '.footer', info: 'Contact frame', depth: 1 },
   ]
 }
@@ -513,6 +513,7 @@ export default function SiteInteractionTools() {
   const [tintStrength, setTintStrength] = useState(38)
   const [overlayOpacity, setOverlayOpacity] = useState(28)
   const [zoomScale, setZoomScale] = useState(100)
+  const [inkHidden, setInkHidden] = useState(false)
   const [gridEnabled, setGridEnabled] = useState(false)
   const [dotsEnabled, setDotsEnabled] = useState(false)
   const [rulersEnabled, setRulersEnabled] = useState(true)
@@ -722,6 +723,16 @@ export default function SiteInteractionTools() {
     resizeCanvas()
   }, [resizeCanvas])
 
+  const clearTint = useCallback(() => {
+    setActiveTint(tintOptions[0].label)
+    document.body.classList.remove('site-tinted')
+    ;[
+      '--site-tint', '--site-tint-soft', '--site-tint-faint', '--site-tint-border', '--site-tint-strong',
+      '--site-tool-ink', '--select-blue', '--project-color',
+      '--accent-hi', '--accent-hi-70', '--accent-hi-50', '--accent-hi-30', '--accent-hi-15', '--accent-hi-08', '--accent-hi-05',
+    ].forEach(property => document.body.style.removeProperty(property))
+  }, [])
+
   const zoomToSelection = useCallback((rect: SelectionRect) => {
     if (rect.w < 34 || rect.h < 34) return
 
@@ -746,6 +757,12 @@ export default function SiteInteractionTools() {
     setSelection(null)
     setMode(current => (current === nextMode ? null : nextMode))
   }, [])
+
+  // The eye in Appearance: show/hide the visitor's ink layer, Figma-style.
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (canvas) canvas.style.visibility = inkHidden ? 'hidden' : ''
+  }, [inkHidden])
 
   const toggleGrid = useCallback(() => {
     document.body.classList.toggle('figma-grid-on')
@@ -1124,7 +1141,6 @@ export default function SiteInteractionTools() {
 
   const overlayActive = mode === 'select' || mode === 'paint' || mode === 'comment'
   const selectedRect = selection ?? lastSelection
-  const tintOption = tintOptions.find(option => option.label === activeTint) ?? tintOptions[0]
   const frameWidthLabel = selectedRect ? String(Math.round(selectedRect.w)) : String(window.innerWidth)
   const frameHeightLabel = selectedRect ? String(Math.round(selectedRect.h)) : String(window.innerHeight)
   const layerItems = layersForPath(pathname)
@@ -1439,8 +1455,15 @@ export default function SiteInteractionTools() {
 
         <div className="site-tools__figma-tabs" aria-label="Panel sections">
           <button type="button" className="is-active">Design</button>
-          <button type="button" className="site-tools__zoom-menu" onClick={clearZoom}>
-            {zoomScale}% <ToolIcon name="chevron-down" />
+          <button
+            type="button"
+            className="site-tools__zoom-menu"
+            onClick={clearZoom}
+            disabled={zoomScale === 100}
+            title={zoomScale === 100 ? 'Zoom (drag with the crop tool to zoom in)' : 'Reset zoom to 100%'}
+            aria-label={zoomScale === 100 ? 'Zoom level' : 'Reset zoom to 100%'}
+          >
+            {zoomScale}%{zoomScale !== 100 && <ToolIcon name="refresh" />}
           </button>
         </div>
 
@@ -1533,22 +1556,34 @@ export default function SiteInteractionTools() {
             <div className="site-tools__control-group">
               <span>Guides</span>
               <div className="site-tools__field-grid">
-                <label className="site-tools__field">
-                  <span><ToolIcon name="grid" /></span>
-                  <input value={gridEnabled ? 'Grid on' : 'Grid off'} readOnly aria-label="Grid guide state" />
-                </label>
-                <label className="site-tools__field">
-                  <span><ToolIcon name="dots" /></span>
-                  <input value={dotsEnabled ? 'Dots on' : 'Dots off'} readOnly aria-label="Dot guide state" />
-                </label>
-                <label className="site-tools__field">
-                  <span><ToolIcon name="ruler" /></span>
-                  <input value={rulersEnabled ? 'Rulers on' : 'Rulers off'} readOnly aria-label="Ruler state" />
-                </label>
+                <button type="button" className={`site-tools__field site-tools__field--toggle${gridEnabled ? ' is-active' : ''}`} onClick={toggleGrid} aria-pressed={gridEnabled}>
+                  <span aria-hidden="true"><ToolIcon name="grid" /></span>
+                  {gridEnabled ? 'Grid on' : 'Grid off'}
+                </button>
+                <button type="button" className={`site-tools__field site-tools__field--toggle${dotsEnabled ? ' is-active' : ''}`} onClick={toggleDots} aria-pressed={dotsEnabled}>
+                  <span aria-hidden="true"><ToolIcon name="dots" /></span>
+                  {dotsEnabled ? 'Dots on' : 'Dots off'}
+                </button>
+                <button type="button" className={`site-tools__field site-tools__field--toggle${rulersEnabled ? ' is-active' : ''}`} onClick={toggleRulers} aria-pressed={rulersEnabled}>
+                  <span aria-hidden="true"><ToolIcon name="ruler" /></span>
+                  {rulersEnabled ? 'Rulers on' : 'Rulers off'}
+                </button>
               </div>
             </div>
 
-            <button type="button" className="site-tools__check-row" onClick={() => setMode(null)}>
+            <button
+              type="button"
+              className="site-tools__check-row"
+              onClick={() => {
+                clearZoom()
+                clearPaint()
+                clearTint()
+                setMode(null)
+                setContentAlign('center')
+                setInkHidden(false)
+              }}
+              title="Reset zoom, ink, tint, and alignment"
+            >
               <span aria-hidden="true">✓</span>
               Keep portfolio readable
             </button>
@@ -1558,9 +1593,18 @@ export default function SiteInteractionTools() {
             <div className="site-tools__section-head">
               <h3 id="site-tool-appearance-title">Appearance</h3>
               <div className="site-tools__section-icons" aria-label="Appearance actions">
-                <button type="button" onClick={clearPaint} aria-label="Clear ink"><ToolIcon name="eraser" /></button>
-                <button type="button" onClick={() => setMode(null)} aria-label="Show layer"><ToolIcon name="eye" /></button>
-                <button type="button" onClick={() => applyTint(activeTint, tintOption.value)} aria-label="Apply tint"><ToolIcon name="component" /></button>
+                <button type="button" onClick={clearPaint} aria-label="Clear ink" title="Clear ink"><ToolIcon name="eraser" /></button>
+                <button
+                  type="button"
+                  className={inkHidden ? 'is-active' : ''}
+                  onClick={() => setInkHidden(current => !current)}
+                  aria-pressed={inkHidden}
+                  aria-label={inkHidden ? 'Show ink layer' : 'Hide ink layer'}
+                  title={inkHidden ? 'Show ink layer' : 'Hide ink layer'}
+                >
+                  <ToolIcon name="eye" />
+                </button>
+                <button type="button" onClick={clearTint} aria-label="Remove tint" title="Remove tint"><ToolIcon name="component" /></button>
               </div>
             </div>
 

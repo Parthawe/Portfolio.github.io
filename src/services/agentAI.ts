@@ -134,6 +134,7 @@ const STARTER_CHIPS: Record<string, string[]> = {
   '/work': ['Playlist view', 'Arc view', 'Start with flagship work', 'Best research process'],
   '/about': ['Tour this page', 'Role fit', 'Tell me about Mentra', 'Contact'],
   '/writing': ['Tour this page', 'Best article', 'Design philosophy', 'About Parth'],
+  '/playbook': ['Tour this page', 'Design philosophy', 'Best research process', 'About Parth'],
 }
 
 interface FocusTopic {
@@ -607,6 +608,12 @@ const STATIC_TOURS: Record<string, TourStep[]> = {
     { text: 'Here\'s the thing that matters: he\'s at Mentra right now designing an entire operating system for a 640-pixel-wide display. Before that, founding designer at ZentiPay, lead at TransFi. The trajectory is 0-to-1 product work at increasing scale.', scrollTo: '.abt-status-row, .abt-status-card', delay: 350 },
     { text: 'The tools section is worth a look. It\'s not just Figma, it\'s React, Python, Arduino, Blender, laser cutters. He designs it, codes it, and sometimes physically builds it. That range is why the installations and creative tech projects exist alongside the fintech work.', scrollTo: '.abt-tools, .abt-skills', delay: 350 },
     { text: 'The daily practices at the bottom explain the consistency. 100 days of poems, 100 days of sketches, 45 podcast episodes. It\'s not hustle content, it\'s a designer who actually does the reps. If you want to talk, his email is here. Or ask me anything else.', scrollTo: '.abt-practice-grid, .abt-practice', delay: 0 },
+  ],
+  '/playbook': [
+    { text: 'This is the playbook, eight values that shape how Parth works. Not poster philosophy, each one traces back to shipped projects.', scrollTo: '.pb-hero', delay: 300 },
+    { text: 'The strip rolls all eight so you can scan them fast. Below, each value gets its own section with the two concrete behaviors behind it.', scrollTo: '.pb-strip', delay: 320 },
+    { text: 'Empathy and accessibility lead for a reason, that thread runs from Raahi\'s transit work to the 18px minimum text on Mentra\'s glasses.', scrollTo: '#empathy', delay: 350 },
+    { text: 'If you want proof instead of principles, ask me how any value shows up in a real project and I\'ll take you to the case study.', scrollTo: '.pb-cta', delay: 0 },
   ],
   '/writing': [
     { text: 'This is where the thinking behind the projects gets unpacked. Every article comes from a real design decision, not theory.', scrollTo: '.wr-writing-header', delay: 300 },

@@ -120,6 +120,23 @@
   pointer-events: none;
 }
 
+/* The canvas box must stay square: flex used to shrink its width to the
+   column while the height stayed fixed, so the WebGL framing cropped the
+   object at the sides. */
+.ch-3d--side > * {
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+/* The bleed canvas centers on the slot and overhangs it; on narrower
+   windows that overhang crossed the viewport edge, where overflow-x
+   slices it into a hard cut. Clamp it square to the space available
+   (equal max on both axes keeps the render undistorted). */
+.ch-3d--side > * > div {
+  max-width: min(88vw, 621px) !important;
+  max-height: min(88vw, 621px) !important;
+}
+
 /* ── Dark mode ── */
 [data-theme="dark"] .ch-strip { border-top-color: rgba(237, 237, 236, 0.12); }
 

@@ -43,6 +43,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const BookPage = lazy(() => import('./pages/BookPage'))
 const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 const StudioPage = lazy(() => import('./pages/StudioPage'))
+const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
 const WritingPage = lazy(() => import('./pages/WritingPage'))
 const WritingArticlePage = lazy(() => import('./pages/WritingPage').then(m => ({ default: m.WritingArticlePage })))
 
@@ -89,6 +90,7 @@ export default function App() {
           <Route path="/mentra-website" element={<Navigate to="/mentra#cs-website" replace />} />
 
           {/* Misc pages */}
+          <Route path="/playbook" element={<PlaybookPage />} />
           <Route path="/writing" element={<WritingPage />} />
           <Route path="/writing/:slug" element={<WritingArticlePage />} />
           <Route path="/book" element={<BookPage />} />

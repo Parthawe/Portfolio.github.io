@@ -27,7 +27,7 @@ export default function Nav() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const lastFocusedRef = useRef<Element | null>(null);
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   useNavScroll(navRef);
 
@@ -183,6 +183,16 @@ export default function Nav() {
   // Project and category pages also count as "work"
   const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !['studio', 'book', 'graveyard'].some(r => pathname === `/${r}`));
 
+  // On the Work page itself, the Work tab expands to show its four views.
+  const isWorkPage = pathname === '/work';
+  const workView = new URLSearchParams(search).get('view') || 'editorial';
+  const workViewLinks = [
+    { key: 'editorial', label: 'Editorial', to: '/work' },
+    { key: 'playlist', label: 'Playlist', to: '/work?view=playlist' },
+    { key: 'library', label: 'Index', to: '/work?view=library' },
+    { key: 'timeline', label: 'Arc', to: '/work?view=timeline' },
+  ];
+
   return (
     <>
       <a href="#main-content" className="skip-to-content">Skip to content</a>
@@ -192,6 +202,21 @@ export default function Nav() {
           <div className="nav-left-pill surface-glass figma-hover">
             <Link to="/" className="nav-logo figma-hover">PP<FigmaSelect /></Link>
             <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
+            {isWorkPage && (
+              <div className="nav-work-views" aria-label="Work page views">
+                {workViewLinks.map((view) => (
+                  <Link
+                    key={view.key}
+                    to={view.to}
+                    replace
+                    className={`nav-work-view figma-hover${workView === view.key ? ' is-active' : ''}`}
+                    aria-current={workView === view.key ? 'page' : undefined}
+                  >
+                    {view.label}
+                  </Link>
+                ))}
+              </div>
+            )}
             <Link to="/about" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}>About<FigmaSelect /></Link>
             <FigmaSelect />
           </div>

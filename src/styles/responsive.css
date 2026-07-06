@@ -206,7 +206,7 @@
   .cs-timeline { padding-left: 1.25rem; }
   .cs-timeline-item::before { left: -1.25rem; width: 8px; height: 8px; }
   .pcard-body { padding: 0.75rem; }
-  .pcard-name { font-size: var(--text-base); }
+  .pcard-name { font-size: 1.25rem; }
   .pcard-tag { font-size: var(--text-2xs); }
   .cs-section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
 }
