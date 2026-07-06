@@ -203,7 +203,7 @@
 
 /* Hero subtitle */
 .hero-subtitle {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(0.85rem, 1.5vw, 1.1rem);
   font-weight: 300;
   font-style: italic;

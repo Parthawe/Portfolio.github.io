@@ -4,7 +4,7 @@ import TiltCard from './TiltCard'
 import FigmaSelect from './FigmaSelect'
 import { getImageBrightness } from '../utils/imageBrightness'
 import { normalizeCopy } from '../utils/normalizeCopy'
-import { projects } from '../data/projects'
+import { isRequestAccessProject, visibleProjects as projects } from '../data/projects'
 
 interface ProjectCardProps {
   slug: string
@@ -27,11 +27,12 @@ interface ProjectCardProps {
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText,
-  loading = 'lazy', featured = false, tilt = true, tiltIntensity = 5,
+  loading = 'lazy', featured = false, tilt = true, tiltIntensity = 5, nda = false,
 }: ProjectCardProps) {
   const project = projects.find(p => p.slug === slug)
   const resolvedImage = project?.cardMockup || image
   const resolvedAlt = project?.cardMockupAlt || name
+  const requestAccess = isRequestAccessProject(project) || nda
   const safeTag = tag ? normalizeCopy(tag) : ''
   const safeYear = year ? normalizeCopy(year) : ''
   const safeDesc = desc ? normalizeCopy(desc) : ''
@@ -69,15 +70,26 @@ export default memo(function ProjectCard({
 
   const card = (
     <Link
-      className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${hoverMediaSrc ? ' pcard--has-hover-media' : ''}`}
+      className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${hoverMediaSrc ? ' pcard--has-hover-media' : ''}${requestAccess ? ' pcard--request-access' : ''}`}
       to={`/${slug}`}
-      aria-label={`View ${name} project`}
+      aria-label={requestAccess ? `View NDA public glimpse for ${name}. Full details by request.` : `View ${name} project`}
       onMouseEnter={handlePrefetch}
       onFocus={handlePrefetch}
     >
       <div className="pcard-inner">
         <div className="pcard-top-row">
-          <span className="pcard-tag">{safeTag}</span>
+          <span className="pcard-tag-stack">
+            {safeTag ? <span className="pcard-tag">{safeTag}</span> : null}
+            {requestAccess ? (
+              <span className="pcard-tag pcard-tag--nda" aria-label="NDA project">
+                <svg className="pcard-tag-lock" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+                  <path d="M3.35 5.1V4a2.65 2.65 0 0 1 5.3 0v1.1" />
+                  <rect x="2.35" y="5" width="7.3" height="5.25" rx="1.15" />
+                </svg>
+                <span>NDA</span>
+              </span>
+            ) : null}
+          </span>
           <span className="pcard-year">{safeYear}</span>
         </div>
         <div className="pcard-visual">

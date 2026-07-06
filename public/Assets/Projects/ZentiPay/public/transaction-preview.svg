@@ -1,0 +1,49 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F4ED"/>
+      <stop offset="1" stop-color="#EEEEF0"/>
+    </linearGradient>
+    <linearGradient id="green" x1="229" y1="164" x2="1134" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3F4046"/>
+      <stop offset="1" stop-color="#9F9FA1"/>
+    </linearGradient>
+    <filter id="shadow" x="124" y="70" width="1148" height="862" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="38" flood-color="#202022" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="980" rx="42" fill="url(#bg)"/>
+  <path d="M0 120H1400M0 240H1400M0 360H1400M0 480H1400M0 600H1400M0 720H1400M0 840H1400M140 0V980M280 0V980M420 0V980M560 0V980M700 0V980M840 0V980M980 0V980M1120 0V980M1260 0V980" stroke="#212123" stroke-opacity=".055"/>
+  <g filter="url(#shadow)">
+    <rect x="178" y="124" width="1044" height="762" rx="34" fill="#FAF8F3"/>
+    <rect x="178" y="124" width="1044" height="762" rx="34" stroke="#2E2E30" stroke-opacity=".12"/>
+    <rect x="223" y="173" width="238" height="58" rx="18" fill="#F0F0F2"/>
+    <text x="253" y="211" fill="#323234" font-family="monospace" font-size="23" font-weight="700" letter-spacing="4">SEND MONEY</text>
+    <rect x="940" y="173" width="214" height="58" rx="18" fill="#3F4046" fill-opacity=".11"/>
+    <text x="980" y="211" fill="#3F4046" font-family="monospace" font-size="22" font-weight="700" letter-spacing="3">LOCKED RATE</text>
+    <rect x="253" y="300" width="420" height="484" rx="44" fill="#FFFFFF"/>
+    <rect x="253" y="300" width="420" height="484" rx="44" stroke="#28282C" stroke-opacity=".12"/>
+    <rect x="305" y="356" width="180" height="24" rx="12" fill="#1E1E21" fill-opacity=".12"/>
+    <rect x="305" y="414" width="308" height="76" rx="24" fill="#EEF2ED"/>
+    <text x="333" y="461" fill="#323234" font-family="monospace" font-size="28" font-weight="700" letter-spacing="2">USD 2,450</text>
+    <rect x="305" y="526" width="308" height="76" rx="24" fill="#3F4046"/>
+    <text x="333" y="573" fill="#F9FBF6" font-family="monospace" font-size="28" font-weight="700" letter-spacing="2">INR 204,118</text>
+    <rect x="305" y="646" width="146" height="24" rx="12" fill="#1E1E21" fill-opacity=".12"/>
+    <rect x="305" y="700" width="308" height="36" rx="18" fill="#3F4046" fill-opacity=".14"/>
+    <rect x="305" y="700" width="226" height="36" rx="18" fill="url(#green)"/>
+    <rect x="742" y="314" width="351" height="132" rx="28" fill="#FFFFFF"/>
+    <rect x="742" y="314" width="351" height="132" rx="28" stroke="#28282C" stroke-opacity=".12"/>
+    <text x="786" y="364" fill="#6A6A6E" font-family="monospace" font-size="20" font-weight="700" letter-spacing="3">TRUST STATE</text>
+    <text x="786" y="411" fill="#212124" font-family="Georgia, serif" font-size="42">Before transfer</text>
+    <rect x="742" y="484" width="351" height="132" rx="28" fill="#FFFFFF"/>
+    <rect x="742" y="484" width="351" height="132" rx="28" stroke="#28282C" stroke-opacity=".12"/>
+    <text x="786" y="534" fill="#6A6A6E" font-family="monospace" font-size="20" font-weight="700" letter-spacing="3">PROGRESS</text>
+    <circle cx="812" cy="579" r="16" fill="#3F4046"/>
+    <path d="M847 579H1037" stroke="#3F4046" stroke-width="14" stroke-linecap="round" opacity=".32"/>
+    <path d="M847 579H966" stroke="#3F4046" stroke-width="14" stroke-linecap="round"/>
+    <rect x="742" y="654" width="351" height="132" rx="28" fill="#FFFFFF"/>
+    <rect x="742" y="654" width="351" height="132" rx="28" stroke="#28282C" stroke-opacity=".12"/>
+    <text x="786" y="704" fill="#6A6A6E" font-family="monospace" font-size="20" font-weight="700" letter-spacing="3">REVIEW</text>
+    <text x="786" y="750" fill="#212124" font-family="Georgia, serif" font-size="42">Clear next step</text>
+  </g>
+</svg>

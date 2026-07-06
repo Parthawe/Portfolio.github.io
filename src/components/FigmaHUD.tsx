@@ -13,6 +13,12 @@ export default function FigmaHUD() {
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const rafRef = useRef(0)
 
+  const getRulerOffset = (axis: 'inline' | 'block') => {
+    const prop = axis === 'inline' ? '--ruler-inline-offset' : '--ruler-block-offset'
+    const value = getComputedStyle(document.body).getPropertyValue(prop)
+    return Number.parseFloat(value) || 0
+  }
+
   useEffect(() => {
     if ('ontouchstart' in window || window.matchMedia('(max-width: 768px)').matches) return
 
@@ -63,12 +69,15 @@ export default function FigmaHUD() {
   const [isMobile] = useState(() => typeof window !== 'undefined' && (window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window))
   if (isMobile) return null
 
+  const labelLeft = typeof document === 'undefined' ? pos.x + 16 : Math.max(pos.x + 16, getRulerOffset('inline') + 8)
+  const labelTop = typeof document === 'undefined' ? pos.y + 20 : Math.max(pos.y + 20, getRulerOffset('block') + 8)
+
   return (
     <>
       {/* Cursor-following coordinate label */}
       <div
         className={`figma-cursor-label${visible ? ' figma-cursor-label--visible' : ''}`}
-        style={{ left: pos.x + 16, top: pos.y + 20 }}
+        style={{ left: labelLeft, top: labelTop }}
         aria-hidden="true"
       >
         <span>{pos.x}, {pos.y}</span>

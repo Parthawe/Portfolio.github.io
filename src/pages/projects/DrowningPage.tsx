@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -18,7 +19,7 @@ export default function DrowningPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Drowning · Parth Pawar" />
         <meta property="og:description" content="Scenic design for stage production inspired by abandoned greenhouse aesthetics." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/drowning.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/drowning.jpg" />
       </Helmet>
 
       <Nav />
@@ -38,35 +39,26 @@ export default function DrowningPage() {
           ]}
         />
 
-        {/* Video */}
-        <section className="cs-slide reveal">
-          <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-            <iframe
-              src="https://player.vimeo.com/video/1026164956"
-              frameBorder="0" loading="lazy"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-              title="Drowning"
-            />
-          </div>
-        </section>
+        <CsMediaSpotlight
+          id="cs-film"
+          label="Watch first"
+          title="A room losing air"
+          lede="The film shows what the set does best: a greenhouse that feels beautiful, fragile, and slowly enclosing the performers."
+          meta={['Vimeo performance', 'Set design', 'Lighting states']}
+        >
+          <iframe
+            src="https://player.vimeo.com/video/1026164956"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+            title="Drowning"
+          />
+        </CsMediaSpotlight>
 
-        {/* Overview */}
-        <CsSection label="Overview" title="Abandoned Greenhouse">
-          <CsBody>
-            <p>The scenic design for Drowning draws deeply from the haunting beauty of an abandoned greenhouse. Layers of cracked glass and rusted metal frame an atmosphere both fragile and resilient, symbolizing themes of entrapment and decay. Overgrown plants spill from corners and crawl along walls, reclaiming space with quiet but unstoppable force.</p>
-            <p><strong>The challenge:</strong> NYU&rsquo;s Tisch School of the Arts needed a set for a 45-minute one-act play staged in a 28&prime; &times; 22&prime; black box theater with no fly system and limited wing space. The creative brief called for an environment that could feel both intimate and claustrophobic &mdash; a living space in the process of being consumed by nature. The budget was $1,800 for materials, the build window was three weeks, and the set had to be struck in under four hours to make way for the next production in the rotation. These constraints shaped every decision: nothing could be permanently fixed to the floor or walls, every panel had to be modular enough for a four-person crew to disassemble, and the material palette had to stretch far on a student budget.</p>
-            <p>The production required a set that could embody contradictions: a space that felt both sheltering and suffocating, alive and deteriorating, beautiful and unsettling. The abandoned greenhouse metaphor provided all of these tensions naturally. Glass panels suggest transparency and openness, but when cracked and fogged they become barriers. Plants suggest growth and vitality, but when overgrown they suggest neglect and loss of control.</p>
-            <p>Every material choice served the emotional arc of the play. The set was not a backdrop but an active participant in the storytelling, shifting in character as the lighting changed and the narrative progressed. Audiences described feeling the environment closing in around them as the play moved toward its climax &mdash; an effect achieved through careful coordination between set structure, lighting states, and the director&rsquo;s blocking.</p>
-          </CsBody>
-        </CsSection>
-
-        {/* Concept */}
-        {/* Interactive — lighting transformation */}
+        {/* Interactive, early proof */}
         <CsSection id="cs-lighting" label="Interactive" title="Light Transforms the Space">
           <CsBody>
-            <p>Set design is about light. Drag the slider to see how the abandoned greenhouse emerges from darkness &mdash; the same physical space, transformed entirely by lighting design.</p>
+            <p>Drag the slider to see the same set change state. The scenic design only works because structure, texture, and light are designed together.</p>
           </CsBody>
           <div style={{ marginTop: 'var(--space-4)' }}>
             <LightingSlider
@@ -78,6 +70,15 @@ export default function DrowningPage() {
           </div>
         </CsSection>
 
+        {/* Overview */}
+        <CsSection label="Overview" title="Abandoned Greenhouse">
+          <CsBody>
+            <p>Drowning needed a black-box set that felt sheltering and suffocating at the same time. The abandoned greenhouse gave the production that contradiction: cracked transparency, overgrown life, and a room that seemed to close in as the play progressed.</p>
+            <p>The build had to fit a 28&prime; by 22&prime; theater, strike in under four hours, and work without a fly system. Every panel, plant, and light angle had to carry both atmosphere and logistics.</p>
+          </CsBody>
+        </CsSection>
+
+        {/* Concept */}
         <section className="cs-section reveal" id="cs-concept">
           <div className="wrap">
             <p className="cs-section-label">01 &mdash; Concept</p>
@@ -149,6 +150,8 @@ export default function DrowningPage() {
         <CsThanks />
 
         <BottomNav sections={[
+          { id: 'cs-film', label: 'Film' },
+          { id: 'cs-lighting', label: 'Lighting' },
           { id: 'cs-concept', label: 'Concept' },
           { id: 'cs-design', label: 'Design' },
           { id: 'cs-production', label: 'Production' },
@@ -156,7 +159,7 @@ export default function DrowningPage() {
 
       </main>
 
-      <NextProject slug="tedx" title="TEDx VIT Pune" image="/Portfolio.github.io/Assets/images/tedx.webp" />
+      <NextProject slug="tedx" title="TEDx VIT Pune" image="/Portfolio.github.io/Assets/images/tedx.jpg" />
       <Footer />
     </>
   )

@@ -1,29 +1,3 @@
-/* ── Butler's Slice @font-face (Parth's custom typeface) ── */
-@font-face {
-  font-family: "Butlers Slice";
-  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff2") format("woff2"),
-       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff") format("woff");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Butlers Slice";
-  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff2") format("woff2"),
-       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Butlers Slice";
-  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff2") format("woff2"),
-       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* ================================================
    ABOUT PAGE, Design-canvas, 24px base grid
    Every element sits on the grid. Every radius shown.
@@ -257,7 +231,7 @@
 
 /* Node label on heading */
 .abt-name::before {
-  content: 'Source Serif 4 · 96 / 96';
+  content: 'Nikolas · 96 / 96';
   position: absolute;
   top: -2px;
   left: 0;
@@ -479,7 +453,7 @@
   margin-bottom: 34px; /* 48-14=34, keeps total block at 240px=10 units */
 }
 .abt-tagline {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(1.1rem, 1.8vw, 1.35rem);
   font-weight: 400;
   line-height: 24px; /* 1 unit, every line sits on grid */
@@ -509,7 +483,7 @@
   right: 0;
   display: flex;
   flex-direction: column;
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(0.9rem, 1.4vw, 1.1rem);
   font-style: italic;
   font-weight: 400;
@@ -565,7 +539,10 @@
 }
 
 .abt-portal-img {
-  width: min(65vw, 850px);
+  /* Also capped by viewport height: the square sits bottom-anchored in a
+     100svh hero with overflow hidden, so a width-only size crops the top
+     of the photo on short windows. */
+  width: min(65vw, 850px, calc(100svh - var(--nav-h, 56px) - 1.5rem));
   aspect-ratio: 1 / 1;
   border-radius: 0;
   margin-bottom: 0;
@@ -589,15 +566,29 @@
   .portal-reveal { cursor: auto; }
 }
 @media (max-width: 768px) {
-  .abt-portal-img { width: min(85vw, 550px); cursor: auto; }
+  .abt-photo-hero {
+    height: clamp(20rem, 54svh, 27rem);
+    align-items: flex-end;
+    padding-top: calc(var(--nav-h) + 1.25rem);
+  }
+
+  .abt-portal-img {
+    width: min(78vw, 22rem, calc(54svh - var(--nav-h, 56px) - 1.25rem));
+    cursor: auto;
+  }
 }
 @media (max-width: 480px) {
-  .abt-portal-img { width: min(95vw, 450px); }
+  .abt-photo-hero {
+    height: clamp(18rem, 48svh, 23rem);
+    padding-top: calc(var(--nav-h) + 1rem);
+  }
+
+  .abt-portal-img { width: min(82vw, 20rem, calc(48svh - var(--nav-h, 56px) - 1rem)); }
 }
 
 /* Caption under main photo */
 .abt-collage-caption {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(0.9rem, 1.6vw, 1.2rem);
   font-style: italic;
   font-weight: 400;
@@ -684,7 +675,7 @@
   text-align: justify;
 }
 .abt-collage-text p {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(0.85rem, 1.2vw, 1rem);
   font-weight: 400;
   line-height: 1.7;
@@ -1278,7 +1269,7 @@
   background: var(--ink-15);
 }
 .abt-pull p {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   line-height: 24px; /* grid */
   color: var(--ink-70);
@@ -1821,7 +1812,7 @@
   align-content: start;
 }
 .abt-aside {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: var(--text-sm);
   font-style: italic;
   color: var(--ink-50);
@@ -1884,13 +1875,13 @@
   font-family: var(--mono);
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 200;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   color: var(--ink-08);
   line-height: 1;
   margin-bottom: 8px;
 }
 .abt-practice-title {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   font-weight: 400;
   color: var(--ink);
@@ -2145,11 +2136,11 @@
   margin-bottom: var(--space-8); /* 2 units */
 }
 .abt-type-name {
-  font-family: "Butlers Slice", var(--serif);
+  font-family: var(--display-heading);
   font-size: clamp(4rem, 10vw, 8rem);
   font-weight: 400;
   line-height: 1; /* display, will be manually aligned */
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   color: var(--ink);
   margin-bottom: var(--space-5);
 }
@@ -2175,7 +2166,7 @@
   margin-bottom: 0;
 }
 .abt-type-weight-sample {
-  font-family: "Butlers Slice", var(--serif);
+  font-family: var(--display-heading);
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   line-height: 48px; /* 2 units */
   color: var(--ink);
@@ -2187,7 +2178,7 @@
 
 /* Alphabet row */
 .abt-type-alphabet {
-  font-family: "Butlers Slice", var(--serif);
+  font-family: var(--display-heading);
   font-weight: 400;
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   line-height: 48px; /* 2 units */
@@ -2206,7 +2197,7 @@
 }
 .abt-cta-inner { max-width: 504px; }
 .abt-cta-headline {
-  font-family: "Butlers Slice", var(--serif);
+  font-family: var(--display-heading);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 200;
   letter-spacing: 0;

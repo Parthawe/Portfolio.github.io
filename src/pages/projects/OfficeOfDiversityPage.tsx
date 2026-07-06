@@ -23,12 +23,12 @@ export default function OfficeOfDiversityPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Office of Diversity · Parth Pawar" />
         <meta property="og:description" content="Interactive IDBEA data visualization report for NYU Tisch, translating data into accessible visuals." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/office-of-diversity.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/office-of-diversity.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#6B2D8B' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#57068C' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -81,27 +81,6 @@ export default function OfficeOfDiversityPage() {
             },
           ]}
         />
-
-        {/* Tools */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-label-row" style={{ borderBottom: 'none' }}>
-              <span className="cs-label-row-key">Tools &amp; Techniques</span>
-              <span className="cs-label-row-val">
-                <span className="cs-tags" style={{ margin: 0 }}>
-                  <span className="cs-tag-item">Figma</span>
-                  <span className="cs-tag-item">User Research</span>
-                  <span className="cs-tag-item">Identity and Website Design</span>
-                  <span className="cs-tag-item">Prototyping</span>
-                  <span className="cs-tag-item">Wireframes</span>
-                  <span className="cs-tag-item">High-Fidelity</span>
-                  <span className="cs-tag-item">Experience Management</span>
-                  <span className="cs-tag-item">Design System</span>
-                </span>
-              </span>
-            </div>
-          </div>
-        </section>
 
         <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/2.jpg" alt="Summary, challenges, role, and tools overview for the IDBEA report project" />
 
@@ -221,9 +200,7 @@ export default function OfficeOfDiversityPage() {
         {/* Impact */}
         <CsSection id="cs-impact" label="Impact" title="Outcome">
           <CsStatGrid stats={[
-            { label: 'User Interaction', value: '+74%' },
-            { label: 'Accessibility', value: 'WCAG 2.1 AA' },
-            { label: 'Collaborative Process', value: '3 Months' },
+            { label: 'Accessibility', value: 'Built to WCAG 2.1 AA' },
           ]} />
         </CsSection>
 
@@ -231,115 +208,17 @@ export default function OfficeOfDiversityPage() {
         <CsSection id="cs-reflections" label="Reflections" title="What this project taught me">
           <CsNumList items={[
             <><strong>Institutional trust is built in the details.</strong> Every color choice, every word, every layout decision carried the weight of NYU Tisch&rsquo;s commitment to its community. Choosing accessible type sizes over flashy ones, letting the data speak clearly rather than over-designing it, and ensuring every stakeholder saw their voice reflected in the final product &mdash; these small decisions compound into credibility.</>,
-            <><strong>Designing about inclusion demands honesty, not performance.</strong> It is easy to fall into performative visuals &mdash; bold statements and stock imagery that signal values without embodying them. Working closely with Christina and the Office of Diversity team kept the work honest. The design had to serve the people and the progress it documented, not just look good on a screen.</>,
             <><strong>Data visualization is an act of translation, not decoration.</strong> Complex institutional data needs a designer who can hold two things at once: fidelity to the numbers and empathy for the reader. The charts and timelines in this report were not about making data &ldquo;pretty&rdquo; &mdash; they were about making a decade of progress legible to the community it serves.</>,
-            <><strong>Collaborative feedback loops produce better outcomes than isolated design sprints.</strong> The 3-month process of iterating with faculty, students, and staff surfaced blind spots I would never have caught alone. The best design decisions in this project came from conversations, not from my Figma artboard.</>,
           ]} />
         </CsSection>
-
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/6.webp" alt="Outcome, 74% increase in user interaction, accessibility success, and key learnings" />
-
-        {/* The Report */}
-        <CsSection id="cs-report" label="The Report" title="IDBEA 2024 Report">
-          <CsBody>
-            <p>The final report traces a decade of IDBEA milestones &mdash; from the initial commitment in 2014 through listening sessions, foundational learning, the establishment of the Cabinet, the hiring of an Assistant Dean, and the expansion of the Office of Diversity &mdash; culminating in the formation of the IDBEA Committee in 2023.</p>
-          </CsBody>
-        </CsSection>
-
-        {/* Timeline */}
-        <section className="cs-section reveal" style={{ paddingTop: 0 }}>
-          <div className="wrap">
-            <span className="cs-section-label">Timeline</span>
-            <h2 className="cs-section-title">A Decade of Progress</h2>
-            <CsSteps steps={[
-              { num: '2014', title: '', desc: 'Commitment to IDBEA' },
-              { num: '2015', title: '', desc: 'Listening sessions begin' },
-              { num: '2017', title: '', desc: 'Foundational learning' },
-              { num: '2018', title: '', desc: 'Cabinet established' },
-              { num: '2019', title: '', desc: 'Assistant Dean hired' },
-              { num: '2020', title: '', desc: 'Reaffirm commitment' },
-              { num: '2022', title: '', desc: 'Office expands' },
-              { num: '2023', title: '', desc: 'Committee established' },
-            ]} />
-          </div>
-        </section>
-
-        {/* Team */}
-        <section className="cs-section reveal" style={{ paddingTop: 0 }}>
-          <div className="wrap">
-            <span className="cs-section-label">The Team</span>
-            <h2 className="cs-section-title">Meet the Office of Diversity</h2>
-            <CsFeatureGrid features={[
-              { title: 'Christina Salgado', desc: 'Assistant Dean' },
-              { title: 'Monae Freeman', desc: 'Diversity Program Administrator' },
-              { title: 'Kevin Hunter', desc: 'Administrative Aide' },
-            ]} />
-          </div>
-        </section>
-
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/7.webp" alt="IDBEA 2024 Report, timeline, team, and approach overview" />
-
-        {/* Advisement */}
-        <CsSection label="Structure" title="Advisement & Feedback Groups">
-          <CsFeatureGrid features={[
-            { title: 'Cabinet', desc: '' },
-            { title: 'Deans and Chairs', desc: '' },
-            { title: 'IDBEA Committee', desc: '' },
-            { title: 'Coalition', desc: '' },
-          ]} />
-        </CsSection>
-
-        {/* Focus Areas */}
-        <section className="cs-section reveal" style={{ paddingTop: 0 }}>
-          <div className="wrap">
-            <span className="cs-section-label">Focus Areas</span>
-            <h2 className="cs-section-title">Four Pillars of IDBEA Work</h2>
-            <CsFeatureGrid features={[
-              { title: 'Learning & Engagement', desc: 'Workshops, dialogues, and educational programming across the Tisch community.' },
-              { title: 'Resource Development', desc: 'Building tools, guides, and materials to support IDBEA work at every level.' },
-              { title: 'Restorative Practices', desc: 'Addressing concerns and conflicts through structured, empathetic case resolution.' },
-              { title: 'School-wide Collaborative Programming', desc: 'Cross-departmental initiatives that unite the Tisch community around shared values.' },
-            ]} />
-          </div>
-        </section>
-
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/8.webp" alt="Report, advisement groups, focus areas, and data visualization charts showing engagement metrics" />
-
-        {/* Data Highlights */}
-        <CsSection label="Data Highlights" title="Report Data at a Glance">
-          <CsBody>
-            <p>The report showcases key program outcomes across restorative practices, student funding, and enrollment. These figures were visualized through color-coded charts and interactive data points in the final design.</p>
-          </CsBody>
-          <CsStatGrid stats={[
-            { label: 'Restorative Cases (IDBEA)', value: '33' },
-            { label: 'Restorative Cases (Global Events)', value: '14' },
-            { label: 'HEAR US Funding', value: '$62K' },
-            { label: 'Student Awardees', value: '11' },
-            { label: 'Future Artists Enrolled', value: '178' },
-            { label: 'Departments Represented', value: '7' },
-          ]} />
-          <details className="cs-details">
-            <summary className="cs-details-summary">IDBEA report data highlights</summary>
-            <div className="cs-details-content">
-              <p><strong>Restorative Practice:</strong> The Office addressed 33 cases in response to general IDBEA concerns and 14 cases in response to current global events, using structured, empathetic case resolution to support the Tisch community.</p>
-              <p><strong>HEAR US Program:</strong> $62,000 was distributed among 11 student awardees, with 38 students mentored through the program &mdash; providing direct funding and guidance to amplify underrepresented voices in the arts.</p>
-              <p><strong>Future Artists:</strong> 178 students enrolled across 7 departments, expanding access and representation in Tisch&rsquo;s creative pipeline through targeted outreach and programming.</p>
-            </div>
-          </details>
-        </CsSection>
-
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/9.webp" alt="Report, restorative practices stats, HEAR US program, Future Artists enrollment, and the year ahead" />
 
         <CsThanks contactCta />
-
-        <CsImage src="/Portfolio.github.io/Assets/Projects/office-of-diversity/10.webp" alt="Credits, Parth Pawar, UI/UX Designer" />
 
         <BottomNav sections={[
           { id: 'cs-goals', label: 'Goals' },
           { id: 'cs-process', label: 'Process' },
           { id: 'cs-impact', label: 'Impact' },
           { id: 'cs-reflections', label: 'Reflections' },
-          { id: 'cs-report', label: 'The Report' },
         ]} />
 
       </main>

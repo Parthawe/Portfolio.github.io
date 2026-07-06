@@ -1,0 +1,40 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F2EC"/>
+      <stop offset="1" stop-color="#EDEDEF"/>
+    </linearGradient>
+    <filter id="soft" x="70" y="76" width="1260" height="830" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="34" flood-color="#272729" flood-opacity=".14"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="980" rx="42" fill="url(#bg)"/>
+  <circle cx="1138" cy="180" r="250" fill="#3F4046" fill-opacity=".08"/>
+  <circle cx="266" cy="812" r="260" fill="#D8B76E" fill-opacity=".13"/>
+  <g filter="url(#soft)">
+    <rect x="142" y="130" width="1116" height="720" rx="36" fill="#FBFAF6"/>
+    <rect x="142" y="130" width="1116" height="720" rx="36" stroke="#2F2F31" stroke-opacity=".12"/>
+    <text x="200" y="216" fill="#3F4046" font-family="monospace" font-size="24" font-weight="700" letter-spacing="5">PRICE CLARITY SYSTEM</text>
+    <text x="200" y="318" fill="#1B1B1E" font-family="Georgia, serif" font-size="82">No surprise after review.</text>
+    <rect x="198" y="404" width="1004" height="1" fill="#272729" fill-opacity=".14"/>
+    <g>
+      <rect x="198" y="464" width="282" height="230" rx="28" fill="#F1F1F0"/>
+      <text x="232" y="522" fill="#6F6F73" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">QUOTE</text>
+      <text x="232" y="594" fill="#1B1B1E" font-family="Georgia, serif" font-size="58">1.00</text>
+      <text x="232" y="646" fill="#5F5F63" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">RATE LOCKED</text>
+    </g>
+    <g>
+      <rect x="558" y="464" width="282" height="230" rx="28" fill="#3F4046"/>
+      <text x="592" y="522" fill="#F1F1F3" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">FEES</text>
+      <text x="592" y="594" fill="#FFFFFF" font-family="Georgia, serif" font-size="58">Shown</text>
+      <text x="592" y="646" fill="#E5E5E7" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">BEFORE COMMIT</text>
+    </g>
+    <g>
+      <rect x="918" y="464" width="282" height="230" rx="28" fill="#F1F1F0"/>
+      <text x="952" y="522" fill="#6F6F73" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">STATUS</text>
+      <text x="952" y="594" fill="#1B1B1E" font-family="Georgia, serif" font-size="58">Visible</text>
+      <text x="952" y="646" fill="#5F5F63" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">UNTIL ARRIVAL</text>
+    </g>
+    <path d="M480 580H558M840 580H918" stroke="#3F4046" stroke-width="10" stroke-linecap="round" stroke-opacity=".34"/>
+  </g>
+</svg>

@@ -1,5 +1,5 @@
 import { categories } from './categories'
-import { projects } from './projects'
+import { visibleProjects as projects } from './projects'
 
 export const PORTFOLIO_SCOPE_REPLY =
   "I only answer questions about Parth Pawar, the projects, and the pages on this portfolio. Ask about a case study, a role fit, a tool, or ask me to show you a section."

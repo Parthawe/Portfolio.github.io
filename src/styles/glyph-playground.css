@@ -36,7 +36,7 @@
   color: var(--ink-40);
 }
 .gp-input {
-  font-family: "Butlers Slice", Georgia, serif;
+  font-family: var(--display-heading);
   font-size: var(--text-base);
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--ink-08);
@@ -129,7 +129,7 @@
 .gp-preview-text {
   margin: 0;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   color: var(--ink);
   white-space: nowrap;
 }

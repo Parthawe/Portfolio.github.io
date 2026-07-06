@@ -12,6 +12,7 @@ import {
   filterProjectsByCategory,
   CATEGORIES,
   CATEGORY_LABELS,
+  getProjectAccessLabel,
   type Project,
   type ProjectCategory,
 } from '../data/projects'
@@ -74,6 +75,10 @@ function getProjectCollectionLabel(project: Project) {
   if (project.featured) return 'Flagship work'
   if (project.selected) return 'Selected work'
   return 'Archive work'
+}
+
+function getAccessLabel(project: Project) {
+  return getProjectAccessLabel(project)
 }
 
 function getTimelineSectionSummary(projects: Project[], leadProject: Project) {
@@ -269,6 +274,21 @@ export default function WorkPage() {
     }
   }, [viewMode])
 
+  const renderFilterButtons = () => filters.map(f => (
+    <button
+      key={f.key}
+      type="button"
+      data-work-filter={f.key}
+      aria-pressed={activeFilter === f.key}
+      aria-controls="work-project-results"
+      className={`pill-link work-bnav-link figma-hover${activeFilter === f.key ? ' active' : ''}`}
+      onClick={() => handleFilterChange(f.key as 'all' | ProjectCategory)}
+    >
+      {f.label}
+      <FigmaSelect />
+    </button>
+  ))
+
   useEffect(() => {
     if (!playlistProjects.length) {
       setPlaylistPreviewSlug(null)
@@ -438,6 +458,11 @@ export default function WorkPage() {
                     Arc
                   </button>
                 </div>
+                {viewMode === 'editorial' ? (
+                  <nav className="work-filter-inline surface-glass" aria-label="Filter projects inline" role="toolbar">
+                    {renderFilterButtons()}
+                  </nav>
+                ) : null}
               </div>
             </header>
 
@@ -535,7 +560,7 @@ export default function WorkPage() {
                           <span>{playlistPreviewProject.tag}</span>
                           <span>{playlistPreviewProject.summaryTimeline || playlistPreviewProject.year}</span>
                           <span>{CATEGORY_LABELS[playlistPreviewProject.category]}</span>
-                          {playlistPreviewProject.nda ? <span>Quick glimpse</span> : null}
+                          {getAccessLabel(playlistPreviewProject) ? <span>{getAccessLabel(playlistPreviewProject)}</span> : null}
                         </div>
                         <div className="work-playlist-stage__actions">
                           <Link to={`/${playlistPreviewProject.slug}`} className="work-playlist-stage__cta figma-hover">
@@ -575,7 +600,7 @@ export default function WorkPage() {
                             <span className="work-playlist-row__name">{project.name}</span>
                             <span className="work-playlist-row__meta">
                               {project.tag}
-                              {project.nda ? ' / Quick glimpse' : ''}
+                              {getAccessLabel(project) ? ` / ${getAccessLabel(project)}` : ''}
                             </span>
                           </div>
                           <span className="work-playlist-row__detail">
@@ -659,7 +684,7 @@ export default function WorkPage() {
                                 <span className="work-library-row__name">{project.name}</span>
                                 <span className="work-library-row__meta">
                                   {project.tag}
-                                  {project.nda ? ' / Quick glimpse' : ''}
+                                  {getAccessLabel(project) ? ` / ${getAccessLabel(project)}` : ''}
                                 </span>
                               </div>
                               <span className="work-library-row__detail">
@@ -738,7 +763,7 @@ export default function WorkPage() {
                             <div className="work-timeline-feature__eyebrow">
                               <span>Anchor project</span>
                               <span>{section.leadProject.tag}</span>
-                              {section.leadProject.nda ? <span>Quick glimpse</span> : null}
+                              {getAccessLabel(section.leadProject) ? <span>{getAccessLabel(section.leadProject)}</span> : null}
                             </div>
                             <h3 className="work-timeline-feature__title">{section.leadProject.name}</h3>
                             <p className="work-timeline-feature__detail">
@@ -783,7 +808,7 @@ export default function WorkPage() {
                                   <div className="work-timeline-support-row__body">
                                     <div className="work-timeline-support-row__eyebrow">
                                       <span>{project.tag}</span>
-                                      {project.nda ? <span>Quick glimpse</span> : null}
+                                      {getAccessLabel(project) ? <span>{getAccessLabel(project)}</span> : null}
                                     </div>
                                     <h3 className="work-timeline-support-row__name">{project.name}</h3>
                                   </div>
@@ -820,20 +845,7 @@ export default function WorkPage() {
 
       {viewMode === 'editorial' ? (
         <nav className={`work-bottom-nav surface-glass${footerVisible ? ' is-hidden' : ''}`} ref={bottomNavRef} aria-label="Filter projects" role="toolbar">
-          {filters.map(f => (
-            <button
-              key={f.key}
-              type="button"
-              data-work-filter={f.key}
-              aria-pressed={activeFilter === f.key}
-              aria-controls="work-project-results"
-              className={`pill-link work-bnav-link figma-hover${activeFilter === f.key ? ' active' : ''}`}
-              onClick={() => handleFilterChange(f.key as 'all' | ProjectCategory)}
-            >
-              {f.label}
-              <FigmaSelect />
-            </button>
-          ))}
+          {renderFilterButtons()}
         </nav>
       ) : null}
       <div aria-live="polite" aria-atomic="true" className="sr-only">

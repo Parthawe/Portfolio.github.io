@@ -24,9 +24,10 @@ bun run dev
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `VITE_GEMINI_API_KEY` | Yes | Gemini API key for the portfolio agent |
-| `VITE_GEMINI_API_KEY_2` | No | Fallback Gemini key (rate limiting) |
-| `VITE_GEMINI_API_KEY_3` | No | Second fallback Gemini key |
+| `GEMINI_API_KEY` | No | Server-only Gemini key for the local `/api/folio-answer` endpoint |
+| `VITE_EDGE_AI_ENABLED` | No | Set to `1` to let the portfolio agent call the edge AI endpoint |
+| `VITE_EDGE_AI_ENDPOINT` | No | Defaults to `/api/folio-answer` |
+| `VITE_EDGE_AI_MODEL` | No | Defaults to `gemini-2.5-flash` |
 | `VITE_ELEVENLABS_API_KEY` | No | ElevenLabs TTS for agent voice |
 | `VITE_ELEVENLABS_VOICE_ID` | No | Voice ID (defaults to Rachel) |
 

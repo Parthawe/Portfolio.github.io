@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import FigmaSelect from './FigmaSelect'
-import type { Project } from '../data/projects'
+import { isRequestAccessProject, type Project } from '../data/projects'
 
 type FlagshipVariant = 'lead' | 'card'
 
@@ -82,7 +82,8 @@ export default function FlagshipProjectShowcase({
   const cardMeta = [project.summaryTimeline || project.year, compactRole].filter(
     (value): value is string => Boolean(value),
   )
-  const statusCopy = project.nda
+  const requestAccess = isRequestAccessProject(project)
+  const statusCopy = requestAccess
     ? 'Quick glimpse first. Full details are shared by request.'
     : 'Starts with a 2 min summary, then opens into the full case study.'
   const imageSource = project.summaryImage || project.image
@@ -105,7 +106,7 @@ export default function FlagshipProjectShowcase({
               {orderedMeta.map((item) => (
                 <span key={item} className="wr-flagship-topline__item">{item}</span>
               ))}
-              {project.nda ? <span className="wr-flagship-topline__item wr-flagship-topline__item--quiet">Quick glimpse</span> : null}
+              {requestAccess ? <span className="wr-flagship-topline__item wr-flagship-topline__item--quiet">Quick glimpse</span> : null}
             </div>
 
             <div className="wr-flagship-copyblock">
@@ -239,7 +240,7 @@ export default function FlagshipProjectShowcase({
         ) : null}
 
         <div className="wr-flagship-card__footer">
-          <span className="wr-flagship-card__note">{project.nda ? 'Quick glimpse first' : '2 min summary first'}</span>
+          <span className="wr-flagship-card__note">{requestAccess ? 'Quick glimpse first' : '2 min summary first'}</span>
           <Link to={`/${project.slug}`} className="wr-flagship-card__cta figma-hover">
             Case study
             <FigmaSelect />

@@ -515,7 +515,7 @@
   font-size: clamp(3.5rem, 12vw, 8rem);
   font-weight: 300;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   color: var(--ink);
   margin: 0 0 1.5rem;
 }
@@ -697,7 +697,7 @@
 }
 
 .gy-tomb-era {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: clamp(1.1rem, 2.2vw, 1.35rem);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -731,7 +731,7 @@
 }
 
 .gy-tomb-epitaph {
-  font-family: var(--serif);
+  font-family: var(--serif-read);
   font-size: 0.75rem;
   font-style: italic;
   color: rgba(70, 60, 50, 0.4);

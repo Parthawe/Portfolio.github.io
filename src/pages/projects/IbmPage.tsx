@@ -4,6 +4,9 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
+import CsImage from '../../components/case-study/CsImage'
+import CsStatGrid from '../../components/case-study/CsStatGrid'
+import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -17,12 +20,12 @@ export default function IbmPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="IBM Cancer Prognosis · Parth Pawar" />
         <meta property="og:description" content="Securely transfer genomic data and identify life expectancy of cancer patients using homomorphic encryption." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#054ADA' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#6929C4' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -42,7 +45,7 @@ export default function IbmPage() {
         {/* Hero */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="IBM Cancer Prognosis — Helping To Secure Cancer Research" loading="eager" />
+            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration: a line of people walking along a lit path toward a glowing open door" loading="eager" />
           </div>
         </section>
 
@@ -53,13 +56,6 @@ export default function IbmPage() {
             <p>This internship at IBM focused on a harder question: could we keep patient data encrypted through the full prediction pipeline and still produce clinically useful outputs? That made the project as much about trust and system design as it was about machine learning.</p>
           </CsBody>
         </CsSection>
-
-        {/* Summary image */}
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/patient-hospital.png" alt="Project summary — challenges, role, and tools including FHE Toolkit, Homomorphic Encryption, Neural Networks, Python, Java" loading="lazy" />
-          </div>
-        </section>
 
         {/* Problem */}
         <CsSection id="cs-problem" label="01 · Problem" title="The Privacy Paradox">
@@ -72,7 +68,7 @@ export default function IbmPage() {
         {/* Problem statement diagram */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/genomic-data.png" alt="Problem statement flow — genomic data through encrypted channel to server, showing vulnerability when data is unencrypted during computation" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/ibm/3.jpg" alt="Problem statement diagram: genomic data leaves the hospital over an encrypted channel, but the server decrypts it for computation, exposing personal data to the third-party service" loading="lazy" decoding="async" />
           </div>
         </section>
 
@@ -87,14 +83,14 @@ export default function IbmPage() {
         {/* System flow */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/neural-network.png" alt="System flow — from unencrypted data through FHE encryption, neural network computation on encrypted data, decryption, clustering, and Kaplan-Meier survival curves" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/ibm/4.jpg" alt="System flow diagram: patient data is preprocessed with random forest feature selection, encrypted with the FHE toolkit, gene scores are computed homomorphically by a neural network, then decrypted, clustered with k-means, and plotted as Kaplan-Meier curves" loading="lazy" decoding="async" />
           </div>
         </section>
 
         {/* Encryption detail */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/system-architecture.png" alt="Homomorphic encryption in detail — unencrypted data passes through neural network hidden layers while remaining encrypted, outputting Kaplan-Meier curves" loading="lazy" />
+            <img src="/Portfolio.github.io/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption diagram: data enters the neural network's hidden layers without being decrypted, and the encrypted output is unlocked only to plot the Kaplan-Meier curve" loading="lazy" decoding="async" />
           </div>
         </section>
 
@@ -112,19 +108,39 @@ export default function IbmPage() {
             <span className="cs-label-row-key">Tools</span>
             <span className="cs-label-row-val">FHE Toolkit, Python, Java, Neural Networks, Kaplan-Meier</span>
           </div>
-          <div className="cs-label-row">
-            <span className="cs-label-row-key">Methods</span>
-            <span className="cs-label-row-val">User Research, Data Analysis, Homomorphic Encryption, System Flow</span>
-          </div>
         </CsSection>
 
         {/* Results */}
+        <CsSection id="cs-results" label="04 · Results" title="Encrypted In, Useful Out">
+          <CsBody>
+            <p>The pipeline produced Kaplan-Meier cluster plots: survival curves for seven treatment groups, computed from data that stayed encrypted through the model. The clusters describe how life expectancy differs depending on which group a patient falls into.</p>
+            <p>The cost of privacy was measured in seconds, not usefulness. Running the encrypted transfer added a fixed overhead on both ends of the pipeline.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-5)' }}>
+            <CsImage
+              src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/km-clusters-dark.jpg"
+              alt="Kaplan-Meier clusters plot: survival probability over time for seven treatment groups, each curve labeled in the legend"
+              caption="Kaplan-Meier clusters plot — survival curves for the seven treatment groups produced by the encrypted pipeline."
+            />
+          </div>
+          <CsBody style={{ marginTop: 'var(--space-3)' }}>
+            <p>Read plainly, the seven clusters function as risk groups: the curve a patient&rsquo;s data falls into indicates how their expected survival differs from the other groups, which is what makes the output usable for prognosis.</p>
+          </CsBody>
+          <CsStatGrid stats={[
+            { label: 'Client running time, encrypted transfer', value: '42s' },
+            { label: 'Server running time, encrypted transfer', value: '28s' },
+          ]} />
+        </CsSection>
+
+        {/* Credits */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/research-diagram.png" alt="Research methodology: encrypted data flow through neural network layers" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/survival-curves.png" alt="Kaplan-Meier survival curves: 7 treatment groups over time" loading="lazy" /></div>
-            </div>
+            <CsCredits credits={[
+              { role: 'IBM Mentors', name: 'Amrin, Varsha' },
+              { role: 'College Mentor', name: 'Virendra Pawar' },
+              { role: 'Research', name: 'Parth Pawar' },
+              { role: 'Engineers', name: 'Sakshi Oswal, Mitanshu Bhoot, Saurabh Rane, Tarun Meditya' },
+            ]} />
           </div>
         </section>
 
@@ -135,11 +151,12 @@ export default function IbmPage() {
           { id: 'cs-problem', label: 'Problem' },
           { id: 'cs-solution', label: 'Solution' },
           { id: 'cs-role', label: 'Role' },
+          { id: 'cs-results', label: 'Results' },
         ]} />
 
       </main>
 
-      <NextProject slug="sculpture" title="Sculpture" image="/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg" />
+      <NextProject slug="oncall-lens" title="OnCall Lens" image="/Portfolio.github.io/Assets/images/oncall-lens.webp" />
       <Footer />
     </>
   )

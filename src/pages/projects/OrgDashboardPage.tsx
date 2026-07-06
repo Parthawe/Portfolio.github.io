@@ -25,7 +25,7 @@ export default function OrgDashboardPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OrgDashboard · Parth Pawar" />
         <meta property="og:description" content="SaaS platform that gives AI agents a brain for your company, designing for two users simultaneously." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/org-dashboard.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/org-dashboard.webp" />
       </Helmet>
 
       <Nav />
@@ -121,7 +121,7 @@ export default function OrgDashboardPage() {
           </CsBody>
           <CsInfoGrid items={[
             { key: 'Heading', value: 'Newsreader' },
-            { key: 'Body', value: 'DM Sans' },
+            { key: 'Body', value: 'General Sans' },
             { key: 'Mono', value: 'DM Mono' },
             { key: 'Background', value: '#fafafa' },
             { key: 'Foreground', value: '#1c2024' },
@@ -191,7 +191,7 @@ export default function OrgDashboardPage() {
 
       </main>
 
-      <NextProject slug="raahi-project" title="Raahi" image="/Portfolio.github.io/Assets/images/raahi.webp" />
+      <NextProject slug="raahi-project" title="Raahi" image="/Portfolio.github.io/Assets/images/raahi.jpg" />
       <Footer />
     </>
   )

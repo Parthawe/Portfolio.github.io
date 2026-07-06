@@ -3,7 +3,8 @@ import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import ProjectOverview from '../../components/case-study/ProjectOverview'
+import NdaPublicStory from '../../components/case-study/NdaPublicStory'
+import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -16,12 +17,12 @@ export default function CueTvPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="CueTV · Parth Pawar" />
         <meta property="og:description" content="OTT platform for opera, ballet, symphonies, designed discovery, playback, and retargeting ads." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#D53F8C' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#C8102E' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -29,72 +30,56 @@ export default function CueTvPage() {
           backLabel="Back to Work"
           tags={['UX', 'Brand', 'Product']}
           title="CueTV"
-          subtitle="Reframed a niche performing-arts streaming service so discovery, playback, and growth all spoke to the same audience."
+          subtitle="Reframed a niche performing-arts streaming product around discovery, playback, and return visits."
           info={[
             { label: 'Client', value: 'Operabase' },
-            { label: 'Scope of Work', value: 'User Research, Retargeting Ads System' },
-            { label: 'Role', value: 'UI Designer & Research' },
+            { label: 'Scope', value: 'Research, UX, Growth System' },
+            { label: 'Role', value: 'Product Designer' },
             { label: 'Duration', value: '7 Months' },
-                { label: 'Year', value: '2021' },
+            { label: 'Year', value: '2021' },
           ]}
           liveUrl="https://www.cuetv.online"
         />
 
-        {/* Overview */}
-        <ProjectOverview
-          id="cs-overview"
-          sections={[
-            {
-              label: 'Summary',
-              content: 'CueTV is an OTT platform for opera, ballet, symphonies, and classical performance. The product challenge was not just streaming the content. It was helping a very specific audience find, understand, and return to programming that does not behave like mainstream entertainment catalogs.',
-            },
-            {
-              label: 'The Challenges',
-              content: 'The team needed the platform and the growth system to work together. Audience segments were fragmented, browsing behavior varied by familiarity with the art form, and retargeting could not be treated as a separate marketing layer with generic OTT assumptions.',
-            },
-            {
-              label: 'My Role',
-              content: 'I worked across audience research, platform UX, and retargeting design. That included clarifying the user segments, shaping the browsing and playback experience, and designing the ad-system logic that helped the product reach and re-engage the right viewers.',
-            },
-            {
-              label: 'Visible Outcome',
-              content: 'This public layer shows the audience model, platform structure, and service-design thinking behind CueTV. The internal system, campaign mechanics, and supporting process detail are shared directly after access is approved.',
-            },
-          ]}
+        <NdaPublicStory
+          slug="cuetv"
+          headline="Streaming for a specific audience."
+          lede="The public glimpse focuses on the product story: discovery and growth had to work together for a niche cultural catalogue."
         />
 
-        {/* Tools */}
-        <section className="cs-section reveal" id="cs-tools">
-          <div className="wrap">
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Tools &amp; Techniques</span>
-              <span className="cs-label-row-val">
-                <span className="cs-tags" style={{ margin: 0 }}>
-                  <span className="cs-tag-item">Figma</span>
-                  <span className="cs-tag-item">Illustrator</span>
-                  <span className="cs-tag-item">Premiere Pro</span>
-                  <span className="cs-tag-item">After Effects</span>
-                  <span className="cs-tag-item">Growth analysis</span>
-                  <span className="cs-tag-item">Research</span>
-                  <span className="cs-tag-item">Heat-Mapping</span>
-                  <span className="cs-tag-item">Experience Design</span>
-                </span>
-              </span>
-            </div>
-          </div>
-        </section>
+        <NdaProcess
+          decisions={[
+            {
+              move: 'Treated a niche catalogue as a discovery problem, not a size problem.',
+              why: 'A small library of opera, ballet, and symphony content fails if it is browsed like a mass-market service. I organised discovery around occasion, mood, and cultural context so depth read as curation rather than scarcity.',
+            },
+            {
+              move: 'Designed playback for long-form, seated attention.',
+              why: 'Performances are watched differently from episodic TV. The player prioritised uninterrupted viewing, act structure, and resume behaviour over autoplay churn, matching how this audience actually watches.',
+            },
+            {
+              move: 'Made return visits a designed moment, not an ad afterthought.',
+              why: 'Retention for a cultural catalogue depends on bringing people back for the next programme. I connected the retargeting system to genuine reasons to return so growth reinforced the product instead of fighting it.',
+            },
+          ]}
+          shift={{
+            before: 'A specialist catalogue presented like a generic streaming grid, where depth looked like a short list.',
+            after: 'A discovery and return system tuned to how classical-arts audiences choose and re-engage.',
+          }}
+        />
 
         <NdaGate slug="cuetv" />
 
         <BottomNav sections={[
-          { id: 'cs-overview', label: 'Overview' },
-          { id: 'cs-tools', label: 'Tools' },
-        ]} liveUrl="https://www.cuetv.online" />
+          { id: 'cs-public-story', label: 'Glimpse' },
+          { id: 'cs-process', label: 'Process' },
+          { id: 'case-study-access-cuetv', label: 'Access' },
+        ]} liveUrl="https://www.cuetv.online" placement="side" />
 
 
       </main>
 
-      <NextProject slug="org-dashboard" title="OrgDashboard" image="/Portfolio.github.io/Assets/images/org-dashboard.webp" />
+      <NextProject slug="executivelens" title="ExecutiveLens" image="/Portfolio.github.io/Assets/images/executivelens.webp" />
       <Footer />
     </>
   )

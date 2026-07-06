@@ -20,12 +20,12 @@ export default function RevolvingStagePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Revolving Stage &middot; Parth Pawar" />
         <meta property="og:description" content="Engineered a 15 ft. revolving stage for theatre, supporting 250+ kgs with seamless scene transitions." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/revolving-stage.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/revolving-stage.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#B7791F' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#8A6B4F' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -48,19 +48,15 @@ export default function RevolvingStagePage() {
         {/* Summary section */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Theatrical device to move 15 ft. to 8 ft. to 16 ft. the stage for scene changes in Theatre Play.</h2>
+            <h2 className="cs-display">A theatrical device that rotates the stage for scene changes &mdash; a 15 ft. revolving platform on an 8 ft. base, turning within a 16 ft. stage.</h2>
 
             <div className="cs-label-row">
-              <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">Revolving stage, theatrical device for scene changes, or shifts, by which three or more settings are constructed on a turntable around a central pivot and revolved before the audience.</span>
-            </div>
-            <div className="cs-label-row">
               <span className="cs-label-row-key">The Challenges</span>
-              <span className="cs-label-row-val">The Main Challenge was to design an Axle to support and revolve and 15ft by 8ft stage base, with almost 250+ kgs baring on it. Also giving stability for actors to stand and perform on it. As the timeline was to plan &amp; complete this in 3 months while leading a team of 65+ people, had its own merits.</span>
+              <span className="cs-label-row-val">The main challenge was to design an axle that could support and revolve the 15 ft. platform on its 8 ft. base, with almost 250+ kgs bearing on it, while staying stable enough for actors to stand and perform on. Planning and completing this in 3 months, while leading a team of 65+ people, was a challenge of its own.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">As an Art Director, I had to design and engineer Axile and the complete stage with different scenes according to the Theatrical Play while administrating and leading 65+ people.</span>
+              <span className="cs-label-row-val">As an Art Director, I had to design and engineer the axle and the complete stage with different scenes according to the theatrical play, while administrating and leading 65+ people.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
@@ -74,7 +70,6 @@ export default function RevolvingStagePage() {
                   <span className="cs-tag-item">Stage Production</span>
                   <span className="cs-tag-item">Theatre &ndash; Tech</span>
                   <span className="cs-tag-item">Stage Management</span>
-                  <span className="cs-tag-item">Stage Production</span>
                   <span className="cs-tag-item">Scene Types</span>
                 </span>
               </span>
@@ -84,7 +79,7 @@ export default function RevolvingStagePage() {
 
         {/* Slide images */}
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/isometric-stage.png" alt="Isometric view showing the revolving stage rotating anticlockwise 135 degrees above the audience seating area" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/isometric-stage.png" alt="Isometric view showing the revolving stage rotating anticlockwise 135 degrees above the audience seating area" loading="lazy" decoding="async" />
         </div>
 
         {/* Mechanical Design */}
@@ -106,9 +101,10 @@ export default function RevolvingStagePage() {
           </CsBody>
         </CsSection>
 
-        <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/stage-vs-render.png" alt="Exploded isometric view, wooden revolving stage, axle, caster wheel bearing assembly, and wooden base with dimensions" loading="lazy" />
-        </div>
+        <figure className="cs-slide reveal" style={{ margin: 0 }}>
+          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/full-assembly-exploded.png" alt="Exploded isometric view of the full assembly: wooden revolving stage, axle stack, caster wheels arranged in two circles, and wooden base" loading="lazy" decoding="async" />
+          <figcaption className="cs-img-caption">The full stack, exploded: platform, axle, twin rings of caster wheels, and the 8 ft. wooden base.</figcaption>
+        </figure>
 
         {/* Axle */}
         <section className="cs-section reveal">
@@ -116,9 +112,6 @@ export default function RevolvingStagePage() {
             <p className="cs-section-label">Engineering</p>
             <h2 className="cs-section-title">Axle</h2>
             <CsBody>
-              <p>Axle is a device used in theatrical play production to support and move various props and set pieces. It consists of a rod or spindle that is either fixed or rotating, passing through the centre of a wheel or group of wheels. The axle is designed to enable props and set pieces to be lifted, rotated and moved in any direction on stage. It is often used to swiftly and safely move large props and scenery pieces in a controlled manner during a performance.</p>
-            </CsBody>
-            <CsBody style={{ marginTop: '1.5rem' }}>
               <p>The axle assembly is composed of the following components:</p>
               <ul className="cs-list">
                 <li>Steel Plate 1 (1 ft. &times; 1 ft.)</li>
@@ -133,7 +126,7 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/axle-exploded.png" alt="Exploded view of the axle assembly, steel plates, shaft, thrust bearing, ball bearing, and bearing components" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/axle-exploded.png" alt="Exploded view of the axle assembly, steel plates, shaft, thrust bearing, ball bearing, and bearing components" loading="lazy" decoding="async" />
         </div>
 
         {/* Caster Wheel */}
@@ -149,26 +142,11 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/caster-engineering.webp" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/caster-engineering.webp" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" decoding="async" />
         </div>
 
-        {/* Revolving Stage Physics */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label">Engineering</p>
-            <h2 className="cs-display">Revolving Stage</h2>
-            <CsBody>
-              <p>For present purposes, a revolve is a circular disk, capable of supporting the same loads as the stage floor, lying in a horizontal plane and turning around a fixed center. You can conceive of a unit that violates any point of this definition; the victim&rsquo;s wheel in a knife-throwing act is not horizontal, a lightweight set piece can be revealed with a pie stand or a table mounted on a dowel rod, and so forth. I won&rsquo;t take up any of those cases.</p>
-              <p>The disk has to be fairly stiff, because we don&rsquo;t want set elements built on it to flex when the unit moves. We don&rsquo;t look for perfect rigidity; maybe we could build a 16- or 18-foot circle with no give in it, but even a sound floor sags a little when loaded, so there&rsquo;s no point incurring the vast expense of a perfect revolve to stand on an imperfect deck.</p>
-              <p>If the disk is more than a handspan across, it has to have support other than at the middle. A big revolve with all its weight concentrated at the center would punch right through the deck, making us no friends in the theater.</p>
-              <p>The forces on a revolve can be broken down (resolved) into vertical or gravity forces and lateral or thrust forces. Most of the thrusts act when we turn the unit, but lateral forces arise in violent action and even when someone steps on or off. If the revolve is stationary and no one is mounting or dismounting, gravity is the only force that acts on it. It will simplify design and construction if we can use one system to handle thrust and a different system to handle weight.</p>
-              <p>That won&rsquo;t quite happen, but we&rsquo;ll make the effort. In building theater equipment, most of us think in terms of wood and metal. There&rsquo;s a lot to be said for iron as a load-bearing material; your favorite freight elevator is chock-full of it.</p>
-            </CsBody>
-          </div>
-        </section>
-
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/stage-rotation.png" alt="Revolving stage shown at multiple rotation angles, clockwise 45 degrees, angle 0 degrees, anti-clockwise 45 and 90 degrees" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/stage-rotation.png" alt="Revolving stage shown at multiple rotation angles, clockwise 45 degrees, angle 0 degrees, anti-clockwise 45 and 90 degrees" loading="lazy" decoding="async" />
         </div>
 
         {/* Final Stage Design */}
@@ -181,6 +159,17 @@ export default function RevolvingStagePage() {
               { title: 'Revolving Stage', desc: 'Revolving Stage was the centre piece of the act, as it performed as multiple stages inside one frame itself. The Building View, Corner Street View & Garden view were showcased using this stage dynamic.' },
               { title: 'Cafe 2', desc: 'Cafe 2 was set as a foreground for Musicians to help give the inclusivity in the act.' },
             ]} />
+
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '2.5rem', alignItems: 'start' }}>
+              <div className="cs-img reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/stage-vs-render.png" alt="The built shop-front set with two actors on stage next to its 3D design render with the same striped umbrella and shutter" loading="lazy" decoding="async" />
+                <figcaption className="cs-img-caption">Built vs. designed: the set as the audience saw it, next to the render it was built from.</figcaption>
+              </div>
+              <div className="cs-img reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/Mobile/3.jpg" alt="Renders of the set at each rotation stop: building view, side view after clockwise 90 degrees, and the garden scene revealed at anticlockwise 135 degrees" loading="lazy" decoding="async" />
+                <figcaption className="cs-img-caption">One set, three scenes: each rotation stop turns a different painted face toward the audience, ending on the garden at 135&deg;.</figcaption>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -194,7 +183,7 @@ export default function RevolvingStagePage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.webp" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" />
+          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.webp" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" decoding="async" />
         </div>
 
         {/* Credits */}
@@ -206,35 +195,9 @@ export default function RevolvingStagePage() {
               { role: 'Director', name: 'Apoorva Joglikar' },
               { role: 'Art Director', name: 'Parth Pawar' },
               { role: 'Backstage Head', name: 'Vaishnavi Vaidya' },
-              { role: 'Special Help', name: 'Karan, Parth Ghamande, Prathamesh Kulkarni, Amey Shelke' },
               { role: 'Technical Team', name: 'Omkar Mahale, Omkar Sardeshpande, Akshit Mahale, Kedar Deshpande, Saumeen Phanasalkar, Nilay Diwan' },
-              { role: 'Acting Dance & Music Team', name: 'Shreya Lunkad, Varun Khalate, Sakshi Kanav, Sahil Taskar, Prathamesh Londhe, Saumya Deshmukh, Ritika Sisodiya' },
-              { role: 'Artist Team', name: 'Shalaka Deo, Shrutika Nandurkar, Vaishnavi, Isha Patil' },
               { role: 'Lights', name: 'Umang Pathrabe, Adityaraj HonRaopatil' },
-              { role: 'Backstage Team', name: 'Paresh Gokhale, Aryan Shinde, Aryan Karande, Pushkar Nerpagar, Anshuman Gramkar, Savant Bonthe, Soham Phadke, Vinayak Sawandkar, Shalmali Bhalero, Prathamesh Hawale, Shaunak Yevatkar, Saloni Nimgaonkar, Arya Joshi, Eshan Mehendale, Divya Kamalskar, Gaush Mukkawar, Parth Nevase, Karan' },
-              { role: 'Additional Team', name: 'Apoorva Joglikar, Gaurav Waghmare, Mrunal Barve, Mandar Saraf, Parth Ghamande, Aditya Puntambekar, Pratik Hubikar, Aditya Dere, Radhika, Ojas Natu, Aditya Raje' },
             ]} />
-          </div>
-        </section>
-
-        {/* Tools & Techniques */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Tools and Techniques</span>
-              <span className="cs-label-row-val">
-                <span className="cs-tags" style={{ margin: 0 }}>
-                  <span className="cs-tag-item">Mechanical Engineering</span>
-                  <span className="cs-tag-item">Welding</span>
-                  <span className="cs-tag-item">Carpentry</span>
-                  <span className="cs-tag-item">Stage Production</span>
-                  <span className="cs-tag-item">Drill</span>
-                  <span className="cs-tag-item">Concept Development</span>
-                  <span className="cs-tag-item">Stage Management</span>
-                  <span className="cs-tag-item">Theatre &ndash; Tech</span>
-                </span>
-              </span>
-            </div>
           </div>
         </section>
 
@@ -249,6 +212,7 @@ export default function RevolvingStagePage() {
         <CsThanks />
 
         <BottomNav sections={[
+          { id: 'cs-rotate', label: 'Interactive' },
           { id: 'cs-engineering', label: 'Engineering' },
           { id: 'cs-design', label: 'Design' },
           { id: 'cs-result', label: 'Result' },

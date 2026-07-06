@@ -2,14 +2,44 @@
    RESPONSIVE
    ================================================ */
 @media (max-width: 768px) {
+  :root {
+    --chrome-inline: 1rem;
+    --chrome-block: 0.75rem;
+    --ruler-inline-offset: 0px;
+    --ruler-block-offset: 0px;
+  }
+
+  .nav,
+  .dot-bg,
+  .grain,
+  .mobile-overlay,
+  .lightbox-overlay,
+  .page-loader {
+    left: 0;
+    right: auto;
+    width: 100dvw;
+    max-width: 100dvw;
+    overflow-x: clip;
+  }
+
   .project-main {
     --case-image-max-height: min(50vh, 30rem);
     --case-image-inline-height: clamp(210px, 54vw, 340px);
   }
 
   .nav-left-pill .nav-pill-link { display: none; }
+  .nav-inner,
+  .nav-left-pill {
+    min-width: 0;
+  }
+  .nav-right {
+    flex: 0 0 auto;
+  }
   .nav-toggle { display: flex; }
-  .nav-right > .theme-toggle { display: none; }
+  .nav-right .theme-toggle,
+  .nav-theme-wrap,
+  .nav-right .ambient-ui,
+  .nav-right > .figma-hover:has(.theme-toggle) { display: none !important; }
   .nav-cta { display: none; }
 
   /* footer responsive is handled in footer.css */
@@ -92,7 +122,13 @@
   .next-project-img { display: none; }
   .next-project-title { font-size: clamp(1.4rem, 6vw, 2rem); }
   .proj-overview-grid { gap: 1.5rem; }
-  .project-header { padding: 1.25rem 0 0.75rem; }
+  .project-header {
+    padding: 1.25rem 2rem 0.75rem;
+  }
+  .project-main .wrap {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 
   /* Counter labels */
   .wr-counter-label { font-size: var(--text-xs); }
@@ -125,9 +161,13 @@
   .work-bottom-nav {
     gap: 3px;
     padding: 4px 5px;
-    max-width: calc(100vw - 1rem);
-    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    max-width: none;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    transform: none;
   }
+  .work-bottom-nav.is-hidden { transform: translateY(16px); }
   .work-bnav-link {
     font-size: 0.65rem;
     padding: 0.4rem 0.55rem;
@@ -141,7 +181,7 @@
     gap: 3px;
     padding: 4px 5px;
     max-width: calc(100vw - 1rem);
-    bottom: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
   }
   .cs-bnav-link {
     font-size: var(--text-xs);

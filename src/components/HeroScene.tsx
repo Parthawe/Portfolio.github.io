@@ -4,6 +4,7 @@ import { Float, Text, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { useThemeMode } from '../hooks/useThemeMode';
 import { usePrefersReduced } from '../hooks/usePrefersReduced';
+import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
 
 /* ─── Node config ─── */
 
@@ -16,20 +17,20 @@ interface NodeConfig {
 
 const NODES: NodeConfig[] = [
   { position: [0, 1.9, 0], label: 'Installations', labelOffset: [0, 0.95, 0], route: '/installations' },
-  { position: [2.4, 0.6, -0.2], label: 'Design for Good', labelOffset: [0.1, 0.85, 0], route: '/design-for-good' },
+  { position: [2.05, 0.6, -0.2], label: 'Design for Good', labelOffset: [-0.1, 0.85, 0], route: '/design-for-good' },
   { position: [0, 0.15, 0.3], label: 'Product Design', labelOffset: [0, -0.85, 0], route: '/ux-design' },
-  { position: [-2.4, 0.1, 0.3], label: 'Brand & Visual', labelOffset: [0, -0.5, 0], route: '/brand-visual' },
+  { position: [-2.15, 0.1, 0.3], label: 'Brand & Visual', labelOffset: [0.08, -0.5, 0], route: '/brand-visual' },
   { position: [-1.3, -1.6, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.85, 0], route: '/ai' },
-  { position: [1.8, -1.4, 0.2], label: 'Creative Technology', labelOffset: [0, -0.85, 0], route: '/creative-tech' },
+  { position: [1.55, -1.4, 0.2], label: 'Creative Tech', labelOffset: [-0.18, -0.82, 0], route: '/creative-tech' },
 ];
 
 const SAFE_DESKTOP_NODES: NodeConfig[] = [
-  { position: [0.2, 1.85, 0], label: 'Installations', labelOffset: [0, 0.92, 0], route: '/installations' },
-  { position: [2.65, 0.78, -0.2], label: 'Design for Good', labelOffset: [0.12, 0.82, 0], route: '/design-for-good' },
-  { position: [0.7, 0.1, 0.3], label: 'Product Design', labelOffset: [0, -0.8, 0], route: '/ux-design' },
-  { position: [-1.35, -0.12, 0.3], label: 'Brand & Visual', labelOffset: [0, -0.58, 0], route: '/brand-visual' },
-  { position: [0.05, -1.85, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.82, 0], route: '/ai' },
-  { position: [2.1, -1.42, 0.2], label: 'Creative Technology', labelOffset: [0, -0.82, 0], route: '/creative-tech' },
+  { position: [0.05, 1.78, 0], label: 'Installations', labelOffset: [0, 0.84, 0], route: '/installations' },
+  { position: [2.05, 0.72, -0.2], label: 'Design for Good', labelOffset: [-0.16, 0.76, 0], route: '/design-for-good' },
+  { position: [0.45, 0.04, 0.3], label: 'Product Design', labelOffset: [0, -0.74, 0], route: '/ux-design' },
+  { position: [-1.15, -0.1, 0.3], label: 'Brand & Visual', labelOffset: [0.05, -0.52, 0], route: '/brand-visual' },
+  { position: [-0.08, -1.66, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.74, 0], route: '/ai' },
+  { position: [1.55, -1.28, 0.2], label: 'Creative Tech', labelOffset: [-0.3, -0.72, 0], route: '/creative-tech' },
 ];
 
 /* ─── Constellation threads, invisible curves that glow as energy passes ─── */
@@ -39,6 +40,10 @@ const TUBE_SEGMENTS = 64;
 const RADIAL_SEGMENTS = 3;
 const PRODUCT_DESIGN_IDX = 2;
 const GLOW_WIDTH = 0.09;
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
 
 function seededRand(seed: number) {
   const x = Math.sin(seed * 127.1 + seed * 311.7) * 43758.5453;
@@ -233,15 +238,20 @@ function ClickableObject({
   route,
   children,
   position,
+  active,
+  onActiveChange,
 }: {
   route: string;
   children: (hovered: boolean) => React.ReactNode;
   position: [number, number, number];
+  active?: boolean;
+  onActiveChange?: (active: boolean) => void;
 }) {
   const [hovered, setHovered] = useState(false);
   const spinGroupRef = useRef<THREE.Group>(null!);
   const isDragging = useRef(false);
   const dragMoved = useRef(false);
+  const revealOnlyClick = useRef(false);
   const spinVel = useRef({ x: 0, y: 0 });
 
   // Apply spin velocity with momentum decay each frame
@@ -259,6 +269,8 @@ function ClickableObject({
 
   const handlePointerDown = useCallback((e: { stopPropagation: () => void; nativeEvent: PointerEvent }) => {
     e.stopPropagation();
+    revealOnlyClick.current = e.nativeEvent.pointerType !== 'mouse' && !active;
+    onActiveChange?.(true);
     isDragging.current = true;
     dragMoved.current = false;
 
@@ -280,11 +292,14 @@ function ClickableObject({
 
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
-  }, []);
+  }, [active, onActiveChange]);
 
   const handleClick = useCallback(() => {
+    const revealOnly = revealOnlyClick.current;
+    revealOnlyClick.current = false;
     // Only navigate if it wasn't a drag
     if (!dragMoved.current && _navigate) {
+      if (revealOnly) return;
       _navigate(route);
     }
   }, [route]);
@@ -294,8 +309,17 @@ function ClickableObject({
       position={position}
       onPointerDown={handlePointerDown}
       onClick={handleClick}
-      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
-      onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
+      onPointerOver={(e) => {
+        e.stopPropagation();
+        setHovered(true);
+        onActiveChange?.(true);
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        onActiveChange?.(false);
+        document.body.style.cursor = '';
+      }}
     >
       <group ref={spinGroupRef}>
         {/* Invisible hit area, ensures all objects are draggable */}
@@ -322,216 +346,35 @@ function useHoverLerp(hovered: boolean, speed = 3) {
 /* ─── Lerp helper ─── */
 function mix(a: number, b: number, t: number) { return a + (b - a) * t; }
 
-/* ─── Interactive Label, morphs into 3D mini-object on hover ─── */
+/* ─── Interactive Label, revealed by object hover or first touch ─── */
 
-/* Mini 3D objects for each category, visually distinct from parent */
-function MiniInstallation({ dark }: { dark: boolean }) {
-  const ref = useRef<THREE.Group>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.y = clock.getElapsedTime() * 0.6;
-    ref.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.4) * 0.3;
-  });
-  const verts: [number, number, number][] = [[0, 0.08, 0], [0.07, -0.04, 0.04], [-0.07, -0.04, 0.04], [0, -0.04, -0.06]];
-  const lineGeos = useMemo(() =>
-    [[0,1],[1,2],[2,0],[0,3],[1,3],[2,3]].map(([a, b]) =>
-      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...verts[a]), new THREE.Vector3(...verts[b])])
-    ), []);
-  return (
-    <group ref={ref}>
-      {verts.map((p, i) => (
-        <mesh key={i} position={p}>
-          <octahedronGeometry args={[0.018, 0]} />
-          <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#c0c0d0'} metalness={1} roughness={0.03} clearcoat={1} envMapIntensity={3} />
-        </mesh>
-      ))}
-      {lineGeos.map((geo, i) => (
-        // @ts-expect-error, R3F `line` conflicts with SVG line type
-        <line key={i} geometry={geo}><lineBasicMaterial color={dark ? '#8899bb' : '#667799'} transparent opacity={0.5} /></line>
-      ))}
-    </group>
-  );
-}
-
-function MiniDesignForGood({ dark }: { dark: boolean }) {
-  // Knot → unfurled into a smooth spinning ring with orbiting dot
-  const ref = useRef<THREE.Group>(null!);
-  const dotRef = useRef<THREE.Mesh>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.getElapsedTime();
-    ref.current.rotation.z = t * 0.5;
-    ref.current.rotation.x = Math.sin(t * 0.3) * 0.4;
-    if (dotRef.current) {
-      dotRef.current.position.x = Math.cos(t * 1.5) * 0.09;
-      dotRef.current.position.y = Math.sin(t * 1.5) * 0.09;
-    }
-  });
-  return (
-    <group ref={ref}>
-      <mesh>
-        <torusGeometry args={[0.07, 0.012, 16, 32]} />
-        <meshPhysicalMaterial color={dark ? '#d0d0e8' : '#b0b0c8'} metalness={1} roughness={0.02} clearcoat={1} envMapIntensity={3} />
-      </mesh>
-      <mesh ref={dotRef}>
-        <sphereGeometry args={[0.015, 12, 12]} />
-        <meshPhysicalMaterial color="#ffffff" emissive={dark ? '#8899cc' : '#6677aa'} emissiveIntensity={1} />
-      </mesh>
-    </group>
-  );
-}
-
-function MiniProductDesign({ dark }: { dark: boolean }) {
-  // Screens → collapse into a single glowing cursor/pointer arrow
-  const ref = useRef<THREE.Group>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.getElapsedTime();
-    ref.current.rotation.y = Math.sin(t * 0.5) * 0.3;
-    ref.current.position.y = Math.sin(t * 0.8) * 0.015;
-  });
-  const shape = useMemo(() => {
-    const s = new THREE.Shape();
-    s.moveTo(0, 0.09);
-    s.lineTo(0.05, -0.04);
-    s.lineTo(0.015, -0.02);
-    s.lineTo(0.04, -0.08);
-    s.lineTo(0.02, -0.09);
-    s.lineTo(-0.005, -0.04);
-    s.lineTo(-0.04, -0.06);
-    s.closePath();
-    return s;
-  }, []);
-  return (
-    <group ref={ref}>
-      <mesh>
-        <extrudeGeometry args={[shape, { depth: 0.02, bevelEnabled: true, bevelThickness: 0.005, bevelSize: 0.005, bevelSegments: 3 }]} />
-        <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} metalness={1} roughness={0.03} clearcoat={1} envMapIntensity={3} />
-      </mesh>
-    </group>
-  );
-}
-
-function MiniBrandVisual({ dark }: { dark: boolean }) {
-  // Bauhaus → three overlapping chrome discs (color wheel abstraction)
-  const ref = useRef<THREE.Group>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.z = clock.getElapsedTime() * 0.4;
-    ref.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.3) * 0.2;
-  });
-  const colors = dark ? ['#c8c8e0', '#a0a0c0', '#888898'] : ['#b0b0c8', '#909098', '#707078'];
-  return (
-    <group ref={ref}>
-      {[0, 2.1, 4.2].map((angle, i) => (
-        <mesh key={i} position={[Math.cos(angle) * 0.035, Math.sin(angle) * 0.035, i * 0.008]}>
-          <cylinderGeometry args={[0.04, 0.04, 0.006, 24]} />
-          <meshPhysicalMaterial color={colors[i]} metalness={1} roughness={0.05} clearcoat={1} envMapIntensity={2.5} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-function MiniAIWearables({ dark }: { dark: boolean }) {
-  // Lens → opens into an iris/eye with dilating pupil
-  const ref = useRef<THREE.Group>(null!);
-  const pupilRef = useRef<THREE.Mesh>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.getElapsedTime();
-    ref.current.rotation.y = Math.sin(t * 0.4) * 0.3;
-    ref.current.rotation.x = Math.cos(t * 0.3) * 0.2;
-    if (pupilRef.current) {
-      const s = 0.8 + Math.sin(t * 0.7) * 0.3;
-      pupilRef.current.scale.set(s, s, 1);
-    }
-  });
-  return (
-    <group ref={ref}>
-      {/* Iris ring */}
-      <mesh>
-        <torusGeometry args={[0.06, 0.015, 12, 32]} />
-        <meshPhysicalMaterial color={dark ? '#c0c0d0' : '#a0a0b0'} metalness={1} roughness={0.04} clearcoat={1} envMapIntensity={3} />
-      </mesh>
-      {/* Pupil, glass sphere */}
-      <mesh ref={pupilRef}>
-        <sphereGeometry args={[0.035, 24, 24]} />
-        <meshPhysicalMaterial
-          color={dark ? '#4060a0' : '#6080c0'}
-          metalness={0} roughness={0} transmission={0.9} transparent opacity={0.3} ior={2} thickness={0.5}
-          specularIntensity={1} specularColor="#ffffff"
-        />
-      </mesh>
-      {/* Center highlight */}
-      <mesh>
-        <sphereGeometry args={[0.008, 8, 8]} />
-        <meshPhysicalMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={dark ? 1.5 : 0.8} />
-      </mesh>
-    </group>
-  );
-}
-
-function MiniCreativeTech({ dark }: { dark: boolean }) {
-  // Geodesic → fractured into spinning triangle shards
-  const ref = useRef<THREE.Group>(null!);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.getElapsedTime();
-    ref.current.rotation.y = t * 0.5;
-    ref.current.rotation.x = t * 0.3;
-    // Each child shard orbits slightly
-    ref.current.children.forEach((child, i) => {
-      child.position.x = Math.cos(t * 0.4 + i * 1.2) * (0.04 + i * 0.01);
-      child.position.y = Math.sin(t * 0.5 + i * 1.0) * (0.04 + i * 0.008);
-      child.position.z = Math.cos(t * 0.3 + i * 0.8) * 0.03;
-    });
-  });
-  return (
-    <group ref={ref}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <mesh key={i} rotation={[i * 0.8, i * 1.2, i * 0.5]}>
-          <tetrahedronGeometry args={[0.025, 0]} />
-          <meshPhysicalMaterial
-            color={dark ? '#d0d0f0' : '#b8b8d0'}
-            metalness={1} roughness={0.02} clearcoat={1} envMapIntensity={3}
-          />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-const MINI_COMPONENTS = [MiniInstallation, MiniDesignForGood, MiniProductDesign, MiniBrandVisual, MiniAIWearables, MiniCreativeTech];
-
-function InteractiveLabel({ position, text, offset, dark, index, route, parentRef }: {
+function InteractiveLabel({ position, text, offset, dark, route, parentRef, active }: {
   position: [number, number, number];
   text: string;
   offset: [number, number, number];
   dark: boolean;
-  index: number;
   route: string;
   parentRef: React.RefObject<THREE.Group>;
+  active: boolean;
 }) {
-  const [hovered, setHovered] = useState(false);
   const textRef = useRef<THREE.Mesh>(null!);
-  const objectRef = useRef<THREE.Group>(null!);
   const groupRef = useRef<THREE.Group>(null!);
-  const lerp = useRef(0); // 0 = text, 1 = 3D object
+  const lerp = useRef(0);
 
   const handleClick = useCallback(() => {
     if (_navigate) _navigate(route);
   }, [route]);
 
   useFrame((_, delta) => {
-    const target = hovered ? 1 : 0;
-    lerp.current += (target - lerp.current) * Math.min(delta * 6, 1);
+    const target = active ? 1 : 0;
+    lerp.current += (target - lerp.current) * Math.min(delta * 8, 1);
 
-    // Text: fade out and scale down, force depthTest off so text is never occluded
+    // Labels stay quiet until the corresponding object is engaged.
     if (textRef.current) {
-      const textScale = 1 - lerp.current * 0.5;
+      const textScale = 0.82 + lerp.current * 0.18;
       textRef.current.scale.set(textScale, textScale, textScale);
-      (textRef.current as any).fillOpacity = (dark ? 0.55 : 0.65) * (1 - lerp.current);
+      (textRef.current as any).fillOpacity = (dark ? 0.9 : 0.78) * lerp.current;
+      (textRef.current as any).outlineOpacity = (dark ? 0.55 : 0.72) * lerp.current;
       const mat = (textRef.current as any).material;
       if (mat && mat.depthTest !== false) {
         mat.depthTest = false;
@@ -539,18 +382,13 @@ function InteractiveLabel({ position, text, offset, dark, index, route, parentRe
         mat.needsUpdate = true;
       }
     }
-    // Object: scale up
-    if (objectRef.current) {
-      const objScale = lerp.current;
-      objectRef.current.scale.set(objScale, objScale, objScale);
-    }
+
     // Counter-rotate Z so labels always stay upright/readable
     if (groupRef.current && parentRef?.current) {
       groupRef.current.rotation.z = -parentRef.current.rotation.z;
     }
   });
 
-  const MiniComponent = MINI_COMPONENTS[index];
   const lx = position[0] + offset[0];
   const ly = position[1] + offset[1];
   const lz = position[2] + offset[2];
@@ -558,26 +396,27 @@ function InteractiveLabel({ position, text, offset, dark, index, route, parentRe
     <group ref={groupRef} position={[lx, ly, lz]}>
       <group
         onClick={handleClick}
-        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
-        onPointerOut={() => { setHovered(false); document.body.style.cursor = ''; }}
+        onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
+        onPointerOut={() => { document.body.style.cursor = ''; }}
       >
       <Text
         ref={textRef}
-        fontSize={0.13}
+        fontSize={0.15}
         color={dark ? '#e8e4df' : '#1a1a1a'}
         anchorX="center"
         anchorY={offset[1] > 0 ? 'bottom' : 'top'}
         letterSpacing={0.12}
-        fillOpacity={dark ? 0.45 : 0.5}
+        fillOpacity={0}
+        outlineWidth={0.012}
+        outlineColor={dark ? '#0a0a0a' : '#fbfaf6'}
+        outlineOpacity={0}
         renderOrder={999}
         textAlign="center"
+        maxWidth={1.35}
+        lineHeight={1.05}
       >
         {text.toUpperCase()}
       </Text>
-      {/* Mini 3D object, scales in on hover */}
-      <group ref={objectRef} scale={0}>
-        <MiniComponent dark={dark} />
-      </group>
       </group>
     </group>
   );
@@ -1471,16 +1310,28 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
   const groupRef = useRef<THREE.Group>(null!);
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const { camera, size } = useThree();
-  const useSafeDesktopLayout = !isMobile && size.width < 1480;
+  const aspect = size.height > 0 ? size.width / size.height : 1;
+  const useSafeDesktopLayout = !isMobile && (size.width < 1480 || aspect < 0.95);
   const nodes = useMemo(() => (useSafeDesktopLayout ? SAFE_DESKTOP_NODES : NODES), [useSafeDesktopLayout]);
-  const sceneScale = useSafeDesktopLayout ? 0.64 : 0.7;
-  const sceneOffsetX = useSafeDesktopLayout ? 0.4 : 0;
+  const sceneScale = isMobile
+    ? 0.7
+    : useSafeDesktopLayout
+      ? clamp(size.width / 760, 0.5, 0.76)
+      : 0.76;
+  const sceneOffsetX = useSafeDesktopLayout ? clamp((0.82 - aspect) * -0.55, -0.24, 0.16) : 0;
+  const narrowCameraPush = !isMobile ? clamp((0.92 - aspect) * 4.8, 0, 2.7) : 0;
+
+  const setNodeActive = useCallback((index: number, active: boolean) => {
+    setActiveIndex((current) => (active ? index : current === index ? null : current));
+  }, []);
 
   useEffect(() => {
-    camera.position.z = isMobile ? 9.5 : useSafeDesktopLayout ? 8.15 : 7.5;
-    camera.position.y = useSafeDesktopLayout ? 0.22 : 0.3;
-  }, [isMobile, useSafeDesktopLayout, camera]);
+    camera.position.z = isMobile ? 9.5 : useSafeDesktopLayout ? 7.65 + narrowCameraPush : 7.25;
+    camera.position.y = useSafeDesktopLayout ? 0.18 : 0.3;
+    camera.updateProjectionMatrix();
+  }, [isMobile, narrowCameraPush, useSafeDesktopLayout, camera]);
 
   useEffect(() => {
     if (isMobile) return;
@@ -1527,44 +1378,53 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
       <pointLight intensity={dark ? 0.6 : 0.4} color={dark ? '#aabbee' : '#bbccdd'} distance={12} position={[4, -1, -2]} />
 
       {/* Environment reflections — city preset gives complex glass reflections */}
-      <Environment preset="city" environmentIntensity={dark ? 1.0 : 1.2} />
+      <Environment files="/Portfolio.github.io/Assets/hdri/potsdamer_platz_1k.hdr" environmentIntensity={dark ? 1.0 : 1.2} />
 
       <group ref={groupRef} scale={sceneScale} position={[sceneOffsetX, 0, 0]}>
         <ConstellationLines positions={positions} dark={dark} />
 
         {/* 0: Installations, Truss (top) */}
-        <ClickableObject route={nodes[0].route} position={nodes[0].position}>
+        <ClickableObject route={nodes[0].route} position={nodes[0].position} active={activeIndex === 0} onActiveChange={(active) => setNodeActive(0, active)}>
           {(hovered) => <TrussStructure dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 1: Design for Good, Chrome knot (right) */}
-        <ClickableObject route={nodes[1].route} position={nodes[1].position}>
+        <ClickableObject route={nodes[1].route} position={nodes[1].position} active={activeIndex === 1} onActiveChange={(active) => setNodeActive(1, active)}>
           {(hovered) => <PetalRose dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 2: Product Design, Morphing screens (center) */}
-        <ClickableObject route={nodes[2].route} position={nodes[2].position}>
+        <ClickableObject route={nodes[2].route} position={nodes[2].position} active={activeIndex === 2} onActiveChange={(active) => setNodeActive(2, active)}>
           {(hovered) => <MorphingScreens dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 3: Brand & Visual, Bauhaus (left) */}
-        <ClickableObject route={nodes[3].route} position={nodes[3].position}>
+        <ClickableObject route={nodes[3].route} position={nodes[3].position} active={activeIndex === 3} onActiveChange={(active) => setNodeActive(3, active)}>
           {(hovered) => <StackedPlates dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 4: AI & Wearables, Lens (bottom left) */}
-        <ClickableObject route={nodes[4].route} position={nodes[4].position}>
+        <ClickableObject route={nodes[4].route} position={nodes[4].position} active={activeIndex === 4} onActiveChange={(active) => setNodeActive(4, active)}>
           {(hovered) => <LensAssembly dark={dark} hovered={hovered} />}
         </ClickableObject>
 
         {/* 5: Creative Technology, Geodesic (bottom right) */}
-        <ClickableObject route={nodes[5].route} position={nodes[5].position}>
+        <ClickableObject route={nodes[5].route} position={nodes[5].position} active={activeIndex === 5} onActiveChange={(active) => setNodeActive(5, active)}>
           {(hovered) => <GlassCrystal dark={dark} hovered={hovered} />}
         </ClickableObject>
 
-        {/* Interactive Labels, morph into mini 3D objects on hover */}
+        {/* Interactive labels stay hidden until a 3D object is engaged. */}
         {nodes.map((n, i) => (
-          <InteractiveLabel key={i} position={n.position} text={n.label} offset={n.labelOffset} dark={dark} index={i} route={n.route} parentRef={groupRef} />
+          <InteractiveLabel
+            key={i}
+            position={n.position}
+            text={n.label}
+            offset={n.labelOffset}
+            dark={dark}
+            route={n.route}
+            parentRef={groupRef}
+            active={activeIndex === i}
+          />
         ))}
       </group>
 
@@ -1583,6 +1443,7 @@ export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) 
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReduced();
   const dark = useThemeMode();
+  const webglOk = useWebGLAvailable();
   const [isMobile] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false,
   );
@@ -1601,6 +1462,12 @@ export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) 
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
+  // WebGL unavailable (older device, disabled GPU): keep the hero area's
+  // layout intact but skip the 3D canvas instead of crashing the page.
+  if (!webglOk) {
+    return <div ref={containerRef} className="hero-3d-canvas" aria-hidden="true" />;
+  }
 
   return (
     <div ref={containerRef} className="hero-3d-canvas">

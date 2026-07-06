@@ -1,20 +1,14 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
-import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsStatGrid from '../../components/case-study/CsStatGrid'
-import CsSteps from '../../components/case-study/CsSteps'
-import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
-import CsCredits from '../../components/case-study/CsCredits'
 import CsNumList from '../../components/case-study/CsNumList'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-import { CONTACT_EMAIL } from '../../config/site'
 
 export default function ThePointCdcPage() {
   return (
@@ -25,12 +19,12 @@ export default function ThePointCdcPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
         <meta property="og:description" content="Digital transformation for community empowerment in Hunts Point, Bronx, website redesign." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/the-point-cdc.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/the-point-cdc.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#C44D2B' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#1B5EFF' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -61,11 +55,9 @@ export default function ThePointCdcPage() {
         {/* Overview with label-rows */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display" style={{ maxWidth: '22ch' }}>Redesigning the Hunts Point website to streamline services, foster innovation, and enhance community engagement in the Bronx.</h2>
-
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">The Point CDC, a cornerstone in Hunts Point, Bronx, has been at the forefront of empowering the community by providing free WiFi through a resilient mesh network. The website revamp project aimed to modernize their online presence, streamline access to community services, and showcase their latest initiatives and programs. This case study outlines the challenges, process, and solutions involved in the revamp.</span>
+              <span className="cs-label-row-val">The Point CDC, a cornerstone in Hunts Point, Bronx, has been at the forefront of empowering the community by providing free WiFi through a resilient mesh network. The website revamp project aimed to modernize their online presence, streamline access to community services, and showcase their latest initiatives and programs.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">The Challenges</span>
@@ -125,24 +117,10 @@ export default function ThePointCdcPage() {
           </div>
         </section>
 
-        {/* Process */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">02 &mdash; Discover</span>
-            <h2 className="cs-section-title">Process</h2>
-            <CsSteps steps={[
-              { num: '1', title: 'Discover', desc: 'Conducted a website audit to identify pain points and opportunities. Interviewed community members and staff to gain insights into their digital needs.' },
-              { num: '2', title: 'Define', desc: "Organized content to prioritize essential services. Highlighted the community's accomplishments. Defined goals and problems." },
-              { num: '3', title: 'Develop', desc: 'Created wireframes and low-fidelity prototypes to test navigation and flow. Collaborated with The Point CDC to ensure all features aligned with their mission of empowerment.' },
-              { num: '4', title: 'Deliver', desc: 'Launched a redesigned website with intuitive navigation and a modern layout. Introduced new sections like \u201cHunts Point News\u201d and \u201cQuick Finds\u201d to provide real-time program updates.' },
-            ]} />
-          </div>
-        </section>
-
         {/* User Research */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <span className="cs-section-label">03 &mdash; Discover</span>
+            <span className="cs-section-label">02 &mdash; Discover</span>
             <h2 className="cs-section-title">User Research</h2>
             <CsBody>
               <p>I focused on understanding how the website could best serve the Hunts Point community. Residents emphasized the need for:</p>
@@ -215,18 +193,6 @@ export default function ThePointCdcPage() {
           <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
-        {/* Design Direction */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">Insights</span>
-            <h2 className="cs-section-title">Design Direction</h2>
-            <CsNumList items={[
-              <>The new design should feature clean lines, a simplified color palette, and clearly defined sections for news, programs, and events.</>,
-              <>Special emphasis should be placed on typography and imagery that resonates with the community&rsquo;s identity.</>,
-            ]} />
-          </div>
-        </section>
-
         {/* Goals */}
         <section className="cs-section reveal" style={{ paddingTop: 0 }} id="cs-define">
           <div className="wrap">
@@ -276,19 +242,6 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <span className="cs-section-label">Deliver</span>
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
-            <CsFeatureGrid features={[
-              { title: 'Streamlined Navigation', desc: 'Simplified menu for easier access to information.' },
-              { title: 'Responsive Design', desc: 'Optimized for mobile, ensuring smooth access on all devices.' },
-              { title: 'Improved Readability', desc: 'Clear sections and whitespace for better content flow.' },
-              { title: 'Highlighted Key Programs', desc: 'Featured icons for quick access to important services.' },
-              { title: 'Cohesive Color Scheme', desc: 'Used a consistent palette that reflects the community focus.' },
-              { title: 'Community Engagement', desc: 'Added testimonials and social media links for trust-building.' },
-            ]} />
-          </div>
-        </section>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
             <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign: streamlined navigation, responsive design, improved readability, cohesive color scheme" loading="lazy" /></div>
           </div>
         </section>
@@ -299,27 +252,6 @@ export default function ThePointCdcPage() {
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
-          </div>
-        </section>
-
-        {/* Results */}
-        <section className="cs-section reveal" id="cs-results">
-          <div className="wrap">
-            <span className="cs-section-label">Deliver</span>
-            <h2 className="cs-section-title">Outcome &amp; Results</h2>
-            <CsStatGrid stats={[
-              { label: 'Community Engagement Increase', value: '+35%' },
-              { label: 'Growth in Mobile Visits', value: '+50%' },
-              { label: 'Navigation Time Reduced', value: '60%' },
-              { label: 'WiFi Page Discoverability', value: '2x' },
-            ]} />
-            <CsBody style={{ marginTop: '2rem' }}>
-              <p>Feedback from community members and staff was overwhelmingly positive, particularly around the ease of navigation and access to the WiFi program.</p>
-            </CsBody>
-            <CsPullquote
-              quote="Before, I couldn't even find the WiFi page. Now I send the link to my neighbors and they sign up the same day. It finally feels like our website."
-              cite="&mdash; Maria, Hunts Point Community Organizer"
-            />
           </div>
         </section>
 
@@ -337,18 +269,18 @@ export default function ThePointCdcPage() {
           </div>
         </section>
 
-        {/* Thanks */}
-        <section className="cs-section cs-thanks reveal">
+        {/* Outcome */}
+        <section className="cs-section reveal" id="cs-results">
           <div className="wrap">
-            <h2 className="cs-thanks-title">Thank You</h2>
-            <p className="cs-thanks-cta">Please contact me to view a detailed case study</p>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="cs-thanks-btn">
-              Get in Touch
+            <span className="cs-section-label">Outcome</span>
+            <h2 className="cs-section-title">The Site Is Live</h2>
+            <CsBody>
+              <p>Feedback from community members and staff was overwhelmingly positive, particularly around the ease of navigation and access to the WiFi program.</p>
+            </CsBody>
+            <a href="https://thepoint.org" target="_blank" rel="noopener noreferrer" className="cs-thanks-btn" style={{ marginTop: '1.5rem' }}>
+              Visit thepoint.org
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>
-            <CsCredits credits={[
-              { role: 'Product Designer', name: 'Parth Pawar' },
-            ]} style={{ marginTop: '3rem' }} />
           </div>
         </section>
 
@@ -357,11 +289,9 @@ export default function ThePointCdcPage() {
           { id: 'cs-define', label: 'Define' },
           { id: 'cs-develop', label: 'Develop' },
           { id: 'cs-deliver', label: 'Deliver' },
-          { id: 'cs-results', label: 'Results' },
           { id: 'cs-reflections', label: 'Reflections' },
+          { id: 'cs-results', label: 'Outcome' },
         ]} liveUrl="https://thepoint.org" />
-
-      <CsThanks />
 
       </main>
 

@@ -3,17 +3,23 @@ import { Outlet, useLocation } from 'react-router-dom';
 import PageLoader from './PageLoader';
 import Lightbox from './Lightbox';
 import RouteSeo from './RouteSeo';
-import { useCursorFollower } from '../hooks/useCursorFollower';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
 import { useDeferredMount } from '../hooks/useDeferredMount';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import { normalizeCopy } from '../utils/normalizeCopy';
-import FigmaChrome from './FigmaChrome';
-import FigmaGrid from './FigmaGrid';
 
+const FigmaChrome = lazy(() => import('./FigmaChrome'));
+const FigmaGrid = lazy(() => import('./FigmaGrid'));
 const HandTracker = lazy(() => import('./HandTracker'));
 const PortfolioAgent = lazy(() => import('./agent/PortfolioAgent'));
+const SiteInteractionTools = lazy(() => import('./SiteInteractionTools'));
 const CASE_MEDIA_SELECTOR = '.cs-img img, .cs-img-full img, .proj-hero-img img';
+
+type IdleCapableWindow = Window & {
+  requestIdleCallback?: (callback: IdleRequestCallback, options?: { timeout: number }) => number
+  cancelIdleCallback?: (handle: number) => void
+}
 
 function syncCaseStudyMediaState(img: HTMLImageElement) {
   if (!img.matches(CASE_MEDIA_SELECTOR)) return;
@@ -48,10 +54,18 @@ export default function RootLayout() {
   const isStudioRoute = location.pathname === '/studio';
   const isUtilityRoute = location.pathname === '/book' || location.pathname === '/graveyard';
   const enablePortfolioInteractions = !isStudioRoute && !isUtilityRoute;
-  const enableAgent = enablePortfolioInteractions;
-  const enableHandTracker = !isUtilityRoute;
-  const enableFigmaChrome = !isUtilityRoute;
-  const handTrackerReady = useDeferredMount(enableHandTracker, { timeout: 2400, delayMs: 600 })
+  const finePointer = useMediaQuery('(hover: hover) and (pointer: fine)', true);
+  const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
+  const desktopCanvas = useMediaQuery('(min-width: 769px)', true);
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const enableFinePointerEffects = enablePortfolioInteractions && finePointer && !prefersReducedMotion;
+  const enableAgent = enablePortfolioInteractions && desktopCanvas && finePointer && !coarsePointer;
+  const enableHandTracker = enableFinePointerEffects && !coarsePointer;
+  const enableFigmaChrome = !isUtilityRoute && !coarsePointer;
+  const handTrackerReady = useDeferredMount(enableHandTracker, { timeout: 9000, delayMs: 5200 })
+  const agentReady = useDeferredMount(enableAgent, { timeout: 7000, delayMs: 3600 })
+  const figmaChromeReady = useDeferredMount(enableFigmaChrome, { timeout: 2600, delayMs: 900 })
+  const siteToolsReady = enablePortfolioInteractions && desktopCanvas && finePointer && !coarsePointer
 
   // Fade-in on mount and route change (CSS-driven, replaces Framer Motion)
   useEffect(() => {
@@ -79,10 +93,46 @@ export default function RootLayout() {
     };
   }, [enableFigmaChrome]);
 
+  useEffect(() => {
+    const shouldShowCanvasChrome = enableFigmaChrome && desktopCanvas && finePointer && !coarsePointer;
+    document.body.classList.toggle('figma-grid-on', shouldShowCanvasChrome);
+    document.body.classList.toggle('figma-rulers-off', !shouldShowCanvasChrome);
+
+    return () => {
+      document.body.classList.remove('figma-grid-on');
+      document.body.classList.remove('figma-rulers-off');
+    };
+  }, [enableFigmaChrome, desktopCanvas, finePointer, coarsePointer]);
+
+  useEffect(() => {
+    const syncChromeAccent = () => {
+      const main = document.querySelector<HTMLElement>('#main-content');
+      const projectColor = main
+        ? getComputedStyle(main).getPropertyValue('--project-color').trim()
+        : '';
+
+      if (projectColor) {
+        document.body.style.setProperty('--figma-chrome-accent', projectColor);
+      } else {
+        document.body.style.removeProperty('--figma-chrome-accent');
+      }
+    };
+
+    const frame = requestAnimationFrame(syncChromeAccent);
+    const timer = window.setTimeout(syncChromeAccent, 450);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+      document.body.style.removeProperty('--figma-chrome-accent');
+    };
+  }, [location.pathname]);
+
   // Normalize visible copy so long dashes do not leak into the rendered site.
   useEffect(() => {
     const normalizeTextNodes = () => {
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      const root = document.getElementById('main-content') || document.body
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
         acceptNode(node) {
           const parent = node.parentElement
           if (!parent) return NodeFilter.FILTER_REJECT
@@ -103,8 +153,20 @@ export default function RootLayout() {
       })
     }
 
-    const timer = window.setTimeout(normalizeTextNodes, 0)
-    return () => window.clearTimeout(timer)
+    const idleWindow = window as IdleCapableWindow
+    let idleId: number | null = null
+    let timer: number | null = null
+
+    if (typeof idleWindow.requestIdleCallback === 'function') {
+      idleId = idleWindow.requestIdleCallback(normalizeTextNodes, { timeout: 1500 })
+    } else {
+      timer = window.setTimeout(normalizeTextNodes, 900)
+    }
+
+    return () => {
+      if (idleId !== null) idleWindow.cancelIdleCallback?.(idleId)
+      if (timer !== null) window.clearTimeout(timer)
+    }
   }, [location.pathname]);
 
   // Persistent scroll-reveal observer, mounted once, never torn down between routes
@@ -226,9 +288,8 @@ export default function RootLayout() {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
-  // Custom cursor + magnetic buttons (desktop only)
-  useCursorFollower(enablePortfolioInteractions);
-  useMagnetic(enablePortfolioInteractions);
+  // Magnetic buttons (desktop only)
+  useMagnetic(enableFinePointerEffects);
   useKeyboardNav(enablePortfolioInteractions);
 
   return (
@@ -236,25 +297,39 @@ export default function RootLayout() {
       <RouteSeo />
       <div className="grain" aria-hidden="true"></div>
       <div className="dot-bg" aria-hidden="true"></div>
-      {enableFigmaChrome && <FigmaGrid />}
+      {enableFigmaChrome && figmaChromeReady && (
+        <Suspense fallback={null}>
+          <FigmaGrid />
+        </Suspense>
+      )}
       <PageLoader />
       <div
+        id="site-zoom-stage"
         style={{
           opacity: visible ? 1 : 0,
-          transition: 'opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), width 0.52s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.52s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.52s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         <Outlet />
       </div>
       <Lightbox />
       {/* AmbientAudio moved to Nav */}
-      {enableFigmaChrome && <FigmaChrome />}
+      {enableFigmaChrome && figmaChromeReady && (
+        <Suspense fallback={null}>
+          <FigmaChrome />
+        </Suspense>
+      )}
+      {enablePortfolioInteractions && siteToolsReady && (
+        <Suspense fallback={null}>
+          <SiteInteractionTools />
+        </Suspense>
+      )}
       {enableHandTracker && handTrackerReady && (
         <Suspense fallback={null}>
           <HandTracker />
         </Suspense>
       )}
-      {enableAgent && (
+      {enableAgent && agentReady && (
         <Suspense fallback={null}>
           <PortfolioAgent />
         </Suspense>

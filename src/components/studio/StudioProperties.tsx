@@ -119,11 +119,9 @@ export default function StudioProperties({ canvas, selectedObject }: Props) {
                   </div>
                   <div className="studio-props-row">
                     <span>Font</span>
-                    <select value={obj.fontFamily || 'DM Sans'} onChange={e => setProp('fontFamily', e.target.value)}>
-                      <option value="DM Sans, sans-serif">DM Sans</option>
-                      <option value="Georgia, serif">Georgia</option>
-                      <option value="monospace">Monospace</option>
-                      <option value="Source Serif 4, serif">Source Serif</option>
+                    <select value={obj.fontFamily || 'General Sans, Nikolas'} onChange={e => setProp('fontFamily', e.target.value)}>
+                      <option value="General Sans, Nikolas">General Sans</option>
+                      <option value="Nikolas, General Sans">Nikolas</option>
                     </select>
                   </div>
                 </div>

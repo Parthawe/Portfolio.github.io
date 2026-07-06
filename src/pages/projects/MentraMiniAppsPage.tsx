@@ -23,12 +23,12 @@ export default function MentraMiniAppsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra MiniApp Store &middot; Parth Pawar" />
         <meta property="og:description" content="The first app ecosystem for smart glasses. Voice-first discovery, developer SDK, and the product patterns behind captions, translation, notes, and Mentra AI." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#1DB954' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#A78BFA' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -119,10 +119,6 @@ export default function MentraMiniAppsPage() {
           </div>
         </section>
 
-        {/* Translation demo */}
-        <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-translation.webp" alt="Real-time English to Japanese translation through smart glasses with auto-scroll" />
-        <p className="cs-caption">Live translation MiniApp: English to Japanese rendered directly on the glasses display with auto-scroll</p>
-
         {/* Developer Platform */}
         <CsSection id="cs-developer" label="04 &mdash; Developer Platform" title="First MiniApp in 15 Minutes">
           <CsBody>
@@ -157,8 +153,7 @@ export default function MentraMiniAppsPage() {
         {/* OS screens */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS: all installed MiniApps view" loading="lazy" /></div>
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS: currently running MiniApps" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS: home screen with active app" loading="lazy" /></div>
             </div>
@@ -169,10 +164,10 @@ export default function MentraMiniAppsPage() {
         <CsSection id="cs-impact" label="06 &mdash; Impact" title="From Gadget to Platform">
           <CsBody>
             <p>Meta Ray-Ban Gen 2 ships at $299 and does what Meta decides it does. Mentra ships at $299 and does what anyone with an idea builds for it. That is the difference between a gadget and a platform.</p>
-            <p>The MiniApp Store launched with the Mentra Glass hardware. The developer portal is live. The SDK is open-source. The first third-party MiniApps are in review. The store is what makes the glasses worth putting on every morning, because tomorrow they will do something they could not do today.</p>
+            <p>The MiniApp Store launched with the Mentra Glass hardware. The developer portal is live. The SDK is open-source. The first third-party MiniApps are in review.</p>
           </CsBody>
           <CsCallout>
-            <p>88% of Batch 1 owners ordered Batch 2. The store is a significant part of why.</p>
+            <p>Batch 2 pre-order allocation 88% claimed. The store is a significant part of why.</p>
           </CsCallout>
         </CsSection>
 

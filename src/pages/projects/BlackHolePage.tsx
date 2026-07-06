@@ -37,12 +37,12 @@ export default function BlackHolePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Black Hole · Parth Pawar" />
         <meta property="og:description" content="Physical models exploring five black hole phenomena. Exhibited at the Horological Society of New York." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/black-hole.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/black-hole.jpg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#1a1a2e' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#2E2E33' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -166,7 +166,7 @@ export default function BlackHolePage() {
         {/* ═══ 05: BINARY MERGER ═══ */}
         <CsSection id="cs-mergers" label="05 &mdash; Phenomenon" title="When Giants Collide: Binary Black Hole Mergers">
           <CsBody>
-            <p>Binary black holes spiral closer, releasing energy as gravitational waves. The simulation shows three stages: <strong>Inspiral</strong> (orbiting closer), <strong>Merger</strong> (collision), and <strong>Ringdown</strong> (settling). First detected in 2015 by <a href="https://www.ligo.caltech.edu/page/what-is-ligo" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>LIGO</a>.</p>
+            <p>Binary black holes spiral closer, releasing energy as gravitational waves. The simulation shows three stages: <strong>Inspiral</strong> (orbiting closer), <strong>Merger</strong> (collision), and <strong>Ringdown</strong> (settling).</p>
           </CsBody>
           <div style={{ marginTop: 'var(--space-4)' }}>
             <BinaryMerger />
@@ -178,7 +178,7 @@ export default function BlackHolePage() {
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="Exhibition" title="Horological Society of New York">
           <CsBody>
-            <p>This project will be exhibited at the <a href="https://www.hsny.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Horological Society of New York</a>&rsquo;s museum this winter. The pairing is intentional &mdash; black holes are fundamentally about the distortion of time, and the Horological Society is dedicated to the art and science of measuring it.</p>
+            <p>The models were built for exhibition at the <a href="https://www.hsny.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Horological Society of New York</a>&rsquo;s museum. The pairing is intentional &mdash; black holes are fundamentally about the distortion of time, and the Horological Society is dedicated to the art and science of measuring it.</p>
           </CsBody>
         </CsSection>
 

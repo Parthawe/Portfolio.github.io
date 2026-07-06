@@ -1,7 +1,6 @@
 import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import ProjectCard from '../components/ProjectCard';
@@ -10,9 +9,11 @@ import FigmaSelect from '../components/FigmaSelect';
 import FigmaFrameLabel from '../components/FigmaFrameLabel';
 import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useInView } from '../hooks/useInView';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import { allProjectsCurated, featuredProjects, homepageSelectedProjects } from '../data/projects';
-import { HOMEPAGE_CONTENT } from '../data/homepageContent';
-import { DEFAULT_OG_IMAGE, SITE_URL } from '../config/site';
+import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
+
+const LOGOS = '/Portfolio.github.io/Assets/images/logos';
 
 const HeroScene = lazy(() => import('../components/HeroScene'));
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
@@ -68,7 +69,7 @@ const identityTabs = [
   {
     id: 'upto',
     label: "What I'm up to",
-    heading: 'Currently designing MentraOS, the companion app, MiniApp Store, and launch surfaces.',
+    heading: 'Currently designing wearable interfaces, companion apps, store flows, and launch surfaces.',
     script: 'up to',
   },
 ] as const;
@@ -82,7 +83,12 @@ export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
   const [aboutRef, aboutInView] = useInView<HTMLElement>(0.08, '160px 0px');
-  const mountHeroScene = useDeferredMount(true, { timeout: 2200, delayMs: 250 });
+  const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const mountHeroScene = useDeferredMount(true, {
+    timeout: prefersReducedMotion ? 3200 : coarsePointer ? 4200 : 2200,
+    delayMs: prefersReducedMotion ? 1800 : coarsePointer ? 1800 : 700,
+  });
   const mountDisciplineObjects = useDeferredMount(disciplinesInView, { timeout: 1400, delayMs: 150 });
   const mountAboutObject = useDeferredMount(aboutInView, { timeout: 1600, delayMs: 120 });
   const archiveProjectSlugs = new Set(homepageSelectedProjects.map(project => project.slug));
@@ -94,13 +100,6 @@ export default function HomePage() {
   const fullArchiveCount = fullArchiveProjects.length;
   const activeIdentity = identityTabs.find(tab => tab.id === identityTab) ?? identityTabs[0];
 
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-  const auroraY = useTransform(heroProgress, [0, 1], ['0%', '-15%']);
-  const sceneOpacity = useTransform(heroProgress, [0, 0.8], [1, 0]);
-
   useEffect(() => {
     if (skillPaused) return;
     const id = setInterval(() => {
@@ -109,33 +108,63 @@ export default function HomePage() {
     return () => clearInterval(id);
   }, [skillPaused]);
 
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero || prefersReducedMotion) return;
+
+    let rafId = 0;
+    const update = () => {
+      const rect = hero.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height)));
+      hero.style.setProperty('--wr-hero-aurora-y', `${progress * -15}%`);
+      hero.style.setProperty('--wr-hero-scene-opacity', `${Math.max(0, 1 - progress * 1.25)}`);
+      rafId = 0;
+    };
+    const schedule = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
+  }, [prefersReducedMotion]);
+
   return (
     <>
       <Helmet>
-        <title>Parth Pawar, Design Engineer</title>
-        <meta name="description" content="Portfolio of Parth Pawar, Design Engineer crafting intuitive, user-centered experiences across UX, fintech, creative technology, and physical computing." />
+        <title>Parth Pawar, Portfolio</title>
+        <meta name="description" content="Portfolio of Parth Pawar, crafting trusted product experiences across AI wearables, fintech, civic systems, creative technology, and physical computing." />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Parth Pawar, Design Engineer" />
-        <meta property="og:description" content="Design Engineer specializing in AI wearables, fintech, and interactive systems. Head of UI/UX at Mentra. NYU ITP '24." />
-        <meta property="og:image" content={`${SITE_URL}${DEFAULT_OG_IMAGE}`} />
+        <meta property="og:title" content="Parth Pawar, Portfolio" />
+        <meta property="og:description" content="Product systems, AI wearable interfaces, fintech flows, civic systems, and physical interaction work by Parth Pawar." />
+        <meta property="og:image" content={`${SITE_ORIGIN}${DEFAULT_OG_IMAGE}`} />
         <link rel="canonical" href={SITE_URL} />
       </Helmet>
 
       <section className="wr-hero" id="hero" ref={heroRef} style={{ position: 'relative' }}>
         <FigmaFrameLabel name="Hero" />
         <div className="grain-section" aria-hidden="true" />
-        <motion.div className="wr-hero-aurora-bottom" style={{ y: auroraY }} />
+        <div className="wr-hero-aurora-bottom" aria-hidden="true" />
 
-        <motion.div className="wr-hero-3d" style={{ opacity: sceneOpacity }} aria-hidden="true">
+        <div className="wr-hero-3d" aria-hidden="true">
           {mountHeroScene ? (
             <Suspense fallback={null}>
               <HeroScene onNavigate={navigate} />
             </Suspense>
           ) : null}
-        </motion.div>
+        </div>
 
         <div className="wr-hero-copy">
           <h1 className="wr-hero-title">Designing product systems people trust.</h1>
+          <p className="wr-hero-dek">
+            Head of UI/UX at Mentra, building AI wearable interfaces, fintech flows, civic systems, and physical interaction work.
+          </p>
         </div>
 
       </section>
@@ -144,50 +173,6 @@ export default function HomePage() {
 
       <main id="main-content">
         <div className="abt-paper">
-          <section className="wr-identity" aria-labelledby="wr-identity-title" style={{ position: 'relative' }}>
-            <FigmaFrameLabel name="Identity" />
-            <div className="wr-identity-inner">
-              <div className="wr-identity-tabs" role="tablist" aria-label="Identity prompts">
-                {identityTabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    id={`identity-tab-${tab.id}`}
-                    className={`wr-identity-tab${activeIdentity.id === tab.id ? ' is-active' : ''}`}
-                    role="tab"
-                    aria-selected={activeIdentity.id === tab.id}
-                    aria-controls="wr-identity-panel"
-                    onClick={() => setIdentityTab(tab.id)}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              <motion.div
-                key={activeIdentity.id}
-                id="wr-identity-panel"
-                className="wr-identity-panel"
-                role="tabpanel"
-                aria-labelledby={`identity-tab-${activeIdentity.id}`}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <h2 className="wr-identity-title" id="wr-identity-title">
-                  {activeIdentity.heading}
-                </h2>
-                <p className="wr-identity-script" aria-hidden="true">{activeIdentity.script}</p>
-              </motion.div>
-
-              <a className="wr-identity-scroll figma-hover" href="#works" aria-label="Scroll to featured work">
-                <span className="wr-identity-scroll-icon" aria-hidden="true">↕</span>
-                <span>scroll to see work</span>
-                <FigmaSelect />
-              </a>
-            </div>
-          </section>
-
           <section className="wr-featured-v2" id="works" style={{ position: 'relative' }}>
             <FigmaFrameLabel name="Featured Work" />
             <div className="wr-featured-v2-inner">
@@ -209,12 +194,10 @@ export default function HomePage() {
                   const hoverMedia = project.hoverMedia;
 
                   return (
-                  <motion.div
+                  <div
                     key={project.slug}
-                    initial={{ opacity: 0, y: 28 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    className="wr-motion-item reveal"
+                    style={{ transitionDelay: `${index * 0.06}s` }}
                   >
                     <ProjectCard
                       slug={project.slug}
@@ -229,55 +212,70 @@ export default function HomePage() {
                       loading={index < 2 ? 'eager' : 'lazy'}
                       nda={project.nda}
                     />
-                  </motion.div>
+                  </div>
                   );
                 })}
               </div>
-            </div>
-          </section>
 
-          <section className="wr-proof-band" style={{ position: 'relative' }}>
-            <FigmaFrameLabel name="Proof Band" />
-            <div className="wrap">
-              <div className="wr-proof-shell surface-glass">
-                <div className="wr-proof-head">
-                  <span className="wr-label">EARLY TRUST SIGNALS</span>
-                  <p className="wr-proof-recognition">{HOMEPAGE_CONTENT.proofBand.recognition}</p>
+              <div className="wr-clients reveal" aria-label="Organizations my work made a difference for">
+                <p className="wr-clients-label">
+                  <span aria-hidden="true">{'↘'}</span> Where my work made a difference
+                </p>
+                <div className="wr-clients-row">
+                  <img src={`${LOGOS}/the-point-logo.png`} alt="The Point CDC" loading="lazy" />
+                  <img src={`${LOGOS}/monsoonfish-logo.png`} alt="Monsoonfish" loading="lazy" />
+                  <img src={`${LOGOS}/nyu-tisch.png`} alt="NYU Tisch School of the Arts" loading="lazy" />
+                  <img src={`${LOGOS}/transfi-logo.png`} alt="TransFi" loading="lazy" />
+                  <img src={`${LOGOS}/ibm-logo.png`} alt="IBM" loading="lazy" />
                 </div>
-
-                <div className="wr-proof-companies" aria-label="Selected companies and organizations">
-                  {HOMEPAGE_CONTENT.proofBand.companies.map((company) => (
-                    <span key={company} className="wr-proof-company">{company}</span>
-                  ))}
-                </div>
-
-                <div className="wr-proof-stats">
-                  {HOMEPAGE_CONTENT.proofBand.outcomes.map((outcome) => (
-                    <div key={outcome.label} className="wr-proof-stat">
-                      <span className="wr-proof-value">{outcome.value}</span>
-                      <span className="wr-proof-label">{outcome.label}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <blockquote className="wr-proof-quote">
-                  <p>{HOMEPAGE_CONTENT.proofBand.testimonial.quote}</p>
-                  <cite>{HOMEPAGE_CONTENT.proofBand.testimonial.cite}</cite>
-                </blockquote>
               </div>
             </div>
           </section>
 
-          <section className="wr-disciplines" style={{ position: 'relative' }} ref={disciplinesRef}>
+          <section className="wr-identity" aria-labelledby="wr-identity-title" style={{ position: 'relative' }}>
+            <FigmaFrameLabel name="Identity" />
+            <div className="wr-identity-inner">
+              <div className="wr-identity-tabs" role="tablist" aria-label="Identity prompts">
+                {identityTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    id={`identity-tab-${tab.id}`}
+                    className={`wr-identity-tab${activeIdentity.id === tab.id ? ' is-active' : ''}`}
+                    role="tab"
+                    aria-selected={activeIdentity.id === tab.id}
+                    aria-controls="wr-identity-panel"
+                    onClick={() => setIdentityTab(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              <div
+                key={activeIdentity.id}
+                id="wr-identity-panel"
+                className="wr-identity-panel wr-identity-panel--enter"
+                role="tabpanel"
+                aria-labelledby={`identity-tab-${activeIdentity.id}`}
+              >
+                <h2 className="wr-identity-title" id="wr-identity-title">
+                  {activeIdentity.heading}
+                </h2>
+                <p className="wr-identity-script" aria-hidden="true">{activeIdentity.script}</p>
+              </div>
+
+            </div>
+          </section>
+
+          <section className="wr-disciplines" id="disciplines" style={{ position: 'relative' }} ref={disciplinesRef}>
             <FigmaFrameLabel name="Disciplines" />
             <div className="wrap wr-disciplines-grid">
               {disciplines.map((d, i) => (
-                <motion.div
+                <div
                   key={d.slug}
-                  initial={{ opacity: 0, y: 24, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  className="wr-motion-item wr-motion-item--discipline reveal"
+                  style={{ transitionDelay: `${i * 0.05}s` }}
                 >
                   <Link to={d.link} className="wr-discipline-item figma-hover">
                     <div className="wr-discipline-obj" aria-hidden="true">
@@ -290,7 +288,7 @@ export default function HomePage() {
                     <span className="wr-discipline-label">{d.label}</span>
                     <FigmaSelect />
                   </Link>
-                </motion.div>
+                </div>
               ))}
             </div>
           </section>
@@ -316,15 +314,13 @@ export default function HomePage() {
                   const row = Math.floor(i / 3);
                   const delay = col * 0.1 + row * 0.06;
                   return (
-                    <motion.div
+                    <div
                       key={p.slug}
-                      initial={{ opacity: 0, y: 32 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: '-40px' }}
-                      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+                      className="wr-motion-item reveal"
+                      style={{ transitionDelay: `${delay}s` }}
                     >
                       <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
@@ -410,7 +406,7 @@ export default function HomePage() {
                   </div>
 
                   <p className="wr-about-desc">
-                    I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi. NYU ITP &rsquo;24.
+                    I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi.
                   </p>
 
                   <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>

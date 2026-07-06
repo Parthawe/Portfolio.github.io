@@ -8,25 +8,51 @@ import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
 import { Reveal } from '../components/Reveal'
 import FigmaSelect from '../components/FigmaSelect'
-import TextReveal from '../components/TextReveal'
 import { CONTACT_EMAIL } from '../config/site'
+import {
+  getProject,
+  isHiddenProject,
+  projectsByCategory,
+  type Project,
+  type ProjectCategory,
+} from '../data/projects'
 
 const CategoryHero = lazy(() => import('../components/CategoryHero'))
 
 const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'brand-visual', 'ai', 'creative-tech', 'fintech', 'crypto', 'ai-wearables'])
 
-const categoryReveals: Record<string, { front: string; behind: string; label: string }> = {
-  'ux-design': { front: 'The interface is the product, when it works, nobody notices the software.', behind: 'Mentra, TransFi, ZentiPay. Interfaces where trust is the product.', label: 'UX Design' },
-  'ai': { front: 'AI that augments, not replaces, the best tools disappear into your workflow.', behind: 'From Clawed to OnCall Lens. AI as a collaborator, not a replacement.', label: 'AI & Wearables' },
-  'creative-tech': { front: 'Code is just another material, like wood or clay, but it compiles.', behind: 'Neural network instruments, AI keyboards, audio-reactive visuals. Making the intangible tangible.', label: 'Creative Tech' },
-  'installations': { front: 'If people have to read a sign, the installation already failed. The space should teach.', behind: 'Black holes you can hold, blacklight rooms with hidden messages, a 15-foot rotating stage. Built and exhibited.', label: 'Installations' },
-  'brand-visual': { front: 'Every brand tells a story, typography is the tone of voice.', behind: 'TEDx art direction, custom typefaces, podcast identities. Visual systems that communicate.', label: 'Brand & Visual' },
-  'design-for-good': { front: 'Design should serve everyone, not just the ones who can afford it.', behind: 'Community platforms, civic transit, accessibility reports. Design as a public good.', label: 'Design for Good' },
+const CATEGORY_REGISTRY_KEY: Partial<Record<string, ProjectCategory>> = {
+  ai: 'ai',
+  'ai-wearables': 'ai',
+  'ux-design': 'ux',
+  'creative-tech': 'creative',
+  installations: 'install',
+  'brand-visual': 'brand',
+  'design-for-good': 'good',
+}
+
+/* Curated cross-listing so no landing page runs thin — projects can live in
+   several categories when the work genuinely fits (hidden ones are filtered
+   out downstream either way). */
+const EXTRA_CATEGORY_PROJECTS: Partial<Record<string, string[]>> = {
+  'ux-design': ['mentra', 'mentra-miniapps', 'executivelens', 'oncall-lens', 'raahi-project'],
+  'creative-tech': ['vj-software', 'black-hole', 'moniac-machine'],
+  installations: ['jugalbandi', 'enigma', 'sea-of-salt'],
+  'brand-visual': ['mentra-brand', 'office-of-diversity', 'sea-of-salt', 'jugalbandi'],
+  fintech: ['moniac-machine', 'executivelens'],
+  crypto: ['moniac-machine'],
+  'design-for-good': ['healthapp', 'oncall-lens', 'code-for-build'],
+}
+
+function addVisibleProject(list: Project[], seen: Set<string>, project?: Project) {
+  if (!project || isHiddenProject(project) || seen.has(project.slug)) return
+  seen.add(project.slug)
+  list.push(project)
 }
 
 export default function CategoryPage() {
   const { pathname } = useLocation()
-  const slug = pathname.replace(/^\//, '')
+  const slug = pathname.split('/').filter(Boolean).pop() ?? ''
   const has3D = CATEGORIES_WITH_3D.has(slug)
   const category = categories.find((c) => c.slug === slug)
 
@@ -45,7 +71,28 @@ export default function CategoryPage() {
     )
   }
 
-  const projectCount = 1 + category.moreProjects.flat().length
+  const seenProjectSlugs = new Set<string>()
+  const visibleCategoryProjects: Project[] = []
+
+  addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(category.featured.slug))
+  category.moreProjects.flat().forEach((project) => {
+    addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(project.slug))
+  })
+  const registryCategory = CATEGORY_REGISTRY_KEY[slug]
+  if (registryCategory) {
+    projectsByCategory(registryCategory).forEach((project) => {
+      addVisibleProject(visibleCategoryProjects, seenProjectSlugs, project)
+    })
+  }
+  EXTRA_CATEGORY_PROJECTS[slug]?.forEach((projectSlug) => {
+    addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(projectSlug))
+  })
+
+  const featuredProject = visibleCategoryProjects[0] ?? null
+  const visibleMoreProjects = featuredProject
+    ? visibleCategoryProjects.filter((project) => project.slug !== featuredProject.slug)
+    : visibleCategoryProjects
+  const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
 
   return (
     <div style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
@@ -76,43 +123,50 @@ export default function CategoryPage() {
 
           <hr className="lp-divider" />
 
-          {/* All projects, featured first (full-width), then rest in masonry */}
-          {(() => {
-            const feat = category.featured
-            const allMore = category.moreProjects.flat()
-            return (
+          {/* All projects, flagship first (full-width), then rest in masonry */}
+          <div id="lp-work">
+            {featuredProject ? (
               <>
-                {/* Featured, full-width pcard */}
+                <p className="lp-section-label">Flagship</p>
                 <Reveal>
-                  <ProjectCard slug={feat.slug} name={feat.title} image={feat.image} tag={feat.tag} year={feat.year} desc={feat.desc} loading="eager" featured tiltIntensity={4} />
+                  <ProjectCard
+                    slug={featuredProject.slug}
+                    name={featuredProject.name}
+                    image={featuredProject.image}
+                    tag={featuredProject.tag}
+                    year={featuredProject.year}
+                    desc={featuredProject.desc}
+                    loading="eager"
+                    featured
+                    tiltIntensity={4}
+                    nda={featuredProject.nda}
+                  />
                 </Reveal>
-
-                {/* More Projects, masonry */}
-                {allMore.length > 0 && (
-                  <>
-                    <p className="lp-section-label">More Projects</p>
-                    <div className="pcard-masonry">
-                      {allMore.map((project) => (
-                        <Reveal key={project.slug}>
-                          <ProjectCard slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc || project.result} tilt={false} />
-                        </Reveal>
-                      ))}
-                    </div>
-                  </>
-                )}
               </>
-            )
-          })()}
+            ) : null}
 
-          {/* Spotlight reveal — category-specific */}
-          {categoryReveals[slug] && (
-            <section className="wr-reveal-section">
-              <TextReveal
-                front={categoryReveals[slug].front}
-                behind={categoryReveals[slug].behind}
-              />
-            </section>
-          )}
+            {visibleMoreProjects.length > 0 && (
+              <>
+                <p className="lp-section-label">Contemporary work</p>
+                <div className="pcard-masonry">
+                  {visibleMoreProjects.map((project) => (
+                    <Reveal key={project.slug}>
+                      <ProjectCard
+                        slug={project.slug}
+                        name={project.name}
+                        image={project.image}
+                        tag={project.tag}
+                        year={project.year}
+                        desc={project.desc}
+                        tilt={false}
+                        nda={project.nda}
+                      />
+                    </Reveal>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
 
           {/* Approach */}
           <Reveal>

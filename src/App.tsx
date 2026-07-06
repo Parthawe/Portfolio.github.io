@@ -1,8 +1,8 @@
 import { lazy, Suspense, Component, type ReactNode } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import RootLayout from './components/RootLayout'
 import PixelLoaderVisual from './components/PixelLoaderVisual'
-import { projects } from './data/projects'
+import { visibleProjects } from './data/projects'
 
 class ErrorBoundaryInner extends Component<{ children: ReactNode; resetKey: string }, { hasError: boolean; prevKey: string }> {
   state = { hasError: false, prevKey: '' }
@@ -37,6 +37,7 @@ function ErrorBoundary({ children }: { children: ReactNode }) {
 const HomePage = lazy(() => import('./pages/HomePage'))
 const WorkPage = lazy(() => import('./pages/WorkPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const AccessibilityPage = lazy(() => import('./pages/AccessibilityPage'))
 const CategoryPage = lazy(() => import('./pages/CategoryPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const BookPage = lazy(() => import('./pages/BookPage'))
@@ -46,7 +47,7 @@ const WritingPage = lazy(() => import('./pages/WritingPage'))
 const WritingArticlePage = lazy(() => import('./pages/WritingPage').then(m => ({ default: m.WritingArticlePage })))
 
 // Project page components — auto-generated from registry
-const projectPages = projects.map(p => ({
+const projectPages = visibleProjects.map(p => ({
   slug: p.slug,
   Component: lazy(p.page),
 }))
@@ -68,6 +69,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/accessibility" element={<AccessibilityPage />} />
 
           {/* Category landing pages */}
           <Route path="/ai" element={<CategoryPage />} />
@@ -84,6 +86,7 @@ export default function App() {
           {projectPages.map(({ slug, Component }) => (
             <Route key={slug} path={`/${slug}`} element={<Component />} />
           ))}
+          <Route path="/mentra-website" element={<Navigate to="/mentra#cs-website" replace />} />
 
           {/* Misc pages */}
           <Route path="/writing" element={<WritingPage />} />

@@ -1,6 +1,6 @@
 import { categories } from '../data/categories'
 import { PORTFOLIO_SCOPE_REPLY, isPortfolioQuestion } from '../data/portfolioKnowledgeBase'
-import { CATEGORY_LABELS, projects, type Project, type ProjectCategory } from '../data/projects'
+import { CATEGORY_LABELS, visibleProjects as projects, type Project, type ProjectCategory } from '../data/projects'
 import {
   createContext,
   getDynamicChips,
@@ -10,6 +10,7 @@ import {
   type ChatContext,
 } from '../data/agentKnowledge'
 import { normalizeCopy, normalizeCopyList } from '../utils/normalizeCopy'
+import { getEdgeAIAnswer, getEdgeAIModel, isEdgeAIEnabled } from './edgeAI'
 
 export interface ChatHistory {
   route: string
@@ -87,7 +88,7 @@ const CATEGORY_ALIASES: Record<string, string[]> = {
 }
 
 const PROJECT_ALIASES: Record<string, string[]> = {
-  mentra: ['mentra', 'mentra glasses', 'smart glasses os'],
+  mentra: ['mentra', 'mentra glasses', 'smart glasses os', 'mentra website', 'mentra site', 'mentraglass', 'mentraglass.com'],
   'transfi-project': ['transfi', 'trans fi', 'transfy'],
   zentipay: ['zentipay', 'zenti pay', 'zenti', 'zenith pay'],
   'clawed-chat': ['clawed', 'clawed chat', 'clawd'],
@@ -98,7 +99,8 @@ const PROJECT_ALIASES: Record<string, string[]> = {
   jugalbandi: ['jugalbandi'],
   enigma: ['enigma'],
   tedx: ['tedx', 'tedxvitpune'],
-  'keyboard-project': ['breakgen', 'keyboard project'],  // removed bare "keyboard" — too generic
+  breakgen: ['breakgen', 'break gen', 'ai keyboard platform'],
+  'keyboard-project': ['keyboard project', 'keydata keyboard', 'physical keyboard study'],  // removed bare "keyboard" — too generic
   'ai-voice': ['ai voice', 'voice ai'],
   cuetv: ['cuetv', 'cue tv'],
   'org-dashboard': ['org dashboard', 'organization dashboard'],
@@ -197,6 +199,12 @@ const PROJECT_SPECIFIC_FOCUS: Record<string, FocusTopic[]> = {
       selectors: ['#cs-companion'],
       label: 'Companion App',
       explanation: 'This section shows how the phone app carries the heavy setup and configuration work so the glasses stay lightweight and glanceable.',
+    },
+    {
+      patterns: [/\b(website|site|marketing site|launch site|mentraglass|commerce|buying flow|field teams)\b/i],
+      selectors: ['#cs-website'],
+      label: 'Live Site',
+      explanation: 'This is the merged website section. It shows how the public site turns Mentra from category education into buyer and developer confidence.',
     },
   ],
   zentipay: [
@@ -363,6 +371,44 @@ function syncRoute(history: ChatHistory) {
   }
 }
 
+function getAccessMode(project: Project) {
+  if (project.access?.mode) return project.access.mode
+  return project.nda ? 'request' : 'public'
+}
+
+function buildPublicEdgeContext(ctx: ChatContext) {
+  return {
+    instruction:
+      'Answer as Parth Pawar portfolio guide. Use only this public context. If the user asks for private NDA details, give the safe public glimpse and invite an access request.',
+    visitor: {
+      persona: ctx.persona,
+      lastProject: ctx.lastProject,
+      mentionedProjects: ctx.mentionedProjects.slice(-6),
+      questionCount: ctx.questionCount,
+    },
+    categories: categories.map(category => ({
+      slug: category.slug,
+      title: `${category.title} ${category.titleAccent}`.trim(),
+      description: category.description,
+    })),
+    projects: projects.map(project => ({
+      slug: project.slug,
+      name: project.name,
+      category: CATEGORY_LABELS[project.category],
+      tag: project.tag,
+      year: project.year,
+      desc: project.desc,
+      access: getAccessMode(project),
+      summaryProblem: project.summaryProblem,
+      summaryRole: project.summaryRole,
+      summaryTeam: project.summaryTeam,
+      summaryTimeline: project.summaryTimeline,
+      summaryOutcome: project.summaryOutcome,
+      storyline: project.storyline,
+    })),
+  }
+}
+
 function getProjectFocus(project: Project, query: string): FocusTopic | undefined {
   const q = normalize(query)
   const specific = (PROJECT_SPECIFIC_FOCUS[project.slug] || []).find(topic =>
@@ -391,9 +437,24 @@ export async function sendMessage(
   }
   const { text } = getResponse(userMessage, history.ctx)
   await new Promise(resolve => setTimeout(resolve, 0))
-  const normalized = normalizeCopy(text)
-  onChunk?.(normalized)
-  return normalized
+  const localAnswer = normalizeCopy(text)
+
+  if (!isEdgeAIEnabled()) {
+    onChunk?.(localAnswer)
+    return localAnswer
+  }
+
+  const edgeAnswer = await getEdgeAIAnswer({
+    message: userMessage,
+    route: history.route,
+    localAnswer,
+    context: buildPublicEdgeContext(history.ctx),
+    model: getEdgeAIModel(),
+  })
+
+  const finalAnswer = normalizeCopy(edgeAnswer || localAnswer)
+  onChunk?.(finalAnswer)
+  return finalAnswer
 }
 
 export function getChips(route: string, questionCount: number, lastQuestion?: string, ctx?: ChatContext): string[] {

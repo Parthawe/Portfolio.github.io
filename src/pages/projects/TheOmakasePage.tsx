@@ -133,7 +133,7 @@ function GameEmbed() {
   return (
     <CsSection id="cs-play" label="Play" title="Try The Omakase">
       <CsBody>
-        <p>Two players, one keyboard, 90 seconds. Race to serve sushi orders faster than your opponent. Each button maps to an ingredient &mdash; press the right sequence to complete orders and earn combo multipliers.</p>
+        <p>Two players, one keyboard, 90 seconds. Race to serve sushi orders faster than your opponent. Each button maps to an ingredient &mdash; press the right sequence to complete orders.</p>
       </CsBody>
 
       {/* Game container */}
@@ -172,7 +172,7 @@ function GameEmbed() {
             style={{
               position: 'absolute', inset: 0, width: '100%', height: '100%',
               border: 'none', cursor: 'pointer',
-              background: 'linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #C94C4C 150%)',
+              background: 'linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #8B5E3C 150%)',
               display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center', gap: 'var(--space-3)',
               transition: 'filter 0.3s',
@@ -260,22 +260,6 @@ function GameEmbed() {
         <h3 className="cs-section-subtitle" style={{ marginBottom: 'var(--space-4)' }}>How to Play</h3>
 
         <div className="cs-label-row">
-          <span className="cs-label-row-key">Goal</span>
-          <span className="cs-label-row-val">Complete more sushi orders than your opponent in 90 seconds</span>
-        </div>
-        <div className="cs-label-row">
-          <span className="cs-label-row-key">Player 1</span>
-          <span className="cs-label-row-val">Left-side keys (Q, W, E, R, A, S, D, F) &mdash; each maps to an ingredient</span>
-        </div>
-        <div className="cs-label-row">
-          <span className="cs-label-row-key">Player 2</span>
-          <span className="cs-label-row-val">Right-side keys (U, I, O, P, J, K, L, ;) &mdash; each maps to an ingredient</span>
-        </div>
-        <div className="cs-label-row">
-          <span className="cs-label-row-key">Gameplay</span>
-          <span className="cs-label-row-val">Orders appear on screen. Press the matching ingredient buttons in the correct sequence.</span>
-        </div>
-        <div className="cs-label-row">
           <span className="cs-label-row-key">Combos</span>
           <span className="cs-label-row-val">Complete orders without mistakes to earn combo multipliers for bonus points</span>
         </div>
@@ -320,12 +304,12 @@ export default function TheOmakasePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Omakase · Parth Pawar" />
         <meta property="og:description" content="2-player party arcade game where sushi chefs compete to serve customers." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/the-omakase.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/the-omakase.jpg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#C94C4C' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#8B5E3C' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -340,12 +324,15 @@ export default function TheOmakasePage() {
           ]}
         />
 
+        {/* Play the game */}
+        <GameEmbed />
+
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-workshop.webp" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-workshop.webp" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -364,22 +351,13 @@ export default function TheOmakasePage() {
           </div>
         </section>
 
-        {/* Overview */}
-        <CsSection label="Overview" title="Serve or Be Served">
-          <CsBody>
-            <p>The Omakase is a competitive two-player arcade game built around one constraint: two strangers should be able to walk up, understand the ritual fast, and start yelling at each other within a minute. The cabinet, RGB controllers, and timing rules are designed to make that social energy inevitable.</p>
-            <p>Instead of treating the cabinet as a shell around a screen, I designed the hardware, game pacing, and ingredient logic as one system. That is what makes the project work in public. The object teaches the game before a tutorial ever needs to.</p>
-            <p><a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer">Play at vill4n3lle.itch.io/the-omakase &rarr;</a></p>
-          </CsBody>
-        </CsSection>
-
         {/* Gameplay photos */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -388,25 +366,9 @@ export default function TheOmakasePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/two-players.webp" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/team-photo.webp" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/two-players.webp" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/team-photo.webp" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" decoding="async" /></div>
             </div>
-          </div>
-        </section>
-
-        {/* Play the game */}
-        <GameEmbed />
-
-        {/* Challenge */}
-        <section className="cs-section reveal" id="cs-challenge">
-          <div className="wrap">
-            <p className="cs-section-label">00 &mdash; Challenge</p>
-            <h3 className="cs-section-title">The Design Challenge</h3>
-            <CsBody>
-              <p>The core challenge was deceptively simple: design a physical arcade game that two complete strangers can walk up to, understand immediately, and play competitively in under three minutes. That constraint shaped every decision that followed.</p>
-              <p>Most arcade games at exhibitions fail one of two ways. They are either too complex for a first-time player to pick up without instruction, or too shallow to hold attention past the first thirty seconds. The Omakase needed to land in the narrow space between those extremes &mdash; instantly readable rules, but enough depth that the second round feels different from the first. The game also had to work in an exhibition context where noise levels are high, attention spans are short, and there is always a line of people waiting for their turn.</p>
-              <p>A secondary challenge was designing for physicality. Unlike screen-based games, the cabinet itself had to communicate how to play. Button layout, color feedback, and the spatial relationship between the two players all had to do instructional work that a tutorial screen would normally handle. The game needed to teach itself.</p>
-            </CsBody>
           </div>
         </section>
 
@@ -416,17 +378,24 @@ export default function TheOmakasePage() {
             <p className="cs-section-label">01 &mdash; Gameplay</p>
             <h3 className="cs-section-title">Gameplay</h3>
             <CsBody>
+              <p>Unlike screen-based games, the cabinet itself had to communicate how to play. Button layout, color feedback, and the spatial relationship between the two players all had to do instructional work that a tutorial screen would normally handle. The game needed to teach itself.</p>
               <p>Two players face off as competing sushi chefs, standing side by side at the cabinet. Each player has 8 color-changing buttons mapped to different sushi ingredients &mdash; salmon, tuna, shrimp, tamago, and so on. Customer orders appear on the shared screen, and players race to press the correct ingredient sequence before their opponent completes theirs.</p>
               <p>The sushi theme was chosen deliberately. Sushi is universally recognizable, its ingredients are visually distinct, and the concept of an omakase &mdash; a chef&rsquo;s choice tasting menu &mdash; gave the game a natural narrative arc. Each round is a &ldquo;course,&rdquo; and the escalating difficulty mirrors the progression of a real omakase meal from simple nigiri to elaborate rolls. The theme also made color-coding intuitive: players could map salmon-pink to salmon and wasabi-green to wasabi without any text labels.</p>
               <p>Competitive mode was chosen over cooperative after early playtesting revealed that side-by-side competition created far more energy and social interaction than cooperative play did. When two strangers cooperate, they tend to be polite and reserved. When they compete, they laugh, trash-talk, and lean into the experience. That energy was essential for an exhibition setting where the game needed to draw a crowd.</p>
-              <p>Scoring rewarded both speed and accuracy. Each correct ingredient in a sequence earned base points, but completing a full order without mistakes triggered a combo multiplier. Pressing a wrong ingredient broke the combo and added a brief cooldown penalty, discouraging random button-mashing. This created a risk-reward dynamic: rushing was faster but sloppier, while deliberate play was safer but left you vulnerable to a faster opponent. Rounds lasted 90 seconds, long enough for momentum swings but short enough to keep the queue moving.</p>
+              <p>Scoring rewarded both speed and accuracy, creating a risk-reward dynamic: rushing was faster but sloppier, while deliberate play was safer but left you vulnerable to a faster opponent. Rounds lasted 90 seconds, long enough for momentum swings but short enough to keep the queue moving.</p>
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase gameplay" loading="lazy" />
+            <figure className="cs-img reveal" style={{ margin: 0 }}>
+              <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/chef-select-screen.webp" alt="Chef select screen — Chef Shiro versus Chef Kuro, each player's sushi likes, and a color-coded button legend for dropping sushi and changing belt direction" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption">The whole rulebook fits on one screen: pick your chef, match button colors to customers, go.</figcaption>
+            </figure>
           </div>
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="The Omakase gameplay detail" loading="lazy" />
+            <figure className="cs-img reveal" style={{ margin: 0 }}>
+              <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp" alt="Over a player's shoulder in the dark: the sushi conveyor belt on screen above two clusters of glowing RGB buttons under their hands" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption">The mapping in action — customers on screen glow in the same colors as the buttons under your fingers.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -443,10 +412,11 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="The Omakase fabrication" loading="lazy" />
-          </div>
-          <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="The Omakase cabinet detail" loading="lazy" />
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/plywood-shell-drilled.webp" alt="Bare varnished plywood shell of the cabinet with two clusters of eight drilled button holes, before any hardware went in" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/marquee-sign-detail.webp" alt="Close-up of the marquee: THE OMAKASE. in a pixel typeface on birch plywood" loading="lazy" decoding="async" /></div>
+            </div>
+            <p className="cs-img-caption" style={{ marginTop: '0.75rem' }}>Left: the shell after drilling — 8 button holes per player, no hardware yet. Right: the pixel-type marquee that ties the cabinet to the game&rsquo;s art.</p>
           </div>
         </section>
 
@@ -463,7 +433,10 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/team-photo.webp" alt="The Omakase at ITP Spring Show" loading="lazy" />
+            <figure className="cs-img reveal" style={{ margin: 0 }}>
+              <img src="/Portfolio.github.io/Assets/Projects/the-omakase/photos/head-to-head-match.webp" alt="Two players seen from behind, mid-match at the cabinet — scores of $115 and $50 on the shared screen, buttons glowing under their hands" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption">Mid-match: $115 to $50 with time left — exactly the momentum swings the 90-second rounds were tuned for.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -484,7 +457,6 @@ export default function TheOmakasePage() {
 
         <BottomNav sections={[
           { id: 'cs-play', label: 'Play' },
-          { id: 'cs-challenge', label: 'Challenge' },
           { id: 'cs-gameplay', label: 'Gameplay' },
           { id: 'cs-fabrication', label: 'Fabrication' },
           { id: 'cs-exhibition', label: 'Exhibition' },

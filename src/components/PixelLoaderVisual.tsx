@@ -1,40 +1,47 @@
 export default function PixelLoaderVisual() {
+  const cursorPath = 'M64 174 C150 124 250 110 340 130 C440 154 530 160 620 138 C704 118 792 124 850 154'
+
   return (
-    <div className="loader-editorial" aria-hidden="true">
-      <div className="loader-mini-nav">
-        <span className="loader-logo-pill">parth</span>
-        <span className="loader-pill is-active">work</span>
-        <span className="loader-pill">about</span>
-        <span className="loader-pill">story</span>
-      </div>
-
-      <div className="loader-tabs">
-        <span className="is-active">who i am</span>
-        <span>what i care about</span>
-        <span>what i believe in</span>
-        <span>what i can build</span>
-      </div>
-
-      <div className="loader-statement">
-        <h1>
-          Design engineer creating calm interfaces for ambitious systems.
-        </h1>
+    <div className="loader-orientation" role="status" aria-label="Loading — design which works">
+      <div className="loader-stage">
         <svg
-          className="loader-script"
-          viewBox="0 0 720 230"
+          className="loader-signature"
+          viewBox="0 0 900 240"
           role="presentation"
+          aria-hidden="true"
           focusable="false"
         >
-          <path
-            d="M34 150 C92 98 126 78 149 102 C173 127 120 184 93 187 C62 191 67 133 116 104 C176 68 201 100 190 146 C182 184 234 186 276 120 C309 66 344 64 334 133 C330 164 344 183 374 166 C410 146 430 95 453 92 C485 88 467 169 502 173 C536 178 566 115 606 101 C655 84 683 117 671 161"
-            pathLength="1"
-          />
+          <defs>
+            <filter id="loaderInkSoftness" x="-12%" y="-18%" width="124%" height="136%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="soft" />
+              <feOffset dy="1" result="offset" />
+              <feMerge>
+                <feMergeNode in="offset" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <text
+            className="loader-signature-word"
+            x="64"
+            y="150"
+            textLength="786"
+            lengthAdjust="spacingAndGlyphs"
+          >
+            design which works
+          </text>
+          <circle className="loader-signature-cursor" r="7">
+            <animateMotion
+              dur="0.82s"
+              begin="0.04s"
+              fill="freeze"
+              calcMode="spline"
+              keySplines="0.16 1 0.3 1"
+              keyTimes="0;1"
+              path={cursorPath}
+            />
+          </circle>
         </svg>
-      </div>
-
-      <div className="loader-scroll-cue">
-        <span>↕</span>
-        <strong>opening selected work</strong>
       </div>
     </div>
   )

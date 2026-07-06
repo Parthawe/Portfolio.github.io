@@ -1,12 +1,10 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
-import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsCredits from '../../components/case-study/CsCredits'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -19,7 +17,7 @@ export default function CodeForBuildPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Code for Build &middot; Parth Pawar" />
         <meta property="og:description" content="Helping kids learn coding through visual block building, 3D castle blocks to gamify coding education." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/code-for-build.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/code-for-build.jpg" />
       </Helmet>
 
       <Nav />
@@ -49,7 +47,7 @@ export default function CodeForBuildPage() {
           <div className="wrap">
             <div className="cs-label-row" style={{ borderBottomColor: 'var(--ink-12)' }}>
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">Kids from Istanbul have a curiosity to learn coding and development of websites, but can&rsquo;t access computer. Therefore the solution was to help these demographics learn to code on their mobile using visual elements by associating the Visual elements (Kid&rsquo;s childhood playing block pieces) with Code piece, to building block pieces one on top of the other.</span>
+              <span className="cs-label-row-val">Kids from Istanbul have a curiosity to learn coding and development of websites, but can&rsquo;t access a computer. Therefore the solution was to help these demographics learn to code on their mobile using visual elements by associating the Visual elements (Kid&rsquo;s childhood playing block pieces) with Code piece, to building block pieces one on top of the other.</span>
             </div>
             <div className="cs-label-row" style={{ borderBottomColor: 'var(--ink-12)' }}>
               <span className="cs-label-row-key">The Challenges</span>
@@ -57,7 +55,7 @@ export default function CodeForBuildPage() {
             </div>
             <div className="cs-label-row" style={{ borderBottomColor: 'var(--ink-12)' }}>
               <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">As I was the Sole Interaction Designer, I experimented with solutions to visualize the content to learn 10 to 16 years old kids to understand coding. The idea revolved around making puzzle block pieces to build a castle of blocks to make coding fun to learn.</span>
+              <span className="cs-label-row-val">As I was the Sole Interaction Designer, I experimented with solutions to visualize the content to help kids aged 10&ndash;16 understand coding. The idea revolved around making puzzle block pieces to build a castle of blocks to make coding fun to learn.</span>
             </div>
             <div className="cs-label-row" style={{ borderBottomColor: 'var(--ink-12)', borderBottom: 'none' }}>
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
@@ -86,15 +84,6 @@ export default function CodeForBuildPage() {
             <CsCallout style={{ textAlign: 'center', borderLeft: 'none', maxWidth: '700px', margin: '2rem auto' }}>
               <p>How can we encourage teenagers to <strong>learn coding</strong> effectively using gamified visualisation?</p>
             </CsCallout>
-          </div>
-        </section>
-
-        {/* App screens — the actual product */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img reveal">
-              <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/two-phones.png" alt="Code for Build app: code view with 3D block illustration and output preview" loading="lazy" />
-            </div>
           </div>
         </section>
 
@@ -135,9 +124,13 @@ export default function CodeForBuildPage() {
           <div className="wrap" style={{ textAlign: 'center' }}>
             <p className="cs-section-label">Discover</p>
             <h2 className="cs-section-title">User Research</h2>
-            <div className="cs-img-full">
-              
-            </div>
+            <CsBody style={{ maxWidth: '700px', margin: '0 auto 2rem' }}>
+              <p>The research centered on Shawn, a 14-year-old student in Istanbul who is eager to learn coding but shares one smartphone household with very little desktop access. His goal statement set the direction for the whole app: &ldquo;I am looking for a mobile application that helps me understand coding using visuals.&rdquo;</p>
+            </CsBody>
+            <figure className="cs-img reveal" style={{ margin: 0 }}>
+              <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/persona-research.jpg" alt="User persona: Shawn Malik, 14, Istanbul, aspiring developer — biography, frustrations like no laptop access, goal statement, and charts of top apps, devices, and personality" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption" style={{ marginTop: '0.75rem', fontSize: '0.85rem', opacity: 0.65, textAlign: 'left' }}>The persona behind the product: smartphone-first, curious, and blocked by hardware, not motivation.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -169,13 +162,9 @@ export default function CodeForBuildPage() {
                     ['Multiple Layouts', ['Yes','Yes','No','No','Yes','Yes']],
                     ['Illustrated Code', ['No','Yes','No','No','No','No']],
                     ['Coding stem', ['Yes','Yes','Yes','Yes','Yes','Yes']],
-                    ['Castle Blocks', ['No','No','Yes','No','No','No']],
-                    ['Multi-lingual Support', ['Yes','Yes','No','Yes','No','No']],
-                    ['Digital In & Out Board', ['No','No','Yes','No','No','No']],
                     ['3D Modelling', ['No','No','No','No','Yes','No']],
-                    ['Digital agreements', ['No','No','Yes','No','No','No']],
                   ].map(([feature, vals], i) => (
-                    <tr key={i} style={{ borderBottom: i < 10 ? '1px solid var(--ink-12)' : undefined }}>
+                    <tr key={i} style={{ borderBottom: i < 6 ? '1px solid var(--ink-12)' : undefined }}>
                       <td style={{ padding: '0.6rem 1rem' }}>{feature as string}</td>
                       {(vals as string[]).map((v, j) => (
                         <td key={j} style={{ textAlign: 'center', color: v === 'Yes' ? 'var(--ink-70)' : 'var(--ink-40)' }}>{v}</td>
@@ -199,25 +188,9 @@ export default function CodeForBuildPage() {
           </div>
         </section>
 
-        {/* Features + UX & Wireframe */}
+        {/* UX & Wireframe */}
         <section className="cs-section reveal">
           <div className="wrap" style={{ textAlign: 'center' }}>
-            <p className="cs-section-label">Define</p>
-            <h2 className="cs-section-title">Features</h2>
-            <div className="cs-tags" style={{ justifyContent: 'center', marginBottom: '3rem' }}>
-              <span className="cs-tag-item">Coding Languages - HTML, CSS</span>
-              <span className="cs-tag-item">Visualization of Code</span>
-              <span className="cs-tag-item">Coding Languages - Javascript</span>
-              <span className="cs-tag-item">Multiple Layouts</span>
-              <span className="cs-tag-item">Illustrated Code</span>
-              <span className="cs-tag-item">Coding Stem</span>
-              <span className="cs-tag-item">Castle Blocks</span>
-              <span className="cs-tag-item">Multi-lingual Support</span>
-              <span className="cs-tag-item">Digital In &amp; Out Board</span>
-              <span className="cs-tag-item">Digital Agreements</span>
-              <span className="cs-tag-item">Multi-lingual Support</span>
-            </div>
-
             <p className="cs-section-label">Develop</p>
             <h2 className="cs-section-title">UX &amp; Wireframe</h2>
           </div>
@@ -233,28 +206,10 @@ export default function CodeForBuildPage() {
             <h2 className="cs-section-title" style={{ textAlign: 'center' }}>Design System</h2>
 
             <h3 className="cs-section-subtitle">Colors</h3>
-            <CsBody>
-              <p>For the app, the colors were removed based on how these colors affect the human psyche. The blue color has a refreshing effect and allows young mind to stay active and coding vibe. The Multi color combination has a pop look which helps with identification.</p>
-            </CsBody>
-
-            <h3 className="cs-section-subtitle">Typography</h3>
-            <CsBody>
-              <p><strong>Inter</strong></p>
-            </CsBody>
-            <div className="cs-info-grid" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
-              <div className="cs-info-item">
-                <span className="cs-info-key">Regular</span>
-                <span className="cs-info-value">16px</span>
-              </div>
-              <div className="cs-info-item">
-                <span className="cs-info-key">Medium</span>
-                <span className="cs-info-value">28px</span>
-              </div>
-              <div className="cs-info-item">
-                <span className="cs-info-key">SemiBold</span>
-                <span className="cs-info-value">34px</span>
-              </div>
-            </div>
+            <figure className="cs-img reveal" style={{ margin: '0 auto 2rem', maxWidth: '520px' }}>
+              <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/design-system-colors.jpg" alt="Isometric checkerboard of blue, green, yellow, red, and purple blocks above a row of the five block colors" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption" style={{ marginTop: '0.75rem', fontSize: '0.85rem', opacity: 0.65 }}>The five block colors, each mapped to a different kind of code element.</figcaption>
+            </figure>
 
             <h3 className="cs-section-subtitle">Block System</h3>
             <CsFeatureGrid features={[
@@ -263,15 +218,11 @@ export default function CodeForBuildPage() {
               { title: 'Image Block', desc: 'Use this block to add Image to your container' },
               { title: 'Icons Block', desc: 'Use this block to add Icons in your container' },
               { title: 'Container / Child', desc: 'Single pieces which join together to form body are called as container' },
-              { title: 'Cross Axis Alignment', desc: 'Use this block for If, While, If Else, For Types of Conditions' },
+              { title: 'Cross Axis Alignment', desc: 'Use this block to align items across the cross axis of a container' },
               { title: 'Padding between', desc: 'Space between 2 Containers, Blocks is known as Padding' },
-              { title: 'Button', desc: 'Use this block for If, While, If Else, For Types of Conditions' },
-              { title: 'Text', desc: 'Add Style to your code using this block' },
+              { title: 'Button', desc: 'Use this block to add a Button to your container' },
+              { title: 'Text', desc: 'Use this block to add Text to your container' },
             ]} />
-
-            <div className="cs-img-full">
-              
-            </div>
           </div>
         </section>
 
@@ -303,18 +254,17 @@ export default function CodeForBuildPage() {
             <h3 className="cs-section-subtitle">2. Code Learning</h3>
             <div className="cs-two-col">
               <CsBody>
-                <p>In the Output Window user will be able to see the Preview of the Frontend Layout &amp; 3D Model representing the same. Its an interactive 3D Block Model to help learn Code by clicking on the 3D Block Model.</p>
+                <p>In the Output Window user will be able to see the Preview of the Frontend Layout &amp; 3D Model representing the same. It&rsquo;s an interactive 3D block model to help learn Code by clicking on the 3D Block Model.</p>
               </CsBody>
-              
+              <div className="cs-img reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/code-learning-screens.jpg" alt="Two app screens: the Output tab previewing a built Netflix layout above its 3D block model, and the Choose Code screen listing Lake Camp, Netflix Profile, and Netflix Home lessons" loading="lazy" decoding="async" />
+              </div>
             </div>
 
             <h3 className="cs-section-subtitle" style={{ marginTop: '4rem' }}>3. Multiple Layouts</h3>
-            <div className="cs-two-col cs-two-col--reverse">
-              <CsBody>
-                <p>Multiple Layouts will help you get a deeper understanding and reflecting on different Coding 3D Models. You can interact with the 3D Layout to change and reflect on Code changes.</p>
-              </CsBody>
-              
-            </div>
+            <CsBody>
+              <p>Multiple Layouts will help you get a deeper understanding and reflecting on different Coding 3D Models. You can interact with the 3D Layout to change and reflect on Code changes&mdash;each lesson, from Lake Camp to Netflix Home, is a different layout rebuilt in blocks.</p>
+            </CsBody>
           </div>
         </section>
 
@@ -345,9 +295,6 @@ export default function CodeForBuildPage() {
         <section className="cs-section cs-thanks reveal">
           <div className="wrap">
             <h2 className="cs-thanks-title">Thank You</h2>
-            <CsCredits credits={[
-              { role: 'Interaction Designer', name: 'Parth Pawar' },
-            ]} />
           </div>
         </section>
 
@@ -358,11 +305,9 @@ export default function CodeForBuildPage() {
           { id: 'cs-deliver', label: 'Deliver' },
         ]} />
 
-      <CsThanks />
-
       </main>
 
-        <NextProject slug="typeface" title="Butler's Slice" image="/Portfolio.github.io/Assets/images/typeface.webp" />
+      <NextProject slug="typeface" title="Butler's Slice" image="/Portfolio.github.io/Assets/images/typeface.webp" />
       <Footer />
     </>
   )

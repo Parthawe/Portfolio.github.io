@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -18,12 +19,12 @@ export default function MakingOfTimePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Making of Time &middot; Parth Pawar" />
         <meta property="og:description" content="Exploring the essence of time from ancient methods to contemporary technology." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/making-of-time.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/making-of-time.jpg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#8B6914' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#5C7EA8' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -48,19 +49,31 @@ export default function MakingOfTimePage() {
           </div>
         </section>
 
-        {/* Hero Video */}
-        <section className="cs-slide reveal">
-          <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-            <iframe
-              src="https://player.vimeo.com/video/1010457989?h=&badge=0&autopause=0&player_id=0&app_id=58479"
-              frameBorder="0" loading="lazy"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-              title="Making of Time"
-            />
+        <CsMediaSpotlight
+          id="cs-film"
+          label="Watch first"
+          title="Three clocks, one moment"
+          lede="The film sets up the sequence: sundial, mechanical watch, and software clock as three different ways to feel time."
+          meta={['Vimeo film', 'Physical computing', 'Watchmaking']}
+        >
+          <iframe
+            src="https://player.vimeo.com/video/1010457989?h=&badge=0&autopause=0&player_id=0&app_id=58479"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+            title="Making of Time"
+          />
+        </CsMediaSpotlight>
+
+        {/* Interactive, early proof */}
+        <CsSection id="cs-interactive" label="Interactive" title="Three Ways to Read This Moment">
+          <CsBody>
+            <p>The same moment, measured three ways: shadow, escapement, and color field. The point is not accuracy, it is how each medium changes attention.</p>
+          </CsBody>
+          <div style={{ marginTop: 'var(--space-4)' }}>
+            <ClockTrio />
           </div>
-        </section>
+        </CsSection>
 
         {/* Overview */}
         <section className="cs-section reveal">
@@ -68,31 +81,23 @@ export default function MakingOfTimePage() {
             <p className="cs-section-label">Overview</p>
             <h2 className="cs-display">Exploring Time</h2>
             <CsBody>
-              <p>Exploring the essence of time has been a journey from ancient methods to contemporary technology, each project offering a unique perspective on how time can be represented and understood.</p>
               <p>This series of three explorations traces the evolution of timekeeping from its most elemental form &mdash; shadows cast by the sun &mdash; through the intricate mechanical movements of watchmaking, and finally into the realm of digital and software-driven clocks. Each phase required learning a fundamentally different set of skills and materials, from outdoor observation and basic construction to precision metalwork and code.</p>
-              <p>The project draws from a deep lineage. In 1761, <a href="https://www.rmg.co.uk/stories/time/harrisons-clocks-longitude-problem" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>John Harrison</a> solved the longitude problem with his H4 marine chronometer &mdash; proving that precise timekeeping could save lives at sea. <a href="https://en.wikipedia.org/wiki/Abraham-Louis_Breguet" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Abraham-Louis Breguet</a> invented the tourbillon, the perpetual calendar, and the first wristwatch. These figures weren&rsquo;t just engineers &mdash; they were designers who understood that how you measure time changes how you experience it.</p>
               <p>The underlying question driving all three projects was not how to tell time more accurately, but how the medium of timekeeping shapes our relationship with time itself. A sundial demands patience and presence; a mechanical watch rewards attention to craft and rhythm; a digital clock abstracts time into pure information. By building all three, I wanted to experience those different relationships firsthand.</p>
             </CsBody>
           </div>
         </section>
 
-        {/* Interactive — three clocks running in real time */}
-        <CsSection id="cs-interactive" label="Interactive" title="Three Ways to Read This Moment">
-          <CsBody>
-            <p>The same moment, measured three ways. A sundial shadow, a mechanical escapement, and an abstract color field &mdash; all showing your current time right now. Watch how each medium changes your relationship with the same information.</p>
-          </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
-            <ClockTrio />
-          </div>
-        </CsSection>
-
         {/* Sundial */}
         <CsSection id="cs-sundial" label="01 &mdash; Sundial" title="Sundial">
           <CsBody>
-            <p>Creating a sundial with simple materials to experience firsthand how shadows measure time, a technique as old as civilization itself. The project began with research into gnomon geometry &mdash; understanding how the angle of the shadow-casting element must match the latitude of the location to produce accurate hour lines throughout the day.</p>
-            <p>I constructed the sundial from wood and brass fittings, calibrating the gnomon angle for New York City&rsquo;s latitude. The hour lines were hand-etched based on calculations that account for the <a href="https://en.wikipedia.org/wiki/Equation_of_time" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>equation of time</a> &mdash; the slight variation between solar time and clock time caused by Earth&rsquo;s elliptical orbit and axial tilt. Testing the dial outdoors over several weeks revealed how remarkably precise this ancient method can be &mdash; accurate to within a few minutes on clear days.</p>
+            <p>Creating a sundial with simple materials to experience firsthand how shadows measure time. The project began with research into gnomon geometry &mdash; understanding how the angle of the shadow-casting element must match the latitude of the location to produce accurate hour lines throughout the day.</p>
+            <p>I constructed the sundial from wood and brass fittings, calibrating the gnomon angle for New York City&rsquo;s latitude. The hour lines were hand-etched based on calculations that account for the <a href="https://en.wikipedia.org/wiki/Equation_of_time" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>equation of time</a> &mdash; the slight variation between solar time and clock time caused by Earth&rsquo;s elliptical orbit and axial tilt. Testing the dial outdoors over several weeks showed how well this ancient method still works on clear days.</p>
             <p>The most striking takeaway was how a sundial forces you to slow down. You cannot glance at it for a quick reading the way you check a phone. You have to stand, observe the shadow, and interpret its position. Time measured this way feels embodied and spatial rather than numerical, a fundamentally different experience from every other clock I have encountered.</p>
           </CsBody>
+          <figure className="cs-img reveal" style={{ maxWidth: '560px', margin: '2.5rem auto 0' }}>
+            <img src="/Portfolio.github.io/Assets/Projects/Making of Time/photos/538A4023_nsquare_64.png" alt="Hand adjusting the sundial-inspired white watch: a raised gnomon fin at the centre of the plain white dial, on a brown leather strap" loading="lazy" decoding="async" />
+            <figcaption className="cs-img-caption">The sundial idea carried onto the wrist: the white watch&rsquo;s dial reads by a raised gnomon instead of hands.</figcaption>
+          </figure>
         </CsSection>
 
         
@@ -133,7 +138,7 @@ export default function MakingOfTimePage() {
             <p>Building a classic timepiece with a minimalist white dial and leather strap, then exploring modern software-based timekeepers. This final phase bridged the physical and digital worlds &mdash; starting with the assembly of a quartz-driven analog watch with a clean, modernist face and moving into purely code-based representations of time.</p>
             <p>The software explorations included a p5.js sketch that visualized time as an evolving color field, where hue mapped to hours, saturation to minutes, and brightness to seconds. A second experiment used real-time data &mdash; weather, sunrise and sunset times, and moon phase &mdash; to generate a clock face that changed its visual character throughout the day. The goal was to make a clock that communicated the quality of a moment, not just its position on a 24-hour scale.</p>
             <p>Comparing all three approaches revealed a clear pattern: the more abstract the timekeeping medium, the more freedom the designer has to redefine what time means. A sundial is bound to the sun. A mechanical watch is bound to physics. A digital clock is bound only by the programmer&rsquo;s imagination. That freedom is powerful, but it also carries the risk of losing the grounding that physical constraints provide &mdash; the reason a ticking watch feels more real than a pixel changing color.</p>
-            <p>This exploration of time continued in <a href="/black-hole" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Black Hole</a>, where the question shifted from &ldquo;how do we measure time?&rdquo; to &ldquo;what happens when time itself breaks?&rdquo; The Black Hole project builds five physical models of gravitational phenomena &mdash; including a time dilation model where clocks literally slow down near the event horizon. It&rsquo;s the natural next step: once you&rsquo;ve built three ways to measure time, you build a model that destroys the concept entirely.</p>
+            <p>This exploration of time continued in <a href="/black-hole" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Black Hole</a>, where the question shifted from &ldquo;how do we measure time?&rdquo; to &ldquo;what happens when time itself breaks?&rdquo; The Black Hole project builds five physical models of gravitational phenomena &mdash; including a time dilation model where clocks literally slow down near the event horizon.</p>
           </CsBody>
         </CsSection>
 
@@ -151,6 +156,8 @@ export default function MakingOfTimePage() {
         <CsThanks />
 
         <BottomNav sections={[
+          { id: 'cs-film', label: 'Film' },
+          { id: 'cs-interactive', label: 'Live clocks' },
           { id: 'cs-sundial', label: 'Sundial' },
           { id: 'cs-mechanical', label: 'Mechanical' },
           { id: 'cs-digital', label: 'Digital' },

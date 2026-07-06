@@ -21,12 +21,12 @@ export default function VjSoftwarePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VJ Software &middot; Parth Pawar" />
         <meta property="og:description" content="Vehicle parking management app for VJ residential societies, user research, UI/UX and prototyping." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/vj.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/vj.jpg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#4A5568' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#E8702A' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -117,24 +117,10 @@ export default function VjSoftwarePage() {
               <p>How might VJ help residents choose and manage parking with confidence, without forcing them through office-style workflows that ignore the layout of the society itself?</p>
             </CsCallout>
 
-            <h3 className="cs-section-subtitle">Process</h3>
-            <CsSteps steps={[
-              { num: '1', title: 'Discover', desc: 'User Research, Market Research, Current Methods' },
-              { num: '2', title: 'Define', desc: 'Insights, Goals, Challenges, Features' },
-              { num: '3', title: 'Develop', desc: 'UX, Visuals' },
-              { num: '4', title: 'Deliver', desc: 'Prototyping, Improvements' },
-            ]} />
-          </div>
-        </section>
-
-        {/* User Research */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">Discover</span>
-            <h2 className="cs-section-title">User Research</h2>
+            <h3 className="cs-section-subtitle">User Research</h3>
             <CsInfoGrid items={[
-              { key: 'Mr. Ashish Patil', value: 'Male, 36 years old, working with BCG. Owner of flat B-block, Apartment #207 in Platinum City society in Bangalore.' },
-              { key: 'Mr. Prakash Sharma', value: 'Male, 27 years old, works in IT. Tenant of flat A-block, Apartment #1103 in Essel Tower society in Gurugram.' },
+              { key: 'Mr. Ashish Patil', value: 'Male, 36 years old, working with BCG. Flat owner in a Bangalore society.' },
+              { key: 'Mr. Prakash Sharma', value: 'Male, 27 years old, works in IT. Flat tenant in a Gurugram society.' },
             ]} />
 
             <div className="cs-two-col" style={{ marginTop: '2rem' }}>
@@ -163,17 +149,11 @@ export default function VjSoftwarePage() {
               <p>Analyzed competitor apps including MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety across features like visitor management, parking spots, domestic staff management, utility bill payments, communication management, and more.</p>
             </CsBody>
             <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
-          </div>
-        </section>
 
-        {/* Findings */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">Discover</span>
-            <h2 className="cs-section-title">Findings</h2>
+            <h3 className="cs-section-subtitle">Findings</h3>
             <CsFeatureGrid features={[
-              { title: 'NoBrokerHood App', desc: 'Can upload documents later on. Verification from society officials is required. No option to add driver details. Visitor entry approval available and their entry-exit logs. No option to report complain. Option to add vehicle details.' },
-              { title: 'MyGate App', desc: 'No documents required. No verification or confirmation. No option to add driver details. Visitor entry & exit logs are available. No option to report complain if some other car is parked in their spot.' },
+              { title: 'NoBrokerHood App', desc: 'Can upload documents later on. Verification from society officials is required. No option to add driver details. Visitor entry approval and entry-exit logs available. No option to report a complaint. Option to add vehicle details.' },
+              { title: 'MyGate App', desc: 'No documents required. No verification or confirmation. No option to add driver details. Visitor entry & exit logs are available. No option to report a complaint if some other car is parked in their spot.' },
               { title: 'ItsMyAccount App', desc: 'Gives different options for available parking spots. Owner and Tenant can book for car parking. Contact details of car owners is available. Track changes regarding parking lot history and availability.' },
             ]} />
 
@@ -193,6 +173,31 @@ export default function VjSoftwarePage() {
               </div>
             </div>
             <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
+          </div>
+        </section>
+
+        {/* Around the Booking */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <span className="cs-section-label">Solution</span>
+            <h2 className="cs-section-title">Around the Booking</h2>
+            <CsBody>
+              <p>The booking flow only works because the screens around it carry the urgency and the aftermath. The Legal &amp; Pay hub surfaces the countdown before possession, the parking landing screen explains the priority window so residents understand why selecting early matters, and the post-booking view keeps both spots, owner details, and the legal document in one place.</p>
+            </CsBody>
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', alignItems: 'start' }}>
+              <figure className="cs-img reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/vj/photos/legal-pay.png" alt="Legal & Pay hub screen with a '03 days left' countdown banner urging residents to select their parking spot" loading="lazy" decoding="async" />
+                <figcaption className="cs-img-caption">The Legal &amp; Pay hub: parking sits next to society formation and home loan, with a countdown that makes the selection window impossible to miss.</figcaption>
+              </figure>
+              <figure className="cs-img reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/vj/photos/car-parking.png" alt="Vehicle parking landing screen showing total, available, and booked spot counts, the priority window explanation, and parking FAQs" loading="lazy" decoding="async" />
+                <figcaption className="cs-img-caption">The landing screen explains the priority window in plain language, so the pressure to choose feels like information rather than a dark pattern.</figcaption>
+              </figure>
+              <figure className="cs-img reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/vj/photos/post-possession.png" alt="Post-booking screen listing the confirmed four-wheeler and two-wheeler spots with owner details, spot dimensions, and a downloadable legal document" loading="lazy" decoding="async" />
+                <figcaption className="cs-img-caption">After booking: both spots, their dimensions, and the emailed legal copy live on one screen instead of in an office file.</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
 
@@ -228,24 +233,6 @@ export default function VjSoftwarePage() {
               <p>Mapped the complete user journey covering first-time users booking a parking spot, adding RFID or FastTag details, editing vehicle details, renting a parking spot, and filing complaints for incorrect vehicle parking. Each flow includes decision points, success states, and error handling.</p>
             </CsBody>
             <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
-
-            <h3 className="cs-section-subtitle">Features</h3>
-            <div className="cs-tags">
-              <span className="cs-tag-item">Visitor Management System</span>
-              <span className="cs-tag-item">Book Parking Spot</span>
-              <span className="cs-tag-item">Employee Sign In</span>
-              <span className="cs-tag-item">Multiple Parking Spot</span>
-              <span className="cs-tag-item">Domestic Staff Management</span>
-              <span className="cs-tag-item">Maintenance and Utility Bill Payments</span>
-              <span className="cs-tag-item">Communication Management</span>
-              <span className="cs-tag-item">Evacuation Management</span>
-              <span className="cs-tag-item">Complaint Management / Feedback</span>
-              <span className="cs-tag-item">Digital In &amp; Out Board</span>
-              <span className="cs-tag-item">Multi-lingual Support</span>
-              <span className="cs-tag-item">Digital Agreements</span>
-              <span className="cs-tag-item">ID Badge Printing / Digital</span>
-              <span className="cs-tag-item">Customization of Features</span>
-            </div>
           </div>
         </section>
 
@@ -257,6 +244,10 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Created low-fidelity wireframes exploring the full parking flow: from the vehicle parking tab, to booking a parking slot, navigation on the society map layout, selecting a parking spot, pricing and payment options, and the final confirmation screen.</p>
             </CsBody>
+            <figure className="cs-img-full">
+              <img src="/Portfolio.github.io/Assets/Projects/vj/photos/user-flows.png" alt="Eleven hand-sketched paper wireframes covering the flow from the Legal & Pay landing page through slot selection on the map, price filters, RC document upload, and the payment page" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption">The flow started on paper: eleven sketched screens working out how the map, filters, and booking steps hand off to each other before anything went into Figma.</figcaption>
+            </figure>
 
             <h3 className="cs-section-subtitle">High Fidelity</h3>
             <CsBody>
@@ -280,28 +271,6 @@ export default function VjSoftwarePage() {
                   <span className="cs-swatch-hex">{hex}</span>
                 </div>
               ))}
-            </div>
-
-            <h3 className="cs-section-subtitle">Typography</h3>
-            <CsInfoGrid items={[
-              { key: 'Primary', value: 'Rubik Bold' },
-              { key: 'Secondary', value: 'Bebas Neue' },
-            ]} />
-
-            <h3 className="cs-section-subtitle">Layout</h3>
-            <div className="cs-info-grid" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
-              <div className="cs-info-item">
-                <span className="cs-info-key">Type 1</span>
-                <span className="cs-info-value">Text single-column</span>
-              </div>
-              <div className="cs-info-item">
-                <span className="cs-info-key">Type 2</span>
-                <span className="cs-info-value">Text double-column</span>
-              </div>
-              <div className="cs-info-item">
-                <span className="cs-info-key">Type 3</span>
-                <span className="cs-info-value">Movie Grid with no margins</span>
-              </div>
             </div>
 
             <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>

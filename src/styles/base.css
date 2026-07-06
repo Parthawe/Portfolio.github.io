@@ -52,8 +52,10 @@
   box-shadow:
     var(--surface-glass-shadow),
     inset 0 1px 0 var(--surface-glass-highlight);
+  /* Single un-prefixed declaration on purpose: with both declarations present
+     the CSS minifier keeps only the -webkit alias, which Chrome fails to
+     apply when the value is a var() — killing the glass blur site-wide. */
   backdrop-filter: var(--surface-glass-blur);
-  -webkit-backdrop-filter: var(--surface-glass-blur);
 }
 
 .surface-glass--subtle {
@@ -79,40 +81,66 @@
   --surface-glass-highlight: color-mix(in srgb, var(--glass-default-highlight) 78%, var(--select-blue) 22%);
 }
 
-/* --- Figma selection — blue border flush + 4 corner handles --- */
+/* --- Figma selection — high-contrast in-bounds outline + 4 corner handles --- */
 .figma-select {
   position: absolute;
-  inset: 0;
+  inset: 2px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.15s;
-  z-index: 10;
+  z-index: 30;
+  border-radius: max(3px, calc(var(--radius, 0px) - 2px));
+  transition: opacity 0.15s ease;
 }
 .figma-select-border {
   position: absolute;
   inset: 0;
-  border: 1px solid var(--select-blue);
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1.5px var(--select-blue),
+    inset 0 0 0 2.5px color-mix(in srgb, var(--surface) 72%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--bg) 82%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--select-blue) 11%, transparent);
 }
 .figma-select-handle {
   position: absolute;
-  width: 7px;
-  height: 7px;
-  background: #fff;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--surface);
   border: 1.5px solid var(--select-blue);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--bg) 86%, transparent),
+    0 1px 4px color-mix(in srgb, var(--ink) 18%, transparent);
 }
 [data-theme="dark"] .figma-select-handle {
   background: var(--surface);
 }
-.figma-select-handle--tl { top: -1px; left: -1px; }
-.figma-select-handle--tr { top: -1px; right: -1px; }
-.figma-select-handle--bl { bottom: -1px; left: -1px; }
-.figma-select-handle--br { bottom: -1px; right: -1px; }
+.figma-select-handle--tl { top: 0; left: 0; }
+.figma-select-handle--tr { top: 0; right: 0; }
+.figma-select-handle--br { right: 0; bottom: 0; }
+.figma-select-handle--bl { bottom: 0; left: 0; }
 
 /* Show on parent hover */
 .figma-hover {
   position: relative;
 }
-.figma-hover:hover > .figma-select { opacity: 1; }
+.figma-hover:is(:hover, :focus-visible, :focus-within) > .figma-select,
+.figma-hover.is-selected > .figma-select,
+.figma-hover[aria-current="page"] > .figma-select,
+.figma-hover[aria-selected="true"] > .figma-select {
+  opacity: 1;
+}
+
+.figma-hover:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 640px), (pointer: coarse) {
+  .figma-select {
+    display: none;
+  }
+
+}
 
 @media (prefers-reduced-motion: reduce) {
   .figma-select { transition: none; }
@@ -219,44 +247,82 @@
 /* --- Figma grid overlay --- */
 .figma-grid-overlay {
   position: fixed;
-  top: 22px;
-  left: 22px;
+  top: var(--ruler-block-offset, 30px);
+  left: var(--ruler-inline-offset, 30px);
   right: 0;
   bottom: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0;
-  background-image:
-    linear-gradient(to right, rgba(77, 158, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(77, 158, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to right, rgba(77, 158, 255, 0.075) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(77, 158, 255, 0.075) 1px, transparent 1px);
-  background-size: 8px 8px, 8px 8px, 64px 64px, 64px 64px;
-  background-position: 0 0;
+  opacity: 1;
+  background: none;
   transition: opacity var(--dur-base);
 }
-body.figma-grid-on .figma-grid-overlay {
+
+.figma-grid-overlay::before,
+.figma-grid-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-base);
+}
+
+.figma-grid-overlay::before {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--figma-chrome-accent, var(--select-blue)) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--figma-chrome-accent, var(--select-blue)) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to right, color-mix(in srgb, var(--figma-chrome-accent, var(--select-blue)) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--figma-chrome-accent, var(--select-blue)) 8%, transparent) 1px, transparent 1px);
+  background-size: 8px 8px, 8px 8px, 64px 64px, 64px 64px;
+  background-position: 0 0;
+}
+
+.figma-grid-overlay::after {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--figma-chrome-accent, var(--select-blue)) 22%, transparent) 0.95px, transparent 1.05px);
+  background-size: 16px 16px;
+  background-position: 0 0;
+}
+body.figma-grid-on .figma-grid-overlay::before {
+  opacity: 0.5;
+}
+body.figma-dots-on .figma-grid-overlay::after {
   opacity: 1;
 }
 body.figma-grid-on .dot-bg {
   opacity: 0.16;
 }
+body.figma-dots-on .dot-bg {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--select-blue) 40%, var(--ink) 12%, transparent) 0.7px, transparent 0.8px);
+  background-size: 12px 12px;
+  opacity: 0.58;
+}
+body.figma-grid-on.figma-dots-on .dot-bg {
+  opacity: 0.34;
+}
 body.figma-rulers-off .figma-grid-overlay {
   top: 0;
   left: 0;
 }
-[data-theme="dark"] .figma-grid-overlay {
+[data-theme="dark"] .figma-grid-overlay::before {
   background-image:
-    linear-gradient(to right, rgba(168, 184, 216, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(168, 184, 216, 0.03) 1px, transparent 1px),
-    linear-gradient(to right, rgba(168, 184, 216, 0.065) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(168, 184, 216, 0.065) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in srgb, var(--figma-chrome-accent, #a8b8d8) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--figma-chrome-accent, #a8b8d8) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to right, color-mix(in srgb, var(--figma-chrome-accent, #a8b8d8) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--figma-chrome-accent, #a8b8d8) 7%, transparent) 1px, transparent 1px);
+}
+[data-theme="dark"] .figma-grid-overlay::after {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--figma-chrome-accent, #a8b8d8) 28%, transparent) 0.95px, transparent 1.05px);
+}
+[data-theme="dark"] body.figma-dots-on .dot-bg,
+body.figma-dots-on[data-theme="dark"] .dot-bg {
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--select-blue) 48%, oklch(96% 0.01 260) 18%, transparent) 0.7px, transparent 0.8px);
 }
 
 /* --- Figma rulers — left (vertical) + top (horizontal) --- */
 .figma-ruler {
   position: fixed;
-  top: 22px; /* below top ruler */
+  top: var(--ruler-block-offset, 30px);
   left: 0;
   z-index: 201;
   pointer-events: none;
@@ -266,35 +332,45 @@ body.figma-rulers-off .figma-grid-overlay {
 .figma-ruler-top {
   position: fixed;
   top: 0;
-  left: 22px; /* right of left ruler */
+  left: var(--ruler-inline-offset, 30px);
   z-index: 201;
   pointer-events: none;
   border-bottom: 1px solid var(--ink-06);
   background: var(--bg);
 }
-/* Corner square where both rulers meet */
-.figma-ruler-top::before {
-  content: '';
-  position: absolute;
+.figma-ruler-corner {
+  position: fixed;
   top: 0;
-  left: -22px;
-  width: 22px;
-  height: 22px;
+  left: 0;
+  width: var(--ruler-inline-offset, 30px);
+  height: var(--ruler-block-offset, 30px);
+  z-index: 201;
+  pointer-events: none;
   background: var(--bg);
   border-right: 1px solid var(--ink-06);
   border-bottom: 1px solid var(--ink-06);
 }
 
+body.nav-on-dark :is(.figma-ruler, .figma-ruler-top, .figma-ruler-corner) {
+  background: color-mix(in srgb, #06131a 88%, var(--figma-chrome-accent, #9fd6e2) 12%);
+  border-color: rgba(247, 252, 253, 0.12);
+}
+
 /* Shift all content inward so rulers do not overlap the working canvas */
 body {
-  padding-left: 22px;
-  padding-top: 22px;
+  padding-left: var(--ruler-inline-offset, 30px);
+  padding-top: var(--ruler-block-offset, 30px);
   transition: padding 0.2s ease;
 }
 @media (max-width: 768px) {
   body { padding-left: 0; padding-top: 0; }
   .figma-grid-overlay,
-  .figma-ruler, .figma-ruler-top { display: none; }
+  .figma-ruler,
+  .figma-ruler-top,
+  .figma-ruler-corner,
+  .figma-frame-label {
+    display: none;
+  }
 }
 
 /* --- Figma frame labels — artboard names above sections --- */
@@ -316,10 +392,22 @@ body {
 }
 .figma-rulers-off .figma-frame-label { opacity: 0; }
 
+@media (max-width: 768px), (pointer: coarse) {
+  .figma-frame-label {
+    display: none;
+  }
+}
+
 /* Ruler toggle — hide rulers + remove body padding */
 .figma-rulers-off .figma-ruler,
-.figma-rulers-off .figma-ruler-top { opacity: 0; pointer-events: none; }
-body.figma-rulers-off { padding-left: 0 !important; padding-top: 0 !important; }
+.figma-rulers-off .figma-ruler-top,
+.figma-rulers-off .figma-ruler-corner { opacity: 0; pointer-events: none; }
+body.figma-rulers-off {
+  --ruler-inline-offset: 0px;
+  --ruler-block-offset: 0px;
+  padding-left: 0;
+  padding-top: 0;
+}
 
 /* --- Figma zoom badge --- */
 .figma-zoom-badge {
@@ -347,8 +435,9 @@ body.figma-rulers-off { padding-left: 0 !important; padding-top: 0 !important; }
 /* --- Background textures --- */
 .grain {
   position: fixed;
-  inset: -50%;
-  width: 200%; height: 200%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 900;
   opacity: 0.28;
@@ -480,48 +569,6 @@ hr.divider {
   color: var(--ink-40);
 }
 
-/* ── Comet Cursor — bright head + flowing gradient tail ── */
-.cursor-dot {
-  position: fixed;
-  top: -4px; left: -4px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 30%, rgba(140, 180, 255, 0.8) 70%, transparent 100%);
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity var(--dur-base);
-  box-shadow: 0 0 8px rgba(140, 180, 255, 0.5), 0 0 16px rgba(100, 140, 255, 0.2);
-}
-[data-theme="dark"] .cursor-dot {
-  background: radial-gradient(circle, #fff 30%, rgba(180, 200, 255, 0.9) 70%, transparent 100%);
-  box-shadow: 0 0 10px rgba(180, 200, 255, 0.6), 0 0 24px rgba(120, 160, 255, 0.3);
-}
-.cursor-dot.hover, .cursor-dot.cta {
-  width: 10px; height: 10px;
-  top: -5px; left: -5px;
-  box-shadow: 0 0 12px rgba(140, 180, 255, 0.6), 0 0 24px rgba(100, 140, 255, 0.3);
-}
-.cursor-comet {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9998;
-  pointer-events: none;
-}
-/* Hide cursor when spotlight is active */
-.spotlight-active .cursor-dot,
-.spotlight-active .cursor-comet {
-  opacity: 0 !important;
-}
-@media (max-width: 768px) {
-  .cursor-dot, .cursor-comet { display: none !important; }
-}
-@media (pointer: coarse) {
-  .cursor-dot, .cursor-comet { display: none !important; }
-}
-
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; opacity: 1; transform: none; }
@@ -530,7 +577,6 @@ hr.divider {
   .pcard-marquee-track,
   .wr-card-tags-track,
   .hp-marquee-track { animation-play-state: paused !important; }
-  .page-loader-logo { animation: none; opacity: 1; }
 }
 
 /* ── Mono Label, unified section label pattern ── */
@@ -640,29 +686,23 @@ hr.divider {
   max-width: 60ch;
 }
 
-/* ── Page Loader: quiet editorial reveal ── */
+/* Page Loader: fast hand-drawn reveal */
 .page-loader {
+  /* Matches the Butler's Slice panel indigo used as that page's project color. */
+  --loader-accent: #5B63D3;
   position: fixed;
   inset: 0;
-  background: #fff;
   z-index: 9998;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  color: var(--ink);
-  transition: opacity 0.42s ease 0.22s, visibility 0.42s ease 0.22s;
   isolation: isolate;
+  color: var(--ink);
+  background: var(--bg);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s linear;
 }
 
-.page-loader::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 52%, rgba(0, 0, 0, 0.035), transparent 44%);
-  pointer-events: none;
-  opacity: 0;
-  animation: loaderFieldIn 0.7s ease forwards;
+.page-loader::before,
+.page-loader::after {
+  display: none;
 }
 
 .page-loader.loaded {
@@ -671,230 +711,152 @@ hr.divider {
   pointer-events: none;
 }
 
-.loader-editorial {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: min(100%, 1180px);
-  padding: clamp(1.25rem, 4vw, 2rem);
-  transform: translateY(10px);
-  opacity: 0;
-  animation: loaderEditorialIn 0.65s 0.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.page-loader.loaded .loader-editorial {
-  opacity: 0;
-  transform: translateY(-12px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.loader-mini-nav {
+.loader-orientation {
   position: absolute;
-  top: clamp(1rem, 2vw, 1.6rem);
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  animation: loaderSurfaceIn 0.16s ease-out forwards;
+}
+
+.page-loader.loaded .loader-orientation {
+  opacity: 0;
+  transition: opacity 0.16s ease-out;
+}
+
+.loader-stage {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 0.38rem;
-}
-
-.loader-logo-pill,
-.loader-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 30px;
-  padding: 0 0.78rem;
-  border: 1px solid rgba(0, 0, 0, 0.09);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.045);
-  color: rgba(20, 20, 20, 0.66);
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
-.loader-logo-pill {
-  margin-right: clamp(8rem, 32vw, 34rem);
-  font-weight: 700;
-}
-
-.loader-pill.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-.loader-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(1rem, 4vw, 3.4rem);
-  margin-bottom: clamp(3rem, 8vw, 5.25rem);
-  font-family: var(--mono);
-  font-size: clamp(0.68rem, 1.2vw, 0.9rem);
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: rgba(20, 20, 20, 0.38);
-}
-
-.loader-tabs .is-active {
-  color: var(--accent);
-}
-
-.loader-statement {
-  position: relative;
-  width: min(86vw, 760px);
+  z-index: 5;
+  width: min(48rem, calc(100vw - 3rem));
+  transform: translate(-50%, -50%);
   text-align: center;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
 }
 
-.loader-statement h1 {
-  position: relative;
-  z-index: 2;
-  max-width: 13ch;
-  margin: 0 auto;
-  font-family: var(--serif);
-  font-size: clamp(2.65rem, 7vw, 5.9rem);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 0.94;
-  text-wrap: balance;
-  transform: translateY(10px);
-  opacity: 0;
-  animation: loaderHeadlineIn 0.68s 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.loader-script {
-  position: absolute;
-  z-index: 1;
-  right: min(-5vw, -1rem);
-  bottom: clamp(-5.8rem, -8vw, -3.3rem);
-  width: min(64vw, 560px);
+.loader-signature {
+  display: block;
+  width: min(44rem, 80vw);
   height: auto;
+  margin: 0 auto;
   overflow: visible;
-  transform: rotate(-7deg);
+  color: var(--loader-accent);
+  transform: rotate(-3deg);
+  animation: loaderReadoutIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  filter: url("#loaderInkSoftness") drop-shadow(0 0 1rem color-mix(in srgb, var(--loader-accent) 16%, transparent));
 }
 
-.loader-script path {
+.loader-signature-word {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  font-family: var(--display-heading);
+  font-size: 92px;
+  font-weight: 500;
+  letter-spacing: 0;
+  opacity: 0;
+  paint-order: stroke fill;
+  animation: loaderWriteWord 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+
+.loader-signature-stroke {
   fill: none;
-  stroke: var(--accent);
-  stroke-width: 24;
+  stroke: currentColor;
+  stroke-width: 18;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  filter: drop-shadow(0 8px 12px rgba(0, 45, 180, 0.08));
-  animation: loaderScriptDraw 0.86s 0.34s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: loaderDrawSignature 0.78s cubic-bezier(0.16, 1, 0.3, 1) 0.04s forwards;
 }
 
-.loader-scroll-cue {
-  position: absolute;
-  left: 50%;
-  bottom: clamp(2.5rem, 6vw, 4.7rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.55rem;
-  transform: translateX(-50%);
-  color: rgba(20, 20, 20, 0.38);
-  font-family: var(--sans);
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
-  font-weight: 700;
+.loader-signature-stroke--dots {
+  stroke-width: 14;
+  animation-delay: 0.48s;
+  animation-duration: 0.26s;
 }
 
-.loader-scroll-cue span {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border: 2px solid currentColor;
-  border-radius: 999px;
-  font-size: 1rem;
-  line-height: 1;
+.loader-signature-cursor {
+  fill: var(--loader-accent);
+  opacity: 0;
+  filter: drop-shadow(0 0 0.5rem color-mix(in srgb, var(--loader-accent) 38%, transparent));
+  animation: loaderCursorInk 0.82s cubic-bezier(0.16, 1, 0.3, 1) 0.04s forwards;
 }
 
-.loader-scroll-cue strong {
-  font: inherit;
+@keyframes loaderSurfaceIn {
+  100% { opacity: 1; }
 }
 
-@keyframes loaderFieldIn {
-  to { opacity: 1; }
+@keyframes loaderReadoutIn {
+  0% { opacity: 0; transform: translateY(0.35rem); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes loaderEditorialIn {
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes loaderDrawSignature {
+  0% { stroke-dashoffset: 1; opacity: 0.1; }
+  16% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
 }
 
-@keyframes loaderHeadlineIn {
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes loaderWriteWord {
+  0% { opacity: 0; clip-path: inset(0 100% 0 0); filter: blur(0.3rem); }
+  18% { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); filter: blur(0); }
 }
 
-@keyframes loaderScriptDraw {
-  to { stroke-dashoffset: 0; }
+@keyframes loaderCursorInk {
+  0% { opacity: 0; transform: scale(0.68); }
+  12% { opacity: 1; transform: scale(1); }
+  78% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.82); }
 }
 
 @media (max-width: 680px) {
-  .loader-mini-nav {
-    left: clamp(1rem, 5vw, 1.4rem);
-    right: clamp(1rem, 5vw, 1.4rem);
-    transform: none;
-    justify-content: space-between;
+  .loader-stage {
+    width: min(21rem, calc(100vw - 3rem));
   }
 
-  .loader-logo-pill {
-    margin-right: auto;
-  }
-
-  .loader-pill:not(.is-active) {
-    display: none;
-  }
-
-  .loader-tabs {
-    margin-bottom: clamp(2.2rem, 10vw, 3.5rem);
-    gap: 0.8rem 1.2rem;
-  }
-
-  .loader-statement h1 {
-    max-width: 11ch;
-    font-size: clamp(2.65rem, 13vw, 4.2rem);
-  }
-
-  .loader-script {
-    right: -18vw;
-    bottom: -4.5rem;
-    width: 92vw;
+  .loader-signature {
+    width: min(22rem, 88vw);
   }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .page-loader {
-    transition: opacity 0.2s ease, visibility 0.2s ease;
+    transition: opacity 0.12s ease, visibility 0.12s linear;
   }
 
-  .page-loader::before,
-  .loader-editorial,
-  .loader-statement h1,
-  .loader-script path {
+  .loader-orientation,
+  .loader-signature,
+  .loader-signature-word,
+  .loader-signature-stroke,
+  .loader-signature-cursor {
     animation: none;
+  }
+
+  .loader-orientation,
+  .loader-signature {
     opacity: 1;
     transform: none;
   }
 
-  .loader-script path {
+  .loader-signature-stroke {
     stroke-dashoffset: 0;
+  }
+
+  .loader-signature-word {
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+  }
+
+  .loader-signature-cursor {
+    opacity: 0;
   }
 }
 

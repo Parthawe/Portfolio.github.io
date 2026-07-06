@@ -1,0 +1,32 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="980" rx="42" fill="#F7F4ED"/>
+  <path d="M699 202V806M350 320L1048 688M1048 320L350 688" stroke="#3F4046" stroke-opacity=".16" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="700" cy="490" r="154" fill="#3F4046"/>
+  <circle cx="700" cy="490" r="154" stroke="#1F1F21" stroke-opacity=".1"/>
+  <text x="596" y="470" fill="#F8F8F7" font-family="monospace" font-size="21" font-weight="700" letter-spacing="4">CORE FLOW</text>
+  <text x="569" y="544" fill="#F8F8F7" font-family="Georgia, serif" font-size="58">Transfer</text>
+  <g>
+    <rect x="166" y="192" width="330" height="184" rx="30" fill="#FFFEFA"/>
+    <rect x="166" y="192" width="330" height="184" rx="30" stroke="#222226" stroke-opacity=".13"/>
+    <text x="214" y="260" fill="#6D6D71" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">ENTRY</text>
+    <text x="214" y="322" fill="#1D1D20" font-family="Georgia, serif" font-size="43">Market fit</text>
+  </g>
+  <g>
+    <rect x="904" y="192" width="330" height="184" rx="30" fill="#FFFEFA"/>
+    <rect x="904" y="192" width="330" height="184" rx="30" stroke="#222226" stroke-opacity=".13"/>
+    <text x="952" y="260" fill="#6D6D71" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">REVIEW</text>
+    <text x="952" y="322" fill="#1D1D20" font-family="Georgia, serif" font-size="43">No doubt</text>
+  </g>
+  <g>
+    <rect x="166" y="604" width="330" height="184" rx="30" fill="#FFFEFA"/>
+    <rect x="166" y="604" width="330" height="184" rx="30" stroke="#222226" stroke-opacity=".13"/>
+    <text x="214" y="672" fill="#6D6D71" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">RECOVERY</text>
+    <text x="214" y="734" fill="#1D1D20" font-family="Georgia, serif" font-size="43">Clear path</text>
+  </g>
+  <g>
+    <rect x="904" y="604" width="330" height="184" rx="30" fill="#FFFEFA"/>
+    <rect x="904" y="604" width="330" height="184" rx="30" stroke="#222226" stroke-opacity=".13"/>
+    <text x="952" y="672" fill="#6D6D71" font-family="monospace" font-size="18" font-weight="700" letter-spacing="3">ARRIVAL</text>
+    <text x="952" y="734" fill="#1D1D20" font-family="Georgia, serif" font-size="43">Proof sent</text>
+  </g>
+</svg>

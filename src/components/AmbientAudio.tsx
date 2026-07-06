@@ -562,6 +562,16 @@ export default function AmbientAudio() {
     startedRef.current = true; setMuted(false); void resume()
   }, [pause, playing, resume])
 
+  // Bridge for the Figma panel: it hosts its own music button while the nav is hidden.
+  useEffect(() => {
+    const onToggle = () => toggle()
+    window.addEventListener('ambient:toggle', onToggle)
+    return () => window.removeEventListener('ambient:toggle', onToggle)
+  }, [toggle])
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('ambient:state', { detail: { playing } }))
+  }, [playing])
+
   return (
     <div className={`ambient-ui${playing ? ' is-active' : ''}${noteVisible ? ' is-note-visible' : ''}`}>
       <button
@@ -570,7 +580,6 @@ export default function AmbientAudio() {
         type="button"
         aria-label={playing ? 'Pause ambient sound' : 'Play ambient sound'}
         aria-pressed={playing}
-        title={playing ? 'Pause ambient sound' : 'Play ambient sound'}
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           {playing ? (

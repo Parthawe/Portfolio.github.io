@@ -1,5 +1,5 @@
 import { categories } from './categories'
-import { CATEGORY_LABELS, projects, type ProjectCategory } from './projects'
+import { CATEGORY_LABELS, visibleProjects as projects, type ProjectCategory } from './projects'
 
 /* ── Types ─────────────────────────────────────────────── */
 
@@ -199,7 +199,7 @@ const deepMap: Record<string, ProjectDeep> = {
     opinion: 'For an early project, the systems thinking here is impressive. Every piece connects.',
     connectedTo: ['typeface'],
   },
-  'keyboard-project': {
+  breakgen: {
     oneLiner: 'An AI platform that turns text prompts into fabrication-ready custom keyboards.',
     challenge: 'Custom keyboards require CAD expertise, weeks of iteration, and fabrication knowledge. What if anyone could describe a keyboard and have it built?',
     outcome: 'Working platform, 200+ visitors at ITP thesis show. Text to fabrication-ready output.',
@@ -212,6 +212,19 @@ const deepMap: Record<string, ProjectDeep> = {
     opinion: 'This is where the design-engineer identity becomes undeniable. He built the AI, designed the product, and fabricated the output.',
     connectedTo: ['ballah-code', 'jugalbandi'],
     surprisingFact: 'Every generated keyboard is structurally valid and can be 3D printed without modification.',
+  },
+  'keyboard-project': {
+    oneLiner: 'A physical keyboard study that turns key height into a tactile data landscape.',
+    challenge: 'Keyboards are usually treated as invisible flat input devices, even though their form can carry information through touch and height.',
+    outcome: 'Modified keyboard object plus 3D printed data sculpture.',
+    insight: 'A familiar interface becomes easier to question when it is made physical, raised, and readable by the hand.',
+    process: 'Disassembled, measured, fabricated, and reassembled a keyboard study around key-height mapping and physical data representation.',
+    whyItMatters: 'This is the tactile artifact that helps separate Parth’s physical-interface work from the later BreakGen AI platform.',
+    duration: '2024',
+    team: 'Solo',
+    platforms: 'Physical fabrication',
+    opinion: 'A quieter project, but useful because it shows the material thinking behind later design-engineering work.',
+    connectedTo: ['breakgen', 'jugalbandi'],
   },
   'black-hole': {
     oneLiner: 'Five physical models of black hole phenomena, exhibited at the Horological Society of NY.',
@@ -549,7 +562,7 @@ const rules: Rule[] = [
       if (ctx.persona === 'peer') {
         const picks = [
           unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)**, neural network that duets with humans, Maker Faire.' : '• **[Enigma](/enigma)**, 200-neuron light sculpture at NIME.',
-          unseen('keyboard-project') ? '• **[BreakGen](/keyboard-project)**, AI platform that fabricates custom keyboards.' : '• **[Making of Time](/making-of-time)**, sundial to software clock.',
+          unseen('breakgen') ? '• **[BreakGen](/breakgen)**, AI platform that fabricates custom keyboards.' : '• **[Keyboard Project](/keyboard-project)**, physical keyboard data object.',
           '• **[Mentra](/mentra)**, the systems ambition piece, full OS design.',
         ]
         return "For creative range:\n\n" + picks.join('\n')
@@ -571,7 +584,7 @@ const rules: Rule[] = [
 
   // Creative range
   { patterns: [/(?:creative range|experimental|unexpected|show me something different|range)/i],
-    handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[BreakGen](/keyboard-project)**.\n\nThat trio makes the point fast: product systems, physical computing, and fabrication all live in the same practice."
+    handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[BreakGen](/breakgen)**.\n\nThat trio makes the point fast: product systems, physical computing, and fabrication all live in the same practice."
   },
 
   // Work views
@@ -811,7 +824,7 @@ const rules: Rule[] = [
       const names = all.length ? all.map(p => p.name).join(', ') : 'Mentra, ZentiPay, Jugalbandi'
       const insights = all.filter(p => p.deep).slice(0, 3).map(p => `• ${p.name}: ${p.deep!.insight.split('.')[0]}.`).join('\n')
 
-      return `[EXPORT]\n**Parth Pawar, Portfolio Summary**\n\n**Projects reviewed:** ${names}\n\n${insights ? `**Key insights:**\n${insights}\n\n` : ''}**Themes:** Systems thinking, research rigor, design-engineering fluency\n**Contact:** ${bio.email}\n**Portfolio:** https://parthpawar.com`
+      return `[EXPORT]\n**Parth Pawar, Portfolio Summary**\n\n**Projects reviewed:** ${names}\n\n${insights ? `**Key insights:**\n${insights}\n\n` : ''}**Themes:** Systems thinking, research rigor, design-engineering fluency\n**Contact:** ${bio.email}\n**Portfolio:** https://parthawe.github.io`
     }
   },
 

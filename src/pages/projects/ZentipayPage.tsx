@@ -3,10 +3,33 @@ import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import ProjectOverview from '../../components/case-study/ProjectOverview'
-import CsBody from '../../components/case-study/CsBody'
+import NdaPublicStory from '../../components/case-study/NdaPublicStory'
+import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+
+const ZENTIPAY_PUBLIC_VISUALS = [
+  {
+    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/transaction-preview.svg',
+    alt: 'Safe abstract ZentiPay transfer preview showing locked rate, progress, and review states.',
+    label: 'Transfer preview',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/pricing-system.svg',
+    alt: 'Safe abstract ZentiPay pricing system plate showing quote, fees, and visible status.',
+    label: 'Pricing clarity',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/trust-architecture.svg',
+    alt: 'Safe abstract ZentiPay trust architecture map connecting entry, review, recovery, and arrival states.',
+    label: 'Trust architecture',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/component-sheet.svg',
+    alt: 'Safe abstract ZentiPay component sheet with buttons, status bars, and transaction cards.',
+    label: 'Component language',
+  },
+]
 
 export default function ZentipayPage() {
   return (
@@ -17,12 +40,38 @@ export default function ZentipayPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Trust-first fintech super app for cross-border transfer flows." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#1E6B45' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{
+        // Black/grey treatment: accent plus the full visual-hero palette.
+        '--project-color': '#3F4046',
+        '--case-outer-1': '#101012',
+        '--case-outer-2': '#1c1c1f',
+        '--case-outer-3': '#242427',
+        '--case-outer-glow-a': 'rgba(140, 140, 150, 0.22)',
+        '--case-outer-glow-b': 'rgba(90, 90, 100, 0.30)',
+        '--case-hero-panel-a': 'rgba(246, 246, 245, 0.92)',
+        '--case-hero-panel-b': 'rgba(232, 232, 231, 0.88)',
+        '--case-hero-panel-c': 'rgba(216, 216, 215, 0.82)',
+        '--case-hero-glow': 'rgba(150, 150, 158, 0.30)',
+        '--case-hero-grid': 'rgba(40, 40, 44, 0.08)',
+        '--case-hero-orb-b': 'rgba(170, 172, 180, 0.26)',
+        '--case-hero-soft': 'rgba(255, 255, 255, 0.55)',
+        '--case-hero-media-a': 'rgba(255, 255, 255, 0.52)',
+        '--case-hero-media-b': 'rgba(150, 152, 158, 0.18)',
+        '--case-hero-media-c': 'rgba(110, 112, 118, 0.16)',
+        '--case-hero-ink': '#1c1c1f',
+        '--case-hero-muted': 'rgba(28, 28, 31, 0.66)',
+        '--case-hero-chip-border': 'rgba(28, 28, 31, 0.13)',
+        '--case-hero-chip-color': 'rgba(28, 28, 31, 0.62)',
+        '--case-hero-blob-a': 'rgba(120, 122, 130, 0.28)',
+        '--case-hero-blob-b': 'rgba(60, 60, 66, 0.32)',
+        '--case-hero-blob-c': 'rgba(200, 200, 204, 0.22)',
+        '--case-hero-blob-glow': 'rgba(235, 235, 238, 0.28)',
+      } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -30,55 +79,55 @@ export default function ZentipayPage() {
           backLabel="Back to Work"
           tags={['Fintech', '0\u21921 Product', 'AI', 'Cross-cultural UX']}
           title="ZentiPay"
-          subtitle="Built a trust-first remittance product from zero, making cross-border transfers feel legible before money moved."
+          subtitle="A trust-first remittance product shaped around price clarity, progress, and confidence before money moved."
           info={[
-            { label: 'Role', value: 'Founding Product Designer (sole designer, working with product + eng)' },
+            { label: 'Role', value: 'Founding Product Designer' },
             { label: 'Scope', value: '0\u21921 Product Design' },
             { label: 'Platform', value: 'Web & Mobile' },
-            { label: 'Tools', value: 'Figma, research synthesis, prototyping' },
             { label: 'Timeline', value: '2025' },
           ]}
         />
 
-        {/* The Hook */}
-        <section className="cs-section reveal" id="cs-hook">
-          <div className="wrap">
-            <CsBody style={{ maxWidth: '720px' }}>
-              <p style={{ fontSize: '1.2rem', lineHeight: 1.8 }}>Cross-border transfers break trust when the real cost appears too late. Users may understand that fees exist, but they still need the product to explain what changed, why it changed, and what arrives on the other side before they commit.</p>
-              <p style={{ fontSize: '1.2rem', lineHeight: 1.8 }}>That moment of uncertainty became the design problem. The product had to reduce doubt before optimizing speed.</p>
-              <p style={{ fontSize: '1.2rem', lineHeight: 1.8 }}>That is why the public glimpse focuses on trust architecture: pricing clarity, transfer confidence, and the visible states that make an unfamiliar money product feel safer.</p>
-            </CsBody>
-          </div>
-        </section>
+        <NdaPublicStory
+          slug="zentipay"
+          headline="Trust before transfer."
+          lede="A public-safe look at the trust system: price clarity, progress states, review moments, and reusable fintech components."
+          visuals={ZENTIPAY_PUBLIC_VISUALS}
+        />
 
-        <ProjectOverview
-          sections={[
+        <NdaProcess
+          decisions={[
             {
-              label: 'Overview',
-              content: 'ZentiPay is a remittance product for migrant workers and international students who send money home often enough to notice every hidden fee. I joined as the founding product designer and owned the experience end to end: research, architecture, onboarding, transaction flows, and the trust signals that had to make an unfamiliar financial product feel safe on first use.',
+              move: 'Framed cross-border transfer as a confidence problem before a rate problem.',
+              why: 'People abandon remittance flows when they are unsure what will actually arrive. I led the design with price clarity and progress so trust was established before any money moved.',
             },
             {
-              label: 'The Mandate',
-              content: 'Build a cross-border transfer experience clear enough for first-time crypto users and credible enough for people sending essential income home. The design bar was not delight. It was reducing doubt in the exact moments where users typically abandon.',
+              move: 'Made every irreversible step legible and reviewable.',
+              why: 'In fintech the cost of a wrong tap is real money. I built explicit review moments and status states so the user always knew where their transfer was and what happened next.',
             },
             {
-              label: 'Visible Outcome',
-              content: 'The public case study covers the research framing, the central product bets, and the trust architecture that shaped the experience. The deeper internal flows, detailed validations, and implementation depth are shared directly after access is approved.',
+              move: 'Built a reusable component language for a 0→1 super app.',
+              why: 'As founding designer I needed the system to scale past the first flows. A consistent set of transaction, status, and confirmation components kept new features trustworthy without redesigning trust each time.',
             },
           ]}
+          shift={{
+            before: 'A transfer flow where users only learned the real cost and status late, eroding confidence.',
+            after: 'A trust-first system that front-loads clarity, progress, and review before money moves.',
+          }}
         />
 
         <NdaGate slug="zentipay" />
 
         <BottomNav sections={[
-          { id: 'cs-hook', label: 'The Hook' },
-          { id: 'cs-overview', label: 'Overview' },
-        ]} />
+          { id: 'cs-public-story', label: 'Glimpse' },
+          { id: 'cs-process', label: 'Process' },
+          { id: 'case-study-access-zentipay', label: 'Access' },
+        ]} placement="side" />
 
 
       </main>
 
-      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
+      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/images/transfi.jpg" />
       <Footer />
     </>
   )

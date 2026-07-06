@@ -17,12 +17,12 @@ export default function SculpturePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Sculpture · Parth Pawar" />
         <meta property="og:description" content="Competition sculptures for Firodia Karandak, Pune. From beginner to winner." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#8B6914' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#3A3A3E' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"

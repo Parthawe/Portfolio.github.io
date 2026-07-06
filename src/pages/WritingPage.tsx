@@ -128,7 +128,7 @@ const articles: Article[] = [
     readTime: '3 min',
     excerpt: 'My ITP thesis is an AI that turns text prompts into fabrication-ready keyboards. I own too many keyboards now.',
     pullQuote: 'Taste is the thing AI still can\u2019t do without you.',
-    relatedProject: { name: 'BreakGen', slug: 'keyboard-project' },
+    relatedProject: { name: 'BreakGen', slug: 'breakgen' },
     body: [
       'There\u2019s a shelf in my apartment with six keyboards on it. I built all of them. I need zero of them. My daily driver is a stock MacBook keyboard. This is fine.',
       'BreakGen started as a thesis question: what if generative design could handle mechanical constraints? Not \u201cgenerate me a cool shape\u201d but \u201cgenerate me a shape I can 3D print, that has structurally sound key switches, that actually types.\u201d The gap between \u201clooks cool in a render\u201d and \u201cworks when you press a key\u201d is where most generative design falls apart.',
