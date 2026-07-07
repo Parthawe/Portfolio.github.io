@@ -232,7 +232,8 @@
     right: var(--site-panel-right-active);
   }
 
-  body.site-tools-open .figma-ruler {
+  body.site-tools-open .figma-ruler,
+  body.site-tools-open .figma-ruler-corner {
     transform: translateX(var(--site-panel-left-active));
   }
 
@@ -488,11 +489,11 @@ body.site-tinted[data-theme="dark"] .site-tint-wash {
     linear-gradient(to right, color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 22%, transparent) 1px, transparent 1px),
     linear-gradient(to bottom, color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 22%, transparent) 1px, transparent 1px);
   background-size: 24px 24px;
-  opacity: var(--site-tool-grid-opacity, 0.28);
+  opacity: var(--site-tool-grid-opacity, 0.14);
 }
 
 .site-tool-overlay.is-painting::before {
-  opacity: calc(var(--site-tool-grid-opacity, 0.28) * 0.32);
+  opacity: calc(var(--site-tool-grid-opacity, 0.14) * 0.32);
 }
 
 .site-tool-overlay.is-commenting {

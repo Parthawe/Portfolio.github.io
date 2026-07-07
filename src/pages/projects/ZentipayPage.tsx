@@ -5,29 +5,75 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
+import NdaReviewerGallery from '../../components/case-study/NdaReviewerGallery'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const ZENTIPAY_REVIEWER_ASSET = '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer'
+
+const ZENTIPAY_REVIEWER_VISUALS = [
+  {
+    label: 'Onboarding & verification',
+    note: 'Wallet connect, identity verification (bank, passport, and ID checks feeding an "Integrity Score"), and OTP confirmation.',
+    images: Array.from({ length: 11 }, (_, i) => ({
+      src: `${ZENTIPAY_REVIEWER_ASSET}/dashboard-${i + 1}.webp`,
+      alt: `ZentiPay onboarding and verification, screen ${i + 1} of 11.`,
+    })),
+  },
+  {
+    label: 'Send crypto',
+    note: 'The wallet-to-wallet transfer flow: amount entry, balance and conversion, and the confirmation state.',
+    images: [1, 2, 3].map((n) => ({
+      src: `${ZENTIPAY_REVIEWER_ASSET}/send-crypto-${n}.webp`,
+      alt: `ZentiPay send-crypto flow, step ${n} of 3.`,
+    })),
+  },
+  {
+    label: 'Transactions & contacts',
+    note: 'The transaction history table and the add-contact flow layered over the main wallet dashboard.',
+    images: [
+      { src: `${ZENTIPAY_REVIEWER_ASSET}/transaction-history.webp`, alt: 'ZentiPay transaction history table with balances and status.' },
+      { src: `${ZENTIPAY_REVIEWER_ASSET}/add-contact-1.webp`, alt: 'ZentiPay add-contact modal over the wallet dashboard.' },
+      { src: `${ZENTIPAY_REVIEWER_ASSET}/add-contact-2.webp`, alt: 'ZentiPay add-contact flow, confirmation state.' },
+    ],
+  },
+  {
+    label: 'Profile',
+    note: 'Account profile: balances, wallet identity, and onboarding progress at a glance.',
+    images: [
+      { src: `${ZENTIPAY_REVIEWER_ASSET}/profile.webp`, alt: 'ZentiPay account profile screen with balances and onboarding progress.' },
+    ],
+  },
+  {
+    label: 'Marketing site',
+    note: 'The public-facing ZentiPay marketing and waitlist landing page.',
+    tall: true,
+    images: [
+      { src: `${ZENTIPAY_REVIEWER_ASSET}/landing-page.webp`, alt: 'ZentiPay marketing landing page, full scroll capture.' },
+    ],
+  },
+]
+
 const ZENTIPAY_PUBLIC_VISUALS = [
   {
-    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/transaction-preview.svg',
-    alt: 'Safe abstract ZentiPay transfer preview showing locked rate, progress, and review states.',
+    src: `${ZENTIPAY_REVIEWER_ASSET}/send-crypto-1.webp`,
+    alt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
     label: 'Transfer preview',
   },
   {
-    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/pricing-system.svg',
-    alt: 'Safe abstract ZentiPay pricing system plate showing quote, fees, and visible status.',
-    label: 'Pricing clarity',
-  },
-  {
-    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/trust-architecture.svg',
-    alt: 'Safe abstract ZentiPay trust architecture map connecting entry, review, recovery, and arrival states.',
+    src: `${ZENTIPAY_REVIEWER_ASSET}/dashboard-6.webp`,
+    alt: 'ZentiPay Proof of Integrity screen showing identity verification and trust score.',
     label: 'Trust architecture',
   },
   {
-    src: '/Portfolio.github.io/Assets/Projects/ZentiPay/public/component-sheet.svg',
-    alt: 'Safe abstract ZentiPay component sheet with buttons, status bars, and transaction cards.',
-    label: 'Component language',
+    src: `${ZENTIPAY_REVIEWER_ASSET}/transaction-history.webp`,
+    alt: 'ZentiPay transaction history table with balances and status.',
+    label: 'Transaction history',
+  },
+  {
+    src: `${ZENTIPAY_REVIEWER_ASSET}/profile.webp`,
+    alt: 'ZentiPay account profile screen with balances and onboarding progress.',
+    label: 'Profile & balances',
   },
 ]
 
@@ -40,7 +86,7 @@ export default function ZentipayPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Trust-first fintech super app for cross-border transfer flows." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp" />
       </Helmet>
 
       <Nav />
@@ -77,7 +123,7 @@ export default function ZentipayPage() {
           backLink="/work"
           categorySlug="fintech"
           backLabel="Back to Work"
-          tags={['Fintech', '0\u21921 Product', 'AI', 'Cross-cultural UX']}
+          tags={['Fintech', '0\u21921 Product', 'Design System', 'Cross-cultural UX']}
           title="ZentiPay"
           subtitle="A trust-first remittance product shaped around price clarity, progress, and confidence before money moved."
           info={[
@@ -116,7 +162,9 @@ export default function ZentipayPage() {
           }}
         />
 
-        <NdaGate slug="zentipay" />
+        <NdaGate slug="zentipay">
+          <NdaReviewerGallery groups={ZENTIPAY_REVIEWER_VISUALS} />
+        </NdaGate>
 
         <BottomNav sections={[
           { id: 'cs-public-story', label: 'Glimpse' },

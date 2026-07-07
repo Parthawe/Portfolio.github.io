@@ -225,12 +225,22 @@
   display: grid;
   gap: 1rem;
   align-content: start;
+  min-width: 0;
+}
+
+.work-playlist-player {
+  position: sticky;
+  top: calc(var(--nav-h) + 1.75rem);
+  z-index: 4;
+  display: grid;
+  align-self: start;
+  min-width: 0;
+  scroll-margin-top: calc(var(--nav-h) + 2rem);
 }
 
 .work-playlist-stage {
-  position: sticky;
-  top: calc(var(--nav-h) + 1.75rem);
-  z-index: 3;
+  position: relative;
+  z-index: 1;
   align-self: start;
   display: grid;
   grid-template-columns: minmax(150px, 180px) minmax(0, 1fr);
@@ -374,6 +384,7 @@
   z-index: 1;
   display: grid;
   gap: 1rem;
+  scroll-margin-top: calc(var(--nav-h) + 2rem);
 }
 
 .work-playlist-queue__table {
@@ -1685,8 +1696,12 @@
     display: none;
   }
 
+  .work-playlist-player,
   .work-playlist-stage {
     position: static;
+  }
+
+  .work-playlist-stage {
     height: auto;
     grid-template-columns: 1fr;
   }
@@ -1724,6 +1739,14 @@
 
   .work-timeline-rail__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-left: 0;
+  }
+
+  /* The vertical spine and its per-item dots only make sense as a single
+     column — in the multi-column rail they collide with neighboring cells. */
+  .work-timeline-rail__list::before,
+  .work-timeline-rail__item::before {
+    display: none;
   }
 
   .work-timeline-feature {
@@ -1995,17 +2018,37 @@
   --work-card-radius: var(--radius-lg);
   --work-panel-radius: calc(var(--radius-lg) - 6px);
   --work-control-radius: calc(var(--radius) + 2px);
+  --work-mode-accent: #3f8cff;
+  --work-mode-soft: color-mix(in srgb, var(--work-mode-accent) 10%, transparent);
+  --work-mode-rule: color-mix(in srgb, var(--work-mode-accent) 28%, var(--work-rule));
   --work-rule: color-mix(in srgb, var(--ink) 8%, transparent);
   --work-rule-strong: color-mix(in srgb, var(--ink) 14%, transparent);
   --work-panel-bg: color-mix(in srgb, var(--surface) 92%, var(--bg) 8%);
   --work-panel-bg-hover: color-mix(in srgb, var(--surface) 86%, var(--bg-alt) 14%);
-  --work-label: var(--ink-42);
+  --work-label: var(--ink-40);
   --work-label-active: var(--ink);
   --work-copy: min(62ch, 100%);
   --work-row-min: 4.5rem;
   --work-row-gap: 0.75rem;
   --work-control-min: 2.55rem;
   --work-focus: color-mix(in srgb, var(--select-blue) 62%, var(--ink) 38%);
+  --work-ease: var(--ease-out-expo);
+  --work-ease-soft: var(--ease-out-quart);
+  --work-motion-fast: 160ms;
+  --work-motion-base: 240ms;
+  --work-motion-slow: 420ms;
+}
+
+body.page-work-playlist {
+  --work-mode-accent: #3f8cff;
+}
+
+body.page-work-library {
+  --work-mode-accent: #1f9d7a;
+}
+
+body.page-work-timeline {
+  --work-mode-accent: #c8703b;
 }
 
 .page-work :is(h1, h2, h3, p, span, small, a, button) {
@@ -2039,16 +2082,107 @@
   box-shadow: none;
 }
 
+.page-work :is(.work-view-switch__button, .work-bnav-link, .work-library-nav__item, .work-timeline-rail__item) {
+  transition:
+    color var(--work-motion-fast) var(--work-ease-soft),
+    background-color var(--work-motion-fast) var(--work-ease-soft),
+    border-color var(--work-motion-fast) var(--work-ease-soft),
+    box-shadow var(--work-motion-fast) var(--work-ease-soft);
+}
+
+.page-work :is(.work-playlist-sidebar__item, .work-playlist-row, .work-library-row, .work-timeline-feature, .work-timeline-support-row) {
+  transition:
+    border-color var(--work-motion-base) var(--work-ease),
+    background-color var(--work-motion-base) var(--work-ease),
+    box-shadow var(--work-motion-base) var(--work-ease),
+    transform var(--work-motion-base) var(--work-ease);
+  will-change: transform;
+}
+
 .page-work :is(.work-playlist-stage, .work-playlist-sidebar, .work-playlist-queue, .work-library-row, .work-timeline-feature, .work-timeline-support-row) {
   background: var(--work-panel-bg);
+}
+
+/* The light panel re-skin above replaces the stage's original dark gradient,
+   so every on-dark text token from the base rules must flip to ink — white
+   copy on a light panel is invisible. Height follows content; the fixed
+   clamp left a dead band between the copy and the CTA. */
+.page-work .work-playlist-stage {
+  height: auto;
+  min-height: clamp(192px, 20vw, 216px);
+  color: var(--ink);
+  animation: workPreviewIn var(--work-motion-slow) var(--work-ease) both;
+  will-change: opacity, transform;
+}
+
+@keyframes workPreviewIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.page-work .work-playlist-stage__eyebrow {
+  color: var(--ink-40);
+}
+
+.page-work .work-playlist-stage__body {
+  color: var(--ink-70);
+}
+
+.page-work .work-playlist-stage__media {
+  background: var(--bg-alt);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.page-work .work-playlist-stage__media img {
+  animation: workPreviewMediaIn 520ms var(--work-ease) both;
+  transform-origin: 50% 54%;
+  will-change: opacity, transform;
+}
+
+@keyframes workPreviewMediaIn {
+  from {
+    opacity: 0;
+    transform: scale(1.018);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.page-work .work-playlist-stage__chips span {
+  border-color: var(--ink-08);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  color: var(--ink-60);
+}
+
+.page-work .work-playlist-stage__cta {
+  background: var(--ink);
+  color: var(--bg);
 }
 
 .page-work :is(.work-page-header, .work-group, .work-library-shell, .work-timeline-shell, .work-playlist-shell) {
   scroll-margin-top: calc(var(--nav-h) + 2rem);
 }
 
+.page-work .work-page-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: end;
+  padding-top: 132px;
+  padding-bottom: 24px;
+}
+
 .page-work .work-page-intro-copy {
-  max-width: 64ch;
+  max-width: 52ch;
 }
 
 .page-work .work-view-switch {
@@ -2060,9 +2194,14 @@
 }
 
 .page-work .work-view-switch__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: var(--work-control-min);
+  min-width: 5.75rem;
   white-space: nowrap;
   border-radius: var(--work-control-radius);
+  text-align: center;
 }
 
 .page-work :is(.work-playlist-stage__media, .work-library-preview__frame, .work-timeline-feature__media, .work-timeline-support-row__thumb, .work-library-row__thumb, .pcard-inner, .pcard-visual) {
@@ -2088,13 +2227,13 @@
 
 .page-work .pcard:hover,
 .page-work .pcard:focus-visible {
-  transform: translateY(-3px);
+  transform: translate3d(0, -2px, 0);
 }
 
 .page-work .pcard:hover .pcard-inner,
 .page-work .pcard:focus-visible .pcard-inner {
   border-color: var(--work-rule-strong);
-  box-shadow: 0 0 0 1px var(--ink-04);
+  box-shadow: 0 0 0 1px var(--ink-04), 0 16px 34px rgba(0, 0, 0, 0.055);
 }
 
 .page-work .pcard-top-row {
@@ -2129,11 +2268,48 @@
   min-height: 2rem;
 }
 
+.page-work .pcard,
+.page-work .pcard-inner,
+.page-work .pcard-visual img,
+.page-work .pcard-hover-media,
+.page-work .pcard-visual::after,
+.page-work .pcard-name {
+  transition-timing-function: var(--work-ease);
+}
+
+.page-work .pcard {
+  transition-duration: var(--work-motion-base);
+}
+
+.page-work .pcard-visual img,
+.page-work .pcard-hover-media {
+  transition-duration: 520ms;
+}
+
+.page-work .pcard:hover .pcard-visual img,
+.page-work .pcard:focus-visible .pcard-visual img {
+  transform: scale(1.025);
+}
+
+.page-work .pcard:hover .pcard-name,
+.page-work .pcard:focus-visible .pcard-name {
+  transform: translate3d(0, -2px, 0);
+}
+
 .page-work .work-playlist-row,
 .page-work .work-library-row,
 .page-work .work-timeline-support-row {
   min-height: var(--work-row-min);
   gap: var(--work-row-gap);
+}
+
+.page-work .work-playlist-sidebar__item:hover,
+.page-work .work-playlist-sidebar__item.is-active {
+  transform: translate3d(1px, 0, 0);
+}
+
+.page-work :is(.work-playlist-row:hover, .work-playlist-row.is-active, .work-library-row:hover, .work-library-row.is-active, .work-timeline-feature:hover, .work-timeline-support-row:hover) {
+  transform: translate3d(0, -1px, 0);
 }
 
 .page-work .work-playlist-row__name,
@@ -2218,8 +2394,8 @@
 
 .page-work :is(.work-bnav-link.active, .work-view-switch__button.is-active, .work-library-nav__item.is-active, .work-timeline-rail__item.is-active) {
   color: var(--work-label-active);
-  background: color-mix(in srgb, var(--surface) 91%, transparent);
-  box-shadow: inset 0 0 0 1px var(--work-rule);
+  background: color-mix(in srgb, var(--work-mode-accent) 10%, var(--surface) 88%);
+  box-shadow: inset 0 0 0 1px var(--work-mode-rule);
 }
 
 .page-work :is(.work-bnav-link, .work-view-switch__button, .work-library-nav__item, .work-timeline-rail__item) {
@@ -2229,7 +2405,7 @@
 
 .page-work :is(.work-bnav-link:hover, .work-view-switch__button:hover, .work-library-nav__item:hover, .work-timeline-rail__item:hover) {
   color: var(--work-label-active);
-  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  background: color-mix(in srgb, var(--work-mode-accent) 8%, transparent);
 }
 
 .page-work :is(.work-bnav-link, .work-view-switch__button, .work-library-nav__item, .work-timeline-rail__item, .work-playlist-row, .work-library-row, .work-timeline-feature, .work-timeline-support-row):focus-visible {
@@ -2242,7 +2418,45 @@
   background: var(--work-panel-bg-hover);
 }
 
+body.page-work-timeline .work-timeline-rail__item.is-active {
+  color: var(--ink);
+  border-color: var(--ink-08);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: none;
+  transform: translateX(2px);
+}
+
+body.page-work-timeline .work-timeline-rail__item.is-active::before {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+body.page-work-timeline .work-timeline-feature {
+  border-color: var(--ink-08);
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  box-shadow: none;
+}
+
+body.page-work-timeline .work-timeline-support-row {
+  border-color: var(--ink-06);
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  box-shadow: none;
+}
+
+body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support-row:hover) {
+  border-color: var(--ink-12);
+  background: color-mix(in srgb, var(--surface) 90%, var(--bg-alt) 10%);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
 @media (max-width: 900px) {
+  .page-work .work-page-header {
+    grid-template-columns: 1fr;
+    padding-top: 120px;
+    padding-bottom: 24px;
+  }
+
   .page-work .work-playlist-stage,
   .page-work .work-timeline-feature {
     gap: 1rem;
@@ -2255,12 +2469,20 @@
 }
 
 @media (max-width: 640px) {
+  .page-work .work-page-header {
+    padding-top: 96px;
+    padding-bottom: 16px;
+  }
+
   .page-work .work-view-switch {
     width: 100%;
   }
 
   .page-work .work-view-switch__button {
     flex: 1 0 auto;
+    min-width: 5.9rem;
+    justify-items: center;
+    text-align: center;
   }
 
   .page-work :is(.work-playlist-row, .work-library-row, .work-timeline-support-row) {
@@ -2277,7 +2499,29 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-work :is(.pcard:hover, .pcard:hover .pcard-visual img, .pcard--has-hover-media:hover .pcard-hover-media) {
+  .page-work :is(
+    .work-playlist-stage,
+    .work-playlist-stage__media img,
+    .pcard-visual::before,
+    .pcard-marquee-track
+  ) {
+    animation: none;
+  }
+
+  .page-work :is(
+    .work-playlist-stage,
+    .work-playlist-stage__media img,
+    .work-playlist-sidebar__item,
+    .work-playlist-row,
+    .work-library-row,
+    .work-timeline-feature,
+    .work-timeline-support-row,
+    .pcard,
+    .pcard-visual img,
+    .pcard-hover-media,
+    .pcard-name
+  ) {
+    transition: none;
     transform: none;
   }
 }

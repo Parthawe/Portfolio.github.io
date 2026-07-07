@@ -1,130 +1,209 @@
-/* The playbook — eight working values, mirrored from designwhich.works/playbook. */
+/* The playbook, eight working values tied to the kind of product work
+   this portfolio is actually showing. */
 
 export interface PlaybookValue {
   num: string
   slug: string
   title: string
+  summary: string
+  caption: string
+  object: PlaybookObjectKind
+  projects: { label: string; to: string }[]
   points: { lead: string; body: string }[]
 }
+
+export type PlaybookObjectKind =
+  | 'empathy'
+  | 'holistic-thinking'
+  | 'innovation'
+  | 'collaboration'
+  | 'adaptability'
+  | 'ethics'
+  | 'learning'
+  | 'empowerment'
 
 export const PLAYBOOK_VALUES: PlaybookValue[] = [
   {
     num: '01',
     slug: 'empathy',
-    title: 'Empathy for the User',
+    title: 'Start with the person',
+    summary: 'I do not begin with feature lists. I start with the pressure, uncertainty, or ambition the person brings into the product.',
+    caption: 'Good judgment starts by understanding what feels risky, confusing, or urgent for the person on the other side.',
+    object: 'empathy',
+    projects: [
+      { label: 'Mentra', to: '/mentra' },
+      { label: 'ZentiPay', to: '/zentipay' },
+      { label: 'The Point CDC', to: '/the-point-cdc' },
+    ],
     points: [
       {
-        lead: 'Understanding Needs',
-        body: 'I prioritize understanding the core needs, motivations, and pain points of the users. By putting myself in their shoes, I can design experiences that truly resonate with them.',
+        lead: 'Stress reveals the real task',
+        body: 'In fintech and AI wearables, the real problem is rarely the happy path. It is the anxious payment, the confusing setup, or the moment someone needs the system to stay legible under pressure.',
       },
       {
-        lead: 'Designing for Accessibility',
-        body: 'Ensuring that my designs are inclusive and accessible to all users, regardless of their abilities or backgrounds, is crucial to my process.',
+        lead: 'Accessibility is product behavior',
+        body: 'Readable hierarchy, forgiving flows, and clear recovery paths are not extras. They are how the product proves it understands the person using it.',
       },
     ],
   },
   {
     num: '02',
     slug: 'holistic-thinking',
-    title: 'Holistic Thinking',
+    title: 'Design the whole loop',
+    summary: 'The product is not one screen. It is the route in, the fallback, the settings, the internal tooling, and the handoff back out.',
+    caption: 'I care about coherence across touchpoints, not isolated screens that only look good in review.',
+    object: 'holistic-thinking',
+    projects: [
+      { label: 'Mentra', to: '/mentra' },
+      { label: 'ExecutiveLens', to: '/executivelens' },
+      { label: 'Mentra MiniApps', to: '/mentra-miniapps' },
+    ],
     points: [
       {
-        lead: 'Seeing the Bigger Picture',
-        body: 'I approach design with a focus on the entire system, considering how each element interacts within the broader context — cohesive, consistent experiences across touchpoints.',
+        lead: 'Touchpoints must agree',
+        body: 'The companion app, the OS surface, the store, the setup flow, and the support path should feel like one product. If they disagree, trust drops fast.',
       },
       {
-        lead: 'Balancing Creativity and Feasibility',
-        body: 'I strive to merge creative vision with practical constraints, ensuring solutions are innovative but also technically sound and feasible.',
+        lead: 'Operations are part of UX',
+        body: 'Internal tools, moderation states, and fallback interfaces matter because they shape what customers ultimately experience. I treat them as first-class design work.',
       },
     ],
   },
   {
     num: '03',
     slug: 'innovation',
-    title: 'Innovation and Experimentation',
+    title: 'Prototype the behavior',
+    summary: 'When the category is new, static mockups lie. I prototype motion, timing, and input early so the product can be judged as behavior.',
+    caption: 'I test how a system behaves before over-polishing how it looks.',
+    object: 'innovation',
+    projects: [
+      { label: 'Mentra', to: '/mentra' },
+      { label: 'Enigma', to: '/enigma' },
+      { label: 'Raahi', to: '/raahi-project' },
+    ],
     points: [
       {
-        lead: 'Pushing Boundaries',
-        body: 'I love exploring new ideas and pushing the boundaries of what’s possible, whether through emerging technologies or unconventional design approaches.',
+        lead: 'Behavior before polish',
+        body: 'I would rather learn from a rough prototype that answers the timing question than a perfect mockup that avoids it. New product categories need movement and feedback tested early.',
       },
       {
-        lead: 'Learning by Doing',
-        body: 'Experimentation is at the heart of my creative process. I constantly prototype, test, and iterate to discover new possibilities and refine my ideas.',
+        lead: 'New inputs need new language',
+        body: 'Glanceable displays, ambient AI, and physical interaction systems all demand fresh interface grammar. Prototyping is how I find that grammar.',
       },
     ],
   },
   {
     num: '04',
     slug: 'collaboration',
-    title: 'Collaboration and Communication',
+    title: 'Work in the open',
+    summary: 'The fastest path to strong work is a live loop with founders, PMs, and engineers. I want the reasoning visible, not trapped in a file.',
+    caption: 'The work gets better when the why is shared, not just the screen.',
+    object: 'collaboration',
+    projects: [
+      { label: 'Mentra MiniApps', to: '/mentra-miniapps' },
+      { label: 'Clawed Chat', to: '/clawed-chat' },
+      { label: 'Ballah Code', to: '/ballah-code' },
+    ],
     points: [
       {
-        lead: 'Working as a Team',
-        body: 'I work closely with cross-functional teams to align on goals and deliver results. Clear communication keeps everyone on the same page.',
+        lead: 'Explain the why, not just the screen',
+        body: 'Strong collaboration is not sending a polished frame at the end. It is making the decision logic legible early enough that the team can sharpen it together.',
       },
       {
-        lead: 'Bridging Gaps',
-        body: 'I often act as a bridge between design and development, translating creative concepts into technical specifications and carrying the vision through to execution.',
+        lead: 'Bridge design and implementation',
+        body: 'I work comfortably close to code, which makes the loop tighter. Decisions hold up better when they can survive contact with the build.',
       },
     ],
   },
   {
     num: '05',
     slug: 'adaptability',
-    title: 'Adaptability and Flexibility',
+    title: 'Adapt without lowering the bar',
+    summary: 'Zero to one product work changes shape every week. I can pivot quickly without letting the experience collapse into a pile of compromises.',
+    caption: 'Flexibility matters, but coherence matters more.',
+    object: 'adaptability',
+    projects: [
+      { label: 'Mentra', to: '/mentra' },
+      { label: 'TransFi', to: '/transfi-project' },
+      { label: 'ZentiPay', to: '/zentipay' },
+    ],
     points: [
       {
-        lead: 'Embracing Change',
-        body: 'In the fast-paced world of design and technology, I stay adaptable and open to change, continuously evolving my approach based on feedback and new insights.',
+        lead: 'Constraints are design material',
+        body: 'Small displays, regulated flows, unclear requirements, or shifting roadmaps are not interruptions to the work. They are the material the work is made from.',
       },
       {
-        lead: 'Navigating Challenges',
-        body: 'I adjust quickly to new requirements and unexpected challenges, ensuring the end product meets both user needs and business goals.',
+        lead: 'A moving brief still needs standards',
+        body: 'Even when direction changes, the product still needs hierarchy, logic, and taste. Adaptability is not an excuse for lower-quality decisions.',
       },
     ],
   },
   {
     num: '06',
     slug: 'ethics',
-    title: 'Ethical Responsibility',
+    title: 'Protect trust',
+    summary: 'If the product touches money, identity, or ambient AI, clarity and restraint are not optional. Trust is part of the interface.',
+    caption: 'People decide whether to trust a product through a thousand small interface decisions before they read a policy page.',
+    object: 'ethics',
+    projects: [
+      { label: 'TransFi', to: '/transfi-project' },
+      { label: 'Mentra', to: '/mentra' },
+      { label: 'The Point CDC', to: '/the-point-cdc' },
+    ],
     points: [
       {
-        lead: 'Designing with Integrity',
-        body: 'I am committed to products that respect user privacy, promote inclusivity, and are ethically sound. Technology should be a force for good.',
+        lead: 'Clarity beats cleverness',
+        body: 'The more consequential the product, the less patience I have for vague copy, hidden tradeoffs, or flashy behavior that obscures what is really happening.',
       },
       {
-        lead: 'Championing Ethical Tech',
-        body: 'Whether it’s ensuring data security or promoting transparency, I advocate for ethical practices in all aspects of my projects.',
+        lead: 'Ethics shows up in defaults',
+        body: 'Privacy, consent, transparency, and recovery are not only policy decisions. They show up in the defaults, the labels, and what the system asks from people.',
       },
     ],
   },
   {
     num: '07',
     slug: 'learning',
-    title: 'Continuous Learning',
+    title: 'Keep learning visible',
+    summary: 'Side projects, writing, fabrication, and experiments are not separate from product work. They are how I widen the range of problems I can solve.',
+    caption: 'I build things to learn faster, then bring those lessons back into the shipped work.',
+    object: 'learning',
+    projects: [
+      { label: 'Keyboard Project', to: '/keyboard-project' },
+      { label: 'Enigma', to: '/enigma' },
+      { label: 'Writing', to: '/writing' },
+    ],
     points: [
       {
-        lead: 'Staying Curious',
-        body: 'I am a lifelong learner — mastering new design tools, exploring the latest in technology, and committed to growing as a designer and technologist.',
+        lead: 'Build to think',
+        body: 'I learn best by making. Physical computing, keyboards, installations, and experimental interfaces all expand the range of behaviors I can later design for product work.',
       },
       {
-        lead: 'Learning from Experiences',
-        body: 'I value the lessons from both successes and failures, using them as stepping stones to improve and innovate in my future work.',
+        lead: 'Transfer the lesson back',
+        body: 'The point is not novelty for its own sake. The point is to bring sharper instincts, better taste, and stronger systems thinking back into shipped products.',
       },
     ],
   },
   {
     num: '08',
     slug: 'empowerment',
-    title: 'User Empowerment',
+    title: 'Leave people in control',
+    summary: 'The goal is not to make a system look smart. The goal is to help someone act with confidence, recover when needed, and understand what just happened.',
+    caption: 'Agency matters more than automation theater.',
+    object: 'empowerment',
+    projects: [
+      { label: 'ExecutiveLens', to: '/executivelens' },
+      { label: 'Mentra', to: '/mentra' },
+      { label: 'HealthApp', to: '/healthapp' },
+    ],
     points: [
       {
-        lead: 'Empowering Through Design',
-        body: 'My goal is to create designs that empower users, making them feel in control and confident in their interactions with technology.',
+        lead: 'Confidence is the feature',
+        body: 'A good interface reduces hesitation. It gives people just enough context to act, not a wall of system intelligence that performs sophistication without helping.',
       },
       {
-        lead: 'Building for Impact',
-        body: 'I build products that not only meet user needs but inspire and enable people to achieve more — a positive impact on their lives.',
+        lead: 'Recovery is part of control',
+        body: 'People trust products more when they can change course, undo a choice, or understand the next step after a mistake. Recovery is not secondary, it is agency.',
       },
     ],
   },

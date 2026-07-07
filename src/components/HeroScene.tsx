@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { useThemeMode } from '../hooks/useThemeMode';
 import { usePrefersReduced } from '../hooks/usePrefersReduced';
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
+import { layoutHeroWeb, type WebNode, type WebEdge } from '../data/heroWeb';
 
 /* ─── Node config ─── */
 
@@ -16,21 +17,21 @@ interface NodeConfig {
 }
 
 const NODES: NodeConfig[] = [
-  { position: [0, 1.9, 0], label: 'Installations', labelOffset: [0, 0.95, 0], route: '/installations' },
-  { position: [2.05, 0.6, -0.2], label: 'Design for Good', labelOffset: [-0.1, 0.85, 0], route: '/design-for-good' },
-  { position: [0, 0.15, 0.3], label: 'Product Design', labelOffset: [0, -0.85, 0], route: '/ux-design' },
-  { position: [-2.15, 0.1, 0.3], label: 'Brand & Visual', labelOffset: [0.08, -0.5, 0], route: '/brand-visual' },
-  { position: [-1.3, -1.6, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.85, 0], route: '/ai' },
-  { position: [1.55, -1.4, 0.2], label: 'Creative Tech', labelOffset: [-0.18, -0.82, 0], route: '/creative-tech' },
+  { position: [0, 1.9, 0], label: 'Installations', labelOffset: [0, 1.16, 0.1], route: '/installations' },
+  { position: [2.05, 0.6, -0.2], label: 'Design for Good', labelOffset: [0.45, 1.08, 0.12], route: '/design-for-good' },
+  { position: [0, 0.15, 0.3], label: 'Product Design', labelOffset: [0, -1.12, 0.12], route: '/ux-design' },
+  { position: [-2.15, 0.1, 0.3], label: 'Brand & Visual', labelOffset: [-0.36, -0.92, 0.12], route: '/brand-visual' },
+  { position: [-1.3, -1.6, 0.3], label: 'AI & Wearables', labelOffset: [-0.34, -1.08, 0.12], route: '/ai' },
+  { position: [1.55, -1.4, 0.2], label: 'Creative Tech', labelOffset: [0.36, -1.06, 0.12], route: '/creative-tech' },
 ];
 
 const SAFE_DESKTOP_NODES: NodeConfig[] = [
-  { position: [0.05, 1.78, 0], label: 'Installations', labelOffset: [0, 0.84, 0], route: '/installations' },
-  { position: [2.05, 0.72, -0.2], label: 'Design for Good', labelOffset: [-0.16, 0.76, 0], route: '/design-for-good' },
-  { position: [0.45, 0.04, 0.3], label: 'Product Design', labelOffset: [0, -0.74, 0], route: '/ux-design' },
-  { position: [-1.15, -0.1, 0.3], label: 'Brand & Visual', labelOffset: [0.05, -0.52, 0], route: '/brand-visual' },
-  { position: [-0.08, -1.66, 0.3], label: 'AI & Wearables', labelOffset: [0, -0.74, 0], route: '/ai' },
-  { position: [1.55, -1.28, 0.2], label: 'Creative Tech', labelOffset: [-0.3, -0.72, 0], route: '/creative-tech' },
+  { position: [0.05, 1.78, 0], label: 'Installations', labelOffset: [0.02, 1.08, 0.1], route: '/installations' },
+  { position: [2.05, 0.72, -0.2], label: 'Design for Good', labelOffset: [0.42, 1.0, 0.12], route: '/design-for-good' },
+  { position: [0.45, 0.04, 0.3], label: 'Product Design', labelOffset: [0.04, -1.02, 0.12], route: '/ux-design' },
+  { position: [-1.15, -0.1, 0.3], label: 'Brand & Visual', labelOffset: [-0.36, -0.88, 0.12], route: '/brand-visual' },
+  { position: [-0.08, -1.66, 0.3], label: 'AI & Wearables', labelOffset: [-0.08, -1.0, 0.12], route: '/ai' },
+  { position: [1.55, -1.28, 0.2], label: 'Creative Tech', labelOffset: [0.28, -0.98, 0.12], route: '/creative-tech' },
 ];
 
 /* ─── Constellation threads, invisible curves that glow as energy passes ─── */
@@ -68,6 +69,7 @@ const threadFragmentShader = /* glsl */ `
   uniform float uGlowAlpha;
   uniform float uTintLift;
   uniform float uWhiteMixMax;
+  uniform float uFade;
   varying float vProgress;
   void main() {
     float d = abs(vProgress - uGlowCenter);
@@ -82,7 +84,8 @@ const threadFragmentShader = /* glsl */ `
     vec3 tintBase = mix(uColor, white, uTintLift);
     vec3 tint = mix(tintBase, white, combined * uWhiteMixMax);
     // Base visibility higher in light mode so the resting thread remains readable
-    float alpha = combined * uGlowAlpha + uBaseAlpha;
+    float alpha = (combined * uGlowAlpha + uBaseAlpha) * uFade;
+    if (alpha < 0.001) discard;
     gl_FragColor = vec4(tint, alpha);
   }
 `;
@@ -94,7 +97,7 @@ interface ThreadInfo {
   phase: number;
 }
 
-function ConstellationLines({ positions, dark }: { positions: [number, number, number][]; dark: boolean }) {
+function ConstellationLines({ positions, dark, fadeRef }: { positions: [number, number, number][]; dark: boolean; fadeRef?: React.RefObject<number> }) {
   const groupRef = useRef<THREE.Group>(null!);
 
   const threadData = useMemo(() => {
@@ -184,6 +187,7 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
             uGlowAlpha: { value: appearance.glowAlpha },
             uTintLift: { value: appearance.tintLift },
             uWhiteMixMax: { value: appearance.whiteMixMax },
+            uFade: { value: 1 },
           },
           transparent: true,
           depthWrite: false,
@@ -205,6 +209,8 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
   useFrame(({ clock }) => {
     if (!groupRef.current) return;
     const time = clock.getElapsedTime();
+    // Collapsed threads fade out as the expanded web takes over.
+    const fade = fadeRef ? fadeRef.current ?? 1 : 1;
 
     for (let idx = 0; idx < threadData.length; idx++) {
       const thread = threadData[idx];
@@ -212,6 +218,7 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
       const raw = (time * thread.speed + thread.phase) % 2;
       const center = raw < 1 ? raw : 2 - raw;
       thread.material.uniforms.uGlowCenter.value = center;
+      thread.material.uniforms.uFade.value = fade;
     }
   });
 
@@ -230,6 +237,9 @@ function ConstellationLines({ positions, dark }: { positions: [number, number, n
 /* ─── Global navigate ref, set by parent via onNavigate prop ─── */
 let _navigate: ((path: string) => void) | null = null;
 export function setHeroNavigate(fn: (path: string) => void) { _navigate = fn; }
+// Set true once a canvas drag (orbit/pan) has moved, so releasing over a node
+// doesn't fire an unwanted navigation. Reset on each fresh press.
+let _webDragMoved = false;
 
 /* ─── Clickable wrapper, passes hovered state to children via render prop ─── */
 /* Also handles drag-to-spin: dragging on an object spins it in that direction */
@@ -358,8 +368,11 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
   active: boolean;
 }) {
   const textRef = useRef<THREE.Mesh>(null!);
+  const plateRef = useRef<THREE.MeshBasicMaterial>(null!);
   const groupRef = useRef<THREE.Group>(null!);
   const lerp = useRef(0);
+  const plateWidth = Math.min(1.68, Math.max(0.92, text.length * 0.082));
+  const plateHeight = text.includes('&') || text.includes(' ') ? 0.42 : 0.3;
 
   const handleClick = useCallback(() => {
     if (_navigate) _navigate(route);
@@ -382,6 +395,9 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
         mat.needsUpdate = true;
       }
     }
+    if (plateRef.current) {
+      plateRef.current.opacity = (dark ? 0.48 : 0.62) * lerp.current;
+    }
 
     // Counter-rotate Z so labels always stay upright/readable
     if (groupRef.current && parentRef?.current) {
@@ -399,6 +415,17 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
         onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
         onPointerOut={() => { document.body.style.cursor = ''; }}
       >
+        <mesh renderOrder={998} position={[0, offset[1] > 0 ? -0.06 : 0.06, -0.01]}>
+          <planeGeometry args={[plateWidth, plateHeight]} />
+          <meshBasicMaterial
+            ref={plateRef}
+            color={dark ? '#101014' : '#fbfaf6'}
+            transparent
+            opacity={0}
+            depthTest={false}
+            depthWrite={false}
+          />
+        </mesh>
       <Text
         ref={textRef}
         fontSize={0.15}
@@ -411,6 +438,8 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
         outlineColor={dark ? '#0a0a0a' : '#fbfaf6'}
         outlineOpacity={0}
         renderOrder={999}
+        material-depthTest={false}
+        material-depthWrite={false}
         textAlign="center"
         maxWidth={1.35}
         lineHeight={1.05}
@@ -1304,14 +1333,375 @@ function ParticleDust({ count, reduced, dark }: { count: number; reduced: boolea
   );
 }
 
+/* ═══════════════════════════════════════════════════
+   EXPANDED WEB — the "see how it connects" constellation.
+   Skills + flagship projects bloom around the 6 hubs, woven by
+   shared-skill threads. Driven by an intro lerp (0 collapsed → 1 expanded)
+   and a hover-focus id that brightens a node's neighborhood.
+   ═══════════════════════════════════════════════════ */
+
+// Fine multi-strand glowing threads per edge — the SAME glass-thread language
+// as the collapsed constellation, just spanning the wider web. Monochrome pale
+// (not accent-tinted), organic strands, so it reads like the reference. Fewer
+// strands here since the neighbour-mesh has many more edges.
+const WEB_STRANDS_PER_EDGE = 3;
+
+function WebEdges({
+  edges,
+  nodeById,
+  introRef,
+  focusEdgeRef,
+  dark,
+}: {
+  edges: WebEdge[];
+  nodeById: Map<string, WebNode>;
+  introRef: React.RefObject<number>;
+  focusEdgeRef: React.RefObject<(edgeKey: string) => number>;
+  dark: boolean;
+}) {
+  const built = useMemo(() => {
+    const appearance = dark
+      ? { color: new THREE.Color('#dce6ff'), baseAlpha: 0.16, glowAlpha: 0.92, tintLift: 0.5, whiteMixMax: 0.85 }
+      : { color: new THREE.Color('#7d8da0'), baseAlpha: 0.24, glowAlpha: 0.8, tintLift: 0.2, whiteMixMax: 0.58 };
+
+    interface Strand {
+      tubeGeo: THREE.TubeGeometry;
+      material: THREE.ShaderMaterial;
+      key: string;
+      edgeKey: string;
+      speed: number;
+      phase: number;
+      segMid: THREE.Vector3; // local midpoint, for the screen-edge fade
+    }
+    const strands: Strand[] = [];
+
+    edges.forEach((edge, ei) => {
+      const a = new THREE.Vector3(...(nodeById.get(edge.a)?.position ?? [0, 0, 0]));
+      const b = new THREE.Vector3(...(nodeById.get(edge.b)?.position ?? [0, 0, 0]));
+      const ab = new THREE.Vector3().subVectors(b, a).normalize();
+      const up = Math.abs(ab.y) < 0.9 ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(1, 0, 0);
+      const perp1 = new THREE.Vector3().crossVectors(ab, up).normalize();
+      const perp2 = new THREE.Vector3().crossVectors(ab, perp1).normalize();
+      const key = `${edge.a}|${edge.b}`;
+
+      for (let t = 0; t < WEB_STRANDS_PER_EDGE; t++) {
+        const r1 = seededRand(ei * 31 + t * 17);
+        const r2 = seededRand(ei * 47 + t * 23);
+        const r3 = seededRand(ei * 59 + t * 37);
+        const angle = (t / WEB_STRANDS_PER_EDGE) * Math.PI * 2 + r1 * 1.2;
+        const bow = 0.18 + r2 * 0.32;
+        const mid = new THREE.Vector3().lerpVectors(a, b, 0.35 + r3 * 0.3);
+        mid.add(perp1.clone().multiplyScalar(Math.cos(angle) * bow));
+        mid.add(perp2.clone().multiplyScalar(Math.sin(angle) * bow));
+
+        const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+        const tubeGeo = new THREE.TubeGeometry(curve, 48, 0.0044, 3, false);
+        const count = tubeGeo.attributes.position.count;
+        const progressArr = new Float32Array(count);
+        const vertsPerRing = 4;
+        for (let v = 0; v < count; v++) progressArr[v] = Math.floor(v / vertsPerRing) / 48;
+        tubeGeo.setAttribute('curveProgress', new THREE.BufferAttribute(progressArr, 1));
+
+        const material = new THREE.ShaderMaterial({
+          vertexShader: threadVertexShader,
+          fragmentShader: threadFragmentShader,
+          uniforms: {
+            uGlowCenter: { value: 0 },
+            uGlowWidth: { value: GLOW_WIDTH },
+            uColor: { value: appearance.color },
+            uBaseAlpha: { value: appearance.baseAlpha },
+            uGlowAlpha: { value: appearance.glowAlpha },
+            uTintLift: { value: appearance.tintLift },
+            uWhiteMixMax: { value: appearance.whiteMixMax },
+            uFade: { value: 0 },
+          },
+          transparent: true,
+          depthWrite: false,
+          side: THREE.DoubleSide,
+        });
+        strands.push({
+          tubeGeo,
+          material,
+          key: `${key}#${t}`,
+          edgeKey: key,
+          speed: 0.03 + r1 * 0.12 + r3 * 0.06,
+          phase: r2 * 6.28 + t * 1.2 + ei * 0.7,
+          segMid: new THREE.Vector3().lerpVectors(a, b, 0.5),
+        });
+      }
+    });
+    return strands;
+  }, [edges, nodeById, dark]);
+
+  const { camera } = useThree();
+  const groupRef = useRef<THREE.Group>(null!);
+  const scratch = useMemo(() => new THREE.Vector3(), []);
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+    const intro = introRef.current ?? 0;
+    const focusFn = focusEdgeRef.current;
+    const mw = groupRef.current?.matrixWorld;
+    for (const e of built) {
+      const raw = (t * e.speed + e.phase) % 2;
+      e.material.uniforms.uGlowCenter.value = raw < 1 ? raw : 2 - raw;
+      const focus = focusFn ? focusFn(e.edgeKey) : 1;
+      // Same screen-edge fade as the objects, so threads dissolve in step.
+      let edgeFade = 1;
+      if (mw) {
+        scratch.copy(e.segMid).applyMatrix4(mw).project(camera);
+        const rad = Math.hypot(scratch.x, scratch.y);
+        let f = clamp((1.3 - rad) / (1.3 - 0.62), 0, 1);
+        edgeFade = f * f * (3 - 2 * f);
+      }
+      e.material.uniforms.uFade.value = intro * focus * edgeFade;
+    }
+  });
+
+  const noRaycast = useCallback(() => null, []);
+  return (
+    <group ref={groupRef}>
+      {built.map((e) => (
+        <mesh key={e.key} geometry={e.tubeGeo} material={e.material} raycast={noRaycast} />
+      ))}
+    </group>
+  );
+}
+
+/* The field is built from the SAME principal object designs as the hero six —
+   not cheap look-alikes. Cycling these five genuinely distinct assemblies (each
+   already as polished as the parents, because it IS one of them) guarantees
+   adjacent field objects never share a silhouette. MorphingScreens is left out
+   of the rotation — its ~600 live pixel meshes are too heavy to instance ~9×. */
+const FIELD_COMPONENTS: React.FC<{ dark: boolean; hovered: boolean }>[] = [
+  TrussStructure,
+  PetalRose,
+  StackedPlates,
+  LensAssembly,
+  GlassCrystal,
+];
+
+/* Discipline label — replicates InteractiveLabel: a plate + upright text that
+   fades in only on hover and never spins with the object (it lives OUTSIDE the
+   object's own rotating group), so names stay readable exactly like the six. */
+function FieldLabel({ text, dark, active, fadeRef }: { text: string; dark: boolean; active: boolean; fadeRef?: React.RefObject<number> }) {
+  const groupRef = useRef<THREE.Group>(null!);
+  const textRef = useRef<THREE.Mesh>(null!);
+  const plateRef = useRef<THREE.MeshBasicMaterial>(null!);
+  const lerp = useRef(0);
+  const plateWidth = Math.min(2.0, Math.max(0.7, text.length * 0.09 + 0.24));
+  const { camera } = useThree();
+  const billboardQ = useMemo(() => new THREE.Quaternion(), []);
+
+  useFrame((_, delta) => {
+    const target = active ? 1 : 0;
+    lerp.current += (target - lerp.current) * Math.min(delta * 8, 1);
+    const l = lerp.current * (fadeRef?.current ?? 1);
+    // Billboard: face the camera regardless of how the field is orbited, so the
+    // name is always readable. Compensate for the parent's world rotation.
+    if (groupRef.current) {
+      groupRef.current.parent?.getWorldQuaternion(billboardQ);
+      billboardQ.invert().multiply(camera.quaternion);
+      groupRef.current.quaternion.copy(billboardQ);
+    }
+    if (textRef.current) {
+      const ts = 0.82 + l * 0.18;
+      textRef.current.scale.set(ts, ts, ts);
+      (textRef.current as unknown as { fillOpacity: number }).fillOpacity = (dark ? 0.92 : 0.82) * l;
+      (textRef.current as unknown as { outlineOpacity: number }).outlineOpacity = (dark ? 0.5 : 0.7) * l;
+    }
+    if (plateRef.current) plateRef.current.opacity = (dark ? 0.5 : 0.64) * l;
+  });
+
+  return (
+    <group ref={groupRef} position={[0, -0.74, 0.05]}>
+      <mesh renderOrder={998} position={[0, 0.015, -0.01]}>
+        <planeGeometry args={[plateWidth, 0.3]} />
+        <meshBasicMaterial ref={plateRef} color={dark ? '#101014' : '#fbfaf6'} transparent opacity={0} depthTest={false} depthWrite={false} />
+      </mesh>
+      <Text
+        ref={textRef}
+        fontSize={0.125}
+        color={dark ? '#e8e4df' : '#1a1a1a'}
+        anchorX="center"
+        anchorY="middle"
+        letterSpacing={0.1}
+        fillOpacity={0}
+        outlineWidth={0.01}
+        outlineColor={dark ? '#0a0a0a' : '#fbfaf6'}
+        outlineOpacity={0}
+        renderOrder={999}
+        material-depthTest={false}
+        material-depthWrite={false}
+        maxWidth={1.9}
+        textAlign="center"
+      >
+        {text.toUpperCase()}
+      </Text>
+    </group>
+  );
+}
+
+/* Screen-space distance fade — the object dissolves toward the edges/corners of
+   the view so the field reads as endless: you can see more out there, but it's
+   always just past reach. Records each material's resting opacity once, then
+   scales it by how far the object sits from screen centre. Runs AFTER the
+   object's own animation (it's the last child) so it always wins. */
+function FieldFade({ groupRef, fadeRef }: { groupRef: React.RefObject<THREE.Group>; fadeRef: React.RefObject<number> }) {
+  const { camera } = useThree();
+  const bases = useRef<{ mat: THREE.Material & { opacity: number; transparent: boolean }; base: number }[] | null>(null);
+  const wp = useMemo(() => new THREE.Vector3(), []);
+  useFrame(() => {
+    const g = groupRef.current;
+    if (!g) return;
+    if (!bases.current) {
+      const list: { mat: THREE.Material & { opacity: number; transparent: boolean }; base: number }[] = [];
+      g.traverse((o: THREE.Object3D) => {
+        const m = (o as THREE.Mesh | THREE.LineSegments).material as THREE.Material | THREE.Material[] | undefined;
+        if (!m) return;
+        (Array.isArray(m) ? m : [m]).forEach((mm) => {
+          const anyMat = mm as THREE.Material & { opacity?: number; transparent: boolean };
+          if (typeof anyMat.opacity !== 'number') return;
+          anyMat.transparent = true;
+          list.push({ mat: anyMat as THREE.Material & { opacity: number; transparent: boolean }, base: anyMat.opacity });
+        });
+      });
+      bases.current = list;
+    }
+    g.getWorldPosition(wp);
+    wp.project(camera);
+    const rad = Math.hypot(wp.x, wp.y);      // 0 centre → ~1.4 corner
+    let f = clamp((1.3 - rad) / (1.3 - 0.62), 0, 1);
+    f = f * f * (3 - 2 * f);                  // smoothstep
+    if (fadeRef) (fadeRef as React.MutableRefObject<number>).current = f;
+    for (const b of bases.current) b.mat.opacity = b.base * f;
+  });
+  return null;
+}
+
+// A field object IS one of the principal designs, wrapped so it can ripple in
+// on expand and respond to hover (which drives the design's own bloom). Each
+// instance gets a seeded scale / rotation so repeats never read as clones.
+function WebObject3D({
+  node,
+  index,
+  introRef,
+  dark,
+  onHover,
+}: {
+  node: WebNode;
+  index: number;
+  introRef: React.RefObject<number>;
+  dark: boolean;
+  onHover: (id: string | null) => void;
+}) {
+  const wrapRef = useRef<THREE.Group>(null!);
+  const fadeRef = useRef(1);
+  const [hovered, setHovered] = useState(false);
+  const Comp = FIELD_COMPONENTS[index % FIELD_COMPONENTS.length];
+
+  const variant = useMemo(() => {
+    const s = (n: number) => seededRand(node.position[0] * 3.1 + node.position[1] * 1.7 + node.position[2] * 0.9 + n * 5.3);
+    return {
+      // Same size class as the parents (~0.8–1.05), with gentle variety.
+      scale: 0.8 + s(1) * 0.26,
+      rot: [s(2) * Math.PI * 2, s(3) * Math.PI * 2, (s(4) - 0.5) * 0.7] as [number, number, number],
+    };
+  }, [node.position]);
+
+  useFrame(() => {
+    const intro = introRef.current ?? 0;
+    // Ripple-out: outer nodes wait for the wave to reach them.
+    const local = clamp((intro - node.delay * 0.55) / 0.45, 0, 1);
+    const eased = 1 - Math.pow(1 - local, 2);
+    if (wrapRef.current) {
+      wrapRef.current.scale.setScalar(eased * variant.scale);
+      // Cull once the edge fade has taken it to nothing (saves the draw).
+      wrapRef.current.visible = eased > 0.02 && fadeRef.current > 0.015;
+    }
+  });
+
+  return (
+    <group position={node.position}>
+      <group
+        ref={wrapRef}
+        rotation={variant.rot}
+        onPointerOver={(e) => { e.stopPropagation(); setHovered(true); onHover(node.id); }}
+        onPointerOut={() => { setHovered(false); onHover(null); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          // Ignore the click that ends an orbit/pan drag.
+          if (_webDragMoved || !node.route || !_navigate) return;
+          _navigate(node.route);
+        }}
+      >
+        <Comp dark={dark} hovered={hovered} />
+        <FieldFade groupRef={wrapRef} fadeRef={fadeRef} />
+      </group>
+      <FieldLabel text={node.label ?? ''} dark={dark} active={hovered} fadeRef={fadeRef} />
+    </group>
+  );
+}
+
+function ExpandedWeb({
+  positions,
+  introRef,
+  dark,
+}: {
+  positions: [number, number, number][];
+  introRef: React.RefObject<number>;
+  dark: boolean;
+}) {
+  const { nodes, edges } = useMemo(() => layoutHeroWeb(positions), [positions]);
+  const nodeById = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes]);
+
+  // Hovering an object lights up the threads that touch it.
+  const hoverRef = useRef<string | null>(null);
+  const setHover = useCallback((id: string | null) => {
+    hoverRef.current = id;
+    document.body.style.cursor = id ? 'pointer' : '';
+  }, []);
+
+  const edgeFocus = useRef((key: string) => {
+    const h = hoverRef.current;
+    if (!h) return 1;
+    const [a, b] = key.split('|');
+    return a === h || b === h ? 1 : 0.12;
+  });
+
+  const fieldNodes = useMemo(() => nodes.filter((n) => n.tier === 'field'), [nodes]);
+
+  return (
+    <group>
+      <WebEdges edges={edges} nodeById={nodeById} introRef={introRef} focusEdgeRef={edgeFocus} dark={dark} />
+      {fieldNodes.map((n, i) => (
+        <WebObject3D key={n.id} node={n} index={i} introRef={introRef} dark={dark} onHover={setHover} />
+      ))}
+    </group>
+  );
+}
+
 /* ─── Scene Content ─── */
 
-function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile: boolean; dark: boolean }) {
+function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean; isMobile: boolean; dark: boolean; expanded: boolean }) {
   const groupRef = useRef<THREE.Group>(null!);
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const { camera, size } = useThree();
+  const { camera, size, gl } = useThree();
+  // Wheel / pinch zoom offset applied to the expanded camera distance.
+  const zoomRef = useRef(0);
+  const expandedRef = useRef(expanded);
+  expandedRef.current = expanded;
+  // Drag navigation for the expanded web: orbit (rotate) + pan (move), with
+  // inertia. yaw/pitch rotate the whole field; pan slides it laterally.
+  const yaw = useRef(0);
+  const pitch = useRef(0);
+  const yawVel = useRef(0);
+  const pitchVel = useRef(0);
+  const pan = useRef({ x: 0, y: 0 });
+  const panVel = useRef({ x: 0, y: 0 });
+  const dragging = useRef(false);
   const aspect = size.height > 0 ? size.width / size.height : 1;
   const useSafeDesktopLayout = !isMobile && (size.width < 1480 || aspect < 0.95);
   const nodes = useMemo(() => (useSafeDesktopLayout ? SAFE_DESKTOP_NODES : NODES), [useSafeDesktopLayout]);
@@ -1323,15 +1713,23 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
   const sceneOffsetX = useSafeDesktopLayout ? clamp((0.82 - aspect) * -0.55, -0.24, 0.16) : 0;
   const narrowCameraPush = !isMobile ? clamp((0.92 - aspect) * 4.8, 0, 2.7) : 0;
 
+  // Expanded-web transition: 0 collapsed → 1 expanded.
+  const introRef = useRef(0);
+  const collapsedFadeRef = useRef(1);
+  const baseCameraZ = isMobile ? 9.5 : useSafeDesktopLayout ? 7.65 + narrowCameraPush : 7.25;
+  const baseCameraY = useSafeDesktopLayout ? 0.18 : 0.3;
+  const expandedCameraZ = isMobile ? 15.5 : 12.6;
+
   const setNodeActive = useCallback((index: number, active: boolean) => {
     setActiveIndex((current) => (active ? index : current === index ? null : current));
   }, []);
 
   useEffect(() => {
-    camera.position.z = isMobile ? 9.5 : useSafeDesktopLayout ? 7.65 + narrowCameraPush : 7.25;
-    camera.position.y = useSafeDesktopLayout ? 0.18 : 0.3;
+    // Only seed the resting camera; the frame loop owns z/y while transitioning.
+    camera.position.z = baseCameraZ;
+    camera.position.y = baseCameraY;
     camera.updateProjectionMatrix();
-  }, [isMobile, narrowCameraPush, useSafeDesktopLayout, camera]);
+  }, [baseCameraZ, baseCameraY, camera]);
 
   useEffect(() => {
     if (isMobile) return;
@@ -1343,19 +1741,154 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
     return () => document.removeEventListener('mousemove', h);
   }, [isMobile]);
 
-  useFrame(({ clock }) => {
-    if (!groupRef.current) return;
+  // Zoom the expanded web with the wheel (desktop) or pinch (touch).
+  useEffect(() => {
+    const el = gl.domElement;
+    const ZOOM_MIN = -5.5; // closer
+    const ZOOM_MAX = 4.5;  // farther
+    const onWheel = (e: WheelEvent) => {
+      if (!expandedRef.current) return;
+      e.preventDefault();
+      zoomRef.current = clamp(zoomRef.current + e.deltaY * 0.006, ZOOM_MIN, ZOOM_MAX);
+    };
+    let pinchStart = 0;
+    let pinchZoomStart = 0;
+    const dist = (t: TouchList) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+    const onTouchStart = (e: TouchEvent) => {
+      if (!expandedRef.current || e.touches.length !== 2) return;
+      pinchStart = dist(e.touches);
+      pinchZoomStart = zoomRef.current;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!expandedRef.current || e.touches.length !== 2 || !pinchStart) return;
+      e.preventDefault();
+      const ratio = dist(e.touches) / pinchStart;
+      zoomRef.current = clamp(pinchZoomStart - (ratio - 1) * 6, ZOOM_MIN, ZOOM_MAX);
+    };
+    const onTouchEnd = () => { pinchStart = 0; };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchmove', onTouchMove, { passive: false });
+    el.addEventListener('touchend', onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [gl]);
+
+  // Drag to orbit (left) or pan (right / middle / shift / two-finger). Runs off
+  // the raw canvas so it works no matter what object is under the cursor; the
+  // hubs already suppress navigation once a drag has moved.
+  useEffect(() => {
+    const el = gl.domElement;
+    const active = new Set<number>();
+    let lastX = 0, lastY = 0;
+    let moved = 0;
+    let mode: 'orbit' | 'pan' = 'orbit';
+
+    const onDown = (e: PointerEvent) => {
+      if (!expandedRef.current) return;
+      active.add(e.pointerId);
+      if (active.size !== 1) { dragging.current = false; _webDragMoved = true; return; } // 2+ pointers → pinch owns it, block nav
+      dragging.current = true;
+      moved = 0;
+      _webDragMoved = false; // fresh press: a click here should navigate…
+      mode = (e.button === 1 || e.button === 2 || e.shiftKey) ? 'pan' : 'orbit';
+      lastX = e.clientX; lastY = e.clientY;
+      yawVel.current = 0; pitchVel.current = 0; panVel.current.x = 0; panVel.current.y = 0;
+      el.style.cursor = mode === 'pan' ? 'move' : 'grabbing';
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!dragging.current || active.size !== 1) return;
+      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+      lastX = e.clientX; lastY = e.clientY;
+      moved += Math.abs(dx) + Math.abs(dy);
+      if (moved > 6) _webDragMoved = true; // …but a real drag suppresses it
+      if (mode === 'orbit') {
+        yaw.current += dx * 0.005;
+        pitch.current = clamp(pitch.current + dy * 0.005, -0.95, 0.95);
+        yawVel.current = dx * 0.005;
+        pitchVel.current = dy * 0.005;
+      } else {
+        const k = 0.014 * (1 + Math.max(0, zoomRef.current) * 0.14);
+        pan.current.x += dx * k;
+        pan.current.y -= dy * k;
+        panVel.current.x = dx * k;
+        panVel.current.y = -dy * k;
+      }
+    };
+    const onUp = (e: PointerEvent) => {
+      active.delete(e.pointerId);
+      if (active.size === 0) { dragging.current = false; el.style.cursor = ''; }
+    };
+    const onCtx = (e: Event) => { if (expandedRef.current) e.preventDefault(); };
+
+    el.addEventListener('pointerdown', onDown);
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
+    el.addEventListener('contextmenu', onCtx);
+    return () => {
+      el.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+      el.removeEventListener('contextmenu', onCtx);
+    };
+  }, [gl]);
+
+  // Reset zoom + camera pose whenever the web closes so reopening starts framed.
+  useEffect(() => {
+    if (expanded) return;
+    zoomRef.current = 0;
+    yaw.current = 0; pitch.current = 0; yawVel.current = 0; pitchVel.current = 0;
+    pan.current.x = 0; pan.current.y = 0; panVel.current.x = 0; panVel.current.y = 0;
+  }, [expanded]);
+
+  useFrame(({ clock }, delta) => {
+    // Ease intro toward the target even under reduced-motion (just faster).
+    const introTarget = expanded ? 1 : 0;
+    const introSpeed = reduced ? 12 : 2.6;
+    introRef.current += (introTarget - introRef.current) * Math.min(delta * introSpeed, 1);
+    const intro = introRef.current;
+    collapsedFadeRef.current = 1 - intro;
+
+    // Camera dollies back as the web opens; recenters vertically. Wheel/pinch
+    // zoom only bites once expanded (scaled by intro so it doesn't fight the
+    // opening transition).
+    camera.position.z = mix(baseCameraZ, expandedCameraZ, intro) + zoomRef.current * intro;
+    camera.position.y = mix(baseCameraY, isMobile ? 0.05 : 0.15, intro);
+
+    if (reduced || !groupRef.current) return;
     const t = target.current;
     const m = mouse.current;
     t.x += (m.x - t.x) * 0.012;
     t.y += (m.y - t.y) * 0.012;
-    // Continuous slow orbit, whole constellation rotates around Z axis
-    const elapsed = clock.getElapsedTime();
-    const orbitZ = elapsed * 0.015; // very slow continuous rotation around Z
-    const orbitX = Math.cos(elapsed * 0.03) * 0.02; // subtle drift
-    groupRef.current.rotation.y = t.x * 0.1;
-    groupRef.current.rotation.x = -t.y * 0.05 + orbitX;
-    groupRef.current.rotation.z = orbitZ;
+
+    // ── Expanded web: user-driven orbit + pan with inertia. ──
+    if (!dragging.current) {
+      // Coast on released momentum, then decay to rest.
+      yaw.current += yawVel.current; yawVel.current *= 0.92;
+      pitch.current = clamp(pitch.current + pitchVel.current, -0.95, 0.95); pitchVel.current *= 0.92;
+      pan.current.x += panVel.current.x; panVel.current.x *= 0.9;
+      pan.current.y += panVel.current.y; panVel.current.y *= 0.9;
+      // Once everything settles, drift very slowly so the field always breathes.
+      if (intro > 0.5 && Math.abs(yawVel.current) < 0.0004) yaw.current += 0.0009;
+    }
+    // Roam widely — the fade hides the true edge long before you reach it.
+    pan.current.x = clamp(pan.current.x, -10.5, 10.5);
+    pan.current.y = clamp(pan.current.y, -7.5, 7.5);
+
+    // Collapsed: gentle mouse parallax. Expanded: full orbit/pan. Blend by intro.
+    const parallaxY = t.x * 0.1;
+    const parallaxX = -t.y * 0.05 + Math.cos(clock.getElapsedTime() * 0.03) * 0.02;
+    groupRef.current.rotation.y = mix(parallaxY, yaw.current, intro);
+    groupRef.current.rotation.x = mix(parallaxX, pitch.current, intro);
+    groupRef.current.rotation.z = 0;
+    groupRef.current.position.x = mix(sceneOffsetX, pan.current.x, intro);
+    groupRef.current.position.y = mix(0, pan.current.y, intro);
   });
 
   const positions = nodes.map(n => n.position);
@@ -1381,7 +1914,8 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
       <Environment files="/Portfolio.github.io/Assets/hdri/potsdamer_platz_1k.hdr" environmentIntensity={dark ? 1.0 : 1.2} />
 
       <group ref={groupRef} scale={sceneScale} position={[sceneOffsetX, 0, 0]}>
-        <ConstellationLines positions={positions} dark={dark} />
+        <ConstellationLines positions={positions} dark={dark} fadeRef={collapsedFadeRef} />
+        <ExpandedWeb positions={positions} introRef={introRef} dark={dark} />
 
         {/* 0: Installations, Truss (top) */}
         <ClickableObject route={nodes[0].route} position={nodes[0].position} active={activeIndex === 0} onActiveChange={(active) => setNodeActive(0, active)}>
@@ -1439,7 +1973,13 @@ function SceneContent({ reduced, isMobile, dark }: { reduced: boolean; isMobile:
 export { TrussStructure, PetalRose, MorphingScreens, StackedPlates, LensAssembly, GlassCrystal };
 export { useHoverLerp, useVirtualTime, mix };
 
-export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) => void }) {
+export default function HeroScene({
+  onNavigate,
+  onExpandedChange,
+}: {
+  onNavigate?: (path: string) => void;
+  onExpandedChange?: (expanded: boolean) => void;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReduced();
   const dark = useThemeMode();
@@ -1448,6 +1988,7 @@ export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) 
     typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false,
   );
   const [visible, setVisible] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   // Sync navigate callback to module-level ref for R3F access
   useEffect(() => {
@@ -1463,14 +2004,32 @@ export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) 
     return () => obs.disconnect();
   }, []);
 
+  // Notify the page so it can fade the hero copy + raise the scrim.
+  useEffect(() => { onExpandedChange?.(expanded); }, [expanded, onExpandedChange]);
+
+  // Esc collapses the web; while open, the page underneath is locked so the
+  // fixed web stage is the whole world.
+  useEffect(() => {
+    if (!expanded) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setExpanded(false); };
+    window.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [expanded]);
+
   // WebGL unavailable (older device, disabled GPU): keep the hero area's
-  // layout intact but skip the 3D canvas instead of crashing the page.
+  // layout intact but skip the 3D canvas (and the web affordance) instead of
+  // crashing the page.
   if (!webglOk) {
     return <div ref={containerRef} className="hero-3d-canvas" aria-hidden="true" />;
   }
 
   return (
-    <div ref={containerRef} className="hero-3d-canvas">
+    <div ref={containerRef} className={`hero-3d-canvas${expanded ? ' hero-3d-canvas--web' : ''}`}>
       <Canvas
         frameloop={visible ? 'always' : 'never'}
         dpr={[1, 2]}
@@ -1478,8 +2037,37 @@ export default function HeroScene({ onNavigate }: { onNavigate?: (path: string) 
         camera={{ fov: 40, near: 0.1, far: 100, position: [0, 0.3, 7.5] }}
         style={{ background: 'transparent' }}
       >
-        <SceneContent reduced={reduced} isMobile={isMobile} dark={dark} />
+        <SceneContent reduced={reduced} isMobile={isMobile} dark={dark} expanded={expanded} />
       </Canvas>
+
+      {/* Collapsed: invite. Expanded: exit. The scene is aria-hidden decor, but
+          these are real controls, so they carry labels. */}
+      {!expanded ? (
+        <button
+          type="button"
+          className="hero-web-trigger figma-hover"
+          onClick={() => setExpanded(true)}
+          aria-label="Explore the skills and projects web"
+        >
+          <span className="hero-web-trigger-dot" aria-hidden="true" />
+          See how it connects
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="hero-web-back figma-hover"
+          onClick={() => setExpanded(false)}
+          aria-label="Close the web and return to the hero"
+        >
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Back
+        </button>
+      )}
     </div>
   );
 }

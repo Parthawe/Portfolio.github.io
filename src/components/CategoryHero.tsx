@@ -142,7 +142,7 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
         >
           {show3D ? (
             <Suspense fallback={null}>
-              <CategoryObject3D slug={slug} size={460} style={{ width: 'min(100%, 460px)', height: 'auto', aspectRatio: '1 / 1' }} />
+              <CategoryObject3D slug={slug} size={560} style={{ width: 'min(100%, 560px)', height: 'auto', aspectRatio: '1 / 1' }} />
             </Suspense>
           ) : null}
         </motion.div>

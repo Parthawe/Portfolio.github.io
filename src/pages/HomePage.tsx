@@ -80,14 +80,15 @@ export default function HomePage() {
   const [skillPaused, setSkillPaused] = useState(false);
   const [showAllArchiveProjects, setShowAllArchiveProjects] = useState(false);
   const [identityTab, setIdentityTab] = useState<(typeof identityTabs)[number]['id']>('who-i-am');
+  const [heroWebOpen, setHeroWebOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
   const [aboutRef, aboutInView] = useInView<HTMLElement>(0.08, '160px 0px');
   const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const mountHeroScene = useDeferredMount(true, {
-    timeout: prefersReducedMotion ? 3200 : coarsePointer ? 4200 : 2200,
-    delayMs: prefersReducedMotion ? 1800 : coarsePointer ? 1800 : 700,
+    timeout: prefersReducedMotion ? 4200 : coarsePointer ? 5200 : 3600,
+    delayMs: prefersReducedMotion ? 2400 : coarsePointer ? 2400 : 1800,
   });
   const mountDisciplineObjects = useDeferredMount(disciplinesInView, { timeout: 1400, delayMs: 150 });
   const mountAboutObject = useDeferredMount(aboutInView, { timeout: 1600, delayMs: 120 });
@@ -147,22 +148,28 @@ export default function HomePage() {
         <link rel="canonical" href={SITE_URL} />
       </Helmet>
 
-      <section className="wr-hero" id="hero" ref={heroRef} style={{ position: 'relative' }}>
+      <section
+        className={`wr-hero${mountHeroScene ? ' is-scene-ready' : ''}${heroWebOpen ? ' wr-hero--web-open' : ''}`}
+        id="hero"
+        ref={heroRef}
+        style={{ position: 'relative' }}
+      >
         <FigmaFrameLabel name="Hero" />
         <div className="grain-section" aria-hidden="true" />
         <div className="wr-hero-aurora-bottom" aria-hidden="true" />
+        <div className="wr-hero-web-scrim" aria-hidden="true" />
 
-        <div className="wr-hero-3d" aria-hidden="true">
+        <div className="wr-hero-3d">
           {mountHeroScene ? (
             <Suspense fallback={null}>
-              <HeroScene onNavigate={navigate} />
+              <HeroScene onNavigate={navigate} onExpandedChange={setHeroWebOpen} />
             </Suspense>
           ) : null}
         </div>
 
         <div className="wr-hero-copy">
-          <h1 className="wr-hero-title">Designing product systems people trust.</h1>
-          <p className="wr-hero-dek">
+          <h1 className="wr-hero-title wr-hero-stage wr-hero-stage--title">Designing product systems people trust.</h1>
+          <p className="wr-hero-dek wr-hero-stage wr-hero-stage--dek">
             Head of UI/UX at Mentra, building AI wearable interfaces, fintech flows, civic systems, and physical interaction work.
           </p>
         </div>

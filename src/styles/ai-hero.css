@@ -6,25 +6,27 @@
    ================================================ */
 
 .ch {
-  padding-top: calc(var(--nav-h) + clamp(2.5rem, 6vw, 5rem));
-  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  padding-top: calc(var(--nav-h) + clamp(1.6rem, 4.6vw, 3.6rem));
+  margin-bottom: clamp(1.75rem, 4vw, 3.25rem);
 }
 
 .ch--landing {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  /* 3D column widened — the canvas is clamped by this track, so the ratio,
-     not the canvas size prop, decides how big the object can render. */
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(28rem, 0.95fr) minmax(24rem, 0.85fr);
   align-items: center;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  min-height: clamp(24rem, 55vh, 34rem);
+  gap: clamp(2.25rem, 5vw, 5.5rem);
+  min-height: clamp(34rem, calc(100svh - var(--nav-h) - 2rem), 45rem);
 }
 
 /* ── Copy column ── */
 .ch-copy {
   display: grid;
-  gap: clamp(1.1rem, 2.2vw, 1.7rem);
+  gap: clamp(1.15rem, 2.3vw, 1.8rem);
   justify-items: start;
+  max-width: 48rem;
+  transform: translateY(clamp(-3.5rem, -6vh, -1.5rem));
 }
 
 .ch-eyebrow {
@@ -50,13 +52,13 @@
 .ch-statement {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  font-size: clamp(4.15rem, 8.15vw, 7.35rem);
   font-weight: 300;
-  line-height: 1.04;
+  line-height: 0.94;
   letter-spacing: 0;
   color: var(--ink);
   text-wrap: balance;
-  max-width: 16ch;
+  max-width: 12ch;
 }
 
 .ch-statement em {
@@ -66,10 +68,10 @@
 .ch-sub {
   margin: 0;
   font-family: var(--sans);
-  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  line-height: 1.6;
+  font-size: clamp(1.08rem, 1.62vw, 1.34rem);
+  line-height: 1.52;
   color: var(--ink-50);
-  max-width: 46ch;
+  max-width: 38ch;
 }
 
 /* ── Proof strip ── */
@@ -79,13 +81,15 @@
   align-items: center;
   gap: clamp(0.7rem, 1.4vw, 1.1rem);
   padding-top: clamp(0.4rem, 1vw, 0.8rem);
+  margin-top: clamp(0.15rem, 0.8vw, 0.55rem);
   border-top: 1px solid var(--ink-08);
   width: 100%;
+  max-width: 46rem;
 }
 
 .ch-strip-item {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: clamp(0.76rem, 0.9vw, 0.86rem);
   letter-spacing: 0.05em;
   color: var(--ink-70);
   white-space: nowrap;
@@ -101,7 +105,7 @@
 
 .ch-strip-link {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: clamp(0.76rem, 0.9vw, 0.86rem);
   font-weight: 600;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -116,8 +120,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(16rem, 34vw, 26rem);
+  min-height: clamp(24rem, 46vw, 36rem);
   pointer-events: none;
+  transform: translateY(clamp(-2.5rem, -4vh, -1rem));
 }
 
 /* The canvas box must stay square: flex used to shrink its width to the
@@ -133,8 +138,8 @@
    slices it into a hard cut. Clamp it square to the space available
    (equal max on both axes keeps the render undistorted). */
 .ch-3d--side > * > div {
-  max-width: min(88vw, 621px) !important;
-  max-height: min(88vw, 621px) !important;
+  max-width: min(58vw, 740px) !important;
+  max-height: min(58vw, 740px) !important;
 }
 
 /* ── Dark mode ── */
@@ -143,14 +148,17 @@
 /* ── Site tools open: tighten ── */
 @media (min-width: 769px) {
   body.site-tools-open .ch--landing {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
-    min-height: clamp(20rem, 45vh, 28rem);
+    grid-template-columns: minmax(22rem, 1.2fr) minmax(15rem, 0.65fr);
+    min-height: clamp(30rem, calc(100svh - var(--nav-h) - 2rem), 38rem);
   }
   body.site-tools-open .ch-statement {
-    font-size: clamp(2.2rem, 4.6vw, 4rem);
+    font-size: clamp(3.25rem, 5.7vw, 5.25rem);
+  }
+  body.site-tools-open .ch-copy {
+    transform: translateY(clamp(-2.25rem, -4vh, -1rem));
   }
   body.site-tools-open .ch-3d--side > * {
-    transform: scale(0.75);
+    transform: scale(0.86);
     transform-origin: center;
   }
 }
@@ -160,20 +168,25 @@
   .ch--landing {
     grid-template-columns: 1fr;
     min-height: 0;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+  .ch-copy {
+    transform: none;
   }
   .ch-3d--side {
     order: -1;
-    min-height: clamp(9rem, 34vw, 13rem);
+    min-height: clamp(13rem, 42vw, 18rem);
+    transform: none;
   }
   .ch-3d--side > * {
-    transform: scale(0.62);
+    transform: scale(0.74);
     transform-origin: center;
   }
 }
 
 @media (max-width: 480px) {
   .ch { padding-top: calc(var(--nav-h) + 1.5rem); }
-  .ch-statement { font-size: clamp(2.1rem, 9.5vw, 2.8rem); }
+  .ch-statement { font-size: clamp(3rem, 14vw, 4.4rem); }
+  .ch-sub { font-size: clamp(1rem, 4.5vw, 1.12rem); }
   .ch-strip-link { margin-left: 0; }
 }

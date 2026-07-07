@@ -293,22 +293,26 @@
    FLOATING CHAT
    ══════════════════════════════════════════════════════════ */
 
+/* The chat anchors to the same left rail as the platform pill and the
+   character — Folio lives entirely on the left side, and the panel grows
+   up from its anchor instead of appearing across the screen. */
 .agent-floating {
   position: fixed;
-  right: var(--chrome-inline);
-  bottom: calc(var(--chrome-block) + 40px);
+  left: calc(var(--chrome-inline) + var(--ruler-inline-offset, 0px));
+  bottom: calc(var(--chrome-block) + 52px);
   z-index: 88;
   width: min(24rem, calc(100vw - 28px));
-  max-height: calc(100dvh - 6rem - env(safe-area-inset-bottom));
+  max-height: calc(100dvh - 7rem - env(safe-area-inset-bottom));
   box-sizing: border-box;
   overflow: hidden;
   pointer-events: auto;
-  animation: ag-panel-in 0.22s var(--ease-out);
+  transform-origin: left bottom;
+  animation: ag-panel-in 0.26s var(--ease-out);
 }
 
 @keyframes ag-panel-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .agent-panel {
@@ -595,22 +599,6 @@
   border-radius: 999px;
 }
 
-.agent-scroll-track {
-  width: 100%;
-  height: 2px;
-  background: var(--ink-04);
-  border-radius: 1px;
-  overflow: hidden;
-}
-
-.agent-scroll-bar {
-  height: 100%;
-  background: var(--ink-15);
-  border-radius: 1px;
-  transition: width 0.4s ease-out;
-  min-width: 0;
-}
-
 .agent-float-bubble {
   font-family: var(--sans);
   font-size: var(--text-xs);
@@ -675,27 +663,6 @@
 @keyframes chatdot {
   0%, 100% { opacity: 0.25; transform: translateY(0); }
   50%      { opacity: 1; transform: translateY(-3px); }
-}
-
-.agent-float-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  padding: 0.55rem 0.6rem 0.65rem;
-  border-radius: var(--radius-lg);
-  box-sizing: border-box;
-}
-
-.agent-float-actions-label {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: var(--text-nano);
-  letter-spacing: var(--ls-widest);
-  text-transform: uppercase;
-  color: var(--ink-40);
 }
 
 .agent-float-chips {
@@ -1007,7 +974,7 @@
 @media (max-width: 768px) {
   .agent-root { bottom: 52px; }
   .agent-avatar { width: 40px; }
-  .agent-floating { right: 12px; width: min(24rem, calc(100vw - 24px)); }
+  .agent-floating { left: 12px; width: min(24rem, calc(100vw - 24px)); }
 }
 
 @media (max-width: 480px) {
@@ -1095,6 +1062,7 @@
   }
   .agent-root, .agent-trigger, .agent-panel, .agent-floating, .agent-float-bubble {
     transition-duration: 0.01s !important;
+    animation-duration: 0.01s !important;
   }
 }
 
@@ -1124,10 +1092,9 @@
   color: var(--ink-70);
 }
 
-/* In voice mode the chat log, chips, and scroll track step back */
+/* In voice mode the chat log and chips step back */
 .agent-panel--voice .agent-float-msgs,
-.agent-panel--voice .agent-float-actions,
-.agent-panel--voice .agent-scroll-track,
+.agent-panel--voice .agent-float-chips,
 .agent-panel--voice .agent-panel-intro {
   display: none;
 }

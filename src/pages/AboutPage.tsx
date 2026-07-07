@@ -1,17 +1,51 @@
-import { Fragment, useEffect, lazy, Suspense } from 'react'
+import { Fragment, useEffect } from 'react'
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
+import {
+  siAnthropic,
+  siArduino,
+  siAutodesk,
+  siBlender,
+  siCinema4d,
+  siCursor,
+  siD3,
+  siFigma,
+  siFirebase,
+  siFramer,
+  siGithub,
+  siGreensock,
+  siJavascript,
+  siJira,
+  siLinear,
+  siLottiefiles,
+  siMiro,
+  siNodedotjs,
+  siNotion,
+  siP5dotjs,
+  siProcessingfoundation,
+  siProtodotio,
+  siPython,
+  siRaspberrypi,
+  siReact,
+  siRhinoceros,
+  siRive,
+  siSupabase,
+  siSwift,
+  siThreedotjs,
+  siTypescript,
+  siUnity,
+  siUnrealengine,
+  siVite,
+  siWebflow,
+} from 'simple-icons'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import FigmaSelect from '../components/FigmaSelect'
 import TextReveal from '../components/TextReveal'
 import PortalReveal from '../components/PortalReveal'
-import { useDeferredMount } from '../hooks/useDeferredMount'
-import { useInView } from '../hooks/useInView'
 import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site'
-
-const ToolsCanvas = lazy(() => import('../components/ToolsCanvas'))
 
 /* ── Data ── */
 
@@ -48,6 +82,150 @@ const aboutCharacterFrames = Array.from(
   (_, index) => `/Portfolio.github.io/Assets/character/me/${index + 1}.webp`,
 )
 
+const toolCloud = [
+  { label: 'Design systems', icon: '▦', tone: 'orange' },
+  { label: 'UI/UX', icon: '▣', tone: 'charcoal' },
+  { label: 'Research', icon: '⌕', tone: 'blue' },
+  { label: 'Prototyping', icon: '▱', tone: 'pink' },
+  { label: 'Animation', icon: '∿', tone: 'green' },
+  { label: 'Strategy', icon: '✣', tone: 'yellow' },
+]
+
+const vibeCollage = [
+  {
+    className: 'abt-vibe-card--wide',
+    src: '/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp',
+    alt: 'Clawed AI coding product landing page.',
+  },
+  {
+    className: 'abt-vibe-card--note',
+    label: 'Cursor / Claude Code',
+    text: 'Design the system. Prototype the weird edge. Ship the real interaction.',
+  },
+  {
+    className: 'abt-vibe-card--game',
+    src: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/game-screen-sushi.webp',
+    alt: 'Playable arcade prototype interface.',
+  },
+  {
+    className: 'abt-vibe-card--phone',
+    src: '/Portfolio.github.io/Assets/images/mentra/appstore-device.png',
+    alt: 'Mentra app store mobile interface.',
+  },
+  {
+    className: 'abt-vibe-card--small',
+    src: '/Portfolio.github.io/Assets/Projects/Raahi/photos/app-home.webp',
+    alt: 'Raahi mobile product interface.',
+  },
+]
+
+const softwareStack = [
+  'Figma', 'FigJam', 'Framer', 'Webflow', 'Spline', 'Rive', 'Lottie', 'ProtoPie',
+  'Principle', 'After Effects', 'Premiere Pro', 'Photoshop', 'Illustrator', 'InDesign',
+  'Lightroom', 'Blender', 'Cinema 4D', 'Fusion 360', 'Rhino', 'KeyShot', 'TouchDesigner',
+  'p5.js', 'Processing', 'Arduino', 'Raspberry Pi', 'Unity', 'Unreal', 'React',
+  'TypeScript', 'JavaScript', 'Vite', 'Three.js', 'GSAP', 'Node', 'Python', 'Swift',
+  'D3.js', 'Tableau', 'Supabase', 'Firebase', 'Notion', 'Linear', 'Jira', 'GitHub',
+  'Cursor', 'Claude Code', 'ChatGPT', 'Midjourney', 'Runway', 'Whimsical', 'Miro',
+]
+
+type SimpleBrandIcon = {
+  title: string
+  hex: string
+  path: string
+}
+
+const softwareIcons: Record<string, SimpleBrandIcon> = {
+  Figma: siFigma,
+  Framer: siFramer,
+  Webflow: siWebflow,
+  Rive: siRive,
+  Lottie: siLottiefiles,
+  ProtoPie: siProtodotio,
+  Blender: siBlender,
+  'Cinema 4D': siCinema4d,
+  'Fusion 360': siAutodesk,
+  Rhino: siRhinoceros,
+  'p5.js': siP5dotjs,
+  Processing: siProcessingfoundation,
+  Arduino: siArduino,
+  'Raspberry Pi': siRaspberrypi,
+  Unity: siUnity,
+  Unreal: siUnrealengine,
+  React: siReact,
+  TypeScript: siTypescript,
+  JavaScript: siJavascript,
+  Vite: siVite,
+  'Three.js': siThreedotjs,
+  GSAP: siGreensock,
+  Node: siNodedotjs,
+  Python: siPython,
+  Swift: siSwift,
+  'D3.js': siD3,
+  Supabase: siSupabase,
+  Firebase: siFirebase,
+  Notion: siNotion,
+  Linear: siLinear,
+  Jira: siJira,
+  GitHub: siGithub,
+  Cursor: siCursor,
+  'Claude Code': siAnthropic,
+  Miro: siMiro,
+}
+
+const adobeAppIcons: Record<string, { label: string; bg: string; fg: string }> = {
+  'After Effects': { label: 'Ae', bg: '#00005b', fg: '#9999ff' },
+  'Premiere Pro': { label: 'Pr', bg: '#00005b', fg: '#9999ff' },
+  Photoshop: { label: 'Ps', bg: '#001e36', fg: '#31a8ff' },
+  Illustrator: { label: 'Ai', bg: '#330000', fg: '#ff9a00' },
+  InDesign: { label: 'Id', bg: '#49021f', fg: '#ff3366' },
+  Lightroom: { label: 'Lr', bg: '#001e36', fg: '#31a8ff' },
+}
+
+function SoftwareLogo({ tool }: { tool: string }) {
+  const icon = softwareIcons[tool]
+  const adobeIcon = adobeAppIcons[tool]
+
+  if (icon) {
+    return (
+      <span
+        className="abt-vibe-software-logo abt-vibe-software-logo--svg"
+        style={{ color: `#${icon.hex}` }}
+        aria-hidden="true"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" role="img" focusable="false">
+          <path fill="currentColor" d={icon.path} />
+        </svg>
+      </span>
+    )
+  }
+
+  if (adobeIcon) {
+    return (
+      <span
+        className="abt-vibe-software-logo abt-vibe-software-logo--adobe"
+        style={{ '--logo-bg': adobeIcon.bg, '--logo-fg': adobeIcon.fg } as CSSProperties}
+        aria-hidden="true"
+      >
+        {adobeIcon.label}
+      </span>
+    )
+  }
+
+  return null
+}
+
+function SoftwareChip({ tool }: { tool: string }) {
+  const hasLogo = Boolean(softwareIcons[tool] || adobeAppIcons[tool])
+
+  return (
+    <span className={`abt-vibe-software-chip${hasLogo ? ' has-actual-logo' : ''}`}>
+      <SoftwareLogo tool={tool} />
+      <span>{tool}</span>
+    </span>
+  )
+}
+
 /* ── Component ── */
 
 export default function AboutPage() {
@@ -56,8 +234,6 @@ export default function AboutPage() {
     document.body.classList.add('page-about')
     return () => document.body.classList.remove('page-about')
   }, [])
-  const [toolsRef, toolsInView] = useInView(0.05, '260px 0px')
-  const mountToolsCanvas = useDeferredMount(toolsInView, { timeout: 1600, delayMs: 200 })
 
   return (
     <>
@@ -84,6 +260,7 @@ export default function AboutPage() {
               images={aboutCharacterFrames}
               alt="Parth Pawar"
               className="abt-portal-img"
+              fit="contain"
             />
           </div>
 
@@ -96,15 +273,6 @@ export default function AboutPage() {
                 behind="Right now I need both. AI smart glasses have no established design patterns. It's the hardest problem I've ever loved."
               />
             </section>
-
-            {/* ── Tools — Figma-canvas scattered layout ── */}
-            <div ref={toolsRef} style={{ minHeight: mountToolsCanvas ? undefined : 320 }}>
-              {mountToolsCanvas ? (
-                <Suspense fallback={null}>
-                  <ToolsCanvas />
-                </Suspense>
-              ) : null}
-            </div>
 
             {/* ── Unified experience table ── */}
             <section className="abt-table-wrap reveal">
@@ -134,6 +302,56 @@ export default function AboutPage() {
                   ))}
                 </tbody>
               </table>
+            </section>
+
+            {/* ── Vibe coding / software stack ── */}
+            <section className="abt-vibe reveal" aria-labelledby="abt-vibe-title">
+              <div className="abt-vibe-head">
+                <span className="sec-label">Design engineering</span>
+                <h2 id="abt-vibe-title">Code with design</h2>
+                <p>I do not stop at the mockup. I build prototypes, wire interactions, and use code to prove the system works.</p>
+              </div>
+
+              <div className="abt-vibe-stage" aria-label="Vibe coding collage">
+                <div className="abt-vibe-window">
+                  <div className="abt-vibe-window-dots" aria-hidden="true"><span /><span /><span /></div>
+                  {vibeCollage.map((item) => (
+                    <figure className={`abt-vibe-card ${item.className}`} key={item.className}>
+                      {'src' in item ? (
+                        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+                      ) : (
+                        <figcaption>
+                          <span>{item.label}</span>
+                          {item.text}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ))}
+                  <span className="abt-vibe-pin" aria-hidden="true" />
+                </div>
+
+                <div className="abt-vibe-cloud" aria-label="Core capabilities">
+                  {toolCloud.map((tool) => (
+                    <span className={`abt-vibe-pill abt-vibe-pill--${tool.tone}`} key={tool.label}>
+                      <span aria-hidden="true">{tool.icon}</span>
+                      {tool.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="abt-vibe-software" aria-label="Software stack">
+                <div className="abt-vibe-software-track">
+                  {softwareStack.map((tool, index) => (
+                    <SoftwareChip tool={tool} key={`${tool}-${index}`} />
+                  ))}
+                </div>
+                <div className="abt-vibe-software-track" aria-hidden="true">
+                  {softwareStack.map((tool, index) => (
+                    <SoftwareChip tool={tool} key={`${tool}-duplicate-${index}`} />
+                  ))}
+                </div>
+              </div>
             </section>
 
             {/* ── Spotlight: after experience ── */}

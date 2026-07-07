@@ -23,6 +23,7 @@
     "react-helmet-async": "^2.0.5",
     "react-pageflip": "^2.0.3",
     "react-router-dom": "^7.6.0",
+    "simple-icons": "^16.25.0",
     "three": "^0.175.0"
   },
   "devDependencies": {

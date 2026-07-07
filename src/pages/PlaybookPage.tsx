@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { Reveal } from '../components/Reveal'
+import PlaybookTopicObject from '../components/PlaybookTopicObject'
 import { PLAYBOOK_VALUES } from '../data/playbook'
 import { CONTACT_EMAIL, SITE_ORIGIN, SITE_BASE } from '../config/site'
 
@@ -32,7 +33,7 @@ export default function PlaybookPage() {
         <title>Playbook — Parth Pawar</title>
         <meta
           name="description"
-          content="Eight values that shape how I design: empathy, holistic thinking, experimentation, collaboration, adaptability, ethics, learning, and user empowerment."
+          content="Eight working values behind the portfolio, from designing the whole loop to protecting trust and leaving users in control."
         />
         <link rel="canonical" href={`${SITE_ORIGIN}${SITE_BASE}/playbook`} />
       </Helmet>
@@ -47,8 +48,8 @@ export default function PlaybookPage() {
             <em>every project.</em>
           </h1>
           <p className="pb-sub">
-            The principles behind the work — how I think, decide, and collaborate. They travel with me
-            from smart glasses to stage design.
+            The working values behind the portfolio, the ones that decide what gets simplified,
+            prototyped, protected, or shipped. They travel with me from smart glasses to civic systems.
           </p>
         </header>
 
@@ -63,7 +64,19 @@ export default function PlaybookPage() {
                   <h2 className="pb-value-title" id={`pb-${value.slug}`}>
                     {value.title}
                   </h2>
+                  <p className="pb-value-summary">{value.summary}</p>
+                  <div className="pb-value-projects" aria-label={`Projects for ${value.title}`}>
+                    {value.projects.map((project) => (
+                      <Link key={project.to} to={project.to} className="pb-value-project">
+                        {project.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
+                <aside className="pb-value-media">
+                  <PlaybookTopicObject topic={value.object} title={value.title} />
+                  <p className="pb-value-caption">{value.caption}</p>
+                </aside>
                 <div className="pb-value-points">
                   {value.points.map((point) => (
                     <div key={point.lead} className="pb-point">

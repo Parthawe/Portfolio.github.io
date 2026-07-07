@@ -46,6 +46,17 @@ const TIER_RANK: Record<NonNullable<Project['tier']>, number> = {
 
 type WorkViewMode = 'editorial' | 'playlist' | 'library' | 'timeline'
 
+const WORK_VIEW_LABELS: Record<WorkViewMode, string> = {
+  editorial: 'Editorial',
+  playlist: 'Playlist',
+  library: 'Index',
+  timeline: 'Arc',
+}
+
+function countLabel(count: number, noun: string) {
+  return `${count} ${noun}${count === 1 ? '' : 's'}`
+}
+
 function getTimelineGroup(project: Project) {
   const source = `${project.summaryTimeline || ''} ${project.year}`.trim()
   if (/present/i.test(source)) {
@@ -69,12 +80,6 @@ function getTimelineLeadScore(project: Project) {
     (project.summaryStats?.length || 0) +
     (project.tier ? TIER_RANK[project.tier] : 0)
   )
-}
-
-function getProjectCollectionLabel(project: Project) {
-  if (project.featured) return 'Flagship work'
-  if (project.selected) return 'Selected work'
-  return 'Archive work'
 }
 
 function getAccessLabel(project: Project) {
@@ -414,49 +419,23 @@ export default function WorkPage() {
 
           <div className="wrap">
             <header className="work-page-header">
-              <h1 className="work-page-title">Work</h1>
               <div className="work-page-intro">
+                <h1 className="work-page-title">Work</h1>
                 <p className="work-page-intro-copy">
-                  Flagship product work first, experimental and archive work second. Built for people
-                  hiring for product design, design engineering, and 0 to 1 systems work.
+                  Selected product, systems, and interaction work for product design and design engineering roles.
                 </p>
-                <div className="work-page-intro-meta">
-                  <span>{selectedWorkProjects.length} selected projects</span>
-                  <span>{archiveWorkProjects.length} archive projects</span>
-                </div>
                 <div className="work-view-switch surface-glass surface-glass--subtle" role="toolbar" aria-label="Choose Work page view">
-                  <button
-                    type="button"
-                    className={`work-view-switch__button figma-hover${viewMode === 'editorial' ? ' is-active surface-glass--active' : ''}`}
-                    aria-pressed={viewMode === 'editorial'}
-                    onClick={() => setViewMode('editorial')}
-                  >
-                    Editorial
-                  </button>
-                  <button
-                    type="button"
-                    className={`work-view-switch__button figma-hover${viewMode === 'playlist' ? ' is-active surface-glass--active' : ''}`}
-                    aria-pressed={viewMode === 'playlist'}
-                    onClick={() => setViewMode('playlist')}
-                  >
-                    Playlist
-                  </button>
-                  <button
-                    type="button"
-                    className={`work-view-switch__button figma-hover${viewMode === 'library' ? ' is-active surface-glass--active' : ''}`}
-                    aria-pressed={viewMode === 'library'}
-                    onClick={() => setViewMode('library')}
-                  >
-                    Index
-                  </button>
-                  <button
-                    type="button"
-                    className={`work-view-switch__button figma-hover${viewMode === 'timeline' ? ' is-active surface-glass--active' : ''}`}
-                    aria-pressed={viewMode === 'timeline'}
-                    onClick={() => setViewMode('timeline')}
-                  >
-                    Arc
-                  </button>
+                  {(Object.keys(WORK_VIEW_LABELS) as WorkViewMode[]).map(mode => (
+                    <button
+                      key={mode}
+                      type="button"
+                      className={`work-view-switch__button figma-hover${viewMode === mode ? ' is-active surface-glass--active' : ''}`}
+                      aria-pressed={viewMode === mode}
+                      onClick={() => setViewMode(mode)}
+                    >
+                      {WORK_VIEW_LABELS[mode]}
+                    </button>
+                  ))}
                 </div>
                 {viewMode === 'editorial' ? (
                   <nav className="work-filter-inline surface-glass" aria-label="Filter projects inline" role="toolbar">
@@ -471,10 +450,6 @@ export default function WorkPage() {
                 <section className="work-group work-group--selected" id="work-project-results" aria-label={isAll ? 'Selected projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} selected projects`}>
                   <div className="work-group-head">
                     <span className="mono-label work-group-label">Selected Work</span>
-                    <p className="work-group-copy">
-                      The strongest portfolio projects for recruiters and hiring managers: shipped product,
-                      systems thinking, and the clearest proof of range.
-                    </p>
                   </div>
 
                   {editorialSelectedProjects.length ? (
@@ -488,10 +463,6 @@ export default function WorkPage() {
                   <section className="work-group work-group--archive" aria-label={isAll ? 'Archive projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} archive projects`}>
                     <div className="work-group-head">
                       <span className="mono-label work-group-label">Archive</span>
-                      <p className="work-group-copy">
-                        Additional work across installations, branding, civic systems, and experiments.
-                        Important context, deliberately secondary.
-                      </p>
                     </div>
                     <div className="pcard-masonry">
                       {archiveProjects.map(renderCard)}
@@ -523,7 +494,7 @@ export default function WorkPage() {
                         onClick={() => handleFilterChange(filter.key as 'all' | ProjectCategory)}
                       >
                         <span className="work-playlist-sidebar__item-label">{filter.label}</span>
-                        <span className="work-playlist-sidebar__item-meta">{getFilterCount(filter.key as 'all' | ProjectCategory)} projects</span>
+                        <span className="work-playlist-sidebar__item-meta">{countLabel(getFilterCount(filter.key as 'all' | ProjectCategory), 'project')}</span>
                         <FigmaSelect />
                       </button>
                     ))}
@@ -536,47 +507,62 @@ export default function WorkPage() {
                 </aside>
 
                 <div className="work-playlist-main">
-                  {playlistPreviewProject ? (
-                    <article className={`work-playlist-stage work-playlist-stage--${playlistPreviewProject.slug}`}>
-                      <div className="work-playlist-stage__media">
-                        <img
-                          src={playlistPreviewImage}
-                          alt={playlistPreviewAlt}
-                          loading="eager"
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="work-playlist-stage__copy">
-                        <div className="work-playlist-stage__eyebrow">
-                          <span>{isAll ? 'All Work Playlist' : CATEGORY_LABELS[activeFilter as ProjectCategory]}</span>
-                          <span>{playlistProjects.length} projects queued</span>
-                          <span>{getProjectCollectionLabel(playlistPreviewProject)}</span>
+                  <div className="work-playlist-player" aria-live="polite">
+                    {playlistPreviewProject ? (
+                      <article
+                        key={playlistPreviewProject.slug}
+                        className={`work-playlist-stage work-playlist-stage--${playlistPreviewProject.slug}`}
+                      >
+                        <div className="work-playlist-stage__media">
+                          <img
+                            key={playlistPreviewImage}
+                            src={playlistPreviewImage}
+                            alt={playlistPreviewAlt}
+                            loading="eager"
+                            decoding="async"
+                          />
                         </div>
-                        <h2 className="work-playlist-stage__title">{playlistPreviewProject.name}</h2>
-                        <p className="work-playlist-stage__body">
-                          {playlistPreviewBody}
-                        </p>
-                        <div className="work-playlist-stage__chips">
-                          <span>{playlistPreviewProject.tag}</span>
-                          <span>{playlistPreviewProject.summaryTimeline || playlistPreviewProject.year}</span>
-                          <span>{CATEGORY_LABELS[playlistPreviewProject.category]}</span>
-                          {getAccessLabel(playlistPreviewProject) ? <span>{getAccessLabel(playlistPreviewProject)}</span> : null}
+                        <div className="work-playlist-stage__copy">
+                          <div className="work-playlist-stage__eyebrow">
+                            <span>Now previewing</span>
+                            <span>{isAll ? 'All work' : CATEGORY_LABELS[activeFilter as ProjectCategory]}</span>
+                            <span>{countLabel(playlistProjects.length, 'project')} queued</span>
+                          </div>
+                          <h2 className="work-playlist-stage__title">{playlistPreviewProject.name}</h2>
+                          <p className="work-playlist-stage__body">
+                            {playlistPreviewBody}
+                          </p>
+                          <div className="work-playlist-stage__chips">
+                            {[
+                              playlistPreviewProject.tag,
+                              playlistPreviewProject.summaryTimeline || playlistPreviewProject.year,
+                              CATEGORY_LABELS[playlistPreviewProject.category],
+                              getAccessLabel(playlistPreviewProject),
+                            ]
+                              .filter((chip): chip is string => Boolean(chip))
+                              // "AI Wearables" (tag) vs "AI & Wearables" (category) read as one chip
+                              .filter((chip, index, chips) =>
+                                chips.findIndex(other =>
+                                  other.toLowerCase().replace(/[^a-z0-9]/g, '') === chip.toLowerCase().replace(/[^a-z0-9]/g, ''),
+                                ) === index)
+                              .map(chip => <span key={chip}>{chip}</span>)}
+                          </div>
+                          <div className="work-playlist-stage__actions">
+                            <Link to={`/${playlistPreviewProject.slug}`} className="work-playlist-stage__cta figma-hover">
+                              Open case study
+                              <FigmaSelect />
+                            </Link>
+                          </div>
                         </div>
-                        <div className="work-playlist-stage__actions">
-                          <Link to={`/${playlistPreviewProject.slug}`} className="work-playlist-stage__cta figma-hover">
-                            Open case study
-                            <FigmaSelect />
-                          </Link>
-                        </div>
-                      </div>
-                    </article>
-                  ) : null}
+                      </article>
+                    ) : null}
+                  </div>
 
                   <section className="work-playlist-queue" aria-label="Project queue">
                     <div className="work-playlist-queue__head">
                       <span className="mono-label work-group-label">Queue</span>
                       <p className="work-group-copy">
-                        Hover a row to preview it. Open a row to jump into the case study.
+                        Hover any row to update the preview. Open a row to jump into the case study.
                       </p>
                     </div>
                     <div className="work-playlist-queue__table" role="list">
@@ -649,7 +635,7 @@ export default function WorkPage() {
                 ) : null}
 
                 <div className="work-library-shelves">
-                  {librarySections.map((section) => {
+                  {librarySections.map((section, sectionIndex) => {
                     return (
                       <section
                         key={section.key}
@@ -660,11 +646,11 @@ export default function WorkPage() {
                       >
                         <header className="work-library-shelf__head">
                           <div>
-                            <span className="mono-label work-group-label">{section.label}</span>
+                            <span className="mono-label work-group-label">Shelf {String(sectionIndex + 1).padStart(2, '0')}</span>
                             <h2 id={`work-library-title-${section.key}`} className="work-library-shelf__title">{section.label}</h2>
                             <p className="work-library-shelf__body-copy">{section.description}</p>
                           </div>
-                          <span className="work-library-shelf__count">{section.projects.length} projects</span>
+                          <span className="work-library-shelf__count">{countLabel(section.projects.length, 'project')}</span>
                         </header>
 
                         <div className="work-library-list">
@@ -743,7 +729,7 @@ export default function WorkPage() {
                           </h2>
                           <p className="work-timeline-year__summary">{section.summary}</p>
                         </div>
-                        <span className="work-timeline-year__count">{section.projects.length} projects</span>
+                        <span className="work-timeline-year__count">{countLabel(section.projects.length, 'project')}</span>
                       </header>
 
                       <div className="work-timeline-year__list">
@@ -787,7 +773,7 @@ export default function WorkPage() {
                           <div className="work-timeline-support">
                             <div className="work-timeline-support__head">
                               <span className="mono-label">Also in {section.label}</span>
-                              <span className="work-timeline-support__count">{section.supportingProjects.length} more projects</span>
+                              <span className="work-timeline-support__count">{countLabel(section.supportingProjects.length, 'more project')}</span>
                             </div>
                             <div className="work-timeline-support__list">
                               {section.supportingProjects.map((project, projectIndex) => (

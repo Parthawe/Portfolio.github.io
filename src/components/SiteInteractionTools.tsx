@@ -497,13 +497,9 @@ function visibleLayerEntries(layers: LayerItem[], pathname: string, collapsedKey
 
 export default function SiteInteractionTools() {
   const { pathname } = useLocation()
-  const [open, setOpen] = useState(() => {
-    try {
-      return window.localStorage.getItem('portfolio-site-tools-open') === '1'
-    } catch {
-      return false
-    }
-  })
+  // Figma mode is an opt-in easter egg: every visit starts on the plain
+  // portfolio, never restored from a previous session.
+  const [open, setOpen] = useState(false)
   const [mode, setMode] = useState<ToolMode>(null)
   const [selection, setSelection] = useState<SelectionRect | null>(null)
   const [lastSelection, setLastSelection] = useState<SelectionRect | null>(null)
@@ -511,7 +507,7 @@ export default function SiteInteractionTools() {
   const [brushSize, setBrushSize] = useState(5)
   const [paintOpacity, setPaintOpacity] = useState(72)
   const [tintStrength, setTintStrength] = useState(38)
-  const [overlayOpacity, setOverlayOpacity] = useState(28)
+  const [overlayOpacity, setOverlayOpacity] = useState(14)
   const [zoomScale, setZoomScale] = useState(100)
   const [inkHidden, setInkHidden] = useState(false)
   const [gridEnabled, setGridEnabled] = useState(false)
@@ -553,6 +549,10 @@ export default function SiteInteractionTools() {
   const lastPaintRef = useRef<Point | null>(null)
   const currentCommentRoute = normalizeCommentRoute(pathname)
   const commentStoreMode = getCommentStoreMode()
+
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('site-tools:ready'))
+  }, [])
 
   const configurePaintContext = useCallback((ctx: CanvasRenderingContext2D) => {
     ctx.lineCap = 'round'
@@ -683,7 +683,7 @@ export default function SiteInteractionTools() {
     document.body.style.removeProperty('--site-tint-opacity')
     document.body.style.removeProperty('--site-tool-grid-opacity')
     setTintStrength(38)
-    setOverlayOpacity(28)
+    setOverlayOpacity(14)
     setZoomScale(100)
   }, [clearPaint, clearZoom])
 
@@ -1069,7 +1069,8 @@ export default function SiteInteractionTools() {
     document.body.classList.toggle('site-tools-open', open)
     window.dispatchEvent(new CustomEvent('site-tools:state', { detail: { open, mode } }))
     try {
-      window.localStorage.setItem('portfolio-site-tools-open', open ? '1' : '0')
+      // Drop the legacy persisted flag so older sessions can't re-open it.
+      window.localStorage.removeItem('portfolio-site-tools-open')
     } catch {
       // localStorage is optional; the shell still works without persistence.
     }

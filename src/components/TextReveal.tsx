@@ -38,6 +38,7 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
   const [flipped, setFlipped] = useState(false)
   const [tapped, setTapped] = useState(false)
   const peekedRef = useRef(false)
+  const hoveredRef = useRef(false)
   // Store viewport coords for fixed positioning
   const posRef = useRef({ x: 0, y: 0 })
   const smoothRef = useRef({ x: 0, y: 0 })
@@ -109,6 +110,7 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     smoothRef.current = { x: e.clientX, y: e.clientY }
     targetRef.current = SIZE
     rectRef.current = containerRef.current?.getBoundingClientRect() ?? null
+    hoveredRef.current = true
     setHovered(true)
     document.body.classList.add('spotlight-active')
     startLoop()
@@ -116,6 +118,16 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
 
   const handleLeave = useCallback(() => {
     targetRef.current = 0
+    hoveredRef.current = false
+    setHovered(false)
+    document.body.classList.remove('spotlight-active')
+    startLoop()
+  }, [startLoop])
+
+  const collapseLens = useCallback(() => {
+    if (targetRef.current === 0 && sizeRef.current === 0) return
+    targetRef.current = 0
+    hoveredRef.current = false
     setHovered(false)
     document.body.classList.remove('spotlight-active')
     startLoop()
@@ -127,16 +139,60 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     const onMove = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY }
     }
-    const onResize = () => {
+    const syncRect = () => {
       rectRef.current = containerRef.current?.getBoundingClientRect() ?? null
     }
+    const onScroll = () => {
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) {
+        collapseLens()
+        return
+      }
+      rectRef.current = rect
+      const visible = rect.bottom > 0 && rect.top < window.innerHeight
+      const pointerInside =
+        posRef.current.x >= rect.left &&
+        posRef.current.x <= rect.right &&
+        posRef.current.y >= rect.top &&
+        posRef.current.y <= rect.bottom
+
+      if (!visible || !pointerInside) collapseLens()
+    }
     document.addEventListener('mousemove', onMove, { passive: true })
-    window.addEventListener('resize', onResize, { passive: true })
+    window.addEventListener('resize', syncRect, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
       document.removeEventListener('mousemove', onMove)
-      window.removeEventListener('resize', onResize)
+      window.removeEventListener('resize', syncRect)
+      window.removeEventListener('scroll', onScroll)
     }
-  }, [hovered])
+  }, [collapseLens, hovered])
+
+  useEffect(() => {
+    if (flipMode) return
+    const onGlobalScroll = () => {
+      if (targetRef.current <= 0) return
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) {
+        collapseLens()
+        return
+      }
+      rectRef.current = rect
+      const visible = rect.bottom > 0 && rect.top < window.innerHeight
+      if (!hoveredRef.current || !visible) collapseLens()
+    }
+    const onScrollIntent = () => {
+      if (targetRef.current > 0) collapseLens()
+    }
+    window.addEventListener('scroll', onGlobalScroll, { passive: true })
+    window.addEventListener('wheel', onScrollIntent, { passive: true })
+    window.addEventListener('touchmove', onScrollIntent, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onGlobalScroll)
+      window.removeEventListener('wheel', onScrollIntent)
+      window.removeEventListener('touchmove', onScrollIntent)
+    }
+  }, [collapseLens, flipMode])
 
   useEffect(() => () => {
     cancelAnimationFrame(rafRef.current)
@@ -170,7 +226,7 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
       startLoop()
       const timer = setTimeout(() => {
         // Do not cut a real hover short if the visitor beat the timer
-        if (!document.body.classList.contains('spotlight-active')) {
+        if (!hoveredRef.current) {
           targetRef.current = 0
           startLoop()
         }

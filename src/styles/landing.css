@@ -537,10 +537,16 @@
 
 .pb-value {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 0.88fr) minmax(220px, 0.66fr) minmax(0, 1.06fr);
   gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
   padding-bottom: clamp(2.75rem, 5.5vw, 4.5rem);
   scroll-margin-top: calc(var(--nav-h) + 2rem);
+}
+
+.pb-value-rail {
+  display: grid;
+  align-content: start;
 }
 
 .pb-value-num {
@@ -563,10 +569,122 @@
   text-wrap: balance;
 }
 
+.pb-value-summary {
+  margin: 1rem 0 0;
+  max-width: 34ch;
+  font-family: var(--sans);
+  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--ink-60);
+}
+
+.pb-value-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.15rem;
+}
+
+.pb-value-project {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.72rem;
+  border: 1px solid var(--ink-08);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-65);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 86%, transparent), color-mix(in srgb, var(--surface) 64%, transparent));
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.pb-value-project:hover {
+  color: var(--accent-hi);
+  border-color: color-mix(in srgb, var(--accent-hi) 28%, var(--ink-08));
+  transform: translateY(-1px);
+}
+
+.pb-value-media {
+  position: relative;
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+  padding: clamp(0.95rem, 1.8vw, 1.2rem);
+  border: 1px solid var(--ink-08);
+  border-radius: 1.65rem;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--accent-hi) 12%, transparent), transparent 58%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface) 72%, transparent));
+  overflow: hidden;
+}
+
+.pb-value-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(140deg, color-mix(in srgb, var(--ink) 4%, transparent), transparent 42%),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--accent-hi) 10%, transparent), transparent 48%);
+  pointer-events: none;
+}
+
+.pb-object-stage {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1;
+  min-height: 220px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--accent-hi) 18%, transparent), transparent 46%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, transparent), color-mix(in srgb, var(--surface) 58%, transparent));
+}
+
+.pb-object-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--pb-fallback-accent) 24%, transparent), transparent 38%),
+    linear-gradient(180deg, color-mix(in srgb, var(--pb-fallback-base) 28%, var(--surface)), color-mix(in srgb, var(--surface) 78%, transparent));
+}
+
+.pb-object-fallback span {
+  max-width: 12ch;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink-45);
+}
+
+.pb-value-caption {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--ink-58);
+}
+
 .pb-value-points {
   display: grid;
   gap: clamp(1.4rem, 2.6vw, 2.2rem);
   align-content: start;
+}
+
+.pb-point {
+  padding-top: 0.1rem;
 }
 
 .pb-point-lead {
@@ -634,5 +752,30 @@
   .pb-value {
     grid-template-columns: 1fr;
     gap: 1.4rem;
+  }
+
+  .pb-value-summary {
+    max-width: none;
+  }
+
+  .pb-object-stage {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .pb-value {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  }
+
+  .pb-value-points {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .pb-value-points {
+    grid-template-columns: 1fr;
   }
 }

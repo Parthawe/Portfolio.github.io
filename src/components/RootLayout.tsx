@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, lazy, Suspense } from 'react';
+import { useCallback, useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import PageLoader from './PageLoader';
 import Lightbox from './Lightbox';
@@ -19,6 +19,13 @@ const CASE_MEDIA_SELECTOR = '.cs-img img, .cs-img-full img, .proj-hero-img img';
 type IdleCapableWindow = Window & {
   requestIdleCallback?: (callback: IdleRequestCallback, options?: { timeout: number }) => number
   cancelIdleCallback?: (handle: number) => void
+}
+
+function cloneWindowEvent(event: Event) {
+  if (event instanceof CustomEvent) {
+    return new CustomEvent(event.type, { detail: event.detail })
+  }
+  return new Event(event.type)
 }
 
 function syncCaseStudyMediaState(img: HTMLImageElement) {
@@ -51,6 +58,8 @@ export default function RootLayout() {
   const location = useLocation();
   const ioRef = useRef<IntersectionObserver | null>(null);
   const [visible, setVisible] = useState(false);
+  const [siteToolsRequested, setSiteToolsRequested] = useState(false);
+  const [siteToolsMounted, setSiteToolsMounted] = useState(false);
   const isStudioRoute = location.pathname === '/studio';
   const isUtilityRoute = location.pathname === '/book' || location.pathname === '/graveyard';
   const enablePortfolioInteractions = !isStudioRoute && !isUtilityRoute;
@@ -64,8 +73,67 @@ export default function RootLayout() {
   const enableFigmaChrome = !isUtilityRoute && !coarsePointer;
   const handTrackerReady = useDeferredMount(enableHandTracker, { timeout: 9000, delayMs: 5200 })
   const agentReady = useDeferredMount(enableAgent, { timeout: 7000, delayMs: 3600 })
-  const figmaChromeReady = useDeferredMount(enableFigmaChrome, { timeout: 2600, delayMs: 900 })
+  const figmaChromeReady = enableFigmaChrome
   const siteToolsReady = enablePortfolioInteractions && desktopCanvas && finePointer && !coarsePointer
+  const siteToolsRequestedRef = useRef(siteToolsRequested)
+  const siteToolsMountedRef = useRef(siteToolsMounted)
+  const pendingSiteToolsEventRef = useRef<Event | null>(null)
+
+  useEffect(() => {
+    siteToolsRequestedRef.current = siteToolsRequested
+  }, [siteToolsRequested])
+
+  useEffect(() => {
+    siteToolsMountedRef.current = siteToolsMounted
+  }, [siteToolsMounted])
+
+  const requestSiteTools = useCallback((event?: Event) => {
+    if (event && event.type !== 'site-tools:preload') {
+      pendingSiteToolsEventRef.current = cloneWindowEvent(event)
+    }
+
+    if (!siteToolsRequestedRef.current) {
+      siteToolsRequestedRef.current = true
+      setSiteToolsRequested(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!siteToolsReady) return
+
+    const onReady = () => setSiteToolsMounted(true)
+    const onDemandRequest = (event: Event) => {
+      if (siteToolsRequestedRef.current && siteToolsMountedRef.current) return
+      requestSiteTools(event)
+    }
+
+    window.addEventListener('site-tools:ready', onReady)
+    window.addEventListener('site-tools:preload', onDemandRequest)
+    window.addEventListener('site-tools:toggle', onDemandRequest)
+    window.addEventListener('site-tools:open', onDemandRequest)
+    window.addEventListener('portfolio:add-comment', onDemandRequest)
+
+    return () => {
+      window.removeEventListener('site-tools:ready', onReady)
+      window.removeEventListener('site-tools:preload', onDemandRequest)
+      window.removeEventListener('site-tools:toggle', onDemandRequest)
+      window.removeEventListener('site-tools:open', onDemandRequest)
+      window.removeEventListener('portfolio:add-comment', onDemandRequest)
+    }
+  }, [requestSiteTools, siteToolsReady])
+
+  useEffect(() => {
+    if (!siteToolsMounted) return
+    const pendingEvent = pendingSiteToolsEventRef.current
+    if (!pendingEvent) return
+
+    const frame = window.requestAnimationFrame(() => {
+      pendingSiteToolsEventRef.current = null
+      window.dispatchEvent(pendingEvent)
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [siteToolsMounted])
 
   // Fade-in on mount and route change (CSS-driven, replaces Framer Motion)
   useEffect(() => {
@@ -319,7 +387,7 @@ export default function RootLayout() {
           <FigmaChrome />
         </Suspense>
       )}
-      {enablePortfolioInteractions && siteToolsReady && (
+      {enablePortfolioInteractions && siteToolsReady && siteToolsRequested && (
         <Suspense fallback={null}>
           <SiteInteractionTools />
         </Suspense>

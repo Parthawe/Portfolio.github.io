@@ -777,7 +777,11 @@
   background: rgba(246, 252, 250, 0.2);
 }
 
-/* Media fills the stage: the section defines the shape, the image adopts it. */
+/* The image keeps its own shape inside the stage — contain, not cover, so a
+   screenshot's edges (nav bars, footers, card bottoms) are never cropped to
+   fill an unrelated panel aspect. The stage's glow/grain backdrop already
+   reads as intentional framing, so letterboxing here looks designed rather
+   than like empty space. */
 .proj-visual-hero__media {
   position: absolute;
   inset: 0;
@@ -807,7 +811,9 @@
   max-width: none;
   max-height: none;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  box-sizing: border-box;
 }
 
 .proj-visual-meta {
@@ -2092,6 +2098,71 @@
   font-weight: 800;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
+}
+
+/* Reviewer gallery — real screens shown after NdaGate access, grouped by
+   section, same fast-read ritual (mono label + short note) as the rest of
+   the case study kit. */
+.cs-nda-reviewer-gallery {
+  display: grid;
+  gap: clamp(2rem, 4vw, 2.75rem);
+  margin-top: 0.5rem;
+}
+
+.cs-nda-reviewer-group {
+  display: grid;
+  gap: 1rem;
+}
+
+.cs-nda-reviewer-group-head {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.cs-nda-reviewer-group-label {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--project-color, var(--ink)) 78%, var(--ink-40));
+}
+
+.cs-nda-reviewer-group-note {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--ink-60);
+}
+
+.cs-nda-reviewer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.cs-nda-reviewer-grid--tall {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
+}
+
+.cs-nda-reviewer-shot {
+  margin: 0;
+  max-width: none;
+  padding: 0;
+}
+
+.cs-nda-reviewer-shot img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top;
+}
+
+.cs-nda-reviewer-shot--tall img {
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: top;
 }
 
 .cs-nda-visual-topline,

@@ -30,6 +30,13 @@ const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolea
 // per slug — every object should read the same size in the same slot.
 const OBJECT_SCALE: Record<string, number> = {
   installations: 0.76,
+  'creative-tech': 1.42,
+  'design-for-good': 1.16,
+  'ux-design': 1.12,
+  fintech: 1.12,
+  crypto: 1.12,
+  ai: 1.08,
+  'ai-wearables': 1.08,
 };
 
 interface Props {

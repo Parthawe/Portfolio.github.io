@@ -44,6 +44,8 @@ export default function PageLoader() {
 
   useEffect(() => {
     if (!loaded) return
+    document.body.classList.add('page-ready')
+    window.dispatchEvent(new CustomEvent('portfolio:page-ready'))
     const id = window.setTimeout(() => setRemoved(true), 240)
     return () => window.clearTimeout(id)
   }, [loaded])

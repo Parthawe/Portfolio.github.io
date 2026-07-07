@@ -1,26 +1,10 @@
-import { useRef, useEffect, useCallback, useState, lazy, Suspense } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavScroll } from '../hooks/useNavScroll';
-import { useDeferredMount } from '../hooks/useDeferredMount';
-import { useMediaQuery } from '../hooks/useMediaQuery';
 import ThemeToggle from './ThemeToggle';
 import FigmaSelect from './FigmaSelect';
+import AmbientAudio from './AmbientAudio';
 import { CONTACT_EMAIL } from '../config/site';
-
-const AmbientAudio = lazy(() => import('./AmbientAudio'));
-
-function AmbientAudioPlaceholder() {
-  return (
-    <div className="ambient-ui" aria-hidden="true" style={{ visibility: 'hidden' }}>
-      <button
-        className="ambient-toggle surface-glass surface-glass--subtle"
-        type="button"
-        tabIndex={-1}
-        disabled
-      />
-    </div>
-  );
-}
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
@@ -36,8 +20,6 @@ export default function Nav() {
   const [gridOn, setGridOn] = useState(false);
   const [rulersOn, setRulersOn] = useState(true);
   const [interactOn, setInteractOn] = useState(false);
-  const finePointer = useMediaQuery('(hover: hover) and (pointer: fine)', true);
-  const ambientReady = useDeferredMount(finePointer, { timeout: 5200, delayMs: 2200 });
 
   const closeMenu = useCallback(() => {
     if (!isOpenRef.current) return;
@@ -176,6 +158,10 @@ export default function Nav() {
     window.dispatchEvent(new CustomEvent('site-tools:toggle'));
   }, []);
 
+  const preloadInteractTools = useCallback(() => {
+    window.dispatchEvent(new CustomEvent('site-tools:preload'));
+  }, []);
+
   const isHome = pathname === '/';
   const isAbout = pathname === '/about';
   const isWriting = pathname === '/writing' || pathname.startsWith('/writing/');
@@ -245,6 +231,8 @@ export default function Nav() {
                 aria-pressed={interactOn}
                 aria-controls="site-interaction-tools"
                 title={interactOn ? 'Exit Figma mode' : 'Enter Figma mode'}
+                onPointerEnter={preloadInteractTools}
+                onFocus={preloadInteractTools}
                 onClick={toggleInteractTools}
               >
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
@@ -269,13 +257,7 @@ export default function Nav() {
                 <span>Ruler</span>
               </button>
             </div>
-            {ambientReady ? (
-              <Suspense fallback={<AmbientAudioPlaceholder />}>
-                <AmbientAudio />
-              </Suspense>
-            ) : (
-              <AmbientAudioPlaceholder />
-            )}
+            <AmbientAudio />
             <span className="nav-theme-wrap figma-hover"><ThemeToggle className="surface-glass surface-glass--subtle" /><FigmaSelect /></span>
             <a href={`mailto:${CONTACT_EMAIL}`} className="nav-cta magnetic figma-hover">Let's Talk<FigmaSelect /></a>
             <button
