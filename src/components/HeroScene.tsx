@@ -1468,17 +1468,244 @@ function WebEdges({
   );
 }
 
-/* The field is built from the SAME principal object designs as the hero six —
-   not cheap look-alikes. Cycling these five genuinely distinct assemblies (each
-   already as polished as the parents, because it IS one of them) guarantees
-   adjacent field objects never share a silhouette. MorphingScreens is left out
-   of the rotation — its ~600 live pixel meshes are too heavy to instance ~9×. */
+/* ─────────────────────────────────────────────────────────────────────────
+   FIELD OBJECTS — remixes, not copies.
+
+   The hub six stay exactly as designed. The field is a NEW set of objects that
+   borrow the principals' vocabulary — the glass shells + wireframes of the
+   crystal, the torus-knot of the rose, the barrel + bezels + aperture of the
+   lens, the spindle + disc + ring of the plates, the iridescent rings of the
+   screens, the rod cage + corner beads of the truss — and recombine those
+   elements into fresh silhouettes. Same material recipes, so they read just as
+   polished; different assemblies, so none is a direct clone.
+   ───────────────────────────────────────────────────────────────────────── */
+
+const matChrome = (dark: boolean) => ({ metalness: 1, roughness: 0.04, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: dark ? 3 : 3.4, reflectivity: 1 });
+const matChromeIri = (dark: boolean) => ({ metalness: 1, roughness: 0.04, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: dark ? 4 : 5, reflectivity: 1, iridescence: 0.9, iridescenceIOR: 1.7 });
+const matDarkChrome = (dark: boolean) => ({ metalness: 0.95, roughness: 0.09, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: dark ? 2 : 2.5, reflectivity: 1 });
+const matGlass = (dark: boolean) => ({ metalness: 0, roughness: 0, transmission: 0.95, transparent: true, opacity: 0.1, ior: 1.5, thickness: 0.7, envMapIntensity: dark ? 1.2 : 1.5, specularIntensity: 1.4, specularColor: dark ? '#ccddff' : '#aabbdd' });
+const wireColor = (dark: boolean) => (dark ? '#b8c8e0' : '#8899aa');
+
+/* 1 · GEODE-KNOT — crystal's glass icosa shell + wire, but with the rose's
+   chrome torus-knot spinning at its heart instead of the octahedron. */
+function GeodeKnot({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const knotRef = useRef<THREE.Mesh>(null!);
+  const shellRef = useRef<THREE.Mesh>(null!);
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  const edges = useMemo(() => new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(0.5, 0)), []);
+  useFrame(() => {
+    const v = vt.current, h = ht.current;
+    if (ref.current) { ref.current.rotation.y = v * 0.06; ref.current.rotation.x = Math.sin(v * 0.035) * 0.05; }
+    if (knotRef.current) { knotRef.current.rotation.y = -v * 0.14; knotRef.current.rotation.x = v * 0.09; knotRef.current.scale.setScalar(mix(1, 1.3, h)); }
+    if (shellRef.current) shellRef.current.scale.setScalar(mix(1, 1.4, h));
+    if (coreRef.current) (coreRef.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = mix(dark ? 0.55 : 0.3, dark ? 1.4 : 1, h);
+  });
+  return (
+    <Float speed={0.75} floatIntensity={0.45} rotationIntensity={0.14}>
+      <group ref={ref}>
+        <lineSegments geometry={edges}><lineBasicMaterial color={wireColor(dark)} transparent opacity={dark ? 0.5 : 0.42} /></lineSegments>
+        <mesh ref={shellRef}><icosahedronGeometry args={[0.48, 1]} /><meshPhysicalMaterial {...matGlass(dark)} opacity={0.08} /></mesh>
+        <mesh ref={knotRef}><torusKnotGeometry args={[0.17, 0.045, 120, 12, 2, 3]} /><meshPhysicalMaterial color={dark ? '#d0d0e0' : '#b8b8c8'} {...matChrome(dark)} /></mesh>
+        <mesh ref={coreRef}><sphereGeometry args={[0.05, 16, 16]} /><meshPhysicalMaterial color="#ffffff" emissive={dark ? '#99bbff' : '#6688bb'} emissiveIntensity={dark ? 0.55 : 0.3} metalness={0.2} roughness={0.05} /></mesh>
+      </group>
+    </Float>
+  );
+}
+
+/* 2 · CAGED-KNOT — the rose's knot inside an OPEN dodecahedron wire cage
+   (no shell), ringed by three orbiting chrome beads from the crystal. */
+function CagedKnot({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const knotRef = useRef<THREE.Mesh>(null!);
+  const orbitRef = useRef<THREE.Group>(null!);
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  const edges = useMemo(() => new THREE.EdgesGeometry(new THREE.DodecahedronGeometry(0.52, 0)), []);
+  useFrame(() => {
+    const v = vt.current, h = ht.current;
+    if (ref.current) { ref.current.rotation.y = v * 0.05; ref.current.rotation.z = Math.cos(v * 0.03) * 0.05; }
+    if (knotRef.current) { knotRef.current.rotation.x = v * 0.12; knotRef.current.rotation.y = v * 0.1; }
+    if (orbitRef.current) { orbitRef.current.rotation.y = v * 0.16; orbitRef.current.rotation.x = Math.sin(v * 0.06) * 0.2; orbitRef.current.scale.setScalar(mix(1, 1.3, h)); }
+    if (coreRef.current) (coreRef.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = mix(dark ? 0.6 : 0.35, dark ? 1.5 : 1.1, h);
+  });
+  return (
+    <Float speed={0.65} floatIntensity={0.4} rotationIntensity={0.12}>
+      <group ref={ref}>
+        <lineSegments geometry={edges}><lineBasicMaterial color={wireColor(dark)} transparent opacity={dark ? 0.55 : 0.46} /></lineSegments>
+        <mesh ref={knotRef}><torusKnotGeometry args={[0.19, 0.05, 130, 12, 3, 4]} /><meshPhysicalMaterial color={dark ? '#e0e0f0' : '#c8c8d8'} {...matChrome(dark)} /></mesh>
+        <mesh ref={coreRef}><sphereGeometry args={[0.05, 16, 16]} /><meshPhysicalMaterial color="#ffffff" emissive={dark ? '#aaccff' : '#6688bb'} emissiveIntensity={dark ? 0.6 : 0.35} metalness={0.25} roughness={0.05} /></mesh>
+        <group ref={orbitRef}>
+          {[0, 1, 2].map((i) => {
+            const a = (i / 3) * Math.PI * 2;
+            return (
+              <mesh key={i} position={[Math.cos(a) * 0.5, Math.sin(a * 0.7) * 0.1, Math.sin(a) * 0.5]}>
+                <sphereGeometry args={[0.03, 16, 16]} />
+                <meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} {...matChrome(dark)} />
+              </mesh>
+            );
+          })}
+        </group>
+      </group>
+    </Float>
+  );
+}
+
+/* 3 · LENS-POD — the camera lens distilled: barrel + front bezel + a glass
+   dome cap over a glowing centre, with two knurled grip rings. */
+function LensPod({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const domeRef = useRef<THREE.Mesh>(null!);
+  const centerRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  useFrame(() => {
+    const v = vt.current, h = ht.current;
+    if (ref.current) { ref.current.rotation.y = v * 0.05; ref.current.rotation.x = Math.sin(v * 0.03) * 0.06; }
+    if (domeRef.current) domeRef.current.position.z = mix(0.06, 0.2, h);
+    if (centerRef.current) { (centerRef.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = mix(dark ? 0.9 : 0.5, dark ? 1.8 : 1.2, h); centerRef.current.scale.setScalar(mix(1, 1.5, h)); }
+  });
+  return (
+    <Float speed={0.55} floatIntensity={0.35} rotationIntensity={0.1}>
+      <group ref={ref}>
+        <mesh rotation={[Math.PI / 2, 0, 0]}><cylinderGeometry args={[0.42, 0.4, 0.34, 40, 1, true]} /><meshPhysicalMaterial color={dark ? '#d0d0d8' : '#b8b8c0'} {...matChrome(dark)} side={THREE.DoubleSide} /></mesh>
+        <mesh position={[0, 0, 0.16]}><torusGeometry args={[0.41, 0.03, 20, 56]} /><meshPhysicalMaterial color={dark ? '#e0e0e8' : '#d0d0d8'} {...matChrome(dark)} /></mesh>
+        <mesh position={[0, 0, -0.16]}><torusGeometry args={[0.38, 0.022, 18, 56]} /><meshPhysicalMaterial color={dark ? '#3a3a44' : '#606068'} {...matDarkChrome(dark)} /></mesh>
+        <mesh ref={domeRef} position={[0, 0, 0.06]}><sphereGeometry args={[0.3, 40, 40, 0, Math.PI * 2, 0, Math.PI / 3.4]} /><meshPhysicalMaterial {...matGlass(dark)} color={dark ? '#80a0d0' : '#90b0e0'} opacity={0.08} ior={2.1} /></mesh>
+        <mesh ref={centerRef} position={[0, 0, 0.02]}><sphereGeometry args={[0.03, 16, 16]} /><meshPhysicalMaterial color="#ffffff" emissive={dark ? '#aaccff' : '#6688bb'} emissiveIntensity={dark ? 0.9 : 0.5} metalness={0.3} roughness={0.05} /></mesh>
+        {[-0.05, 0.05].map((z, i) => (
+          <mesh key={i} position={[0, 0, z]} rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[0.425, 0.006, 8, 44]} /><meshPhysicalMaterial color={dark ? '#888890' : '#707078'} metalness={0.9} roughness={0.2} envMapIntensity={dark ? 1.5 : 2} /></mesh>
+        ))}
+      </group>
+    </Float>
+  );
+}
+
+/* 4 · SPINDLE-TOTEM — the plates' vocabulary restacked: a chrome spindle
+   threading a disc + tilted ring, a glass bead, a cube, and a cone tip. */
+function SpindleTotem({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const ringRef = useRef<THREE.Mesh>(null!);
+  const beadRef = useRef<THREE.Mesh>(null!);
+  const cubeRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  useFrame(() => {
+    const v = vt.current, h = ht.current;
+    if (ref.current) { ref.current.rotation.y = v * 0.05; ref.current.rotation.z = Math.cos(v * 0.03) * 0.05; }
+    if (ringRef.current) { ringRef.current.rotation.x = 0.6 + v * 0.14; ringRef.current.scale.setScalar(mix(1, 1.35, h)); }
+    if (beadRef.current) { (beadRef.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = mix(0, dark ? 1.2 : 0.8, h); beadRef.current.position.y = mix(0.14, 0.24, h); }
+    if (cubeRef.current) { cubeRef.current.rotation.x = v * 0.1; cubeRef.current.rotation.y = v * 0.12; }
+  });
+  return (
+    <Float speed={0.5} floatIntensity={0.35} rotationIntensity={0.12}>
+      <group ref={ref}>
+        <mesh><cylinderGeometry args={[0.05, 0.05, 0.62, 28]} /><meshPhysicalMaterial color={dark ? '#d0d0d8' : '#b8b8c0'} {...matChrome(dark)} /></mesh>
+        <mesh position={[0, -0.05, 0]}><cylinderGeometry args={[0.3, 0.3, 0.016, 40]} /><meshPhysicalMaterial color={dark ? '#404048' : '#606068'} {...matDarkChrome(dark)} /></mesh>
+        <mesh ref={ringRef} position={[0, 0.02, 0]}><torusGeometry args={[0.34, 0.015, 16, 56]} /><meshPhysicalMaterial color={dark ? '#e0e0f0' : '#d0d0e0'} {...matChrome(dark)} /></mesh>
+        <mesh ref={beadRef} position={[0.14, 0.14, 0.05]}><sphereGeometry args={[0.09, 40, 40]} /><meshPhysicalMaterial {...matGlass(dark)} color={dark ? '#c8d8f0' : '#d0e0ff'} opacity={0.1} ior={2.0} emissive={dark ? '#6688bb' : '#4466aa'} emissiveIntensity={0} /></mesh>
+        <mesh ref={cubeRef} position={[-0.16, 0.2, -0.06]}><boxGeometry args={[0.08, 0.08, 0.08]} /><meshPhysicalMaterial color={dark ? '#e8e8f0' : '#d0d0d8'} {...matChrome(dark)} /></mesh>
+        <mesh position={[0, 0.36, 0]}><coneGeometry args={[0.045, 0.1, 24]} /><meshPhysicalMaterial color={dark ? '#2a2a34' : '#505058'} {...matDarkChrome(dark)} /></mesh>
+      </group>
+    </Float>
+  );
+}
+
+/* 5 · GYRO-RINGS — the screens' iridescent rings become a gyroscope: three
+   rings on different axes around an inner chrome octahedron + glass halo. */
+function GyroRings({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const r1 = useRef<THREE.Mesh>(null!);
+  const r2 = useRef<THREE.Mesh>(null!);
+  const r3 = useRef<THREE.Mesh>(null!);
+  const octaRef = useRef<THREE.Mesh>(null!);
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  useFrame(() => {
+    const v = vt.current, h = ht.current;
+    if (ref.current) ref.current.rotation.y = v * 0.04;
+    if (r1.current) r1.current.rotation.z = v * 0.2;
+    if (r2.current) r2.current.rotation.x = v * 0.17;
+    if (r3.current) r3.current.rotation.y = v * 0.23;
+    const spread = mix(1, 1.3, h);
+    if (r1.current) r1.current.scale.setScalar(spread);
+    if (r2.current) r2.current.scale.setScalar(spread * 0.82);
+    if (r3.current) r3.current.scale.setScalar(spread * 0.64);
+    if (octaRef.current) { octaRef.current.rotation.x = -v * 0.1; octaRef.current.rotation.y = v * 0.13; }
+    if (coreRef.current) (coreRef.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = mix(dark ? 0.6 : 0.35, dark ? 1.6 : 1.1, h);
+  });
+  const iri = matChromeIri(dark);
+  return (
+    <Float speed={0.7} floatIntensity={0.4} rotationIntensity={0.14}>
+      <group ref={ref}>
+        <mesh ref={r1}><torusGeometry args={[0.46, 0.014, 14, 56]} /><meshPhysicalMaterial color={dark ? '#6070c0' : '#5060b0'} {...iri} /></mesh>
+        <mesh ref={r2} rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[0.46, 0.014, 14, 56]} /><meshPhysicalMaterial color={dark ? '#5568cc' : '#4458bb'} {...iri} /></mesh>
+        <mesh ref={r3} rotation={[0, 0, Math.PI / 2]}><torusGeometry args={[0.46, 0.012, 14, 56]} /><meshPhysicalMaterial color={dark ? '#7080d0' : '#5868c0'} {...iri} /></mesh>
+        <mesh><sphereGeometry args={[0.34, 40, 40]} /><meshPhysicalMaterial {...matGlass(dark)} color={dark ? '#4060c0' : '#5070d0'} opacity={0.06} /></mesh>
+        <mesh ref={octaRef}><octahedronGeometry args={[0.16, 0]} /><meshPhysicalMaterial color={dark ? '#d0d0e0' : '#b8b8c8'} {...matChrome(dark)} /></mesh>
+        <mesh ref={coreRef}><sphereGeometry args={[0.045, 16, 16]} /><meshPhysicalMaterial color="#ffffff" emissive={dark ? '#4466dd' : '#3355cc'} emissiveIntensity={dark ? 0.6 : 0.35} metalness={0.3} roughness={0.1} /></mesh>
+      </group>
+    </Float>
+  );
+}
+
+/* 6 · BEAD-CAGE — the truss reduced to a lantern: a chrome rod cube whose
+   eight corners are glass-metal beads, lit from a glowing centre. */
+function BeadCage({ dark, hovered }: { dark: boolean; hovered: boolean }) {
+  const ref = useRef<THREE.Group>(null!);
+  const beadRefs = useRef<THREE.Mesh[]>([]);
+  const coreRef = useRef<THREE.Mesh>(null!);
+  const ht = useHoverLerp(hovered);
+  const vt = useVirtualTime(ht);
+  const corners = useMemo(() => {
+    const s = 0.34;
+    return [
+      [-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s],
+      [-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s],
+    ] as [number, number, number][];
+  }, []);
+  const edges = useMemo(() => new THREE.EdgesGeometry(new THREE.BoxGeometry(0.68, 0.68, 0.68)), []);
+  useFrame(() => {
+    const v = vt.current, h = ht.current;
+    if (ref.current) { ref.current.rotation.y = v * 0.05; ref.current.rotation.x = Math.sin(v * 0.04) * 0.06; }
+    beadRefs.current.forEach((m, i) => {
+      if (!m) return;
+      const dir = corners[i];
+      const e = h * 0.14;
+      m.position.set(dir[0] * (1 + e / 0.34), dir[1] * (1 + e / 0.34), dir[2] * (1 + e / 0.34));
+      m.scale.setScalar(mix(1, 1.4, h));
+    });
+    if (coreRef.current) (coreRef.current.material as THREE.MeshPhysicalMaterial).emissiveIntensity = mix(dark ? 0.5 : 0.3, dark ? 1.6 : 1.1, h);
+  });
+  return (
+    <Float speed={0.7} floatIntensity={0.5} rotationIntensity={0.15}>
+      <group ref={ref}>
+        <lineSegments geometry={edges}><lineBasicMaterial color={wireColor(dark)} transparent opacity={dark ? 0.5 : 0.42} /></lineSegments>
+        {corners.map((p, i) => (
+          <mesh key={i} position={p} ref={(el) => { if (el) beadRefs.current[i] = el; }}>
+            <sphereGeometry args={[0.05, 20, 20]} />
+            <meshPhysicalMaterial color={dark ? '#f0f0f8' : '#e0e0e8'} metalness={0.6} roughness={0.02} clearcoat={1} clearcoatRoughness={0.01} envMapIntensity={dark ? 3 : 3.5} reflectivity={1} transmission={0.35} transparent opacity={0.92} ior={1.7} />
+          </mesh>
+        ))}
+        <mesh ref={coreRef}><sphereGeometry args={[0.06, 20, 20]} /><meshPhysicalMaterial color="#ffffff" emissive={dark ? '#99bbff' : '#6688bb'} emissiveIntensity={dark ? 0.5 : 0.3} metalness={0.2} roughness={0.05} /></mesh>
+      </group>
+    </Float>
+  );
+}
+
+/* Six remixed silhouettes, cycled across the field. Each echoes a principal but
+   is a new assembly — related DNA, not a clone. */
 const FIELD_COMPONENTS: React.FC<{ dark: boolean; hovered: boolean }>[] = [
-  TrussStructure,
-  PetalRose,
-  StackedPlates,
-  LensAssembly,
-  GlassCrystal,
+  GeodeKnot,
+  CagedKnot,
+  LensPod,
+  SpindleTotem,
+  GyroRings,
+  BeadCage,
 ];
 
 /* Discipline label — replicates InteractiveLabel: a plate + upright text that
