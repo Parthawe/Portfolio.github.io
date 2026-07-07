@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useMemo, useCallback, Suspense } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
+import { useWebGLAvailable } from '../hooks/useWebGLAvailable'
 
 /* ═══════════════════════════════════════════════════════════
    Spacetime Fabric — interactive gravitational well.
@@ -421,6 +422,7 @@ function GravityScene({ masses, onDrag, onRemove, onAdd }: {
 
 export default function SpacetimeFabricScene() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const webglOk = useWebGLAvailable()
   const [inView, setInView] = useState(false)
   const [masses, setMasses] = useState<Mass[]>([
     { id: 1, x: 0, z: 0, strength: 1.4 },
@@ -450,6 +452,26 @@ export default function SpacetimeFabricScene() {
     io.observe(el)
     return () => io.disconnect()
   }, [])
+
+  if (!webglOk) {
+    return (
+      <div
+        style={{
+          width: '100%', aspectRatio: '16 / 10',
+          borderRadius: 'var(--radius-lg)', overflow: 'hidden',
+          border: '1px solid rgba(255,255,255,0.06)',
+          boxShadow: '0 8px 40px rgba(0,0,0,0.4)',
+          background: '#050508',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          textAlign: 'center', padding: '2rem',
+          color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', lineHeight: 1.6,
+        }}
+      >
+        This interactive spacetime simulation needs WebGL, which isn’t
+        available in your browser. The rest of the case study works fine.
+      </div>
+    )
+  }
 
   return (
     <div

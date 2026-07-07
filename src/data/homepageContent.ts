@@ -1,18 +1,4 @@
 export const HOMEPAGE_CONTENT = {
-  proofBand: {
-    companies: ['Mentra', 'ZentiPay', 'TransFi', 'NYU ITP', 'IBM'],
-    outcomes: [
-      { label: 'Payment systems', value: 'Multi-market' },
-      { label: 'Time saved per exec / week', value: '5.2 hrs' },
-      { label: 'Fintech focus', value: 'Trust-first' },
-      { label: 'Countries shipped across', value: '3' },
-    ],
-    testimonial: {
-      quote: 'Within two weeks, I stopped checking email first. I check ExecutiveLens.',
-      cite: 'VP of Product, beta participant',
-    },
-    recognition: "Head of UI/UX at Mentra. NYU ITP MPS '24. Work spanning AI wearables, fintech, and physical computing.",
-  },
   latestThinking: [
     {
       href: '/writing/designing-for-glance',

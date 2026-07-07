@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import ProjectOverview from '../../components/case-study/ProjectOverview'
 import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -24,11 +24,9 @@ export default function ClawedChatPage() {
   const sections = viewMode === 'summary'
     ? [
         { id: 'cs-summary', label: 'TL;DR' },
-        { id: 'cs-vision', label: 'Vision & Role' },
       ]
     : [
         { id: 'cs-summary', label: 'TL;DR' },
-        { id: 'cs-vision', label: 'Vision & Role' },
         { id: 'cs-context', label: 'Context' },
         { id: 'cs-research', label: 'Research' },
         { id: 'cs-challenges', label: 'Challenges' },
@@ -56,12 +54,26 @@ export default function ClawedChatPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Clawed · Parth Pawar" />
         <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/clawed.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/clawed.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#8B5E34' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--clawed" style={{
+        // Clawed logo reds (sampled from claw-3d.png): accent, outer
+        // gradient family, and hero blob all follow the brand.
+        '--project-color': '#CE303A',
+        '--case-outer-1': '#1a0708',
+        '--case-outer-2': '#3a0d12',
+        '--case-outer-3': '#38141a',
+        '--case-outer-glow-a': 'rgba(206, 48, 58, 0.30)',
+        '--case-outer-glow-b': 'rgba(157, 4, 13, 0.34)',
+        '--case-hero-orb-b': 'rgba(226, 140, 146, 0.24)',
+        '--case-hero-blob-a': 'rgba(226, 96, 104, 0.30)',
+        '--case-hero-blob-b': 'rgba(122, 8, 16, 0.34)',
+        '--case-hero-blob-c': 'rgba(236, 168, 171, 0.22)',
+        '--case-hero-blob-glow': 'rgba(244, 214, 216, 0.28)',
+      } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -86,43 +98,14 @@ export default function ClawedChatPage() {
           slug="clawed-chat"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
+          fullEntryId="cs-context"
         />
 
-        {viewMode === 'full' ? (
-        <>
-        {/* 3D mascot + logo */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-3d.png" alt="Clawed 3D mascot, red sculptural claw character" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-logo-dark.png" alt="Clawed logo glowing on dark background" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-        </>
-        ) : null}
-
-        <ProjectOverview
-          id="cs-vision"
-          sections={[
-            {
-              label: 'The Vision',
-              content: 'AI assistants usually fail at the exact moment they become useful: when they stop answering questions and start acting. Clawed is built around the opposite stance. If the AI acts on your behalf, it should move fast, ask clearly, show what changed, and leave a trail you can verify later.',
-            },
-            {
-              label: 'My Role',
-              content: 'I designed the entire product surface: launch site, web hub, command flows, approval system, smart-glasses experience, and the safety architecture that ties them together. The work was not to make AI feel magical. It was to make AI feel legible enough that someone would actually trust it with real actions.',
-            },
-          ]}
-        />
-
-        {viewMode === 'full' ? (
-        <>
+        <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
         <CsSection id="cs-context" label="01 &mdash; Context" title="Why AI Assistants Fail">
           <CsBody>
             <p>Before I designed forward, I studied the failures. AI assistants have a trust problem, and it is entirely self-inflicted. Siri, Alexa, Google Assistant &mdash; each one trained users to expect disappointment. The pattern was always the same: promise the world, deliver a timer and a weather forecast, and quietly lose credibility every time the assistant guessed wrong and acted anyway.</p>
             <p>The deeper problem is not capability. It is accountability. When an AI sends an email on your behalf with the wrong tone, there is no undo. When it books a flight you did not actually confirm, there is no receipt. When it misinterprets a voice command while you are driving, there is no safety net. Every major assistant treats autonomy as a feature and accountability as someone else&rsquo;s problem.</p>
-            <p>The result is a generation of users who have learned to distrust the AI that is supposed to help them. They default to doing things manually &mdash; not because the AI cannot do it, but because they cannot trust that it will.</p>
           </CsBody>
           <CsCallout>
             <p>&ldquo;The problem with AI assistants is not that they are too dumb. It is that they are too confident. An assistant that acts without asking and fails without apologizing is not an assistant &mdash; it is a liability.&rdquo;</p>
@@ -181,19 +164,14 @@ export default function ClawedChatPage() {
 
         <CsSection id="cs-webhub" label="04 &mdash; Web Hub" title="The Brain You Come Back To">
           <CsBody>
-            <p>The glasses handle the moments. The web hub handles the thinking. It is where you manage your inbox, review AI-drafted responses, configure safety modes, browse your timeline of actions, and connect third-party services. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure.</p>
-            <p>The Dashboard is the home screen &mdash; a single-glance summary of pending approvals, recent actions, inbox count, and active safety mode. No widgets to configure, no drag-and-drop customization. The AI decides what is important based on context and recency. If you have three emails waiting for approval, that is the first thing you see. If your glasses are disconnected, that surfaces as an alert. The Dashboard is not a canvas &mdash; it is an opinionated briefing.</p>
+            <p>The glasses handle the moments. The web hub handles the thinking. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure. The command bar (&#8984;K) is always one keystroke away.</p>
+            <p>The pattern that runs through all of them is approval and receipts. Every incoming item arrives pre-analyzed as a card with three options &mdash; approve the AI&rsquo;s draft, edit before sending, or dismiss &mdash; and every action, however it was approved, generates a receipt you can audit later.</p>
           </CsBody>
           <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
           <div className="cs-img reveal" style={{ marginTop: '2rem' }}><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
           <p className="cs-caption">Cloud Deploy vs Mac Companion, two deployment paths designed for different trust and control preferences</p>
-          <h3 className="cs-section-subtitle">Inbox &amp; Ask</h3>
-          <CsBody>
-            <p>The Inbox is not an email client. It is a triage interface. Every incoming message is pre-analyzed by the AI, tagged with urgency and suggested action, and presented as a card with three options: approve the AI&rsquo;s draft, edit before sending, or dismiss. You can clear your inbox without reading a single full email &mdash; the AI summaries are that good &mdash; but every action generates a receipt so you can audit later.</p>
-            <p>Ask is the AI chat interface &mdash; the place where you have longer conversations, ask follow-up questions, and request complex multi-step actions. It is designed to feel like a messaging app, not a search engine. Responses are structured, actionable, and always end with a clear next step: approve, modify, or cancel. The command bar (&Cmd;K) is always one keystroke away, and every response can be pinned, shared, or turned into a recurring workflow.</p>
-          </CsBody>
         </CsSection>
 
         <CsSection id="cs-glasses" label="05 &mdash; Glasses Experience" title="Intelligence at the Edge of Your Vision">
@@ -258,7 +236,7 @@ export default function ClawedChatPage() {
         {/* Website */}
         <CsSection id="cs-website" label="Live Product" title="clawed.chat">
           <CsBody>
-            <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 20 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
+            <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 30 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
           </CsBody>
           <div className="cs-slide reveal" style={{ marginTop: 'var(--space-4)' }}>
             <img src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--ink-06)', width: '100%' }} />
@@ -320,8 +298,7 @@ export default function ClawedChatPage() {
         </CsSection>
 
         <CsThanks contactCta />
-        </>
-        ) : null}
+        </CsExpandPreview>
 
         <BottomNav
           sections={sections}

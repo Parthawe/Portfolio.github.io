@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { categories } from '../data/categories'
-import { projects } from '../data/projects'
-import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from '../config/site'
+import { getProject, isHiddenProject, visibleProjects, type Project } from '../data/projects'
+import { SITE_NAME, SITE_ORIGIN, SITE_URL, DEFAULT_OG_IMAGE } from '../config/site'
 
 const DEFAULT_IMAGE = DEFAULT_OG_IMAGE
 const NOINDEX_ROUTES = new Set(['/studio', '/graveyard', '/book'])
@@ -19,7 +19,9 @@ interface RouteMeta {
 
 function toAbsoluteUrl(path: string) {
   if (path.startsWith('http')) return path
-  return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+  // Asset paths already carry the /Portfolio.github.io base, so join them to
+  // the bare origin — SITE_URL would duplicate the base segment.
+  return `${SITE_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`
 }
 
 function parseYear(year?: string) {
@@ -62,14 +64,6 @@ function getHomeSchema() {
   }
 }
 
-function getCategoryProjectName(
-  project:
-    | (typeof categories)[number]['featured']
-    | (typeof categories)[number]['moreProjects'][number][number]
-) {
-  return 'title' in project ? project.title : project.name
-}
-
 function getRouteMeta(pathname: string): RouteMeta {
   const url = pathname === '/' ? SITE_URL : `${SITE_URL}${pathname}`
   const robots = NOINDEX_ROUTES.has(pathname) ? 'noindex, nofollow' : 'index, follow'
@@ -102,7 +96,7 @@ function getRouteMeta(pathname: string): RouteMeta {
         description: 'Selected work by Parth Pawar.',
         mainEntity: {
           '@type': 'ItemList',
-          itemListElement: projects.slice(0, 12).map((project, index) => ({
+          itemListElement: visibleProjects.slice(0, 12).map((project, index) => ({
             '@type': 'ListItem',
             position: index + 1,
             url: `${SITE_URL}/${project.slug}`,
@@ -139,13 +133,33 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
+  if (pathname === '/accessibility') {
+    return {
+      title: 'Accessibility · Parth Pawar',
+      description: 'Accessibility notes for Parth Pawar portfolio, including current decisions, known concerns, and planned improvements.',
+      image: toAbsoluteUrl(DEFAULT_IMAGE),
+      url,
+      type: 'website',
+      robots,
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Accessibility',
+        url,
+        description: 'Accessibility notes for Parth Pawar portfolio.',
+      },
+    }
+  }
+
   const category = categories.find(item => pathname === `/${item.slug}`)
   if (category) {
     const projectsInCategory = [category.featured, ...category.moreProjects.flat()]
+      .map(project => getProject(project.slug))
+      .filter((project): project is Project => Boolean(project && !isHiddenProject(project)))
     return {
       title: category.metaTitle,
       description: category.metaDescription,
-      image: toAbsoluteUrl(category.featured.image),
+      image: toAbsoluteUrl(projectsInCategory[0]?.image || category.featured.image),
       url,
       type: 'website',
       robots,
@@ -161,7 +175,7 @@ function getRouteMeta(pathname: string): RouteMeta {
             '@type': 'ListItem',
             position: index + 1,
             url: `${SITE_URL}/${project.slug}`,
-            name: getCategoryProjectName(project),
+            name: project.name,
           })),
         },
       },
@@ -169,7 +183,17 @@ function getRouteMeta(pathname: string): RouteMeta {
   }
 
   const slug = pathname.replace(/^\//, '')
-  const project = projects.find(item => item.slug === slug)
+  const project = getProject(slug)
+  if (isHiddenProject(project)) {
+    return {
+      title: 'Page not found · Parth Pawar',
+      description: 'This page is not available in the public portfolio.',
+      image: toAbsoluteUrl(DEFAULT_IMAGE),
+      url,
+      type: 'website',
+      robots: 'noindex, nofollow',
+    }
+  }
   if (project) {
     const year = parseYear(project.year)
     return {

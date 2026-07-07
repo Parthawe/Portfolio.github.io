@@ -30,6 +30,7 @@
   @import "./homepage-wr.css";
   @import "./work-page.css";
   @import "./about.css";
+  @import "./accessibility.css";
   @import "./case-study.css";
   @import "./landing.css";
   @import "./ai-hero.css";
@@ -45,6 +46,8 @@
 @import "./interactions.css";
 @import "./glyph-playground.css";
 @import "./glyph-editor.css";
+@import "./typeface-page.css";
 @import "./nda-gate.css";
 @import "./writing.css";
+@import "./display-type.css";
 @import "./responsive.css";

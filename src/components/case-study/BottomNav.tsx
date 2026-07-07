@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useReadingProgress } from '../../hooks/useReadingProgress';
 import FigmaSelect from '../FigmaSelect';
 
@@ -6,13 +7,21 @@ interface BottomNavProps {
   sections: { id: string; label: string }[];
   liveUrl?: string;
   modeAction?: { label: string; onClick: () => void };
+  placement?: 'bottom' | 'side';
 }
 
-export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavProps) {
+export default function BottomNav({ sections, liveUrl, modeAction, placement = 'side' }: BottomNavProps) {
   const navRef = useRef<HTMLElement>(null);
   const progress = useReadingProgress();
+  const isDesktopSideRail = useMediaQuery('(min-width: 1024px)');
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
+
+  useEffect(() => {
+    const sideRailClass = 'case-side-nav';
+    document.body.classList.toggle(sideRailClass, placement === 'side');
+    return () => document.body.classList.remove(sideRailClass);
+  }, [placement]);
 
   const showNav = useCallback(() => {
     const nav = navRef.current;
@@ -29,6 +38,7 @@ export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavPr
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
+    nav.classList.add('is-before-hero');
 
     // --- Active section tracking ---
     const links = nav.querySelectorAll<HTMLAnchorElement>('.cs-bnav-link:not(.cs-bnav-live)');
@@ -48,9 +58,15 @@ export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavPr
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              links.forEach((l) => l.classList.remove('active'));
+              links.forEach((l) => {
+                l.classList.remove('active');
+                l.removeAttribute('aria-current');
+              });
               const match = pairs.find((p) => p.section === entry.target);
-              if (match) match.link.classList.add('active');
+              if (match) {
+                match.link.classList.add('active');
+                match.link.setAttribute('aria-current', 'true');
+              }
             }
           });
         },
@@ -76,6 +92,22 @@ export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavPr
       footerObserver.observe(footer);
     }
 
+    // --- Keep case controls out of the opening hero ---
+    let updateHeroGuard: (() => void) | undefined;
+    const hero = document.querySelector('.proj-visual-hero') || document.querySelector('.project-header');
+    if (hero) {
+      updateHeroGuard = () => {
+        const rect = hero.getBoundingClientRect();
+        const releaseLine = 0;
+        nav.classList.toggle('is-before-hero', rect.bottom > releaseLine);
+      };
+      updateHeroGuard();
+      window.addEventListener('scroll', updateHeroGuard, { passive: true });
+      window.addEventListener('resize', updateHeroGuard);
+    } else {
+      nav.classList.remove('is-before-hero');
+    }
+
     // --- Auto-hide on scroll pause ---
     window.addEventListener('scroll', showNav, { passive: true });
     // Initial idle state after mount
@@ -84,6 +116,10 @@ export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavPr
     return () => {
       sectionObserver?.disconnect();
       footerObserver?.disconnect();
+      if (updateHeroGuard) {
+        window.removeEventListener('scroll', updateHeroGuard);
+        window.removeEventListener('resize', updateHeroGuard);
+      }
       window.removeEventListener('scroll', showNav);
       clearTimeout(hideTimer.current);
     };
@@ -107,9 +143,11 @@ export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavPr
   return (
     <nav
       ref={navRef}
-      className="cs-bottom-nav surface-glass"
+      className={`cs-bottom-nav cs-bottom-nav--${placement} surface-glass`}
       id="cs-bottom-nav"
       aria-label="Case study sections"
+      aria-orientation={placement === 'side' && isDesktopSideRail ? 'vertical' : 'horizontal'}
+      style={{ '--cs-bnav-progress': `${progress}%` } as React.CSSProperties}
       onMouseEnter={() => {
         clearTimeout(hideTimer.current);
         navRef.current?.classList.remove('is-idle');
@@ -119,9 +157,20 @@ export default function BottomNav({ sections, liveUrl, modeAction }: BottomNavPr
           navRef.current?.classList.add('is-idle');
         }, 2500);
       }}
+      onFocus={() => {
+        clearTimeout(hideTimer.current);
+        navRef.current?.classList.remove('is-idle');
+      }}
+      onBlur={(e) => {
+        if (navRef.current?.contains(e.relatedTarget as Node)) return;
+        hideTimer.current = setTimeout(() => {
+          navRef.current?.classList.add('is-idle');
+        }, 2500);
+      }}
     >
+      <span className="cs-bnav-kicker">Case controls</span>
       {/* Reading progress bar */}
-      <div className="cs-bnav-progress" style={{ width: `${progress}%` }} />
+      <div className="cs-bnav-progress" />
 
       {sections.map((s) => (
         <a

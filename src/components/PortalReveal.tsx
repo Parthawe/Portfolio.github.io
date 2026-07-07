@@ -12,13 +12,14 @@ interface Props {
   images: string[]
   alt?: string
   className?: string
+  fit?: 'cover' | 'contain'
 }
 
 interface Blob {
   x: number; y: number; r: number; life: number; max: number
 }
 
-export default function PortalReveal({ images, alt = '', className = '' }: Props) {
+export default function PortalReveal({ images, alt = '', className = '', fit = 'cover' }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef(0)
@@ -88,9 +89,24 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
     resize()
     window.addEventListener('resize', resize)
 
-    const coverDraw = (target: CanvasRenderingContext2D, img: HTMLImageElement, tw: number, th: number) => {
+    const drawImageFit = (
+      target: CanvasRenderingContext2D,
+      img: HTMLImageElement,
+      tw: number,
+      th: number,
+      mode: 'cover' | 'contain',
+    ) => {
       if (!img.complete || !img.naturalWidth) return
       const iw = img.naturalWidth, ih = img.naturalHeight
+
+      if (mode === 'contain') {
+        const scale = Math.min(tw / iw, th / ih)
+        const dw = iw * scale
+        const dh = ih * scale
+        target.drawImage(img, 0, 0, iw, ih, (tw - dw) / 2, (th - dh) / 2, dw, dh)
+        return
+      }
+
       const cr = tw / th, ir = iw / ih
       let sx = 0, sy = 0, sw = iw, sh = ih
       if (ir > cr) { sw = ih * cr; sx = (iw - sw) / 2 }
@@ -159,13 +175,13 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
         tmpCtx.globalCompositeOperation = 'source-over'
         tmpCtx.drawImage(mask, 0, 0)
         tmpCtx.globalCompositeOperation = 'source-in'
-        coverDraw(tmpCtx, revealImg, w, h)
+        drawImageFit(tmpCtx, revealImg, w, h, fit)
       }
 
       // Final draw
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, w, h)
-      coverDraw(ctx, loadedImgs.current[0], w, h)
+      drawImageFit(ctx, loadedImgs.current[0], w, h, fit)
       if (blobs.length > 0) ctx.drawImage(tmp, 0, 0)
 
       rafRef.current = requestAnimationFrame(loop)
@@ -176,7 +192,7 @@ export default function PortalReveal({ images, alt = '', className = '' }: Props
       cancelAnimationFrame(rafRef.current)
       window.removeEventListener('resize', resize)
     }
-  }, [images])
+  }, [images, fit])
 
   return (
     <div

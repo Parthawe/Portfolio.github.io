@@ -5,8 +5,6 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsStatGrid from '../../components/case-study/CsStatGrid'
-import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -21,12 +19,12 @@ export default function BallahCodePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Ballah Code &middot; Parth Pawar" />
         <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer, not a chatbot." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/ballah-code.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/ballah-code.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#E04832' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#6A4FC0' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -52,9 +50,9 @@ export default function BallahCodePage() {
           </CsBody>
 
           <div className="cs-slide reveal">
-            <img src="/Portfolio.github.io/Assets/images/ballah-code.webp" alt="Desktop app interface" loading="lazy" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
+            <img src="/Portfolio.github.io/Assets/images/ballah-code-site.png" alt="Ballah Code landing page: 'Your AI tools keep forgetting what you said' headline above the editor showing an Architect agent delegating a validation task" loading="lazy" decoding="async" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
           </div>
-          <p className="cs-caption">Desktop app interface &mdash; the AI-native development environment</p>
+          <p className="cs-caption">The launch page leads with the pain, not the product &mdash; then shows the Architect delegating real work</p>
         </CsSection>
 
         {/* 02, The Problem */}
@@ -62,40 +60,26 @@ export default function BallahCodePage() {
           <CsBody>
             <p>Existing AI coding tools treat context as disposable and AI as replaceable. Every conversation starts from zero. There&rsquo;s no persistent memory of why decisions were made, no living documents that evolve with the codebase, and no structured delegation between architect-level thinking and implementation-level execution.</p>
           </CsBody>
-
-          <CsPullquote
-            quote="Every conversation starts from zero. There is no persistent memory of why decisions were made, no living documents that evolve with the codebase."
-          />
         </CsSection>
 
         {/* 03, Design Decisions */}
-        <CsSection id="cs-decisions" label="03 &mdash; Design Decisions" title="Two-Process Architecture, One Seamless Experience">
+        <CsSection id="cs-decisions" label="03 &mdash; Design Decisions" title="A Layout That Keeps the Developer in Flow">
           <CsBody>
-            <p>The interface is built around a two-process architecture: a Bun backend handling AI calls, file system operations, and tool execution, connected to a React frontend in a native WebKit webview via typed RPC. The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. Every interaction is designed to keep the developer in flow state while giving the AI full context.</p>
+            <p>The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. Every interaction is designed to keep the developer in flow state while giving the AI full context.</p>
           </CsBody>
         </CsSection>
 
         {/* 04, Technical Architecture */}
         <CsSection id="cs-architecture" label="04 &mdash; Technical Architecture" title="Native Performance, Minimal Footprint">
           <CsBody>
-            <p>Built with Electrobun for tiny ~14MB bundles and native performance. Features 17 production-ready AI tools (read, write, search, execute, diagnose, screenshot), a custom agentic loop using direct Anthropic Messages API streaming (not framework abstractions), prompt caching for long contexts, and workspace multiplexing for parallel workstreams. The standalone @ballah/agent package can run in CLI, desktop, or any frontend.</p>
+            <p>Under the hood is a two-process architecture: a Bun backend handling AI calls, file system operations, and tool execution, connected to a React frontend in a native WebKit webview via typed RPC. Built with Electrobun for tiny ~14MB bundles and native performance. Features 17 production-ready AI tools (read, write, search, execute, diagnose, screenshot), a custom agentic loop using direct Anthropic Messages API streaming (not framework abstractions), prompt caching for long contexts, and workspace multiplexing for parallel workstreams. The standalone @ballah/agent package can run in CLI, desktop, or any frontend.</p>
           </CsBody>
-
-          <CsStatGrid stats={[
-            { label: 'Bundle Size', value: '~14MB' },
-            { label: 'AI Tools', value: '17' },
-            { label: 'Runtime', value: 'Bun' },
-            { label: 'Framework', value: 'Electrobun' },
-          ]} />
         </CsSection>
 
         {/* 05, Key Features */}
         <CsSection id="cs-features" label="05 &mdash; Key Features" title="Built for Real Engineering Workflows">
           <CsFeatureGrid features={[
             { title: 'Multi-Workspace, Multi-Chat', desc: 'Persistent history across workspaces and chat sessions. Switch between projects without losing context or conversation state.' },
-            { title: '17 AI Tools', desc: 'Production-ready tools for code interaction \u2014 read, write, search, execute, diagnose. The AI operates on your codebase with the same access a senior engineer would have.' },
-            { title: 'Custom Streaming Agent Loop', desc: 'Direct Anthropic Messages API streaming with per-step token logging. No framework abstractions between you and the model.' },
-            { title: 'Typed RPC Bridge', desc: 'Type-safe communication between the Bun backend and the React webview. Full end-to-end type safety from AI response to UI render.' },
             { title: 'Integrated Terminal', desc: 'PTY session management with full terminal emulation. The AI can execute commands, and you can see everything it does in real time.' },
             { title: 'Cost Tracking & Model Flexibility', desc: 'Real-time progress indicators and cost tracking per conversation. Switch between Claude, Gemini, and OpenAI on a per-chat basis.' },
           ]} />
@@ -141,7 +125,7 @@ export default function BallahCodePage() {
 
       </main>
 
-      <NextProject slug="keyboard-project" title="BreakGen" image="/Portfolio.github.io/Assets/images/keyboard.jpg" />
+      <NextProject slug="breakgen" title="BreakGen" image="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png" />
       <Footer />
     </>
   )

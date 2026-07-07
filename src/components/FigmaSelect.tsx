@@ -1,5 +1,5 @@
 /**
- * Figma-style selection overlay: blue border + 4 white-filled corner handles.
+ * Figma-style selection overlay: blue outline + 4 corner handles.
  * Place inside any element with className="figma-hover".
  */
 export default function FigmaSelect() {

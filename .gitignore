@@ -19,7 +19,8 @@ public/Assets/Projects/CueTV/
 public/Assets/Projects/Transfi/
 public/Assets/Projects/ai-voice/
 public/Assets/Projects/health-app/
-public/Assets/images/logos/transfi-logo.png
+# The public TransFi wordmark (from transfi.com's own site) is allowed for
+# the homepage client strip — only project/case-study material stays private.
 public/Assets/featured/transfi-hover.gif
 public/Assets/images/ai-voice.webp
 public/Assets/images/cuetv.jpg

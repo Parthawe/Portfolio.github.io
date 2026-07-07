@@ -1,0 +1,296 @@
+.a11y-page {
+  position: relative;
+  min-height: 100vh;
+  color: var(--ink);
+}
+
+.a11y-hero {
+  padding: calc(var(--nav-h) + 7rem) 0 var(--space-12);
+}
+
+.a11y-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: end;
+}
+
+.a11y-hero__copy {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 72ch;
+}
+
+.a11y-kicker {
+  width: fit-content;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.a11y-hero h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(3.25rem, 10vw, 8.8rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.a11y-hero p,
+.a11y-panel p {
+  margin: 0;
+  max-width: 68ch;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  line-height: 1.7;
+  color: var(--ink-70);
+}
+
+.a11y-hero__review {
+  display: grid;
+  gap: 0.25rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+}
+
+.a11y-hero__review span,
+.a11y-hero__review small,
+.a11y-status-card__head span,
+.a11y-nda-link small,
+.a11y-reference small,
+.a11y-report li {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.a11y-hero__review strong {
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.a11y-hero__review span,
+.a11y-hero__review small {
+  color: var(--ink-40);
+}
+
+.a11y-section {
+  padding: var(--space-8) 0;
+}
+
+.a11y-section--compact {
+  padding-bottom: calc(var(--space-16) + env(safe-area-inset-bottom));
+}
+
+.a11y-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-4);
+}
+
+.a11y-status-card,
+.a11y-panel,
+.a11y-report {
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+}
+
+.a11y-status-card {
+  display: grid;
+  gap: var(--space-5);
+  min-height: 15rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.a11y-status-card__head {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.a11y-status-card__head span {
+  width: fit-content;
+  padding: 0.32rem 0.55rem;
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-pill);
+  color: var(--ink-50);
+}
+
+.a11y-status-card--handled .a11y-status-card__head span {
+  color: color-mix(in srgb, var(--green) 70%, var(--ink) 30%);
+  border-color: color-mix(in srgb, var(--green) 34%, transparent);
+  background: color-mix(in srgb, var(--green) 10%, transparent);
+}
+
+.a11y-status-card--remaining .a11y-status-card__head span {
+  color: color-mix(in srgb, var(--select-blue) 72%, var(--ink) 28%);
+  border-color: color-mix(in srgb, var(--select-blue) 30%, transparent);
+  background: color-mix(in srgb, var(--select-blue) 8%, transparent);
+}
+
+.a11y-status-card h2,
+.a11y-panel h2,
+.a11y-report h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.a11y-status-card p {
+  align-self: end;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--ink-70);
+}
+
+.a11y-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.a11y-panel {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+  padding: clamp(1.1rem, 3vw, 2rem);
+}
+
+.a11y-nda-list,
+.a11y-reference-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.a11y-nda-link,
+.a11y-reference {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+  min-height: 4rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--bg) 64%, transparent);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color var(--dur-base), background var(--dur-base), transform var(--dur-base);
+}
+
+.a11y-nda-link:hover,
+.a11y-reference:hover,
+.a11y-contact:hover {
+  border-color: var(--ink-15);
+  background: color-mix(in srgb, var(--surface) 86%, var(--bg-alt) 14%);
+  transform: translateY(-1px);
+}
+
+.a11y-nda-link span,
+.a11y-reference span {
+  font-size: var(--text-base);
+  line-height: 1.25;
+}
+
+.a11y-nda-link small,
+.a11y-reference small {
+  color: var(--ink-40);
+  line-height: 1.45;
+}
+
+.a11y-report {
+  display: grid;
+  gap: var(--space-6);
+  padding: clamp(1.1rem, 3vw, 2rem);
+}
+
+.a11y-report ul {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 78ch;
+}
+
+.a11y-report li {
+  position: relative;
+  padding-left: 1.15rem;
+  line-height: 1.55;
+  color: var(--ink-70);
+}
+
+.a11y-report li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62rem;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--ink-30);
+}
+
+.a11y-contact {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 2.75rem;
+  padding: 0.72rem 1rem;
+  border: 1px solid var(--ink-12);
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .a11y-hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.34fr);
+  }
+
+  .a11y-hero__review {
+    justify-self: end;
+  }
+
+  .a11y-two-col {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .a11y-hero {
+    padding-top: calc(var(--nav-h) + 9rem);
+  }
+}
+
+@media (max-width: 540px) {
+  .a11y-hero {
+    padding-top: calc(var(--nav-h) + 2rem);
+  }
+
+  .a11y-status-card {
+    min-height: 12rem;
+  }
+
+  .a11y-contact {
+    width: 100%;
+  }
+}

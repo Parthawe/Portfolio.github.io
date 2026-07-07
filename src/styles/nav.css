@@ -8,13 +8,15 @@
   display: flex;
   align-items: flex-start;
   pointer-events: none;
-  padding: calc(var(--pad) / 2);
+  --nav-edge-inset: max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem));
+  --nav-block-inset: max(var(--chrome-block), calc(var(--ruler-block-offset, 0px) + 0.75rem));
+  padding: var(--nav-block-inset) var(--nav-edge-inset) var(--chrome-block);
 }
 
 .nav-inner {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   pointer-events: none;
 }
@@ -65,6 +67,21 @@
   pointer-events: auto;
 }
 
+.nav-canvas-panel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  min-height: 40px;
+  padding: 0.25rem;
+  border-radius: var(--radius-pill);
+  pointer-events: auto;
+  transition: background var(--dur-base), border-color var(--dur-base), box-shadow var(--dur-base);
+}
+
+.nav-theme-wrap {
+  display: flex;
+}
+
 /* Desktop theme toggle in nav-right */
 .nav-right > .theme-toggle {
   width: 36px;
@@ -86,18 +103,35 @@
 }
 
 .nav-grid-toggle {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-pill);
+  min-width: 2.35rem;
+  height: 2rem;
+  border: 0;
+  border-radius: calc(var(--radius-pill) - 0.2rem);
+  background: transparent;
   color: var(--ink-40);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--dur-base), border-color var(--dur-base);
-  padding: 0;
+  gap: 0.36rem;
+  transition: color var(--dur-base), background var(--dur-base), box-shadow var(--dur-base), transform var(--dur-base);
+  padding: 0 0.58rem;
   flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
 }
+
+.nav-grid-toggle svg {
+  flex: 0 0 auto;
+}
+
+.nav-grid-toggle span {
+  line-height: 1;
+}
+
 .nav-right > .ambient-ui {
   position: relative;
 }
@@ -106,15 +140,34 @@
 }
 .nav-grid-toggle:hover {
   color: var(--ink);
-  --surface-glass-bg: color-mix(in srgb, var(--glass-subtle-bg) 84%, var(--ink-04) 16%);
-  --surface-glass-border: var(--ink-15);
+  background: var(--ink-04);
 }
 .nav-grid-toggle--active {
-  color: var(--select-blue);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 72%, var(--select-blue) 12%);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--select-blue) 28%, transparent);
+}
+
+.nav-grid-toggle:focus-visible {
+  outline: 2px solid var(--select-blue);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1100px) {
+  .nav-grid-toggle span {
+    display: none;
+  }
+
+  .nav-grid-toggle {
+    width: 2rem;
+    min-width: 2rem;
+    padding: 0;
+  }
 }
 @media (max-width: 768px) {
-  .nav-grid-toggle { display: none; }
+  .nav-canvas-panel { display: none; }
   .ambient-ui { display: none; }
+  .nav-theme-wrap { display: none; }
 }
 
 /* Desktop CTA, pill button style */
@@ -151,13 +204,64 @@
   transform: translateY(-1px);
 }
 
+body.nav-on-dark .nav-left-pill.surface-glass,
+body.nav-on-dark .nav-canvas-panel.surface-glass,
+body.nav-on-dark .nav-theme-wrap .theme-toggle.surface-glass,
+body.nav-on-dark .nav-right > .ambient-ui .ambient-toggle.surface-glass,
+body.nav-on-dark .nav-right > .ambient-ui .ambient-note.surface-glass {
+  --surface-glass-bg: rgba(236, 248, 250, 0.12);
+  --surface-glass-border: rgba(236, 248, 250, 0.18);
+  --surface-glass-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+  --surface-glass-highlight: rgba(255, 255, 255, 0.16);
+  color: rgba(247, 252, 253, 0.78);
+}
+
+body.nav-on-dark .nav-logo,
+body.nav-on-dark .nav-pill-link,
+body.nav-on-dark .nav-grid-toggle,
+body.nav-on-dark .nav-right > .theme-toggle,
+body.nav-on-dark .nav-right > .ambient-ui .ambient-toggle,
+body.nav-on-dark .nav-right > .ambient-ui .ambient-note {
+  color: rgba(247, 252, 253, 0.78);
+}
+
+body.nav-on-dark .nav-pill-link.active {
+  color: #102434;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.16);
+}
+
+body.nav-on-dark .nav-pill-link:hover,
+body.nav-on-dark .nav-logo:hover,
+body.nav-on-dark .nav-grid-toggle:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+body.nav-on-dark .nav-grid-toggle--active {
+  color: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+body.nav-on-dark .nav-cta {
+  color: #102434;
+  border-color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+body.nav-on-dark .nav-toggle span {
+  background: rgba(247, 252, 253, 0.9);
+}
+
 /* ── Scrolled state, more opaque glass ── */
 .nav.scrolled .nav-left-pill {
   --surface-glass-bg: var(--glass-scrolled);
   --surface-glass-border: var(--glass-scrolled-border);
   --surface-glass-shadow: var(--glass-scrolled-shadow);
 }
-.nav.scrolled :is(.nav-grid-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
+.nav.scrolled :is(.nav-canvas-panel, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-bg: var(--glass-scrolled);
   --surface-glass-border: var(--glass-scrolled-border);
   --surface-glass-shadow: var(--glass-scrolled-shadow);
@@ -168,7 +272,7 @@
   transform: scale(0.97);
   --surface-glass-blur: blur(20px) saturate(1.6);
 }
-.nav.scrolled-deep :is(.nav-grid-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
+.nav.scrolled-deep :is(.nav-canvas-panel, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-blur: blur(18px) saturate(1.55);
 }
 .nav.scrolled-deep .nav-cta {
@@ -188,7 +292,7 @@
   cursor: pointer;
   background: none;
   border: none;
-  margin-right: -12px; /* visual alignment stays tight, hit area is 44px */
+  margin-right: 0;
 }
 .nav-toggle span {
   display: block;
@@ -252,7 +356,22 @@
   opacity: 0.4;
 }
 
-/* ── Dark mode ── */
+/* ── Dark mode ──
+   Pills stay near-transparent like the original design (the full-width
+   .nav.scrolled band is gone); a backdrop blur keeps the labels readable
+   over scrolled content without adding a visible surface. */
+[data-theme="dark"] .nav-left-pill.surface-glass,
+[data-theme="dark"] .nav-canvas-panel.surface-glass,
+[data-theme="dark"] .nav-theme-wrap .theme-toggle.surface-glass,
+[data-theme="dark"] .nav-right > .ambient-ui .ambient-toggle.surface-glass,
+[data-theme="dark"] .nav-right > .ambient-ui .ambient-note.surface-glass {
+  --surface-glass-bg: transparent;
+  --surface-glass-border: var(--ink-08);
+  --surface-glass-shadow: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 [data-theme="dark"] .nav-pill-link:hover {
   background: var(--ink-08);
 }
@@ -282,3 +401,65 @@
 }
 
 /* Responsive handled in responsive.css */
+
+/* ── Work tab expansion: the four Work views surface in the pill while
+   you're on /work, so the modes are discoverable before you find the
+   in-page switcher ── */
+.nav-work-views {
+  display: flex;
+  align-items: center;
+  gap: 0.05rem;
+  margin-left: 0.15rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--ink-10);
+  animation: nav-work-views-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes nav-work-views-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.nav-work-view {
+  padding: 0.32rem 0.55rem;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-50);
+  white-space: nowrap;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.nav-work-view:hover {
+  color: var(--ink);
+}
+
+.nav-work-view.is-active {
+  color: var(--ink);
+  background: var(--ink-08);
+}
+
+body.nav-on-dark .nav-work-view {
+  color: rgba(247, 252, 253, 0.6);
+}
+
+body.nav-on-dark .nav-work-view:hover,
+body.nav-on-dark .nav-work-view.is-active {
+  color: rgba(247, 252, 253, 0.95);
+}
+
+body.nav-on-dark .nav-work-view.is-active {
+  background: rgba(247, 252, 253, 0.12);
+}
+
+/* The pill runs out of room on smaller screens; the in-page switcher
+   still covers view changes there. */
+@media (max-width: 860px) {
+  .nav-work-views {
+    display: none;
+  }
+}

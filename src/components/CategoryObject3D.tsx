@@ -11,6 +11,7 @@ import {
   GlassCrystal,
 } from './HeroObjects3D';
 import { useThemeMode } from '../hooks/useThemeMode';
+import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
 
 const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolean }>> = {
   installations: TrussStructure,
@@ -22,6 +23,20 @@ const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolea
   ai: LensAssembly,
   'ai-wearables': LensAssembly,
   'creative-tech': GlassCrystal,
+};
+
+// The objects are modeled at slightly different world sizes (the truss cube's
+// corners reach ~0.87 units where the others stay near ~0.5), so normalize
+// per slug — every object should read the same size in the same slot.
+const OBJECT_SCALE: Record<string, number> = {
+  installations: 0.76,
+  'creative-tech': 1.42,
+  'design-for-good': 1.16,
+  'ux-design': 1.12,
+  fintech: 1.12,
+  crypto: 1.12,
+  ai: 1.08,
+  'ai-wearables': 1.08,
 };
 
 interface Props {
@@ -129,7 +144,9 @@ function SceneInner({ slug, dark, mouse }: { slug: string; dark: boolean; mouse:
           <sphereGeometry args={[1.2, 8, 8]} />
           <meshBasicMaterial />
         </mesh>
-        <Component dark={dark} hovered={hovered} />
+        <group scale={OBJECT_SCALE[slug] ?? 1}>
+          <Component dark={dark} hovered={hovered} />
+        </group>
       </group>
     </Float>
   );
@@ -139,24 +156,45 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
   const themeDark = useThemeMode();
   const dark = darkProp ?? themeDark;
   const mouseRef = useRef({ x: 0, y: 0 });
+  const webglOk = useWebGLAvailable();
 
   if (!CATEGORY_OBJECTS[slug]) return null;
+
+  // No WebGL: this is a decorative accent, so collapse it gracefully
+  // rather than letting R3F throw and take down the page.
+  if (!webglOk) return null;
+
+  // Hover states scale parts of the objects up to ~1.6x, and Float/drag add
+  // extra travel — so the canvas draws on a larger bleed area centered on the
+  // layout slot. The camera backs off by the same factor, keeping the resting
+  // on-screen size identical while animation never clips at the canvas edge.
+  const BLEED = 1.35
 
   return (
     <div
       className={className}
       style={{
+        position: 'relative',
         width: size,
         height: size,
-        pointerEvents: 'auto',
+        pointerEvents: 'none',
         ...style,
       }}
     >
       <Canvas
-        camera={{ position: [0, 0, 3.5], fov: 35 }}
+        camera={{ position: [0, 0, 3.5 * BLEED], fov: 35 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.1 }}
-        style={{ background: 'transparent' }}
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          width: size * BLEED,
+          height: size * BLEED,
+          transform: 'translate(-50%, -50%)',
+          background: 'transparent',
+          pointerEvents: 'auto',
+        }}
       >
         <ambientLight intensity={dark ? 0.1 : 0.2} />
         <directionalLight position={[5, 8, 6]} intensity={dark ? 1.2 : 1} color={dark ? '#e8e8ff' : '#ffffff'} />
@@ -164,7 +202,7 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
         <pointLight intensity={dark ? 0.6 : 0.4} color="#ffffff" distance={15} position={[0, 4, 3]} />
         <CursorTracker mouse={mouseRef} />
         <Suspense fallback={null}>
-          <Environment preset="studio" environmentIntensity={dark ? 0.6 : 0.8} />
+          <Environment files="/Portfolio.github.io/Assets/hdri/studio_small_03_1k.hdr" environmentIntensity={dark ? 0.6 : 0.8} />
           <SceneInner slug={slug} dark={dark} mouse={mouseRef} />
         </Suspense>
       </Canvas>

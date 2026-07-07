@@ -17,12 +17,12 @@ export default function VishwaConclavePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VishwaConclave · Parth Pawar" />
         <meta property="og:description" content="Creative direction, branding, and web design for India's first multidisciplinary student conference." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#6B2FA0' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#7B2FBF' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"

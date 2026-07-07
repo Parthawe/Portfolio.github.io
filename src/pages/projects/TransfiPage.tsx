@@ -3,14 +3,36 @@ import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
+import NdaPublicStory from '../../components/case-study/NdaPublicStory'
+import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const TRANSFI_ASSETS = '/Portfolio.github.io/Assets/Projects/Transfi/public'
+
+const TRANSFI_PUBLIC_VISUALS = [
+  {
+    src: `${TRANSFI_ASSETS}/payment-gateway.png`,
+    alt: 'Public TransFi payment gateway preview showing a secure send payment card.',
+    label: 'Payment gateway',
+  },
+  {
+    src: `${TRANSFI_ASSETS}/on-ramp-flow.png`,
+    alt: 'Public TransFi on-ramp interface preview with banking and stablecoin payment UI.',
+    label: 'On-ramp flow',
+  },
+  {
+    src: `${TRANSFI_ASSETS}/buy-crypto-widget.png`,
+    alt: 'Public TransFi buy crypto widget with fiat and BTC inputs.',
+    label: 'Buy crypto widget',
+  },
+]
+
 export default function TransfiPage() {
   const sections = [
-    { id: 'cs-summary', label: 'TL;DR' },
-    { id: 'cs-overview', label: 'Overview' },
+    { id: 'cs-public-story', label: 'Glimpse' },
+    { id: 'cs-process', label: 'Process' },
+    { id: 'case-study-access-transfi-project', label: 'Access' },
   ]
 
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
@@ -34,12 +56,25 @@ export default function TransfiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Crypto payment infrastructure redesign for multi-market merchant flows." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#232D95' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{
+        // TransFi deep blue (#232D95) drives the accent, outer gradient, and hero blob.
+        '--project-color': '#232D95',
+        '--case-outer-1': '#080b1f',
+        '--case-outer-2': '#111741',
+        '--case-outer-3': '#161d4a',
+        '--case-outer-glow-a': 'rgba(64, 82, 214, 0.30)',
+        '--case-outer-glow-b': 'rgba(35, 45, 149, 0.38)',
+        '--case-hero-orb-b': 'rgba(140, 152, 232, 0.24)',
+        '--case-hero-blob-a': 'rgba(96, 112, 226, 0.30)',
+        '--case-hero-blob-b': 'rgba(24, 32, 112, 0.36)',
+        '--case-hero-blob-c': 'rgba(168, 178, 238, 0.22)',
+        '--case-hero-blob-glow': 'rgba(214, 220, 248, 0.28)',
+      } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -47,48 +82,40 @@ export default function TransfiPage() {
           backLabel="Back to Work"
           tags={['Fintech', 'UX', 'Web3', 'Brand']}
           title="TransFi"
-          subtitle="Turned complex crypto payment rails into a merchant product teams could onboard, trust, and run across web and mobile."
+          subtitle="Made crypto payment infrastructure easier for merchant teams to understand, onboard, and trust."
           info={[
             { label: 'Company', value: 'TransFi' },
-            { label: 'Scope', value: 'Product Design, Brand Identity, Design Systems' },
+            { label: 'Scope', value: 'Product Design, Brand, Systems' },
             { label: 'Role', value: 'Lead Product Designer' },
             { label: 'Duration', value: '2022\u201323' },
-            { label: 'Location', value: 'Bangalore, India' },
           ]}
           liveUrl="https://www.transfi.com"
           showHeaderSummary={false}
         />
 
-        <ProjectQuickSummary
+        <NdaPublicStory
           slug="transfi-project"
-          viewMode="summary"
-          onViewModeChange={handleViewModeChange}
-          fullCaseStudyEnabled
+          headline="Trust made operational."
+          lede="The public glimpse shows the shape of the redesign without exposing internal payment flows, market constraints, or implementation detail."
+          visuals={TRANSFI_PUBLIC_VISUALS}
         />
 
-        {/* Overview section with label-row layout */}
-        <section className="cs-section reveal" id="cs-overview">
-          <div className="wrap">
-            <h2 className="cs-display" style={{ maxWidth: '18ch' }}>Enterprise crypto had the rails. It did not yet have a product operators could trust.</h2>
-
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">TransFi sells the infrastructure layer for on-ramp, off-ramp, and cross-border crypto payments. My job was to turn that technically powerful but opaque system into a product merchants could actually understand: a clearer dashboard, a cleaner buy-crypto widget, and a design language that made compliance-heavy flows feel legible instead of risky.</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">The Challenge</span>
-              <span className="cs-label-row-val">The product was competing in a category where the underlying rails matter less than trust. Enterprise teams needed to evaluate fees, status, and settlement logic quickly, but the existing experience assumed blockchain literacy and buried the business story under technical noise. That slowed onboarding and made the product feel riskier than it needed to be.</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">I led product design across research synthesis, information architecture, merchant flows, UI, and the component system while partnering closely on product strategy and sprint priorities.</span>
-            </div>
-            <div className="cs-label-row" style={{ borderBottom: 'none' }}>
-              <span className="cs-label-row-key">Visible Outcome</span>
-              <span className="cs-label-row-val">The public layer of this case study shows the product framing, the business problem, and the design direction behind the dashboard and widget redesign. The deeper research inputs, internal constraints, and detailed shipped flows are shared directly after access is approved.</span>
-            </div>
-          </div>
-        </section>
+        <NdaProcess
+          decisions={[
+            {
+              move: 'Turned an abstract “trust” goal into operational interface behaviour.',
+              why: 'Trust is easy to claim and hard to design. I translated it into concrete, testable rules — what the interface shows, when it confirms, and how it handles the moments money is at risk — so it became something the product does, not says.',
+            },
+            {
+              move: 'Prioritised the redesign around real payment-flow risk.',
+              why: 'With finite time I focused effort where a confused or wrong action carried the highest cost, rather than spreading polish evenly. The visible shape of the redesign followed the risk map, with patterns that held up across markets so merchant teams saw a consistent experience without the internal complexity.',
+            },
+          ]}
+          shift={{
+            before: 'Payment flows where trust was asserted, and users carried the uncertainty.',
+            after: 'Flows where interface behaviour makes each step legible, reviewable, and safe by default.',
+          }}
+        />
 
         <NdaGate slug="transfi-project" />
 
@@ -96,6 +123,7 @@ export default function TransfiPage() {
         <BottomNav
           sections={sections}
           liveUrl="https://www.transfi.com"
+          placement="side"
           modeAction={{
             label: 'Request full case study',
             onClick: () => handleViewModeChange('full'),

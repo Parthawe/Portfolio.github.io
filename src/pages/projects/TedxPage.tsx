@@ -1,11 +1,9 @@
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
-import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsCredits from '../../components/case-study/CsCredits'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -18,7 +16,7 @@ export default function TedxPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TEDx VITPUNE &middot; Parth Pawar" />
         <meta property="og:description" content="Art Director for TEDx VIT Pune, led 65+ people to build a parallax cityscape stage for 800+ attendees." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/tedx.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/tedx.jpg" />
       </Helmet>
 
       <Nav />
@@ -79,12 +77,6 @@ export default function TedxPage() {
                   <p>Bold, geometric type for headlines paired with a clean sans-serif for body text. The typographic hierarchy was designed to work across print banners, projected slides, and stage signage&mdash;maintaining legibility at scales from phone screens to 12-foot backdrops.</p>
                 </CsBody>
               </div>
-              <div>
-                <p className="cs-section-label" style={{ marginBottom: '0.5rem' }}>Collateral</p>
-                <CsBody>
-                  <p>The system unified social media graphics, event programs, speaker introduction cards, venue signage, attendee badges, and merchandise. Every touchpoint reinforced the same visual language, creating a cohesive brand experience from the moment attendees saw the event online to the moment they walked through the venue doors.</p>
-                </CsBody>
-              </div>
             </div>
           </div>
         </section>
@@ -93,17 +85,16 @@ export default function TedxPage() {
         <CsSection id="cs-stage" label="03 &mdash; Stage Design" title="Parallax Cityscape">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>The stage concept was a layered parallax cityscape&mdash;multiple planes of building silhouettes at varying depths that created an illusion of spatial depth when lit from behind. As speakers moved across the stage, the relationship between the layers shifted, making the backdrop feel alive rather than static.</p>
-            <p>The design went through three major iterations. Initial sketches explored abstract geometric forms, but user testing with the organizing committee revealed that a recognizable urban skyline would resonate more strongly with the audience and provide better visual framing for speakers on camera.</p>
-            <p>The final design featured five distinct depth layers, each cut from different materials to vary opacity and texture. The deepest layer was solid MDF painted matte black; mid-layers were semi-transparent fabric stretched over wooden frames; the foreground layer was detailed laser-cut acrylic. When backlit with programmable LEDs, the layers produced a subtle parallax effect visible from every seat in the auditorium.</p>
+            <p>The design went through several iterations with the organizing committee. Early sketches explored abstract geometric forms, but a recognizable urban skyline won out&mdash;it read instantly from the back rows and framed speakers better on camera.</p>
+            <p>The final stage was built as clusters of box columns at varying heights and depths, arranged in receding rows so the skyline shifted against itself as speakers moved across the stage. Lit in blues against the red TEDx lettering, and mounted around a fully functional rotating stage, the composition produced the parallax effect from every seat in the auditorium.</p>
           </CsBody>
         </CsSection>
 
         {/* Stage Design Gallery */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display" style={{ opacity: 0.25, fontSize: 'clamp(3rem,8vw,7rem)', marginBottom: '2rem' }}>Stage Design</h2>
             <figure className="cs-img-full" style={{ background: 'transparent' }}>
-              <img src="/Portfolio.github.io/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="TEDxVITPune stage design, speakers and performers on the parallax cityscape stage" loading="lazy" />
+              <img src="/Portfolio.github.io/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="The finished stage in use: a host, a speaker, and a guitarist performing in front of the blue-lit column cityscape and red TEDxVITPune lettering" loading="lazy" decoding="async" />
             </figure>
           </div>
         </section>
@@ -120,9 +111,9 @@ export default function TedxPage() {
         {/* Process */}
         <CsSection id="cs-process" label="05 &mdash; Process" title="Eight Weeks, Concept to Curtain">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p><strong>Weeks 1&ndash;2: Concept &amp; Brand.</strong> Developed the parallax cityscape concept and complete brand identity system. Presented three stage directions to the organizing committee; the parallax approach was selected unanimously. Simultaneously recruited and onboarded the full volunteer team.</p>
+            <p><strong>Weeks 1&ndash;2: Concept &amp; Brand.</strong> Developed the parallax cityscape concept and complete brand identity system. Presented three stage directions to the organizing committee; the parallax approach was selected unanimously.</p>
             <p><strong>Weeks 3&ndash;4: Structural Design.</strong> Translated the stage concept into engineering drawings. Worked with local fabricators to source materials and validate structural feasibility. Built a 1:10 scale model to test sightlines and lighting angles from every section of the auditorium.</p>
-            <p><strong>Weeks 5&ndash;6: Fabrication.</strong> Full-scale construction began. Columns were built from wooden frames and MDF panels. The rotating stage platform was assembled and tested for smooth, silent rotation. Parallax layers were cut and painted. The team worked in shifts across two workshops.</p>
+            <p><strong>Weeks 5&ndash;6: Fabrication.</strong> Full-scale construction began. Columns were built from lightweight sheet materials over simple frames&mdash;cheap, fast to cut, and light enough for students to move and re-stack. The rotating stage platform was assembled and tested for smooth, silent rotation while the column clusters were painted and finished. The team worked in shifts across two workshops.</p>
             <p><strong>Week 7: Lighting &amp; Integration.</strong> Programmable LED strips were wired behind each parallax layer. Lighting scenes were programmed to match the event&rsquo;s session structure&mdash;warm tones for talks, cooler tones for performances, dynamic color shifts for transitions. The rotating mechanism was integrated with the lighting controller for synchronized reveals.</p>
             <p><strong>Week 8: Install &amp; Event Day.</strong> The entire stage was transported and assembled in the venue over 48 hours. Final lighting calibration, sound checks, and a full technical rehearsal. On event day, I directed all visual elements live&mdash;stage rotations, lighting cues, and backdrop changes&mdash;ensuring the 800+ attendees experienced a seamless production.</p>
           </CsBody>
@@ -131,9 +122,8 @@ export default function TedxPage() {
         {/* Process Gallery */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display" style={{ marginBottom: '2rem' }}>Process</h2>
             <figure className="cs-img-full" style={{ background: 'transparent' }}>
-              <img src="/Portfolio.github.io/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind-the-scenes process photos showing stage construction, column fabrication, lighting tests, and assembly" loading="lazy" />
+              <img src="/Portfolio.github.io/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind the scenes: blue and white columns under construction in a workshop, lighting tests on the assembled skyline, and a volunteer building the red TEDx letters" loading="lazy" decoding="async" />
             </figure>
           </div>
         </section>
@@ -147,28 +137,6 @@ export default function TedxPage() {
           </CsBody>
         </CsSection>
 
-        {/* Credits & Thanks */}
-        <section className="cs-section cs-thanks reveal">
-          <div className="wrap">
-            <h2 className="cs-thanks-title">Thank You</h2>
-
-            <CsCredits credits={[
-              { role: 'Art Director', name: 'Parth Pawar' },
-            ]} />
-
-            <div className="cs-tags" style={{ justifyContent: 'center', marginTop: '2rem' }}>
-              <span className="cs-tag-item">Art Direction</span>
-              <span className="cs-tag-item">Stage Design</span>
-              <span className="cs-tag-item">Parallax Concept</span>
-              <span className="cs-tag-item">Brand Identity</span>
-              <span className="cs-tag-item">Lighting Design</span>
-              <span className="cs-tag-item">Fabrication</span>
-              <span className="cs-tag-item">Team Leadership</span>
-              <span className="cs-tag-item">TEDx</span>
-            </div>
-          </div>
-        </section>
-
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },
           { id: 'cs-brand', label: 'Brand Identity' },
@@ -177,8 +145,6 @@ export default function TedxPage() {
           { id: 'cs-process', label: 'Process' },
           { id: 'cs-reflections', label: 'Reflections' },
         ]} />
-
-      <CsThanks />
 
       </main>
 

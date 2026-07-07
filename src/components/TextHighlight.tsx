@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 /**
  * Scroll-triggered text highlight — words get an accent background
@@ -17,20 +16,30 @@ interface Props {
 
 export default function TextHighlight({ children, color, as: Tag = 'span', className = '' }: Props) {
   const ref = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 90%', 'center 60%'],
-  })
+  const [visible, setVisible] = useState(false)
 
-  const width = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
+  useEffect(() => {
+    const el = ref.current
+    if (!el || visible) return
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        setVisible(true)
+        io.disconnect()
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -24% 0px' },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [visible])
 
   return (
-    <Tag ref={ref as React.Ref<never>} className={`text-highlight ${className}`}>
+    <Tag ref={ref as React.Ref<never>} className={`text-highlight ${visible ? 'is-visible ' : ''}${className}`}>
       <span className="text-highlight-text">{children}</span>
-      <motion.span
+      <span
         className="text-highlight-mark"
         style={{
-          width,
           backgroundColor: color || 'var(--highlight-color, rgba(232, 93, 38, 0.15))',
         }}
       />

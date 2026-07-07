@@ -78,29 +78,29 @@ const StudioCanvas = forwardRef<StudioCanvasRef, Props>(
       // "portfolio" main text
       c.add(new IText('portfolio', {
         left: ox + 80, top: oy + 200, fontSize: 110,
-        fontFamily: 'DM Sans, sans-serif', fontWeight: 'bold',
+        fontFamily: 'General Sans, Nikolas', fontWeight: 'bold',
         fill: '#1A1A1A',
       }))
 
       // Accent "f"
       c.add(new IText('f', {
         left: ox + 270, top: oy + 150, fontSize: 180,
-        fontFamily: 'Georgia, serif', fontStyle: 'italic',
+        fontFamily: 'Nikolas, General Sans', fontStyle: 'italic',
         fill: ACCENT, opacity: 0.85,
       }))
 
       // Ai logo
       c.add(new Rect({ left: ox + 60, top: oy + 100, width: 36, height: 36, rx: 4, ry: 4, fill: '#330000' }))
-      c.add(new FabricText('Ai', { left: ox + 66, top: oy + 106, fontSize: 18, fontFamily: 'serif', fill: '#FF9A00' }))
+      c.add(new FabricText('Ai', { left: ox + 66, top: oy + 106, fontSize: 18, fontFamily: 'Nikolas, General Sans', fill: '#FF9A00' }))
 
       // Ps logo
       c.add(new Rect({ left: ox + 106, top: oy + 100, width: 36, height: 36, rx: 4, ry: 4, fill: '#001E36' }))
-      c.add(new FabricText('Ps', { left: ox + 112, top: oy + 106, fontSize: 18, fontFamily: 'serif', fill: '#31A8FF' }))
+      c.add(new FabricText('Ps', { left: ox + 112, top: oy + 106, fontSize: 18, fontFamily: 'Nikolas, General Sans', fill: '#31A8FF' }))
 
       // #25 accent
       c.add(new IText('#25', {
         left: ox + ARTBOARD_W - 120, top: oy + 100, fontSize: 48,
-        fontFamily: 'DM Sans, sans-serif', fontWeight: 'bold', fill: ACCENT,
+        fontFamily: 'General Sans, Nikolas', fontWeight: 'bold', fill: ACCENT,
       }))
 
       // Bezier line + pen icon
@@ -116,14 +116,14 @@ const StudioCanvas = forwardRef<StudioCanvasRef, Props>(
       })
 
       // Labels
-      c.add(new FabricText('COLOR\nPALETTE', { left: ox + 180, top: oy + 390, fontSize: 7, fontFamily: 'monospace', fill: '#888' }))
-      c.add(new FabricText('COOLVETICA\nMTD HOUSTONER SCRIPT', { left: ox + 60, top: oy + 390, fontSize: 9, fontFamily: 'monospace', fill: '#333' }))
+      c.add(new FabricText('COLOR\nPALETTE', { left: ox + 180, top: oy + 390, fontSize: 7, fontFamily: 'General Sans, Nikolas', fill: '#888' }))
+      c.add(new FabricText('NIKOLAS\nGENERAL SANS', { left: ox + 60, top: oy + 390, fontSize: 9, fontFamily: 'General Sans, Nikolas', fill: '#333' }))
 
       // "Graphics Designer"
-      c.add(new IText('Graphics\nDesigner', { left: ox + 500, top: oy + 380, fontSize: 32, fontFamily: 'Georgia, serif', fontStyle: 'italic', fill: '#333' }))
+      c.add(new IText('Graphics\nDesigner', { left: ox + 500, top: oy + 380, fontSize: 32, fontFamily: 'Nikolas, General Sans', fontStyle: 'italic', fill: '#333' }))
 
       // Label
-      c.add(new FabricText('NHANDIGIER', { left: ox + 700, top: oy + 400, fontSize: 11, fontFamily: 'DM Sans, sans-serif', fontWeight: 'bold', fill: '#333' }))
+      c.add(new FabricText('NHANDIGIER', { left: ox + 700, top: oy + 400, fontSize: 11, fontFamily: 'General Sans, Nikolas', fontWeight: 'bold', fill: '#333' }))
 
       // Selection rectangles (decorative)
       c.add(new Rect({ left: ox + 460, top: oy + 170, width: 180, height: 220, fill: 'transparent', stroke: ACCENT, strokeWidth: 1, strokeDashArray: [4, 3] }))
@@ -240,7 +240,7 @@ const StudioCanvas = forwardRef<StudioCanvasRef, Props>(
         if (activeTool === 'text') {
           const text = new IText('Type here', {
             left: x, top: y, fontSize: 24,
-            fontFamily: 'DM Sans, sans-serif', fill: '#1A1A1A',
+            fontFamily: 'General Sans, Nikolas', fill: '#1A1A1A',
           })
           c.add(text)
           c.setActiveObject(text)

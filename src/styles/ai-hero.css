@@ -1,206 +1,192 @@
 /* ================================================
-   CATEGORY HERO (ch-)
-   Clean, readable, informative.
-   Big centered title, 3D object behind for depth,
-   description + stats below.
+   CATEGORY HERO (ch-) — domain landing page
+   Eyebrow (category name) → positioning statement
+   → subline → proof strip. 3D object sits BESIDE
+   the copy, never on top of it.
    ================================================ */
 
 .ch {
-  padding-top: calc(var(--nav-h) + 2rem);
-  margin-bottom: var(--space-6);
+  padding-top: calc(var(--nav-h) + clamp(1.6rem, 4.6vw, 3.6rem));
+  margin-bottom: clamp(1.75rem, 4vw, 3.25rem);
 }
 
-/* ── Header: count + tagline ── */
-.ch-header {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-4);
-  margin-bottom: clamp(2rem, 4vw, 4rem);
+.ch--landing {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(28rem, 0.95fr) minmax(24rem, 0.85fr);
+  align-items: center;
+  gap: clamp(2.25rem, 5vw, 5.5rem);
+  min-height: clamp(34rem, calc(100svh - var(--nav-h) - 2rem), 45rem);
 }
 
-.ch-header-count {
-  font-family: var(--sans);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1;
+/* ── Copy column ── */
+.ch-copy {
+  display: grid;
+  gap: clamp(1.15rem, 2.3vw, 1.8rem);
+  justify-items: start;
+  max-width: 48rem;
+  transform: translateY(clamp(-3.5rem, -6vh, -1.5rem));
+}
+
+.ch-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.ch-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   flex-shrink: 0;
 }
 
-.ch-header-tagline {
-  font-family: var(--mono);
-  font-size: var(--text-2xs);
-  letter-spacing: 0.03em;
-  line-height: 1.55;
-  color: var(--ink-40);
-  max-width: 56ch;
-}
-
-/* ══════════════════════════
-   STAGE — title + 3D object
-   ══════════════════════════ */
-.ch-stage {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: clamp(200px, 36vw, 400px);
-  margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
-  isolation: isolate;
-}
-
-/* ── Title — on top of 3D, inverts through it ── */
-.ch-title {
-  position: relative;
-  z-index: 10;
-  text-align: center;
+/* The positioning statement — the page's real headline */
+.ch-statement {
   margin: 0;
-  line-height: 1;
-  mix-blend-mode: difference;
-  cursor: default;
-}
-
-.ch-line1,
-.ch-line2 {
-  display: block;
-  /* White + mix-blend-mode:difference = dark on light bg, white on dark 3D */
-  color: #fff;
-}
-
-/* Line 1 — bold sans */
-.ch-line1 {
-  font-family: var(--sans);
-  font-size: clamp(3rem, 8.5vw, 7.5rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.95;
-}
-
-/* Line 2 — serif italic */
-.ch-line2 {
   font-family: var(--serif);
-  font-size: clamp(3rem, 8.5vw, 7.5rem);
+  font-size: clamp(4.15rem, 8.15vw, 7.35rem);
   font-weight: 300;
-  font-style: italic;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  /* Slightly dimmer so it visually reads as accent */
-  color: #ddd;
-}
-
-/* Short titles scale up */
-.ch-stage--short .ch-line1,
-.ch-stage--short .ch-line2 {
-  font-size: clamp(4rem, 11vw, 10rem);
-}
-
-/* ── 3D object — behind text, full visible, not interactive ── */
-.ch-3d {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* ── Description ── */
-.ch-desc {
-  font-family: var(--sans);
-  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-  line-height: 1.6;
-  color: var(--ink-50);
-  max-width: 52ch;
-  margin-bottom: var(--space-5);
-}
-
-/* ══════════════════════
-   QUICK STATS ROW
-   ══════════════════════ */
-.ch-quick {
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
-  margin-bottom: var(--space-5);
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--ink-08);
-}
-
-.ch-quick-item {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-2);
-}
-
-.ch-quick-label {
-  font-family: var(--mono);
-  font-size: var(--text-2xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-30);
-}
-
-.ch-quick-val {
-  font-family: var(--sans);
-  font-size: var(--text-base);
-  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: 0;
   color: var(--ink);
+  text-wrap: balance;
+  max-width: 12ch;
 }
 
-.ch-quick-dot {
+.ch-statement em {
+  font-style: italic;
+}
+
+.ch-sub {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(1.08rem, 1.62vw, 1.34rem);
+  line-height: 1.52;
+  color: var(--ink-50);
+  max-width: 38ch;
+}
+
+/* ── Proof strip ── */
+.ch-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.7rem, 1.4vw, 1.1rem);
+  padding-top: clamp(0.4rem, 1vw, 0.8rem);
+  margin-top: clamp(0.15rem, 0.8vw, 0.55rem);
+  border-top: 1px solid var(--ink-08);
+  width: 100%;
+  max-width: 46rem;
+}
+
+.ch-strip-item {
+  font-family: var(--mono);
+  font-size: clamp(0.76rem, 0.9vw, 0.86rem);
+  letter-spacing: 0.05em;
+  color: var(--ink-70);
+  white-space: nowrap;
+}
+
+.ch-strip-dot {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: var(--ink-15);
+  background: var(--ink-30);
   flex-shrink: 0;
 }
 
-/* ══════════════
-   TAGS
-   ══════════════ */
-.ch-tags {
+.ch-strip-link {
+  font-family: var(--mono);
+  font-size: clamp(0.76rem, 0.9vw, 0.86rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: auto;
+}
+.ch-strip-link:hover { text-decoration: underline; }
+
+/* ── 3D object — its own column, no overlap ── */
+.ch-3d--side {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(24rem, 46vw, 36rem);
+  pointer-events: none;
+  transform: translateY(clamp(-2.5rem, -4vh, -1rem));
 }
 
-/* ══════════
-   DARK MODE
-   ══════════ */
-[data-theme="dark"] .ch-quick { border-bottom-color: var(--ink-06); }
-[data-theme="dark"] .ch-title { mix-blend-mode: exclusion; }
-[data-theme="dark"] .ch-line1 { color: #ccc; }
-[data-theme="dark"] .ch-line2 { color: #aaa; }
-
-/* ══════════
-   RESPONSIVE
-   ══════════ */
-@media (max-width: 1024px) {
-  .ch-line1, .ch-line2 { font-size: clamp(2.8rem, 7.5vw, 5.5rem); }
-  .ch-stage--short .ch-line1,
-  .ch-stage--short .ch-line2 { font-size: clamp(3.5rem, 9.5vw, 7.5rem); }
-  .ch-3d > * { transform: scale(0.8); }
+/* The canvas box must stay square: flex used to shrink its width to the
+   column while the height stayed fixed, so the WebGL framing cropped the
+   object at the sides. */
+.ch-3d--side > * {
+  flex-shrink: 0;
+  overflow: visible;
 }
 
-@media (max-width: 768px) {
-  .ch { padding-top: calc(var(--nav-h) + var(--space-4)); }
-  .ch-header { flex-direction: column; gap: var(--space-2); }
-  .ch-stage { min-height: auto; padding: var(--space-4) 0; }
-  .ch-line1, .ch-line2 { font-size: clamp(2.2rem, 10vw, 4rem); }
-  .ch-stage--short .ch-line1,
-  .ch-stage--short .ch-line2 { font-size: clamp(2.8rem, 12vw, 5rem); }
-  .ch-3d { display: none; }
-  .ch-title { mix-blend-mode: normal; }
-  .ch-line1 { color: var(--ink); }
-  .ch-line2 { color: var(--lp-accent, var(--ink-40)); }
-  .ch-quick { flex-wrap: wrap; gap: var(--space-3); }
-  .ch-quick-dot { display: none; }
+/* The bleed canvas centers on the slot and overhangs it; on narrower
+   windows that overhang crossed the viewport edge, where overflow-x
+   slices it into a hard cut. Clamp it square to the space available
+   (equal max on both axes keeps the render undistorted). */
+.ch-3d--side > * > div {
+  max-width: min(58vw, 740px) !important;
+  max-height: min(58vw, 740px) !important;
+}
+
+/* ── Dark mode ── */
+[data-theme="dark"] .ch-strip { border-top-color: rgba(237, 237, 236, 0.12); }
+
+/* ── Site tools open: tighten ── */
+@media (min-width: 769px) {
+  body.site-tools-open .ch--landing {
+    grid-template-columns: minmax(22rem, 1.2fr) minmax(15rem, 0.65fr);
+    min-height: clamp(30rem, calc(100svh - var(--nav-h) - 2rem), 38rem);
+  }
+  body.site-tools-open .ch-statement {
+    font-size: clamp(3.25rem, 5.7vw, 5.25rem);
+  }
+  body.site-tools-open .ch-copy {
+    transform: translateY(clamp(-2.25rem, -4vh, -1rem));
+  }
+  body.site-tools-open .ch-3d--side > * {
+    transform: scale(0.86);
+    transform-origin: center;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ch--landing {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 1.25rem;
+  }
+  .ch-copy {
+    transform: none;
+  }
+  .ch-3d--side {
+    order: -1;
+    min-height: clamp(13rem, 42vw, 18rem);
+    transform: none;
+  }
+  .ch-3d--side > * {
+    transform: scale(0.74);
+    transform-origin: center;
+  }
 }
 
 @media (max-width: 480px) {
-  .ch-line1, .ch-line2 { font-size: clamp(1.8rem, 9vw, 3rem); }
-  .ch-stage--short .ch-line1,
-  .ch-stage--short .ch-line2 { font-size: clamp(2.2rem, 11vw, 3.5rem); }
-  .ch-header-count { font-size: clamp(1.5rem, 8vw, 2.5rem); }
+  .ch { padding-top: calc(var(--nav-h) + 1.5rem); }
+  .ch-statement { font-size: clamp(3rem, 14vw, 4.4rem); }
+  .ch-sub { font-size: clamp(1rem, 4.5vw, 1.12rem); }
+  .ch-strip-link { margin-left: 0; }
 }

@@ -17,7 +17,11 @@ export function useDeferredMount(
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    if (!enabled || mounted) return
+    if (!enabled) {
+      if (mounted) setMounted(false)
+      return
+    }
+    if (mounted) return
 
     let cancelled = false
     let delayId: number | null = null

@@ -4,6 +4,7 @@ import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
+import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -19,7 +20,7 @@ export default function BreakGenPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#5C6B3A' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#6E4AC2' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -34,7 +35,26 @@ export default function BreakGenPage() {
             { label: 'Timeline', value: '2024 to 2025' },
             { label: 'Stack', value: 'React, Three.js, Meshy AI, KiCad' },
           ]}
+          liveUrl="https://parthawe.github.io/BreakGen/"
+          heroImage="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
+          heroAlt="BreakGen public launch page showing the product narrative and AI keyboard fabrication platform."
         />
+
+        <CsMediaSpotlight
+          id="cs-thesis-film"
+          label="Watch first"
+          title="Prompt to keyboard"
+          lede="A short thesis film shows the complete promise: describe a keyboard, shape it in 3D, and move toward fabrication instead of another moodboard."
+          meta={['Vimeo thesis film', 'ITP Thesis', 'AI hardware']}
+        >
+          <iframe
+            src="https://player.vimeo.com/video/1091963037?title=0&byline=0&portrait=0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+            title="BreakGen ITP Thesis Presentation"
+          />
+        </CsMediaSpotlight>
 
         <ProjectOverview
           id="cs-overview"
@@ -47,26 +67,8 @@ export default function BreakGenPage() {
               label: 'The Bet',
               content: 'BreakGen collapses that fragmented pipeline into a guided creative flow: describe what you want, shape the keyboard in 3D, and let the system handle the invisible engineering underneath.',
             },
-            {
-              label: 'The Outcome',
-              content: 'The thesis was shown live at NYU ITP, where visitors could design keyboards in minutes and see physical prototypes that proved the pipeline was not a concept demo, but a buildable system.',
-            },
           ]}
         />
-
-        {/* Thesis Video, full width */}
-        <section className="wrap reveal" style={{ paddingBottom: '3rem' }}>
-          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 'var(--radius-lg)', background: 'var(--ink-04)' }}>
-            <iframe
-              src="https://player.vimeo.com/video/1091963037?title=0&byline=0&portrait=0"
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-              title="BreakGen ITP Thesis Presentation"
-            />
-          </div>
-        </section>
 
         <CsSection id="cs-problem" label="01 · Problem" title="Custom keyboards still need an engineering degree">
           <CsBody>
@@ -82,7 +84,30 @@ export default function BreakGenPage() {
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-features" label="03 · System" title="AI keycaps, 3D layout, auto PCB">
+        <CsSection id="cs-live" label="03 · Live Product" title="A launch page and demo make the thesis inspectable.">
+          <CsBody>
+            <p>BreakGen now has two public surfaces: a launch page that frames the thesis as a product, and an interactive demo where the workspace, preview chamber, control surface, and export logic can be inspected directly.</p>
+          </CsBody>
+
+          <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
+            <div className="cs-img reveal">
+              <img
+                src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
+                alt="BreakGen public launch page."
+                loading="lazy"
+              />
+            </div>
+            <div className="cs-img reveal">
+              <img
+                src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-demo-live.png"
+                alt="BreakGen interactive demo workspace."
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </CsSection>
+
+        <CsSection id="cs-features" label="04 · System" title="AI keycaps, 3D layout, auto PCB">
             <div className="cs-feature-grid">
               <div className="cs-feature-card">
                 <h3 className="cs-feature-title">AI Keycap Generation</h3>
@@ -103,18 +128,21 @@ export default function BreakGenPage() {
             </div>
         </CsSection>
 
-        <CsSection id="cs-outcome" label="04 · Outcome" title="200+ visitors at the ITP Thesis Show">
+        <CsSection id="cs-outcome" label="05 · Outcome" title="200+ visitors at the ITP Thesis Show">
             <CsBody>
               <p>BreakGen was presented at the ITP Thesis Show at NYU Tisch, Spring 2025. Over 200 visitors interacted with the platform, and multiple working keyboard prototypes were fabricated and demonstrated live.</p>
-              <p>The project was advised by Luisa Pereira at NYU's Interactive Telecommunications Program.</p>
             </CsBody>
+            <div className="cs-label-row" style={{ marginTop: '2rem' }}>
+              <span className="cs-label-row-key">Advisor</span>
+              <span className="cs-label-row-val">Luisa Pereira &mdash; NYU Interactive Telecommunications Program</span>
+            </div>
         </CsSection>
 
         {/* Read the full case study */}
         <section className="cs-section reveal" id="cs-full-case">
           <div className="wrap" style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <a href="/keyboard-project" style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-              Read the full case study &rarr;
+            <a href="/Portfolio.github.io/keyboard-project" style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+              See the earlier physical keyboard study &rarr;
             </a>
           </div>
         </section>
@@ -123,15 +151,17 @@ export default function BreakGenPage() {
 
         <BottomNav
           sections={[
+            { id: 'cs-thesis-film', label: 'Film' },
             { id: 'cs-overview', label: 'Overview' },
             { id: 'cs-problem', label: 'Problem' },
             { id: 'cs-approach', label: 'Approach' },
+            { id: 'cs-live', label: 'Live Product' },
             { id: 'cs-features', label: 'System' },
             { id: 'cs-outcome', label: 'Outcome' },
           ]}
         />
 
-        <NextProject slug="jugalbandi" title="Jugalbandi" image="/Portfolio.github.io/Assets/images/jugalbandi.webp" />
+        <NextProject slug="keyboard-project" title="Keyboard Project" image="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
 
       </main>
 

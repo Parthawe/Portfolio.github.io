@@ -6,11 +6,9 @@ import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsStatGrid from '../../components/case-study/CsStatGrid'
 import CsSteps from '../../components/case-study/CsSteps'
 import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsCredits from '../../components/case-study/CsCredits'
 import CsImage from '../../components/case-study/CsImage'
 import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -23,16 +21,16 @@ export default function ExecutiveLensPage() {
     <>
       <Helmet>
         <title>ExecutiveLens &middot; Parth Pawar</title>
-        <meta name="description" content="ExecutiveLens.ai, AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time decision tracking. Case study by Parth Pawar, Product Designer." />
+        <meta name="description" content="ExecutiveLens.ai, AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time decision tracking. Case study by Parth Pawar, Design lead." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
         <meta property="og:description" content="AI-powered business intelligence for executives, from meeting insights to strategic recommendations in real time." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/executivelens.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/executivelens.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#0A6847' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#9C8E6E' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -42,7 +40,7 @@ export default function ExecutiveLensPage() {
           title="ExecutiveLens"
           subtitle="Meeting intelligence that turns conversation into tracked decisions, follow-through, and executive signal"
           info={[
-            { label: 'Role', value: 'Product Designer' },
+            { label: 'Role', value: 'Design lead' },
             { label: 'Timeline', value: '2025\u201326' },
             { label: 'Team', value: 'Design lead' },
             { label: 'Platform', value: 'Web + Mobile' },
@@ -68,20 +66,13 @@ export default function ExecutiveLensPage() {
 
         <CsSection id="cs-context" label="Context" title="The Executive Information Overload Problem">
           <CsBody>
-            <p>The modern executive is drowning. Too many meetings, too many dashboards, too many Slack messages, too many reports that say too little. The average C-suite leader toggles between 35 different tools per day and still feels like they are missing the thread. Decisions get made in a Monday standup and forgotten by Wednesday. Action items live in one person&rsquo;s notebook and die when that notebook closes.</p>
+            <p>The modern executive is drowning. Decisions get made in a Monday standup and forgotten by Wednesday. Action items live in one person&rsquo;s notebook and die when that notebook closes.</p>
             <p>The information is not missing &mdash; it is scattered. Scattered across Zoom recordings no one rewatches, Google Docs no one revisits, and dashboards that show what happened but never why. Executives do not need more data. They need less noise and more signal.</p>
             <p>Every tool on the market solves one slice of this problem. Otter transcribes. Notion organizes. Tableau visualizes. But no one connects the meeting where a decision was made to the metric that moved because of it. That gap &mdash; the space between conversation and consequence &mdash; is where ExecutiveLens lives.</p>
           </CsBody>
           <CsCallout>
             <p>&ldquo;The problem is not that executives lack information. The problem is that the most important information is trapped inside conversations that vanish the moment the meeting ends.&rdquo;</p>
           </CsCallout>
-        </CsSection>
-
-        <CsSection id="cs-bet" label="The Bet" title="What If AI Could Attend Every Meeting and Connect Every Dot?">
-          <CsBody>
-            <p>ExecutiveLens is built on a single thesis: what if AI could attend every meeting, remember every decision, and connect the dots across your entire organization? Not a passive recorder. Not a dumb transcript. An active intelligence that understands context, tracks commitments, identifies patterns, and surfaces the insights that would take a human analyst weeks to find.</p>
-            <p>The bet is that the executive tool that wins will not be the one with the most features or the prettiest charts. It will be the one that makes a leader feel like they have perfect memory, perfect context, and a strategist who never sleeps &mdash; all without adding a single meeting to their calendar.</p>
-          </CsBody>
         </CsSection>
 
         <CsSection id="cs-challenges" label="Design Challenges" title="Four Problems That Needed Solving">
@@ -150,23 +141,12 @@ export default function ExecutiveLensPage() {
 
         <CsSection id="cs-impact" label="Impact" title="The Numbers Behind the Intelligence">
           <CsBody style={{ marginBottom: '2rem' }}>
-            <p>ExecutiveLens shipped to a closed beta of 40 executive teams and the results validated the thesis: when you capture the right information and surface it at the right time, leaders make better decisions faster.</p>
+            <p>ExecutiveLens shipped to a closed beta of 40 executive teams and the results validated the thesis: when you capture the right information and surface it at the right time, leaders make better decisions faster. 87% of executives in the beta checked their ExecutiveLens dashboard before their morning email within two weeks of onboarding.</p>
           </CsBody>
-          <CsStatGrid stats={[
-            { label: 'Meetings Analyzed', value: '12,000+' },
-            { label: 'Time Saved / Exec / Week', value: '5.2 hrs' },
-            { label: 'Decision Tracking Accuracy', value: '94%' },
-            { label: 'Action Item Completion', value: '+38%' },
-            { label: 'Exec Adoption Rate', value: '87%' },
-            { label: 'Summary Accuracy (rated)', value: '4.6/5' },
-          ]} />
           <CsPullquote
             quote="Within two weeks, I stopped checking email first. I check ExecutiveLens. It tells me what actually changed, not what someone wants me to read."
             cite="&mdash; VP of Product, Beta participant"
           />
-          <CsBody style={{ marginTop: '1.5rem' }}>
-            <p>87% of executives in the beta checked their ExecutiveLens dashboard before their morning email within two weeks of onboarding. That is the signal that the product crossed from &ldquo;nice to have&rdquo; to &ldquo;part of the routine.&rdquo;</p>
-          </CsBody>
         </CsSection>
 
         <CsSection id="cs-reflections" label="Reflections" title="What Designing for Executives Taught Me">
@@ -178,21 +158,11 @@ export default function ExecutiveLensPage() {
           ]} />
         </CsSection>
 
-        <CsSection label="Credits" title="Team">
-          <CsCredits credits={[
-            { role: 'Product Designer', name: 'Parth Pawar' },
-            { role: 'Company', name: 'ExecutiveLens.ai' },
-            { role: 'Tools', name: 'Figma, D3.js, Protopie' },
-            { role: 'Platforms', name: 'Web, iOS, Android' },
-          ]} />
-        </CsSection>
-
         <CsThanks contactCta />
 
         <BottomNav sections={[
           { id: 'cs-vision', label: 'Vision & Role' },
           { id: 'cs-context', label: 'Context' },
-          { id: 'cs-bet', label: 'The Bet' },
           { id: 'cs-challenges', label: 'Challenges' },
           { id: 'cs-meeting', label: 'Meeting Assistant' },
           { id: 'cs-dashboard', label: 'Dashboard' },

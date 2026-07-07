@@ -9,7 +9,6 @@ import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsImage from '../../components/case-study/CsImage'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsStatGrid from '../../components/case-study/CsStatGrid'
-import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -26,7 +25,7 @@ export default function MentraBrandPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra Brand & Packaging · Parth Pawar" />
         <meta property="og:description" content="Brand identity & packaging for AI smart glasses shipping at $299." />
-        <meta property="og:image" content={`https://parthpawar.com${P}/render-both-frames.webp`} />
+        <meta property="og:image" content={`https://parthawe.github.io${P}/render-both-frames.webp`} />
       </Helmet>
 
       <Nav />
@@ -191,7 +190,7 @@ export default function MentraBrandPage() {
         {/* Brand in the wild — YouTubers unboxing the packaging I designed */}
         <CsSection id="cs-wild" label="In the Wild" title="The Packaging, Unboxed by Strangers">
           <CsBody>
-            <p>The real test of packaging design is watching someone who had no part in making it hold it up to a camera. These YouTube thumbnails show creators unboxing Mentra Live &mdash; the box I designed, the case I designed, the booklet I designed &mdash; all in the hands of people I&rsquo;ve never met. The brand pattern is visible. The product name reads. The case looks premium next to the box. It works.</p>
+            <p>The real test of packaging design is watching someone who had no part in making it hold it up to a camera. These YouTube thumbnails show creators unboxing Mentra Live in the hands of people I&rsquo;ve never met. The brand pattern is visible. The product name reads. The case looks premium next to the box.</p>
           </CsBody>
         </CsSection>
 
@@ -343,7 +342,7 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-renders" label="07 &mdash; Product Renders" title="Replacing Photography Entirely">
           <CsBody>
-            <p>A product photo requires a photographer, a studio, and a prototype that might not exist yet. A render requires a 3D file and a lighting setup that never changes. I directed three render families that became the single visual source across packaging, social, press, and the marketing site. No product was photographed for any marketing material &mdash; everything is rendered.</p>
+            <p>A product photo requires a photographer, a studio, and a prototype that might not exist yet. A render requires a 3D file and a lighting setup that never changes. I directed three render families that became the single visual source across packaging, social, press, and the marketing site. Every product and packshot image is rendered &mdash; the two photo shoots covered people wearing the product for lifestyle and social.</p>
           </CsBody>
         </CsSection>
 
@@ -360,8 +359,6 @@ export default function MentraBrandPage() {
             </div>
           </div>
         </section>
-
-        <CsImage src={`${P}/render-transparent-full.webp`} alt="Transparent frame render: internal circuit boards, camera module, FCC markings visible through clear housing" />
 
         {/* ================================================================
             08 — PHYSICAL DETAILS
@@ -391,10 +388,6 @@ export default function MentraBrandPage() {
             { title: 'Systems survive, artifacts don\u2019t', desc: 'The creator guide matters more than any single ad. A system that 200 people can use independently is worth more than one perfect execution only I can reproduce.' },
             { title: 'Physical feedback is slow and expensive', desc: 'Software A/B tests in hours. A packaging revision takes 6 weeks and costs a factory run. You learn to prototype on paper, argue in vector, and ship with conviction.' },
           ]} />
-          <CsPullquote
-            quote="The best brand work disappears. You don&rsquo;t notice the packaging or the manual or the social template. You just feel like the product was made by people who give a damn."
-            cite="What I\u2019m aiming for"
-          />
         </CsSection>
 
         <CsSection label="Credits" title="Team">
@@ -424,7 +417,7 @@ export default function MentraBrandPage() {
 
       </main>
 
-      <NextProject slug="tedx" title="TEDxVITPune" image="/Portfolio.github.io/Assets/images/tedx.webp" />
+      <NextProject slug="tedx" title="TEDxVITPune" image="/Portfolio.github.io/Assets/images/tedx.jpg" />
       <Footer />
     </>
   )

@@ -379,6 +379,16 @@ export default function HandTracker() {
 
   useEffect(() => () => { cancelAnimationFrame(rafRef.current); try { streamRef.current?.getTracks().forEach(t => t.stop()) } catch { /* */ } }, [])
 
+  // Bridge for the Figma panel: it hosts its own "use your hands" button while the chip is hidden.
+  useEffect(() => {
+    const onToggle = () => { if (active) stop(); else void start() }
+    window.addEventListener('hand-tracker:toggle', onToggle)
+    return () => window.removeEventListener('hand-tracker:toggle', onToggle)
+  }, [active, start, stop])
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('hand-tracker:state', { detail: { active } }))
+  }, [active])
+
   // Desktop only
   const [isDesktop, setIsDesktop] = useState(false)
   useEffect(() => {

@@ -22,7 +22,7 @@ export default function ArcadeLabPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#C94C4C' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#FF2D78' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"

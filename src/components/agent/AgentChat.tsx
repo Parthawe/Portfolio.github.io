@@ -64,11 +64,9 @@ function getRouteLabel(route: string): string {
 }
 
 function getPlaceholder(route: string, voiceMode: boolean): string {
-  if (voiceMode) return 'Voice is on. Type or tap the mic...'
-  if (route === '/') return 'Ask for a shortlist, a page tour, or a project...'
-  if (route === '/work') return 'Ask for Playlist, Index, Arc, a shortlist, or a project...'
-  if (route === '/about') return 'Ask about roles, practice, or the Mentra story...'
-  return 'Ask for the challenge, process, or why it matters...'
+  if (voiceMode) return 'Type or tap the mic...'
+  if (route === '/' || route === '/work' || route === '/about') return 'Ask about the work...'
+  return 'Ask about this project...'
 }
 
 function getRouteIntro(route: string, voiceMode: boolean): string {
@@ -85,10 +83,10 @@ function getRouteIntro(route: string, voiceMode: boolean): string {
 }
 
 function getArrivalPrompt(route: string): string {
-  if (route === '/') return 'Home ready. Ask for the flagship work or tour this page.'
-  if (route === '/work') return 'Work ready. Ask for Playlist, Index, Arc, a shortlist, or a project.'
-  if (route === '/about') return 'About ready. Ask about roles, practice, or the Mentra story.'
-  return `${getRouteLabel(route)} ready. Ask for the challenge, process, or a tour.`
+  if (route === '/') return 'Home. Ask for the flagship work, or say tour.'
+  if (route === '/work') return 'The work index. Want a shortlist?'
+  if (route === '/about') return 'About Parth. Ask about roles or practice.'
+  return `${getRouteLabel(route)}. Ask why this project matters.`
 }
 
 function getUtilityChips(route: string, voiceMode: boolean): string[] {
@@ -297,7 +295,7 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
   const composeChips = useCallback((nextRoute: string, count: number, lastQuestion?: string) => {
     const base = getChips(nextRoute, count, lastQuestion, historyRef.current.ctx).filter(Boolean)
     const utility = getUtilityChips(nextRoute, voiceMode)
-    return [...utility, ...base].filter((chip, index, all) => all.indexOf(chip) === index).slice(0, 5)
+    return [...utility, ...base].filter((chip, index, all) => all.indexOf(chip) === index).slice(0, 4)
   }, [voiceMode])
 
   const pushMessage = useCallback((sender: 'agent' | 'user', raw: string, typing = false) => {
@@ -719,11 +717,17 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
       aria-labelledby={titleId}
       aria-describedby={introId}
     >
-      <div className="agent-panel surface-glass surface-glass--strong" aria-busy={thinking || streaming}>
+      <div className={`agent-panel surface-glass surface-glass--strong${voiceMode ? ' agent-panel--voice' : ''}`} aria-busy={thinking || streaming}>
         <div className="agent-panel-head">
-          <div>
-            <p className="agent-panel-kicker">Parth Pawar / Folio</p>
-            <h2 className="agent-panel-title" id={titleId}>Site Guide</h2>
+          <div className="agent-panel-id">
+            <span
+              className={`agent-orb${speaking ? ' agent-orb--speaking' : micListening ? ' agent-orb--listening' : thinking ? ' agent-orb--thinking' : ''}`}
+              aria-hidden="true"
+            />
+            <div>
+              <p className="agent-panel-kicker">Site guide</p>
+              <h2 className="agent-panel-title" id={titleId}>Folio</h2>
+            </div>
           </div>
 
           <div className="agent-panel-tools">
@@ -778,24 +782,50 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
           </div>
         </div>
 
-        <div className="agent-panel-meta">
-          <span className="agent-panel-chip">{getRouteLabel(route)}</span>
-          <span
-            className={`agent-panel-status${thinking || speaking || touring || micListening ? ' is-active' : ''}`}
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {statusLabel}
-          </span>
-        </div>
+        {/* Status only surfaces while something is happening — an idle chat
+            doesn't need a dashboard. */}
+        {(thinking || speaking || touring || micListening) && (
+          <div className="agent-panel-meta">
+            <span
+              className={`agent-panel-status is-active${micListening ? ' is-listening' : ''}`}
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <span
+                className={`agent-ribbon${speaking ? ' agent-ribbon--speaking' : ''}${micListening ? ' agent-ribbon--listening' : ''}${thinking ? ' agent-ribbon--thinking' : ''}`}
+                aria-hidden="true"
+              >
+                <i /><i /><i /><i /><i />
+              </span>
+              {statusLabel}
+            </span>
+          </div>
+        )}
 
-        <p className="agent-panel-intro" id={introId}>{getRouteIntro(route, voiceMode)}</p>
-        <p className="agent-panel-scope">Portfolio scope only.</p>
+        {/* Kept for screen readers; visually the greeting bubble says it. */}
+        <p className="agent-panel-intro sr-only" id={introId}>{getRouteIntro(route, voiceMode)}</p>
 
-        <div className="agent-scroll-track">
-          <div className="agent-scroll-bar" style={{ width: `${pageTracking.scrollDepth}%` }} />
-        </div>
+        {voiceMode && (
+          <div className="agent-voice-stage" aria-hidden={false}>
+            <span
+              className={`agent-orb agent-orb--stage${speaking ? ' agent-orb--speaking' : micListening ? ' agent-orb--listening' : thinking ? ' agent-orb--thinking' : ''}`}
+              aria-hidden="true"
+            />
+            <p className="agent-voice-line" aria-live="polite">
+              {(() => {
+                const lastAgent = [...messages].reverse().find(message => message.sender === 'agent')
+                if (micListening) return 'Listening…'
+                if (thinking) return 'Thinking…'
+                if (!lastAgent) return 'Voice is on. Ask me anything about the work.'
+                return lastAgent.raw
+                  .replace(/^\[EXPORT\]\n?/, '')
+                  .replace(/\*\*/g, '')
+                  .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+              })()}
+            </p>
+          </div>
+        )}
 
         <div className="agent-float-msgs" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation">
           {messages.map(message => (
@@ -821,16 +851,13 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
         </div>
 
         {chips.length > 0 && !thinking && !anyTyping && (
-          <div className="agent-float-actions surface-glass surface-glass--subtle">
-            <p className="agent-float-actions-label">Shortcuts</p>
-            <div className="agent-float-chips">
-              {chips.map(chip => (
-                <button key={chip} onClick={() => { void handleSend(chip, 'chip') }} type="button" className="agent-float-chip figma-hover">
-                  {chip}
-                  <FigmaSelect />
-                </button>
-              ))}
-            </div>
+          <div className="agent-float-chips" aria-label="Suggestions">
+            {chips.map(chip => (
+              <button key={chip} onClick={() => { void handleSend(chip, 'chip') }} type="button" className="agent-float-chip figma-hover">
+                {chip}
+                <FigmaSelect />
+              </button>
+            ))}
           </div>
         )}
 
@@ -844,6 +871,7 @@ export default function AgentChat({ open, onClose, onMinimize, onPresent, route,
               aria-pressed={micListening}
               title={micListening ? 'Stop listening' : 'Speak to Folio'}
             >
+              <span className="agent-float-mic-ring" aria-hidden="true" />
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <rect x="5" y="1" width="6" height="9" rx="3" fill="currentColor" />
                 <path d="M3 7v1a5 5 0 0010 0V7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" fill="none" />

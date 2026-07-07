@@ -7,9 +7,10 @@
  *  3. Done — routes, cards, and listings are auto-generated.
  *
  * To mark a project as access-limited:
- *  Set `nda: true`.
- *  Add the slug to `NDA_PROJECT_SLUGS` so private work is auditable.
- *  Do not ship private case-study content or access secrets in the static build.
+ *  Set `nda: true` and `access.mode: 'request'`.
+ *  Public cards and pages should show only the safe glimpse. Private material does not ship in this static build.
+ * To remove a project from public discovery:
+ *  Set `hidden: true` and point `page` to NotFoundPage.
  */
 
 export interface Project {
@@ -37,6 +38,13 @@ export interface Project {
   page: () => Promise<{ default: React.ComponentType }>
   /** Mark as access-limited/private */
   nda?: boolean
+  /** Public/private access behavior for portfolio surfaces */
+  access?: {
+    mode: 'public' | 'request' | 'hidden'
+    publicLabel?: string
+    publicPreviewImage?: string
+    publicPreviewAlt?: string
+  }
   /** Show in featured grid on homepage */
   featured?: boolean
   /** Featured order (lower = first) */
@@ -136,8 +144,8 @@ export const projects: Project[] = [
     image: '/Portfolio.github.io/Assets/images/mentra/render-transparent.webp',
     tag: 'AI WEARABLES',
     year: '2025–Present',
-    desc: 'Designed the OS, companion app, and app store for AI smart glasses shipping at $299',
-    category: 'ux',
+    desc: 'Designed the OS, companion app, app store, and launch website for AI smart glasses',
+    category: 'ai',
     page: () => import('../pages/projects/MentraPage'),
     featured: true,
     featuredOrder: 1,
@@ -145,11 +153,11 @@ export const projects: Project[] = [
     tier: 's',
     selected: true,
     selectedOrder: 1,
-    summaryProblem: 'Smart glasses kept shipping as clever hardware demos without a software ecosystem people would actually return to.',
-    summaryRole: 'Head of UI/UX, owning the OS, companion app, miniapp store, and design system.',
+    summaryProblem: 'Smart glasses kept shipping as clever hardware demos without a software ecosystem, launch story, or buying flow people could actually trust.',
+    summaryRole: 'Head of UI/UX, owning the OS, companion app, miniapp store, design system, and launch website.',
     summaryTeam: '1 designer working cross-functionally with 4 engineers, product, and hardware.',
     summaryTimeline: 'Q3 2025–Present',
-    summaryOutcome: 'Launched at $299 with onboarding cut from 12 steps to 4 and Batch 2 pre-orders 88% claimed.',
+    summaryOutcome: 'Launched with onboarding cut from 12 steps to 4 and a product website that made the platform legible to buyers and developers.',
     summaryImage: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
     summaryImageAlt: 'Mentra companion app and app store interface on mobile and smart glasses.',
     cardMockupSource: `${IMG}/mentra/photo-angle.webp`,
@@ -157,7 +165,7 @@ export const projects: Project[] = [
       { label: 'Price at launch', value: '$299' },
       { label: 'Batch 2 claimed', value: '88%' },
       { label: 'Setup steps', value: '12→4' },
-      { label: 'Design surfaces shipped', value: '5' },
+      { label: 'Design surfaces shipped', value: '6' },
     ],
     testimonial: {
       quote: 'An app store on your face sounds absurd until you use it.',
@@ -178,9 +186,9 @@ export const projects: Project[] = [
       },
     },
     storyline: {
-      challenge: 'AI glasses usually feel like disconnected demos unless the OS, companion app, and ecosystem behave like one product.',
-      approach: 'I designed the operating system, companion app, and app distribution layer together so voice, glanceable UI, and developer workflows reinforced the same mental model.',
-      result: 'The story here is platform-level thinking across hardware, software, and distribution, not just a collection of wearable screens.',
+      challenge: 'AI glasses usually feel like disconnected demos unless the OS, companion app, ecosystem, and public launch story behave like one product.',
+      approach: 'I designed the operating system, companion app, app distribution layer, and launch website together so voice, glanceable UI, developer workflows, and buyer proof reinforced the same mental model.',
+      result: 'The story here is platform-level thinking across hardware, software, distribution, and go-to-market, not just a collection of wearable screens.',
     },
   },
   {
@@ -227,43 +235,11 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'mentra-website',
-    name: 'Mentra Website',
-    image: '/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp',
-    cardMockup: '/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp',
-    cardMockupAlt: 'Mentra Glass marketing website showing the launch story, product sections, app store, specifications, and pricing.',
-    tag: 'LAUNCH WEBSITE',
-    year: '2026',
-    desc: 'Launch website for AI smart glasses, turning a new hardware category into a concrete product story',
-    category: 'brand',
-    page: () => import('../pages/projects/MentraWebsitePage'),
-    archiveOrder: 3,
-    tier: 'a',
-    selected: true,
-    selectedOrder: 6.5,
-    summaryProblem: 'AI smart glasses are unfamiliar enough that the site had to explain the category before it could sell the product.',
-    summaryRole: 'Owned site strategy, product narrative, visual hierarchy, launch imagery, and conversion flow.',
-    summaryTeam: '1 designer working with the Mentra product and hardware team.',
-    summaryTimeline: 'Q1 2026',
-    summaryOutcome: 'Turned hardware, OS, MiniApp Store, specs, pricing, and credibility signals into one live product story.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp',
-    summaryImageAlt: 'Full-page Mentra Glass website screenshot.',
-    summaryStats: [
-      { label: 'Launch price', value: '$299' },
-      { label: 'Primary claim', value: 'App store' },
-      { label: 'Product story', value: 'Hardware + OS' },
-      { label: 'Status', value: 'Live' },
-    ],
-    storyline: {
-      challenge: 'The site had to make a new product category understandable before visitors could evaluate the offer.',
-      approach: 'I sequenced the page from category thesis to product proof, then specs, pricing, and platform credibility.',
-      result: 'It became the public front door for Mentra Glass, connecting buyer confidence, developer interest, and launch storytelling.',
-    },
-  },
-  {
     slug: 'transfi-project',
     name: 'TransFi',
-    image: NDA_COVER,
+    image: '/Portfolio.github.io/Assets/images/transfi.jpg',
+    cardMockupSource: '/Portfolio.github.io/Assets/images/transfi.jpg',
+    cardMockupAlt: 'TransFi cover: buy-crypto widget and merchant dashboard on the TransFi blue gradient',
     tag: 'WEB3 PAYMENTS',
     year: '2023',
     desc: 'Public glimpse of a multi-market crypto payment infrastructure redesign',
@@ -272,6 +248,12 @@ export const projects: Project[] = [
     featured: true,
     featuredOrder: 2,
     nda: true,
+    access: {
+      mode: 'request',
+      publicLabel: 'Quick glimpse',
+      publicPreviewImage: '/Portfolio.github.io/Assets/images/transfi.jpg',
+      publicPreviewAlt: 'TransFi cover: buy-crypto widget and merchant dashboard on the TransFi blue gradient',
+    },
     loading: 'eager',
     tier: 's',
     selected: true,
@@ -281,8 +263,8 @@ export const projects: Project[] = [
     summaryTeam: 'Lead designer partnering with product, founder, and engineering.',
     summaryTimeline: '2022–23',
     summaryOutcome: 'Simplified merchant onboarding and made the payment infrastructure easier to evaluate, trust, and operate.',
-    summaryImage: NDA_COVER,
-    summaryImageAlt: 'TransFi public preview cover for a payment infrastructure case study.',
+    summaryImage: '/Portfolio.github.io/Assets/images/transfi.jpg',
+    summaryImageAlt: 'TransFi cover: buy-crypto widget and merchant dashboard on the TransFi blue gradient',
     summaryStats: [
       { label: 'Domain', value: 'Payments' },
       { label: 'Scope', value: 'Dashboard + widget' },
@@ -294,9 +276,9 @@ export const projects: Project[] = [
       cite: 'Public synthesis',
     },
     hoverMedia: {
-      src: NDA_COVER,
+      src: '/Portfolio.github.io/Assets/Projects/Transfi/public/buy-crypto-widget.png',
       kind: 'image',
-      alt: 'TransFi public cover image.',
+      alt: 'Public TransFi buy crypto widget preview.',
     },
     storyline: {
       challenge: 'Cross-border crypto payments were operationally powerful but cognitively heavy, with different market expectations and constraints.',
@@ -307,13 +289,19 @@ export const projects: Project[] = [
   {
     slug: 'zentipay',
     name: 'ZentiPay',
-    image: NDA_COVER,
+    image: '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
     tag: 'FINTECH',
     year: '2025',
     desc: 'Built a trust-first fintech super-app from scratch',
     category: 'ux',
     page: () => import('../pages/projects/ZentipayPage'),
     nda: true,
+    access: {
+      mode: 'request',
+      publicLabel: 'Quick glimpse',
+      publicPreviewImage: '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
+      publicPreviewAlt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
+    },
     archiveOrder: 2,
     tier: 'a',
     loading: 'eager',
@@ -324,18 +312,18 @@ export const projects: Project[] = [
     summaryTeam: 'Sole designer working with product and engineering across web and mobile.',
     summaryTimeline: '2025',
     summaryOutcome: 'Improved user confidence by making pricing, progress, and trust legible earlier in the transfer flow.',
-    summaryImage: NDA_COVER,
-    summaryImageAlt: 'ZentiPay public preview cover for a fintech case study.',
+    summaryImage: '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
+    summaryImageAlt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
     summaryStats: [
       { label: 'Domain', value: 'Fintech' },
-      { label: 'Scope', value: '0→1 product' },
+      { label: 'Team', value: 'Solo designer' },
       { label: 'Focus', value: 'Trust architecture' },
       { label: 'Access', value: 'By request' },
     ],
     storyline: {
-      challenge: 'Super-apps fail when every feature fights for attention and the core money flow becomes harder instead of easier.',
-      approach: 'I treated the product as a system, prioritizing the transaction path first and then layering adjacent utility around it without breaking the core experience.',
-      result: 'This positions the work as end-to-end fintech product design with measurable impact, not just feature assembly.',
+      challenge: 'Trust dropped when fees, status, and next steps arrived too late in the transfer flow.',
+      approach: 'I made price clarity, progress, recovery, and review states behave like one product system.',
+      result: 'The safe glimpse shows the visible trust layer without exposing client flows or implementation detail.',
     },
   },
   {
@@ -366,10 +354,6 @@ export const projects: Project[] = [
       { label: 'Approval model', value: '1 tap' },
       { label: 'Safety modes', value: '3 tiers' },
     ],
-    testimonial: {
-      quote: 'It is like a volume knob for how much I trust the AI right now.',
-      cite: 'Stakeholder feedback during internal review',
-    },
     hoverMedia: {
       src: '/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp',
       alt: 'Clawed AI assistant launch visual.',
@@ -385,11 +369,11 @@ export const projects: Project[] = [
   {
     slug: 'executivelens',
     name: 'ExecutiveLens',
-    image: `${IMG}/executivelens.png`,
+    image: `${IMG}/executivelens.webp`,
     tag: 'AI ANALYTICS',
     year: '2025–26',
-    desc: 'Saved executives 5.2 hrs/week with AI meeting intelligence — 87% adoption in 2 weeks',
-    category: 'ux',
+    desc: 'AI meeting intelligence for executives — every meeting captured, decisions tracked, briefs delivered',
+    category: 'ai',
     page: () => import('../pages/projects/ExecutiveLensPage'),
     archiveOrder: 1,
     tier: 'a',
@@ -399,14 +383,11 @@ export const projects: Project[] = [
     summaryRole: 'Sole product designer across meeting capture, dashboard narrative, mobile briefing, and AI trust patterns.',
     summaryTeam: 'Design lead working with product, AI, and engineering partners.',
     summaryTimeline: '2025 to 2026',
-    summaryOutcome: 'Closed beta usage showed 87% adoption within 2 weeks and 5.2 hours saved per executive per week.',
+    summaryOutcome: 'Closed beta reached 87% adoption within two weeks of rollout.',
     summaryImage: '/Portfolio.github.io/Assets/images/executivelens.webp',
     summaryImageAlt: 'ExecutiveLens dashboard and meeting intelligence interface.',
     summaryStats: [
-      { label: 'Meetings analyzed', value: '12,000+' },
-      { label: 'Time saved', value: '5.2 hrs/wk' },
-      { label: 'Adoption', value: '87%' },
-      { label: 'Decision accuracy', value: '94%' },
+      { label: 'Beta adoption', value: '87%' },
     ],
     storyline: {
       challenge: 'Executives were drowning in meetings, but summary tools often stop at note-taking and miss the decision layer.',
@@ -417,12 +398,12 @@ export const projects: Project[] = [
   {
     slug: 'org-dashboard',
     name: 'OrgDashboard',
-    image: `${IMG}/org-dashboard.png`,
+    image: `${IMG}/org-dashboard.webp`,
     tag: 'B2B SAAS',
     year: '2026',
     desc: 'Dual-surface admin system giving AI agents organizational context without confusing human operators',
     category: 'ux',
-    page: () => import('../pages/projects/OrgDashboardPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 21,
     tier: 'b',
     hidden: true,
@@ -437,6 +418,12 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/CueTvPage'),
     nda: true,
+    access: {
+      mode: 'request',
+      publicLabel: 'Quick glimpse',
+      publicPreviewImage: NDA_COVER,
+      publicPreviewAlt: 'Public preview cover for CueTV product and growth work.',
+    },
     archiveOrder: 9,
     tier: 'c',
     summaryProblem: 'Arts streaming audiences browse differently from mainstream OTT audiences, and the platform also needed a growth system that could scale across fragmented segments.',
@@ -466,6 +453,12 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/HealthAppPage'),
     nda: true,
+    access: {
+      mode: 'request',
+      publicLabel: 'Quick glimpse',
+      publicPreviewImage: NDA_COVER,
+      publicPreviewAlt: 'Public preview cover for health-aware planning work.',
+    },
     archiveOrder: 23,
     tier: 'c',
     summaryProblem: 'Task managers optimize output, but they rarely account for whether the schedule itself is harmful to the person following it.',
@@ -492,7 +485,7 @@ export const projects: Project[] = [
     tag: 'HEALTHCARE AI',
     year: '2020',
     desc: 'Explored encrypted genomic workflows for cancer prognosis without exposing raw patient data',
-    category: 'ux',
+    category: 'ai',
     page: () => import('../pages/projects/IbmPage'),
     archiveOrder: 25,
     tier: 'c',
@@ -513,7 +506,7 @@ export const projects: Project[] = [
   {
     slug: 'ballah-code',
     name: 'Ballah Code',
-    image: `${IMG}/ballah-code.png`,
+    image: `${IMG}/ballah-code.webp`,
     tag: 'AI DEV TOOLS',
     year: '2026',
     desc: 'Designed an AI-native IDE with 17 production tools and a senior-engineer interaction model',
@@ -525,7 +518,7 @@ export const projects: Project[] = [
   {
     slug: 'oncall-lens',
     name: 'OnCall Lens',
-    image: `${IMG}/oncall-lens.png`,
+    image: `${IMG}/oncall-lens.webp`,
     cardMockupSource: `${IMG}/oncall-lens/hero.webp`,
     tag: 'AI WEARABLE',
     year: '2026',
@@ -557,6 +550,12 @@ export const projects: Project[] = [
     category: 'ai',
     page: () => import('../pages/projects/AiVoicePage'),
     nda: true,
+    access: {
+      mode: 'request',
+      publicLabel: 'Quick glimpse',
+      publicPreviewImage: NDA_COVER,
+      publicPreviewAlt: 'Public preview cover for enterprise AI voice selection work.',
+    },
     archiveOrder: 32,
     tier: 'b',
     storyline: {
@@ -570,7 +569,9 @@ export const projects: Project[] = [
   {
     slug: 'raahi-project',
     name: 'Raahi',
-    image: `${IMG}/raahi.jpg`,
+    image: '/Portfolio.github.io/Assets/images/raahi.jpg',
+    cardMockup: '/Portfolio.github.io/Assets/images/raahi.jpg',
+    cardMockupAlt: 'Raahi cover: sculptural hands holding a phone with the Raahi journey planner over a dark city map',
     tag: 'CIVIC DESIGN',
     year: '2022',
     desc: 'Service design for Pune public transit — app, kiosk, and in-vehicle systems',
@@ -677,35 +678,77 @@ export const projects: Project[] = [
   },
   {
     slug: 'keyboard-project',
-    name: 'BreakGen',
+    name: 'Keyboard Project',
     image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
     cardMockupSource: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-angle.png',
-    tag: 'ITP THESIS',
-    year: '2025',
-    desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards — 200+ visitors',
+    tag: 'DATA OBJECT',
+    year: '2024',
+    desc: 'Physical keyboard study turning key height, fabrication, and touch into a data sculpture',
     category: 'creative',
     page: () => import('../pages/projects/KeyboardProjectPage'),
+    archiveOrder: 12,
+    tier: 'b',
+    summaryProblem: 'Keyboard interfaces are usually treated as flat input devices, even though every key carries rhythm, hierarchy, and touch.',
+    summaryRole: 'Designed and fabricated the physical study, including key-height mapping, 3D-printed forms, and visual documentation.',
+    summaryTeam: 'Individual physical-computing and fabrication study at NYU ITP.',
+    summaryTimeline: '2024',
+    summaryOutcome: 'Built a tactile keyboard object and companion data sculpture that made input feel spatial and inspectable.',
+    summaryImage: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
+    summaryImageAlt: 'Keyboard with keys lifted to different heights beside a 3D printed data sculpture.',
+    summaryStats: [
+      { label: 'Medium', value: 'Keyboard' },
+      { label: 'Output', value: 'Data sculpture' },
+      { label: 'Fabrication', value: '3D print' },
+      { label: 'Focus', value: 'Touch + height' },
+    ],
+    storyline: {
+      challenge: 'A keyboard is normally invisible once it works, but its physical structure can carry information in ways a flat screen cannot.',
+      approach: 'I treated key height and fabrication as the interface, turning rows of keys into a spatial data surface people could read with their eyes and hands.',
+      result: 'The project separates the tactile keyboard artifact from BreakGen, the later AI fabrication platform it helped inform.',
+    },
+  },
+  {
+    slug: 'breakgen',
+    name: 'BreakGen',
+    image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
+    cardMockup: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-demo-live.png',
+    cardMockupAlt: 'BreakGen interactive demo showing a workspace, preview chamber, controls, and artifact-backed state.',
+    tag: 'ITP THESIS',
+    year: '2025',
+    desc: 'AI platform that turns text prompts into fabrication-ready custom keyboards, from layout to PCB',
+    category: 'creative',
+    page: () => import('../pages/projects/BreakGenPage'),
     archiveOrder: 3,
     tier: 'a',
     selected: true,
     selectedOrder: 9,
     summaryProblem: 'Designing a custom keyboard from scratch still requires expert tools, firmware knowledge, and fabrication workflows that exclude most makers.',
-    summaryRole: 'Sole designer and developer across concept, interface, generative keycap system, PCB automation, and physical prototyping.',
+    summaryRole: 'Sole designer and developer across concept, interface, AI keycap generation, PCB automation, and physical prototyping.',
     summaryTeam: 'Individual thesis project with faculty advising and critique support.',
     summaryTimeline: '2024 to 2025 thesis cycle',
     summaryOutcome: 'Created a platform that turns prompts, layouts, and ergonomic choices into fabrication-ready keyboard outputs and drew 200+ visitors at the thesis show.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
-    summaryImageAlt: 'BreakGen concept hero showing custom keyboard forms and generated hardware outputs.',
+    summaryImage: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
+    summaryImageAlt: 'BreakGen launch page showing the AI keyboard fabrication product story.',
     summaryStats: [
       { label: 'Visitors reached', value: '200+' },
-      { label: 'Output layers', value: '3' },
-      { label: 'Build stack', value: 'React + 3D' },
-      { label: 'Fabrication tools', value: '4' },
+      { label: 'Live designs', value: '50+' },
+      { label: 'Physical prototypes', value: '6' },
+      { label: 'Export target', value: 'PCB + STL' },
     ],
+    previewMedia: {
+      playlist: {
+        src: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-demo-live.png',
+        alt: 'BreakGen interactive demo workspace.',
+      },
+      library: {
+        src: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
+        alt: 'BreakGen public launch page.',
+      },
+    },
     storyline: {
       challenge: 'Custom keyboard creation is split across expert-only tools, which keeps most people outside the making process.',
-      approach: 'I collapsed layout, generative design, and fabrication prep into one guided flow so intent could move directly toward a buildable object.',
-      result: 'It reads as a true design-engineering thesis, where concept, system, and prototype all reinforce each other.',
+      approach: 'I collapsed layout, AI keycap generation, and fabrication prep into one guided flow so intent could move directly toward a buildable object.',
+      result: 'BreakGen is the thesis-scale design-engineering platform; the earlier keyboard object remains a separate tactile study.',
     },
   },
   {
@@ -749,15 +792,15 @@ export const projects: Project[] = [
     image: `${IMG}/shuffle.jpg`,
     tag: 'INTERACTIVE',
     year: '2023',
-    desc: 'Weight-sensor LED grid where players compete through physical strategy',
+    desc: 'Motorised-slider board where balancing student life becomes a zero-sum game',
     category: 'creative',
     page: () => import('../pages/projects/ShufflePage'),
     archiveOrder: 12,
     tier: 'b',
     storyline: {
-      challenge: 'Physical games fall flat when the rules are simple but the body does not actually matter.',
-      approach: 'I designed the LED grid and weight-sensing interaction so strategy emerged from movement, timing, and social pressure.',
-      result: 'It positions the project as embodied game design, where mechanics and hardware are part of the narrative.',
+      challenge: 'Time trade-offs in graduate school are invisible until something breaks.',
+      approach: 'I built a board of motorised faders where pushing one part of your life up physically drags the others down.',
+      result: 'It positions the project as embodied systems design, where the interface enforces the trade-off instead of displaying it.',
     },
   },
   {
@@ -809,7 +852,7 @@ export const projects: Project[] = [
     year: '2024',
     desc: 'Perlin noise flow fields — 2000 particles creating organic, ever-changing patterns',
     category: 'creative',
-    page: () => import('../pages/projects/CanvasForCodersPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 14,
     tier: 'd',
     hidden: true,
@@ -822,7 +865,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Browser experiments using the body as input — webcam, motion sensors, spatial audio',
     category: 'creative',
-    page: () => import('../pages/projects/EmbodiedWebPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 33,
     tier: 'd',
     hidden: true,
@@ -835,7 +878,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Textile interfaces translating emotion into tactile patterns — haptic vests & pressure fabrics',
     category: 'creative',
-    page: () => import('../pages/projects/FeelingPatternsPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 34,
     tier: 'd',
     hidden: true,
@@ -848,7 +891,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Designing invisible systems for live performance — lighting, spatial audio, audience flow',
     category: 'creative',
-    page: () => import('../pages/projects/PerformanceByDesignPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 35,
     tier: 'd',
     hidden: true,
@@ -861,7 +904,7 @@ export const projects: Project[] = [
     year: '2024',
     desc: 'A reflective design journal on identity, craft, and evolving from designer to design engineer',
     category: 'creative',
-    page: () => import('../pages/projects/OnBecomingPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 36,
     tier: 'd',
     hidden: true,
@@ -879,7 +922,7 @@ export const projects: Project[] = [
     year: '2025',
     desc: 'How structure, pacing, and medium shape the stories products tell',
     category: 'creative',
-    page: () => import('../pages/projects/StorytellingPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 37,
     tier: 'd',
     hidden: true,
@@ -915,7 +958,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Weekly p5.js sketches — generative portraits, data landscapes, interactive typography',
     category: 'creative',
-    page: () => import('../pages/projects/IntroCompMediaPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 38,
     tier: 'd',
     hidden: true,
@@ -928,7 +971,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: '360° documentary, spatial sound walk, and multi-screen interactive projection',
     category: 'creative',
-    page: () => import('../pages/projects/HypercinemaPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 39,
     tier: 'd',
     hidden: true,
@@ -941,7 +984,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Shipped two deployed web apps — collaborative storytelling + campus mood mapping',
     category: 'creative',
-    page: () => import('../pages/projects/ApplicationsPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 40,
     tier: 'd',
     hidden: true,
@@ -954,7 +997,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Inclusive design research — edge cases, emotional states, and the humans personas miss',
     category: 'good',
-    page: () => import('../pages/projects/MessyHumansPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 41,
     tier: 'd',
     hidden: true,
@@ -967,7 +1010,7 @@ export const projects: Project[] = [
     year: '2024',
     desc: 'Led a 5-person team from concept to ITP Winter Show — scope, stakeholders, shipping',
     category: 'creative',
-    page: () => import('../pages/projects/ProductionStudioPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 42,
     tier: 'd',
     hidden: true,
@@ -981,7 +1024,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
     category: 'install',
-    page: () => import('../pages/projects/ArcadeLabPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 27,
     tier: 'd',
     hidden: true,
@@ -1078,7 +1121,7 @@ export const projects: Project[] = [
   {
     slug: 'revolving-stage',
     name: 'Revolving Stage',
-    image: `${IMG}/revolving-stage.jpg`,
+    image: `${IMG}/revolving-stage.webp`,
     tag: 'FABRICATION',
     year: '2022',
     desc: 'Engineered a 15-foot rotating theatre stage built to carry performers and scenery safely',
@@ -1114,7 +1157,7 @@ export const projects: Project[] = [
     year: '2024',
     desc: 'Abandoned greenhouse set for NYU theatre — multi-layer lighting for 100+ audience',
     category: 'install',
-    page: () => import('../pages/projects/DrowningPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 28,
     tier: 'd',
     hidden: true,
@@ -1127,7 +1170,7 @@ export const projects: Project[] = [
     year: '2020',
     desc: 'Competition sculptures for Firodia Karandak, Pune',
     category: 'install',
-    page: () => import('../pages/projects/SculpturePage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 31,
     tier: 'd',
     hidden: true,
@@ -1170,7 +1213,9 @@ export const projects: Project[] = [
   {
     slug: 'tedx',
     name: 'TEDxVITPune',
-    image: `${IMG}/tedx.png`,
+    image: '/Portfolio.github.io/Assets/images/tedx.jpg',
+    cardMockup: '/Portfolio.github.io/Assets/images/tedx.jpg',
+    cardMockupAlt: 'TEDxVITPune stage: red TEDx letters and box-column skyline set with the red circular stage',
     tag: 'ART DIRECTION',
     year: '2021',
     desc: 'Art directed a 65-person team to build a parallax cityscape stage for 800-plus attendees',
@@ -1194,7 +1239,7 @@ export const projects: Project[] = [
   {
     slug: 'typeface',
     name: "Butler's Slice",
-    image: `${IMG}/typeface.jpg`,
+    image: `${IMG}/typeface.webp`,
     tag: 'TYPE DESIGN',
     year: '2022',
     desc: 'Variable display typeface with geometric slice cuts — 400+ glyphs, 3 weights',
@@ -1211,7 +1256,7 @@ export const projects: Project[] = [
     year: '2021',
     desc: 'Visual identity and motion graphics for an art and design podcast series',
     category: 'brand',
-    page: () => import('../pages/projects/AtpsPage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 26,
     tier: 'd',
     hidden: true,
@@ -1224,7 +1269,7 @@ export const projects: Project[] = [
     year: '2021',
     desc: 'Creative direction, branding, and web design for a student conference',
     category: 'brand',
-    page: () => import('../pages/projects/VishwaConclavePage'),
+    page: () => import('../pages/NotFoundPage'),
     archiveOrder: 29,
     tier: 'd',
     hidden: true,
@@ -1232,12 +1277,17 @@ export const projects: Project[] = [
 ]
 
 for (const project of projects) {
-  if (project.nda) {
-    project.cardMockup = NDA_COVER
-    project.cardMockupAlt = `${project.name} public preview cover`
+  const publicPreview = project.access?.publicPreviewImage
+  if (project.access?.mode === 'request' || project.nda) {
+    project.cardMockup = publicPreview || project.cardMockup || project.cardMockupSource || project.image || NDA_COVER
+    project.cardMockupAlt = project.access?.publicPreviewAlt || project.cardMockupAlt || `${project.name} public preview cover`
   } else {
     project.cardMockup ??= defaultCardMockup(project.slug)
-    project.cardMockupAlt ??= `${project.name} project mockup`
+    // Fold the tag into the fallback so screen readers get real context
+    // instead of a generic "project mockup" on every card.
+    project.cardMockupAlt ??= project.tag
+      ? `${project.name} — ${project.tag} project cover`
+      : `${project.name} project cover`
   }
 }
 
@@ -1245,14 +1295,18 @@ for (const project of projects) {
    Helper selectors
    ────────────────────────────────────────────────────────────────────── */
 
+const isPubliclyVisibleProject = (project: Project) => !project.hidden && project.access?.mode !== 'hidden'
+
+export const visibleProjects = projects.filter(isPubliclyVisibleProject)
+
 /** S-Tier: flagship projects for homepage featured grid */
-export const featuredProjects = projects
+export const featuredProjects = visibleProjects
   .filter(p => p.featured)
   .sort((a, b) => (a.featuredOrder ?? a.archiveOrder ?? 99) - (b.featuredOrder ?? b.archiveOrder ?? 99))
 
 /** Explicit recruiter-facing work list */
-export const selectedWorkProjects = projects
-  .filter(p => p.selected && !p.hidden)
+export const selectedWorkProjects = visibleProjects
+  .filter(p => p.selected)
   .sort((a, b) => (a.selectedOrder ?? 99) - (b.selectedOrder ?? 99))
 
 /** Homepage follow-on grid after flagship work */
@@ -1260,8 +1314,8 @@ export const homepageSelectedProjects = selectedWorkProjects
   .filter(p => !p.featured)
 
 /** Remaining visible work shown below the fold on /work */
-export const archiveWorkProjects = projects
-  .filter(p => !p.hidden && !selectedWorkProjects.some(selected => selected.slug === p.slug))
+export const archiveWorkProjects = visibleProjects
+  .filter(p => !selectedWorkProjects.some(selected => selected.slug === p.slug))
   .sort((a, b) => {
     const tierOrder = { a: 1, b: 2, c: 3, d: 4, s: 0 }
     const aRank = tierOrder[a.tier ?? 'd']
@@ -1275,7 +1329,7 @@ export const allProjectsCurated = (() => {
   // Interleave categories for visual variety
   const byCat: Record<string, Project[]> = {}
   for (const cat of ['ux', 'ai', 'good', 'creative', 'install', 'brand']) {
-    byCat[cat] = projects.filter(p => p.category === cat && !p.hidden)
+    byCat[cat] = visibleProjects.filter(p => p.category === cat)
   }
   const order: ProjectCategory[] = ['ux', 'ai', 'ux', 'creative', 'good', 'install', 'ux', 'ai', 'brand', 'ux', 'creative', 'install', 'good', 'ai', 'creative', 'install', 'ux', 'brand', 'install', 'creative', 'good', 'ai', 'ux', 'brand', 'install', 'creative', 'brand', 'creative', 'install', 'ux', 'brand', 'ux', 'install']
   const used = new Set<string>()
@@ -1288,8 +1342,8 @@ export const allProjectsCurated = (() => {
     }
   }
   // Append any remaining
-  for (const p of projects) {
-    if (!used.has(p.slug) && !p.hidden) {
+  for (const p of visibleProjects) {
+    if (!used.has(p.slug)) {
       used.add(p.slug)
       result.push(p)
     }
@@ -1298,15 +1352,28 @@ export const allProjectsCurated = (() => {
 })()
 
 export function filterProjectsByCategory(items: Project[], cat: ProjectCategory): Project[] {
-  return items.filter(p => p.category === cat && !p.hidden)
+  return items.filter(p => p.category === cat && isPubliclyVisibleProject(p))
 }
 
 /** Get projects by category */
 export function projectsByCategory(cat: ProjectCategory): Project[] {
-  return projects.filter(p => p.category === cat && !p.hidden)
+  return visibleProjects.filter(p => p.category === cat)
 }
 
 /** Find a single project by slug */
 export function getProject(slug: string): Project | undefined {
   return projects.find(p => p.slug === slug)
+}
+
+export function isRequestAccessProject(project?: Project): boolean {
+  return Boolean(project && (project.access?.mode === 'request' || project.nda))
+}
+
+export function getProjectAccessLabel(project?: Project): string {
+  if (!isRequestAccessProject(project)) return ''
+  return `NDA / ${project?.access?.publicLabel || 'Quick glimpse'}`
+}
+
+export function isHiddenProject(project?: Project): boolean {
+  return Boolean(project && !isPubliclyVisibleProject(project))
 }

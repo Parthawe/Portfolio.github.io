@@ -1,5 +1,5 @@
 import { categories } from './categories'
-import { CATEGORY_LABELS, projects, type ProjectCategory } from './projects'
+import { CATEGORY_LABELS, visibleProjects as projects, type ProjectCategory } from './projects'
 
 /* ── Types ─────────────────────────────────────────────── */
 
@@ -199,7 +199,7 @@ const deepMap: Record<string, ProjectDeep> = {
     opinion: 'For an early project, the systems thinking here is impressive. Every piece connects.',
     connectedTo: ['typeface'],
   },
-  'keyboard-project': {
+  breakgen: {
     oneLiner: 'An AI platform that turns text prompts into fabrication-ready custom keyboards.',
     challenge: 'Custom keyboards require CAD expertise, weeks of iteration, and fabrication knowledge. What if anyone could describe a keyboard and have it built?',
     outcome: 'Working platform, 200+ visitors at ITP thesis show. Text to fabrication-ready output.',
@@ -212,6 +212,19 @@ const deepMap: Record<string, ProjectDeep> = {
     opinion: 'This is where the design-engineer identity becomes undeniable. He built the AI, designed the product, and fabricated the output.',
     connectedTo: ['ballah-code', 'jugalbandi'],
     surprisingFact: 'Every generated keyboard is structurally valid and can be 3D printed without modification.',
+  },
+  'keyboard-project': {
+    oneLiner: 'A physical keyboard study that turns key height into a tactile data landscape.',
+    challenge: 'Keyboards are usually treated as invisible flat input devices, even though their form can carry information through touch and height.',
+    outcome: 'Modified keyboard object plus 3D printed data sculpture.',
+    insight: 'A familiar interface becomes easier to question when it is made physical, raised, and readable by the hand.',
+    process: 'Disassembled, measured, fabricated, and reassembled a keyboard study around key-height mapping and physical data representation.',
+    whyItMatters: 'This is the tactile artifact that helps separate Parth’s physical-interface work from the later BreakGen AI platform.',
+    duration: '2024',
+    team: 'Solo',
+    platforms: 'Physical fabrication',
+    opinion: 'A quieter project, but useful because it shows the material thinking behind later design-engineering work.',
+    connectedTo: ['breakgen', 'jugalbandi'],
   },
   'black-hole': {
     oneLiner: 'Five physical models of black hole phenomena, exhibited at the Horological Society of NY.',
@@ -251,6 +264,243 @@ const deepMap: Record<string, ProjectDeep> = {
     platforms: 'Glyphs, FontForge',
     opinion: 'The portfolio uses this typeface. That level of craft, designing the letters your own portfolio is set in, is rare.',
     connectedTo: ['tedx'],
+  },
+  'ai-voice': {
+    oneLiner: 'Reframed enterprise AI voice selection from a dropdown of demos into a confidence decision.',
+    challenge: 'Enterprise buyers aren\'t picking a voice, they\'re deciding whether to trust it in front of their customers. A flat list of samples tells you nothing about fit.',
+    outcome: 'Public glimpse: selection reframed around tone, context, and emotional fit, with deeper internals available by access request.',
+    insight: 'Voice choice is a confidence problem, not a preference problem. Context-aware comparison turns a guess into an informed, defensible choice.',
+    process: 'Replaced static demo lists with context-aware comparison, then designed for the enterprise approval reality, making the reasoning behind a chosen voice visible and shareable so it survives stakeholder scrutiny.',
+    whyItMatters: 'As AI voices become the front line of customer contact, choosing one is product judgment, not a brand setting.',
+    duration: '2025',
+    team: 'Product Designer, client undisclosed (NDA)',
+    platforms: 'Enterprise product',
+    opinion: 'The sharpest move is designing for the approval meeting, not the solo user. Most designers forget decisions like this get reviewed by teams.',
+    connectedTo: ['clawed-chat', 'mentra'],
+    surprisingFact: 'The whole project rests on one reframe: a dropdown became a decision about trust.',
+  },
+  'code-for-build': {
+    oneLiner: 'Taught teenagers to code by turning HTML and CSS into 3D castle blocks on a phone.',
+    challenge: 'Kids in Istanbul wanted to learn coding but had no computers, one shared smartphone per household. Abstract concepts like divs and padding had to become tangible on a small screen.',
+    outcome: 'A full mobile app concept: a five-color block system mapping code elements to childhood building blocks, interactive 3D layouts, and lessons that rebuild real interfaces like Netflix in blocks.',
+    insight: 'A div became a container block, CSS padding became the space between blocks. The metaphor kids already knew from play made abstract code tangible.',
+    process: 'Research centered on Shawn, a 14-year-old in Istanbul blocked by hardware, not motivation. Competitive analysis of six coding apps found none visualized code. Inspired by Scratch and Blockly, but adapted for web development.',
+    whyItMatters: 'Access is a design constraint, not an excuse. The best educational interfaces reveal complexity at the pace of the learner.',
+    duration: '3 months, 2021',
+    team: 'Sole Interaction Designer, self-initiated',
+    platforms: 'Mobile app',
+    opinion: 'The progressive-disclosure 3D view is the smartest part, it starts minimized and expands per block, solving two competing hierarchies on one small screen.',
+    connectedTo: ['ballah-code'],
+    surprisingFact: 'Of the six competitor apps analyzed, not a single one visualized code. That gap became the whole product.',
+  },
+  cuetv: {
+    oneLiner: 'A streaming platform for opera, ballet, and symphonies where discovery and growth had to work as one system.',
+    challenge: 'A niche catalogue browsed like a mass-market service reads as scarcity. Classical-arts audiences search, watch, and return completely differently from episodic TV viewers.',
+    outcome: 'Public glimpse: discovery organized around occasion and mood, playback built for long-form seated attention, and a retargeting system tied to genuine reasons to return. Live at cuetv.online.',
+    insight: 'A small library is a discovery problem, not a size problem. Curate by cultural context and depth reads as expertise, not a short list.',
+    process: 'Treated the catalogue as curation, designed the player around act structure and resume behavior instead of autoplay churn, and made return visits a designed moment rather than an ad afterthought.',
+    whyItMatters: 'Proves growth and product design can reinforce each other. Retention for a cultural catalogue is about the next programme, not the next episode.',
+    duration: '7 months, 2021',
+    team: 'Product Designer, for Operabase',
+    platforms: 'Web (OTT streaming)',
+    opinion: 'The playback thinking is underrated, designing for uninterrupted, seated attention goes against every streaming convention, and it\'s right for this audience.',
+    connectedTo: ['jugalbandi', 'revolving-stage'],
+    surprisingFact: 'The retargeting ads were designed as part of the product, not bolted on after, growth and UX shipped as one system.',
+  },
+  'dna-speculative': {
+    oneLiner: 'Would you take a pill to live forever? A speculative pharmaceutical artifact that makes you actually decide.',
+    challenge: 'Speculative design usually stays too abstract to provoke a real decision. A thought experiment on screen can be shrugged off, this one had to be held.',
+    outcome: 'Two believable boxed futures: Live Immortal, an anti-aging treatment with dosage cards and efficacy language, and Embrace Death, a serious artifact arguing for accepting finitude. Participants hesitated.',
+    insight: 'Speculative design succeeds or fails on conviction. If the artifact feels finished, the participant negotiates with the scenario instead of observing it from a safe distance.',
+    process: 'Built the fiction from real references, gene editing, telomere research, Chinese alchemy, memento mori, then earned belief through details: print quality, dosage language, booklet tone, unsettlingly familiar pharmaceutical packaging.',
+    whyItMatters: 'Turns an abstract ethics debate about anti-aging into choice architecture. The object carries the argument.',
+    duration: '2024',
+    team: 'Solo, Creator, at NYU ITP',
+    platforms: 'Physical packaging, print',
+    opinion: 'Making Embrace Death a genuinely serious option, not a joke, is what makes the whole piece work. Most designers would have played it for irony.',
+    connectedTo: ['uv-light', 'making-of-time'],
+    surprisingFact: 'Neither box is the "right answer." The design work went equally into arguing both sides.',
+  },
+  healthapp: {
+    oneLiner: 'A task planner where your sleep, food, and energy quietly reshape what the day asks of you.',
+    challenge: 'Health metrics live in one app, the to-do list in another, and no connection between them. Planners optimize output while ignoring whether the schedule itself is harmful.',
+    outcome: 'Public glimpse: a planning concept built on honest capacity, with health signals as scheduling inputs. Deeper internals available by access request.',
+    insight: 'Wellness data usually lives where it changes nothing. Move it into the planner and recovery starts influencing the plan, which makes the plan one you\'ll actually follow.',
+    process: 'Treated sleep, food, movement, and energy as inputs to the schedule itself, designed around realistic daily capacity, and kept the surface calm, complexity stays in the system, not on the screen.',
+    whyItMatters: 'Reframes productivity as a health-aware system. A plan that accounts for the person doing the work is more trustworthy than one that maximizes output.',
+    duration: '4 months, 2024',
+    team: 'Product Designer, independent concept',
+    platforms: 'Mobile app',
+    opinion: 'The restraint is the best part. Several noisy data streams could have produced a guilt-inducing dashboard, and instead it\'s a simple, legible plan.',
+    connectedTo: ['ibm'],
+    surprisingFact: 'The core design principle is honest capacity, the app deliberately plans for less than your maximum.',
+  },
+  ibm: {
+    oneLiner: 'Cancer prognosis on genomic data that stays encrypted through the entire prediction pipeline.',
+    challenge: 'Most clinical AI decrypts patient data before analyzing it, exposing the most sensitive information a person can share. The weak point isn\'t storage or transit, it\'s computation itself.',
+    outcome: 'A working pipeline producing Kaplan-Meier survival curves for seven treatment groups, computed from data that stayed encrypted through the model. Encrypted transfer cost 42s client-side, 28s server-side.',
+    insight: 'Homomorphic encryption lets the model work on the signal without ever seeing the patient in the clear. Privacy cost was measured in seconds, not usefulness.',
+    process: 'Feature selection and validation on clinical and genomic inputs, encryption with IBM\'s FHE toolkit, a neural-network workflow on encrypted data, decryption only at the point of interpretation for clustering and survival curves.',
+    whyItMatters: 'Removes the compromise at the heart of clinical AI: the promise of privacy that breaks the moment raw data reaches a server.',
+    duration: '8 months, 2020',
+    team: 'Research internship at IBM, with mentors and a 4-engineer student team',
+    platforms: 'FHE Toolkit, Python, Java, Neural Networks',
+    opinion: 'The value here isn\'t an interface, it\'s system logic, knowing what to encrypt, when it can safely transform, and where trust could fail. That thinking shows up in Parth\'s later AI work.',
+    connectedTo: ['healthapp', 'oncall-lens'],
+    surprisingFact: 'The seven output clusters work as risk groups, which curve a patient\'s data falls into tells you how their expected survival differs, all computed blind.',
+  },
+  'making-of-time': {
+    oneLiner: 'Built three timekeeping systems, sundial, mechanical watch, software clock, to feel how each medium changes our relationship with time.',
+    challenge: 'Not how to tell time more accurately, but how the medium of timekeeping shapes attention. Each phase demanded a completely different craft, from gnomon geometry to escapements to code.',
+    outcome: 'Three working timepieces: a hand-calibrated sundial etched for NYC\'s latitude, a reassembled mechanical movement, and p5.js clocks that map time to color and live weather data.',
+    insight: 'The more abstract the timekeeping medium, the more freedom to redefine what time means. A sundial is bound to the sun, a watch to physics, a digital clock only to imagination.',
+    process: 'Sundial first: research gnomon geometry, hand-etch hour lines, test outdoors for weeks. Then dissect mechanical movements under magnification and reassemble one. Finally, build software clocks that communicate the quality of a moment, not just its position.',
+    whyItMatters: 'Shows range across observation, precision metalwork, and code, and the kind of first-principles curiosity that treats "what is a clock?" as a design question.',
+    duration: '2024',
+    team: 'Solo, creator',
+    platforms: 'Physical (sundial, mechanical + quartz watches), p5.js software clocks',
+    opinion: 'The sundial takeaway is the best part: you can\'t glance at it like a phone, you have to stand there and interpret a shadow. That\'s a design critique of every screen we make.',
+    connectedTo: ['black-hole', 'sea-of-salt', 'keyboard-project'],
+    surprisingFact: 'The sundial\'s hour lines account for the equation of time, the wobble between solar time and clock time caused by Earth\'s elliptical orbit.',
+  },
+  'mentra-brand': {
+    oneLiner: 'The entire brand surface for Mentra\'s AI smart glasses, logo, packaging, booklet, ads, renders, designed by one person and shipped into customers\' hands.',
+    challenge: 'A young hardware company judged on the shelf next to Meta Ray-Ban, with a trillion-dollar design budget behind it. And every decision becomes a factory instruction, not a reversible mockup.',
+    outcome: 'Shipping. 7 packaging iterations, 4 booklet print rounds, 24 social templates, 3 render families, and YouTubers unboxing it on camera with the brand pattern visible.',
+    insight: 'Constraint is the brief: screen print can\'t do gradients, laser engraving needs 0.3mm outlined strokes, embossing needs depth. Physical media teaches you to argue in vector and ship with conviction.',
+    process: 'One mark built from three parallelograms that survives from 5mm temple engraving to billboard. One green (#00B869) against an industry of blue. Then packaging, booklet, photography, ads, and a creator guide strict enough for strangers to use unsupervised.',
+    whyItMatters: 'Proves a systems approach beats one perfect execution, a brand 200 people can reproduce independently is worth more than any single ad.',
+    duration: 'Q3 2025–Present',
+    team: 'Sole designer across hardware, product, operations, and manufacturing partners',
+    platforms: 'Print, packaging, laser engraving, social (12 platforms), 3D renders',
+    opinion: 'The booklet is the sharpest call: page one is just a QR code, no welcome letter. Someone finally designed for what people actually do when they open a box.',
+    connectedTo: ['mentra', 'mentra-miniapps', 'tedx'],
+    surprisingFact: 'The box flap says \'Designed on Earth\', a nod to the open-source MentraOS community, placed exactly where Apple puts \'Designed by Apple in California.\'',
+  },
+  'mentra-miniapps': {
+    oneLiner: 'The first app ecosystem for smart glasses, a store you talk to instead of scroll.',
+    challenge: 'You can\'t browse 500 apps on a 640×400 transparent display while walking. No scrolling, no tapping, no screenshot carousels, the only reliable input is voice.',
+    outcome: 'Shipped with the Mentra Glass launch: voice-first install, transparent permissions, live developer portal, open-source SDK, and Batch 2 pre-orders 88% claimed.',
+    insight: 'Voice-first discovery isn\'t a workaround for a small screen, it\'s better than visual browsing. You don\'t shop for apps, the right one appears when you need it.',
+    process: 'Organized the store by intent, not category: what you\'re doing, where you are, what you\'re asking for. Then designed the product grammar letting captions, translation, notes, and Mentra AI coexist without feeling like a random pile of features.',
+    whyItMatters: 'Meta Ray-Ban does what Meta decides. Mentra does what anyone with an idea builds for it. That\'s the difference between a gadget and a platform.',
+    duration: 'Q4 2025–Q1 2026',
+    team: 'Head of UI/UX, sole designer, with 4 engineers, product, and the open-source ecosystem',
+    platforms: 'MentraOS, Companion App, Web developer portal',
+    opinion: 'Parth calls this the hardest design problem in the whole Mentra project, harder than the OS. The store is where the platform thesis either proves itself or dies.',
+    connectedTo: ['mentra', 'clawed-chat', 'executivelens'],
+    surprisingFact: 'The SDK docs follow a \'first MiniApp in 15 minutes\' philosophy, the quickstart produces a working app with one command.',
+  },
+  'moniac-machine': {
+    oneLiner: 'A 1949 hydraulic economic computer reborn as a playable arcade cabinet where you run the economy.',
+    challenge: 'Macroeconomic feedback loops are famously hard to teach, textbook diagrams can\'t make you feel why every policy decision creates a tradeoff somewhere else.',
+    outcome: 'An exhibited arcade cabinet with 7 physical levers; playtesters could predict how interest rate changes ripple through employment and inflation after just a few rounds, and several came back to try new strategies.',
+    insight: 'Emotional stakes teach systems thinking. Watching your economy collapse because you raised taxes two points too high beats weeks of reading about the inflation–unemployment tradeoff.',
+    process: 'Started from Bill Phillips\' original MONIAC, which modeled the UK economy with colored water in pipes. Rebuilt that make-the-invisible-visible commitment as an iPad-and-Teensy cabinet with valve controllers, a simulation engine, and random shock cards, trade wars, disasters, pandemics.',
+    whyItMatters: 'Proof that game design can carry real educational weight, economics students said it finally explained why policy decisions are so hard in practice.',
+    duration: '2024',
+    team: 'Solo, creator',
+    platforms: 'Physical arcade cabinet (iPad, Teensy 4.0, 3D-printed valve controllers)',
+    opinion: 'The best detail is the fidelity to the source: the on-screen visuals are animated flow diagrams echoing the original hydraulic pipes. It honors the 1949 machine instead of just name-dropping it.',
+    connectedTo: ['black-hole', 'sea-of-salt', 'breakgen'],
+    surprisingFact: 'The original MONIAC modeled the UK national economy with actual colored water flowing through transparent tanks, a computer made of plumbing.',
+  },
+  'office-of-diversity': {
+    oneLiner: 'Turned NYU Tisch\'s IDBEA diversity report from a static PDF into an interactive, WCAG-compliant web experience.',
+    challenge: 'A decade of institutional progress data locked in report format, accurate but hard to navigate, compare, or feel connected to as a community member.',
+    outcome: 'An interactive report with clickable timelines spanning 2014–2024, D3.js and Tableau visualizations, and full WCAG 2.1 AA compliance including screen reader support and keyboard navigation.',
+    insight: 'Data visualization is translation, not decoration, hold fidelity to the numbers and empathy for the reader at the same time.',
+    process: 'Deep-dive into the report\'s metrics with the Office of Diversity, sticky-note ideation, then interactive timelines and color-coded charts, with continuous feedback loops from faculty, students, and staff over 3 months.',
+    whyItMatters: 'Institutional trust is built in details: accessible type over flashy type, letting data speak, making sure every stakeholder saw their voice in the result.',
+    duration: '3 months, 2024',
+    team: 'Website Publishing Designer, collaborating with Christina Monea at the Office of Diversity',
+    platforms: 'Responsive web (D3.js, Tableau)',
+    opinion: 'The least flashy project in the portfolio and maybe the most disciplined, accessibility wasn\'t a checkbox at the end, it was a project goal from day one.',
+    connectedTo: ['the-point-cdc', 'raahi-project'],
+  },
+  'revolving-stage': {
+    oneLiner: 'A 15-foot revolving theatre stage, engineered from scratch to carry actors mid-rotation.',
+    challenge: 'Design an axle that revolves a 15 ft. platform on an 8 ft. base with 250+ kgs on it, stable enough for live actors, in 3 months, while leading a 65+ person team.',
+    outcome: 'Over a dozen rotations across seven scene changes, each under fifteen seconds. Audience members reported not noticing the mechanism at all, transitions read as seamless.',
+    insight: 'Design is a systems discipline, not a visual one. Every aesthetic decision was also structural: parallax needed specific material thicknesses, transitions needed specific rotation speeds.',
+    process: 'Engineered a four-part modular assembly, platform, steel axle with thrust bearings, twin rings of silent caster wheels, wooden base, sized to fit through standard doorways and assemble on-site in a day.',
+    whyItMatters: 'Broadway-style stagecraft on a college competition budget. Proof that theatrical ambition needs careful engineering, not professional-grade money.',
+    duration: '3 months, 2022',
+    team: 'Art Director and engineer, leading a 65+ person production for Firodia Karandak',
+    platforms: 'Physical fabrication, welding, carpentry, mechanical engineering',
+    opinion: 'The climax says it all: the stage rotated 135 degrees with actors still on it, mid-dialogue, as the world changed around them. That\'s design as theatre, literally.',
+    connectedTo: ['tedx', 'the-omakase', 'sea-of-salt'],
+    surprisingFact: 'The caster wheels were chosen for silence above all, a revolve that rumbles announces itself, and the illusion dies.',
+  },
+  'sea-of-salt': {
+    oneLiner: 'A physical storytelling machine that grinds real salt as you advance through a Norse folktale.',
+    challenge: 'Stories usually stay mental. The goal was a folktale where moving through the narrative leaves a visible physical cost in the room.',
+    outcome: 'A working installation: slide the story forward, the mill grinds real sea salt onto a black platform. Visitors asked to take salt home as a souvenir.',
+    insight: 'Physical cost makes people careful with a story. Visitors slid slowly, inch by inch, in a way text never produces.',
+    process: 'Took ATU 565, the Norse tale of the mill that can\'t stop grinding, and built its tragedy into hardware: a slider mapped to a servo-driven salt mill, slow at the start, relentless at the end.',
+    whyItMatters: 'It collapses the line between narrative and material. The story\'s consequence (the mill never stops) becomes the room\'s reality (the salt keeps accumulating).',
+    duration: 'Bio Art course, NYU ITP, 2025',
+    team: 'Parth (creator and fabricator) + collaborator Audrey Oh',
+    platforms: 'Physical installation: Arduino, servo motor, 3D printing, laser cutting',
+    opinion: 'The best detail is the surface: black lacquered MDF chosen so every grain of salt reads as evidence. That\'s exhibition design thinking, not just physical computing.',
+    connectedTo: ['making-of-time', 'shuffle', 'moniac-machine'],
+    surprisingFact: 'There\'s a live salt simulation on the project page itself, you can grind the story in the browser, and there\'s no undo.',
+  },
+  shuffle: {
+    oneLiner: 'A motorised-slider board where balancing student life is a zero-sum game, raise Finals and Sleep physically drops.',
+    challenge: 'Time trade-offs in graduate school are invisible until something breaks. A dashboard can display that; the question was how to make people feel it.',
+    outcome: 'On the ITP floor it needed no instructions. Quick interactions turned into long conversations about priorities and burnout.',
+    insight: 'The zero-sum rule isn\'t displayed, it\'s enforced by the hardware. When the other faders move on their own, the rules are understood without a word.',
+    process: 'Started as a sketch of twelve sliders, pared down to eight that genuinely compete for the same hours. Arduino reads the fader you move and drives motors on the rest.',
+    whyItMatters: 'It\'s embodied systems design: the interface enforces the trade-off instead of visualizing it. A playful, tactile object opened dialogue that forms and calendars can\'t.',
+    duration: '2023',
+    team: 'Solo, Parth as creator',
+    platforms: 'Physical installation: Arduino (C++), 8 motorised potentiometers, laser-cut plywood, 3D-printed caps',
+    opinion: 'Watching someone hesitate before letting Sleep drop to raise Finals says more about grad school than any survey. That hesitation is the product.',
+    connectedTo: ['sea-of-salt', 'making-of-time', 'moniac-machine'],
+    surprisingFact: 'The mechanic borrows from G80 by Fragmentin, a motorized-fader piece about planetary resource distribution, shrunk down to one student\'s week.',
+  },
+  'the-point-cdc': {
+    oneLiner: 'Website redesign for a Bronx nonprofit that provides free WiFi and community programs in Hunts Point.',
+    challenge: 'An outdated site with cluttered navigation buried the resources residents needed most, especially the free Hunts Point WiFi info, on a mostly mobile audience.',
+    outcome: 'The site is live at thepoint.org. Community and staff feedback was overwhelmingly positive, especially on navigation and WiFi program access.',
+    insight: 'Mobile-first is a lived reality, not a buzzword: many residents\' only internet access is a phone, which reframes every layout and hierarchy decision.',
+    process: 'User research with Hunts Point residents, persona and journey mapping, an audit of the old site, then a full design system, wireframes, and high-fidelity redesign in Figma.',
+    whyItMatters: 'It navigates the hardest nonprofit tension: what the org wants to say vs. what residents need to find. Prioritizing user tasks served both goals better.',
+    duration: '3 months, 2024',
+    team: 'Parth as lead UI/UX designer for The Point CDC',
+    platforms: 'Responsive web (mobile-first)',
+    opinion: 'The honest reflection is the best part: Parth admits his instincts about what residents needed were often wrong until he sat down and listened. That humility is rarer than the redesign.',
+    connectedTo: ['office-of-diversity', 'code-for-build'],
+    surprisingFact: 'The Point CDC runs free community WiFi through a resilient mesh network, so the website redesign was partly infrastructure documentation.',
+  },
+  'uv-light': {
+    oneLiner: 'A multi-room blacklight installation about surveillance, where the audience had to discover the message before they could name it.',
+    challenge: 'An installation about hidden information fails if it explains itself too early. The whole design problem was pacing: how much stays hidden before curiosity becomes confusion?',
+    outcome: 'Participants moved from playful discovery to mild unease as portrait cards and a live camera feed revealed they\'d been the ones observed all along.',
+    insight: 'Observation often arrives wrapped in invitation, convenience, and play. Friendly questions on a card became soft data collection under UV.',
+    process: 'Researched immersive theater logic over gallery logic, tested invisible inks and UV paints, converted classrooms into sealed blacklight environments, and staged the reveal as a sequence ending in a Van Gogh-themed performance.',
+    whyItMatters: 'Spatial work needs the same narrative discipline as product design: participants should know just enough to keep going. Here UV-reactive cues were the interface.',
+    duration: '2 weeks, 2023',
+    team: 'Parth as artist + collaborators Nathan, Lauren, Baiyuian at NYU ITP',
+    platforms: 'Physical installation: blacklights, invisible ink, live camera feed, projection',
+    opinion: 'The camera feed is the strongest move. It changed the audience\'s role mid-experience, the piece stopped being about hidden drawings and became about hidden observation.',
+    connectedTo: ['revolving-stage', 'enigma', 'sea-of-salt'],
+    surprisingFact: 'The final hidden message, "SHOW DON\'T TELL," doubled as the method and the critique.',
+  },
+  'vj-software': {
+    oneLiner: 'A parking app that treats choosing a spot as a spatial decision, not a back-office form flow.',
+    challenge: 'Society apps treated parking like paperwork. Residents wanted to understand proximity, access, and layout before committing, and existing tools buried that under admin dashboards.',
+    outcome: 'A map-first booking experience for VJ residential societies: interactive society map, priority-window explanations, and post-booking screens that replace the office file.',
+    insight: 'Residents think in proximity and movement, not spot IDs. When users experience a problem spatially, the product can\'t reduce it to form fields and dropdowns.',
+    process: 'Interviewed owners and tenants, analyzed competitors like MyGate and NoBrokerHood, mapped the cash-and-office status quo, then sketched eleven paper wireframes before high-fidelity Figma flows.',
+    whyItMatters: 'Service software often fails by burying the one flow people care about. Making parking the hero experience turned admin software into something genuinely useful.',
+    duration: '3 months, 2022',
+    team: 'Parth as UI/UX designer with UX lead Akshita Anand, for Vilas Javdekar',
+    platforms: 'Mobile app',
+    opinion: 'The landing screen explaining the priority window in plain language is quietly great, it makes time pressure feel like information instead of a dark pattern.',
+    connectedTo: ['raahi-project', 'healthapp'],
+    surprisingFact: 'The research covered two very different offline baselines, one society ran entirely on verbal explanations and cash, and the app had to beat both.',
   },
 }
 
@@ -403,6 +653,8 @@ export function getRouteGreeting(path: string): string {
 
   if (path === '/writing' || path.startsWith('/writing/')) return "These are Parth's articles. Each one comes from a real project decision. Ask me about any of them, or ask for the best one."
 
+  if (path === '/playbook') return "This is the playbook, the eight values behind every project here. Ask me how any of them shows up in real shipped work, that's the interesting part."
+
   const cat = categories.find(c => path === `/${c.slug}`)
   if (cat) return `${cat.title} ${cat.titleAccent}. I know every project here, ask about any of them or say 'tour' for the guided version.`
 
@@ -549,7 +801,7 @@ const rules: Rule[] = [
       if (ctx.persona === 'peer') {
         const picks = [
           unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)**, neural network that duets with humans, Maker Faire.' : '• **[Enigma](/enigma)**, 200-neuron light sculpture at NIME.',
-          unseen('keyboard-project') ? '• **[BreakGen](/keyboard-project)**, AI platform that fabricates custom keyboards.' : '• **[Making of Time](/making-of-time)**, sundial to software clock.',
+          unseen('breakgen') ? '• **[BreakGen](/breakgen)**, AI platform that fabricates custom keyboards.' : '• **[Keyboard Project](/keyboard-project)**, physical keyboard data object.',
           '• **[Mentra](/mentra)**, the systems ambition piece, full OS design.',
         ]
         return "For creative range:\n\n" + picks.join('\n')
@@ -571,7 +823,7 @@ const rules: Rule[] = [
 
   // Creative range
   { patterns: [/(?:creative range|experimental|unexpected|show me something different|range)/i],
-    handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[BreakGen](/keyboard-project)**.\n\nThat trio makes the point fast: product systems, physical computing, and fabrication all live in the same practice."
+    handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[BreakGen](/breakgen)**.\n\nThat trio makes the point fast: product systems, physical computing, and fabrication all live in the same practice."
   },
 
   // Work views
@@ -629,8 +881,11 @@ const rules: Rule[] = [
 
   // Why it matters
   { patterns: [/(?:why.*matter|why.*care|significance|so what|why.*important|why.*interesting)/i],
-    handler: (_, ctx) => {
-      const p = cp(ctx)
+    handler: (match, ctx) => {
+      // A project named in the question wins over conversation context.
+      const named = fuzzyFind((match.input || '').toLowerCase())
+      const p = named || cp(ctx)
+      if (named) { ctx.lastProject = named.slug; ctx.mentionedProjects.push(named.slug) }
       if (p?.deep) { ctx.lastTopic = 'whyItMatters'; return p.deep.whyItMatters }
       return "Ask about a specific project, the 'why it matters' is where it gets interesting."
     }
@@ -638,8 +893,10 @@ const rules: Rule[] = [
 
   // Surprising fact
   { patterns: [/(?:surpris|unexpected|didn.t know|secret|hidden|curious fact)/i],
-    handler: (_, ctx) => {
-      const p = cp(ctx)
+    handler: (match, ctx) => {
+      const named = fuzzyFind((match.input || '').toLowerCase())
+      const p = named || cp(ctx)
+      if (named) { ctx.lastProject = named.slug; ctx.mentionedProjects.push(named.slug) }
       if (p?.deep?.surprisingFact) return p.deep.surprisingFact
       const allFacts = [...projectIndex.values()].filter(x => x.deep?.surprisingFact).map(x => `**${x.name}:** ${x.deep!.surprisingFact}`)
       if (allFacts.length) return pick(allFacts)
@@ -811,7 +1068,7 @@ const rules: Rule[] = [
       const names = all.length ? all.map(p => p.name).join(', ') : 'Mentra, ZentiPay, Jugalbandi'
       const insights = all.filter(p => p.deep).slice(0, 3).map(p => `• ${p.name}: ${p.deep!.insight.split('.')[0]}.`).join('\n')
 
-      return `[EXPORT]\n**Parth Pawar, Portfolio Summary**\n\n**Projects reviewed:** ${names}\n\n${insights ? `**Key insights:**\n${insights}\n\n` : ''}**Themes:** Systems thinking, research rigor, design-engineering fluency\n**Contact:** ${bio.email}\n**Portfolio:** https://parthpawar.com`
+      return `[EXPORT]\n**Parth Pawar, Portfolio Summary**\n\n**Projects reviewed:** ${names}\n\n${insights ? `**Key insights:**\n${insights}\n\n` : ''}**Themes:** Systems thinking, research rigor, design-engineering fluency\n**Contact:** ${bio.email}\n**Portfolio:** https://parthawe.github.io`
     }
   },
 

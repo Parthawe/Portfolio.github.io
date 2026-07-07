@@ -237,7 +237,7 @@ export default function ClockTrio() {
 
       // Current time at top center
       const displayTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', second: '2-digit' })
-      ctx.font = `300 ${Math.max(10, w * 0.014)}px var(--serif, Georgia, serif)`
+      ctx.font = `300 ${Math.max(10, w * 0.014)}px Nikolas, General Sans`
       ctx.textAlign = 'center'
       ctx.fillStyle = ink + '0.2)'
       ctx.fillText(displayTime, w / 2, 20)

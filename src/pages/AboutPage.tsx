@@ -1,18 +1,51 @@
-import { Fragment, useEffect, lazy, Suspense, useState } from 'react'
+import { Fragment, useEffect } from 'react'
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
+import {
+  siAnthropic,
+  siArduino,
+  siAutodesk,
+  siBlender,
+  siCinema4d,
+  siCursor,
+  siD3,
+  siFigma,
+  siFirebase,
+  siFramer,
+  siGithub,
+  siGreensock,
+  siJavascript,
+  siJira,
+  siLinear,
+  siLottiefiles,
+  siMiro,
+  siNodedotjs,
+  siNotion,
+  siP5dotjs,
+  siProcessingfoundation,
+  siProtodotio,
+  siPython,
+  siRaspberrypi,
+  siReact,
+  siRhinoceros,
+  siRive,
+  siSupabase,
+  siSwift,
+  siThreedotjs,
+  siTypescript,
+  siUnity,
+  siUnrealengine,
+  siVite,
+  siWebflow,
+} from 'simple-icons'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import FigmaSelect from '../components/FigmaSelect'
 import TextReveal from '../components/TextReveal'
 import PortalReveal from '../components/PortalReveal'
-import { useDeferredMount } from '../hooks/useDeferredMount'
-import { useInView } from '../hooks/useInView'
-import { getProject } from '../data/projects'
-import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_URL } from '../config/site'
-
-const ToolsCanvas = lazy(() => import('../components/ToolsCanvas'))
+import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site'
 
 /* ── Data ── */
 
@@ -24,7 +57,7 @@ const rows: Row[] = [
   { date: '2022, 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Crypto payment infrastructure across multi-market merchant flows.' },
   { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc' },
   { date: '2023, 2024', role: 'Graduate Teaching Assistant', co: 'NYU Tisch / ITP', desc: 'Helped students break things on purpose, honestly, how I learn best too.' },
-  { date: '2020, 2022', role: 'Co-founder & Director', co: 'ArtTown Podcast', link: '/atps', desc: '45 episodes across 3 seasons, interviewing designers from Puma, Royal College of Arts, Google, and Bollywood.' },
+  { date: '2020, 2022', role: 'Co-founder & Director', co: 'ArtTown Podcast', desc: '45 episodes across 3 seasons, interviewing designers from Puma, Royal College of Arts, Google, and Bollywood.' },
   { date: '2021, 2022', role: 'Designer', co: 'Monson Fish' },
   { date: '2020, 2021', role: 'Research Intern', co: 'IBM' },
   { section: 'Education', date: '2022, 2024', role: 'MPS, Interactive Telecommunications', co: 'NYU Tisch School of the Arts', desc: 'Where I learned that a designer who can solder is a dangerous thing.' },
@@ -46,147 +79,152 @@ const asides = [
 
 const aboutCharacterFrames = Array.from(
   { length: 9 },
-  (_, index) => `/Portfolio.github.io/Assets/character/me/${index + 1}.png`,
+  (_, index) => `/Portfolio.github.io/Assets/character/me/${index + 1}.webp`,
 )
 
-type AboutModeKey = 'rigor' | 'imagination' | 'overlap'
-type AboutReasonKey = 'systems' | 'rigor' | 'fluency' | 'zeroToOne'
+const toolCloud = [
+  { label: 'Design systems', icon: '▦', tone: 'orange' },
+  { label: 'UI/UX', icon: '▣', tone: 'charcoal' },
+  { label: 'Research', icon: '⌕', tone: 'blue' },
+  { label: 'Prototyping', icon: '▱', tone: 'pink' },
+  { label: 'Animation', icon: '∿', tone: 'green' },
+  { label: 'Strategy', icon: '✣', tone: 'yellow' },
+]
 
-function projectVisual(slug: string) {
-  const project = getProject(slug)
-  if (!project) {
-    return {
-      slug,
-      name: slug,
-      image: '',
-      tag: '',
-      year: '',
-      desc: '',
-    }
-  }
+const vibeCollage = [
+  {
+    className: 'abt-vibe-card--wide',
+    src: '/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp',
+    alt: 'Clawed AI coding product landing page.',
+  },
+  {
+    className: 'abt-vibe-card--note',
+    label: 'Cursor / Claude Code',
+    text: 'Design the system. Prototype the weird edge. Ship the real interaction.',
+  },
+  {
+    className: 'abt-vibe-card--game',
+    src: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/game-screen-sushi.webp',
+    alt: 'Playable arcade prototype interface.',
+  },
+  {
+    className: 'abt-vibe-card--phone',
+    src: '/Portfolio.github.io/Assets/images/mentra/appstore-device.png',
+    alt: 'Mentra app store mobile interface.',
+  },
+  {
+    className: 'abt-vibe-card--small',
+    src: '/Portfolio.github.io/Assets/Projects/Raahi/photos/app-home.webp',
+    alt: 'Raahi mobile product interface.',
+  },
+]
 
-  return {
-    slug: project.slug,
-    name: project.name,
-    image: project.summaryImage ?? project.image,
-    tag: project.tag,
-    year: project.summaryTimeline ?? project.year,
-    desc: project.summaryOutcome ?? project.desc,
-  }
+const softwareStack = [
+  'Figma', 'FigJam', 'Framer', 'Webflow', 'Spline', 'Rive', 'Lottie', 'ProtoPie',
+  'Principle', 'After Effects', 'Premiere Pro', 'Photoshop', 'Illustrator', 'InDesign',
+  'Lightroom', 'Blender', 'Cinema 4D', 'Fusion 360', 'Rhino', 'KeyShot', 'TouchDesigner',
+  'p5.js', 'Processing', 'Arduino', 'Raspberry Pi', 'Unity', 'Unreal', 'React',
+  'TypeScript', 'JavaScript', 'Vite', 'Three.js', 'GSAP', 'Node', 'Python', 'Swift',
+  'D3.js', 'Tableau', 'Supabase', 'Firebase', 'Notion', 'Linear', 'Jira', 'GitHub',
+  'Cursor', 'Claude Code', 'ChatGPT', 'Midjourney', 'Runway', 'Whimsical', 'Miro',
+]
+
+type SimpleBrandIcon = {
+  title: string
+  hex: string
+  path: string
 }
 
-const aboutModes: Array<{
-  key: AboutModeKey
-  label: string
-  title: string
-  body: string
-  chips: string[]
-  bullets: string[]
-  projectSlug: string
-}> = [
-  {
-    key: 'rigor',
-    label: 'Rigor',
-    title: 'Consequence changes the way you design.',
-    body: 'Fintech taught me to design for trust, recovery, and operational clarity. When money moves, polish is not enough. Every state has to explain itself.',
-    chips: ['Trust states', 'Recovery paths', 'Ops clarity'],
-    bullets: [
-      'TransFi shaped multi-market crypto payment infrastructure.',
-      'ZentiPay sharpened trust in cross-border transfers.',
-      'I learned to treat edge cases as the product, not QA leftovers.',
-    ],
-    projectSlug: 'transfi-project',
-  },
-  {
-    key: 'imagination',
-    label: 'Imagination',
-    title: 'The ITP work trained me to design without references.',
-    body: 'Installations, instruments, stages, and speculative interfaces taught me how to make the first version of a thing when the category does not exist yet.',
-    chips: ['New inputs', 'Physical behavior', 'No playbook'],
-    bullets: [
-      'Built interactive systems that had to be understood in space, not just on screens.',
-      'Learned how to prototype behavior before the language for it exists.',
-      'Got comfortable making decisions before precedent shows up.',
-    ],
-    projectSlug: 'enigma',
-  },
-  {
-    key: 'overlap',
-    label: 'Hard to replicate',
-    title: 'The strongest work happens where rigor and imagination meet.',
-    body: 'That overlap is the real point of the portfolio. Mentra needs shipped-product discipline and experimental thinking at the same time, which is why it fits me unusually well.',
-    chips: ['Fintech rigor', 'ITP imagination', 'Production quality'],
-    bullets: [
-      'AI glasses need new interaction patterns but cannot afford fuzzy thinking.',
-      'I can move from concept framing to system detail without changing gears.',
-      'The work gets stronger when strategy, interface, and implementation quality stay in one loop.',
-    ],
-    projectSlug: 'mentra',
-  },
-]
+const softwareIcons: Record<string, SimpleBrandIcon> = {
+  Figma: siFigma,
+  Framer: siFramer,
+  Webflow: siWebflow,
+  Rive: siRive,
+  Lottie: siLottiefiles,
+  ProtoPie: siProtodotio,
+  Blender: siBlender,
+  'Cinema 4D': siCinema4d,
+  'Fusion 360': siAutodesk,
+  Rhino: siRhinoceros,
+  'p5.js': siP5dotjs,
+  Processing: siProcessingfoundation,
+  Arduino: siArduino,
+  'Raspberry Pi': siRaspberrypi,
+  Unity: siUnity,
+  Unreal: siUnrealengine,
+  React: siReact,
+  TypeScript: siTypescript,
+  JavaScript: siJavascript,
+  Vite: siVite,
+  'Three.js': siThreedotjs,
+  GSAP: siGreensock,
+  Node: siNodedotjs,
+  Python: siPython,
+  Swift: siSwift,
+  'D3.js': siD3,
+  Supabase: siSupabase,
+  Firebase: siFirebase,
+  Notion: siNotion,
+  Linear: siLinear,
+  Jira: siJira,
+  GitHub: siGithub,
+  Cursor: siCursor,
+  'Claude Code': siAnthropic,
+  Miro: siMiro,
+}
 
-const aboutReasons: Array<{
-  key: AboutReasonKey
-  title: string
-  kicker: string
-  detail: string
-  bullets: string[]
-  projectSlugs: string[]
-  note: string
-}> = [
-  {
-    key: 'systems',
-    title: 'Systems thinking',
-    kicker: 'Whole surface area',
-    detail: 'I do not stop at the primary flow. The useful work is usually in the states around it: onboarding, permissions, fallback, empty states, internal tooling, and the glue that keeps the product coherent after launch.',
-    bullets: [
-      'Mentra spans OS surfaces, a companion app, store, install flows, and design system behavior.',
-      'ExecutiveLens turned meeting intelligence into a usable decision surface instead of another dashboard.',
-      'ZentiPay needed the transaction itself and the trust layer around it to feel like one product.',
-    ],
-    projectSlugs: ['mentra', 'executivelens', 'zentipay'],
-    note: 'This is the work mode that keeps products feeling complete instead of merely designed.',
-  },
-  {
-    key: 'rigor',
-    title: 'Shipped product rigor',
-    kicker: 'Trust under pressure',
-    detail: 'AI and fintech work punish hand-wavy design. I care about consequence, latency, failure states, and the difference between a concept that demos well and a product that survives real use.',
-    bullets: [
-      'TransFi turned complex payment rails into clearer merchant onboarding.',
-      'ZentiPay focused on legibility, pricing confidence, and completion under pressure.',
-      'Mentra treats accessibility and safety as product behavior, not post-launch polish.',
-    ],
-    projectSlugs: ['transfi-project', 'zentipay', 'mentra'],
-    note: 'The bar is not “looks polished.” The bar is “still works when the stakes show up.”',
-  },
-  {
-    key: 'fluency',
-    title: 'Design and engineering fluency',
-    kicker: 'Closer to the build',
-    detail: 'I work comfortably at the boundary between interface design and implementation quality. That means tighter decisions, faster iteration, and fewer handoff fantasies.',
-    bullets: [
-      'This portfolio itself is part of that proof: interaction systems, routing, performance work, and visual language all sit in one stack.',
-      'Mentra MiniApps needed product architecture, not just screens.',
-      'The best collaboration I have with engineers happens when I can reason with them in implementation terms.',
-    ],
-    projectSlugs: ['mentra-miniapps', 'ballah-code', 'clawed-chat'],
-    note: 'I care about how the thing behaves in code, not just how it looks in review.',
-  },
-  {
-    key: 'zeroToOne',
-    title: '0 to 1 comfort',
-    kicker: 'No playbook needed',
-    detail: 'My best work happens when the category is still being defined. I like unclear inputs, awkward first versions, and products where the right structure has to be invented before it can be refined.',
-    bullets: [
-      'NYU ITP projects trained that muscle in public, with physical systems and speculative interfaces.',
-      'Mentra needs new patterns because voice, glanceable UI, and peripheral display change the rules.',
-      'Clawed, Enigma, and Raahi all started from open questions rather than known templates.',
-    ],
-    projectSlugs: ['mentra', 'enigma', 'raahi-project'],
-    note: 'The absence of precedent is usually where the interesting work starts.',
-  },
-]
+const adobeAppIcons: Record<string, { label: string; bg: string; fg: string }> = {
+  'After Effects': { label: 'Ae', bg: '#00005b', fg: '#9999ff' },
+  'Premiere Pro': { label: 'Pr', bg: '#00005b', fg: '#9999ff' },
+  Photoshop: { label: 'Ps', bg: '#001e36', fg: '#31a8ff' },
+  Illustrator: { label: 'Ai', bg: '#330000', fg: '#ff9a00' },
+  InDesign: { label: 'Id', bg: '#49021f', fg: '#ff3366' },
+  Lightroom: { label: 'Lr', bg: '#001e36', fg: '#31a8ff' },
+}
+
+function SoftwareLogo({ tool }: { tool: string }) {
+  const icon = softwareIcons[tool]
+  const adobeIcon = adobeAppIcons[tool]
+
+  if (icon) {
+    return (
+      <span
+        className="abt-vibe-software-logo abt-vibe-software-logo--svg"
+        style={{ color: `#${icon.hex}` }}
+        aria-hidden="true"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" role="img" focusable="false">
+          <path fill="currentColor" d={icon.path} />
+        </svg>
+      </span>
+    )
+  }
+
+  if (adobeIcon) {
+    return (
+      <span
+        className="abt-vibe-software-logo abt-vibe-software-logo--adobe"
+        style={{ '--logo-bg': adobeIcon.bg, '--logo-fg': adobeIcon.fg } as CSSProperties}
+        aria-hidden="true"
+      >
+        {adobeIcon.label}
+      </span>
+    )
+  }
+
+  return null
+}
+
+function SoftwareChip({ tool }: { tool: string }) {
+  const hasLogo = Boolean(softwareIcons[tool] || adobeAppIcons[tool])
+
+  return (
+    <span className={`abt-vibe-software-chip${hasLogo ? ' has-actual-logo' : ''}`}>
+      <SoftwareLogo tool={tool} />
+      <span>{tool}</span>
+    </span>
+  )
+}
 
 /* ── Component ── */
 
@@ -196,14 +234,6 @@ export default function AboutPage() {
     document.body.classList.add('page-about')
     return () => document.body.classList.remove('page-about')
   }, [])
-  const [toolsRef, toolsInView] = useInView(0.05, '260px 0px')
-  const mountToolsCanvas = useDeferredMount(toolsInView, { timeout: 1600, delayMs: 200 })
-  const [activeMode, setActiveMode] = useState<AboutModeKey>('overlap')
-  const [activeReason, setActiveReason] = useState<AboutReasonKey>('systems')
-  const activeModeData = aboutModes.find((mode) => mode.key === activeMode) ?? aboutModes[0]
-  const activeModeProject = projectVisual(activeModeData.projectSlug)
-  const activeReasonData = aboutReasons.find((reason) => reason.key === activeReason) ?? aboutReasons[0]
-
 
   return (
     <>
@@ -213,7 +243,7 @@ export default function AboutPage() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="About &middot; Parth Pawar" />
         <meta property="og:description" content="Design Engineer. Head of UI/UX at Mentra. Making complex systems feel simple." />
-        <meta property="og:image" content={`${SITE_URL}${DEFAULT_OG_IMAGE}`} />
+        <meta property="og:image" content={`${SITE_ORIGIN}${DEFAULT_OG_IMAGE}`} />
         <link rel="canonical" href={`${SITE_URL}/about`} />
       </Helmet>
 
@@ -230,6 +260,7 @@ export default function AboutPage() {
               images={aboutCharacterFrames}
               alt="Parth Pawar"
               className="abt-portal-img"
+              fit="contain"
             />
           </div>
 
@@ -242,170 +273,6 @@ export default function AboutPage() {
                 behind="Right now I need both. AI smart glasses have no established design patterns. It's the hardest problem I've ever loved."
               />
             </section>
-
-            {/* ── Now + Open To ── */}
-            <section className="abt-operating reveal">
-              <div className="sec-head abt-operating-head">
-                <span className="sec-label">The operating mix</span>
-                <div className="abt-operating-tabs" role="tablist" aria-label="How I work">
-                  {aboutModes.map((mode) => (
-                    <button
-                      key={mode.key}
-                      type="button"
-                      className={`abt-operating-tab figma-hover${activeMode === mode.key ? ' is-active' : ''}`}
-                      onClick={() => setActiveMode(mode.key)}
-                      aria-pressed={activeMode === mode.key}
-                    >
-                      {mode.label}
-                      <FigmaSelect />
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="abt-operating-grid">
-                <motion.article
-                  key={activeModeData.key}
-                  className="abt-operating-card surface-glass surface-glass--subtle"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <p className="abt-operating-card-label">{activeModeData.label}</p>
-                  <h3>{activeModeData.title}</h3>
-                  <p className="abt-operating-card-body">{activeModeData.body}</p>
-                  <ul className="abt-operating-points">
-                    {activeModeData.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                  <div className="abt-operating-chips">
-                    {activeModeData.chips.map((chip) => (
-                      <span key={chip}>{chip}</span>
-                    ))}
-                  </div>
-                </motion.article>
-
-                <div className="abt-operating-side">
-                  <Link to={`/${activeModeProject.slug}`} className="abt-operating-project figma-hover">
-                    <div className="abt-operating-project-media">
-                      <img src={activeModeProject.image} alt={activeModeProject.name} loading="lazy" />
-                    </div>
-                    <div className="abt-operating-project-copy">
-                      <span className="abt-operating-project-meta">{activeModeProject.tag} / {activeModeProject.year}</span>
-                      <h4>{activeModeProject.name}</h4>
-                      <p>{activeModeProject.desc}</p>
-                    </div>
-                    <FigmaSelect />
-                  </Link>
-
-                  <div className="abt-status-stack">
-                    <article className="abt-status-card abt-status--active">
-                      <span className="abt-status-label">Currently</span>
-                      <p className="abt-status-text">Leading UI/UX at <Link to="/mentra">Mentra</Link>, designing the OS, companion app, and app store for AI-powered smart glasses. The kind of problem where &ldquo;move fast and break things&rdquo; means someone walks into a wall.</p>
-                    </article>
-                    <article className="abt-status-card">
-                      <span className="abt-status-label">Open to</span>
-                      <p className="abt-status-text">Full-time product design where the problems are hard and the team actually ships. AI, dev tools, fintech, anything where the interface <em>is</em> the product. SF preferred. Drawn to 0&rarr;1.</p>
-                    </article>
-                    <article className="abt-status-card">
-                      <span className="abt-status-label">Hard to replicate</span>
-                      <p className="abt-status-text">Fintech rigor plus ITP imagination. One keeps the work accountable. The other keeps it from becoming generic.</p>
-                    </article>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          {/* ── Content continues inside paper ── */}
-          <div className="wrap">
-
-            <section className="abt-proofboard reveal">
-              <div className="sec-head abt-proofboard-head">
-                <span className="sec-label">Why teams bring me in</span>
-                <p className="abt-proofboard-intro">Not one generic superpower. Different projects need different parts of the range.</p>
-              </div>
-              <div className="abt-proofboard-grid">
-                <div className="abt-proofboard-nav" role="tablist" aria-label="Reasons teams hire Parth">
-                  {aboutReasons.map((reason) => (
-                    <button
-                      key={reason.key}
-                      type="button"
-                      className={`abt-proofboard-trigger figma-hover${activeReason === reason.key ? ' is-active' : ''}`}
-                      onClick={() => setActiveReason(reason.key)}
-                      aria-pressed={activeReason === reason.key}
-                    >
-                      <span className="abt-proofboard-trigger-kicker">{reason.kicker}</span>
-                      <span className="abt-proofboard-trigger-title">{reason.title}</span>
-                      <FigmaSelect />
-                    </button>
-                  ))}
-                </div>
-
-                <motion.article
-                  key={activeReasonData.key}
-                  className="abt-proofboard-panel surface-glass surface-glass--subtle"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <span className="abt-proofboard-panel-kicker">{activeReasonData.kicker}</span>
-                  <h3>{activeReasonData.title}</h3>
-                  <p className="abt-proofboard-panel-body">{activeReasonData.detail}</p>
-                  <ul className="abt-proofboard-points">
-                    {activeReasonData.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                  <div className="abt-proofboard-links">
-                    {activeReasonData.projectSlugs.map((slug) => {
-                      const project = projectVisual(slug)
-                      return (
-                        <Link key={slug} to={`/${slug}`} className="abt-proofboard-link figma-hover">
-                          {project.name}
-                          <FigmaSelect />
-                        </Link>
-                      )
-                    })}
-                  </div>
-                  <p className="abt-proofboard-note">{activeReasonData.note}</p>
-                </motion.article>
-              </div>
-            </section>
-
-            <section className="abt-short-grid reveal">
-              <div className="sec-head">
-                <span className="sec-label">The short version</span>
-              </div>
-              <div className="abt-short-grid-cards">
-                <article className="abt-short-card surface-glass surface-glass--subtle">
-                  <span className="abt-short-card-label">Fintech</span>
-                  <h3>Rigor, because the stakes are real.</h3>
-                  <p>Payment flows taught me that design errors are not aesthetic. They can cost money, trust, and time for real people.</p>
-                </article>
-                <article className="abt-short-card surface-glass surface-glass--subtle">
-                  <span className="abt-short-card-label">NYU ITP</span>
-                  <h3>Imagination, because precedent runs out.</h3>
-                  <p>Stages, installations, and speculative interfaces trained me to invent structure before there is a standard to borrow from.</p>
-                </article>
-                <article className="abt-short-card surface-glass surface-glass--subtle">
-                  <span className="abt-short-card-label">Right now</span>
-                  <h3>Mentra needs both at the same time.</h3>
-                  <p>AI glasses have a display the size of your thumbnail, voice as the primary input, and almost no accepted patterns. That is why the problem feels worth doing.</p>
-                </article>
-              </div>
-            </section>
-
-
-            {/* ── Tools — Figma-canvas scattered layout ── */}
-            <div ref={toolsRef} style={{ minHeight: mountToolsCanvas ? undefined : 320 }}>
-              {mountToolsCanvas ? (
-                <Suspense fallback={null}>
-                  <ToolsCanvas />
-                </Suspense>
-              ) : null}
-            </div>
 
             {/* ── Unified experience table ── */}
             <section className="abt-table-wrap reveal">
@@ -435,6 +302,56 @@ export default function AboutPage() {
                   ))}
                 </tbody>
               </table>
+            </section>
+
+            {/* ── Vibe coding / software stack ── */}
+            <section className="abt-vibe reveal" aria-labelledby="abt-vibe-title">
+              <div className="abt-vibe-head">
+                <span className="sec-label">Design engineering</span>
+                <h2 id="abt-vibe-title">Code with design</h2>
+                <p>I do not stop at the mockup. I build prototypes, wire interactions, and use code to prove the system works.</p>
+              </div>
+
+              <div className="abt-vibe-stage" aria-label="Vibe coding collage">
+                <div className="abt-vibe-window">
+                  <div className="abt-vibe-window-dots" aria-hidden="true"><span /><span /><span /></div>
+                  {vibeCollage.map((item) => (
+                    <figure className={`abt-vibe-card ${item.className}`} key={item.className}>
+                      {'src' in item ? (
+                        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+                      ) : (
+                        <figcaption>
+                          <span>{item.label}</span>
+                          {item.text}
+                        </figcaption>
+                      )}
+                    </figure>
+                  ))}
+                  <span className="abt-vibe-pin" aria-hidden="true" />
+                </div>
+
+                <div className="abt-vibe-cloud" aria-label="Core capabilities">
+                  {toolCloud.map((tool) => (
+                    <span className={`abt-vibe-pill abt-vibe-pill--${tool.tone}`} key={tool.label}>
+                      <span aria-hidden="true">{tool.icon}</span>
+                      {tool.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="abt-vibe-software" aria-label="Software stack">
+                <div className="abt-vibe-software-track">
+                  {softwareStack.map((tool, index) => (
+                    <SoftwareChip tool={tool} key={`${tool}-${index}`} />
+                  ))}
+                </div>
+                <div className="abt-vibe-software-track" aria-hidden="true">
+                  {softwareStack.map((tool, index) => (
+                    <SoftwareChip tool={tool} key={`${tool}-duplicate-${index}`} />
+                  ))}
+                </div>
+              </div>
             </section>
 
             {/* ── Spotlight: after experience ── */}

@@ -18,11 +18,27 @@ interface Props {
 
 const SIZE = 380
 
+/** The cursor lens is unavailable on touch, small screens, and for
+ *  reduced-motion users — those get a tap-to-flip fallback instead. */
+function lensDisabled() {
+  if (typeof window === 'undefined') return true
+  return (
+    window.matchMedia('(hover: none), (pointer: coarse)').matches ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    window.innerWidth <= 768
+  )
+}
+
 export default function TextReveal({ front, behind, className = '' }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
   const behindRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
+  const [flipMode, setFlipMode] = useState(lensDisabled)
+  const [flipped, setFlipped] = useState(false)
+  const [tapped, setTapped] = useState(false)
+  const peekedRef = useRef(false)
+  const hoveredRef = useRef(false)
   // Store viewport coords for fixed positioning
   const posRef = useRef({ x: 0, y: 0 })
   const smoothRef = useRef({ x: 0, y: 0 })
@@ -94,6 +110,7 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     smoothRef.current = { x: e.clientX, y: e.clientY }
     targetRef.current = SIZE
     rectRef.current = containerRef.current?.getBoundingClientRect() ?? null
+    hoveredRef.current = true
     setHovered(true)
     document.body.classList.add('spotlight-active')
     startLoop()
@@ -101,6 +118,16 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
 
   const handleLeave = useCallback(() => {
     targetRef.current = 0
+    hoveredRef.current = false
+    setHovered(false)
+    document.body.classList.remove('spotlight-active')
+    startLoop()
+  }, [startLoop])
+
+  const collapseLens = useCallback(() => {
+    if (targetRef.current === 0 && sizeRef.current === 0) return
+    targetRef.current = 0
+    hoveredRef.current = false
     setHovered(false)
     document.body.classList.remove('spotlight-active')
     startLoop()
@@ -112,21 +139,109 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     const onMove = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY }
     }
-    const onResize = () => {
+    const syncRect = () => {
       rectRef.current = containerRef.current?.getBoundingClientRect() ?? null
     }
+    const onScroll = () => {
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) {
+        collapseLens()
+        return
+      }
+      rectRef.current = rect
+      const visible = rect.bottom > 0 && rect.top < window.innerHeight
+      const pointerInside =
+        posRef.current.x >= rect.left &&
+        posRef.current.x <= rect.right &&
+        posRef.current.y >= rect.top &&
+        posRef.current.y <= rect.bottom
+
+      if (!visible || !pointerInside) collapseLens()
+    }
     document.addEventListener('mousemove', onMove, { passive: true })
-    window.addEventListener('resize', onResize, { passive: true })
+    window.addEventListener('resize', syncRect, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
       document.removeEventListener('mousemove', onMove)
-      window.removeEventListener('resize', onResize)
+      window.removeEventListener('resize', syncRect)
+      window.removeEventListener('scroll', onScroll)
     }
-  }, [hovered])
+  }, [collapseLens, hovered])
+
+  useEffect(() => {
+    if (flipMode) return
+    const onGlobalScroll = () => {
+      if (targetRef.current <= 0) return
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) {
+        collapseLens()
+        return
+      }
+      rectRef.current = rect
+      const visible = rect.bottom > 0 && rect.top < window.innerHeight
+      if (!hoveredRef.current || !visible) collapseLens()
+    }
+    const onScrollIntent = () => {
+      if (targetRef.current > 0) collapseLens()
+    }
+    window.addEventListener('scroll', onGlobalScroll, { passive: true })
+    window.addEventListener('wheel', onScrollIntent, { passive: true })
+    window.addEventListener('touchmove', onScrollIntent, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onGlobalScroll)
+      window.removeEventListener('wheel', onScrollIntent)
+      window.removeEventListener('touchmove', onScrollIntent)
+    }
+  }, [collapseLens, flipMode])
 
   useEffect(() => () => {
     cancelAnimationFrame(rafRef.current)
     document.body.classList.remove('spotlight-active')
   }, [])
+
+  // Track breakpoint/input changes so the fallback follows the lens rules
+  useEffect(() => {
+    const update = () => setFlipMode(lensDisabled())
+    window.addEventListener('resize', update, { passive: true })
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  // One-time desktop peek: bloom the lens at center when first scrolled into
+  // view, so visitors learn there is something underneath without being told.
+  useEffect(() => {
+    if (flipMode) return
+    const container = containerRef.current
+    if (!container) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || peekedRef.current) return
+      peekedRef.current = true
+      observer.disconnect()
+      const rect = container.getBoundingClientRect()
+      rectRef.current = rect
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      posRef.current = { x: cx, y: cy }
+      smoothRef.current = { x: cx, y: cy }
+      targetRef.current = SIZE * 0.72
+      startLoop()
+      const timer = setTimeout(() => {
+        // Do not cut a real hover short if the visitor beat the timer
+        if (!hoveredRef.current) {
+          targetRef.current = 0
+          startLoop()
+        }
+      }, 1100)
+      return () => clearTimeout(timer)
+    }, { threshold: 0.65 })
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [flipMode, startLoop])
+
+  const handleFlip = useCallback(() => {
+    if (!flipMode) return
+    setFlipped(f => !f)
+    setTapped(true)
+  }, [flipMode])
 
   const safeFront = normalizeCopy(front)
   const safeBehind = normalizeCopy(behind)
@@ -135,18 +250,34 @@ export default function TextReveal({ front, behind, className = '' }: Props) {
     <>
       <div
         ref={containerRef}
-        className={`spotlight-reveal ${className}`}
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
-        onMouseMove={handleMove}
+        className={`spotlight-reveal ${flipMode ? 'spotlight-reveal--flip' : ''} ${flipped ? 'is-flipped' : ''} ${className}`}
+        onMouseEnter={flipMode ? undefined : handleEnter}
+        onMouseLeave={flipMode ? undefined : handleLeave}
+        onMouseMove={flipMode ? undefined : handleMove}
+        onClick={handleFlip}
+        role={flipMode ? 'button' : undefined}
+        tabIndex={flipMode ? 0 : undefined}
+        onKeyDown={flipMode ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleFlip() } } : undefined}
+        aria-pressed={flipMode ? flipped : undefined}
+        aria-label={flipMode ? 'Flip to read the second half of this thought' : undefined}
       >
-        <div className="spotlight-front">
+        <div className="spotlight-front" aria-hidden={flipMode ? flipped : undefined}>
           <span>{safeFront}</span>
         </div>
+        {flipMode && (
+          <div className="spotlight-behind-inline" aria-hidden={!flipped}>
+            <span>{safeBehind}</span>
+          </div>
+        )}
+        {flipMode && !tapped && (
+          <span className="spotlight-hint" aria-hidden="true">tap</span>
+        )}
+        {/* The lens layer is aria-hidden; expose the hidden line to screen readers */}
+        {!flipMode && <span className="sr-only">{safeBehind}</span>}
       </div>
 
       {/* Circle portaled to body — escapes all stacking contexts */}
-      {createPortal(
+      {!flipMode && createPortal(
         <div ref={circleRef} className="spotlight-circle" aria-hidden="true">
           <div ref={behindRef} className="spotlight-behind">
             <span>{safeBehind}</span>

@@ -19,12 +19,12 @@ export default function AtpsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ATPS · Parth Pawar" />
         <meta property="og:description" content="ArtTown Podcast Series, 40+ conversations with art and design professionals. 50k+ views." />
-        <meta property="og:image" content="https://parthpawar.com/Portfolio.github.io/Assets/images/atps.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/atps.webp" />
       </Helmet>
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#319795' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#7A6FF0' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"

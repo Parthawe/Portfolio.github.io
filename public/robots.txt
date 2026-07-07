@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://parthpawar.com/sitemap.xml
+
+Sitemap: https://parthawe.github.io/Portfolio.github.io/sitemap.xml

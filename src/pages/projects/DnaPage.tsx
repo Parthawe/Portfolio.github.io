@@ -21,13 +21,13 @@ export default function DnaPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#1A6B7A' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#2E5BFF' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
           categorySlug="creative-tech"
           backLabel="Back to Work"
-          tags={['Speculative Design', 'Bioart', 'Physical Computing']}
+          tags={['Speculative Design', 'Bioart']}
           title="Would You Take a Pill to Live Forever?"
           subtitle="A speculative pharmaceutical artifact that turns the fantasy of immortality into a physical choice someone has to hold, read, and hesitate over"
           info={[

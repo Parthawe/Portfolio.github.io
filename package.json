@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/sync-pdf-worker.mjs && vite",
-    "build": "node scripts/sync-pdf-worker.mjs && tsc -b && vite build && cp dist/index.html dist/404.html",
+    "design:audit": "node scripts/audit-design-system.mjs",
+    "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && tsc -b && vite build && cp dist/index.html dist/404.html",
     "preview": "node scripts/sync-pdf-worker.mjs && vite preview"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "react-helmet-async": "^2.0.5",
     "react-pageflip": "^2.0.3",
     "react-router-dom": "^7.6.0",
+    "simple-icons": "^16.25.0",
     "three": "^0.175.0"
   },
   "devDependencies": {

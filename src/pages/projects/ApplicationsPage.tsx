@@ -17,7 +17,7 @@ export default function ApplicationsPage() {
         <meta name="description" content="Building functional applications at the intersection of design and engineering — from concept to deployed product in one semester." />
       </Helmet>
       <Nav />
-      <main id="main-content" className="project-main" style={{ '--project-color': '#0ea5e9' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#4285F4' } as React.CSSProperties}>
         <ProjectHeader
           backLink="/work" categorySlug="creative-tech" backLabel="Back to Work"
           tags={['Full-Stack', 'Product Design', 'Rapid Development']}

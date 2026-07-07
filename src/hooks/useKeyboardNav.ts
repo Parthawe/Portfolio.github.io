@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { projects } from '../data/projects'
+import { visibleProjects as projects } from '../data/projects'
 
 /**
  * Keyboard shortcuts for portfolio navigation:

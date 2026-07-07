@@ -1,4 +1,4 @@
-import { getProject } from '../../data/projects'
+import { getProject, isRequestAccessProject } from '../../data/projects'
 import FigmaSelect from '../FigmaSelect'
 
 export type CaseStudyViewMode = 'summary' | 'full'
@@ -8,6 +8,7 @@ interface ProjectQuickSummaryProps {
   viewMode: CaseStudyViewMode
   onViewModeChange: (mode: CaseStudyViewMode) => void
   fullCaseStudyEnabled?: boolean
+  fullEntryId?: string
 }
 
 export default function ProjectQuickSummary({
@@ -15,6 +16,7 @@ export default function ProjectQuickSummary({
   viewMode,
   onViewModeChange,
   fullCaseStudyEnabled = true,
+  fullEntryId = 'cs-context',
 }: ProjectQuickSummaryProps) {
   const project = getProject(slug)
 
@@ -29,7 +31,15 @@ export default function ProjectQuickSummary({
     return null
   }
 
-  const isAccessLimited = Boolean(project.nda)
+  const isAccessLimited = isRequestAccessProject(project)
+  const handleBridgeOpen = () => {
+    onViewModeChange('full')
+    if (typeof window !== 'undefined') {
+      window.setTimeout(() => {
+        document.getElementById(fullEntryId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 180)
+    }
+  }
 
   return (
     <section className="cs-quick-summary wrap reveal" id="cs-summary">
@@ -123,15 +133,24 @@ export default function ProjectQuickSummary({
           </blockquote>
         ) : null}
 
-        {viewMode === 'summary' && fullCaseStudyEnabled ? (
-          <button
-            type="button"
-            className="cs-quick-summary-link figma-hover"
-            onClick={() => onViewModeChange('full')}
-          >
-            {isAccessLimited ? 'Request full case study' : 'Continue into the full case study'}
-            <FigmaSelect />
-          </button>
+        {viewMode === 'summary' && fullCaseStudyEnabled && isAccessLimited ? (
+          <div className="cs-quick-summary-bridge cs-quick-summary-bridge--request">
+            <div className="cs-quick-summary-bridge-copy">
+              <span className="cs-quick-summary-bridge-kicker">Protected detail</span>
+              <p>
+                The public glimpse keeps the sensitive work out of the static build. Use the access panel below to
+                request or unlock the deeper review.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="cs-quick-summary-link figma-hover"
+              onClick={handleBridgeOpen}
+            >
+              Open access panel
+              <FigmaSelect />
+            </button>
+          </div>
         ) : null}
       </div>
     </section>

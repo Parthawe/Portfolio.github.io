@@ -13,9 +13,9 @@ import { motion, AnimatePresence } from 'framer-motion'
  */
 
 const WEIGHTS = [
-  { label: 'Ultralight', value: 200, css: '"Butlers Slice", Georgia, serif' },
-  { label: 'Regular', value: 400, css: '"Butlers Slice", Georgia, serif' },
-  { label: 'Bold', value: 700, css: '"Butlers Slice", Georgia, serif' },
+  { label: 'Ultralight', value: 200, css: 'Nikolas, "General Sans"' },
+  { label: 'Regular', value: 400, css: 'Nikolas, "General Sans"' },
+  { label: 'Bold', value: 700, css: 'Nikolas, "General Sans"' },
 ]
 
 const SAMPLE_TEXTS = [
@@ -102,7 +102,7 @@ export default function GlyphPlayground() {
           <motion.p
             className="gp-preview-text"
             style={{
-              fontFamily: sliced ? weight.css : 'Georgia, "Times New Roman", serif',
+              fontFamily: sliced ? weight.css : 'Nikolas, "General Sans"',
               fontWeight: weight.value,
               fontSize: `${fontSize}px`,
             }}
@@ -139,7 +139,7 @@ export default function GlyphPlayground() {
               <div className="gp-glyph-large">
                 <span
                   style={{
-                    fontFamily: '"Butlers Slice", Georgia, serif',
+                    fontFamily: 'Nikolas, "General Sans"',
                     fontWeight: weight.value,
                   }}
                 >
@@ -172,7 +172,7 @@ export default function GlyphPlayground() {
                 className="gp-alphabet-char"
                 role="button"
                 tabIndex={0}
-                style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontWeight: weight.value }}
+                style={{ fontFamily: 'Nikolas, "General Sans"', fontWeight: weight.value }}
                 onClick={() => handleGlyphClick(c)}
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGlyphClick(c) } }}
               >
@@ -187,7 +187,7 @@ export default function GlyphPlayground() {
                 className="gp-alphabet-char"
                 role="button"
                 tabIndex={0}
-                style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontWeight: weight.value }}
+                style={{ fontFamily: 'Nikolas, "General Sans"', fontWeight: weight.value }}
                 onClick={() => handleGlyphClick(c)}
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGlyphClick(c) } }}
               >
@@ -202,7 +202,7 @@ export default function GlyphPlayground() {
                 className="gp-alphabet-char"
                 role="button"
                 tabIndex={0}
-                style={{ fontFamily: '"Butlers Slice", Georgia, serif', fontWeight: weight.value }}
+                style={{ fontFamily: 'Nikolas, "General Sans"', fontWeight: weight.value }}
                 onClick={() => handleGlyphClick(c)}
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGlyphClick(c) } }}
               >

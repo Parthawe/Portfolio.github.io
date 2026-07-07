@@ -3,35 +3,54 @@ import PixelLoaderVisual from './PixelLoaderVisual'
 
 export default function PageLoader() {
   const [loaded, setLoaded] = useState(false)
+  const [removed, setRemoved] = useState(false)
 
   useEffect(() => {
     const startedAt = performance.now()
-    const minDuration = 1250
-    let releaseTimer: ReturnType<typeof setTimeout> | undefined
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const minDuration = prefersReduced ? 20 : 520
+    const maxDuration = prefersReduced ? 80 : 780
+    let releaseTimer: number | undefined
+    let capTimer: number | undefined
+    let cancelled = false
 
-    const onLoad = () => {
+    const release = () => {
+      if (cancelled) return
       const elapsed = performance.now() - startedAt
-      releaseTimer = setTimeout(() => setLoaded(true), Math.max(0, minDuration - elapsed))
+      releaseTimer = window.setTimeout(() => {
+        if (!cancelled) setLoaded(true)
+      }, Math.max(0, minDuration - elapsed))
     }
 
-    if (document.readyState === 'complete') {
-      const timer = setTimeout(onLoad, 0)
-      return () => {
-        clearTimeout(timer)
-        clearTimeout(releaseTimer)
-      }
-    }
+    const twoFrames = new Promise<void>((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+    })
+    const fontReady = document.fonts?.ready
+      ? Promise.race([
+          document.fonts.ready.then(() => undefined),
+          new Promise<void>(resolve => window.setTimeout(resolve, 260)),
+        ])
+      : Promise.resolve()
 
-    // Wait for window load, but cap at 3s to avoid indefinite loader
-    const maxTimer = setTimeout(onLoad, 3000)
-    window.addEventListener('load', onLoad)
+    capTimer = window.setTimeout(release, maxDuration)
+    Promise.all([twoFrames, fontReady]).then(release)
 
     return () => {
-      clearTimeout(maxTimer)
+      cancelled = true
+      clearTimeout(capTimer)
       clearTimeout(releaseTimer)
-      window.removeEventListener('load', onLoad)
     }
   }, [])
+
+  useEffect(() => {
+    if (!loaded) return
+    document.body.classList.add('page-ready')
+    window.dispatchEvent(new CustomEvent('portfolio:page-ready'))
+    const id = window.setTimeout(() => setRemoved(true), 240)
+    return () => window.clearTimeout(id)
+  }, [loaded])
+
+  if (removed) return null
 
   return (
     <div className={`page-loader${loaded ? ' loaded' : ''}`} aria-hidden="true">
