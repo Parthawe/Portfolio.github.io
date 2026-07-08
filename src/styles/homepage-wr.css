@@ -484,11 +484,14 @@ body.page-ready .wr-hero-stage {
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   text-decoration: none;
   color: var(--ink);
-  transition: transform var(--dur-base), border-color var(--dur-base), box-shadow var(--dur-base);
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    border-color var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-slow) var(--motion-ease);
 }
 
 .wr-discipline-item:hover {
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
   border-color: var(--ink-12);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
 }
@@ -563,10 +566,10 @@ body.page-ready .wr-hero-stage {
   background: linear-gradient(180deg, transparent, var(--ink-12), transparent);
 }
 .wr-counter-item {
-  transition: transform 0.3s var(--ease-spring);
+  transition: transform var(--motion-base) var(--motion-ease);
 }
 .wr-counter-item:hover {
-  transform: scale(1.04);
+  transform: translate3d(0, -1px, 0) scale(1.015);
 }
 .wr-counter-value {
   font-family: var(--ff-sans);
@@ -1320,10 +1323,10 @@ body.page-ready .wr-hero-stage {
   font-family: var(--mono); font-size: 16px;
   color: var(--ink-40); background: none; border: none;
   cursor: pointer; padding: 0.25rem;
-  transition: color 0.2s, transform 0.2s var(--ease-spring);
+  transition: color var(--motion-fast), transform var(--motion-base) var(--motion-ease);
 }
-.wr-about-arrow:hover { color: var(--ink); transform: scale(1.15); }
-.wr-about-arrow:active { transform: scale(0.9); transition-duration: 0.08s; }
+.wr-about-arrow:hover { color: var(--ink); transform: scale(1.06); }
+.wr-about-arrow:active { transform: scale(0.96); transition-duration: 120ms; }
 .wr-about-skill-wrap {
   flex: 1; overflow: hidden; height: clamp(40px, 8vw, 56px);
   position: relative;
@@ -1333,7 +1336,7 @@ body.page-ready .wr-hero-stage {
   font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 300;
   color: var(--ink); line-height: clamp(40px, 8vw, 56px);
   display: block;
-  transition: transform 0.4s var(--ease-spring, cubic-bezier(0.16,1,0.3,1)), opacity 0.3s;
+  transition: transform var(--motion-base) var(--motion-ease), opacity var(--motion-base) var(--motion-ease);
 }
 
 .wr-about-desc {
@@ -1357,7 +1360,7 @@ body.page-ready .wr-hero-stage {
   width: 0;
   height: 1px;
   background: var(--ink-30);
-  transition: width 0.5s var(--ease-spring);
+  transition: width var(--motion-slow) var(--motion-ease);
 }
 .wr-about-readmore:hover::after { width: 100%; }
 .wr-about-readmore:hover { color: var(--ink-70); }
@@ -1543,7 +1546,10 @@ body.page-ready .wr-hero-stage {
   background: var(--flagship-shell);
   border: 1px solid var(--flagship-border);
   box-shadow: var(--flagship-shadow);
-  transition: transform var(--dur-slow), box-shadow var(--dur-slow), border-color var(--dur-base);
+  transition:
+    transform var(--motion-slow) var(--motion-ease),
+    box-shadow var(--motion-slow) var(--motion-ease),
+    border-color var(--motion-base) var(--motion-ease);
 }
 
 .wr-flagship-lead::before,
