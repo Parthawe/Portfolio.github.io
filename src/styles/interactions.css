@@ -252,6 +252,18 @@
     max-width: min(1120px, calc(100% - 2rem));
   }
 
+  /* Category landing: its two-column hero + approach grids have wide column
+     minimums (~52rem) that overflow the panel-shrunk stage and get clipped.
+     Collapse them to a single column so everything stays inside the frame. */
+  body.site-tools-open .ch--landing,
+  body.site-tools-open .lp-approach-stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.site-tools-open .ch-copy {
+    max-width: 100%;
+    transform: none;
+  }
+
   body.figma-rulers-off.site-tools-open {
     padding-top: 0;
   }

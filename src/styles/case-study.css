@@ -369,14 +369,16 @@
     0 8px 30px rgba(0,0,0,0.08),
     0 2px 8px rgba(0,0,0,0.04),
     0 0 0 1px var(--ink-06);
-  transition: box-shadow 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+  transition:
+    box-shadow var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease);
 }
 .proj-hero-img:hover {
   box-shadow:
     0 20px 60px rgba(0,0,0,0.12),
     0 8px 20px rgba(0,0,0,0.06),
     0 0 0 1px var(--ink-08);
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
 }
 .proj-hero-img img {
   width: 100%;
@@ -2491,7 +2493,9 @@
   box-shadow:
     0 4px 20px rgba(0,0,0,0.06),
     0 1px 4px rgba(0,0,0,0.03);
-  transition: box-shadow 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+  transition:
+    box-shadow var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease);
   cursor: zoom-in;
 }
 .cs-img-full:is(.is-portrait, .is-square) img {
@@ -3630,27 +3634,29 @@
   border-radius: var(--radius);
   overflow: hidden;
   flex-shrink: 0;
-  transition: transform 0.5s var(--ease-spring), box-shadow 0.3s;
+  transition:
+    transform var(--motion-slow) var(--motion-ease),
+    box-shadow var(--motion-base) var(--motion-ease);
   will-change: transform;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--ink-06);
 }
 .next-project:hover .next-project-img {
-  transform: scale(1.08) translateX(-4px);
+  transform: translate3d(-3px, 0, 0) scale(1.025);
   box-shadow: 0 12px 40px rgba(0,0,0,0.12);
 }
 .next-project-img img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--ease-spring);
+  transition: transform var(--motion-slow) var(--motion-ease);
 }
 .next-project:hover .next-project-img img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 .next-project-arrow {
   font-size: 1.75rem;
   color: var(--ink-30);
-  transition: color 0.2s, transform 0.3s var(--ease-spring);
+  transition: color var(--motion-fast), transform var(--motion-base) var(--motion-ease);
 }
 .next-project:hover .next-project-arrow {
   color: var(--ink);
