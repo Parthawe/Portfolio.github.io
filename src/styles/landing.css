@@ -71,10 +71,13 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--ink);
-  transition: border-color 0.25s var(--ease-spring), background 0.25s, transform 0.25s var(--ease-spring);
+  transition:
+    border-color var(--motion-base) var(--motion-ease),
+    background var(--motion-base) var(--motion-ease),
+    transform var(--motion-base) var(--motion-ease);
 }
 .lp-stat:hover {
-  transform: translateY(-2px);
+  transform: translate3d(0, -1px, 0);
   border-color: var(--ink-15);
 }
 .lp-stat:first-child {
@@ -101,9 +104,12 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink-40);
-  transition: background 0.25s, color 0.25s, transform 0.25s var(--ease-spring);
+  transition:
+    background var(--motion-base) var(--motion-ease),
+    color var(--motion-base) var(--motion-ease),
+    transform var(--motion-base) var(--motion-ease);
 }
-.lp-tool:hover { background: var(--ink-12); color: var(--ink-70); transform: translateY(-1px); }
+.lp-tool:hover { background: var(--ink-12); color: var(--ink-70); transform: translate3d(0, -1px, 0); }
 [data-theme="dark"] .lp-tool { background: var(--ink-06); }
 [data-theme="dark"] .lp-tool:hover { background: var(--ink-12); color: var(--ink); }
 
@@ -126,11 +132,14 @@
   background: var(--bg-alt);
   border: 1px solid var(--ink-06);
   box-shadow: var(--shadow-md);
-  transition: box-shadow var(--dur-slow) var(--ease-spring), transform var(--dur-slow) var(--ease-spring), border-color var(--dur-base);
+  transition:
+    box-shadow var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease),
+    border-color var(--motion-base) var(--motion-ease);
 }
 .lp-featured:hover {
   box-shadow: var(--shadow-hover);
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
   border-color: var(--ink-12);
 }
 .lp-featured-img {
@@ -142,9 +151,9 @@
 .lp-featured-img img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease-spring);
+  transition: transform var(--motion-slow) var(--motion-ease);
 }
-.lp-featured:hover .lp-featured-img img { transform: scale(1.04); }
+.lp-featured:hover .lp-featured-img img { transform: scale(1.025); }
 
 /* "View Project" overlay on hover */
 .lp-featured-img::after {

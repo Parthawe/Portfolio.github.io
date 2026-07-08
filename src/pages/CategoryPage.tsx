@@ -8,6 +8,8 @@ import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
 import { Reveal } from '../components/Reveal'
 import FigmaSelect from '../components/FigmaSelect'
+import ClientsMarquee from '../components/ClientsMarquee'
+import PlaybookSection from '../components/PlaybookSection'
 import { CONTACT_EMAIL } from '../config/site'
 import {
   getProject,
@@ -43,6 +45,14 @@ const EXTRA_CATEGORY_PROJECTS: Partial<Record<string, string[]>> = {
   crypto: ['moniac-machine'],
   'design-for-good': ['healthapp', 'oncall-lens', 'code-for-build'],
 }
+
+/* Each category page carries one editorial "energy strip" that mirrors its
+   hero cue (see CategoryHero HERO_CUES):
+   - Impact/client-driven domains show the "Where my work made a difference"
+     logo marquee.
+   - Craft/philosophy-driven domains show the rolling Playbook-points strip. */
+const CLIENT_STRIP_CATEGORIES = new Set(['ux-design', 'installations', 'design-for-good', 'fintech'])
+const PLAYBOOK_STRIP_CATEGORIES = new Set(['ai', 'ai-wearables', 'creative-tech', 'brand-visual', 'crypto'])
 
 function addVisibleProject(list: Project[], seen: Set<string>, project?: Project) {
   if (!project || isHiddenProject(project) || seen.has(project.slug)) return
@@ -94,6 +104,8 @@ export default function CategoryPage() {
     : visibleCategoryProjects
   const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
   const approachVisualProjects = visibleCategoryProjects.slice(0, 3)
+  const showClientStrip = CLIENT_STRIP_CATEGORIES.has(slug)
+  const showPlaybookStrip = PLAYBOOK_STRIP_CATEGORIES.has(slug)
 
   return (
     <div style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
@@ -167,6 +179,18 @@ export default function CategoryPage() {
               </>
             )}
           </div>
+
+          {/* Editorial energy strip — mirrors the hero cue for this domain */}
+          {showClientStrip && (
+            <Reveal>
+              <ClientsMarquee />
+            </Reveal>
+          )}
+          {showPlaybookStrip && (
+            <Reveal>
+              <PlaybookSection />
+            </Reveal>
+          )}
 
           {/* Approach */}
           <Reveal>
