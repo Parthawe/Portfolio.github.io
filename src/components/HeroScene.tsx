@@ -368,11 +368,10 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
   active: boolean;
 }) {
   const textRef = useRef<THREE.Mesh>(null!);
-  const plateRef = useRef<THREE.MeshBasicMaterial>(null!);
   const groupRef = useRef<THREE.Group>(null!);
   const lerp = useRef(0);
-  const plateWidth = Math.min(1.68, Math.max(0.92, text.length * 0.082));
-  const plateHeight = text.includes('&') || text.includes(' ') ? 0.42 : 0.3;
+  const padWidth = Math.min(1.68, Math.max(0.92, text.length * 0.082));
+  const padHeight = text.includes('&') || text.includes(' ') ? 0.42 : 0.3;
 
   const handleClick = useCallback(() => {
     if (_navigate) _navigate(route);
@@ -386,17 +385,15 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
     if (textRef.current) {
       const textScale = 0.82 + lerp.current * 0.18;
       textRef.current.scale.set(textScale, textScale, textScale);
-      (textRef.current as any).fillOpacity = (dark ? 0.9 : 0.78) * lerp.current;
-      (textRef.current as any).outlineOpacity = (dark ? 0.55 : 0.72) * lerp.current;
+      (textRef.current as any).fillOpacity = (dark ? 0.98 : 0.9) * lerp.current;
+      // Soft glow halo (blurred outline) carries the legibility now — no plate.
+      (textRef.current as any).outlineOpacity = (dark ? 0.85 : 0.92) * lerp.current;
       const mat = (textRef.current as any).material;
       if (mat && mat.depthTest !== false) {
         mat.depthTest = false;
         mat.depthWrite = false;
         mat.needsUpdate = true;
       }
-    }
-    if (plateRef.current) {
-      plateRef.current.opacity = (dark ? 0.48 : 0.62) * lerp.current;
     }
 
     // Counter-rotate Z so labels always stay upright/readable
@@ -415,16 +412,10 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
         onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = 'pointer'; }}
         onPointerOut={() => { document.body.style.cursor = ''; }}
       >
-        <mesh renderOrder={998} position={[0, offset[1] > 0 ? -0.06 : 0.06, -0.01]}>
-          <planeGeometry args={[plateWidth, plateHeight]} />
-          <meshBasicMaterial
-            ref={plateRef}
-            color={dark ? '#101014' : '#fbfaf6'}
-            transparent
-            opacity={0}
-            depthTest={false}
-            depthWrite={false}
-          />
+        {/* Invisible pad — keeps a comfortable click target, renders nothing. */}
+        <mesh renderOrder={997} position={[0, offset[1] > 0 ? -0.06 : 0.06, -0.02]}>
+          <planeGeometry args={[padWidth, padHeight]} />
+          <meshBasicMaterial transparent opacity={0} depthTest={false} depthWrite={false} />
         </mesh>
       <Text
         ref={textRef}
@@ -434,8 +425,9 @@ function InteractiveLabel({ position, text, offset, dark, route, parentRef, acti
         anchorY={offset[1] > 0 ? 'bottom' : 'top'}
         letterSpacing={0.12}
         fillOpacity={0}
-        outlineWidth={0.012}
-        outlineColor={dark ? '#0a0a0a' : '#fbfaf6'}
+        outlineWidth={0.018}
+        outlineBlur={0.09}
+        outlineColor={dark ? '#000000' : '#faf9f6'}
         outlineOpacity={0}
         renderOrder={999}
         material-depthTest={false}
@@ -1714,9 +1706,7 @@ const FIELD_COMPONENTS: React.FC<{ dark: boolean; hovered: boolean }>[] = [
 function FieldLabel({ text, dark, active, fadeRef }: { text: string; dark: boolean; active: boolean; fadeRef?: React.RefObject<number> }) {
   const groupRef = useRef<THREE.Group>(null!);
   const textRef = useRef<THREE.Mesh>(null!);
-  const plateRef = useRef<THREE.MeshBasicMaterial>(null!);
   const lerp = useRef(0);
-  const plateWidth = Math.min(2.0, Math.max(0.7, text.length * 0.09 + 0.24));
   const { camera } = useThree();
   const billboardQ = useMemo(() => new THREE.Quaternion(), []);
 
@@ -1734,18 +1724,14 @@ function FieldLabel({ text, dark, active, fadeRef }: { text: string; dark: boole
     if (textRef.current) {
       const ts = 0.82 + l * 0.18;
       textRef.current.scale.set(ts, ts, ts);
-      (textRef.current as unknown as { fillOpacity: number }).fillOpacity = (dark ? 0.92 : 0.82) * l;
-      (textRef.current as unknown as { outlineOpacity: number }).outlineOpacity = (dark ? 0.5 : 0.7) * l;
+      (textRef.current as unknown as { fillOpacity: number }).fillOpacity = (dark ? 0.98 : 0.9) * l;
+      // Soft glow halo replaces the plate — keeps names legible without a box.
+      (textRef.current as unknown as { outlineOpacity: number }).outlineOpacity = (dark ? 0.85 : 0.92) * l;
     }
-    if (plateRef.current) plateRef.current.opacity = (dark ? 0.5 : 0.64) * l;
   });
 
   return (
     <group ref={groupRef} position={[0, -0.74, 0.05]}>
-      <mesh renderOrder={998} position={[0, 0.015, -0.01]}>
-        <planeGeometry args={[plateWidth, 0.3]} />
-        <meshBasicMaterial ref={plateRef} color={dark ? '#101014' : '#fbfaf6'} transparent opacity={0} depthTest={false} depthWrite={false} />
-      </mesh>
       <Text
         ref={textRef}
         fontSize={0.125}
@@ -1754,8 +1740,9 @@ function FieldLabel({ text, dark, active, fadeRef }: { text: string; dark: boole
         anchorY="middle"
         letterSpacing={0.1}
         fillOpacity={0}
-        outlineWidth={0.01}
-        outlineColor={dark ? '#0a0a0a' : '#fbfaf6'}
+        outlineWidth={0.016}
+        outlineBlur={0.075}
+        outlineColor={dark ? '#000000' : '#faf9f6'}
         outlineOpacity={0}
         renderOrder={999}
         material-depthTest={false}
@@ -1905,6 +1892,70 @@ function ExpandedWeb({
         <WebObject3D key={n.id} node={n} index={i} introRef={introRef} dark={dark} onHover={setHover} />
       ))}
     </group>
+  );
+}
+
+/* ─── Infinite grid backdrop ───────────────────────────────────────────────
+   A single plane behind the whole field whose grid is drawn procedurally — so
+   it tiles forever by construction. It scrolls as you pan and fades toward the
+   screen edges (in clip space, so it works under any orbit/zoom), giving the
+   web an endless graph-paper world to float on. One draw call, truly infinite. */
+const gridVertexShader = /* glsl */ `
+  varying vec2 vLocal;
+  varying vec4 vClip;
+  void main() {
+    vLocal = position.xy;
+    vClip = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    gl_Position = vClip;
+  }
+`;
+const gridFragmentShader = /* glsl */ `
+  precision highp float;
+  varying vec2 vLocal;
+  varying vec4 vClip;
+  uniform vec2 uPan;
+  uniform float uFade;
+  uniform vec3 uColor;
+  uniform float uAlpha;
+  float gridLine(vec2 c, float cell) {
+    vec2 g = abs(fract(c / cell - 0.5) - 0.5) / fwidth(c / cell);
+    return 1.0 - min(min(g.x, g.y), 1.0);
+  }
+  void main() {
+    vec2 c = vLocal + uPan;
+    vec2 ndc = vClip.xy / vClip.w;
+    float r = length(ndc);
+    float edge = 1.0 - smoothstep(0.42, 1.18, r);   // dissolve toward the corners
+    float fine = gridLine(c, 1.0);
+    float coarse = gridLine(c, 5.0);
+    // Major lines carry the structure; fine lines whisper underneath.
+    float a = (fine * 0.22 + coarse * 1.0) * edge * uFade * uAlpha;
+    if (a < 0.002) discard;
+    gl_FragColor = vec4(uColor, a);
+  }
+`;
+
+function InfiniteGrid({ introRef, panRef, dark }: {
+  introRef: React.RefObject<number>;
+  panRef: React.RefObject<{ x: number; y: number }>;
+  dark: boolean;
+}) {
+  const uniforms = useMemo(() => ({
+    uPan: { value: new THREE.Vector2() },
+    uFade: { value: 0 },
+    uColor: { value: new THREE.Color(dark ? '#8ea2de' : '#6f7f9c') },
+    uAlpha: { value: dark ? 0.8 : 0.85 },
+  }), [dark]);
+  useFrame(() => {
+    uniforms.uFade.value = introRef.current ?? 0;
+    const p = panRef.current;
+    if (p) uniforms.uPan.value.set(-p.x, -p.y);
+  });
+  return (
+    <mesh position={[0, 0, -3.5]} renderOrder={-10} frustumCulled={false}>
+      <planeGeometry args={[150, 110]} />
+      <shaderMaterial vertexShader={gridVertexShader} fragmentShader={gridFragmentShader} uniforms={uniforms} transparent depthWrite={false} />
+    </mesh>
   );
 }
 
@@ -2105,8 +2156,8 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
       if (intro > 0.5 && Math.abs(yawVel.current) < 0.0004) yaw.current += 0.0009;
     }
     // Roam widely — the fade hides the true edge long before you reach it.
-    pan.current.x = clamp(pan.current.x, -10.5, 10.5);
-    pan.current.y = clamp(pan.current.y, -7.5, 7.5);
+    pan.current.x = clamp(pan.current.x, -16, 16);
+    pan.current.y = clamp(pan.current.y, -11, 11);
 
     // Collapsed: gentle mouse parallax. Expanded: full orbit/pan. Blend by intro.
     const parallaxY = t.x * 0.1;
@@ -2139,6 +2190,9 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
 
       {/* Environment reflections — city preset gives complex glass reflections */}
       <Environment files="/Portfolio.github.io/Assets/hdri/potsdamer_platz_1k.hdr" environmentIntensity={dark ? 1.0 : 1.2} />
+
+      {/* Endless grid backdrop — only bites once the web opens (uFade = intro). */}
+      <InfiniteGrid introRef={introRef} panRef={pan} dark={dark} />
 
       <group ref={groupRef} scale={sceneScale} position={[sceneOffsetX, 0, 0]}>
         <ConstellationLines positions={positions} dark={dark} fadeRef={collapsedFadeRef} />

@@ -10,7 +10,7 @@ const PresentationBar = lazy(() => import('./PresentationBar'))
 
 const PLATFORM_HINTS: Record<string, string> = {
   '/': 'Ask for the flagship projects.',
-  '/work': 'Open Playlist view.',
+  '/work': 'Open Index view.',
   '/about': 'Ask about roles that fit.',
   '/playbook': 'Ask how a value shows up in real work.',
 }

@@ -21,7 +21,7 @@ export function Reveal({
   className = '',
 }: RevealProps) {
   const prefersReduced = useReducedMotion();
-  const computedDelay = delay ?? staggerIndex * 0.08;
+  const computedDelay = delay ?? staggerIndex * 0.07;
   const baseClass = image ? 'reveal-image' : 'reveal';
 
   if (prefersReduced) {
@@ -35,10 +35,10 @@ export function Reveal({
   return (
     <motion.div
       className={`${baseClass} ${className}`.trim()}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 14, scale: 0.994, filter: 'blur(4px)' }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
       viewport={{ once: true, margin: '0px 0px -40px 0px' }}
-      transition={{ duration: 0.6, delay: computedDelay }}
+      transition={{ duration: 0.52, delay: computedDelay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>

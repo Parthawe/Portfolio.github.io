@@ -169,12 +169,12 @@ export default function Nav() {
   // Project and category pages also count as "work"
   const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !['studio', 'book', 'graveyard'].some(r => pathname === `/${r}`));
 
-  // On the Work page itself, the Work tab expands to show its four views.
+  // On the Work page itself, the Work tab expands to show its three views.
   const isWorkPage = pathname === '/work';
-  const workView = new URLSearchParams(search).get('view') || 'editorial';
+  const requestedWorkView = new URLSearchParams(search).get('view') || 'editorial';
+  const workView = requestedWorkView === 'playlist' ? 'library' : requestedWorkView;
   const workViewLinks = [
     { key: 'editorial', label: 'Editorial', to: '/work' },
-    { key: 'playlist', label: 'Playlist', to: '/work?view=playlist' },
     { key: 'library', label: 'Index', to: '/work?view=library' },
     { key: 'timeline', label: 'Arc', to: '/work?view=timeline' },
   ];

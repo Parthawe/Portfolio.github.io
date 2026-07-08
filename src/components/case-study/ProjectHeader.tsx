@@ -79,6 +79,7 @@ export default function ProjectHeader({
     heroImage ||
     project?.access?.publicPreviewImage ||
     project?.summaryImage ||
+    project?.cover16x9 ||   // wide cover suits the 16:9 hero better than the 4:5 card
     project?.cardMockup ||
     project?.cardMockupSource ||
     project?.image

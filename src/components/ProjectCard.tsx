@@ -19,6 +19,8 @@ interface ProjectCardProps {
   marqueeText?: string
   loading?: 'eager' | 'lazy'
   featured?: boolean
+  /** Force the wide 16:9 cover (for landscape card slots). */
+  preferWide?: boolean
   tilt?: boolean
   tiltIntensity?: number
   nda?: boolean
@@ -27,10 +29,11 @@ interface ProjectCardProps {
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText,
-  loading = 'lazy', featured = false, tilt = true, tiltIntensity = 5, nda = false,
+  loading = 'lazy', featured = false, preferWide = false, tilt = false, tiltIntensity = 4, nda = false,
 }: ProjectCardProps) {
   const project = projects.find(p => p.slug === slug)
-  const resolvedImage = project?.cardMockup || image
+  // Landscape/featured slots want the wide 16:9 cover; portrait grid slots → 4:5.
+  const resolvedImage = ((featured || preferWide) && project?.cover16x9) || project?.cardMockup || image
   const resolvedAlt = project?.cardMockupAlt || name
   const requestAccess = isRequestAccessProject(project) || nda
   const safeTag = tag ? normalizeCopy(tag) : ''

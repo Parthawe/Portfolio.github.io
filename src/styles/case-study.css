@@ -50,7 +50,7 @@
 .back-link {
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  font-weight: 500;
+  font-weight: 350;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--ink-30);
@@ -109,7 +109,7 @@
   background: var(--surface);
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  font-weight: 500;
+  font-weight: 350;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--ink-50);
@@ -149,13 +149,13 @@
   .proj-3d-ornament { display: none; }
 }
 .proj-title {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 1;
   letter-spacing: 0;
   color: var(--ink);
   margin: 0 0 1.25rem;
-  font-weight: 300;
+  font-weight: 400;
   overflow-wrap: anywhere;
 }
 .proj-subtitle {
@@ -225,7 +225,7 @@
   margin-bottom: 0.4rem;
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: color-mix(in srgb, var(--project-color, var(--ink)) 72%, var(--ink-40));
@@ -742,9 +742,9 @@
 .proj-visual-title {
   margin: 0;
   max-width: 48ch;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(1.9rem, 2.8vw, 3.1rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.16;
   letter-spacing: 0;
   color: rgba(250, 253, 251, 0.96);
@@ -4365,9 +4365,16 @@
   overflow-wrap: anywhere;
 }
 
-.project-main :is(.proj-title, .cs-display, .cs-section-title, .cs-nda-story-title, .next-project-title, .cs-thanks-title) {
+.project-main :is(.cs-display, .cs-section-title, .cs-nda-story-title, .next-project-title, .cs-thanks-title) {
   font-family: var(--serif);
   font-weight: 300;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.project-main :is(.proj-title, .proj-visual-title) {
+  font-family: var(--sans);
+  font-weight: 400;
   letter-spacing: 0;
   text-wrap: balance;
 }

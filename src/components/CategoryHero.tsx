@@ -1,10 +1,12 @@
 import { lazy, Suspense } from 'react'
+import type { CSSProperties } from 'react'
 import { motion } from 'framer-motion'
 import { useDeferredMount } from '../hooks/useDeferredMount'
 
 const CategoryObject3D = lazy(() => import('./CategoryObject3D'))
 
 const ease = [0.16, 1, 0.3, 1] as const
+const revealTransition = { duration: 0.58, ease }
 
 /* The domain positioning statement — the landing page's headline.
    Split into [lead, accent] so the accent phrase renders in the category colour. */
@@ -60,6 +62,20 @@ const PROOFS: Record<string, string> = {
   'ai-wearables':    'Voice-first, glance-first',
 }
 
+/* Hero-level cue: either points to the working principles behind the category,
+   or frames the proof as impact. Kept short so the hero stays visual-first. */
+const HERO_CUES: Record<string, { label: string; href: string; body: string }> = {
+  'ai':              { label: 'Playbook points', href: '/playbook', body: 'Augment attention, stay glanceable, earn trust before intelligence.' },
+  'ai-wearables':    { label: 'Playbook points', href: '/playbook', body: 'Ambient tools have to be useful before they become visible.' },
+  'ux-design':       { label: 'Where my work made a difference', href: '#lp-work', body: 'Mentra, ZentiPay, Raahi, and operating tools shaped around decisions people actually make.' },
+  'creative-tech':   { label: 'Playbook points', href: '/playbook', body: 'Prototype behavior early; let code, motion, and material prove the idea.' },
+  'installations':   { label: 'Where my work made a difference', href: '#lp-work', body: 'Objects, rooms, and stages that made abstract systems easier to feel.' },
+  'brand-visual':    { label: 'Playbook points', href: '/playbook', body: 'Make the system recognizable before anyone reads the explanation.' },
+  'design-for-good': { label: 'Where my work made a difference', href: '#lp-work', body: 'Public-service and accessibility work where clarity changes who can participate.' },
+  'fintech':         { label: 'Where my work made a difference', href: '#lp-work', body: 'Money movement interfaces where trust, timing, and next steps cannot be vague.' },
+  'crypto':          { label: 'Playbook points', href: '/playbook', body: 'Turn abstract rails into clear, accountable actions people can verify.' },
+}
+
 interface CategoryHeroProps {
   slug: string
   accentColor: string
@@ -76,6 +92,7 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
   const [lead, accent] = STATEMENTS[slug] || [title, titleAccent]
   const sub = SUBLINES[slug] || description
   const proof = PROOFS[slug]
+  const cue = HERO_CUES[slug]
   const categoryName = CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
   const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
 
@@ -84,9 +101,9 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
       <div className="ch-copy">
         <motion.span
           className="ch-eyebrow"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
+          transition={{ ...revealTransition, delay: 0.08 }}
         >
           <i className="ch-eyebrow-dot" style={{ background: accentColor }} aria-hidden="true" />
           {categoryName}
@@ -94,9 +111,9 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
 
         <motion.h1
           className="ch-statement"
-          initial={{ opacity: 0, y: 26 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease }}
+          initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
+          transition={{ duration: 0.68, ease }}
         >
           {lead}{' '}
           <em style={{ color: accentColor }}>{accent}</em>
@@ -104,18 +121,35 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
 
         <motion.p
           className="ch-sub"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.3 }}
+          initial={{ opacity: 0, y: 10, filter: 'blur(3px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
+          transition={{ ...revealTransition, delay: 0.16 }}
         >
           {sub}
         </motion.p>
 
+        {cue && (
+          <motion.a
+            href={cue.href}
+            className="ch-cue figma-hover"
+            style={{ '--ch-accent': accentColor } as CSSProperties}
+            initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
+            transition={{ ...revealTransition, delay: 0.23 }}
+          >
+            <span className="ch-cue-kicker">
+              <span aria-hidden="true">↘</span>
+              {cue.label}
+            </span>
+            <span className="ch-cue-body">{cue.body}</span>
+          </motion.a>
+        )}
+
         <motion.div
           className="ch-strip"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.45, delay: 0.45 }}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...revealTransition, delay: 0.3 }}
         >
           <span className="ch-strip-item">{projectCount} project{projectCount === 1 ? '' : 's'}</span>
           {proof && (
@@ -135,9 +169,9 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
       {has3D && (
         <motion.div
           className="ch-3d ch-3d--side"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.15, ease }}
+          initial={{ opacity: 0, scale: 0.985, filter: 'blur(6px)' }}
+          animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
+          transition={{ duration: 0.82, delay: 0.16, ease }}
           aria-hidden="true"
         >
           {show3D ? (

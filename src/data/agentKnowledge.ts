@@ -638,8 +638,8 @@ export function getRouteGreeting(path: string): string {
     "Pick a project, ask for a hiring shortlist, or say 'tour' and I'll guide you through. I have opinions about all of this.",
   ])
   if (path === '/work') return pick([
-    "Full archive. Four views now, Editorial, Playlist, Index, and Arc. Ask for one and I’ll switch to it, or ask for a shortlist.",
-    "This is everything. Six disciplines, from fintech to light sculptures. I can switch the page into Playlist, Index, or Arc mode if you want a different read.",
+    "Full archive. Three views now: Editorial, Index, and Arc. Ask for one and I’ll switch to it, or ask for a shortlist.",
+    "This is everything. Six disciplines, from fintech to light sculptures. I can switch the page into Index or Arc mode if you want a different read.",
   ])
   if (path === '/about') {
     if (section === 'skills') return "Those tools? They're not decorative. Ask me how any of them gets used in a real shipped project."
@@ -717,7 +717,7 @@ export function getDynamicChips(path: string, qCount: number, lastSlug?: string,
     if (persona === 'recruiter' || persona === 'hm') return ['Hiring shortlist', 'Role fit', 'Best research process', 'Most ambitious project']
     return ['Hiring shortlist', 'Most ambitious project', 'Best research process', 'Creative range']
   }
-  if (path === '/work') return ['Playlist view', 'Arc view', 'Start with flagship work', 'Best research process']
+  if (path === '/work') return ['Index view', 'Arc view', 'Start with flagship work', 'Best research process']
   if (path === '/about') {
     if (section === 'skills') return ['How he uses Figma', 'Code + design?', 'Favorite tool', 'Physical work']
     if (section === 'experience') return ['Best role?', 'Mentra story', 'ZentiPay story', 'Teaching at NYU']
@@ -827,8 +827,8 @@ const rules: Rule[] = [
   },
 
   // Work views
-  { patterns: [/(?:playlist view|spotify view|index view|library view|arc view|timeline view|editorial view|work views|work modes|browse modes)/i],
-    handler: () => "The Work page now has four reads of the same portfolio:\n\n• **Editorial**, best first read\n• **Playlist**, best for guided comparison\n• **Index**, best for compact scanning\n• **Arc**, best for progression over time\n\nTell me which one you want and I’ll switch it."
+  { patterns: [/(?:index view|library view|arc view|timeline view|editorial view|work views|work modes|browse modes)/i],
+    handler: () => "The Work page now has three reads of the same portfolio:\n\n• **Editorial**, best first read\n• **Index**, best for compact scanning\n• **Arc**, best for progression over time\n\nTell me which one you want and I’ll switch it."
   },
 
   // Most ambitious

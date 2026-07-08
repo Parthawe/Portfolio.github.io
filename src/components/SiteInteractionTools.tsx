@@ -13,6 +13,7 @@ import { CONTACT_EMAIL } from '../config/site'
 
 type ToolMode = 'select' | 'paint' | 'comment' | null
 type ExportTarget = 'selection' | 'page'
+type StrokePresetKey = 'designer' | 'pencil' | 'marker' | 'highlighter' | 'charcoal'
 
 type Point = {
   x: number
@@ -31,6 +32,17 @@ type CommentDraft = {
   xPercent: number
   yPercent: number
   selector: string | null
+}
+
+type InspectInfo = {
+  rect: { x: number; y: number; w: number; h: number }
+  name: string
+  size: string
+  font: string
+  color: string
+  background: string
+  radius: string
+  pinned: boolean
 }
 
 type SitePageItem = {
@@ -183,6 +195,35 @@ function ToolIcon({ name, className }: { name: ToolIconName; className?: string 
   }
 }
 
+function StrokePresetPreview({ preset, compact = false }: { preset: (typeof strokePresets)[number]; compact?: boolean }) {
+  const width = compact ? 24 : 44
+  const height = compact ? 16 : 24
+
+  return (
+    <svg className={`site-stroke-preview${compact ? ' site-stroke-preview--compact' : ''}`} viewBox="0 0 16 16" width={width} height={height} fill="none" aria-hidden="true">
+      <path
+        d={strokePresetPath(preset.key)}
+        stroke="currentColor"
+        strokeWidth={Math.max(1.2, 2.2 * preset.width)}
+        strokeLinecap={preset.cap}
+        strokeLinejoin="round"
+        strokeDasharray={preset.dash?.join(' ')}
+        opacity={preset.alpha}
+      />
+      {preset.texture === 'pencil' && (
+        <path d="M3.5 12.2 C6 7.5 8 11.2 11.7 5.4" stroke="currentColor" strokeWidth="0.85" strokeLinecap="round" strokeDasharray="1 2.2" opacity="0.55" />
+      )}
+      {preset.texture === 'charcoal' && (
+        <>
+          <circle cx="4.4" cy="10.1" r="0.55" fill="currentColor" opacity="0.55" />
+          <circle cx="8.2" cy="8.9" r="0.45" fill="currentColor" opacity="0.38" />
+          <circle cx="11.6" cy="6.9" r="0.62" fill="currentColor" opacity="0.46" />
+        </>
+      )}
+    </svg>
+  )
+}
+
 const tintOptions = [
   { label: 'blue', value: 'oklch(63% 0.19 258)' },
   { label: 'iris', value: 'oklch(62% 0.18 288)' },
@@ -193,6 +234,45 @@ const tintOptions = [
   { label: 'amber', value: 'oklch(76% 0.16 82)' },
   { label: 'graphite', value: 'oklch(32% 0.02 265)' },
 ]
+
+const strokePresets: Array<{
+  key: StrokePresetKey
+  label: string
+  note: string
+  width: number
+  alpha: number
+  cap: CanvasLineCap
+  dash?: number[]
+  texture?: 'pencil' | 'charcoal'
+}> = [
+  { key: 'designer', label: 'Designer', note: 'clean vector line', width: 1, alpha: 1, cap: 'round' },
+  { key: 'pencil', label: 'Pencil', note: 'light sketch grain', width: 0.62, alpha: 0.78, cap: 'round', texture: 'pencil' },
+  { key: 'marker', label: 'Marker', note: 'bold presentation', width: 1.75, alpha: 0.86, cap: 'round' },
+  { key: 'highlighter', label: 'Highlighter', note: 'transparent chisel', width: 2.45, alpha: 0.34, cap: 'butt' },
+  { key: 'charcoal', label: 'Charcoal', note: 'artist edge', width: 1.25, alpha: 0.7, cap: 'round', dash: [1, 7], texture: 'charcoal' },
+]
+
+const contentAlignOptions = [
+  { value: 'left', label: 'Left', lines: [0.62, 0.42, 0.74] },
+  { value: 'center', label: 'Center', lines: [0.52, 0.76, 0.42] },
+  { value: 'right', label: 'Right', lines: [0.68, 0.46, 0.6] },
+] as const
+
+function strokePresetPath(key: StrokePresetKey) {
+  switch (key) {
+    case 'pencil':
+      return 'M3 13 C5 7 7 12 9 6 S12 3 14 7'
+    case 'marker':
+      return 'M2.5 10.5 C5 5 8.5 12 13.5 4.5'
+    case 'highlighter':
+      return 'M2 9 L14 5'
+    case 'charcoal':
+      return 'M2.5 11 C5 3.5 8.5 13.5 13.5 6'
+    case 'designer':
+    default:
+      return 'M2.5 10 C5 6 8.5 12 13.5 4.5'
+  }
+}
 
 const categoryPaths: Record<string, string> = {
   all: '/work',
@@ -235,6 +315,13 @@ function rectFromPoints(start: Point, end: Point): SelectionRect {
     y: Math.min(start.y, end.y),
     w: Math.abs(end.x - start.x),
     h: Math.abs(end.y - start.y),
+  }
+}
+
+function pagePointFromPointer(event: React.PointerEvent): Point {
+  return {
+    x: event.clientX + window.scrollX,
+    y: event.clientY + window.scrollY,
   }
 }
 
@@ -281,6 +368,54 @@ function firstElementForTarget(target?: string) {
   return selectorList
     .map(selector => document.querySelector<HTMLElement>(selector))
     .find((element): element is HTMLElement => Boolean(element))
+}
+
+// Selectors the inspector must never highlight — its own chrome and the
+// design-tool overlays sitting above the page.
+const INSPECT_IGNORE = [
+  '.site-tools',
+  '.site-layers-panel',
+  '.site-figbar',
+  '.site-comment-layer',
+  '.site-comment-card',
+  '.site-inspect-outline',
+  '.site-tool-overlay',
+  '.figma-ruler',
+  '.figma-ruler-top',
+  '.figma-ruler-corner',
+  '.figma-cursor-label',
+].join(', ')
+
+function shortColor(value: string) {
+  // Collapse fully transparent fills to a readable token.
+  if (!value || value === 'rgba(0, 0, 0, 0)' || value === 'transparent') return 'None'
+  return value.replace(/\s+/g, ' ').trim()
+}
+
+// Read the real, on-screen properties of an element so the panel can show
+// Figma-style inspect data instead of static placeholders.
+function describeElement(element: HTMLElement, pinned = false): InspectInfo {
+  const rect = element.getBoundingClientRect()
+  const styles = getComputedStyle(element)
+  const classes = typeof element.className === 'string' ? element.className.trim() : ''
+  const classSuffix = classes
+    ? '.' + classes.split(/\s+/).filter(name => !name.startsWith('site-') && !name.startsWith('figma-')).slice(0, 2).join('.')
+    : ''
+  const name = element.id
+    ? `#${element.id}`
+    : `${element.tagName.toLowerCase()}${classSuffix === '.' ? '' : classSuffix}`
+  const fontFamily = styles.fontFamily.split(',')[0].replace(/["']/g, '').trim()
+
+  return {
+    rect: { x: rect.left, y: rect.top, w: rect.width, h: rect.height },
+    name,
+    size: `${Math.round(rect.width)} × ${Math.round(rect.height)}`,
+    font: `${Math.round(Number.parseFloat(styles.fontSize) || 0)}px ${fontFamily}`,
+    color: shortColor(styles.color),
+    background: shortColor(styles.backgroundColor),
+    radius: styles.borderRadius === '0px' ? '0' : styles.borderRadius,
+    pinned,
+  }
 }
 
 function collectExportCss() {
@@ -410,7 +545,7 @@ function layersForPath(pathname: string): LayerItem[] {
       { label: 'Category filter bar', icon: '⌘', target: '.work-filter-inline, .work-bottom-nav', info: 'Browse controls', depth: 1 },
       { label: 'Intro copy', icon: 'T', target: '.work-page-intro, .work-page-header', info: 'Recruiter framing', depth: 1 },
       { label: 'Project counts', icon: '#', target: '.work-page-intro-meta, .work-filter-inline', info: 'Selected/archive totals', depth: 1 },
-      { label: 'View switcher', icon: '▦', target: '.work-view-switch', info: 'Editorial / playlist / index', depth: 1 },
+      { label: 'View switcher', icon: '▦', target: '.work-view-switch', info: 'Editorial / index / arc', depth: 1 },
       { label: 'Selected work grid', icon: '▣', target: '.work-group--selected, #work-project-results', info: 'Flagship proof', depth: 1 },
       { label: 'NDA quick glimpse tags', icon: '◇', target: '.pcard-tag--nda', info: 'Access disclosure', depth: 2, accent: true },
       { label: 'Archive grid', icon: '▧', target: '.work-group--archive', info: 'Older experiments', depth: 1 },
@@ -505,6 +640,7 @@ export default function SiteInteractionTools() {
   const [lastSelection, setLastSelection] = useState<SelectionRect | null>(null)
   const [activeTint, setActiveTint] = useState(tintOptions[0].label)
   const [brushSize, setBrushSize] = useState(5)
+  const [strokePreset, setStrokePreset] = useState<StrokePresetKey>('designer')
   const [paintOpacity, setPaintOpacity] = useState(72)
   const [tintStrength, setTintStrength] = useState(38)
   const [overlayOpacity, setOverlayOpacity] = useState(14)
@@ -528,6 +664,8 @@ export default function SiteInteractionTools() {
   const [commentBody, setCommentBody] = useState('')
   const [commentSaving, setCommentSaving] = useState(false)
   const [viewportVersion, setViewportVersion] = useState(0)
+  const [inspect, setInspect] = useState<InspectInfo | null>(null)
+  const inspectRafRef = useRef(0)
   const [commentAuthor, setCommentAuthor] = useState(() => {
     try {
       return window.localStorage.getItem('portfolio-comment-author') || ''
@@ -549,18 +687,65 @@ export default function SiteInteractionTools() {
   const lastPaintRef = useRef<Point | null>(null)
   const currentCommentRoute = normalizeCommentRoute(pathname)
   const commentStoreMode = getCommentStoreMode()
+  const activeStrokePreset = strokePresets.find(option => option.key === strokePreset) ?? strokePresets[0]
 
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('site-tools:ready'))
   }, [])
 
   const configurePaintContext = useCallback((ctx: CanvasRenderingContext2D) => {
-    ctx.lineCap = 'round'
+    ctx.lineCap = activeStrokePreset.cap
     ctx.lineJoin = 'round'
-    ctx.lineWidth = brushSize
-    ctx.globalAlpha = paintOpacity / 100
+    ctx.lineWidth = Math.max(1, brushSize * activeStrokePreset.width)
+    ctx.globalAlpha = Math.min(1, (paintOpacity / 100) * activeStrokePreset.alpha)
     ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--site-tool-ink').trim() || 'oklch(63% 0.19 258)'
-  }, [brushSize, paintOpacity])
+    ctx.setLineDash(activeStrokePreset.dash ?? [])
+  }, [activeStrokePreset, brushSize, paintOpacity])
+
+  const drawPaintSegment = useCallback((ctx: CanvasRenderingContext2D, from: Point, to: Point) => {
+    const ink = getComputedStyle(document.body).getPropertyValue('--site-tool-ink').trim() || 'oklch(63% 0.19 258)'
+    const dx = to.x - from.x
+    const dy = to.y - from.y
+    const distance = Math.hypot(dx, dy)
+
+    ctx.save()
+    configurePaintContext(ctx)
+
+    if (activeStrokePreset.key === 'highlighter') {
+      ctx.globalCompositeOperation = 'multiply'
+    }
+
+    ctx.beginPath()
+    ctx.moveTo(from.x, from.y)
+    ctx.lineTo(to.x, to.y)
+    ctx.stroke()
+
+    if (activeStrokePreset.texture === 'pencil') {
+      ctx.globalAlpha = Math.min(0.42, (paintOpacity / 100) * 0.38)
+      ctx.lineWidth = Math.max(0.75, brushSize * 0.28)
+      ctx.setLineDash([1, 4])
+      ctx.beginPath()
+      ctx.moveTo(from.x + 0.65, from.y - 0.55)
+      ctx.lineTo(to.x + 0.65, to.y - 0.55)
+      ctx.stroke()
+    }
+
+    if (activeStrokePreset.texture === 'charcoal' && distance > 0) {
+      ctx.setLineDash([])
+      ctx.fillStyle = ink
+      const steps = Math.max(1, Math.min(7, Math.floor(distance / 9)))
+      for (let i = 0; i < steps; i += 1) {
+        const t = (i + 0.5) / steps
+        const wobble = Math.sin((from.x + from.y + i * 17) * 0.035) * brushSize * 0.38
+        ctx.globalAlpha = Math.min(0.32, (paintOpacity / 100) * 0.28)
+        ctx.beginPath()
+        ctx.arc(from.x + dx * t - dy * 0.012 + wobble, from.y + dy * t + dx * 0.012 - wobble, Math.max(0.65, brushSize * 0.12), 0, Math.PI * 2)
+        ctx.fill()
+      }
+    }
+
+    ctx.restore()
+  }, [activeStrokePreset, brushSize, configurePaintContext, paintOpacity])
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current
@@ -578,10 +763,14 @@ export default function SiteInteractionTools() {
       snapshotCtx.drawImage(canvas, 0, 0)
     }
 
-    canvas.width = Math.round(window.innerWidth * dpr)
-    canvas.height = Math.round(window.innerHeight * dpr)
-    canvas.style.width = `${window.innerWidth}px`
-    canvas.style.height = `${window.innerHeight}px`
+    const doc = document.documentElement
+    const docWidth = Math.max(window.innerWidth, doc.scrollWidth, document.body?.scrollWidth ?? 0)
+    const docHeight = Math.max(window.innerHeight, doc.scrollHeight, document.body?.scrollHeight ?? 0)
+
+    canvas.width = Math.round(docWidth * dpr)
+    canvas.height = Math.round(docHeight * dpr)
+    canvas.style.width = `${docWidth}px`
+    canvas.style.height = `${docHeight}px`
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     configurePaintContext(ctx)
@@ -599,6 +788,18 @@ export default function SiteInteractionTools() {
     document.body.classList.remove('site-area-zoomed')
     setZoomScale(100)
   }, [])
+
+  // The panel and FigmaZoom own two separate zoom transforms (crop-zoom on the
+  // stage, page-zoom on #root). Reset both so "100%" always means 100%.
+  const resetZoom = useCallback(() => {
+    clearZoom()
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      key: '0',
+      metaKey: true,
+      bubbles: true,
+      cancelable: true,
+    }))
+  }, [clearZoom])
 
   const clearPaint = useCallback(() => {
     const canvas = canvasRef.current
@@ -662,7 +863,7 @@ export default function SiteInteractionTools() {
     setMode(null)
     setSelection(null)
     setLastSelection(null)
-    clearZoom()
+    resetZoom()
     clearPaint()
     document.body.classList.remove('site-tinted')
     document.body.style.removeProperty('--site-tint')
@@ -685,7 +886,7 @@ export default function SiteInteractionTools() {
     setTintStrength(38)
     setOverlayOpacity(14)
     setZoomScale(100)
-  }, [clearPaint, clearZoom])
+  }, [clearPaint, resetZoom])
 
   const closeTools = useCallback(() => {
     setOpen(false)
@@ -764,6 +965,37 @@ export default function SiteInteractionTools() {
     if (canvas) canvas.style.visibility = inkHidden ? 'hidden' : ''
   }, [inkHidden])
 
+  // Live inspect: while the default (cursor) tool is active, hovering the page
+  // outlines the element under the pointer and reads its real properties —
+  // passively, without stealing clicks so the portfolio stays browsable.
+  useEffect(() => {
+    if (!open || mode !== null) {
+      setInspect(null)
+      return
+    }
+
+    const onMove = (event: MouseEvent) => {
+      cancelAnimationFrame(inspectRafRef.current)
+      inspectRafRef.current = requestAnimationFrame(() => {
+        const element = document.elementFromPoint(event.clientX, event.clientY) as HTMLElement | null
+        if (!element || element.closest(INSPECT_IGNORE)) {
+          setInspect(current => (current?.pinned ? current : null))
+          return
+        }
+        setInspect(describeElement(element))
+      })
+    }
+    const onLeave = () => setInspect(current => (current?.pinned ? current : null))
+
+    document.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseleave', onLeave)
+    return () => {
+      cancelAnimationFrame(inspectRafRef.current)
+      document.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseleave', onLeave)
+    }
+  }, [open, mode])
+
   const toggleGrid = useCallback(() => {
     document.body.classList.toggle('figma-grid-on')
   }, [])
@@ -795,10 +1027,14 @@ export default function SiteInteractionTools() {
 
     if (!target) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
+      setInspect(null)
       return
     }
 
     target.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    // Pin the picked layer so its real geometry + styles stay in the panel
+    // until the visitor hovers something else.
+    setInspect({ ...describeElement(target, true), name: layer.label })
   }, [])
 
   const togglePageGroup = useCallback((group: SitePageItem['group']) => {
@@ -933,13 +1169,12 @@ export default function SiteInteractionTools() {
       if (!canvas || !ctx) return
       configurePaintContext(ctx)
       drawingRef.current = true
-      const point = { x: event.clientX, y: event.clientY }
+      const point = pagePointFromPointer(event)
       lastPaintRef.current = point
-      ctx.beginPath()
-      ctx.moveTo(point.x, point.y)
+      drawPaintSegment(ctx, point, { x: point.x + 0.01, y: point.y + 0.01 })
       event.currentTarget.setPointerCapture(event.pointerId)
     }
-  }, [configurePaintContext, currentCommentRoute, mode])
+  }, [configurePaintContext, currentCommentRoute, drawPaintSegment, mode])
 
   const onOverlayPointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     if (mode === 'select' && selectingRef.current && startRef.current) {
@@ -950,14 +1185,11 @@ export default function SiteInteractionTools() {
     if (mode === 'paint' && drawingRef.current) {
       const ctx = canvasRef.current?.getContext('2d')
       if (!ctx) return
-      const point = { x: event.clientX, y: event.clientY }
-      ctx.lineTo(point.x, point.y)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(point.x, point.y)
+      const point = pagePointFromPointer(event)
+      drawPaintSegment(ctx, lastPaintRef.current ?? point, point)
       lastPaintRef.current = point
     }
-  }, [configurePaintContext, mode])
+  }, [drawPaintSegment, mode])
 
   const onOverlayPointerUp = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     if (mode === 'select' && selectingRef.current) {
@@ -1025,11 +1257,28 @@ export default function SiteInteractionTools() {
         event.preventDefault()
         setOpen(current => !current)
       }
+
+      // Single-key tool shortcuts, Figma-style — only while the panel is open
+      // and the visitor isn't typing into a field.
+      if (!open || event.metaKey || event.ctrlKey || event.altKey) return
+      const target = event.target
+      if (target instanceof HTMLElement && target.closest('input, textarea, select, [contenteditable="true"]')) return
+
+      const key = event.key.toLowerCase()
+      if (event.shiftKey) {
+        if (key === 'g') { event.preventDefault(); toggleGrid() }
+        else if (key === 'r') { event.preventDefault(); toggleRulers() }
+        return
+      }
+      if (key === 'v') { event.preventDefault(); setMode(null); setSelection(null) }
+      else if (key === 'k') { event.preventDefault(); setMode('select'); setSelection(null) }
+      else if (key === 'p' || key === 'b') { event.preventDefault(); setMode('paint') }
+      else if (key === 'c') { event.preventDefault(); setMode('comment') }
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [closeTools, draftComment, mode])
+  }, [closeTools, draftComment, mode, open, toggleGrid, toggleRulers])
 
   useEffect(() => {
     const onToggle = () => setOpen(current => !current)
@@ -1107,6 +1356,7 @@ export default function SiteInteractionTools() {
     setCollapsedLayerKeys(new Set())
     setExportTarget('selection')
     setExportStatus('ready')
+    setInspect(null)
   }, [pathname, clearPaint, clearZoom])
 
   useEffect(() => {
@@ -1142,8 +1392,16 @@ export default function SiteInteractionTools() {
 
   const overlayActive = mode === 'select' || mode === 'paint' || mode === 'comment'
   const selectedRect = selection ?? lastSelection
-  const frameWidthLabel = selectedRect ? String(Math.round(selectedRect.w)) : String(window.innerWidth)
-  const frameHeightLabel = selectedRect ? String(Math.round(selectedRect.h)) : String(window.innerHeight)
+  const frameWidthLabel = selectedRect
+    ? String(Math.round(selectedRect.w))
+    : inspect
+      ? String(Math.round(inspect.rect.w))
+      : String(window.innerWidth)
+  const frameHeightLabel = selectedRect
+    ? String(Math.round(selectedRect.h))
+    : inspect
+      ? String(Math.round(inspect.rect.h))
+      : String(window.innerHeight)
   const layerItems = layersForPath(pathname)
   const visibleLayers = visibleLayerEntries(layerItems, pathname, collapsedLayerKeys)
   const activeLayer = layerItems[selectedLayerIndex] ?? layerItems.find(layer => layer.active) ?? layerItems[0]
@@ -1153,7 +1411,9 @@ export default function SiteInteractionTools() {
       ? 'Ink layer'
       : mode === 'comment'
         ? 'Comment pin'
-        : activeLayer?.label ?? titleFromPath(pathname)
+        : inspect
+          ? inspect.name
+          : activeLayer?.label ?? titleFromPath(pathname)
   const flowLabel = pathname.endsWith('/work') ? 'Project index' : categoryPages.some(page => isActivePage(pathname, page.to)) ? 'Category stack' : currentProjectLabel(pathname)
   const exportLabel = exportStatus === 'exporting'
     ? 'Rendering...'
@@ -1192,6 +1452,18 @@ export default function SiteInteractionTools() {
           </div>
         )}
       </div>
+
+      {open && mode === null && inspect && (
+        <div
+          className={`site-inspect-outline${inspect.pinned ? ' is-pinned' : ''}`}
+          data-viewport-version={viewportVersion}
+          style={{ left: inspect.rect.x, top: inspect.rect.y, width: inspect.rect.w, height: inspect.rect.h }}
+          aria-hidden="true"
+        >
+          <span className="site-inspect-outline__tag">{inspect.name}</span>
+          <span className="site-inspect-outline__dim">{inspect.size}</span>
+        </div>
+      )}
 
       <div className={`site-comment-layer${mode === 'comment' ? ' is-commenting' : ''}`} data-viewport-version={viewportVersion} aria-label="Page comments">
         {comments.map((comment, index) => (
@@ -1459,7 +1731,7 @@ export default function SiteInteractionTools() {
           <button
             type="button"
             className="site-tools__zoom-menu"
-            onClick={clearZoom}
+            onClick={resetZoom}
             disabled={zoomScale === 100}
             title={zoomScale === 100 ? 'Zoom (drag with the crop tool to zoom in)' : 'Reset zoom to 100%'}
             aria-label={zoomScale === 100 ? 'Zoom level' : 'Reset zoom to 100%'}
@@ -1524,21 +1796,34 @@ export default function SiteInteractionTools() {
 
             <div className="site-tools__layout-pair">
               <div className="site-tools__control-group">
-                <span>Scroll alignment</span>
-                <div className="site-tools__alignment" role="group" aria-label="Push page content left, center, or right">
-                  {Array.from({ length: 9 }).map((_, index) => {
-                    const column = index % 3
-                    const value = (['left', 'center', 'right'] as const)[column]
-                    const active = contentAlign === value && (index === column || index === column + 3)
+                <span>Alignment</span>
+                <div className="site-tools__alignment" role="radiogroup" aria-label="Push page content left, center, or right">
+                  {contentAlignOptions.map(option => {
+                    const active = contentAlign === option.value
                     return (
                       <button
-                        key={index}
+                        key={option.value}
                         type="button"
                         className={active ? 'is-active' : ''}
-                        onClick={() => setContentAlign(value)}
-                        aria-label={`Align content ${value}`}
-                        aria-pressed={contentAlign === value}
-                      />
+                        onClick={() => setContentAlign(option.value)}
+                        role="radio"
+                        aria-label={`Align content ${option.label.toLowerCase()}`}
+                        aria-checked={active}
+                        title={`Align content ${option.label.toLowerCase()}`}
+                      >
+                        <span className="site-tools__alignment-dots" aria-hidden="true">
+                          <i /><i /><i /><i /><i /><i />
+                        </span>
+                        <span className="site-tools__alignment-frame" aria-hidden="true">
+                          {option.lines.map((scale, lineIndex) => (
+                            <i
+                              key={`${option.value}-${lineIndex}`}
+                              style={{ '--line-scale': scale } as CSSProperties}
+                            />
+                          ))}
+                        </span>
+                        <span className="site-tools__alignment-label">{option.label}</span>
+                      </button>
                     )
                   })}
                 </div>
@@ -1576,7 +1861,7 @@ export default function SiteInteractionTools() {
               type="button"
               className="site-tools__check-row"
               onClick={() => {
-                clearZoom()
+                resetZoom()
                 clearPaint()
                 clearTint()
                 setMode(null)
@@ -1588,6 +1873,52 @@ export default function SiteInteractionTools() {
               <span aria-hidden="true">✓</span>
               Keep portfolio readable
             </button>
+          </section>
+
+          <section className="site-tools__section site-tools__section--inspect" aria-labelledby="site-tool-inspect-title">
+            <div className="site-tools__section-head">
+              <h3 id="site-tool-inspect-title">Inspect</h3>
+              <span className={`site-tools__inspect-state${inspect ? ' is-live' : ''}`}>
+                {inspect?.pinned ? 'Pinned' : inspect ? 'Live' : 'Hover'}
+              </span>
+            </div>
+            <dl className="site-tools__inspect-grid">
+              <div>
+                <dt>Element</dt>
+                <dd title={inspect?.name}>{inspect?.name ?? '—'}</dd>
+              </div>
+              <div>
+                <dt>Size</dt>
+                <dd>{inspect?.size ?? '—'}</dd>
+              </div>
+              <div>
+                <dt>Font</dt>
+                <dd title={inspect?.font}>{inspect?.font ?? '—'}</dd>
+              </div>
+              <div>
+                <dt>Radius</dt>
+                <dd>{inspect?.radius ?? '—'}</dd>
+              </div>
+              <div>
+                <dt>Text</dt>
+                <dd className="site-tools__inspect-color">
+                  {inspect && inspect.color !== 'None' && (
+                    <i style={{ background: inspect.color } as CSSProperties} aria-hidden="true" />
+                  )}
+                  <span title={inspect?.color}>{inspect?.color ?? '—'}</span>
+                </dd>
+              </div>
+              <div>
+                <dt>Fill</dt>
+                <dd className="site-tools__inspect-color">
+                  {inspect && inspect.background !== 'None' && (
+                    <i style={{ background: inspect.background } as CSSProperties} aria-hidden="true" />
+                  )}
+                  <span title={inspect?.background}>{inspect?.background ?? '—'}</span>
+                </dd>
+              </div>
+            </dl>
+            <p className="site-tools__inspect-hint">Hover the page to read any element · pick a layer to pin it.</p>
           </section>
 
           <section className="site-tools__section" aria-labelledby="site-tool-appearance-title">
@@ -1636,6 +1967,30 @@ export default function SiteInteractionTools() {
                   aria-label="Ink brush size"
                 />
               </label>
+            </div>
+
+            <div className="site-tools__stroke-picker" role="radiogroup" aria-label="Brush stroke style">
+              <span className="site-tools__stroke-picker-label">Stroke</span>
+              <div className="site-tools__stroke-options">
+                {strokePresets.map(preset => (
+                  <button
+                    key={preset.key}
+                    type="button"
+                    className={`site-tools__stroke-option${strokePreset === preset.key ? ' is-active' : ''}`}
+                    onClick={() => {
+                      setStrokePreset(preset.key)
+                      beginMode('paint')
+                    }}
+                    role="radio"
+                    aria-checked={strokePreset === preset.key}
+                    title={`${preset.label}: ${preset.note}`}
+                  >
+                    <StrokePresetPreview preset={preset} />
+                    <strong>{preset.label}</strong>
+                    <small>{preset.note}</small>
+                  </button>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -1751,7 +2106,7 @@ export default function SiteInteractionTools() {
           className={`site-figbar__btn${mode === null ? ' is-active' : ''}`}
           onClick={() => setMode(null)}
           aria-label="Inspect (default tool)"
-          title="Inspect"
+          title="Inspect — hover to read any element (V)"
         >
           <ToolIcon name="cursor" />
         </button>
@@ -1760,25 +2115,46 @@ export default function SiteInteractionTools() {
           className={`site-figbar__btn${mode === 'select' ? ' is-active' : ''}`}
           onClick={() => beginMode('select')}
           aria-label="Crop zoom area"
-          title="Crop zoom"
+          title="Crop zoom (K)"
         >
           <ToolIcon name="zoom" />
         </button>
-        <button
-          type="button"
-          className={`site-figbar__btn${mode === 'paint' ? ' is-active' : ''}`}
-          onClick={() => beginMode('paint')}
-          aria-label="Paint on the page"
-          title="Paint"
-        >
-          <ToolIcon name="ink" />
-        </button>
+        <div className="site-figbar__paint-wrap">
+          <button
+            type="button"
+            className={`site-figbar__btn${mode === 'paint' ? ' is-active' : ''}`}
+            onClick={() => beginMode('paint')}
+            aria-label={`Paint on the page with ${activeStrokePreset.label}`}
+            title={`Paint (${activeStrokePreset.label})`}
+          >
+            <ToolIcon name="ink" />
+          </button>
+          {mode === 'paint' && (
+            <div className="site-figbar__stroke-popover" role="radiogroup" aria-label="Choose brush stroke">
+              {strokePresets.map(preset => (
+                <button
+                  key={preset.key}
+                  type="button"
+                  className={`site-figbar__stroke-btn${strokePreset === preset.key ? ' is-active' : ''}`}
+                  onClick={() => setStrokePreset(preset.key)}
+                  role="radio"
+                  aria-checked={strokePreset === preset.key}
+                  aria-label={`${preset.label} stroke`}
+                  title={`${preset.label}: ${preset.note}`}
+                >
+                  <StrokePresetPreview preset={preset} compact />
+                  <span>{preset.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
         <button
           type="button"
           className={`site-figbar__btn${mode === 'comment' ? ' is-active' : ''}`}
           onClick={() => beginMode('comment')}
           aria-label="Pin a comment"
-          title="Comment"
+          title="Comment (C)"
         >
           <ToolIcon name="comment" />
         </button>
@@ -1791,7 +2167,7 @@ export default function SiteInteractionTools() {
           onClick={toggleGrid}
           aria-pressed={gridEnabled}
           aria-label="Toggle grid"
-          title="Grid"
+          title="Grid (⇧G)"
         >
           <ToolIcon name="grid" />
         </button>
@@ -1801,7 +2177,7 @@ export default function SiteInteractionTools() {
           onClick={toggleRulers}
           aria-pressed={rulersEnabled}
           aria-label="Toggle rulers"
-          title="Rulers"
+          title="Rulers (⇧R)"
         >
           <ToolIcon name="ruler" />
         </button>

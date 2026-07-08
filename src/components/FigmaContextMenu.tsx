@@ -8,6 +8,15 @@ interface MenuItem {
   divider?: boolean
 }
 
+const dispatchZoomShortcut = (key: '=' | '-' | '0') => {
+  window.dispatchEvent(new KeyboardEvent('keydown', {
+    key,
+    metaKey: true,
+    bubbles: true,
+    cancelable: true,
+  }))
+}
+
 export default function FigmaContextMenu() {
   const [open, setOpen] = useState(false)
   const [pos, setPos] = useState({ x: 0, y: 0 })
@@ -124,9 +133,9 @@ export default function FigmaContextMenu() {
     { label: 'About', shortcut: '\u23183', action: () => go('/about') },
     { label: 'Writing', shortcut: '\u23184', action: () => go('/writing') },
     { label: 'divider', divider: true },
-    { label: 'Zoom In', shortcut: '\u2318+', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '=', metaKey: true })); close() } },
-    { label: 'Zoom Out', shortcut: '\u2318\u2212', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '-', metaKey: true })); close() } },
-    { label: 'Zoom to 100%', shortcut: '\u23180', action: () => { document.dispatchEvent(new KeyboardEvent('keydown', { key: '0', metaKey: true })); close() } },
+    { label: 'Zoom In', shortcut: '\u2318+', action: () => { dispatchZoomShortcut('='); close() } },
+    { label: 'Zoom Out', shortcut: '\u2318\u2212', action: () => { dispatchZoomShortcut('-'); close() } },
+    { label: 'Zoom to 100%', shortcut: '\u23180', action: () => { dispatchZoomShortcut('0'); close() } },
     { label: 'divider', divider: true },
     { label: 'Toggle Theme', shortcut: '\u2318D', action: toggleTheme },
     { label: 'React 19 + Three.js + Tailwind v4', shortcut: '' },

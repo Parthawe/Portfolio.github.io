@@ -12,7 +12,6 @@
   .wr-identity-title,
   .wr-about-heading,
   .work-page-title,
-  .work-playlist-stage__title,
   .work-library-shelf__title,
   .work-timeline-year__label,
   .work-timeline-feature__title,
@@ -64,7 +63,7 @@
   .glyph-editor
 ) :is(h1, h2, h3, .agent-panel-title, .studio-props-title) {
   font-family: var(--sans);
-  font-weight: 600;
+  font-weight: 350;
 }
 
 /* Eyebrow-style headings are intentionally small — keep them in their own
@@ -75,9 +74,8 @@
   font-weight: 400;
 }
 
-/* Project card names render at card scale, where Nikolas is barely
-   legible — they use the readable serif instead. */
-:where(main, .footer) :is(.pcard-name) {
-  font-family: var(--serif-read);
+/* Project cover titles use General Sans instead of the Nikolas display face. */
+:where(main, .footer) :is(.pcard-name, .proj-title, .proj-visual-title) {
+  font-family: var(--sans);
   font-weight: 400;
 }

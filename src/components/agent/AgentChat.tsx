@@ -74,7 +74,7 @@ function getRouteIntro(route: string, voiceMode: boolean): string {
     route === '/'
       ? 'Use this like a guide. I can shortlist the work, open a project, or walk the page.'
       : route === '/work'
-        ? 'I can switch between Editorial, Playlist, Index, and Arc, filter the archive, point to the flagship work, or open any case study.'
+        ? 'I can switch between Editorial, Index, and Arc, filter the archive, point to the flagship work, or open any case study.'
         : route === '/about'
           ? 'Ask about roles, working style, or how the design and engineering work connect.'
           : 'Ask for the challenge, the key decision, or why this project matters.'
@@ -93,7 +93,7 @@ function getUtilityChips(route: string, voiceMode: boolean): string[] {
   const voiceChip = voiceMode ? 'Voice off' : 'Voice on'
 
   if (route === '/') return [voiceChip, 'Tour this page', 'Open Mentra']
-  if (route === '/work') return [voiceChip, 'Playlist view', 'Arc view']
+  if (route === '/work') return [voiceChip, 'Index view', 'Arc view']
   if (route === '/about') return [voiceChip, 'Tour this page', 'Role fit']
 
   return [voiceChip, 'Tour this page']

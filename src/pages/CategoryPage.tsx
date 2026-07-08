@@ -6,8 +6,6 @@ import { categories } from '../data/categories'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
-import ClientsMarquee from '../components/ClientsMarquee'
-import PlaybookSection from '../components/PlaybookSection'
 import { Reveal } from '../components/Reveal'
 import FigmaSelect from '../components/FigmaSelect'
 import { CONTACT_EMAIL } from '../config/site'
@@ -95,6 +93,7 @@ export default function CategoryPage() {
     ? visibleCategoryProjects.filter((project) => project.slug !== featuredProject.slug)
     : visibleCategoryProjects
   const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
+  const approachVisualProjects = visibleCategoryProjects.slice(0, 3)
 
   return (
     <div style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
@@ -140,7 +139,6 @@ export default function CategoryPage() {
                     desc={featuredProject.desc}
                     loading="eager"
                     featured
-                    tiltIntensity={4}
                     nda={featuredProject.nda}
                   />
                 </Reveal>
@@ -170,35 +168,63 @@ export default function CategoryPage() {
             )}
           </div>
 
-          <ClientsMarquee />
-
-          <PlaybookSection />
-
           {/* Approach */}
           <Reveal>
             <div className="lp-approach">
-              <p className="lp-approach-label">{category.approach.label}</p>
-              <motion.div
-                className="lp-pillars"
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: '-40px' }}
-                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
-              >
-                {category.approach.pillars.map((pillar) => (
+              <div className="lp-approach-stage">
+                <motion.div
+                  className="lp-approach-visual"
+                  aria-label={`${category.approach.label} visual stack`}
+                  initial={{ opacity: 0, y: 24, rotate: -1 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div className="lp-approach-folder" aria-hidden="true">
+                    <div className="lp-approach-folder-tab">{category.title} {category.titleAccent}</div>
+                    <div className="lp-approach-folder-body">
+                      {approachVisualProjects.map((project, index) => (
+                        <figure
+                          key={project.slug}
+                          className={`lp-approach-card lp-approach-card--${index + 1}`}
+                        >
+                          <img src={project.image} alt="" loading="lazy" />
+                          <figcaption>{project.name}</figcaption>
+                        </figure>
+                      ))}
+                      <div className="lp-approach-plaque">
+                        <span>{category.approach.label}</span>
+                        <strong>{category.tools.slice(0, 3).join(' / ')}</strong>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <div className="lp-approach-copy">
+                  <p className="lp-approach-label">{category.approach.label}</p>
                   <motion.div
-                    key={pillar.num}
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
-                    }}
+                    className="lp-pillars"
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: '-40px' }}
+                    variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
                   >
-                    <span className="lp-pillar-num">{pillar.num}</span>
-                    <p className="lp-pillar-title">{pillar.title}</p>
-                    <p className="lp-pillar-desc">{pillar.desc}</p>
+                    {category.approach.pillars.map((pillar) => (
+                      <motion.div
+                        key={pillar.num}
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+                        }}
+                      >
+                        <span className="lp-pillar-num">{pillar.num}</span>
+                        <p className="lp-pillar-title">{pillar.title}</p>
+                        <p className="lp-pillar-desc">{pillar.desc}</p>
+                      </motion.div>
+                    ))}
                   </motion.div>
-                ))}
-              </motion.div>
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
