@@ -55,7 +55,7 @@ export default function FeelingPatternsPage() {
           <CsBody>
             <p>The biggest revelation: <strong>touch is inherently emotional</strong>. You can read a text message ironically or sarcastically. You cannot feel a vibration pattern ironically. Tactile communication bypasses the cognitive layer that makes screen-based communication ambiguous. A slow, warm pulse on your back simply IS comforting &mdash; there&rsquo;s no interpretation needed.</p>
             <p>The design challenge is vocabulary. Screens can display infinite content. A haptic vest has maybe 20 distinguishable patterns before they blur together. The constraint is severe, but it&rsquo;s also what makes the medium powerful &mdash; you can only say things that matter.</p>
-            <p>This work directly informed how I think about notification design at <a href="/mentra" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Mentra</a> &mdash; smart glasses that need to communicate without a screen. The haptic patterns I developed in this course became the foundation for Mentra&rsquo;s tactile notification system.</p>
+            <p>This work directly informed how I think about notification design at <a href="/Portfolio.github.io/mentra" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Mentra</a> &mdash; smart glasses that need to communicate without a screen. The haptic patterns I developed in this course became a useful reference for subtle wearable feedback.</p>
           </CsBody>
         </CsSection>
 

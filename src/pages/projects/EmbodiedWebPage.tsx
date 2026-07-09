@@ -55,7 +55,7 @@ export default function EmbodiedWebPage() {
 
         <CsSection id="cs-reflection" label="03 &mdash; Reflection" title="What the Body Knows">
           <CsBody>
-            <p>The biggest insight: body-based interfaces require zero instruction. Nobody needs a tutorial on how to breathe, tilt, or wave their arms. The interaction is self-evident because the input IS the user. This is the opposite of most UX design, where we spend weeks making abstract interfaces learnable.</p>
+            <p>The biggest insight: body-based interfaces can reduce explanation when they start from familiar actions. Breathing, tilting, waving, and standing already have meaning before the screen responds. The design work is in making the response predictable enough that the body understands the loop.</p>
             <p>The tradeoff: body interfaces are imprecise. You can&rsquo;t click a 12px button with your elbow. But that imprecision is a feature, not a bug &mdash; it creates playful, exploratory interactions where &ldquo;mistakes&rdquo; are part of the experience. The best moments in every experiment were the unexpected ones.</p>
           </CsBody>
         </CsSection>
@@ -70,7 +70,7 @@ export default function EmbodiedWebPage() {
 
       </main>
 
-      <NextProject slug="flow-fields" title="Flow Fields" image="/Portfolio.github.io/Assets/images/sea-of-salt.svg" />
+      <NextProject slug="flow-fields" title="Flow Fields" image="/Portfolio.github.io/Assets/images/flow-fields.svg" />
       <Footer />
     </>
   )

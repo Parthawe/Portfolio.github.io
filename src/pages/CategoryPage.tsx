@@ -35,13 +35,13 @@ const CATEGORY_REGISTRY_KEY: Partial<Record<string, ProjectCategory>> = {
    several categories when the work genuinely fits (hidden ones are filtered
    out downstream either way). */
 const EXTRA_CATEGORY_PROJECTS: Partial<Record<string, string[]>> = {
-  'ux-design': ['mentra', 'mentra-miniapps', 'executivelens', 'oncall-lens', 'raahi-project'],
+  'ux-design': ['mentra', 'mentra-miniapps', 'executivelens', 'raahi-project'],
   'creative-tech': ['vj-software', 'black-hole', 'moniac-machine'],
   installations: ['jugalbandi', 'enigma', 'sea-of-salt'],
   'brand-visual': ['mentra-brand', 'office-of-diversity', 'sea-of-salt', 'jugalbandi'],
   fintech: ['moniac-machine', 'executivelens'],
   crypto: ['moniac-machine'],
-  'design-for-good': ['healthapp', 'oncall-lens', 'code-for-build'],
+  'design-for-good': ['healthapp', 'raahi-project', 'code-for-build'],
 }
 
 /* Each category page carries one editorial "energy strip" that mirrors its

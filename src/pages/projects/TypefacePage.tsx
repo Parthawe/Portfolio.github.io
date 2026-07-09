@@ -339,7 +339,7 @@ export default function TypefacePage() {
         />
       </main>
 
-      <NextProject slug="keyboard-project" title="Keyboard Project" image="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
+      <NextProject slug="mentra-brand" title="Mentra Brand & Packaging" image="/Portfolio.github.io/Assets/Projects/mentra-brand/photos/render-both-frames.webp" />
       <Footer />
     </>
   )

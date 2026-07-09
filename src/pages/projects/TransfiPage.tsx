@@ -98,8 +98,8 @@ export default function TransfiPage() {
 
         <NdaGate slug="transfi-project">
           <div className="nda-empty-reviewer">
-            <span>Reviewer bundle pending</span>
-            <p>Protected TransFi screenshots are not packaged in this local build yet. Drop approved assets into the private TransFi folder, then wire them here as reviewer groups.</p>
+            <span>Deeper review by request</span>
+            <p>Protected TransFi screens are shared directly with reviewers so client-specific product details stay out of the public build.</p>
           </div>
         </NdaGate>
 

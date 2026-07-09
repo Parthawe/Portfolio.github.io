@@ -32,14 +32,14 @@ export default function StorytellingPage() {
             { label: 'Context', value: 'Storytelling, NYU ITP' },
             { label: 'Year', value: '2025' },
             { label: 'Role', value: 'Narrative Designer' },
-            { label: 'Status', value: 'In Progress' },
+            { label: 'Output', value: 'Narrative framework' },
           ]}
         />
 
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="Every Product Tells a Story">
           <CsBody>
             <p>Storytelling at ITP is not a writing workshop. It&rsquo;s a course about narrative as a design material &mdash; how the sequence of information, the rhythm of interaction, and the structure of experience create meaning. Every product, installation, and interface tells a story. This course teaches you to design that story intentionally.</p>
-            <p>The premise: the difference between a good product and a great one is rarely features. It&rsquo;s narrative. Apple doesn&rsquo;t sell hardware; they sell the story of what you&rsquo;ll become when you use it. Airbnb doesn&rsquo;t sell rooms; they sell the story of belonging anywhere. The best design is invisible storytelling.</p>
+            <p>The premise: features rarely explain themselves. Sequence, pacing, and framing change how people understand a product. I used the course to study how a design story can move from context, to tension, to decision, to consequence without turning into marketing copy.</p>
           </CsBody>
         </CsSection>
 
@@ -69,7 +69,7 @@ export default function StorytellingPage() {
 
       </main>
 
-      <NextProject slug="on-becoming" title="On Becoming" image="/Portfolio.github.io/Assets/images/sea-of-salt.svg" />
+      <NextProject slug="on-becoming" title="On Becoming" image="/Portfolio.github.io/Assets/images/on-becoming.svg" />
       <Footer />
     </>
   )

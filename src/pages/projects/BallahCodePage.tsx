@@ -125,7 +125,7 @@ export default function BallahCodePage() {
 
       </main>
 
-      <NextProject slug="breakgen" title="BreakGen" image="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png" />
+      <NextProject slug="code-for-build" title="Code for Build" image="/Portfolio.github.io/Assets/images/code-for-build.jpg" />
       <Footer />
     </>
   )

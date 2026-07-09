@@ -118,7 +118,7 @@ export default function IbmPage() {
         ]} />
       </main>
 
-      <NextProject slug="oncall-lens" title="OnCall Lens" image="/Portfolio.github.io/Assets/images/oncall-lens.webp" />
+      <NextProject slug="healthapp" title="Health App" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )

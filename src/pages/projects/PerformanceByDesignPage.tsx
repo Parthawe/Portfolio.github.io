@@ -54,8 +54,8 @@ export default function PerformanceByDesignPage() {
         <CsSection id="cs-reflection" label="03 &mdash; Reflection" title="What Live Taught Me About Digital">
           <CsBody>
             <p>Performance design changed how I approach screen-based work. Three lessons that transferred directly:</p>
-            <p><strong>Timing is design.</strong> A 200ms transition feels different from a 400ms one. In live performance, this is life or death &mdash; a late lighting cue breaks the illusion. I now obsess over animation timing in interfaces the same way.</p>
-            <p><strong>Attention is a resource.</strong> In a theatre, you have exactly one audience. Every element either serves the story or steals from it. Same principle applies to UI: every pixel is either helping or hurting.</p>
+            <p><strong>Timing is design.</strong> A 200ms transition feels different from a 400ms one. In live performance, a late lighting cue can break the illusion. That made me more precise about animation timing, feedback, and rhythm in interfaces.</p>
+            <p><strong>Attention is a resource.</strong> In a theatre, every light, sound, and movement competes for the same audience focus. The same principle applies to UI: each element needs a job, or it becomes noise.</p>
             <p><strong>The body remembers.</strong> Audiences at immersive performances remember physical sensations &mdash; the temperature of a room, the texture of a wall they touched &mdash; more vividly than anything they saw on a screen. This insight drives my interest in physical computing and tangible interfaces.</p>
           </CsBody>
         </CsSection>

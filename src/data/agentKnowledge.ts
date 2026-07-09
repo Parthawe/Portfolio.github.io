@@ -61,7 +61,7 @@ const deepMap: Record<string, ProjectDeep> = {
     team: '1 designer, 4 engineers, product + hardware',
     platforms: 'MentraOS, Companion App (iOS/Android), App Store (Web)',
     opinion: 'This is probably the most ambitious project in the portfolio. Designing an entire OS from scratch, not many designers get to do that.',
-    connectedTo: ['clawed-chat', 'executivelens', 'oncall-lens'],
+    connectedTo: ['clawed-chat', 'executivelens', 'ai-voice'],
     surprisingFact: 'The minimum text size on the glasses is 18px. That constraint shaped every single screen.',
   },
   zentipay: {
@@ -103,7 +103,7 @@ const deepMap: Record<string, ProjectDeep> = {
     team: 'Product Designer + engineering',
     platforms: 'Smart glasses + Web dashboard',
     opinion: 'The "no UI is the best UI" approach here is bold. Most products add features; this one removes the need for them.',
-    connectedTo: ['mentra', 'clawed-chat', 'oncall-lens'],
+    connectedTo: ['mentra', 'clawed-chat', 'transfi-project'],
   },
   'transfi-project': {
     oneLiner: 'Crypto payment infrastructure across multi-market merchant flows.',
@@ -144,7 +144,7 @@ const deepMap: Record<string, ProjectDeep> = {
     team: 'Isaiah Ballah (Creator/Founder) + Parth Pawar (Product Designer)',
     platforms: 'Desktop (macOS/Win/Linux)',
     opinion: 'Parth designed the UX for Isaiah Ballah\'s vision — the product solves real workflow problems because it was built by someone who lives in the terminal.',
-    connectedTo: ['clawed-chat', 'oncall-lens'],
+    connectedTo: ['clawed-chat', 'ai-voice'],
   },
   'oncall-lens': {
     oneLiner: 'Sentry alert → Claude analysis → auto-generated PR fix. Built in 24 hours.',
@@ -346,7 +346,7 @@ const deepMap: Record<string, ProjectDeep> = {
     team: 'Research internship at IBM, with mentors and a 4-engineer student team',
     platforms: 'FHE Toolkit, Python, Java, Neural Networks',
     opinion: 'This is strongest when kept plain and technical: the value is system logic, not a polished product interface.',
-    connectedTo: ['healthapp', 'oncall-lens'],
+    connectedTo: ['healthapp', 'raahi-project'],
     surprisingFact: 'The seven output clusters work as risk groups, which curve a patient\'s data falls into tells you how their expected survival differs, all computed blind.',
   },
   'making-of-time': {
@@ -360,7 +360,7 @@ const deepMap: Record<string, ProjectDeep> = {
     team: 'Solo, creator',
     platforms: 'Physical (sundial, mechanical + quartz watches), p5.js software clocks',
     opinion: 'The sundial takeaway is the best part: you can\'t glance at it like a phone, you have to stand there and interpret a shadow. That\'s a design critique of every screen we make.',
-    connectedTo: ['black-hole', 'sea-of-salt', 'keyboard-project'],
+    connectedTo: ['black-hole', 'sea-of-salt', 'typeface'],
     surprisingFact: 'The sundial\'s hour lines account for the equation of time, the wobble between solar time and clock time caused by Earth\'s elliptical orbit.',
   },
   'mentra-brand': {
@@ -402,7 +402,7 @@ const deepMap: Record<string, ProjectDeep> = {
     team: 'Solo, creator',
     platforms: 'Physical arcade cabinet (iPad, Teensy 4.0, 3D-printed valve controllers)',
     opinion: 'The best detail is the fidelity to the source: the on-screen visuals are animated flow diagrams echoing the original hydraulic pipes. It honors the 1949 machine instead of just name-dropping it.',
-    connectedTo: ['black-hole', 'sea-of-salt', 'breakgen'],
+    connectedTo: ['black-hole', 'sea-of-salt', 'flow-fields'],
     surprisingFact: 'The original MONIAC modeled the UK national economy with actual colored water flowing through transparent tanks, a computer made of plumbing.',
   },
   'office-of-diversity': {
@@ -801,7 +801,7 @@ const rules: Rule[] = [
       if (ctx.persona === 'peer') {
         const picks = [
           unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)**, neural network that duets with humans, Maker Faire.' : '• **[Enigma](/enigma)**, 200-neuron light sculpture at NIME.',
-          unseen('breakgen') ? '• **[BreakGen](/breakgen)**, AI platform that fabricates custom keyboards.' : '• **[Keyboard Project](/keyboard-project)**, physical keyboard data object.',
+          unseen('typeface') ? '• **[Butler’s Slice](/typeface)**, display typeface built from one formal rule.' : '• **[Flow Fields](/flow-fields)**, compact generative-art study.',
           '• **[Mentra](/mentra)**, the systems ambition piece, full OS design.',
         ]
         return "For creative range:\n\n" + picks.join('\n')
@@ -823,7 +823,7 @@ const rules: Rule[] = [
 
   // Creative range
   { patterns: [/(?:creative range|experimental|unexpected|show me something different|range)/i],
-    handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[BreakGen](/breakgen)**.\n\nThat trio makes the point fast: product systems, physical computing, and fabrication all live in the same practice."
+    handler: () => "For range: **[Jugalbandi](/jugalbandi)**, **[Enigma](/enigma)**, and **[The Omakase](/the-omakase)**.\n\nThat trio makes the point fast: machine learning, physical computing, and playful fabrication all live in the same practice."
   },
 
   // Work views
@@ -1144,7 +1144,7 @@ const rules: Rule[] = [
 
   // AI
   { patterns: [/\bai\b|artificial intelligence|machine learning|smart glass|wearable/i],
-    handler: () => "**AI work:** Mentra (smart glasses OS), Clawed (AI trust), ExecutiveLens (meeting AI), OnCall Lens (auto bug fix), Ballah Code (AI IDE). → [/ai](/ai)" },
+    handler: () => "**AI work:** Mentra (smart glasses OS), Clawed (AI trust), ExecutiveLens (meeting AI), AI Voice (evaluation UX), Ballah Code (AI IDE). → [/ai](/ai)" },
 
   // Fintech
   { patterns: [/(?:fintech|finance|payment|money|bank|crypto|web3)/i],

@@ -33,7 +33,7 @@ export default function ApplicationsPage() {
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="Ship It">
           <CsBody>
             <p>Applications at ITP is the course that bridges the gap between &ldquo;I have an idea&rdquo; and &ldquo;people are using it.&rdquo; Over 14 weeks, you conceive, design, build, and deploy a functional web application. No mockups. No prototypes. A real product with real users.</p>
-            <p>For a designer, this was transformative. At a design agency, you hand off Figma files. In this course, you implement them yourself. Every design decision is immediately tested against technical reality: can I actually build this animation? Does this layout work with real data? How does this feel at 3G speed?</p>
+            <p>For a designer, this made the work more concrete. Instead of stopping at Figma, I had to implement the interface, connect data, handle loading states, and see where the idea became brittle. The questions changed from &ldquo;does this look right?&rdquo; to &ldquo;does this still work with real content, real speed, and real mistakes?&rdquo;</p>
           </CsBody>
         </CsSection>
         <CsSection id="cs-projects" label="02 &mdash; Projects" title="Two Deployed Applications">
@@ -44,8 +44,8 @@ export default function ApplicationsPage() {
         </CsSection>
         <CsSection id="cs-lessons" label="03 &mdash; Lessons" title="What Shipping Teaches You">
           <CsBody>
-            <p><strong>Design is negotiation with code.</strong> The most elegant Figma layout becomes a CSS nightmare when content is dynamic. Learning to design FOR implementation — not despite it — made me a fundamentally better designer. I now prototype in code before I open Figma.</p>
-            <p><strong>Real users break everything.</strong> Mood Map worked perfectly in testing. On day one of deployment, someone dropped 47 mood pins in a row, crashing the rate limiter. Collective Memory&rsquo;s moderation system missed a string of profanity because it was spread across three contributions. Real usage is humbling and essential.</p>
+            <p><strong>Design is negotiation with code.</strong> A clean static layout can fall apart when content is dynamic. Building the interface myself made implementation constraints part of the design process earlier.</p>
+            <p><strong>Real users reveal edge cases.</strong> Mood Map worked in testing, then live use exposed behavior the prototype did not anticipate. Collective Memory had a similar moderation problem when unwanted language was spread across multiple contributions. Those failures were useful because they showed what the product actually needed.</p>
             <p><strong>Deployment is a design decision.</strong> Where you host, how fast it loads, whether it works on a phone, whether it&rsquo;s accessible without an account — these are not engineering details. They are design decisions that determine who can use your product. This course taught me that a beautiful interface nobody can access is not good design.</p>
           </CsBody>
         </CsSection>
@@ -56,7 +56,7 @@ export default function ApplicationsPage() {
           { id: 'cs-lessons', label: 'Lessons' },
         ]} />
       </main>
-      <NextProject slug="embodied-web" title="Embodied Web" image="/Portfolio.github.io/Assets/images/sea-of-salt.svg" />
+      <NextProject slug="embodied-web" title="Embodied Web" image="/Portfolio.github.io/Assets/images/embodied-web.svg" />
       <Footer />
     </>
   )

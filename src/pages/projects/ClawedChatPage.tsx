@@ -311,7 +311,7 @@ export default function ClawedChatPage() {
 
       </main>
 
-      <NextProject slug="oncall-lens" title="OnCall Lens" image="/Portfolio.github.io/Assets/images/oncall-lens.webp" />
+      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )

@@ -169,7 +169,7 @@ export const PLAYBOOK_VALUES: PlaybookValue[] = [
     caption: 'I build things to learn faster, then bring those lessons back into the shipped work.',
     object: 'learning',
     projects: [
-      { label: 'Keyboard Project', to: '/keyboard-project' },
+      { label: 'Flow Fields', to: '/flow-fields' },
       { label: 'Enigma', to: '/enigma' },
       { label: 'Writing', to: '/writing' },
     ],
