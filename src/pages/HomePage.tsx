@@ -293,56 +293,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="wr-archive" style={{ position: 'relative' }}>
-            <FigmaFrameLabel name="Selected Archive" />
-            <div className="wr-archive-inner">
-              <div className="wr-section-head">
-                <div className="wr-section-title-group">
-                  <span className="wr-label">SELECTED ARCHIVE</span>
-                  <TextHighlight as="span" className="wr-section-highlight">
-                    {showAllArchiveProjects ? 'All visible work, one place' : 'More proof, less noise'}
-                  </TextHighlight>
-                </div>
-                <div className="wr-section-actions">
-                  <Link to="/work" className="wr-arrow-btn figma-hover">Browse All &rarr;<FigmaSelect /></Link>
-                </div>
-              </div>
-
-              <div className="wr-archive-grid" id="homepage-project-archive">
-                {archiveProjects.map((p, i) => {
-                  const col = i % 3;
-                  const row = Math.floor(i / 3);
-                  const delay = col * 0.1 + row * 0.06;
-                  return (
-                    <div
-                      key={p.slug}
-                      className="wr-motion-item reveal"
-                      style={{ transitionDelay: `${delay}s` }}
-                    >
-                      <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="wr-archive-reveal">
-                <button
-                  type="button"
-                  className="wr-arrow-btn wr-arrow-btn--button figma-hover wr-archive-reveal__button"
-                  aria-expanded={showAllArchiveProjects}
-                  aria-controls="homepage-project-archive"
-                  onClick={() => setShowAllArchiveProjects(current => !current)}
-                >
-                  {showAllArchiveProjects ? 'Collapse archive' : `Reveal all ${fullArchiveCount} projects`}
-                  <FigmaSelect />
-                </button>
-                <p className="wr-archive-reveal__note">
-                  {showAllArchiveProjects ? 'Everything is expanded here now.' : 'Open the full archive right here without leaving the page.'}
-                </p>
-              </div>
-            </div>
-          </section>
-
           <section className="wr-about-section" style={{ position: 'relative' }} ref={aboutRef}>
             <FigmaFrameLabel name="About" />
             <div className="wr-about-card" id="about-card">
@@ -431,6 +381,56 @@ export default function HomePage() {
                   <span className="wr-about-meta-val">SAN FRANCISCO, CA</span>
                   <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="wr-archive" style={{ position: 'relative' }}>
+            <FigmaFrameLabel name="Selected Archive" />
+            <div className="wr-archive-inner">
+              <div className="wr-section-head">
+                <div className="wr-section-title-group">
+                  <span className="wr-label">SELECTED ARCHIVE</span>
+                  <TextHighlight as="span" className="wr-section-highlight">
+                    {showAllArchiveProjects ? 'All visible work, one place' : 'More proof, less noise'}
+                  </TextHighlight>
+                </div>
+                <div className="wr-section-actions">
+                  <Link to="/work" className="wr-arrow-btn figma-hover">Browse All &rarr;<FigmaSelect /></Link>
+                </div>
+              </div>
+
+              <div className="wr-archive-grid" id="homepage-project-archive">
+                {archiveProjects.map((p, i) => {
+                  const col = i % 3;
+                  const row = Math.floor(i / 3);
+                  const delay = col * 0.1 + row * 0.06;
+                  return (
+                    <div
+                      key={p.slug}
+                      className="wr-motion-item reveal"
+                      style={{ transitionDelay: `${delay}s` }}
+                    >
+                      <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="wr-archive-reveal">
+                <button
+                  type="button"
+                  className="wr-arrow-btn wr-arrow-btn--button figma-hover wr-archive-reveal__button"
+                  aria-expanded={showAllArchiveProjects}
+                  aria-controls="homepage-project-archive"
+                  onClick={() => setShowAllArchiveProjects(current => !current)}
+                >
+                  {showAllArchiveProjects ? 'Collapse archive' : `Reveal all ${fullArchiveCount} projects`}
+                  <FigmaSelect />
+                </button>
+                <p className="wr-archive-reveal__note">
+                  {showAllArchiveProjects ? 'Everything is expanded here now.' : 'Open the full archive right here without leaving the page.'}
+                </p>
               </div>
             </div>
           </section>
