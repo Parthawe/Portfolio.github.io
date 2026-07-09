@@ -12,7 +12,6 @@ import { normalizeCopy } from '../utils/normalizeCopy';
 const FigmaChrome = lazy(() => import('./FigmaChrome'));
 const FigmaGrid = lazy(() => import('./FigmaGrid'));
 const HandTracker = lazy(() => import('./HandTracker'));
-const PortfolioAgent = lazy(() => import('./agent/PortfolioAgent'));
 const SiteInteractionTools = lazy(() => import('./SiteInteractionTools'));
 const CASE_MEDIA_SELECTOR = '.cs-img img, .cs-img-full img, .proj-hero-img img';
 
@@ -68,11 +67,9 @@ export default function RootLayout() {
   const desktopCanvas = useMediaQuery('(min-width: 769px)', true);
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const enableFinePointerEffects = enablePortfolioInteractions && finePointer && !prefersReducedMotion;
-  const enableAgent = enablePortfolioInteractions && desktopCanvas && finePointer && !coarsePointer;
   const enableHandTracker = enableFinePointerEffects && !coarsePointer;
   const enableFigmaChrome = !isUtilityRoute && !coarsePointer;
   const handTrackerReady = useDeferredMount(enableHandTracker, { timeout: 9000, delayMs: 5200 })
-  const agentReady = useDeferredMount(enableAgent, { timeout: 7000, delayMs: 3600 })
   const figmaChromeReady = enableFigmaChrome
   const siteToolsReady = enablePortfolioInteractions && desktopCanvas && finePointer && !coarsePointer
   const siteToolsRequestedRef = useRef(siteToolsRequested)
@@ -395,11 +392,6 @@ export default function RootLayout() {
       {enableHandTracker && handTrackerReady && (
         <Suspense fallback={null}>
           <HandTracker />
-        </Suspense>
-      )}
-      {enableAgent && agentReady && (
-        <Suspense fallback={null}>
-          <PortfolioAgent />
         </Suspense>
       )}
     </>
