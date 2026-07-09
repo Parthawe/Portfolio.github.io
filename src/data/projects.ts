@@ -248,7 +248,7 @@ export const projects: Project[] = [
     category: 'ux',
     page: () => import('../pages/projects/TransfiPage'),
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 3,
     nda: true,
     access: {
       mode: 'request',
@@ -376,7 +376,7 @@ export const projects: Project[] = [
     category: 'ai',
     page: () => import('../pages/projects/ExecutiveLensPage'),
     featured: true,
-    featuredOrder: 3,
+    featuredOrder: 2,
     archiveOrder: 1,
     tier: 'a',
     selected: true,
