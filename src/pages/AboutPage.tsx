@@ -52,29 +52,83 @@ import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../confi
 type Row = { date: string; role: string; co?: string; desc?: string; link?: string; section?: string }
 
 const rows: Row[] = [
-  { section: 'Experience', date: 'Q3 2025 -', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'Designing the entire OS for AI smart glasses, a screen the size of a postage stamp that has to feel effortless.' },
-  { date: 'Q2, Q3 2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: '0 → 1 fintech super app. Trust-first transfer flows.' },
-  { date: '2022, 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Crypto payment infrastructure across multi-market merchant flows.' },
-  { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc' },
-  { date: '2023, 2024', role: 'Graduate Teaching Assistant', co: 'NYU Tisch / ITP', desc: 'Helped students break things on purpose, honestly, how I learn best too.' },
-  { date: '2020, 2022', role: 'Co-founder & Director', co: 'ArtTown Podcast', desc: '45 episodes across 3 seasons, interviewing designers from Puma, Royal College of Arts, Google, and Bollywood.' },
-  { date: '2021, 2022', role: 'Designer', co: 'Monson Fish' },
-  { date: '2020, 2021', role: 'Research Intern', co: 'IBM' },
-  { section: 'Education', date: '2022, 2024', role: 'MPS, Interactive Telecommunications', co: 'NYU Tisch School of the Arts', desc: 'Where I learned that a designer who can solder is a dangerous thing.' },
-  { date: '2018, 2022', role: 'BE, Computer Science', co: 'VIT Pune' },
-  { section: 'Recognition', date: '2024', role: 'Red Burn + ITP Scholarships', co: 'NYU' },
-  { date: '2023', role: 'Tisch Graduate Scholarship', co: 'NYU Tisch' },
-  { section: 'Exhibitions', date: '2024', role: 'Maker Faire, WonderVille, NIME', co: 'New York' },
-  { date: '2023, 24', role: 'ITP Shows (Spring, Winter, Camp)', co: 'NYU ITP' },
+  { section: 'Work Experience', date: 'Q3 2025 - Present', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'AI wearable OS, companion app, app store, and launch systems.' },
+  { date: '2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: 'Remote. 0 to 1 fintech product design.' },
+  { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc', desc: 'New York.' },
+  { date: '2023 - 2024', role: 'Web Publishing Designer', co: 'Office of Diversity, TSOA', desc: 'New York.' },
+  { date: '2023 - 2025', role: 'Computer Technician', co: 'Media Commons, NYU Provost' },
+  { date: '2022 - 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Bangalore. Cross-border crypto payment infrastructure.' },
+  { date: '2021 - 2022', role: 'Art Director', co: 'ViCulP, Firodia Karandak' },
+  { date: '2021 - 2022', role: 'UI/UX Designer', co: 'Monsoonfish', desc: 'Pune.' },
+  { date: '2021', role: 'Junior Designer', co: 'Code for Build', link: '/code-for-build', desc: 'Remote, Istanbul.' },
+  { date: '2020 - 2021', role: 'Intern - Researcher', co: 'IBM', link: '/ibm', desc: 'Pune.' },
+  { date: '2020 - 2022', role: 'Founding Member & Director', co: 'ArtTown Podcast Series', desc: 'Video production, hosting, and creative direction.' },
+  { date: '2019 - 2020', role: 'Designer', co: 'Devagraphics', desc: 'Pune.' },
+  { section: 'Teaching Experience', date: 'Fall 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Applications.' },
+  { date: 'Fall 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Physical Computing.' },
+  { date: 'Spring 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Interaction as Art Medium.' },
+  { date: 'Fall 2023', role: 'Graduate Assistant', co: 'NYU', desc: '100 Days of Making.' },
+  { section: 'Awards & Features', date: '2024', role: 'Office of Diversity Report', co: 'NYU' },
+  { date: '2024', role: 'Red Burn Scholarship', co: 'NYU' },
+  { date: '2024', role: 'Interactive Telecommunications Scholarship', co: 'NYU' },
+  { date: '2023', role: 'Tisch School of the Arts Graduate Scholarship', co: 'NYU' },
+  { date: '2023', role: 'Top Design under 10', co: 'TransFi' },
+  { date: '2023', role: 'Typeface Design', co: 'Butler Slice', link: '/typeface' },
+  { date: '2022', role: 'Video Production & Host', co: 'ATPS' },
+  { date: '2021', role: 'Smart India Hackathon', co: 'India' },
+  { date: '2020', role: 'Magazine Edition Vol 3.1 to 3.6', co: 'Vaatchal' },
+  { date: '2020', role: 'Video Production & Direction', co: 'ATPS' },
+  { date: '2020', role: 'Winner, Sculpture', co: 'Firodia Karandak' },
+  { date: '2019', role: 'Stage Design', co: 'TEDxVITPune', link: '/tedx' },
+  { date: '2018', role: 'Magazine Edition Vol 2.1 to 2.4', co: 'Vaatchal' },
+  { date: '2016', role: 'Winner, Water / Acrylic Painting', co: 'Pune' },
+  { section: 'Art Exhibitions', date: '2024', role: 'Maker Faire', co: 'Coney Island, NY' },
+  { date: '2024', role: 'ITP Camp', co: 'ITP, NYU' },
+  { date: '2023', role: 'Spring Show', co: 'New York' },
+  { date: '2023', role: 'NIME Show', co: 'Media Commons Garage, NY' },
+  { date: '2023', role: 'New Arcade Game', co: 'WonderVille, NY' },
+  { date: '2023', role: 'Winter Show', co: 'New York' },
+  { section: 'Education', date: '2022 - 2024', role: 'Master of Professional Studies, Interactive Telecommunications Program', co: 'Tisch School of the Arts, New York University', desc: 'New York.' },
+  { date: '2018 - 2022', role: 'Bachelor of Engineering, Computer Science Engineering', co: 'Vishwakarma Institute of Technology', desc: 'Pune.' },
 ]
 
-const asides = [
-  'Builds keyboards he doesn\u2019t need',
-  'Strong opinions on border-radius',
-  'Pour-over > espresso (fight me)',
-  'Owns more vinyl than shelf space',
-  'Error states deserve good copy',
-  'Thinks in systems, ships in pixels',
+const offClockImages = [
+  {
+    src: '/Portfolio.github.io/Assets/images/parth.jpg',
+    label: 'Studio days',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/keyboard.jpg',
+    label: 'Keyboard builds',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/jugalbandi.webp',
+    label: 'Music machines',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/making-of-time.jpg',
+    label: 'Physical sketches',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/black-hole.jpg',
+    label: 'Shelf experiments',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/typeface.webp',
+    label: 'Type studies',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/the-omakase.jpg',
+    label: 'Game nights',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg',
+    label: 'Studio builds',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/atps.webp',
+    label: 'Audio notes',
+  },
 ]
 
 const aboutCharacterFrames = Array.from(
@@ -364,34 +418,49 @@ export default function AboutPage() {
 
 
             {/* ── Off the clock ── */}
-            <section className="abt-beyond reveal">
+            <section className="abt-beyond reveal" aria-labelledby="abt-beyond-title">
               <div className="abt-beyond-inner">
-                <div className="abt-beyond-left">
-                  <div className="sec-head">
-                    <span className="sec-label">Off the clock</span>
-                  </div>
+                <div className="abt-beyond-copy">
+                  <span className="sec-label">Off the clock</span>
+                  <h2 id="abt-beyond-title" className="abt-beyond-title"><em>What</em> I enjoy</h2>
                   <p className="abt-beyond-text">When I'm not pushing pixels or writing shaders, you'll find me in the Mission hunting pour-overs, elbow-deep in a keyboard build that was supposed to take &ldquo;one weekend,&rdquo; or flipping through vinyl crates looking for something I've never heard.</p>
                 </div>
                 <motion.div
-                  className="abt-asides"
+                  className="abt-image-asides"
+                  tabIndex={0}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, margin: '-30px' }}
                   variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
+                  aria-label="Off the clock image reel"
                 >
-                  {asides.map((a, i) => (
-                    <motion.span
-                      key={a}
-                      className="abt-aside"
+                  <div className="abt-image-asides-track">
+                    {[0, 1].map((copy) =>
+                      offClockImages.map((item, i) => (
+                        <motion.figure
+                          key={`${copy}-${item.label}`}
+                          className="abt-image-aside"
+                          aria-hidden={copy === 1 || undefined}
+                          variants={{
+                            hidden: { opacity: 0, y: 14, rotate: (i % 2 === 0 ? -3 : 3) },
+                            show: { opacity: 1, y: 0, rotate: (i % 2 === 0 ? -1.5 : 1.5), transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                          }}
+                        >
+                          <img src={item.src} alt="" loading="lazy" />
+                          <figcaption>{item.label}</figcaption>
+                        </motion.figure>
+                      )),
+                    )}
+                  </div>
+                  <motion.div
+                    className="abt-image-asides-hint"
                       variants={{
-                        hidden: { opacity: 0, y: 12, rotate: (i % 2 === 0 ? -3 : 3) },
-                        show: { opacity: 1, y: 0, rotate: (i % 2 === 0 ? -1.5 : 1.5), transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                        hidden: { opacity: 0, y: 8 },
+                        show: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.2 } },
                       }}
-                      whileHover={{ rotate: 0, scale: 1.05, transition: { duration: 0.2 } }}
                     >
-                      {a}
-                    </motion.span>
-                  ))}
+                    Hover / Tap Me!
+                  </motion.div>
                 </motion.div>
               </div>
             </section>

@@ -13,8 +13,6 @@ const PAGE_TERMS = [
   'projects',
   'case study',
   'case studies',
-  'playlist',
-  'playlist view',
   'index view',
   'arc view',
   'editorial view',

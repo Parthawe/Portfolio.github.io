@@ -20,8 +20,10 @@ export interface Project {
   name: string
   /** Card thumbnail image */
   image: string
-  /** Generated text-free cover used on card/listing surfaces */
+  /** Generated text-free cover used on card/listing surfaces (portrait / 4:5) */
   cardMockup?: string
+  /** Wide 16:9 cover for featured cards + case-study hero */
+  cover16x9?: string
   /** Alt text for the generated cover */
   cardMockupAlt?: string
   /** Optional explicit source image for generated card mockups */
@@ -1289,6 +1291,28 @@ for (const project of projects) {
       ? `${project.name} — ${project.tag} project cover`
       : `${project.name} project cover`
   }
+}
+
+// Freshly authored 16:9 + 4:5 covers replace the auto-generated squares wherever
+// the project has them. 4:5 drives the portrait grid cards; 16:9 drives featured
+// cards and the case-study hero. Every slug below ships BOTH variants.
+const MOCKUPS = '/Portfolio.github.io/Assets/mockups/projects'
+const NEW_COVER_SLUGS = new Set([
+  // First batch
+  'ai-voice', 'atps', 'breakgen', 'dna-speculative', 'drowning', 'healthapp',
+  'making-of-time', 'moniac-machine', 'sculpture', 'the-point-cdc', 'zentipay',
+  'ballah-code', 'black-hole', 'clawed-chat', 'executivelens', 'mentra',
+  'mentra-miniapps', 'sea-of-salt', 'tedx', 'vishwaconclave',
+  'keyboard-project', 'oncall-lens',
+  // Second batch (incl. the flagship TransFi + Jugalbandi)
+  'code-for-build', 'cuetv', 'enigma', 'ibm', 'jugalbandi', 'office-of-diversity',
+  'raahi-project', 'revolving-stage', 'shuffle', 'the-omakase', 'transfi-project',
+  'typeface', 'uv-light', 'vj-software', 'mentra-brand',
+])
+for (const project of projects) {
+  if (!NEW_COVER_SLUGS.has(project.slug)) continue
+  project.cardMockup = `${MOCKUPS}/${project.slug}_4x5.webp`
+  project.cover16x9 = `${MOCKUPS}/${project.slug}_16x9.webp`
 }
 
 /* ──────────────────────────────────────────────────────────────────────

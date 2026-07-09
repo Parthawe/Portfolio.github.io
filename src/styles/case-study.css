@@ -50,7 +50,7 @@
 .back-link {
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  font-weight: 500;
+  font-weight: 350;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--ink-30);
@@ -109,7 +109,7 @@
   background: var(--surface);
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  font-weight: 500;
+  font-weight: 350;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   color: var(--ink-50);
@@ -149,13 +149,13 @@
   .proj-3d-ornament { display: none; }
 }
 .proj-title {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(3rem, 8vw, 6rem);
   line-height: 1;
   letter-spacing: 0;
   color: var(--ink);
   margin: 0 0 1.25rem;
-  font-weight: 300;
+  font-weight: 400;
   overflow-wrap: anywhere;
 }
 .proj-subtitle {
@@ -225,7 +225,7 @@
   margin-bottom: 0.4rem;
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: color-mix(in srgb, var(--project-color, var(--ink)) 72%, var(--ink-40));
@@ -369,14 +369,16 @@
     0 8px 30px rgba(0,0,0,0.08),
     0 2px 8px rgba(0,0,0,0.04),
     0 0 0 1px var(--ink-06);
-  transition: box-shadow 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+  transition:
+    box-shadow var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease);
 }
 .proj-hero-img:hover {
   box-shadow:
     0 20px 60px rgba(0,0,0,0.12),
     0 8px 20px rgba(0,0,0,0.06),
     0 0 0 1px var(--ink-08);
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
 }
 .proj-hero-img img {
   width: 100%;
@@ -742,9 +744,9 @@
 .proj-visual-title {
   margin: 0;
   max-width: 48ch;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(1.9rem, 2.8vw, 3.1rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.16;
   letter-spacing: 0;
   color: rgba(250, 253, 251, 0.96);
@@ -2491,7 +2493,9 @@
   box-shadow:
     0 4px 20px rgba(0,0,0,0.06),
     0 1px 4px rgba(0,0,0,0.03);
-  transition: box-shadow 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+  transition:
+    box-shadow var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease);
   cursor: zoom-in;
 }
 .cs-img-full:is(.is-portrait, .is-square) img {
@@ -3630,27 +3634,29 @@
   border-radius: var(--radius);
   overflow: hidden;
   flex-shrink: 0;
-  transition: transform 0.5s var(--ease-spring), box-shadow 0.3s;
+  transition:
+    transform var(--motion-slow) var(--motion-ease),
+    box-shadow var(--motion-base) var(--motion-ease);
   will-change: transform;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--ink-06);
 }
 .next-project:hover .next-project-img {
-  transform: scale(1.08) translateX(-4px);
+  transform: translate3d(-3px, 0, 0) scale(1.025);
   box-shadow: 0 12px 40px rgba(0,0,0,0.12);
 }
 .next-project-img img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 0.5s var(--ease-spring);
+  transition: transform var(--motion-slow) var(--motion-ease);
 }
 .next-project:hover .next-project-img img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 .next-project-arrow {
   font-size: 1.75rem;
   color: var(--ink-30);
-  transition: color 0.2s, transform 0.3s var(--ease-spring);
+  transition: color var(--motion-fast), transform var(--motion-base) var(--motion-ease);
 }
 .next-project:hover .next-project-arrow {
   color: var(--ink);
@@ -4365,9 +4371,16 @@
   overflow-wrap: anywhere;
 }
 
-.project-main :is(.proj-title, .cs-display, .cs-section-title, .cs-nda-story-title, .next-project-title, .cs-thanks-title) {
+.project-main :is(.cs-display, .cs-section-title, .cs-nda-story-title, .next-project-title, .cs-thanks-title) {
   font-family: var(--serif);
   font-weight: 300;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.project-main :is(.proj-title, .proj-visual-title) {
+  font-family: var(--sans);
+  font-weight: 400;
   letter-spacing: 0;
   text-wrap: balance;
 }

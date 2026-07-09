@@ -6,7 +6,7 @@
    ================================================ */
 
 .ch {
-  padding-top: calc(var(--nav-h) + clamp(1.6rem, 4.6vw, 3.6rem));
+  padding-top: calc(var(--nav-h) + clamp(2.75rem, 4.6vw, 4rem));
   margin-bottom: clamp(1.75rem, 4vw, 3.25rem);
 }
 
@@ -26,7 +26,9 @@
   gap: clamp(1.15rem, 2.3vw, 1.8rem);
   justify-items: start;
   max-width: 48rem;
-  transform: translateY(clamp(-3.5rem, -6vh, -1.5rem));
+  /* Gentle upward nudge for visual balance — capped so the eyebrow never
+     slides up behind the fixed nav on tall/narrow viewports. */
+  transform: translateY(clamp(-1.75rem, -3vh, -0.5rem));
 }
 
 .ch-eyebrow {
@@ -72,6 +74,51 @@
   line-height: 1.52;
   color: var(--ink-50);
   max-width: 38ch;
+}
+
+.ch-cue {
+  display: grid;
+  gap: 0.42rem;
+  width: min(100%, 38rem);
+  padding: clamp(0.85rem, 1.6vw, 1.05rem) clamp(1rem, 1.8vw, 1.2rem);
+  border: 1px solid color-mix(in srgb, var(--ch-accent, var(--lp-accent, var(--select-blue))) 18%, var(--ink-08));
+  border-radius: 1.1rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--ch-accent, var(--lp-accent, var(--select-blue))) 8%, transparent), transparent 58%),
+    color-mix(in srgb, var(--surface) 78%, transparent);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.08);
+  transition: border-color var(--dur-base), background var(--dur-base), transform var(--dur-base), box-shadow var(--dur-base);
+}
+
+.ch-cue:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--ch-accent, var(--lp-accent, var(--select-blue))) 34%, var(--ink-12));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--surface) 72%, transparent),
+    0 14px 34px color-mix(in srgb, var(--ch-accent, var(--lp-accent, var(--select-blue))) 10%, transparent);
+}
+
+.ch-cue-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  font-family: var(--mono);
+  font-size: clamp(0.68rem, 0.82vw, 0.76rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ch-accent, var(--lp-accent, var(--select-blue))) 72%, var(--ink) 28%);
+}
+
+.ch-cue-body {
+  max-width: 48ch;
+  font-family: var(--sans);
+  font-size: clamp(0.95rem, 1.12vw, 1.05rem);
+  line-height: 1.42;
+  color: var(--ink-60);
 }
 
 /* ── Proof strip ── */

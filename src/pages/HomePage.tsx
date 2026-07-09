@@ -217,6 +217,7 @@ export default function HomePage() {
                       year={project.year}
                       marqueeText={featuredInfo}
                       loading={index < 2 ? 'eager' : 'lazy'}
+                      preferWide={index === 1 || index === 2}
                       nda={project.nda}
                     />
                   </div>

@@ -44,14 +44,7 @@ const TIER_RANK: Record<NonNullable<Project['tier']>, number> = {
   d: 1,
 }
 
-type WorkViewMode = 'editorial' | 'playlist' | 'library' | 'timeline'
-
-const WORK_VIEW_LABELS: Record<WorkViewMode, string> = {
-  editorial: 'Editorial',
-  playlist: 'Playlist',
-  library: 'Index',
-  timeline: 'Arc',
-}
+type WorkViewMode = 'editorial' | 'library' | 'timeline'
 
 function countLabel(count: number, noun: string) {
   return `${count} ${noun}${count === 1 ? '' : 's'}`
@@ -103,21 +96,18 @@ function getTimelineSectionSummary(projects: Project[], leadProject: Project) {
 }
 
 export default function WorkPage() {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const [activeFilter, setActiveFilter] = useState('all')
   const [footerVisible, setFooterVisible] = useState(false)
-  const [playlistPreviewSlug, setPlaylistPreviewSlug] = useState<string | null>(null)
   const [libraryPreviewSlug, setLibraryPreviewSlug] = useState<string | null>(null)
   const bottomNavRef = useRef<HTMLElement>(null)
   const currentViewParam = searchParams.get('view')
   const viewMode: WorkViewMode =
-    currentViewParam === 'playlist'
-      ? 'playlist'
-      : currentViewParam === 'library'
+    currentViewParam === 'playlist' || currentViewParam === 'library'
         ? 'library'
         : currentViewParam === 'timeline'
           ? 'timeline'
-        : 'editorial'
+          : 'editorial'
   const [activeLibraryShelf, setActiveLibraryShelf] = useState('start-here')
   const [activeTimelineYear, setActiveTimelineYear] = useState(TIMELINE_PRESENT_KEY)
 
@@ -125,11 +115,6 @@ export default function WorkPage() {
     document.body.classList.add('page-work')
     return () => document.body.classList.remove('page-work')
   }, [])
-
-  useEffect(() => {
-    document.body.classList.toggle('page-work-playlist', viewMode === 'playlist')
-    return () => document.body.classList.remove('page-work-playlist')
-  }, [viewMode])
 
   useEffect(() => {
     document.body.classList.toggle('page-work-library', viewMode === 'library')
@@ -167,28 +152,18 @@ export default function WorkPage() {
   }, [])
 
   const isAll = activeFilter === 'all'
-  const flagshipProjects = isAll
-    ? featuredProjects
-    : filterProjectsByCategory(featuredProjects, activeFilter as ProjectCategory)
   const editorialSelectedProjects = isAll
     ? selectedWorkProjects
     : filterProjectsByCategory(selectedWorkProjects, activeFilter as ProjectCategory)
-  const selectedProjects = isAll
-    ? selectedWorkProjects.filter(project => !project.featured)
-    : filterProjectsByCategory(
-        selectedWorkProjects.filter(project => !project.featured),
-        activeFilter as ProjectCategory,
-      )
   const archiveProjects = isAll
     ? archiveWorkProjects
     : filterProjectsByCategory(archiveWorkProjects, activeFilter as ProjectCategory)
-  const playlistProjects = [...flagshipProjects, ...selectedProjects, ...archiveProjects]
-  const allPlaylistProjects = [
+  const allWorkProjects = [
     ...featuredProjects,
     ...selectedWorkProjects.filter(project => !project.featured),
     ...archiveWorkProjects,
   ]
-  const timelineSections = allPlaylistProjects
+  const timelineSections = allWorkProjects
     .map((project, index) => ({
       project,
       index,
@@ -234,50 +209,30 @@ export default function WorkPage() {
           key: category,
           label: filter.label,
           description: LIBRARY_SECTION_COPY[category],
-          projects: filterProjectsByCategory(allPlaylistProjects, category),
+          projects: filterProjectsByCategory(allWorkProjects, category),
         }
       })
       .filter(section => section.projects.length),
   ]
   const activeLibrarySection =
     librarySections.find(section => section.key === activeLibraryShelf) ?? librarySections[0] ?? null
+  const libraryPreviewProjectInActiveShelf =
+    activeLibrarySection?.projects.find(project => project.slug === libraryPreviewSlug) ?? null
   const libraryPreviewProject =
-    allPlaylistProjects.find(project => project.slug === libraryPreviewSlug)
+    libraryPreviewProjectInActiveShelf
     ?? activeLibrarySection?.projects[0]
     ?? librarySections[0]?.projects[0]
     ?? null
   const libraryPreviewMedia = libraryPreviewProject?.previewMedia?.library
-  const libraryPreviewImage = libraryPreviewMedia?.src || libraryPreviewProject?.summaryImage || libraryPreviewProject?.image || ''
+  const libraryPreviewImage = libraryPreviewMedia?.src || libraryPreviewProject?.cover16x9 || libraryPreviewProject?.summaryImage || libraryPreviewProject?.image || ''
   const libraryPreviewAlt = libraryPreviewMedia?.alt || libraryPreviewProject?.summaryImageAlt || libraryPreviewProject?.name || ''
-  const playlistPreviewProject =
-    playlistProjects.find(project => project.slug === playlistPreviewSlug) ?? playlistProjects[0] ?? null
-  const playlistPreviewMedia = playlistPreviewProject?.previewMedia?.playlist
-  const playlistPreviewImage = playlistPreviewMedia?.src || playlistPreviewProject?.image || ''
-  const playlistPreviewAlt = playlistPreviewMedia?.alt || playlistPreviewProject?.name || ''
-  const playlistPreviewBody = playlistPreviewProject
-    ? playlistPreviewProject.summaryProblem || playlistPreviewProject.desc
-    : ''
-
   const renderCard = useCallback((project: Project) => (
-    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} />
+    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} tilt={false} />
   ), [])
-
-  const setViewMode = useCallback((nextView: WorkViewMode) => {
-    const nextParams = new URLSearchParams(searchParams)
-    if (nextView === 'playlist' || nextView === 'library' || nextView === 'timeline') {
-      nextParams.set('view', nextView)
-    } else {
-      nextParams.delete('view')
-    }
-    setSearchParams(nextParams, { replace: true })
-  }, [searchParams, setSearchParams])
 
   const handleFilterChange = useCallback((filterKey: 'all' | ProjectCategory) => {
     setActiveFilter(filterKey)
-    if (viewMode === 'editorial') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }, [viewMode])
+  }, [])
 
   const renderFilterButtons = () => filters.map(f => (
     <button
@@ -294,27 +249,18 @@ export default function WorkPage() {
     </button>
   ))
 
-  useEffect(() => {
-    if (!playlistProjects.length) {
-      setPlaylistPreviewSlug(null)
-      return
-    }
-
-    if (!playlistPreviewSlug || !playlistProjects.some(project => project.slug === playlistPreviewSlug)) {
-      setPlaylistPreviewSlug(playlistProjects[0].slug)
-    }
-  }, [playlistPreviewSlug, playlistProjects])
-
-  const getFilterCount = useCallback((filterKey: 'all' | ProjectCategory) => {
-    if (filterKey === 'all') return allPlaylistProjects.length
-    return filterProjectsByCategory(allPlaylistProjects, filterKey).length
-  }, [allPlaylistProjects])
-
   const handleLibraryJump = useCallback((shelfKey: string) => {
     setActiveLibraryShelf(shelfKey)
+    const shelf = librarySections.find(section => section.key === shelfKey)
+    setLibraryPreviewSlug(shelf?.projects[0]?.slug ?? null)
     const target = document.getElementById(`work-library-${shelfKey}`)
     if (!target) return
     target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [librarySections])
+
+  const handleLibraryPreview = useCallback((shelfKey: string, projectSlug: string) => {
+    setActiveLibraryShelf(shelfKey)
+    setLibraryPreviewSlug(projectSlug)
   }, [])
 
   useEffect(() => {
@@ -356,6 +302,56 @@ export default function WorkPage() {
 
     sections.forEach(section => observer.observe(section))
     return () => observer.disconnect()
+  }, [viewMode, librarySections.length])
+
+  useEffect(() => {
+    if (viewMode !== 'library') return
+
+    let frameId = 0
+    const syncPreviewToVisibleRow = () => {
+      frameId = 0
+      const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-library-project-slug]'))
+      if (!rows.length) return
+
+      const viewportTop = Math.max(96, window.innerHeight * 0.16)
+      const viewportBottom = window.innerHeight * 0.88
+      const focusLine = window.innerHeight * 0.5
+      const visibleRows = rows
+        .map(row => {
+          const rect = row.getBoundingClientRect()
+          const visible = rect.bottom > viewportTop && rect.top < viewportBottom
+          return {
+            row,
+            visible,
+            distance: Math.abs((rect.top + rect.height / 2) - focusLine),
+          }
+        })
+        .filter(entry => entry.visible)
+        .sort((a, b) => a.distance - b.distance)
+
+      const closest = visibleRows[0]?.row
+      const projectSlug = closest?.dataset.libraryProjectSlug
+      const shelfKey = closest?.dataset.libraryShelfKey
+      if (!projectSlug || !shelfKey) return
+
+      setActiveLibraryShelf(current => current === shelfKey ? current : shelfKey)
+      setLibraryPreviewSlug(current => current === projectSlug ? current : projectSlug)
+    }
+
+    const requestSync = () => {
+      if (frameId) return
+      frameId = window.requestAnimationFrame(syncPreviewToVisibleRow)
+    }
+
+    requestSync()
+    window.addEventListener('scroll', requestSync, { passive: true })
+    window.addEventListener('resize', requestSync)
+
+    return () => {
+      if (frameId) window.cancelAnimationFrame(frameId)
+      window.removeEventListener('scroll', requestSync)
+      window.removeEventListener('resize', requestSync)
+    }
   }, [viewMode, librarySections.length])
 
   const handleTimelineJump = useCallback((yearKey: string) => {
@@ -424,19 +420,6 @@ export default function WorkPage() {
                 <p className="work-page-intro-copy">
                   Selected product, systems, and interaction work for product design and design engineering roles.
                 </p>
-                <div className="work-view-switch surface-glass surface-glass--subtle" role="toolbar" aria-label="Choose Work page view">
-                  {(Object.keys(WORK_VIEW_LABELS) as WorkViewMode[]).map(mode => (
-                    <button
-                      key={mode}
-                      type="button"
-                      className={`work-view-switch__button figma-hover${viewMode === mode ? ' is-active surface-glass--active' : ''}`}
-                      aria-pressed={viewMode === mode}
-                      onClick={() => setViewMode(mode)}
-                    >
-                      {WORK_VIEW_LABELS[mode]}
-                    </button>
-                  ))}
-                </div>
                 {viewMode === 'editorial' ? (
                   <nav className="work-filter-inline surface-glass" aria-label="Filter projects inline" role="toolbar">
                     {renderFilterButtons()}
@@ -470,136 +453,6 @@ export default function WorkPage() {
                   </section>
                 ) : null}
               </>
-            ) : viewMode === 'playlist' ? (
-              <section
-                className="work-playlist-shell"
-                id="work-project-results"
-                aria-label={isAll ? 'All work playlist' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} playlist`}
-              >
-                <aside className="work-playlist-sidebar">
-                  <div className="work-playlist-sidebar__head">
-                    <span className="mono-label work-group-label">Playlists</span>
-                    <p className="work-group-copy">
-                      Switch collections on the left, preview one project at a time, then open the full case study from the queue.
-                    </p>
-                  </div>
-                  <div className="work-playlist-sidebar__list" role="listbox" aria-label="Work playlists">
-                    {filters.map((filter) => (
-                      <button
-                        key={filter.key}
-                        type="button"
-                        role="option"
-                        aria-selected={activeFilter === filter.key}
-                        className={`work-playlist-sidebar__item figma-hover${activeFilter === filter.key ? ' is-active' : ''}`}
-                        onClick={() => handleFilterChange(filter.key as 'all' | ProjectCategory)}
-                      >
-                        <span className="work-playlist-sidebar__item-label">{filter.label}</span>
-                        <span className="work-playlist-sidebar__item-meta">{countLabel(getFilterCount(filter.key as 'all' | ProjectCategory), 'project')}</span>
-                        <FigmaSelect />
-                      </button>
-                    ))}
-                  </div>
-                  <div className="work-playlist-sidebar__footer">
-                    <span>{flagshipProjects.length} flagship</span>
-                    <span>{selectedProjects.length} selected</span>
-                    <span>{archiveProjects.length} archive</span>
-                  </div>
-                </aside>
-
-                <div className="work-playlist-main">
-                  <div className="work-playlist-player" aria-live="polite">
-                    {playlistPreviewProject ? (
-                      <article
-                        key={playlistPreviewProject.slug}
-                        className={`work-playlist-stage work-playlist-stage--${playlistPreviewProject.slug}`}
-                      >
-                        <div className="work-playlist-stage__media">
-                          <img
-                            key={playlistPreviewImage}
-                            src={playlistPreviewImage}
-                            alt={playlistPreviewAlt}
-                            loading="eager"
-                            decoding="async"
-                          />
-                        </div>
-                        <div className="work-playlist-stage__copy">
-                          <div className="work-playlist-stage__eyebrow">
-                            <span>Now previewing</span>
-                            <span>{isAll ? 'All work' : CATEGORY_LABELS[activeFilter as ProjectCategory]}</span>
-                            <span>{countLabel(playlistProjects.length, 'project')} queued</span>
-                          </div>
-                          <h2 className="work-playlist-stage__title">{playlistPreviewProject.name}</h2>
-                          <p className="work-playlist-stage__body">
-                            {playlistPreviewBody}
-                          </p>
-                          <div className="work-playlist-stage__chips">
-                            {[
-                              playlistPreviewProject.tag,
-                              playlistPreviewProject.summaryTimeline || playlistPreviewProject.year,
-                              CATEGORY_LABELS[playlistPreviewProject.category],
-                              getAccessLabel(playlistPreviewProject),
-                            ]
-                              .filter((chip): chip is string => Boolean(chip))
-                              // "AI Wearables" (tag) vs "AI & Wearables" (category) read as one chip
-                              .filter((chip, index, chips) =>
-                                chips.findIndex(other =>
-                                  other.toLowerCase().replace(/[^a-z0-9]/g, '') === chip.toLowerCase().replace(/[^a-z0-9]/g, ''),
-                                ) === index)
-                              .map(chip => <span key={chip}>{chip}</span>)}
-                          </div>
-                          <div className="work-playlist-stage__actions">
-                            <Link to={`/${playlistPreviewProject.slug}`} className="work-playlist-stage__cta figma-hover">
-                              Open case study
-                              <FigmaSelect />
-                            </Link>
-                          </div>
-                        </div>
-                      </article>
-                    ) : null}
-                  </div>
-
-                  <section className="work-playlist-queue" aria-label="Project queue">
-                    <div className="work-playlist-queue__head">
-                      <span className="mono-label work-group-label">Queue</span>
-                      <p className="work-group-copy">
-                        Hover any row to update the preview. Open a row to jump into the case study.
-                      </p>
-                    </div>
-                    <div className="work-playlist-queue__table" role="list">
-                      <div className="work-playlist-queue__columns" aria-hidden="true">
-                        <span>#</span>
-                        <span>Project</span>
-                        <span>Role / Outcome</span>
-                        <span>When</span>
-                        <span></span>
-                      </div>
-                      {playlistProjects.map((project, index) => (
-                        <Link
-                          key={project.slug}
-                          to={`/${project.slug}`}
-                          className={`work-playlist-row${playlistPreviewProject?.slug === project.slug ? ' is-active' : ''}`}
-                          onMouseEnter={() => setPlaylistPreviewSlug(project.slug)}
-                          onFocus={() => setPlaylistPreviewSlug(project.slug)}
-                        >
-                          <span className="work-playlist-row__index">{String(index + 1).padStart(2, '0')}</span>
-                          <div className="work-playlist-row__project">
-                            <span className="work-playlist-row__name">{project.name}</span>
-                            <span className="work-playlist-row__meta">
-                              {project.tag}
-                              {getAccessLabel(project) ? ` / ${getAccessLabel(project)}` : ''}
-                            </span>
-                          </div>
-                          <span className="work-playlist-row__detail">
-                            {project.summaryOutcome || project.summaryRole || project.desc}
-                          </span>
-                          <span className="work-playlist-row__year">{project.summaryTimeline || project.year}</span>
-                          <span className="work-playlist-row__cta">Open ↗</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </section>
-                </div>
-              </section>
             ) : viewMode === 'library' ? (
               <section className="work-library-shell" id="work-project-results" aria-label="Work library">
                 <div className="work-library-shell__head">
@@ -627,9 +480,14 @@ export default function WorkPage() {
                 </div>
 
                 {libraryPreviewProject ? (
-                  <aside className="work-library-preview surface-glass surface-glass--subtle" aria-hidden="true">
+                  <aside className="work-library-preview" aria-live="polite">
                     <div className="work-library-preview__frame">
-                      <img src={libraryPreviewImage} alt={libraryPreviewAlt} loading="eager" decoding="async" />
+                      <img key={libraryPreviewImage} src={libraryPreviewImage} alt={libraryPreviewAlt} loading="eager" decoding="async" />
+                    </div>
+                    <div className="work-library-preview__caption">
+                      <span className="work-library-preview__eyebrow">Preview</span>
+                      <strong>{libraryPreviewProject.name}</strong>
+                      <span>{libraryPreviewProject.tag}</span>
                     </div>
                   </aside>
                 ) : null}
@@ -659,12 +517,18 @@ export default function WorkPage() {
                               key={project.slug}
                               to={`/${project.slug}`}
                               className="work-library-row figma-hover"
-                              onMouseEnter={() => setLibraryPreviewSlug(project.slug)}
-                              onFocus={() => setLibraryPreviewSlug(project.slug)}
+                              data-library-shelf-key={section.key}
+                              data-library-project-slug={project.slug}
+                              onPointerEnter={() => handleLibraryPreview(section.key, project.slug)}
+                              onPointerDown={() => handleLibraryPreview(section.key, project.slug)}
+                              onMouseDown={() => handleLibraryPreview(section.key, project.slug)}
+                              onTouchStart={() => handleLibraryPreview(section.key, project.slug)}
+                              onClick={() => handleLibraryPreview(section.key, project.slug)}
+                              onFocus={() => handleLibraryPreview(section.key, project.slug)}
                             >
                               <span className="work-library-row__index">{String(projectIndex + 1).padStart(2, '0')}</span>
                               <div className="work-library-row__thumb">
-                                <img src={project.image} alt={project.name} loading={section.key === 'start-here' && projectIndex < 2 ? 'eager' : 'lazy'} decoding="async" />
+                                <img src={project.cover16x9 ? project.cardMockup : project.image} alt={project.name} loading={section.key === 'start-here' && projectIndex < 2 ? 'eager' : 'lazy'} decoding="async" />
                               </div>
                               <div className="work-library-row__project">
                                 <span className="work-library-row__name">{project.name}</span>
@@ -739,7 +603,7 @@ export default function WorkPage() {
                         >
                           <div className="work-timeline-feature__media">
                             <img
-                              src={section.leadProject.summaryImage || section.leadProject.image}
+                              src={section.leadProject.cover16x9 || section.leadProject.summaryImage || section.leadProject.image}
                               alt={section.leadProject.summaryImageAlt || section.leadProject.name}
                               loading={section.key === timelineSections[0]?.key ? 'eager' : 'lazy'}
                               decoding="async"
@@ -785,7 +649,7 @@ export default function WorkPage() {
                                   <span className="work-timeline-support-row__index">{String(projectIndex + 2).padStart(2, '0')}</span>
                                   <div className="work-timeline-support-row__thumb">
                                     <img
-                                      src={project.summaryImage || project.image}
+                                      src={project.cover16x9 ? project.cardMockup : (project.summaryImage || project.image)}
                                       alt={project.summaryImageAlt || project.name}
                                       loading="lazy"
                                       decoding="async"

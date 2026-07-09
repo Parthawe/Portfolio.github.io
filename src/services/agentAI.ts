@@ -36,7 +36,7 @@ export interface ResponseAction {
   explanation?: string
 }
 
-type WorkViewMode = 'editorial' | 'playlist' | 'library' | 'timeline'
+type WorkViewMode = 'editorial' | 'library' | 'timeline'
 
 const WORK_VIEW_CONFIG: Record<WorkViewMode, {
   aliases: string[]
@@ -51,13 +51,6 @@ const WORK_VIEW_CONFIG: Record<WorkViewMode, {
     label: 'Editorial view',
     selectors: ['.work-group--selected', '.pcard-masonry', '.work-bottom-nav'],
     explanation: 'Editorial is the reading-first mode. It starts with flagship work, then selected work, then the deeper archive.',
-  },
-  playlist: {
-    aliases: ['playlist', 'playlist view', 'spotify', 'spotify view', 'queue view', 'preview mode'],
-    path: '/work?view=playlist',
-    label: 'Playlist view',
-    selectors: ['.work-playlist-shell', '.work-playlist-stage', '.work-playlist-queue'],
-    explanation: 'Playlist is the comparison mode. The pinned preview keeps one project in focus while the queue lets you scan quickly.',
   },
   library: {
     aliases: ['index', 'index view', 'library', 'library view', 'compact list', 'list view'],
@@ -131,7 +124,7 @@ const PROJECT_ALIASES: Record<string, string[]> = {
 
 const STARTER_CHIPS: Record<string, string[]> = {
   '/': ['Tour this page', 'Open Mentra', 'Start with flagship work', 'Best research process'],
-  '/work': ['Playlist view', 'Arc view', 'Start with flagship work', 'Best research process'],
+  '/work': ['Index view', 'Arc view', 'Start with flagship work', 'Best research process'],
   '/about': ['Tour this page', 'Role fit', 'Tell me about Mentra', 'Contact'],
   '/writing': ['Tour this page', 'Best article', 'Design philosophy', 'About Parth'],
   '/playbook': ['Tour this page', 'Design philosophy', 'Best research process', 'About Parth'],
@@ -343,11 +336,11 @@ function getExplainedSectionAction(label: string, selectors: string[], explanati
 function getCurrentWorkViewMode(): WorkViewMode {
   if (typeof window !== 'undefined') {
     const view = new URLSearchParams(window.location.search).get('view')
-    if (view === 'playlist' || view === 'library' || view === 'timeline') return view
+    if (view === 'playlist' || view === 'library') return 'library'
+    if (view === 'timeline') return view
   }
 
   if (typeof document !== 'undefined') {
-    if (document.querySelector('.work-playlist-shell')) return 'playlist'
     if (document.querySelector('.work-library-shell')) return 'library'
     if (document.querySelector('.work-timeline-shell')) return 'timeline'
   }
@@ -565,9 +558,9 @@ export function getResponseAction(question: string, route = ''): ResponseAction 
   }
 
   if (route === '/work') {
-    if (/\b(views|modes|browse modes|ways to browse|work modes)\b/.test(q)) return getExplainedSectionAction('Work views', ['.work-view-switch'], 'There are four ways to browse this page: Editorial for reading, Playlist for comparison, Index for compact scanning, and Arc for progression.')
-    if (/\b(filters|categories|filter bar|pills)\b/.test(q)) return getExplainedSectionAction('Controls', ['.work-playlist-sidebar', '.work-library-nav', '.work-timeline-rail', '.work-bottom-nav', '.work-view-switch'], 'The control surface changes with the view. Editorial uses the bottom filter rail, Playlist uses the left collections, Index uses the jump bar, and Arc uses the period rail.')
-    if (/\b(grid|archive|cards)\b/.test(q)) return getExplainedSectionAction('Project archive', ['.work-playlist-queue', '.work-library-shelves', '.work-timeline-main', '.pcard-masonry'], 'The same body of work is being read four different ways here. Choose the view that matches how you want to evaluate the portfolio.')
+    if (/\b(views|modes|browse modes|ways to browse|work modes)\b/.test(q)) return getExplainedSectionAction('Work views', ['.work-view-switch'], 'There are three ways to browse this page: Editorial for reading, Index for compact scanning, and Arc for progression.')
+    if (/\b(filters|categories|filter bar|pills)\b/.test(q)) return getExplainedSectionAction('Controls', ['.work-library-nav', '.work-timeline-rail', '.work-bottom-nav', '.work-view-switch'], 'The control surface changes with the view. Editorial uses the bottom filter rail, Index uses the jump bar, and Arc uses the period rail.')
+    if (/\b(grid|archive|cards)\b/.test(q)) return getExplainedSectionAction('Project archive', ['.work-library-shelves', '.work-timeline-main', '.pcard-masonry'], 'The same body of work is being read three different ways here. Choose the view that matches how you want to evaluate the portfolio.')
     if (/\b(intro|header)\b/.test(q) && !/\b(project|case)\b/.test(q)) return getExplainedSectionAction('Work intro', ['.work-page-header'], 'The header frames the page as an archive, not a landing page.')
   }
 
@@ -627,15 +620,6 @@ function getWorkTourSteps(): TourStep[] {
   const totalProjects = projects.filter(project => !project.hidden).length
   const view = getCurrentWorkViewMode()
 
-  if (view === 'playlist') {
-    return [
-      { text: `This is Playlist view. Same ${totalProjects} projects, but arranged for comparison instead of scrolling.`, scrollTo: '.work-page-header', delay: 260 },
-      { text: 'The left column switches collections fast. Use it when you already know the slice you care about, AI, UX, installations, or the full queue.', scrollTo: '.work-playlist-sidebar', delay: 320 },
-      { text: 'The pinned stage is the point. One project stays in focus while the queue beneath it changes. That makes tradeoffs visible without opening every case study.', scrollTo: '.work-playlist-stage', delay: 320 },
-      { text: 'The queue is for fast scanning. Hover a row, compare, then open the one worth the deeper read.', scrollTo: '.work-playlist-queue', delay: 0 },
-    ]
-  }
-
   if (view === 'library') {
     return [
       { text: 'This is Index view. It flattens the page into a compact browse surface so you can scan without the heavy editorial rhythm.', scrollTo: '.work-page-header', delay: 260 },
@@ -655,7 +639,7 @@ function getWorkTourSteps(): TourStep[] {
 
   return [
     { text: `This is the editorial archive. ${totalProjects} projects, with the strongest work surfaced first.`, scrollTo: '.work-page-header', delay: 260 },
-    { text: 'The view switch changes the way the same body of work is read. Editorial is for the clean portfolio read, Playlist is for comparison, Index is for scanning, and Arc is for progression.', scrollTo: '.work-view-switch', delay: 320 },
+    { text: 'The view switch changes the way the same body of work is read. Editorial is for the clean portfolio read, Index is for scanning, and Arc is for progression.', scrollTo: '.work-view-switch', delay: 320 },
     { text: 'The top section is the flagship layer. It should prove systems depth, research quality, and range before the archive starts asking for more time.', scrollTo: '.work-group--selected, .work-flagships-list', delay: 320 },
     { text: 'Below that, the archive becomes the depth layer. Ask me for a shortlist if you do not want to scroll linearly.', scrollTo: '.pcard-masonry, .work-bottom-nav', delay: 0 },
   ]

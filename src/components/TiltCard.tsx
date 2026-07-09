@@ -6,7 +6,7 @@ interface TiltCardProps {
   intensity?: number;
 }
 
-export default function TiltCard({ children, className = '', intensity = 8 }: TiltCardProps) {
+export default function TiltCard({ children, className = '', intensity = 4 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const rafId = useRef<number>(0);
   const [isTouch, setIsTouch] = useState(false);
@@ -28,11 +28,11 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       const rect = el.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      el.style.transform = `perspective(800px) rotateY(${x * intensity}deg) rotateX(${-y * intensity}deg) scale(1.02)`;
+      el.style.transform = `perspective(1000px) rotateY(${x * intensity}deg) rotateX(${-y * intensity}deg) scale(1.006)`;
       // Dynamic glow that follows tilt direction — uses filter (composited, no repaint)
-      const shadowX = x * 20;
-      const shadowY = y * 20;
-      el.style.filter = `drop-shadow(${-shadowX}px ${-shadowY}px 16px rgba(0,0,0,0.08))`;
+      const shadowX = x * 10;
+      const shadowY = y * 10;
+      el.style.filter = `drop-shadow(${-shadowX}px ${-shadowY}px 14px rgba(0,0,0,0.06))`;
     });
   }, [intensity, isTouch, prefersReducedMotion]);
 
@@ -50,7 +50,7 @@ export default function TiltCard({ children, className = '', intensity = 8 }: Ti
       className={className}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      style={isTouch || prefersReducedMotion ? undefined : { transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
+      style={isTouch || prefersReducedMotion ? undefined : { transition: 'transform 420ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms cubic-bezier(0.16, 1, 0.3, 1)', transformStyle: 'preserve-3d', willChange: 'transform' }}
     >
       {children}
     </div>

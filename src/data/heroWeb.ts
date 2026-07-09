@@ -99,11 +99,11 @@ const GEOMS: WebGeom[] = ['ico', 'dodec', 'octa', 'star', 'cube', 'tetra', 'crys
 // Field sampling — a big landscape ellipse so the web bleeds far past every
 // edge (feels boundless as you pan / orbit), filled by non-overlapping darts.
 const FIELD = {
-  count: 72,        // how many field objects to place
-  rx: 15.5,         // horizontal half-extent — runs well past the framed view
-  ry: 11,           // vertical half-extent (flatter → landscape)
-  rz: 1.8,          // real depth so it reads 3D under orbit
-  minDist: 2.55,    // min centre-to-centre gap → objects never overlap
+  count: 96,        // how many field objects to place
+  rx: 22,           // horizontal half-extent — runs far past the framed view
+  ry: 15,           // vertical half-extent (flatter → landscape)
+  rz: 2.2,          // real depth so it reads 3D under orbit
+  minDist: 2.6,     // min centre-to-centre gap → objects never overlap
   hubClear: 3.0,    // keep the field clear of the six hero objects
 }
 
@@ -179,18 +179,35 @@ export function layoutHeroWeb(
   // Edges — every node links to its 3 nearest neighbours → a woven mesh.
   const edges: WebEdge[] = []
   const seen = new Set<string>()
+  const addEdge = (i: number, j: number) => {
+    const key = i < j ? `${i}-${j}` : `${j}-${i}`
+    if (seen.has(key)) return
+    seen.add(key)
+    edges.push({ a: nodes[i].id, b: nodes[j].id })
+  }
   const K = 3
   for (let i = 0; i < nodes.length; i++) {
     const near = nodes
       .map((n, j) => ({ j, d: i === j ? Infinity : dist2(nodes[i].position, n.position) }))
       .sort((a, b) => a.d - b.d)
       .slice(0, K)
-    for (const { j } of near) {
-      const key = i < j ? `${i}-${j}` : `${j}-${i}`
-      if (seen.has(key)) continue
-      seen.add(key)
-      edges.push({ a: nodes[i].id, b: nodes[j].id })
-    }
+    for (const { j } of near) addEdge(i, j)
+  }
+
+  // Weave every hub into the field. The peripheral hubs (Installations, Brand &
+  // Visual) sit far from the field, so plain nearest-neighbour leaves them
+  // linked only to other hubs — connect each hub to its nearest field nodes so
+  // all six visibly branch into multiple discipline objects.
+  const HUB_FIELD_LINKS = 4
+  const fieldIdx: number[] = []
+  nodes.forEach((n, j) => { if (n.tier === 'field') fieldIdx.push(j) })
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].tier !== 'hub') continue
+    const near = fieldIdx
+      .map((j) => ({ j, d: dist2(nodes[i].position, nodes[j].position) }))
+      .sort((a, b) => a.d - b.d)
+      .slice(0, HUB_FIELD_LINKS)
+    for (const { j } of near) addEdge(i, j)
   }
 
   return { nodes, edges }
