@@ -7,10 +7,8 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
 import { Reveal } from '../components/Reveal'
-import FigmaSelect from '../components/FigmaSelect'
 import ClientsMarquee from '../components/ClientsMarquee'
 import PlaybookSection from '../components/PlaybookSection'
-import { CONTACT_EMAIL } from '../config/site'
 import {
   getProject,
   isHiddenProject,
@@ -253,20 +251,6 @@ export default function CategoryPage() {
           </Reveal>
         </div>
 
-        {/* CTA */}
-        <section className="cta-v2">
-          <div className="wrap cta-v2-inner">
-            <h2 className="lp-cta-headline">{category.cta.headline}</h2>
-            <p className="lp-cta-sub">{category.cta.sub}</p>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="cta-v2-btn magnetic figma-hover">
-              {CONTACT_EMAIL}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <FigmaSelect />
-            </a>
-          </div>
-        </section>
       </div>
 
       <Footer />

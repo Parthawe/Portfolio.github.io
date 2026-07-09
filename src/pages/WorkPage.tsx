@@ -16,7 +16,6 @@ import {
   type Project,
   type ProjectCategory,
 } from '../data/projects'
-import { CONTACT_EMAIL } from '../config/site'
 
 const filters = CATEGORIES
 const WORK_FILTER_EVENT = 'folio:set-work-filter'
@@ -679,17 +678,6 @@ export default function WorkPage() {
               </section>
             )}
           </div>
-
-          <section className="cta-v2">
-            <div className="wrap cta-v2-inner">
-              <h2 className="cta-v2-headline">Let's work together</h2>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="cta-v2-btn magnetic figma-hover">
-                {CONTACT_EMAIL}
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                <FigmaSelect />
-              </a>
-            </div>
-          </section>
         </div>
       </main>
 

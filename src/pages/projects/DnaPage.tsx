@@ -4,6 +4,8 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
+import CsImage from '../../components/case-study/CsImage'
+import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -13,91 +15,91 @@ export default function DnaPage() {
     <>
       <Helmet>
         <title>DNA: Speculative Design &middot; Parth Pawar</title>
-        <meta name="description" content="Would you take a pill to live forever? A speculative design experience exploring immortality, mortality, and the ethics of anti-aging through physical pharmaceutical packaging." />
+        <meta name="description" content="A compact glimpse of a speculative design artifact asking whether people would take a pill to live longer." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="DNA: Speculative Design &middot; Parth Pawar" />
-        <meta property="og:description" content="Speculative pharmaceutical packaging exploring immortality and mortality through bioart." />
+        <meta property="og:description" content="Speculative pharmaceutical packaging exploring immortality, mortality, and choice." />
       </Helmet>
 
       <Nav />
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#2E5BFF' } as React.CSSProperties}>
-
         <ProjectHeader
           backLink="/work"
           categorySlug="creative-tech"
           backLabel="Back to Work"
           tags={['Speculative Design', 'Bioart']}
           title="Would You Take a Pill to Live Forever?"
-          subtitle="A speculative pharmaceutical artifact that turns the fantasy of immortality into a physical choice someone has to hold, read, and hesitate over"
+          subtitle="A speculative artifact that makes immortality feel like a product choice"
           info={[
-            { label: 'Year', value: '2024' },
-            { label: 'Role', value: 'Creator' },
             { label: 'Context', value: 'NYU ITP' },
+            { label: 'Role', value: 'Creator' },
+            { label: 'Year', value: '2024' },
           ]}
         />
 
-        {/* Product photos */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.webp" alt="Two pharmaceutical boxes: Live 50+ Years More (blue) and Embrace Death (red)" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-open.png" alt="Both boxes opened, revealing inner packaging and booklets" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.webp" alt="Two speculative pharmaceutical boxes: Live 50+ Years More and Embrace Death" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-open.png" alt="Open pharmaceutical boxes with inserts, cards, and pill packaging" loading="lazy" /></div>
             </div>
           </div>
         </section>
 
-        {/* Overview */}
-        <CsSection label="Overview" title="A Speculation That Needed to Feel Real">
+        <CsSection id="cs-glimpse" label="Glimpse" title="A Thought Experiment You Have To Hold">
           <CsBody>
-            <p>The project begins with a familiar fantasy: what if medicine could give you fifty more years? Instead of presenting that question as a poster or a deck, I built it as a pharmaceutical decision. Participants receive a customized box and must choose between <strong>Live Immortal</strong>, a speculative anti-aging treatment, and <strong>Embrace Death</strong>, a companion artifact that argues for accepting finitude rather than engineering past it.</p>
-            <p>The point was not to predict the future of biotech. It was to make the ethics feel immediate. Speculative design becomes stronger when the object is credible enough to make someone pause before answering. A thought experiment on screen can be shrugged off. A boxed treatment in your hand cannot.</p>
+            <p>This is a compact speculative design project. Instead of writing about the ethics of anti-aging, I built two believable pharmaceutical artifacts: one promising extended life, the other asking the participant to accept mortality. The value is in the moment of hesitation created by the object.</p>
           </CsBody>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Problem</span>
+            <span className="cs-label-row-val">Immortality debates often stay abstract, which makes the ethical tension easy to dodge.</span>
+          </div>
+          <div className="cs-label-row">
+            <span className="cs-label-row-key">Method</span>
+            <span className="cs-label-row-val">Turn the question into packaging, dosage cards, warnings, and physical choice architecture.</span>
+          </div>
+          <div className="cs-label-row" style={{ borderBottom: 'none' }}>
+            <span className="cs-label-row-key">Result</span>
+            <span className="cs-label-row-val">A finished artifact set that made people negotiate with the scenario instead of simply agreeing or disagreeing with it.</span>
+          </div>
         </CsSection>
 
-        {/* Detail photos */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/card-final-message.webp" alt="Card: Final Message for Embracing Death, held in hand" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/pill-pack.webp" alt="Pill blister pack inside the Live Immortal box: Unlock More Life" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/dosage-card.webp" alt="Dosage and precautions card for the speculative pill" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/pill-pack.webp" alt="Speculative pill blister pack labeled Unlock More Life" loading="lazy" /></div>
             </div>
           </div>
         </section>
 
-        {/* The Choice */}
-        <CsSection id="cs-choice" label="The Choice" title="Two Believable Futures">
-          <CsBody>
-            <p><strong>Live Immortal</strong> is framed like a real intervention: dosage card, warnings, language of efficacy, and a biologically plausible story rooted in gene editing and longevity research. Everything in that path is designed to feel like a product that just crossed the line from experimental to available.</p>
-            <p><strong>Embrace Death</strong> takes the opposite route. It is not anti-science, and it is not a joke option. It is a deliberately serious artifact about humanity&rsquo;s repeated attempts to outrun mortality, from myth to cryonics to digital afterlife fantasies. Together, the two paths turn an abstract debate into a choice architecture.</p>
-          </CsBody>
+        <CsSection id="cs-impact" label="Impact" title="Why The Artifact Worked">
+          <CsFeatureGrid features={[
+            { title: 'The fiction felt close', desc: 'The pharmaceutical format made the future feel near enough to take seriously.' },
+            { title: 'The choice was visible', desc: 'Two boxes turned a broad ethics prompt into a direct decision between extension and acceptance.' },
+            { title: 'The detail carried the argument', desc: 'Warnings, dosage language, and print finish did more work than a long explanation could.' },
+          ]} />
         </CsSection>
 
-        {/* Dosage detail */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/dosage-card.webp" alt="Dosage, Duration of Use, and Precautions card from the pill packaging" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/booklet-detail.webp" alt="Detail of the inner booklet with instructions and messaging" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why it matters */}
-        <CsSection id="cs-reflection" label="Reflection" title="Why the Artifact Had to Carry the Argument">
-          <CsBody style={{ maxWidth: '720px' }}>
-            <p>This project taught me that speculative design succeeds or fails on conviction. If the artifact feels flimsy, the argument stays theoretical. If the artifact feels finished, the participant starts negotiating with the scenario instead of observing it from a safe distance.</p>
-            <p>The references mattered, Chinese alchemy, telomere research, memento mori, but only after the object earned attention. The real design work was in the details that made the fiction believable: print quality, dosage language, booklet tone, and the unsettling familiarity of pharmaceutical packaging. That is what turned the project from a concept into a decision.</p>
+        <CsSection id="cs-learning" label="Learning" title="What I Learned">
+          <CsBody>
+            <p>Speculative design needs enough realism to make the audience uneasy. If the artifact feels unfinished, people treat the scenario like fiction. When the details feel familiar, they start asking what they would actually do. That was the main lesson: the object carries the argument before the text does.</p>
           </CsBody>
+          <CsImage
+            src="/Portfolio.github.io/Assets/Projects/DNA/photos/card-final-message.webp"
+            alt="Final message card from the Embrace Death artifact"
+            caption="The supporting cards shifted the project from a prop into a small decision system."
+          />
         </CsSection>
 
         <CsThanks />
 
         <BottomNav sections={[
-          { id: 'cs-choice', label: 'The Choice' },
-          { id: 'cs-reflection', label: 'Reflection' },
+          { id: 'cs-glimpse', label: 'Glimpse' },
+          { id: 'cs-impact', label: 'Impact' },
+          { id: 'cs-learning', label: 'Learning' },
         ]} />
-
       </main>
 
       <NextProject slug="uv-light" title="UV Light" image="/Portfolio.github.io/Assets/images/uv-light.jpg" />

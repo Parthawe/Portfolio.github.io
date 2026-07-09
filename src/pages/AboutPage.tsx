@@ -45,51 +45,53 @@ import Footer from '../components/Footer'
 import FigmaSelect from '../components/FigmaSelect'
 import TextReveal from '../components/TextReveal'
 import PortalReveal from '../components/PortalReveal'
-import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site'
+import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site'
 
 /* ── Data ── */
 
 type Row = { date: string; role: string; co?: string; desc?: string; link?: string; section?: string }
 
 const rows: Row[] = [
-  { section: 'Work Experience', date: 'Q3 2025 - Present', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'AI wearable OS, companion app, app store, and launch systems.' },
-  { date: '2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: 'Remote. 0 to 1 fintech product design.' },
-  { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc', desc: 'New York.' },
-  { date: '2023 - 2024', role: 'Web Publishing Designer', co: 'Office of Diversity, TSOA', desc: 'New York.' },
-  { date: '2023 - 2025', role: 'Computer Technician', co: 'Media Commons, NYU Provost' },
-  { date: '2022 - 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Bangalore. Cross-border crypto payment infrastructure.' },
-  { date: '2021 - 2022', role: 'Art Director', co: 'ViCulP, Firodia Karandak' },
-  { date: '2021 - 2022', role: 'UI/UX Designer', co: 'Monsoonfish', desc: 'Pune.' },
-  { date: '2021', role: 'Junior Designer', co: 'Code for Build', link: '/code-for-build', desc: 'Remote, Istanbul.' },
-  { date: '2020 - 2021', role: 'Intern - Researcher', co: 'IBM', link: '/ibm', desc: 'Pune.' },
-  { date: '2020 - 2022', role: 'Founding Member & Director', co: 'ArtTown Podcast Series', desc: 'Video production, hosting, and creative direction.' },
-  { date: '2019 - 2020', role: 'Designer', co: 'Devagraphics', desc: 'Pune.' },
-  { section: 'Teaching Experience', date: 'Fall 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Applications.' },
-  { date: 'Fall 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Physical Computing.' },
-  { date: 'Spring 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Interaction as Art Medium.' },
-  { date: 'Fall 2023', role: 'Graduate Assistant', co: 'NYU', desc: '100 Days of Making.' },
-  { section: 'Awards & Features', date: '2024', role: 'Office of Diversity Report', co: 'NYU' },
-  { date: '2024', role: 'Red Burn Scholarship', co: 'NYU' },
-  { date: '2024', role: 'Interactive Telecommunications Scholarship', co: 'NYU' },
-  { date: '2023', role: 'Tisch School of the Arts Graduate Scholarship', co: 'NYU' },
-  { date: '2023', role: 'Top Design under 10', co: 'TransFi' },
-  { date: '2023', role: 'Typeface Design', co: 'Butler Slice', link: '/typeface' },
-  { date: '2022', role: 'Video Production & Host', co: 'ATPS' },
-  { date: '2021', role: 'Smart India Hackathon', co: 'India' },
-  { date: '2020', role: 'Magazine Edition Vol 3.1 to 3.6', co: 'Vaatchal' },
-  { date: '2020', role: 'Video Production & Direction', co: 'ATPS' },
-  { date: '2020', role: 'Winner, Sculpture', co: 'Firodia Karandak' },
-  { date: '2019', role: 'Stage Design', co: 'TEDxVITPune', link: '/tedx' },
-  { date: '2018', role: 'Magazine Edition Vol 2.1 to 2.4', co: 'Vaatchal' },
-  { date: '2016', role: 'Winner, Water / Acrylic Painting', co: 'Pune' },
-  { section: 'Art Exhibitions', date: '2024', role: 'Maker Faire', co: 'Coney Island, NY' },
-  { date: '2024', role: 'ITP Camp', co: 'ITP, NYU' },
-  { date: '2023', role: 'Spring Show', co: 'New York' },
-  { date: '2023', role: 'NIME Show', co: 'Media Commons Garage, NY' },
-  { date: '2023', role: 'New Arcade Game', co: 'WonderVille, NY' },
-  { date: '2023', role: 'Winter Show', co: 'New York' },
-  { section: 'Education', date: '2022 - 2024', role: 'Master of Professional Studies, Interactive Telecommunications Program', co: 'Tisch School of the Arts, New York University', desc: 'New York.' },
-  { date: '2018 - 2022', role: 'Bachelor of Engineering, Computer Science Engineering', co: 'Vishwakarma Institute of Technology', desc: 'Pune.' },
+  { section: 'Work Experience', date: 'Q3 2025 - Present', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'AI wearable OS, companion app, MiniApp Store, and launch systems.' },
+  { date: '2025', role: 'Founding Product Designer', co: 'ZentiPay', link: '/zentipay', desc: '0 to 1 fintech product design across research, flows, and MVP UX.' },
+  { date: '2024', role: 'Designer', co: 'The Point CDC', link: '/the-point-cdc', desc: 'Civic web redesign for a Hunts Point community organization.' },
+  { date: '2023 - 2024', role: 'Web Publishing Designer', co: 'NYU Tisch Office of Diversity', desc: 'Accessible publishing systems and annual report design.' },
+  { date: '2022 - 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Cross-border crypto payments, dashboards, widgets, and trust flows.' },
+  { date: '2021 - 2022', role: 'UI/UX Designer', co: 'Monsoonfish', desc: 'Mobile and web UX for product studio clients.' },
+  { date: '2020 - 2021', role: 'Research Intern', co: 'IBM', link: '/ibm', desc: 'Enterprise UX research and workflow synthesis.' },
+  { section: 'Education', date: '2022 - 2024', role: 'MPS, Interactive Telecommunications Program', co: 'NYU Tisch School of the Arts', desc: 'New York.' },
+  { date: '2018 - 2022', role: 'BE, Computer Science Engineering', co: 'Vishwakarma Institute of Technology', desc: 'Pune.' },
+]
+
+const recognitionGroups = [
+  {
+    label: 'Awards',
+    items: [
+      'Red Burns + ITP Scholarships, 2024',
+      'Tisch Scholarship, 2023',
+      'Firodia Karandak competition recognition',
+    ],
+  },
+  {
+    label: 'Exhibitions',
+    items: [
+      'ITP Thesis Show',
+      'ITP Spring / Winter Shows',
+      'Maker Faire Coney Island',
+      'WonderVille NYC',
+    ],
+  },
+  {
+    label: 'Classes',
+    items: [
+      'Applications',
+      'Designing for Messy Humans',
+      'The New Arcade',
+      'Bio Art',
+      'Canvas for Coders',
+      'Storytelling',
+    ],
+  },
 ]
 
 const offClockImages = [
@@ -181,6 +183,12 @@ const softwareStack = [
   'TypeScript', 'JavaScript', 'Vite', 'Three.js', 'GSAP', 'Node', 'Python', 'Swift',
   'D3.js', 'Tableau', 'Supabase', 'Firebase', 'Notion', 'Linear', 'Jira', 'GitHub',
   'Cursor', 'Claude Code', 'ChatGPT', 'Midjourney', 'Runway', 'Whimsical', 'Miro',
+]
+
+const softwareRows = [
+  softwareStack.filter((_, index) => index % 3 === 0),
+  softwareStack.filter((_, index) => index % 3 === 1),
+  softwareStack.filter((_, index) => index % 3 === 2),
 ]
 
 type SimpleBrandIcon = {
@@ -323,8 +331,8 @@ export default function AboutPage() {
             {/* ── Spotlight: after hero ── */}
             <section className="wr-reveal-section">
               <TextReveal
-                front="I bounce between two worlds, shipping polished fintech products and building weird, wonderful things at NYU ITP."
-                behind="Right now I need both. AI smart glasses have no established design patterns. It's the hardest problem I've ever loved."
+                front="I design product systems for AI wearables, fintech, civic tools, and physical interfaces."
+                behind="Right now, I need both rigor and invention. AI smart glasses have no established patterns, which is exactly why I love the work."
               />
             </section>
 
@@ -356,6 +364,25 @@ export default function AboutPage() {
                   ))}
                 </tbody>
               </table>
+            </section>
+
+            <section className="abt-recognition reveal" aria-labelledby="abt-recognition-title">
+              <div className="abt-recognition-head">
+                <span className="sec-label">Awards / Classes / Recognition</span>
+                <h2 id="abt-recognition-title">Proof beyond the job title</h2>
+              </div>
+              <div className="abt-recognition-grid">
+                {recognitionGroups.map((group) => (
+                  <article className="abt-recognition-card" key={group.label}>
+                    <h3>{group.label}</h3>
+                    <ul>
+                      {group.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
             </section>
 
             {/* ── Vibe coding / software stack ── */}
@@ -395,16 +422,23 @@ export default function AboutPage() {
               </div>
 
               <div className="abt-vibe-software" aria-label="Software stack">
-                <div className="abt-vibe-software-track">
-                  {softwareStack.map((tool, index) => (
-                    <SoftwareChip tool={tool} key={`${tool}-${index}`} />
-                  ))}
-                </div>
-                <div className="abt-vibe-software-track" aria-hidden="true">
-                  {softwareStack.map((tool, index) => (
-                    <SoftwareChip tool={tool} key={`${tool}-duplicate-${index}`} />
-                  ))}
-                </div>
+                {softwareRows.map((row, rowIndex) => (
+                  <div
+                    className={`abt-vibe-software-row${rowIndex === 1 ? ' is-reverse' : ''}`}
+                    key={`software-row-${rowIndex}`}
+                  >
+                    <div className="abt-vibe-software-track">
+                      {row.map((tool, index) => (
+                        <SoftwareChip tool={tool} key={`${tool}-${rowIndex}-${index}`} />
+                      ))}
+                    </div>
+                    <div className="abt-vibe-software-track" aria-hidden="true">
+                      {row.map((tool, index) => (
+                        <SoftwareChip tool={tool} key={`${tool}-${rowIndex}-duplicate-${index}`} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </section>
 
@@ -447,7 +481,6 @@ export default function AboutPage() {
                           }}
                         >
                           <img src={item.src} alt="" loading="lazy" />
-                          <figcaption>{item.label}</figcaption>
                         </motion.figure>
                       )),
                     )}
@@ -594,24 +627,6 @@ export default function AboutPage() {
             </section>
 
           </div>
-
-
-          {/* ── CTA ── */}
-          <section className="abt-cta reveal">
-            <div className="wrap abt-cta-inner">
-              <h2 className="abt-cta-headline">Let's make something together</h2>
-              <p className="abt-cta-sub">Always up for hard problems and good conversation.</p>
-              <div className="abt-cta-links">
-                <a href={`mailto:${CONTACT_EMAIL}`} className="abt-cta-email magnetic">
-                  {CONTACT_EMAIL}
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/parth-pawar-1501/" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">LinkedIn<FigmaSelect /></a>
-                <a href="/Portfolio.github.io/Assets/Application_Resume.pdf" target="_blank" rel="noopener noreferrer" className="abt-cta-link figma-hover">Resume<FigmaSelect /></a>
-              </div>
-            </div>
-          </section>
-
         </div>
       </main>
 

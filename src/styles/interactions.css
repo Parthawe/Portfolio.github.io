@@ -451,6 +451,16 @@ body.site-tinted :is(.pcard-inner, .work-library-row, .work-timeline-feature, .w
   background-color: color-mix(in srgb, var(--surface) 91%, var(--site-tint) 6%);
 }
 
+body.site-tinted .project-main--mentra-visual .proj-info-row--visual .proj-info-item,
+body.site-tinted .project-main .cs-quick-summary-card,
+body.site-tinted .project-main .cs-quick-summary-stat {
+  background-color: transparent;
+}
+
+body.site-tinted .project-main .cs-quick-summary-card--outcome {
+  background-color: color-mix(in srgb, var(--project-color, var(--ink)) 8%, transparent);
+}
+
 body.site-tinted :is(.pcard:hover .pcard-inner, .work-library-row:hover, .work-timeline-support-row:hover, .project-main :is(.proj-story-card:hover, .proj-overview-card:hover, .cs-stat-card:hover, .cs-feature-card:hover, .cs-step:hover)) {
   border-color: color-mix(in srgb, var(--site-tint) 42%, transparent);
   box-shadow: 0 16px 44px color-mix(in srgb, var(--site-tint) 17%, transparent);
@@ -717,6 +727,7 @@ body.site-tinted[data-theme="dark"] .site-tint-wash {
   inset: 0;
   z-index: 914;
   pointer-events: none;
+  display: none;
 }
 
 .site-comment-pin {

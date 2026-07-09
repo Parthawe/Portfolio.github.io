@@ -22,10 +22,10 @@ export default function OnCallLensPage() {
     <>
       <Helmet>
         <title>OnCall Lens &middot; Parth Pawar</title>
-        <meta name="description" content="OnCall Lens, Transforming Sentry alerts into automated PR patches via smart glasses. Built at Daytona HackSprint SF, Jan 2026 at Sentry HQ. Case study by Parth Pawar." />
+        <meta name="description" content="OnCall Lens routes Sentry alerts to an AI fix pipeline and lets engineers approve the resulting PR from smart glasses. Built at Daytona HackSprint SF in January 2026." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OnCall Lens · Parth Pawar" />
-        <meta property="og:description" content="Transforming Sentry alerts into automated PR patches via smart glasses. AI agent fixes bugs while humans approve from their wrist." />
+        <meta property="og:description" content="Sentry alerts routed to an AI fix pipeline, with PR approval from smart glasses." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/oncall-lens.webp" />
       </Helmet>
 
@@ -39,7 +39,7 @@ export default function OnCallLensPage() {
           backLabel="Back to Work"
           tags={['AI', 'Developer Tools', 'Hackathon', 'Smart Glasses']}
           title="OnCall Lens"
-          subtitle="Transforming Sentry alerts into automated PR patches via smart glasses &mdash; so on-call engineers can fix production bugs without opening a laptop"
+          subtitle="Routing Sentry alerts to automated PR patches via smart glasses, so on-call engineers can approve production fixes without opening a laptop"
           info={[
             { label: 'Role', value: 'Product Designer + Developer' },
             { label: 'Timeline', value: 'Jan 24, 2026 (24hrs)' },
@@ -86,7 +86,7 @@ export default function OnCallLensPage() {
             { label: 'Whiteboard', desc: 'First 2 hours: mapped the entire incident response flow on a whiteboard. Identified the core interaction: alert → glance → tap → fixed.' },
             { label: 'Figma', desc: 'Hours 2–5: designed all glasses notification cards, the mini-app views, and the web dashboard in Figma. Three screens, three states each.' },
             { label: 'Build', desc: 'Hours 5–22: switched to code. Built the Mentra mini-app frontend, the backend orchestrator, and wired up Sentry, Claude, Daytona, and CodeRabbit.' },
-            { label: 'Demo', desc: 'Hour 23–24: end-to-end demo at Sentry HQ. Real Sentry alert → real Claude fix → real PR → approved from smart glasses.' },
+            { label: 'Demo', desc: 'Hour 23–24: working demo at Sentry HQ. Real Sentry alert → real Claude fix → real PR → approved from smart glasses.' },
           ]}
         />
 
@@ -147,7 +147,7 @@ export default function OnCallLensPage() {
 
         <CsSection id="cs-impact" label="Impact" title="Built in 24 Hours at Sentry HQ">
           <CsBody style={{ marginBottom: '2rem' }}>
-            <p>OnCall Lens was built from scratch at the Daytona HackSprint #4 in San Francisco, January 24, 2026, hosted at Sentry&rsquo;s headquarters. In twenty-four hours, we went from a whiteboard sketch to a working end-to-end demo: a real Sentry alert triggering a real Claude agent in a real Daytona workspace, producing a real PR reviewed by CodeRabbit, all controlled from smart glasses.</p>
+            <p>OnCall Lens was built from scratch at the Daytona HackSprint #4 in San Francisco, January 24, 2026, hosted at Sentry&rsquo;s headquarters. In twenty-four hours, we went from a whiteboard sketch to a working demo: a real Sentry alert triggering a real Claude agent in a real Daytona workspace, producing a real PR reviewed by CodeRabbit, all controlled from smart glasses.</p>
           </CsBody>
           <CsInfoGrid items={[
             { key: 'Build Time', value: '24 hours' },
@@ -155,7 +155,7 @@ export default function OnCallLensPage() {
             { key: 'Location', value: 'Sentry HQ, SF' },
             { key: 'Backend', value: 'Bun + Fastify' },
             { key: 'AI Agent', value: 'Claude (Anthropic)' },
-            { key: 'Demo', value: 'End-to-end working' },
+            { key: 'Demo', value: 'Working incident-to-PR flow' },
           ]} />
         </CsSection>
 

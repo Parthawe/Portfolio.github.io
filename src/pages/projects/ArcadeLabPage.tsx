@@ -78,7 +78,7 @@ export default function ArcadeLabPage() {
             { title: 'The body is the best controller', desc: 'Slapping, tilting, and pressing large buttons creates engagement that screen-based games can\'t match. The physical effort makes winning feel earned and losing feel dramatic.' },
             { title: 'Two players is the sweet spot', desc: 'Solo arcade games are meditative. Three+ player games have coordination overhead. Two players create direct rivalry, shared eye contact, and spontaneous trash-talking — the ideal social dynamic.' },
             { title: 'Audio > Visual for feedback', desc: 'Players look at each other, not the screen. Sound effects communicate success/failure instantly without requiring visual attention. This shaped The Omakase\'s entire feedback system.' },
-            { title: 'Cooking metaphors work universally', desc: 'Recipe sequences are intuitive across cultures. "Press the ingredients in order" needs zero explanation. This insight eliminated the need for a tutorial in The Omakase.' },
+            { title: 'Cooking metaphors work universally', desc: 'Recipe sequences travel across cultures. "Press the ingredients in order" needs zero explanation. This insight eliminated the need for a tutorial in The Omakase.' },
           ]} />
         </CsSection>
 

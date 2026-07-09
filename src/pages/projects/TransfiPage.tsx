@@ -8,26 +8,6 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const TRANSFI_ASSETS = '/Portfolio.github.io/Assets/Projects/Transfi/public'
-
-const TRANSFI_PUBLIC_VISUALS = [
-  {
-    src: `${TRANSFI_ASSETS}/payment-gateway.png`,
-    alt: 'Public TransFi payment gateway preview showing a secure send payment card.',
-    label: 'Payment gateway',
-  },
-  {
-    src: `${TRANSFI_ASSETS}/on-ramp-flow.png`,
-    alt: 'Public TransFi on-ramp interface preview with banking and stablecoin payment UI.',
-    label: 'On-ramp flow',
-  },
-  {
-    src: `${TRANSFI_ASSETS}/buy-crypto-widget.png`,
-    alt: 'Public TransFi buy crypto widget with fiat and BTC inputs.',
-    label: 'Buy crypto widget',
-  },
-]
-
 export default function TransfiPage() {
   const sections = [
     { id: 'cs-public-story', label: 'Glimpse' },
@@ -97,7 +77,6 @@ export default function TransfiPage() {
           slug="transfi-project"
           headline="Trust made operational."
           lede="The public glimpse shows the shape of the redesign without exposing internal payment flows, market constraints, or implementation detail."
-          visuals={TRANSFI_PUBLIC_VISUALS}
         />
 
         <NdaProcess
@@ -117,7 +96,12 @@ export default function TransfiPage() {
           }}
         />
 
-        <NdaGate slug="transfi-project" />
+        <NdaGate slug="transfi-project">
+          <div className="nda-empty-reviewer">
+            <span>Reviewer bundle pending</span>
+            <p>Protected TransFi screenshots are not packaged in this local build yet. Drop approved assets into the private TransFi folder, then wire them here as reviewer groups.</p>
+          </div>
+        </NdaGate>
 
 
         <BottomNav

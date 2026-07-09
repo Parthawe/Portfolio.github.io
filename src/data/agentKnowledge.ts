@@ -83,7 +83,7 @@ const deepMap: Record<string, ProjectDeep> = {
     challenge: 'People abandon AI tools because they do things without asking. 73% cite "it did something I didn\'t ask for."',
     outcome: 'Shipped. 3-second request → 5-second results → 1-tap approval.',
     insight: '"Receipts", an immutable trail for every AI action. The AI always asks. Trust is earned through progressive autonomy.',
-    process: 'Studied why people quit AI tools. Designed a 3-tier trust model: Suggest → Stage → Act. Users unlock autonomy per domain.',
+    process: 'Studied why people quit AI tools. Designed a 3-tier trust model: Suggest → Stage → Act. Users grant autonomy per domain.',
     whyItMatters: 'This trust architecture could apply to any AI product. The industry needs this, AI transparency by design.',
     duration: '10 weeks, Jan–Mar 2026',
     team: 'Sole designer, 3 engineers',
@@ -122,7 +122,7 @@ const deepMap: Record<string, ProjectDeep> = {
   'raahi-project': {
     oneLiner: 'Service design that made Pune\'s chaotic public transit system accessible and connected.',
     challenge: 'Pune has buses, metro, auto-rickshaws, and shared cabs, but zero intermodal connectivity. Users can\'t plan multi-mode journeys or pay digitally.',
-    outcome: 'End-to-end service design: mobile app, kiosk system, in-vehicle monitors, and a unified color system for 8 transport modes.',
+    outcome: 'Service design across the mobile app, kiosk system, in-vehicle monitors, and a unified color system for 8 transport modes.',
     insight: 'Transit design is a service design problem, not just an app problem. The kiosk, the in-vehicle screen, and the phone all need to speak the same language.',
     process: 'Field research across Pune\'s transit network. Mapped pain points in route complexity, payment friction, and wayfinding. Designed a unified system spanning app, kiosk, and in-vehicle displays with a per-mode color system.',
     whyItMatters: 'Shows how civic design at scale works: the same user journey spans physical and digital touchpoints, and every one has to be simple.',
@@ -204,7 +204,7 @@ const deepMap: Record<string, ProjectDeep> = {
     challenge: 'Custom keyboards require CAD expertise, weeks of iteration, and fabrication knowledge. What if anyone could describe a keyboard and have it built?',
     outcome: 'Working platform, 200+ visitors at ITP thesis show. Text to fabrication-ready output.',
     insight: 'Generative design works best when the AI handles mechanical constraints and the human handles aesthetics and feel.',
-    process: 'Built the pipeline end-to-end: prompt parsing, key layout generation, case design, fabrication file export. Each keyboard is structurally valid and printable.',
+    process: 'Built the full pipeline: prompt parsing, key layout generation, case design, and fabrication file export. Each keyboard is structurally valid and printable.',
     whyItMatters: 'It is the thesis project, the capstone of ITP. It proves that design and engineering converge when the system is smart enough.',
     duration: '2025',
     team: 'Solo (ITP thesis)',
@@ -245,7 +245,7 @@ const deepMap: Record<string, ProjectDeep> = {
     outcome: 'Playable cabinet exhibited at ITP Winter Show and WonderVille NYC.',
     insight: 'Physical game design is a different discipline from screen design. The controller IS the interface, not a proxy for it.',
     process: 'Designed the game mechanics, fabricated the cabinet, built custom RGB button controllers from scratch using Arduino. The game runs in browser but the experience is entirely physical.',
-    whyItMatters: 'Shows that Parth can design end-to-end: game logic, physical fabrication, electronics, and exhibition design.',
+    whyItMatters: 'Shows that Parth can connect game logic, physical fabrication, electronics, and exhibition design.',
     duration: '2024',
     team: 'Collaborator',
     platforms: 'Physical arcade cabinet, Web (p5.js)',
@@ -280,18 +280,18 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'The whole project rests on one reframe: a dropdown became a decision about trust.',
   },
   'code-for-build': {
-    oneLiner: 'Taught teenagers to code by turning HTML and CSS into 3D castle blocks on a phone.',
-    challenge: 'Kids in Istanbul wanted to learn coding but had no computers, one shared smartphone per household. Abstract concepts like divs and padding had to become tangible on a small screen.',
-    outcome: 'A full mobile app concept: a five-color block system mapping code elements to childhood building blocks, interactive 3D layouts, and lessons that rebuild real interfaces like Netflix in blocks.',
+    oneLiner: 'A compact learning-tool concept that turns HTML and CSS structure into 3D building blocks on a phone.',
+    challenge: 'A phone-only beginner learner needed a more visual way to understand abstract layout concepts like containers, padding, text, and images.',
+    outcome: 'A mobile prototype concept where web-layout elements become stackable 3D blocks, paired with a preview of the resulting page structure.',
     insight: 'A div became a container block, CSS padding became the space between blocks. The metaphor kids already knew from play made abstract code tangible.',
-    process: 'Research centered on Shawn, a 14-year-old in Istanbul blocked by hardware, not motivation. Competitive analysis of six coding apps found none visualized code. Inspired by Scratch and Blockly, but adapted for web development.',
+    process: 'Started from a teen learner persona, then adapted Scratch/Blockly-style visual thinking to web layout concepts instead of presenting it as a full coding platform.',
     whyItMatters: 'Access is a design constraint, not an excuse. The best educational interfaces reveal complexity at the pace of the learner.',
     duration: '3 months, 2021',
     team: 'Sole Interaction Designer, self-initiated',
     platforms: 'Mobile app',
-    opinion: 'The progressive-disclosure 3D view is the smartest part, it starts minimized and expands per block, solving two competing hierarchies on one small screen.',
+    opinion: 'This is strongest as a short archive glimpse: the block metaphor is useful, but it does not need a long case-study wrapper.',
     connectedTo: ['ballah-code'],
-    surprisingFact: 'Of the six competitor apps analyzed, not a single one visualized code. That gap became the whole product.',
+    surprisingFact: 'The clearest idea is simple: a div becomes a container block, and padding becomes physical space between blocks.',
   },
   cuetv: {
     oneLiner: 'A streaming platform for opera, ballet, and symphonies where discovery and growth had to work as one system.',
@@ -336,16 +336,16 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'The core design principle is honest capacity, the app deliberately plans for less than your maximum.',
   },
   ibm: {
-    oneLiner: 'Cancer prognosis on genomic data that stays encrypted through the entire prediction pipeline.',
+    oneLiner: 'A research glimpse into cancer prognosis on genomic data that stays encrypted during computation.',
     challenge: 'Most clinical AI decrypts patient data before analyzing it, exposing the most sensitive information a person can share. The weak point isn\'t storage or transit, it\'s computation itself.',
-    outcome: 'A working pipeline producing Kaplan-Meier survival curves for seven treatment groups, computed from data that stayed encrypted through the model. Encrypted transfer cost 42s client-side, 28s server-side.',
+    outcome: 'A research pipeline produced Kaplan-Meier survival curves for seven treatment groups, with encrypted transfer overhead measured at 42s client-side and 28s server-side.',
     insight: 'Homomorphic encryption lets the model work on the signal without ever seeing the patient in the clear. Privacy cost was measured in seconds, not usefulness.',
     process: 'Feature selection and validation on clinical and genomic inputs, encryption with IBM\'s FHE toolkit, a neural-network workflow on encrypted data, decryption only at the point of interpretation for clustering and survival curves.',
     whyItMatters: 'Removes the compromise at the heart of clinical AI: the promise of privacy that breaks the moment raw data reaches a server.',
     duration: '8 months, 2020',
     team: 'Research internship at IBM, with mentors and a 4-engineer student team',
     platforms: 'FHE Toolkit, Python, Java, Neural Networks',
-    opinion: 'The value here isn\'t an interface, it\'s system logic, knowing what to encrypt, when it can safely transform, and where trust could fail. That thinking shows up in Parth\'s later AI work.',
+    opinion: 'This is strongest when kept plain and technical: the value is system logic, not a polished product interface.',
     connectedTo: ['healthapp', 'oncall-lens'],
     surprisingFact: 'The seven output clusters work as risk groups, which curve a patient\'s data falls into tells you how their expected survival differs, all computed blind.',
   },
@@ -406,22 +406,22 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'The original MONIAC modeled the UK national economy with actual colored water flowing through transparent tanks, a computer made of plumbing.',
   },
   'office-of-diversity': {
-    oneLiner: 'Turned NYU Tisch\'s IDBEA diversity report from a static PDF into an interactive, WCAG-compliant web experience.',
-    challenge: 'A decade of institutional progress data locked in report format, accurate but hard to navigate, compare, or feel connected to as a community member.',
-    outcome: 'An interactive report with clickable timelines spanning 2014–2024, D3.js and Tableau visualizations, and full WCAG 2.1 AA compliance including screen reader support and keyboard navigation.',
+    oneLiner: 'A compact report-publishing project for NYU Tisch\'s IDBEA content.',
+    challenge: 'A dense institutional report needed to become easier to scan, navigate, and revisit across desktop and mobile.',
+    outcome: 'A structured web report that made IDBEA milestones and progress easier for the Tisch community to read.',
     insight: 'Data visualization is translation, not decoration, hold fidelity to the numbers and empathy for the reader at the same time.',
-    process: 'Deep-dive into the report\'s metrics with the Office of Diversity, sticky-note ideation, then interactive timelines and color-coded charts, with continuous feedback loops from faculty, students, and staff over 3 months.',
-    whyItMatters: 'Institutional trust is built in details: accessible type over flashy type, letting data speak, making sure every stakeholder saw their voice in the result.',
+    process: 'Translated report content into responsive sections, visual summaries, and accessible reading patterns over a 3-month publishing project.',
+    whyItMatters: 'Institutional trust is built in details: readable structure, accessible presentation, and restraint around sensitive content.',
     duration: '3 months, 2024',
     team: 'Website Publishing Designer, collaborating with Christina Monea at the Office of Diversity',
-    platforms: 'Responsive web (D3.js, Tableau)',
-    opinion: 'The least flashy project in the portfolio and maybe the most disciplined, accessibility wasn\'t a checkbox at the end, it was a project goal from day one.',
+    platforms: 'Responsive web report',
+    opinion: 'This should stay compact. It proves accessible publishing discipline without pretending to be a large product redesign.',
     connectedTo: ['the-point-cdc', 'raahi-project'],
   },
   'revolving-stage': {
     oneLiner: 'A 15-foot revolving theatre stage, engineered from scratch to carry actors mid-rotation.',
     challenge: 'Design an axle that revolves a 15 ft. platform on an 8 ft. base with 250+ kgs on it, stable enough for live actors, in 3 months, while leading a 65+ person team.',
-    outcome: 'Over a dozen rotations across seven scene changes, each under fifteen seconds. Audience members reported not noticing the mechanism at all, transitions read as seamless.',
+    outcome: 'Over a dozen rotations across seven scene changes, each under fifteen seconds. Audience members reported not noticing the mechanism beneath the set.',
     insight: 'Design is a systems discipline, not a visual one. Every aesthetic decision was also structural: parallax needed specific material thicknesses, transitions needed specific rotation speeds.',
     process: 'Engineered a four-part modular assembly, platform, steel axle with thrust bearings, twin rings of silent caster wheels, wooden base, sized to fit through standard doorways and assemble on-site in a day.',
     whyItMatters: 'Broadway-style stagecraft on a college competition budget. Proof that theatrical ambition needs careful engineering, not professional-grade money.',
@@ -479,7 +479,7 @@ const deepMap: Record<string, ProjectDeep> = {
     challenge: 'An installation about hidden information fails if it explains itself too early. The whole design problem was pacing: how much stays hidden before curiosity becomes confusion?',
     outcome: 'Participants moved from playful discovery to mild unease as portrait cards and a live camera feed revealed they\'d been the ones observed all along.',
     insight: 'Observation often arrives wrapped in invitation, convenience, and play. Friendly questions on a card became soft data collection under UV.',
-    process: 'Researched immersive theater logic over gallery logic, tested invisible inks and UV paints, converted classrooms into sealed blacklight environments, and staged the reveal as a sequence ending in a Van Gogh-themed performance.',
+    process: 'Researched participatory theater logic over gallery logic, tested invisible inks and UV paints, converted classrooms into sealed blacklight environments, and staged the reveal as a sequence ending in a Van Gogh-themed performance.',
     whyItMatters: 'Spatial work needs the same narrative discipline as product design: participants should know just enough to keep going. Here UV-reactive cues were the interface.',
     duration: '2 weeks, 2023',
     team: 'Parth as artist + collaborators Nathan, Lauren, Baiyuian at NYU ITP',
@@ -842,7 +842,7 @@ const rules: Rule[] = [
       const q = (match.input || '').toLowerCase()
 
       if (/design system/i.test(q)) {
-        return "**Design systems fit:** Strong. ZentiPay required a scalable fintech component system. Mentra required a cross-platform design language (glasses + phone + web). Butler's Slice (400+ glyphs) shows systematic precision.\n\n**Gap:** He hasn't worked on a design system as a standalone product, his systems work is always embedded in product design."
+        return "**Design systems fit:** Strong. ZentiPay required a fintech component system that could cover payment flows. Mentra required a cross-platform design language (glasses + phone + web). Butler's Slice (400+ glyphs) shows systematic precision.\n\n**Gap:** He hasn't worked on a design system as a standalone product, his systems work is always embedded in product design."
       }
       if (/0.to.1|founding|early.stage|startup/i.test(q)) {
         return "**0→1 fit:** Very strong. ZentiPay (founding designer, built from scratch), Mentra (first-ever smart glasses app store), Clawed (AI trust model from zero).\n\nThe pattern: he doesn't wait for specs, he defines the product shape."
@@ -1088,7 +1088,7 @@ const rules: Rule[] = [
         return `**${mentioned.name}**, ${mentioned.desc}\n\n→ [View](${mentioned.link})`
       }
       // Specific tool queries
-      if (q.includes('figma')) return "Primary tool. He uses Figma for scalable component systems, prototyping, and handoff."
+      if (q.includes('figma')) return "Primary tool. He uses Figma for component systems, prototyping, and handoff."
       if (q.includes('react')) return "React + TypeScript for production UI. This portfolio is React 19 + Vite + Tailwind v4. He codes what he designs."
       if (q.includes('python')) return "Python for AI/ML, TensorFlow, data analysis. Used in Enigma (neural network sculpture) and AI voice projects."
       if (q.includes('arduino')) return "Physical computing, sensors, LEDs, actuators. Powers Jugalbandi, Enigma, and many ITP installations."

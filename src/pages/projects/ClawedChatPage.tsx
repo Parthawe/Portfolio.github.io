@@ -158,7 +158,7 @@ export default function ClawedChatPage() {
             { title: 'Glanceable on Glasses', desc: 'Smart glasses give you seconds, not minutes. Every piece of information the AI surfaces on the glasses display needs to be understood in a single glance \u2014 no scrolling, no reading paragraphs, no squinting at fine print. I designed a card-based system where every response fits into a structured template: icon, one-line summary, action button. If it does not fit the card, it gets pushed to the web hub.' },
             { title: 'Trust Through Transparency', desc: 'Users do not trust AI by default. They trust AI that shows its work. Every action Clawed takes generates a receipt \u2014 a timestamped, human-readable record of what happened, what the AI recommended, what the user approved, and what the outcome was. The receipt system is not a logging feature. It is the core trust mechanism of the entire product.' },
             { title: 'Command-Line Speed + GUI Comfort', desc: 'Power users want keyboard shortcuts and a command bar. New users want buttons and visual cues. Clawed\u2019s Command Bar (\u2318K) bridges both worlds \u2014 a fuzzy-search interface that lets you type natural language or structured commands, with inline previews and one-keystroke execution. Every action available in the GUI is available in the command bar, and vice versa.' },
-            { title: 'Multi-Device Coherence', desc: 'The same user might ask Clawed something on their glasses while walking, approve the result on their phone at a stoplight, and review the receipt on their laptop at the office. The design system needed to be device-aware without being device-dependent \u2014 the same information architecture, adapted to each context, with state that syncs seamlessly across all three.' },
+            { title: 'Multi-Device Coherence', desc: 'The same user might ask Clawed something on their glasses while walking, approve the result on their phone at a stoplight, and review the receipt on their laptop at the office. The design system needed to be device-aware without being device-dependent \u2014 the same information architecture, adapted to each context, with state that stays consistent across all three.' },
           ]} />
         </CsSection>
 
@@ -208,7 +208,7 @@ export default function ClawedChatPage() {
             ]}
           />
           <details className="cs-details">
-            <summary className="cs-details-summary">Deep dive: How the safety architecture prevents accidental actions</summary>
+            <summary className="cs-details-summary">Safety architecture: How Clawed prevents accidental actions</summary>
             <div className="cs-details-content">
               <p>The safety architecture is built on three layers of protection that work together to eliminate accidental AI actions.</p>
               <p><strong>Layer 1: Permission boundaries.</strong> Each safety mode defines a hard boundary for what the AI can do. In Read Only, the AI literally cannot access send or execute functions &mdash; the API calls are blocked at the permission layer, not just hidden in the UI. This is not a cosmetic change. It is a structural one.</p>

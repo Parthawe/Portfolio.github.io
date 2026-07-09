@@ -45,7 +45,7 @@ const identityTabs = [
   {
     id: 'who-i-am',
     label: 'Who I am',
-    heading: 'Design engineer who turns ambiguous systems into trusted product experiences.',
+    heading: 'Product designer who turns ambiguous systems into trusted product experiences.',
     script: 'who i am',
   },
   {
@@ -183,6 +183,10 @@ export default function HomePage() {
           <section className="wr-featured-v2" id="works" style={{ position: 'relative' }}>
             <FigmaFrameLabel name="Featured Work" />
             <div className="wr-featured-v2-inner">
+              <div className="reveal">
+                <ClientsMarquee />
+              </div>
+
               <div className="wr-section-head">
                 <span className="wr-label">FLAGSHIP WORK</span>
                 <TextHighlight as="span" className="wr-section-highlight">Start with these four.</TextHighlight>
@@ -198,7 +202,7 @@ export default function HomePage() {
                   ]
                     .filter(Boolean)
                     .join(' / ');
-                  const hoverMedia = project.hoverMedia;
+                  const hoverMedia = ['mentra', 'jugalbandi'].includes(project.slug) ? undefined : project.hoverMedia;
 
                   return (
                   <div
@@ -226,9 +230,6 @@ export default function HomePage() {
                 })}
               </div>
 
-              <div className="reveal">
-                <ClientsMarquee />
-              </div>
             </div>
           </section>
 
@@ -265,31 +266,6 @@ export default function HomePage() {
                 <p className="wr-identity-script" aria-hidden="true">{activeIdentity.script}</p>
               </div>
 
-            </div>
-          </section>
-
-          <section className="wr-disciplines" id="disciplines" style={{ position: 'relative' }} ref={disciplinesRef}>
-            <FigmaFrameLabel name="Disciplines" />
-            <div className="wrap wr-disciplines-grid">
-              {disciplines.map((d, i) => (
-                <div
-                  key={d.slug}
-                  className="wr-motion-item wr-motion-item--discipline reveal"
-                  style={{ transitionDelay: `${i * 0.05}s` }}
-                >
-                  <Link to={d.link} className="wr-discipline-item figma-hover">
-                    <div className="wr-discipline-obj" aria-hidden="true">
-                      {mountDisciplineObjects ? (
-                        <Suspense fallback={null}>
-                          <CategoryObject3D slug={d.slug} size={80} />
-                        </Suspense>
-                      ) : null}
-                    </div>
-                    <span className="wr-discipline-label">{d.label}</span>
-                    <FigmaSelect />
-                  </Link>
-                </div>
-              ))}
             </div>
           </section>
 
@@ -382,6 +358,31 @@ export default function HomePage() {
                   <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section className="wr-disciplines" id="disciplines" style={{ position: 'relative' }} ref={disciplinesRef}>
+            <FigmaFrameLabel name="Disciplines" />
+            <div className="wrap wr-disciplines-grid">
+              {disciplines.map((d, i) => (
+                <div
+                  key={d.slug}
+                  className="wr-motion-item wr-motion-item--discipline reveal"
+                  style={{ transitionDelay: `${i * 0.05}s` }}
+                >
+                  <Link to={d.link} className="wr-discipline-item figma-hover">
+                    <div className="wr-discipline-obj" aria-hidden="true">
+                      {mountDisciplineObjects ? (
+                        <Suspense fallback={null}>
+                          <CategoryObject3D slug={d.slug} size={80} />
+                        </Suspense>
+                      ) : null}
+                    </div>
+                    <span className="wr-discipline-label">{d.label}</span>
+                    <FigmaSelect />
+                  </Link>
+                </div>
+              ))}
             </div>
           </section>
 

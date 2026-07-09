@@ -46,7 +46,7 @@ export default function TedxPage() {
           <div className="proj-overview-grid">
             <div className="proj-overview-body">
               <h2 className="section-label">The Challenge</h2>
-              <p className="proj-desc">TEDxVITPune is one of Pune&rsquo;s longest-running TEDx events, bringing together speakers, performers, and an audience of 800+ for a single day of ideas worth spreading. For the 2019 edition, the organizing committee wanted something the event had never attempted: a stage that was not just a backdrop, but a spatial experience &mdash; one that transformed throughout the day and reinforced the event&rsquo;s theme visually. The brief was open-ended and the budget was tight. Everything had to be designed, built, and installed by students within eight weeks.</p>
+              <p className="proj-desc">TEDxVITPune is one of Pune&rsquo;s longest-running TEDx events, bringing together speakers, performers, and an audience of 800+ for a single day of ideas worth spreading. For the 2019 edition, the organizing committee wanted something the event had never attempted: a stage that was not just a backdrop, but a spatial system that changed with the program and reinforced the event&rsquo;s theme visually. The brief was open-ended and the budget was tight. Everything had to be designed, built, and installed by students within eight weeks.</p>
             </div>
             <div className="proj-overview-body">
               <h2 className="section-label">My Role</h2>
@@ -64,7 +64,7 @@ export default function TedxPage() {
               <p>The visual identity for TEDxVITPune 2019 needed to honor the established TEDx brand guidelines while carving out a distinct personality for this edition. I developed a cohesive system that extended from digital collateral to the physical stage itself.</p>
             </CsBody>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '2rem', marginTop: '2.5rem' }}>
+            <div className="cs-adaptive-text-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '2rem', marginTop: '2.5rem' }}>
               <div>
                 <p className="cs-section-label" style={{ marginBottom: '0.5rem' }}>Color Palette</p>
                 <CsBody>
@@ -115,7 +115,7 @@ export default function TedxPage() {
             <p><strong>Weeks 3&ndash;4: Structural Design.</strong> Translated the stage concept into engineering drawings. Worked with local fabricators to source materials and validate structural feasibility. Built a 1:10 scale model to test sightlines and lighting angles from every section of the auditorium.</p>
             <p><strong>Weeks 5&ndash;6: Fabrication.</strong> Full-scale construction began. Columns were built from lightweight sheet materials over simple frames&mdash;cheap, fast to cut, and light enough for students to move and re-stack. The rotating stage platform was assembled and tested for smooth, silent rotation while the column clusters were painted and finished. The team worked in shifts across two workshops.</p>
             <p><strong>Week 7: Lighting &amp; Integration.</strong> Programmable LED strips were wired behind each parallax layer. Lighting scenes were programmed to match the event&rsquo;s session structure&mdash;warm tones for talks, cooler tones for performances, dynamic color shifts for transitions. The rotating mechanism was integrated with the lighting controller for synchronized reveals.</p>
-            <p><strong>Week 8: Install &amp; Event Day.</strong> The entire stage was transported and assembled in the venue over 48 hours. Final lighting calibration, sound checks, and a full technical rehearsal. On event day, I directed all visual elements live&mdash;stage rotations, lighting cues, and backdrop changes&mdash;ensuring the 800+ attendees experienced a seamless production.</p>
+            <p><strong>Week 8: Install &amp; Event Day.</strong> The entire stage was transported and assembled in the venue over 48 hours. Final lighting calibration, sound checks, and a full technical rehearsal. On event day, I directed all visual elements live&mdash;stage rotations, lighting cues, and backdrop changes&mdash;so the 800+ attendees saw each visual change land on cue.</p>
           </CsBody>
         </CsSection>
 

@@ -657,7 +657,7 @@ export default function SiteInteractionTools() {
   const [exportTarget, setExportTarget] = useState<ExportTarget>('selection')
   const [exportStatus, setExportStatus] = useState<'ready' | 'exporting' | 'done' | 'fallback'>('ready')
   const [comments, setComments] = useState<PortfolioComment[]>([])
-  const [commentsLoading, setCommentsLoading] = useState(false)
+  const [, setCommentsLoading] = useState(false)
   const [commentsError, setCommentsError] = useState('')
   const [draftComment, setDraftComment] = useState<CommentDraft | null>(null)
   const [activeCommentId, setActiveCommentId] = useState<string | null>(null)
@@ -1273,7 +1273,6 @@ export default function SiteInteractionTools() {
       if (key === 'v') { event.preventDefault(); setMode(null); setSelection(null) }
       else if (key === 'k') { event.preventDefault(); setMode('select'); setSelection(null) }
       else if (key === 'p' || key === 'b') { event.preventDefault(); setMode('paint') }
-      else if (key === 'c') { event.preventDefault(); setMode('comment') }
     }
 
     window.addEventListener('keydown', onKeyDown)
@@ -1774,7 +1773,6 @@ export default function SiteInteractionTools() {
                 <button type="button" onClick={() => setMode(null)} className={mode === null ? 'is-active' : ''} aria-label="Inspect page"><ToolIcon name="cursor" /></button>
                 <button type="button" onClick={() => beginMode('select')} className={mode === 'select' ? 'is-active' : ''} aria-label="Crop zoom area"><ToolIcon name="zoom" /></button>
                 <button type="button" onClick={() => beginMode('paint')} className={mode === 'paint' ? 'is-active' : ''} aria-label="Paint on page"><ToolIcon name="ink" /></button>
-                <button type="button" onClick={() => beginMode('comment')} className={mode === 'comment' ? 'is-active' : ''} aria-label="Add comment"><ToolIcon name="comment" /></button>
                 <button type="button" onClick={toggleGrid} className={gridEnabled ? 'is-active' : ''} aria-label="Toggle grid"><ToolIcon name="grid" /></button>
                 <button type="button" onClick={toggleDots} className={dotsEnabled ? 'is-active' : ''} aria-label="Toggle dots"><ToolIcon name="dots" /></button>
               </div>
@@ -2039,46 +2037,6 @@ export default function SiteInteractionTools() {
             <strong><ToolIcon name={dotsEnabled ? 'chevron-down' : 'plus'} /></strong>
           </button>
 
-          <section className="site-tools__section site-tools__section--comments" aria-labelledby="site-tool-comments-title">
-            <div className="site-tools__section-head">
-              <h3 id="site-tool-comments-title">Comments</h3>
-              <button type="button" className={mode === 'comment' ? 'is-active' : ''} onClick={() => beginMode('comment')} aria-label="Add a comment pin">
-                <ToolIcon name="comment" />
-              </button>
-            </div>
-            <p className="site-comments-help">
-              {mode === 'comment' ? 'Click anywhere on the page to pin a note.' : 'Pin feedback to exact spots on this page.'}
-            </p>
-            <div className="site-comments-status">
-              <span>{comments.length} shown</span>
-              <span>{commentStoreMode === 'database' ? 'Supabase' : 'Local fallback'}</span>
-            </div>
-            {comments.some(comment => comment.status === 'pending') && (
-              <p className="site-comments-muted">Your note is in — it appears publicly once approved.</p>
-            )}
-            {commentsLoading && <p className="site-comments-muted">Loading comments...</p>}
-            {commentsError && !draftComment && <p className="site-comments-error">{commentsError}</p>}
-            {!commentsLoading && comments.length > 0 && (
-              <div className="site-comments-list">
-                {comments.slice(-3).reverse().map((comment, index) => (
-                  <button
-                    key={comment.id}
-                    type="button"
-                    className={activeCommentId === comment.id ? 'is-active' : ''}
-                    onClick={() => {
-                      setActiveCommentId(comment.id)
-                      setDraftComment(null)
-                    }}
-                  >
-                    <span>{comments.length - index}</span>
-                    <strong>{comment.authorName}{comment.status === 'pending' ? ' · pending' : ''}</strong>
-                    <em>{comment.body}</em>
-                  </button>
-                ))}
-              </div>
-            )}
-          </section>
-
           <section className="site-tools__section site-tools__section--export" aria-labelledby="site-tool-export-title">
             <div className="site-tools__section-head">
               <h3 id="site-tool-export-title">Export</h3>
@@ -2149,18 +2107,6 @@ export default function SiteInteractionTools() {
             </div>
           )}
         </div>
-        <button
-          type="button"
-          className={`site-figbar__btn${mode === 'comment' ? ' is-active' : ''}`}
-          onClick={() => beginMode('comment')}
-          aria-label="Pin a comment"
-          title="Comment (C)"
-        >
-          <ToolIcon name="comment" />
-        </button>
-
-        <span className="site-figbar__divider" aria-hidden="true" />
-
         <button
           type="button"
           className={`site-figbar__btn${gridEnabled ? ' is-active' : ''}`}

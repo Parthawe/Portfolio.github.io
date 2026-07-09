@@ -182,7 +182,7 @@ export default function AtpsPage() {
             </div>
             <CsCallout style={{ textAlign: 'center', marginTop: '3rem', borderLeft: 'none', borderRadius: '12px', background: 'var(--bg-alt)' }}>
               <p><strong>Podcast Every Friday</strong></p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem', marginTop: '1rem' }}>
+              <div className="cs-callout-metric-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem', marginTop: '1rem' }}>
                 <div>
                   <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--ink-40)', marginBottom: '0.3rem' }}>WHAT YOU GAIN?</div>
                   <div style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.5rem,3vw,2rem)' }}>Art</div>

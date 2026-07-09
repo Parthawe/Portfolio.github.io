@@ -449,16 +449,15 @@
 }
 
 .work-timeline-rail {
-  position: fixed;
-  top: calc(var(--nav-h) + 1rem);
-  left: clamp(3rem, 5.4vw, 4.9rem);
+  position: sticky;
+  top: calc(var(--nav-h) + 3rem);
   width: clamp(180px, 16vw, 230px);
   align-self: start;
   display: grid;
   gap: 0.9rem;
   padding: 1rem;
   border-radius: 20px;
-  max-height: calc(100dvh - var(--nav-h) - 2rem);
+  max-height: calc(100dvh - var(--nav-h) - 4rem);
   overflow: auto;
   overscroll-behavior: contain;
   z-index: 4;
@@ -1356,23 +1355,16 @@
   .work-bottom-nav {
     top: calc(var(--nav-h) + 2.75rem);
     bottom: auto;
-    left: max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem));
-    right: max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem));
-    transform: none;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     justify-content: flex-start;
-    width: fit-content;
-    max-width: min(
-      980px,
-      calc(
-        100vw
-        - max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem))
-        - max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem))
-      )
-    );
+    width: max-content;
+    max-width: calc(100vw - 2rem - (var(--ruler-inline-offset, 0px) * 2));
   }
 
   .work-bottom-nav.is-hidden {
-    transform: translateY(-16px);
+    transform: translateX(-50%) translateY(-16px);
   }
 }
 
@@ -1380,16 +1372,16 @@
   .work-bottom-nav {
     top: calc(var(--nav-h) + 2.75rem);
     bottom: auto;
-    left: max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem));
-    right: max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem));
-    transform: none;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     justify-content: flex-start;
-    width: auto;
-    max-width: none;
+    width: max-content;
+    max-width: calc(100vw - 2rem - (var(--ruler-inline-offset, 0px) * 2));
   }
 
   .work-bottom-nav.is-hidden {
-    transform: translateY(-16px);
+    transform: translateX(-50%) translateY(-16px);
   }
 }
 

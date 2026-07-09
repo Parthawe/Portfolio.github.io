@@ -72,7 +72,7 @@ export default function MentraPage() {
     <>
       <Helmet>
         <title>Mentra · Parth Pawar</title>
-        <meta name="description" content="Mentra Glass, Designing the OS, companion app, MiniApp Store, and launch website for AI-powered smart glasses. Case study by Parth Pawar, Head of UI/UX." />
+        <meta name="description" content="Mentra Glass, designing the OS, companion app, MiniApp Store, and launch website for AI smart glasses. Case study by Parth Pawar, Head of UI/UX." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra · Parth Pawar" />
         <meta property="og:description" content="Designing the OS, companion app, MiniApp Store, developer platform, and launch website for Mentra smart glasses." />
@@ -103,20 +103,20 @@ export default function MentraPage() {
         backLabel="Back to Work"
         tags={['AI Wearables', 'Head of UI/UX', '0→1 Product', 'Launch Website']}
         title="Mentra"
-        subtitle="Designing the OS, companion app, miniapp store, and launch website that turn AI glasses from a hardware demo into a daily platform"
+        subtitle="Designing the OS, companion app, MiniApp Store, and launch site for AI smart glasses"
         info={[
-          { label: 'Role', value: 'Head of UI/UX (design team of 1, owning product UX, platform surfaces, and website story)' },
+          { label: 'Role', value: 'Head of UI/UX, design team of 1' },
           { label: 'Timeline', value: 'Q3 2025 \u2013 Present (ongoing)' },
           { label: 'Team', value: '1 designer (me) + 4 engineers + product lead + hardware team' },
           { label: 'Platform', value: 'Wearable OS, Mobile, Web' },
         ]}
         liveUrl="https://mentraglass.com"
         heroImage="/Portfolio.github.io/Assets/images/mentra/render-camera-detail.webp"
-        heroAlt="Mentra Glass, AI-powered smart glasses with camera detail and Mentra logo"
+        heroAlt="Mentra Glass, AI smart glasses with camera detail and Mentra logo"
         heroExperience="visual"
         heroTone="mentra"
         heroEyebrow="Mentra / wearable OS"
-        visualSummary="The OS, companion app, and miniapp store that turn smart glasses into a daily platform."
+        visualSummary="The product system that makes AI glasses usable after unboxing."
         visualHeroImage="/Portfolio.github.io/Assets/images/mentra/render-transparent.webp"
         visualHeroAlt="Transparent render of Mentra Glass floating over a dark interface field"
         liveLabel="Open Mentra"
@@ -131,24 +131,23 @@ export default function MentraPage() {
         />
 
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
-        <CsSection id="cs-context" label="Context" title="A Decade of Expensive Failures">
+        <CsSection id="cs-context" label="Context" title="The Problem Was Software, Not Glass">
           <CsBody>
-            <p>Before designing forward, I studied backward. Smart glasses have a decade-long trail of ambitious launches and quiet discontinuations. The pattern never varies: a hardware company ships something technically impressive, bundles a companion app with three features, and waits for the &ldquo;ecosystem&rdquo; to magically appear. It never does.</p>
-            <p>Google Glass had the sensors but no software story. Snap Spectacles had the brand but no utility past fifteen-second clips. North Focals had the elegance but no reason to exist past the first week. Every one treated software as an afterthought and developers as an audience that would show up uninvited.</p>
-            <p>The lesson: smart glasses without an ecosystem are an expensive accessory with a charging cable.</p>
+            <p>Most smart glasses proved the hardware could work. Few proved why people should keep wearing them.</p>
+            <p>I mapped the failure pattern across Google Glass, Spectacles, and Focals: weak setup, unclear daily utility, no developer loop, and privacy trust handled too late.</p>
+            <p>Mentra needed to feel like a platform on day one, not a gadget waiting for software.</p>
           </CsBody>
           <CsPullquote
-            quote="Every smart glasses company before us shipped hardware and hoped software would follow. We designed the software ecosystem first and built the hardware to serve it."
+            quote="The product had to answer one question fast: what can these glasses do for me today?"
             cite="Mentra founding thesis"
           />
         <CsImage src="/Portfolio.github.io/Assets/images/mentra/glasses-angle.png" alt="Mentra Live smart glasses, three-quarter angle showing camera module and Mentra logo on temple" />
         </CsSection>
 
-        <CsSection id="cs-bet" label="The Bet" title="What Android Did for Phones, MentraOS Does for Glasses">
+        <CsSection id="cs-bet" label="The Bet" title="Make the Glasses Feel Like a Platform">
           <CsBody>
-            <p>Mentra&rsquo;s thesis is simple and radical: smart glasses need an open-source OS and a developer marketplace to become a daily-wear platform. Not a better camera. Not a lighter frame. An ecosystem.</p>
-            <p>MentraOS is that ecosystem, open-source, community-driven, designed from the ground up for face-worn computing. The MiniApp Store gives developers a place to publish, users a place to discover, and the platform a reason to grow beyond what any single company could build alone.</p>
-            <p>The bet: the smart glasses that win will not have the best specs on paper. They will have the best app on your face, built by someone you have never met, for a problem only you have, found in a store that runs on your glasses.</p>
+            <p>Mentra&rsquo;s bet: open OS, real apps, simple setup, and a website that makes the platform easy to trust.</p>
+            <p>I designed across the whole surface: companion app, on-glasses patterns, MiniApp Store, developer story, launch site, and privacy cues.</p>
           </CsBody>
           <CsFlowDiagram
             title="The Mentra Ecosystem"
@@ -161,51 +160,52 @@ export default function MentraPage() {
           />
         </CsSection>
 
-        <CsSection id="cs-challenges" label="Design Challenges" title="Four Problems Nobody Had Cracked">
+        <CsSection id="cs-challenges" label="Design Challenges" title="The Design Constraints">
           <CsBody>
-            <p>Smart glasses are not &ldquo;mobile design but smaller.&rdquo; The screen is in your peripheral vision, the input is voice and gesture, and the context is the real world. Every assumption from a decade of screen design had to be thrown out.</p>
+            <p>Glasses are not a smaller phone. The user is moving, looking elsewhere, and sharing space with other people.</p>
           </CsBody>
           <CsFeatureGrid features={[
-            { title: 'The Screen You Never Look At', desc: 'The display lives in peripheral vision, not dead center. UI elements must be glanceable, not readable. Hierarchy is about where in the visual field something appears, not font size.' },
-            { title: 'Sixty Seconds or You Lose Them', desc: 'New form factor, zero patience. I designed a four-step onboarding that gets users from unboxing to first interaction in under a minute. No tutorials, no walkthrough. Wear them and talk.' },
-            { title: "If They Won't Build, Nothing Else Matters", desc: "An app store is only as good as its apps. I designed the SDK docs, developer portal, and submission flow to make building for glasses feel as natural as building for phones." },
-            { title: 'A Camera on Your Face Is a Social Contract', desc: 'Post-Google-Glass, face-worn cameras carry social baggage. I designed visual indicators, privacy modes, and interaction patterns that build trust with both the wearer and everyone in the room.' },
+            { title: 'Peripheral Display', desc: 'UI must be understood in a glance, without asking the user to stare.' },
+            { title: 'Zero-Patience Setup', desc: 'I reduced onboarding from 12 steps to 4, aiming for first interaction in under a minute.' },
+            { title: 'Developer Gravity', desc: 'The store, docs, and submission flow had to make glasses feel worth building for.' },
+            { title: 'Visible Trust', desc: 'Camera, permissions, and privacy states needed to be legible to the wearer and the room.' },
           ]} />
           <CsImage src="/Portfolio.github.io/Assets/images/mentra/render-temple-detail.webp" alt="Mentra Live temple detail, close-up of hinge mechanism, USB-C port, and Mentra logo" />
         </CsSection>
 
-        <CsSection id="cs-companion" label="Companion App" title="The Control Center in Your Pocket">
+        <CsSection id="cs-companion" label="Companion App" title="Setup Without the Usual Bluetooth Pain">
           <CsBody>
-            <p>The companion app is not a remote control, it is the bridge between your phone and your face. It handles everything the glasses should not: deep configuration, miniapp management, firmware updates, AI settings.</p>
-            <p>Pairing was the first interaction I obsessed over. Bluetooth pairing is traditionally a five-minute frustration. I designed a one-tap flow, scan the QR code on the glasses case, connection established, personalized home screen, all in under thirty seconds.</p>
+            <p>The companion app handles what the glasses should not: pairing, settings, firmware, MiniApps, AI preferences, and privacy controls.</p>
+            <p>I focused the first-run flow on one job: scan, pair, wear, speak.</p>
           </CsBody>
           <CsSteps steps={[
-            { num: 1, title: 'Slide On', desc: 'Unfold the temples and the glasses power on. The accelerometer detects the motion and boots MentraOS in under two seconds.' },
-            { num: 2, title: 'Download App', desc: 'A card in the display directs you to download the companion app. NFC in the case triggers the download on Android.' },
-            { num: 3, title: 'Pair', desc: 'Scan the QR code. One tap to confirm. The phone and glasses handshake over Bluetooth LE and the connection is persistent.' },
-            { num: 4, title: '"Hey Mentra"', desc: 'The wake word activates the AI. Directions, translation, song ID, calendar, the first interaction sets the tone.' },
+            { num: 1, title: 'Wear', desc: 'Open the temples and the device wakes.' },
+            { num: 2, title: 'Scan', desc: 'Use the QR code on the case to start pairing.' },
+            { num: 3, title: 'Confirm', desc: 'One tap connects phone and glasses.' },
+            { num: 4, title: 'Ask', desc: 'The first voice interaction proves the value.' },
           ]} />
           <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
           <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
           <CsBody style={{ marginTop: '2rem' }}>
-            <p>Beyond onboarding, the app is the management layer for the entire ecosystem: browse miniapps, configure per-app notifications, adjust display settings, manage privacy. I built it on a single-tab architecture, everything is two taps away.</p>
+            <p>After setup, the app becomes the control layer: MiniApps, display, notifications, AI settings, and privacy in two taps.</p>
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-os" label="MentraOS" title="An OS That Disappears Until You Need It">
+        <CsSection id="cs-os" label="MentraOS" title="Glance, Don&rsquo;t Gaze">
           <CsBody>
-            <p>MentraOS is open-source, a product decision that became the defining design constraint. An open OS means developers will build things I cannot predict, on a display I cannot control, for users I will never meet. The design system had to be opinionated enough to feel cohesive and flexible enough for miniapps that do not exist yet.</p>
-            <p>The HUD operates on a principle I call &ldquo;glance, don&rsquo;t gaze.&rdquo; Every piece of information must be understood in under two seconds of peripheral attention.</p>
+            <p>MentraOS had to support apps I could not predict, on a display people should barely look at.</p>
+            <p>The design principle became simple: every state must be understood in under two seconds of peripheral attention.</p>
           </CsBody>
           <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
           <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/companion-model-select.png" alt="Mentra companion app model selection screen shown on a phone held in hand" />
           <h3 className="cs-section-subtitle">Voice-First, Screen-Second</h3>
           <CsBody>
-            <p>Voice is the primary input. The AI handles natural language queries, contextual responses from the camera feed, and proactive suggestions from time and location. Visual feedback is minimal by design: a thin amber waveform that pulses while listening and settles when processing.</p>
+            <p>Voice carries the intent. The display only confirms state, progress, and response. That kept the HUD quiet.</p>
           </CsBody>
           <h3 className="cs-section-subtitle">Notification Architecture</h3>
           <CsBody>
-            <p>On glasses, every notification competes with reality. I designed three tiers: ambient (subtle color shift at the frame edge), informational (translucent one-line card), and urgent (persistent card with haptic pulse requiring voice dismissal). Users assign tiers per app, and MentraOS learns from behavior.</p>
+            <p>Every notification competes with the real world. I designed three tiers so apps could signal without hijacking attention.</p>
           </CsBody>
           <CsCompareTable
             title="Notification Tiers"
@@ -234,30 +234,31 @@ export default function MentraPage() {
           </div>
         </section>
 
-        <CsSection id="cs-store" label="MiniApp Store" title="The App Store That Lives on Your Face">
+        <CsSection id="cs-store" label="MiniApp Store" title="Apps Without Phone-Style Browsing">
           <CsBody>
-            <p>This is what separates Mentra from everything else. Meta Ray-Ban Gen 2 is a closed system; Mentra is an open marketplace where any developer can ship, and the on-glasses store is voice-navigated and context-curated rather than an icon grid.</p>
+            <p>The MiniApp Store makes Mentra an ecosystem, not a closed device.</p>
+            <p>Discovery is voice-led and intent-led because nobody wants to browse a tiny app grid in their peripheral vision.</p>
             <p><Link to="/mentra-miniapps">The store has its own case study &rarr;</Link></p>
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-timeline" label="Design Evolution" title="From Zero to Shipping Product">
+        <CsSection id="cs-timeline" label="Design Evolution" title="From Blank Category to Shipping System">
           <CsBody>
-            <p>Building the UX for an entirely new product category meant evolving the design as our understanding of face-worn computing deepened. Here is how the product and its design language matured.</p>
+            <p>The design moved from category research to shipped surfaces across hardware, app, OS, store, and web.</p>
           </CsBody>
           <CsTimeline items={[
-            { date: 'Q3 2025', title: 'Foundation & Research', desc: 'Competitive audit of every smart glasses product since Google Glass. Established core UX principles: glance-not-gaze, voice-first input, and peripheral-priority information hierarchy. Built the initial design system for MentraOS.' },
-            { date: 'Q3\u2013Q4 2025', title: 'Companion App & Onboarding', desc: 'Designed and iterated the companion app from wireframes to high-fidelity. Reduced the onboarding flow from twelve steps to four. Validated the one-tap QR pairing pattern with hardware prototypes.' },
-            { date: 'Q4 2025', title: 'MentraOS HUD & Notification System', desc: 'Developed the three-tier notification architecture. Iterated the HUD layout through Protopie simulations and on-device testing. Established the amber waveform as the AI\'s visual signature.' },
-            { date: 'Q4 2025\u2013Q1 2026', title: 'MiniApp Store & Developer Platform', desc: 'Shipped the MiniApp Store design with voice-navigated browsing. Built the developer portal, SDK documentation, and submission flow. Designed the review and curation system.' },
-            { date: 'Q1 2026', title: 'Launch & Iteration', desc: 'Mentra Glass shipped at $299 with Batch 2 at 88% pre-orders claimed. Ongoing iteration on the design system based on developer and user feedback.' },
+            { date: 'Q3 2025', title: 'Research + System Principles', desc: 'Audited the category and set the core rules: glance-not-gaze, voice-first, peripheral-priority.' },
+            { date: 'Q3\u2013Q4 2025', title: 'Companion App + Onboarding', desc: 'Designed the app and reduced setup from 12 steps to 4.' },
+            { date: 'Q4 2025', title: 'OS Patterns', desc: 'Designed HUD states, notification tiers, and the AI listening signature.' },
+            { date: 'Q4 2025\u2013Q1 2026', title: 'MiniApp Store + Developer Flow', desc: 'Designed discovery, permissions, store listings, and submission surfaces.' },
+            { date: 'Q1 2026', title: 'Launch + Iteration', desc: 'Shipped launch surfaces and kept iterating from user and developer feedback.' },
           ]} />
         </CsSection>
 
-        <CsSection id="cs-website" label="Live Product" title="mentraglass.com, The Marketing Site I Designed">
+        <CsSection id="cs-website" label="Live Product" title="The Website Had to Sell the Platform">
           <CsBody>
-            <p>The current marketing site mirrors the product philosophy: show, don&rsquo;t tell. It now leads with field-team deployment, custom AI workflows, open-source SDK control, MiniApps, comparison, support, and hardware specs presented with the clarity buyers and developers both expect.</p>
-            <p>The key design move was sequencing. Start with the work the product improves, prove the hardware and platform second, then ask for action only after the visitor has enough concrete evidence to trust the claim.</p>
+            <p>The site had to move Mentra out of &ldquo;cool gadget&rdquo; territory and into a work platform with clear use cases, specs, and developer surfaces.</p>
+            <p>I sequenced the story around field use, custom AI workflows, open-source SDK control, MiniApps, specs, support, and buying confidence.</p>
           </CsBody>
           <CsStatGrid
             style={{ margin: '2rem 0' }}
@@ -272,20 +273,20 @@ export default function MentraPage() {
           <div style={{ marginTop: '2rem' }}>
             <CsFeatureGrid
               features={[
-                { title: 'Field work comes first', desc: 'The site leads with hands-free capture and AI assistance during real operational work, not futurist hardware language.' },
-                { title: 'Developer control is clearer', desc: 'Open-source SDK, custom AI applications, app distribution, and MiniApp support read as platform reasons to choose Mentra.' },
-                { title: 'Buying risk is lower', desc: 'Price, shipping window, return policy, warranty, support, and comparison details answer practical questions earlier.' },
-                { title: 'The competitive frame is sharper', desc: 'The comparison against closed consumer smart glasses makes Mentra look like a work platform rather than a lifestyle gadget.' },
+                { title: 'Field work first', desc: 'Led with hands-free capture and AI help during real operations.' },
+                { title: 'Platform proof', desc: 'Explained SDK, custom apps, MiniApps, and distribution as reasons to choose Mentra.' },
+                { title: 'Lower buying risk', desc: 'Moved price, shipping, returns, warranty, specs, and support into the decision path.' },
+                { title: 'Sharper positioning', desc: 'Framed Mentra against closed consumer glasses as an open work platform.' },
               ]}
             />
           </div>
           <div style={{ marginTop: '2rem' }}>
             <CsInfoGrid
               items={[
-                { key: 'Hero', value: 'Defines the product around field work, custom AI applications, and deployable smart-glasses utility.' },
-                { key: 'Product proof', value: 'Shows the glasses, capture flow, app surfaces, and work contexts instead of leaning on abstract claims.' },
-                { key: 'Platform layer', value: 'Explains open-source SDK control, MiniApp distribution, and custom workflows as business value.' },
-                { key: 'Specs + support', value: 'Answers buyer questions about price, fulfillment, battery, camera, prescription, returns, warranty, and support.' },
+                { key: 'Hero', value: 'Field work, custom AI, and deployable utility.' },
+                { key: 'Product proof', value: 'Hardware, app surfaces, capture flow, and work contexts.' },
+                { key: 'Platform layer', value: 'SDK control, MiniApps, distribution, and custom workflows.' },
+                { key: 'Specs + support', value: 'Price, battery, camera, prescription, returns, warranty, and help.' },
               ]}
             />
           </div>
@@ -293,7 +294,7 @@ export default function MentraPage() {
 
         <CsSection id="cs-impact" label="Impact" title="Shipping, Not Pitching">
           <CsBody style={{ marginBottom: '2rem' }}>
-            <p>Mentra Live is not a concept deck. It launched at $299 and is currently $349, backed by the founders of YouTube, Android, and Pebble, plus Y Combinator, Amazon, and Toyota Ventures. Press coverage spans Forbes, GamesBeat, Gizmodo, Android Police, and 9to5Google.</p>
+            <p>Mentra is live, priced, backed, covered, and shipping. My work turned the product from hardware promise into a usable platform story.</p>
           </CsBody>
           <CsStatGrid
             style={{ marginBottom: '2rem' }}
@@ -311,21 +312,21 @@ export default function MentraPage() {
 
         <CsSection id="cs-learnings" label="Key Learnings" title="What Building for the Face Taught Me">
           <CsFeatureGrid features={[
-            { title: 'World-first design is a different discipline', desc: 'On a phone, the screen is the world. On glasses, the world is the screen. Every decision starts with: does this help the user engage with reality, or pull them away?' },
-            { title: 'Constraint is the best creative force', desc: 'A peripheral display, 43 grams, voice-first input, no hover states, no scroll, no tap targets. What remains is the essence of the information.' },
-            { title: 'Open ecosystems demand opinionated systems', desc: 'The more open the platform, the more disciplined the design language must be. Permissiveness at the app level requires precision at the system level.' },
-            { title: 'Trust has to be glanceable too', desc: 'Privacy indicators, recording lights, clear permissions, these are not features. Like the peripheral HUD itself, they only work if everyone in the room can read them in a glance.' },
+            { title: 'Reality is the canvas', desc: 'On glasses, design should support the world, not replace it.' },
+            { title: 'Less UI is more trust', desc: 'The best state is often a small confirmation, not another screen.' },
+            { title: 'Open systems need rules', desc: 'A developer ecosystem only works when the system language stays disciplined.' },
+            { title: 'Privacy must be visible', desc: 'Trust cues have to work for the wearer and everyone nearby.' },
           ]} />
         </CsSection>
 
-        <CsSection id="cs-whats-next" label="What&rsquo;s Next" title="The Road Ahead for Mentra">
+        <CsSection id="cs-whats-next" label="What&rsquo;s Next" title="Roadmap">
           <CsBody>
-            <p>Mentra is shipping and iterating. The v1 platform is live with first-party apps, and the immediate roadmap focuses on depth rather than breadth &mdash; making what exists work better before expanding the surface area.</p>
+            <p>Next is depth: smarter notifications, stronger developer onboarding, and accessibility patterns that make the glasses useful in real life.</p>
           </CsBody>
           <CsSteps steps={[
-            { num: '1', title: 'Notification Intelligence', desc: 'V1 notifications use manual user-assigned tiers. The next iteration adds behavioral learning: if a user consistently dismisses a certain app\u2019s informational notifications, the OS should auto-downgrade them to ambient. This requires careful UX for overrides and transparency.' },
-            { num: '2', title: 'Third-Party Developer Onboarding', desc: 'The SDK and docs exist but have only been tested with the internal team. The next design challenge: make the submission flow, review process, and store listing experience good enough that independent developers choose to build for glasses when the audience is still small.' },
-            { num: '3', title: 'Accessibility Foundations', desc: 'Real-time captioning and audio descriptions are on the roadmap but require partnership with the hardware team on microphone and speaker capabilities. My role: design the interaction patterns now so they are ready when the hardware supports them.' },
+            { num: '1', title: 'Notification Intelligence', desc: 'Use behavior to tune interruption levels without hiding control.' },
+            { num: '2', title: 'Developer Onboarding', desc: 'Make submission, review, and store listings easier for first external builders.' },
+            { num: '3', title: 'Accessibility Foundations', desc: 'Design captioning and audio-description patterns ahead of hardware support.' },
           ]} />
         </CsSection>
 

@@ -16,10 +16,10 @@ export default function RevolvingStagePage() {
     <>
       <Helmet>
         <title>Revolving Stage &middot; Parth Pawar</title>
-        <meta name="description" content="Designed and engineered a revolving stage for a theatre play at Firodia Karandak. A 15 ft. rotating platform supporting 250+ kgs, enabling seamless scene transitions for a 65+ person production." />
+        <meta name="description" content="Designed and engineered a revolving stage for a theatre play at Firodia Karandak. A 15 ft. rotating platform supporting 250+ kgs, built for scene changes without blackout in a 65+ person production." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Revolving Stage &middot; Parth Pawar" />
-        <meta property="og:description" content="Engineered a 15 ft. revolving stage for theatre, supporting 250+ kgs with seamless scene transitions." />
+        <meta property="og:description" content="Engineered a 15 ft. revolving stage for theatre, supporting 250+ kgs and changing scenes without blackout." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/revolving-stage.webp" />
       </Helmet>
 
@@ -33,7 +33,7 @@ export default function RevolvingStagePage() {
           backLabel="Back to Work"
           tags={['Fabrication', 'Engineering', 'Art Direction']}
           title={'Designing Revolving Stage\nFor Theatre Play'}
-          subtitle="Engineering a 15 ft. rotating platform supporting 250+ kgs for seamless scene transitions"
+          subtitle="Engineering a 15 ft. rotating platform supporting 250+ kgs for scene changes without blackout"
           info={[
             { label: 'Client', value: 'Firodia Karandak' },
             { label: 'Scope of Work', value: 'Design, Production, Engineering' },
@@ -177,8 +177,8 @@ export default function RevolvingStagePage() {
         <CsSection id="cs-result" label="Result" title={'In \u2013 Action'}>
           <CsBody>
             <p>The revolving stage in live performance &mdash; capturing scene transitions, actor interactions, and the dynamic set changes during the theatrical play at Firodia Karandak.</p>
-            <p>During the performance, the stage executed over a dozen rotations across seven scene changes, each completed in under fifteen seconds. The backstage crew operated the rotation manually using a concealed push bar, with cue lights coordinated through the stage manager. The silent caster wheels proved essential &mdash; audience members later reported being unaware of the mechanical system beneath the set, perceiving the transitions as seamless and almost magical.</p>
-            <p>The most dramatic moment came during the climactic scene change, where the stage rotated a full 135 degrees while actors remained on the platform, continuing their dialogue as the environment transformed around them. This technique, borrowed from professional revolving stages used in Broadway and West End productions, was adapted to work within the budget and material constraints of a college-level competition &mdash; demonstrating that theatrical ambition does not require a professional-grade budget, only careful engineering and creative problem-solving.</p>
+            <p>During the performance, the stage executed over a dozen rotations across seven scene changes, each completed in under fifteen seconds. The backstage crew operated the rotation manually using a concealed push bar, with cue lights coordinated through the stage manager. The silent caster wheels proved essential &mdash; audience members later reported being unaware of the mechanical system beneath the set.</p>
+            <p>The most dramatic moment came during the climactic scene change, where the stage rotated a full 135 degrees while actors remained on the platform, continuing their dialogue as the set changed around them. This technique, borrowed from professional revolving stages used in Broadway and West End productions, was adapted to work within the budget and material constraints of a college-level competition, showing that theatrical ambition can survive college-budget constraints when the mechanism is engineered carefully.</p>
           </CsBody>
         </CsSection>
 

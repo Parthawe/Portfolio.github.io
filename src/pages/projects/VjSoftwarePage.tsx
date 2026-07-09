@@ -17,7 +17,7 @@ export default function VjSoftwarePage() {
     <>
       <Helmet>
         <title>VJ Parivar &middot; Parth Pawar</title>
-        <meta name="description" content="Designing the digital forefront of Vilas Javdekar, a vehicle parking management app for homeowners in VJ residential societies. User research, UI/UX design and prototyping for a seamless parking experience." />
+        <meta name="description" content="Vehicle parking management app for homeowners in Vilas Javdekar residential societies, covering user research, UI/UX design, and prototyping." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VJ Software &middot; Parth Pawar" />
         <meta property="og:description" content="Vehicle parking management app for VJ residential societies, user research, UI/UX and prototyping." />

@@ -107,7 +107,7 @@ export default function OrgDashboardPage() {
           </CsBody>
           <h3 className="cs-section-subtitle">3. Progressive Trust Through Action Tiers</h3>
           <CsBody>
-            <p>The action system was the most critical trust design. Reading data is free &mdash; agents should never hesitate to gather context. Writing to the knowledge base is auto-approved &mdash; building shared knowledge should be frictionless. But external actions &mdash; sending emails, posting to Slack, creating tickets, making purchases &mdash; enter an approval queue.</p>
+            <p>The action system was the most critical trust design. Reading data is free &mdash; agents should never hesitate to gather context. Writing to the knowledge base is auto-approved &mdash; agents can build shared knowledge without interrupting a human for every note. But external actions &mdash; sending emails, posting to Slack, creating tickets, making purchases &mdash; enter an approval queue.</p>
             <p>The approval interface had to be fast enough that humans don&rsquo;t become bottlenecks, but informative enough that they can make confident decisions. Each pending action shows the full context: what the agent wants to do, why it proposed it, and what data it used to make the decision.</p>
           </CsBody>
           <CsCallout>
@@ -140,7 +140,7 @@ export default function OrgDashboardPage() {
             <p>OrgDashboard lives across four distinct surfaces. Each was designed for its specific context while sharing a unified data model and design language.</p>
           </CsBody>
           <CsSteps steps={[
-            { num: '1', title: 'Web Dashboard', desc: 'The human-facing interface. React SPA with Clerk auth, connection management via Composio, knowledge explorer, action approval queue, and synthesized org dashboards. Sidebar navigation with seamless org switching.' },
+            { num: '1', title: 'Web Dashboard', desc: 'The human-facing interface. React SPA with Clerk auth, connection management via Composio, knowledge explorer, action approval queue, and synthesized org dashboards. Sidebar navigation keeps org switching in the same workflow.' },
             { num: '2', title: 'CLI', desc: 'The org command that agents use to interact with the platform. Granular KB operations (search, create, update, append, replace), data reading from connected sources, and action proposals. Published to npm.' },
             { num: '3', title: 'MCP Server', desc: 'Maps 1:1 to CLI commands. When added to Claude Code, Zed, or Cursor, the agent gains all OrgDashboard capabilities as native MCP tools. Zero configuration beyond the API key.' },
             { num: '4', title: 'Knowledge Base', desc: 'The shared brain. MongoDB-backed, schema-flexible. Stores entities, SOPs, skills, context, and agent-discovered insights. All writes are versioned with full edit history and rollback capability.' },

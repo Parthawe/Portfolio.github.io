@@ -189,10 +189,10 @@ export const categories: CategoryData[] = [
     title: 'UX',
     titleAccent: 'Design',
     description:
-      'Product design spanning fintech, AI, enterprise SaaS, and consumer platforms, turning complex systems into intuitive, user-centered experiences.',
+      'Product design across fintech, AI, enterprise SaaS, and consumer platforms, with flows that make risk, status, and next steps clear.',
     metaTitle: 'UX Design · Parth Pawar',
     metaDescription:
-      'Product design spanning fintech, AI, enterprise SaaS, and consumer platforms, turning complex systems into intuitive, user-centered experiences.',
+      'Product design across fintech, AI, enterprise SaaS, and consumer platforms, with flows that make risk, status, and next steps clear.',
     stats: ['6 products shipped', 'high-stakes payment systems', '5+ years'],
     tools: [
       'Figma',
@@ -254,11 +254,11 @@ export const categories: CategoryData[] = [
           image: '/Portfolio.github.io/Assets/images/code-for-build.jpg',
           alt: 'Code for Build',
           name: 'Code for Build',
-          result: 'Brand system and developer platform for Istanbul open-source startup',
+          result: 'Mobile-first coding education concept using 3D building blocks',
           role: 'Designer · 2021',
           tag: 'UX DESIGN',
           year: '2021',
-          desc: 'Brand system and developer platform for Istanbul open-source startup',
+          desc: 'Mobile-first coding education concept using 3D building blocks',
         },
       ],
       [
@@ -286,7 +286,7 @@ export const categories: CategoryData[] = [
         {
           num: '02',
           title: 'Systems over screens',
-          desc: 'Scalable design systems for consistency across teams.',
+          desc: 'Component systems that keep patterns consistent across teams.',
         },
         {
           num: '03',
@@ -415,7 +415,7 @@ export const categories: CategoryData[] = [
         {
           num: '02',
           title: 'Playful interaction',
-          desc: 'Curiosity-first, delightful technology.',
+          desc: 'Curiosity-first technology with clear feedback loops.',
         },
         {
           num: '03',
@@ -501,11 +501,11 @@ export const categories: CategoryData[] = [
           image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg',
           alt: 'Sculpture',
           name: 'Sculpture',
-          result: 'Competition sculptures for Firodia Karandak, Pune',
+          result: 'Competition sculpture glimpse from beginner practice to finished piece',
           role: 'Sculptor · 2020',
           tag: 'SCULPTURE',
           year: '2020',
-          desc: 'Competition sculptures for Firodia Karandak, Pune',
+          desc: 'Competition sculpture glimpse from beginner practice to finished piece',
         },
       ],
       [
@@ -771,11 +771,11 @@ export const categories: CategoryData[] = [
           image: '/Portfolio.github.io/Assets/images/office-of-diversity.webp',
           alt: 'Office of Diversity',
           name: 'Office of Diversity',
-          result: 'IDBEA report and interactive timeline, WCAG 2.1 AA compliant',
+          result: 'Accessible web report structure for NYU Tisch IDBEA content',
           role: 'Designer · 2023–24',
           tag: 'EDUCATION',
           year: '2024',
-          desc: 'IDBEA report and interactive timeline, WCAG 2.1 AA compliant',
+          desc: 'Accessible web report structure for NYU Tisch IDBEA content',
         },
       ],
     ],
@@ -811,10 +811,10 @@ export const categories: CategoryData[] = [
     title: 'Crypto',
     titleAccent: '& Web3',
     description:
-      'Building secure, user-friendly interfaces that make DeFi tools, cross-border payments, and blockchain products accessible to everyone.',
+      'Designing secure interfaces for DeFi tools, cross-border payments, and blockchain products, with fees, status, and recovery visible.',
     metaTitle: 'Crypto & Web3 Design · Parth Pawar',
     metaDescription:
-      'Product design for crypto and Web3, secure, user-friendly interfaces for DeFi, cross-border payments, and blockchain products.',
+      'Product design for crypto and Web3: payment rails, compliance flows, and blockchain products with clear status and recovery.',
     stats: ['Payment infrastructure', '2 products shipped', '3+ years in Web3'],
     tools: ['Figma', 'Token Design', 'DeFi Protocols', 'Compliance UX', 'Payment Rails'],
     featured: {
@@ -862,10 +862,10 @@ export const categories: CategoryData[] = [
     title: 'AI &',
     titleAccent: 'Wearables',
     description:
-      'Intelligent interfaces for AI-powered products, smart glasses, voice assistants, developer tools, and conversational AI.',
+      'Interfaces for smart glasses, voice assistants, developer tools, and conversational AI.',
     metaTitle: 'AI & Wearables Design · Parth Pawar',
     metaDescription:
-      'Intelligent interfaces for AI-powered products, smart glasses, voice assistants, and conversational AI.',
+      'Interfaces for smart glasses, voice assistants, developer tools, and conversational AI.',
     stats: ['7 AI/wearable projects', 'Smart glasses to voice', 'On-device to cloud'],
     tools: ['Figma', 'AR Prototyping', 'Voice UI', 'LLM Integration', 'Gesture Design', 'Responsible AI'],
     featured: {
@@ -933,11 +933,11 @@ export const categories: CategoryData[] = [
           image: '/Portfolio.github.io/Assets/images/ballah-code.webp',
           alt: 'Ballah Code',
           name: 'Ballah Code',
-          result: 'AI-powered dev tools platform',
+          result: 'AI coding workspace',
           role: 'Designer · 2026',
           tag: 'DEV TOOLS',
           year: '2026',
-          desc: 'AI-powered dev tools platform',
+          desc: 'AI coding workspace',
         },
         {
           slug: 'ai-voice',

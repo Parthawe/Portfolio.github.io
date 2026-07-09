@@ -47,11 +47,11 @@ export default function ProjectQuickSummary({
         <div className="cs-quick-summary-top">
           <div>
             <span className="cs-section-label">TL;DR</span>
-            <h2 className="cs-quick-summary-title">Recruiter-ready summary</h2>
+            <h2 className="cs-quick-summary-title">Problem, move, impact</h2>
             <p className="cs-quick-summary-copy">
               {isAccessLimited
                 ? 'Start with the fast read. Deeper detail is shared directly after access is approved.'
-                : 'Start with the fast read, then open the full case study for the full story.'}
+                : 'The shortest read of what was broken, what I owned, and what shipped.'}
             </p>
           </div>
 
@@ -81,23 +81,23 @@ export default function ProjectQuickSummary({
 
         <div className="cs-quick-summary-grid">
           <div className="cs-quick-summary-details">
-            <article className="cs-quick-summary-card">
+            <article className="cs-quick-summary-card cs-quick-summary-card--problem">
               <span className="cs-quick-summary-label">Problem</span>
               <p>{project.summaryProblem}</p>
             </article>
-            <article className="cs-quick-summary-card">
+            <article className="cs-quick-summary-card cs-quick-summary-card--role">
               <span className="cs-quick-summary-label">Role</span>
               <p>{project.summaryRole}</p>
             </article>
-            <article className="cs-quick-summary-card">
+            <article className="cs-quick-summary-card cs-quick-summary-card--team">
               <span className="cs-quick-summary-label">Team</span>
               <p>{project.summaryTeam}</p>
             </article>
-            <article className="cs-quick-summary-card">
+            <article className="cs-quick-summary-card cs-quick-summary-card--timeline">
               <span className="cs-quick-summary-label">Timeline</span>
               <p>{project.summaryTimeline}</p>
             </article>
-            <article className="cs-quick-summary-card cs-quick-summary-card--wide">
+            <article className="cs-quick-summary-card cs-quick-summary-card--wide cs-quick-summary-card--outcome">
               <span className="cs-quick-summary-label">Outcome</span>
               <p>{project.summaryOutcome}</p>
             </article>

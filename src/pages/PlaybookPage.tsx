@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import { Reveal } from '../components/Reveal'
 import PlaybookTopicObject from '../components/PlaybookTopicObject'
 import { PLAYBOOK_VALUES } from '../data/playbook'
-import { CONTACT_EMAIL, SITE_ORIGIN, SITE_BASE } from '../config/site'
+import { SITE_ORIGIN, SITE_BASE } from '../config/site'
 
 /* The names strip loops twice for the infinite marquee — same pattern as
    the clients marquee, inspired by the "Playbook Points" row on
@@ -96,9 +96,6 @@ export default function PlaybookPage() {
             <p className="pb-cta-line">See the values at work.</p>
             <div className="pb-cta-row">
               <Link to="/work" className="pb-cta-link">Browse the work ↗</Link>
-              <a href={`mailto:${CONTACT_EMAIL}?subject=Let%27s%20work%20together`} className="pb-cta-link pb-cta-link--quiet">
-                Let&rsquo;s talk
-              </a>
             </div>
           </Reveal>
         </div>

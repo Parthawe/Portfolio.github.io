@@ -15,10 +15,10 @@ export default function ThePointCdcPage() {
     <>
       <Helmet>
         <title>The Point CDC &middot; Parth Pawar</title>
-        <meta name="description" content="Revitalizing The Point CDC, A digital transformation for community empowerment in Hunts Point, Bronx. Redesigning their website to streamline services, foster innovation, and enhance community engagement." />
+        <meta name="description" content="Website redesign for The Point CDC in Hunts Point, Bronx, focused on program discovery, WiFi information, events, and mobile navigation." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
-        <meta property="og:description" content="Digital transformation for community empowerment in Hunts Point, Bronx, website redesign." />
+        <meta property="og:description" content="Website redesign for The Point CDC focused on programs, WiFi access, events, and mobile navigation." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/the-point-cdc.webp" />
       </Helmet>
 
@@ -32,7 +32,7 @@ export default function ThePointCdcPage() {
           backLabel="Back to Work"
           tags={['UX', 'Community', 'Research']}
           title="The Point CDC"
-          subtitle="A digital transformation for community empowerment"
+          subtitle="A community website organized around programs, services, WiFi access, and events"
           info={[
             { label: 'Client', value: 'The Point CDC' },
             { label: 'Scope', value: 'User Research, UI/UX, Prototyping' },
@@ -42,7 +42,7 @@ export default function ThePointCdcPage() {
           ]}
           liveUrl="https://thepoint.org"
           heroImage="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.png"
-          heroAlt="The Point CDC redesigned homepage: Empowering Community, Hunts Point, Where Bronx Breathes Brighter"
+          heroAlt="The Point CDC redesigned homepage for Hunts Point community programs and services"
         />
 
         {/* All pages mockup */}
@@ -57,7 +57,7 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">The Point CDC, a cornerstone in Hunts Point, Bronx, has been at the forefront of empowering the community by providing free WiFi through a resilient mesh network. The website revamp project aimed to modernize their online presence, streamline access to community services, and showcase their latest initiatives and programs.</span>
+              <span className="cs-label-row-val">The Point CDC serves Hunts Point through arts, education, environmental work, youth programs, and free WiFi. The redesign focused on making those services easier to find on mobile and easier for staff to keep current.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">The Challenges</span>
@@ -96,7 +96,7 @@ export default function ThePointCdcPage() {
               <div>
                 <h2 className="cs-display">The Point CDC</h2>
                 <CsBody>
-                  <p>The Point CDC is a non-profit organization in Hunts Point, Bronx, focused on empowering the local community through arts, education, and environmental initiatives. They provide programs to improve residents&rsquo; lives, including free WiFi access and youth leadership opportunities, while promoting social justice and sustainability.</p>
+                  <p>The Point CDC is a non-profit organization in Hunts Point, Bronx, focused on arts, education, environmental initiatives, free WiFi access, and youth leadership programs.</p>
                 </CsBody>
               </div>
               <div className="cs-img">
@@ -112,7 +112,7 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">01 &mdash; Discover</span>
             <h2 className="cs-section-title">Problem Statement</h2>
             <CsCallout style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', textAlign: 'left' }}>
-              <p>How can we redesign The Point CDC&rsquo;s website to enhance accessibility, streamline navigation, and effectively highlight community programs and services?</p>
+              <p>How can we redesign The Point CDC&rsquo;s website so residents can find programs, services, events, and WiFi information faster?</p>
             </CsCallout>
           </div>
         </section>
@@ -182,7 +182,7 @@ export default function ThePointCdcPage() {
             </CsBody>
             <ul className="cs-list">
               <li><strong>Simplify Navigation:</strong> Reduce menu clutter by grouping items under broader categories.</li>
-              <li><strong>Reduce Visual Clutter:</strong> Streamline layout elements to focus on essential information.</li>
+              <li><strong>Reduce Visual Clutter:</strong> Remove competing layout elements so essential information is easier to scan.</li>
               <li><strong>Refine Color Scheme:</strong> Use a cohesive color palette that aligns with the community mission.</li>
               <li><strong>Highlight Key Programs:</strong> Use icons or banners to make important resources more visible.</li>
             </ul>
@@ -199,9 +199,9 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">Goals</h2>
             <CsFeatureGrid features={[
-              { title: 'Improve Accessibility', desc: 'Ensure the website is user-friendly and easy to navigate for all community members.' },
-              { title: 'Highlight Key Programs', desc: 'Effectively showcase vital services like free WiFi and community initiatives.' },
-              { title: 'Enhance Engagement', desc: 'Foster stronger community connections by providing real-time updates and a modern digital experience.' },
+              { title: 'Improve Accessibility', desc: 'Make key pages easy to scan and navigate for community members, including mobile visitors.' },
+              { title: 'Highlight Key Programs', desc: 'Make free WiFi, events, and community initiatives easy to reach from the homepage.' },
+              { title: 'Support Updates', desc: 'Give staff clearer places to publish current program information and announcements.' },
             ]} />
           </div>
         </section>
@@ -242,7 +242,7 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <span className="cs-section-label">Deliver</span>
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign: streamlined navigation, responsive design, improved readability, cohesive color scheme" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme" loading="lazy" /></div>
           </div>
         </section>
 

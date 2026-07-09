@@ -14,7 +14,7 @@ export default function IntroCompMediaPage() {
     <>
       <Helmet>
         <title>Computational Media &middot; Parth Pawar</title>
-        <meta name="description" content="Creative coding explorations in p5.js — generative portraits, interactive typography, data-driven landscapes, and algorithmic pattern systems." />
+        <meta name="description" content="Creative coding explorations in p5.js: generative portraits, interactive typography, sensor-shaped landscapes, and algorithmic pattern systems." />
       </Helmet>
       <Nav />
       <main id="main-content" className="project-main" style={{ '--project-color': '#e84393' } as React.CSSProperties}>

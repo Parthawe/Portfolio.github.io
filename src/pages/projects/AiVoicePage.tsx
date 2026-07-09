@@ -13,10 +13,10 @@ export default function AiVoicePage() {
     <>
       <Helmet>
         <title>AI Voice Selection &middot; Parth Pawar</title>
-        <meta name="description" content="Redefining AI Voice Selection For Enterprise, Integrating Emotional Intelligence and Expressive Voice Selection through intuitive, emotionally intelligent interactions." />
+        <meta name="description" content="Enterprise AI voice selection framed around tone, context, scenario testing, and reviewer confidence." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI Voice Interface · Parth Pawar" />
-        <meta property="og:description" content="Redefining AI Voice Selection for Enterprise, emotional intelligence and expressive voice design." />
+        <meta property="og:description" content="Enterprise AI voice selection framed around tone, context, scenario testing, and reviewer confidence." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
       </Helmet>
 
@@ -29,7 +29,7 @@ export default function AiVoicePage() {
           categorySlug="ai"
           backLabel="Back to Work"
           tags={['Product Design', 'AI', 'Voice UX', 'Enterprise']}
-          title="Redefining AI Voice Selection For Enterprise"
+          title="AI Voice Selection For Enterprise"
           subtitle="Reframed enterprise voice selection around tone, context, and emotional fit instead of static demo lists."
           info={[
             { label: 'Client', value: 'Undisclosed (NDA)' },

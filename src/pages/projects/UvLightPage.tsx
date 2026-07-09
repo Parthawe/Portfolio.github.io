@@ -14,10 +14,10 @@ export default function UvLightPage() {
     <>
       <Helmet>
         <title>UV Light Experience &middot; Parth Pawar</title>
-        <meta name="description" content="Creating an immersive experience utilizing blacklights, invisible ink, and hidden messages, guiding participants through interactive spaces while subtly revealing monitoring, culminating in the revelation of a significant message on portraits." />
+        <meta name="description" content="Blacklight installation using invisible ink, hidden messages, and staged room sequencing to make participants search for what was being monitored." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="UV Light Installation &middot; Parth Pawar" />
-        <meta property="og:description" content="Immersive experience with blacklights, invisible ink, and hidden messages in interactive spaces." />
+        <meta property="og:description" content="Blacklight installation with invisible ink, hidden messages, staged rooms, and a surveillance reveal." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/uv-light.jpg" />
       </Helmet>
 
@@ -40,7 +40,7 @@ export default function UvLightPage() {
             { label: 'Year', value: '2023' },
           ]}
           heroImage="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-5.png"
-          heroAlt="UV Light Experience, immersive blacklight installation with participants"
+          heroAlt="UV Light blacklight installation with participants searching for hidden messages"
         />
 
         {/* The Concept */}
@@ -62,7 +62,7 @@ export default function UvLightPage() {
             <p className="cs-section-label">Discovery</p>
             <h2 className="cs-display">What the Research Clarified</h2>
             <CsBody>
-              <p>The research pushed the project toward immersive theater logic rather than gallery logic. I looked at environments where people are guided through curiosity, social cues, and staged revelation instead of direct instruction. The lesson was clear: discovery-based experiences work when the room keeps rewarding attention, even for participants who miss part of the puzzle.</p>
+              <p>The research pushed the project toward participatory theater logic rather than gallery logic. I looked at environments where people are guided through curiosity, social cues, and staged revelation instead of direct instruction. The lesson was clear: discovery-based experiences work when the room keeps rewarding attention, even for participants who miss part of the puzzle.</p>
               <p>I also had to understand the material behavior of UV itself. Fluorescence is not neutral. Different surfaces flare up differently, and that unpredictability became part of the piece. Clothes, paper, skin, tape, and walls all reacted in distinct ways, which meant the environment could feel alive rather than merely decorated.</p>
             </CsBody>
           </div>

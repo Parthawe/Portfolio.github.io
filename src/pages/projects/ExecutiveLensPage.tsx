@@ -21,10 +21,10 @@ export default function ExecutiveLensPage() {
     <>
       <Helmet>
         <title>ExecutiveLens &middot; Parth Pawar</title>
-        <meta name="description" content="ExecutiveLens.ai, AI-powered business intelligence for executives. Meeting insights, strategic recommendations, and real-time decision tracking. Case study by Parth Pawar, Design lead." />
+        <meta name="description" content="ExecutiveLens.ai meeting intelligence for executives: meeting capture, decision tracking, cited summaries, and follow-up workflows." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
-        <meta property="og:description" content="AI-powered business intelligence for executives, from meeting insights to strategic recommendations in real time." />
+        <meta property="og:description" content="Meeting intelligence for executives, from cited summaries to decision tracking and follow-up workflows." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/executivelens.webp" />
       </Helmet>
 
@@ -47,7 +47,7 @@ export default function ExecutiveLensPage() {
           ]}
           liveUrl="https://www.executivelens.ai"
           heroImage="/Portfolio.github.io/Assets/images/executivelens.webp"
-          heroAlt="ExecutiveLens.ai, AI-powered business intelligence for executives"
+          heroAlt="ExecutiveLens dashboard for meeting intelligence and decision tracking"
         />
 
         <ProjectOverview
@@ -77,7 +77,7 @@ export default function ExecutiveLensPage() {
 
         <CsSection id="cs-challenges" label="Design Challenges" title="Four Problems That Needed Solving">
           <CsBody>
-            <p>Designing for executives is designing for the most time-constrained, highest-stakes user imaginable. Every screen must earn its pixels. Every interaction must justify the interruption. There is no room for delight that does not also deliver value.</p>
+            <p>Designing for executives is designing for the most time-constrained, highest-stakes user imaginable. Every screen has to earn its place: show what changed, why it matters, and what needs attention next.</p>
           </CsBody>
           <CsFeatureGrid features={[
             { title: 'Real-Time Meeting Transcription UX', desc: 'Live transcription is technically impressive but useless if the interface is a wall of text. The challenge was designing a transcription view that lets users follow the conversation in real time without reading every word \u2014 highlighting decisions, flagging action items, and identifying speakers as they talk, not after the meeting ends.' },

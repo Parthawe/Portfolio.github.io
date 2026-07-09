@@ -15,7 +15,7 @@ export default function BreakGenPage() {
     <>
       <Helmet>
         <title>BreakGen: ITP Thesis &middot; Parth Pawar</title>
-        <meta name="description" content="BreakGen. ITP Thesis at NYU Tisch, Spring 2025. An AI-powered platform that turns text prompts into fabrication-ready custom mechanical keyboards." />
+        <meta name="description" content="BreakGen, an NYU ITP thesis tool that turns text prompts, 3D layout editing, and PCB export into a guided custom keyboard workflow." />
       </Helmet>
 
       <Nav />
@@ -28,7 +28,7 @@ export default function BreakGenPage() {
           backLabel="Back to Work"
           tags={['ITP Thesis', 'AI Hardware', 'Creative Tech']}
           title="BreakGen"
-          subtitle="An AI-powered platform that turns text prompts into fabrication-ready custom mechanical keyboards, from layout to PCB."
+          subtitle="A guided custom keyboard workflow that turns text prompts, 3D layout editing, and PCB export into fabrication-ready hardware."
           info={[
             { label: 'Role', value: 'Designer and Developer' },
             { label: 'Context', value: 'ITP Thesis, NYU Tisch' },
@@ -79,7 +79,7 @@ export default function BreakGenPage() {
 
         <CsSection id="cs-approach" label="02 · Approach" title="Break the process into steps anyone can follow">
           <CsBody>
-              <p>BreakGen breaks down keyboard creation into an intuitive multi-step flow: choose your switch feel, describe your aesthetic in natural language (AI generates personalized keycap designs via Meshy AI), arrange your layout in a visual 3D editor (React + Three.js), and receive an auto-generated PCB (KiCad) ready for fabrication.</p>
+              <p>BreakGen breaks down keyboard creation into a guided multi-step flow: choose your switch feel, describe your aesthetic in natural language, generate personalized keycap designs via Meshy AI, arrange your layout in a visual 3D editor built with React and Three.js, and receive an auto-generated KiCad PCB ready for fabrication.</p>
               <p>The name comes from the childhood practice of breaking things apart to understand how they work. That impulse, to crack open a black box and see the mechanism inside, is the same one that drives the mechanical keyboard community.</p>
           </CsBody>
         </CsSection>

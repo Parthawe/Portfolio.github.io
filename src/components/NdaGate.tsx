@@ -114,29 +114,18 @@ export default function NdaGate({
     >
       <div className="nda-inline-inner">
         <div className="nda-inline-left">
-          <div className="nda-access-mark" aria-hidden="true">
-            <span className="nda-access-mark-dot" />
-          </div>
           <div className="nda-inline-text">
-            <div className="nda-access-status" aria-label="Case study visibility">
-              <span>
-                <i aria-hidden="true" />
-                Quick glimpse is public
-              </span>
-              <span>
-                <i aria-hidden="true" />
-                Protected case study access
-              </span>
-            </div>
-            <span className="nda-inline-label">Reviewer access</span>
-            <h2 className="nda-inline-title">Deeper screens by context.</h2>
+            <span className="nda-inline-label">Protected case study</span>
+            <h2 className="nda-inline-title">Reviewer access</h2>
             <p className="nda-inline-desc">
-              The public page keeps only the safe story: what changed, why it mattered, and the visible result.
-              Use a reviewer code if you already have one, or request access for deeper screens, research, and client-specific detail.
+              Public pages show the safe story. Use a reviewer code or request access for deeper screens and project notes.
             </p>
-            <p className="nda-inline-contact">
-              Prefer email? <a href={`mailto:${CONTACT_EMAIL}?subject=Access request: ${encodeURIComponent(projectName)}`}>Request access directly</a>
-            </p>
+            <a
+              className="nda-inline-contact"
+              href={`mailto:${CONTACT_EMAIL}?subject=Access request: ${encodeURIComponent(projectName)}`}
+            >
+              Request by email instead
+            </a>
           </div>
         </div>
 
@@ -145,17 +134,16 @@ export default function NdaGate({
             <div className="nda-approved-panel" role="status">
               <span className="nda-approved-kicker">Reviewer mode active</span>
               <p>
-                Access is approved for this browser session. Sensitive material still stays out of the public build unless it is intentionally added behind this gate.
+                Access is approved for this browser session.
               </p>
               {children ? <div className="nda-protected-content">{children}</div> : null}
             </div>
           ) : (
             <form className="nda-inline-form nda-inline-form--code nda-access-panel" onSubmit={handleCodeSubmit}>
               <div className="nda-panel-head">
-                <span className="nda-panel-icon" aria-hidden="true">#</span>
                 <div>
                   <span className="nda-panel-kicker">Have a code</span>
-                  <strong>Unlock reviewer view</strong>
+                  <strong>Enter reviewer code</strong>
                 </div>
               </div>
               <label className="nda-field">
@@ -180,10 +168,9 @@ export default function NdaGate({
 
           <form className="nda-inline-form nda-inline-form--request nda-access-panel" onSubmit={handleSubmit}>
             <div className="nda-panel-head">
-              <span className="nda-panel-icon" aria-hidden="true">@</span>
               <div>
                 <span className="nda-panel-kicker">Need access</span>
-                <strong>Send a short request</strong>
+                <strong>Send request</strong>
               </div>
             </div>
             <label className="nda-field">

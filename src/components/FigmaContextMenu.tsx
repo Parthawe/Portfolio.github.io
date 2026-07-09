@@ -20,7 +20,6 @@ const dispatchZoomShortcut = (key: '=' | '-' | '0') => {
 export default function FigmaContextMenu() {
   const [open, setOpen] = useState(false)
   const [pos, setPos] = useState({ x: 0, y: 0 })
-  const [anchor, setAnchor] = useState({ x: 0, y: 0 })
   const menuRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
 
@@ -37,7 +36,6 @@ export default function FigmaContextMenu() {
     const x = Math.min(e.clientX, window.innerWidth - 240)
     const y = Math.min(e.clientY, window.innerHeight - 400)
     setPos({ x, y })
-    setAnchor({ x: e.clientX, y: e.clientY })
     setOpen(true)
   }, [])
 
@@ -100,16 +98,6 @@ export default function FigmaContextMenu() {
     close()
   }, [close])
 
-  const addComment = useCallback(() => {
-    window.dispatchEvent(new CustomEvent('portfolio:add-comment', {
-      detail: {
-        clientX: anchor.x,
-        clientY: anchor.y,
-      },
-    }))
-    close()
-  }, [anchor.x, anchor.y, close])
-
   const go = useCallback((path: string) => {
     navigate(path)
     close()
@@ -123,8 +111,6 @@ export default function FigmaContextMenu() {
   }, [close])
 
   const items: MenuItem[] = [
-    { label: 'Add Comment', shortcut: 'C', action: addComment },
-    { label: 'divider', divider: true },
     { label: 'Copy Link', shortcut: '\u2318C', action: copyUrl },
     { label: 'View Source', shortcut: '\u2318U', action: viewSource },
     { label: 'divider', divider: true },

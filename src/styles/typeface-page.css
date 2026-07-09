@@ -321,6 +321,9 @@
   color: var(--ink-60);
   font-size: clamp(1rem, 1.3vw, 1.15rem);
   line-height: 1.55;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .tf-image-stage,
@@ -570,6 +573,43 @@
     margin-left: clamp(1rem, 5.5vw, 5rem);
     margin-right: auto;
   }
+}
+
+body.site-tools-open .typeface-page > :is(
+  .tf-hero,
+  .tf-section,
+  .tf-split-section,
+  .tf-tool-section,
+  .tf-download-section,
+  .tf-image-stage,
+  .tf-image-grid
+) {
+  width: min(100% - 2rem, 960px);
+  margin-inline: auto;
+}
+
+body.site-tools-open .typeface-page :is(.tf-hero-grid, .tf-section-head, .tf-split-section, .tf-tool-intro) {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+body.site-tools-open .typeface-page :is(.tf-section h2, .tf-split-copy h2, .tf-tool-intro h2, .tf-download-section h2) {
+  max-width: min(12ch, 100%);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+}
+
+body.site-tools-open .typeface-page :is(.tf-lede, .tf-split-copy p, .tf-tool-intro p, .tf-download-section p) {
+  max-width: min(44rem, 100%);
+}
+
+body.site-tools-open .typeface-page .tf-split-section figure {
+  max-width: min(38rem, 100%);
+}
+
+body.site-tools-open .typeface-page .tf-feature-grid,
+body.site-tools-open .typeface-page .tf-metric-grid,
+body.site-tools-open .typeface-page .tf-image-grid {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 [data-theme="dark"] .typeface-page {

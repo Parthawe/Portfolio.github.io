@@ -21,7 +21,7 @@ export default function MentraBrandPage() {
     <>
       <Helmet>
         <title>Mentra Brand &amp; Packaging &middot; Parth Pawar</title>
-        <meta name="description" content="End-to-end brand identity and packaging design for Mentra Live AI smart glasses — logo, color, packaging, booklet, social, ads, and product renders." />
+        <meta name="description" content="Brand identity and packaging design for Mentra Live AI smart glasses: logo, color, packaging, booklet, social, ads, and product renders." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra Brand & Packaging · Parth Pawar" />
         <meta property="og:description" content="Brand identity & packaging for AI smart glasses shipping at $299." />
@@ -38,7 +38,7 @@ export default function MentraBrandPage() {
           backLabel="Back to Work"
           tags={['Brand Identity', 'Packaging Design', 'Art Direction', 'Smart Glasses']}
           title="Mentra Brand & Packaging"
-          subtitle="Designing the retail, launch, and packaging system that makes new hardware feel credible before first use"
+          subtitle="Designing the retail, launch, and packaging system that helps new hardware earn trust before first use"
           info={[
             { label: 'Role', value: 'Head of UI/UX — sole designer across all brand surfaces' },
             { label: 'Timeline', value: 'Q3 2025 – Present' },
@@ -54,7 +54,7 @@ export default function MentraBrandPage() {
           sections={[
             {
               label: 'The Constraint',
-              content: 'Hardware brand work gets judged before the product is turned on. The box, booklet, render system, and retail surfaces have to make a young company feel credible against incumbents with far more budget. On top of that, every decision becomes a factory instruction, not a reversible mockup.',
+              content: 'Hardware brand work gets judged before the product is turned on. The box, booklet, render system, and retail surfaces have to make a young company feel reliable against incumbents with far more budget. On top of that, every decision becomes a factory instruction, not a reversible mockup.',
             },
             {
               label: 'My Role',
@@ -115,7 +115,7 @@ export default function MentraBrandPage() {
             <p>Every smart glasses brand defaults to blue. Meta, Snap, North, Vuzix &mdash; blue gradient, blue accent, blue halo. Mentra needed to be recognizable in a thumbnail. One green (#00B869), three neutrals, no exceptions. The creator guide explicitly forbids inventing new colors because the brand has to survive in the hands of hundreds of creators who will use these assets unsupervised.</p>
           </CsBody>
           {/* Swatches */}
-          <div style={{ marginTop: 'var(--space-4)', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '0.5rem' }}>
+          <div className="cs-brand-swatches" style={{ marginTop: 'var(--space-4)', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '0.5rem' }}>
             <div style={{ background: '#00B869', borderRadius: 'var(--radius-md)', padding: '2.5rem 1.5rem', display: 'flex', alignItems: 'flex-end' }}>
               <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '0.8rem', fontWeight: 600 }}>Mentra Green</span>
             </div>
