@@ -9,6 +9,7 @@ import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { normalizeCopy } from '../utils/normalizeCopy';
 import { isLowPowerDevice, prefersCanvasChrome } from '../utils/performance';
+import { clearBodyScrollLocks } from '../utils/bodyScrollLock';
 
 const FigmaChrome = lazy(() => import('./FigmaChrome'));
 const FigmaGrid = lazy(() => import('./FigmaGrid'));
@@ -145,6 +146,7 @@ export default function RootLayout() {
 
   // Scroll to top on route change (Lenis-aware)
   useEffect(() => {
+    clearBodyScrollLocks();
     const lenis = (window as unknown as Record<string, { scrollTo: (target: number, options?: { immediate?: boolean }) => void }>).__lenis;
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });

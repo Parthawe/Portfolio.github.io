@@ -522,13 +522,23 @@ body.has-footer-reveal main {
 }
 
 @media (hover: none), (pointer: coarse) {
-  .ft-canvas-zone { cursor: auto; height: clamp(13rem, 56vw, 16rem); }
+  .ft-canvas-zone {
+    cursor: auto;
+    height: clamp(13rem, 56vw, 16rem);
+    display: grid;
+    align-content: center;
+    justify-items: end;
+    gap: 0.72rem;
+    padding: 1.4rem 0.38rem 1.25rem 1.25rem;
+  }
   .ft-cursor { display: none; }
   .ft-scrap-ghost {
-    left: 28%;
-    right: 5%;
-    top: 49%;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
     bottom: auto;
+    width: min(100%, 15.25rem);
     gap: 0.18rem;
     padding: 0.68rem 0.78rem 0.74rem;
   }
@@ -760,8 +770,11 @@ body.has-footer-reveal main {
   .ft-pin-bubble { max-width: 11rem; }
   .ft-pin-draft-box input { width: clamp(9rem, 60vw, 13rem); }
   .ft-scrap-scrawl {
-    left: 6%;
-    top: 12%;
+    position: relative;
+    left: auto;
+    top: auto;
+    justify-self: center;
+    transform: rotate(-1.6deg);
     max-width: 58%;
     line-height: 1.2;
     white-space: normal;

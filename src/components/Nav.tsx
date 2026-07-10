@@ -6,6 +6,7 @@ import FigmaSelect from './FigmaSelect';
 import AmbientAudio from './AmbientAudio';
 import { CONTACT_EMAIL } from '../config/site';
 import { setCanvasChromePreference } from '../utils/performance';
+import { lockBodyScroll, unlockBodyScroll } from '../utils/bodyScrollLock';
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
@@ -28,7 +29,7 @@ export default function Nav() {
     setMenuOpen(false);
     overlayRef.current?.classList.remove('open');
     toggleRef.current?.classList.remove('open');
-    document.body.style.overflow = '';
+    unlockBodyScroll('nav-menu');
     if (lastFocusedRef.current instanceof HTMLElement) {
       lastFocusedRef.current.focus();
       lastFocusedRef.current = null;
@@ -44,7 +45,7 @@ export default function Nav() {
       lastFocusedRef.current = document.activeElement;
       overlayRef.current?.classList.add('open');
       toggleRef.current?.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      lockBodyScroll('nav-menu');
       const firstLink = overlayRef.current?.querySelector('a');
       if (firstLink) firstLink.focus();
     }
@@ -73,7 +74,7 @@ export default function Nav() {
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      unlockBodyScroll('nav-menu');
     };
   }, [closeMenu]);
 

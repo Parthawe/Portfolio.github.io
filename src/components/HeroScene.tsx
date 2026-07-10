@@ -7,6 +7,7 @@ import { useThemeMode } from '../hooks/useThemeMode';
 import { usePrefersReduced } from '../hooks/usePrefersReduced';
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
 import { layoutHeroWeb, type WebNode, type WebEdge } from '../data/heroWeb';
+import { lockBodyScroll, unlockBodyScroll } from '../utils/bodyScrollLock';
 
 /* ─── Node config ─── */
 
@@ -1704,7 +1705,19 @@ const FIELD_COMPONENTS: React.FC<{ dark: boolean; hovered: boolean }>[] = [
 /* Discipline label — replicates InteractiveLabel: a plate + upright text that
    fades in only on hover and never spins with the object (it lives OUTSIDE the
    object's own rotating group), so names stay readable exactly like the six. */
-function FieldLabel({ text, dark, active, fadeRef }: { text: string; dark: boolean; active: boolean; fadeRef?: React.RefObject<number> }) {
+function FieldLabel({
+  text,
+  dark,
+  active,
+  compact = false,
+  fadeRef,
+}: {
+  text: string;
+  dark: boolean;
+  active: boolean;
+  compact?: boolean;
+  fadeRef?: React.RefObject<number>;
+}) {
   const groupRef = useRef<THREE.Group>(null!);
   const textRef = useRef<THREE.Mesh>(null!);
   const lerp = useRef(0);
@@ -1732,14 +1745,14 @@ function FieldLabel({ text, dark, active, fadeRef }: { text: string; dark: boole
   });
 
   return (
-    <group ref={groupRef} position={[0, -0.74, 0.05]}>
+    <group ref={groupRef} position={[0, compact ? -0.6 : -0.74, 0.05]}>
       <Text
         ref={textRef}
-        fontSize={0.125}
+        fontSize={compact ? 0.104 : 0.125}
         color={dark ? '#e8e4df' : '#1a1a1a'}
         anchorX="center"
         anchorY="middle"
-        letterSpacing={0.1}
+        letterSpacing={compact ? 0.07 : 0.1}
         fillOpacity={0}
         outlineWidth={0.016}
         outlineBlur={0.075}
@@ -1748,7 +1761,7 @@ function FieldLabel({ text, dark, active, fadeRef }: { text: string; dark: boole
         renderOrder={999}
         material-depthTest={false}
         material-depthWrite={false}
-        maxWidth={1.9}
+        maxWidth={compact ? 1.45 : 1.9}
         textAlign="center"
       >
         {text.toUpperCase()}
@@ -1802,12 +1815,14 @@ function WebObject3D({
   index,
   introRef,
   dark,
+  labelsAlwaysOn,
   onHover,
 }: {
   node: WebNode;
   index: number;
   introRef: React.RefObject<number>;
   dark: boolean;
+  labelsAlwaysOn: boolean;
   onHover: (id: string | null) => void;
 }) {
   const wrapRef = useRef<THREE.Group>(null!);
@@ -1853,7 +1868,7 @@ function WebObject3D({
         <Comp dark={dark} hovered={hovered} />
         <FieldFade groupRef={wrapRef} fadeRef={fadeRef} />
       </group>
-      <FieldLabel text={node.label ?? ''} dark={dark} active={hovered} fadeRef={fadeRef} />
+      <FieldLabel text={node.label ?? ''} dark={dark} active={labelsAlwaysOn || hovered} compact={labelsAlwaysOn} fadeRef={fadeRef} />
     </group>
   );
 }
@@ -1862,10 +1877,12 @@ function ExpandedWeb({
   positions,
   introRef,
   dark,
+  labelsAlwaysOn,
 }: {
   positions: [number, number, number][];
   introRef: React.RefObject<number>;
   dark: boolean;
+  labelsAlwaysOn: boolean;
 }) {
   const { nodes, edges } = useMemo(() => layoutHeroWeb(positions), [positions]);
   const nodeById = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes]);
@@ -1890,7 +1907,7 @@ function ExpandedWeb({
     <group>
       <WebEdges edges={edges} nodeById={nodeById} introRef={introRef} focusEdgeRef={edgeFocus} dark={dark} />
       {fieldNodes.map((n, i) => (
-        <WebObject3D key={n.id} node={n} index={i} introRef={introRef} dark={dark} onHover={setHover} />
+        <WebObject3D key={n.id} node={n} index={i} introRef={introRef} dark={dark} labelsAlwaysOn={labelsAlwaysOn} onHover={setHover} />
       ))}
     </group>
   );
@@ -1989,7 +2006,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
     : useSafeDesktopLayout
       ? clamp(size.width / 760, 0.5, 0.76)
       : 0.76;
-  const expandedSceneScale = isMobile ? 0.9 : sceneScale;
+  const expandedSceneScale = isMobile ? 0.92 : sceneScale;
   const sceneOffsetX = useSafeDesktopLayout ? clamp((0.82 - aspect) * -0.55, -0.24, 0.16) : 0;
   const narrowCameraPush = !isMobile ? clamp((0.92 - aspect) * 4.8, 0, 2.7) : 0;
 
@@ -1998,7 +2015,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
   const collapsedFadeRef = useRef(1);
   const baseCameraZ = isMobile ? 9.5 : useSafeDesktopLayout ? 7.65 + narrowCameraPush : 7.25;
   const baseCameraY = useSafeDesktopLayout ? 0.18 : 0.3;
-  const expandedCameraZ = isMobile ? 12.15 : 12.6;
+  const expandedCameraZ = isMobile ? 11.85 : 12.6;
 
   const setNodeActive = useCallback((index: number, active: boolean) => {
     setActiveIndex((current) => (active ? index : current === index ? null : current));
@@ -2139,7 +2156,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
     // zoom only bites once expanded (scaled by intro so it doesn't fight the
     // opening transition).
     camera.position.z = mix(baseCameraZ, expandedCameraZ, intro) + zoomRef.current * intro;
-    camera.position.y = mix(baseCameraY, isMobile ? 0.05 : 0.15, intro);
+    camera.position.y = mix(baseCameraY, isMobile ? 0.38 : 0.15, intro);
 
     if (reduced || !groupRef.current) return;
     const t = target.current;
@@ -2168,7 +2185,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
     groupRef.current.rotation.x = mix(parallaxX, pitch.current, intro);
     groupRef.current.rotation.z = 0;
     groupRef.current.position.x = mix(sceneOffsetX, pan.current.x, intro);
-    groupRef.current.position.y = mix(0, pan.current.y + (isMobile ? 0.18 : 0), intro);
+    groupRef.current.position.y = mix(0, pan.current.y + (isMobile ? -0.38 : 0), intro);
     groupRef.current.scale.setScalar(mix(sceneScale, expandedSceneScale, intro));
   });
 
@@ -2199,7 +2216,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
 
       <group ref={groupRef} scale={sceneScale} position={[sceneOffsetX, 0, 0]}>
         <ConstellationLines positions={positions} dark={dark} fadeRef={collapsedFadeRef} />
-        <ExpandedWeb positions={positions} introRef={introRef} dark={dark} />
+        <ExpandedWeb positions={positions} introRef={introRef} dark={dark} labelsAlwaysOn={isMobile && expanded} />
 
         {/* 0: Installations, Truss (top) */}
         <ClickableObject route={nodes[0].route} position={nodes[0].position} active={activeIndex === 0} onActiveChange={(active) => setNodeActive(0, active)}>
@@ -2241,7 +2258,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
             dark={dark}
             route={n.route}
             parentRef={groupRef}
-            active={activeIndex === i}
+            active={(isMobile && expanded) || activeIndex === i}
           />
         ))}
       </group>
@@ -2297,11 +2314,10 @@ export default function HeroScene({
     if (!expanded) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setExpanded(false); };
     window.addEventListener('keydown', onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll('hero-web');
     return () => {
       window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prevOverflow;
+      unlockBodyScroll('hero-web');
     };
   }, [expanded]);
 

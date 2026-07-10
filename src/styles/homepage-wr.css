@@ -819,7 +819,7 @@ body.page-ready .wr-hero-stage {
   }
 
   .wr-hero-copy {
-    bottom: clamp(1.35rem, 3.5svh, 2.65rem);
+    bottom: clamp(4.2rem, 8.5svh, 5.75rem);
     gap: 0.72rem;
   }
   .wr-hero-title {
@@ -1081,8 +1081,9 @@ body.page-ready .wr-hero-stage {
   }
 
   .wr-identity-tabs {
-    justify-content: flex-start;
-    width: 100%;
+    justify-content: center;
+    width: min(100%, 23rem);
+    margin-inline: auto;
     gap: 0.55rem;
   }
 

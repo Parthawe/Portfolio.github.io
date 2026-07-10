@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import { lockBodyScroll, unlockBodyScroll } from '../utils/bodyScrollLock';
 
 interface PortfolioVersion {
   id: string;
@@ -629,10 +630,10 @@ function IframePreview({ url, era, onClose }: { url: string; era: string; onClos
         }
       }
     };
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll('graveyard-preview');
     window.addEventListener('keydown', handleKey);
     return () => {
-      document.body.style.overflow = '';
+      unlockBodyScroll('graveyard-preview');
       window.removeEventListener('keydown', handleKey);
       if (previousFocusRef.current instanceof HTMLElement) {
         previousFocusRef.current.focus();

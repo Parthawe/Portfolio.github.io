@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { lockBodyScroll, unlockBodyScroll } from '../utils/bodyScrollLock'
 
 interface LightboxState {
   src: string
@@ -103,10 +104,10 @@ export default function Lightbox() {
       }
     }
     document.addEventListener('keydown', handleKey)
-    document.body.style.overflow = 'hidden'
+    lockBodyScroll('lightbox')
     return () => {
       document.removeEventListener('keydown', handleKey)
-      document.body.style.overflow = ''
+      unlockBodyScroll('lightbox')
     }
   }, [state, close])
 
