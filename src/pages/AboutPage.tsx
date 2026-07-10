@@ -45,6 +45,7 @@ import Footer from '../components/Footer'
 import FigmaSelect from '../components/FigmaSelect'
 import TextReveal from '../components/TextReveal'
 import PortalReveal from '../components/PortalReveal'
+import BinaryFlower from '../components/BinaryFlower'
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site'
 
 /* ── Data ── */
@@ -146,34 +147,6 @@ const toolCloud = [
   { label: 'Prototyping', icon: '▱', tone: 'pink' },
   { label: 'Animation', icon: '∿', tone: 'green' },
   { label: 'Strategy', icon: '✣', tone: 'yellow' },
-]
-
-const vibeCollage = [
-  {
-    className: 'abt-vibe-card--wide',
-    src: '/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp',
-    alt: 'Clawed AI coding product landing page.',
-  },
-  {
-    className: 'abt-vibe-card--note',
-    label: 'Cursor / Claude Code',
-    text: 'Design the system. Prototype the weird edge. Ship the real interaction.',
-  },
-  {
-    className: 'abt-vibe-card--game',
-    src: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/game-screen-sushi.webp',
-    alt: 'Playable arcade prototype interface.',
-  },
-  {
-    className: 'abt-vibe-card--phone',
-    src: '/Portfolio.github.io/Assets/images/mentra/appstore-device.png',
-    alt: 'Mentra app store mobile interface.',
-  },
-  {
-    className: 'abt-vibe-card--small',
-    src: '/Portfolio.github.io/Assets/Projects/Raahi/photos/raahi-homepage.webp',
-    alt: 'Raahi mobile product interface.',
-  },
 ]
 
 const softwareStack = [
@@ -404,22 +377,9 @@ export default function AboutPage() {
                 <p>I do not stop at the mockup. I build prototypes, wire interactions, and use code to prove the system works.</p>
               </div>
 
-              <div className="abt-vibe-stage" aria-label="Vibe coding collage">
+              <div className="abt-vibe-stage" aria-label="Generative design engineering object">
                 <div className="abt-vibe-window">
-                  <div className="abt-vibe-window-dots" aria-hidden="true"><span /><span /><span /></div>
-                  {vibeCollage.map((item) => (
-                    <figure className={`abt-vibe-card ${item.className}`} key={item.className}>
-                      {'src' in item ? (
-                        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
-                      ) : (
-                        <figcaption>
-                          <span>{item.label}</span>
-                          {item.text}
-                        </figcaption>
-                      )}
-                    </figure>
-                  ))}
-                  <span className="abt-vibe-pin" aria-hidden="true" />
+                  <BinaryFlower />
                 </div>
 
                 <div className="abt-vibe-cloud" aria-label="Core capabilities">

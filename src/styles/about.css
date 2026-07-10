@@ -2682,17 +2682,112 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(48rem, 72vw);
-  height: clamp(19rem, 34vw, 30rem);
+  width: min(50rem, 74vw);
+  height: clamp(20rem, 35vw, 31rem);
   transform: translate(-50%, -45%);
-  border: 1px solid var(--ink-08);
-  border-radius: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: clamp(1.15rem, 2.5vw, 1.85rem);
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--surface) 84%, transparent), color-mix(in srgb, var(--bg-alt) 62%, transparent)),
-    var(--surface);
+    radial-gradient(circle at 50% 46%, rgba(245, 172, 85, 0.18), transparent 35%),
+    radial-gradient(circle at 51% 50%, rgba(162, 220, 214, 0.1), transparent 56%),
+    #080808;
   box-shadow:
-    0 2rem 5rem rgba(16, 24, 40, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    0 2rem 5rem rgba(16, 24, 40, 0.16),
+    0 1rem 3rem rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.abt-vibe-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent 18%),
+    radial-gradient(circle at 50% 52%, transparent 0 48%, rgba(0, 0, 0, 0.48) 82%);
+  mix-blend-mode: screen;
+}
+
+.abt-binary-flower {
+  position: absolute;
+  inset: 0;
+  min-height: 100%;
+}
+
+.abt-binary-flower-canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.abt-binary-flower-dom {
+  position: absolute;
+  inset: 4% 5%;
+  z-index: 3;
+  pointer-events: none;
+  perspective: 46rem;
+  transform-style: preserve-3d;
+  animation: abt-binary-flower-drift 15s ease-in-out infinite alternate;
+}
+
+.abt-binary-flower-glyph {
+  position: absolute;
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(0.46rem, 0.86vw, 0.82rem);
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.76;
+  text-shadow:
+    0 0 0.28rem currentColor,
+    0 0 1rem color-mix(in srgb, currentColor 48%, transparent);
+  transform:
+    translate(-50%, -50%)
+    translateZ(calc(var(--binary-z) * 5.8rem))
+    rotate(var(--binary-rotate))
+    scale(var(--binary-scale));
+  animation: abt-binary-glyph-breathe 4.8s ease-in-out infinite;
+  animation-delay: var(--binary-delay);
+}
+
+.abt-binary-flower-fallback {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  background: #080808;
+  color: rgba(255, 247, 224, 0.78);
+  font-family: var(--mono);
+  font-size: clamp(0.8rem, 2vw, 1.35rem);
+  line-height: 1;
+  text-shadow: 0 0 0.75rem rgba(255, 245, 210, 0.55);
+  mask-image: radial-gradient(circle at 50% 48%, black 0 48%, transparent 72%);
+}
+
+@keyframes abt-binary-flower-drift {
+  from {
+    transform: rotateX(8deg) rotateY(-8deg) rotateZ(-1.5deg) scale(0.98);
+  }
+  to {
+    transform: rotateX(-3deg) rotateY(9deg) rotateZ(1.5deg) scale(1.02);
+  }
+}
+
+@keyframes abt-binary-glyph-breathe {
+  0%,
+  100% {
+    opacity: 0.48;
+    filter: blur(0.1px);
+  }
+  48% {
+    opacity: 0.96;
+    filter: blur(0);
+  }
 }
 
 .abt-vibe-window-dots {
@@ -3038,9 +3133,15 @@
   .abt-vibe-stage { min-height: 31rem; }
   .abt-vibe-window {
     top: 42%;
-    width: 100%;
-    height: 19rem;
-    border-radius: 1.25rem;
+    width: min(100%, 24rem);
+    height: 19.5rem;
+    border-radius: 1.1rem;
+  }
+  .abt-binary-flower-dom {
+    inset: 7% 0;
+  }
+  .abt-binary-flower-glyph {
+    font-size: clamp(0.42rem, 2vw, 0.66rem);
   }
   .abt-vibe-card {
     border-width: 0.28rem;
@@ -3132,5 +3233,10 @@
 
   .abt-vibe-software-track[aria-hidden="true"] {
     display: none;
+  }
+
+  .abt-binary-flower-dom,
+  .abt-binary-flower-glyph {
+    animation: none;
   }
 }
