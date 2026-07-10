@@ -293,6 +293,10 @@ export default function Nav() {
         <ul className="mobile-nav-links">
           <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+          <li className="mobile-nav-theme">
+            <span>Theme</span>
+            <ThemeToggle className="mobile-nav-theme-toggle surface-glass surface-glass--subtle" />
+          </li>
           <li><a href={`mailto:${CONTACT_EMAIL}`} onClick={closeMenu}>Let's Talk</a></li>
         </ul>
       </div>

@@ -736,12 +736,23 @@ body.page-ready .wr-hero-stage {
     padding-bottom: 2rem;
   }
   .wr-hero-3d {
-    display: none;
+    display: block;
+    top: calc(var(--nav-h, 4rem) + 1.4rem);
+    left: 1rem;
+    right: 1rem;
+    bottom: auto;
+    height: min(42svh, 23rem);
+    opacity: calc(var(--wr-hero-scene-opacity, 1) * var(--wr-hero-scene-entry-opacity) * 0.78);
+    z-index: 1;
   }
 
   .wr-hero-3d .hero-3d-canvas {
     transform: none;
     transform-origin: 50% 50%;
+  }
+
+  .wr-disciplines {
+    display: none;
   }
 }
 @media (max-width: 480px) {
@@ -778,7 +789,9 @@ body.page-ready .wr-hero-stage {
     gap: 0.75rem;
   }
   .wr-hero-3d {
-    display: none;
+    display: block;
+    top: calc(var(--nav-h, 4rem) + 1.1rem);
+    height: min(38svh, 19rem);
   }
 
   .wr-hero-3d .hero-3d-canvas {

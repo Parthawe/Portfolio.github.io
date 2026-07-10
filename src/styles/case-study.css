@@ -122,8 +122,29 @@
   z-index: 0;
   pointer-events: none;
 }
+
+.proj-visual-hero {
+  position: relative;
+}
+
+.proj-3d-ornament--visual {
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  opacity: 0.48;
+}
 @media (max-width: 768px) {
-  .proj-3d-ornament { top: -0.5rem; right: -0.5rem; opacity: 0.3; }
+  .proj-3d-ornament {
+    top: -0.35rem;
+    right: -0.25rem;
+    display: block;
+    opacity: 0.42;
+  }
+  .proj-3d-ornament--visual {
+    top: 0.3rem;
+    right: 0.2rem;
+    opacity: 0.38;
+  }
   .proj-fastread-head {
     align-items: flex-start;
     flex-direction: column;
@@ -146,7 +167,19 @@
   }
 }
 @media (max-width: 480px) {
-  .proj-3d-ornament { display: none; }
+  .proj-3d-ornament {
+    top: -0.6rem;
+    right: -0.85rem;
+    display: block;
+    opacity: 0.36;
+    transform: scale(0.9);
+    transform-origin: 100% 0;
+  }
+  .proj-3d-ornament--visual {
+    top: 0.1rem;
+    right: -0.25rem;
+    transform: scale(0.84);
+  }
 }
 .proj-title {
   font-family: var(--sans);
@@ -5234,6 +5267,7 @@
     --case-section-space: 3rem;
     --case-card-pad: 1rem;
     padding-top: calc(var(--nav-h) + 0.75rem);
+    padding-bottom: calc(9rem + env(safe-area-inset-bottom));
   }
 
   .project-main .project-header {
@@ -5320,6 +5354,26 @@
     gap: 0.4rem;
   }
 
+  .project-main .proj-fastread {
+    margin-top: 1.6rem;
+  }
+
+  .project-main .proj-fastread-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.55rem;
+    padding: 1rem 0;
+  }
+
+  .project-main .proj-fastread-row dt {
+    padding-top: 0;
+  }
+
+  .project-main .proj-fastread-row dd {
+    max-width: 100%;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
   .project-main :is(
     .proj-overview-grid,
     .proj-story-grid,
@@ -5378,6 +5432,12 @@
     max-width: calc(100vw - 1rem);
     gap: 4px;
     padding: 4px;
+  }
+
+  .project-main .cs-bottom-nav.is-idle:not(.is-hidden) {
+    opacity: 0;
+    transform: translateX(-50%) translateY(22px) scale(0.98);
+    pointer-events: none;
   }
 
   .project-main .cs-bnav-link {

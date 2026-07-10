@@ -2986,6 +2986,15 @@
     color-mix(in srgb, var(--surface) 82%, var(--bg) 18%);
 }
 
+[data-theme="dark"] .abt-binary-flower-fallback {
+  color: rgba(245, 250, 255, 0.88);
+  text-shadow: 0 0 0.9rem rgba(210, 230, 255, 0.58);
+}
+
+[data-theme="dark"] .abt-binary-flower-canvas {
+  filter: invert(1) brightness(1.75) contrast(0.92);
+}
+
 @media (max-width: 900px) {
   .abt-vibe { padding-inline: 1rem; }
   .abt-vibe-stage { min-height: 18rem; }
@@ -3137,6 +3146,10 @@
   .page-about .abt-vibe-window {
     width: min(100%, 15rem);
     height: 10.25rem;
+  }
+
+  .page-about .abt-vibe-software {
+    display: none;
   }
 }
 

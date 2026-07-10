@@ -2248,12 +2248,14 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 }
 
 .page-work .work-group--archive .pcard-name {
-  bottom: 1rem;
+  bottom: 2.85rem;
   font-size: clamp(1.05rem, 1.45vw, 1.25rem);
 }
 
 .page-work .work-group--archive .pcard-marquee {
-  display: none;
+  display: block;
+  min-height: 1.85rem;
+  padding-block: 0.34rem;
 }
 
 .page-work .work-group--archive .pcard--request-access .pcard-name {
@@ -2294,6 +2296,10 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 }
 
 @media (max-width: 640px) {
+  .page-work .work-filter-inline {
+    display: none;
+  }
+
   .page-work .pcard-masonry,
   .page-work .work-group--selected .pcard-masonry {
     --work-card-gap: 1.25rem;
@@ -2333,9 +2339,19 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
   .page-work .work-group--archive .pcard--request-access .pcard-name {
     left: 0.58rem;
     right: 0.58rem;
-    bottom: 0.62rem;
+    bottom: 2rem;
     font-size: clamp(0.82rem, 3.7vw, 1rem);
     line-height: 1.08;
+  }
+
+  .page-work .work-group--archive .pcard-marquee {
+    min-height: 1.42rem;
+    padding-block: 0.24rem;
+  }
+
+  .page-work .work-group--archive .pcard-marquee-track span {
+    font-size: 0.5rem;
+    letter-spacing: 0.055em;
   }
 
   .page-work .work-group--archive .pcard-access-note {

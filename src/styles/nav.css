@@ -356,6 +356,38 @@ body.nav-on-dark .nav-toggle span {
   opacity: 0.4;
 }
 
+.mobile-nav-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0.85rem 0 1.1rem;
+  padding: 0.42rem 0.52rem 0.42rem 1rem;
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface) 48%, transparent);
+}
+
+.mobile-nav-theme > span {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.mobile-nav-theme .theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+}
+
+.mobile-nav-theme .theme-toggle:hover {
+  opacity: 1;
+}
+
 /* ── Dark mode ──
    Pills stay near-transparent like the original design (the full-width
    .nav.scrolled band is gone); a backdrop blur keeps the labels readable
@@ -398,6 +430,11 @@ body.nav-on-dark .nav-toggle span {
 }
 [data-theme="dark"] .mobile-overlay {
   --surface-glass-bg: color-mix(in srgb, var(--glass-strong-bg) 94%, var(--bg) 6%);
+}
+
+[data-theme="dark"] .mobile-nav-theme {
+  background: color-mix(in srgb, var(--surface) 52%, transparent);
+  border-color: var(--ink-12);
 }
 
 /* Responsive handled in responsive.css */

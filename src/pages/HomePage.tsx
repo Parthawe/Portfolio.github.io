@@ -99,8 +99,8 @@ export default function HomePage() {
   const lowPowerDevice = isLowPowerDevice();
   const allowDecorative3D = !prefersReducedMotion;
   const mountHeroScene = useDeferredMount(allowDecorative3D, {
-    timeout: coarsePointer ? 5200 : lowPowerDevice ? 4600 : 3600,
-    delayMs: coarsePointer ? 2400 : lowPowerDevice ? 2200 : 1800,
+    timeout: coarsePointer ? 2600 : lowPowerDevice ? 4600 : 3600,
+    delayMs: coarsePointer ? 520 : lowPowerDevice ? 2200 : 1800,
   });
   const mountDisciplineObjects = useDeferredMount(allowDecorative3D && disciplinesInView, { timeout: lowPowerDevice ? 2200 : 1400, delayMs: lowPowerDevice ? 360 : 150 });
   const mountAboutObject = useDeferredMount(allowDecorative3D && aboutInView, { timeout: lowPowerDevice ? 2400 : 1600, delayMs: lowPowerDevice ? 360 : 120 });

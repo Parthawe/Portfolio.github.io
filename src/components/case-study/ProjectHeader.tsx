@@ -70,10 +70,9 @@ export default function ProjectHeader({
   const location = useLocation()
   const heroRef = useRef<HTMLDivElement>(null)
   const reduceMotion = Boolean(useReducedMotion()) || isLowPowerDevice()
-  const canShowOrnament =
-    Boolean(categorySlug) &&
-    (typeof window === 'undefined' ? false : window.matchMedia('(min-width: 769px)').matches)
-  const showCategoryOrnament = useDeferredMount(canShowOrnament, { timeout: 1500, delayMs: 180 })
+  const canShowOrnament = Boolean(categorySlug)
+  const showCategoryOrnament = useDeferredMount(canShowOrnament, { timeout: 1500, delayMs: 120 })
+  const ornamentSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 96 : 140
   const currentSlug = location.pathname.split('/').filter(Boolean).pop() ?? ''
   const project = getProject(currentSlug)
   const story = project?.storyline
@@ -180,6 +179,16 @@ export default function ProjectHeader({
     return (
       <div className={visualClasses}>
         <section className="proj-visual-hero hero-anim hero-anim-1" aria-label={`${title} project introduction`}>
+          {categorySlug && (
+            <div className="proj-3d-ornament proj-3d-ornament--visual">
+              {showCategoryOrnament ? (
+                <Suspense fallback={null}>
+                  <CategoryObject3D slug={categorySlug} size={ornamentSize} />
+                </Suspense>
+              ) : null}
+            </div>
+          )}
+
           <div className="proj-visual-hero__copy">
             <span className="proj-visual-kicker">{visualKicker}</span>
             <h1 className="proj-visual-title">{visualTitle}</h1>
@@ -247,7 +256,7 @@ export default function ProjectHeader({
             <div className="proj-3d-ornament">
               {showCategoryOrnament ? (
                 <Suspense fallback={null}>
-                  <CategoryObject3D slug={categorySlug} size={typeof window !== 'undefined' && window.innerWidth < 768 ? 80 : 140} />
+                  <CategoryObject3D slug={categorySlug} size={ornamentSize} />
                 </Suspense>
               ) : null}
             </div>

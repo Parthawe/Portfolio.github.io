@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
+import { useThemeMode } from '../hooks/useThemeMode'
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable'
 
 type BinaryPoint = {
@@ -148,11 +149,13 @@ function BinaryGlyphField({
   points,
   offset,
   reduced,
+  dark,
 }: {
   glyph: '0' | '1'
   points: BinaryPointSet[]
   offset: number
   reduced: boolean
+  dark: boolean
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null)
   const dummy = useMemo(() => new THREE.Object3D(), [])
@@ -162,13 +165,14 @@ function BinaryGlyphField({
     () =>
       new THREE.MeshBasicMaterial({
         map: texture,
+        color: dark ? '#f5faff' : '#ffffff',
         transparent: true,
-        opacity: 0.76,
+        opacity: dark ? 0.88 : 0.76,
         depthWrite: false,
         blending: THREE.NormalBlending,
-        vertexColors: true,
+        vertexColors: !dark,
       }),
-    [texture],
+    [dark, texture],
   )
 
   useEffect(
@@ -203,15 +207,17 @@ function BinaryGlyphField({
       const x = point.x * (1 + unfurl * 0.08)
       const y = point.y * (1 + unfurl * 0.06)
       const z = point.z + unfurl
-      const warmCore = point.depth < 0.18
-      const hue = warmCore
-        ? 0.11 + seeded(index + offset) * 0.035
-        : 0.52 + point.depth * 0.08 + seeded(index + offset + 2) * 0.025
-      const saturation = warmCore ? 0.68 : 0.28 + point.depth * 0.18
-      const lightness = warmCore ? 0.68 + seeded(index + offset + 3) * 0.12 : 0.42 + point.depth * 0.24
+      if (!dark) {
+        const warmCore = point.depth < 0.18
+        const hue = warmCore
+          ? 0.11 + seeded(index + offset) * 0.035
+          : 0.52 + point.depth * 0.08 + seeded(index + offset + 2) * 0.025
+        const saturation = warmCore ? 0.68 : 0.28 + point.depth * 0.18
+        const lightness = warmCore ? 0.68 + seeded(index + offset + 3) * 0.12 : 0.42 + point.depth * 0.24
 
-      color.setHSL(hue, saturation, lightness)
-      mesh.setColorAt(index, color)
+        color.setHSL(hue, saturation, lightness)
+        mesh.setColorAt(index, color)
+      }
 
       dummy.position.set(x, y, z)
       dummy.rotation.set(
@@ -225,7 +231,7 @@ function BinaryGlyphField({
     })
 
     mesh.instanceMatrix.needsUpdate = true
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
+    if (!dark && mesh.instanceColor) mesh.instanceColor.needsUpdate = true
   })
 
   return (
@@ -233,7 +239,7 @@ function BinaryGlyphField({
   )
 }
 
-function BinaryFlowerScene({ reduced }: { reduced: boolean }) {
+function BinaryFlowerScene({ reduced, dark }: { reduced: boolean; dark: boolean }) {
   const groupRef = useRef<THREE.Group>(null)
   const points = useMemo(() => createBinaryPointSets(), [])
   const zeros = useMemo(() => points.filter((_, index) => index % 3 === 0), [points])
@@ -251,8 +257,8 @@ function BinaryFlowerScene({ reduced }: { reduced: boolean }) {
 
   return (
     <group ref={groupRef} scale={1.08}>
-      <BinaryGlyphField glyph="0" points={zeros} offset={0} reduced={reduced} />
-      <BinaryGlyphField glyph="1" points={ones} offset={500} reduced={reduced} />
+      <BinaryGlyphField glyph="0" points={zeros} offset={0} reduced={reduced} dark={dark} />
+      <BinaryGlyphField glyph="1" points={ones} offset={500} reduced={reduced} dark={dark} />
     </group>
   )
 }
@@ -269,6 +275,7 @@ function BinaryFlowerFallback() {
 
 export default function BinaryFlower() {
   const reduced = usePrefersReduced()
+  const dark = useThemeMode()
   const webGLAvailable = useWebGLAvailable()
 
   return (
@@ -280,7 +287,7 @@ export default function BinaryFlower() {
           dpr={[1, 1.75]}
           gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
         >
-          <BinaryFlowerScene reduced={reduced} />
+          <BinaryFlowerScene reduced={reduced} dark={dark} />
         </Canvas>
       ) : (
         <BinaryFlowerFallback />
