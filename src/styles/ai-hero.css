@@ -177,12 +177,18 @@
   }
   .ch-3d--side {
     order: -1;
-    min-height: clamp(13rem, 42vw, 18rem);
+    min-height: clamp(22rem, 92vw, 30rem);
     transform: none;
   }
   .ch-3d--side > * {
-    transform: scale(0.74);
+    width: min(94vw, 30rem) !important;
+    height: min(94vw, 30rem) !important;
+    transform: scale(1);
     transform-origin: center;
+  }
+  .ch-3d--side > * > div {
+    max-width: min(128vw, 40rem) !important;
+    max-height: min(128vw, 40rem) !important;
   }
 }
 
@@ -191,4 +197,11 @@
   .ch-statement { font-size: clamp(3rem, 14vw, 4.4rem); }
   .ch-sub { font-size: clamp(1rem, 4.5vw, 1.12rem); }
   .ch-strip-link { margin-left: 0; }
+  .ch-3d--side {
+    min-height: clamp(20rem, 96vw, 26rem);
+  }
+  .ch-3d--side > * {
+    width: min(98vw, 26rem) !important;
+    height: min(98vw, 26rem) !important;
+  }
 }

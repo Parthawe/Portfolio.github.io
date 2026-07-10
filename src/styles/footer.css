@@ -522,9 +522,21 @@ body.has-footer-reveal main {
 }
 
 @media (hover: none), (pointer: coarse) {
-  .ft-canvas-zone { cursor: auto; height: clamp(8rem, 30vw, 10rem); }
-  .ft-cursor--you { display: none; }
-  .ft-scrap-ghost { right: 4%; top: auto; bottom: 12%; }
+  .ft-canvas-zone { cursor: auto; height: clamp(13rem, 56vw, 16rem); }
+  .ft-cursor { display: none; }
+  .ft-scrap-ghost {
+    left: 28%;
+    right: 5%;
+    top: 49%;
+    bottom: auto;
+    gap: 0.18rem;
+    padding: 0.68rem 0.78rem 0.74rem;
+  }
+  .ft-scrap-ghost-name,
+  .ft-scrap-ghost-hint {
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
   .ft-scrap-path { display: none; }
 }
 
@@ -747,7 +759,13 @@ body.has-footer-reveal main {
 @media (hover: none), (pointer: coarse) {
   .ft-pin-bubble { max-width: 11rem; }
   .ft-pin-draft-box input { width: clamp(9rem, 60vw, 13rem); }
-  .ft-scrap-scrawl { left: 6%; top: 12%; }
+  .ft-scrap-scrawl {
+    left: 6%;
+    top: 12%;
+    max-width: 58%;
+    line-height: 1.2;
+    white-space: normal;
+  }
 }
 
 /* ── Unified top band: CTA left, slim link map right ─────────────── */

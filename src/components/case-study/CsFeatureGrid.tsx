@@ -24,8 +24,8 @@ export default function CsFeatureGrid({ features, className }: CsFeatureGridProp
       whileInView="show"
       viewport={{ once: true, margin: '-40px' }}
     >
-      {features.map((f) => (
-        <motion.div key={f.title} className="cs-feature-card" variants={item}>
+      {features.map((f, index) => (
+        <motion.div key={`${f.title || 'feature'}-${index}`} className="cs-feature-card" variants={item}>
           <div className="cs-feature-card-title">{f.title}</div>
           <div className="cs-feature-card-desc">{f.desc}</div>
         </motion.div>

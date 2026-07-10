@@ -130,10 +130,11 @@
     flex: 0 0 auto;
   }
   .nav-toggle { display: flex; }
-  .nav-right .theme-toggle,
+  .nav-right .theme-toggle:not(.nav-mobile-theme),
   .nav-theme-wrap,
   .nav-right .ambient-ui,
   .nav-right > .figma-hover:has(.theme-toggle) { display: none !important; }
+  .nav-right .nav-mobile-theme { display: flex !important; }
   .nav-cta { display: none; }
 
   /* footer responsive is handled in footer.css */

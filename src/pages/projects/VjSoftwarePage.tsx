@@ -267,8 +267,8 @@ export default function VjSoftwarePage() {
 
             <h3 className="cs-section-subtitle">Color Palette</h3>
             <div className="cs-swatch-grid">
-              {['#F66300', '#FFA25F', '#E6F6FF', '#FFFFFF', '#000000', '#009DF6', '#3BD378', '#FFFDEC'].map((hex) => (
-                <div className="cs-swatch" key={hex}>
+              {['#F66300', '#FFA25F', '#E6F6FF', '#FFFFFF', '#000000', '#009DF6', '#3BD378', '#FFFDEC'].map((hex, index) => (
+                <div className="cs-swatch" key={`${hex}-${index}`}>
                   <div className="cs-swatch-color" style={{ background: hex, borderColor: (hex === '#FFFFFF' || hex === '#FFFDEC') ? 'var(--ink-15)' : undefined }} />
                   <span className="cs-swatch-hex">{hex}</span>
                 </div>

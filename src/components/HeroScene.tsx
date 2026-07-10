@@ -1,4 +1,5 @@
 import { useRef, useMemo, useEffect, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Text, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -1988,6 +1989,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
     : useSafeDesktopLayout
       ? clamp(size.width / 760, 0.5, 0.76)
       : 0.76;
+  const expandedSceneScale = isMobile ? 0.9 : sceneScale;
   const sceneOffsetX = useSafeDesktopLayout ? clamp((0.82 - aspect) * -0.55, -0.24, 0.16) : 0;
   const narrowCameraPush = !isMobile ? clamp((0.92 - aspect) * 4.8, 0, 2.7) : 0;
 
@@ -1996,7 +1998,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
   const collapsedFadeRef = useRef(1);
   const baseCameraZ = isMobile ? 9.5 : useSafeDesktopLayout ? 7.65 + narrowCameraPush : 7.25;
   const baseCameraY = useSafeDesktopLayout ? 0.18 : 0.3;
-  const expandedCameraZ = isMobile ? 15.5 : 12.6;
+  const expandedCameraZ = isMobile ? 12.15 : 12.6;
 
   const setNodeActive = useCallback((index: number, active: boolean) => {
     setActiveIndex((current) => (active ? index : current === index ? null : current));
@@ -2166,7 +2168,8 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
     groupRef.current.rotation.x = mix(parallaxX, pitch.current, intro);
     groupRef.current.rotation.z = 0;
     groupRef.current.position.x = mix(sceneOffsetX, pan.current.x, intro);
-    groupRef.current.position.y = mix(0, pan.current.y, intro);
+    groupRef.current.position.y = mix(0, pan.current.y + (isMobile ? 0.18 : 0), intro);
+    groupRef.current.scale.setScalar(mix(sceneScale, expandedSceneScale, intro));
   });
 
   const positions = nodes.map(n => n.position);
@@ -2302,6 +2305,20 @@ export default function HeroScene({
     };
   }, [expanded]);
 
+  const backButton = (
+    <button
+      type="button"
+      className="hero-web-back figma-hover"
+      onClick={() => setExpanded(false)}
+      aria-label="Close the web and return to the hero"
+    >
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      Back
+    </button>
+  );
+
   // WebGL unavailable (older device, disabled GPU): keep the hero area's
   // layout intact but skip the 3D canvas (and the web affordance) instead of
   // crashing the page.
@@ -2310,19 +2327,22 @@ export default function HeroScene({
   }
 
   return (
-    <div ref={containerRef} className={`hero-3d-canvas${expanded ? ' hero-3d-canvas--web' : ''}`}>
-      <Canvas
-        frameloop={visible ? 'always' : 'never'}
-        dpr={[1, 2]}
-        gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.4 }}
-        camera={{ fov: 40, near: 0.1, far: 100, position: [0, 0.3, 7.5] }}
-        style={{ background: 'transparent' }}
-      >
-        <SceneContent reduced={reduced} isMobile={isMobile} dark={dark} expanded={expanded} />
-      </Canvas>
+    <>
+      <div ref={containerRef} className={`hero-3d-canvas${expanded ? ' hero-3d-canvas--web' : ''}`}>
+        <Canvas
+          frameloop={visible ? 'always' : 'never'}
+          dpr={[1, 2]}
+          gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.4 }}
+          camera={{ fov: 40, near: 0.1, far: 100, position: [0, 0.3, 7.5] }}
+          style={{ background: 'transparent' }}
+        >
+          <SceneContent reduced={reduced} isMobile={isMobile} dark={dark} expanded={expanded} />
+        </Canvas>
+      </div>
 
       {/* Collapsed: invite. Expanded: exit. The scene is aria-hidden decor, but
-          these are real controls, so they carry labels. */}
+          these are real controls, so they carry labels. Keep controls outside
+          the canvas wrapper so renderer visibility changes never hide them. */}
       {!expanded ? (
         <button
           type="button"
@@ -2336,19 +2356,7 @@ export default function HeroScene({
             <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-      ) : (
-        <button
-          type="button"
-          className="hero-web-back figma-hover"
-          onClick={() => setExpanded(false)}
-          aria-label="Close the web and return to the hero"
-        >
-          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M8.5 2.5L4 7l4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          Back
-        </button>
-      )}
-    </div>
+      ) : typeof document !== 'undefined' ? createPortal(backButton, document.body) : backButton}
+    </>
   );
 }
