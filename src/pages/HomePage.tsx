@@ -11,7 +11,7 @@ import FigmaFrameLabel from '../components/FigmaFrameLabel';
 import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useInView } from '../hooks/useInView';
 import { useMediaQuery } from '../hooks/useMediaQuery';
-import { allProjectsCurated, featuredProjects, homepageSelectedProjects } from '../data/projects';
+import { featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
 import { isLowPowerDevice } from '../utils/performance';
 
@@ -79,7 +79,6 @@ export default function HomePage() {
   const navigate = useNavigate();
   const [skillIdx, setSkillIdx] = useState(0);
   const [skillPaused, setSkillPaused] = useState(false);
-  const [showAllArchiveProjects, setShowAllArchiveProjects] = useState(false);
   const [identityTab, setIdentityTab] = useState<(typeof identityTabs)[number]['id']>('who-i-am');
   const [heroWebOpen, setHeroWebOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
@@ -95,13 +94,7 @@ export default function HomePage() {
   });
   const mountDisciplineObjects = useDeferredMount(allowDecorative3D && disciplinesInView, { timeout: lowPowerDevice ? 2200 : 1400, delayMs: lowPowerDevice ? 360 : 150 });
   const mountAboutObject = useDeferredMount(allowDecorative3D && aboutInView, { timeout: lowPowerDevice ? 2400 : 1600, delayMs: lowPowerDevice ? 360 : 120 });
-  const archiveProjectSlugs = new Set(homepageSelectedProjects.map(project => project.slug));
-  const appendedArchiveProjects = allProjectsCurated.filter(
-    project => !project.featured && !archiveProjectSlugs.has(project.slug),
-  );
-  const fullArchiveProjects = [...homepageSelectedProjects, ...appendedArchiveProjects];
-  const archiveProjects = showAllArchiveProjects ? fullArchiveProjects : homepageSelectedProjects;
-  const fullArchiveCount = fullArchiveProjects.length;
+  const archiveProjects = homepageSelectedProjects;
   const activeIdentity = identityTabs.find(tab => tab.id === identityTab) ?? identityTabs[0];
   const flagshipColumns = [
     featuredProjects.filter((_, index) => index === 0 || index === 2),
@@ -407,7 +400,7 @@ export default function HomePage() {
                 <div className="wr-section-title-group">
                   <span className="wr-label">SELECTED ARCHIVE</span>
                   <TextHighlight as="span" className="wr-section-highlight">
-                    {showAllArchiveProjects ? 'All visible work, one place' : 'More proof, less noise'}
+                    More proof, less noise
                   </TextHighlight>
                 </div>
                 <div className="wr-section-actions">
@@ -433,19 +426,10 @@ export default function HomePage() {
               </div>
 
               <div className="wr-archive-reveal">
-                <button
-                  type="button"
-                  className="wr-arrow-btn wr-arrow-btn--button figma-hover wr-archive-reveal__button"
-                  aria-expanded={showAllArchiveProjects}
-                  aria-controls="homepage-project-archive"
-                  onClick={() => setShowAllArchiveProjects(current => !current)}
-                >
-                  {showAllArchiveProjects ? 'Collapse archive' : `Reveal all ${fullArchiveCount} projects`}
+                <Link to="/work" className="wr-arrow-btn figma-hover wr-archive-reveal__button">
+                  Open full archive &rarr;
                   <FigmaSelect />
-                </button>
-                <p className="wr-archive-reveal__note">
-                  {showAllArchiveProjects ? 'Everything is expanded here now.' : 'Open the full archive right here without leaving the page.'}
-                </p>
+                </Link>
               </div>
             </div>
           </section>
