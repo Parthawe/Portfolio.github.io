@@ -77,10 +77,15 @@ export default function App() {
 
           {/* Category landing pages */}
           <Route path="/ai" element={<CategoryPage />} />
+          <Route path="/ux" element={<CategoryPage />} />
           <Route path="/ux-design" element={<CategoryPage />} />
+          <Route path="/ui" element={<CategoryPage />} />
+          <Route path="/design-engineer" element={<CategoryPage />} />
           <Route path="/creative-tech" element={<CategoryPage />} />
           <Route path="/installations" element={<CategoryPage />} />
+          <Route path="/brand" element={<CategoryPage />} />
           <Route path="/brand-visual" element={<CategoryPage />} />
+          <Route path="/healthcare" element={<CategoryPage />} />
           <Route path="/fintech" element={<CategoryPage />} />
           <Route path="/design-for-good" element={<CategoryPage />} />
           <Route path="/crypto" element={<CategoryPage />} />

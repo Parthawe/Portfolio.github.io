@@ -259,10 +259,15 @@ const ROUTE_PROFILE_KEYS: Record<string, AmbientProfileKey> = {
   '/graveyard': 'afterhours',
   '/studio': 'lab',
   '/ai': 'signal',
+  '/ux': 'focus',
   '/ux-design': 'focus',
+  '/ui': 'focus',
+  '/design-engineer': 'exhibit',
   '/creative-tech': 'exhibit',
   '/installations': 'stage',
+  '/brand': 'surface',
   '/brand-visual': 'surface',
+  '/healthcare': 'civic',
   '/design-for-good': 'civic',
   '/fintech': 'focus',
   '/crypto': 'signal',
@@ -271,10 +276,15 @@ const ROUTE_PROFILE_KEYS: Record<string, AmbientProfileKey> = {
 
 const ROUTE_LABELS: Partial<Record<string, string>> = {
   '/ai': 'AI & Wearables',
+  '/ux': 'UX Design',
   '/ux-design': 'UX Design',
+  '/ui': 'UX Design',
+  '/design-engineer': 'Creative Technology',
   '/creative-tech': 'Creative Technology',
   '/installations': 'Installations',
+  '/brand': 'Brand & Visual',
   '/brand-visual': 'Brand & Visual',
+  '/healthcare': 'Design for Good',
   '/design-for-good': 'Design for Good',
   '/fintech': 'Fintech',
   '/crypto': 'Crypto',
@@ -309,10 +319,15 @@ function getPageLabel(pathname: string): string {
 
 const CATEGORY_ROUTE_CATEGORY: Partial<Record<string, ProjectCategory>> = {
   '/ai': 'ai',
+  '/ux': 'ux',
   '/ux-design': 'ux',
+  '/ui': 'ux',
+  '/design-engineer': 'creative',
   '/creative-tech': 'creative',
   '/installations': 'install',
+  '/brand': 'brand',
   '/brand-visual': 'brand',
+  '/healthcare': 'good',
   '/design-for-good': 'good',
 }
 

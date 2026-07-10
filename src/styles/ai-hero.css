@@ -18,6 +18,7 @@
   align-items: center;
   gap: clamp(2.25rem, 5vw, 5.5rem);
   min-height: clamp(34rem, calc(100svh - var(--nav-h) - 2rem), 45rem);
+  max-width: 100%;
 }
 
 /* ── Copy column ── */
@@ -25,6 +26,8 @@
   display: grid;
   gap: clamp(1.15rem, 2.3vw, 1.8rem);
   justify-items: start;
+  min-width: 0;
+  width: 100%;
   max-width: 48rem;
   /* Gentle upward nudge for visual balance — capped so the eyebrow never
      slides up behind the fixed nav on tall/narrow viewports. */
@@ -61,6 +64,7 @@
   color: var(--ink);
   text-wrap: balance;
   max-width: 12ch;
+  overflow-wrap: anywhere;
 }
 
 .ch-statement em {
@@ -74,6 +78,8 @@
   line-height: 1.52;
   color: var(--ink-50);
   max-width: 38ch;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* ── Proof strip ── */
@@ -81,6 +87,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  min-width: 0;
   gap: clamp(0.7rem, 1.4vw, 1.1rem);
   padding-top: clamp(0.4rem, 1vw, 0.8rem);
   margin-top: clamp(0.15rem, 0.8vw, 0.55rem);
@@ -94,7 +101,7 @@
   font-size: clamp(0.76rem, 0.9vw, 0.86rem);
   letter-spacing: 0.05em;
   color: var(--ink-70);
-  white-space: nowrap;
+  min-width: 0;
 }
 
 .ch-strip-dot {
@@ -122,6 +129,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
   min-height: clamp(24rem, 46vw, 36rem);
   pointer-events: none;
   transform: translateY(clamp(-2.5rem, -4vh, -1rem));
@@ -167,41 +177,73 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .category-page {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  .category-page > .wrap {
+    max-width: 100%;
+  }
   .ch--landing {
     grid-template-columns: 1fr;
     min-height: 0;
     gap: 1.25rem;
+    width: 100%;
+    max-width: 100%;
   }
   .ch-copy {
     transform: none;
+    max-width: 100%;
+  }
+  .ch-statement,
+  .ch-sub,
+  .ch-strip {
+    width: min(100%, calc(100vw - 2rem));
+    max-width: 100%;
   }
   .ch-3d--side {
     order: -1;
     min-height: clamp(22rem, 92vw, 30rem);
     transform: none;
+    justify-self: stretch;
+    overflow: visible;
   }
   .ch-3d--side > * {
-    width: min(94vw, 30rem) !important;
-    height: min(94vw, 30rem) !important;
+    width: min(100%, 30rem) !important;
+    height: min(100vw - 2rem, 30rem) !important;
     transform: scale(1);
     transform-origin: center;
   }
   .ch-3d--side > * > div {
-    max-width: min(128vw, 40rem) !important;
-    max-height: min(128vw, 40rem) !important;
+    max-width: 100% !important;
+    max-height: min(100vw - 2rem, 30rem) !important;
   }
 }
 
 @media (max-width: 480px) {
   .ch { padding-top: calc(var(--nav-h) + 1.5rem); }
-  .ch-statement { font-size: clamp(3rem, 14vw, 4.4rem); }
-  .ch-sub { font-size: clamp(1rem, 4.5vw, 1.12rem); }
+  .ch-statement {
+    font-size: clamp(2.85rem, 13.2vw, 4.15rem);
+    max-width: 100%;
+  }
+  .ch-sub {
+    font-size: clamp(0.96rem, 4.1vw, 1.08rem);
+    line-height: 1.48;
+  }
+  .ch-strip {
+    gap: 0.55rem 0.75rem;
+  }
+  .ch-strip-item,
+  .ch-strip-link {
+    font-size: clamp(0.68rem, 3.05vw, 0.78rem);
+    line-height: 1.35;
+  }
   .ch-strip-link { margin-left: 0; }
   .ch-3d--side {
     min-height: clamp(20rem, 96vw, 26rem);
   }
   .ch-3d--side > * {
-    width: min(98vw, 26rem) !important;
-    height: min(98vw, 26rem) !important;
+    width: min(100%, 26rem) !important;
+    height: min(100vw - 2rem, 26rem) !important;
   }
 }

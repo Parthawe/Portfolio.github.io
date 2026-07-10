@@ -185,7 +185,7 @@ function localGeminiEdgePlugin(apiKey: string, defaultModel: string): Plugin {
 
 function basePathRedirectPlugin(basePath: string): Plugin {
   const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`
-  const routeLike = /^\/(work|about|accessibility|playbook|writing|book|graveyard|studio|ai|ux-design|creative-tech|installations|brand-visual|fintech|design-for-good|crypto|ai-wearables|[a-z0-9-]+)(?:[/?#]|$)/
+  const routeLike = /^\/(work|about|accessibility|playbook|writing|book|graveyard|studio|ai|ux|ux-design|ui|design-engineer|creative-tech|installations|brand|brand-visual|healthcare|fintech|design-for-good|crypto|ai-wearables|[a-z0-9-]+)(?:[/?#]|$)/
 
   function redirectIfNeeded(req: { url?: string }, res: { statusCode: number; setHeader: (key: string, value: string) => void; end: () => void }, next: () => void) {
     const url = req.url || '/'

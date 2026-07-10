@@ -883,6 +883,14 @@ html.is-low-power-device .cl-marquee-track {
   margin-bottom: clamp(3.5rem, 7vw, 6rem);
 }
 
+.lp-impact-strip {
+  margin: clamp(4rem, 8vw, 7rem) 0 clamp(4rem, 8vw, 7rem);
+}
+
+.lp-impact-strip .cl-marquee {
+  margin-bottom: 0;
+}
+
 /* ── Playbook strip (category pages): names roll by, links to /playbook ── */
 .lp-playbook-strip {
   margin-bottom: clamp(4rem, 8vw, 7rem);

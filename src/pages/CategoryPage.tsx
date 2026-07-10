@@ -23,6 +23,14 @@ const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'))
 
 const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'brand-visual', 'ai', 'creative-tech', 'fintech', 'crypto', 'ai-wearables'])
 
+const CATEGORY_ALIASES: Record<string, string> = {
+  brand: 'brand-visual',
+  'design-engineer': 'creative-tech',
+  healthcare: 'design-for-good',
+  ui: 'ux-design',
+  ux: 'ux-design',
+}
+
 const CATEGORY_REGISTRY_KEY: Partial<Record<string, ProjectCategory>> = {
   ai: 'ai',
   'ai-wearables': 'ai',
@@ -45,13 +53,6 @@ const EXTRA_CATEGORY_PROJECTS: Partial<Record<string, string[]>> = {
   crypto: ['moniac-machine'],
   'design-for-good': ['healthapp', 'raahi-project', 'code-for-build'],
 }
-
-/* Each category page carries one editorial "energy strip":
-   - Impact/client-driven domains show the "Where my work made a difference"
-     logo marquee.
-   - Craft/philosophy-driven domains show the rolling Playbook-points strip. */
-const CLIENT_STRIP_CATEGORIES = new Set(['ux-design', 'installations', 'design-for-good', 'fintech'])
-const PLAYBOOK_STRIP_CATEGORIES = new Set(['ai', 'ai-wearables', 'creative-tech', 'brand-visual', 'crypto'])
 
 const CATEGORY_ANNOTATION_LINKS = [
   { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
@@ -82,7 +83,8 @@ function addVisibleProject(list: Project[], seen: Set<string>, project?: Project
 
 export default function CategoryPage() {
   const { pathname } = useLocation()
-  const slug = pathname.split('/').filter(Boolean).pop() ?? ''
+  const rawSlug = pathname.split('/').filter(Boolean).pop() ?? ''
+  const slug = CATEGORY_ALIASES[rawSlug] ?? rawSlug
   const has3D = CATEGORIES_WITH_3D.has(slug)
   const category = categories.find((c) => c.slug === slug)
 
@@ -123,14 +125,12 @@ export default function CategoryPage() {
     ? visibleCategoryProjects.filter((project) => project.slug !== featuredProject.slug)
     : visibleCategoryProjects
   const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
-  const showClientStrip = CLIENT_STRIP_CATEGORIES.has(slug)
-  const showPlaybookStrip = PLAYBOOK_STRIP_CATEGORIES.has(slug)
   const categoryIndex = Math.max(0, CATEGORY_ANNOTATION_ORDER.indexOf(slug as (typeof CATEGORY_ANNOTATION_ORDER)[number]))
   const categoryNum = String(categoryIndex + 1).padStart(2, '0')
   const categoryObjectSlug = slug === 'ai' ? 'ai-wearables' : slug
 
   return (
-    <div style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
+    <div className="category-page" style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
       <Helmet>
         <title>{category.metaTitle}</title>
         <meta name="description" content={category.metaDescription} />
@@ -158,17 +158,10 @@ export default function CategoryPage() {
 
           <hr className="lp-divider" />
 
-          {/* Editorial energy strip — same placement on every category page */}
-          {showClientStrip && (
-            <Reveal>
-              <ClientsMarquee />
-            </Reveal>
-          )}
-          {showPlaybookStrip && (
-            <Reveal>
-              <PlaybookSection />
-            </Reveal>
-          )}
+          {/* Editorial thinking: near the top, before the work examples. */}
+          <Reveal>
+            <PlaybookSection />
+          </Reveal>
 
           {/* All projects, flagship first (full-width), then rest in masonry */}
           <div id="lp-work">
@@ -213,6 +206,13 @@ export default function CategoryPage() {
               </>
             )}
           </div>
+
+          {/* Impact proof: later in the page, after the work has context. */}
+          <Reveal>
+            <section className="lp-impact-strip" aria-label="Where my work made a difference">
+              <ClientsMarquee />
+            </section>
+          </Reveal>
 
           {/* Category annotation */}
           <Reveal>
