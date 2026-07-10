@@ -2147,7 +2147,7 @@
 }
 
 .cs-nda-reviewer-shot--tall img {
-  aspect-ratio: auto;
+  aspect-ratio: 1 / 4;
   object-fit: contain;
   object-position: top;
 }
