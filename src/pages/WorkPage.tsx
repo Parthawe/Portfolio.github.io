@@ -189,7 +189,7 @@ export default function WorkPage() {
     ? archiveWorkProjects
     : filterProjectsByCategory(archiveWorkProjects, activeFilter as ProjectCategory)
   const selectedColumnCount = isSingleColumn ? 1 : isTwoColumn ? 2 : 3
-  const archiveColumnCount = isSingleColumn ? 1 : isTwoColumn ? 2 : 4
+  const archiveColumnCount = isSingleColumn ? 2 : isTwoColumn ? 2 : 4
   const selectedMasonryColumns = useMemo(
     () => distributeProjects(editorialSelectedProjects, selectedColumnCount),
     [editorialSelectedProjects, selectedColumnCount]

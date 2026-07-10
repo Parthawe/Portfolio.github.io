@@ -147,6 +147,8 @@ const offClockImages = [
   },
 ]
 
+const featuredOffClockImages = offClockImages.slice(0, 3)
+
 const aboutCharacterFrames = Array.from(
   { length: 9 },
   (_, index) => `/Portfolio.github.io/Assets/character/me/${index + 1}.webp`,
@@ -435,21 +437,18 @@ export default function AboutPage() {
                   aria-label="Off the clock image reel"
                 >
                   <div className="abt-image-asides-track">
-                    {[0, 1].map((copy) =>
-                      offClockImages.map((item, i) => (
-                        <motion.figure
-                          key={`${copy}-${item.label}`}
-                          className="abt-image-aside"
-                          aria-hidden={copy === 1 || undefined}
-                          variants={{
-                            hidden: { opacity: 0, y: 14, rotate: (i % 2 === 0 ? -3 : 3) },
-                            show: { opacity: 1, y: 0, rotate: (i % 2 === 0 ? -1.5 : 1.5), transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-                          }}
-                        >
-                          <img src={item.src} alt="" loading="lazy" decoding="async" />
-                        </motion.figure>
-                      )),
-                    )}
+                    {featuredOffClockImages.map((item, i) => (
+                      <motion.figure
+                        key={item.label}
+                        className="abt-image-aside"
+                        variants={{
+                          hidden: { opacity: 0, y: 14, rotate: (i % 2 === 0 ? -3 : 3) },
+                          show: { opacity: 1, y: 0, rotate: (i % 2 === 0 ? -1.5 : 1.5), transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                        }}
+                      >
+                        <img src={item.src} alt="" loading="lazy" decoding="async" />
+                      </motion.figure>
+                    ))}
                   </div>
                 </motion.div>
               </div>

@@ -1925,9 +1925,7 @@
 }
 
 .abt-image-asides:is(:hover, :focus-within) .abt-image-asides-track {
-  justify-content: flex-start;
-  width: max-content;
-  animation: abtImageAsideScroll 38s linear infinite;
+  justify-content: center;
 }
 
 .abt-image-aside {
@@ -2584,31 +2582,38 @@
     width: 100%;
     margin-inline: 0;
     padding-inline: 0;
-    padding-bottom: 3.4rem;
+    padding-bottom: 0;
     -webkit-mask-image: none;
     mask-image: none;
     overflow: visible;
   }
   .abt-image-asides-track {
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    justify-content: stretch;
     width: 100%;
-    max-width: 100%;
+    max-width: min(100%, 32rem);
+    margin-inline: auto;
     min-height: 0;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    padding: 0;
+    gap: 0.55rem;
     animation: none;
     transform: none !important;
     will-change: auto;
   }
-  .abt-image-asides:not(:hover):not(:focus-within) .abt-image-aside:nth-child(n+4) { display: block; }
-  .abt-image-asides:not(:hover):not(:focus-within) .abt-image-aside:nth-child(-n+3) { transform: none; }
-  .abt-image-aside[aria-hidden="true"] { display: none !important; }
-  .abt-image-aside {
-    flex: 1 1 clamp(8.5rem, 40vw, 12rem);
-    max-width: 13rem;
-    aspect-ratio: 3 / 4.55;
+  .abt-image-asides:not(:hover):not(:focus-within) .abt-image-aside:nth-child(-n+3),
+  .abt-image-asides:is(:hover, :focus-within) .abt-image-aside {
+    transform: none;
   }
-  .abt-image-asides-hint { font-size: 0.95rem; }
+  .abt-image-aside {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 3 / 4.1;
+    border-radius: 0.85rem;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+  .abt-image-asides-hint { display: none; }
   .abt-cta { padding: 72px 0; }
 
   /* Graveyard banner */
@@ -2640,13 +2645,121 @@
   .abt-table-wrap { padding-bottom: var(--space-8); }
   .abt-table-section-label { padding-top: var(--space-5); }
   .abt-recognition { padding-bottom: var(--space-8); }
-  .abt-beyond { padding-bottom: var(--space-8); }
+  .abt-beyond {
+    padding-bottom: var(--space-7);
+  }
+  .abt-beyond-inner {
+    gap: 1.35rem;
+  }
+  .abt-beyond-copy {
+    gap: 0.85rem;
+    text-align: left;
+  }
+  .abt-beyond-title {
+    font-size: clamp(1.85rem, 10vw, 2.4rem);
+  }
+  .abt-beyond-text {
+    max-width: 100%;
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+  .abt-image-asides-track {
+    gap: 0.42rem;
+  }
+  .abt-image-aside {
+    aspect-ratio: 3 / 4;
+    border-radius: 0.7rem;
+  }
   .abt-graveyard { margin-bottom: var(--space-8); }
   .abt-type { padding-bottom: var(--space-8); }
   .abt-type-name { font-size: clamp(2rem, 14vw, 3.5rem); }
   .abt-type-alphabet { font-size: 1rem; letter-spacing: 0.05em; }
   .abt-cta { padding: var(--space-8) 0; }
   .abt-cta-links { flex-direction: column; gap: var(--space-5); }
+}
+
+@media (max-width: 640px) {
+  .page-about .abt-practice {
+    margin-top: var(--space-8);
+    padding-bottom: var(--space-7);
+  }
+
+  .page-about .abt-practice-intro {
+    margin-bottom: 1rem;
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .page-about .abt-practice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+  }
+
+  .page-about .abt-practice-card,
+  .page-about .abt-practice-card:not(:first-child),
+  .page-about .abt-practice-card:not(:last-child) {
+    min-height: 9.75rem;
+    padding: 0.85rem;
+    border: 1px solid var(--ink-08);
+    border-radius: 0.85rem;
+  }
+
+  .page-about .abt-practice-num {
+    margin-bottom: 0.45rem;
+    font-size: clamp(1.9rem, 12vw, 2.55rem);
+  }
+
+  .page-about .abt-practice-title {
+    margin-bottom: 0.45rem;
+    font-size: 0.98rem;
+    line-height: 1.15;
+  }
+
+  .page-about .abt-practice-desc {
+    display: -webkit-box;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .page-about .abt-practice-handle {
+    margin-top: 0.65rem;
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-about .abt-vibe {
+    gap: 0.7rem;
+    padding: 1rem 0.72rem 0.9rem;
+  }
+
+  .page-about .abt-vibe-head {
+    gap: 0.5rem;
+  }
+
+  .page-about .abt-vibe-head h2 {
+    font-family: var(--sans);
+    font-size: clamp(1.8rem, 9vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1.02;
+  }
+
+  .page-about .abt-vibe-head p {
+    font-size: 0.86rem;
+    line-height: 1.34;
+  }
+
+  .page-about .abt-vibe-stage {
+    min-height: 11.5rem;
+  }
+
+  .page-about .abt-vibe-window {
+    width: min(100%, 15.5rem);
+    height: 10.8rem;
+  }
 }
 
 /* ═══════════════════════════════════════
@@ -2875,32 +2988,40 @@
 
 @media (max-width: 900px) {
   .abt-vibe { padding-inline: 1rem; }
-  .abt-vibe-stage { min-height: 25rem; }
+  .abt-vibe-stage { min-height: 18rem; }
   .abt-vibe-window {
-    width: min(34rem, 82vw);
-    height: 23rem;
+    width: min(30rem, 82vw);
+    height: 17.5rem;
     transform: none;
   }
   .abt-vibe-software {
     max-width: 100%;
-    overflow: visible;
+    overflow: hidden;
     mask-image: none;
   }
 
   .abt-vibe-software-row {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  .abt-vibe-software-row:nth-child(n+3) {
+    display: none;
   }
 
   .abt-vibe-software-track {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     width: 100%;
     min-width: 0;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
     animation: none;
     transform: none !important;
     will-change: auto;
+    scrollbar-width: none;
   }
+
+  .abt-vibe-software-track::-webkit-scrollbar { display: none; }
 
   .abt-vibe-software-track[aria-hidden="true"] {
     display: none;
@@ -2909,40 +3030,62 @@
 
 @media (max-width: 640px) {
   .abt-vibe {
-    margin: 2.5rem 0;
-    padding: 1.4rem 0.8rem;
+    gap: 0.85rem;
+    margin: 1.6rem 0;
+    padding: 1.1rem 0.78rem 1rem;
     scroll-margin-top: calc(var(--nav-h) + 1rem);
-    border-radius: 1.25rem;
+    border-radius: 1rem;
   }
   .abt-vibe-head h2 {
     max-width: 100%;
-    font-size: clamp(2.25rem, 12vw, 3.1rem);
+    font-size: clamp(1.9rem, 10vw, 2.55rem);
     line-height: 1;
   }
-  .abt-vibe-stage { min-height: 21rem; }
+  .abt-vibe-head p {
+    max-width: 24rem;
+    font-size: 0.92rem;
+    line-height: 1.38;
+  }
+  .abt-vibe-stage { min-height: 14rem; }
   .abt-vibe-window {
-    width: min(100%, 24rem);
-    height: 19rem;
-    border-radius: 1.1rem;
+    width: min(100%, 18.5rem);
+    height: 13.5rem;
+    border-radius: 0.9rem;
   }
   .abt-vibe-software { max-width: 100%; }
+  .abt-vibe-software-row:nth-child(n+2) {
+    display: none;
+  }
   .abt-vibe-software-track {
     gap: 0.5rem;
     padding-right: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.18rem;
     animation: none;
+    scrollbar-width: none;
   }
+  .abt-vibe-software-track::-webkit-scrollbar { display: none; }
   .abt-vibe-software-track[aria-hidden="true"] { display: none; }
   .abt-vibe-software-chip {
-    min-height: 2.35rem;
-    font-size: 0.68rem;
+    min-height: 2rem;
+    padding: 0.3rem 0.58rem 0.3rem 0.32rem;
+    font-size: 0.61rem;
   }
   .abt-vibe-software-logo {
-    width: 1.55rem;
-    height: 1.55rem;
-    flex-basis: 1.55rem;
-    font-size: 0.56rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    flex-basis: 1.35rem;
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .abt-vibe-stage { min-height: 12.5rem; }
+  .abt-vibe-window {
+    width: min(100%, 16.5rem);
+    height: 12rem;
   }
 }
 
@@ -2965,4 +3108,45 @@
     display: none;
   }
 
+}
+
+@media (max-width: 640px) {
+  .page-about .abt-vibe {
+    gap: 0.68rem;
+    margin: 1.45rem 0;
+    padding: 0.95rem 0.72rem 0.86rem;
+  }
+
+  .page-about .abt-vibe-head h2 {
+    font-family: var(--sans);
+    font-size: clamp(1.72rem, 8.6vw, 2.18rem);
+    font-weight: 700;
+    line-height: 1.02;
+  }
+
+  .page-about .abt-vibe-head p {
+    max-width: 23rem;
+    font-size: 0.84rem;
+    line-height: 1.34;
+  }
+
+  .page-about .abt-vibe-stage {
+    min-height: 10.75rem;
+  }
+
+  .page-about .abt-vibe-window {
+    width: min(100%, 15rem);
+    height: 10.25rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .page-about .abt-vibe-stage {
+    min-height: 10rem;
+  }
+
+  .page-about .abt-vibe-window {
+    width: min(100%, 14rem);
+    height: 9.65rem;
+  }
 }
