@@ -19,8 +19,6 @@ import {
 
 const filters = CATEGORIES
 const WORK_FILTER_EVENT = 'folio:set-work-filter'
-const workCardCoverShape = (index: number): 'portrait' | 'square' =>
-  index % 2 === 0 ? 'portrait' : 'square'
 
 interface WorkFilterEventDetail {
   filterKey: 'all' | ProjectCategory
@@ -227,8 +225,8 @@ export default function WorkPage() {
   const libraryPreviewMedia = libraryPreviewProject?.previewMedia?.library
   const libraryPreviewImage = libraryPreviewMedia?.src || libraryPreviewProject?.cover16x9 || libraryPreviewProject?.summaryImage || libraryPreviewProject?.image || ''
   const libraryPreviewAlt = libraryPreviewMedia?.alt || libraryPreviewProject?.summaryImageAlt || libraryPreviewProject?.name || ''
-  const renderCard = useCallback((project: Project, index: number) => (
-    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} coverShape={workCardCoverShape(index)} tilt={false} />
+  const renderCard = useCallback((project: Project) => (
+    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} tilt={false} />
   ), [])
 
   const handleFilterChange = useCallback((filterKey: 'all' | ProjectCategory) => {
@@ -529,7 +527,7 @@ export default function WorkPage() {
                             >
                               <span className="work-library-row__index">{String(projectIndex + 1).padStart(2, '0')}</span>
                               <div className="work-library-row__thumb">
-                                <img src={project.cardMockupSquare || project.cardMockup || project.image} alt={project.name} loading={section.key === 'start-here' && projectIndex < 2 ? 'eager' : 'lazy'} decoding="async" />
+                                <img src={project.cover16x9 ? project.cardMockup : project.image} alt={project.name} loading={section.key === 'start-here' && projectIndex < 2 ? 'eager' : 'lazy'} decoding="async" />
                               </div>
                               <div className="work-library-row__project">
                                 <span className="work-library-row__name">{project.name}</span>
@@ -650,7 +648,7 @@ export default function WorkPage() {
                                   <span className="work-timeline-support-row__index">{String(projectIndex + 2).padStart(2, '0')}</span>
                                   <div className="work-timeline-support-row__thumb">
                                     <img
-                                      src={project.cardMockupSquare || project.cardMockup || project.summaryImage || project.image}
+                                      src={project.cover16x9 ? project.cardMockup : (project.summaryImage || project.image)}
                                       alt={project.summaryImageAlt || project.name}
                                       loading="lazy"
                                       decoding="async"
