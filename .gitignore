@@ -16,7 +16,11 @@ public/archive/
 public/Assets/Projects/AI VOICE/
 public/Assets/Projects/Health App/
 public/Assets/Projects/CueTV/
-public/Assets/Projects/Transfi/
+# TransFi can publish only approved glimpse assets; reviewer material stays local/private.
+public/Assets/Projects/Transfi/*
+!public/Assets/Projects/Transfi/public/
+!public/Assets/Projects/Transfi/public/**
+public/Assets/Projects/Transfi/reviewer/
 public/Assets/Projects/ai-voice/
 public/Assets/Projects/health-app/
 # The public TransFi wordmark (from transfi.com's own site) is allowed for

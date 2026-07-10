@@ -175,7 +175,7 @@ export default function ZentipayPage() {
 
       </main>
 
-      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp" />
+      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png" />
       <Footer />
     </>
   )

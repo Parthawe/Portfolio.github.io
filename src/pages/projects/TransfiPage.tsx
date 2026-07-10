@@ -8,6 +8,179 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const TRANSFI_ASSET_BASE = '/Portfolio.github.io/Assets/Projects/Transfi'
+const transfiPublicAsset = (fileName: string) => (
+  `${TRANSFI_ASSET_BASE}/public/${encodeURIComponent(fileName)}`
+)
+
+const TRANSFI_PUBLIC_VISUALS = [
+  {
+    src: transfiPublicAsset('Group 550.png'),
+    alt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
+    label: 'Dashboard and widget',
+  },
+]
+
+const TRANSFI_PROCESS_VISUALS = [
+  {
+    src: transfiPublicAsset('Frame 427318646.png'),
+    alt: 'TransFi mobile payment flow screens arranged as a product journey collage.',
+    label: 'Payment flow map',
+  },
+  {
+    src: transfiPublicAsset('Customer dashboard Widget.png'),
+    alt: 'TransFi customer dashboard widget configuration screen.',
+    label: 'Widget setup',
+  },
+]
+
+const TRANSFI_REVIEWER_SECTIONS = [
+  {
+    eyebrow: '01 / Merchant surface',
+    title: 'Make the dashboard legible before the payment starts.',
+    body: 'Reviewer screens show how merchants moved from entry and setup into user, widget, and operational states without losing context.',
+    images: [
+      {
+        label: 'Users dashboard',
+        src: transfiPublicAsset('Customer dashboard Users.png'),
+        alt: 'TransFi customer dashboard users screen.',
+      },
+      {
+        label: 'User detail',
+        src: transfiPublicAsset('Customer dashboard Users-1.png'),
+        alt: 'TransFi customer dashboard user detail screen.',
+      },
+      {
+        label: 'Login state',
+        src: transfiPublicAsset('Login screen 2.png'),
+        alt: 'TransFi login screen.',
+      },
+    ],
+  },
+  {
+    eyebrow: '02 / Payment journey',
+    title: 'Turn crypto payment risk into readable steps.',
+    body: 'The flow artifacts map currency choice, wallet/payment method selection, confirmation, order status, and transaction outcomes as a sequence of reviewable moments.',
+    images: [
+      {
+        label: 'Currency choice',
+        src: transfiPublicAsset('Group 1000004741.png'),
+        alt: 'TransFi 3D visual of currency selection and pay with bitcoin interface.',
+      },
+      {
+        label: 'Dashboard state',
+        src: transfiPublicAsset('Frame 427318638.png'),
+        alt: 'TransFi product interface frame showing a key dashboard or flow state.',
+      },
+      {
+        label: 'Flow state',
+        src: transfiPublicAsset('Frame 427318639.png'),
+        alt: 'TransFi product interface frame showing a key flow state.',
+      },
+      {
+        label: 'Payment state',
+        src: transfiPublicAsset('Frame 427318643.png'),
+        alt: 'TransFi product interface frame showing a key payment state.',
+      },
+      {
+        label: 'Compact state',
+        src: transfiPublicAsset('Frame 427318644.png'),
+        alt: 'TransFi product interface frame showing a compact product state.',
+      },
+      {
+        label: 'Order summary',
+        src: transfiPublicAsset('Order Summary.png'),
+        alt: 'TransFi order summary screen showing transaction status and details.',
+        tall: true,
+      },
+    ],
+  },
+  {
+    eyebrow: '03 / System language',
+    title: 'Carry the same trust language through brand, UI, and components.',
+    body: 'The visual system work made the experience feel like one product across checkout, dashboard, and supporting brand moments.',
+    images: [
+      {
+        label: 'System strip',
+        src: transfiPublicAsset('Frame 427318637.png'),
+        alt: 'TransFi interface system strip showing product screens and states.',
+      },
+      {
+        label: 'Product detail',
+        src: transfiPublicAsset('Group 1000004753.png'),
+        alt: 'TransFi interface composition showing a product detail state.',
+      },
+      {
+        label: 'Screen system',
+        src: transfiPublicAsset('Group 1000004754.png'),
+        alt: 'TransFi interface composition showing product screens and payment states.',
+      },
+      {
+        label: 'Component view',
+        src: transfiPublicAsset('Group 1000004755.png'),
+        alt: 'TransFi product visual showing a compact product component.',
+      },
+      {
+        label: 'Wide screen',
+        src: transfiPublicAsset('Group 2493.png'),
+        alt: 'TransFi interface group showing a wide product screen.',
+      },
+      {
+        label: 'Screen detail',
+        src: transfiPublicAsset('Group 2494.png'),
+        alt: 'TransFi interface group showing a compact screen state.',
+      },
+      {
+        label: 'Small component',
+        src: transfiPublicAsset('Group 2495.png'),
+        alt: 'TransFi interface group showing a compact component state.',
+      },
+      {
+        label: 'Detail component',
+        src: transfiPublicAsset('Group 2496.png'),
+        alt: 'TransFi interface group showing a component detail.',
+      },
+      {
+        label: 'Brand visual',
+        src: transfiPublicAsset('Group 38938.png'),
+        alt: 'TransFi square product or brand visual.',
+      },
+      {
+        label: 'Type scale',
+        src: transfiPublicAsset('Type Scale.png'),
+        alt: 'TransFi type scale and typography system.',
+      },
+    ],
+  },
+]
+
+function TransfiReviewerStory() {
+  return (
+    <div className="transfi-reviewer-story">
+      {TRANSFI_REVIEWER_SECTIONS.map((section) => (
+        <section className="transfi-reviewer-section" key={section.eyebrow}>
+          <div className="transfi-reviewer-copy">
+            <span>{section.eyebrow}</span>
+            <h3>{section.title}</h3>
+            <p>{section.body}</p>
+          </div>
+          <div className="transfi-reviewer-sequence">
+            {section.images.map((image) => (
+              <figure
+                className={`transfi-reviewer-shot${image.tall ? ' transfi-reviewer-shot--tall' : ''}`}
+                key={image.src}
+              >
+                <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                <figcaption>{image.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )
+}
+
 export default function TransfiPage() {
   const sections = [
     { id: 'cs-public-story', label: 'Glimpse' },
@@ -36,7 +209,7 @@ export default function TransfiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Crypto payment infrastructure redesign for multi-market merchant flows." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png" />
       </Helmet>
 
       <Nav />
@@ -77,17 +250,21 @@ export default function TransfiPage() {
           slug="transfi-project"
           headline="Trust made operational."
           lede="The public glimpse shows the shape of the redesign without exposing internal payment flows, market constraints, or implementation detail."
+          visuals={TRANSFI_PUBLIC_VISUALS}
         />
 
         <NdaProcess
+          title="How I approached it"
+          intro="Two moves shaped the redesign: make trust visible in the interface, then focus the work around the highest-risk payment moments."
+          visuals={TRANSFI_PROCESS_VISUALS}
           decisions={[
             {
-              move: 'Turned an abstract “trust” goal into operational interface behaviour.',
-              why: 'Trust is easy to claim and hard to design. I translated it into concrete, testable rules — what the interface shows, when it confirms, and how it handles the moments money is at risk — so it became something the product does, not says.',
+              move: 'Turn trust into interface behaviour.',
+              why: 'Show status, confirm risk, and make money moments reviewable.',
             },
             {
-              move: 'Prioritised the redesign around real payment-flow risk.',
-              why: 'With finite time I focused effort where a confused or wrong action carried the highest cost, rather than spreading polish evenly. The visible shape of the redesign followed the risk map, with patterns that held up across markets so merchant teams saw a consistent experience without the internal complexity.',
+              move: 'Design around payment-flow risk.',
+              why: 'Prioritise confusing steps first, then reuse patterns across markets.',
             },
           ]}
           shift={{
@@ -97,10 +274,7 @@ export default function TransfiPage() {
         />
 
         <NdaGate slug="transfi-project">
-          <div className="nda-empty-reviewer">
-            <span>Deeper review by request</span>
-            <p>Protected TransFi screens are shared directly with reviewers so client-specific product details stay out of the public build.</p>
-          </div>
+          <TransfiReviewerStory />
         </NdaGate>
 
 

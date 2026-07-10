@@ -241,9 +241,9 @@ export const projects: Project[] = [
   {
     slug: 'transfi-project',
     name: 'TransFi',
-    image: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_4x5.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_4x5.webp',
-    cardMockupAlt: 'TransFi cover: buy-crypto widget and merchant dashboard on the TransFi blue gradient',
+    image: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
+    cardMockupSource: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
+    cardMockupAlt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
     tag: 'WEB3 PAYMENTS',
     year: '2023',
     desc: 'Public glimpse of a multi-market crypto payment infrastructure redesign',
@@ -255,8 +255,8 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp',
-      publicPreviewAlt: 'TransFi cover: buy-crypto widget and merchant dashboard on the TransFi blue gradient',
+      publicPreviewImage: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
+      publicPreviewAlt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
     },
     loading: 'eager',
     tier: 's',
@@ -267,8 +267,8 @@ export const projects: Project[] = [
     summaryTeam: 'Lead designer partnering with product, founder, and engineering.',
     summaryTimeline: '2022–23',
     summaryOutcome: 'Simplified merchant onboarding and made the payment infrastructure easier to evaluate, trust, and operate.',
-    summaryImage: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp',
-    summaryImageAlt: 'TransFi cover: buy-crypto widget and merchant dashboard on the TransFi blue gradient',
+    summaryImage: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
+    summaryImageAlt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
     summaryStats: [
       { label: 'Domain', value: 'Payments' },
       { label: 'Scope', value: 'Dashboard + widget' },
@@ -280,9 +280,9 @@ export const projects: Project[] = [
       cite: 'Public synthesis',
     },
     hoverMedia: {
-      src: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp',
+      src: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
       kind: 'image',
-      alt: 'Public-safe TransFi project preview.',
+      alt: 'TransFi dashboard and buy-crypto widget overview.',
     },
     storyline: {
       challenge: 'Cross-border crypto payments were operationally powerful but cognitively heavy, with different market expectations and constraints.',

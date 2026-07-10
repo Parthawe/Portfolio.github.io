@@ -104,6 +104,22 @@ export default function NdaGate({
     }
   }
 
+  if (verified) {
+    return children ? (
+      <motion.section
+        id={`case-study-access-${slug}`}
+        className="nda-unlocked-section cs-section"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="wrap nda-unlocked-inner">
+          {children}
+        </div>
+      </motion.section>
+    ) : null
+  }
+
   return (
     <motion.div
       id={`case-study-access-${slug}`}
@@ -115,7 +131,6 @@ export default function NdaGate({
       <div className="nda-inline-inner">
         <div className="nda-inline-left">
           <div className="nda-inline-text">
-            <span className="nda-inline-label">Protected case study</span>
             <h2 className="nda-inline-title">Reviewer access</h2>
             <p className="nda-inline-desc">
               Public pages show the safe story. Use a reviewer code or request access for deeper screens and project notes.
@@ -130,41 +145,31 @@ export default function NdaGate({
         </div>
 
         <div className="nda-access-stack">
-          {verified ? (
-            <div className="nda-approved-panel" role="status">
-              <span className="nda-approved-kicker">Reviewer mode active</span>
-              <p>
-                Access is approved for this browser session.
-              </p>
-              {children ? <div className="nda-protected-content">{children}</div> : null}
-            </div>
-          ) : (
-            <form className="nda-inline-form nda-inline-form--code nda-access-panel" onSubmit={handleCodeSubmit}>
-              <div className="nda-panel-head">
-                <div>
-                  <span className="nda-panel-kicker">Have a code</span>
-                  <strong>Enter reviewer code</strong>
-                </div>
+          <form className="nda-inline-form nda-inline-form--code nda-access-panel" onSubmit={handleCodeSubmit}>
+            <div className="nda-panel-head">
+              <div>
+                <span className="nda-panel-kicker">Have a code</span>
+                <strong>Enter reviewer code</strong>
               </div>
-              <label className="nda-field">
-                <span>Access code</span>
-                <input
-                  type="password"
-                  className="nda-input"
-                  value={accessCode}
-                  onChange={e => setAccessCode(e.target.value)}
-                  placeholder="reviewer code"
-                  autoComplete="current-password"
-                />
-              </label>
-              <button type="submit" className="nda-request-submit nda-request-submit--secondary">
-                Unlock review
-              </button>
-              {codeMessage ? (
-                <p className="nda-inline-confirmation">{codeMessage}</p>
-              ) : null}
-            </form>
-          )}
+            </div>
+            <label className="nda-field">
+              <span>Access code</span>
+              <input
+                type="password"
+                className="nda-input"
+                value={accessCode}
+                onChange={e => setAccessCode(e.target.value)}
+                placeholder="reviewer code"
+                autoComplete="current-password"
+              />
+            </label>
+            <button type="submit" className="nda-request-submit nda-request-submit--secondary">
+              Unlock review
+            </button>
+            {codeMessage ? (
+              <p className="nda-inline-confirmation">{codeMessage}</p>
+            ) : null}
+          </form>
 
           <form className="nda-inline-form nda-inline-form--request nda-access-panel" onSubmit={handleSubmit}>
             <div className="nda-panel-head">

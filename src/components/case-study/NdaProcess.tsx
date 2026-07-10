@@ -6,10 +6,16 @@ interface Decision {
 }
 
 interface NdaProcessProps {
+  title?: string
   intro?: string
   decisions: Decision[]
   /** Optional described before/after — no real screens, just the shift in words. */
   shift?: { before: string; after: string }
+  visuals?: Array<{
+    src: string
+    alt: string
+    label: string
+  }>
 }
 
 /**
@@ -18,17 +24,34 @@ interface NdaProcessProps {
  * problem was framed and what decisions were made — the parts that actually
  * signal hire-ability — while screens, metrics, and client detail stay gated.
  */
-export default function NdaProcess({ intro, decisions, shift }: NdaProcessProps) {
+export default function NdaProcess({
+  title = 'How I approached it',
+  intro,
+  decisions,
+  shift,
+  visuals = [],
+}: NdaProcessProps) {
   return (
     <section className="cs-section cs-nda-process reveal" id="cs-process">
       <div className="wrap">
         <div className="cs-nda-process-head">
-          <span className="cs-section-label">How I approached it</span>
+          <h2 className="cs-nda-process-title">{title}</h2>
           <p className="cs-nda-process-intro">
             {intro ||
-              'The confidential screens stay behind the gate — but the thinking behind them does not have to. Here is how the problem was framed and the decisions that shaped the work.'}
+              'The public process keeps only the framing and core moves: enough to understand the work without turning the page into a report.'}
           </p>
         </div>
+
+        {visuals.length ? (
+          <div className="cs-nda-process-visuals" aria-label="Process visuals">
+            {visuals.map((visual) => (
+              <figure className="cs-nda-process-visual" key={visual.src}>
+                <img src={visual.src} alt={visual.alt} loading="lazy" decoding="async" />
+                <figcaption>{visual.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        ) : null}
 
         <ol className="cs-nda-process-list">
           {decisions.map((d, i) => (

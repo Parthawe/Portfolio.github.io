@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node scripts/sync-pdf-worker.mjs && vite",
     "design:audit": "node scripts/audit-design-system.mjs",
-    "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && tsc -b && vite build && cp dist/index.html dist/404.html",
+    "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && tsc -b && vite build && node scripts/create-route-entrypoints.mjs",
     "preview": "node scripts/sync-pdf-worker.mjs && vite preview"
   },
   "dependencies": {
