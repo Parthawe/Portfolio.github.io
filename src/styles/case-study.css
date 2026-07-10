@@ -5303,13 +5303,73 @@
     gap: 0.4rem;
   }
 
+  .project-main :is(
+    .proj-overview-grid,
+    .proj-story-grid,
+    .proj-header-summary-grid,
+    .cs-quick-summary-grid,
+    .cs-quick-summary-details,
+    .cs-feature-grid,
+    .cs-info-grid,
+    .cs-img-grid,
+    .cs-img-pair,
+    .cs-quote-grid,
+    .cs-before-after-grid,
+    .cs-callout-metric-grid,
+    .cs-brand-swatches,
+    .cs-steps,
+    .cs-credits
+  ) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .project-main :is(
+    .proj-overview-card,
+    .proj-overview-card--wide,
+    .cs-quick-summary-card,
+    .cs-quick-summary-card--wide,
+    .cs-img-pair > *,
+    .cs-img-grid > *,
+    .cs-info-grid > *,
+    .cs-feature-grid > *,
+    .cs-steps > *,
+    .cs-credits > *
+  ) {
+    grid-column: auto !important;
+    min-width: 0;
+  }
+
   .project-main :is(.cs-img-full, .cs-slide, .cs-media) {
     padding-left: 0;
     padding-right: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .project-main :is(.cs-img-full img, .cs-img, .cs-img img, .cs-media img, .cs-media video, .cs-slide img, .cs-slide video) {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
 
   .project-main :is(.cs-slide iframe, .cs-media iframe) {
     min-height: 12rem;
+  }
+
+  .project-main .cs-bottom-nav {
+    max-width: calc(100vw - 1rem);
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .project-main .cs-bnav-link {
+    flex: 0 0 auto;
+    min-height: 40px;
+    max-width: 7.5rem;
+    padding-inline: 0.72rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .project-main .next-project-inner {

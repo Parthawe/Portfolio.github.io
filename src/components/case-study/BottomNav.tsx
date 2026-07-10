@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useReadingProgress } from '../../hooks/useReadingProgress';
 import FigmaSelect from '../FigmaSelect';
@@ -16,6 +16,11 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const isDesktopSideRail = useMediaQuery('(min-width: 1024px)');
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
+  const visibleSections = useMemo(() => {
+    if (isDesktopSideRail || sections.length <= 5) return sections;
+    const reserve = (liveUrl ? 1 : 0) + (modeAction ? 1 : 0);
+    return sections.slice(0, Math.max(3, 5 - reserve));
+  }, [isDesktopSideRail, liveUrl, modeAction, sections]);
 
   useEffect(() => {
     const sideRailClass = 'case-side-nav';
@@ -123,7 +128,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       window.removeEventListener('scroll', showNav);
       clearTimeout(hideTimer.current);
     };
-  }, [sections, showNav]);
+  }, [visibleSections, showNav]);
 
   // Smooth scroll click handler
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -172,7 +177,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       {/* Reading progress bar */}
       <div className="cs-bnav-progress" />
 
-      {sections.map((s) => (
+      {visibleSections.map((s) => (
         <a
           key={s.id}
           href={`#${s.id}`}

@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense, useRef } from 'react';
+import { useState, useEffect, lazy, Suspense, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Nav from '../components/Nav'
@@ -41,6 +41,14 @@ const disciplines = [
   { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
   { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
 ] as const;
+
+function distributeArchiveProjects<T>(items: T[], columnCount: number) {
+  const columns = Array.from({ length: Math.max(1, columnCount) }, () => [] as T[]);
+  items.forEach((item, index) => {
+    columns[index % columns.length].push(item);
+  });
+  return columns;
+}
 
 const identityTabs = [
   {
@@ -85,6 +93,8 @@ export default function HomePage() {
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
   const [aboutRef, aboutInView] = useInView<HTMLElement>(0.08, '160px 0px');
   const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
+  const archiveSingleColumn = useMediaQuery('(max-width: 360px)');
+  const archiveTwoColumn = useMediaQuery('(max-width: 1100px)');
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const lowPowerDevice = isLowPowerDevice();
   const allowDecorative3D = !prefersReducedMotion;
@@ -95,6 +105,11 @@ export default function HomePage() {
   const mountDisciplineObjects = useDeferredMount(allowDecorative3D && disciplinesInView, { timeout: lowPowerDevice ? 2200 : 1400, delayMs: lowPowerDevice ? 360 : 150 });
   const mountAboutObject = useDeferredMount(allowDecorative3D && aboutInView, { timeout: lowPowerDevice ? 2400 : 1600, delayMs: lowPowerDevice ? 360 : 120 });
   const archiveProjects = homepageSelectedProjects;
+  const archiveColumnCount = archiveSingleColumn ? 1 : archiveTwoColumn ? 2 : 3;
+  const archiveColumns = useMemo(
+    () => distributeArchiveProjects(archiveProjects, archiveColumnCount),
+    [archiveProjects, archiveColumnCount]
+  );
   const activeIdentity = identityTabs.find(tab => tab.id === identityTab) ?? identityTabs[0];
   const flagshipColumns = [
     featuredProjects.filter((_, index) => index === 0 || index === 2),
@@ -409,20 +424,24 @@ export default function HomePage() {
               </div>
 
               <div className="wr-archive-grid" id="homepage-project-archive">
-                {archiveProjects.map((p, i) => {
-                  const col = i % 3;
-                  const row = Math.floor(i / 3);
-                  const delay = col * 0.1 + row * 0.06;
-                  return (
-                    <div
-                      key={p.slug}
-                      className="wr-motion-item reveal"
-                      style={{ transitionDelay: `${delay}s` }}
-                    >
-                      <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
-                    </div>
-                  );
-                })}
+                {archiveColumns.map((column, columnIndex) => (
+                  <div className="wr-archive-column" key={`home-archive-column-${columnIndex}`}>
+                    {column.map((p, rowIndex) => {
+                      const originalIndex = rowIndex * archiveColumnCount + columnIndex;
+                      const delay = columnIndex * 0.1 + rowIndex * 0.06;
+                      return (
+                        <div
+                          key={p.slug}
+                          className="wr-motion-item reveal"
+                          style={{ transitionDelay: `${delay}s` }}
+                          data-archive-index={originalIndex}
+                        >
+                          <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
 
               <div className="wr-archive-reveal">

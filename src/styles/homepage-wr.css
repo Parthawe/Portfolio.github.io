@@ -2154,18 +2154,28 @@ body.page-ready .wr-hero-stage {
 }
 .wr-archive-inner {
   max-width: 1700px; margin: 0 auto;
-  padding: clamp(3rem, 5vw, 5rem) clamp(24px, 4vw, 72px);
+  padding: clamp(1.1rem, 2.2vw, 2rem) clamp(24px, 4vw, 72px) clamp(2rem, 4vw, 3.5rem);
 }
 
 .wr-archive-grid {
+  --wr-archive-gap: 24px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: var(--wr-archive-gap);
   max-width: 1280px;
   margin: 0 auto;
   padding-bottom: 24px;
 }
-.wr-archive-grid > * {
+
+.wr-archive-column {
+  display: grid;
+  align-content: start;
+  gap: var(--wr-archive-gap);
+  min-width: 0;
+}
+
+.wr-archive-column > * {
+  margin: 0;
   min-width: 0;
 }
 .wr-archive-grid .pcard-visual {
@@ -2185,8 +2195,10 @@ body.page-ready .wr-hero-stage {
   letter-spacing: 0;
 }
 
-.wr-archive-grid > *:nth-child(3n+2) .pcard-visual { aspect-ratio: 1 / 1; }
-.wr-archive-grid > *:nth-child(3n+3) .pcard-visual { aspect-ratio: 5 / 4; }
+.wr-archive-column:nth-child(3n+2) > *:nth-child(odd) .pcard-visual { aspect-ratio: 1 / 1; }
+.wr-archive-column:nth-child(3n+2) > *:nth-child(even) .pcard-visual { aspect-ratio: 4 / 5; }
+.wr-archive-column:nth-child(3n+3) > *:nth-child(odd) .pcard-visual { aspect-ratio: 5 / 4; }
+.wr-archive-column:nth-child(3n+3) > *:nth-child(even) .pcard-visual { aspect-ratio: 4 / 5; }
 
 .wr-archive-reveal {
   display: grid;
@@ -2219,8 +2231,8 @@ body.page-ready .wr-hero-stage {
 /* Responsive */
 @media (min-width: 1760px) {
   .wr-archive-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    max-width: 1560px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 1280px;
   }
 }
 @media (max-width: 1500px) {
@@ -2230,22 +2242,22 @@ body.page-ready .wr-hero-stage {
 }
 @media (max-width: 1100px) {
   .wr-archive-grid {
+    --wr-archive-gap: 20px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
     max-width: 760px;
   }
 }
 @media (max-width: 768px) {
   .wr-archive-grid {
-    gap: 16px;
+    --wr-archive-gap: 16px;
     max-width: 100%;
     padding-bottom: 16px;
   }
 }
 @media (max-width: 480px) {
   .wr-archive-grid {
+    --wr-archive-gap: 12px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
   }
 
   .wr-archive-reveal__button {
@@ -2256,7 +2268,7 @@ body.page-ready .wr-hero-stage {
 
 @media (max-width: 360px) {
   .wr-archive-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    --wr-archive-gap: 18px;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

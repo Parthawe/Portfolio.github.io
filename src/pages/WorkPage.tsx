@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useSearchParams } from 'react-router-dom'
 import Nav from '../components/Nav'
@@ -16,6 +16,7 @@ import {
   type Project,
   type ProjectCategory,
 } from '../data/projects'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 
 const filters = CATEGORIES
 const WORK_FILTER_EVENT = 'folio:set-work-filter'
@@ -47,6 +48,14 @@ type WorkViewMode = 'editorial' | 'library' | 'timeline'
 
 function countLabel(count: number, noun: string) {
   return `${count} ${noun}${count === 1 ? '' : 's'}`
+}
+
+function distributeProjects(projects: Project[], columnCount: number) {
+  const columns = Array.from({ length: Math.max(1, columnCount) }, () => [] as Project[])
+  projects.forEach((project, index) => {
+    columns[index % columns.length].push(project)
+  })
+  return columns
 }
 
 function getTimelineGroup(project: Project) {
@@ -100,6 +109,8 @@ export default function WorkPage() {
   const [footerVisible, setFooterVisible] = useState(false)
   const [libraryPreviewSlug, setLibraryPreviewSlug] = useState<string | null>(null)
   const bottomNavRef = useRef<HTMLElement>(null)
+  const isSingleColumn = useMediaQuery('(max-width: 640px)')
+  const isTwoColumn = useMediaQuery('(max-width: 1180px)')
   const currentViewParam = searchParams.get('view')
   const viewMode: WorkViewMode =
     currentViewParam === 'playlist' || currentViewParam === 'library'
@@ -126,14 +137,34 @@ export default function WorkPage() {
   }, [viewMode])
 
   useEffect(() => {
-    const footer = document.querySelector('.footer')
-    if (!footer) return
-    const observer = new IntersectionObserver(
-      ([entry]) => setFooterVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    )
-    observer.observe(footer)
-    return () => observer.disconnect()
+    let frameId = 0
+
+    const syncFooterVisibility = () => {
+      frameId = 0
+      const footer = document.querySelector('.footer')
+      if (!footer) return
+
+      const footerRect = footer.getBoundingClientRect()
+      const navRect = bottomNavRef.current?.getBoundingClientRect()
+      const navBottom = navRect?.bottom ?? window.innerHeight
+      const shouldHide = footerRect.top <= navBottom + 24
+      setFooterVisible(current => current === shouldHide ? current : shouldHide)
+    }
+
+    const requestSync = () => {
+      if (frameId) return
+      frameId = window.requestAnimationFrame(syncFooterVisibility)
+    }
+
+    requestSync()
+    window.addEventListener('scroll', requestSync, { passive: true })
+    window.addEventListener('resize', requestSync)
+
+    return () => {
+      if (frameId) window.cancelAnimationFrame(frameId)
+      window.removeEventListener('scroll', requestSync)
+      window.removeEventListener('resize', requestSync)
+    }
   }, [])
 
   useEffect(() => {
@@ -157,6 +188,16 @@ export default function WorkPage() {
   const archiveProjects = isAll
     ? archiveWorkProjects
     : filterProjectsByCategory(archiveWorkProjects, activeFilter as ProjectCategory)
+  const selectedColumnCount = isSingleColumn ? 1 : isTwoColumn ? 2 : 3
+  const archiveColumnCount = isSingleColumn ? 1 : isTwoColumn ? 2 : 4
+  const selectedMasonryColumns = useMemo(
+    () => distributeProjects(editorialSelectedProjects, selectedColumnCount),
+    [editorialSelectedProjects, selectedColumnCount]
+  )
+  const archiveMasonryColumns = useMemo(
+    () => distributeProjects(archiveProjects, archiveColumnCount),
+    [archiveProjects, archiveColumnCount]
+  )
   const allWorkProjects = [
     ...featuredProjects,
     ...selectedWorkProjects.filter(project => !project.featured),
@@ -436,7 +477,11 @@ export default function WorkPage() {
 
                   {editorialSelectedProjects.length ? (
                     <div className="pcard-masonry">
-                      {editorialSelectedProjects.map(renderCard)}
+                      {selectedMasonryColumns.map((column, columnIndex) => (
+                        <div className="pcard-masonry__column" key={`selected-column-${columnIndex}`}>
+                          {column.map(renderCard)}
+                        </div>
+                      ))}
                     </div>
                   ) : null}
                 </section>
@@ -447,7 +492,11 @@ export default function WorkPage() {
                       <span className="mono-label work-group-label">Archive</span>
                     </div>
                     <div className="pcard-masonry">
-                      {archiveProjects.map(renderCard)}
+                      {archiveMasonryColumns.map((column, columnIndex) => (
+                        <div className="pcard-masonry__column" key={`archive-column-${columnIndex}`}>
+                          {column.map(renderCard)}
+                        </div>
+                      ))}
                     </div>
                   </section>
                 ) : null}

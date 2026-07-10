@@ -98,40 +98,52 @@ const recognitionRows: Row[] = recognitionGroups.flatMap((group) =>
 
 const offClockImages = [
   {
-    src: '/Portfolio.github.io/Assets/images/parth.jpg',
-    label: 'Studio days',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/nyu-subway-flowers.webp',
+    label: 'NYU flowers',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/keyboard.jpg',
-    label: 'Keyboard builds',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/gallery-suit.webp',
+    label: 'Gallery days',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/jugalbandi.webp',
-    label: 'Music machines',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/f1-store.webp',
+    label: 'Formula 1',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/making-of-time.jpg',
-    label: 'Physical sketches',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/library-shelf.webp',
+    label: 'Book stacks',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/black-hole.jpg',
-    label: 'Shelf experiments',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/color-gallery.webp',
+    label: 'Color studies',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/typeface.webp',
-    label: 'Type studies',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/monet-wall.webp',
+    label: 'Museum looking',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/the-omakase.jpg',
-    label: 'Game nights',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/polaroid-portrait.webp',
+    label: 'Instant photos',
   },
   {
-    src: '/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg',
-    label: 'Studio builds',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/painting-view.webp',
+    label: 'Painting rooms',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/atps.webp',
-    label: 'Audio notes',
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/nyu-grad.webp',
+    label: 'NYU graduation',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/washington-square.webp',
+    label: 'Washington Square',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/mclaren-jacket.webp',
+    label: 'McLaren days',
+  },
+  {
+    src: '/Portfolio.github.io/Assets/images/about/off-clock/yc-founder-visit.webp',
+    label: 'Founder visits',
   },
 ]
 
@@ -139,15 +151,6 @@ const aboutCharacterFrames = Array.from(
   { length: 9 },
   (_, index) => `/Portfolio.github.io/Assets/character/me/${index + 1}.webp`,
 )
-
-const toolCloud = [
-  { label: 'Design systems', icon: '▦', tone: 'orange' },
-  { label: 'UI/UX', icon: '▣', tone: 'charcoal' },
-  { label: 'Research', icon: '⌕', tone: 'blue' },
-  { label: 'Prototyping', icon: '▱', tone: 'pink' },
-  { label: 'Animation', icon: '∿', tone: 'green' },
-  { label: 'Strategy', icon: '✣', tone: 'yellow' },
-]
 
 const softwareStack = [
   'Figma', 'FigJam', 'Framer', 'Webflow', 'Spline', 'Rive', 'Lottie', 'ProtoPie',
@@ -382,14 +385,6 @@ export default function AboutPage() {
                   <BinaryFlower />
                 </div>
 
-                <div className="abt-vibe-cloud" aria-label="Core capabilities">
-                  {toolCloud.map((tool) => (
-                    <span className={`abt-vibe-pill abt-vibe-pill--${tool.tone}`} key={tool.label}>
-                      <span aria-hidden="true">{tool.icon}</span>
-                      {tool.label}
-                    </span>
-                  ))}
-                </div>
               </div>
 
               <div className="abt-vibe-software" aria-label="Software stack">
@@ -451,20 +446,11 @@ export default function AboutPage() {
                             show: { opacity: 1, y: 0, rotate: (i % 2 === 0 ? -1.5 : 1.5), transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
                           }}
                         >
-                          <img src={item.src} alt="" loading="lazy" />
+                          <img src={item.src} alt="" loading="lazy" decoding="async" />
                         </motion.figure>
                       )),
                     )}
                   </div>
-                  <motion.div
-                    className="abt-image-asides-hint"
-                      variants={{
-                        hidden: { opacity: 0, y: 8 },
-                        show: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.2 } },
-                      }}
-                    >
-                    Hover / Tap Me!
-                  </motion.div>
                 </motion.div>
               </div>
             </section>

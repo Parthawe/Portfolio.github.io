@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef } from 'react'
-import type { CSSProperties } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
@@ -15,9 +14,32 @@ type BinaryPoint = {
   twist: number
 }
 
+type BinaryPointSet = {
+  flower: BinaryPoint
+  orbit: BinaryPoint
+  wave: BinaryPoint
+  cube: BinaryPoint
+}
+
+const OBJECT_SEQUENCE: Array<keyof BinaryPointSet> = ['flower', 'orbit', 'wave', 'cube']
+const POINT_COUNT = 960
+
 function seeded(seed: number) {
   const x = Math.sin(seed * 12.9898) * 43758.5453
   return x - Math.floor(x)
+}
+
+function mixPoint(from: BinaryPoint, to: BinaryPoint, t: number): BinaryPoint {
+  const ease = t * t * (3 - 2 * t)
+  return {
+    x: THREE.MathUtils.lerp(from.x, to.x, ease),
+    y: THREE.MathUtils.lerp(from.y, to.y, ease),
+    z: THREE.MathUtils.lerp(from.z, to.z, ease),
+    scale: THREE.MathUtils.lerp(from.scale, to.scale, ease),
+    petal: Math.round(THREE.MathUtils.lerp(from.petal, to.petal, ease)),
+    depth: THREE.MathUtils.lerp(from.depth, to.depth, ease),
+    twist: THREE.MathUtils.lerp(from.twist, to.twist, ease),
+  }
 }
 
 function makeGlyphTexture(glyph: '0' | '1') {
@@ -44,71 +66,92 @@ function makeGlyphTexture(glyph: '0' | '1') {
   return texture
 }
 
-function createFlowerPoints() {
-  const points: BinaryPoint[] = []
-  const petalCount = 6
+function createPointSet(index: number): BinaryPointSet {
+  const seed = index * 41
+  const petal = index % 6
+  const depth = seeded(seed + 1)
+  const petalAngle = (petal / 6) * Math.PI * 2 - Math.PI / 2
+  const petalWidth = Math.sin(depth * Math.PI) * (0.44 + 0.2 * seeded(seed + 2))
+  const lateral = (seeded(seed + 3) - 0.5) * petalWidth
+  const flowerAngle = petalAngle + lateral + Math.sin(depth * Math.PI) * 0.16
+  const flowerRadius = 0.2 + depth * 2.08
 
-  for (let petal = 0; petal < petalCount; petal++) {
-    const petalAngle = (petal / petalCount) * Math.PI * 2 - Math.PI / 2
+  const orbitAngle = (index / POINT_COUNT) * Math.PI * 2 * 2.4
+  const orbitBand = (index % 9) / 8
+  const orbitRadius = 0.78 + orbitBand * 1.6
 
-    for (let row = 0; row < 23; row++) {
-      const depth = row / 22
-      const petalWidth = Math.sin(depth * Math.PI) * (0.56 + 0.12 * seeded(petal * 19 + row))
-      const samples = Math.max(3, Math.round(5 + petalWidth * 13))
-      const radius = 0.24 + depth * 2.2
-      const curl = Math.sin(depth * Math.PI) * 0.2
+  const waveX = (seeded(seed + 14) - 0.5) * 4.7
+  const waveY = Math.sin(waveX * 1.45 + orbitBand * 4.2) * 0.74 + (orbitBand - 0.5) * 1.15
 
-      for (let col = 0; col < samples; col++) {
-        const u = samples === 1 ? 0 : col / (samples - 1)
-        const lateral = (u - 0.5) * petalWidth
-        const seed = petal * 997 + row * 37 + col * 11
-        const angle = petalAngle + lateral + curl
-        const noiseX = (seeded(seed) - 0.5) * 0.045
-        const noiseY = (seeded(seed + 4) - 0.5) * 0.045
-        const cup = Math.sin(depth * Math.PI) * 0.46 - depth * 0.18
+  const cubeLayer = Math.floor(index / 160)
+  const cubeU = (index % 16) / 15
+  const cubeV = (Math.floor(index / 16) % 10) / 9
+  const cubeFace = cubeLayer % 6
+  const cx = (cubeU - 0.5) * 3.05
+  const cy = (cubeV - 0.5) * 2.35
+  const faceOffset = 1.05
 
-        points.push({
-          x: Math.cos(angle) * radius + noiseX,
-          y: Math.sin(angle) * radius * 0.74 + noiseY,
-          z: cup + (seeded(seed + 9) - 0.5) * 0.14,
-          scale: 0.08 + seeded(seed + 13) * 0.035 + (1 - depth) * 0.035,
-          petal,
-          depth,
-          twist: (seeded(seed + 21) - 0.5) * 0.65,
-        })
-      }
-    }
+  const cube =
+    cubeFace === 0 ? { x: cx, y: cy, z: faceOffset }
+    : cubeFace === 1 ? { x: cx, y: cy, z: -faceOffset }
+    : cubeFace === 2 ? { x: faceOffset * 1.25, y: cy, z: cx * 0.62 }
+    : cubeFace === 3 ? { x: -faceOffset * 1.25, y: cy, z: cx * 0.62 }
+    : cubeFace === 4 ? { x: cx, y: faceOffset, z: cy * 0.7 }
+    : { x: cx, y: -faceOffset, z: cy * 0.7 }
+
+  return {
+    flower: {
+      x: Math.cos(flowerAngle) * flowerRadius + (seeded(seed + 4) - 0.5) * 0.045,
+      y: Math.sin(flowerAngle) * flowerRadius * 0.74 + (seeded(seed + 5) - 0.5) * 0.045,
+      z: Math.sin(depth * Math.PI) * 0.44 - depth * 0.18 + (seeded(seed + 6) - 0.5) * 0.13,
+      scale: 0.07 + seeded(seed + 7) * 0.035 + (1 - depth) * 0.03,
+      petal,
+      depth,
+      twist: (seeded(seed + 8) - 0.5) * 0.65,
+    },
+    orbit: {
+      x: Math.cos(orbitAngle) * orbitRadius,
+      y: Math.sin(orbitAngle) * orbitRadius * 0.55,
+      z: (orbitBand - 0.5) * 1.05 + Math.sin(orbitAngle * 2) * 0.12,
+      scale: 0.07 + seeded(seed + 9) * 0.032,
+      petal: cubeFace,
+      depth: orbitBand,
+      twist: orbitAngle + Math.PI / 2,
+    },
+    wave: {
+      x: waveX,
+      y: waveY,
+      z: Math.cos(waveX * 1.2 + orbitBand * 2.4) * 0.48,
+      scale: 0.068 + seeded(seed + 10) * 0.032,
+      petal: Math.floor(orbitBand * 6),
+      depth: orbitBand,
+      twist: Math.sin(waveX) * 0.55,
+    },
+    cube: {
+      x: cube.x + (seeded(seed + 11) - 0.5) * 0.05,
+      y: cube.y + (seeded(seed + 12) - 0.5) * 0.05,
+      z: cube.z + (seeded(seed + 13) - 0.5) * 0.05,
+      scale: 0.062 + seeded(seed + 14) * 0.028,
+      petal: cubeFace,
+      depth: (cubeU + cubeV) / 2,
+      twist: cubeFace * 0.35 + (seeded(seed + 15) - 0.5) * 0.45,
+    },
   }
+}
 
-  for (let ring = 0; ring < 5; ring++) {
-    const count = 16 + ring * 8
-    const radius = 0.08 + ring * 0.08
-
-    for (let i = 0; i < count; i++) {
-      const angle = (i / count) * Math.PI * 2
-      const seed = 5000 + ring * 59 + i
-      points.push({
-        x: Math.cos(angle) * radius + (seeded(seed) - 0.5) * 0.035,
-        y: Math.sin(angle) * radius * 0.8 + (seeded(seed + 2) - 0.5) * 0.035,
-        z: 0.42 + ring * 0.02,
-        scale: 0.09 + seeded(seed + 3) * 0.04,
-        petal: ring,
-        depth: 0,
-        twist: angle,
-      })
-    }
-  }
-
-  return points
+function createBinaryPointSets() {
+  return Array.from({ length: POINT_COUNT }, (_, index) => createPointSet(index))
 }
 
 function BinaryGlyphField({
   glyph,
   points,
+  offset,
   reduced,
 }: {
   glyph: '0' | '1'
-  points: BinaryPoint[]
+  points: BinaryPointSet[]
+  offset: number
   reduced: boolean
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null)
@@ -120,9 +163,9 @@ function BinaryGlyphField({
       new THREE.MeshBasicMaterial({
         map: texture,
         transparent: true,
-        opacity: 0.9,
+        opacity: 0.76,
         depthWrite: false,
-        blending: THREE.AdditiveBlending,
+        blending: THREE.NormalBlending,
         vertexColors: true,
       }),
     [texture],
@@ -137,37 +180,38 @@ function BinaryGlyphField({
     [geometry, material, texture],
   )
 
-  useEffect(() => {
-    const mesh = meshRef.current
-    if (!mesh) return
-
-    const color = new THREE.Color()
-    points.forEach((point, index) => {
-      const warmCenter = point.depth < 0.2
-      const hue = warmCenter ? 0.09 + seeded(index) * 0.04 : 0.46 + point.depth * 0.08
-      const saturation = warmCenter ? 0.76 : 0.22 + point.depth * 0.18
-      const lightness = warmCenter ? 0.56 + seeded(index + 7) * 0.18 : 0.62 + seeded(index + 5) * 0.24
-      color.setHSL(hue, saturation, lightness)
-      mesh.setColorAt(index, color)
-    })
-
-    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
-  }, [points])
-
   useFrame(({ clock, pointer }) => {
     const mesh = meshRef.current
     if (!mesh) return
 
     const time = reduced ? 0.7 : clock.getElapsedTime()
+    const cycle = reduced ? 0 : time / 6.5
+    const fromIndex = Math.floor(cycle) % OBJECT_SEQUENCE.length
+    const toIndex = (fromIndex + 1) % OBJECT_SEQUENCE.length
+    const rawMorph = cycle - Math.floor(cycle)
+    const morph = rawMorph < 0.72 ? 0 : (rawMorph - 0.72) / 0.28
+    const fromKey = OBJECT_SEQUENCE[fromIndex]
+    const toKey = OBJECT_SEQUENCE[toIndex]
     const pointerBendX = reduced ? 0 : pointer.x * 0.16
     const pointerBendY = reduced ? 0 : pointer.y * 0.1
+    const color = new THREE.Color()
 
-    points.forEach((point, index) => {
+    points.forEach((shapeSet, index) => {
+      const point = mixPoint(shapeSet[fromKey], shapeSet[toKey], morph)
       const breathe = Math.sin(time * 0.9 + point.petal * 0.72 + point.depth * 4.1)
       const unfurl = reduced ? 0 : breathe * 0.13 * (0.24 + point.depth)
       const x = point.x * (1 + unfurl * 0.08)
       const y = point.y * (1 + unfurl * 0.06)
       const z = point.z + unfurl
+      const warmCore = point.depth < 0.18
+      const hue = warmCore
+        ? 0.11 + seeded(index + offset) * 0.035
+        : 0.52 + point.depth * 0.08 + seeded(index + offset + 2) * 0.025
+      const saturation = warmCore ? 0.68 : 0.28 + point.depth * 0.18
+      const lightness = warmCore ? 0.68 + seeded(index + offset + 3) * 0.12 : 0.42 + point.depth * 0.24
+
+      color.setHSL(hue, saturation, lightness)
+      mesh.setColorAt(index, color)
 
       dummy.position.set(x, y, z)
       dummy.rotation.set(
@@ -181,6 +225,7 @@ function BinaryGlyphField({
     })
 
     mesh.instanceMatrix.needsUpdate = true
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true
   })
 
   return (
@@ -190,7 +235,7 @@ function BinaryGlyphField({
 
 function BinaryFlowerScene({ reduced }: { reduced: boolean }) {
   const groupRef = useRef<THREE.Group>(null)
-  const points = useMemo(() => createFlowerPoints(), [])
+  const points = useMemo(() => createBinaryPointSets(), [])
   const zeros = useMemo(() => points.filter((_, index) => index % 3 === 0), [points])
   const ones = useMemo(() => points.filter((_, index) => index % 3 !== 0), [points])
 
@@ -206,8 +251,8 @@ function BinaryFlowerScene({ reduced }: { reduced: boolean }) {
 
   return (
     <group ref={groupRef} scale={1.08}>
-      <BinaryGlyphField glyph="0" points={zeros} reduced={reduced} />
-      <BinaryGlyphField glyph="1" points={ones} reduced={reduced} />
+      <BinaryGlyphField glyph="0" points={zeros} offset={0} reduced={reduced} />
+      <BinaryGlyphField glyph="1" points={ones} offset={500} reduced={reduced} />
     </group>
   )
 }
@@ -222,44 +267,12 @@ function BinaryFlowerFallback() {
   )
 }
 
-function BinaryFlowerDom() {
-  const points = useMemo(() => createFlowerPoints().filter((_, index) => index % 2 === 0), [])
-
-  return (
-    <div className="abt-binary-flower-dom" aria-hidden="true">
-      {points.map((point, index) => {
-        const left = 50 + point.x * 15.8
-        const top = 52 - point.y * 20
-        const warmCenter = point.depth < 0.2
-        const color = warmCenter
-          ? `hsl(${34 + seeded(index) * 16} 92% ${62 + seeded(index + 4) * 18}%)`
-          : `hsl(${168 + point.depth * 38} ${26 + point.depth * 26}% ${62 + seeded(index + 2) * 22}%)`
-        const style = {
-          left: `${left}%`,
-          top: `${top}%`,
-          color,
-          '--binary-z': `${point.z.toFixed(3)}`,
-          '--binary-scale': `${(0.78 + point.scale * 4.1).toFixed(3)}`,
-          '--binary-rotate': `${(point.twist * 32).toFixed(2)}deg`,
-          '--binary-delay': `${(-index * 0.036).toFixed(3)}s`,
-        } as CSSProperties
-
-        return (
-          <span className="abt-binary-flower-glyph" style={style} key={`${point.petal}-${index}`}>
-            {index % 3 === 0 ? '0' : '1'}
-          </span>
-        )
-      })}
-    </div>
-  )
-}
-
 export default function BinaryFlower() {
   const reduced = usePrefersReduced()
   const webGLAvailable = useWebGLAvailable()
 
   return (
-    <div className="abt-binary-flower" aria-label="Generative binary flower object">
+    <div className="abt-binary-flower" aria-label="Morphing generative binary object">
       {webGLAvailable ? (
         <Canvas
           className="abt-binary-flower-canvas"
@@ -267,13 +280,11 @@ export default function BinaryFlower() {
           dpr={[1, 1.75]}
           gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
         >
-          <color attach="background" args={['#080808']} />
           <BinaryFlowerScene reduced={reduced} />
         </Canvas>
       ) : (
         <BinaryFlowerFallback />
       )}
-      <BinaryFlowerDom />
     </div>
   )
 }
