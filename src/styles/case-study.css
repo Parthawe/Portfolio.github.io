@@ -544,6 +544,23 @@
     var(--bg);
 }
 
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+  html,
+  body {
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+  }
+
+  body:has(.project-main) {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-main:has(.project-header--visual),
+  .project-main--mentra-visual {
+    overflow: visible;
+  }
+}
+
 
 
 
