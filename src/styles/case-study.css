@@ -1931,37 +1931,39 @@
 
 .cs-nda-story-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
+  gap: clamp(1.5rem, 4vw, 3rem);
 }
 
 .cs-nda-story-head {
-  position: sticky;
-  top: calc(var(--nav-h) + 1.5rem);
+  max-width: 100%;
 }
 
 .cs-nda-story-title {
   margin: 0;
-  max-width: 12ch;
-  font-family: var(--serif);
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
-  font-weight: 300;
-  line-height: 0.98;
+  max-width: 16ch;
+  font-family: var(--sans);
+  font-size: clamp(2.2rem, 4.7vw, 4.5rem);
+  font-weight: 430;
+  line-height: 1;
   letter-spacing: 0;
   color: var(--ink);
+  text-wrap: balance;
 }
 
 .cs-nda-story-lede {
-  max-width: 34rem;
-  margin: 1.3rem 0 0;
+  max-width: 46rem;
+  margin: 1rem 0 0;
   font-size: clamp(1rem, 1.4vw, 1.15rem);
-  line-height: 1.75;
+  line-height: 1.65;
   color: var(--ink-70);
 }
 
 .cs-nda-story-proof {
   min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--ink-10);
+  border-bottom: 1px solid var(--ink-10);
 }
 
 .cs-nda-story-body {
@@ -2015,13 +2017,13 @@
 .cs-nda-image-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 8.5;
   object-fit: contain;
   background: var(--surface);
 }
 
 .cs-nda-image-card--hero img {
-  min-height: clamp(23rem, 34vw, 31rem);
+  min-height: clamp(18rem, 36vw, 30rem);
 }
 
 .cs-nda-image-card figcaption {
@@ -2043,70 +2045,36 @@
   backdrop-filter: blur(14px);
 }
 
-.cs-nda-image-rail {
+.cs-nda-story-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.6rem;
+  grid-template-columns: minmax(6.5rem, 0.26fr) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: start;
+  padding: clamp(1rem, 1.8vw, 1.25rem) 0;
+  border-top: 1px solid var(--ink-08);
 }
 
-.cs-nda-image-thumb {
-  min-width: 0;
-  display: grid;
-  gap: 0.4rem;
-  padding: 0.38rem;
-  border: 1px solid var(--ink-08);
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
-  color: var(--ink-50);
-  cursor: pointer;
-  text-align: left;
-  transition:
-    border-color 180ms ease,
-    background 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
+.cs-nda-story-row:first-child {
+  border-top: 0;
 }
 
-.cs-nda-image-thumb:hover,
-.cs-nda-image-thumb:focus-visible,
-.cs-nda-image-thumb[aria-pressed="true"] {
-  border-color: color-mix(in srgb, var(--project-color, var(--ink)) 52%, var(--ink-08));
-  background: color-mix(in srgb, var(--project-color, var(--ink)) 10%, var(--surface));
-  color: var(--ink);
-}
-
-.cs-nda-image-thumb:hover {
-  transform: translateY(-1px);
-}
-
-.cs-nda-image-thumb:focus-visible {
-  outline: 2px solid var(--blue, #4c9aff);
-  outline-offset: 2px;
-}
-
-.cs-nda-image-thumb img {
-  width: 100%;
-  aspect-ratio: 16 / 11;
-  object-fit: cover;
-  border-radius: calc(var(--radius-sm) - 4px);
-  opacity: 0.82;
-}
-
-.cs-nda-image-thumb[aria-pressed="true"] img {
-  opacity: 1;
-}
-
-.cs-nda-image-thumb span {
-  min-width: 0;
-  padding: 0 0.15rem 0.12rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.cs-nda-story-row-label {
   font-family: var(--mono);
   font-size: var(--text-2xs);
   font-weight: 800;
-  letter-spacing: var(--ls-wide);
+  line-height: 1.2;
+  letter-spacing: var(--ls-wider);
   text-transform: uppercase;
+  color: color-mix(in srgb, var(--project-color, var(--ink)) 70%, var(--ink));
+  opacity: 0.86;
+}
+
+.cs-nda-story-row-copy {
+  max-width: 42rem;
+  font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+  line-height: 1.55;
+  color: var(--case-copy, var(--ink));
+  opacity: 0.84;
 }
 
 /* Reviewer gallery — real screens shown after NdaGate access, grouped by
@@ -2114,13 +2082,13 @@
    the case study kit. */
 .cs-nda-reviewer-gallery {
   display: grid;
-  gap: clamp(2rem, 4vw, 2.75rem);
+  gap: clamp(3rem, 5vw, 4.5rem);
   margin-top: 0.5rem;
 }
 
 .cs-nda-reviewer-group {
   display: grid;
-  gap: 1rem;
+  gap: clamp(1.15rem, 2vw, 1.5rem);
 }
 
 .cs-nda-reviewer-group-head {
@@ -2148,24 +2116,33 @@
 
 .cs-nda-reviewer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.9rem;
+  grid-template-columns: minmax(0, min(100%, 58rem));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-items: start;
+  justify-content: start;
 }
 
 .cs-nda-reviewer-grid--tall {
-  grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
+  grid-template-columns: minmax(0, min(100%, 44rem));
+  justify-content: start;
 }
 
 .cs-nda-reviewer-shot {
   margin: 0;
   max-width: none;
-  padding: 0;
+  padding: clamp(0.45rem, 0.9vw, 0.7rem);
+  border: 1px solid var(--ink-08);
+  border-radius: var(--case-shell-radius, var(--radius));
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
 }
 
 .cs-nda-reviewer-shot img {
+  display: block;
+  width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: contain;
   object-position: top;
+  border-radius: calc(var(--case-shell-radius, var(--radius)) - 4px);
   background: var(--surface);
 }
 
@@ -4306,7 +4283,7 @@
     position: static;
   }
   .cs-nda-story-title {
-    max-width: 11ch;
+    max-width: 14ch;
   }
   .cs-nda-visual-stage {
     grid-template-columns: 1fr;
@@ -4317,8 +4294,12 @@
   .cs-nda-image-card--hero img {
     min-height: 0;
   }
-  .cs-nda-image-rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .cs-nda-story-proof {
+    grid-template-columns: 1fr;
+  }
+  .cs-nda-story-row {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
   }
   .cs-nda-phone-shell {
     min-height: 18rem;
@@ -4326,6 +4307,17 @@
   .cs-nda-shot-strip,
   .cs-nda-proof-strip {
     grid-template-columns: 1fr;
+  }
+  .cs-nda-reviewer-gallery {
+    gap: 2.5rem;
+  }
+  .cs-nda-reviewer-grid,
+  .cs-nda-reviewer-grid--tall {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .cs-nda-reviewer-shot {
+    padding: 0.35rem;
   }
   .cs-quick-summary-top,
   .cs-quick-summary-grid,
@@ -4966,13 +4958,13 @@
 /* ── NDA process (design thinking, no protected material) ── */
 .cs-nda-process-head {
   max-width: 44rem;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
 }
 .cs-nda-process-title {
   margin: 0;
-  max-width: 14ch;
+  max-width: 18ch;
   font-family: var(--sans);
-  font-size: clamp(2.15rem, 4.6vw, 4.25rem);
+  font-size: clamp(2.4rem, 5vw, 5rem);
   font-weight: 430;
   line-height: 1;
   letter-spacing: 0;
@@ -4980,18 +4972,26 @@
   text-wrap: balance;
 }
 .cs-nda-process-intro {
-  margin: 1rem 0 0;
-  max-width: 46rem;
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.6;
+  margin: 0.95rem 0 0;
+  max-width: 38rem;
+  font-size: clamp(0.98rem, 1.15vw, 1.12rem);
+  line-height: 1.55;
   color: var(--case-copy, var(--ink));
-  opacity: 0.85;
+  opacity: 0.78;
+}
+.cs-nda-process-layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  align-items: start;
+}
+.cs-nda-process-layout--text-only {
+  display: block;
 }
 .cs-nda-process-visuals {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
-  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(0.9rem, 1.6vw, 1.2rem);
 }
 .cs-nda-process-visual {
   margin: 0;
@@ -5004,7 +5004,7 @@
 .cs-nda-process-visual img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   object-fit: contain;
   object-position: center;
   border-radius: calc(var(--case-media-radius, var(--radius)) - 4px);
@@ -5024,15 +5024,15 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 }
 .cs-nda-process-card {
   display: flex;
-  gap: 1rem;
-  padding: clamp(1.25rem, 2vw, 1.6rem);
+  gap: 0.85rem;
+  padding: clamp(1rem, 1.6vw, 1.25rem);
   border: 1px solid var(--ink-08);
-  border-radius: var(--case-media-radius, 16px);
+  border-radius: min(var(--case-media-radius, 16px), 12px);
   background: var(--bg-alt, var(--bg));
 }
 .cs-nda-process-num {
@@ -5046,21 +5046,50 @@
   padding-top: 0.15rem;
 }
 .cs-nda-process-move {
-  margin: 0 0 0.42rem;
-  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  margin: 0 0 0.35rem;
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
   line-height: 1.35;
   font-weight: 600;
   color: var(--ink);
 }
 .cs-nda-process-why {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.48;
+  font-size: 0.9rem;
+  line-height: 1.42;
   color: var(--case-copy, var(--ink));
-  opacity: 0.82;
+  opacity: 0.76;
+}
+.cs-nda-impact {
+  margin-top: clamp(1.5rem, 3.5vw, 2.5rem);
+  padding-top: clamp(1.25rem, 2.4vw, 1.8rem);
+  border-top: 1px solid var(--ink-08);
+}
+.cs-nda-impact-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(0.9rem, 1.8vw, 1.2rem);
+}
+.cs-nda-impact-head h3 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 520;
+  line-height: 1.08;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.cs-nda-impact-head p {
+  margin: 0;
+  max-width: 18rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--case-copy, var(--ink));
+  opacity: 0.64;
+  text-align: right;
 }
 .cs-nda-process-shift {
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
   display: flex;
   align-items: stretch;
   gap: 1rem;
@@ -5070,7 +5099,7 @@
   flex: 1 1 16rem;
   padding: clamp(1rem, 2vw, 1.4rem);
   border: 1px solid var(--ink-08);
-  border-radius: var(--case-media-radius, 16px);
+  border-radius: min(var(--case-media-radius, 16px), 12px);
   background: var(--bg);
 }
 .cs-nda-process-shift-col--after {
@@ -5097,8 +5126,11 @@
   color: var(--project-color, var(--ink));
   opacity: 0.7;
 }
-@media (max-width: 640px) {
-  .cs-nda-process-visuals { grid-template-columns: 1fr; }
+@media (max-width: 860px) {
+  .cs-nda-process-layout { grid-template-columns: 1fr; }
+  .cs-nda-process-visuals { order: -1; }
+  .cs-nda-impact-head { display: block; }
+  .cs-nda-impact-head p { margin-top: 0.45rem; text-align: left; }
   .cs-nda-process-shift-arrow { transform: rotate(90deg); align-self: center; }
 }
 

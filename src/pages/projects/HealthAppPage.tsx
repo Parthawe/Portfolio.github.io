@@ -8,6 +8,14 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const HEALTH_APP_PROCESS_VISUALS = [
+  {
+    src: '/Portfolio.github.io/Assets/mockups/projects/healthapp_16x9.webp',
+    alt: 'Health App product mockup showing a planning experience with wellness context.',
+    label: 'Health-aware planning',
+  },
+]
+
 export default function HealthAppPage() {
   return (
     <>
@@ -45,23 +53,25 @@ export default function HealthAppPage() {
         />
 
         <NdaProcess
+          intro="I kept the concept simple: let health signals shape the plan without turning the product into a noisy wellness dashboard."
+          visuals={HEALTH_APP_PROCESS_VISUALS}
           decisions={[
             {
-              move: 'Moved health signals into the planner instead of a separate dashboard.',
-              why: 'Wellness data usually lives where it changes nothing. I treated sleep, food, movement, and energy as inputs to the schedule itself, so recovery influenced what the day asked of you rather than sitting in a tab no one opens.',
+              move: 'Put health signals inside planning.',
+              why: 'Let sleep, food, movement, and energy affect the schedule.',
             },
             {
-              move: 'Designed for honest capacity, not maximum output.',
-              why: 'A planner that ignores the person burns them out. I shaped the day around realistic capacity on a given day, which makes the plan more trustworthy and more likely to be followed.',
+              move: 'Plan around real capacity.',
+              why: 'Make the day feel possible instead of optimized past the user.',
             },
             {
-              move: 'Kept the daily surface calm despite many signals feeding it.',
-              why: 'Several data streams can easily produce a noisy, guilt-inducing interface. I hid the machinery and surfaced a simple, legible plan so complexity stayed in the system, not on the screen.',
+              move: 'Keep the daily surface calm.',
+              why: 'Hide the data machinery and show one clear plan.',
             },
           ]}
           shift={{
-            before: 'Health metrics in one app, the to-do list in another, and no connection between them.',
-            after: 'A single plan where how you are feeling quietly reshapes what you take on.',
+            before: 'Health data and task planning lived in separate places.',
+            after: 'The daily plan adapts to the person doing the work.',
           }}
         />
 

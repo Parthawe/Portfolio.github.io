@@ -8,6 +8,14 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const CUETV_PROCESS_VISUALS = [
+  {
+    src: '/Portfolio.github.io/Assets/mockups/projects/cuetv_16x9.webp',
+    alt: 'CueTV product mockup for a performing-arts streaming experience.',
+    label: 'Streaming product surface',
+  },
+]
+
 export default function CueTvPage() {
   return (
     <>
@@ -48,23 +56,25 @@ export default function CueTvPage() {
         />
 
         <NdaProcess
+          intro="I focused the product around three things the audience needed quickly: find the right performance, settle into playback, and have a reason to return."
+          visuals={CUETV_PROCESS_VISUALS}
           decisions={[
             {
-              move: 'Treated a niche catalogue as a discovery problem, not a size problem.',
-              why: 'A small library of opera, ballet, and symphony content fails if it is browsed like a mass-market service. I organised discovery around occasion, mood, and cultural context so depth read as curation rather than scarcity.',
+              move: 'Make a niche catalogue feel curated.',
+              why: 'Organize discovery around context, not just quantity.',
             },
             {
-              move: 'Designed playback for long-form, seated attention.',
-              why: 'Performances are watched differently from episodic TV. The player prioritised uninterrupted viewing, act structure, and resume behaviour over autoplay churn, matching how this audience actually watches.',
+              move: 'Respect long-form viewing.',
+              why: 'Prioritize uninterrupted playback, acts, and resume behavior.',
             },
             {
-              move: 'Made return visits a designed moment, not an ad afterthought.',
-              why: 'Retention for a cultural catalogue depends on bringing people back for the next programme. I connected the retargeting system to genuine reasons to return so growth reinforced the product instead of fighting it.',
+              move: 'Design the reason to come back.',
+              why: 'Tie growth loops to new programs and cultural moments.',
             },
           ]}
           shift={{
-            before: 'A specialist catalogue presented like a generic streaming grid, where depth looked like a short list.',
-            after: 'A discovery and return system tuned to how classical-arts audiences choose and re-engage.',
+            before: 'A specialist catalogue behaving like a generic streaming grid.',
+            after: 'A discovery and return system tuned to classical-arts viewing.',
           }}
         />
 

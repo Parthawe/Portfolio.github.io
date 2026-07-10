@@ -10,6 +10,9 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 const ZENTIPAY_REVIEWER_ASSET = '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer'
+const ZENTIPAY_PUBLIC_ASSET = '/Portfolio.github.io/Assets/Projects/ZentiPay/public'
+
+const zentipayPublicAsset = (file: string) => `${ZENTIPAY_PUBLIC_ASSET}/${encodeURIComponent(file)}`
 
 const ZENTIPAY_REVIEWER_VISUALS = [
   {
@@ -56,24 +59,37 @@ const ZENTIPAY_REVIEWER_VISUALS = [
 
 const ZENTIPAY_PUBLIC_VISUALS = [
   {
-    src: `${ZENTIPAY_REVIEWER_ASSET}/send-crypto-1.webp`,
+    src: zentipayPublicAsset('Send Crypto.png'),
     alt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
     label: 'Transfer preview',
   },
   {
-    src: `${ZENTIPAY_REVIEWER_ASSET}/dashboard-6.webp`,
+    src: zentipayPublicAsset('Dashboard Desktop-6.png'),
     alt: 'ZentiPay Proof of Integrity screen showing identity verification and trust score.',
     label: 'Trust architecture',
   },
   {
-    src: `${ZENTIPAY_REVIEWER_ASSET}/transaction-history.webp`,
+    src: zentipayPublicAsset('Transaction History.png'),
     alt: 'ZentiPay transaction history table with balances and status.',
     label: 'Transaction history',
   },
   {
-    src: `${ZENTIPAY_REVIEWER_ASSET}/profile.webp`,
+    src: zentipayPublicAsset('Profile.png'),
     alt: 'ZentiPay account profile screen with balances and onboarding progress.',
     label: 'Profile & balances',
+  },
+]
+
+const ZENTIPAY_PROCESS_VISUALS = [
+  {
+    src: zentipayPublicAsset('Send Crypto-1.png'),
+    alt: 'ZentiPay review step showing send amount, wallet, and final confirmation details.',
+    label: 'Review before transfer',
+  },
+  {
+    src: zentipayPublicAsset('Dashboard Desktop-6.png'),
+    alt: 'ZentiPay integrity dashboard with verification tasks and trust score.',
+    label: 'Trust system',
   },
 ]
 
@@ -142,23 +158,26 @@ export default function ZentipayPage() {
         />
 
         <NdaProcess
+          title="How I approached it"
+          intro="I reduced the work to three product moves: clarify the price, make risk reviewable, and reuse the trust language across the system."
+          visuals={ZENTIPAY_PROCESS_VISUALS}
           decisions={[
             {
-              move: 'Framed cross-border transfer as a confidence problem before a rate problem.',
-              why: 'People abandon remittance flows when they are unsure what will actually arrive. I led the design with price clarity and progress so trust was established before any money moved.',
+              move: 'Make the transfer understandable before money moves.',
+              why: 'Show amount, conversion, fees, and destination early.',
             },
             {
-              move: 'Made every irreversible step legible and reviewable.',
-              why: 'In fintech the cost of a wrong tap is real money. I built explicit review moments and status states so the user always knew where their transfer was and what happened next.',
+              move: 'Turn risky actions into review moments.',
+              why: 'Give users a clear pause before irreversible steps.',
             },
             {
-              move: 'Built a reusable component language for a 0→1 super app.',
-              why: 'As founding designer I needed the system to scale past the first flows. A consistent set of transaction, status, and confirmation components kept new features trustworthy without redesigning trust each time.',
+              move: 'Create reusable trust patterns.',
+              why: 'Use the same status, confirmation, and proof language across flows.',
             },
           ]}
           shift={{
-            before: 'A transfer flow where users only learned the real cost and status late, eroding confidence.',
-            after: 'A trust-first system that front-loads clarity, progress, and review before money moves.',
+            before: 'Users learned cost, status, and risk too late in the flow.',
+            after: 'The product front-loads price clarity, progress, and review.',
           }}
         />
 
@@ -175,7 +194,7 @@ export default function ZentipayPage() {
 
       </main>
 
-      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png" />
+      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp" />
       <Footer />
     </>
   )

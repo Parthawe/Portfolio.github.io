@@ -8,6 +8,14 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const AI_VOICE_PROCESS_VISUALS = [
+  {
+    src: '/Portfolio.github.io/Assets/mockups/projects/ai-voice_16x9.webp',
+    alt: 'AI Voice Selection product mockup showing an enterprise voice interface.',
+    label: 'Voice selection surface',
+  },
+]
+
 export default function AiVoicePage() {
   return (
     <>
@@ -46,23 +54,25 @@ export default function AiVoicePage() {
         />
 
         <NdaProcess
+          intro="I treated voice selection as a product-confidence problem: compare fit, test context, and make the choice defensible for a team."
+          visuals={AI_VOICE_PROCESS_VISUALS}
           decisions={[
             {
-              move: 'Reframed voice selection from a dropdown into a confidence decision.',
-              why: 'Enterprise buyers are not picking a voice, they are deciding whether to trust it in front of their customers. I designed the choice around tone, context, and emotional fit so the decision matched what was actually at stake.',
+              move: 'Move beyond a voice dropdown.',
+              why: 'Frame the choice around trust, tone, and customer context.',
             },
             {
-              move: 'Replaced static demo lists with context-aware comparison.',
-              why: 'A flat list of samples tells you nothing about fit. I let people evaluate voices against the situation they would be used in, turning a guess into an informed, defensible choice.',
+              move: 'Compare voices in real scenarios.',
+              why: 'Let teams judge fit against the moments the voice will handle.',
             },
             {
-              move: 'Designed for the enterprise approval reality, not a solo user.',
-              why: 'These decisions get reviewed by teams. I made the reasoning behind a chosen voice visible and shareable so it could survive stakeholder scrutiny, not just one person’s taste.',
+              move: 'Make the final choice explainable.',
+              why: 'Give teams a reasoned selection they can share and approve.',
             },
           ]}
           shift={{
-            before: 'A dropdown of voice samples that left buyers guessing about real-world fit.',
-            after: 'A selection experience framed around tone, context, and enterprise confidence.',
+            before: 'A list of samples that left buyers guessing about fit.',
+            after: 'A selection flow built around tone, context, and team confidence.',
           }}
         />
 

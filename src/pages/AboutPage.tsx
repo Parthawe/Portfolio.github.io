@@ -170,7 +170,7 @@ const vibeCollage = [
   },
   {
     className: 'abt-vibe-card--small',
-    src: '/Portfolio.github.io/Assets/Projects/Raahi/photos/app-home.webp',
+    src: '/Portfolio.github.io/Assets/Projects/Raahi/photos/raahi-homepage.webp',
     alt: 'Raahi mobile product interface.',
   },
 ]

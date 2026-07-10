@@ -209,7 +209,7 @@ export default function TransfiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Crypto payment infrastructure redesign for multi-market merchant flows." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp" />
       </Helmet>
 
       <Nav />

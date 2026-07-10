@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { getProject } from '../../data/projects'
 
 interface NdaPublicStoryProps {
@@ -13,48 +12,38 @@ interface NdaPublicStoryProps {
 }
 
 export default function NdaPublicStory({ slug, headline, lede, visuals = [] }: NdaPublicStoryProps) {
-  const [selectedVisualIndex, setSelectedVisualIndex] = useState(0)
   const project = getProject(slug)
 
   if (!project) return null
 
   const challenge = project.storyline?.challenge || project.summaryProblem || project.desc
   const approach = project.storyline?.approach || project.summaryRole || 'I shaped the product story, flow, and interface direction around the core user risk.'
-  const result = project.summaryOutcome || project.storyline?.result || project.desc
+  const result = project.storyline?.result || project.summaryOutcome || project.desc
   const stats = project.summaryStats?.slice(0, 4) || []
-  const selectedVisual = visuals[selectedVisualIndex] || visuals[0]
+  const primaryVisual = visuals[0]
+  const storyRows = [
+    { label: 'Problem', copy: challenge },
+    { label: 'Method', copy: approach },
+    { label: 'Result', copy: result },
+  ]
 
   return (
     <section className="cs-section cs-nda-story reveal" id="cs-public-story">
       <div className="wrap cs-nda-story-grid">
-        <div className="cs-nda-story-head">
-          <h2 className="cs-nda-story-title">{headline}</h2>
-          {lede ? <p className="cs-nda-story-lede">{lede}</p> : null}
-        </div>
+        <header className="cs-nda-story-head">
+          <div>
+            <h2 className="cs-nda-story-title">{headline}</h2>
+            {lede ? <p className="cs-nda-story-lede">{lede}</p> : null}
+          </div>
+        </header>
 
         <div className="cs-nda-story-body">
-          {visuals.length ? (
-            <div className="cs-nda-image-gallery" aria-label={`${project.name} safe public visual preview`}>
+          {primaryVisual ? (
+            <div className="cs-nda-image-gallery" aria-label={`${project.name} public visual preview`}>
               <figure className="cs-nda-image-card cs-nda-image-card--hero">
-                <img src={selectedVisual.src} alt={selectedVisual.alt} loading="eager" decoding="async" />
-                <figcaption>{selectedVisual.label}</figcaption>
+                <img src={primaryVisual.src} alt={primaryVisual.alt} loading="eager" decoding="async" />
+                <figcaption>{primaryVisual.label}</figcaption>
               </figure>
-              {visuals.length > 1 ? (
-                <div className="cs-nda-image-rail" aria-label="Choose a public preview image">
-                  {visuals.map((visual, index) => (
-                    <button
-                      className="cs-nda-image-thumb"
-                      type="button"
-                      key={visual.src}
-                      aria-pressed={index === selectedVisualIndex}
-                      onClick={() => setSelectedVisualIndex(index)}
-                    >
-                      <img src={visual.src} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
-                      <span>{visual.label}</span>
-                    </button>
-                  ))}
-                </div>
-              ) : null}
             </div>
           ) : (
             <div className="cs-nda-visual-board" role="img" aria-label={`${project.name} safe abstract interface preview`}>
@@ -126,18 +115,12 @@ export default function NdaPublicStory({ slug, headline, lede, visuals = [] }: N
           )}
 
           <div className="cs-nda-story-proof" aria-label={`${project.name} safe public summary`}>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Problem</span>
-              <span className="cs-label-row-val">{challenge}</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Move</span>
-              <span className="cs-label-row-val">{approach}</span>
-            </div>
-            <div className="cs-label-row" style={{ borderBottom: 'none' }}>
-              <span className="cs-label-row-key">Glimpse</span>
-              <span className="cs-label-row-val">{result}</span>
-            </div>
+            {storyRows.map((row) => (
+              <div className="cs-nda-story-row" key={row.label}>
+                <span className="cs-nda-story-row-label">{row.label}</span>
+                <span className="cs-nda-story-row-copy">{row.copy}</span>
+              </div>
+            ))}
           </div>
 
           {stats.length ? (
