@@ -207,8 +207,6 @@ export const projects: Project[] = [
     page: () => import('../pages/projects/MentraMiniAppsPage'),
     archiveOrder: 2,
     tier: 'a',
-    selected: true,
-    selectedOrder: 6,
     summaryProblem: 'Smart glasses needed a real app layer, but phone-style browse patterns collapse when the screen lives in peripheral vision and the apps range from captions and translation to notes, AI, and utilities.',
     summaryRole: 'Designed the miniapp store, install flows, permissions model, and the platform patterns that let very different MiniApps coexist inside MentraOS.',
     summaryTeam: 'Sole designer partnering with 4 engineers, product, and the MentraOS open-source developer community.',
@@ -1701,9 +1699,9 @@ const WORK_PRIORITY_SLUGS = [
   'transfi-project',
   'clawed-chat',
   'raahi-project',
-  'mentra-miniapps',
   'zentipay',
   'executivelens',
+  'mentra-miniapps',
   'ballah-code',
   'vj-software',
   'office-of-diversity',
@@ -1749,7 +1747,7 @@ const WORK_HIDDEN_SLUGS = new Set<string>([
   'org-dashboard',
 ])
 
-const WORK_SELECTED_COUNT = 7
+const WORK_SELECTED_COUNT = 6
 const HOMEPAGE_SELECTED_ARCHIVE_COUNT = 8
 const WORK_PRIORITY = new Map<string, number>(WORK_PRIORITY_SLUGS.map((slug, index) => [slug, index]))
 const WORK_SELECTED_SLUGS = new Set<string>(WORK_PRIORITY_SLUGS.slice(0, WORK_SELECTED_COUNT))
