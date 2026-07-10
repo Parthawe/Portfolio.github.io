@@ -1750,6 +1750,7 @@ const WORK_HIDDEN_SLUGS = new Set<string>([
 ])
 
 const WORK_SELECTED_COUNT = 7
+const HOMEPAGE_SELECTED_ARCHIVE_COUNT = 8
 const WORK_PRIORITY = new Map<string, number>(WORK_PRIORITY_SLUGS.map((slug, index) => [slug, index]))
 const WORK_SELECTED_SLUGS = new Set<string>(WORK_PRIORITY_SLUGS.slice(0, WORK_SELECTED_COUNT))
 
@@ -1782,8 +1783,9 @@ export const selectedWorkProjects = visibleProjects
   .sort(sortByWorkPriority)
 
 /** Homepage follow-on grid after flagship work */
-export const homepageSelectedProjects = selectedWorkProjects
+export const homepageSelectedProjects = visibleProjects
   .filter(p => !p.featured)
+  .slice(0, HOMEPAGE_SELECTED_ARCHIVE_COUNT)
 
 /** Remaining visible work shown below the fold on /work */
 export const archiveWorkProjects = visibleProjects
