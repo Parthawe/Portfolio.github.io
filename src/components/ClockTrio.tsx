@@ -252,8 +252,10 @@ export default function ClockTrio() {
   return (
     <div style={{
       width: '100%', aspectRatio: '3 / 1',
+      maxHeight: 'min(24rem, 48vh)',
       borderRadius: 'var(--radius-lg)', overflow: 'hidden',
       border: '1px solid var(--ink-06)',
+      contain: 'layout paint size',
     }}>
       <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
     </div>

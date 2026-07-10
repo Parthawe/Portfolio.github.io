@@ -226,29 +226,6 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/writing') {
-    return {
-      title: 'Writing · Parth Pawar',
-      description: 'Articles on design engineering, AI wearables, fintech trust, and creative practice by Parth Pawar.',
-      image: toAbsoluteUrl(DEFAULT_IMAGE),
-      url,
-      type: 'website',
-      robots,
-    }
-  }
-
-  if (pathname.startsWith('/writing/')) {
-    const articleSlug = pathname.replace('/writing/', '')
-    return {
-      title: `${articleSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} · Parth Pawar`,
-      description: 'Article by Parth Pawar, Design Engineer.',
-      image: toAbsoluteUrl(DEFAULT_IMAGE),
-      url,
-      type: 'article',
-      robots,
-    }
-  }
-
   if (pathname === '/studio') {
     return {
       title: 'Studio · Parth Pawar',

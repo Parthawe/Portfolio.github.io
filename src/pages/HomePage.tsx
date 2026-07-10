@@ -13,6 +13,7 @@ import { useInView } from '../hooks/useInView';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { allProjectsCurated, featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
+import { isLowPowerDevice } from '../utils/performance';
 
 
 const HeroScene = lazy(() => import('../components/HeroScene'));
@@ -86,12 +87,14 @@ export default function HomePage() {
   const [aboutRef, aboutInView] = useInView<HTMLElement>(0.08, '160px 0px');
   const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
-  const mountHeroScene = useDeferredMount(true, {
-    timeout: prefersReducedMotion ? 4200 : coarsePointer ? 5200 : 3600,
-    delayMs: prefersReducedMotion ? 2400 : coarsePointer ? 2400 : 1800,
+  const lowPowerDevice = isLowPowerDevice();
+  const allowDecorative3D = !prefersReducedMotion;
+  const mountHeroScene = useDeferredMount(allowDecorative3D, {
+    timeout: coarsePointer ? 5200 : lowPowerDevice ? 4600 : 3600,
+    delayMs: coarsePointer ? 2400 : lowPowerDevice ? 2200 : 1800,
   });
-  const mountDisciplineObjects = useDeferredMount(disciplinesInView, { timeout: 1400, delayMs: 150 });
-  const mountAboutObject = useDeferredMount(aboutInView, { timeout: 1600, delayMs: 120 });
+  const mountDisciplineObjects = useDeferredMount(allowDecorative3D && disciplinesInView, { timeout: lowPowerDevice ? 2200 : 1400, delayMs: lowPowerDevice ? 360 : 150 });
+  const mountAboutObject = useDeferredMount(allowDecorative3D && aboutInView, { timeout: lowPowerDevice ? 2400 : 1600, delayMs: lowPowerDevice ? 360 : 120 });
   const archiveProjectSlugs = new Set(homepageSelectedProjects.map(project => project.slug));
   const appendedArchiveProjects = allProjectsCurated.filter(
     project => !project.featured && !archiveProjectSlugs.has(project.slug),
@@ -100,6 +103,12 @@ export default function HomePage() {
   const archiveProjects = showAllArchiveProjects ? fullArchiveProjects : homepageSelectedProjects;
   const fullArchiveCount = fullArchiveProjects.length;
   const activeIdentity = identityTabs.find(tab => tab.id === identityTab) ?? identityTabs[0];
+  const flagshipColumns = [
+    featuredProjects.filter((_, index) => index === 0 || index === 2),
+    featuredProjects.filter((_, index) => index === 1 || index === 3),
+  ];
+  const getFlagshipCoverShape = (slug: string): 'portrait' | 'square' =>
+    slug === 'mentra' || slug === 'jugalbandi' ? 'portrait' : 'square';
 
   useEffect(() => {
     if (skillPaused) return;
@@ -194,40 +203,46 @@ export default function HomePage() {
               </div>
 
               <div className="wr-feat-grid">
-                {featuredProjects.map((project, index) => {
-                  const featuredInfo = [
-                    project.desc,
-                    project.summaryRole?.replace(/\.$/, ''),
-                    ...(project.summaryStats?.slice(0, 2).map(stat => `${stat.label} ${stat.value}`) ?? []),
-                  ]
-                    .filter(Boolean)
-                    .join(' / ');
-                  const hoverMedia = ['mentra', 'jugalbandi'].includes(project.slug) ? undefined : project.hoverMedia;
+                {flagshipColumns.map((column, columnIndex) => (
+                  <div className="wr-feat-column" key={`flagship-column-${columnIndex}`}>
+                    {column.map((project) => {
+                      const index = featuredProjects.findIndex(item => item.slug === project.slug);
+                      const featuredInfo = [
+                        project.desc,
+                        project.summaryRole?.replace(/\.$/, ''),
+                        ...(project.summaryStats?.slice(0, 2).map(stat => `${stat.label} ${stat.value}`) ?? []),
+                      ]
+                        .filter(Boolean)
+                        .join(' / ');
+                      const hoverMedia = ['mentra', 'jugalbandi'].includes(project.slug) ? undefined : project.hoverMedia;
 
-                  return (
-                  <div
-                    key={project.slug}
-                    className="wr-motion-item reveal"
-                    style={{ transitionDelay: `${index * 0.06}s` }}
-                  >
-                    <ProjectCard
-                      slug={project.slug}
-                      name={project.name}
-                      image={project.image}
-                      hoverMediaSrc={hoverMedia?.src}
-                      hoverMediaKind={hoverMedia?.kind}
-                      hoverMediaAlt={hoverMedia?.alt}
-                      tag={project.tag}
-                      year={project.year}
-                      marqueeText={featuredInfo}
-                      loading={index < 2 ? 'eager' : 'lazy'}
-                      featured
-                      preferWide={index === 1 || index === 2}
-                      nda={project.nda}
-                    />
+                      return (
+                        <div
+                          key={project.slug}
+                          className="wr-motion-item reveal"
+                          data-project={project.slug}
+                          style={{ transitionDelay: `${index * 0.06}s` }}
+                        >
+                          <ProjectCard
+                            slug={project.slug}
+                            name={project.name}
+                            image={project.image}
+                            hoverMediaSrc={hoverMedia?.src}
+                            hoverMediaKind={hoverMedia?.kind}
+                            hoverMediaAlt={hoverMedia?.alt}
+                            tag={project.tag}
+                            year={project.year}
+                            marqueeText={featuredInfo}
+                            loading={index < 2 ? 'eager' : 'lazy'}
+                            featured
+                            coverShape={getFlagshipCoverShape(project.slug)}
+                            nda={project.nda}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
-                  );
-                })}
+                ))}
               </div>
 
             </div>
@@ -337,7 +352,6 @@ export default function HomePage() {
 
                   <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
                     <Link to="/about" className="wr-about-readmore">read more.</Link>
-                    <Link to="/writing" className="wr-about-readmore">writing.</Link>
                   </div>
 
                   <span className="wr-about-site" aria-hidden="true">PARTHPAWAR.COM</span>

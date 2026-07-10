@@ -31,9 +31,6 @@ const PAGE_TERMS = [
   'tools',
   'skills',
   'role fit',
-  'writing',
-  'articles',
-  'blog',
 ]
 
 const PROFILE_TERMS = [

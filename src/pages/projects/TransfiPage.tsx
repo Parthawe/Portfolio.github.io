@@ -205,7 +205,7 @@ export default function TransfiPage() {
     <>
       <Helmet>
         <title>TransFi &middot; Parth Pawar</title>
-        <meta name="description" content="TransFi, access-limited public glimpse of a crypto payment infrastructure redesign for multi-market merchant flows." />
+        <meta name="description" content="TransFi, access-limited public preview of a crypto payment infrastructure redesign for multi-market merchant flows." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Crypto payment infrastructure redesign for multi-market merchant flows." />
@@ -249,7 +249,7 @@ export default function TransfiPage() {
         <NdaPublicStory
           slug="transfi-project"
           headline="Trust made operational."
-          lede="The public glimpse shows the shape of the redesign without exposing internal payment flows, market constraints, or implementation detail."
+          lede="A public preview of the redesign shape: dashboards, widgets, and merchant-facing flows without exposing confidential constraints."
           visuals={TRANSFI_PUBLIC_VISUALS}
         />
 
@@ -259,17 +259,17 @@ export default function TransfiPage() {
           visuals={TRANSFI_PROCESS_VISUALS}
           decisions={[
             {
-              move: 'Turn trust into interface behaviour.',
+              move: 'Turn trust into interface behavior.',
               why: 'Show status, confirm risk, and make money moments reviewable.',
             },
             {
               move: 'Design around payment-flow risk.',
-              why: 'Prioritise confusing steps first, then reuse patterns across markets.',
+              why: 'Prioritize confusing steps first, then reuse patterns across markets.',
             },
           ]}
           shift={{
             before: 'Payment flows where trust was asserted, and users carried the uncertainty.',
-            after: 'Flows where interface behaviour makes each step legible, reviewable, and safe by default.',
+            after: 'Flows where interface behavior makes each step legible, reviewable, and safe by default.',
           }}
         />
 
@@ -290,7 +290,7 @@ export default function TransfiPage() {
 
       </main>
 
-      <NextProject slug="cuetv" title="CueTV" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
+      <NextProject slug="clawed-chat" title="Clawed" image="/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp" />
       <Footer />
     </>
   )

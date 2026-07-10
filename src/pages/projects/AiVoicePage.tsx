@@ -50,7 +50,7 @@ export default function AiVoicePage() {
         <NdaPublicStory
           slug="ai-voice"
           headline="Voice choice as product judgment."
-          lede="The public glimpse shows the core shift: choosing an AI voice is not a dropdown problem, it is a confidence problem."
+          lede="The core shift: choosing an AI voice is not a dropdown problem, it is a confidence problem."
         />
 
         <NdaProcess

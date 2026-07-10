@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
 import { categories } from '../data/categories'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
@@ -9,6 +8,8 @@ import ProjectCard from '../components/ProjectCard'
 import { Reveal } from '../components/Reveal'
 import ClientsMarquee from '../components/ClientsMarquee'
 import PlaybookSection from '../components/PlaybookSection'
+import FigmaFrameLabel from '../components/FigmaFrameLabel'
+import FigmaSelect from '../components/FigmaSelect'
 import {
   getProject,
   isHiddenProject,
@@ -18,6 +19,7 @@ import {
 } from '../data/projects'
 
 const CategoryHero = lazy(() => import('../components/CategoryHero'))
+const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'))
 
 const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'brand-visual', 'ai', 'creative-tech', 'fintech', 'crypto', 'ai-wearables'])
 
@@ -38,19 +40,39 @@ const EXTRA_CATEGORY_PROJECTS: Partial<Record<string, string[]>> = {
   'ux-design': ['mentra', 'mentra-miniapps', 'executivelens', 'raahi-project'],
   'creative-tech': ['vj-software', 'black-hole', 'moniac-machine'],
   installations: ['jugalbandi', 'enigma', 'sea-of-salt'],
-  'brand-visual': ['mentra-brand', 'office-of-diversity', 'sea-of-salt', 'jugalbandi'],
+  'brand-visual': ['mentra-brand', 'office-of-diversity', 'sea-of-salt'],
   fintech: ['moniac-machine', 'executivelens'],
   crypto: ['moniac-machine'],
   'design-for-good': ['healthapp', 'raahi-project', 'code-for-build'],
 }
 
-/* Each category page carries one editorial "energy strip" that mirrors its
-   hero cue (see CategoryHero HERO_CUES):
+/* Each category page carries one editorial "energy strip":
    - Impact/client-driven domains show the "Where my work made a difference"
      logo marquee.
    - Craft/philosophy-driven domains show the rolling Playbook-points strip. */
 const CLIENT_STRIP_CATEGORIES = new Set(['ux-design', 'installations', 'design-for-good', 'fintech'])
 const PLAYBOOK_STRIP_CATEGORIES = new Set(['ai', 'ai-wearables', 'creative-tech', 'brand-visual', 'crypto'])
+
+const CATEGORY_ANNOTATION_LINKS = [
+  { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
+  { label: 'AI & Wearables', slug: 'ai-wearables', link: '/ai-wearables' },
+  { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
+  { label: 'Installations', slug: 'installations', link: '/installations' },
+  { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
+  { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
+] as const
+
+const CATEGORY_ANNOTATION_ORDER = [
+  'ux-design',
+  'ai-wearables',
+  'creative-tech',
+  'fintech',
+  'crypto',
+  'installations',
+  'brand-visual',
+  'design-for-good',
+  'ai',
+] as const
 
 function addVisibleProject(list: Project[], seen: Set<string>, project?: Project) {
   if (!project || isHiddenProject(project) || seen.has(project.slug)) return
@@ -101,9 +123,11 @@ export default function CategoryPage() {
     ? visibleCategoryProjects.filter((project) => project.slug !== featuredProject.slug)
     : visibleCategoryProjects
   const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
-  const approachVisualProjects = visibleCategoryProjects.slice(0, 3)
   const showClientStrip = CLIENT_STRIP_CATEGORIES.has(slug)
   const showPlaybookStrip = PLAYBOOK_STRIP_CATEGORIES.has(slug)
+  const categoryIndex = Math.max(0, CATEGORY_ANNOTATION_ORDER.indexOf(slug as (typeof CATEGORY_ANNOTATION_ORDER)[number]))
+  const categoryNum = String(categoryIndex + 1).padStart(2, '0')
+  const categoryObjectSlug = slug === 'ai' ? 'ai-wearables' : slug
 
   return (
     <div style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
@@ -133,6 +157,18 @@ export default function CategoryPage() {
           </Suspense>
 
           <hr className="lp-divider" />
+
+          {/* Editorial energy strip — same placement on every category page */}
+          {showClientStrip && (
+            <Reveal>
+              <ClientsMarquee />
+            </Reveal>
+          )}
+          {showPlaybookStrip && (
+            <Reveal>
+              <PlaybookSection />
+            </Reveal>
+          )}
 
           {/* All projects, flagship first (full-width), then rest in masonry */}
           <div id="lp-work">
@@ -178,76 +214,103 @@ export default function CategoryPage() {
             )}
           </div>
 
-          {/* Editorial energy strip — mirrors the hero cue for this domain */}
-          {showClientStrip && (
-            <Reveal>
-              <ClientsMarquee />
-            </Reveal>
-          )}
-          {showPlaybookStrip && (
-            <Reveal>
-              <PlaybookSection />
-            </Reveal>
-          )}
-
-          {/* Approach */}
+          {/* Category annotation */}
           <Reveal>
-            <div className="lp-approach">
-              <div className="lp-approach-stage">
-                <motion.div
-                  className="lp-approach-visual"
-                  aria-label={`${category.approach.label} visual stack`}
-                  initial={{ opacity: 0, y: 24, rotate: -1 }}
-                  whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <div className="lp-approach-folder" aria-hidden="true">
-                    <div className="lp-approach-folder-tab">{category.title} {category.titleAccent}</div>
-                    <div className="lp-approach-folder-body">
-                      {approachVisualProjects.map((project, index) => (
-                        <figure
-                          key={project.slug}
-                          className={`lp-approach-card lp-approach-card--${index + 1}`}
-                        >
-                          <img src={project.image} alt="" loading="lazy" />
-                          <figcaption>{project.name}</figcaption>
-                        </figure>
-                      ))}
-                      <div className="lp-approach-plaque">
-                        <span>{category.approach.label}</span>
-                        <strong>{category.tools.slice(0, 3).join(' / ')}</strong>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+            <section className="lp-parth-does" style={{ position: 'relative' }}>
+              <FigmaFrameLabel name="What Parth does" />
+              <div className="lp-parth-card">
+                <svg className="wr-about-border" preserveAspectRatio="none" aria-hidden="true">
+                  <line x1="12" y1="12" x2="12" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
+                  <line x1="100%" y1="12" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(-12,0)" />
+                  <line x1="12" y1="12" x2="100%" y2="12" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
+                  <line x1="12" y1="100%" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(0,-12)" />
+                </svg>
+                <div className="wr-about-dot" style={{ top: '11px' }} />
+                <div className="wr-about-dot" style={{ top: '30%' }} />
+                <div className="wr-about-dot" style={{ top: '53%' }} />
+                <div className="wr-about-dot" style={{ bottom: '11px' }} />
 
-                <div className="lp-approach-copy">
-                  <p className="lp-approach-label">{category.approach.label}</p>
-                  <motion.div
-                    className="lp-pillars"
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: '-40px' }}
-                    variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
-                  >
-                    {category.approach.pillars.map((pillar) => (
-                      <motion.div
-                        key={pillar.num}
-                        variants={{
-                          hidden: { opacity: 0, y: 20 },
-                          show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
-                        }}
-                      >
-                        <span className="lp-pillar-num">{pillar.num}</span>
-                        <p className="lp-pillar-title">{pillar.title}</p>
-                        <p className="lp-pillar-desc">{pillar.desc}</p>
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                <div className="wr-about-top">
+                  <div className="wr-about-top-left">
+                    <span className="wr-about-num">{categoryNum}</span>
+                    <span className="wr-about-skill-label">{category.title.toUpperCase()} {category.titleAccent.toUpperCase()}</span>
+                  </div>
+                  <div className="wr-about-top-right">
+                    <span className="wr-about-dot-sq" />
+                    <span className="wr-label">ABOUT</span>
+                    <span className="wr-about-dot-sq" />
+                  </div>
+                </div>
+
+                <div className="lp-parth-body">
+                  <div className="lp-parth-object" aria-hidden="true">
+                    <span>{category.title} {category.titleAccent}</span>
+                    <span>Object study</span>
+                    <Suspense fallback={null}>
+                      <CategoryObject3D
+                        slug={categoryObjectSlug}
+                        size={230}
+                        className="lp-parth-object-canvas"
+                      />
+                    </Suspense>
+                  </div>
+
+                  <div className="lp-parth-copy">
+                    <h2 className="wr-about-heading">Parth Pawar</h2>
+                    <h2 className="wr-about-heading">does</h2>
+                    <div className="wr-about-cycle">
+                      <span className="wr-about-arrow" aria-hidden="true">&lt;</span>
+                      <span className="wr-about-skill">{category.title} {category.titleAccent}</span>
+                      <span className="wr-about-arrow" aria-hidden="true">&gt;</span>
+                      <span className="wr-about-arrow" aria-hidden="true">||</span>
+                    </div>
+                    <p className="wr-about-desc">
+                      I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi.
+                    </p>
+                    <Link to="/about" className="wr-about-readmore">read more.</Link>
+                  </div>
+                </div>
+
+                <div className="wr-about-vert" aria-hidden="true">PARTHPAWARWORKS</div>
+
+                <div className="wr-about-bottom">
+                  <div className="wr-about-bottom-left">
+                    <span className="wr-about-dot-circle" />
+                    <span className="wr-about-num">{categoryNum} / {String(CATEGORY_ANNOTATION_ORDER.length).padStart(2, '0')}</span>
+                  </div>
+                  <div className="wr-about-bottom-right">
+                    <span className="wr-about-dot-sq" />
+                    <span className="wr-about-meta-label">CURRENTLY BASED IN</span>
+                    <span className="wr-about-meta-val">SAN FRANCISCO, CA</span>
+                    <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </section>
+          </Reveal>
+
+          <Reveal>
+            <section className="lp-category-disciplines" style={{ position: 'relative' }}>
+              <FigmaFrameLabel name="Disciplines" />
+              <div className="lp-category-disciplines-grid">
+                {CATEGORY_ANNOTATION_LINKS.map((item, index) => (
+                  <Link
+                    key={item.slug}
+                    to={item.link}
+                    className={`lp-category-discipline figma-hover${item.slug === slug || (slug === 'ai' && item.slug === 'ai-wearables') ? ' is-active' : ''}`}
+                    style={{ transitionDelay: `${index * 0.04}s` }}
+                  >
+                    <span className="lp-category-discipline-object" aria-hidden="true">
+                      <Suspense fallback={null}>
+                        <CategoryObject3D slug={item.slug} size={76} />
+                      </Suspense>
+                    </span>
+                    <span className="lp-category-discipline-label">{item.label}</span>
+                    <FigmaSelect />
+                  </Link>
+                ))}
+              </div>
+            </section>
           </Reveal>
         </div>
 

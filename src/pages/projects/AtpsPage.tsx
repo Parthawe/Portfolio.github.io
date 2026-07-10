@@ -237,7 +237,7 @@ export default function AtpsPage() {
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What Hosting 40+ Conversations Taught Me</h2>
             <CsBody style={{ maxWidth: '720px' }}>
-              <p>Running ATPS for three years taught me that the best interviews happen when you stop performing expertise and start genuinely listening. Early episodes were over-prepared&mdash;I would script every question and stick rigidly to my list. The conversations felt stilted. The turning point was an episode with a glass sculptor who went on a tangent about how material failure teaches you more than success. I followed the tangent instead of redirecting, and it became one of our most-listened episodes.</p>
+              <p>Running ATPS taught me that the best interviews happen when you stop performing expertise and start listening. The turning point was following a guest&rsquo;s unexpected tangent instead of forcing the script.</p>
               <p>The design skill I developed was editorial thinking&mdash;knowing what to cut, what to keep, and how to structure a 60-minute conversation into a compelling 30-minute episode. This is the same skill I now use in product design: understanding that what you leave out defines the experience as much as what you include.</p>
               <p>ATPS also gave me a network I could not have built any other way. Several professional collaborations&mdash;including introductions that led to real projects&mdash;started as podcast conversations.</p>
             </CsBody>

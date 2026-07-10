@@ -139,11 +139,13 @@ export default function SaltSimulation() {
   }, [])
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="cs-interactive-contained" style={{ position: 'relative' }}>
       <div style={{
         width: '100%', aspectRatio: '16 / 9',
+        maxHeight: 'min(34rem, 68vh)',
         borderRadius: 'var(--radius-lg)', overflow: 'hidden',
         border: '1px solid rgba(255,255,255,0.04)',
+        contain: 'layout paint size',
       }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
       </div>

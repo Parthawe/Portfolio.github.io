@@ -49,7 +49,7 @@ export default function TypefacePage() {
   const activeWeight = weights[weightIdx]
   const activeSpecimen = specimens[specimenIdx]
   const specimenStyle = {
-    fontFamily: 'Nikolas, "General Sans"',
+    fontFamily: 'var(--tf-slice)',
     fontWeight: activeWeight.value,
   }
 
@@ -226,7 +226,7 @@ export default function TypefacePage() {
             {weights.map(weight => (
               <article key={weight.label} className="tf-weight-row">
                 <span>{weight.label}</span>
-                <strong style={{ fontFamily: 'Nikolas, "General Sans"', fontWeight: weight.value }}>
+                <strong style={{ fontFamily: 'var(--tf-slice)', fontWeight: weight.value }}>
                   Ag
                 </strong>
                 <em>{weight.value}</em>
@@ -298,12 +298,12 @@ export default function TypefacePage() {
           <div className="tf-metric-grid">
             <article className="tf-metric">
               <span>Short texts</span>
-              <strong style={{ fontFamily: 'Nikolas, "General Sans"', fontWeight: 700 }}>140pt</strong>
+              <strong style={{ fontFamily: 'var(--tf-slice)', fontWeight: 700 }}>140pt</strong>
               <p>Headlines, posters, covers &mdash; the cuts read as intent at display scale.</p>
             </article>
             <article className="tf-metric">
               <span>Long texts</span>
-              <strong style={{ fontFamily: 'Nikolas, "General Sans"', fontWeight: 400 }}>45pt</strong>
+              <strong style={{ fontFamily: 'var(--tf-slice)', fontWeight: 400 }}>45pt</strong>
               <p>Pull quotes and ledes hold up; below that, hand the page to a workhorse text face.</p>
             </article>
             <article className="tf-metric">

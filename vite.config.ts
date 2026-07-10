@@ -183,6 +183,43 @@ function localGeminiEdgePlugin(apiKey: string, defaultModel: string): Plugin {
   }
 }
 
+function basePathRedirectPlugin(basePath: string): Plugin {
+  const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`
+  const routeLike = /^\/(work|about|accessibility|playbook|writing|book|graveyard|studio|ai|ux-design|creative-tech|installations|brand-visual|fintech|design-for-good|crypto|ai-wearables|[a-z0-9-]+)(?:[/?#]|$)/
+
+  function redirectIfNeeded(req: { url?: string }, res: { statusCode: number; setHeader: (key: string, value: string) => void; end: () => void }, next: () => void) {
+    const url = req.url || '/'
+    if (url.startsWith(normalizedBase) || url.startsWith('/@') || url.startsWith('/api/') || url.startsWith('/node_modules/')) {
+      next()
+      return
+    }
+
+    if (!routeLike.test(url)) {
+      next()
+      return
+    }
+
+    res.statusCode = 302
+    res.setHeader('Location', `${normalizedBase.replace(/\/$/, '')}${url}`)
+    res.end()
+  }
+
+  return {
+    name: 'base-path-redirect',
+    enforce: 'pre',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        redirectIfNeeded(req, res, next)
+      })
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use((req, res, next) => {
+        redirectIfNeeded(req, res, next)
+      })
+    },
+  }
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const edgeModel = env.VITE_EDGE_AI_MODEL || 'gemini-2.5-flash'
@@ -190,6 +227,7 @@ export default defineConfig(({ mode }) => {
   return {
   base: '/Portfolio.github.io/',
   plugins: [
+    basePathRedirectPlugin('/Portfolio.github.io/'),
     react(),
     tailwindcss(),
     localGeminiEdgePlugin(env.GEMINI_API_KEY || env.GOOGLE_AI_API_KEY || '', edgeModel),

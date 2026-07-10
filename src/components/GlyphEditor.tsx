@@ -422,7 +422,7 @@ export default function GlyphEditor() {
               key={c}
               className={`ge-char-btn ${c === char ? 'active' : ''}`}
               onClick={() => setChar(c)}
-              style={{ fontFamily: 'Nikolas, "General Sans"' }}
+              style={{ fontFamily: 'var(--tf-slice)' }}
             >
               {c}
             </button>

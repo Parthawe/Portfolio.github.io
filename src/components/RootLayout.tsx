@@ -8,6 +8,7 @@ import { useKeyboardNav } from '../hooks/useKeyboardNav';
 import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { normalizeCopy } from '../utils/normalizeCopy';
+import { isLowPowerDevice, prefersCanvasChrome } from '../utils/performance';
 
 const FigmaChrome = lazy(() => import('./FigmaChrome'));
 const FigmaGrid = lazy(() => import('./FigmaGrid'));
@@ -59,6 +60,7 @@ export default function RootLayout() {
   const [visible, setVisible] = useState(false);
   const [siteToolsRequested, setSiteToolsRequested] = useState(false);
   const [siteToolsMounted, setSiteToolsMounted] = useState(false);
+  const [canvasChromePreferred, setCanvasChromePreferred] = useState(() => prefersCanvasChrome());
   const isStudioRoute = location.pathname === '/studio';
   const isUtilityRoute = location.pathname === '/book' || location.pathname === '/graveyard';
   const enablePortfolioInteractions = !isStudioRoute && !isUtilityRoute;
@@ -159,15 +161,28 @@ export default function RootLayout() {
   }, [enableFigmaChrome]);
 
   useEffect(() => {
-    const shouldShowCanvasChrome = enableFigmaChrome && desktopCanvas && finePointer && !coarsePointer;
+    const shouldShowCanvasChrome = enableFigmaChrome && desktopCanvas && finePointer && !coarsePointer && canvasChromePreferred && !isLowPowerDevice();
     document.body.classList.toggle('figma-grid-on', shouldShowCanvasChrome);
     document.body.classList.toggle('figma-rulers-off', !shouldShowCanvasChrome);
+    document.body.classList.toggle('figma-reader-mode', !shouldShowCanvasChrome);
 
     return () => {
       document.body.classList.remove('figma-grid-on');
       document.body.classList.remove('figma-rulers-off');
+      document.body.classList.remove('figma-reader-mode');
     };
-  }, [enableFigmaChrome, desktopCanvas, finePointer, coarsePointer]);
+  }, [enableFigmaChrome, desktopCanvas, finePointer, coarsePointer, canvasChromePreferred]);
+
+  useEffect(() => {
+    const syncCanvasChromePreference = () => setCanvasChromePreferred(prefersCanvasChrome())
+
+    window.addEventListener('portfolio:canvas-chrome-preference', syncCanvasChromePreference)
+    window.addEventListener('storage', syncCanvasChromePreference)
+    return () => {
+      window.removeEventListener('portfolio:canvas-chrome-preference', syncCanvasChromePreference)
+      window.removeEventListener('storage', syncCanvasChromePreference)
+    }
+  }, [])
 
   useEffect(() => {
     const syncChromeAccent = () => {

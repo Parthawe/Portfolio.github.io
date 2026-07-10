@@ -52,7 +52,7 @@ export default function CueTvPage() {
         <NdaPublicStory
           slug="cuetv"
           headline="Streaming for a specific audience."
-          lede="The public glimpse focuses on the product story: discovery and growth had to work together for a niche cultural catalogue."
+          lede="The product story is simple: discovery and growth had to work together for a niche cultural catalogue."
         />
 
         <NdaProcess

@@ -67,7 +67,7 @@ const deepMap: Record<string, ProjectDeep> = {
   zentipay: {
     oneLiner: 'A fintech product that discovered fee anxiety matters more than transfer speed.',
     challenge: 'Users hesitated when pricing arrived late. The problem was not speed, it was fear of hidden costs.',
-    outcome: 'Public glimpse: stronger transfer confidence, clearer pricing, and deeper internals available by request.',
+    outcome: 'Public preview: stronger transfer confidence, clearer pricing, and deeper internals available by request.',
     insight: 'Trust beats speed. Showing fees upfront, even when they\'re higher, reduces abandonment more than any speed optimization.',
     process: 'Public summary covers research framing, pricing confidence, onboarding clarity, and the trust architecture. Deeper validation details are available by access request.',
     whyItMatters: 'Proved emotional design (addressing fear) beats functional design (making things faster) in money products.',
@@ -108,7 +108,7 @@ const deepMap: Record<string, ProjectDeep> = {
   'transfi-project': {
     oneLiner: 'Crypto payment infrastructure across multi-market merchant flows.',
     challenge: 'Payment markets have different regulations, currencies, and user expectations. One-size-fits-all breaks immediately.',
-    outcome: 'Public glimpse: multi-market payment infrastructure and merchant onboarding.',
+    outcome: 'Public preview: multi-market payment infrastructure and merchant onboarding.',
     insight: 'Compliance UX is a competitive advantage. Making KYC feel fast, not punishing, directly lifts conversion.',
     process: 'Public summary covers the product framing, merchant onboarding problem, and trust-oriented UX direction. Detailed compliance flows are available by access request.',
     whyItMatters: 'Proved regulated products can have great UX. Compliance isn\'t the enemy of design, it\'s a design problem.',
@@ -117,7 +117,7 @@ const deepMap: Record<string, ProjectDeep> = {
     platforms: 'Web, Mobile',
     opinion: 'This was Parth\'s first time leading design in a high-stakes payment environment, which forced real discipline.',
     connectedTo: ['zentipay'],
-    surprisingFact: 'The public glimpse keeps the shape of the payment problem visible while the internal compliance flows stay private.',
+    surprisingFact: 'The public preview keeps the shape of the payment problem visible while the internal compliance flows stay private.',
   },
   'raahi-project': {
     oneLiner: 'Service design that made Pune\'s chaotic public transit system accessible and connected.',
@@ -268,7 +268,7 @@ const deepMap: Record<string, ProjectDeep> = {
   'ai-voice': {
     oneLiner: 'Reframed enterprise AI voice selection from a dropdown of demos into a confidence decision.',
     challenge: 'Enterprise buyers aren\'t picking a voice, they\'re deciding whether to trust it in front of their customers. A flat list of samples tells you nothing about fit.',
-    outcome: 'Public glimpse: selection reframed around tone, context, and emotional fit, with deeper internals available by access request.',
+    outcome: 'Public preview: selection reframed around tone, context, and emotional fit, with deeper internals available by access request.',
     insight: 'Voice choice is a confidence problem, not a preference problem. Context-aware comparison turns a guess into an informed, defensible choice.',
     process: 'Replaced static demo lists with context-aware comparison, then designed for the enterprise approval reality, making the reasoning behind a chosen voice visible and shareable so it survives stakeholder scrutiny.',
     whyItMatters: 'As AI voices become the front line of customer contact, choosing one is product judgment, not a brand setting.',
@@ -296,7 +296,7 @@ const deepMap: Record<string, ProjectDeep> = {
   cuetv: {
     oneLiner: 'A streaming platform for opera, ballet, and symphonies where discovery and growth had to work as one system.',
     challenge: 'A niche catalogue browsed like a mass-market service reads as scarcity. Classical-arts audiences search, watch, and return completely differently from episodic TV viewers.',
-    outcome: 'Public glimpse: discovery organized around occasion and mood, playback built for long-form seated attention, and a retargeting system tied to genuine reasons to return. Live at cuetv.online.',
+    outcome: 'Public preview: discovery organized around occasion and mood, playback built for long-form seated attention, and a retargeting system tied to genuine reasons to return. Live at cuetv.online.',
     insight: 'A small library is a discovery problem, not a size problem. Curate by cultural context and depth reads as expertise, not a short list.',
     process: 'Treated the catalogue as curation, designed the player around act structure and resume behavior instead of autoplay churn, and made return visits a designed moment rather than an ad afterthought.',
     whyItMatters: 'Proves growth and product design can reinforce each other. Retention for a cultural catalogue is about the next programme, not the next episode.',
@@ -324,7 +324,7 @@ const deepMap: Record<string, ProjectDeep> = {
   healthapp: {
     oneLiner: 'A task planner where your sleep, food, and energy quietly reshape what the day asks of you.',
     challenge: 'Health metrics live in one app, the to-do list in another, and no connection between them. Planners optimize output while ignoring whether the schedule itself is harmful.',
-    outcome: 'Public glimpse: a planning concept built on honest capacity, with health signals as scheduling inputs. Deeper internals available by access request.',
+    outcome: 'Public preview: a planning concept built on honest capacity, with health signals as scheduling inputs. Deeper internals available by access request.',
     insight: 'Wellness data usually lives where it changes nothing. Move it into the planner and recovery starts influencing the plan, which makes the plan one you\'ll actually follow.',
     process: 'Treated sleep, food, movement, and energy as inputs to the schedule itself, designed around realistic daily capacity, and kept the surface calm, complexity stays in the system, not on the screen.',
     whyItMatters: 'Reframes productivity as a health-aware system. A plan that accounts for the person doing the work is more trustworthy than one that maximizes output.',
@@ -651,8 +651,6 @@ export function getRouteGreeting(path: string): string {
     ])
   }
 
-  if (path === '/writing' || path.startsWith('/writing/')) return "These are Parth's articles. Each one comes from a real project decision. Ask me about any of them, or ask for the best one."
-
   if (path === '/playbook') return "This is the playbook, the eight values behind every project here. Ask me how any of them shows up in real shipped work, that's the interesting part."
 
   const cat = categories.find(c => path === `/${c.slug}`)
@@ -818,7 +816,7 @@ const rules: Rule[] = [
 
   // Best research process
   { patterns: [/(?:best research|research process|research rigor|strongest research)/i],
-    handler: () => "If you care about research depth, start with **[ZentiPay](/zentipay)**. The public glimpse shows how pricing confidence became the product strategy; deeper validation detail is shared by request.\n\nThen look at **[Raahi](/raahi-project)** for embodied field research and accessibility thinking."
+    handler: () => "If you care about research depth, start with **[ZentiPay](/zentipay)**. The public preview shows how pricing confidence became the product strategy; deeper validation detail is shared by request.\n\nThen look at **[Raahi](/raahi-project)** for embodied field research and accessibility thinking."
   },
 
   // Creative range
@@ -1132,11 +1130,6 @@ const rules: Rule[] = [
   // Typeface
   { patterns: [/(?:typeface|font|butler|typography)/i],
     handler: () => "**Butler's Slice**, display typeface Parth designed. 3 weights. → [about page](/about)" },
-
-  // Writing / articles / blog
-  { patterns: [/(?:writing|articles?|blog|posts?|essays?|read.*thoughts|published)/i],
-    handler: () => "Parth writes about the thinking behind the work. 13 articles so far. Highlights:\n\n• **[Designing for Glance, Not Gaze](/writing/designing-for-glance)**, what works on a 640px display\n• **[Trust Beats Speed](/writing/trust-beats-speed)**, the fintech pricing-confidence story\n• **[The Figma File Is Not the Product](/writing/the-figma-file-is-not-the-product)**, why he codes what he designs\n• **[Strong Opinions on Border-Radius](/writing/four-pixel-border-radius)**, 4px and why\n\n→ [All writing](/writing)"
-  },
 
   // Categories
   { patterns: [/(?:categor|types? of|what kind|areas?|domains?|specializ)/i],

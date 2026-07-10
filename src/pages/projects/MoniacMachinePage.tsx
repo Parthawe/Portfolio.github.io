@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -44,6 +45,7 @@ export default function MoniacMachinePage() {
           label="Watch first"
           title="Economy as a cabinet"
           lede="The film shows the important part immediately: policy levers become physical controls, and the economy pushes back in real time."
+          layout="stacked"
           meta={['Vimeo demo', 'Arcade cabinet', 'Economic simulator']}
         >
           <iframe
@@ -96,6 +98,7 @@ export default function MoniacMachinePage() {
         </section>
 
         {/* Inspiration */}
+        <CsExpandPreview>
         <CsSection id="cs-inspiration" label="01 &mdash; Inspiration" title="Inspiration">
           <CsBody>
             <p>The original <a href="https://en.wikipedia.org/wiki/Phillips_Machine" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>MONIAC</a> (Monetary National Income Analogue Computer) was a hydraulic machine built in 1949 by economist <a href="https://en.wikipedia.org/wiki/William_Phillips_(economist)" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Bill Phillips</a>, using coloured water flowing through transparent tanks and pipes to model the workings of the UK national economy. This game carries that commitment to making the invisible visible into a digital interactive experience.</p>
@@ -114,8 +117,8 @@ export default function MoniacMachinePage() {
         {/* Mechanics */}
         <CsSection id="cs-mechanics" label="02 &mdash; Mechanics" title="Mechanics">
           <CsBody>
-            <p>The game mechanics are built around seven control levers &mdash; tax, government spending, interest, investment, consumption, imports, and exports. The three primary ones: a tax rate slider that determines how much revenue the government collects from economic activity, a spending dial that allocates government funds across public services and infrastructure, and an interest rate knob that influences borrowing costs and consumer behavior. Each control feeds into a simulation engine that calculates cascading effects across interconnected economic indicators &mdash; adjusting one variable immediately shifts the equilibrium of all the others.</p>
-            <p>Random event cards introduce external shocks &mdash; trade wars, natural disasters, technological breakthroughs, and pandemics &mdash; that force players to adapt their strategy under pressure. The visual interface displays economic health through animated flow diagrams reminiscent of the original hydraulic pipes, with color-coded streams representing different sectors of the economy. Players quickly develop a working sense of which levers to pull and when, building the kind of systems-level understanding that traditional economics education often struggles to convey.</p>
+            <p>The game is built around seven levers: tax, spending, interest, investment, consumption, imports, and exports. Adjusting one variable immediately shifts the others.</p>
+            <p>Random event cards add shocks like trade wars, disasters, breakthroughs, and pandemics. The animated flow interface helps players feel the system-level tradeoffs instead of reading them.</p>
           </CsBody>
         </CsSection>
 
@@ -145,6 +148,8 @@ export default function MoniacMachinePage() {
 
         {/* Thanks */}
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-film', label: 'Film' },

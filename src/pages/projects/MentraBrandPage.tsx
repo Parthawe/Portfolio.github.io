@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -54,11 +55,11 @@ export default function MentraBrandPage() {
           sections={[
             {
               label: 'The Constraint',
-              content: 'Hardware brand work gets judged before the product is turned on. The box, booklet, render system, and retail surfaces have to make a young company feel reliable against incumbents with far more budget. On top of that, every decision becomes a factory instruction, not a reversible mockup.',
+              content: 'Hardware gets judged before it turns on. The box, booklet, renders, and launch surfaces had to make a young company feel reliable next to much bigger incumbents.',
             },
             {
               label: 'My Role',
-              content: 'I owned the full brand surface: logo, packaging, booklet, creator guide, ad language, renders, and the reusable system behind them. The job was not to make things look futuristic. It was to make the product feel trustworthy, premium, and operationally ready across every touchpoint.',
+              content: 'I owned logo, packaging, booklet, creator guide, ad language, renders, and the reusable system behind them.',
             },
           ]}
         />
@@ -71,15 +72,16 @@ export default function MentraBrandPage() {
         ]} />
 
         {/* ── Hero render ── */}
-        <CsImage src={`${P}/render-transparent-camera.webp`} alt="Mentra Live transparent frame close-up: camera module, Mentra logo, internal circuitry visible through clear housing" />
+        <CsImage src={`${P}/packaging-box-black.png`} alt="Mentra Live packaging dieline for the black frame variant, showing product renders, logo placement, QR setup panel, and box structure" />
 
         {/* ================================================================
             01 — LOGO
             ================================================================ */}
+        <CsExpandPreview>
         <CsSection id="cs-logo" label="01 &mdash; Logo" title="Three Elements, One Mark">
           <CsBody>
-            <p>The mark needed to work at 5mm engraved on a glasses temple AND at billboard scale on a trade show banner. Three parallelogram elements at the same angle: a small square anchor plus two ascending forms that read as an &ldquo;M&rdquo; in motion. The geometry is simple enough to survive any reproduction method &mdash; laser engraving, heat press, emboss, screen print &mdash; without losing legibility.</p>
-            <p>The logomark lives alone on compact placements. The full wordmark appears on packaging, marketing, and social. The &ldquo;Powered by MentraOS&rdquo; badge was built for the open-source ecosystem &mdash; third-party manufacturers and developers signal compatibility the way &ldquo;Powered by Android&rdquo; works for phones.</p>
+            <p>The mark had to survive two extremes: 5mm engraving on a glasses temple and large trade-show graphics. Three angled elements form an &ldquo;M&rdquo; that stays legible across engraving, embossing, heat press, and screen print.</p>
+            <p>The logomark handles compact placements. The full wordmark handles packaging and marketing. The &ldquo;Powered by MentraOS&rdquo; badge gives third-party makers a compatibility signal.</p>
           </CsBody>
         </CsSection>
 
@@ -112,7 +114,7 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-color" label="02 &mdash; Color &amp; Type" title="One Green. No Negotiation.">
           <CsBody>
-            <p>Every smart glasses brand defaults to blue. Meta, Snap, North, Vuzix &mdash; blue gradient, blue accent, blue halo. Mentra needed to be recognizable in a thumbnail. One green (#00B869), three neutrals, no exceptions. The creator guide explicitly forbids inventing new colors because the brand has to survive in the hands of hundreds of creators who will use these assets unsupervised.</p>
+            <p>Most smart glasses brands default to blue. Mentra needed instant recognition, so the system uses one green, three neutrals, and strict rules for creators using assets without supervision.</p>
           </CsBody>
           {/* Swatches */}
           <div className="cs-brand-swatches" style={{ marginTop: 'var(--space-4)', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '0.5rem' }}>
@@ -130,7 +132,7 @@ export default function MentraBrandPage() {
             </div>
           </div>
           <CsBody style={{ marginTop: 'var(--space-5)' }}>
-            <p>Red Hat Display was selected over Outfit (the other candidate in the brand-assets zip) for its slightly rounded terminals &mdash; geometric enough for tech credibility, soft enough to not feel clinical on a consumer product. One font family, strict hierarchy: 64/48/32/18px.</p>
+            <p>Red Hat Display gave the brand a useful balance: geometric enough for tech credibility, soft enough for a consumer hardware product.</p>
           </CsBody>
           <div className="cs-label-row" style={{ marginTop: 'var(--space-3)' }}>
             <span className="cs-label-row-key">Typeface</span>
@@ -153,8 +155,8 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-packaging" label="03 &mdash; Packaging" title="Unboxing Is the First Interaction">
           <CsBody>
-            <p>A customer picks up the box before they pick up the glasses. That box is competing on a shelf (or in a photo) with Meta Ray-Ban &mdash; a product backed by a trillion-dollar company&rsquo;s design budget. The Mentra box needed to signal premium without faking it.</p>
-            <p>The brand pattern is embossed into white stock &mdash; you feel it before you see it. The product name is set in spaced uppercase (MENTRA / LIVE) rather than the wordmark, because at box-scale the wordmark competes with the product renders. The top flap says &ldquo;Designed on Earth&rdquo; &mdash; a nod to the open-source community who builds MentraOS, positioned where Apple puts &ldquo;Designed by Apple in California.&rdquo;</p>
+            <p>The box is the first interaction. It needed to feel premium next to better-funded hardware brands without pretending to be them.</p>
+            <p>The brand pattern is embossed into white stock. The product name is spaced uppercase for clarity, and &ldquo;Designed on Earth&rdquo; nods to the open-source community behind MentraOS.</p>
           </CsBody>
         </CsSection>
 
@@ -190,7 +192,7 @@ export default function MentraBrandPage() {
         {/* Brand in the wild — YouTubers unboxing the packaging I designed */}
         <CsSection id="cs-wild" label="In the Wild" title="The Packaging, Unboxed by Strangers">
           <CsBody>
-            <p>The real test of packaging design is watching someone who had no part in making it hold it up to a camera. These YouTube thumbnails show creators unboxing Mentra Live in the hands of people I&rsquo;ve never met. The brand pattern is visible. The product name reads. The case looks premium next to the box.</p>
+            <p>The real test was seeing strangers hold the box on camera. In the thumbnails, the pattern reads, the name is clear, and the case feels premium beside the packaging.</p>
           </CsBody>
         </CsSection>
 
@@ -218,8 +220,8 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-manual" label="04 &mdash; Instruction Booklet" title="No Welcome Message. Just the QR Code.">
           <CsBody>
-            <p>The booklet design started from a question: what does someone do the instant they open the box? They want to use the glasses. Not read a welcome letter, not browse safety warnings, not admire the typography. They want to pair and go.</p>
-            <p>Page one is a QR code. Nothing else. Scan it, download the app, you&rsquo;re connected. The rest of the booklet exists for the person who puts the glasses down and thinks &ldquo;wait, which button does what?&rdquo; Every page uses custom line-art illustrations &mdash; no photography, because line art prints cleanly at 65mm width, costs less, and translates across languages without cultural assumptions.</p>
+            <p>The booklet starts with the only thing a new owner needs first: a QR code to pair and go.</p>
+            <p>The rest explains buttons, charging, and fit with custom line art that prints cleanly at 65mm and translates better than photography.</p>
           </CsBody>
         </CsSection>
 
@@ -298,7 +300,7 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-social" label="06 &mdash; Social &amp; Advertising" title="24 Templates. One System.">
           <CsBody>
-            <p>Every platform has different dimensions, safe zones, and cropping behavior. I produced 24 templates (12 platforms &times; 2 color variants) with identical compositional logic: product render anchored left, logo anchored right, text in the safe zone. A creator in Tokyo and a partner in Berlin open the same Google Drive folder and produce on-brand content without a phone call.</p>
+            <p>I produced 24 templates across platform sizes and color variants. The logic stayed simple: product anchored left, logo anchored right, text inside safe zones.</p>
           </CsBody>
         </CsSection>
 
@@ -321,7 +323,7 @@ export default function MentraBrandPage() {
           <div className="wrap">
             <h3 className="cs-section-subtitle">Ad Campaign: Through the Lens</h3>
             <CsBody>
-              <p>Each ad uses the glasses as a literal frame for the story. A bold verb (&ldquo;Stream,&rdquo; &ldquo;Hear,&rdquo; &ldquo;Focus&rdquo;), a human moment visible through the lens, the Mentra logo at the bottom. The constraint was that ads had to work as both static social posts and print &mdash; no animation dependency.</p>
+              <p>Each ad uses the glasses as a frame: one verb, one human moment through the lens, and the Mentra mark at the bottom.</p>
             </CsBody>
           </div>
         </section>
@@ -342,7 +344,7 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-renders" label="07 &mdash; Product Renders" title="Replacing Photography Entirely">
           <CsBody>
-            <p>A product photo requires a photographer, a studio, and a prototype that might not exist yet. A render requires a 3D file and a lighting setup that never changes. I directed three render families that became the single visual source across packaging, social, press, and the marketing site. Every product and packshot image is rendered &mdash; the two photo shoots covered people wearing the product for lifestyle and social.</p>
+            <p>I directed three render families that became the visual source for packaging, social, press, and the marketing site. Renders gave us consistent product imagery before every physical variant was ready.</p>
           </CsBody>
         </CsSection>
 
@@ -365,7 +367,7 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-details" label="08 &mdash; Physical Details" title="5mm Temple. 4 Revision Rounds.">
           <CsBody>
-            <p>The Mentra logo engraved on the right temple is 5mm wide. Getting it right required converting the logo from filled shapes to outlined strokes at exactly 0.3mm weight for the engraving machine, then testing at actual scale on sample temples from the factory. The inner temple carries FCC and model markings &mdash; designed as a single vector artwork so no text needs to be typeset at the factory. The charging case lid has the logomark embossed, not printed, because embossing survives pocket wear.</p>
+            <p>The 5mm temple mark, FCC markings, case emboss, and lens cloth all had to become production-ready vector instructions. The work was brand design, but also factory communication.</p>
           </CsBody>
           <CsInfoGrid items={[
             { key: 'Temple Logo', value: 'Laser-engraved, 0.3mm stroke outlines' },
@@ -400,6 +402,8 @@ export default function MentraBrandPage() {
         </CsSection>
 
         <CsThanks contactCta style={{ marginTop: '4rem' }} />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

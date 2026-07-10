@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -15,10 +16,10 @@ export default function EnigmaPage() {
     <>
       <Helmet>
         <title>Enigma &middot; Parth Pawar</title>
-        <meta name="description" content="Enigma is an interactive light sculpture that embodies a real functioning deep learning network, using 200 illuminated neurons to elucidate the complexity of neural networks." />
+        <meta name="description" content="A 200-neuron light sculpture that makes a letter-recognition neural network visible through physical LEDs." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Enigma &middot; Parth Pawar" />
-        <meta property="og:description" content="Interactive light sculpture embodying a real functioning deep learning network." />
+        <meta property="og:description" content="A physical light sculpture that makes neural-network activity visible." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/enigma.jpg" />
       </Helmet>
 
@@ -28,11 +29,11 @@ export default function EnigmaPage() {
 
         <ProjectHeader
           backLink="/work"
-          categorySlug="ai"
+          categorySlug="creative-tech"
           backLabel="Back to Work"
           tags={['Creative Technology', 'AI', 'Installation']}
           title="Enigma"
-          subtitle="Interactive light sculpture embodying a real functioning deep learning network"
+          subtitle="A 200-neuron light sculpture that makes a neural network visible"
           info={[
             { label: 'Year', value: '2023' },
             { label: 'Role', value: 'Creator' },
@@ -97,11 +98,12 @@ export default function EnigmaPage() {
           </div>
         </section>
 
+        <CsExpandPreview>
         {/* Concept */}
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="200 Neurons of Light">
           <CsBody>
             <p>Enigma makes a neural network visible. A visitor writes a letter, and 200 LEDs reveal the model&rsquo;s pathway from input to prediction.</p>
-            <p>The piece takes the form of a large wall-mounted panel, roughly four feet wide and three feet tall, with each LED node suspended at a precise position corresponding to a neuron in the network&rsquo;s layers. Acrylic rods and custom-fabricated mounts hold the LEDs in place, creating a three-dimensional constellation of light that reveals the structure of the model &mdash; input layer at one edge, hidden layers in the center, and output layer at the opposite edge. When the network is idle, the sculpture glows softly; when it is processing, light cascades through the layers in real time, making the flow of information something viewers can see and feel.</p>
+            <p>The wall-mounted panel turns the model structure into space: input on one edge, hidden layers through the center, alphabet output on the other. When a letter is submitted, light moves through the sculpture in real time.</p>
             <p>The project builds on <a href="https://pangenerator.com/projects/the-abacus/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>The Abacus</a> by <a href="https://pangenerator.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>panGenerator Studio</a>, extending the idea from digit recognition to the full alphabet.</p>
           </CsBody>
         </CsSection>
@@ -110,9 +112,9 @@ export default function EnigmaPage() {
         {/* Technology */}
         <CsSection id="cs-technology" label="02 &mdash; Technology" title="From Model to Light">
           <CsBody>
-            <p>At the core of Enigma is a fully connected feedforward neural network trained on the EMNIST letters dataset to recognize handwritten alphabetic characters. The model consists of an input layer, two hidden layers, and an output layer &mdash; each layer physically represented by a row of LEDs on the sculpture. After training, the learned weights and biases are exported and loaded onto the hardware so the sculpture can perform inference locally, without any cloud dependency.</p>
-            <p>The hardware stack centers on an Arduino Mega microcontroller that orchestrates the entire visualization pipeline. A companion laptop captures handwritten input from a tablet, preprocesses the image into a 28 by 28 pixel grayscale matrix, and transmits the flattened pixel values to the Arduino over serial communication. The Arduino then performs a forward pass through the network, computing activations layer by layer. Each of the 200 LEDs is driven by TLC5940 constant-current LED drivers daisy-chained together, giving individual brightness control over every node with 12-bit resolution.</p>
-            <p>As the forward pass executes, each neuron&rsquo;s activation value is mapped to an LED brightness level, so viewers see the data literally flow from the input layer through the hidden layers to the output. Highly activated neurons glow brightly while low-activation neurons remain dim, revealing which pathways the network relies on for a given character. The entire cycle &mdash; from drawing a letter to seeing the network&rsquo;s prediction light up at the output layer &mdash; completes in under a second, so viewers can connect their gesture to the machine&rsquo;s computation without waiting.</p>
+            <p>The model is a feedforward neural network trained on EMNIST letters. Its input, hidden, and output layers are physically represented by rows of LEDs.</p>
+            <p>A tablet captures the drawn letter, a laptop preprocesses it into a 28 by 28 matrix, and an Arduino Mega drives the LED activation sequence. Brighter LEDs show stronger activations.</p>
+            <p>The full loop finishes in under a second, so visitors can connect their gesture to the model&rsquo;s prediction while the computation is still visible.</p>
           </CsBody>
         </CsSection>
 
@@ -121,8 +123,8 @@ export default function EnigmaPage() {
         <CsSection id="cs-exhibition" label="03 &mdash; Exhibition" title="ITP Winter Show 2023">
           <CsBody>
             <p>Enigma was exhibited at the ITP Winter Show 2023, NYU&rsquo;s flagship end-of-semester showcase where the Interactive Telecommunications Program opens its doors to the public. The show draws thousands of visitors over two days &mdash; designers, engineers, artists, families, and curious New Yorkers &mdash; making it an ideal venue to test how a broad audience engages with a piece about machine learning.</p>
-            <p>Visitors interacted with Enigma by writing letters on a tablet stationed in front of the sculpture. As soon as a character was submitted, the network came alive: light rippled from the input layer through the hidden layers and converged on the output, where the predicted letter glowed brightest. Many visitors wrote the same letter repeatedly, noticing how different handwriting styles activated different pathways. Others tested edge cases &mdash; ambiguous letters, symbols, or scribbles &mdash; to see how the network responded to unexpected input.</p>
-            <p>The most consistent reaction was surprise at how structured and purposeful the light patterns looked. Viewers frequently remarked that they expected AI to feel random or opaque, but watching activations cascade through defined pathways gave them an immediate sense that the network had learned real structure. Several visitors described the experience as the first time neural networks &ldquo;made sense&rdquo; to them. The exhibition reinforced the project&rsquo;s central thesis: making computation physically visible can bridge the gap between technical explanation and practical understanding.</p>
+            <p>Visitors wrote letters on a tablet and watched the prediction ripple across the sculpture. Many repeated the same letter to see how different handwriting changed the path.</p>
+            <p>The strongest reaction was recognition: people expected AI to feel opaque, but the lit pathways made the network feel structured and learnable.</p>
             <p>Enigma explores computation through light. Its sibling project, <a href="/Portfolio.github.io/jugalbandi" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Jugalbandi</a>, explores the same neural network architecture through sound &mdash; each hidden layer mapped to a different acoustic instrument. Together they show how the same invisible process can be made tangible through different senses.</p>
           </CsBody>
 
@@ -136,6 +138,8 @@ export default function EnigmaPage() {
         {/* Thanks */}
         <CsThanks />
 
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-film', label: 'Film' },
           { id: 'cs-interactive', label: 'Interactive' },
@@ -146,7 +150,7 @@ export default function EnigmaPage() {
 
       </main>
 
-      <NextProject slug="making-of-time" title="Making of Time" image="/Portfolio.github.io/Assets/images/making-of-time.jpg" />
+      <NextProject slug="shuffle" title="Shuffle" image="/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp" />
       <Footer />
     </>
   )

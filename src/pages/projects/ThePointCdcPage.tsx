@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCallout from '../../components/case-study/CsCallout'
@@ -19,7 +20,7 @@ export default function ThePointCdcPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
         <meta property="og:description" content="Website redesign for The Point CDC focused on programs, WiFi access, events, and mobile navigation." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/the-point-cdc.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -45,31 +46,20 @@ export default function ThePointCdcPage() {
           heroAlt="The Point CDC redesigned homepage for Hunts Point community programs and services"
         />
 
-        {/* All pages mockup */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="All redesigned pages: team, programs, news, community resources, events" loading="lazy" /></div>
-          </div>
-        </section>
-
         {/* Overview with label-rows */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">The Point CDC serves Hunts Point through arts, education, environmental work, youth programs, and free WiFi. The redesign focused on making those services easier to find on mobile and easier for staff to keep current.</span>
+              <span className="cs-label-row-val">The Point CDC serves Hunts Point through arts, education, environmental work, youth programs, and free WiFi. The redesign made those services easier to find, especially on mobile.</span>
             </div>
             <div className="cs-label-row">
-              <span className="cs-label-row-key">The Challenges</span>
-              <span className="cs-label-row-val">The Point CDC website faced several challenges, including:<br />
-                &bull; Outdated design and complex navigation<br />
-                &bull; Lack of a clear communication pathway for highlighting community initiatives<br />
-                &bull; The need to integrate real-time updates on programs like the &ldquo;Be a Buddy&rdquo; program, free WiFi access, and &ldquo;Hunts Point Forward&rdquo;<br />
-                &bull; Optimizing the mobile experience for community residents</span>
+              <span className="cs-label-row-key">Challenge</span>
+              <span className="cs-label-row-val">Programs, WiFi information, events, and community initiatives were all important, but the old site made residents work too hard to locate the right next step.</span>
             </div>
             <div className="cs-label-row">
-              <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">As the lead UI/UX designer, my role was to revamp the website with a fresh, community-focused design. I conducted user research, created prototypes, and led the redesign to improve navigation and accessibility.</span>
+              <span className="cs-label-row-key">Role</span>
+              <span className="cs-label-row-val">I handled research synthesis, information architecture, responsive page structure, visual direction, and prototype handoff.</span>
             </div>
             <div className="cs-label-row" style={{ borderBottom: 'none' }}>
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
@@ -77,11 +67,10 @@ export default function ThePointCdcPage() {
                 <span className="cs-tags" style={{ margin: 0 }}>
                   <span className="cs-tag-item">Figma</span>
                   <span className="cs-tag-item">User Research</span>
-                  <span className="cs-tag-item">Identity and Website Design</span>
+                  <span className="cs-tag-item">Website Design</span>
                   <span className="cs-tag-item">Prototyping</span>
                   <span className="cs-tag-item">Wireframes</span>
                   <span className="cs-tag-item">High-Fidelity</span>
-                  <span className="cs-tag-item">Experience Management</span>
                   <span className="cs-tag-item">Design System</span>
                 </span>
               </span>
@@ -107,6 +96,7 @@ export default function ThePointCdcPage() {
         </section>
 
         {/* Problem Statement */}
+        <CsExpandPreview>
         <section className="cs-section reveal" id="cs-discover">
           <div className="wrap" style={{ textAlign: 'center' }}>
             <span className="cs-section-label">01 &mdash; Discover</span>
@@ -125,11 +115,13 @@ export default function ThePointCdcPage() {
             <CsBody>
               <p>I focused on understanding how the website could best serve the Hunts Point community. Residents emphasized the need for:</p>
             </CsBody>
-            <CsFeatureGrid features={[
-              { title: 'Easy access to WiFi service information.', desc: '' },
-              { title: 'Clear communication about events and programs.', desc: '' },
-              { title: 'Mobile-friendly navigation, as many users rely on their phones for internet access.', desc: '' },
-            ]} />
+            <div className="point-research-list">
+              <CsFeatureGrid features={[
+                { title: 'Easy access to WiFi service information.', desc: '' },
+                { title: 'Clear communication about events and programs.', desc: '' },
+                { title: 'Mobile-friendly navigation, as many users rely on their phones for internet access.', desc: '' },
+              ]} />
+            </div>
           </div>
         </section>
 
@@ -137,23 +129,23 @@ export default function ThePointCdcPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <span className="cs-section-label">Interview</span>
-            <h2 className="cs-section-title">User Persona</h2>
+            <h2 className="cs-section-title">Primary User Lens</h2>
             <CsInfoGrid items={[
-              { key: 'Name', value: 'Maria Rodriguez' },
-              { key: 'Age', value: '32' },
-              { key: 'Occupation', value: 'Community Organizer' },
-              { key: 'Digital Access', value: 'Primarily mobile (75%), occasional desktop usage' },
+              { key: 'User', value: 'Resident or community organizer' },
+              { key: 'Need', value: 'Find services, events, and WiFi information quickly' },
+              { key: 'Context', value: 'Often mobile-first, sometimes helping someone else' },
+              { key: 'Risk', value: 'Important resources become invisible when navigation is unclear' },
             ]} />
             <h3 className="cs-section-subtitle">Goals</h3>
             <ul className="cs-list">
-              <li>Easily access information on free community resources like WiFi and mentorship programs.</li>
+              <li>Access community resources like WiFi and mentorship programs without digging through the site.</li>
               <li>Stay updated on local initiatives and events hosted by The Point CDC.</li>
-              <li>Use the website as a tool to help others in the community connect with resources.</li>
+              <li>Use the website while helping someone else connect with resources.</li>
             </ul>
             <h3 className="cs-section-subtitle">Frustrations</h3>
             <ul className="cs-list">
               <li>Difficulty finding information on the old website due to cluttered layout.</li>
-              <li>Slow loading times and poor mobile optimization made accessing resources inconvenient.</li>
+              <li>Poor mobile hierarchy made resource discovery slower than it needed to be.</li>
               <li>Lack of a centralized location for event updates, leading to missed community activities.</li>
             </ul>
           </div>
@@ -165,9 +157,9 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Key Insights</span>
             <h2 className="cs-section-title">Research Insights</h2>
             <CsNumList items={[
-              <><strong>Ease of Access to WiFi Information:</strong> Users emphasized needing quick access to the &ldquo;Free Hunts Point WiFi&rdquo; section, as it&rsquo;s one of the most valuable resources provided by The Point CDC.</>,
-              <><strong>Mobile Usage Preference:</strong> Many residents primarily access the site on mobile devices, underscoring the importance of mobile-friendly navigation.</>,
-              <><strong>Event and Program Awareness:</strong> Users highlighted the importance of staying updated on programs like &ldquo;Be a Buddy&rdquo; and events through clear, real-time information.</>,
+              <><strong>WiFi needed a faster path.</strong> Free Hunts Point WiFi was one of the clearest high-value resources, so it needed to be findable without navigation guesswork.</>,
+              <><strong>Mobile hierarchy mattered most.</strong> The redesign had to work for residents browsing quickly on phones, not only desktop visitors.</>,
+              <><strong>Programs needed clearer grouping.</strong> Events, youth programs, and initiatives needed a structure residents could scan without knowing the organization&rsquo;s internal categories.</>,
             ]} />
           </div>
         </section>
@@ -211,7 +203,7 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">User Journey</h2>
-            <div className="cs-img-full">
+            <div className="cs-img-full cs-img-full--point-board">
               <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
             </div>
           </div>
@@ -242,7 +234,7 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <span className="cs-section-label">Deliver</span>
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--point-board"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme" loading="lazy" /></div>
           </div>
         </section>
 
@@ -259,7 +251,7 @@ export default function ThePointCdcPage() {
         <section className="cs-section reveal" id="cs-reflections">
           <div className="wrap">
             <p className="cs-section-label">Reflections</p>
-            <h2 className="cs-section-title">What Community-Centered Design Taught Me</h2>
+            <h2 className="cs-section-title cs-section-title--wide">What Community-Centered Design Taught Me</h2>
             <CsNumList items={[
               <><strong>Deep listening beats designer instincts.</strong> Designing for a community you are not part of requires listening, not assumptions. Every interview and site visit reminded me that my instincts about what residents needed were often wrong until I sat down and actually heard their stories.</>,
               <><strong>Mobile-first is a lived reality, not a buzzword.</strong> When 75% of your users literally only have phone access, it reframes every layout decision, every interaction pattern, and every content hierarchy choice. This project made mobile-first thinking a non-negotiable part of my design process.</>,
@@ -275,7 +267,7 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Outcome</span>
             <h2 className="cs-section-title">The Site Is Live</h2>
             <CsBody>
-              <p>Feedback from community members and staff was overwhelmingly positive, particularly around the ease of navigation and access to the WiFi program.</p>
+              <p>The final site gave programs, events, WiFi access, and community resources a clearer public structure that residents and staff could point people toward.</p>
             </CsBody>
             <a href="https://thepoint.org" target="_blank" rel="noopener noreferrer" className="cs-thanks-btn" style={{ marginTop: '1.5rem' }}>
               Visit thepoint.org
@@ -283,6 +275,8 @@ export default function ThePointCdcPage() {
             </a>
           </div>
         </section>
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-discover', label: 'Discover' },
@@ -295,7 +289,7 @@ export default function ThePointCdcPage() {
 
       </main>
 
-        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Portfolio.github.io/Assets/images/office-of-diversity.webp" />
+        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Portfolio.github.io/Assets/mockups/projects/office-of-diversity_16x9.webp" />
       <Footer />
     </>
   )

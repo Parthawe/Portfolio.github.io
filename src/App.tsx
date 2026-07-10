@@ -18,7 +18,11 @@ class ErrorBoundaryInner extends Component<{ children: ReactNode; resetKey: stri
     if (this.state.hasError) {
       return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--ff-sans, system-ui)', color: 'var(--ink, #111)', background: 'var(--bg, #faf9f6)' }}>
-          <span style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>PP</span>
+          <img
+            src="/Portfolio.github.io/Assets/favicon.svg"
+            alt="Parth Pawar"
+            style={{ width: '2.5rem', height: '2.5rem', marginBottom: '0.75rem', borderRadius: '0.625rem' }}
+          />
           <p style={{ marginBottom: '1rem', opacity: 0.6 }}>Something went wrong.</p>
           <a href="/" style={{ textDecoration: 'underline' }}>Go home</a>
         </div>
@@ -44,8 +48,7 @@ const BookPage = lazy(() => import('./pages/BookPage'))
 const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 const StudioPage = lazy(() => import('./pages/StudioPage'))
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
-const WritingPage = lazy(() => import('./pages/WritingPage'))
-const WritingArticlePage = lazy(() => import('./pages/WritingPage').then(m => ({ default: m.WritingArticlePage })))
+const HealthAppPage = lazy(() => import('./pages/projects/HealthAppPage'))
 
 // Project page components — auto-generated from registry
 const projectPages = visibleProjects.map(p => ({
@@ -87,12 +90,13 @@ export default function App() {
           {projectPages.map(({ slug, Component }) => (
             <Route key={slug} path={`/${slug}`} element={<Component />} />
           ))}
+          <Route path="/healthapp" element={<HealthAppPage />} />
           <Route path="/mentra-website" element={<Navigate to="/mentra#cs-website" replace />} />
 
           {/* Misc pages */}
           <Route path="/playbook" element={<PlaybookPage />} />
-          <Route path="/writing" element={<WritingPage />} />
-          <Route path="/writing/:slug" element={<WritingArticlePage />} />
+          <Route path="/writing" element={<NotFoundPage />} />
+          <Route path="/writing/:slug" element={<NotFoundPage />} />
           <Route path="/book" element={<BookPage />} />
           <Route path="/graveyard" element={<GraveyardPage />} />
           <Route path="/studio" element={<StudioPage />} />

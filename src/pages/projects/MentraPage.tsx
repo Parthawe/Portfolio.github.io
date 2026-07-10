@@ -263,7 +263,7 @@ export default function MentraPage() {
           <CsStatGrid
             style={{ margin: '2rem 0' }}
             stats={[
-              { label: 'Current price', value: '$349' },
+              { label: 'Buying path', value: 'Specs + checkout' },
               { label: 'Core audience', value: 'Field teams' },
               { label: 'Platform layer', value: 'SDK + MiniApps' },
               { label: 'Fulfillment', value: '1-3 days' },
@@ -352,7 +352,7 @@ export default function MentraPage() {
 
       </main>
 
-      <NextProject slug="executivelens" title="ExecutiveLens" image="/Portfolio.github.io/Assets/images/executivelens.webp" />
+      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp" />
       <Footer />
     </>
   )

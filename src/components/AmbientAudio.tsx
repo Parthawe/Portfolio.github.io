@@ -255,7 +255,6 @@ const ROUTE_PROFILE_KEYS: Record<string, AmbientProfileKey> = {
   '/': 'arrival',
   '/work': 'focus',
   '/about': 'reflection',
-  '/writing': 'readingRoom',
   '/book': 'readingRoom',
   '/graveyard': 'afterhours',
   '/studio': 'lab',
@@ -293,7 +292,6 @@ function getPageLabel(pathname: string): string {
   if (pathname === '/') return 'Home'
   if (pathname === '/work') return 'Work'
   if (pathname === '/about') return 'About'
-  if (pathname === '/writing' || pathname.startsWith('/writing/')) return 'Writing'
   if (pathname === '/book') return 'Book'
   if (pathname === '/graveyard') return 'Graveyard'
   if (pathname === '/studio') return 'Studio'

@@ -1,5 +1,4 @@
 import { lazy, Suspense } from 'react'
-import type { CSSProperties } from 'react'
 import { motion } from 'framer-motion'
 import { useDeferredMount } from '../hooks/useDeferredMount'
 
@@ -62,20 +61,6 @@ const PROOFS: Record<string, string> = {
   'ai-wearables':    'Voice-first, glance-first',
 }
 
-/* Hero-level cue: either points to the working principles behind the category,
-   or frames the proof as impact. Kept short so the hero stays visual-first. */
-const HERO_CUES: Record<string, { label: string; href: string; body: string }> = {
-  'ai':              { label: 'Playbook points', href: '/playbook', body: 'Augment attention, stay glanceable, earn trust before intelligence.' },
-  'ai-wearables':    { label: 'Playbook points', href: '/playbook', body: 'Ambient tools have to be useful before they become visible.' },
-  'ux-design':       { label: 'Where my work made a difference', href: '#lp-work', body: 'Mentra, ZentiPay, Raahi, and operating tools shaped around decisions people actually make.' },
-  'creative-tech':   { label: 'Playbook points', href: '/playbook', body: 'Prototype behavior early; let code, motion, and material prove the idea.' },
-  'installations':   { label: 'Where my work made a difference', href: '#lp-work', body: 'Objects, rooms, and stages that made abstract systems easier to feel.' },
-  'brand-visual':    { label: 'Playbook points', href: '/playbook', body: 'Make the system recognizable before anyone reads the explanation.' },
-  'design-for-good': { label: 'Where my work made a difference', href: '#lp-work', body: 'Public-service and accessibility work where clarity changes who can participate.' },
-  'fintech':         { label: 'Where my work made a difference', href: '#lp-work', body: 'Money movement interfaces where trust, timing, and next steps cannot be vague.' },
-  'crypto':          { label: 'Playbook points', href: '/playbook', body: 'Turn abstract rails into clear, accountable actions people can verify.' },
-}
-
 interface CategoryHeroProps {
   slug: string
   accentColor: string
@@ -92,7 +77,6 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
   const [lead, accent] = STATEMENTS[slug] || [title, titleAccent]
   const sub = SUBLINES[slug] || description
   const proof = PROOFS[slug]
-  const cue = HERO_CUES[slug]
   const categoryName = CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
   const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
 
@@ -127,23 +111,6 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
         >
           {sub}
         </motion.p>
-
-        {cue && (
-          <motion.a
-            href={cue.href}
-            className="ch-cue figma-hover"
-            style={{ '--ch-accent': accentColor } as CSSProperties}
-            initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
-            transition={{ ...revealTransition, delay: 0.23 }}
-          >
-            <span className="ch-cue-kicker">
-              <span aria-hidden="true">↘</span>
-              {cue.label}
-            </span>
-            <span className="ch-cue-body">{cue.body}</span>
-          </motion.a>
-        )}
 
         <motion.div
           className="ch-strip"

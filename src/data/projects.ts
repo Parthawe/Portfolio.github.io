@@ -22,8 +22,10 @@ export interface Project {
   name: string
   /** Card thumbnail image */
   image: string
-  /** Generated text-free cover used on card/listing surfaces (portrait / 4:5) */
+  /** Generated text-free cover used on portrait card/listing surfaces (4:5) */
   cardMockup?: string
+  /** Square 1:1 cover for square card slots */
+  cardMockupSquare?: string
   /** Wide 16:9 cover for featured cards + case-study hero */
   cover16x9?: string
   /** Alt text for the generated cover */
@@ -134,7 +136,6 @@ export const NDA_PROJECT_SLUGS = [
   'transfi-project',
   'zentipay',
   'cuetv',
-  'healthapp',
   'ai-voice',
 ] as const
 
@@ -246,7 +247,7 @@ export const projects: Project[] = [
     cardMockupAlt: 'TransFi project cover artwork.',
     tag: 'WEB3 PAYMENTS',
     year: '2023',
-    desc: 'Public glimpse of a multi-market crypto payment infrastructure redesign',
+    desc: 'Public preview of a multi-market crypto payment infrastructure redesign',
     category: 'ux',
     page: () => import('../pages/projects/TransfiPage'),
     nda: true,
@@ -256,6 +257,8 @@ export const projects: Project[] = [
       publicPreviewImage: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
       publicPreviewAlt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
     },
+    featured: true,
+    featuredOrder: 2,
     loading: 'eager',
     tier: 's',
     selected: true,
@@ -331,15 +334,17 @@ export const projects: Project[] = [
   {
     slug: 'clawed-chat',
     name: 'Clawed',
-    image: '/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-3d.png',
-    cardMockupSource: '/Portfolio.github.io/Assets/Projects/Clawed.chat/claw-3d.png',
+    image: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
+    cardMockup: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
+    cardMockupSquare: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
+    cardMockupAlt: 'Clawed AI assistant square cover.',
     tag: 'AI ASSISTANT',
     year: '2026',
     desc: 'AI assistant with receipts for every action — safety-first on glasses and web',
     category: 'ai',
     page: () => import('../pages/projects/ClawedChatPage'),
-    featured: true,
-    featuredOrder: 2,
+    featured: false,
     tier: 's',
     selected: true,
     selectedOrder: 3,
@@ -385,11 +390,11 @@ export const projects: Project[] = [
     summaryRole: 'Sole product designer across meeting capture, dashboard narrative, mobile briefing, and AI trust patterns.',
     summaryTeam: 'Design lead working with product, AI, and engineering partners.',
     summaryTimeline: '2025 to 2026',
-    summaryOutcome: 'Closed beta reached 87% adoption within two weeks of rollout.',
+    summaryOutcome: 'Closed beta teams used the dashboard as a morning brief for decisions, owners, and follow-through.',
     summaryImage: '/Portfolio.github.io/Assets/images/executivelens.webp',
     summaryImageAlt: 'ExecutiveLens dashboard and meeting intelligence interface.',
     summaryStats: [
-      { label: 'Beta adoption', value: '87%' },
+      { label: 'Beta signal', value: 'Morning brief' },
       { label: 'Platform', value: 'Web + mobile' },
       { label: 'Core layer', value: 'Meeting AI' },
       { label: 'Trust pattern', value: 'Citations' },
@@ -472,13 +477,6 @@ export const projects: Project[] = [
     desc: 'Health-aware task planner using sleep, food, movement, and energy signals to shape daily scheduling',
     category: 'ux',
     page: () => import('../pages/projects/HealthAppPage'),
-    nda: true,
-    access: {
-      mode: 'request',
-      publicLabel: 'Quick glimpse',
-      publicPreviewImage: NDA_COVER,
-      publicPreviewAlt: 'Public preview cover for health-aware planning work.',
-    },
     archiveOrder: 23,
     tier: 'c',
     summaryProblem: 'Task managers optimize output, but they rarely account for whether the schedule itself is harmful to the person following it.',
@@ -501,7 +499,8 @@ export const projects: Project[] = [
   {
     slug: 'ibm',
     name: 'IBM Cancer Prognosis',
-    image: '/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
+    image: '/Portfolio.github.io/Assets/mockups/projects/ibm_16x9.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/ibm_16x9.webp',
     tag: 'HEALTHCARE AI',
     year: '2020',
     desc: 'Explored encrypted genomic workflows for cancer prognosis without exposing raw patient data',
@@ -534,7 +533,7 @@ export const projects: Project[] = [
     image: `${IMG}/ballah-code.webp`,
     tag: 'AI DEV TOOLS',
     year: '2026',
-    desc: 'Designed an AI-native IDE with 17 production tools and a senior-engineer interaction model',
+    desc: 'Designed an AI-native IDE with visible tools, terminal context, and a senior-engineer interaction model',
     category: 'ai',
     page: () => import('../pages/projects/BallahCodePage'),
     archiveOrder: 17,
@@ -644,7 +643,7 @@ export const projects: Project[] = [
     summaryImage: '/Portfolio.github.io/Assets/Projects/Raahi/photos/raahi-hero.webp',
     summaryImageAlt: 'Raahi hero concept showing transit app, bus, and connected wayfinding system.',
     summaryStats: [
-      { label: 'Modes integrated', value: '4' },
+      { label: 'Modes represented', value: '8' },
       { label: 'Core touchpoints', value: '3' },
       { label: 'Project span', value: '3 mo' },
       { label: 'Design lanes', value: 'Service + UI' },
@@ -658,8 +657,8 @@ export const projects: Project[] = [
   {
     slug: 'the-point-cdc',
     name: 'The Point CDC',
-    image: '/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.png',
-    cardMockupSource: `${IMG}/the-point-cdc.webp`,
+    image: '/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp',
     tag: 'COMMUNITY',
     year: '2025',
     desc: 'Rebuilt a Bronx nonprofit platform to make community programs, spaces, and services easier to navigate',
@@ -718,7 +717,8 @@ export const projects: Project[] = [
   {
     slug: 'jugalbandi',
     name: 'Jugalbandi',
-    image: '/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp',
+    image: '/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp',
     tag: 'ML + MUSIC',
     year: '2024',
     desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024',
@@ -730,7 +730,7 @@ export const projects: Project[] = [
     selected: true,
     selectedOrder: 8,
     summaryProblem: 'Most neural network art stays abstract; I wanted people to hear computation through real acoustic mechanisms.',
-    summaryRole: 'Artist, interaction designer, fabricator, and builder of the full installation.',
+    summaryRole: 'Interaction designer and fabricator across concept, behavior, electronics, and installation.',
     summaryTeam: 'Solo project with mentorship support through NYU ITP.',
     summaryTimeline: '5 months in 2024',
     summaryOutcome: 'Exhibited at the ITP Spring Show and Maker Faire Coney Island as a playable human-machine duet.',
@@ -860,7 +860,8 @@ export const projects: Project[] = [
   {
     slug: 'enigma',
     name: 'Enigma',
-    image: `${IMG}/enigma.jpg`,
+    image: '/Portfolio.github.io/Assets/mockups/projects/enigma_16x9.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/enigma_16x9.webp',
     tag: 'DEEP LEARNING',
     year: '2023',
     desc: '200-neuron light sculpture visualizing a functioning neural network',
@@ -888,7 +889,8 @@ export const projects: Project[] = [
   {
     slug: 'shuffle',
     name: 'Shuffle',
-    image: `${IMG}/shuffle.jpg`,
+    image: '/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp',
     tag: 'INTERACTIVE',
     year: '2023',
     desc: 'Motorised-slider board where balancing student life becomes a zero-sum game',
@@ -1323,7 +1325,8 @@ export const projects: Project[] = [
   {
     slug: 'the-omakase',
     name: 'The Omakase',
-    image: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp',
+    image: '/Portfolio.github.io/Assets/mockups/projects/the-omakase_16x9.webp',
+    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/the-omakase_16x9.webp',
     tag: 'ARCADE GAME',
     year: '2024',
     desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille',
@@ -1643,9 +1646,9 @@ for (const project of projects) {
   }
 }
 
-// Freshly authored 16:9 + 4:5 covers replace the auto-generated squares wherever
-// the project has them. 4:5 drives the portrait grid cards; 16:9 drives featured
-// cards and the case-study hero. Every slug below ships BOTH variants.
+// Freshly authored cover sets. 16:9 is reserved for featured/highlight panels,
+// 4:5 drives portrait Work cards, and 1:1 drives square Work cards so card
+// content is not squeezed into the wrong crop.
 const MOCKUPS = '/Portfolio.github.io/Assets/mockups/projects'
 const NEW_COVER_SLUGS = new Set([
   // First batch
@@ -1659,29 +1662,124 @@ const NEW_COVER_SLUGS = new Set([
   'raahi-project', 'revolving-stage', 'shuffle', 'the-omakase', 'transfi-project',
   'typeface', 'uv-light', 'vj-software', 'mentra-brand',
 ])
+const SQUARE_COVER_SLUGS = new Set([
+  'ai-voice', 'atps', 'breakgen', 'code-for-build', 'cuetv', 'dna-speculative',
+  'drowning', 'enigma', 'healthapp', 'ibm', 'jugalbandi', 'keyboard-project',
+  'making-of-time', 'moniac-machine', 'office-of-diversity', 'raahi-project',
+  'revolving-stage', 'sculpture', 'shuffle', 'the-omakase', 'the-point-cdc',
+  'transfi-project', 'typeface', 'uv-light', 'vj-software', 'zentipay',
+  'ballah-code', 'black-hole', 'clawed-chat', 'executivelens', 'mentra',
+  'mentra-brand', 'mentra-miniapps', 'oncall-lens', 'sea-of-salt', 'tedx',
+  'vishwaconclave',
+])
 for (const project of projects) {
-  if (!NEW_COVER_SLUGS.has(project.slug)) continue
-  project.cardMockup = `${MOCKUPS}/${project.slug}_4x5.webp`
-  project.cover16x9 = `${MOCKUPS}/${project.slug}_16x9.webp`
+  if (NEW_COVER_SLUGS.has(project.slug)) {
+    project.cardMockup = `${MOCKUPS}/${project.slug}_4x5.webp`
+    project.cover16x9 = `${MOCKUPS}/${project.slug}_16x9.webp`
+  }
+  if (SQUARE_COVER_SLUGS.has(project.slug)) {
+    project.cardMockupSquare = `${MOCKUPS}/${project.slug}_1x1.webp`
+  }
+}
+
+const clawedSquareCover = `${MOCKUPS}/clawed-chat_1x1.webp`
+const clawedProject = projects.find(project => project.slug === 'clawed-chat')
+if (clawedProject) {
+  clawedProject.image = clawedSquareCover
+  clawedProject.cardMockup = clawedSquareCover
+  clawedProject.cardMockupSquare = clawedSquareCover
+  clawedProject.cover16x9 = clawedSquareCover
+  clawedProject.cardMockupSource = clawedSquareCover
 }
 
 /* ──────────────────────────────────────────────────────────────────────
    Helper selectors
    ────────────────────────────────────────────────────────────────────── */
 
-const isPubliclyVisibleProject = (project: Project) => !project.hidden && project.access?.mode !== 'hidden'
+const WORK_PRIORITY_SLUGS = [
+  'mentra',
+  'transfi-project',
+  'clawed-chat',
+  'raahi-project',
+  'mentra-miniapps',
+  'zentipay',
+  'executivelens',
+  'ballah-code',
+  'vj-software',
+  'office-of-diversity',
+  'jugalbandi',
+  'enigma',
+  'shuffle',
+  'the-omakase',
+  'ibm',
+  'the-point-cdc',
+  'ai-voice',
+  'cuetv',
+  'code-for-build',
+  'making-of-time',
+  'black-hole',
+  'mentra-brand',
+  'revolving-stage',
+  'moniac-machine',
+  'sea-of-salt',
+  'drowning',
+  'sculpture',
+  'tedx',
+  'typeface',
+  'vishwaconclave',
+] as const
 
-export const visibleProjects = projects.filter(isPubliclyVisibleProject)
+const WORK_HIDDEN_SLUGS = new Set<string>([
+  'uv-light',
+  'atps',
+  'dna-speculative',
+  'comp-media',
+  'hypercinema',
+  'applications',
+  'healthapp',
+  'messy-humans',
+  'production-studio',
+  'arcade-lab',
+  'flow-fields',
+  'embodied-web',
+  'feeling-patterns',
+  'performance-by-design',
+  'on-becoming',
+  'storytelling',
+  'org-dashboard',
+])
+
+const WORK_SELECTED_COUNT = 7
+const WORK_PRIORITY = new Map<string, number>(WORK_PRIORITY_SLUGS.map((slug, index) => [slug, index]))
+const WORK_SELECTED_SLUGS = new Set<string>(WORK_PRIORITY_SLUGS.slice(0, WORK_SELECTED_COUNT))
+
+const getWorkPriority = (project: Project) => WORK_PRIORITY.get(project.slug) ?? Number.MAX_SAFE_INTEGER
+
+const sortByWorkPriority = (a: Project, b: Project) => {
+  const priorityDiff = getWorkPriority(a) - getWorkPriority(b)
+  if (priorityDiff !== 0) return priorityDiff
+  return (a.archiveOrder ?? 99) - (b.archiveOrder ?? 99)
+}
+
+const isPubliclyVisibleProject = (project: Project) =>
+  !project.hidden &&
+  project.access?.mode !== 'hidden' &&
+  WORK_PRIORITY.has(project.slug) &&
+  !WORK_HIDDEN_SLUGS.has(project.slug)
+
+export const visibleProjects = projects
+  .filter(isPubliclyVisibleProject)
+  .sort(sortByWorkPriority)
 
 /** S-Tier: flagship projects for homepage featured grid */
 export const featuredProjects = visibleProjects
   .filter(p => p.featured)
-  .sort((a, b) => (a.featuredOrder ?? a.archiveOrder ?? 99) - (b.featuredOrder ?? b.archiveOrder ?? 99))
+  .sort(sortByWorkPriority)
 
 /** Explicit recruiter-facing work list */
 export const selectedWorkProjects = visibleProjects
-  .filter(p => p.selected)
-  .sort((a, b) => (a.selectedOrder ?? 99) - (b.selectedOrder ?? 99))
+  .filter(p => WORK_SELECTED_SLUGS.has(p.slug))
+  .sort(sortByWorkPriority)
 
 /** Homepage follow-on grid after flagship work */
 export const homepageSelectedProjects = selectedWorkProjects
@@ -1690,39 +1788,11 @@ export const homepageSelectedProjects = selectedWorkProjects
 /** Remaining visible work shown below the fold on /work */
 export const archiveWorkProjects = visibleProjects
   .filter(p => !selectedWorkProjects.some(selected => selected.slug === p.slug))
-  .sort((a, b) => {
-    const tierOrder = { a: 1, b: 2, c: 3, d: 4, s: 0 }
-    const aRank = tierOrder[a.tier ?? 'd']
-    const bRank = tierOrder[b.tier ?? 'd']
-    if (aRank !== bRank) return aRank - bRank
-    return (a.archiveOrder ?? 99) - (b.archiveOrder ?? 99)
-  })
+  .sort(sortByWorkPriority)
 
 /** All projects for the Work page in curated mixed order */
 export const allProjectsCurated = (() => {
-  // Interleave categories for visual variety
-  const byCat: Record<string, Project[]> = {}
-  for (const cat of ['ux', 'ai', 'good', 'creative', 'install', 'brand']) {
-    byCat[cat] = visibleProjects.filter(p => p.category === cat)
-  }
-  const order: ProjectCategory[] = ['ux', 'ai', 'ux', 'creative', 'good', 'install', 'ux', 'ai', 'brand', 'ux', 'creative', 'install', 'good', 'ai', 'creative', 'install', 'ux', 'brand', 'install', 'creative', 'good', 'ai', 'ux', 'brand', 'install', 'creative', 'brand', 'creative', 'install', 'ux', 'brand', 'ux', 'install']
-  const used = new Set<string>()
-  const result: Project[] = []
-  for (const cat of order) {
-    const next = byCat[cat]?.find(p => !used.has(p.slug))
-    if (next) {
-      used.add(next.slug)
-      result.push(next)
-    }
-  }
-  // Append any remaining
-  for (const p of visibleProjects) {
-    if (!used.has(p.slug)) {
-      used.add(p.slug)
-      result.push(p)
-    }
-  }
-  return result
+  return visibleProjects
 })()
 
 export function filterProjectsByCategory(items: Project[], cat: ProjectCategory): Project[] {

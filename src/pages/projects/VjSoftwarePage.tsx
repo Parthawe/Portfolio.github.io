@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCallout from '../../components/case-study/CsCallout'
@@ -19,7 +20,7 @@ export default function VjSoftwarePage() {
         <title>VJ Parivar &middot; Parth Pawar</title>
         <meta name="description" content="Vehicle parking management app for homeowners in Vilas Javdekar residential societies, covering user research, UI/UX design, and prototyping." />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="VJ Software &middot; Parth Pawar" />
+        <meta property="og:title" content="VJ Parivar &middot; Parth Pawar" />
         <meta property="og:description" content="Vehicle parking management app for VJ residential societies, user research, UI/UX and prototyping." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/vj.jpg" />
       </Helmet>
@@ -30,7 +31,7 @@ export default function VjSoftwarePage() {
 
         <ProjectHeader
           backLink="/work"
-          categorySlug="creative-tech"
+          categorySlug="ux-design"
           backLabel="Back to Work"
           tags={['UX', 'UI', 'Research', 'Prototyping']}
           title="VJ Parivar"
@@ -82,6 +83,7 @@ export default function VjSoftwarePage() {
         </section>
 
         {/* Context */}
+        <CsExpandPreview>
         <section className="cs-section reveal" id="cs-context">
           <div className="wrap">
             <span className="cs-section-label">Context</span>
@@ -146,15 +148,15 @@ export default function VjSoftwarePage() {
 
             <h3 className="cs-section-subtitle">Market Research &mdash; Competitive Analysis</h3>
             <CsBody>
-              <p>Analyzed competitor apps including MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety across features like visitor management, parking spots, domestic staff management, utility bill payments, communication management, and more.</p>
+              <p>I reviewed resident-service apps like MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety to see how they handled parking, complaints, vehicle records, payments, visitor logs, and society communication.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
 
             <h3 className="cs-section-subtitle">Findings</h3>
             <CsFeatureGrid features={[
-              { title: 'NoBrokerHood App', desc: 'Can upload documents later on. Verification from society officials is required. No option to add driver details. Visitor entry approval and entry-exit logs available. No option to report a complaint. Option to add vehicle details.' },
-              { title: 'MyGate App', desc: 'No documents required. No verification or confirmation. No option to add driver details. Visitor entry & exit logs are available. No option to report a complaint if some other car is parked in their spot.' },
-              { title: 'ItsMyAccount App', desc: 'Gives different options for available parking spots. Owner and Tenant can book for car parking. Contact details of car owners is available. Track changes regarding parking lot history and availability.' },
+              { title: 'Parking was treated as data entry', desc: 'Most products collected vehicle details but did not help residents understand the physical parking layout before choosing.' },
+              { title: 'Conflict flows were weak', desc: 'Visitor logs existed, but reporting misuse, wrong parking, or alternate access was usually disconnected from the booking flow.' },
+              { title: 'Availability mattered more than admin status', desc: 'The strongest competitor pattern was showing available spots and ownership history, which pointed toward a map-first decision surface.' },
             ]} />
 
             <h3 className="cs-section-subtitle">Current Methods</h3>
@@ -162,17 +164,17 @@ export default function VjSoftwarePage() {
               <div>
                 <h3 className="cs-section-subtitle">Society Type 1</h3>
                 <CsBody>
-                  <p>No digitization, no documentation, cash payment. The user visits the society office, officials verify residency, explain parking layout and rates verbally, user selects a spot, pays by cash, and officials make a record in their system.</p>
+                  <p>No digitization, no documentation, cash payment. Residents visit the office, hear the layout and rates verbally, select a spot, pay, and leave the record with staff.</p>
                 </CsBody>
               </div>
               <div>
                 <h3 className="cs-section-subtitle">Society Type 2</h3>
                 <CsBody>
-                  <p>No digitization, documentation required, multiple payment modes. User visits the society office, officials ask for documents to verify residency, ask for RC copy of the vehicle for record, explain parking layout and rates, user selects a spot, and multiple payment modes are available.</p>
+                  <p>Documents and multiple payment modes exist, but the decision still happens through office explanation rather than a clear spatial interface.</p>
                 </CsBody>
               </div>
             </div>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
           </div>
         </section>
 
@@ -232,7 +234,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Mapped the complete user journey covering first-time users booking a parking spot, adding RFID or FastTag details, editing vehicle details, renting a parking spot, and filing complaints for incorrect vehicle parking. Each flow includes decision points, success states, and error handling.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
           </div>
         </section>
 
@@ -253,7 +255,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Translated wireframes into polished high-fidelity screens featuring the interactive society map, spot selection interface, booking details, payment flow, and confirmation screens.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
           </div>
         </section>
 
@@ -273,7 +275,7 @@ export default function VjSoftwarePage() {
               ))}
             </div>
 
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
           </div>
         </section>
 
@@ -298,7 +300,7 @@ export default function VjSoftwarePage() {
               <p>After selecting a spot, users proceed through the booking process, choose a payment method, receive confirmation of their payment, and get a detailed summary of their parking reservation.</p>
             </CsBody>
 
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
           </div>
         </section>
 
@@ -328,6 +330,8 @@ export default function VjSoftwarePage() {
 
         <CsThanks />
 
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-context', label: 'Context' },
           { id: 'cs-discover', label: 'Discover' },
@@ -338,7 +342,7 @@ export default function VjSoftwarePage() {
 
       </main>
 
-      <NextProject slug="shuffle" title="Shuffle" image="/Portfolio.github.io/Assets/images/shuffle.jpg" />
+      <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Portfolio.github.io/Assets/mockups/projects/office-of-diversity_16x9.webp" />
       <Footer />
     </>
   )

@@ -49,9 +49,9 @@ export default function UvLightPage() {
             <p className="cs-section-label">Background</p>
             <h2 className="cs-display">What the Piece Was Really About</h2>
             <CsBody>
-              <p>This project started with a simple spatial question: what changes when the information that matters is present, but not visible yet? Blacklight and invisible ink gave me a material way to stage that delay. People had to move, search, and test the room before the meaning of the room revealed itself.</p>
-              <p>The deeper theme was surveillance. The installation was built around the tension between what is plainly visible and what is only legible once the right conditions are applied. Under normal light the rooms looked harmless. Under UV they exposed a second layer, making the act of revelation part of the message itself.</p>
-              <p>I shaped the concept, spatial sequence, UV logic, and participant interactions, then helped carry the installation through setup and live execution. My main responsibility was making sure the reveal worked as an experience, not just as a collection of props.</p>
+              <p>The piece asked what changes when the important information is present, but not visible yet. Blacklight and invisible ink made that delay physical.</p>
+              <p>Under normal light, the room felt harmless. Under UV, a second layer appeared, turning discovery into a question about observation and surveillance.</p>
+              <p>I shaped the concept, room sequence, UV logic, participant flow, and live execution.</p>
             </CsBody>
           </div>
         </section>
@@ -62,8 +62,8 @@ export default function UvLightPage() {
             <p className="cs-section-label">Discovery</p>
             <h2 className="cs-display">What the Research Clarified</h2>
             <CsBody>
-              <p>The research pushed the project toward participatory theater logic rather than gallery logic. I looked at environments where people are guided through curiosity, social cues, and staged revelation instead of direct instruction. The lesson was clear: discovery-based experiences work when the room keeps rewarding attention, even for participants who miss part of the puzzle.</p>
-              <p>I also had to understand the material behavior of UV itself. Fluorescence is not neutral. Different surfaces flare up differently, and that unpredictability became part of the piece. Clothes, paper, skin, tape, and walls all reacted in distinct ways, which meant the environment could feel alive rather than merely decorated.</p>
+              <p>The research pushed the work toward participatory theater, where curiosity and social cues guide people better than instructions.</p>
+              <p>UV also behaved differently on paper, tape, clothes, skin, and walls. That unpredictability made the room feel alive instead of decorated.</p>
             </CsBody>
           </div>
         </section>
@@ -74,8 +74,8 @@ export default function UvLightPage() {
             <p className="cs-section-label">Exploration</p>
             <h2 className="cs-display">Designing for Discovery, Not Explanation</h2>
             <CsBody>
-              <p>The early design work focused on one risk: if the installation explained itself too quickly, the idea would collapse into a gimmick. So the exploration phase was less about styling and more about pacing. How much could remain hidden before curiosity turned into confusion? How dense could the clues become before the room felt over-scripted?</p>
-              <p>I tested invisible inks, UV-reactive paints, fluorescent tape, and different lighting conditions to understand what could stay subtle and what became immediately obvious. The most useful insight was that discovery worked best when participants felt they were piecing together the logic of the room themselves. That made the later camera-feed layer more unsettling, because it arrived after the audience had already relaxed into play.</p>
+              <p>The risk was explaining too fast. I tested inks, paints, tape, and lighting until the clues felt discoverable without feeling scripted.</p>
+              <p>The camera-feed layer worked because it arrived after people had relaxed into play. The room first invited them in, then revealed they were being watched.</p>
             </CsBody>
             <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/1000051727.webp" alt="Whiteboard brainstorming: room layouts, puzzle concepts, and interaction flow sketches" loading="lazy" /></div>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -94,8 +94,8 @@ export default function UvLightPage() {
             <p className="cs-section-label">Making</p>
             <h2 className="cs-display">Building the Reveal Across Rooms</h2>
             <CsBody>
-              <p>The installation was staged as a sequence, not a single room. Participants first entered a UV-reactive environment where hidden marks, drawings, and prompts had to be actively uncovered. Only after that exploratory mode was established did they encounter the second layer: observation, framing, and the awareness that their discovery had also been turned into a spectacle.</p>
-              <p>Technically, that meant converting ordinary classrooms into controlled UV environments, sealing light leaks, tuning blacklight coverage, and making sure the hidden content revealed at the right level of intensity. The live-feed setup mattered just as much. It shifted the project from visual novelty to a more uncomfortable question about who gets to watch, document, and interpret other people inside an experience.</p>
+              <p>The installation unfolded as a sequence: first hidden marks and prompts, then the reveal that the act of discovery was also being observed.</p>
+              <p>We converted classrooms into controlled UV spaces, sealed light leaks, tuned blacklight coverage, and added the live-feed layer that changed the room&rsquo;s meaning.</p>
             </CsBody>
             <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/screenshot-2023-12-21-at-3.51-1.png" alt="The blacklight stage before participants entered: fluorescent tape letters and glowing UV dots scattered across the dark floor, with a banner reading TELL in the foreground" loading="lazy" decoding="async" /></div>
           </div>
@@ -144,9 +144,8 @@ export default function UvLightPage() {
             <p className="cs-section-label">Interaction</p>
             <h2 className="cs-section-title">Hidden Messages &amp; Portraits</h2>
             <CsBody>
-              <p>Each participant received a portrait card with questions that felt casual and disarming: sleep, coffee, work, weekend plans, quick sketches. Nothing on the surface suggested the cards were anything more than a warm-up device.</p>
-              <p>Under UV light, the second layer appeared. Hidden messages reframed those prompts as a form of soft data collection, revealing how easily people volunteer personal information when the interaction feels friendly enough. That shift, from participation to mild unease, was the conceptual core of the piece.</p>
-              <p>The installation was not arguing that surveillance always looks sinister. It was showing that observation often arrives wrapped in invitation, convenience, and play. The final message, &ldquo;SHOW DON&rsquo;T TELL,&rdquo; became both the artistic method and the critique.</p>
+              <p>Participants filled portrait cards with casual answers: sleep, coffee, work, weekend plans, sketches. Under UV, hidden annotations reframed those answers as collected data.</p>
+              <p>The point was not that surveillance always looks sinister. It often arrives as invitation, convenience, and play.</p>
             </CsBody>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', alignItems: 'start' }}>
               <figure className="cs-img reveal">
@@ -203,8 +202,8 @@ export default function UvLightPage() {
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What I Learned</h2>
             <CsBody style={{ maxWidth: '720px' }}>
-              <p>This project taught me that spatial work needs the same narrative discipline as product design. The participant should know just enough to keep going, but not so much that the answer arrives before the experience does. In this case, UV-reactive cues became the interface.</p>
-              <p>It also taught me that some of the strongest moments in live work come from structural tension, not from spectacle. The camera feed mattered because it changed the audience&rsquo;s role. The piece stopped being only about hidden drawings and became about hidden observation.</p>
+              <p>Spatial work needs narrative discipline. The participant should know enough to keep going, but not so much that the answer arrives before the experience does.</p>
+              <p>The strongest moment was structural, not spectacular: the camera feed changed the audience from participants into observed subjects.</p>
             </CsBody>
           </div>
         </section>

@@ -26,10 +26,10 @@ export default function IbmPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#6929C4' } as React.CSSProperties}>
+      <main id="main-content" className="project-main" style={{ '--project-color': '#A7D8C9' } as React.CSSProperties}>
         <ProjectHeader
           backLink="/work"
-          categorySlug="ux-design"
+          categorySlug="ai"
           backLabel="Back to Work"
           tags={['Research', 'Healthcare AI', 'Encryption']}
           title="IBM Cancer Prognosis"
@@ -118,7 +118,7 @@ export default function IbmPage() {
         ]} />
       </main>
 
-      <NextProject slug="healthapp" title="Health App" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
+      <NextProject slug="the-point-cdc" title="The Point CDC" image="/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp" />
       <Footer />
     </>
   )

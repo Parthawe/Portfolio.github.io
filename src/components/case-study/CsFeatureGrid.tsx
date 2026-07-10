@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 interface CsFeatureGridProps {
   features: { title: string; desc: string }[];
+  className?: string;
 }
 
 const container = {
@@ -14,10 +15,10 @@ const item = {
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] } },
 };
 
-export default function CsFeatureGrid({ features }: CsFeatureGridProps) {
+export default function CsFeatureGrid({ features, className }: CsFeatureGridProps) {
   return (
     <motion.div
-      className="cs-feature-grid"
+      className={['cs-feature-grid', className].filter(Boolean).join(' ')}
       variants={container}
       initial="hidden"
       whileInView="show"

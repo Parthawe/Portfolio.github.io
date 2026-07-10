@@ -5,6 +5,7 @@ import ThemeToggle from './ThemeToggle';
 import FigmaSelect from './FigmaSelect';
 import AmbientAudio from './AmbientAudio';
 import { CONTACT_EMAIL } from '../config/site';
+import { setCanvasChromePreference } from '../utils/performance';
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
@@ -147,14 +148,18 @@ export default function Nav() {
   }, []);
 
   const toggleGrid = useCallback(() => {
-    document.body.classList.toggle('figma-grid-on');
+    const enabled = document.body.classList.toggle('figma-grid-on');
+    if (enabled) setCanvasChromePreference(true);
+    if (!enabled && document.body.classList.contains('figma-rulers-off')) setCanvasChromePreference(false);
   }, []);
 
   const toggleRulers = useCallback(() => {
-    document.body.classList.toggle('figma-rulers-off');
+    const rulersOff = document.body.classList.toggle('figma-rulers-off');
+    setCanvasChromePreference(!rulersOff || document.body.classList.contains('figma-grid-on'));
   }, []);
 
   const toggleInteractTools = useCallback(() => {
+    setCanvasChromePreference(true);
     window.dispatchEvent(new CustomEvent('site-tools:toggle'));
   }, []);
 
@@ -226,6 +231,19 @@ export default function Nav() {
               </button>
               <button
                 type="button"
+                className={`nav-grid-toggle${rulersOn ? ' nav-grid-toggle--active' : ''}`}
+                aria-label={rulersOn ? 'Hide rulers' : 'Show rulers'}
+                aria-pressed={rulersOn}
+                title={rulersOn ? 'Hide rulers' : 'Show rulers'}
+                onClick={toggleRulers}
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2 1.5V12M2 1.5H12.5M2 4.5H4.5M2 7.5H5.5M2 10.5H4.5M5 1.5V4M8 1.5V5M11 1.5V4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+                </svg>
+                <span>Ruler</span>
+              </button>
+              <button
+                type="button"
                 className={`nav-grid-toggle nav-interact-toggle${interactOn ? ' nav-grid-toggle--active' : ''}`}
                 aria-label={interactOn ? 'Exit Figma mode' : 'Enter Figma mode'}
                 aria-pressed={interactOn}
@@ -242,19 +260,6 @@ export default function Nav() {
                   <circle cx="6.75" cy="11.75" r="1.05" fill="var(--surface, #fff)" stroke="currentColor" strokeWidth="1.05" />
                 </svg>
                 <span>Figma mode</span>
-              </button>
-              <button
-                type="button"
-                className={`nav-grid-toggle${rulersOn ? ' nav-grid-toggle--active' : ''}`}
-                aria-label={rulersOn ? 'Hide rulers' : 'Show rulers'}
-                aria-pressed={rulersOn}
-                title={rulersOn ? 'Hide rulers' : 'Show rulers'}
-                onClick={toggleRulers}
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2 1.5V12M2 1.5H12.5M2 4.5H4.5M2 7.5H5.5M2 10.5H4.5M5 1.5V4M8 1.5V5M11 1.5V4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-                </svg>
-                <span>Ruler</span>
               </button>
             </div>
             <AmbientAudio />
@@ -288,7 +293,6 @@ export default function Nav() {
         <ul className="mobile-nav-links">
           <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
           <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-          <li><Link to="/writing" onClick={closeMenu}>Writing</Link></li>
           <li><a href={`mailto:${CONTACT_EMAIL}`} onClick={closeMenu}>Let's Talk</a></li>
         </ul>
       </div>

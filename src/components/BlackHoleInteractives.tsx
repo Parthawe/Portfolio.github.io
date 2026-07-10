@@ -221,8 +221,10 @@ export function TimeDilation() {
     <div style={{ position: 'relative' }}>
       <div style={{
         width: '100%', aspectRatio: '16 / 8',
+        maxHeight: 'min(30rem, 62vh)',
         borderRadius: 'var(--radius-lg)', overflow: 'hidden',
         border: '1px solid rgba(255,255,255,0.04)', background: '#08080f',
+        contain: 'layout paint size',
       }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
       </div>
@@ -380,9 +382,11 @@ export function GravLensing() {
     <div style={{ position: 'relative' }}>
       <div style={{
         width: '100%', aspectRatio: '16 / 9',
+        maxHeight: 'min(34rem, 68vh)',
         borderRadius: 'var(--radius-lg)', overflow: 'hidden',
         border: '1px solid rgba(255,255,255,0.04)', background: '#040408',
         cursor: dragging.current ? 'grabbing' : 'grab', touchAction: 'none',
+        contain: 'layout paint size',
       }}
         onPointerDown={e => { dragging.current = true; massPos.current = getPos(e); (e.target as HTMLElement).setPointerCapture(e.pointerId) }}
         onPointerMove={e => { if (dragging.current) massPos.current = getPos(e) }}
@@ -545,8 +549,10 @@ export function BinaryMerger() {
     <div style={{ position: 'relative' }}>
       <div style={{
         width: '100%', aspectRatio: '2.5 / 1',
+        maxHeight: 'min(24rem, 48vh)',
         borderRadius: 'var(--radius-lg)', overflow: 'hidden',
         border: '1px solid rgba(255,255,255,0.04)', background: '#08080f',
+        contain: 'layout paint size',
       }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
       </div>

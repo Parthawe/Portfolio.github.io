@@ -33,6 +33,7 @@ export default function ClawedChatPage() {
         { id: 'cs-webhub', label: 'Web Hub & Site' },
         { id: 'cs-glasses', label: 'Glasses' },
         { id: 'cs-safety', label: 'Safety' },
+        { id: 'cs-website', label: 'Live Product' },
         { id: 'cs-impact', label: 'Impact' },
         { id: 'cs-learnings', label: 'Learnings' },
         { id: 'cs-whats-next', label: "What's Next" },
@@ -54,7 +55,7 @@ export default function ClawedChatPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Clawed · Parth Pawar" />
         <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/clawed.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp" />
       </Helmet>
 
       <Nav />
@@ -81,11 +82,11 @@ export default function ClawedChatPage() {
           backLabel="Back to Work"
           tags={['AI Assistant', 'Smart Glasses', 'Product Design', 'Full-stack Design']}
           title="Clawed"
-          subtitle="A trust-first AI assistant for web and smart glasses, built around receipts, approvals, and controlled autonomy"
+          subtitle="A trust-first AI assistant for web and smart glasses, built around approvals, receipts, and controlled autonomy"
           info={[
             { label: 'Role', value: 'Product Designer (sole designer + 3 engineers)' },
             { label: 'Timeline', value: 'Jan \u2013 Mar 2026 (~10 weeks)' },
-            { label: 'Status', value: 'Shipped to production, early user testing phase' },
+            { label: 'Status', value: 'Live product, early user testing' },
             { label: 'Platform', value: 'Web + Smart Glasses (via Mentra integration)' },
           ]}
           liveUrl="https://clawed.chat"
@@ -104,8 +105,8 @@ export default function ClawedChatPage() {
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
         <CsSection id="cs-context" label="01 &mdash; Context" title="Why AI Assistants Fail">
           <CsBody>
-            <p>Before I designed forward, I studied the failures. AI assistants have a trust problem, and it is entirely self-inflicted. Siri, Alexa, Google Assistant &mdash; each one trained users to expect disappointment. The pattern was always the same: promise the world, deliver a timer and a weather forecast, and quietly lose credibility every time the assistant guessed wrong and acted anyway.</p>
-            <p>The deeper problem is not capability. It is accountability. When an AI sends an email on your behalf with the wrong tone, there is no undo. When it books a flight you did not actually confirm, there is no receipt. When it misinterprets a voice command while you are driving, there is no safety net. Every major assistant treats autonomy as a feature and accountability as someone else&rsquo;s problem.</p>
+            <p>Most AI assistants break trust in the same place: they act confidently, then leave no clear trail. If an assistant sends, books, or changes something, the user needs a pause, an edit path, and proof of what happened.</p>
+            <p>Clawed started from that accountability gap. The product needed to feel fast enough to use, but constrained enough to trust on web and smart glasses.</p>
           </CsBody>
           <CsCallout>
             <p>&ldquo;The problem with AI assistants is not that they are too dumb. It is that they are too confident. An assistant that acts without asking and fails without apologizing is not an assistant &mdash; it is a liability.&rdquo;</p>
@@ -137,28 +138,28 @@ export default function ClawedChatPage() {
 
         <CsSection id="cs-research" label="02 &mdash; Research" title="What Users Actually Need from an AI Assistant">
           <CsBody>
-            <p>I audited seven AI assistants (Siri, Alexa, Google Assistant, Copilot, Rabbit R1, Humane Pin, ChatGPT) across three dimensions: what they promise, where they fail, and how users work around the failures. The pattern was consistent: users develop &ldquo;trust ceilings&rdquo; &mdash; a maximum level of autonomy they will grant an AI before reverting to manual work.</p>
+            <p>I audited Siri, Alexa, Google Assistant, Copilot, Rabbit R1, Humane Pin, and ChatGPT around three questions: what they promise, where they fail, and how people recover when they fail. The pattern was clear: users hit a trust ceiling, then shrink the assistant back to safe tasks.</p>
           </CsBody>
           <CsFeatureGrid features={[
-            { title: 'Trust Ceiling Pattern', desc: 'Users start enthusiastic, hit one bad auto-action (wrong email tone, bad calendar invite), and permanently reduce their usage to only safe queries like weather and timers.' },
-            { title: 'Accountability Gap', desc: 'No existing assistant shows what it did, why, or lets you undo it. Users described feeling like they were "handing keys to someone who won\'t tell me where they drove."' },
-            { title: 'Context Blindness', desc: 'Every assistant uses the same permission model whether you are at your desk or driving at 60 mph. No contextual safety adjustment exists in any product on the market.' },
-            { title: 'Approval Fatigue vs. Trust', desc: 'Users want to approve actions, but only if approval is fast. If confirming takes longer than doing it manually, they skip the assistant entirely.' },
+            { title: 'Trust Ceiling', desc: 'One wrong auto-action is enough for people to stop delegating and keep the assistant in safe-query mode.' },
+            { title: 'Accountability Gap', desc: 'Users wanted to see what changed, why it changed, and how to undo it before granting more autonomy.' },
+            { title: 'Context Blindness', desc: 'The same permission model does not work at a desk, in a meeting, and while moving.' },
+            { title: 'Approval Fatigue', desc: 'Approvals only work when they are faster than doing the task manually.' },
           ]} />
           <CsCallout>
-            <p>The core insight: users do not want a smarter AI. They want an AI they can verify. The design principle that emerged: <strong>ask in 3 seconds, results in 5, approve in 1 tap, always leave a receipt.</strong></p>
+            <p>The core insight: people do not just want a smarter AI. They want an AI they can verify. The operating rule became: <strong>ask in 3 seconds, return in 5, approve in 1 tap, always leave a receipt.</strong></p>
           </CsCallout>
         </CsSection>
 
         <CsSection id="cs-challenges" label="03 &mdash; Design Challenges" title="Four Problems That Shaped Every Decision">
           <CsBody>
-            <p>Clawed is not one product. It is a web hub, a glasses experience, a command bar, an approval system, and a receipt ledger &mdash; all of which need to feel like the same product whether you are at your desk or walking down the street. Every design challenge came back to the same question: how do you make an AI assistant feel fast, safe, and coherent across fundamentally different contexts?</p>
+            <p>Clawed spans a web hub, glasses experience, command bar, approvals, and receipts. The design challenge was making all of that feel fast and safe across desk, phone, and walking contexts.</p>
           </CsBody>
           <CsFeatureGrid features={[
-            { title: 'Glanceable on Glasses', desc: 'Smart glasses give you seconds, not minutes. Every piece of information the AI surfaces on the glasses display needs to be understood in a single glance \u2014 no scrolling, no reading paragraphs, no squinting at fine print. I designed a card-based system where every response fits into a structured template: icon, one-line summary, action button. If it does not fit the card, it gets pushed to the web hub.' },
-            { title: 'Trust Through Transparency', desc: 'Users do not trust AI by default. They trust AI that shows its work. Every action Clawed takes generates a receipt \u2014 a timestamped, human-readable record of what happened, what the AI recommended, what the user approved, and what the outcome was. The receipt system is not a logging feature. It is the core trust mechanism of the entire product.' },
-            { title: 'Command-Line Speed + GUI Comfort', desc: 'Power users want keyboard shortcuts and a command bar. New users want buttons and visual cues. Clawed\u2019s Command Bar (\u2318K) bridges both worlds \u2014 a fuzzy-search interface that lets you type natural language or structured commands, with inline previews and one-keystroke execution. Every action available in the GUI is available in the command bar, and vice versa.' },
-            { title: 'Multi-Device Coherence', desc: 'The same user might ask Clawed something on their glasses while walking, approve the result on their phone at a stoplight, and review the receipt on their laptop at the office. The design system needed to be device-aware without being device-dependent \u2014 the same information architecture, adapted to each context, with state that stays consistent across all three.' },
+            { title: 'Glanceable on Glasses', desc: 'Every glasses response became a small card: icon, one-line summary, one action. Anything heavier moved to the web hub.' },
+            { title: 'Trust Through Transparency', desc: 'Every action creates a timestamped receipt showing the request, recommendation, approval, and result.' },
+            { title: 'Command-Line Speed + GUI Comfort', desc: 'The command bar gives power users speed while keeping every action visible in the regular interface.' },
+            { title: 'Multi-Device Coherence', desc: 'Glasses, phone, and laptop share the same state model so a user can ask, approve, and audit across surfaces.' },
           ]} />
         </CsSection>
 
@@ -176,24 +177,24 @@ export default function ClawedChatPage() {
 
         <CsSection id="cs-glasses" label="05 &mdash; Glasses Experience" title="Intelligence at the Edge of Your Vision">
           <CsBody>
-            <p>The glasses are not a second screen. They are a first responder. When you ask Clawed something while walking, cooking, or commuting, the glasses display is where the answer appears &mdash; instantly, glanceably, and with a single-tap approval path. I designed a glasses simulator that lets the team prototype and test every interaction without physical hardware, ensuring that every card, notification, and approval prompt works at peripheral-vision scale.</p>
+            <p>The glasses are not a second screen. They are a first responder: instant answer, one-line summary, one-tap approval. I designed a simulator so the team could test cards at peripheral-vision scale.</p>
           </CsBody>
           <h3 className="cs-section-subtitle">Card Types</h3>
           <CsBody>
-            <p>Every piece of information on the glasses display is a card. I designed four card types that cover 95% of use cases: Info cards (weather, calendar, quick facts), Action cards (approve, dismiss, snooze), Receipt cards (confirmation of completed actions), and Alert cards (safety warnings, disconnection notices). Each card follows a strict template &mdash; icon on the left, one line of text in the center, action on the right &mdash; so the user&rsquo;s eye never has to hunt for what to do next.</p>
+            <p>I designed four card types: info, action, receipt, and alert. Each follows the same pattern: icon, one-line message, single action. No hunting, no tiny decision tree.</p>
           </CsBody>
           <h3 className="cs-section-subtitle">Glanceable Design Principles</h3>
           <CsSteps steps={[
-            { num: '1', title: 'One Line Max', desc: 'Every glasses response is one line of text. If the AI cannot summarize it in one line, it pushes the full response to the web hub and shows a \u201cSee details on web\u201d card instead.' },
-            { num: '2', title: '3-Second Rule', desc: 'Every card auto-dismisses after 3 seconds unless the user engages. No notification pile-up, no clutter. If you missed it, the web hub has the full history.' },
-            { num: '3', title: 'One Action Per Card', desc: 'No multi-button dialogs on a peripheral display. Every card has exactly one action: tap to approve, tap to dismiss, or tap to expand on web. Decision fatigue is the enemy of glanceable design.' },
-            { num: '4', title: 'Always a Receipt', desc: 'Every action taken on the glasses generates a receipt that syncs to the web hub. You can glance and approve with confidence because the paper trail is automatic.' },
+            { num: '1', title: 'One Line Max', desc: 'If the AI cannot summarize it in one line, the full response moves to the web hub.' },
+            { num: '2', title: '3-Second Rule', desc: 'Cards auto-dismiss unless the user acts. The web hub keeps the full history.' },
+            { num: '3', title: 'One Action Per Card', desc: 'No multi-button dialogs on a peripheral display. One card, one decision.' },
+            { num: '4', title: 'Always a Receipt', desc: 'Every glasses action syncs back to the web hub with an audit trail.' },
           ]} />
         </CsSection>
 
         <CsSection id="cs-safety" label="06 &mdash; Safety Architecture" title="Three Tiers of Trust">
           <CsBody>
-            <p>Not every situation calls for the same level of AI autonomy. Driving requires a different safety posture than sitting at your desk. Clawed&rsquo;s Safety Mode system gives users explicit control over how much the AI can do &mdash; not through buried settings, but through a prominent, always-visible toggle that changes the entire interaction model.</p>
+            <p>Not every context deserves the same AI autonomy. Clawed uses three safety modes so users can move from reading, to drafting, to assisted action without losing control.</p>
           </CsBody>
           <CsCompareTable
             title="Safety Mode Comparison"
@@ -210,11 +211,11 @@ export default function ClawedChatPage() {
           <details className="cs-details">
             <summary className="cs-details-summary">Safety architecture: How Clawed prevents accidental actions</summary>
             <div className="cs-details-content">
-              <p>The safety architecture is built on three layers of protection that work together to eliminate accidental AI actions.</p>
-              <p><strong>Layer 1: Permission boundaries.</strong> Each safety mode defines a hard boundary for what the AI can do. In Read Only, the AI literally cannot access send or execute functions &mdash; the API calls are blocked at the permission layer, not just hidden in the UI. This is not a cosmetic change. It is a structural one.</p>
-              <p><strong>Layer 2: The staging area.</strong> In Draft First mode, every AI-generated action lands in a staging area before it can touch the outside world. The staging area shows you exactly what the AI wants to do, who it will affect, and what the original request was. You can edit, approve, or discard. Nothing escapes without a deliberate tap.</p>
-              <p><strong>Layer 3: The receipt ledger.</strong> Every action &mdash; whether manually approved or auto-executed in Assisted mode &mdash; generates an immutable receipt. Receipts include the original request, the AI&rsquo;s recommendation, the user&rsquo;s decision, the timestamp, and the outcome. The receipt ledger is searchable, filterable, and exportable. It is the audit trail that makes the entire system trustworthy.</p>
-              <p>During user testing, the most common feedback was not about the AI&rsquo;s intelligence. It was about the feeling of control. Users described the safety modes as &ldquo;a volume knob for AI trust&rdquo; &mdash; something they could adjust based on context without ever worrying about the AI overstepping.</p>
+              <p>The safety architecture has three layers.</p>
+              <p><strong>Permission boundaries:</strong> each safety mode defines what the AI can and cannot execute.</p>
+              <p><strong>Staging area:</strong> draft actions show the request, affected surface, and editable output before anything is sent.</p>
+              <p><strong>Receipt ledger:</strong> approved actions generate a searchable record with the original request, recommendation, user decision, timestamp, and outcome.</p>
+              <p>Users described this as a volume knob for AI trust: low when moving, higher when seated and focused.</p>
             </div>
           </details>
           <CsFlowDiagram
@@ -245,35 +246,34 @@ export default function ClawedChatPage() {
 
         <CsSection id="cs-impact" label="07 &mdash; Impact" title="Early Signals &amp; Honest Assessment">
           <CsBody style={{ marginBottom: '2rem' }}>
-            <p>Clawed shipped to production in Q1 2026 and is in early user testing. I want to be transparent: we do not have large-scale analytics yet. What follows are qualitative signals from 6 moderated testing sessions (45 minutes each, mix of technical and non-technical participants) and internal team observations from the 10-week build.</p>
+            <p>Clawed shipped in Q1 2026 and is in early testing. I am keeping the claims precise: these are qualitative signals from 6 moderated sessions plus team observations from the 10-week build.</p>
           </CsBody>
           <CsBody>
             <h3 className="cs-section-subtitle">Design principles as team alignment tools</h3>
-            <p>The five principles &mdash; Safety First, Receipts for Everything, Glanceable, Progressive Disclosure, Keyboard Friendly &mdash; became the shared language between me and the engineering team. When a feature request violated &ldquo;Glanceable,&rdquo; we pointed at the principle instead of debating for a week. When an engineer asked whether a new action type needed a receipt, the answer was always yes. This saved roughly two to three scope debates per week &mdash; a process improvement, not a user-facing metric.</p>
+            <p>The five principles became the shared language with engineering: Safety First, Receipts for Everything, Glanceable, Progressive Disclosure, Keyboard Friendly. They turned scope debates into quick decisions.</p>
           </CsBody>
           <CsBody style={{ marginTop: '1.5rem' }}>
             <h3 className="cs-section-subtitle">User testing observations (n=6)</h3>
-            <p>In moderated sessions, 5 of 6 participants started in Read Only mode and voluntarily upgraded to Draft First within 10&ndash;15 minutes. 2 of 6 reached Assisted mode by session end. The graduated trust model worked as designed &mdash; users opted into more autonomy because the guardrails gave them confidence.</p>
-            <p>An unexpected finding: 4 of 6 participants used the receipt timeline as a personal productivity log, reviewing what they had accomplished at the end of the session. The accountability feature doubled as a reflection tool &mdash; something I had not designed for.</p>
+            <p>5 of 6 participants started in Read Only mode and moved to Draft First within 10&ndash;15 minutes. 2 reached Assisted mode by the end. The trust model worked because users could increase autonomy gradually.</p>
+            <p>4 of 6 participants also used receipts as a lightweight productivity log, reviewing what they had completed at the end of the session.</p>
           </CsBody>
           <details className="cs-details">
             <summary className="cs-details-summary">What I would measure at scale</summary>
             <div className="cs-details-content">
-              <p>If Clawed scaled to thousands of users, the metrics I would track are the ones that matter for a trust-first product &mdash; not engagement vanity metrics, but trust indicators.</p>
-              <p><strong>Safety mode graduation rate:</strong> How quickly do new users move from Read Only to Draft First to Assisted? A healthy product sees steady, voluntary progression. A stalled product means users do not trust the AI enough to give it more autonomy.</p>
-              <p><strong>Revert rate:</strong> How often do users undo or override an AI-executed action? A declining revert rate means the AI is learning user preferences. A flat or rising one means the approval flow is doing its job but the AI is not improving.</p>
-              <p><strong>Receipt review frequency:</strong> How often do users actually look at their receipts? Early testing suggested receipts served a dual purpose (audit + reflection), and tracking this would reveal whether the trust mechanism is also a retention mechanism.</p>
-              <p><strong>Time-to-approval:</strong> How long does a user spend reviewing an AI draft before approving it? Decreasing time-to-approval signals growing trust. Increasing time signals the AI is drafting things the user does not agree with.</p>
+              <p><strong>Safety mode graduation:</strong> do users voluntarily move from Read Only to Draft First to Assisted?</p>
+              <p><strong>Revert rate:</strong> how often do users undo or override an AI action?</p>
+              <p><strong>Receipt review:</strong> do receipts become audit only, or also a reflection habit?</p>
+              <p><strong>Time-to-approval:</strong> do users approve faster as trust increases?</p>
             </div>
           </details>
         </CsSection>
 
         <CsSection id="cs-learnings" label="08 &mdash; Key Learnings" title="What Designing a Safety-First AI Taught Me">
           <CsFeatureGrid features={[
-            { title: 'Constraints compress quality', desc: 'The "3 seconds to ask, 5 seconds to results, 1 tap to approve" constraint forced every interaction to be lean and decisive. Without it, Clawed would have become another general-purpose chat. With it, every screen had a job.' },
-            { title: 'Trust is a design material', desc: 'Receipts, safety modes, and approval workflows are not features bolted on. They are the product. Trust is not the absence of risk, it is the presence of transparency. Users need an AI that shows its work.' },
-            { title: 'Multi-device ≠ responsive', desc: 'Resizing layouts for different screens is solved. Making the same information architecture work across glasses, phone, and desktop, each with fundamentally different interaction models, requires rethinking, not resizing.' },
-            { title: 'Principles > components', desc: 'The five design principles saved more time than any design system component. When a feature violated "Glanceable," we pointed at the principle and moved on. Good principles are operational, not aspirational.' },
+            { title: 'Constraints compress quality', desc: 'The 3-second ask, 5-second result, 1-tap approval rule made every screen choose one job.' },
+            { title: 'Trust is a design material', desc: 'Receipts, safety modes, and approvals are not add-ons. They are how the product earns permission.' },
+            { title: 'Multi-device is not responsive design', desc: 'Glasses, phone, and desktop need shared state but different interaction contracts.' },
+            { title: 'Principles beat extra components', desc: 'The team moved faster when decisions could be tested against safety, glanceability, and traceability.' },
           ]} />
         </CsSection>
 
@@ -311,7 +311,7 @@ export default function ClawedChatPage() {
 
       </main>
 
-      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
+      <NextProject slug="raahi-project" title="Raahi" image="/Portfolio.github.io/Assets/images/raahi.jpg" />
       <Footer />
     </>
   )

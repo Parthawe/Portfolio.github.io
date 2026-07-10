@@ -5,11 +5,10 @@
   .project-main,
   .page-work,
   .page-about,
-  .page-writing,
   .page-graveyard,
   .page-studio,
   .lp-page,
-  .accessibility-page {
+  .a11y-page {
     max-width: 100%;
     overflow-x: clip;
   }
@@ -20,7 +19,7 @@
   .lp-page .wrap,
   .page-work .wrap,
   .page-about .wrap,
-  .page-writing .wrap {
+  .a11y-page .wrap {
     max-width: min(100%, calc(100vw - 2rem));
   }
 
@@ -61,7 +60,7 @@
   .ft-top,
   .ft-main,
   .ft-bottom,
-  .accessibility-hero-grid {
+  .a11y-doc-shell {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
@@ -223,11 +222,6 @@
     .work-kicker,
     .work-library-row__name,
     .work-timeline-support-row__name
-  ),
-  .page-writing :is(
-    .wr-writing-title,
-    .wr-article-page-title,
-    .wr-article-card-title
   ),
   .lp-page :is(
     .lp-hero-title,

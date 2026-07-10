@@ -450,6 +450,128 @@
   border-color: rgba(255, 255, 255, 0.16);
 }
 
+/* ── Category footer annotation: Parth Pawar does ── */
+.lp-parth-does {
+  margin: clamp(4rem, 8vw, 7rem) 0 clamp(1.25rem, 3vw, 2rem);
+}
+
+.lp-parth-card {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(26rem, 43vw, 37rem);
+  border-radius: var(--radius-sm);
+  background: var(--bg-alt);
+}
+
+.lp-parth-body {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.82fr) minmax(24rem, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2rem, 5vw, 4rem) clamp(2rem, 6vw, 5rem) clamp(3.25rem, 6vw, 5rem);
+}
+
+.lp-parth-object {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(14rem, 24vw, 19rem);
+  color: var(--ink-40);
+}
+
+.lp-parth-object > span {
+  position: absolute;
+  top: 0;
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.lp-parth-object > span:first-child {
+  left: 0;
+}
+
+.lp-parth-object > span:nth-child(2) {
+  right: 0;
+}
+
+.lp-parth-object-canvas {
+  width: clamp(10rem, 19vw, 15rem) !important;
+  height: clamp(10rem, 19vw, 15rem) !important;
+}
+
+.lp-parth-copy {
+  min-width: 0;
+}
+
+.lp-parth-copy .wr-about-cycle {
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+.lp-parth-copy .wr-about-desc {
+  max-width: 48rem;
+}
+
+.lp-category-disciplines {
+  margin: 0 0 clamp(4rem, 8vw, 7rem);
+  padding: clamp(1.2rem, 3vw, 2rem) 0;
+}
+
+.lp-category-disciplines-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.2rem);
+}
+
+.lp-category-discipline {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.65rem;
+  min-height: clamp(7.5rem, 12vw, 10rem);
+  color: var(--ink-55);
+  text-align: center;
+  text-decoration: none;
+  transition:
+    color var(--motion-base) var(--motion-ease),
+    transform var(--motion-base) var(--motion-ease),
+    opacity var(--motion-base) var(--motion-ease);
+}
+
+.lp-category-discipline:hover,
+.lp-category-discipline.is-active {
+  color: var(--ink);
+  transform: translate3d(0, -2px, 0);
+}
+
+.lp-category-discipline.is-active::after {
+  content: "";
+  position: absolute;
+  top: clamp(0.5rem, 1vw, 0.85rem);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--lp-accent, var(--select-blue));
+}
+
+.lp-category-discipline-object {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+}
+
+.lp-category-discipline-label {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
 /* Section label */
 .lp-section-label {
   font-family: var(--mono);
@@ -511,6 +633,20 @@
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
+  .lp-parth-body {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    padding: var(--space-6) var(--space-5) var(--space-7);
+  }
+  .lp-parth-object {
+    min-height: 12rem;
+  }
+  .lp-category-disciplines-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .lp-category-discipline {
+    min-height: 7rem;
+  }
   .lp-approach-visual {
     min-height: clamp(20rem, 88vw, 27rem);
     order: -1;
@@ -560,6 +696,16 @@
   .lp-stat { font-size: var(--text-2xs); padding: 0.3rem 0.5rem; }
   .lp-tools { flex-wrap: wrap; gap: 0.35rem; }
   .lp-tool { font-size: var(--text-2xs); padding: 0.25rem 0.5rem; }
+  .lp-parth-card {
+    min-height: auto;
+  }
+  .lp-category-disciplines-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lp-category-discipline-object {
+    width: 58px;
+    height: 58px;
+  }
   .lp-approach-label { font-size: var(--text-sm); }
   .lp-pillar-title { font-size: var(--text-sm); }
   .lp-pillar-desc { font-size: var(--text-xs); }
@@ -584,7 +730,7 @@
 }
 
 .cl-marquee:hover .cl-marquee-track {
-  animation-play-state: paused;
+  animation-play-state: running;
 }
 
 .cl-marquee-track img {
@@ -606,13 +752,32 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cl-marquee-track {
-    animation: none;
-    flex-wrap: wrap;
-    width: auto;
+    animation: cl-marquee-slide 42s linear infinite;
   }
-  .cl-marquee-track img[aria-hidden="true"] {
-    display: none;
+}
+
+@media (max-width: 900px) {
+  .cl-marquee-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
+
+  .cl-marquee-track {
+    gap: 2.1rem;
+    padding-right: 2.1rem;
+    animation: cl-marquee-slide 24s linear infinite;
+  }
+}
+
+html.is-low-power-device .cl-marquee-viewport {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+html.is-low-power-device .cl-marquee-track {
+  animation: cl-marquee-slide 42s linear infinite !important;
+  transform: translateX(0);
+  will-change: transform;
 }
 
 /* Category pages set their own spacing; the marquee reuses .wr-clients

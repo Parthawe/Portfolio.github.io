@@ -300,11 +300,13 @@ export default function HandTracker() {
               const fingersY = (lm[MIDDLE_TIP].y + lm[INDEX_TIP].y) / 2
               const tiltAmount = Math.abs(fingersY - lm[WRIST].y)
               const scrollAmt = tilt * tiltAmount * SCROLL_SPEED * 6
+              const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
+              const nextScroll = Math.min(maxScroll, Math.max(0, window.scrollY + scrollAmt))
               const lenis = (window as unknown as Record<string, { scrollTo: (t: number, o?: Record<string, unknown>) => void }>).__lenis
               if (lenis) {
-                lenis.scrollTo(window.scrollY + scrollAmt, { immediate: true })
+                lenis.scrollTo(nextScroll, { immediate: true })
               } else {
-                window.scrollBy({ top: scrollAmt })
+                window.scrollTo({ top: nextScroll })
               }
             }
             // When level (tilt === 0), cursor movement already handled above

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
@@ -63,6 +64,13 @@ export default function BlackHolePage() {
         {/* Hero */}
         <CsImage src="/Portfolio.github.io/Assets/Projects/black-hole-assets/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
 
+        <section className="cs-slide reveal" id="cs-film">
+          <div className="wrap">
+            <video src="/Portfolio.github.io/Assets/Projects/black-hole-assets/time-dilation.mp4" autoPlay loop muted playsInline
+              style={{ width: '100%', borderRadius: 'var(--radius-lg)' }} />
+          </div>
+        </section>
+
         {/* Overview */}
         <CsSection id="cs-challenge" label="The Challenge" title="Making the Invisible Tangible">
           <CsBody>
@@ -72,6 +80,7 @@ export default function BlackHolePage() {
         </CsSection>
 
         {/* ═══ 01: TIME DILATION ═══ */}
+        <CsExpandPreview>
         <CsSection id="cs-time-trap" label="01 &mdash; Phenomenon" title="The Black Hole&rsquo;s Time Trap">
           <CsBody>
             <p>Near a black hole, gravity stretches spacetime, causing time to slow down dramatically. If you hover just above the event horizon, minutes for you could be years for a distant observer. The closer you get, the slower time moves.</p>
@@ -84,13 +93,6 @@ export default function BlackHolePage() {
             <TimeDilation />
           </div>
         </CsSection>
-
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <video src="/Portfolio.github.io/Assets/Projects/black-hole-assets/time-dilation.mp4" autoPlay loop muted playsInline
-              style={{ width: '100%', borderRadius: 'var(--radius-lg)' }} />
-          </div>
-        </section>
 
         {/* ═══ 02: SPACETIME FABRIC ═══ */}
         <CsSection id="cs-fabric" label="02 &mdash; Phenomenon" title="The Invisible Fabric of the Universe">
@@ -190,7 +192,10 @@ export default function BlackHolePage() {
 
         <CsThanks />
 
+        </CsExpandPreview>
+
         <BottomNav sections={[
+          { id: 'cs-film', label: 'Film' },
           { id: 'cs-challenge', label: 'Overview' },
           { id: 'cs-time-trap', label: 'Time Dilation' },
           { id: 'cs-fabric', label: 'Fabric' },

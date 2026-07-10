@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -84,6 +85,7 @@ export default function RevolvingStagePage() {
 
         {/* Mechanical Design */}
         {/* Interactive — stage rotation */}
+        <CsExpandPreview>
         <CsSection id="cs-rotate" label="Interactive" title="Spin the Stage">
           <CsBody>
             <p>Drag to rotate the 15-foot platform. Four scene zones are painted on the stage &mdash; as it turns, different scenes face the audience. This is how the director used rotation as a narrative tool: one smooth spin = one scene transition, no blackout needed.</p>
@@ -178,7 +180,7 @@ export default function RevolvingStagePage() {
           <CsBody>
             <p>The revolving stage in live performance &mdash; capturing scene transitions, actor interactions, and the dynamic set changes during the theatrical play at Firodia Karandak.</p>
             <p>During the performance, the stage executed over a dozen rotations across seven scene changes, each completed in under fifteen seconds. The backstage crew operated the rotation manually using a concealed push bar, with cue lights coordinated through the stage manager. The silent caster wheels proved essential &mdash; audience members later reported being unaware of the mechanical system beneath the set.</p>
-            <p>The most dramatic moment came during the climactic scene change, where the stage rotated a full 135 degrees while actors remained on the platform, continuing their dialogue as the set changed around them. This technique, borrowed from professional revolving stages used in Broadway and West End productions, was adapted to work within the budget and material constraints of a college-level competition, showing that theatrical ambition can survive college-budget constraints when the mechanism is engineered carefully.</p>
+            <p>The strongest moment was a 135-degree rotation during live dialogue. The set changed around the actors without blackout, proving the mechanism could carry theatrical ambition on a college budget.</p>
           </CsBody>
         </CsSection>
 
@@ -205,11 +207,13 @@ export default function RevolvingStagePage() {
         <CsSection id="cs-reflections" label="Reflections" title="What Building a Stage Taught Me About Design">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>The revolving stage was the project that taught me design is not a visual discipline&mdash;it is a systems discipline. Every aesthetic decision was also a structural decision. The parallax effect I wanted required specific material thicknesses. The scene transitions I designed required specific rotation speeds. The lighting I planned required specific electrical loads. If any one system failed, the whole production failed.</p>
-            <p>Leading 65+ people also taught me that clarity of specification is the most underrated design skill. When I handed a carpenter a drawing with exact dimensions, paint codes, and assembly sequence, the result matched my intent. When I handed them a sketch and said &ldquo;make it look like this,&rdquo; the result required three revisions. Design systems work the same way&mdash;the more precisely you define the rules, the more reliably other people can execute without you.</p>
+            <p>Leading 65+ people taught me that specification is a design skill. Exact dimensions, paint codes, and assembly sequence helped the team execute without constant correction.</p>
           </CsBody>
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-rotate', label: 'Interactive' },

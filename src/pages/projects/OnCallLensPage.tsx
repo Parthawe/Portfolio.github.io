@@ -66,7 +66,7 @@ export default function OnCallLensPage() {
 
         <CsSection id="cs-context" label="Context" title="On-Call Is Broken">
           <CsBody>
-            <p>Every engineer who has carried a pager knows the feeling. The alert arrives at the worst possible time. You are asleep, at dinner, on a train. You open your laptop, SSH into a production box or pull up a dashboard, and begin the slow process of reconstructing what happened. Context switching from life to incident response takes minutes. Understanding the error takes longer. Writing a fix &mdash; if you even have the right codebase cloned &mdash; takes longer still.</p>
+                <p>Every on-call engineer knows the feeling: an alert arrives at the worst possible time, and the first minutes are spent rebuilding context. OnCall Lens asks what happens if triage, AI patching, and approval can start from a glance.</p>
             <p>The tools have improved. Sentry surfaces rich stack traces, PagerDuty routes alerts intelligently, Slack threads keep context. But the fundamental loop has not changed: a human gets woken up, opens a computer, reads a wall of text, and manually writes a patch. The human is the bottleneck at every step.</p>
           </CsBody>
           <CsImage src="/Portfolio.github.io/Assets/images/oncall-lens/glasses-detail.png" alt="Close-up of smart glasses lens used for OnCall Lens" />

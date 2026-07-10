@@ -171,7 +171,6 @@ export const PLAYBOOK_VALUES: PlaybookValue[] = [
     projects: [
       { label: 'Flow Fields', to: '/flow-fields' },
       { label: 'Enigma', to: '/enigma' },
-      { label: 'Writing', to: '/writing' },
     ],
     points: [
       {

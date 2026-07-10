@@ -1,9 +1,10 @@
 import { lazy, Suspense, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import FigmaSelect from '../FigmaSelect'
 import { useDeferredMount } from '../../hooks/useDeferredMount'
 import { getProject } from '../../data/projects'
+import { isLowPowerDevice } from '../../utils/performance'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
@@ -68,6 +69,7 @@ export default function ProjectHeader({
 }: ProjectHeaderProps) {
   const location = useLocation()
   const heroRef = useRef<HTMLDivElement>(null)
+  const reduceMotion = Boolean(useReducedMotion()) || isLowPowerDevice()
   const canShowOrnament =
     Boolean(categorySlug) &&
     (typeof window === 'undefined' ? false : window.matchMedia('(min-width: 769px)').matches)
@@ -78,8 +80,8 @@ export default function ProjectHeader({
   const resolvedHeroImage =
     heroImage ||
     project?.access?.publicPreviewImage ||
-    project?.summaryImage ||
     project?.cover16x9 ||   // wide cover suits the 16:9 hero better than the 4:5 card
+    project?.summaryImage ||
     project?.cardMockup ||
     project?.cardMockupSource ||
     project?.image
@@ -112,6 +114,7 @@ export default function ProjectHeader({
   })
   const heroY = useTransform(scrollYProgress, [0, 1], ['-3%', '3%'])
   const heroScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1, 1.02])
+  const heroMotionStyle = reduceMotion ? undefined : { y: heroY, scale: heroScale }
   const proofStats = (headerSummary?.stats ?? []).slice(0, 4)
   // One editorial narrative instead of two boxed grids: the fast-read summary
   // wins when present; the storyline arc is the fallback. Never both — they
@@ -209,7 +212,7 @@ export default function ProjectHeader({
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
-                  style={{ y: heroY, scale: heroScale }}
+                  style={heroMotionStyle}
                 />
               </div>
             )}
@@ -281,7 +284,7 @@ export default function ProjectHeader({
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
-                style={{ y: heroY, scale: heroScale }}
+                style={heroMotionStyle}
               />
             </div>
             <div className="proj-hero-caption">

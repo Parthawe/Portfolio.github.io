@@ -13,10 +13,10 @@ export default function VishwaConclavePage() {
     <>
       <Helmet>
         <title>VishwaConclave &middot; Parth Pawar</title>
-        <meta name="description" content="Creative direction, branding, and web design for VishwaConclave, one of India's first truly multidisciplinary student-centric conferences. From Junior Designer to Creative Director over three years." />
+        <meta name="description" content="Creative direction, branding, and web design for VishwaConclave, a multidisciplinary student-led conference. From Junior Designer to Creative Director over three years." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VishwaConclave · Parth Pawar" />
-        <meta property="og:description" content="Creative direction, branding, and web design for India's first multidisciplinary student conference." />
+        <meta property="og:description" content="Creative direction, branding, and web design for a multidisciplinary student-led conference." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" />
       </Helmet>
 
@@ -30,7 +30,7 @@ export default function VishwaConclavePage() {
           backLabel="Back to Work"
           tags={['Brand', 'Creative Direction', 'Web Design']}
           title="VishwaConclave"
-          subtitle="From junior designer to creative director &mdash; building the visual identity for India&rsquo;s first multidisciplinary student conference over three years"
+          subtitle="From junior designer to creative director &mdash; building the visual identity for a multidisciplinary student-led conference over three years"
           info={[
             { label: 'Duration', value: 'Dec 2019 – May 2021' },
             { label: 'Role', value: 'Creative Director' },
@@ -39,7 +39,7 @@ export default function VishwaConclavePage() {
         />
 
         {/* Hero image */}
-        <section className="cs-slide reveal">
+        <section className="cs-slide cs-slide--top-half reveal">
           <div className="wrap">
             <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" alt="VishwaConclave brand identity overview showing event posters across three years" loading="eager" />
           </div>
@@ -48,7 +48,7 @@ export default function VishwaConclavePage() {
         {/* Overview */}
         <CsSection id="cs-overview" label="Overview" title="Strategy Before Style">
           <CsBody>
-            <p>VishwaConclave is amongst India&rsquo;s first truly multidisciplinary student-centric conferences, organized by the students of Vishwakarma Institute of Technology, Pune. The conference emphasizes curating an inspirational dialogue from exemplary orators who have excelled in domains centered on nation-building, along with facilitating their interaction with the student community.</p>
+            <p>VishwaConclave is a multidisciplinary student-led conference organized by students at Vishwakarma Institute of Technology, Pune. The event brings speakers from different fields into conversation with the student community, so the design system had to make each theme feel distinct while still belonging to one larger platform.</p>
             <p>I joined as a Junior Designer in December 2019. Over the course of three years and five events, my responsibilities expanded to Creative Director &mdash; leading Marketing, Social Media, Aesthetics, Design, and Website. What started as executing speaker cards turned into owning the entire visual identity across campaigns, merchandise, recruitment, video production, and web experiences.</p>
           </CsBody>
         </CsSection>
@@ -104,8 +104,8 @@ export default function VishwaConclavePage() {
         {/* Growth */}
         <CsSection id="cs-growth" label="03 &mdash; Growth" title="Junior Designer to Creative Director">
           <CsBody>
-            <p>The VishwaConclave experience inspired me to stand out by conducting inspiring speaker-moderated sessions, which built my interest in joining and eventually leading the team. I was inspired by the insightful speakers who moderated sessions during the events &mdash; the ideologies presented were thought-provoking, and I wanted to collaborate with the highly driven and meticulous team to learn from them.</p>
-            <p>Starting as a Junior Designer, over three years my responsibilities expanded to being in charge of Marketing, Social Media, Aesthetics, Design, and Website. The progression from executing individual assets to directing an entire creative team taught me that design leadership is less about making things look good and more about building systems that empower others to make things look good consistently.</p>
+            <p>I started by making individual assets, then gradually took responsibility for the system around them: campaign direction, social media, event aesthetics, design operations, and the website. The shift was not just more output; it was learning how to make a team move with one visual language.</p>
+            <p>That progression taught me that design leadership is less about making every artifact personally and more about building a clear system that lets other people create consistently.</p>
           </CsBody>
         </CsSection>
 
@@ -127,7 +127,7 @@ export default function VishwaConclavePage() {
 
       </main>
 
-      <NextProject slug="healthapp" title="Health App" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
+      <NextProject slug="mentra" title="Mentra" image="/Portfolio.github.io/Assets/mockups/projects/mentra_16x9.webp" />
       <Footer />
     </>
   )

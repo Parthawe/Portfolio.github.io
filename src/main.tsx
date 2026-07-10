@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App'
 import './styles/globals.css'
+import { applyPerformanceModeClass, isLowPowerDevice, prefersReducedMotion } from './utils/performance'
+
+applyPerformanceModeClass()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,7 +23,9 @@ type IdleCapableWindow = Window & {
 }
 
 function shouldUseLenis() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+  if (prefersReducedMotion()) return false
+  if (isLowPowerDevice()) return false
+  if (window.innerWidth < 1181) return false
   if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return false
   return true
 }
@@ -32,14 +37,29 @@ function startLenis() {
     if (!shouldUseLenis()) return
 
     const lenis = new Lenis({
-      duration: 0.8,
+      duration: 0.58,
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
-      touchMultiplier: 1.5,
-      wheelMultiplier: 1,
+      touchMultiplier: 1.15,
+      wheelMultiplier: 0.9,
+      overscroll: false,
     })
+
+    const scrollLimit = () =>
+      Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
+    let maxScroll = scrollLimit()
+    const updateScrollLimit = () => {
+      maxScroll = scrollLimit()
+    }
+    const resizeObserver =
+      typeof ResizeObserver !== 'undefined' ? new ResizeObserver(updateScrollLimit) : null
+    resizeObserver?.observe(document.documentElement)
+    window.addEventListener('resize', updateScrollLimit, { passive: true })
 
     function raf(time: number) {
       lenis.raf(time)
+      if (window.scrollY > maxScroll + 2) {
+        lenis.scrollTo(maxScroll, { immediate: true })
+      }
       requestAnimationFrame(raf)
     }
     requestAnimationFrame(raf)

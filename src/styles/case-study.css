@@ -825,12 +825,23 @@
   border-color: transparent;
   background: transparent;
   backdrop-filter: none;
+  padding: 0;
+  border-radius: 0;
 }
 
 .proj-info-row--visual {
   margin-top: 1rem;
   gap: clamp(1rem, 2vw, 1.5rem);
   padding-top: 1.1rem;
+}
+
+.proj-info-row--visual .proj-info-item {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
 }
 
 @media (max-width: 900px) {
@@ -1438,6 +1449,43 @@
     color-mix(in srgb, var(--surface) 94%, transparent);
 }
 
+.cs-media-spotlight-grid--stacked {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  gap: clamp(1rem, 2.4vw, 1.6rem);
+}
+
+.cs-media-spotlight-grid--stacked .cs-media-spotlight-copy {
+  grid-template-columns: minmax(10rem, 0.36fr) minmax(0, 1fr);
+  gap: 0.65rem clamp(1rem, 3vw, 2rem);
+  align-items: end;
+  padding: clamp(0.65rem, 1.5vw, 1rem) clamp(0.7rem, 1.7vw, 1.15rem) 0;
+}
+
+.cs-media-spotlight-grid--stacked .cs-media-spotlight-label {
+  grid-column: 1 / -1;
+}
+
+.cs-media-spotlight-grid--stacked .cs-media-spotlight-title {
+  max-width: 12ch;
+  font-size: clamp(2.2rem, 4.8vw, 4.25rem);
+}
+
+.cs-media-spotlight-grid--stacked .cs-media-spotlight-copy p {
+  max-width: 54ch;
+  align-self: center;
+}
+
+.cs-media-spotlight-grid--stacked .cs-media-spotlight-meta {
+  grid-column: 2;
+}
+
+.cs-media-spotlight-grid--stacked .cs-media-spotlight-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: clamp(20rem, 56vw, 42rem);
+}
+
 .cs-media-spotlight-copy {
   display: grid;
   align-content: center;
@@ -1870,6 +1918,7 @@
   min-width: 0;
   display: grid;
   gap: 1.4rem;
+  container-type: inline-size;
 }
 .cs-section-label {
   letter-spacing: var(--ls-widest);
@@ -2117,14 +2166,20 @@
 .cs-nda-reviewer-grid {
   display: grid;
   grid-template-columns: minmax(0, min(100%, 58rem));
-  gap: clamp(1.25rem, 2.5vw, 2rem);
+  gap: clamp(0.85rem, 1.7vw, 1.25rem);
   align-items: start;
   justify-content: start;
 }
 
 .cs-nda-reviewer-grid--tall {
-  grid-template-columns: minmax(0, min(100%, 44rem));
+  grid-template-columns: minmax(0, min(100%, 48rem));
   justify-content: start;
+}
+
+.cs-nda-reviewer-carousel {
+  display: grid;
+  gap: clamp(0.85rem, 1.6vw, 1.15rem);
+  width: 100%;
 }
 
 .cs-nda-reviewer-shot {
@@ -2134,6 +2189,15 @@
   border: 1px solid var(--ink-08);
   border-radius: var(--case-shell-radius, var(--radius));
   background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.cs-nda-reviewer-shot--active {
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--project-color, var(--ink)) 20%, transparent), transparent 58%),
+    color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow:
+    0 1.6rem 4rem rgba(0, 0, 0, 0.22),
+    inset 0 0 0 1px color-mix(in srgb, var(--project-color, var(--ink)) 12%, transparent);
 }
 
 .cs-nda-reviewer-shot img {
@@ -2146,10 +2210,77 @@
   background: var(--surface);
 }
 
-.cs-nda-reviewer-shot--tall img {
-  aspect-ratio: 1 / 4;
-  object-fit: contain;
+.cs-nda-reviewer-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4.75rem, 1fr));
+  gap: clamp(0.45rem, 1vw, 0.7rem);
+  max-width: min(100%, 58rem);
+}
+
+.cs-nda-reviewer-thumb {
+  appearance: none;
+  min-width: 0;
+  padding: 0.25rem;
+  border: 1px solid var(--ink-08);
+  border-radius: calc(var(--case-shell-radius, var(--radius)) - 3px);
+  background: color-mix(in srgb, var(--surface) 74%, transparent);
+  cursor: pointer;
+  opacity: 0.52;
+  transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.cs-nda-reviewer-thumb:hover,
+.cs-nda-reviewer-thumb.is-active {
+  opacity: 1;
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--project-color, var(--ink)) 42%, var(--ink-10));
+  background: color-mix(in srgb, var(--surface) 90%, var(--project-color, var(--ink)) 10%);
+}
+
+.cs-nda-reviewer-thumb:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--project-color, var(--ink)) 78%, white);
+  outline-offset: 3px;
+}
+
+.cs-nda-reviewer-thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
   object-position: top;
+  border-radius: calc(var(--case-shell-radius, var(--radius)) - 7px);
+}
+
+.cs-nda-reviewer-shot--landing {
+  max-width: min(100%, 46rem);
+}
+
+.cs-nda-reviewer-landing-crop {
+  position: relative;
+  max-height: clamp(28rem, 64vh, 42rem);
+  overflow: hidden;
+  border-radius: calc(var(--case-shell-radius, var(--radius)) - 4px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 34%),
+    var(--surface);
+}
+
+.cs-nda-reviewer-landing-crop::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--case-bg, #0f0f10) 92%, transparent));
+}
+
+.cs-nda-reviewer-landing-crop img {
+  width: 100%;
+  height: auto;
+  min-height: 36rem;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .transfi-reviewer-story {
@@ -2584,6 +2715,59 @@
   height: var(--case-image-max-height);
   object-fit: contain;
 }
+.cs-img-full--vj-board {
+  width: min(72rem, calc(100vw - 24rem));
+  max-width: none;
+  margin-left: 50%;
+  margin-right: 0;
+  padding: 0;
+  transform: translateX(-50%);
+}
+.cs-img-full--vj-board img {
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+}
+.cs-healthapp-board-list {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+.cs-img-full--healthapp-board {
+  width: min(76rem, calc(100vw - 22rem));
+  max-width: none;
+  margin-left: 50%;
+  margin-right: 0;
+  padding: 0;
+  transform: translateX(-50%);
+}
+.cs-img-full--healthapp-board img {
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+  background: color-mix(in srgb, var(--project-color, var(--accent)) 18%, var(--surface));
+}
+.cs-img-full--healthapp-board .cs-img-caption {
+  margin-top: 0.75rem;
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--ink-55);
+}
+.cs-img-full--point-board {
+  width: min(80rem, calc(100vw - 18rem));
+  max-width: none;
+  margin-left: 50%;
+  margin-right: 0;
+  padding: 0;
+  transform: translateX(-50%);
+}
+.cs-img-full--point-board img {
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+}
 .cs-img-full:hover img {
   box-shadow: none;
   transform: none;
@@ -2659,6 +2843,15 @@
   height: auto;
   display: block;
   border-radius: var(--radius-lg);
+}
+.cs-slide--top-half .wrap {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+.cs-slide--top-half img {
+  height: clamp(22rem, 54vw, 40rem);
+  object-fit: cover;
+  object-position: center top;
 }
 .cs-slide--contained {
   max-width: 1100px;
@@ -2957,22 +3150,25 @@
   color: var(--ink-70);
 }
 
-/* Features share the same ruled-list ritual, numbered by counter. */
+/* Features are compact learning notes, numbered without card framing. */
 .cs-feature-grid {
   display: grid;
   gap: 0;
-  margin: 2.5rem 0;
+  margin: 2.25rem 0;
   border-top: 1px solid var(--ink-08);
   counter-reset: feature-counter;
 }
 .cs-feature-card {
   counter-increment: feature-counter;
   display: grid;
-  grid-template-columns: minmax(2.25rem, 3.5rem) minmax(9rem, 15rem) minmax(0, 1fr);
-  gap: 0.45rem 2rem;
-  align-items: baseline;
-  padding: 1.15rem 0;
+  grid-template-columns: minmax(2.25rem, 3.25rem) minmax(0, 1fr);
+  gap: 0.35rem 1.35rem;
+  align-items: start;
+  max-width: 46rem;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--ink-08);
+  background: transparent;
+  box-shadow: none;
   position: relative;
 }
 .cs-feature-card::before {
@@ -2984,18 +3180,123 @@
   color: color-mix(in srgb, var(--project-color, var(--ink)) 78%, var(--ink-40));
 }
 .cs-feature-card-title {
-  font-family: var(--serif-read);
-  font-size: var(--text-lg);
-  font-weight: 400;
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  font-weight: 600;
   color: var(--ink);
-  line-height: 1.3;
+  line-height: 1.35;
 }
 .cs-feature-card-desc {
   font-family: var(--sans);
   font-size: var(--text-sm);
-  line-height: 1.65;
-  max-width: 58ch;
+  line-height: 1.58;
+  grid-column: 2;
+  max-width: 54ch;
   color: var(--ink-70);
+}
+
+.cs-feature-grid--plain {
+  gap: 1.15rem;
+  margin: 2rem 0;
+  border-top: 0;
+}
+
+.cs-feature-grid--plain .cs-feature-card {
+  max-width: 44rem;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.cs-feature-grid--plain .cs-feature-card-title {
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.cs-feature-grid--plain .cs-feature-card-desc {
+  max-width: 44ch;
+}
+
+.point-research-list .cs-feature-grid {
+  max-width: min(100%, 58rem);
+  border: 1px solid var(--ink-08);
+}
+
+.point-research-list .cs-feature-card {
+  max-width: none;
+  padding: clamp(1.25rem, 2.4vw, 1.85rem) clamp(1.25rem, 3vw, 2rem);
+}
+
+.point-research-list .cs-feature-card:last-child {
+  border-bottom: 0;
+}
+
+.point-research-list .cs-feature-card-title {
+  max-width: 34ch;
+}
+
+.cs-section-title--wide {
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+@container (max-width: 740px) {
+  .cs-feature-card {
+    max-width: none;
+    padding: 1rem 0;
+  }
+
+  .cs-feature-card-desc {
+    max-width: 52ch;
+  }
+}
+
+@container (max-width: 520px) {
+  .cs-feature-card {
+    grid-template-columns: minmax(1.85rem, 2.25rem) minmax(0, 1fr);
+    gap: 0.2rem 0.75rem;
+  }
+
+  .cs-feature-card-desc {
+    grid-column: 2;
+  }
+}
+
+.stage-rotation {
+  width: min(100%, 40rem);
+  margin: 1.25rem 0 0;
+}
+
+.stage-rotation__viewport {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: min(40rem, 70vh);
+  overflow: hidden;
+  border: 1px solid var(--ink-06);
+  border-radius: var(--radius-lg);
+  touch-action: none;
+}
+
+.stage-rotation__hint {
+  padding: 0.45rem 0 0;
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--ls-wide);
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--ink-35);
+}
+
+@media (max-width: 640px) {
+  .stage-rotation {
+    width: 100%;
+  }
+
+  .stage-rotation__viewport {
+    max-height: 78vw;
+  }
 }
 
 /* Process flow pills */
@@ -4159,13 +4460,16 @@
   border-left: 3.5px solid transparent;
   border-right: 3.5px solid transparent;
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .cs-flow-track--horizontal {
     flex-direction: column;
     align-items: stretch;
+    overflow-x: visible;
   }
   .cs-flow-track--horizontal .cs-flow-item {
     flex-direction: column;
+    width: 100%;
+    min-width: 0;
   }
   .cs-flow-track--horizontal .cs-flow-line--horizontal {
     width: 1px;
@@ -4183,6 +4487,8 @@
     border-bottom: none;
   }
   .cs-flow-node {
+    width: 100%;
+    min-width: 0;
     max-width: none;
   }
 }
@@ -4309,7 +4615,9 @@
     grid-template-columns: 1fr;
   }
   .cs-nda-reviewer-gallery {
+    width: calc(100% + 3rem);
     gap: 2.5rem;
+    margin-left: -1.5rem;
   }
   .cs-nda-reviewer-grid,
   .cs-nda-reviewer-grid--tall {
@@ -4325,6 +4633,15 @@
   .cs-media-spotlight-grid {
     grid-template-columns: 1fr;
     display: grid;
+  }
+  .cs-media-spotlight-grid--stacked .cs-media-spotlight-copy {
+    grid-template-columns: 1fr;
+  }
+  .cs-media-spotlight-grid--stacked .cs-media-spotlight-meta {
+    grid-column: auto;
+  }
+  .cs-media-spotlight-grid--stacked .cs-media-spotlight-frame {
+    min-height: clamp(16rem, 58vw, 30rem);
   }
   .cs-media-spotlight-title {
     max-width: 12ch;
@@ -4388,6 +4705,10 @@
     padding-left: 2rem;
     padding-right: 2rem;
   }
+  .cs-nda-reviewer-gallery {
+    width: calc(100% + 4rem);
+    margin-left: -2rem;
+  }
   .cs-nda-story-title {
     font-size: clamp(2.1rem, 11vw, 3.1rem);
   }
@@ -4431,6 +4752,10 @@
   .project-header.wrap {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .cs-nda-reviewer-gallery {
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
   }
 
   .proj-tags,
@@ -4721,11 +5046,11 @@
 .project-main .cs-media:has(iframe),
 .project-main .cs-slide:has(video),
 .project-main .cs-media:has(video) {
-  aspect-ratio: 16 / 9;
-  padding: 0 !important;
+  aspect-ratio: auto;
+  padding: clamp(0.75rem, 1.8vw, 1.4rem) !important;
   border: 1px solid var(--ink-08);
   border-radius: var(--case-media-radius);
-  background: var(--bg-alt);
+  background: color-mix(in srgb, var(--bg-alt) 92%, var(--ink-04));
   box-shadow: none;
   overflow: hidden;
 }
@@ -4733,9 +5058,13 @@
 .project-main .cs-slide:has(iframe) > div,
 .project-main .cs-media:has(iframe) > div {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   padding: 0 !important;
   position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--case-media-radius) - 0.45rem);
+  background: var(--ink);
 }
 
 .project-main .cs-slide:has(iframe) iframe,
@@ -4743,6 +5072,22 @@
   position: absolute !important;
   inset: 0 !important;
   height: 100% !important;
+}
+
+.project-main .cs-slide:has(video) video,
+.project-main .cs-media:has(video) video {
+  border-radius: calc(var(--case-media-radius) - 0.45rem);
+}
+
+@media (min-width: 1024px) {
+  body.case-side-nav .project-main :is(.cs-slide:has(iframe), .cs-media:has(iframe), .cs-slide:has(video), .cs-media:has(video)) {
+    width: min(
+      calc(100vw - clamp(16rem, 20vw, 19rem) - clamp(4rem, 7vw, 7rem)),
+      72rem
+    );
+    margin-left: clamp(1.5rem, 4.5vw, 5rem);
+    margin-right: calc(clamp(13rem, 15vw, 15rem) + clamp(2rem, 4vw, 4rem));
+  }
 }
 
 .project-main .cs-caption {
@@ -4812,6 +5157,17 @@
 @media (max-width: 900px) {
   .project-main {
     --case-section-space: 3.75rem;
+  }
+
+  .project-main .cs-img-full--vj-board,
+  .project-main .cs-img-full--healthapp-board,
+  .project-main .cs-img-full--point-board {
+    width: 100%;
+    max-width: var(--w);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--pad);
+    transform: none;
   }
 
   .project-main .proj-hero-system,
@@ -4903,6 +5259,19 @@
     max-width: none;
     padding-left: 1rem;
     padding-right: 1rem;
+    overflow-x: clip;
+  }
+
+  .project-main :is(.cs-section-content, .cs-body, .cs-body p, .cs-section-subtitle, .cs-compare-table-wrap, .cs-compare-table-scroll) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .project-main .cs-compare-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .project-main .proj-info-row,

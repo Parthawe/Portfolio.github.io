@@ -159,15 +159,10 @@ export default function StageRotation() {
   }, [rotation])
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="stage-rotation">
       <div
-        style={{
-          width: '100%', aspectRatio: '4 / 3',
-          borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-          border: '1px solid var(--ink-06)',
-          cursor: dragging.current ? 'grabbing' : 'grab',
-          touchAction: 'none',
-        }}
+        className="stage-rotation__viewport"
+        style={{ cursor: dragging.current ? 'grabbing' : 'grab' }}
         onPointerDown={e => {
           dragging.current = true
           lastAngle.current = getAngle(e)
@@ -191,12 +186,7 @@ export default function StageRotation() {
       >
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', pointerEvents: 'none' }} />
       </div>
-      <div style={{
-        textAlign: 'center', padding: '6px 0',
-        fontFamily: 'var(--mono)', fontSize: 7,
-        color: 'var(--ink-15)', textTransform: 'uppercase',
-        letterSpacing: '0.08em',
-      }}>
+      <div className="stage-rotation__hint">
         Drag to rotate the stage
       </div>
     </div>

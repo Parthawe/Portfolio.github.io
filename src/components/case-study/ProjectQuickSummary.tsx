@@ -138,7 +138,7 @@ export default function ProjectQuickSummary({
             <div className="cs-quick-summary-bridge-copy">
               <span className="cs-quick-summary-bridge-kicker">Protected detail</span>
               <p>
-                The public glimpse keeps the sensitive work out of the static build. Use the access panel below to
+                The public preview keeps the sensitive work out of the static build. Use the access panel below to
                 request or unlock the deeper review.
               </p>
             </div>

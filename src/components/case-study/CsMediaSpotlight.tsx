@@ -7,6 +7,7 @@ interface CsMediaSpotlightProps {
   title: string
   lede: string
   actionLabel?: string
+  layout?: 'split' | 'stacked'
   meta?: string[]
   children: ReactNode
 }
@@ -17,6 +18,7 @@ export default function CsMediaSpotlight({
   title,
   lede,
   actionLabel = 'Open media',
+  layout = 'split',
   meta = [],
   children,
 }: CsMediaSpotlightProps) {
@@ -29,7 +31,7 @@ export default function CsMediaSpotlight({
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="wrap cs-media-spotlight-grid">
+      <div className={`wrap cs-media-spotlight-grid cs-media-spotlight-grid--${layout}`}>
         <div className="cs-media-spotlight-copy">
           <span className="cs-media-spotlight-label">{label}</span>
           <h2 className="cs-media-spotlight-title">{title}</h2>

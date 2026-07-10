@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -16,11 +17,11 @@ export default function ShufflePage() {
     <>
       <Helmet>
         <title>Shuffle &middot; Parth Pawar</title>
-        <meta name="description" content="Shuffle, an interactive installation proposing a strategy simulation of student life at ITP, built with Arduino and motorised fader potentiometers." />
+        <meta name="description" content="A motorized-fader installation where student-life priorities push against each other in real time." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Shuffle · Parth Pawar" />
-        <meta property="og:description" content="Interactive installation proposing a strategy simulation of student life at ITP." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/shuffle.jpg" />
+        <meta property="og:description" content="A physical simulator for the trade-offs of student life." />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -33,22 +34,12 @@ export default function ShufflePage() {
           backLabel="Back to Work"
           tags={['Creative Technology', 'Physical Computing', 'Installation']}
           title="Shuffle"
-          subtitle="Interactive installation proposing a strategy simulation of student life at ITP"
+          subtitle="A motorized-fader board where every student-life priority has a cost"
           info={[
                 { label: 'Year', value: '2023' },
-            { label: 'Role', value: 'Creator' },
+            { label: 'Role', value: 'Interaction designer + fabricator' },
           ]}
         />
-
-        {/* Product photos */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
 
         <CsMediaSpotlight
           id="cs-film"
@@ -64,6 +55,16 @@ export default function ShufflePage() {
             title="Shuffle"
           />
         </CsMediaSpotlight>
+
+        {/* Product photos */}
+        <section className="cs-section reveal">
+          <div className="wrap">
+            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
+            </div>
+          </div>
+        </section>
 
         {/* Interactive demo */}
         <CsSection id="cs-interactive" label="Interactive" title="Redistribute Your Time">
@@ -94,6 +95,7 @@ export default function ShufflePage() {
         </section>
 
         {/* Concept */}
+        <CsExpandPreview>
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Physical Redistribution of Time">
           <CsBody>
             <p>The board invites you to redistribute your time across the pressures of student life at ITP&mdash;class, finals, sleep, food, social life, energy, job, hobby. Each fader is a share of a finite week. Push one up and the others have to give something back, forcing trade-offs that are normally invisible.</p>
@@ -162,6 +164,8 @@ export default function ShufflePage() {
 
         <CsThanks />
 
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-film', label: 'Film' },
           { id: 'cs-interactive', label: 'Interactive' },
@@ -172,7 +176,7 @@ export default function ShufflePage() {
 
       </main>
 
-      <NextProject slug="enigma" title="Enigma" image="/Portfolio.github.io/Assets/images/enigma.jpg" />
+      <NextProject slug="the-omakase" title="The Omakase" image="/Portfolio.github.io/Assets/images/the-omakase.jpg" />
       <Footer />
     </>
   )

@@ -49,7 +49,7 @@ import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site'
 
 /* ── Data ── */
 
-type Row = { date: string; role: string; co?: string; desc?: string; link?: string; section?: string }
+type Row = { date?: string; role: string; co?: string; desc?: string; link?: string; section?: string }
 
 const rows: Row[] = [
   { section: 'Work Experience', date: 'Q3 2025 - Present', role: 'Head of UI/UX', co: 'Mentra', link: '/mentra', desc: 'AI wearable OS, companion app, MiniApp Store, and launch systems.' },
@@ -59,8 +59,12 @@ const rows: Row[] = [
   { date: '2022 - 2023', role: 'Lead Product Designer', co: 'TransFi', link: '/transfi-project', desc: 'Cross-border crypto payments, dashboards, widgets, and trust flows.' },
   { date: '2021 - 2022', role: 'UI/UX Designer', co: 'Monsoonfish', desc: 'Mobile and web UX for product studio clients.' },
   { date: '2020 - 2021', role: 'Research Intern', co: 'IBM', link: '/ibm', desc: 'Enterprise UX research and workflow synthesis.' },
-  { section: 'Education', date: '2022 - 2024', role: 'MPS, Interactive Telecommunications Program', co: 'NYU Tisch School of the Arts', desc: 'New York.' },
-  { date: '2018 - 2022', role: 'BE, Computer Science Engineering', co: 'Vishwakarma Institute of Technology', desc: 'Pune.' },
+  { section: 'Teaching Experience', date: 'Fall 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Classes: Applications.' },
+  { date: 'Fall 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Classes: Physical Computing.' },
+  { date: 'Spring 2024', role: 'Graduate Assistant', co: 'NYU', desc: 'Classes: Interaction as Art Medium.' },
+  { date: 'Fall 2023', role: 'Graduate Assistant', co: 'NYU', desc: 'Classes: 100 Days of Making.' },
+  { section: 'Education', role: 'MPS, Interactive Telecommunications Program', co: 'NYU Tisch School of the Arts', desc: 'New York.' },
+  { role: 'BE, Computer Science Engineering', co: 'Vishwakarma Institute of Technology', desc: 'Pune.' },
 ]
 
 const recognitionGroups = [
@@ -81,18 +85,15 @@ const recognitionGroups = [
       'WonderVille NYC',
     ],
   },
-  {
-    label: 'Classes',
-    items: [
-      'Applications',
-      'Designing for Messy Humans',
-      'The New Arcade',
-      'Bio Art',
-      'Canvas for Coders',
-      'Storytelling',
-    ],
-  },
 ]
+
+const recognitionRows: Row[] = recognitionGroups.flatMap((group) =>
+  group.items.map((item, index) => ({
+    section: index === 0 ? group.label : undefined,
+    role: item,
+    co: group.label,
+  })),
+)
 
 const offClockImages = [
   {
@@ -349,12 +350,12 @@ export default function AboutPage() {
                           </td>
                         </tr>
                       )}
-                      <tr className="abt-table-row">
-                        <td className="abt-table-date">{r.date}</td>
-                        <td className="abt-table-main" data-co={r.co || ''}>
-                          <span className="abt-table-role">
-                            {r.link ? <Link to={r.link}>{r.role}</Link> : r.role}
-                          </span>
+                <tr className={`abt-table-row${!r.date ? ' abt-table-row--no-date' : ''}`}>
+                  {r.date && <td className="abt-table-date">{r.date}</td>}
+                  <td className="abt-table-main" data-co={r.co || ''} colSpan={r.date ? undefined : 2}>
+                    <span className="abt-table-role">
+                      {r.link ? <Link to={r.link}>{r.role}</Link> : r.role}
+                    </span>
                           {r.co && <span className="abt-table-co-inline">{r.co}</span>}
                           {r.desc && <span className="abt-table-desc">{r.desc}</span>}
                         </td>
@@ -366,23 +367,33 @@ export default function AboutPage() {
               </table>
             </section>
 
-            <section className="abt-recognition reveal" aria-labelledby="abt-recognition-title">
-              <div className="abt-recognition-head">
-                <span className="sec-label">Awards / Classes / Recognition</span>
-                <h2 id="abt-recognition-title">Proof beyond the job title</h2>
-              </div>
-              <div className="abt-recognition-grid">
-                {recognitionGroups.map((group) => (
-                  <article className="abt-recognition-card" key={group.label}>
-                    <h3>{group.label}</h3>
-                    <ul>
-                      {group.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </article>
-                ))}
-              </div>
+        <section className="abt-recognition reveal" aria-labelledby="abt-recognition-title">
+          <div className="abt-recognition-head">
+            <span className="sec-label">Awards / Recognition</span>
+            <h2 id="abt-recognition-title">Proof beyond the job title</h2>
+          </div>
+              <table className="abt-table abt-recognition-table">
+                <tbody>
+                  {recognitionRows.map((r, i) => (
+                    <Fragment key={`${r.co}-${r.role}-${i}`}>
+                      {r.section && (
+                        <tr className="abt-table-section">
+                          <td colSpan={3}>
+                            <span className="abt-table-section-label">{r.section}</span>
+                          </td>
+                        </tr>
+                      )}
+                      <tr className="abt-table-row">
+                        <td className="abt-table-date">{r.section || ''}</td>
+                        <td className="abt-table-main">
+                          <span className="abt-table-role">{r.role}</span>
+                        </td>
+                        <td className="abt-table-co">{r.co}</td>
+                      </tr>
+                    </Fragment>
+                  ))}
+                </tbody>
+              </table>
             </section>
 
             {/* ── Vibe coding / software stack ── */}
@@ -457,7 +468,7 @@ export default function AboutPage() {
                 <div className="abt-beyond-copy">
                   <span className="sec-label">Off the clock</span>
                   <h2 id="abt-beyond-title" className="abt-beyond-title"><em>What</em> I enjoy</h2>
-                  <p className="abt-beyond-text">When I'm not pushing pixels or writing shaders, you'll find me in the Mission hunting pour-overs, elbow-deep in a keyboard build that was supposed to take &ldquo;one weekend,&rdquo; or flipping through vinyl crates looking for something I've never heard.</p>
+                  <p className="abt-beyond-text">When I am not designing, I am usually building something just because I love it: a side project, a sketch, a painting, a small sculpture, or a meal that turns into a whole evening. I also like getting outside for treks and hikes whenever the city starts feeling too flat.</p>
                 </div>
                 <motion.div
                   className="abt-image-asides"

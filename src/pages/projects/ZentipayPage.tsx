@@ -98,7 +98,7 @@ export default function ZentipayPage() {
     <>
       <Helmet>
         <title>ZentiPay &middot; Parth Pawar</title>
-        <meta name="description" content="ZentiPay, access-limited public glimpse of a trust-first fintech super app for cross-border transfers." />
+        <meta name="description" content="ZentiPay, access-limited public preview of a trust-first fintech super app for cross-border transfers." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Trust-first fintech super app for cross-border transfer flows." />
@@ -153,7 +153,7 @@ export default function ZentipayPage() {
         <NdaPublicStory
           slug="zentipay"
           headline="Trust before transfer."
-          lede="A public-safe look at the trust system: price clarity, progress states, review moments, and reusable fintech components."
+          lede="A focused preview of the trust system: price clarity, progress states, review moments, and reusable fintech components."
           visuals={ZENTIPAY_PUBLIC_VISUALS}
         />
 
@@ -194,7 +194,7 @@ export default function ZentipayPage() {
 
       </main>
 
-      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp" />
+      <NextProject slug="executivelens" title="ExecutiveLens" image="/Portfolio.github.io/Assets/images/executivelens.webp" />
       <Footer />
     </>
   )

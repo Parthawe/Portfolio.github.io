@@ -10,6 +10,60 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const BALLAH_SITE = '/Portfolio.github.io/Assets/Projects/BallahCode/site'
+
+const siteScreens = [
+  {
+    src: `${BALLAH_SITE}/ballah-home-hero.png`,
+    alt: 'Ballah Code landing page hero with the headline about AI tools forgetting context.',
+    caption: 'Launch page hero: lead with the pain, then show the product.',
+  },
+  {
+    src: `${BALLAH_SITE}/ballah-product-window.png`,
+    alt: 'Ballah Code product window showing an architect agent completing a validation task.',
+    caption: 'Product proof: agent work, files, status, terminal, and metrics in one flow.',
+  },
+  {
+    src: `${BALLAH_SITE}/ballah-problem.png`,
+    alt: 'Ballah Code problem section explaining one branch, one chat, one thing at a time.',
+    caption: 'Problem framing: AI coding tools lose context when work gets parallel.',
+  },
+  {
+    src: `${BALLAH_SITE}/ballah-delegation.png`,
+    alt: 'Ballah Code section explaining delegation with a workspace card.',
+    caption: 'Core value: delegation that keeps running while the developer moves on.',
+  },
+  {
+    src: `${BALLAH_SITE}/ballah-flow.png`,
+    alt: 'Ballah Code three step parallel flow section: describe, delegate, ship.',
+    caption: 'How it works: a short three-step model instead of a dense feature tour.',
+  },
+  {
+    src: `${BALLAH_SITE}/ballah-pillars.png`,
+    alt: 'Ballah Code core pillars section showing context memory and independent delegation.',
+    caption: 'Pillars: remember context, delegate independently, stay in flow.',
+  },
+  {
+    src: `${BALLAH_SITE}/ballah-comparison.png`,
+    alt: 'Ballah Code comparison table against Cursor and Windsurf.',
+    caption: 'Positioning: not another chat wrapper.',
+  },
+  {
+    src: `${BALLAH_SITE}/ballah-tools.png`,
+    alt: 'Ballah Code developer tools page with cards for token counter, model comparison, and formatters.',
+    caption: 'Utility surface: free tools that support the developer audience.',
+  },
+]
+
+const shotStyle: React.CSSProperties = {
+  borderRadius: '10px',
+  border: '1px solid rgba(255,255,255,0.12)',
+  width: '100%',
+  height: 'auto',
+  display: 'block',
+  boxShadow: '0 24px 80px rgba(0,0,0,0.26)',
+}
+
 export default function BallahCodePage() {
   return (
     <>
@@ -46,13 +100,13 @@ export default function BallahCodePage() {
         {/* 01, Overview */}
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="A Development Environment That Treats AI as a Senior Engineer">
           <CsBody>
-            <p>Ballah Code is a native desktop development environment that treats AI as a trusted senior engineer architect &mdash; not a disposable chatbot. The AI plans, writes specifications, delegates to workers, reviews output, and maintains decision records. Core philosophy: context is sacred, documents are first-class, and your time is spent on decisions, not management.</p>
+            <p>Ballah Code is a native desktop development environment that treats AI as a senior engineering partner, not a disposable chatbot. The product centers context, explicit tools, reviewable actions, and decision records so developers stay in control.</p>
           </CsBody>
 
           <div className="cs-slide reveal">
-            <img src="/Portfolio.github.io/Assets/images/ballah-code-site.png" alt="Ballah Code landing page: 'Your AI tools keep forgetting what you said' headline above the editor showing an Architect agent delegating a validation task" loading="lazy" decoding="async" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
+            <img src={siteScreens[0].src} alt={siteScreens[0].alt} loading="lazy" decoding="async" style={shotStyle} />
           </div>
-          <p className="cs-caption">The launch page leads with the pain, not the product &mdash; then shows the Architect delegating real work</p>
+          <p className="cs-caption">{siteScreens[0].caption}</p>
         </CsSection>
 
         {/* 02, The Problem */}
@@ -60,6 +114,14 @@ export default function BallahCodePage() {
           <CsBody>
             <p>Existing AI coding tools treat context as disposable and AI as replaceable. Every conversation starts from zero. There&rsquo;s no persistent memory of why decisions were made, no living documents that evolve with the codebase, and no structured delegation between architect-level thinking and implementation-level execution.</p>
           </CsBody>
+          <div className="cs-img-grid reveal">
+            {[siteScreens[2], siteScreens[6]].map((screen) => (
+              <figure className="cs-img-tile" key={screen.src}>
+                <img src={screen.src} alt={screen.alt} loading="lazy" decoding="async" style={shotStyle} />
+                <figcaption>{screen.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
         </CsSection>
 
         {/* 03, Design Decisions */}
@@ -67,12 +129,17 @@ export default function BallahCodePage() {
           <CsBody>
             <p>The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. Every interaction is designed to keep the developer in flow state while giving the AI full context.</p>
           </CsBody>
+          <div className="cs-slide reveal">
+            <img src={siteScreens[1].src} alt={siteScreens[1].alt} loading="lazy" decoding="async" style={shotStyle} />
+          </div>
+          <p className="cs-caption">{siteScreens[1].caption}</p>
         </CsSection>
 
         {/* 04, Technical Architecture */}
         <CsSection id="cs-architecture" label="04 &mdash; Technical Architecture" title="Native Performance, Minimal Footprint">
           <CsBody>
-            <p>Under the hood is a two-process architecture: a Bun backend handling AI calls, file system operations, and tool execution, connected to a React frontend in a native WebKit webview via typed RPC. Built with Electrobun for tiny ~14MB bundles and native performance. Features 17 production-ready AI tools (read, write, search, execute, diagnose, screenshot), a custom agentic loop using direct Anthropic Messages API streaming (not framework abstractions), prompt caching for long contexts, and workspace multiplexing for parallel workstreams. The standalone @ballah/agent package can run in CLI, desktop, or any frontend.</p>
+            <p>Under the hood is a Bun backend for AI calls, file operations, and tools, connected to a React frontend in a native WebKit webview via typed RPC.</p>
+            <p>The product model supports tool-based AI actions, streaming responses, long-context workflows, workspace switching, and an inspectable handoff between human and agent work.</p>
           </CsBody>
         </CsSection>
 
@@ -83,18 +150,30 @@ export default function BallahCodePage() {
             { title: 'Integrated Terminal', desc: 'PTY session management with full terminal emulation. The AI can execute commands, and you can see everything it does in real time.' },
             { title: 'Cost Tracking & Model Flexibility', desc: 'Real-time progress indicators and cost tracking per conversation. Switch between Claude, Gemini, and OpenAI on a per-chat basis.' },
           ]} />
+          <div className="cs-img-grid reveal">
+            {[siteScreens[3], siteScreens[4], siteScreens[5]].map((screen) => (
+              <figure className="cs-img-tile" key={screen.src}>
+                <img src={screen.src} alt={screen.alt} loading="lazy" decoding="async" style={shotStyle} />
+                <figcaption>{screen.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
         </CsSection>
 
         {/* 06, Results & Status */}
         <CsSection id="cs-results" label="06 &mdash; Results &amp; Status" title="Functional Core, Ambitious Roadmap">
           <CsBody>
-            <p>Core desktop app is functional with all 17 tools operational, streaming AI agent loop, terminal integration, and settings persistence. The project includes an evaluation harness benchmarking against SWE-PolyBench. Living documents, architect/worker delegation, and decision ledger are in the roadmap.</p>
+            <p>The core desktop experience is functional: multi-workspace UI, terminal integration, streaming agent loop, tool execution, settings persistence, and an evaluation harness. Living documents, architect/worker delegation, and a decision ledger remain the next product layer.</p>
           </CsBody>
 
           <CsFeatureGrid features={[
-            { title: 'Shipped', desc: '17 AI tools, streaming agent loop, multi-workspace UI, terminal integration, settings persistence, evaluation harness.' },
+            { title: 'Working core', desc: 'Multi-workspace UI, terminal integration, streaming agent loop, settings persistence, and evaluation harness.' },
             { title: 'On the Roadmap', desc: 'Living documents, architect/worker delegation, decision ledger, and expanded benchmark coverage.' },
           ]} />
+          <div className="cs-slide reveal">
+            <img src={siteScreens[7].src} alt={siteScreens[7].alt} loading="lazy" decoding="async" style={shotStyle} />
+          </div>
+          <p className="cs-caption">{siteScreens[7].caption}</p>
         </CsSection>
 
         {/* Credits */}
@@ -125,7 +204,7 @@ export default function BallahCodePage() {
 
       </main>
 
-      <NextProject slug="code-for-build" title="Code for Build" image="/Portfolio.github.io/Assets/images/code-for-build.jpg" />
+      <NextProject slug="vj-software" title="VJ Parivar" image="/Portfolio.github.io/Assets/mockups/projects/vj-software_16x9.webp" />
       <Footer />
     </>
   )

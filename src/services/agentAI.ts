@@ -126,7 +126,6 @@ const STARTER_CHIPS: Record<string, string[]> = {
   '/': ['Tour this page', 'Open Mentra', 'Start with flagship work', 'Best research process'],
   '/work': ['Index view', 'Arc view', 'Start with flagship work', 'Best research process'],
   '/about': ['Tour this page', 'Role fit', 'Tell me about Mentra', 'Contact'],
-  '/writing': ['Tour this page', 'Best article', 'Design philosophy', 'About Parth'],
   '/playbook': ['Tour this page', 'Design philosophy', 'Best research process', 'About Parth'],
 }
 
@@ -607,12 +606,6 @@ const STATIC_TOURS: Record<string, TourStep[]> = {
     { text: 'The strip rolls all eight so you can scan them fast. Below, each value gets its own section with the two concrete behaviors behind it.', scrollTo: '.pb-strip', delay: 320 },
     { text: 'Empathy and accessibility lead for a reason, that thread runs from Raahi\'s transit work to the 18px minimum text on Mentra\'s glasses.', scrollTo: '#empathy', delay: 350 },
     { text: 'If you want proof instead of principles, ask me how any value shows up in a real project and I\'ll take you to the case study.', scrollTo: '.pb-cta', delay: 0 },
-  ],
-  '/writing': [
-    { text: 'This is where the thinking behind the projects gets unpacked. Every article comes from a real design decision, not theory.', scrollTo: '.wr-writing-header', delay: 300 },
-    { text: 'Start with the featured one at the top. **Designing for Glance, Not Gaze** is about what happens when every phone UI convention breaks on smart glasses. It is the most concrete piece about the Mentra work.', scrollTo: '.wr-article-featured', delay: 350 },
-    { text: 'If you care about research, read **Trust Beats Speed**. The ZentiPay fee-anxiety story. The finding that users preferred a *slower* confirmation because instant felt sketchy. That one surprises people.', scrollTo: '.wr-article-grid', delay: 350 },
-    { text: 'The rest range from AI trust architecture to why writing poetry makes you better at button labels. Each one is 3-5 minutes. Pick whatever sounds interesting, or ask me which one matters most for what you care about.', scrollTo: '.wr-article-grid', delay: 0 },
   ],
 }
 

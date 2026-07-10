@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
@@ -41,9 +42,9 @@ export default function RaahiPage() {
           title="Raahi"
           subtitle="A service system for Pune transit across app, kiosk, and in-vehicle guidance"
           info={[
-            { label: 'Client', value: 'Pune Transportation' },
-            { label: 'Scope', value: 'Service Design' },
-            { label: 'Role', value: 'User Researcher \u00b7 UI Designer' },
+            { label: 'Domain', value: 'Pune Public Transit' },
+            { label: 'Scope', value: 'App, kiosk, in-vehicle guidance' },
+            { label: 'Role', value: 'Research + UI design' },
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2022' },
           ]}
@@ -57,24 +58,25 @@ export default function RaahiPage() {
           <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">Raahi began with a clear problem: Pune public transport was fragmented, intimidating, and especially hostile to riders who were not already fluent in the system. Instead of treating buses, kiosks, and in-vehicle displays as separate products, we treated the commute as one service. The concept connects route planning, ticketing, live guidance, and physical touchpoints so the rider spends less effort decoding the system and more effort getting where they need to go.</span>
+              <span className="cs-label-row-val">Pune transit felt fragmented across routes, stops, tickets, and vehicle information. Raahi treats the commute as one service, connecting route planning, ticketing, live guidance, kiosks, and in-vehicle displays so riders spend less effort decoding the system.</span>
             </div>
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">I worked with one fellow designer from research through final concept. My lane covered field research, service insights, brand identity, and the interface layer that translated those findings into a usable transit experience.</span>
+              <span className="cs-label-row-val">I worked with one fellow designer from research through final concept, focusing on field research, service insights, brand identity, and UI systems.</span>
             </div>
 
           </div>
         </section>
 
+        <CsExpandPreview>
         {/* Research */}
         <section className="cs-section reveal" id="cs-research">
           <div className="wrap">
             <span className="cs-section-label">Research</span>
             <h2 className="cs-display">Understanding Users</h2>
             <CsBody>
-              <p>I carried out extensive user research involving quantitative/qualitative and primary/secondary research methods. We mapped what riders actually needed from the service -- and what was going unfulfilled -- before defining a single feature.</p>
+              <p>We mapped the commute before designing features: what riders needed, where information broke, and which touchpoints had to work together for the service to feel reliable.</p>
             </CsBody>
             <div className="cs-tags">
               <span className="cs-tag-item">Data Analysis</span>
@@ -126,7 +128,7 @@ export default function RaahiPage() {
             <span className="cs-section-label">Design System</span>
             <h2 className="cs-section-title">Project Styleguide</h2>
             <CsBody>
-              <p>A comprehensive color system was built around transport modes -- each mode (cab, bus, walk, bike-share, local, cycle, auto, metro) received its own distinct color pair for instant recognition. The typography scale ranges from 50px ExtraBold headings down to 10px labels.</p>
+              <p>The color system maps directly to transport modes: cab, bus, walk, bike-share, local, cycle, auto, and metro. Each mode gets a distinct pair so route changes are readable at a glance.</p>
             </CsBody>
             <CsImage
               src={raahiAsset('raahi-system-strip.webp')}
@@ -147,8 +149,8 @@ export default function RaahiPage() {
             <span className="cs-section-label">Visual Design</span>
             <h2 className="cs-section-title">Nomenclature &amp; Logo</h2>
             <CsBody>
-              <p>&ldquo;Raahi&rdquo; means traveller -- a good companion on the road -- and Pune&rsquo;s riders read in more than one script. So the wordmark was tested across Devanagari, Bengali, Gujarati, Kannada, Telugu, Tamil, Malayalam, and Urdu before anything else was designed.</p>
-              <p>The logo grew out of pencil sketches reducing the system to its parts: a dot for a person, a connection for places. Those dot-and-link forms became the identity&rsquo;s pattern language across the app and kiosks.</p>
+              <p>&ldquo;Raahi&rdquo; means traveller: a companion on the road. Because riders read across languages and scripts, the wordmark was tested before the UI system was locked.</p>
+              <p>The mark reduces the service to a person and a connection. That dot-and-line logic became the identity language across app and kiosk surfaces.</p>
             </CsBody>
             <CsImage
               src={raahiAsset('raahi-nomenclature.webp')}
@@ -174,9 +176,9 @@ export default function RaahiPage() {
         <section className="cs-section reveal" id="cs-features">
           <div className="wrap">
             <span className="cs-section-label">Features</span>
-            <h2 className="cs-display">Cohesive Homepage That Highlights Preferences &amp; Insights</h2>
+            <h2 className="cs-display">A Home Screen Built Around Familiar Routes</h2>
             <CsBody style={{ marginBottom: '2rem' }}>
-              <p>The homepage shows the user an overview of their saved addresses, preferred modes of transport and insights on their commute trends. It also gives them easy access to buy tickets and one day passes.</p>
+              <p>The homepage centers saved addresses, preferred modes, commute insights, tickets, and day passes so repeat riders do not rebuild the same trip every time.</p>
             </CsBody>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src={raahiAsset('raahi-homepage.webp')} alt="Raahi home screen showing saved addresses, transport modes, and recent commute context" loading="lazy" decoding="async" /></div>
@@ -188,10 +190,9 @@ export default function RaahiPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Customisation Options to Personalise Commute</h2>
+            <h2 className="cs-display">Personalisation Without Extra Work</h2>
             <CsBody>
-              <p>Users often prefer to use their personal vehicles because it gives them the personal touch of familiarity. They can think of or ask their drivers to take them to a friend&rsquo;s house, or their aunt&rsquo;s house and they&rsquo;d know where to drop them.</p>
-              <p>These personalisation features aim to bring in a similar familiarity when users use the app -- saving frequent addresses, choosing preferred transport modes, and setting up commute preferences.</p>
+              <p>Public transit loses people when every trip feels like a fresh puzzle. Saved places, preferred modes, and commute preferences make the app feel closer to how riders already talk about getting around.</p>
             </CsBody>
             <CsImage
               src={raahiAsset('raahi-frequent-addresses.webp')}
@@ -219,10 +220,9 @@ export default function RaahiPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Detailed, Precise and Real-time Guidance Throughout the Commute</h2>
+            <h2 className="cs-display">Live Guidance Across the Commute</h2>
             <CsBody>
-              <p>Users found the lack of intermodal connectivity annoying and daunting. Through the en-route guidance, the app shows them exact locations and times of their modes, be it for walking, cycling, or transit buses and local trains.</p>
-              <p>This gives them full transparency and information about where they&rsquo;re headed, and the pace of their journey.</p>
+              <p>The route flow shows what to take, where to change, how long each leg takes, and what is happening next, so the rider can trust the journey while it is unfolding.</p>
             </CsBody>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src={raahiAsset('route list.png')} alt="Route list comparing commute options and public transit modes" loading="lazy" decoding="async" /></div>
@@ -234,10 +234,9 @@ export default function RaahiPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Easy Access to Real-time Information Through Kiosks and In-vehicle Monitors</h2>
+            <h2 className="cs-display">Kiosk and In-Vehicle Guidance</h2>
             <CsBody>
-              <p>The kiosks can be placed at every stop so that users have real-time information while they wait. It also facilitates payment of tickets and knowing the routes or buses to take.</p>
-              <p>The in-vehicle monitor shows the status of the bus route and gives clear information as to the next stop and when they&rsquo;d be arriving there.</p>
+              <p>Kiosks bring route, ticket, and timetable support to the stop. In-vehicle displays keep riders oriented once they are already moving.</p>
             </CsBody>
             <div className="cs-img-pair">
               <div className="cs-img reveal">
@@ -271,12 +270,12 @@ export default function RaahiPage() {
             <span className="cs-section-label">Results &amp; Impact</span>
             <h2 className="cs-section-title">What the Design Aims For</h2>
             <CsFeatureGrid features={[
-              { title: 'Designed to Reduce Cognitive Load', desc: 'The planning flow was designed so a first-time rider can plan a multi-modal route in under two minutes. Color-coded transport modes remove the confusion of switching between bus, metro, and auto-rickshaw legs.' },
-              { title: 'Multilingual by Design', desc: 'The multi-script nomenclature system and the three-language kiosk were designed so that riders who are not fluent Marathi speakers can navigate the service with confidence, making it feel inclusive rather than exclusionary.' },
+              { title: 'Lower cognitive load', desc: 'Route planning, ticketing, and live guidance sit in one flow instead of scattered decisions.' },
+              { title: 'Multilingual by design', desc: 'The naming, script study, and three-language kiosk make language part of the service design, not a late translation layer.' },
             ]} />
             <CsStatGrid style={{ marginTop: '2.5rem' }} stats={[
               { label: 'Planning Flow Target', value: '<2 min' },
-              { label: 'Transport Modes Integrated', value: '8' },
+              { label: 'Transport Modes Represented', value: '8' },
               { label: 'Languages Supported', value: '3' },
             ]} />
           </div>
@@ -301,6 +300,8 @@ export default function RaahiPage() {
           </div>
         </section>
 
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-research', label: 'Research' },
           { id: 'cs-system', label: 'Design System' },
@@ -313,7 +314,7 @@ export default function RaahiPage() {
 
       </main>
 
-        <NextProject slug="the-point-cdc" title="The Point CDC" image="/Portfolio.github.io/Assets/images/the-point-cdc.webp" />
+        <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" />
       <Footer />
     </>
   )

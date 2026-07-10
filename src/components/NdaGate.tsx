@@ -131,9 +131,9 @@ export default function NdaGate({
       <div className="nda-inline-inner">
         <div className="nda-inline-left">
           <div className="nda-inline-text">
-            <h2 className="nda-inline-title">Reviewer access</h2>
+            <h2 className="nda-inline-title">Full case study access</h2>
             <p className="nda-inline-desc">
-              Public pages show the safe story. Use a reviewer code or request access for deeper screens and project notes.
+              Enter the reviewer code to unlock the deeper page in this browser, or send a short access request.
             </p>
             <a
               className="nda-inline-contact"
@@ -149,7 +149,7 @@ export default function NdaGate({
             <div className="nda-panel-head">
               <div>
                 <span className="nda-panel-kicker">Have a code</span>
-                <strong>Enter reviewer code</strong>
+                <strong>Unlock the full case study</strong>
               </div>
             </div>
             <label className="nda-field">
@@ -164,7 +164,7 @@ export default function NdaGate({
               />
             </label>
             <button type="submit" className="nda-request-submit nda-request-submit--secondary">
-              Unlock review
+              Unlock case study
             </button>
             {codeMessage ? (
               <p className="nda-inline-confirmation">{codeMessage}</p>

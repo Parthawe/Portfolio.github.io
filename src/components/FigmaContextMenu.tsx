@@ -117,7 +117,6 @@ export default function FigmaContextMenu() {
     { label: 'Home', shortcut: '\u23181', action: () => go('/') },
     { label: 'Work', shortcut: '\u23182', action: () => go('/work') },
     { label: 'About', shortcut: '\u23183', action: () => go('/about') },
-    { label: 'Writing', shortcut: '\u23184', action: () => go('/writing') },
     { label: 'divider', divider: true },
     { label: 'Zoom In', shortcut: '\u2318+', action: () => { dispatchZoomShortcut('='); close() } },
     { label: 'Zoom Out', shortcut: '\u2318\u2212', action: () => { dispatchZoomShortcut('-'); close() } },

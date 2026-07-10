@@ -258,9 +258,11 @@ export default function GenerativeCanvas() {
       <div
         style={{
           width: '100%', aspectRatio: '16 / 10',
+          maxHeight: 'min(34rem, 68vh)',
           borderRadius: 'var(--radius-lg)', overflow: 'hidden',
           border: '1px solid rgba(255,255,255,0.04)',
           cursor: 'crosshair', touchAction: 'none', position: 'relative',
+          contain: 'layout paint size',
         }}
         onPointerMove={handlePointer}
         onPointerDown={handlePointer}

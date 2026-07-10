@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -46,35 +47,36 @@ export default function TedxPage() {
           <div className="proj-overview-grid">
             <div className="proj-overview-body">
               <h2 className="section-label">The Challenge</h2>
-              <p className="proj-desc">TEDxVITPune is one of Pune&rsquo;s longest-running TEDx events, bringing together speakers, performers, and an audience of 800+ for a single day of ideas worth spreading. For the 2019 edition, the organizing committee wanted something the event had never attempted: a stage that was not just a backdrop, but a spatial system that changed with the program and reinforced the event&rsquo;s theme visually. The brief was open-ended and the budget was tight. Everything had to be designed, built, and installed by students within eight weeks.</p>
+              <p className="proj-desc">TEDxVITPune needed a stage that felt alive, not a static backdrop. The ask was ambitious: design, build, light, and install a spatial stage system for 800+ attendees in eight weeks, with a student team and a tight budget.</p>
             </div>
             <div className="proj-overview-body">
               <h2 className="section-label">My Role</h2>
-              <p className="proj-desc">Art Director &mdash; Aesthetic Head of TEDxVITPune. Responsible for brand identity, stage concept, structural design, fabrication oversight, lighting design, and team coordination across 65+ volunteers in design, fabrication, logistics, and on-site assembly.</p>
+              <p className="proj-desc">I led the visual system, stage concept, fabrication direction, lighting design, and on-site assembly across 65+ volunteers.</p>
             </div>
           </div>
         </div>
 
         {/* Brand Identity */}
+        <CsExpandPreview>
         <section className="cs-section reveal" id="cs-brand">
           <div className="wrap">
             <p className="cs-section-label">02 &mdash; Brand Identity</p>
             <h2 className="cs-section-title">Visual System</h2>
             <CsBody style={{ maxWidth: '720px' }}>
-              <p>The visual identity for TEDxVITPune 2019 needed to honor the established TEDx brand guidelines while carving out a distinct personality for this edition. I developed a cohesive system that extended from digital collateral to the physical stage itself.</p>
+              <p>The identity had to follow TEDx rules while giving this edition its own presence. I built one system that carried from digital collateral to the physical stage.</p>
             </CsBody>
 
             <div className="cs-adaptive-text-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '2rem', marginTop: '2.5rem' }}>
               <div>
                 <p className="cs-section-label" style={{ marginBottom: '0.5rem' }}>Color Palette</p>
                 <CsBody>
-                  <p>Built around the signature TEDx red, the palette was extended with deep navy (#080B1E) and warm neutrals. The dark tones gave the brand a cinematic quality that translated directly to stage lighting&mdash;every digital design choice was made with the physical space in mind.</p>
+                  <p>TEDx red stayed central. Deep navy and warm neutrals gave the event a cinematic tone that translated directly into stage lighting.</p>
                 </CsBody>
               </div>
               <div>
                 <p className="cs-section-label" style={{ marginBottom: '0.5rem' }}>Typography</p>
                 <CsBody>
-                  <p>Bold, geometric type for headlines paired with a clean sans-serif for body text. The typographic hierarchy was designed to work across print banners, projected slides, and stage signage&mdash;maintaining legibility at scales from phone screens to 12-foot backdrops.</p>
+                  <p>Bold geometric headlines paired with clean body type, built to stay legible from phone screens to 12-foot backdrops.</p>
                 </CsBody>
               </div>
             </div>
@@ -84,9 +86,8 @@ export default function TedxPage() {
         {/* Stage Design */}
         <CsSection id="cs-stage" label="03 &mdash; Stage Design" title="Parallax Cityscape">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p>The stage concept was a layered parallax cityscape&mdash;multiple planes of building silhouettes at varying depths that created an illusion of spatial depth when lit from behind. As speakers moved across the stage, the relationship between the layers shifted, making the backdrop feel alive rather than static.</p>
-            <p>The design went through several iterations with the organizing committee. Early sketches explored abstract geometric forms, but a recognizable urban skyline won out&mdash;it read instantly from the back rows and framed speakers better on camera.</p>
-            <p>The final stage was built as clusters of box columns at varying heights and depths, arranged in receding rows so the skyline shifted against itself as speakers moved across the stage. Lit in blues against the red TEDx lettering, and mounted around a fully functional rotating stage, the composition produced the parallax effect from every seat in the auditorium.</p>
+            <p>The stage became a layered cityscape: box columns at different heights and depths, lit from behind so the skyline shifted as speakers moved.</p>
+            <p>The recognizable skyline won over abstract forms because it read clearly from the back rows, framed speakers on camera, and made the rotating stage feel intentional.</p>
           </CsBody>
         </CsSection>
 
@@ -102,20 +103,18 @@ export default function TedxPage() {
         {/* Team Leadership */}
         <CsSection id="cs-team" label="04 &mdash; Team Leadership" title="Coordinating 65+ People">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p>This was not a project I could build alone. As Art Director, I led a team of 65+ volunteers&mdash;most of whom had never worked on a production of this scale. The team was organized into three functional groups: Design (visual identity, signage, digital collateral), Fabrication (structural construction, material sourcing, painting), and Logistics (venue coordination, equipment rental, day-of setup).</p>
-            <p>I ran weekly all-hands meetings and daily standups with group leads during the final two weeks. The biggest leadership challenge was maintaining design quality across dozens of hands. I created detailed visual guides and templates for every fabrication task&mdash;specifying exact paint mixes, cut dimensions, and assembly sequences&mdash;so that volunteers with no design training could execute at the standard the event required.</p>
-            <p>Delegation was essential, but so was knowing when to step in. I personally oversaw every critical juncture: the first structural test of the rotating mechanism, the lighting programming, and the final 48-hour install marathon before the event.</p>
+            <p>I split the 65+ person team into design, fabrication, and logistics groups, then gave each group clear templates, dimensions, paint specs, and assembly guides.</p>
+            <p>The system let volunteers move quickly without waiting for approval, while I stayed close to the high-risk moments: structure tests, lighting programming, and the final 48-hour install.</p>
           </CsBody>
         </CsSection>
 
         {/* Process */}
         <CsSection id="cs-process" label="05 &mdash; Process" title="Eight Weeks, Concept to Curtain">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p><strong>Weeks 1&ndash;2: Concept &amp; Brand.</strong> Developed the parallax cityscape concept and complete brand identity system. Presented three stage directions to the organizing committee; the parallax approach was selected unanimously.</p>
-            <p><strong>Weeks 3&ndash;4: Structural Design.</strong> Translated the stage concept into engineering drawings. Worked with local fabricators to source materials and validate structural feasibility. Built a 1:10 scale model to test sightlines and lighting angles from every section of the auditorium.</p>
-            <p><strong>Weeks 5&ndash;6: Fabrication.</strong> Full-scale construction began. Columns were built from lightweight sheet materials over simple frames&mdash;cheap, fast to cut, and light enough for students to move and re-stack. The rotating stage platform was assembled and tested for smooth, silent rotation while the column clusters were painted and finished. The team worked in shifts across two workshops.</p>
-            <p><strong>Week 7: Lighting &amp; Integration.</strong> Programmable LED strips were wired behind each parallax layer. Lighting scenes were programmed to match the event&rsquo;s session structure&mdash;warm tones for talks, cooler tones for performances, dynamic color shifts for transitions. The rotating mechanism was integrated with the lighting controller for synchronized reveals.</p>
-            <p><strong>Week 8: Install &amp; Event Day.</strong> The entire stage was transported and assembled in the venue over 48 hours. Final lighting calibration, sound checks, and a full technical rehearsal. On event day, I directed all visual elements live&mdash;stage rotations, lighting cues, and backdrop changes&mdash;so the 800+ attendees saw each visual change land on cue.</p>
+            <p><strong>Weeks 1&ndash;2:</strong> lock concept, brand direction, and stage language.</p>
+            <p><strong>Weeks 3&ndash;4:</strong> translate the stage into drawings, material tests, and a scale model for sightlines.</p>
+            <p><strong>Weeks 5&ndash;7:</strong> build column clusters, test rotation, paint finishes, and program lighting scenes.</p>
+            <p><strong>Week 8:</strong> transport, assemble, rehearse, and direct the stage visuals live on event day.</p>
           </CsBody>
         </CsSection>
 
@@ -131,11 +130,12 @@ export default function TedxPage() {
         {/* Reflections */}
         <CsSection id="cs-reflections" label="06 &mdash; Reflections" title="What Leading This Taught Me">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p>TEDxVITPune was the first time I was responsible for both the creative vision and the operational execution of a large-scale production. Two lessons stayed with me.</p>
-            <p>First, design systems are leadership tools. The visual guides and templates I created were not just about consistency&mdash;they were about giving 65 people the confidence to act without waiting for my approval. When the system is clear, people move faster and make better decisions on their own.</p>
-            <p>Second, the gap between a concept and a built thing is where most projects fail. Ideas are cheap; execution at scale is what matters. Managing material constraints, volunteer fatigue, venue restrictions, and a hard deadline taught me more about design than any studio course. The stage worked because every aesthetic decision was also a structural decision, a budget decision, and a logistics decision. That integration&mdash;thinking across domains simultaneously&mdash;is what I now consider the core skill of design leadership.</p>
+            <p>TEDxVITPune taught me that design systems are leadership tools. Clear guides helped 65 people make aligned decisions without slowing the build down.</p>
+            <p>The stage worked because every visual choice also had to be structural, affordable, movable, and installable. That is the design lesson I still carry.</p>
           </CsBody>
         </CsSection>
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

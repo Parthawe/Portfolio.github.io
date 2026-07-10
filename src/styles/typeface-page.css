@@ -1,3 +1,30 @@
+@font-face {
+  font-family: 'Butlers Slice';
+  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff2") format('woff2'),
+       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-UltraLight.woff") format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Butlers Slice';
+  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff2") format('woff2'),
+       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice.woff") format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Butlers Slice';
+  src: url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff2") format('woff2'),
+       url("/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice/Butler's_Slice-Bold.woff") format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 .typeface-page {
   --project-color: oklch(0.56 0.19 252);
   --tf-bg: oklch(0.975 0.006 85);
@@ -5,6 +32,7 @@
   --tf-panel-strong: oklch(0.185 0.012 260);
   --tf-line: oklch(0.82 0.012 85 / 0.72);
   --tf-muted: oklch(0.48 0.015 260);
+  --tf-slice: 'Butlers Slice', 'General Sans', serif;
   background: var(--tf-bg);
   color: var(--ink);
 }
@@ -96,7 +124,7 @@
 }
 
 .tf-hero h1 {
-  font-family: var(--display-heading);
+  font-family: var(--tf-slice);
   font-size: clamp(4.5rem, 11.5vw, 13rem);
   font-weight: 400;
   line-height: 0.9;
@@ -267,7 +295,7 @@
 .tf-tool-intro h2,
 .tf-download-section h2 {
   max-width: 13ch;
-  font-family: var(--display-heading);
+  font-family: var(--tf-slice);
   font-size: clamp(3.2rem, 9vw, 10rem);
   font-weight: 400;
   line-height: 0.86;
@@ -424,6 +452,7 @@
 }
 
 .tf-weight-row strong {
+  font-family: var(--tf-slice);
   color: var(--ink);
   font-size: clamp(3rem, 7vw, 7rem);
   line-height: 0.85;
@@ -467,6 +496,7 @@
 }
 
 .tf-glyph-row span {
+  font-family: var(--tf-slice);
   min-height: clamp(3.2rem, 5vw, 5.5rem);
   display: grid;
   place-items: center;
@@ -516,6 +546,16 @@
   border-color: var(--ink-08);
   border-radius: 8px;
   background-color: var(--tf-panel);
+}
+
+.typeface-page .gp-input,
+.typeface-page .gp-preview-text,
+.typeface-page .gp-glyph-large,
+.typeface-page .gp-alphabet-char,
+.typeface-page .ge-char-input,
+.typeface-page .ge-info-char,
+.typeface-page .ge-char-btn {
+  font-family: var(--tf-slice);
 }
 
 .typeface-page .ge-canvas-wrap {
@@ -718,6 +758,20 @@ body.site-tools-open .typeface-page .tf-image-grid {
   .tf-specimen-word {
     padding-inline: 0.85rem;
     letter-spacing: -0.015em;
+    font-size: clamp(3.7rem, 22vw, 6.6rem);
+  }
+
+  .typeface-page .gp-preview {
+    overflow-x: hidden;
+  }
+
+  .typeface-page .gp-preview-text {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .typeface-page .ge-char-btn {
+    flex-basis: calc(100% / 8);
   }
 }
 

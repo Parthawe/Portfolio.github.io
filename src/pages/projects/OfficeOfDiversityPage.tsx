@@ -19,7 +19,7 @@ export default function OfficeOfDiversityPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Office of Diversity · Parth Pawar" />
         <meta property="og:description" content="Interactive IDBEA report for NYU Tisch, focused on accessible structure, data clarity, and responsive publishing." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/office-of-diversity.webp" />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/office-of-diversity_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -97,7 +97,7 @@ export default function OfficeOfDiversityPage() {
         ]} />
       </main>
 
-      <NextProject slug="clawed-chat" title="Clawed" image="/Portfolio.github.io/Assets/images/clawed.webp" />
+      <NextProject slug="jugalbandi" title="Jugalbandi" image="/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp" />
       <Footer />
     </>
   )

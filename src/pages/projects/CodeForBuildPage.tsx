@@ -80,11 +80,14 @@ export default function CodeForBuildPage() {
         </CsSection>
 
         <CsSection id="cs-learning" label="Learning" title="What I Learned">
-          <CsFeatureGrid features={[
-            { title: 'Metaphors need limits', desc: 'Blocks made layout approachable, but the interface had to avoid showing too many layers at once.' },
-            { title: 'Education is pacing', desc: 'The learner needs one clear next concept, not a wall of features or a full visual system upfront.' },
-            { title: 'Small screens sharpen hierarchy', desc: 'The phone constraint forced the 3D view, lesson flow, and code explanation to fight for attention. Progressive disclosure became the main design lesson.' },
-          ]} />
+          <CsFeatureGrid
+            className="cs-feature-grid--plain"
+            features={[
+              { title: 'Metaphors need limits', desc: 'Blocks made layout approachable, but the interface had to avoid showing too many layers at once.' },
+              { title: 'Education is pacing', desc: 'The learner needs one clear next concept, not a wall of features or a full visual system upfront.' },
+              { title: 'Small screens sharpen hierarchy', desc: 'The phone constraint forced the 3D view, lesson flow, and code explanation to fight for attention. Progressive disclosure became the main design lesson.' },
+            ]}
+          />
         </CsSection>
 
         <CsThanks />

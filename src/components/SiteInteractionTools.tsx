@@ -10,6 +10,7 @@ import {
 } from '../lib/commentStore'
 import ThemeToggle from './ThemeToggle'
 import { CONTACT_EMAIL } from '../config/site'
+import { setCanvasChromePreference } from '../utils/performance'
 
 type ToolMode = 'select' | 'paint' | 'comment' | null
 type ExportTarget = 'selection' | 'page'
@@ -288,7 +289,6 @@ const corePages: SitePageItem[] = [
   { label: 'Home', to: '/', group: 'Pages' },
   { label: 'Work', to: '/work', group: 'Pages' },
   { label: 'About', to: '/about', group: 'Pages' },
-  { label: 'Writing', to: '/writing', group: 'Pages' },
   { label: 'Accessibility', to: '/accessibility', group: 'Pages' },
 ]
 
@@ -331,7 +331,6 @@ function titleFromPath(pathname: string) {
   if (slug === 'Portfolio.github.io') return 'Home'
   if (slug === 'work') return 'Work'
   if (slug === 'about') return 'About'
-  if (slug === 'writing') return 'Writing'
   if (slug === 'accessibility') return 'Accessibility'
   return slug
     .split('-')
@@ -342,7 +341,6 @@ function titleFromPath(pathname: string) {
 function currentProjectLabel(pathname: string) {
   if (pathname === '/' || pathname.endsWith('/Portfolio.github.io/')) return 'Home scroll'
   if (pathname.endsWith('/about')) return 'Bio scroll'
-  if (pathname.endsWith('/writing')) return 'Writing index'
   if (pathname.endsWith('/accessibility')) return 'Audit stack'
   return 'Case study'
 }
@@ -527,7 +525,7 @@ function layersForPath(pathname: string): LayerItem[] {
     return [
       { label: currentProject.name, icon: '▣', target: '#main-content, .project-main', info: currentProject.nda ? 'Request-access project' : 'Public project', active: true },
       { label: 'Case hero', icon: 'T', target: '.proj-hero-system, .proj-visual-hero, .tf-hero', info: 'Opening narrative', depth: 1 },
-      { label: currentProject.nda ? 'NDA public glimpse' : 'Project proof', icon: '◇', target: '#cs-public-story, .cs-quick-summary-shell, .proj-fastread', info: currentProject.nda ? 'Safe public preview' : 'Evidence summary', depth: 1, accent: currentProject.nda },
+      { label: currentProject.nda ? 'NDA public preview' : 'Project proof', icon: '◇', target: '#cs-public-story, .cs-quick-summary-shell, .proj-fastread', info: currentProject.nda ? 'Safe public preview' : 'Evidence summary', depth: 1, accent: currentProject.nda },
       { label: 'Role / Scope / Duration', icon: '▦', target: '.proj-info-row, .proj-fastread, .cs-stat-grid', info: 'Project metadata', depth: 1 },
       { label: 'Media spotlight', icon: '▤', target: '.cs-media-spotlight, .cs-media, .proj-hero-img, video, iframe', info: 'Visual proof', depth: 1 },
       { label: 'Problem', icon: 'T', target: '[id*="problem"], .cs-section:nth-of-type(2)', info: 'Context', depth: 2 },
@@ -547,7 +545,7 @@ function layersForPath(pathname: string): LayerItem[] {
       { label: 'Project counts', icon: '#', target: '.work-page-intro-meta, .work-filter-inline', info: 'Selected/archive totals', depth: 1 },
       { label: 'View switcher', icon: '▦', target: '.work-view-switch', info: 'Editorial / index / arc', depth: 1 },
       { label: 'Selected work grid', icon: '▣', target: '.work-group--selected, #work-project-results', info: 'Flagship proof', depth: 1 },
-      { label: 'NDA quick glimpse tags', icon: '◇', target: '.pcard-tag--nda', info: 'Access disclosure', depth: 2, accent: true },
+      { label: 'NDA preview tags', icon: '◇', target: '.pcard-tag--nda', info: 'Access disclosure', depth: 2, accent: true },
       { label: 'Archive grid', icon: '▧', target: '.work-group--archive', info: 'Older experiments', depth: 1 },
       { label: 'Bottom category controller', icon: '⌘', target: '.work-bottom-nav', info: 'Mobile filter', depth: 1 },
     ]
@@ -563,21 +561,12 @@ function layersForPath(pathname: string): LayerItem[] {
     ]
   }
 
-  if (pathname.endsWith('/writing')) {
-    return [
-      { label: 'Writing', icon: '▣', target: '#main-content', info: 'Article index', active: true },
-      { label: 'Editorial intro', icon: 'T', target: '.wr-writing-header', info: 'Writing premise', depth: 1 },
-      { label: 'Article index', icon: '▤', target: '.wr-article-featured, .wr-article-card', info: 'Posts', depth: 1 },
-      { label: 'Newsletter / contact', icon: '↗', target: '.footer, .ft-top-cta', info: 'Contact footer', depth: 1 },
-    ]
-  }
-
   if (pathname.endsWith('/accessibility')) {
     return [
-      { label: 'Accessibility', icon: '▣', target: '#main-content', info: 'Audit page', active: true },
-      { label: 'Design commitments', icon: '◇', target: '.a11y-hero, .a11y-section', info: 'What is handled', depth: 1 },
-      { label: 'Known risks', icon: '!', target: '[id*="risk"], .a11y-section:nth-of-type(2)', info: 'Remaining concerns', depth: 1 },
-      { label: 'Audit notes', icon: '▤', target: '[id*="audit"], .a11y-section:nth-of-type(3)', info: 'References', depth: 1 },
+      { label: 'Accessibility', icon: '▣', target: '#main-content', info: 'Document page', active: true },
+      { label: 'Intent', icon: '◇', target: '#intent', info: 'Why this exists', depth: 1 },
+      { label: 'Current state', icon: '▤', target: '#current-state', info: 'What is handled', depth: 1 },
+      { label: 'Known gaps', icon: '!', target: '#known-gaps', info: 'Remaining concerns', depth: 1 },
     ]
   }
 
@@ -648,7 +637,7 @@ export default function SiteInteractionTools() {
   const [inkHidden, setInkHidden] = useState(false)
   const [gridEnabled, setGridEnabled] = useState(false)
   const [dotsEnabled, setDotsEnabled] = useState(false)
-  const [rulersEnabled, setRulersEnabled] = useState(true)
+  const [rulersEnabled, setRulersEnabled] = useState(false)
   const [strokeEnabled, setStrokeEnabled] = useState(false)
   const [contentAlign, setContentAlign] = useState<'left' | 'center' | 'right'>('center')
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(0)
@@ -997,7 +986,9 @@ export default function SiteInteractionTools() {
   }, [open, mode])
 
   const toggleGrid = useCallback(() => {
-    document.body.classList.toggle('figma-grid-on')
+    const enabled = document.body.classList.toggle('figma-grid-on')
+    if (enabled) setCanvasChromePreference(true)
+    if (!enabled && document.body.classList.contains('figma-rulers-off')) setCanvasChromePreference(false)
   }, [])
 
   const toggleStroke = useCallback(() => {
@@ -1016,7 +1007,8 @@ export default function SiteInteractionTools() {
   }, [])
 
   const toggleRulers = useCallback(() => {
-    document.body.classList.toggle('figma-rulers-off')
+    const rulersOff = document.body.classList.toggle('figma-rulers-off')
+    setCanvasChromePreference(!rulersOff || document.body.classList.contains('figma-grid-on'))
   }, [])
 
   const scrollToLayer = useCallback((layer: LayerItem, index: number) => {
@@ -1280,8 +1272,14 @@ export default function SiteInteractionTools() {
   }, [closeTools, draftComment, mode, open, toggleGrid, toggleRulers])
 
   useEffect(() => {
-    const onToggle = () => setOpen(current => !current)
-    const onOpen = () => setOpen(true)
+    const onToggle = () => {
+      setCanvasChromePreference(true)
+      setOpen(current => !current)
+    }
+    const onOpen = () => {
+      setCanvasChromePreference(true)
+      setOpen(true)
+    }
     const onClose = () => closeTools()
 
     window.addEventListener('site-tools:toggle', onToggle)
@@ -1295,21 +1293,17 @@ export default function SiteInteractionTools() {
   }, [closeTools])
 
   // While Figma mode owns the whole screen (nav + chips hidden), the panel
-  // hosts music / AI / hand-tracking. State mirrors arrive via window events.
+  // hosts music and hand-tracking. State mirrors arrive via window events.
   const [ambientPlaying, setAmbientPlaying] = useState(false)
   const [handActive, setHandActive] = useState(false)
-  const [folioOpen, setFolioOpen] = useState(false)
   useEffect(() => {
     const onAmbient = (e: Event) => setAmbientPlaying(Boolean((e as CustomEvent<{ playing?: boolean }>).detail?.playing))
     const onHand = (e: Event) => setHandActive(Boolean((e as CustomEvent<{ active?: boolean }>).detail?.active))
-    const onFolio = (e: Event) => setFolioOpen(Boolean((e as CustomEvent<{ open?: boolean }>).detail?.open))
     window.addEventListener('ambient:state', onAmbient)
     window.addEventListener('hand-tracker:state', onHand)
-    window.addEventListener('folio:state', onFolio)
     return () => {
       window.removeEventListener('ambient:state', onAmbient)
       window.removeEventListener('hand-tracker:state', onHand)
-      window.removeEventListener('folio:state', onFolio)
     }
   }, [])
 
@@ -1691,16 +1685,6 @@ export default function SiteInteractionTools() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18V6l10-2v12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="6.5" cy="18" r="2.5" stroke="currentColor" strokeWidth="1.6"/><circle cx="16.5" cy="16" r="2.5" stroke="currentColor" strokeWidth="1.6"/></svg>
           </button>
           <ThemeToggle className="site-tools__theme" />
-          <button
-            type="button"
-            className={`site-tools__chrome-btn${folioOpen ? ' is-active' : ''}`}
-            onClick={() => window.dispatchEvent(new CustomEvent('folio:toggle'))}
-            aria-pressed={folioOpen}
-            aria-label="Open Folio, the portfolio AI guide"
-            title="Ask Folio (AI)"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M18.5 15.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.6Z" fill="currentColor"/></svg>
-          </button>
           <button
             type="button"
             className={`site-tools__chrome-btn${handActive ? ' is-active' : ''}`}
@@ -2128,18 +2112,6 @@ export default function SiteInteractionTools() {
           <ToolIcon name="ruler" />
         </button>
 
-        <span className="site-figbar__divider" aria-hidden="true" />
-
-        <button
-          type="button"
-          className={`site-figbar__btn site-figbar__btn--ai${folioOpen ? ' is-active' : ''}`}
-          onClick={() => window.dispatchEvent(new CustomEvent('folio:toggle'))}
-          aria-pressed={folioOpen}
-          aria-label="Ask Folio, the portfolio AI"
-          title="Ask Folio (AI)"
-        >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M18.5 15.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.6Z" fill="currentColor"/></svg>
-        </button>
       </div>
       </>
       )}

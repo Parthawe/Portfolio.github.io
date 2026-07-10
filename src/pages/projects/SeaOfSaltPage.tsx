@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -53,9 +54,11 @@ export default function SeaOfSaltPage() {
         </section>
 
         {/* The Folktale */}
+        <CsExpandPreview>
         <CsSection id="cs-folktale" label="01 &mdash; The Folktale" title="A Story Told Across Oceans">
           <CsBody>
-            <p>In &ldquo;Why the Sea is Salt&rdquo; &mdash; a Norse folktale, ATU 565, The Magic Mill &mdash; a poor man receives a magical quern (hand-mill) that grinds whatever its owner commands: gold, food, anything. He becomes wealthy. But a sea captain, consumed by greed, steals the mill and takes it aboard his ship. He commands it to grind salt, thinking he&rsquo;ll never need to make the long voyage to buy it again. The mill obliges. It grinds and grinds. Salt pours out like water.</p>
+            <p>In the Norse folktale &ldquo;Why the Sea is Salt,&rdquo; a poor man receives a magical mill that grinds whatever its owner commands: gold, food, anything.</p>
+            <p>A greedy sea captain steals it and commands it to grind salt. The mill obeys. It grinds and grinds, but the captain does not know the words to make it stop.</p>
             <p>The captain doesn&rsquo;t know the words to make it stop.</p>
             <p>The salt piles higher. The ship sinks. And at the bottom of the ocean, the mill grinds still. That, the story says, is why the sea is salt.</p>
           </CsBody>
@@ -147,6 +150,8 @@ export default function SeaOfSaltPage() {
         ]} />
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-folktale', label: 'The Folktale' },

@@ -1,8 +1,9 @@
+import { useState } from 'react'
 import FigmaSelect from '../FigmaSelect'
 
 interface CsExpandPreviewProps {
-  expanded: boolean
-  onExpand: () => void
+  expanded?: boolean
+  onExpand?: () => void
   children: React.ReactNode
   ctaLabel?: string
   note?: string
@@ -20,7 +21,11 @@ export default function CsExpandPreview({
   ctaLabel = 'Read the full case study',
   note = 'The decisions, constraints, and proof behind the outcome.',
 }: CsExpandPreviewProps) {
-  if (expanded) {
+  const [internalExpanded, setInternalExpanded] = useState(false)
+  const isExpanded = expanded ?? internalExpanded
+  const handleExpand = onExpand ?? (() => setInternalExpanded(true))
+
+  if (isExpanded) {
     return <>{children}</>
   }
 
@@ -33,7 +38,7 @@ export default function CsExpandPreview({
       <div className="cs-expand-preview-cta">
         <span className="cs-expand-preview-kicker">Full case study</span>
         <p className="cs-expand-preview-note">{note}</p>
-        <button type="button" className="cs-expand-preview-btn figma-hover" onClick={onExpand}>
+        <button type="button" className="cs-expand-preview-btn figma-hover" onClick={handleExpand}>
           {ctaLabel}
           <FigmaSelect />
         </button>

@@ -10,7 +10,6 @@ import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
-import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -20,12 +19,12 @@ export default function JugalbandiPage() {
   const sections = viewMode === 'summary'
     ? [
         { id: 'cs-summary', label: 'TL;DR' },
-        { id: 'cs-performance', label: 'Performance' },
+        { id: 'cs-film', label: 'Film' },
         { id: 'cs-overview', label: 'Overview' },
       ]
     : [
         { id: 'cs-summary', label: 'TL;DR' },
-        { id: 'cs-performance', label: 'Performance' },
+        { id: 'cs-film', label: 'Film' },
         { id: 'cs-overview', label: 'Overview' },
         { id: 'cs-background', label: 'Background' },
         { id: 'cs-instrument', label: 'The Instrument' },
@@ -45,11 +44,11 @@ export default function JugalbandiPage() {
     <>
       <Helmet>
         <title>Jugalbandi &middot; Parth Pawar</title>
-        <meta name="description" content="Jugalbandi showcases a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments, a physical computing art installation created at NYU ITP." />
+        <meta name="description" content="A physical computing installation where a neural network performs with a human musician through strings, air pipes, and percussion." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Jugalbandi · Parth Pawar" />
-        <meta property="og:description" content="Blending traditional analog instruments with modern digital MIDI, a physical computing installation." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/jugalbandi.webp" />
+        <meta property="og:description" content="A neural network made audible through a playable acoustic installation." />
+        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -65,22 +64,15 @@ export default function JugalbandiPage() {
           subtitle="A playable duet between human improvisation and a neural network expressed through acoustic machines"
           info={[
             { label: 'Year', value: '2024' },
-            { label: 'Role', value: 'Artist' },
+            { label: 'Role', value: 'Interaction designer + fabricator' },
             { label: 'Context', value: 'NYU \u2013 ITP' },
             { label: 'Duration', value: '5 Months' },
           ]}
           showHeaderSummary={false}
         />
 
-        <ProjectQuickSummary
-          slug="jugalbandi"
-          viewMode={viewMode}
-          onViewModeChange={handleViewModeChange}
-          fullEntryId="cs-background"
-        />
-
         <CsMediaSpotlight
-          id="cs-performance"
+          id="cs-film"
           label="Watch first"
           title="Hear the network perform"
           lede="The fastest way into Jugalbandi is the performance: a neural network translated into plucked strings, air pipes, and percussion."
@@ -95,6 +87,13 @@ export default function JugalbandiPage() {
             title="Jugalbandi Performance"
           />
         </CsMediaSpotlight>
+
+        <ProjectQuickSummary
+          slug="jugalbandi"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          fullEntryId="cs-background"
+        />
 
         {viewMode === 'full' ? (
         <>
@@ -276,29 +275,6 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
-        {/* Credits */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label">08 &mdash; Team</p>
-            <h3 className="cs-section-title">Credits</h3>
-            <CsCredits credits={[
-              { role: 'Artist', name: 'Parth' },
-              { role: 'Mentor', name: 'David Rios' },
-              { role: 'Mentor', name: 'Phil Caridi' },
-              { role: 'Shot & InFrame', name: 'Virendra Pawar' },
-            ]} />
-
-            <h4 className="cs-section-subtitle">Abacus Inspiration Credits</h4>
-            <CsCredits credits={[
-              { role: 'Studio', name: 'panGenerator' },
-              { role: 'Team', name: 'Krzysztof Cybulski' },
-              { role: 'Team', name: 'Krzysztof Goli\u0144ski' },
-              { role: 'Team', name: 'Jakub Ko\u017Aniewski' },
-              { role: 'Team', name: 'Wojciech Stokowiec' },
-            ]} />
-          </div>
-        </section>
-
         <CsThanks />
         </CsExpandPreview>
 
@@ -312,7 +288,7 @@ export default function JugalbandiPage() {
 
       </main>
 
-      <NextProject slug="vj-software" title="VJ Software" image="/Portfolio.github.io/Assets/images/vj.jpg" />
+      <NextProject slug="enigma" title="Enigma" image="/Portfolio.github.io/Assets/mockups/projects/enigma_16x9.webp" />
       <Footer />
     </>
   )

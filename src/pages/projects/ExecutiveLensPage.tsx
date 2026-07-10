@@ -42,12 +42,12 @@ export default function ExecutiveLensPage() {
           info={[
             { label: 'Role', value: 'Design lead' },
             { label: 'Timeline', value: '2025\u201326' },
-            { label: 'Team', value: 'Design lead' },
+            { label: 'Team', value: 'Product, AI, engineering' },
             { label: 'Platform', value: 'Web + Mobile' },
           ]}
           liveUrl="https://www.executivelens.ai"
-          heroImage="/Portfolio.github.io/Assets/images/executivelens.webp"
-          heroAlt="ExecutiveLens dashboard for meeting intelligence and decision tracking"
+          heroImage="/Portfolio.github.io/Assets/mockups/projects/executivelens_16x9.webp"
+          heroAlt="ExecutiveLens project cover for meeting intelligence and decision tracking"
         />
 
         <ProjectOverview
@@ -55,20 +55,18 @@ export default function ExecutiveLensPage() {
           sections={[
             {
               label: 'The Vision',
-              content: 'Executives do not need another transcript tool. They need a system that remembers what was decided, who committed to what, and what changed because of it. ExecutiveLens turns meetings into operational memory instead of a stream of notes no one returns to.',
+              content: 'Executives did not need another transcript. They needed memory: what was decided, who owned it, and what changed because of it.',
             },
             {
               label: 'My Role',
-              content: 'I designed the product end to end: live meeting capture, decision extraction, dashboard narrative, and the trust layer that makes high-stakes AI summaries usable in leadership contexts. The core job was not showing more information. It was reducing noise without losing accountability.',
+              content: 'I designed live capture, decision extraction, dashboard narrative, and the citation layer that makes AI summaries trustworthy.',
             },
           ]}
         />
 
         <CsSection id="cs-context" label="Context" title="The Executive Information Overload Problem">
           <CsBody>
-            <p>The modern executive is drowning. Decisions get made in a Monday standup and forgotten by Wednesday. Action items live in one person&rsquo;s notebook and die when that notebook closes.</p>
-            <p>The information is not missing &mdash; it is scattered. Scattered across Zoom recordings no one rewatches, Google Docs no one revisits, and dashboards that show what happened but never why. Executives do not need more data. They need less noise and more signal.</p>
-            <p>Every tool on the market solves one slice of this problem. Otter transcribes. Notion organizes. Tableau visualizes. But no one connects the meeting where a decision was made to the metric that moved because of it. That gap &mdash; the space between conversation and consequence &mdash; is where ExecutiveLens lives.</p>
+            <p>Important decisions were scattered across calls, docs, dashboards, and memory. The product needed to connect conversation to consequence: what changed, why it mattered, and who needed to act.</p>
           </CsBody>
           <CsCallout>
             <p>&ldquo;The problem is not that executives lack information. The problem is that the most important information is trapped inside conversations that vanish the moment the meeting ends.&rdquo;</p>
@@ -77,20 +75,20 @@ export default function ExecutiveLensPage() {
 
         <CsSection id="cs-challenges" label="Design Challenges" title="Four Problems That Needed Solving">
           <CsBody>
-            <p>Designing for executives is designing for the most time-constrained, highest-stakes user imaginable. Every screen has to earn its place: show what changed, why it matters, and what needs attention next.</p>
+            <p>Every screen had to answer fast: what changed, why does it matter, and what needs attention next?</p>
           </CsBody>
           <CsFeatureGrid features={[
-            { title: 'Real-Time Meeting Transcription UX', desc: 'Live transcription is technically impressive but useless if the interface is a wall of text. The challenge was designing a transcription view that lets users follow the conversation in real time without reading every word \u2014 highlighting decisions, flagging action items, and identifying speakers as they talk, not after the meeting ends.' },
-            { title: 'Making AI Summaries Trustworthy', desc: 'Executives will not act on AI-generated insights they do not trust. Every summary needed a clear provenance trail \u2014 tap any insight and see the exact transcript moment it came from. I designed a citation system that makes the AI\u2019s reasoning transparent without cluttering the interface with footnotes.' },
-            { title: 'A Dashboard That Tells a Story', desc: 'Most dashboards are graveyards of disconnected charts. The executive dashboard needed to tell a narrative: here is what happened this week, here is why it matters, here is what you should do about it. I designed a feed-based dashboard that prioritizes narrative over numbers and connects meetings to metrics.' },
-            { title: 'Mobile-First for Executives on the Move', desc: 'Executives check their phones between meetings, in the back of cars, and at airport gates. The mobile experience could not be a shrunken desktop dashboard. I designed a mobile-native interface with glanceable cards, voice-triggered summaries, and a prep mode that briefs you on your next meeting in 30 seconds flat.' },
+            { title: 'Live Meeting Capture', desc: 'Transcript, speakers, decisions, and action items surfaced while the meeting is still happening.' },
+            { title: 'Trustworthy AI', desc: 'Every summary links back to the exact transcript moment behind it.' },
+            { title: 'Narrative Dashboard', desc: 'A briefing feed replaces a wall of charts: what happened, why it matters, what to do.' },
+            { title: 'Mobile Prep', desc: 'Glanceable cards brief executives between meetings without shrinking the desktop UI.' },
           ]} />
         </CsSection>
 
         {/* Interactive — meeting replay */}
         <CsSection id="cs-demo" label="Interactive" title="Watch AI Process a Meeting">
           <CsBody>
-            <p>Press play to watch a simulated Q3 review meeting. The transcript builds in real-time on the left. When the meeting ends, the AI summary appears on the right &mdash; decisions, action items with owners and deadlines, key metrics extracted automatically.</p>
+            <p>Press play to see the core interaction: live transcript in, cited decisions and action items out.</p>
           </CsBody>
           <div style={{ marginTop: 'var(--space-4)' }}>
             <MeetingTimeline />
@@ -99,62 +97,59 @@ export default function ExecutiveLensPage() {
 
         <CsSection id="cs-meeting" label="Meeting Assistant" title="Your AI Co-Pilot in Every Conversation">
           <CsBody>
-            <p>The meeting assistant is the core of ExecutiveLens. It joins calls silently, transcribes in real time, identifies speakers, and does something no human note-taker can do at scale: it understands what matters. Decisions are tagged the moment they are made. Action items are extracted with owners and deadlines. Questions left unanswered are flagged for follow-up.</p>
-            <p>The live view is designed around a principle I call &ldquo;structured flow.&rdquo; The transcript scrolls naturally, but decisions and action items break out into persistent cards on the right rail &mdash; always visible, never buried in the stream of conversation. After the meeting, the assistant generates a structured summary: key decisions, action items with owners, open questions, and a one-paragraph narrative of what happened and why it matters.</p>
+            <p>The assistant joins calls, identifies speakers, and separates signal from transcript noise. Decisions, owners, deadlines, and open questions become persistent cards instead of buried notes.</p>
           </CsBody>
           <CsSteps steps={[
-            { num: '1', title: 'Live Transcription', desc: 'Real-time speech-to-text with speaker diarization. Each participant gets a color-coded lane, making it easy to follow who said what without reading every word.' },
-            { num: '2', title: 'Decision Detection', desc: 'The AI identifies decisions as they happen \u2014 \u201cLet\u2019s go with option B\u201d \u2014 and pins them as structured cards with context, timestamp, and the people involved.' },
-            { num: '3', title: 'Action Item Extraction', desc: 'Commitments are captured with owners and deadlines. \u201cSarah, can you get that report by Friday?\u201d becomes a tracked action item assigned to Sarah, due Friday, linked to the meeting context.' },
-            { num: '4', title: 'Post-Meeting Summary', desc: 'Within 60 seconds of the meeting ending, every participant receives a structured summary: decisions, action items, open questions, and a narrative overview \u2014 ready to share or archive.' },
+            { num: '1', title: 'Live Transcription', desc: 'Speaker-aware transcript with decisions pulled out of the stream.' },
+            { num: '2', title: 'Decision Detection', desc: 'Key choices become cards with context, timestamp, and people involved.' },
+            { num: '3', title: 'Action Items', desc: 'Owners and deadlines are captured while the commitment is still fresh.' },
+            { num: '4', title: 'Summary', desc: 'After the meeting, the team gets decisions, actions, open questions, and context.' },
           ]} />
         </CsSection>
 
-        <CsSection id="cs-dashboard" label="Executive Dashboard" title="The Command Center That Thinks for You">
+        <CsSection id="cs-dashboard" label="Executive Dashboard" title="A Briefing System, Not a Chart Wall">
           <CsBody>
-            <p>The dashboard is not a collection of charts. It is a briefing. Every morning, it answers three questions: What happened yesterday that I need to know about? What is trending in a direction I should care about? What needs my attention right now?</p>
-            <p>I designed the dashboard around four pillars: KPI cards that show the numbers that matter with context (not just a number &mdash; a number, a trend, and a why), meeting-to-metric connections that link decisions to outcomes, team health indicators that surface sentiment and engagement patterns, and a timeline view that lets executives trace any metric back to the meeting where the relevant decision was made.</p>
+            <p>The dashboard is a briefing, not a chart wall. It shows what changed, what needs attention, and which meeting created the shift.</p>
           </CsBody>
           <h3 className="cs-section-subtitle">From Data to Narrative</h3>
           <CsBody>
-            <p>The biggest design decision was replacing the traditional grid-of-widgets dashboard with a feed-based narrative. Instead of twelve charts competing for attention, the dashboard presents a prioritized stream: the most important insight first, with supporting data below. Each card in the feed is actionable &mdash; tap to drill down, swipe to dismiss, long-press to share with your team. The AI curates the feed based on your role, your recent meetings, and what has changed since you last looked.</p>
+            <p>A feed-based dashboard made the product easier to scan: one prioritized insight first, supporting evidence below, and a clear action attached.</p>
           </CsBody>
         </CsSection>
 
         <CsSection id="cs-website" label="Live Product" title="executivelens.ai, The Product Site">
           <CsBody>
-            <p>The marketing site follows the same design philosophy as the product: clarity over cleverness. Clean typography, structured information hierarchy, and a narrative that walks executives from problem to solution without buzzword bingo. The hero shows the real product, not mockups.</p>
+            <p>The site follows the product: clear hierarchy, real screens, and a problem-to-solution narrative without AI buzzword clutter.</p>
           </CsBody>
           <CsImage src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" alt="ExecutiveLens.ai full marketing website, hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
         </CsSection>
 
-        <CsSection id="cs-insights" label="Insight Engine" title="AI That Connects Dots You Did Not Know Existed">
+        <CsSection id="cs-insights" label="Insight Engine" title="Insights With Evidence Attached">
           <CsBody>
-            <p>The insight engine is where ExecutiveLens goes from useful to indispensable. It analyzes patterns across meetings, teams, and time &mdash; surfacing connections that no single person could see. A product delay mentioned in Tuesday&rsquo;s engineering standup linked to a customer escalation discussed in Thursday&rsquo;s support review. A hiring bottleneck correlating with a drop in sprint velocity three weeks later.</p>
-            <p>I designed the insight cards to follow a consistent structure: what the AI found, why it matters, what you can do about it, and where the evidence comes from. Every recommendation links back to the specific meetings, data points, and trends that generated it. No black boxes. No &ldquo;trust me.&rdquo; Full transparency.</p>
+            <p>The insight cards connect patterns across meetings and time. Each card explains what changed, why it matters, what to do, and where the evidence came from.</p>
           </CsBody>
           <h3 className="cs-section-subtitle">Risk Alerts</h3>
           <CsBody>
-            <p>The engine also runs a continuous risk scan. It monitors for action items that are overdue, decisions that contradict previous commitments, metrics moving in the wrong direction without acknowledgment, and sentiment shifts in team conversations. Risk alerts are designed to feel urgent without feeling noisy &mdash; a red border, a clear one-line summary, and a single tap to see the full context. Executives told us in research that they get hundreds of notifications per day. The risk alert needed to be the one they actually read.</p>
+            <p>Risk alerts stay intentionally blunt: overdue action, contradictory decision, drifting metric, or sentiment shift. One line first, full context one tap away.</p>
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-impact" label="Impact" title="The Numbers Behind the Intelligence">
+        <CsSection id="cs-impact" label="Impact" title="Early Beta Signal">
           <CsBody style={{ marginBottom: '2rem' }}>
-            <p>ExecutiveLens shipped to a closed beta of 40 executive teams and the results validated the thesis: when you capture the right information and surface it at the right time, leaders make better decisions faster. 87% of executives in the beta checked their ExecutiveLens dashboard before their morning email within two weeks of onboarding.</p>
+            <p>In closed beta, the strongest signal was behavior: executives began treating the dashboard as a morning brief for decisions, owners, and follow-through instead of another analytics surface.</p>
           </CsBody>
           <CsPullquote
-            quote="Within two weeks, I stopped checking email first. I check ExecutiveLens. It tells me what actually changed, not what someone wants me to read."
-            cite="&mdash; VP of Product, Beta participant"
+            quote="I stopped treating it like a transcript tool. It tells me what actually changed, not just what someone said."
+            cite="&mdash; Beta participant"
           />
         </CsSection>
 
         <CsSection id="cs-reflections" label="Reflections" title="What Designing for Executives Taught Me">
           <CsNumList items={[
-            <><strong>Busy people do not forgive bad hierarchy.</strong> On a consumer app, users will explore, scroll, and discover. Executives give you three seconds. If the most important thing is not the first thing they see, it does not exist. I learned to design every screen as if the user will look at it for five seconds and then leave. That constraint made every screen better.</>,
-            <><strong>Trust in AI is earned in citations, not confidence scores.</strong> Executives do not care that the model is 94% confident. They care that they can tap an insight and see the exact moment in the transcript where the evidence lives. Traceability is not a feature &mdash; it is the difference between a tool they use and a tool they abandon.</>,
-            <><strong>Data visualization is not about showing data &mdash; it is about answering questions.</strong> Every chart I designed started with a question: &ldquo;What should I worry about?&rdquo; &ldquo;Is this getting better or worse?&rdquo; &ldquo;Who owns this?&rdquo; If the visualization did not answer a specific question in under two seconds, it was decoration, not design.</>,
-            <><strong>The best AI products feel like memory, not magic.</strong> The executives who loved ExecutiveLens the most never described it as an AI tool. They said, &ldquo;It remembers things for me.&rdquo; That framing &mdash; AI as augmented memory, not artificial intelligence &mdash; guided every design decision from the meeting assistant to the insight engine.</>,
+            <><strong>Busy people do not forgive bad hierarchy.</strong> Every screen had to answer the first question in seconds: what changed, why does it matter, and who owns it?</>,
+            <><strong>Trust in AI is earned in citations, not confidence scores.</strong> A summary is only useful when the user can inspect the transcript moment behind it.</>,
+            <><strong>Data visualization is about answering questions.</strong> Each chart had to make risk, ownership, or change easier to understand, otherwise it was decoration.</>,
+            <><strong>The best AI products feel like memory, not magic.</strong> The product worked when executives described it as something that remembered the business for them.</>,
           ]} />
         </CsSection>
 
@@ -164,6 +159,7 @@ export default function ExecutiveLensPage() {
           { id: 'cs-vision', label: 'Vision & Role' },
           { id: 'cs-context', label: 'Context' },
           { id: 'cs-challenges', label: 'Challenges' },
+          { id: 'cs-demo', label: 'Interactive' },
           { id: 'cs-meeting', label: 'Meeting Assistant' },
           { id: 'cs-dashboard', label: 'Dashboard' },
           { id: 'cs-website', label: 'Live Site' },
@@ -174,7 +170,7 @@ export default function ExecutiveLensPage() {
 
       </main>
 
-      <NextProject slug="zentipay" title="ZentiPay" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
+      <NextProject slug="ballah-code" title="Ballah Code" image="/Portfolio.github.io/Assets/mockups/projects/ballah-code_16x9.webp" />
       <Footer />
     </>
   )

@@ -17,7 +17,6 @@ const footerGroups = [
       { label: 'Work', to: '/work' },
       { label: 'About', to: '/about' },
       { label: 'Playbook', to: '/playbook' },
-      { label: 'Writing', to: '/writing' },
       { label: 'Accessibility', to: '/accessibility' },
     ],
   },

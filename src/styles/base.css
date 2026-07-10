@@ -124,10 +124,14 @@
 .figma-hover {
   position: relative;
 }
-.figma-hover:is(:hover, :focus-visible, :focus-within) > .figma-select,
-.figma-hover.is-selected > .figma-select,
-.figma-hover[aria-current="page"] > .figma-select,
-.figma-hover[aria-selected="true"] > .figma-select {
+body:not(.figma-reader-mode) .figma-hover:is(:hover, :focus-visible, :focus-within) > .figma-select,
+body:not(.figma-reader-mode) .figma-hover.is-selected > .figma-select,
+body:not(.figma-reader-mode) .figma-hover[aria-current="page"] > .figma-select,
+body:not(.figma-reader-mode) .figma-hover[aria-selected="true"] > .figma-select,
+body.site-tools-open .figma-hover:is(:hover, :focus-visible, :focus-within) > .figma-select,
+body.site-tools-open .figma-hover.is-selected > .figma-select,
+body.site-tools-open .figma-hover[aria-current="page"] > .figma-select,
+body.site-tools-open .figma-hover[aria-selected="true"] > .figma-select {
   opacity: 1;
 }
 
@@ -564,6 +568,43 @@ body.figma-rulers-off {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   filter: blur(0);
+}
+
+/* Low-RAM / low-core machines should get the content, not the drag. */
+html.is-low-power-device {
+  scroll-behavior: auto;
+}
+html.is-low-power-device .surface-glass,
+html.is-low-power-device .nav-canvas-panel,
+html.is-low-power-device .site-tools__chrome-btn,
+html.is-low-power-device .site-figbar,
+html.is-low-power-device .work-bottom-nav,
+html.is-low-power-device .cs-bottom-nav--side,
+html.is-low-power-device .hand-tracker,
+html.is-low-power-device .site-tools__panel {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html.is-low-power-device .hero-anim,
+html.is-low-power-device .reveal,
+html.is-low-power-device .reveal-image {
+  opacity: 1 !important;
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+html.is-low-power-device .grain-section,
+html.is-low-power-device .cs-page::before,
+html.is-low-power-device .cs-page::after,
+html.is-low-power-device .dot-bg,
+html.is-low-power-device .grain {
+  display: none !important;
+}
+
+html.is-low-power-device * {
+  scroll-behavior: auto !important;
 }
 
 /* --- Divider --- */
