@@ -9,7 +9,6 @@ import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
 import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsImage from '../../components/case-study/CsImage'
 import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -30,7 +29,7 @@ export default function ExecutiveLensPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#9C8E6E' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--executivelens" style={{ '--project-color': '#9C8E6E' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -121,7 +120,24 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>The site follows the product: clear hierarchy, real screens, and a problem-to-solution narrative without AI buzzword clutter.</p>
           </CsBody>
-          <CsImage src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" alt="ExecutiveLens.ai full marketing website, hero with product screenshots, capabilities grid, workflow visualization, and integration partners" />
+          <div className="cs-site-crop-grid cs-site-crop-grid--executivelens">
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
+              <figcaption>Hero and product proof</figcaption>
+            </figure>
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
+              <figcaption>Audio to insight workflow</figcaption>
+            </figure>
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
+              <figcaption>Capability grid</figcaption>
+            </figure>
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
+              <figcaption>Integrations and conversion</figcaption>
+            </figure>
+          </div>
         </CsSection>
 
         <CsSection id="cs-insights" label="Insight Engine" title="Insights With Evidence Attached">

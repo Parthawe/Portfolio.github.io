@@ -441,6 +441,16 @@
   border-color: var(--ink, #edede8);
 }
 
+@media (min-width: 769px) {
+  .page-work .bt-toolbar {
+    bottom: calc(5.85rem + env(safe-area-inset-bottom));
+  }
+
+  .page-work .ht-preview-float {
+    bottom: calc(5.85rem + 52px + env(safe-area-inset-bottom));
+  }
+}
+
 /* ── Hide on mobile ── */
 @media (max-width: 768px) {
   .bt-toolbar { display: none; }

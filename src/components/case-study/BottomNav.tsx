@@ -13,14 +13,12 @@ interface BottomNavProps {
 export default function BottomNav({ sections, liveUrl, modeAction, placement = 'side' }: BottomNavProps) {
   const navRef = useRef<HTMLElement>(null);
   const progress = useReadingProgress();
-  const isDesktopSideRail = useMediaQuery('(min-width: 1024px)');
+  const isDesktopSideRail = useMediaQuery('(min-width: 1200px)');
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
   const visibleSections = useMemo(() => {
-    if (isDesktopSideRail || sections.length <= 5) return sections;
-    const reserve = (liveUrl ? 1 : 0) + (modeAction ? 1 : 0);
-    return sections.slice(0, Math.max(3, 5 - reserve));
-  }, [isDesktopSideRail, liveUrl, modeAction, sections]);
+    return sections.slice(0, 4);
+  }, [sections]);
 
   useEffect(() => {
     const sideRailClass = 'case-side-nav';

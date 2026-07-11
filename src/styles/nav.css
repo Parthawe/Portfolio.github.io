@@ -87,7 +87,7 @@
 }
 
 /* Desktop theme toggle in nav-right */
-.nav-right > .theme-toggle {
+.nav-right > .theme-toggle:not(.nav-mobile-theme) {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-pill);
@@ -98,7 +98,7 @@
   justify-content: center;
   transition: color var(--dur-base), background var(--dur-base), border-color var(--dur-base);
 }
-.nav-right > .theme-toggle:hover {
+.nav-right > .theme-toggle:not(.nav-mobile-theme):hover {
   color: var(--ink);
   --surface-glass-bg: color-mix(in srgb, var(--glass-subtle-bg) 84%, var(--ink-04) 16%);
   --surface-glass-border: var(--ink-12);

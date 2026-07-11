@@ -53,7 +53,22 @@ export default function JugalbandiPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#8B4513' } as React.CSSProperties}>
+      <main
+        id="main-content"
+        className="project-main"
+        style={{
+          '--project-color': '#2F6BFF',
+          '--case-outer-glow-a': 'rgba(255, 63, 164, 0.36)',
+          '--case-outer-glow-b': 'rgba(47, 107, 255, 0.46)',
+          '--case-outer-1': '#161335',
+          '--case-outer-2': '#211747',
+          '--case-outer-3': '#171A3F',
+          '--case-hero-blob-a': 'rgba(255, 68, 171, 0.34)',
+          '--case-hero-blob-b': 'rgba(47, 107, 255, 0.3)',
+          '--case-hero-blob-c': 'rgba(132, 87, 255, 0.24)',
+          '--case-hero-blob-glow': 'rgba(255, 132, 208, 0.26)',
+        } as React.CSSProperties}
+      >
 
         <ProjectHeader
           backLink="/work"
@@ -93,6 +108,7 @@ export default function JugalbandiPage() {
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
           fullEntryId="cs-background"
+          variant="open"
         />
 
         {viewMode === 'full' ? (

@@ -181,7 +181,7 @@ export default function ThePointCdcPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal">
+        <div className="cs-slide cs-slide--point-visual reveal">
           <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
@@ -203,14 +203,21 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">User Journey</h2>
-            <div className="cs-img-full cs-img-full--point-board">
-              <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
+            <div className="point-board-stack point-board-stack--journey" aria-label="User journey map and information architecture flow diagram">
+              <figure className="point-board-panel point-board-panel--goals">
+                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="Goal mapping for accessibility, key programs, and community engagement" loading="lazy" />
+                <figcaption>Goals translated into site priorities.</figcaption>
+              </figure>
+              <figure className="point-board-panel point-board-panel--journey">
+                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
+                <figcaption>User journey and information architecture, enlarged for reading.</figcaption>
+              </figure>
             </div>
           </div>
         </section>
 
         {/* Wireframe slide */}
-        <div className="cs-slide reveal">
+        <div className="cs-slide cs-slide--point-wireframe reveal">
           <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
         </div>
 
@@ -225,7 +232,7 @@ export default function ThePointCdcPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal">
+        <div className="cs-slide cs-slide--point-style reveal">
           <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
@@ -234,7 +241,20 @@ export default function ThePointCdcPage() {
           <div className="wrap">
             <span className="cs-section-label">Deliver</span>
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
-            <div className="cs-img-full cs-img-full--point-board"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme" loading="lazy" /></div>
+            <div className="point-board-stack point-board-stack--redesign" aria-label="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme">
+              <figure className="point-board-panel point-board-panel--redesign-top">
+                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Homepage hero and grouped navigation annotation" loading="lazy" />
+                <figcaption>Grouped navigation and clearer entry points.</figcaption>
+              </figure>
+              <figure className="point-board-panel point-board-panel--redesign-mid">
+                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Program cards and responsive layout annotation" loading="lazy" />
+                <figcaption>Programs surfaced as scan-friendly cards.</figcaption>
+              </figure>
+              <figure className="point-board-panel point-board-panel--redesign-bottom">
+                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Footer and mobile navigation annotation" loading="lazy" />
+                <figcaption>Mobile and footer structure made easier to follow.</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
 

@@ -1,5 +1,5 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
-import { processDrawing, classifyDrawing, prewarmTemplates } from '../utils/letterRecognizer'
+import { processDrawing, classifyDrawing, classifyStrokePath, prewarmTemplates, type StrokePoint } from '../utils/letterRecognizer'
 
 /* ═══════════════════════════════════════════════════════════
    DrawingPad — canvas where users draw letters.
@@ -19,6 +19,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
   const lastPos = useRef({ x: 0, y: 0 })
   const classifyTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const hasStrokes = useRef(false)
+  const strokePoints = useRef<StrokePoint[]>([])
   const [lastLetter, setLastLetter] = useState('')
   const [lastConf, setLastConf] = useState(0)
 
@@ -57,7 +58,8 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
     for (let i = 0; i < grid.length; i++) sum += grid[i]
     if (sum < 0.01) return
 
-    const { letter, confidence } = classifyDrawing(grid)
+    const strokeMatch = classifyStrokePath(strokePoints.current, size)
+    const { letter, confidence } = strokeMatch || classifyDrawing(grid)
     if (letter && confidence > 0.2) {
       setLastLetter(letter)
       setLastConf(confidence)
@@ -71,6 +73,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
     hasStrokes.current = true
     const pos = getPos(e)
     lastPos.current = pos
+    strokePoints.current = [pos]
 
     const ctx = canvasRef.current?.getContext('2d')
     if (ctx) {
@@ -88,6 +91,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
   const onPointerMove = useCallback((e: React.PointerEvent) => {
     if (!drawing.current) return
     const pos = getPos(e)
+    strokePoints.current.push(pos)
     const ctx = canvasRef.current?.getContext('2d')
     if (ctx) {
       ctx.lineTo(pos.x, pos.y)
@@ -115,6 +119,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     ctx.clearRect(0, 0, size, size)
     hasStrokes.current = false
+    strokePoints.current = []
     setLastLetter('')
     setLastConf(0)
     clearTimeout(classifyTimer.current)

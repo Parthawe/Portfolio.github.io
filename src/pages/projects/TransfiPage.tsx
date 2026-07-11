@@ -214,7 +214,7 @@ export default function TransfiPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{
+      <main id="main-content" className="project-main project-main--transfi" style={{
         // TransFi deep blue (#232D95) drives the accent, outer gradient, and hero blob.
         '--project-color': '#232D95',
         '--case-outer-1': '#080b1f',

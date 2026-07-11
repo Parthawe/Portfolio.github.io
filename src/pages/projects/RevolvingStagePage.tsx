@@ -26,7 +26,11 @@ export default function RevolvingStagePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#8A6B4F' } as React.CSSProperties}>
+      <main
+        id="main-content"
+        className="project-main project-main--revolving-stage"
+        style={{ '--project-color': '#B08A62' } as React.CSSProperties}
+      >
 
         <ProjectHeader
           backLink="/work"

@@ -10,6 +10,8 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+const CFB_PHOTOS = '/Portfolio.github.io/Assets/Projects/CodeforBuild/photos'
+
 export default function CodeForBuildPage() {
   return (
     <>
@@ -37,7 +39,7 @@ export default function CodeForBuildPage() {
             { label: 'Role', value: 'Interaction Designer' },
             { label: 'Year', value: '2021' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/phone-hero.png"
+          heroImage={`${CFB_PHOTOS}/phone-hero.png`}
           heroAlt="Code for Build hero with 3D block illustrations and mobile mockups"
         />
 
@@ -59,11 +61,26 @@ export default function CodeForBuildPage() {
           </div>
         </CsSection>
 
-        <section className="cs-section reveal">
+        <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/persona-research.jpg" alt="Persona research board for a phone-first coding learner" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/design-system-colors.jpg" alt="3D block color system for Code for Build" loading="lazy" decoding="async" /></div>
+            <p className="cs-section-label">Process</p>
+            <h3 className="cs-section-title">From Learning Goals To Blocks</h3>
+            <div className="cfb-process-strip" aria-label="Code for Build process map">
+              <img src={`${CFB_PHOTOS}/process-map.png`} alt="Process map showing research, insights, goals, UX, visuals, prototyping, and improvements." loading="lazy" decoding="async" />
+            </div>
+            <div className="cfb-evidence-grid">
+              <CsImage
+                src={`${CFB_PHOTOS}/wireframe-blueprint.png`}
+                alt="Blue wireframe collage showing Code for Build app screens and lesson states."
+                caption="Early screens explored how code, output, lessons, and block previews could live inside one phone-first learning flow."
+                aspectRatio="1 / 1"
+              />
+              <CsImage
+                src={`${CFB_PHOTOS}/block-system-guide.png`}
+                alt="Guide explaining Body Block, Container, Padding, Image Block, Icons Block, Button, and Text blocks."
+                caption="The block language became the core teaching layer: abstract HTML and CSS ideas were translated into pieces a beginner could inspect."
+                aspectRatio="1 / 1"
+              />
             </div>
           </div>
         </section>
@@ -73,13 +90,37 @@ export default function CodeForBuildPage() {
             <p>The useful part of the project is the metaphor. A page is treated like a small physical build: body as the base, containers as pieces, padding as spacing, and content as placed blocks. The learner can move between the rendered screen and the 3D explanation of what the screen is made from.</p>
           </CsBody>
           <CsImage
-            src="/Portfolio.github.io/Assets/Projects/CodeforBuild/photos/two-phones.png"
+            src={`${CFB_PHOTOS}/two-phones.png`}
             alt="Two Code for Build app screens showing visual code blocks and a 3D layout explanation"
             caption="The prototype pairs phone UI, block structure, and a 3D layout model so the learner can connect output to structure."
+          />
+          <div className="cfb-result-grid">
+            <CsImage
+              src={`${CFB_PHOTOS}/output-code-pair.png`}
+              alt="Two tilted phone mockups showing output and code states in Code for Build."
+              caption="The same lesson can be read as output first or code first, depending on what the learner is trying to understand."
+            />
+            <div className="cfb-block-card">
+              <img src={`${CFB_PHOTOS}/block-kit.png`} alt="Color-coded 3D block kit for Code for Build." loading="lazy" decoding="async" />
+              <div>
+                <h3>Block kit</h3>
+                <p>Body, container, padding, image, icon, text, and button blocks form the visual grammar of the prototype.</p>
+              </div>
+            </div>
+          </div>
+          <CsImage
+            src={`${CFB_PHOTOS}/app-screens-collage.png`}
+            alt="Collage of Code for Build mobile screens showing lessons, code view, and output view."
+            caption="The screen set shows the app moving between lesson selection, structure explanation, code preview, and final output."
+            className="cfb-collage"
           />
         </CsSection>
 
         <CsSection id="cs-learning" label="Learning" title="What I Learned">
+          <div className="cfb-learning-visuals" aria-label="Code for Build block system examples">
+            <img src={`${CFB_PHOTOS}/body-block.png`} alt="Single isometric body block." loading="lazy" decoding="async" />
+            <img src={`${CFB_PHOTOS}/block-stack.png`} alt="Vertical stack of colored blocks." loading="lazy" decoding="async" />
+          </div>
           <CsFeatureGrid
             className="cs-feature-grid--plain"
             features={[
@@ -94,6 +135,7 @@ export default function CodeForBuildPage() {
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },
+          { id: 'cs-process', label: 'Process' },
           { id: 'cs-result', label: 'Result' },
           { id: 'cs-learning', label: 'Learning' },
         ]} />

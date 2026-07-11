@@ -10,10 +10,60 @@ import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
 import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
-import CsImage from '../../components/case-study/CsImage'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+
+const MINIAPP_ASSETS = {
+  notes: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/notes.png?v=figma-miniapps-2',
+  conversations: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/conversations.png?v=figma-miniapps-2',
+  transcript: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/live-transcript.png?v=figma-miniapps-2',
+  meet: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/meet-home.png?v=figma-miniapps-2',
+  guidance: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/guidance.png?v=figma-miniapps-2',
+}
+
+const miniAppExamples = [
+  {
+    title: 'Notes',
+    label: 'Capture + memory',
+    src: MINIAPP_ASSETS.notes,
+    width: 419,
+    height: 909,
+    alt: 'Mentra Notes MiniApp with daily notes and transcription state',
+  },
+  {
+    title: 'Conversations',
+    label: 'Live transcript history',
+    src: MINIAPP_ASSETS.conversations,
+    width: 419,
+    height: 909,
+    alt: 'Mentra Conversations MiniApp with transcript list',
+  },
+  {
+    title: 'Live Transcript',
+    label: 'Real-time overlay',
+    src: MINIAPP_ASSETS.transcript,
+    width: 420,
+    height: 911,
+    alt: 'Mentra Live Transcript MiniApp showing speech converted to readable text',
+  },
+  {
+    title: 'Meet',
+    label: 'Calling + presence',
+    src: MINIAPP_ASSETS.meet,
+    width: 390,
+    height: 844,
+    alt: 'Mentra Meet MiniApp home screen for joining calls',
+  },
+  {
+    title: 'Guidance',
+    label: 'Contextual routing',
+    src: MINIAPP_ASSETS.guidance,
+    width: 363,
+    height: 783,
+    alt: 'Mentra Guidance MiniApp with route instruction screen',
+  },
+]
 
 export default function MentraMiniAppsPage() {
   return (
@@ -29,7 +79,7 @@ export default function MentraMiniAppsPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#A78BFA' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--mentra-miniapps" style={{ '--project-color': '#A78BFA' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -48,8 +98,22 @@ export default function MentraMiniAppsPage() {
           heroAlt="Mentra MiniApp Store 16:9 project cover showing the smart glasses app ecosystem"
         />
 
-        {/* App store on device */}
-        <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-device.png" alt="MiniApp Store on the glasses display" />
+        <section className="cs-section mentra-miniapps-hero-gallery reveal" aria-label="MiniApp system previews">
+          <div className="wrap mentra-miniapps-hero-gallery__inner">
+            <figure className="mentra-miniapps-hero-gallery__primary">
+              <img src={MINIAPP_ASSETS.notes} width="419" height="909" alt="Mentra Notes MiniApp running as part of the smart glasses ecosystem" loading="eager" decoding="async" />
+              <figcaption>
+                <span>Featured MiniApp</span>
+                Notes turns live speech into searchable memory, which made it the clearest example of why the store needed real app depth.
+              </figcaption>
+            </figure>
+            <div className="mentra-miniapps-hero-gallery__stack" aria-label="Other MiniApp surfaces">
+              <img src={MINIAPP_ASSETS.transcript} width="420" height="911" alt="Live Transcript MiniApp screen" loading="lazy" decoding="async" />
+              <img src={MINIAPP_ASSETS.meet} width="390" height="844" alt="Meet MiniApp screen" loading="lazy" decoding="async" />
+              <img src={MINIAPP_ASSETS.guidance} width="363" height="783" alt="Guidance MiniApp screen" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </section>
 
         <ProjectOverview
           id="cs-vision"
@@ -110,14 +174,25 @@ export default function MentraMiniAppsPage() {
           ]} />
         </CsSection>
 
-        <section className="cs-section reveal" aria-label="Mentra MiniApp examples">
+        <section className="cs-section mentra-miniapps-system reveal" aria-label="Mentra MiniApp examples">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/appstore-translation.webp" alt="Translation MiniApp running on Mentra smart glasses with bilingual text overlay" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-notes.png" alt="Mentra Notes MiniApp showing recorded notes and summaries in the OS" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps view showing multiple installed MiniApps" loading="lazy" /></div>
+            <div className="mentra-miniapps-system__head">
+              <span className="cs-kicker">Figma exports</span>
+              <h2>Multiple MiniApps, one OS language.</h2>
+              <p>These are the stronger Figma screens from the MiniApps board: each one shows a different job the OS had to support without making the system feel fragmented.</p>
             </div>
-            <p className="cs-caption">The ecosystem had to make room for immediate overlays like Translation, longer-running utilities like Notes, and a growing installed-app surface that made breadth visible without making the OS feel cluttered.</p>
+            <div className="mentra-miniapps-system__grid">
+              {miniAppExamples.map((app) => (
+                <figure className="mentra-miniapps-card reveal" key={app.title}>
+                  <img src={app.src} width={app.width} height={app.height} alt={app.alt} loading="lazy" decoding="async" />
+                  <figcaption>
+                    <span>{app.label}</span>
+                    <strong>{app.title}</strong>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="cs-caption">The ecosystem had to make room for immediate overlays like Live Transcript, longer-running utilities like Notes, communication surfaces like Meet, and contextual utilities like Guidance.</p>
           </div>
         </section>
 
@@ -153,11 +228,17 @@ export default function MentraMiniAppsPage() {
         </CsSection>
 
         {/* OS screens */}
-        <section className="cs-section reveal">
+        <section className="cs-section mentra-miniapps-os reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS: currently running MiniApps" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS: home screen with active app" loading="lazy" /></div>
+            <div className="mentra-miniapps-os__grid">
+              <figure className="mentra-miniapps-os__shot">
+                <img src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS currently running MiniApps" loading="lazy" decoding="async" />
+                <figcaption>Running apps made the platform legible without forcing a phone-style app switcher.</figcaption>
+              </figure>
+              <figure className="mentra-miniapps-os__shot">
+                <img src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS home screen with active app" loading="lazy" decoding="async" />
+                <figcaption>The home surface had to show breadth while still feeling glanceable.</figcaption>
+              </figure>
             </div>
           </div>
         </section>

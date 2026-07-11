@@ -68,9 +68,15 @@ export default function IbmPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" /></div>
+            <div className="ibm-diagram-stack" aria-label="Encrypted cancer prognosis system diagrams">
+              <figure className="ibm-diagram-card reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" />
+                <figcaption>System flow: encrypted genomic features moving through preprocessing, prognosis, clustering, and recommendation steps.</figcaption>
+              </figure>
+              <figure className="ibm-diagram-card reveal">
+                <img src="/Portfolio.github.io/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" />
+                <figcaption>Homomorphic encryption model: computation stays useful without exposing the raw patient data.</figcaption>
+              </figure>
             </div>
           </div>
         </section>

@@ -46,8 +46,9 @@ export default function StageRotation() {
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
-      ctx.fillStyle = isDark ? '#111110' : '#FAFAF8'
+      const isStageDark = Boolean(canvas.closest('.project-main--revolving-stage'))
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || isStageDark
+      ctx.fillStyle = isStageDark ? '#1A2430' : isDark ? '#111110' : '#FAFAF8'
       ctx.fillRect(0, 0, w, h)
 
       // Momentum

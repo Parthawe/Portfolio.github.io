@@ -117,8 +117,8 @@ export default function MentraPage() {
         heroTone="mentra"
         heroEyebrow="Mentra / wearable OS"
         visualSummary="The product system that makes AI glasses usable after unboxing."
-        visualHeroImage="/Portfolio.github.io/Assets/images/mentra/render-transparent.webp"
-        visualHeroAlt="Transparent render of Mentra Glass floating over a dark interface field"
+        visualHeroImage="/Portfolio.github.io/Assets/mockups/projects/mentra_16x9.webp"
+        visualHeroAlt="Mentra generated cover showing the AI glasses product system and companion app"
         liveLabel="Open Mentra"
         showHeaderSummary={false}
       />
@@ -170,7 +170,7 @@ export default function MentraPage() {
             { title: 'Developer Gravity', desc: 'The store, docs, and submission flow had to make glasses feel worth building for.' },
             { title: 'Visible Trust', desc: 'Camera, permissions, and privacy states needed to be legible to the wearer and the room.' },
           ]} />
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/render-temple-detail.webp" alt="Mentra Live temple detail, close-up of hinge mechanism, USB-C port, and Mentra logo" />
+          <CsImage src="/Portfolio.github.io/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render showing the camera module, temple electronics, and lens assembly" />
         </CsSection>
 
         <CsSection id="cs-companion" label="Companion App" title="Setup Without the Usual Bluetooth Pain">
@@ -184,8 +184,10 @@ export default function MentraPage() {
             { num: 3, title: 'Confirm', desc: 'One tap connects phone and glasses.' },
             { num: 4, title: 'Ask', desc: 'The first voice interaction proves the value.' },
           ]} />
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
+          <div className="cs-mentra-media-row cs-mentra-media-row--phones">
+            <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
+            <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
+          </div>
           <CsBody style={{ marginTop: '2rem' }}>
             <p>After setup, the app becomes the control layer: MiniApps, display, notifications, AI settings, and privacy in two taps.</p>
           </CsBody>
@@ -196,8 +198,10 @@ export default function MentraPage() {
             <p>MentraOS had to support apps I could not predict, on a display people should barely look at.</p>
             <p>The design principle became simple: every state must be understood in under two seconds of peripheral attention.</p>
           </CsBody>
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
+          <div className="cs-mentra-media-row cs-mentra-media-row--phones">
+            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
+            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
+          </div>
           <CsImage src="/Portfolio.github.io/Assets/images/mentra/companion-model-select.png" alt="Mentra companion app model selection screen shown on a phone held in hand" />
           <h3 className="cs-section-subtitle">Voice-First, Screen-Second</h3>
           <CsBody>
@@ -219,20 +223,11 @@ export default function MentraPage() {
               { feature: 'User can reassign', values: [true, true, true] },
             ]}
           />
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-notes.png" alt="Mentra Notes app, note editor with formatting toolbar, AI summarization button, and quick actions" />
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
-        </CsSection>
-
-        {/* Product gallery */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/photo-front.webp" alt="Mentra smart glasses from front — transparent display, minimal frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/photo-angle.webp" alt="Mentra smart glasses angled view showing temple arm and hinge" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/images/mentra/photo-folded.webp" alt="Mentra smart glasses folded, compact form factor" loading="lazy" /></div>
-            </div>
+          <div className="cs-mentra-media-row cs-mentra-media-row--phones">
+            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-notes.png" alt="Mentra Notes app, note editor with formatting toolbar, AI summarization button, and quick actions" />
+            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
           </div>
-        </section>
+        </CsSection>
 
         <CsSection id="cs-store" label="MiniApp Store" title="Apps Without Phone-Style Browsing">
           <CsBody>
@@ -269,7 +264,24 @@ export default function MentraPage() {
               { label: 'Fulfillment', value: '1-3 days' },
             ]}
           />
-          <CsImage src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-mentraglass-2026-03-25-13_33_13.webp" alt="Mentra Glass full marketing website, hero section, product features, app store showcase, specifications, and pricing" />
+          <div className="cs-mentra-site-crops">
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
+              <figcaption>Field work first</figcaption>
+            </figure>
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-hero.png" alt="Mentra website sections showing MiniApp Store, press proof, and comparison table" loading="lazy" decoding="async" />
+              <figcaption>Platform proof</figcaption>
+            </figure>
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-buying.png" alt="Mentra website sections showing setup steps, open source positioning, and deployment accessories" loading="lazy" decoding="async" />
+              <figcaption>Lower buying risk</figcaption>
+            </figure>
+            <figure>
+              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-specs.png" alt="Mentra website sections showing detailed specifications, prescription readiness, FAQ, and support content" loading="lazy" decoding="async" />
+              <figcaption>Specs and support</figcaption>
+            </figure>
+          </div>
           <div style={{ marginTop: '2rem' }}>
             <CsFeatureGrid
               features={[

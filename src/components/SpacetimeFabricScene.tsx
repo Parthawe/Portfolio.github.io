@@ -18,15 +18,18 @@ const GRID_SEGS = 64
 const MAX_MASSES = 3
 const MASS_RADIUS = 0.22
 const SOFTENING = 0.3
+const MAX_WELL_DEPTH = 1.35
 
-function computeGravityY(px: number, pz: number, masses: Mass[]): number {
+function computeGravityY(px: number, pz: number, masses: Mass[], excludeId?: number): number {
   let y = 0
   for (const mass of masses) {
+    if (mass.id === excludeId) continue
     const dx = px - mass.x
     const dz = pz - mass.z
-    y -= mass.strength / (Math.sqrt(dx * dx + dz * dz) + SOFTENING)
+    const distSq = dx * dx + dz * dz
+    y -= (mass.strength * 0.72) / (distSq + SOFTENING + 0.18)
   }
-  return y
+  return Math.max(-MAX_WELL_DEPTH, y)
 }
 
 interface Mass {
@@ -88,11 +91,13 @@ function FabricGrid({ masses }: { masses: Mass[] }) {
       <mesh ref={surfaceRef} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[GRID_SIZE, GRID_SIZE, GRID_SEGS, GRID_SEGS]} />
         <meshStandardMaterial
-          color="#1a1a22"
+          color="#061d35"
+          emissive="#041120"
+          emissiveIntensity={0.18}
           transparent
-          opacity={0.5}
+          opacity={0.78}
           side={THREE.DoubleSide}
-          roughness={0.9}
+          roughness={0.72}
           metalness={0}
         />
       </mesh>
@@ -100,13 +105,44 @@ function FabricGrid({ masses }: { masses: Mass[] }) {
       <mesh ref={wireRef} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[GRID_SIZE, GRID_SIZE, GRID_SEGS, GRID_SEGS]} />
         <meshBasicMaterial
-          color="#ffffff"
+          color="#9bd8ff"
           wireframe
           transparent
-          opacity={0.18}
+          opacity={0.32}
         />
       </mesh>
     </group>
+  )
+}
+
+function MassWell({ mass }: { mass: Mass }) {
+  const ringRef = useRef<THREE.Mesh>(null!)
+  const glowRef = useRef<THREE.Mesh>(null!)
+
+  useFrame((state) => {
+    const pulse = 1 + Math.sin(state.clock.elapsedTime * 1.8 + mass.id) * 0.035
+    if (ringRef.current) {
+      ringRef.current.position.set(mass.x, 0.035, mass.z)
+      ringRef.current.rotation.z += 0.003
+      ringRef.current.scale.setScalar(pulse)
+    }
+    if (glowRef.current) {
+      glowRef.current.position.set(mass.x, 0.02, mass.z)
+      glowRef.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 1.5 + mass.id) * 0.05)
+    }
+  })
+
+  return (
+    <>
+      <mesh ref={glowRef} rotation={[-Math.PI / 2, 0, 0]}>
+        <circleGeometry args={[0.72 + mass.strength * 0.18, 64]} />
+        <meshBasicMaterial color="#2196ff" transparent opacity={0.1} depthWrite={false} />
+      </mesh>
+      <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[0.42 + mass.strength * 0.08, 0.46 + mass.strength * 0.08, 64]} />
+        <meshBasicMaterial color="#73c7ff" transparent opacity={0.42} depthWrite={false} />
+      </mesh>
+    </>
   )
 }
 
@@ -130,9 +166,9 @@ function MassSphere({ mass, masses, onDrag, onRemove }: {
 
   useFrame((state) => {
     if (!ref.current) return
-    const wellY = computeGravityY(mass.x, mass.z, masses)
-    const bob = dragging.current ? 0 : Math.sin(state.clock.elapsedTime * 1.2 + mass.id) * 0.02
-    ref.current.position.set(mass.x, wellY + MASS_RADIUS * 0.6 + bob, mass.z)
+    const wellY = computeGravityY(mass.x, mass.z, masses, mass.id)
+    const bob = dragging.current ? 0.08 : Math.sin(state.clock.elapsedTime * 1.2 + mass.id) * 0.025
+    ref.current.position.set(mass.x, wellY + MASS_RADIUS * 1.65 + bob, mass.z)
   })
 
   const onDown = useCallback((e: { stopPropagation: () => void }) => {
@@ -178,9 +214,11 @@ function MassSphere({ mass, masses, onDrag, onRemove }: {
     >
       <sphereGeometry args={[MASS_RADIUS, 32, 32]} />
       <meshStandardMaterial
-        color="#0a0a0e"
-        roughness={0.4}
-        metalness={0.1}
+        color="#03070d"
+        emissive="#071522"
+        emissiveIntensity={0.45}
+        roughness={0.28}
+        metalness={0.55}
       />
     </mesh>
   )
@@ -189,12 +227,12 @@ function MassSphere({ mass, masses, onDrag, onRemove }: {
 // ── Subtle stars ──
 
 function Stars() {
-  const count = 150
+  const count = 220
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
       arr[i * 3] = (Math.random() - 0.5) * 24
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 10 + 4
+      arr[i * 3 + 1] = (Math.random() - 0.5) * 12 + 3
       arr[i * 3 + 2] = (Math.random() - 0.5) * 24
     }
     return arr
@@ -205,8 +243,22 @@ function Stars() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#ffffff" size={0.02} transparent opacity={0.3} sizeAttenuation />
+      <pointsMaterial color="#b6e3ff" size={0.025} transparent opacity={0.45} sizeAttenuation />
     </points>
+  )
+}
+
+function HorizonGlow() {
+  const ref = useRef<THREE.Mesh>(null!)
+  useFrame((state) => {
+    if (!ref.current) return
+    ref.current.rotation.z = state.clock.elapsedTime * 0.045
+  })
+  return (
+    <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]}>
+      <ringGeometry args={[2.75, 3.05, 128]} />
+      <meshBasicMaterial color="#2da8ff" transparent opacity={0.18} depthWrite={false} />
+    </mesh>
   )
 }
 
@@ -245,7 +297,7 @@ function TestParticle({ masses }: { masses: Mass[] }) {
   const trailLine = useMemo(() => {
     const geo = new THREE.BufferGeometry()
     geo.setAttribute('position', new THREE.BufferAttribute(trailBuffer, 3))
-    const mat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.15 })
+    const mat = new THREE.LineBasicMaterial({ color: '#8edbff', transparent: true, opacity: 0.45 })
     return new THREE.Line(geo, mat)
   }, [trailBuffer])
   // Dispose geometry+material on unmount to free VRAM
@@ -353,9 +405,9 @@ function TestParticle({ masses }: { masses: Mass[] }) {
       <mesh ref={ref}>
         <sphereGeometry args={[0.05, 12, 12]} />
         <meshStandardMaterial
-          color="#ffffff"
-          emissive="#ffffff"
-          emissiveIntensity={0.8}
+          color="#dff6ff"
+          emissive="#7dd3fc"
+          emissiveIntensity={1.7}
         />
       </mesh>
       {/* Fading trail */}
@@ -377,7 +429,7 @@ function GridFrame() {
       new THREE.Vector3(-half, 0, -half),
     ]
     const geo = new THREE.BufferGeometry().setFromPoints(points)
-    const mat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.06 })
+    const mat = new THREE.LineBasicMaterial({ color: '#8edbff', transparent: true, opacity: 0.22 })
     return new THREE.Line(geo, mat)
   }, [half])
 
@@ -397,16 +449,19 @@ function GravityScene({ masses, onDrag, onRemove, onAdd }: {
   return (
     <>
       {/* Lighting: subtle, top-down, slightly warm */}
-      <ambientLight intensity={0.08} />
-      <directionalLight position={[0, 8, 2]} intensity={0.4} color="#f0ece0" />
-      <directionalLight position={[-3, 5, -2]} intensity={0.15} color="#e0e4f0" />
+      <ambientLight intensity={0.16} />
+      <directionalLight position={[0, 8, 2]} intensity={0.58} color="#dff3ff" />
+      <directionalLight position={[-3, 5, -2]} intensity={0.22} color="#8edbff" />
+      <pointLight position={[0, 2.2, 0]} intensity={1.4} color="#2da8ff" distance={6} />
 
       <Stars />
 
       <group>
+        <HorizonGlow />
         <FabricGrid masses={masses} />
         <GridFrame />
         <ClickPlane onAdd={onAdd} />
+        {masses.map(m => <MassWell key={`well-${m.id}`} mass={m} />)}
         {masses.map(m => (
           <MassSphere key={m.id} mass={m} masses={masses} onDrag={onDrag} onRemove={onRemove} />
         ))}
@@ -479,17 +534,17 @@ export default function SpacetimeFabricScene() {
       style={{
         width: '100%', aspectRatio: '16 / 10',
         borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.06)',
-        boxShadow: '0 8px 40px rgba(0,0,0,0.4)',
-        background: '#050508',
+        border: '1px solid rgba(81,174,255,0.42)',
+        boxShadow: '0 20px 70px rgba(11,92,160,0.22), 0 0 0 1px rgba(255,255,255,0.04) inset',
+        background: 'radial-gradient(circle at 50% 70%, #07345d 0%, #04172b 45%, #020711 100%)',
         position: 'relative',
       }}
     >
       <Canvas
         dpr={[1, 1.5]}
-        camera={{ position: [0, 5, 5.5], fov: 38 }}
+        camera={{ position: [0, 4.4, 5.3], fov: 44 }}
         gl={{ antialias: true, alpha: false }}
-        style={{ background: '#050508' }}
+        style={{ background: 'radial-gradient(circle at 50% 70%, #07345d 0%, #04172b 45%, #020711 100%)' }}
         frameloop={inView ? 'always' : 'never'}
       >
         <Suspense fallback={null}>
@@ -504,18 +559,33 @@ export default function SpacetimeFabricScene() {
 
       {/* Hint overlay */}
       <div style={{
-        position: 'absolute', bottom: 12, left: 0, right: 0,
-        display: 'flex', justifyContent: 'center', gap: 8,
+        position: 'absolute', top: 14, left: 14, right: 14,
+        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12,
         pointerEvents: 'none',
       }}>
         <span style={{
-          fontFamily: 'var(--mono)', fontSize: '9px',
-          letterSpacing: '0.1em', textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.2)',
-          padding: '4px 10px', borderRadius: 'var(--radius-pill)',
-          background: 'rgba(255,255,255,0.03)',
+          fontFamily: 'var(--mono)', fontSize: '10px',
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: 'rgba(226,244,255,0.8)',
+          padding: '7px 10px', borderRadius: '999px',
+          border: '1px solid rgba(142,219,255,0.22)',
+          background: 'rgba(4,18,34,0.68)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.18)',
+          backdropFilter: 'blur(10px)',
         }}>
-          Drag mass &middot; Click to add ({masses.length}/{MAX_MASSES}) &middot; Double-click to remove
+          Drag masses
+        </span>
+        <span style={{
+          fontFamily: 'var(--mono)', fontSize: '10px',
+          letterSpacing: '0.08em', textTransform: 'uppercase',
+          color: 'rgba(226,244,255,0.72)',
+          padding: '7px 10px', borderRadius: '999px',
+          border: '1px solid rgba(142,219,255,0.18)',
+          background: 'rgba(4,18,34,0.58)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.16)',
+          backdropFilter: 'blur(10px)',
+        }}>
+          Click to add {masses.length}/{MAX_MASSES} · Double-click removes
         </span>
       </div>
     </div>

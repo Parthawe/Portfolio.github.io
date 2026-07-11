@@ -147,13 +147,11 @@ function createBinaryPointSets() {
 function BinaryGlyphField({
   glyph,
   points,
-  offset,
   reduced,
   dark,
 }: {
   glyph: '0' | '1'
   points: BinaryPointSet[]
-  offset: number
   reduced: boolean
   dark: boolean
 }) {
@@ -165,14 +163,16 @@ function BinaryGlyphField({
     () =>
       new THREE.MeshBasicMaterial({
         map: texture,
-        color: dark ? '#f5faff' : '#ffffff',
+        color: dark
+          ? glyph === '1' ? '#f9fbff' : '#8fd9ff'
+          : glyph === '1' ? '#1f3145' : '#2786aa',
         transparent: true,
-        opacity: dark ? 0.88 : 0.76,
+        opacity: dark ? 0.88 : glyph === '1' ? 0.7 : 0.78,
         depthWrite: false,
-        blending: THREE.NormalBlending,
-        vertexColors: !dark,
+        blending: dark ? THREE.AdditiveBlending : THREE.NormalBlending,
+        vertexColors: false,
       }),
-    [dark, texture],
+    [dark, glyph, texture],
   )
 
   useEffect(
@@ -198,8 +198,6 @@ function BinaryGlyphField({
     const toKey = OBJECT_SEQUENCE[toIndex]
     const pointerBendX = reduced ? 0 : pointer.x * 0.16
     const pointerBendY = reduced ? 0 : pointer.y * 0.1
-    const color = new THREE.Color()
-
     points.forEach((shapeSet, index) => {
       const point = mixPoint(shapeSet[fromKey], shapeSet[toKey], morph)
       const breathe = Math.sin(time * 0.9 + point.petal * 0.72 + point.depth * 4.1)
@@ -207,17 +205,6 @@ function BinaryGlyphField({
       const x = point.x * (1 + unfurl * 0.08)
       const y = point.y * (1 + unfurl * 0.06)
       const z = point.z + unfurl
-      if (!dark) {
-        const warmCore = point.depth < 0.18
-        const hue = warmCore
-          ? 0.11 + seeded(index + offset) * 0.035
-          : 0.52 + point.depth * 0.08 + seeded(index + offset + 2) * 0.025
-        const saturation = warmCore ? 0.68 : 0.28 + point.depth * 0.18
-        const lightness = warmCore ? 0.68 + seeded(index + offset + 3) * 0.12 : 0.42 + point.depth * 0.24
-
-        color.setHSL(hue, saturation, lightness)
-        mesh.setColorAt(index, color)
-      }
 
       dummy.position.set(x, y, z)
       dummy.rotation.set(
@@ -231,7 +218,6 @@ function BinaryGlyphField({
     })
 
     mesh.instanceMatrix.needsUpdate = true
-    if (!dark && mesh.instanceColor) mesh.instanceColor.needsUpdate = true
   })
 
   return (
@@ -257,8 +243,8 @@ function BinaryFlowerScene({ reduced, dark }: { reduced: boolean; dark: boolean 
 
   return (
     <group ref={groupRef} scale={1.08}>
-      <BinaryGlyphField glyph="0" points={zeros} offset={0} reduced={reduced} dark={dark} />
-      <BinaryGlyphField glyph="1" points={ones} offset={500} reduced={reduced} dark={dark} />
+      <BinaryGlyphField glyph="0" points={zeros} reduced={reduced} dark={dark} />
+      <BinaryGlyphField glyph="1" points={ones} reduced={reduced} dark={dark} />
     </group>
   )
 }

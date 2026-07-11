@@ -269,6 +269,7 @@ export function GravLensing() {
   const [massStrength, setMassStrength] = useState(60)
   const dragging = useRef(false)
   const rafRef = useRef(0)
+  const timeRef = useRef(0)
 
   const getPos = useCallback((e: React.PointerEvent) => {
     const rect = canvasRef.current!.parentElement!.getBoundingClientRect()
@@ -281,6 +282,8 @@ export function GravLensing() {
     const ctx = canvas.getContext('2d')!
 
     const draw = () => {
+      timeRef.current += 0.012
+      const t = timeRef.current
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
       const w = rect.width, h = rect.height
@@ -290,8 +293,26 @@ export function GravLensing() {
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      ctx.fillStyle = '#040408'
+      const bg = ctx.createRadialGradient(w * 0.52, h * 0.48, 20, w * 0.52, h * 0.52, Math.max(w, h) * 0.68)
+      bg.addColorStop(0, '#092b4f')
+      bg.addColorStop(0.42, '#061b34')
+      bg.addColorStop(1, '#020710')
+      ctx.fillStyle = bg
       ctx.fillRect(0, 0, w, h)
+
+      // Faint instrument-grid, like a gallery screen rather than plain canvas.
+      ctx.save()
+      ctx.globalAlpha = 0.13
+      ctx.strokeStyle = '#7ecbff'
+      ctx.lineWidth = 1
+      const grid = 36
+      for (let gx = (t * 10) % grid; gx < w; gx += grid) {
+        ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, h); ctx.stroke()
+      }
+      for (let gy = (t * 6) % grid; gy < h; gy += grid) {
+        ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(w, gy); ctx.stroke()
+      }
+      ctx.restore()
 
       const mx = massPos.current.x * w, my = massPos.current.y * h
       const strength = massStrength / 100
@@ -299,37 +320,62 @@ export function GravLensing() {
 
       // Draw lensed stars
       for (const star of STARS) {
-        let sx = star.x * w, sy = star.y * h
+        const driftX = Math.sin(t * 0.35 + star.x * 11) * 1.8
+        const driftY = Math.cos(t * 0.28 + star.y * 9) * 1.2
+        let sx = star.x * w + driftX
+        let sy = star.y * h + driftY
         const dx = sx - mx, dy = sy - my
         const dist = Math.sqrt(dx * dx + dy * dy)
+        const ox = sx, oy = sy
         if (dist > 15) {
-          const deflection = (strength * 4000) / (dist * dist)
+          const deflection = (strength * 7200) / (dist * dist + 24)
           sx += (dx / dist) * deflection
           sy += (dy / dist) * deflection
         }
 
         // Einstein ring brightening
         const ringDist = Math.abs(dist - einsteinR)
-        const ringBoost = ringDist < 25 ? (1 - ringDist / 25) * 0.6 : 0
+        const ringBoost = ringDist < 34 ? (1 - ringDist / 34) * 0.85 : 0
+        const shear = Math.min(16, ringBoost * (5 + strength * 16))
 
-        const alpha = Math.min(1, star.brightness * 0.5 + ringBoost)
-        const r = 0.8 + ringBoost * 4 + star.brightness * 0.5
+        const alpha = Math.min(1, star.brightness * 0.55 + ringBoost)
+        const r = 0.85 + ringBoost * 3.5 + star.brightness * 0.55
 
         // Star color based on temperature
         const R = star.temp < 0.3 ? 180 : star.temp < 0.7 ? 240 : 255
         const G = star.temp < 0.3 ? 200 : star.temp < 0.7 ? 235 : 220
         const B = 255
 
-        ctx.beginPath()
-        ctx.arc(sx, sy, r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${R}, ${G}, ${B}, ${alpha})`
-        ctx.fill()
+        if (shear > 0.8 && dist > 1) {
+          const tx = -dy / dist
+          const ty = dx / dist
+          ctx.beginPath()
+          ctx.moveTo(sx - tx * shear, sy - ty * shear)
+          ctx.lineTo(sx + tx * shear, sy + ty * shear)
+          ctx.strokeStyle = `rgba(${R}, ${G}, ${B}, ${alpha * 0.72})`
+          ctx.lineWidth = Math.max(1, r * 0.8)
+          ctx.stroke()
+        } else {
+          ctx.beginPath()
+          ctx.arc(sx, sy, r, 0, Math.PI * 2)
+          ctx.fillStyle = `rgba(${R}, ${G}, ${B}, ${alpha})`
+          ctx.fill()
+        }
+
+        if (dist < einsteinR * 1.25 && dist > 20) {
+          ctx.beginPath()
+          ctx.moveTo(ox, oy)
+          ctx.lineTo(sx, sy)
+          ctx.strokeStyle = `rgba(126, 203, 255, ${0.02 + ringBoost * 0.08})`
+          ctx.lineWidth = 1
+          ctx.stroke()
+        }
 
         // Glow on bright/boosted stars
         if (alpha > 0.5) {
           ctx.beginPath()
           ctx.arc(sx, sy, r * 3, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(${R}, ${G}, ${B}, ${alpha * 0.06})`
+          ctx.fillStyle = `rgba(${R}, ${G}, ${B}, ${alpha * 0.09})`
           ctx.fill()
         }
       }
@@ -339,38 +385,64 @@ export function GravLensing() {
 
       // Accretion disk
       ctx.save()
-      ctx.beginPath()
-      ctx.ellipse(mx, my, bhR * 3.5, bhR * 1.5, 0.2, 0, Math.PI * 2)
-      const diskGrad = ctx.createRadialGradient(mx, my, bhR, mx, my, bhR * 3.5)
-      diskGrad.addColorStop(0, 'rgba(255, 160, 60, 0.12)')
-      diskGrad.addColorStop(0.5, 'rgba(255, 100, 40, 0.04)')
+      ctx.translate(mx, my)
+      ctx.rotate(0.18 + Math.sin(t * 0.4) * 0.04)
+      for (let i = 0; i < 3; i++) {
+        ctx.beginPath()
+        ctx.ellipse(0, 0, bhR * (3.2 + i * 0.42), bhR * (1.08 + i * 0.18), 0, 0, Math.PI * 2)
+        ctx.strokeStyle = `rgba(111, 202, 255, ${0.16 - i * 0.035})`
+        ctx.lineWidth = 2 - i * 0.35
+        ctx.stroke()
+      }
+      const diskGrad = ctx.createRadialGradient(0, 0, bhR * 0.6, 0, 0, bhR * 3.6)
+      diskGrad.addColorStop(0, 'rgba(174, 229, 255, 0.22)')
+      diskGrad.addColorStop(0.45, 'rgba(45, 168, 255, 0.1)')
       diskGrad.addColorStop(1, 'rgba(0,0,0,0)')
       ctx.fillStyle = diskGrad
+      ctx.beginPath()
+      ctx.ellipse(0, 0, bhR * 3.7, bhR * 1.45, 0, 0, Math.PI * 2)
       ctx.fill()
       ctx.restore()
 
       // Einstein ring
       ctx.beginPath()
       ctx.arc(mx, my, einsteinR, 0, Math.PI * 2)
-      ctx.strokeStyle = `rgba(200, 180, 255, ${0.03 + strength * 0.06})`
-      ctx.lineWidth = 1.5
+      ctx.strokeStyle = `rgba(142, 219, 255, ${0.1 + strength * 0.16})`
+      ctx.lineWidth = 2
+      ctx.shadowColor = 'rgba(68, 179, 255, 0.45)'
+      ctx.shadowBlur = 18
       ctx.stroke()
+      ctx.shadowBlur = 0
 
       // Photon sphere
       ctx.beginPath()
       ctx.arc(mx, my, bhR * 1.5, 0, Math.PI * 2)
-      ctx.strokeStyle = 'rgba(255, 200, 100, 0.04)'
-      ctx.lineWidth = 1
+      ctx.strokeStyle = 'rgba(191, 232, 255, 0.18)'
+      ctx.lineWidth = 1.2
       ctx.stroke()
 
       // Event horizon
       const ehGrad = ctx.createRadialGradient(mx - bhR * 0.2, my - bhR * 0.2, 0, mx, my, bhR)
-      ehGrad.addColorStop(0, 'rgba(15, 12, 20, 1)')
+      ehGrad.addColorStop(0, 'rgba(2, 6, 12, 1)')
       ehGrad.addColorStop(1, 'rgba(0, 0, 0, 1)')
       ctx.beginPath()
       ctx.arc(mx, my, bhR, 0, Math.PI * 2)
       ctx.fillStyle = ehGrad
       ctx.fill()
+
+      // Draggable target and status readout.
+      ctx.beginPath()
+      ctx.arc(mx, my, bhR + 7 + Math.sin(t * 2.4) * 2, 0, Math.PI * 2)
+      ctx.strokeStyle = dragging.current ? 'rgba(255,255,255,0.62)' : 'rgba(142,219,255,0.34)'
+      ctx.lineWidth = 1
+      ctx.stroke()
+
+      ctx.font = '10px var(--mono), monospace'
+      ctx.fillStyle = 'rgba(226,244,255,0.62)'
+      ctx.letterSpacing = '1px'
+      ctx.fillText(`MASS ${Math.round(massStrength)}%`, 18, 24)
+      ctx.fillStyle = 'rgba(226,244,255,0.38)'
+      ctx.fillText('DRAG THE HORIZON', 18, 42)
 
       rafRef.current = requestAnimationFrame(draw)
     }
@@ -379,12 +451,19 @@ export function GravLensing() {
   }, [massStrength])
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{
+      position: 'relative',
+      borderRadius: 'var(--radius-lg)',
+      overflow: 'hidden',
+      background: 'linear-gradient(180deg, rgba(7,30,54,0.96), rgba(3,10,20,0.96))',
+      border: '1px solid rgba(81,174,255,0.36)',
+      boxShadow: '0 18px 60px rgba(9,77,138,0.18)',
+    }}>
       <div style={{
         width: '100%', aspectRatio: '16 / 9',
         maxHeight: 'min(34rem, 68vh)',
-        borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.04)', background: '#040408',
+        overflow: 'hidden',
+        background: '#040408',
         cursor: dragging.current ? 'grabbing' : 'grab', touchAction: 'none',
         contain: 'layout paint size',
       }}
@@ -394,12 +473,68 @@ export function GravLensing() {
       >
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', pointerEvents: 'none' }} />
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', justifyContent: 'center' }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '8px', color: 'rgba(255,255,255,0.2)', textTransform: 'uppercase' }}>Mass</span>
+      <div style={{
+        position: 'absolute',
+        left: 16,
+        right: 16,
+        bottom: 14,
+        display: 'grid',
+        gridTemplateColumns: 'auto minmax(9rem, 16rem) auto',
+        alignItems: 'center',
+        gap: 12,
+        padding: '10px 12px',
+        borderRadius: 999,
+        background: 'rgba(3, 12, 24, 0.7)',
+        border: '1px solid rgba(142,219,255,0.18)',
+        boxShadow: '0 14px 34px rgba(0,0,0,0.24)',
+        backdropFilter: 'blur(10px)',
+      }}>
+        <span style={{
+          fontFamily: 'var(--mono)',
+          fontSize: '10px',
+          color: 'rgba(226,244,255,0.72)',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
+        }}>Mass</span>
         <input type="range" min={15} max={100} value={massStrength}
           onChange={e => setMassStrength(Number(e.target.value))}
-          aria-label="Black hole mass" style={{ width: 140, accentColor: '#666' }} />
+          aria-label="Black hole mass" className="black-hole-mass-slider" style={{ width: '100%', accentColor: '#7dd3fc' }} />
+        <span style={{
+          fontFamily: 'var(--mono)',
+          fontSize: '10px',
+          color: 'rgba(226,244,255,0.72)',
+          fontVariantNumeric: 'tabular-nums',
+        }}>{massStrength}%</span>
       </div>
+      <style>{`
+        .black-hole-mass-slider {
+          appearance: none;
+          -webkit-appearance: none;
+          height: 4px;
+          border-radius: 999px;
+          background: linear-gradient(90deg, #7dd3fc ${massStrength}%, rgba(226,244,255,0.18) ${massStrength}%);
+          outline: none;
+        }
+        .black-hole-mass-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          border: 2px solid rgba(2, 8, 18, 0.9);
+          background: #e2f4ff;
+          box-shadow: 0 0 0 4px rgba(125,211,252,0.2), 0 0 22px rgba(125,211,252,0.55);
+          cursor: pointer;
+        }
+        .black-hole-mass-slider::-moz-range-thumb {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          border: 2px solid rgba(2, 8, 18, 0.9);
+          background: #e2f4ff;
+          box-shadow: 0 0 0 4px rgba(125,211,252,0.2), 0 0 22px rgba(125,211,252,0.55);
+          cursor: pointer;
+        }
+      `}</style>
     </div>
   )
 }

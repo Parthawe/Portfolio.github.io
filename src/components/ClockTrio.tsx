@@ -5,7 +5,7 @@ import { useRef, useEffect } from 'react'
 
    1. Sundial: shadow rotates with real time, gnomon casts it
    2. Mechanical: visible escapement, ticking balance wheel
-   3. Digital: abstract color field — hue=hour, sat=min, lum=sec
+   3. Digital: abstract blue field — tone=hour, sat=min, lum=sec
 
    All three show the SAME current time, different mediums.
    ═══════════════════════════════════════════════════════════ */
@@ -183,10 +183,10 @@ export default function ClockTrio() {
       // ── 3. DIGITAL ──
       const dx = panelW * 2.5
       {
-        // Color field — hue from hour, saturation from minute, lightness from second
-        const hue = (hrs / 12) * 360
-        const sat = 40 + (mins / 60) * 40
-        const lum = isDark ? 10 + (secs / 60) * 25 : 50 + (secs / 60) * 30
+        // Color field stays blue while still shifting with the time values.
+        const hue = 202 + (hrs / 12) * 18
+        const sat = 48 + (mins / 60) * 24
+        const lum = isDark ? 16 + (secs / 60) * 18 : 48 + (secs / 60) * 22
 
         // Background circle
         ctx.beginPath()
@@ -198,7 +198,7 @@ export default function ClockTrio() {
         for (let i = 1; i <= 3; i++) {
           ctx.beginPath()
           ctx.arc(dx, cy, r * (i / 4), 0, Math.PI * 2)
-          ctx.strokeStyle = `hsla(${hue + 30 * i}, ${sat}%, ${lum + 15}%, 0.15)`
+          ctx.strokeStyle = `hsla(${hue + 5 * i}, ${sat}%, ${lum + 15}%, 0.16)`
           ctx.lineWidth = 1
           ctx.stroke()
         }

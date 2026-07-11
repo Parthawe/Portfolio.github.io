@@ -47,14 +47,6 @@ const ZENTIPAY_REVIEWER_VISUALS = [
       { src: `${ZENTIPAY_REVIEWER_ASSET}/profile.webp`, alt: 'ZentiPay account profile screen with balances and onboarding progress.' },
     ],
   },
-  {
-    label: 'Marketing site',
-    note: 'The public-facing ZentiPay marketing and waitlist landing page.',
-    tall: true,
-    images: [
-      { src: `${ZENTIPAY_REVIEWER_ASSET}/landing-page.webp`, alt: 'ZentiPay marketing landing page, full scroll capture.' },
-    ],
-  },
 ]
 
 const ZENTIPAY_PUBLIC_VISUALS = [
@@ -107,7 +99,7 @@ export default function ZentipayPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{
+      <main id="main-content" className="project-main project-main--zentipay" style={{
         // Black/grey treatment: accent plus the full visual-hero palette.
         '--project-color': '#3F4046',
         '--case-outer-1': '#101012',

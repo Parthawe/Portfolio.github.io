@@ -13,7 +13,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   overscroll-behavior-y: none;
 }
 img,video { display:block; max-width:100%; }

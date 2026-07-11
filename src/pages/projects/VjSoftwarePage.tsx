@@ -27,7 +27,7 @@ export default function VjSoftwarePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#E8702A' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--vj" style={{ '--project-color': '#E8702A' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -150,7 +150,16 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>I reviewed resident-service apps like MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety to see how they handled parking, complaints, vehicle records, payments, visitor logs, and society communication.</p>
             </CsBody>
-            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, current case analysis and competitive analysis" loading="lazy" /></div>
+            <div className="vj-board-stack vj-board-stack--research">
+              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--research">
+                <img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, and current case analysis" loading="lazy" />
+                <figcaption className="cs-img-caption">User research: two resident archetypes, goals, quotes, and current-case patterns.</figcaption>
+              </figure>
+              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--competitive">
+                <img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/4.webp" alt="Competitive analysis matrix comparing resident service apps" loading="lazy" />
+                <figcaption className="cs-img-caption">Competitive analysis: where existing resident apps supported parking, complaints, payments, and visitor flows.</figcaption>
+              </figure>
+            </div>
 
             <h3 className="cs-section-subtitle">Findings</h3>
             <CsFeatureGrid features={[
@@ -174,7 +183,7 @@ export default function VjSoftwarePage() {
                 </CsBody>
               </div>
             </div>
-            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--methods"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
           </div>
         </section>
 
@@ -234,7 +243,16 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Mapped the complete user journey covering first-time users booking a parking spot, adding RFID or FastTag details, editing vehicle details, renting a parking spot, and filing complaints for incorrect vehicle parking. Each flow includes decision points, success states, and error handling.</p>
             </CsBody>
-            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="User journey map, full flow diagram for parking spot booking, RFID, complaints" loading="lazy" /></div>
+            <div className="vj-board-stack vj-board-stack--journey">
+              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--journey">
+                <img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="User journey map for parking spot booking, RFID, and complaints" loading="lazy" />
+                <figcaption className="cs-img-caption">Journey map: booking, RFID, vehicle details, rentals, and complaint branches.</figcaption>
+              </figure>
+              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--features">
+                <img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/7.webp" alt="Feature set derived from the VJ parking journey" loading="lazy" />
+                <figcaption className="cs-img-caption">Feature set: the system areas that came out of the journey map.</figcaption>
+              </figure>
+            </div>
           </div>
         </section>
 
@@ -255,7 +273,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>Translated wireframes into polished high-fidelity screens featuring the interactive society map, spot selection interface, booking details, payment flow, and confirmation screens.</p>
             </CsBody>
-            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--hifi"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
           </div>
         </section>
 
@@ -275,7 +293,7 @@ export default function VjSoftwarePage() {
               ))}
             </div>
 
-            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--style"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
           </div>
         </section>
 
@@ -300,7 +318,7 @@ export default function VjSoftwarePage() {
               <p>After selecting a spot, users proceed through the booking process, choose a payment method, receive confirmation of their payment, and get a detailed summary of their parking reservation.</p>
             </CsBody>
 
-            <div className="cs-img-full cs-img-full--vj-board"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--final"><img src="/Portfolio.github.io/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
           </div>
         </section>
 

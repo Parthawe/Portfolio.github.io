@@ -13,10 +13,10 @@ export default function TedxPage() {
     <>
       <Helmet>
         <title>TEDx VIT Pune &middot; Parth Pawar</title>
-        <meta name="description" content="Art Director for TEDx VIT Pune, led a team of 65+ people to design, fabricate, and build a parallax cityscape stage for 800+ attendees. From brand identity to structural construction." />
+        <meta name="description" content="Art Director and sole stage designer for TEDx VIT Pune, working with an 8-person stage team to design, fabricate, and build a parallax cityscape stage for 800+ attendees." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TEDx VITPUNE &middot; Parth Pawar" />
-        <meta property="og:description" content="Art Director for TEDx VIT Pune, led 65+ people to build a parallax cityscape stage for 800+ attendees." />
+        <meta property="og:description" content="Sole stage designer for TEDx VIT Pune, working with an 8-person team to build a parallax cityscape stage for 800+ attendees." />
         <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/tedx.jpg" />
       </Helmet>
 
@@ -30,10 +30,10 @@ export default function TedxPage() {
           backLabel="Back to Work"
           tags={['Art Direction', 'Stage Design', 'Brand Identity', 'Fabrication']}
           title="TEDx VIT Pune"
-          subtitle="Art directing a 65-person team to design, fabricate, and light a rotating parallax cityscape stage for 800+ attendees"
+          subtitle="Sole stage designer on an 8-person team, designing, fabricating, and lighting a rotating parallax cityscape stage for 800+ attendees"
           info={[
-            { label: 'Role', value: 'Art Director' },
-            { label: 'Team', value: '65+ volunteers' },
+            { label: 'Role', value: 'Art Director & Sole Stage Designer' },
+            { label: 'Stage Team', value: '8 people' },
             { label: 'Timeline', value: 'Sept\u2013Nov 2019' },
             { label: 'Audience', value: '800+ attendees' },
             { label: 'Year', value: '2019' },
@@ -47,11 +47,11 @@ export default function TedxPage() {
           <div className="proj-overview-grid">
             <div className="proj-overview-body">
               <h2 className="section-label">The Challenge</h2>
-              <p className="proj-desc">TEDxVITPune needed a stage that felt alive, not a static backdrop. The ask was ambitious: design, build, light, and install a spatial stage system for 800+ attendees in eight weeks, with a student team and a tight budget.</p>
+              <p className="proj-desc">TEDxVITPune needed a stage that felt alive, not a static backdrop. The ask was ambitious: design, build, light, and install a spatial stage system for 800+ attendees in eight weeks, with an 8-person stage team and a tight budget.</p>
             </div>
             <div className="proj-overview-body">
               <h2 className="section-label">My Role</h2>
-              <p className="proj-desc">I led the visual system, stage concept, fabrication direction, lighting design, and on-site assembly across 65+ volunteers.</p>
+              <p className="proj-desc">I was the only designer for the stage, leading the visual system, stage concept, fabrication direction, lighting design, and on-site assembly with an 8-person team.</p>
             </div>
           </div>
         </div>
@@ -101,9 +101,9 @@ export default function TedxPage() {
         </section>
 
         {/* Team Leadership */}
-        <CsSection id="cs-team" label="04 &mdash; Team Leadership" title="Coordinating 65+ People">
+        <CsSection id="cs-team" label="04 &mdash; Team Leadership" title="Coordinating an 8-Person Stage Team">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p>I split the 65+ person team into design, fabrication, and logistics groups, then gave each group clear templates, dimensions, paint specs, and assembly guides.</p>
+            <p>I was the sole stage designer inside an 8-person team, translating the concept into templates, dimensions, paint specs, and assembly guides the team could actually build from.</p>
             <p>The system let volunteers move quickly without waiting for approval, while I stayed close to the high-risk moments: structure tests, lighting programming, and the final 48-hour install.</p>
           </CsBody>
         </CsSection>
@@ -130,7 +130,7 @@ export default function TedxPage() {
         {/* Reflections */}
         <CsSection id="cs-reflections" label="06 &mdash; Reflections" title="What Leading This Taught Me">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p>TEDxVITPune taught me that design systems are leadership tools. Clear guides helped 65 people make aligned decisions without slowing the build down.</p>
+            <p>TEDxVITPune taught me that design systems are leadership tools. As the only stage designer on an 8-person team, clear guides helped everyone make aligned build decisions without slowing the work down.</p>
             <p>The stage worked because every visual choice also had to be structural, affordable, movable, and installable. That is the design lesson I still carry.</p>
           </CsBody>
         </CsSection>

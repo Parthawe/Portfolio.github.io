@@ -78,7 +78,7 @@ export default function BallahCodePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#6A4FC0' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--ballah-code" style={{ '--project-color': '#6A4FC0' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -93,8 +93,8 @@ export default function BallahCodePage() {
             { label: 'Timeline', value: '2026' },
             { label: 'Type', value: 'Dev Tools \u00b7 AI' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/images/ballah-code.webp"
-          heroAlt="Ballah Code, AI-native desktop IDE"
+          heroImage="/Portfolio.github.io/Assets/mockups/projects/ballah-code_16x9.webp"
+          heroAlt="Ballah Code cover showing the AI-native desktop IDE launch hero"
         />
 
         {/* 01, Overview */}
@@ -103,7 +103,7 @@ export default function BallahCodePage() {
             <p>Ballah Code is a native desktop development environment that treats AI as a senior engineering partner, not a disposable chatbot. The product centers context, explicit tools, reviewable actions, and decision records so developers stay in control.</p>
           </CsBody>
 
-          <div className="cs-slide reveal">
+          <div className="cs-slide ballah-wide-shot reveal">
             <img src={siteScreens[0].src} alt={siteScreens[0].alt} loading="lazy" decoding="async" style={shotStyle} />
           </div>
           <p className="cs-caption">{siteScreens[0].caption}</p>
@@ -114,7 +114,7 @@ export default function BallahCodePage() {
           <CsBody>
             <p>Existing AI coding tools treat context as disposable and AI as replaceable. Every conversation starts from zero. There&rsquo;s no persistent memory of why decisions were made, no living documents that evolve with the codebase, and no structured delegation between architect-level thinking and implementation-level execution.</p>
           </CsBody>
-          <div className="cs-img-grid reveal">
+          <div className="cs-img-grid ballah-wide-grid reveal">
             {[siteScreens[2], siteScreens[6]].map((screen) => (
               <figure className="cs-img-tile" key={screen.src}>
                 <img src={screen.src} alt={screen.alt} loading="lazy" decoding="async" style={shotStyle} />
@@ -129,7 +129,7 @@ export default function BallahCodePage() {
           <CsBody>
             <p>The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. Every interaction is designed to keep the developer in flow state while giving the AI full context.</p>
           </CsBody>
-          <div className="cs-slide reveal">
+          <div className="cs-slide ballah-wide-shot reveal">
             <img src={siteScreens[1].src} alt={siteScreens[1].alt} loading="lazy" decoding="async" style={shotStyle} />
           </div>
           <p className="cs-caption">{siteScreens[1].caption}</p>
@@ -150,7 +150,7 @@ export default function BallahCodePage() {
             { title: 'Integrated Terminal', desc: 'PTY session management with full terminal emulation. The AI can execute commands, and you can see everything it does in real time.' },
             { title: 'Cost Tracking & Model Flexibility', desc: 'Real-time progress indicators and cost tracking per conversation. Switch between Claude, Gemini, and OpenAI on a per-chat basis.' },
           ]} />
-          <div className="cs-img-grid reveal">
+          <div className="cs-img-grid ballah-wide-grid ballah-wide-grid--features reveal">
             {[siteScreens[3], siteScreens[4], siteScreens[5]].map((screen) => (
               <figure className="cs-img-tile" key={screen.src}>
                 <img src={screen.src} alt={screen.alt} loading="lazy" decoding="async" style={shotStyle} />
@@ -170,7 +170,7 @@ export default function BallahCodePage() {
             { title: 'Working core', desc: 'Multi-workspace UI, terminal integration, streaming agent loop, settings persistence, and evaluation harness.' },
             { title: 'On the Roadmap', desc: 'Living documents, architect/worker delegation, decision ledger, and expanded benchmark coverage.' },
           ]} />
-          <div className="cs-slide reveal">
+          <div className="cs-slide ballah-wide-shot reveal">
             <img src={siteScreens[7].src} alt={siteScreens[7].alt} loading="lazy" decoding="async" style={shotStyle} />
           </div>
           <p className="cs-caption">{siteScreens[7].caption}</p>

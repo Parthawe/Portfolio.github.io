@@ -9,6 +9,7 @@ interface ProjectQuickSummaryProps {
   onViewModeChange: (mode: CaseStudyViewMode) => void
   fullCaseStudyEnabled?: boolean
   fullEntryId?: string
+  variant?: 'card' | 'open'
 }
 
 export default function ProjectQuickSummary({
@@ -17,6 +18,7 @@ export default function ProjectQuickSummary({
   onViewModeChange,
   fullCaseStudyEnabled = true,
   fullEntryId = 'cs-context',
+  variant = 'card',
 }: ProjectQuickSummaryProps) {
   const project = getProject(slug)
 
@@ -43,7 +45,7 @@ export default function ProjectQuickSummary({
 
   return (
     <section className="cs-quick-summary wrap reveal" id="cs-summary">
-      <div className="cs-quick-summary-shell surface-glass">
+      <div className={`cs-quick-summary-shell cs-quick-summary-shell--${variant}${variant === 'card' ? ' surface-glass' : ''}`}>
         <div className="cs-quick-summary-top">
           <div>
             <span className="cs-section-label">TL;DR</span>
