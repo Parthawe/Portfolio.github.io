@@ -64,7 +64,9 @@
   color: var(--ink);
   text-wrap: balance;
   max-width: 12ch;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .ch-statement em {
@@ -79,7 +81,9 @@
   color: var(--ink-50);
   max-width: 38ch;
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 /* ── Proof strip ── */

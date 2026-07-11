@@ -7452,3 +7452,26 @@
   color: var(--ink);
   opacity: 0.55;
 }
+
+.project-main :is(
+  h1,
+  h2,
+  h3,
+  .proj-title,
+  .proj-subtitle,
+  .proj-visual-title,
+  .cs-display,
+  .cs-section-title,
+  .cs-quick-summary-title,
+  .cs-media-spotlight-title,
+  .cs-thanks-title,
+  .next-project-title,
+  .proj-fastread-stat strong,
+  .proj-fastread-stat span,
+  .proj-hero-stat strong,
+  .proj-hero-stat span
+) {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
