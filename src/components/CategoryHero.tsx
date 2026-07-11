@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, type MouseEvent } from 'react'
 import { motion } from 'framer-motion'
 import { useDeferredMount } from '../hooks/useDeferredMount'
 
@@ -79,6 +79,14 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
   const proof = PROOFS[slug]
   const categoryName = CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
   const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
+  const handleWorkClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    const target = document.getElementById('lp-work')
+    if (!target) return
+    event.preventDefault()
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' })
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#lp-work`)
+  }
 
   return (
     <section className="ch ch--landing">
@@ -126,8 +134,15 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
             </>
           )}
           <i className="ch-strip-dot" aria-hidden="true" />
-          <a href="#lp-work" className="ch-strip-link" style={{ color: accentColor }}>
-            See the work &darr;
+          <a
+            href="#lp-work"
+            className="ch-strip-link ch-work-cta"
+            style={{ color: accentColor }}
+            onClick={handleWorkClick}
+            aria-label={`See ${categoryName} projects`}
+          >
+            <span>See the work</span>
+            <span className="ch-work-cta__arrow" aria-hidden="true">&darr;</span>
           </a>
         </motion.div>
       </div>
