@@ -89,7 +89,7 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
   }
 
   return (
-    <section className="ch ch--landing">
+    <section className={`ch ch--landing ch--${slug}`}>
       <div className="ch-copy">
         <motion.span
           className="ch-eyebrow"
@@ -103,12 +103,25 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
 
         <motion.h1
           className="ch-statement"
+          aria-label={slug === 'ux-design' ? 'The interface is the product.' : undefined}
           initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
           animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
           transition={{ duration: 0.68, ease }}
         >
-          {lead}{' '}
-          <em style={{ color: accentColor }}>{accent}</em>
+          {slug === 'ux-design' ? (
+            <>
+              <span className="ch-statement-line">The interface</span>
+              <em style={{ color: accentColor }}>
+                <span className="ch-statement-line">is the</span>
+                <span className="ch-statement-line">product.</span>
+              </em>
+            </>
+          ) : (
+            <>
+              {lead}{' '}
+              <em style={{ color: accentColor }}>{accent}</em>
+            </>
+          )}
         </motion.h1>
 
         <motion.p

@@ -73,6 +73,15 @@
   font-style: italic;
 }
 
+.ch--ux-design .ch-statement {
+  max-width: 12.2ch;
+  font-size: clamp(3.75rem, 7.25vw, 6.65rem);
+}
+
+.ch-statement-line {
+  display: block;
+}
+
 .ch-sub {
   margin: 0;
   font-family: var(--sans);
