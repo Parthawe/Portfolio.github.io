@@ -189,7 +189,9 @@
   color: var(--ink);
   margin: 0 0 1.25rem;
   font-weight: 400;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 .proj-subtitle {
   font-family: var(--sans);
@@ -198,7 +200,9 @@
   margin: 0 0 2.5rem;
   line-height: 1.7;
   max-width: 56ch;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 .proj-info-row {
   grid-area: info;
@@ -346,7 +350,9 @@
   letter-spacing: 0;
   color: var(--ink);
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .proj-fastread-stat span {
@@ -356,7 +362,9 @@
   text-transform: uppercase;
   color: var(--ink-40);
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 /* Live site link */
@@ -477,7 +485,9 @@
 
 .proj-hero-stat strong {
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
   font-family: var(--sans);
   font-size: clamp(0.9rem, 1.15vw, 1.05rem);
   font-weight: 700;
@@ -486,7 +496,9 @@
 }
 
 .proj-hero-stat span {
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .project-header--visual {

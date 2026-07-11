@@ -45,7 +45,9 @@
   font-size: clamp(1rem, 1.6vw, 1.12rem);
   line-height: 1.75;
   color: var(--ink-70);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .work-page-intro-meta {
@@ -135,7 +137,9 @@
   font-size: var(--text-sm);
   line-height: 1.7;
   color: var(--ink-70);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .work-group--archive {
@@ -711,7 +715,9 @@
   letter-spacing: 0;
   font-weight: 300;
   color: var(--ink);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .work-timeline-feature__detail,
@@ -721,7 +727,9 @@
   line-height: 1.62;
   color: var(--ink-70);
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .work-timeline-feature__cta {
@@ -1152,7 +1160,9 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
   text-shadow: 0 1px 8px rgba(0,0,0,0.4);
   transition: transform 0.5s var(--ease-spring), text-shadow 0.4s;
 }
@@ -1940,6 +1950,12 @@ body.page-work-timeline .abt-paper .wrap {
 
 .page-work :is(h1, h2, h3, p, span, small, a, button) {
   min-width: 0;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.page-work :is(.pcard-marquee-track span, .work-library-row__meta, .work-timeline-feature__meta) {
   overflow-wrap: anywhere;
 }
 

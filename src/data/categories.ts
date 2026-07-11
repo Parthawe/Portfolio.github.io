@@ -457,8 +457,8 @@ export const categories: CategoryData[] = [
   {
     slug: 'installations',
     accentColor: '#6366f1',
-    title: 'Install-',
-    titleAccent: 'ations & Fabrication',
+    title: 'Installations',
+    titleAccent: '& Fabrication',
     description:
       'Things you can walk through, sit inside, or play with. Kinetic stages, light sculptures, arcade cabinets, and theatrical sets, designed and physically built.',
     metaTitle: 'Installations · Parth Pawar',
