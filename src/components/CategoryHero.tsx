@@ -24,7 +24,7 @@ const STATEMENTS: Record<string, [string, string]> = {
 /* One punchy subline per domain (what lives here + how it is judged). */
 const SUBLINES: Record<string, string> = {
   'ai':              'Smart glasses, voice interfaces, on-device ML, and conversational AI — designed for humans, not manuals.',
-  'ux-design':       'Product interfaces where every pixel earns trust — payment rails, dashboards, and systems that ship.',
+  'ux-design':       'Hi, I’m Parth, a Product Designer focused on crafting intuitive, user-centered experiences that make technology accessible and engaging.',
   'creative-tech':   'Neural-network instruments, audio-reactive visuals, and interactive machines — code as a physical material.',
   'installations':   'Black holes you can hold, UV rooms with hidden messages, a 15-foot rotating stage — built and exhibited.',
   'brand-visual':    'Custom typefaces, event art direction, and identity systems with factory-spec precision.',
@@ -60,6 +60,14 @@ const PROOFS: Record<string, string> = {
   'crypto':          'Compliance-grade flows',
   'ai-wearables':    'Voice-first, glance-first',
 }
+
+const UX_AUDIENCE_WORDS = ['For', 'Anyone', 'Hiring', 'Recruiters', 'Product', 'Manager']
+
+const UX_HERO_STATS = [
+  ['20+', 'projects'],
+  ['∞', 'Memories'],
+  ['5+', 'years of experience'],
+] as const
 
 interface CategoryHeroProps {
   slug: string
@@ -132,6 +140,29 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
         >
           {sub}
         </motion.p>
+
+        {slug === 'ux-design' && (
+          <motion.div
+            className="ch-ux-proof"
+            initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
+            transition={{ ...revealTransition, delay: 0.22 }}
+          >
+            <div className="ch-ux-audience" aria-label="For anyone hiring recruiters product manager">
+              {UX_AUDIENCE_WORDS.map((word) => (
+                <span key={word}>{word}</span>
+              ))}
+            </div>
+            <dl className="ch-ux-stats" aria-label="UX portfolio statistics">
+              {UX_HERO_STATS.map(([value, label]) => (
+                <div className="ch-ux-stat" key={label}>
+                  <dt>{value}</dt>
+                  <dd>{label}</dd>
+                </div>
+              ))}
+            </dl>
+          </motion.div>
+        )}
 
         <motion.div
           className="ch-strip"

@@ -95,6 +95,76 @@
   hyphens: none;
 }
 
+.ch-ux-proof {
+  display: grid;
+  grid-template-columns: minmax(6.25rem, 0.34fr) minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(1rem, 2.2vw, 1.6rem);
+  width: min(100%, 46rem);
+  padding-block: clamp(0.85rem, 1.7vw, 1.25rem);
+  border-block: 1px solid var(--ink-08);
+}
+
+.ch-ux-audience {
+  display: grid;
+  gap: 0.05rem;
+  min-width: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 2.45vw, 2.15rem);
+  font-weight: 300;
+  line-height: 0.96;
+  color: var(--ink);
+}
+
+.ch-ux-audience span:first-child {
+  margin-bottom: 0.32rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+.ch-ux-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.6vw, 1.15rem);
+  min-width: 0;
+  margin: 0;
+}
+
+.ch-ux-stat {
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+}
+
+.ch-ux-stat dt {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 2.85vw, 2.6rem);
+  font-weight: 300;
+  line-height: 0.98;
+  color: var(--ink);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.ch-ux-stat dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: clamp(0.68rem, 0.86vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
 /* ── Proof strip ── */
 .ch-strip {
   display: flex;
@@ -244,7 +314,8 @@
   }
   .ch-statement,
   .ch-sub,
-  .ch-strip {
+  .ch-strip,
+  .ch-ux-proof {
     width: min(100%, calc(100vw - 2rem));
     max-width: 100%;
   }
@@ -279,6 +350,32 @@
   }
   .ch-strip {
     gap: 0.55rem 0.75rem;
+  }
+  .ch-ux-proof {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 0.9rem;
+  }
+  .ch-ux-audience {
+    grid-template-columns: repeat(3, minmax(0, max-content));
+    gap: 0.28rem 0.7rem;
+    font-size: clamp(1.15rem, 5vw, 1.45rem);
+    line-height: 1;
+  }
+  .ch-ux-audience span:first-child {
+    grid-column: 1 / -1;
+    margin-bottom: 0.12rem;
+  }
+  .ch-ux-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .ch-ux-stat dt {
+    font-size: clamp(1.35rem, 7vw, 1.75rem);
+  }
+  .ch-ux-stat dd {
+    font-size: clamp(0.58rem, 2.55vw, 0.68rem);
+    line-height: 1.2;
   }
   .ch-strip-item,
   .ch-strip-link {
