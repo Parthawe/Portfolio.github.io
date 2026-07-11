@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_NDA_ACCESS_SHA256: ${{ secrets.VITE_NDA_ACCESS_SHA256 }}
     steps:
       - uses: actions/checkout@v4
 
