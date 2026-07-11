@@ -47,7 +47,7 @@ bun run preview   # Preview production build locally
    {
      slug: 'your-project',
      name: 'Your Project',
-     image: '/Portfolio.github.io/Assets/images/your-project.webp',
+     image: '/Assets/images/your-project.webp',
      tag: 'UX DESIGN',
      year: '2025',
      desc: 'One-line description',

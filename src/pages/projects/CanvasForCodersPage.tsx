@@ -91,7 +91,7 @@ export default function CanvasForCodersPage() {
 
       </main>
 
-      <NextProject slug="enigma" title="Enigma" image="/Portfolio.github.io/Assets/images/enigma.jpg" />
+      <NextProject slug="enigma" title="Enigma" image="/Assets/images/enigma.jpg" />
       <Footer />
     </>
   )

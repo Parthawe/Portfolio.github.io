@@ -10,13 +10,13 @@ import NextProject from '../../components/case-study/NextProject'
 
 const CUETV_PROCESS_VISUALS = [
   {
-    src: '/Portfolio.github.io/Assets/Projects/CueTV/refresh/platforms.png',
+    src: '/Assets/Projects/CueTV/refresh/platforms.png',
     alt: 'CueTV across TV, web, tablet, and phone platforms for opera, ballet, and classical streaming.',
     label: 'Multi-platform product surface',
   },
 ]
 
-const CUETV_REFRESH_PATH = '/Portfolio.github.io/Assets/Projects/CueTV/refresh'
+const CUETV_REFRESH_PATH = '/Assets/Projects/CueTV/refresh'
 
 const CUETV_PUBLIC_VISUALS = [
   {
@@ -93,7 +93,7 @@ export default function CueTvPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="CueTV · Parth Pawar" />
         <meta property="og:description" content="OTT platform for opera, ballet, symphonies, designed discovery, playback, and retargeting ads." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
@@ -198,7 +198,7 @@ export default function CueTvPage() {
 
       </main>
 
-      <NextProject slug="executivelens" title="ExecutiveLens" image="/Portfolio.github.io/Assets/images/executivelens.webp" />
+      <NextProject slug="executivelens" title="ExecutiveLens" image="/Assets/images/executivelens.webp" />
       <Footer />
     </>
   )

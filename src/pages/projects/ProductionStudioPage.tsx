@@ -58,7 +58,7 @@ export default function ProductionStudioPage() {
           { id: 'cs-lessons', label: 'Lessons' },
         ]} />
       </main>
-      <NextProject slug="black-hole" title="Black Hole" image="/Portfolio.github.io/Assets/images/black-hole.jpg" />
+      <NextProject slug="black-hole" title="Black Hole" image="/Assets/images/black-hole.jpg" />
       <Footer />
     </>
   )

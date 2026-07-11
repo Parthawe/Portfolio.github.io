@@ -17,7 +17,7 @@ export default function TedxPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TEDx VITPUNE &middot; Parth Pawar" />
         <meta property="og:description" content="Sole stage designer for TEDx VIT Pune, working with an 8-person team to build a parallax cityscape stage for 800+ attendees." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/tedx.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/tedx.jpg" />
       </Helmet>
 
       <Nav />
@@ -38,7 +38,7 @@ export default function TedxPage() {
             { label: 'Audience', value: '800+ attendees' },
             { label: 'Year', value: '2019' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/Tedxvitpune/Desktop/5.jpg"
+          heroImage="/Assets/Projects/Tedxvitpune/Desktop/5.jpg"
           heroAlt="Completed TEDxVITPune stage with parallax cityscape"
         />
 
@@ -95,7 +95,7 @@ export default function TedxPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <figure className="cs-img-full" style={{ background: 'transparent' }}>
-              <img src="/Portfolio.github.io/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="The finished stage in use: a host, a speaker, and a guitarist performing in front of the blue-lit column cityscape and red TEDxVITPune lettering" loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="The finished stage in use: a host, a speaker, and a guitarist performing in front of the blue-lit column cityscape and red TEDxVITPune lettering" loading="lazy" decoding="async" />
             </figure>
           </div>
         </section>
@@ -122,7 +122,7 @@ export default function TedxPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <figure className="cs-img-full" style={{ background: 'transparent' }}>
-              <img src="/Portfolio.github.io/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind the scenes: blue and white columns under construction in a workshop, lighting tests on the assembled skyline, and a volunteer building the red TEDx letters" loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind the scenes: blue and white columns under construction in a workshop, lighting tests on the assembled skyline, and a volunteer building the red TEDx letters" loading="lazy" decoding="async" />
             </figure>
           </div>
         </section>
@@ -148,7 +148,7 @@ export default function TedxPage() {
 
       </main>
 
-        <NextProject slug="code-for-build" title="Code for Build" image="/Portfolio.github.io/Assets/images/code-for-build.jpg" />
+        <NextProject slug="code-for-build" title="Code for Build" image="/Assets/images/code-for-build.jpg" />
       <Footer />
     </>
   )

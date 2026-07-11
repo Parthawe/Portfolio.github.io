@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: 'Nikolas';
-  src: url('/Portfolio.github.io/Assets/fonts/nikolas.otf') format('opentype');
+  src: url('/Assets/fonts/nikolas.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -35,8 +35,8 @@
      read below ~1.5rem, so small titles/labels/quotes/captions use this
      screen-legible serif stack instead. Reserve --serif (Nikolas) for large headings. */
   --serif-read: 'Charter', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
-  --sans:     'General Sans', 'Nikolas';
-  --mono:     'General Sans', 'Nikolas';
+  --sans:     'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono:     'General Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --body:     var(--sans);
   --ff-sans:  var(--sans);
   --ff-mono:  var(--mono);

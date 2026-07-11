@@ -65,7 +65,7 @@ export const categories: CategoryData[] = [
       title: 'Mentra',
       desc: "AI smart glasses with the world's first wearable app store",
       role: 'Head of UI/UX · 2026',
-      image: '/Portfolio.github.io/Assets/images/mentra.webp',
+      image: '/Assets/images/mentra.webp',
       bgColor: '#fef2f2',
       tag: 'AI WEARABLES',
       year: '2026',
@@ -74,7 +74,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'mentra-miniapps',
-          image: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+          image: '/Assets/images/mentra/appstore-hero.webp',
           alt: 'Mentra MiniApps',
           name: 'Mentra MiniApps',
           result: 'Voice-first miniapp ecosystem for smart glasses',
@@ -85,7 +85,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'clawed-chat',
-          image: '/Portfolio.github.io/Assets/images/clawed.webp',
+          image: '/Assets/images/clawed.webp',
           alt: 'Clawed',
           name: 'Clawed',
           result: 'AI assistant with receipts for every action, 3-tier trust architecture',
@@ -98,7 +98,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'executivelens',
-          image: '/Portfolio.github.io/Assets/images/executivelens.webp',
+          image: '/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'Saved executives 5.2 hrs/week, 87% adoption in 2 weeks',
@@ -109,7 +109,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'oncall-lens',
-          image: '/Portfolio.github.io/Assets/images/oncall-lens.webp',
+          image: '/Assets/images/oncall-lens.webp',
           alt: 'OnCall Lens',
           name: 'OnCall Lens',
           result: 'Sentry alert → Claude → auto PR fix, built in 24 hours',
@@ -122,7 +122,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ballah-code',
-          image: '/Portfolio.github.io/Assets/images/ballah-code.webp',
+          image: '/Assets/images/ballah-code.webp',
           alt: 'Ballah Code',
           name: 'Ballah Code',
           result: 'AI-native desktop IDE with 17 production tools',
@@ -133,7 +133,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'ai-voice',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Enterprise voice selection with emotional intelligence, A/B tested',
@@ -146,7 +146,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ibm',
-          image: '/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
+          image: '/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
           alt: 'IBM Cancer Prognosis',
           name: 'IBM Cancer Prognosis',
           result: 'Encrypted genomic workflows for cancer prognosis',
@@ -207,7 +207,7 @@ export const categories: CategoryData[] = [
       title: 'TransFi',
       desc: 'Crypto payment infrastructure preview',
       role: 'Lead Product Designer · 2022–23',
-      image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+      image: '/Assets/images/nda-cover.svg',
       bgColor: '#eff6ff',
       tag: 'WEB3 PAYMENTS',
       year: '2023',
@@ -216,7 +216,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'mentra',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'Mentra',
           name: 'Mentra',
           result: 'AI wearable OS, companion app, MiniApp Store, and launch site',
@@ -227,7 +227,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'raahi-project',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'Raahi',
           name: 'Raahi',
           result: 'Accessible civic navigation for Pune public transit',
@@ -238,7 +238,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'zentipay',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'ZentiPay',
           name: 'ZentiPay',
           result: 'Trust-first fintech super app and cross-border transfer flows',
@@ -251,7 +251,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'cuetv',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'CueTV',
           name: 'CueTV',
           result: 'OTT streaming and retargeting-system strategy',
@@ -264,7 +264,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'healthapp',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'Health App',
           name: 'Health App',
           result: 'Health-aware planning around sleep, food, movement, and energy',
@@ -275,7 +275,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'code-for-build',
-          image: '/Portfolio.github.io/Assets/images/code-for-build.jpg',
+          image: '/Assets/images/code-for-build.jpg',
           alt: 'Code for Build',
           name: 'Code for Build',
           result: 'Mobile-first coding education concept using 3D building blocks',
@@ -288,7 +288,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'vj-software',
-          image: '/Portfolio.github.io/Assets/images/vj.jpg',
+          image: '/Assets/images/vj.jpg',
           alt: 'VJ Software',
           name: 'VJ Software',
           result: 'Audio-reactive visual performance tool',
@@ -349,7 +349,7 @@ export const categories: CategoryData[] = [
       title: 'Jugalbandi',
       desc: 'ML-driven musical instrument exhibited at Maker Faire',
       role: 'Creator · 2024',
-      image: '/Portfolio.github.io/Assets/images/jugalbandi.webp',
+      image: '/Assets/images/jugalbandi.webp',
       bgColor: '#fffbeb',
       tag: 'ML + MUSIC',
       year: '2024',
@@ -358,7 +358,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'breakgen',
-          image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
+          image: '/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
           alt: 'BreakGen',
           name: 'BreakGen',
           result: 'AI platform for designing custom keyboards \u2014 from prompt to fabrication',
@@ -369,7 +369,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'keyboard-project',
-          image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
+          image: '/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
           alt: 'Keyboard Project',
           name: 'Keyboard Project',
           result: 'Physical keyboard study turning key height into a tactile data object',
@@ -382,7 +382,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'enigma',
-          image: '/Portfolio.github.io/Assets/images/enigma.jpg',
+          image: '/Assets/images/enigma.jpg',
           alt: 'Enigma',
           name: 'Enigma',
           result: 'Light sculpture with deep learning neural network',
@@ -393,7 +393,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'shuffle',
-          image: '/Portfolio.github.io/Assets/images/shuffle.jpg',
+          image: '/Assets/images/shuffle.jpg',
           alt: 'Shuffle',
           name: 'Shuffle',
           result: 'Interactive strategy simulation installation',
@@ -406,7 +406,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'making-of-time',
-          image: '/Portfolio.github.io/Assets/images/making-of-time.jpg',
+          image: '/Assets/images/making-of-time.jpg',
           alt: 'Making of Time',
           name: 'Making of Time',
           result: 'Time exploration through physical computing',
@@ -417,7 +417,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sea-of-salt',
-          image: '/Portfolio.github.io/Assets/images/sea-of-salt.svg',
+          image: '/Assets/images/sea-of-salt.svg',
           alt: 'Sea of Salt',
           name: 'Sea of Salt',
           result: 'Kinetic salt installation reacting to ocean data',
@@ -478,7 +478,7 @@ export const categories: CategoryData[] = [
       title: 'Black Hole',
       desc: 'Five physical models of black hole phenomena, from accretion disks to Hawking radiation, exhibited at the Horological Society of New York',
       role: 'Designer & Fabricator · 2026',
-      image: '/Portfolio.github.io/Assets/images/black-hole.jpg',
+      image: '/Assets/images/black-hole.jpg',
       bgColor: '#f0f0f5',
       tag: 'SCIENCE + FABRICATION',
       year: '2026',
@@ -487,7 +487,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'uv-light',
-          image: '/Portfolio.github.io/Assets/images/uv-light.jpg',
+          image: '/Assets/images/uv-light.jpg',
           alt: 'UV Light',
           name: 'UV Light',
           result: 'Multi-room blacklight installation with hidden messages revealed under UV, plus live projection mapping',
@@ -498,7 +498,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'the-omakase',
-          image: '/Portfolio.github.io/Assets/images/the-omakase.jpg',
+          image: '/Assets/images/the-omakase.jpg',
           alt: 'The Omakase',
           name: 'The Omakase',
           result: '2-player sushi arcade cabinet with custom RGB button controllers, exhibited at ITP Winter Show and WonderVille NYC',
@@ -511,7 +511,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'revolving-stage',
-          image: '/Portfolio.github.io/Assets/images/revolving-stage.webp',
+          image: '/Assets/images/revolving-stage.webp',
           alt: 'Revolving Stage',
           name: 'Revolving Stage',
           result: '15 ft. diameter rotating stage supporting 250+ kgs of live performers, engineered for a university theatre production',
@@ -522,7 +522,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sculpture',
-          image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg',
+          image: '/Assets/Projects/Sculpture/1.jpg',
           alt: 'Sculpture',
           name: 'Sculpture',
           result: 'Competition sculpture glimpse from beginner practice to finished piece',
@@ -535,7 +535,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'moniac-machine',
-          image: '/Portfolio.github.io/Assets/images/moniac-machine.jpg',
+          image: '/Assets/images/moniac-machine.jpg',
           alt: 'Moniac Machine',
           name: 'Moniac Machine',
           result: 'Board game based on a 1949 hydraulic economic computer, where players manage an economy through physical resource allocation',
@@ -546,7 +546,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'drowning',
-          image: '/Portfolio.github.io/Assets/images/drowning.jpg',
+          image: '/Assets/images/drowning.jpg',
           alt: 'Drowning',
           name: 'Drowning',
           result: 'Abandoned greenhouse scenic design for NYU theatre, multi-layer lighting for 100+ audience',
@@ -608,7 +608,7 @@ export const categories: CategoryData[] = [
       title: "Butler's Slice",
       desc: 'Original display typeface with a sliced geometric voice',
       role: 'Type Designer · 2022',
-      image: '/Portfolio.github.io/Assets/images/typeface.webp',
+      image: '/Assets/images/typeface.webp',
       bgColor: '#fdf4ff',
       tag: 'TYPE DESIGN',
       year: '2022',
@@ -617,7 +617,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'mentra-brand',
-          image: '/Portfolio.github.io/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
+          image: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
           alt: 'Mentra Brand & Packaging',
           name: 'Mentra Brand & Packaging',
           result: 'Brand identity, packaging, booklet, renders, and launch assets for AI smart glasses',
@@ -630,7 +630,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'office-of-diversity',
-          image: '/Portfolio.github.io/Assets/images/office-of-diversity.webp',
+          image: '/Assets/images/office-of-diversity.webp',
           alt: 'Office of Diversity',
           name: 'Office of Diversity',
           result: 'Accessible web report structure and visual system for NYU Tisch IDBEA content',
@@ -641,7 +641,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'sea-of-salt',
-          image: '/Portfolio.github.io/Assets/images/sea-of-salt.svg',
+          image: '/Assets/images/sea-of-salt.svg',
           alt: 'Why the Sea is Salt',
           name: 'Why the Sea is Salt',
           result: 'Narrative object, visual system, and kinetic installation language',
@@ -702,7 +702,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, trust-first transfer flows',
       role: 'Founding Product Designer · 2025',
-      image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+      image: '/Assets/images/nda-cover.svg',
       bgColor: '#e8f4fd',
       tag: 'FINTECH',
       year: '2025',
@@ -711,7 +711,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payment infrastructure preview',
@@ -772,7 +772,7 @@ export const categories: CategoryData[] = [
       title: 'Raahi',
       desc: 'Transit accessibility for underserved commuters',
       role: 'Designer · 2022',
-      image: '/Portfolio.github.io/Assets/images/raahi.jpg',
+      image: '/Assets/images/raahi.jpg',
       bgColor: '#ecfdf5',
       tag: 'CIVIC DESIGN',
       year: '2022',
@@ -781,7 +781,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'the-point-cdc',
-          image: '/Portfolio.github.io/Assets/images/the-point-cdc.webp',
+          image: '/Assets/images/the-point-cdc.webp',
           alt: 'The Point CDC',
           name: 'The Point CDC',
           result: 'Redesigned digital platform for a Bronx community nonprofit',
@@ -792,7 +792,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'office-of-diversity',
-          image: '/Portfolio.github.io/Assets/images/office-of-diversity.webp',
+          image: '/Assets/images/office-of-diversity.webp',
           alt: 'Office of Diversity',
           name: 'Office of Diversity',
           result: 'Accessible web report structure for NYU Tisch IDBEA content',
@@ -846,7 +846,7 @@ export const categories: CategoryData[] = [
       title: 'ZentiPay',
       desc: 'Fintech super app, trust-first transfer flows',
       role: 'Founding Product Designer · 2025',
-      image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+      image: '/Assets/images/nda-cover.svg',
       bgColor: '#f0ecff',
       tag: 'FINTECH',
       year: '2025',
@@ -855,7 +855,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'transfi-project',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'TransFi',
           name: 'TransFi',
           result: 'Crypto payment infrastructure preview',
@@ -897,7 +897,7 @@ export const categories: CategoryData[] = [
       title: 'Mentra MiniApps',
       desc: 'Voice-first miniapp ecosystem for smart glasses',
       role: 'Platform Designer · 2025–26',
-      image: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+      image: '/Assets/images/mentra/appstore-hero.webp',
       bgColor: '#fdf2f8',
       tag: 'PLATFORM DESIGN',
       year: '2025–26',
@@ -906,7 +906,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'mentra',
-          image: '/Portfolio.github.io/Assets/images/mentra.webp',
+          image: '/Assets/images/mentra.webp',
           alt: 'Mentra',
           name: 'Mentra',
           result: 'AI smart glasses OS, companion app, store, and launch website',
@@ -917,7 +917,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'clawed-chat',
-          image: '/Portfolio.github.io/Assets/images/clawed.webp',
+          image: '/Assets/images/clawed.webp',
           alt: 'Clawed',
           name: 'Clawed',
           result: 'Safety-first AI assistant for glasses and web',
@@ -930,7 +930,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'executivelens',
-          image: '/Portfolio.github.io/Assets/images/executivelens.webp',
+          image: '/Assets/images/executivelens.webp',
           alt: 'ExecutiveLens',
           name: 'ExecutiveLens',
           result: 'AI meeting intelligence for executives',
@@ -941,7 +941,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'oncall-lens',
-          image: '/Portfolio.github.io/Assets/images/oncall-lens.webp',
+          image: '/Assets/images/oncall-lens.webp',
           alt: 'OnCall Lens',
           name: 'OnCall Lens',
           result: 'Sentry alerts to automated PR fixes via smart glasses',
@@ -954,7 +954,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ballah-code',
-          image: '/Portfolio.github.io/Assets/images/ballah-code.webp',
+          image: '/Assets/images/ballah-code.webp',
           alt: 'Ballah Code',
           name: 'Ballah Code',
           result: 'AI coding workspace',
@@ -965,7 +965,7 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'ai-voice',
-          image: '/Portfolio.github.io/Assets/images/nda-cover.svg',
+          image: '/Assets/images/nda-cover.svg',
           alt: 'AI Voice Interface',
           name: 'AI Voice Interface',
           result: 'Conversational AI and voice-driven interaction',
@@ -978,7 +978,7 @@ export const categories: CategoryData[] = [
       [
         {
           slug: 'ibm',
-          image: '/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
+          image: '/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
           alt: 'IBM Cancer Prognosis',
           name: 'IBM Cancer Prognosis',
           result: 'Encrypted genomic workflows for cancer prognosis',

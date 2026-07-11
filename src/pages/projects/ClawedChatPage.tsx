@@ -55,7 +55,7 @@ export default function ClawedChatPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Clawed · Parth Pawar" />
         <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/clawed-chat_1x1.webp" />
       </Helmet>
 
       <Nav />
@@ -90,7 +90,7 @@ export default function ClawedChatPage() {
             { label: 'Platform', value: 'Web + Smart Glasses (via Mentra integration)' },
           ]}
           liveUrl="https://clawed.chat"
-          heroImage="/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp"
+          heroImage="/Assets/Projects/Clawed.chat/landing-hero.webp"
           heroAlt="Clawed.chat landing page: Your AI agent, live in 30 seconds"
           showHeaderSummary={false}
         />
@@ -168,10 +168,10 @@ export default function ClawedChatPage() {
             <p>The glasses handle the moments. The web hub handles the thinking. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure. The command bar (&#8984;K) is always one keystroke away.</p>
             <p>The pattern that runs through all of them is approval and receipts. Every incoming item arrives pre-analyzed as a card with three options &mdash; approve the AI&rsquo;s draft, edit before sending, or dismiss &mdash; and every action, however it was approved, generates a receipt you can audit later.</p>
           </CsBody>
-          <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
+          <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
-          <div className="cs-img reveal" style={{ marginTop: '2rem' }}><img src="/Portfolio.github.io/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
+          <div className="cs-img reveal" style={{ marginTop: '2rem' }}><img src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
           <p className="cs-caption">Cloud Deploy vs Mac Companion, two deployment paths designed for different trust and control preferences</p>
         </CsSection>
 
@@ -240,7 +240,7 @@ export default function ClawedChatPage() {
             <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 30 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
           </CsBody>
           <div className="cs-slide reveal" style={{ marginTop: 'var(--space-4)' }}>
-            <img src="/Portfolio.github.io/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--ink-06)', width: '100%' }} />
+            <img src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--ink-06)', width: '100%' }} />
           </div>
         </CsSection>
 
@@ -311,7 +311,7 @@ export default function ClawedChatPage() {
 
       </main>
 
-      <NextProject slug="raahi-project" title="Raahi" image="/Portfolio.github.io/Assets/images/raahi.jpg" />
+      <NextProject slug="raahi-project" title="Raahi" image="/Assets/images/raahi.jpg" />
       <Footer />
     </>
   )

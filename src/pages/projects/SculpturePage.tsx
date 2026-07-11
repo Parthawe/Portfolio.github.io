@@ -19,7 +19,7 @@ export default function SculpturePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Sculpture · Parth Pawar" />
         <meta property="og:description" content="Competition sculpture work for Firodia Karandak: practice, fabrication, result, and learning." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/Sculpture/1.jpg" />
       </Helmet>
 
       <Nav />
@@ -41,7 +41,7 @@ export default function SculpturePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg" alt="Figurative sculpture under dramatic low-key lighting" loading="eager" />
+            <img src="/Assets/Projects/Sculpture/1.jpg" alt="Figurative sculpture under dramatic low-key lighting" loading="eager" />
           </div>
         </section>
 
@@ -66,8 +66,8 @@ export default function SculpturePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -85,7 +85,7 @@ export default function SculpturePage() {
             <p>The biggest lesson was that craft exposes unclear thinking immediately. If the pose is wrong, the material tells you. If the structure is weak, the form fails. That made this project useful beyond sculpture: it trained me to respect constraints early, prototype with my hands, and keep working through the awkward middle instead of polishing a weak idea.</p>
           </CsBody>
           <CsImage
-            src="/Portfolio.github.io/Assets/Projects/Sculpture/5.jpg"
+            src="/Assets/Projects/Sculpture/5.jpg"
             alt="Final figurative sculpture shown under dramatic lighting"
             caption="Final sculpture documentation - the useful record here is the leap from beginner practice to a public finished piece."
           />
@@ -100,7 +100,7 @@ export default function SculpturePage() {
         ]} />
       </main>
 
-      <NextProject slug="vishwaconclave" title="VishwaConclave" image="/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" />
+      <NextProject slug="vishwaconclave" title="VishwaConclave" image="/Assets/Projects/VishwaConclave/1.jpg" />
       <Footer />
     </>
   )

@@ -38,7 +38,7 @@ export default function BlackHolePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Black Hole · Parth Pawar" />
         <meta property="og:description" content="Physical models exploring five black hole phenomena. Exhibited at the Horological Society of New York." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/black-hole.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/black-hole.jpg" />
       </Helmet>
 
       <Nav />
@@ -62,11 +62,11 @@ export default function BlackHolePage() {
         />
 
         {/* Hero */}
-        <CsImage src="/Portfolio.github.io/Assets/Projects/black-hole-assets/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
+        <CsImage src="/Assets/Projects/black-hole-assets/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
 
         <section className="cs-slide reveal" id="cs-film">
           <div className="wrap">
-            <video src="/Portfolio.github.io/Assets/Projects/black-hole-assets/time-dilation.mp4" autoPlay loop muted playsInline
+            <video src="/Assets/Projects/black-hole-assets/time-dilation.mp4" autoPlay loop muted playsInline
               style={{ width: '100%', borderRadius: 'var(--radius-lg)' }} />
           </div>
         </section>
@@ -114,7 +114,7 @@ export default function BlackHolePage() {
                 borderRadius: 'var(--radius-lg)', overflow: 'hidden',
                 position: 'relative', border: '1px solid rgba(255,255,255,0.06)',
               }}>
-                <img src="/Portfolio.github.io/Assets/Projects/black-hole-assets/fabric-of-universe.jpg" alt="Spacetime fabric model" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                <img src="/Assets/Projects/black-hole-assets/fabric-of-universe.jpg" alt="Spacetime fabric model" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 <div style={{
                   position: 'absolute', inset: 0,
                   background: 'linear-gradient(135deg, rgba(5,5,16,0.7), rgba(26,26,46,0.5))',
@@ -143,7 +143,7 @@ export default function BlackHolePage() {
           </div>
         </CsSection>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/black-hole-assets/fabric-of-universe.jpg" alt="Fabric of the Universe physical model" />
+        <CsImage src="/Assets/Projects/black-hole-assets/fabric-of-universe.jpg" alt="Fabric of the Universe physical model" />
 
         {/* ═══ 03 & 04: GRAVITATIONAL LENSING + WORMHOLE ═══ */}
         <CsSection id="cs-lensing" label="03 &amp; 04 &mdash; Phenomena" title="Gravity&rsquo;s Grip on Light &amp; Wormholes">
@@ -163,7 +163,7 @@ export default function BlackHolePage() {
           </div>
         </CsSection>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/black-hole-assets/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes physical model" />
+        <CsImage src="/Assets/Projects/black-hole-assets/gravitational-lensing.jpg" alt="Gravitational Lensing and Wormholes physical model" />
 
         {/* ═══ 05: BINARY MERGER ═══ */}
         <CsSection id="cs-mergers" label="05 &mdash; Phenomenon" title="When Giants Collide: Binary Black Hole Mergers">
@@ -175,7 +175,7 @@ export default function BlackHolePage() {
           </div>
         </CsSection>
 
-        <CsImage src="/Portfolio.github.io/Assets/Projects/black-hole-assets/binary-mergers.jpg" alt="Binary Black Hole Mergers physical model, three stages" />
+        <CsImage src="/Assets/Projects/black-hole-assets/binary-mergers.jpg" alt="Binary Black Hole Mergers physical model, three stages" />
 
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="Exhibition" title="Horological Society of New York">
@@ -206,7 +206,7 @@ export default function BlackHolePage() {
 
       </main>
 
-      <NextProject slug="making-of-time" title="Making of Time" image="/Portfolio.github.io/Assets/images/making-of-time.jpg" />
+      <NextProject slug="making-of-time" title="Making of Time" image="/Assets/images/making-of-time.jpg" />
       <Footer />
     </>
   )

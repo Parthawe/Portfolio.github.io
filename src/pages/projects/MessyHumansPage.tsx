@@ -59,7 +59,7 @@ export default function MessyHumansPage() {
           { id: 'cs-impact', label: 'Impact' },
         ]} />
       </main>
-      <NextProject slug="raahi-project" title="Raahi" image="/Portfolio.github.io/Assets/images/raahi.jpg" />
+      <NextProject slug="raahi-project" title="Raahi" image="/Assets/images/raahi.jpg" />
       <Footer />
     </>
   )

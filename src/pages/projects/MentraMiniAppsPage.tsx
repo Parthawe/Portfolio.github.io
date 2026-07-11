@@ -15,11 +15,11 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 const MINIAPP_ASSETS = {
-  notes: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/notes.png?v=figma-miniapps-2',
-  conversations: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/conversations.png?v=figma-miniapps-2',
-  transcript: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/live-transcript.png?v=figma-miniapps-2',
-  meet: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/meet-home.png?v=figma-miniapps-2',
-  guidance: '/Portfolio.github.io/Assets/Projects/mentra-miniapps/figma/guidance.png?v=figma-miniapps-2',
+  notes: '/Assets/Projects/mentra-miniapps/figma/notes.png?v=figma-miniapps-2',
+  conversations: '/Assets/Projects/mentra-miniapps/figma/conversations.png?v=figma-miniapps-2',
+  transcript: '/Assets/Projects/mentra-miniapps/figma/live-transcript.png?v=figma-miniapps-2',
+  meet: '/Assets/Projects/mentra-miniapps/figma/meet-home.png?v=figma-miniapps-2',
+  guidance: '/Assets/Projects/mentra-miniapps/figma/guidance.png?v=figma-miniapps-2',
 }
 
 const miniAppExamples = [
@@ -74,7 +74,7 @@ export default function MentraMiniAppsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra MiniApp Store &middot; Parth Pawar" />
         <meta property="og:description" content="An app ecosystem for smart glasses. Voice-first discovery, developer SDK, and the product patterns behind captions, translation, notes, and Mentra AI." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -94,7 +94,7 @@ export default function MentraMiniAppsPage() {
             { label: 'Platform', value: 'MentraOS + Companion App + Web Portal' },
             { label: 'Focus', value: 'Store, permissions, developer handoff' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/mockups/projects/mentra-miniapps_16x9.webp"
+          heroImage="/Assets/mockups/projects/mentra-miniapps_16x9.webp"
           heroAlt="Mentra MiniApp Store 16:9 project cover showing the smart glasses app ecosystem"
         />
 
@@ -232,11 +232,11 @@ export default function MentraMiniAppsPage() {
           <div className="wrap">
             <div className="mentra-miniapps-os__grid">
               <figure className="mentra-miniapps-os__shot">
-                <img src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS currently running MiniApps" loading="lazy" decoding="async" />
+                <img src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS currently running MiniApps" loading="lazy" decoding="async" />
                 <figcaption>Running apps made the platform legible without forcing a phone-style app switcher.</figcaption>
               </figure>
               <figure className="mentra-miniapps-os__shot">
-                <img src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS home screen with active app" loading="lazy" decoding="async" />
+                <img src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen with active app" loading="lazy" decoding="async" />
                 <figcaption>The home surface had to show breadth while still feeling glanceable.</figcaption>
               </figure>
             </div>
@@ -278,7 +278,7 @@ export default function MentraMiniAppsPage() {
 
       </main>
 
-      <NextProject slug="zentipay" title="ZentiPay" image="/Portfolio.github.io/Assets/mockups/projects/zentipay_16x9.webp" />
+      <NextProject slug="zentipay" title="ZentiPay" image="/Assets/mockups/projects/zentipay_16x9.webp" />
       <Footer />
     </>
   )

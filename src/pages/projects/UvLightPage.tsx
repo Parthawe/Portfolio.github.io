@@ -18,7 +18,7 @@ export default function UvLightPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="UV Light Installation &middot; Parth Pawar" />
         <meta property="og:description" content="Blacklight installation with invisible ink, hidden messages, staged rooms, and a surveillance reveal." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/uv-light.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/uv-light.jpg" />
       </Helmet>
 
       <Nav />
@@ -39,7 +39,7 @@ export default function UvLightPage() {
             { label: 'Duration', value: '2 Weeks' },
             { label: 'Year', value: '2023' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-5.png"
+          heroImage="/Assets/Projects/UVLight/photos/image-5.png"
           heroAlt="UV Light blacklight installation with participants searching for hidden messages"
         />
 
@@ -77,11 +77,11 @@ export default function UvLightPage() {
               <p>The risk was explaining too fast. I tested inks, paints, tape, and lighting until the clues felt discoverable without feeling scripted.</p>
               <p>The camera-feed layer worked because it arrived after people had relaxed into play. The room first invited them in, then revealed they were being watched.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/1000051727.webp" alt="Whiteboard brainstorming: room layouts, puzzle concepts, and interaction flow sketches" loading="lazy" /></div>
+            <div className="cs-img-full"><img src="/Assets/Projects/UVLight/photos/1000051727.webp" alt="Whiteboard brainstorming: room layouts, puzzle concepts, and interaction flow sketches" loading="lazy" /></div>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/1000051740.png" alt="Observation whiteboard: show rather than tell, bias, monitoring concepts" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/1000051740.png" alt="Observation whiteboard: show rather than tell, bias, monitoring concepts" loading="lazy" /></div>
               <figure className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/1000051772.png" alt="Whiteboard close-up of an early four-room concept, murder, stolen data, money heist, with timing math for cycling groups of participants through the rooms" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/UVLight/photos/1000051772.png" alt="Whiteboard close-up of an early four-room concept, murder, stolen data, money heist, with timing math for cycling groups of participants through the rooms" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">An early version was four themed rooms, murder, stolen data, money heist, with the math for how many minutes each group could get before the pacing collapsed.</figcaption>
               </figure>
             </div>
@@ -97,7 +97,7 @@ export default function UvLightPage() {
               <p>The installation unfolded as a sequence: first hidden marks and prompts, then the reveal that the act of discovery was also being observed.</p>
               <p>We converted classrooms into controlled UV spaces, sealed light leaks, tuned blacklight coverage, and added the live-feed layer that changed the room&rsquo;s meaning.</p>
             </CsBody>
-            <div className="cs-img-full"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/screenshot-2023-12-21-at-3.51-1.png" alt="The blacklight stage before participants entered: fluorescent tape letters and glowing UV dots scattered across the dark floor, with a banner reading TELL in the foreground" loading="lazy" decoding="async" /></div>
+            <div className="cs-img-full"><img src="/Assets/Projects/UVLight/photos/screenshot-2023-12-21-at-3.51-1.png" alt="The blacklight stage before participants entered: fluorescent tape letters and glowing UV dots scattered across the dark floor, with a banner reading TELL in the foreground" loading="lazy" decoding="async" /></div>
           </div>
         </section>
 
@@ -119,8 +119,8 @@ export default function UvLightPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-4.png" alt="Van Gogh Almond Blossom pamphlet held during the experience setup" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/letter---1.png" alt="Van Gogh letter pamphlet: Paint the Soul" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-4.png" alt="Van Gogh Almond Blossom pamphlet held during the experience setup" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/letter---1.png" alt="Van Gogh letter pamphlet: Paint the Soul" loading="lazy" /></div>
             </div>
             <p className="cs-caption">Van Gogh's Almond Blossom and letters served as the thematic anchor, connecting art, observation, and hidden meaning</p>
           </div>
@@ -132,8 +132,8 @@ export default function UvLightPage() {
             <p className="cs-section-label">Documentation</p>
             <h2 className="cs-section-title">The Experience</h2>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-1.png" alt="UV-lit room: participants discovering hidden projections under blacklight" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-2.png" alt="Participant discovering hidden UV drawings on the floor" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-1.png" alt="UV-lit room: participants discovering hidden projections under blacklight" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-2.png" alt="Participant discovering hidden UV drawings on the floor" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -149,15 +149,15 @@ export default function UvLightPage() {
             </CsBody>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', alignItems: 'start' }}>
               <figure className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/screenshot-2023-12-26-at-1.08-1.png" alt="The blank portrait card in daylight: scattered questions about coffee, sleep, work, weekend plans, and a prompt to draw anything" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/UVLight/photos/screenshot-2023-12-26-at-1.08-1.png" alt="The blank portrait card in daylight: scattered questions about coffee, sleep, work, weekend plans, and a prompt to draw anything" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Stage one: the card as participants received it. Just friendly questions and blank lines.</figcaption>
               </figure>
               <figure className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-8-1.png" alt="A filled-in portrait card with a green-backdrop polaroid attached and handwritten answers about coffee, meetings, and weekend plans" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/UVLight/photos/image-8-1.png" alt="A filled-in portrait card with a green-backdrop polaroid attached and handwritten answers about coffee, meetings, and weekend plans" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Stage two: a completed card, portrait attached, personal details volunteered in handwriting.</figcaption>
               </figure>
               <figure className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/screenshot-2023-12-26-at-1.10-1.png" alt="The same portrait card under blacklight, where a hidden invisible-ink notation glows next to the printed question" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/UVLight/photos/screenshot-2023-12-26-at-1.10-1.png" alt="The same portrait card under blacklight, where a hidden invisible-ink notation glows next to the printed question" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Stage three: under UV, the invisible-ink annotations appear, and the card reads as a record of observation.</figcaption>
               </figure>
             </div>
@@ -167,21 +167,21 @@ export default function UvLightPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-6.png" alt="Participants sitting around glowing UV puzzle on the floor" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-7.png" alt="Close-up: glowing UV element in participant's hand" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-5.png" alt="UV-lit room with Starry Night projection and participants" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-6.png" alt="Participants sitting around glowing UV puzzle on the floor" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-7.png" alt="Close-up: glowing UV element in participant's hand" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-5.png" alt="UV-lit room with Starry Night projection and participants" loading="lazy" /></div>
             </div>
           </div>
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-8.png" alt="The live camera feed of the UV rooms projected across large screens in the darkened auditorium, showing participants being watched in real time" loading="lazy" decoding="async" />
+          <img src="/Assets/Projects/UVLight/photos/image-8.png" alt="The live camera feed of the UV rooms projected across large screens in the darkened auditorium, showing participants being watched in real time" loading="lazy" decoding="async" />
         </div>
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-7-1.png" alt="Polaroid-style participant portrait cards with green backdrops and printed names, laid out in normal light" loading="lazy" />
+          <img src="/Assets/Projects/UVLight/photos/image-7-1.png" alt="Polaroid-style participant portrait cards with green backdrops and printed names, laid out in normal light" loading="lazy" />
         </div>
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/UVLight/photos/image-3.png" alt="The completed puzzle painting glowing under blacklight on the floor as participants gather around its edges" loading="lazy" />
+          <img src="/Assets/Projects/UVLight/photos/image-3.png" alt="The completed puzzle painting glowing under blacklight on the floor as participants gather around its edges" loading="lazy" />
         </div>
 
         {/* Credits */}
@@ -221,7 +221,7 @@ export default function UvLightPage() {
 
       </main>
 
-      <NextProject slug="revolving-stage" title="Revolving Stage" image="/Portfolio.github.io/Assets/images/revolving-stage.webp" />
+      <NextProject slug="revolving-stage" title="Revolving Stage" image="/Assets/images/revolving-stage.webp" />
       <Footer />
     </>
   )

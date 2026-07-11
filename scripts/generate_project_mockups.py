@@ -107,7 +107,7 @@ import('./src/data/projects.ts').then(({projects}) => {
 def repo_path(asset_path: Optional[str]) -> Optional[Path]:
     if not asset_path:
         return None
-    clean = asset_path.replace("/Portfolio.github.io/", "", 1).lstrip("/")
+    clean = asset_path.lstrip("/")
     direct = ROOT / clean
     public = ROOT / "public" / clean
     if direct.exists():

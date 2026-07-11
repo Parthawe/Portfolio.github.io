@@ -594,26 +594,19 @@ export default function AmbientAudio() {
         aria-label={playing ? 'Pause ambient sound' : 'Play ambient sound'}
         aria-pressed={playing}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg className="ambient-toggle__icon" width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           {playing ? (
             <>
-              <path d="M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none">
-                <animate attributeName="d" dur="3s" repeatCount="indefinite" values="
-                  M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12;
-                  M2 12 C4 15, 6 15, 8 12 S12 9, 14 12 S18 15, 20 12;
-                  M2 12 C4 8, 6 8, 8 12 S12 16, 14 12 S18 8, 20 12
-                " />
-              </path>
-              <path d="M2 12 C4 10, 6 10, 8 12 S12 14, 14 12 S18 10, 20 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.35">
-                <animate attributeName="d" dur="4s" repeatCount="indefinite" values="
-                  M2 12 C4 14, 6 14, 8 12 S12 10, 14 12 S18 14, 20 12;
-                  M2 12 C4 9, 6 9, 8 12 S12 15, 14 12 S18 9, 20 12;
-                  M2 12 C4 14, 6 14, 8 12 S12 10, 14 12 S18 14, 20 12
-                " />
-              </path>
+              <path d="M4 10.4v3.2c0 .5.4.9.9.9h2.5l4 3.2c.6.5 1.5.1 1.5-.7V7c0-.8-.9-1.2-1.5-.7l-4 3.2H4.9c-.5 0-.9.4-.9.9Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+              <path className="ambient-toggle__wave ambient-toggle__wave--inner" d="M16 9.4c.7.7 1 1.5 1 2.6s-.3 1.9-1 2.6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+              <path className="ambient-toggle__wave ambient-toggle__wave--outer" d="M18.4 7c1.2 1.3 1.8 2.9 1.8 5s-.6 3.7-1.8 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" opacity="0.7" />
             </>
           ) : (
-            <path d="M2 12 L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+            <>
+              <path d="M4 10.4v3.2c0 .5.4.9.9.9h2.5l4 3.2c.6.5 1.5.1 1.5-.7V7c0-.8-.9-1.2-1.5-.7l-4 3.2H4.9c-.5 0-.9.4-.9.9Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+              <path d="m17 9 4 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+              <path d="m21 9-4 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+            </>
           )}
         </svg>
       </button>

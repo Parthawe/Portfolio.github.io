@@ -70,7 +70,7 @@ export default function PerformanceByDesignPage() {
 
       </main>
 
-      <NextProject slug="drowning" title="Drowning" image="/Portfolio.github.io/Assets/images/drowning.jpg" />
+      <NextProject slug="drowning" title="Drowning" image="/Assets/images/drowning.jpg" />
       <Footer />
     </>
   )

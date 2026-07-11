@@ -25,7 +25,7 @@ export default function OrgDashboardPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OrgDashboard · Parth Pawar" />
         <meta property="og:description" content="SaaS platform that gives AI agents a brain for your company, designing for two users simultaneously." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/org-dashboard.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/org-dashboard.webp" />
       </Helmet>
 
       <Nav />
@@ -46,7 +46,7 @@ export default function OrgDashboardPage() {
             { label: 'Stack', value: 'React, Tailwind, shadcn/ui' },
             { label: 'Year', value: '2026' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/images/org-dashboard.webp"
+          heroImage="/Assets/images/org-dashboard.webp"
           heroAlt="OrgDashboard, SaaS platform giving AI agents organizational context"
         />
 
@@ -73,7 +73,7 @@ export default function OrgDashboardPage() {
             <p>&ldquo;The OrgDashboard CLI is not a standalone agent &mdash; it is an extension to any existing agent harness. When added as an MCP server to Claude Code, Zed, or Cursor, the agent gains organizational awareness without replacing any of the harness&rsquo;s existing tools.&rdquo;</p>
           </CsCallout>
           <div className="cs-slide reveal">
-            <img src="/Portfolio.github.io/Assets/images/org-dashboard.webp" alt="Dashboard overview" loading="lazy" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
+            <img src="/Assets/images/org-dashboard.webp" alt="Dashboard overview" loading="lazy" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
           </div>
           <p className="cs-caption">Dashboard overview &mdash; the human-facing home screen showing connected integrations, knowledge base health, and pending agent actions</p>
         </CsSection>
@@ -191,7 +191,7 @@ export default function OrgDashboardPage() {
 
       </main>
 
-      <NextProject slug="raahi-project" title="Raahi" image="/Portfolio.github.io/Assets/images/raahi.jpg" />
+      <NextProject slug="raahi-project" title="Raahi" image="/Assets/images/raahi.jpg" />
       <Footer />
     </>
   )

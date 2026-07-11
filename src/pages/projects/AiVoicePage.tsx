@@ -10,7 +10,7 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const AI_VOICE_ASSET = '/Portfolio.github.io/Assets/Projects/ai-voice'
+const AI_VOICE_ASSET = '/Assets/Projects/ai-voice'
 const aiVoiceAsset = (file: string) => `${AI_VOICE_ASSET}/${file}`
 
 const AI_VOICE_PUBLIC_VISUALS = [
@@ -48,7 +48,7 @@ export default function AiVoicePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI Voice Interface · Parth Pawar" />
         <meta property="og:description" content="Enterprise AI voice selection framed around tone, context, scenario testing, and reviewer confidence." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />
@@ -196,7 +196,7 @@ export default function AiVoicePage() {
 
       </main>
 
-      <NextProject slug="ballah-code" title="Ballah Code" image="/Portfolio.github.io/Assets/images/ballah-code.webp" />
+      <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/images/ballah-code.webp" />
       <Footer />
     </>
   )

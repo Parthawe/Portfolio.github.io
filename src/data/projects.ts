@@ -130,7 +130,7 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
    Project Registry
    ────────────────────────────────────────────────────────────────────── */
 
-const IMG = '/Portfolio.github.io/Assets/images'
+const IMG = '/Assets/images'
 const NDA_COVER = `${IMG}/nda-cover.svg`
 export const NDA_PROJECT_SLUGS = [
   'transfi-project',
@@ -139,14 +139,14 @@ export const NDA_PROJECT_SLUGS = [
   'ai-voice',
 ] as const
 
-const defaultCardMockup = (slug: string) => `/Portfolio.github.io/Assets/mockups/projects/${slug}.webp`
+const defaultCardMockup = (slug: string) => `/Assets/mockups/projects/${slug}.webp`
 
 export const projects: Project[] = [
   /* ── Featured (homepage hero grid) ── */
   {
     slug: 'mentra',
     name: 'Mentra',
-    image: '/Portfolio.github.io/Assets/images/mentra/render-transparent.webp',
+    image: '/Assets/images/mentra/render-transparent.webp',
     tag: 'AI WEARABLES',
     year: '2025–Present',
     desc: 'Designed the OS, companion app, MiniApp Store, and launch site for AI smart glasses',
@@ -163,7 +163,7 @@ export const projects: Project[] = [
     summaryTeam: '1 designer working cross-functionally with 4 engineers, product, and hardware.',
     summaryTimeline: 'Q3 2025–Present',
     summaryOutcome: 'Shipped the core platform story: 4-step onboarding, app ecosystem, privacy cues, and a launch site buyers could understand.',
-    summaryImage: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+    summaryImage: '/Assets/images/mentra/appstore-hero.webp',
     summaryImageAlt: 'Mentra companion app and app store interface on mobile and smart glasses.',
     cardMockupSource: `${IMG}/mentra/photo-angle.webp`,
     summaryStats: [
@@ -177,16 +177,16 @@ export const projects: Project[] = [
       cite: 'Early beta tester',
     },
     hoverMedia: {
-      src: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+      src: '/Assets/images/mentra/appstore-hero.webp',
       alt: 'Mentra app store and smart-glasses UI preview.',
     },
     previewMedia: {
       playlist: {
-        src: '/Portfolio.github.io/Assets/images/mentra/glasses-angle.png',
+        src: '/Assets/images/mentra/glasses-angle.png',
         alt: 'Angled perspective render of Mentra smart glasses.',
       },
       library: {
-        src: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+        src: '/Assets/images/mentra/appstore-hero.webp',
         alt: 'Mentra app store and smart-glasses UI preview.',
       },
     },
@@ -199,7 +199,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra-miniapps',
     name: 'MiniApps in OS',
-    image: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+    image: '/Assets/images/mentra/appstore-hero.webp',
     tag: 'PLATFORM DESIGN',
     year: '2025\u201326',
     desc: 'Voice-first miniapp ecosystem for smart glasses spanning captions, translation, notes, AI, and utility apps',
@@ -212,7 +212,7 @@ export const projects: Project[] = [
     summaryTeam: 'Sole designer partnering with 4 engineers, product, and the MentraOS open-source developer community.',
     summaryTimeline: 'Late 2025 to 2026',
     summaryOutcome: 'Turned Mentra from a single-device demo into a platform with voice-first discovery, transparent permissions, and a first wave of usable apps.',
-    summaryImage: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+    summaryImage: '/Assets/images/mentra/appstore-hero.webp',
     summaryImageAlt: 'Mentra miniapp store and companion app surfaces showing voice-first discovery.',
     cardMockupSource: `${IMG}/mentra/os-all-apps.png`,
     summaryStats: [
@@ -223,11 +223,11 @@ export const projects: Project[] = [
     ],
     previewMedia: {
       playlist: {
-        src: '/Portfolio.github.io/Assets/images/mentra/glasses-angle.png',
+        src: '/Assets/images/mentra/glasses-angle.png',
         alt: 'Angled perspective render of Mentra smart glasses representing the MiniApps platform.',
       },
       library: {
-        src: '/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp',
+        src: '/Assets/images/mentra/appstore-hero.webp',
         alt: 'Mentra miniapp store and companion app surfaces showing voice-first discovery.',
       },
     },
@@ -240,8 +240,8 @@ export const projects: Project[] = [
   {
     slug: 'transfi-project',
     name: 'TransFi',
-    image: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_4x5.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_4x5.webp',
+    image: '/Assets/mockups/projects/transfi-project_4x5.webp',
+    cardMockupSource: '/Assets/mockups/projects/transfi-project_4x5.webp',
     cardMockupAlt: 'TransFi project cover artwork.',
     tag: 'WEB3 PAYMENTS',
     year: '2023',
@@ -252,7 +252,7 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
+      publicPreviewImage: '/Assets/Projects/Transfi/public/Group%20550.png',
       publicPreviewAlt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
     },
     featured: true,
@@ -266,7 +266,7 @@ export const projects: Project[] = [
     summaryTeam: 'Lead designer partnering with product, founder, and engineering.',
     summaryTimeline: '2022–23',
     summaryOutcome: 'Simplified merchant onboarding and made the payment infrastructure easier to evaluate, trust, and operate.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Transfi/public/Group%20550.png',
+    summaryImage: '/Assets/Projects/Transfi/public/Group%20550.png',
     summaryImageAlt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
     summaryStats: [
       { label: 'Domain', value: 'Payments' },
@@ -279,7 +279,7 @@ export const projects: Project[] = [
       cite: 'Public synthesis',
     },
     hoverMedia: {
-      src: '/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp',
+      src: '/Assets/mockups/projects/transfi-project_16x9.webp',
       kind: 'image',
       alt: 'TransFi project cover artwork.',
     },
@@ -292,7 +292,7 @@ export const projects: Project[] = [
   {
     slug: 'zentipay',
     name: 'ZentiPay',
-    image: '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
+    image: '/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
     tag: 'FINTECH',
     year: '2025',
     desc: 'Built a trust-first fintech super-app from scratch',
@@ -302,7 +302,7 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
+      publicPreviewImage: '/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
       publicPreviewAlt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
     },
     archiveOrder: 2,
@@ -315,7 +315,7 @@ export const projects: Project[] = [
     summaryTeam: 'Sole designer working with product and engineering across web and mobile.',
     summaryTimeline: '2025',
     summaryOutcome: 'Improved user confidence by making pricing, progress, and trust legible earlier in the transfer flow.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
+    summaryImage: '/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
     summaryImageAlt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
     summaryStats: [
       { label: 'Domain', value: 'Fintech' },
@@ -332,10 +332,10 @@ export const projects: Project[] = [
   {
     slug: 'clawed-chat',
     name: 'Clawed',
-    image: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
-    cardMockup: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
-    cardMockupSquare: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp',
+    image: '/Assets/mockups/projects/clawed-chat_1x1.webp',
+    cardMockup: '/Assets/mockups/projects/clawed-chat_1x1.webp',
+    cardMockupSquare: '/Assets/mockups/projects/clawed-chat_1x1.webp',
+    cardMockupSource: '/Assets/mockups/projects/clawed-chat_1x1.webp',
     cardMockupAlt: 'Clawed AI assistant square cover.',
     tag: 'AI ASSISTANT',
     year: '2026',
@@ -351,7 +351,7 @@ export const projects: Project[] = [
     summaryTeam: '1 designer with 3 engineers shipping across web and Mentra integration.',
     summaryTimeline: 'Jan–Mar 2026',
     summaryOutcome: 'Shipped a trust-first AI assistant built around 3-second asks, 5-second results, and 1-tap approvals.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp',
+    summaryImage: '/Assets/Projects/Clawed.chat/landing-hero.webp',
     summaryImageAlt: 'Clawed assistant launch visual showing the AI assistant experience.',
     summaryStats: [
       { label: 'Ask time target', value: '<3s' },
@@ -360,7 +360,7 @@ export const projects: Project[] = [
       { label: 'Safety modes', value: '3 tiers' },
     ],
     hoverMedia: {
-      src: '/Portfolio.github.io/Assets/Projects/Clawed.chat/landing-hero.webp',
+      src: '/Assets/Projects/Clawed.chat/landing-hero.webp',
       alt: 'Clawed AI assistant launch visual.',
     },
     storyline: {
@@ -389,7 +389,7 @@ export const projects: Project[] = [
     summaryTeam: 'Design lead working with product, AI, and engineering partners.',
     summaryTimeline: '2025 to 2026',
     summaryOutcome: 'Closed beta teams used the dashboard as a morning brief for decisions, owners, and follow-through.',
-    summaryImage: '/Portfolio.github.io/Assets/images/executivelens.webp',
+    summaryImage: '/Assets/images/executivelens.webp',
     summaryImageAlt: 'ExecutiveLens dashboard and meeting intelligence interface.',
     summaryStats: [
       { label: 'Beta signal', value: 'Morning brief' },
@@ -434,7 +434,7 @@ export const projects: Project[] = [
   {
     slug: 'cuetv',
     name: 'CueTV',
-    image: '/Portfolio.github.io/Assets/Projects/CueTV/refresh/hero-devices.png',
+    image: '/Assets/Projects/CueTV/refresh/hero-devices.png',
     tag: 'PRODUCT DESIGN',
     year: '2021',
     desc: 'Designed a niche arts OTT platform and retargeting system for opera, ballet, and classical audiences',
@@ -444,7 +444,7 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Portfolio.github.io/Assets/Projects/CueTV/refresh/hero-devices.png',
+      publicPreviewImage: '/Assets/Projects/CueTV/refresh/hero-devices.png',
       publicPreviewAlt: 'CueTV streaming platform across TV, laptop, tablet, and phone.',
     },
     archiveOrder: 9,
@@ -497,8 +497,8 @@ export const projects: Project[] = [
   {
     slug: 'ibm',
     name: 'IBM Cancer Prognosis',
-    image: '/Portfolio.github.io/Assets/mockups/projects/ibm_16x9.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/ibm_16x9.webp',
+    image: '/Assets/mockups/projects/ibm_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/ibm_16x9.webp',
     tag: 'HEALTHCARE AI',
     year: '2020',
     desc: 'Explored encrypted genomic workflows for cancer prognosis without exposing raw patient data',
@@ -581,8 +581,8 @@ export const projects: Project[] = [
   {
     slug: 'ai-voice',
     name: 'AI Voice',
-    image: '/Portfolio.github.io/Assets/Projects/ai-voice/cover.png',
-    cardMockupSource: '/Portfolio.github.io/Assets/Projects/ai-voice/cover.png',
+    image: '/Assets/Projects/ai-voice/cover.png',
+    cardMockupSource: '/Assets/Projects/ai-voice/cover.png',
     cardMockupAlt: 'Voice Matching enterprise interface showing three suggested voice personas.',
     tag: 'CONVERSATIONAL AI',
     year: '2025',
@@ -593,7 +593,7 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Portfolio.github.io/Assets/Projects/ai-voice/cover.png',
+      publicPreviewImage: '/Assets/Projects/ai-voice/cover.png',
       publicPreviewAlt: 'Voice Matching enterprise interface cover for AI voice selection work.',
     },
     archiveOrder: 32,
@@ -620,8 +620,8 @@ export const projects: Project[] = [
   {
     slug: 'raahi-project',
     name: 'Raahi',
-    image: '/Portfolio.github.io/Assets/images/raahi.jpg',
-    cardMockup: '/Portfolio.github.io/Assets/images/raahi.jpg',
+    image: '/Assets/images/raahi.jpg',
+    cardMockup: '/Assets/images/raahi.jpg',
     cardMockupAlt: 'Raahi cover: sculptural hands holding a phone with the Raahi journey planner over a dark city map',
     tag: 'CIVIC DESIGN',
     year: '2022',
@@ -639,7 +639,7 @@ export const projects: Project[] = [
     summaryTeam: 'Collaborated with one fellow designer on a self-initiated civic design project.',
     summaryTimeline: '3 months in 2022',
     summaryOutcome: 'Built a connected transit concept that reduced commuter anxiety by treating the journey as one service instead of disconnected tools.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Raahi/photos/raahi-hero.webp',
+    summaryImage: '/Assets/Projects/Raahi/photos/raahi-hero.webp',
     summaryImageAlt: 'Raahi hero concept showing transit app, bus, and connected wayfinding system.',
     summaryStats: [
       { label: 'Modes represented', value: '8' },
@@ -656,8 +656,8 @@ export const projects: Project[] = [
   {
     slug: 'the-point-cdc',
     name: 'The Point CDC',
-    image: '/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp',
+    image: '/Assets/mockups/projects/the-point-cdc_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/the-point-cdc_16x9.webp',
     tag: 'COMMUNITY',
     year: '2025',
     desc: 'Rebuilt a Bronx nonprofit platform to make community programs, spaces, and services easier to navigate',
@@ -685,8 +685,8 @@ export const projects: Project[] = [
   {
     slug: 'office-of-diversity',
     name: 'Office of Diversity',
-    image: '/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/responsive-preview.png',
-    cardMockupSource: '/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/research-wall.webp',
+    image: '/Assets/Projects/office-of-diversity/photos/responsive-preview.png',
+    cardMockupSource: '/Assets/Projects/office-of-diversity/photos/research-wall.webp',
     tag: 'EDUCATION',
     year: '2024',
     desc: 'Compact report-publishing work for NYU Tisch’s IDBEA content',
@@ -716,8 +716,8 @@ export const projects: Project[] = [
   {
     slug: 'jugalbandi',
     name: 'Jugalbandi',
-    image: '/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp',
+    image: '/Assets/mockups/projects/jugalbandi_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/jugalbandi_16x9.webp',
     tag: 'ML + MUSIC',
     year: '2024',
     desc: 'Neural network instrument that duets with human musicians — Maker Faire 2024',
@@ -733,7 +733,7 @@ export const projects: Project[] = [
     summaryTeam: 'Solo project with mentorship support through NYU ITP.',
     summaryTimeline: '5 months in 2024',
     summaryOutcome: 'Exhibited at the ITP Spring Show and Maker Faire Coney Island as a playable human-machine duet.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/755.png',
+    summaryImage: '/Assets/Projects/Jugalbandi/Photos/755.png',
     summaryImageAlt: 'Jugalbandi Hexa-18 instrument showing the acoustic-mechanical neural network layers.',
     summaryStats: [
       { label: 'Build duration', value: '5 months' },
@@ -742,7 +742,7 @@ export const projects: Project[] = [
       { label: 'Instrument scale', value: '1.2m tall' },
     ],
     hoverMedia: {
-      src: '/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/755.png',
+      src: '/Assets/Projects/Jugalbandi/Photos/755.png',
       alt: 'Jugalbandi installation performance view.',
     },
     storyline: {
@@ -754,8 +754,8 @@ export const projects: Project[] = [
   {
     slug: 'keyboard-project',
     name: 'Keyboard Project',
-    image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-angle.png',
+    image: '/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
+    cardMockupSource: '/Assets/Projects/Keyboard/photos/keyboard-angle.png',
     tag: 'DATA OBJECT',
     year: '2024',
     desc: 'Physical keyboard study turning key height, fabrication, and touch into a data sculpture',
@@ -769,7 +769,7 @@ export const projects: Project[] = [
     summaryTeam: 'Individual physical-computing and fabrication study at NYU ITP.',
     summaryTimeline: '2024',
     summaryOutcome: 'Built a tactile keyboard object and companion data sculpture that made input feel spatial and inspectable.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
+    summaryImage: '/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp',
     summaryImageAlt: 'Keyboard with keys lifted to different heights beside a 3D printed data sculpture.',
     summaryStats: [
       { label: 'Medium', value: 'Keyboard' },
@@ -786,8 +786,8 @@ export const projects: Project[] = [
   {
     slug: 'breakgen',
     name: 'BreakGen',
-    image: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
-    cardMockup: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-demo-live.png',
+    image: '/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
+    cardMockup: '/Assets/Projects/Keyboard/photos/breakgen-demo-live.png',
     cardMockupAlt: 'BreakGen interactive demo showing a workspace, preview chamber, controls, and artifact-backed state.',
     tag: 'ITP THESIS',
     year: '2025',
@@ -804,7 +804,7 @@ export const projects: Project[] = [
     summaryTeam: 'Individual thesis project with faculty advising and critique support.',
     summaryTimeline: '2024 to 2025 thesis cycle',
     summaryOutcome: 'Created a platform that turns prompts, layouts, and ergonomic choices into fabrication-ready keyboard outputs and drew 200+ visitors at the thesis show.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
+    summaryImage: '/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
     summaryImageAlt: 'BreakGen launch page showing the AI keyboard fabrication product story.',
     summaryStats: [
       { label: 'Visitors reached', value: '200+' },
@@ -814,11 +814,11 @@ export const projects: Project[] = [
     ],
     previewMedia: {
       playlist: {
-        src: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-demo-live.png',
+        src: '/Assets/Projects/Keyboard/photos/breakgen-demo-live.png',
         alt: 'BreakGen interactive demo workspace.',
       },
       library: {
-        src: '/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
+        src: '/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
         alt: 'BreakGen public launch page.',
       },
     },
@@ -859,8 +859,8 @@ export const projects: Project[] = [
   {
     slug: 'enigma',
     name: 'Enigma',
-    image: '/Portfolio.github.io/Assets/mockups/projects/enigma_16x9.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/enigma_16x9.webp',
+    image: '/Assets/mockups/projects/enigma_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/enigma_16x9.webp',
     tag: 'DEEP LEARNING',
     year: '2023',
     desc: '200-neuron light sculpture visualizing a functioning neural network',
@@ -888,8 +888,8 @@ export const projects: Project[] = [
   {
     slug: 'shuffle',
     name: 'Shuffle',
-    image: '/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp',
+    image: '/Assets/mockups/projects/shuffle_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/shuffle_16x9.webp',
     tag: 'INTERACTIVE',
     year: '2023',
     desc: 'Motorised-slider board where balancing student life becomes a zero-sum game',
@@ -917,7 +917,7 @@ export const projects: Project[] = [
   {
     slug: 'making-of-time',
     name: 'Making of Time',
-    image: '/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
+    image: '/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
     tag: 'PHYSICAL COMPUTING',
     year: '2024',
     desc: 'Built three timekeeping systems, from sundial to mechanical watch to software clock',
@@ -945,7 +945,7 @@ export const projects: Project[] = [
   {
     slug: 'sea-of-salt',
     name: 'Why the Sea is Salt',
-    image: '/Portfolio.github.io/Assets/Projects/sea-of-salt/photos/salt-ground.webp',
+    image: '/Assets/Projects/sea-of-salt/photos/salt-ground.webp',
     tag: 'STORYTELLING MACHINE',
     year: '2024',
     desc: 'A salt mill grinds real salt as you advance through a Norse folktale — story as physical material',
@@ -1101,7 +1101,7 @@ export const projects: Project[] = [
   {
     slug: 'dna-speculative',
     name: 'DNA: Speculative Design',
-    image: '/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.webp',
+    image: '/Assets/Projects/DNA/photos/boxes-closed.webp',
     tag: 'BIOART',
     year: '2024',
     desc: 'Would you take a pill to live forever? Speculative pharmaceutical packaging exploring immortality and mortality',
@@ -1240,7 +1240,7 @@ export const projects: Project[] = [
   {
     slug: 'arcade-lab',
     name: 'Arcade Lab',
-    image: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp', // shares image with Omakase (it's the ancestor)
+    image: '/Assets/Projects/the-omakase/photos/cabinet-front.webp', // shares image with Omakase (it's the ancestor)
     tag: 'GAME PROTOTYPING',
     year: '2023',
     desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
@@ -1279,7 +1279,7 @@ export const projects: Project[] = [
     summaryTeam: 'Built with applied mathematics collaboration from Saee Joshi and mentorship from Jeffrey J Feddersen.',
     summaryTimeline: '2025',
     summaryOutcome: 'Turned five astrophysics concepts into tangible experiences for museum exhibition, making time dilation, lensing, and mergers legible through form.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/black-hole-assets/time-trap.jpg',
+    summaryImage: '/Assets/Projects/black-hole-assets/time-trap.jpg',
     summaryImageAlt: 'Black Hole installation showing the time dilation physical model.',
     summaryStats: [
       { label: 'Phenomena modeled', value: '5' },
@@ -1324,8 +1324,8 @@ export const projects: Project[] = [
   {
     slug: 'the-omakase',
     name: 'The Omakase',
-    image: '/Portfolio.github.io/Assets/mockups/projects/the-omakase_16x9.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/mockups/projects/the-omakase_16x9.webp',
+    image: '/Assets/mockups/projects/the-omakase_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/the-omakase_16x9.webp',
     tag: 'ARCADE GAME',
     year: '2024',
     desc: '2-player sushi arcade cabinet — custom RGB controllers, exhibited at ITP + WonderVille',
@@ -1340,7 +1340,7 @@ export const projects: Project[] = [
     summaryTeam: 'Solo build developed through iterative prototyping at NYU ITP.',
     summaryTimeline: '2024',
     summaryOutcome: 'Built a two-player sushi arcade cabinet exhibited at ITP and WonderVille, where the hardware and social pacing became the game logic.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/the-omakase/photos/cabinet-front.webp',
+    summaryImage: '/Assets/Projects/the-omakase/photos/cabinet-front.webp',
     summaryImageAlt: 'The Omakase arcade cabinet photographed from the front.',
     summaryStats: [
       { label: 'Players', value: '2' },
@@ -1370,7 +1370,7 @@ export const projects: Project[] = [
     summaryTeam: 'Theatre fabrication project built with production collaborators.',
     summaryTimeline: '2022',
     summaryOutcome: 'Built a 15 ft. revolving stage capable of supporting 250+ kgs while changing scenes during live theatre without blackout.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/isometric-stage.png',
+    summaryImage: '/Assets/Projects/RevolvingStage/photos/isometric-stage.png',
     summaryImageAlt: 'Isometric revolving stage rendering showing the rotating platform and staged scene.',
     summaryStats: [
       { label: 'Platform diameter', value: '15 ft' },
@@ -1387,8 +1387,8 @@ export const projects: Project[] = [
   {
     slug: 'moniac-machine',
     name: 'Moniac Machine',
-    image: '/Portfolio.github.io/Assets/Projects/Moniac/photos/hero-cabinet.png',
-    cardMockupSource: '/Portfolio.github.io/Assets/Projects/Moniac/photos/original-moniac.png',
+    image: '/Assets/Projects/Moniac/photos/hero-cabinet.png',
+    cardMockupSource: '/Assets/Projects/Moniac/photos/original-moniac.png',
     tag: 'GAME DESIGN',
     year: '2024',
     desc: 'Turned a 1949 hydraulic economic computer into a playable strategy game about systems',
@@ -1416,11 +1416,11 @@ export const projects: Project[] = [
   {
     slug: 'dumb-waiter-set-design',
     name: "Set Design for Pinter's The Dumb Waiter",
-    image: '/Portfolio.github.io/Assets/Projects/dumb-waiter/photos/card-4x5.jpg',
-    cardMockup: '/Portfolio.github.io/Assets/Projects/dumb-waiter/photos/card-4x5.jpg',
-    cardMockupSquare: '/Portfolio.github.io/Assets/Projects/dumb-waiter/photos/card-1x1.jpg',
-    cover16x9: '/Portfolio.github.io/Assets/Projects/dumb-waiter/photos/cover-16x9.jpg',
-    cardMockupSource: '/Portfolio.github.io/Assets/Projects/dumb-waiter/photos/ben-gus-wall.jpg',
+    image: '/Assets/Projects/dumb-waiter/photos/card-4x5.jpg',
+    cardMockup: '/Assets/Projects/dumb-waiter/photos/card-4x5.jpg',
+    cardMockupSquare: '/Assets/Projects/dumb-waiter/photos/card-1x1.jpg',
+    cover16x9: '/Assets/Projects/dumb-waiter/photos/cover-16x9.jpg',
+    cardMockupSource: '/Assets/Projects/dumb-waiter/photos/ben-gus-wall.jpg',
     cardMockupAlt: "Scenic model for Pinter's The Dumb Waiter showing two hitmen in a dark basement room.",
     tag: 'SCENIC DESIGN',
     year: '2024',
@@ -1434,7 +1434,7 @@ export const projects: Project[] = [
     summaryTeam: 'Independent theatre set design model based on Harold Pinter\'s one-act play.',
     summaryTimeline: '2024',
     summaryOutcome: 'Built a cinematic basement model where the dumb waiter, weapons wall, beds, and thresholds make the unseen system feel present.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/dumb-waiter/photos/ben-gus-wall.jpg',
+    summaryImage: '/Assets/Projects/dumb-waiter/photos/ben-gus-wall.jpg',
     summaryImageAlt: 'Close scenic model view of Ben and Gus inside the Dumb Waiter basement room.',
     summaryStats: [
       { label: 'Format', value: 'Scale model' },
@@ -1473,7 +1473,7 @@ export const projects: Project[] = [
   {
     slug: 'sculpture',
     name: 'Sculpture',
-    image: '/Portfolio.github.io/Assets/Projects/Sculpture/1.jpg',
+    image: '/Assets/Projects/Sculpture/1.jpg',
     tag: 'SCULPTURE',
     year: '2020',
     desc: 'Competition sculpture glimpse from beginner practice to finished piece',
@@ -1503,8 +1503,8 @@ export const projects: Project[] = [
   {
     slug: 'mentra-brand',
     name: 'Mentra Brand & Packaging',
-    image: '/Portfolio.github.io/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
-    cardMockupSource: '/Portfolio.github.io/Assets/Projects/mentra-brand/photos/product-flat.webp',
+    image: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
+    cardMockupSource: '/Assets/Projects/mentra-brand/photos/product-flat.webp',
     tag: 'BRAND & PACKAGING',
     year: '2025–26',
     desc: 'Brand identity and packaging for AI smart glasses: logo, box, booklet, ads, and 24 social templates',
@@ -1519,7 +1519,7 @@ export const projects: Project[] = [
     summaryTeam: '1 designer working across hardware, product, operations, and manufacturing partners.',
     summaryTimeline: 'Q3 2025 to 2026',
     summaryOutcome: 'Shipped a full brand system into customers’ hands, from retail box and booklet to launch assets and creator-ready templates.',
-    summaryImage: '/Portfolio.github.io/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
+    summaryImage: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
     summaryImageAlt: 'Mentra brand hero showing both smart-glasses frame variants.',
     summaryStats: [
       { label: 'Packaging iterations', value: '7' },
@@ -1536,8 +1536,8 @@ export const projects: Project[] = [
   {
     slug: 'tedx',
     name: 'TEDxVITPune',
-    image: '/Portfolio.github.io/Assets/images/tedx.jpg',
-    cardMockup: '/Portfolio.github.io/Assets/images/tedx.jpg',
+    image: '/Assets/images/tedx.jpg',
+    cardMockup: '/Assets/images/tedx.jpg',
     cardMockupAlt: 'TEDxVITPune stage: red TEDx letters and box-column skyline set with the red circular stage',
     tag: 'ART DIRECTION',
     year: '2021',
@@ -1644,7 +1644,7 @@ export const projects: Project[] = [
   {
     slug: 'vishwaconclave',
     name: 'VishwaConclave',
-    image: '/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg',
+    image: '/Assets/Projects/VishwaConclave/1.jpg',
     tag: 'CREATIVE DIRECTION',
     year: '2021',
     desc: 'Creative direction, branding, and web design for a student conference',
@@ -1683,7 +1683,7 @@ for (const project of projects) {
 // Freshly authored cover sets. 16:9 is reserved for featured/highlight panels,
 // 4:5 drives portrait Work cards, and 1:1 drives square Work cards so card
 // content is not squeezed into the wrong crop.
-const MOCKUPS = '/Portfolio.github.io/Assets/mockups/projects'
+const MOCKUPS = '/Assets/mockups/projects'
 const NEW_COVER_SLUGS = new Set([
   // First batch
   'ai-voice', 'atps', 'breakgen', 'dna-speculative', 'drowning', 'healthapp',

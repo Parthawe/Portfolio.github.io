@@ -48,7 +48,7 @@ export default function JugalbandiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Jugalbandi · Parth Pawar" />
         <meta property="og:description" content="A neural network made audible through a playable acoustic installation." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/jugalbandi_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -117,8 +117,8 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -178,9 +178,9 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -213,8 +213,8 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -240,7 +240,7 @@ export default function JugalbandiPage() {
         {/* Flute photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
           </div>
         </section>
 
@@ -263,7 +263,7 @@ export default function JugalbandiPage() {
         {/* Rainstick photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
           </div>
         </section>
 
@@ -304,7 +304,7 @@ export default function JugalbandiPage() {
 
       </main>
 
-      <NextProject slug="enigma" title="Enigma" image="/Portfolio.github.io/Assets/mockups/projects/enigma_16x9.webp" />
+      <NextProject slug="enigma" title="Enigma" image="/Assets/mockups/projects/enigma_16x9.webp" />
       <Footer />
     </>
   )

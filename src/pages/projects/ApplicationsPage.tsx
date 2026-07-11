@@ -56,7 +56,7 @@ export default function ApplicationsPage() {
           { id: 'cs-lessons', label: 'Lessons' },
         ]} />
       </main>
-      <NextProject slug="embodied-web" title="Embodied Web" image="/Portfolio.github.io/Assets/images/embodied-web.svg" />
+      <NextProject slug="embodied-web" title="Embodied Web" image="/Assets/images/embodied-web.svg" />
       <Footer />
     </>
   )

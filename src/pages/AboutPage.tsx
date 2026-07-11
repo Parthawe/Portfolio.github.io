@@ -98,58 +98,58 @@ const recognitionRows: Row[] = recognitionGroups.flatMap((group) =>
 
 const offClockImages = [
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/nyu-subway-flowers.webp',
+    src: '/Assets/images/about/off-clock/nyu-subway-flowers.webp',
     label: 'NYU flowers',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/gallery-suit.webp',
+    src: '/Assets/images/about/off-clock/gallery-suit.webp',
     label: 'Gallery days',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/f1-store.webp',
+    src: '/Assets/images/about/off-clock/f1-store.webp',
     label: 'Formula 1',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/library-shelf.webp',
+    src: '/Assets/images/about/off-clock/library-shelf.webp',
     label: 'Book stacks',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/color-gallery.webp',
+    src: '/Assets/images/about/off-clock/color-gallery.webp',
     label: 'Color studies',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/monet-wall.webp',
+    src: '/Assets/images/about/off-clock/monet-wall.webp',
     label: 'Museum looking',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/polaroid-portrait.webp',
+    src: '/Assets/images/about/off-clock/polaroid-portrait.webp',
     label: 'Instant photos',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/painting-view.webp',
+    src: '/Assets/images/about/off-clock/painting-view.webp',
     label: 'Painting rooms',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/nyu-grad.webp',
+    src: '/Assets/images/about/off-clock/nyu-grad.webp',
     label: 'NYU graduation',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/washington-square.webp',
+    src: '/Assets/images/about/off-clock/washington-square.webp',
     label: 'Washington Square',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/mclaren-jacket.webp',
+    src: '/Assets/images/about/off-clock/mclaren-jacket.webp',
     label: 'McLaren days',
   },
   {
-    src: '/Portfolio.github.io/Assets/images/about/off-clock/yc-founder-visit.webp',
+    src: '/Assets/images/about/off-clock/yc-founder-visit.webp',
     label: 'Founder visits',
   },
 ]
 
 const aboutCharacterFrames = Array.from(
   { length: 9 },
-  (_, index) => `/Portfolio.github.io/Assets/character/me/${index + 1}.webp`,
+  (_, index) => `/Assets/character/me/${index + 1}.webp`,
 )
 
 const softwareStack = [
@@ -546,7 +546,7 @@ export default function AboutPage() {
               <div className="abt-type-intro">
                 <span className="abt-type-label">Made this typeface</span>
                 <div className="abt-type-links">
-                  <a href="/Portfolio.github.io/Assets/Projects/Typeface/butlers-slice.zip" download className="abt-type-link figma-hover">
+                  <a href="/Assets/Projects/Typeface/butlers-slice.zip" download className="abt-type-link figma-hover">
                     <svg viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5.5l3 3 3-3M2 10h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     Download .zip
                     <FigmaSelect />

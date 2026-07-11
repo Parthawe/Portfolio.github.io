@@ -20,7 +20,7 @@ export default function ThePointCdcPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
         <meta property="og:description" content="Website redesign for The Point CDC focused on programs, WiFi access, events, and mobile navigation." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/the-point-cdc_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -42,7 +42,7 @@ export default function ThePointCdcPage() {
             { label: 'Year', value: '2024' },
           ]}
           liveUrl="https://thepoint.org"
-          heroImage="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/homepage-hero.png"
+          heroImage="/Assets/Projects/ThePointCDC/photos/homepage-hero.png"
           heroAlt="The Point CDC redesigned homepage for Hunts Point community programs and services"
         />
 
@@ -89,7 +89,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide cs-slide--point-visual reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
         {/* Goals */}
@@ -205,11 +205,11 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title">User Journey</h2>
             <div className="point-board-stack point-board-stack--journey" aria-label="User journey map and information architecture flow diagram">
               <figure className="point-board-panel point-board-panel--goals">
-                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="Goal mapping for accessibility, key programs, and community engagement" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="Goal mapping for accessibility, key programs, and community engagement" loading="lazy" />
                 <figcaption>Goals translated into site priorities.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--journey">
-                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
                 <figcaption>User journey and information architecture, enlarged for reading.</figcaption>
               </figure>
             </div>
@@ -218,7 +218,7 @@ export default function ThePointCdcPage() {
 
         {/* Wireframe slide */}
         <div className="cs-slide cs-slide--point-wireframe reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
         </div>
 
         {/* Visual Style */}
@@ -233,7 +233,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide cs-slide--point-style reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}
@@ -243,15 +243,15 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
             <div className="point-board-stack point-board-stack--redesign" aria-label="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme">
               <figure className="point-board-panel point-board-panel--redesign-top">
-                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Homepage hero and grouped navigation annotation" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Homepage hero and grouped navigation annotation" loading="lazy" />
                 <figcaption>Grouped navigation and clearer entry points.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-mid">
-                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Program cards and responsive layout annotation" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Program cards and responsive layout annotation" loading="lazy" />
                 <figcaption>Programs surfaced as scan-friendly cards.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-bottom">
-                <img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Footer and mobile navigation annotation" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Footer and mobile navigation annotation" loading="lazy" />
                 <figcaption>Mobile and footer structure made easier to follow.</figcaption>
               </figure>
             </div>
@@ -261,8 +261,8 @@ export default function ThePointCdcPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -309,7 +309,7 @@ export default function ThePointCdcPage() {
 
       </main>
 
-        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Portfolio.github.io/Assets/mockups/projects/office-of-diversity_16x9.webp" />
+        <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Assets/mockups/projects/office-of-diversity_16x9.webp" />
       <Footer />
     </>
   )

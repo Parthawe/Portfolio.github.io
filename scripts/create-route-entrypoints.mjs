@@ -7,7 +7,7 @@ const distDir = process.argv[2] ? resolve(process.cwd(), process.argv[2]) : join
 const indexPath = join(distDir, 'index.html')
 const notFoundPath = join(distDir, '404.html')
 const sitemapPath = join(root, 'public', 'sitemap.xml')
-const siteBase = '/Portfolio.github.io/'
+const siteBase = '/'
 
 if (!existsSync(indexPath)) {
   throw new Error('dist/index.html is missing. Run this script after vite build.')
@@ -16,8 +16,14 @@ if (!existsSync(indexPath)) {
 copyFileSync(indexPath, notFoundPath)
 
 const sitemap = readFileSync(sitemapPath, 'utf8')
-const routes = [...sitemap.matchAll(/<loc>https:\/\/parthawe\.github\.io\/Portfolio\.github\.io\/([^<]*)<\/loc>/g)]
-  .map((match) => decodeURI(match[1]).replace(/^\/+|\/+$/g, ''))
+const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+  .map((match) => {
+    try {
+      return new URL(match[1]).pathname.replace(/^\/+|\/+$/g, '')
+    } catch {
+      return ''
+    }
+  })
   .filter(Boolean)
 
 let written = 0

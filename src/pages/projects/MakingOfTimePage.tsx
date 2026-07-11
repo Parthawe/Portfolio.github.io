@@ -20,7 +20,7 @@ export default function MakingOfTimePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Making of Time &middot; Parth Pawar" />
         <meta property="og:description" content="Three timekeeping systems built across shadow, mechanics, and code." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" />
       </Helmet>
 
       <Nav />
@@ -60,8 +60,8 @@ export default function MakingOfTimePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" alt="Custom mechanical watch: octagonal bezel, blue guilloche dial, steel bracelet" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Minimalist sundial-inspired watch: white face, leather strap" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" alt="Custom mechanical watch: octagonal bezel, blue guilloche dial, steel bracelet" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Minimalist sundial-inspired watch: white face, leather strap" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -96,7 +96,7 @@ export default function MakingOfTimePage() {
             <p>Built from wood and brass, it made time slow and spatial. You stand with it, read the shadow, and feel the day moving instead of checking a number.</p>
           </CsBody>
           <figure className="cs-img reveal" style={{ maxWidth: '560px', margin: '2.5rem auto 0' }}>
-            <img src="/Portfolio.github.io/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Sundial-inspired white watch with a raised gnomon on the dial" loading="lazy" decoding="async" />
+            <img src="/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Sundial-inspired white watch with a raised gnomon on the dial" loading="lazy" decoding="async" />
             <figcaption className="cs-img-caption">The sundial idea carried onto the wrist: the white watch&rsquo;s dial reads by a raised gnomon instead of hands.</figcaption>
           </figure>
         </CsSection>
@@ -107,7 +107,7 @@ export default function MakingOfTimePage() {
         {/* Tools + components */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/making-of-time/photos/tools-layout.webp" alt="Watchmaking tools: calipers, tweezers, pliers, screwdrivers, locking pliers, and a mechanical watch" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/tools-layout.webp" alt="Watchmaking tools: calipers, tweezers, pliers, screwdrivers, locking pliers, and a mechanical watch" loading="lazy" /></div>
           </div>
         </section>
 
@@ -126,8 +126,8 @@ export default function MakingOfTimePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-angle.png" alt="Mechanical watch: blue guilloche dial, octagonal bezel, steel bracelet from side angle" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/making-of-time/photos/blue-dial-top.png" alt="Mechanical watch from above: blue dial with applied hour markers" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-angle.png" alt="Mechanical watch: blue guilloche dial, octagonal bezel, steel bracelet from side angle" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-top.png" alt="Mechanical watch from above: blue dial with applied hour markers" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -136,7 +136,7 @@ export default function MakingOfTimePage() {
         <CsSection id="cs-digital" label="03 &mdash; Digital" title="Digital">
           <CsBody>
             <p>The digital phase turned time into a designed field: hue for hours, saturation for minutes, brightness for seconds.</p>
-            <p>Software gave the most freedom, but also the least grounding. That contrast led directly into <a href="/Portfolio.github.io/black-hole" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Black Hole</a>, where the question shifted from measuring time to bending it.</p>
+            <p>Software gave the most freedom, but also the least grounding. That contrast led directly into <a href="/black-hole" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Black Hole</a>, where the question shifted from measuring time to bending it.</p>
           </CsBody>
         </CsSection>
 
@@ -146,7 +146,7 @@ export default function MakingOfTimePage() {
         {/* Components photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/making-of-time/photos/watch-components.png" alt="Watch assembly: movement, dial, hands, and bracelet components" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/watch-components.png" alt="Watch assembly: movement, dial, hands, and bracelet components" loading="lazy" /></div>
           </div>
         </section>
 
@@ -165,7 +165,7 @@ export default function MakingOfTimePage() {
 
       </main>
 
-      <NextProject slug="black-hole" title="Black Hole" image="/Portfolio.github.io/Assets/images/black-hole.jpg" />
+      <NextProject slug="black-hole" title="Black Hole" image="/Assets/images/black-hole.jpg" />
       <Footer />
     </>
   )

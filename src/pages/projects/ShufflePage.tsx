@@ -21,7 +21,7 @@ export default function ShufflePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Shuffle · Parth Pawar" />
         <meta property="og:description" content="A physical simulator for the trade-offs of student life." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/shuffle_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -60,8 +60,8 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -80,9 +80,9 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -90,7 +90,7 @@ export default function ShufflePage() {
         {/* Slider detail */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
           </div>
         </section>
 
@@ -103,12 +103,12 @@ export default function ShufflePage() {
           </CsBody>
           <div style={{ marginTop: 'var(--space-5)', display: 'grid', gap: '1.5rem' }}>
             <CsImage
-              src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/idea-demonstration.jpg"
+              src="/Assets/Projects/Shuffle/photos/idea-demonstration.jpg"
               alt="Early mockup of ITP Shuffle: twelve labeled sliders including Classes, Sleep, Food, Job, Social Media, and Finals at different positions"
               caption="The first sketch mapped twelve dimensions of ITP life to slider positions before the build narrowed it to eight."
             />
             <CsImage
-              src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/g80-inspiration.jpg"
+              src="/Assets/Projects/Shuffle/photos/g80-inspiration.jpg"
               alt="G80 by Fragmentin: a wall of white slider panels with green motorized faders, a hand adjusting one labeled Financial speculation"
               caption="The reference point: G80 by Fragmentin (2023), a motorized-fader installation about resource distribution on a planetary scale. Shuffle borrows the mechanic and shrinks the scale to one student's week."
             />
@@ -144,10 +144,10 @@ export default function ShufflePage() {
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/underside-motors.jpg" alt="Side view of the plywood wedge with the top panel lifted, exposing eight motorised fader assemblies and wiring on standoffs" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/Shuffle/photos/underside-motors.jpg" alt="Side view of the plywood wedge with the top panel lifted, exposing eight motorised fader assemblies and wiring on standoffs" loading="lazy" decoding="async" />
               </div>
               <div className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg" alt="Inside the enclosure: Arduino and breadboard wired with jumper cables, next to a close-up of a motorised fader mounted under the panel" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg" alt="Inside the enclosure: Arduino and breadboard wired with jumper cables, next to a close-up of a motorised fader mounted under the panel" loading="lazy" decoding="async" />
               </div>
             </div>
             <p className="cs-caption" style={{ marginTop: '0.75rem', color: 'var(--ink-soft, #777)', fontSize: '0.85rem' }}>Under the hood: motorised faders on standoffs, and the Arduino-plus-breadboard brain that redistributes the week.</p>
@@ -176,7 +176,7 @@ export default function ShufflePage() {
 
       </main>
 
-      <NextProject slug="the-omakase" title="The Omakase" image="/Portfolio.github.io/Assets/images/the-omakase.jpg" />
+      <NextProject slug="the-omakase" title="The Omakase" image="/Assets/images/the-omakase.jpg" />
       <Footer />
     </>
   )

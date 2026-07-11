@@ -2535,6 +2535,31 @@ h3.text-highlight .text-highlight-text {
   display: none;
 }
 
+.ambient-toggle__icon {
+  display: block;
+  overflow: visible;
+}
+
+.ambient-toggle.is-active .ambient-toggle__wave {
+  transform-origin: 12px 12px;
+  animation: ambientSpeakerPulse 1.8s ease-in-out infinite;
+}
+
+.ambient-toggle.is-active .ambient-toggle__wave--outer {
+  animation-delay: 0.18s;
+}
+
+@keyframes ambientSpeakerPulse {
+  0%, 100% {
+    opacity: 0.42;
+    transform: translateX(-0.4px);
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(0.6px);
+  }
+}
+
 .ambient-toggle:hover {
   color: var(--ink);
   --surface-glass-bg: color-mix(in srgb, var(--glass-subtle-bg) 84%, var(--ink-04) 16%);

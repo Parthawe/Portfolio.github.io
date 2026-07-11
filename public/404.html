@@ -5,8 +5,9 @@
     <title>Parth Pawar | Portfolio</title>
     <script>
       // SPA redirect for GitHub Pages
-      var path = window.location.pathname;
-      window.location.replace('/' + '?p=' + path);
+      var path = window.location.pathname.replace(/^\/Portfolio\.github\.io(?=\/|$)/, '') || '/';
+      var query = window.location.search ? '&q=' + encodeURIComponent(window.location.search.slice(1)) : '';
+      window.location.replace('/?p=' + encodeURIComponent(path) + query + window.location.hash);
     </script>
   </head>
   <body></body>

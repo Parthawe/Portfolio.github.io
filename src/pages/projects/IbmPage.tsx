@@ -21,7 +21,7 @@ export default function IbmPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="IBM Cancer Prognosis · Parth Pawar" />
         <meta property="og:description" content="Research glimpse: encrypted genomic computation, prognosis clusters, and what I learned about privacy-preserving AI." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
       </Helmet>
 
       <Nav />
@@ -44,7 +44,7 @@ export default function IbmPage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="eager" />
+            <img src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="eager" />
           </div>
         </section>
 
@@ -70,11 +70,11 @@ export default function IbmPage() {
           <div className="wrap">
             <div className="ibm-diagram-stack" aria-label="Encrypted cancer prognosis system diagrams">
               <figure className="ibm-diagram-card reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" />
                 <figcaption>System flow: encrypted genomic features moving through preprocessing, prognosis, clustering, and recommendation steps.</figcaption>
               </figure>
               <figure className="ibm-diagram-card reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" />
                 <figcaption>Homomorphic encryption model: computation stays useful without exposing the raw patient data.</figcaption>
               </figure>
             </div>
@@ -86,7 +86,7 @@ export default function IbmPage() {
             <p>The output was not a consumer interface. It was evidence that the encrypted workflow could still produce interpretable prognosis groups. The Kaplan-Meier cluster plot became the clearest artifact because it showed the final clinical-style interpretation rather than only the encryption mechanics.</p>
           </CsBody>
           <CsImage
-            src="/Portfolio.github.io/Assets/Projects/CancerPrognosis/photos/km-clusters-dark.jpg"
+            src="/Assets/Projects/CancerPrognosis/photos/km-clusters-dark.jpg"
             alt="Kaplan-Meier survival cluster plot for seven prognosis groups"
             caption="Kaplan-Meier clusters - the useful output of the pipeline, showing survival probability across seven groups."
           />
@@ -124,7 +124,7 @@ export default function IbmPage() {
         ]} />
       </main>
 
-      <NextProject slug="the-point-cdc" title="The Point CDC" image="/Portfolio.github.io/Assets/mockups/projects/the-point-cdc_16x9.webp" />
+      <NextProject slug="the-point-cdc" title="The Point CDC" image="/Assets/mockups/projects/the-point-cdc_16x9.webp" />
       <Footer />
     </>
   )

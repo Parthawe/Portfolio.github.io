@@ -19,7 +19,7 @@ class ErrorBoundaryInner extends Component<{ children: ReactNode; resetKey: stri
       return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--ff-sans, system-ui)', color: 'var(--ink, #111)', background: 'var(--bg, #faf9f6)' }}>
           <img
-            src="/Portfolio.github.io/Assets/favicon.svg"
+            src="/Assets/favicon.svg"
             alt="Parth Pawar"
             style={{ width: '2.5rem', height: '2.5rem', marginBottom: '0.75rem', borderRadius: '0.625rem' }}
           />

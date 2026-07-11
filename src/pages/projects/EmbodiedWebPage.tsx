@@ -70,7 +70,7 @@ export default function EmbodiedWebPage() {
 
       </main>
 
-      <NextProject slug="flow-fields" title="Flow Fields" image="/Portfolio.github.io/Assets/images/flow-fields.svg" />
+      <NextProject slug="flow-fields" title="Flow Fields" image="/Assets/images/flow-fields.svg" />
       <Footer />
     </>
   )

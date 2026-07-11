@@ -113,11 +113,11 @@ export default function WorkPage() {
   const isTwoColumn = useMediaQuery('(max-width: 1180px)')
   const currentViewParam = searchParams.get('view')
   const viewMode: WorkViewMode =
-    currentViewParam === 'playlist' || currentViewParam === 'library'
-        ? 'library'
-        : currentViewParam === 'timeline'
-          ? 'timeline'
-          : 'editorial'
+    currentViewParam === 'editorial'
+      ? 'editorial'
+      : currentViewParam === 'timeline'
+        ? 'timeline'
+        : 'library'
   const [activeLibraryShelf, setActiveLibraryShelf] = useState('start-here')
   const [activeTimelineYear, setActiveTimelineYear] = useState(TIMELINE_PRESENT_KEY)
 
@@ -507,7 +507,7 @@ export default function WorkPage() {
                   <div className="work-library-shell__copy">
                     <span className="mono-label work-group-label">Library</span>
                     <p className="work-group-copy">
-                      Browse the portfolio like a collection: flagship work first, then shelves by discipline. Each shelf keeps one lead project in view and the rest close by.
+                      Scan the portfolio by project, role, outcome, and year. Flagship work comes first, then each discipline becomes a clean shelf.
                     </p>
                   </div>
                   <div className="work-library-nav surface-glass surface-glass--subtle" role="toolbar" aria-label="Jump to library shelf">

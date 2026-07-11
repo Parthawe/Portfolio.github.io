@@ -24,7 +24,7 @@ export default function ExecutiveLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
         <meta property="og:description" content="Meeting intelligence for executives, from cited summaries to decision tracking and follow-up workflows." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/executivelens.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/executivelens.webp" />
       </Helmet>
 
       <Nav />
@@ -45,7 +45,7 @@ export default function ExecutiveLensPage() {
             { label: 'Platform', value: 'Web + Mobile' },
           ]}
           liveUrl="https://www.executivelens.ai"
-          heroImage="/Portfolio.github.io/Assets/mockups/projects/executivelens_16x9.webp"
+          heroImage="/Assets/mockups/projects/executivelens_16x9.webp"
           heroAlt="ExecutiveLens project cover for meeting intelligence and decision tracking"
         />
 
@@ -122,19 +122,19 @@ export default function ExecutiveLensPage() {
           </CsBody>
           <div className="cs-site-crop-grid cs-site-crop-grid--executivelens">
             <figure>
-              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
+              <img src="/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
               <figcaption>Hero and product proof</figcaption>
             </figure>
             <figure>
-              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
+              <img src="/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
               <figcaption>Audio to insight workflow</figcaption>
             </figure>
             <figure>
-              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
+              <img src="/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
               <figcaption>Capability grid</figcaption>
             </figure>
             <figure>
-              <img src="/Portfolio.github.io/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
+              <img src="/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
               <figcaption>Integrations and conversion</figcaption>
             </figure>
           </div>
@@ -186,7 +186,7 @@ export default function ExecutiveLensPage() {
 
       </main>
 
-      <NextProject slug="ballah-code" title="Ballah Code" image="/Portfolio.github.io/Assets/mockups/projects/ballah-code_16x9.webp" />
+      <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/mockups/projects/ballah-code_16x9.webp" />
       <Footer />
     </>
   )

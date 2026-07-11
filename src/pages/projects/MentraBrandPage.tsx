@@ -15,7 +15,7 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const P = '/Portfolio.github.io/Assets/Projects/mentra-brand/photos'
+const P = '/Assets/Projects/mentra-brand/photos'
 
 export default function MentraBrandPage() {
   return (
@@ -26,7 +26,7 @@ export default function MentraBrandPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra Brand & Packaging · Parth Pawar" />
         <meta property="og:description" content="Brand identity & packaging for AI smart glasses shipping at $299." />
-        <meta property="og:image" content={`https://parthawe.github.io${P}/render-both-frames.webp`} />
+        <meta property="og:image" content={`https://www.designwhich.works${P}/render-both-frames.webp`} />
       </Helmet>
 
       <Nav />
@@ -421,7 +421,7 @@ export default function MentraBrandPage() {
 
       </main>
 
-      <NextProject slug="tedx" title="TEDxVITPune" image="/Portfolio.github.io/Assets/images/tedx.jpg" />
+      <NextProject slug="tedx" title="TEDxVITPune" image="/Assets/images/tedx.jpg" />
       <Footer />
     </>
   )

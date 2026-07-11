@@ -2209,14 +2209,16 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
       <pointLight intensity={dark ? 0.6 : 0.4} color={dark ? '#aabbee' : '#bbccdd'} distance={12} position={[4, -1, -2]} />
 
       {/* Environment reflections — city preset gives complex glass reflections */}
-      <Environment files="/Portfolio.github.io/Assets/hdri/potsdamer_platz_1k.hdr" environmentIntensity={dark ? 1.0 : 1.2} />
+      <Environment files="/Assets/hdri/potsdamer_platz_1k.hdr" environmentIntensity={dark ? 1.0 : 1.2} />
 
       {/* Endless grid backdrop — only bites once the web opens (uFade = intro). */}
       <InfiniteGrid introRef={introRef} panRef={pan} dark={dark} />
 
       <group ref={groupRef} scale={sceneScale} position={[sceneOffsetX, 0, 0]}>
         <ConstellationLines positions={positions} dark={dark} fadeRef={collapsedFadeRef} />
-        <ExpandedWeb positions={positions} introRef={introRef} dark={dark} labelsAlwaysOn={isMobile && expanded} />
+        {expanded ? (
+          <ExpandedWeb positions={positions} introRef={introRef} dark={dark} labelsAlwaysOn={isMobile} />
+        ) : null}
 
         {/* 0: Installations, Truss (top) */}
         <ClickableObject route={nodes[0].route} position={nodes[0].position} active={activeIndex === 0} onActiveChange={(active) => setNodeActive(0, active)}>

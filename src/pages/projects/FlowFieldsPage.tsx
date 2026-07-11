@@ -33,7 +33,7 @@ export default function FlowFieldsPage() {
             { label: 'Role', value: 'Creative coder' },
             { label: 'Tools', value: 'p5.js, JavaScript, noise fields' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/images/flow-fields.svg"
+          heroImage="/Assets/images/flow-fields.svg"
           heroAlt="Abstract flow-field pattern made from dense moving particles."
         />
 
@@ -76,7 +76,7 @@ export default function FlowFieldsPage() {
         ]} />
       </main>
 
-      <NextProject slug="embodied-web" title="Embodied Web" image="/Portfolio.github.io/Assets/images/embodied-web.svg" />
+      <NextProject slug="embodied-web" title="Embodied Web" image="/Assets/images/embodied-web.svg" />
       <Footer />
     </>
   )

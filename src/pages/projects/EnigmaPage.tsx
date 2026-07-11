@@ -20,7 +20,7 @@ export default function EnigmaPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Enigma &middot; Parth Pawar" />
         <meta property="og:description" content="A physical light sculpture that makes neural-network activity visible." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/enigma.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/enigma.jpg" />
       </Helmet>
 
       <Nav />
@@ -74,8 +74,8 @@ export default function EnigmaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Enigma/photos/person-viewing.webp" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/person-viewing.webp" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -84,9 +84,9 @@ export default function EnigmaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Enigma/photos/alphabet-layer.webp" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Enigma/photos/wire-detail.webp" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Enigma/photos/neuron-closeup.webp" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/alphabet-layer.webp" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/wire-detail.webp" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/neuron-closeup.webp" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -94,7 +94,7 @@ export default function EnigmaPage() {
         {/* Wide shot */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/Enigma/photos/full-sculpture-wide.webp" alt="Enigma sculpture wide shot: full neural network with alphabet output layer visible" loading="lazy" decoding="async" /></div>
+            <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-wide.webp" alt="Enigma sculpture wide shot: full neural network with alphabet output layer visible" loading="lazy" decoding="async" /></div>
           </div>
         </section>
 
@@ -125,11 +125,11 @@ export default function EnigmaPage() {
             <p>Enigma was exhibited at the ITP Winter Show 2023, NYU&rsquo;s flagship end-of-semester showcase where the Interactive Telecommunications Program opens its doors to the public. The show draws thousands of visitors over two days &mdash; designers, engineers, artists, families, and curious New Yorkers &mdash; making it an ideal venue to test how a broad audience engages with a piece about machine learning.</p>
             <p>Visitors wrote letters on a tablet and watched the prediction ripple across the sculpture. Many repeated the same letter to see how different handwriting changed the path.</p>
             <p>The strongest reaction was recognition: people expected AI to feel opaque, but the lit pathways made the network feel structured and learnable.</p>
-            <p>Enigma explores computation through light. Its sibling project, <a href="/Portfolio.github.io/jugalbandi" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Jugalbandi</a>, explores the same neural network architecture through sound &mdash; each hidden layer mapped to a different acoustic instrument. Together they show how the same invisible process can be made tangible through different senses.</p>
+            <p>Enigma explores computation through light. Its sibling project, <a href="/jugalbandi" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Jugalbandi</a>, explores the same neural network architecture through sound &mdash; each hidden layer mapped to a different acoustic instrument. Together they show how the same invisible process can be made tangible through different senses.</p>
           </CsBody>
 
           <figure className="cs-img reveal" style={{ maxWidth: '640px', margin: '2.5rem auto 0' }}>
-            <img src="/Portfolio.github.io/Assets/Projects/Enigma/photos/tablet-input.jpg" alt="A visitor's hand mid-stroke on the tablet, which prompts: Please draw one Alphabet" loading="lazy" decoding="async" />
+            <img src="/Assets/Projects/Enigma/photos/tablet-input.jpg" alt="A visitor's hand mid-stroke on the tablet, which prompts: Please draw one Alphabet" loading="lazy" decoding="async" />
             <figcaption className="cs-img-caption">Where every interaction started: the tablet prompt read &ldquo;Please draw one Alphabet,&rdquo; and the stroke propagated through 200 neurons before the visitor lifted their finger.</figcaption>
           </figure>
         </CsSection>
@@ -150,7 +150,7 @@ export default function EnigmaPage() {
 
       </main>
 
-      <NextProject slug="shuffle" title="Shuffle" image="/Portfolio.github.io/Assets/mockups/projects/shuffle_16x9.webp" />
+      <NextProject slug="shuffle" title="Shuffle" image="/Assets/mockups/projects/shuffle_16x9.webp" />
       <Footer />
     </>
   )

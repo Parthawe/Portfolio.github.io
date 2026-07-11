@@ -19,7 +19,7 @@ export default function AtpsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ATPS · Parth Pawar" />
         <meta property="og:description" content="ArtTown Podcast Series, 40+ conversations with art and design professionals. 50k+ views." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/atps.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/atps.webp" />
       </Helmet>
 
       <Nav />
@@ -41,7 +41,7 @@ export default function AtpsPage() {
         />
 
         {/* Hero image */}
-        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/1.jpg" alt="ArtTown Podcast Series hero, microphone with a grid of episode artwork and 50k+ listeners" />
+        <CsImage src="/Assets/Projects/ATPS/Desktop/1.jpg" alt="ArtTown Podcast Series hero, microphone with a grid of episode artwork and 50k+ listeners" />
 
         {/* Distribution */}
         <section className="cs-section reveal" id="cs-distribution">
@@ -201,7 +201,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Episode grid */}
-        <CsImage src="/Portfolio.github.io/Assets/Projects/ATPS/Desktop/5.webp" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" />
+        <CsImage src="/Assets/Projects/ATPS/Desktop/5.webp" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" />
 
         {/* Notable Guests */}
         <section className="cs-section reveal" id="cs-episodes">
@@ -259,7 +259,7 @@ export default function AtpsPage() {
 
       </main>
 
-      <NextProject slug="mentra" title="Mentra" image="/Portfolio.github.io/Assets/images/mentra.webp" />
+      <NextProject slug="mentra" title="Mentra" image="/Assets/images/mentra.webp" />
       <Footer />
     </>
   )

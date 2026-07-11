@@ -9,7 +9,7 @@ import NextProject from '../../components/case-study/NextProject'
 import GlyphPlayground from '../../components/GlyphPlayground'
 import GlyphEditor from '../../components/GlyphEditor'
 
-const TYPEFACE_ASSET = '/Portfolio.github.io/Assets/Projects/Typeface'
+const TYPEFACE_ASSET = '/Assets/Projects/Typeface'
 
 const weights = [
   { label: 'Ultralight', value: 200, file: 'Butler Slice UltraLight' },
@@ -67,7 +67,7 @@ export default function TypefacePage() {
           property="og:description"
           content="Interactive type specimen, glyph playground, vector editor, and downloadable font files."
         />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/Typeface/photos/hero-title.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/Typeface/photos/hero-title.jpg" />
       </Helmet>
 
       <Nav />
@@ -339,7 +339,7 @@ export default function TypefacePage() {
         />
       </main>
 
-      <NextProject slug="mentra-brand" title="Mentra Brand & Packaging" image="/Portfolio.github.io/Assets/Projects/mentra-brand/photos/render-both-frames.webp" />
+      <NextProject slug="mentra-brand" title="Mentra Brand & Packaging" image="/Assets/Projects/mentra-brand/photos/render-both-frames.webp" />
       <Footer />
     </>
   )

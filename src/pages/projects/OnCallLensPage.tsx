@@ -26,7 +26,7 @@ export default function OnCallLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OnCall Lens · Parth Pawar" />
         <meta property="og:description" content="Sentry alerts routed to an AI fix pipeline, with PR approval from smart glasses." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/oncall-lens.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/oncall-lens.webp" />
       </Helmet>
 
       <Nav />
@@ -46,7 +46,7 @@ export default function OnCallLensPage() {
             { label: 'Team', value: 'Team SOGA' },
             { label: 'Platform', value: 'MentraOS Glasses + Web' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/images/oncall-lens/hero.webp"
+          heroImage="/Assets/images/oncall-lens/hero.webp"
           heroAlt="Pager Lens, Stay present. Handle incidents anywhere."
         />
 
@@ -69,7 +69,7 @@ export default function OnCallLensPage() {
                 <p>Every on-call engineer knows the feeling: an alert arrives at the worst possible time, and the first minutes are spent rebuilding context. OnCall Lens asks what happens if triage, AI patching, and approval can start from a glance.</p>
             <p>The tools have improved. Sentry surfaces rich stack traces, PagerDuty routes alerts intelligently, Slack threads keep context. But the fundamental loop has not changed: a human gets woken up, opens a computer, reads a wall of text, and manually writes a patch. The human is the bottleneck at every step.</p>
           </CsBody>
-          <CsImage src="/Portfolio.github.io/Assets/images/oncall-lens/glasses-detail.png" alt="Close-up of smart glasses lens used for OnCall Lens" />
+          <CsImage src="/Assets/images/oncall-lens/glasses-detail.png" alt="Close-up of smart glasses lens used for OnCall Lens" />
         </CsSection>
 
         <CsSection id="cs-bet" label="The Bet" title="What If the First Responder Was an AI Agent?">
@@ -189,7 +189,7 @@ export default function OnCallLensPage() {
 
       </main>
 
-      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Portfolio.github.io/Assets/images/nda-cover.svg" />
+      <NextProject slug="ai-voice" title="AI Voice Interface" image="/Assets/images/nda-cover.svg" />
       <Footer />
     </>
   )

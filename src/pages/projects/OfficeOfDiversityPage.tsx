@@ -19,7 +19,7 @@ export default function OfficeOfDiversityPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Office of Diversity · Parth Pawar" />
         <meta property="og:description" content="Interactive IDBEA report for NYU Tisch, focused on accessible structure, data clarity, and responsive publishing." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/office-of-diversity_16x9.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/office-of-diversity_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -38,7 +38,7 @@ export default function OfficeOfDiversityPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2024' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/responsive-preview.png"
+          heroImage="/Assets/Projects/office-of-diversity/photos/responsive-preview.png"
           heroAlt="Tisch IDBEA report shown across desktop and mobile responsive views"
         />
 
@@ -64,22 +64,22 @@ export default function OfficeOfDiversityPage() {
           <div className="wrap">
             <div className="ofd-process-stack">
               <figure className="ofd-wide-shot">
-                <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Whiteboard and sticky-note research wall used to organize report themes and content priorities" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Whiteboard and sticky-note research wall used to organize report themes and content priorities" loading="lazy" decoding="async" />
                 <figcaption>First pass: sort the institutional material into themes, page groups, and reader questions.</figcaption>
               </figure>
               <figure className="ofd-wide-shot">
-                <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/scope-timeline.png" alt="Scope timeline showing understanding scope, design concept, data visualization, engagement, collaboration, and accessibility compliance" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/office-of-diversity/photos/scope-timeline.png" alt="Scope timeline showing understanding scope, design concept, data visualization, engagement, collaboration, and accessibility compliance" loading="lazy" decoding="async" />
                 <figcaption>Scope map: translate themes into milestones, data moments, collaboration loops, and accessibility checks.</figcaption>
               </figure>
               <div className="ofd-workshop-grid">
                 <figure>
-                  <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community workshop table with participants browsing printed report material" loading="lazy" decoding="async" />
+                  <img src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community workshop table with participants browsing printed report material" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding printed Office of Diversity report material during a workshop" loading="lazy" decoding="async" />
+                  <img src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding printed Office of Diversity report material during a workshop" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="Participants reviewing printed report materials during an Office of Diversity workshop" loading="lazy" decoding="async" />
+                  <img src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="Participants reviewing printed report materials during an Office of Diversity workshop" loading="lazy" decoding="async" />
                 </figure>
               </div>
               <p className="cs-caption">The report had to work both as a web artifact and as something people could discuss in a room.</p>
@@ -93,19 +93,19 @@ export default function OfficeOfDiversityPage() {
           </CsBody>
           <div className="ofd-report-slices">
             <figure>
-              <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png" alt="Top section of the IDBEA web report with title, introductory content, and opening report structure" loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png" alt="Top section of the IDBEA web report with title, introductory content, and opening report structure" loading="lazy" decoding="async" />
               <figcaption>01 / Opening structure</figcaption>
             </figure>
             <figure>
-              <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png" alt="Middle section of the IDBEA web report showing timeline and milestone content" loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png" alt="Middle section of the IDBEA web report showing timeline and milestone content" loading="lazy" decoding="async" />
               <figcaption>02 / Timeline and milestones</figcaption>
             </figure>
             <figure>
-              <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png" alt="Middle section of the IDBEA web report showing data visualization and progress sections" loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png" alt="Middle section of the IDBEA web report showing data visualization and progress sections" loading="lazy" decoding="async" />
               <figcaption>03 / Data and visual summaries</figcaption>
             </figure>
             <figure>
-              <img src="/Portfolio.github.io/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png" alt="Lower section of the IDBEA web report showing accessibility, collaboration, and closing content" loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png" alt="Lower section of the IDBEA web report showing accessibility, collaboration, and closing content" loading="lazy" decoding="async" />
               <figcaption>04 / Accessibility and closing content</figcaption>
             </figure>
           </div>
@@ -124,7 +124,7 @@ export default function OfficeOfDiversityPage() {
             <p>This project taught me that data visualization is not decoration. For institutional work, clarity is the design. The main responsibility was to preserve trust: make the information navigable, avoid over-styling sensitive content, and let the reader understand progress without needing someone to explain the report beside them.</p>
           </CsBody>
           <CsImage
-            src="/Portfolio.github.io/Assets/Projects/office-of-diversity/4.webp"
+            src="/Assets/Projects/office-of-diversity/4.webp"
             alt="IDBEA report process and data visualization approach"
             caption="A small proof of the work: turning report sections, timelines, and data into a readable web structure."
           />
@@ -140,7 +140,7 @@ export default function OfficeOfDiversityPage() {
         ]} />
       </main>
 
-      <NextProject slug="jugalbandi" title="Jugalbandi" image="/Portfolio.github.io/Assets/mockups/projects/jugalbandi_16x9.webp" />
+      <NextProject slug="jugalbandi" title="Jugalbandi" image="/Assets/mockups/projects/jugalbandi_16x9.webp" />
       <Footer />
     </>
   )

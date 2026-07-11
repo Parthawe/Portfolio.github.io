@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parthawe.github.io/Portfolio.github.io/sitemap.xml
+Sitemap: https://www.designwhich.works/sitemap.xml

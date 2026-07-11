@@ -339,14 +339,14 @@ function titleFromPath(pathname: string) {
 }
 
 function currentProjectLabel(pathname: string) {
-  if (pathname === '/' || pathname.endsWith('/Portfolio.github.io/')) return 'Home scroll'
+  if (pathname === '/' || pathname.endsWith('/')) return 'Home scroll'
   if (pathname.endsWith('/about')) return 'Bio scroll'
   if (pathname.endsWith('/accessibility')) return 'Audit stack'
   return 'Case study'
 }
 
 function isActivePage(pathname: string, to: string) {
-  if (to === '/') return pathname === '/' || pathname.endsWith('/Portfolio.github.io/')
+  if (to === '/') return pathname === '/' || pathname.endsWith('/')
   return pathname === to || pathname.endsWith(to)
 }
 
@@ -753,8 +753,16 @@ export default function SiteInteractionTools() {
     }
 
     const doc = document.documentElement
-    const docWidth = Math.max(window.innerWidth, doc.scrollWidth, document.body?.scrollWidth ?? 0)
-    const docHeight = Math.max(window.innerHeight, doc.scrollHeight, document.body?.scrollHeight ?? 0)
+    const appRoot = document.getElementById('root') ?? document.body
+    const appBounds = appRoot.getBoundingClientRect()
+    const docWidth = Math.max(window.innerWidth, appRoot.scrollWidth, appRoot.offsetWidth, doc.clientWidth)
+    const docHeight = Math.max(
+      window.innerHeight,
+      Math.ceil(appBounds.bottom + window.scrollY),
+      appRoot.scrollHeight,
+      appRoot.offsetHeight,
+      document.body?.offsetHeight ?? 0,
+    )
 
     canvas.width = Math.round(docWidth * dpr)
     canvas.height = Math.round(docHeight * dpr)
@@ -1670,7 +1678,7 @@ export default function SiteInteractionTools() {
         <div className="site-tools__figma-top">
           <button type="button" className="site-tools__avatar" aria-label="Portfolio account">
             <span aria-hidden="true">
-              <img src="/Portfolio.github.io/Assets/images/parth.jpg" alt="" />
+              <img src="/Assets/images/parth.jpg" alt="" />
             </span>
             <small aria-hidden="true"><ToolIcon name="chevron-down" /></small>
           </button>

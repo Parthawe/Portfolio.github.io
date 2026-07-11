@@ -36,7 +36,7 @@ export default function BreakGenPage() {
             { label: 'Stack', value: 'React, Three.js, Meshy AI, KiCad' },
           ]}
           liveUrl="https://parthawe.github.io/BreakGen/"
-          heroImage="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
+          heroImage="/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
           heroAlt="BreakGen public launch page showing the product narrative and AI keyboard fabrication platform."
         />
 
@@ -92,14 +92,14 @@ export default function BreakGenPage() {
           <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
             <div className="cs-img reveal">
               <img
-                src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
+                src="/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
                 alt="BreakGen public launch page."
                 loading="lazy"
               />
             </div>
             <div className="cs-img reveal">
               <img
-                src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-demo-live.png"
+                src="/Assets/Projects/Keyboard/photos/breakgen-demo-live.png"
                 alt="BreakGen interactive demo workspace."
                 loading="lazy"
               />
@@ -141,7 +141,7 @@ export default function BreakGenPage() {
         {/* Read the full case study */}
         <section className="cs-section reveal" id="cs-full-case">
           <div className="wrap" style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <a href="/Portfolio.github.io/keyboard-project" style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+            <a href="/keyboard-project" style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
               See the earlier physical keyboard study &rarr;
             </a>
           </div>
@@ -161,7 +161,7 @@ export default function BreakGenPage() {
           ]}
         />
 
-        <NextProject slug="keyboard-project" title="Keyboard Project" image="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
+        <NextProject slug="keyboard-project" title="Keyboard Project" image="/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
 
       </main>
 

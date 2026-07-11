@@ -10,7 +10,7 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const BALLAH_SITE = '/Portfolio.github.io/Assets/Projects/BallahCode/site'
+const BALLAH_SITE = '/Assets/Projects/BallahCode/site'
 
 const siteScreens = [
   {
@@ -73,7 +73,7 @@ export default function BallahCodePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Ballah Code &middot; Parth Pawar" />
         <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer, not a chatbot." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/ballah-code.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/ballah-code.webp" />
       </Helmet>
 
       <Nav />
@@ -93,7 +93,7 @@ export default function BallahCodePage() {
             { label: 'Timeline', value: '2026' },
             { label: 'Type', value: 'Dev Tools \u00b7 AI' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/mockups/projects/ballah-code_16x9.webp"
+          heroImage="/Assets/mockups/projects/ballah-code_16x9.webp"
           heroAlt="Ballah Code cover showing the AI-native desktop IDE launch hero"
         />
 
@@ -204,7 +204,7 @@ export default function BallahCodePage() {
 
       </main>
 
-      <NextProject slug="vj-software" title="VJ Parivar" image="/Portfolio.github.io/Assets/mockups/projects/vj-software_16x9.webp" />
+      <NextProject slug="vj-software" title="VJ Parivar" image="/Assets/mockups/projects/vj-software_16x9.webp" />
       <Footer />
     </>
   )

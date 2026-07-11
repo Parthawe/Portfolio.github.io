@@ -15,7 +15,6 @@ import CsSteps from '../../components/case-study/CsSteps'
 import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsImage from '../../components/case-study/CsImage'
-import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsFlowDiagram from '../../components/case-study/CsFlowDiagram'
 import CsCompareTable from '../../components/case-study/CsCompareTable'
@@ -76,7 +75,7 @@ export default function MentraPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra · Parth Pawar" />
         <meta property="og:description" content="Designing the OS, companion app, MiniApp Store, developer platform, and launch website for Mentra smart glasses." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/mentra.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/mentra.webp" />
       </Helmet>
 
       <Nav />
@@ -111,13 +110,13 @@ export default function MentraPage() {
           { label: 'Platform', value: 'Wearable OS, Mobile, Web' },
         ]}
         liveUrl="https://mentraglass.com"
-        heroImage="/Portfolio.github.io/Assets/images/mentra/render-camera-detail.webp"
+        heroImage="/Assets/images/mentra/render-camera-detail.webp"
         heroAlt="Mentra Glass, AI smart glasses with camera detail and Mentra logo"
         heroExperience="visual"
         heroTone="mentra"
         heroEyebrow="Mentra / wearable OS"
         visualSummary="The product system that makes AI glasses usable after unboxing."
-        visualHeroImage="/Portfolio.github.io/Assets/mockups/projects/mentra_16x9.webp"
+        visualHeroImage="/Assets/mockups/projects/mentra_16x9.webp"
         visualHeroAlt="Mentra generated cover showing the AI glasses product system and companion app"
         liveLabel="Open Mentra"
         showHeaderSummary={false}
@@ -141,7 +140,7 @@ export default function MentraPage() {
             quote="The product had to answer one question fast: what can these glasses do for me today?"
             cite="Mentra founding thesis"
           />
-        <CsImage src="/Portfolio.github.io/Assets/images/mentra/glasses-angle.png" alt="Mentra Live smart glasses, three-quarter angle showing camera module and Mentra logo on temple" />
+        <CsImage src="/Assets/images/mentra/glasses-angle.png" alt="Mentra Live smart glasses, three-quarter angle showing camera module and Mentra logo on temple" />
         </CsSection>
 
         <CsSection id="cs-bet" label="The Bet" title="Make the Glasses Feel Like a Platform">
@@ -170,7 +169,7 @@ export default function MentraPage() {
             { title: 'Developer Gravity', desc: 'The store, docs, and submission flow had to make glasses feel worth building for.' },
             { title: 'Visible Trust', desc: 'Camera, permissions, and privacy states needed to be legible to the wearer and the room.' },
           ]} />
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render showing the camera module, temple electronics, and lens assembly" />
+          <CsImage src="/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render showing the camera module, temple electronics, and lens assembly" />
         </CsSection>
 
         <CsSection id="cs-companion" label="Companion App" title="Setup Without the Usual Bluetooth Pain">
@@ -185,8 +184,8 @@ export default function MentraPage() {
             { num: 4, title: 'Ask', desc: 'The first voice interaction proves the value.' },
           ]} />
           <div className="cs-mentra-media-row cs-mentra-media-row--phones">
-            <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
-            <CsImage src="/Portfolio.github.io/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
+            <CsImage src="/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
+            <CsImage src="/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
           </div>
           <CsBody style={{ marginTop: '2rem' }}>
             <p>After setup, the app becomes the control layer: MiniApps, display, notifications, AI settings, and privacy in two taps.</p>
@@ -199,10 +198,10 @@ export default function MentraPage() {
             <p>The design principle became simple: every state must be understood in under two seconds of peripheral attention.</p>
           </CsBody>
           <div className="cs-mentra-media-row cs-mentra-media-row--phones">
-            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
-            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
+            <CsImage src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
+            <CsImage src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
           </div>
-          <CsImage src="/Portfolio.github.io/Assets/images/mentra/companion-model-select.png" alt="Mentra companion app model selection screen shown on a phone held in hand" />
+          <CsImage src="/Assets/images/mentra/companion-model-select.png" alt="Mentra companion app model selection screen shown on a phone held in hand" />
           <h3 className="cs-section-subtitle">Voice-First, Screen-Second</h3>
           <CsBody>
             <p>Voice carries the intent. The display only confirms state, progress, and response. That kept the HUD quiet.</p>
@@ -224,8 +223,8 @@ export default function MentraPage() {
             ]}
           />
           <div className="cs-mentra-media-row cs-mentra-media-row--phones">
-            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-notes.png" alt="Mentra Notes app, note editor with formatting toolbar, AI summarization button, and quick actions" />
-            <CsImage src="/Portfolio.github.io/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
+            <CsImage src="/Assets/images/mentra/os-notes.png" alt="Mentra Notes app, note editor with formatting toolbar, AI summarization button, and quick actions" />
+            <CsImage src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
           </div>
         </CsSection>
 
@@ -251,56 +250,31 @@ export default function MentraPage() {
         </CsSection>
 
         <CsSection id="cs-website" label="Live Product" title="The Website Had to Sell the Platform">
-          <CsBody>
-            <p>The site had to move Mentra out of &ldquo;cool gadget&rdquo; territory and into a work platform with clear use cases, specs, and developer surfaces.</p>
-            <p>I sequenced the story around field use, custom AI workflows, open-source SDK control, MiniApps, specs, support, and buying confidence.</p>
-          </CsBody>
-          <CsStatGrid
-            style={{ margin: '2rem 0' }}
-            stats={[
-              { label: 'Buying path', value: 'Specs + checkout' },
-              { label: 'Core audience', value: 'Field teams' },
-              { label: 'Platform layer', value: 'SDK + MiniApps' },
-              { label: 'Fulfillment', value: '1-3 days' },
-            ]}
-          />
-          <div className="cs-mentra-site-crops">
+          <div className="cs-mentra-web-block">
             <figure>
-              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
-              <figcaption>Field work first</figcaption>
+              <img src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
+              <figcaption>Live site flow: field use, integrations, and product proof.</figcaption>
             </figure>
-            <figure>
-              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-hero.png" alt="Mentra website sections showing MiniApp Store, press proof, and comparison table" loading="lazy" decoding="async" />
-              <figcaption>Platform proof</figcaption>
-            </figure>
-            <figure>
-              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-buying.png" alt="Mentra website sections showing setup steps, open source positioning, and deployment accessories" loading="lazy" decoding="async" />
-              <figcaption>Lower buying risk</figcaption>
-            </figure>
-            <figure>
-              <img src="/Portfolio.github.io/Assets/images/mentra/site-crops/mentra-site-specs.png" alt="Mentra website sections showing detailed specifications, prescription readiness, FAQ, and support content" loading="lazy" decoding="async" />
-              <figcaption>Specs and support</figcaption>
-            </figure>
-          </div>
-          <div style={{ marginTop: '2rem' }}>
-            <CsFeatureGrid
-              features={[
-                { title: 'Field work first', desc: 'Led with hands-free capture and AI help during real operations.' },
-                { title: 'Platform proof', desc: 'Explained SDK, custom apps, MiniApps, and distribution as reasons to choose Mentra.' },
-                { title: 'Lower buying risk', desc: 'Moved price, shipping, returns, warranty, specs, and support into the decision path.' },
-                { title: 'Sharper positioning', desc: 'Framed Mentra against closed consumer glasses as an open work platform.' },
-              ]}
-            />
-          </div>
-          <div style={{ marginTop: '2rem' }}>
-            <CsInfoGrid
-              items={[
-                { key: 'Hero', value: 'Field work, custom AI, and deployable utility.' },
-                { key: 'Product proof', value: 'Hardware, app surfaces, capture flow, and work contexts.' },
-                { key: 'Platform layer', value: 'SDK control, MiniApps, distribution, and custom workflows.' },
-                { key: 'Specs + support', value: 'Price, battery, camera, prescription, returns, warranty, and help.' },
-              ]}
-            />
+            <div className="cs-mentra-web-copy">
+              <CsBody>
+                <p>The site had to move Mentra out of &ldquo;cool gadget&rdquo; territory and into a work platform with clear use cases, specs, and developer surfaces.</p>
+                <p>I sequenced the story around field use, custom AI workflows, open-source SDK control, MiniApps, specs, support, and buying confidence.</p>
+              </CsBody>
+              <div className="cs-mentra-web-facts" aria-label="Mentra website product story">
+                <span><strong>Buying path</strong> Specs + checkout</span>
+                <span><strong>Core audience</strong> Field teams</span>
+                <span><strong>Platform layer</strong> SDK + MiniApps</span>
+                <span><strong>Fulfillment</strong> 1-3 days</span>
+              </div>
+              <CsFeatureGrid
+                features={[
+                  { title: 'Field work first', desc: 'Led with hands-free capture and AI help during real operations.' },
+                  { title: 'Platform proof', desc: 'Explained SDK, custom apps, MiniApps, and distribution as reasons to choose Mentra.' },
+                  { title: 'Lower buying risk', desc: 'Moved price, shipping, returns, warranty, specs, and support into the decision path.' },
+                  { title: 'Sharper positioning', desc: 'Framed Mentra against closed consumer glasses as an open work platform.' },
+                ]}
+              />
+            </div>
           </div>
         </CsSection>
 
@@ -364,7 +338,7 @@ export default function MentraPage() {
 
       </main>
 
-      <NextProject slug="transfi-project" title="TransFi" image="/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp" />
+      <NextProject slug="transfi-project" title="TransFi" image="/Assets/mockups/projects/transfi-project_16x9.webp" />
       <Footer />
     </>
   )

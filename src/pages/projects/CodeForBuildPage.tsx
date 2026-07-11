@@ -10,7 +10,7 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const CFB_PHOTOS = '/Portfolio.github.io/Assets/Projects/CodeforBuild/photos'
+const CFB_PHOTOS = '/Assets/Projects/CodeforBuild/photos'
 
 export default function CodeForBuildPage() {
   return (
@@ -21,7 +21,7 @@ export default function CodeForBuildPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Code for Build &middot; Parth Pawar" />
         <meta property="og:description" content="A mobile-first coding education concept using 3D building blocks to make HTML/CSS structure easier to understand." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/code-for-build.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/code-for-build.jpg" />
       </Helmet>
 
       <Nav />
@@ -141,7 +141,7 @@ export default function CodeForBuildPage() {
         ]} />
       </main>
 
-      <NextProject slug="typeface" title="Butler's Slice" image="/Portfolio.github.io/Assets/images/typeface.webp" />
+      <NextProject slug="typeface" title="Butler's Slice" image="/Assets/images/typeface.webp" />
       <Footer />
     </>
   )

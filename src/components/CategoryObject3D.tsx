@@ -202,7 +202,7 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
         <pointLight intensity={dark ? 0.6 : 0.4} color="#ffffff" distance={15} position={[0, 4, 3]} />
         <CursorTracker mouse={mouseRef} />
         <Suspense fallback={null}>
-          <Environment files="/Portfolio.github.io/Assets/hdri/studio_small_03_1k.hdr" environmentIntensity={dark ? 0.6 : 0.8} />
+          <Environment files="/Assets/hdri/studio_small_03_1k.hdr" environmentIntensity={dark ? 0.6 : 0.8} />
           <SceneInner slug={slug} dark={dark} mouse={mouseRef} />
         </Suspense>
       </Canvas>

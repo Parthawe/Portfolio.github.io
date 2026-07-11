@@ -21,7 +21,7 @@ export default function RevolvingStagePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Revolving Stage &middot; Parth Pawar" />
         <meta property="og:description" content="Engineered a 15 ft. revolving stage for theatre, supporting 250+ kgs and changing scenes without blackout." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/revolving-stage.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/revolving-stage.webp" />
       </Helmet>
 
       <Nav />
@@ -46,7 +46,7 @@ export default function RevolvingStagePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2022' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.webp"
+          heroImage="/Assets/Projects/RevolvingStage/photos/performance-collage.webp"
           heroAlt="Revolving Stage, designing a revolving stage for theatre play with stage photo and 3D render"
         />
 
@@ -84,7 +84,7 @@ export default function RevolvingStagePage() {
 
         {/* Slide images */}
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/isometric-stage.png" alt="Isometric view showing the revolving stage rotating anticlockwise 135 degrees above the audience seating area" loading="lazy" decoding="async" />
+          <img src="/Assets/Projects/RevolvingStage/photos/isometric-stage.png" alt="Isometric view showing the revolving stage rotating anticlockwise 135 degrees above the audience seating area" loading="lazy" decoding="async" />
         </div>
 
         {/* Mechanical Design */}
@@ -108,7 +108,7 @@ export default function RevolvingStagePage() {
         </CsSection>
 
         <figure className="cs-slide reveal" style={{ margin: 0 }}>
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/full-assembly-exploded.png" alt="Exploded isometric view of the full assembly: wooden revolving stage, axle stack, caster wheels arranged in two circles, and wooden base" loading="lazy" decoding="async" />
+          <img src="/Assets/Projects/RevolvingStage/photos/full-assembly-exploded.png" alt="Exploded isometric view of the full assembly: wooden revolving stage, axle stack, caster wheels arranged in two circles, and wooden base" loading="lazy" decoding="async" />
           <figcaption className="cs-img-caption">The full stack, exploded: platform, axle, twin rings of caster wheels, and the 8 ft. wooden base.</figcaption>
         </figure>
 
@@ -132,7 +132,7 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/axle-exploded.png" alt="Exploded view of the axle assembly, steel plates, shaft, thrust bearing, ball bearing, and bearing components" loading="lazy" decoding="async" />
+          <img src="/Assets/Projects/RevolvingStage/photos/axle-exploded.png" alt="Exploded view of the axle assembly, steel plates, shaft, thrust bearing, ball bearing, and bearing components" loading="lazy" decoding="async" />
         </div>
 
         {/* Caster Wheel */}
@@ -148,11 +148,11 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/caster-engineering.webp" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" decoding="async" />
+          <img src="/Assets/Projects/RevolvingStage/photos/caster-engineering.webp" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" decoding="async" />
         </div>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/stage-rotation.png" alt="Revolving stage shown at multiple rotation angles, clockwise 45 degrees, angle 0 degrees, anti-clockwise 45 and 90 degrees" loading="lazy" decoding="async" />
+          <img src="/Assets/Projects/RevolvingStage/photos/stage-rotation.png" alt="Revolving stage shown at multiple rotation angles, clockwise 45 degrees, angle 0 degrees, anti-clockwise 45 and 90 degrees" loading="lazy" decoding="async" />
         </div>
 
         {/* Final Stage Design */}
@@ -168,11 +168,11 @@ export default function RevolvingStagePage() {
 
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '2.5rem', alignItems: 'start' }}>
               <div className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/stage-vs-render.png" alt="The built shop-front set with two actors on stage next to its 3D design render with the same striped umbrella and shutter" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/RevolvingStage/photos/stage-vs-render.png" alt="The built shop-front set with two actors on stage next to its 3D design render with the same striped umbrella and shutter" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Built vs. designed: the set as the audience saw it, next to the render it was built from.</figcaption>
               </div>
               <div className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/Mobile/3.jpg" alt="Renders of the set at each rotation stop: building view, side view after clockwise 90 degrees, and the garden scene revealed at anticlockwise 135 degrees" loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/RevolvingStage/Mobile/3.jpg" alt="Renders of the set at each rotation stop: building view, side view after clockwise 90 degrees, and the garden scene revealed at anticlockwise 135 degrees" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">One set, three scenes: each rotation stop turns a different painted face toward the audience, ending on the garden at 135&deg;.</figcaption>
               </div>
             </div>
@@ -189,7 +189,7 @@ export default function RevolvingStagePage() {
         </CsSection>
 
         <div className="cs-slide reveal">
-          <img src="/Portfolio.github.io/Assets/Projects/RevolvingStage/photos/performance-collage.webp" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" decoding="async" />
+          <img src="/Assets/Projects/RevolvingStage/photos/performance-collage.webp" alt="Photo collage of the revolving stage in action during live theatrical performances at Firodia Karandak" loading="lazy" decoding="async" />
         </div>
 
         {/* Credits */}
@@ -229,7 +229,7 @@ export default function RevolvingStagePage() {
 
       </main>
 
-      <NextProject slug="the-omakase" title="The Omakase" image="/Portfolio.github.io/Assets/images/the-omakase.jpg" />
+      <NextProject slug="the-omakase" title="The Omakase" image="/Assets/images/the-omakase.jpg" />
       <Footer />
     </>
   )

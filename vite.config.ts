@@ -225,13 +225,13 @@ export default defineConfig(({ mode }) => {
   const edgeModel = env.VITE_EDGE_AI_MODEL || 'gemini-2.5-flash'
 
   return {
-  base: '/Portfolio.github.io/',
-  plugins: [
-    basePathRedirectPlugin('/Portfolio.github.io/'),
-    react(),
-    tailwindcss(),
-    localGeminiEdgePlugin(env.GEMINI_API_KEY || env.GOOGLE_AI_API_KEY || '', edgeModel),
-  ],
+    base: '/',
+    plugins: [
+      basePathRedirectPlugin('/'),
+      react(),
+      tailwindcss(),
+      localGeminiEdgePlugin(env.GEMINI_API_KEY || env.GOOGLE_AI_API_KEY || '', edgeModel),
+    ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

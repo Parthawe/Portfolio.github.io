@@ -8,7 +8,7 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const TRANSFI_ASSET_BASE = '/Portfolio.github.io/Assets/Projects/Transfi'
+const TRANSFI_ASSET_BASE = '/Assets/Projects/Transfi'
 const transfiPublicAsset = (fileName: string) => (
   `${TRANSFI_ASSET_BASE}/public/${encodeURIComponent(fileName)}`
 )
@@ -209,7 +209,7 @@ export default function TransfiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TransFi · Parth Pawar" />
         <meta property="og:description" content="Crypto payment infrastructure redesign for multi-market merchant flows." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/mockups/projects/transfi-project_16x9.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/transfi-project_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -290,7 +290,7 @@ export default function TransfiPage() {
 
       </main>
 
-      <NextProject slug="clawed-chat" title="Clawed" image="/Portfolio.github.io/Assets/mockups/projects/clawed-chat_1x1.webp" />
+      <NextProject slug="clawed-chat" title="Clawed" image="/Assets/mockups/projects/clawed-chat_1x1.webp" />
       <Footer />
     </>
   )

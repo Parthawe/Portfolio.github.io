@@ -83,6 +83,8 @@ const identityTabs = [
   },
 ] as const;
 
+const IDENTITY_SLIDE_INTERVAL_MS = 6500;
+
 export default function HomePage() {
   const navigate = useNavigate();
   const [skillIdx, setSkillIdx] = useState(0);
@@ -125,6 +127,19 @@ export default function HomePage() {
     }, 3000);
     return () => clearInterval(id);
   }, [skillPaused]);
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const id = window.setInterval(() => {
+      setIdentityTab((current) => {
+        const currentIndex = identityTabs.findIndex((tab) => tab.id === current);
+        const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % identityTabs.length;
+        return identityTabs[nextIndex].id;
+      });
+    }, IDENTITY_SLIDE_INTERVAL_MS);
+
+    return () => window.clearInterval(id);
+  }, [prefersReducedMotion]);
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -274,6 +289,9 @@ export default function HomePage() {
                     {tab.label}
                   </button>
                 ))}
+              </div>
+              <div className="wr-identity-progress" aria-hidden="true">
+                <span key={activeIdentity.id} />
               </div>
 
               <div

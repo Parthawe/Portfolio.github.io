@@ -41,8 +41,8 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-closed.webp" alt="Two speculative pharmaceutical boxes: Live 50+ Years More and Embrace Death" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/boxes-open.png" alt="Open pharmaceutical boxes with inserts, cards, and pill packaging" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/boxes-closed.webp" alt="Two speculative pharmaceutical boxes: Live 50+ Years More and Embrace Death" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/boxes-open.png" alt="Open pharmaceutical boxes with inserts, cards, and pill packaging" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -68,8 +68,8 @@ export default function DnaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/dosage-card.webp" alt="Dosage and precautions card for the speculative pill" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Portfolio.github.io/Assets/Projects/DNA/photos/pill-pack.webp" alt="Speculative pill blister pack labeled Unlock More Life" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/dosage-card.webp" alt="Dosage and precautions card for the speculative pill" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/pill-pack.webp" alt="Speculative pill blister pack labeled Unlock More Life" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -87,7 +87,7 @@ export default function DnaPage() {
             <p>Speculative design needs enough realism to make the audience uneasy. If the artifact feels unfinished, people treat the scenario like fiction. When the details feel familiar, they start asking what they would actually do. That was the main lesson: the object carries the argument before the text does.</p>
           </CsBody>
           <CsImage
-            src="/Portfolio.github.io/Assets/Projects/DNA/photos/card-final-message.webp"
+            src="/Assets/Projects/DNA/photos/card-final-message.webp"
             alt="Final message card from the Embrace Death artifact"
             caption="The supporting cards shifted the project from a prop into a small decision system."
           />
@@ -102,7 +102,7 @@ export default function DnaPage() {
         ]} />
       </main>
 
-      <NextProject slug="uv-light" title="UV Light" image="/Portfolio.github.io/Assets/images/uv-light.jpg" />
+      <NextProject slug="uv-light" title="UV Light" image="/Assets/images/uv-light.jpg" />
       <Footer />
     </>
   )

@@ -9,8 +9,8 @@ import NdaReviewerGallery from '../../components/case-study/NdaReviewerGallery'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const ZENTIPAY_REVIEWER_ASSET = '/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer'
-const ZENTIPAY_PUBLIC_ASSET = '/Portfolio.github.io/Assets/Projects/ZentiPay/public'
+const ZENTIPAY_REVIEWER_ASSET = '/Assets/Projects/ZentiPay/reviewer'
+const ZENTIPAY_PUBLIC_ASSET = '/Assets/Projects/ZentiPay/public'
 
 const zentipayPublicAsset = (file: string) => `${ZENTIPAY_PUBLIC_ASSET}/${encodeURIComponent(file)}`
 
@@ -94,7 +94,7 @@ export default function ZentipayPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Trust-first fintech super app for cross-border transfer flows." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp" />
       </Helmet>
 
       <Nav />
@@ -186,7 +186,7 @@ export default function ZentipayPage() {
 
       </main>
 
-      <NextProject slug="executivelens" title="ExecutiveLens" image="/Portfolio.github.io/Assets/images/executivelens.webp" />
+      <NextProject slug="executivelens" title="ExecutiveLens" image="/Assets/images/executivelens.webp" />
       <Footer />
     </>
   )

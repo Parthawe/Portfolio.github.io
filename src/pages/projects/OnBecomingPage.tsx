@@ -49,7 +49,7 @@ export default function OnBecomingPage() {
         <CsSection id="cs-thread" label="02 &mdash; The Thread" title="Making the Invisible Tangible">
           <CsBody>
             <p>Every project is about taking something invisible and making it pass through the body.</p>
-            <p><a href="/Portfolio.github.io/enigma" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Enigma</a> turns neural-network computation into cascading light. <a href="/Portfolio.github.io/sea-of-salt" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Why the Sea is Salt</a> turns narrative consequence into grinding salt. <a href="/Portfolio.github.io/zentipay" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>ZentiPay</a> turns hidden fees into visible trust. <a href="/Portfolio.github.io/shuffle" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Shuffle</a> turns tradeoffs into weighted tokens. <a href="/Portfolio.github.io/jugalbandi" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Jugalbandi</a> turns inference into sound.</p>
+            <p><a href="/enigma" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Enigma</a> turns neural-network computation into cascading light. <a href="/sea-of-salt" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Why the Sea is Salt</a> turns narrative consequence into grinding salt. <a href="/zentipay" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>ZentiPay</a> turns hidden fees into visible trust. <a href="/shuffle" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Shuffle</a> turns tradeoffs into weighted tokens. <a href="/jugalbandi" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Jugalbandi</a> turns inference into sound.</p>
             <p>The medium changes. The question stays: how do I make someone understand through the body, not only the brain?</p>
           </CsBody>
         </CsSection>
@@ -58,7 +58,7 @@ export default function OnBecomingPage() {
         <CsSection id="cs-method" label="03 &mdash; The Method" title="Medium as Meaning">
           <CsBody>
             <p>The choice of medium is never arbitrary. It IS the concept.</p>
-            <p>Neural networks become light because activation should be visible. Stories become salt because narrative accumulates. Watches make time mechanical. The <a href="/Portfolio.github.io/moniac-machine" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>MONIAC</a> makes money flow as water.</p>
+            <p>Neural networks become light because activation should be visible. Stories become salt because narrative accumulates. Watches make time mechanical. The <a href="/moniac-machine" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>MONIAC</a> makes money flow as water.</p>
             <p>I look for the medium that already carries the concept&rsquo;s logic, then build an experience around it.</p>
           </CsBody>
         </CsSection>
@@ -67,7 +67,7 @@ export default function OnBecomingPage() {
         <CsSection id="cs-tension" label="04 &mdash; The Tension" title="Rigor vs. Imagination">
           <CsBody>
             <p>The product work demands rigor because mistakes can cost people money or attention. The ITP work demands imagination because the patterns do not already exist.</p>
-            <p>The tension is the practice. <a href="/Portfolio.github.io/mentra" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Mentra</a> needs both because real-world interruptions have safety implications. <a href="/Portfolio.github.io/the-omakase" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>The Omakase</a> needs both because a playful cabinet still has to feel fair.</p>
+            <p>The tension is the practice. <a href="/mentra" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Mentra</a> needs both because real-world interruptions have safety implications. <a href="/the-omakase" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>The Omakase</a> needs both because a playful cabinet still has to feel fair.</p>
           </CsBody>
         </CsSection>
 
@@ -93,7 +93,7 @@ export default function OnBecomingPage() {
 
       </main>
 
-      <NextProject slug="enigma" title="Enigma" image="/Portfolio.github.io/Assets/images/enigma.jpg" />
+      <NextProject slug="enigma" title="Enigma" image="/Assets/images/enigma.jpg" />
       <Footer />
     </>
   )

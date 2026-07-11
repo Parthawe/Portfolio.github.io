@@ -17,7 +17,7 @@ export default function VishwaConclavePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VishwaConclave · Parth Pawar" />
         <meta property="og:description" content="Creative direction, branding, and web design for a multidisciplinary student-led conference." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/VishwaConclave/1.jpg" />
       </Helmet>
 
       <Nav />
@@ -41,7 +41,7 @@ export default function VishwaConclavePage() {
         {/* Hero image */}
         <section className="cs-slide cs-slide--top-half reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/1.jpg" alt="VishwaConclave brand identity overview showing event posters across three years" loading="eager" />
+            <img src="/Assets/Projects/VishwaConclave/1.jpg" alt="VishwaConclave brand identity overview showing event posters across three years" loading="eager" />
           </div>
         </section>
 
@@ -66,14 +66,14 @@ export default function VishwaConclavePage() {
         {/* Narrative & Revisit images */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/2.jpg" alt="VishwaConclave Narrative and Revisit events — speaker cards, podcast series, and social media campaigns" loading="lazy" />
+            <img src="/Assets/Projects/VishwaConclave/2.jpg" alt="VishwaConclave Narrative and Revisit events — speaker cards, podcast series, and social media campaigns" loading="lazy" />
           </div>
         </section>
 
         {/* Crafting the Decade */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/4.jpg" alt="VishwaConclave Crafting The Decade — speaker campaigns, recruiting team structure across 8 departments" loading="lazy" />
+            <img src="/Assets/Projects/VishwaConclave/4.jpg" alt="VishwaConclave Crafting The Decade — speaker campaigns, recruiting team structure across 8 departments" loading="lazy" />
           </div>
         </section>
 
@@ -97,7 +97,7 @@ export default function VishwaConclavePage() {
         {/* Paradigm Shift */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/5.webp" alt="VishwaConclave Accelerate The Paradigm Shift — campaigns, website, speakers, merch, and musical experience" loading="lazy" />
+            <img src="/Assets/Projects/VishwaConclave/5.webp" alt="VishwaConclave Accelerate The Paradigm Shift — campaigns, website, speakers, merch, and musical experience" loading="lazy" />
           </div>
         </section>
 
@@ -112,7 +112,7 @@ export default function VishwaConclavePage() {
         {/* Signing off */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Portfolio.github.io/Assets/Projects/VishwaConclave/6.jpg" alt="Creative Director signing off — Parth Pawar in VishwaConclave merchandise" loading="lazy" />
+            <img src="/Assets/Projects/VishwaConclave/6.jpg" alt="Creative Director signing off — Parth Pawar in VishwaConclave merchandise" loading="lazy" />
           </div>
         </section>
 
@@ -127,7 +127,7 @@ export default function VishwaConclavePage() {
 
       </main>
 
-      <NextProject slug="mentra" title="Mentra" image="/Portfolio.github.io/Assets/mockups/projects/mentra_16x9.webp" />
+      <NextProject slug="mentra" title="Mentra" image="/Assets/mockups/projects/mentra_16x9.webp" />
       <Footer />
     </>
   )

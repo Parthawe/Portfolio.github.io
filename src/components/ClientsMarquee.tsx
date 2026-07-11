@@ -1,4 +1,4 @@
-const LOGOS = '/Portfolio.github.io/Assets/images/logos'
+const LOGOS = '/Assets/images/logos'
 
 const CLIENT_LOGOS = [
   { src: `${LOGOS}/mentra-logo.png`, alt: 'Mentra' },
@@ -15,7 +15,7 @@ export default function ClientsMarquee() {
   return (
     <div className="wr-clients cl-marquee" aria-label="Organizations my work made a difference for">
       <p className="wr-clients-label">
-        <span aria-hidden="true">{'↘'}</span> Where my work made a difference
+        Where my work made a difference <span aria-hidden="true">{'↘'}</span>
       </p>
       <div className="cl-marquee-viewport">
         <div className="cl-marquee-track">

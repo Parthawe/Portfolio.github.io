@@ -19,8 +19,6 @@ interface RouteMeta {
 
 function toAbsoluteUrl(path: string) {
   if (path.startsWith('http')) return path
-  // Asset paths already carry the /Portfolio.github.io base, so join them to
-  // the bare origin — SITE_URL would duplicate the base segment.
   return `${SITE_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`
 }
 
@@ -111,7 +109,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     return {
       title: 'About · Parth Pawar',
       description: 'About Parth Pawar, Design Engineer and Head of UI/UX at Mentra. Experience across AI wearables, fintech, and creative technology.',
-      image: toAbsoluteUrl('/Portfolio.github.io/Assets/character/me/1.webp'),
+      image: toAbsoluteUrl('/Assets/character/me/1.webp'),
       url,
       type: 'website',
       robots,

@@ -21,7 +21,7 @@ export default function KeyboardProjectPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Keyboard Project &middot; Parth Pawar" />
         <meta property="og:description" content="A tactile keyboard object that turns input into a readable physical data landscape." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
       </Helmet>
 
       <Nav />
@@ -40,7 +40,7 @@ export default function KeyboardProjectPage() {
             { label: 'Timeline', value: '2024' },
             { label: 'Methods', value: '3D printing, object study, physical prototyping' },
           ]}
-          heroImage="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp"
+          heroImage="/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp"
           heroAlt="Keyboard with lifted keys beside a 3D printed data sculpture."
         />
 
@@ -66,10 +66,10 @@ export default function KeyboardProjectPage() {
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up of keyboard keys raised on small stems at different heights." loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up of keyboard keys raised on small stems at different heights." loading="lazy" decoding="async" />
               </div>
               <div className="cs-img reveal">
-                <img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/data-sculpture.png" alt="3D printed data sculpture made from repeated key-like columns." loading="lazy" decoding="async" />
+                <img src="/Assets/Projects/Keyboard/photos/data-sculpture.png" alt="3D printed data sculpture made from repeated key-like columns." loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -92,11 +92,11 @@ export default function KeyboardProjectPage() {
 
           <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem', alignItems: 'start' }}>
             <div className="cs-img reveal">
-              <img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/letter-frequency-table.jpg" alt="Table listing key press counts for every letter from a to z, with e highest at 17,333." loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/Keyboard/photos/letter-frequency-table.jpg" alt="Table listing key press counts for every letter from a to z, with e highest at 17,333." loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">Output of the counting script: press counts for every letter across the manuscript.</figcaption>
             </div>
             <div className="cs-img reveal">
-              <img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/spline-data-model.jpg" alt="Orange 3D render of the keyboard modeled in Spline, each key extruded to a different height." loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/Keyboard/photos/spline-data-model.jpg" alt="Orange 3D render of the keyboard modeled in Spline, each key extruded to a different height." loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The Spline model that turned the counts into geometry before printing.</figcaption>
             </div>
           </div>
@@ -110,13 +110,13 @@ export default function KeyboardProjectPage() {
 
           <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
             <div className="cs-img reveal">
-              <img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/keyboard-angle.png" alt="Angled view of the raised-key keyboard object." loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/Keyboard/photos/keyboard-angle.png" alt="Angled view of the raised-key keyboard object." loading="lazy" decoding="async" />
             </div>
             <div className="cs-img reveal">
-              <img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/process-grid.png" alt="Grid of 3D printing process photos and prototype stages." loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/Keyboard/photos/process-grid.png" alt="Grid of 3D printing process photos and prototype stages." loading="lazy" decoding="async" />
             </div>
             <div className="cs-img reveal">
-              <img src="/Portfolio.github.io/Assets/Projects/Keyboard/photos/fabrication-process.png" alt="Keyboard fabrication process with disassembled parts, keycaps, and layout material." loading="lazy" decoding="async" />
+              <img src="/Assets/Projects/Keyboard/photos/fabrication-process.png" alt="Keyboard fabrication process with disassembled parts, keycaps, and layout material." loading="lazy" decoding="async" />
             </div>
           </div>
         </CsSection>
@@ -140,7 +140,7 @@ export default function KeyboardProjectPage() {
         ]} />
       </main>
 
-      <NextProject slug="breakgen" title="BreakGen" image="/Portfolio.github.io/Assets/Projects/Keyboard/photos/breakgen-launch-live.png" />
+      <NextProject slug="breakgen" title="BreakGen" image="/Assets/Projects/Keyboard/photos/breakgen-launch-live.png" />
       <Footer />
     </>
   )

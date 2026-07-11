@@ -10,7 +10,7 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const DUMB_WAITER_PHOTOS = '/Portfolio.github.io/Assets/Projects/dumb-waiter/photos'
+const DUMB_WAITER_PHOTOS = '/Assets/Projects/dumb-waiter/photos'
 const dumbWaiterImages = {
   hero: `${DUMB_WAITER_PHOTOS}/set-wide.jpg`,
   stairs: `${DUMB_WAITER_PHOTOS}/stairs-close.jpg`,
@@ -35,7 +35,7 @@ export default function DumbWaiterPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Set Design for Pinter's The Dumb Waiter · Parth Pawar" />
         <meta property="og:description" content="A cinematic basement set model for two hitmen, an unseen boss, and a dumb waiter that turns waiting into threat." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/Projects/dumb-waiter/photos/set-wide.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/dumb-waiter/photos/set-wide.jpg" />
       </Helmet>
 
       <Nav />
@@ -169,7 +169,7 @@ export default function DumbWaiterPage() {
         ]} />
       </main>
 
-      <NextProject slug="drowning" title="Drowning" image="/Portfolio.github.io/Assets/images/drowning.jpg" />
+      <NextProject slug="drowning" title="Drowning" image="/Assets/images/drowning.jpg" />
       <Footer />
     </>
   )

@@ -13,7 +13,7 @@ import CsNumList from '../../components/case-study/CsNumList'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const RAAHI_ASSET_BASE = '/Portfolio.github.io/Assets/Projects/Raahi/photos'
+const RAAHI_ASSET_BASE = '/Assets/Projects/Raahi/photos'
 const raahiAsset = (fileName: string) => (
   `${RAAHI_ASSET_BASE}/${encodeURIComponent(fileName)}`
 )
@@ -27,7 +27,7 @@ export default function RaahiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Raahi · Parth Pawar" />
         <meta property="og:description" content="Streamlining Pune's public transport, integrating buses, metro, auto-rickshaws and shared cabs." />
-        <meta property="og:image" content="https://parthawe.github.io/Portfolio.github.io/Assets/images/raahi.jpg" />
+        <meta property="og:image" content="https://www.designwhich.works/Assets/images/raahi.jpg" />
       </Helmet>
 
       <Nav />
@@ -51,7 +51,7 @@ export default function RaahiPage() {
         />
 
         {/* Hero slide */}
-        <div className="cs-slide reveal"><img src={raahiAsset('raahi-hero.webp')} alt="Raahi overview render showing the app, bus, and service touchpoints on a blue transit map" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal"><img src={raahiAsset('Frame 427318652.png')} alt="Raahi overview render showing the app, bus, and service touchpoints on a blue transit map" loading="lazy" decoding="async" /></div>
 
         {/* Summary section with label-rows */}
         <section className="cs-section reveal">
@@ -100,7 +100,7 @@ export default function RaahiPage() {
             </div>
             <CsImage
               className="raahi-research-board"
-              src={raahiAsset('raahi-research-maps.webp')}
+              src={raahiAsset('Group 2531.png')}
               alt="Boards of empathy maps and customer journey maps for rider archetypes like mode mixers, convenience switchers, and captive riders, leading into service blueprint and task flow diagrams"
               caption="Empathy maps and journey maps for rider archetypes, feeding into the service blueprint and task flows my partner mapped -- the document I translated into screens."
             />
@@ -119,7 +119,7 @@ export default function RaahiPage() {
 
         {/* Image slides */}
         
-        <div className="cs-slide reveal"><img src={raahiAsset('raahi-brand-personality.webp')} alt="Brand mood board exploring approachable, casual, navigator, and spontaneous personality directions" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal"><img src={raahiAsset('brand personality.png')} alt="Brand mood board exploring approachable, casual, navigator, and spontaneous personality directions" loading="lazy" decoding="async" /></div>
         <div className="cs-slide reveal"><img src={raahiAsset('brand personality-1.png')} alt="Condensed Raahi brand personality board showing the chosen approachable navigation direction" loading="lazy" decoding="async" /></div>
         
 
@@ -132,7 +132,7 @@ export default function RaahiPage() {
               <p>The color system maps directly to transport modes: cab, bus, walk, bike-share, local, cycle, auto, and metro. Each mode gets a distinct pair so route changes are readable at a glance.</p>
             </CsBody>
             <CsImage
-              src={raahiAsset('raahi-system-strip.webp')}
+              src={raahiAsset('Frame 2547.png')}
               alt="Raahi project styleguide sheet — brand blue and orange, neutral grays, distinct color pairs for each of the eight transport modes, accent states, and the full typography scale"
               caption="The styleguide itself: one color pair per transport mode, so a rider can tell a bus leg from a metro leg at a glance."
             />
@@ -154,7 +154,7 @@ export default function RaahiPage() {
               <p>The mark reduces the service to a person and a connection. That dot-and-line logic became the identity language across app and kiosk surfaces.</p>
             </CsBody>
             <CsImage
-              src={raahiAsset('raahi-nomenclature.webp')}
+              src={raahiAsset('Nomenclature.png')}
               alt="Raahi wordmark rendered in multiple Indian scripts, above pencil sketches deriving the logo from bus, train, and metro shapes and from dots (people) joined by connections (places), with Devanagari lettering studies"
               caption="Nomenclature studies across scripts, and the sketchbook route from dot-plus-connection to the final mark."
             />
@@ -171,7 +171,7 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src={raahiAsset('raahi-system-overview.webp')} alt="Raahi system overview showing app screens and transit touchpoints arranged as one service journey" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal"><img src={raahiAsset('Frame 427318657.png')} alt="Raahi system overview showing app screens and transit touchpoints arranged as one service journey" loading="lazy" decoding="async" /></div>
 
         {/* Features */}
         <section className="cs-section reveal" id="cs-features">
@@ -182,7 +182,7 @@ export default function RaahiPage() {
               <p>The homepage centers saved addresses, preferred modes, commute insights, tickets, and day passes so repeat riders do not rebuild the same trip every time.</p>
             </CsBody>
             <div className="raahi-phone-row raahi-phone-row--trio">
-              <div className="cs-img reveal"><img src={raahiAsset('raahi-homepage.webp')} alt="Raahi home screen showing saved addresses, transport modes, and recent commute context" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src={raahiAsset('homepage.png')} alt="Raahi home screen showing saved addresses, transport modes, and recent commute context" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src={raahiAsset('added addresses.png')} alt="Raahi saved-address flow showing home and work locations" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src={raahiAsset('added addresses-1.png')} alt="Raahi address confirmation screen for a saved commute location" loading="lazy" decoding="async" /></div>
             </div>
@@ -197,7 +197,7 @@ export default function RaahiPage() {
             </CsBody>
             <CsImage
               className="raahi-wide-flow"
-              src={raahiAsset('raahi-frequent-addresses.webp')}
+              src={raahiAsset('frequent addresses.png')}
               alt="Onboarding screens for saving frequent addresses like home and work, and choosing preferred transport modes from cab, bus, walk, bike-share, local, cycle, auto, share-auto, and metro"
               caption="Onboarding asks for the places and modes you actually use, so the app starts out feeling familiar."
             />
@@ -213,7 +213,7 @@ export default function RaahiPage() {
                 <figcaption className="cs-img-caption">The service remembers real rider patterns, not just abstract route data.</figcaption>
               </div>
               <div className="cs-img reveal">
-                <img src={raahiAsset('raahi-insights.webp')} alt="Insights dashboard — commute trends, carbon footprint reduction by mode, and frequently visited places" loading="lazy" decoding="async" />
+                <img src={raahiAsset('insights.png')} alt="Insights dashboard — commute trends, carbon footprint reduction by mode, and frequently visited places" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Insights show carbon emissions saved, and a free day pass past a spending threshold rewards riders for choosing public transport.</figcaption>
               </div>
             </div>
@@ -228,8 +228,8 @@ export default function RaahiPage() {
             </CsBody>
             <div className="raahi-phone-row raahi-phone-row--trio">
               <div className="cs-img reveal"><img src={raahiAsset('route list.png')} alt="Route list comparing commute options and public transit modes" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('raahi-route-details.webp')} alt="Detailed route screen showing multimodal commute steps and transit timing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('raahi-bus-transit.webp')} alt="Bus in-transit screen showing live journey guidance" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src={raahiAsset('route details.png')} alt="Detailed route screen showing multimodal commute steps and transit timing" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src={raahiAsset('bus in transit.png')} alt="Bus in-transit screen showing live journey guidance" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -260,8 +260,8 @@ export default function RaahiPage() {
               <p>The kiosk greets riders in English, Hindi, or Marathi and offers four simple paths: view the timetable, check a route, buy a ticket, or get a day pass. No app, no account -- the same service, standing at the stop.</p>
             </CsBody>
             <div className="raahi-kiosk-row">
-              <div className="cs-img reveal"><img src={raahiAsset('raahi-welcome.webp')} alt="Kiosk welcome screen with key transit actions and language choices" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('raahi-kiosk-home.webp')} alt="Kiosk ticket and route screen with transit options and map context" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src={raahiAsset('welcome.png')} alt="Kiosk welcome screen with key transit actions and language choices" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img src={raahiAsset('kiosk home.png')} alt="Kiosk ticket and route screen with transit options and map context" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -316,7 +316,7 @@ export default function RaahiPage() {
 
       </main>
 
-        <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Portfolio.github.io/Assets/images/mentra/appstore-hero.webp" />
+        <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Assets/images/mentra/appstore-hero.webp" />
       <Footer />
     </>
   )

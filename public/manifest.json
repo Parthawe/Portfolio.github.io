@@ -2,19 +2,19 @@
   "name": "Parth Pawar, Design Engineer",
   "short_name": "Parth Pawar",
   "description": "Portfolio of Parth Pawar, Design Engineer crafting AI wearables, fintech, and interactive systems.",
-  "start_url": "/Portfolio.github.io/",
-  "scope": "/Portfolio.github.io/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#FAFAF8",
   "background_color": "#FAFAF8",
   "icons": [
     {
-      "src": "/Portfolio.github.io/Assets/favicon.svg",
+      "src": "/Assets/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     },
     {
-      "src": "/Portfolio.github.io/Assets/favicon.ico",
+      "src": "/Assets/favicon.ico",
       "sizes": "16x16 32x32 48x48",
       "type": "image/x-icon"
     }

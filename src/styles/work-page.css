@@ -155,8 +155,8 @@
 
 .work-library-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(18rem, 24vw, 23.5rem);
-  gap: 1.2rem clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 1fr) clamp(16rem, 22vw, 21rem);
+  gap: 1rem clamp(1.25rem, 2.6vw, 2.1rem);
   padding-bottom: 5rem;
   align-items: start;
 }
@@ -204,7 +204,7 @@
   gap: 0.42rem;
   min-width: 0;
   min-height: 34px;
-  padding: 0.44rem 0.58rem;
+  padding: 0.42rem 0.62rem;
   border: 1px solid var(--ink-06);
   border-radius: var(--radius-pill);
   background: transparent;
@@ -221,7 +221,7 @@
 .work-library-nav__item span {
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  letter-spacing: var(--ls-wide);
+  letter-spacing: 0.045em;
   text-transform: uppercase;
 }
 
@@ -253,7 +253,7 @@
 .work-library-preview__frame {
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 1 / 1.14;
+  aspect-ratio: 4 / 5;
   border-radius: var(--work-card-radius);
   background: var(--ink-04);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
@@ -308,7 +308,7 @@
 
 .work-library-shelves {
   display: grid;
-  gap: 2.35rem;
+  gap: 2rem;
   grid-column: 1;
   grid-row: 2;
   min-width: 0;
@@ -367,34 +367,36 @@
 
 .work-library-row {
   display: grid;
-  grid-template-columns: 42px 72px minmax(0, 0.95fr) minmax(0, 1.15fr) minmax(120px, 0.2fr);
+  grid-template-columns: 40px 74px minmax(11rem, 0.85fr) minmax(18rem, 1.15fr) minmax(8rem, 0.22fr);
   gap: 0.75rem;
   align-items: center;
 }
 
 .work-library-row {
   position: relative;
-  padding: 0.65rem 0.8rem;
-  border: 1px solid var(--ink-06);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  padding: 0.72rem 0.86rem;
+  border: 1px solid var(--ink-08);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 98%, transparent);
   color: var(--ink);
   text-decoration: none;
-  transition: border-color var(--dur-base), transform var(--dur-base), background var(--dur-base);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+  transition: border-color var(--dur-base), transform var(--dur-base), background var(--dur-base), box-shadow var(--dur-base);
 }
 
 .work-library-row:hover {
   transform: translateY(-1px);
   border-color: var(--ink-12);
   background: color-mix(in srgb, var(--surface) 90%, var(--bg-alt) 10%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.045);
 }
 
 .work-library-row__thumb {
   position: relative;
   overflow: hidden;
-  width: 72px;
-  aspect-ratio: 4 / 3;
-  border-radius: 10px;
+  width: 74px;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
   background: var(--ink-04);
 }
 
@@ -410,7 +412,7 @@
 .work-library-row__year {
   font-family: var(--mono);
   font-size: var(--text-2xs);
-  letter-spacing: var(--ls-wide);
+  letter-spacing: 0.055em;
   text-transform: uppercase;
 }
 
@@ -428,9 +430,9 @@
 
 .work-library-row__name {
   font-family: var(--sans);
-  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  font-size: clamp(1.02rem, 1.25vw, 1.13rem);
   line-height: 1.2;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -438,7 +440,7 @@
 }
 
 .work-library-row__detail {
-  font-size: var(--text-xs);
+  font-size: 0.82rem;
   line-height: 1.55;
   color: var(--ink-70);
   min-width: 0;
@@ -452,7 +454,7 @@
   justify-self: end;
   width: 100%;
   text-align: right;
-  text-wrap: balance;
+  text-wrap: nowrap;
 }
 
 .work-timeline-shell {
