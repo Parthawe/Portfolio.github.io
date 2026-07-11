@@ -368,6 +368,40 @@
   .cs-section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
 }
 
+.project-main :is(
+  h1,
+  h2,
+  h3,
+  .proj-title,
+  .proj-subtitle,
+  .proj-visual-title,
+  .cs-display,
+  .cs-section-title,
+  .cs-quick-summary-title,
+  .cs-media-spotlight-title,
+  .cs-thanks-title,
+  .next-project-title,
+  .proj-fastread-stat strong,
+  .proj-fastread-stat span,
+  .proj-hero-stat strong,
+  .proj-hero-stat span
+),
+.page-work :is(
+  h1,
+  h2,
+  h3,
+  .pcard-name,
+  .work-page-title,
+  .work-library-row__name,
+  .work-timeline-feature__title,
+  .work-timeline-support-row__name
+),
+.ch :is(.ch-statement, .ch-sub, .ch-eyebrow, .ch-strip-item) {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .hero-anim { animation: none; opacity: 1; }
