@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsImage from '../../components/case-study/CsImage'
 import CsSection from '../../components/case-study/CsSection'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -82,6 +83,10 @@ export default function AiVoicePage() {
           visuals={AI_VOICE_PUBLIC_VISUALS}
         />
 
+        <CsExpandPreview
+          ctaLabel="Open the product thinking"
+          note="Market audit, journey map, Voice DNA builder, and persona movement system."
+        >
         <NdaProcess
           title="From demo list to decision system"
           intro="I treated voice selection as a product-confidence problem: compare fit, test context, and make the choice defensible for non-technical enterprise teams."
@@ -182,6 +187,7 @@ export default function AiVoicePage() {
             />
           </div>
         </CsSection>
+        </CsExpandPreview>
 
         <NdaGate slug="ai-voice" />
 

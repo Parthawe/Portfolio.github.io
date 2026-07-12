@@ -36,7 +36,7 @@ export default function CsCompareTable({ columns, rows, title }: CsCompareTableP
               <motion.tr key={r.feature} variants={row}>
                 <td className="cs-ct-feature">{r.feature}</td>
                 {r.values.map((v, i) => (
-                  <td key={i} className="cs-ct-cell">
+                  <td key={i} className="cs-ct-cell" data-label={columns[i]}>
                     {typeof v === 'boolean' ? (
                       v ? (
                         <svg className="cs-ct-check" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-label="Yes" role="img">

@@ -56,6 +56,10 @@ export default function ShufflePage() {
           />
         </CsMediaSpotlight>
 
+        <CsExpandPreview
+          cta="Open the physical build proof"
+          note="Product photos, interaction shots, hardware details, process, and exhibition notes."
+        >
         {/* Product photos */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -95,7 +99,6 @@ export default function ShufflePage() {
         </section>
 
         {/* Concept */}
-        <CsExpandPreview>
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="Physical Redistribution of Time">
           <CsBody>
             <p>The board invites you to redistribute your time across the pressures of student life at ITP&mdash;class, finals, sleep, food, social life, energy, job, hobby. Each fader is a share of a finite week. Push one up and the others have to give something back, forcing trade-offs that are normally invisible.</p>

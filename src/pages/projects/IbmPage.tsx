@@ -9,6 +9,7 @@ import CsStatGrid from '../../components/case-study/CsStatGrid'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -66,6 +67,10 @@ export default function IbmPage() {
           </div>
         </CsSection>
 
+        <CsExpandPreview
+          cta="Open the research proof"
+          note="System diagrams, prognosis output, learning notes, credits, and thanks."
+        >
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="ibm-diagram-stack" aria-label="Encrypted cancer prognosis system diagrams">
@@ -116,6 +121,7 @@ export default function IbmPage() {
         </section>
 
         <CsThanks />
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

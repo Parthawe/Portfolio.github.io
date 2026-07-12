@@ -11,6 +11,7 @@ import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import MeetingTimeline from '../../components/MeetingTimeline'
@@ -72,6 +73,10 @@ export default function ExecutiveLensPage() {
           </CsCallout>
         </CsSection>
 
+        <CsExpandPreview
+          cta="Open the full product system"
+          note="Meeting replay, decision extraction, dashboard structure, site proof, beta signal, and design reflections."
+        >
         <CsSection id="cs-challenges" label="Design Challenges" title="Four Problems That Needed Solving">
           <CsBody>
             <p>Every screen had to answer fast: what changed, why does it matter, and what needs attention next?</p>
@@ -170,6 +175,7 @@ export default function ExecutiveLensPage() {
         </CsSection>
 
         <CsThanks contactCta />
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-vision', label: 'Vision & Role' },

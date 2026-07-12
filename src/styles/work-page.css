@@ -1744,6 +1744,7 @@
 
   .work-library-nav {
     width: 100%;
+    max-width: 100%;
     justify-content: flex-start;
   }
 

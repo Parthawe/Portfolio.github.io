@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -53,6 +54,10 @@ export default function VishwaConclavePage() {
           </CsBody>
         </CsSection>
 
+        <CsExpandPreview
+          cta="Open the campaign archive"
+          note="Event timeline, identity systems, campaign assets, scope, growth notes, and final sign-off."
+        >
         {/* Events timeline */}
         <CsSection id="cs-events" label="01 &mdash; Events" title="Five Events, Three Years">
           <CsBody>
@@ -117,6 +122,8 @@ export default function VishwaConclavePage() {
         </section>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

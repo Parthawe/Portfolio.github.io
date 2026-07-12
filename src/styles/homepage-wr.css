@@ -743,8 +743,8 @@ body.page-ready .wr-hero-stage {
   .wr-hero-3d {
     display: block;
     top: var(--wr-mobile-hero-scene-top);
-    left: 0.2rem;
-    right: 0.2rem;
+    left: 0.75rem;
+    right: 0.75rem;
     bottom: auto;
     height: var(--wr-mobile-hero-scene-height);
     opacity: calc(var(--wr-hero-scene-opacity, 1) * var(--wr-hero-scene-entry-opacity) * 0.9);
@@ -853,8 +853,8 @@ body.page-ready .wr-hero-stage {
   .wr-hero-3d {
     display: block;
     top: var(--wr-mobile-hero-scene-top);
-    left: -0.35rem;
-    right: -0.35rem;
+    left: 0.65rem;
+    right: 0.65rem;
     height: var(--wr-mobile-hero-scene-height);
   }
 
@@ -863,7 +863,7 @@ body.page-ready .wr-hero-stage {
   }
 
   .wr-hero-3d .hero-3d-canvas canvas {
-    transform: scale(1.34);
+    transform: scale(1.3);
   }
 
   .hero-web-trigger {

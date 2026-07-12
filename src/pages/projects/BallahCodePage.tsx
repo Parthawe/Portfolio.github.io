@@ -4,6 +4,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -109,6 +110,11 @@ export default function BallahCodePage() {
           <p className="cs-caption">{siteScreens[0].caption}</p>
         </CsSection>
 
+        <CsExpandPreview
+          ctaLabel="Open the full product breakdown"
+          note="Problem framing, product screenshots, architecture, feature tour, status, and credits."
+        >
+
         {/* 02, The Problem */}
         <CsSection id="cs-problem" label="02 &mdash; The Problem" title="Context Is Disposable and AI Is Replaceable">
           <CsBody>
@@ -192,6 +198,7 @@ export default function BallahCodePage() {
 
         {/* Thanks */}
         <CsThanks />
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

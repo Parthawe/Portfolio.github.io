@@ -70,6 +70,10 @@ export default function EnigmaPage() {
           </div>
         </CsSection>
 
+        <CsExpandPreview
+          cta="Open the sculpture proof"
+          note="Gallery shots, concept, technical system, exhibition notes, and thanks."
+        >
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -98,7 +102,6 @@ export default function EnigmaPage() {
           </div>
         </section>
 
-        <CsExpandPreview>
         {/* Concept */}
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="200 Neurons of Light">
           <CsBody>

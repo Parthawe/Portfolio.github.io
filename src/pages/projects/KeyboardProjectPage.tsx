@@ -5,6 +5,7 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -75,6 +76,10 @@ export default function KeyboardProjectPage() {
           </div>
         </section>
 
+        <CsExpandPreview
+          cta="Open the fabrication notes"
+          note="Concept, source data, process images, build details, and outcome."
+        >
         <CsSection id="cs-concept" label="01 · Concept" title="A keyboard is already a landscape.">
           <CsBody style={{ maxWidth: '720px' }}>
             <p>Most keyboards disappear the moment they work. Your fingers learn the surface, your eyes leave it, and the object becomes infrastructure. This project asks what happens when that familiar surface is made strange again.</p>
@@ -129,6 +134,7 @@ export default function KeyboardProjectPage() {
         </CsSection>
 
         <CsThanks />
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

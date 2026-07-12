@@ -4,6 +4,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import CsImage from '../../components/case-study/CsImage'
@@ -76,6 +77,10 @@ export default function HealthAppPage() {
           visuals={HEALTH_APP_PUBLIC_VISUALS}
         />
 
+        <CsExpandPreview
+          cta="Open the planning boards"
+          note="Process moves, original boards, task surfaces, screen set, and calendar logic."
+        >
         <NdaProcess
           intro="I kept the concept simple: let health signals shape the plan without turning the product into a noisy wellness dashboard."
           decisions={[
@@ -137,6 +142,7 @@ export default function HealthAppPage() {
             </div>
           </div>
         </section>
+        </CsExpandPreview>
 
 
         <BottomNav

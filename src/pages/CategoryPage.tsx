@@ -7,7 +7,6 @@ import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
 import { Reveal } from '../components/Reveal'
 import ClientsMarquee from '../components/ClientsMarquee'
-import PlaybookSection from '../components/PlaybookSection'
 import FigmaFrameLabel from '../components/FigmaFrameLabel'
 import FigmaSelect from '../components/FigmaSelect'
 import {
@@ -155,13 +154,6 @@ export default function CategoryPage() {
               projectCount={projectCount}
             />
           </Suspense>
-
-          <hr className="lp-divider" />
-
-          {/* Editorial thinking: near the top, before the work examples. */}
-          <Reveal>
-            <PlaybookSection />
-          </Reveal>
 
           {/* All projects, flagship first (full-width), then rest in masonry */}
           <div id="lp-work">

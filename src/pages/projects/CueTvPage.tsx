@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -132,6 +133,10 @@ export default function CueTvPage() {
           ]}
         />
 
+        <CsExpandPreview
+          cta="Open the catalogue system"
+          note="Visual system, process moves, reviewer research boards, funnel stages, and growth architecture."
+        >
         <section className="cs-section cuetv-refresh reveal" aria-labelledby="cuetv-refresh-title">
           <div className="wrap">
             <div className="cuetv-refresh-head">
@@ -188,6 +193,7 @@ export default function CueTvPage() {
             </div>
           </div>
         </NdaGate>
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-public-story', label: 'Glimpse' },

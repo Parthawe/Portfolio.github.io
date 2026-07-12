@@ -5,6 +5,7 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -59,6 +60,11 @@ export default function OfficeOfDiversityPage() {
             <span className="cs-label-row-val">An accessible web report that made IDBEA milestones and progress easier for the Tisch community to explore.</span>
           </div>
         </CsSection>
+
+        <CsExpandPreview
+          ctaLabel="Open the report proof"
+          note="Workshop artifacts, report slices, impact points, and learning notes."
+        >
 
         <section className="cs-section reveal">
           <div className="wrap">
@@ -131,6 +137,7 @@ export default function OfficeOfDiversityPage() {
         </CsSection>
 
         <CsThanks contactCta />
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

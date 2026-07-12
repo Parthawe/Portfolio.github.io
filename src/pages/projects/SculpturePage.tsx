@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
@@ -63,6 +64,10 @@ export default function SculpturePage() {
           </div>
         </CsSection>
 
+        <CsExpandPreview
+          cta="Open the making notes"
+          note="Reference boards, process images, impact points, learning notes, and final sculpture documentation."
+        >
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -92,6 +97,8 @@ export default function SculpturePage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

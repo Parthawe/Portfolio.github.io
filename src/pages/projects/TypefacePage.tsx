@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import GlyphPlayground from '../../components/GlyphPlayground'
@@ -163,6 +164,11 @@ export default function TypefacePage() {
             </div>
           </div>
         </section>
+
+        <CsExpandPreview
+          ctaLabel="Open the full type specimen"
+          note="Origin, concept, weights, glyph set, playground, editor, usage notes, and download."
+        >
 
         <section className="tf-section" id="tf-origin">
           <div className="tf-section-head">
@@ -325,6 +331,7 @@ export default function TypefacePage() {
             Download font family
           </a>
         </section>
+        </CsExpandPreview>
 
         <BottomNav
           sections={[

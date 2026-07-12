@@ -5,6 +5,7 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -61,6 +62,10 @@ export default function CodeForBuildPage() {
           </div>
         </CsSection>
 
+        <CsExpandPreview
+          ctaLabel="Open the full build concept"
+          note="Process maps, block grammar, result screens, and the learning system."
+        >
         <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
             <p className="cs-section-label">Process</p>
@@ -132,6 +137,7 @@ export default function CodeForBuildPage() {
         </CsSection>
 
         <CsThanks />
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

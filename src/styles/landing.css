@@ -921,6 +921,8 @@ html.is-low-power-device .cl-marquee-track {
 .pb-strip {
   display: block;
   overflow: hidden;
+  max-width: 100%;
+  contain: paint;
   padding: clamp(0.9rem, 1.6vw, 1.3rem) 0;
   border-top: 1px solid var(--ink-08);
   border-bottom: 1px solid var(--ink-08);
@@ -967,6 +969,23 @@ html.is-low-power-device .cl-marquee-track {
     animation: none;
     flex-wrap: wrap;
     width: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .pb-strip {
+    padding: 0.85rem 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .pb-strip-track {
+    gap: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  .pb-strip-item {
+    font-size: clamp(0.98rem, 4.7vw, 1.18rem);
   }
 }
 

@@ -48,25 +48,25 @@ const CATEGORY_NAMES: Record<string, string> = {
   'ai-wearables':    'AI & Wearables',
 }
 
-/* Third slot of the proof strip: one true, non-numeric credential. */
-const PROOFS: Record<string, string> = {
-  'ai':              'Shipping on real hardware',
-  'ux-design':       'In production with real users',
-  'creative-tech':   'Exhibited at ITP shows',
-  'installations':   'Built, wired, and exhibited',
-  'brand-visual':    'In customers’ hands',
-  'design-for-good': 'Accessibility-first, WCAG AA',
-  'fintech':         'Cross-border, multi-market',
-  'crypto':          'Compliance-grade flows',
-  'ai-wearables':    'Voice-first, glance-first',
-}
-
-const UX_AUDIENCE_WORDS = ['For', 'Anyone', 'Hiring', 'Recruiters', 'Product', 'Manager']
-
 const UX_HERO_STATS = [
-  ['20+', 'projects'],
+  ['30+', 'projects'],
   ['∞', 'Memories'],
   ['5+', 'years of experience'],
+] as const
+
+const UX_AUDIENCE = [
+  {
+    label: 'For\nAnyone',
+    text: 'Hi, I’m Parth, a UX Designer focused on crafting intuitive, user-centered experiences that make technology accessible and engaging.',
+  },
+  {
+    label: 'Hiring\nRecruiters',
+    text: 'Lead UX Designer with a proven track record of delivering impactful and research-driven digital experiences.',
+  },
+  {
+    label: 'Product\nManager',
+    text: 'I bring end-to-end UX expertise, from user research and testing to design delivery, ready to align with product goals for maximum impact.',
+  },
 ] as const
 
 interface CategoryHeroProps {
@@ -84,9 +84,10 @@ interface CategoryHeroProps {
 export default function CategoryHero({ slug, accentColor, title, titleAccent, description, has3D, projectCount }: CategoryHeroProps) {
   const [lead, accent] = STATEMENTS[slug] || [title, titleAccent]
   const sub = SUBLINES[slug] || description
-  const proof = PROOFS[slug]
   const categoryName = CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
+  const isUxPage = slug === 'ux-design'
   const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
+
   const handleWorkClick = (event: MouseEvent<HTMLAnchorElement>) => {
     const target = document.getElementById('lp-work')
     if (!target) return
@@ -109,86 +110,51 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
           {categoryName}
         </motion.span>
 
-        <motion.h1
-          className="ch-statement"
-          aria-label={slug === 'ux-design' ? 'The interface is the product.' : undefined}
-          initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
-          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
-          transition={{ duration: 0.68, ease }}
-        >
-          {slug === 'ux-design' ? (
-            <>
-              <span className="ch-statement-line">The interface</span>
-              <em style={{ color: accentColor }}>
-                <span className="ch-statement-line">is the</span>
-                <span className="ch-statement-line">product.</span>
-              </em>
-            </>
-          ) : (
-            <>
-              {lead}{' '}
-              <em style={{ color: accentColor }}>{accent}</em>
-            </>
-          )}
-        </motion.h1>
-
-        <motion.p
-          className="ch-sub"
-          initial={{ opacity: 0, y: 10, filter: 'blur(3px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
-          transition={{ ...revealTransition, delay: 0.16 }}
-        >
-          {sub}
-        </motion.p>
-
-        {slug === 'ux-design' && (
+        {isUxPage ? (
           <motion.div
-            className="ch-ux-proof"
-            initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
-            transition={{ ...revealTransition, delay: 0.22 }}
+            className="ch-ux-intro"
+            initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
+            transition={{ duration: 0.68, ease }}
           >
-            <div className="ch-ux-audience" aria-label="For anyone hiring recruiters product manager">
-              {UX_AUDIENCE_WORDS.map((word) => (
-                <span key={word}>{word}</span>
+            <div className="ch-ux-audience-grid" aria-label="UX portfolio audiences">
+              {UX_AUDIENCE.map((item, index) => (
+                <article
+                  className={`ch-ux-audience-item${index === 0 ? ' is-active' : ''}`}
+                  key={item.label}
+                >
+                  <h2 style={index === 0 ? { color: accentColor } : undefined}>
+                    {item.label.split('\n').map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
+                  </h2>
+                  <p>{item.text}</p>
+                </article>
               ))}
             </div>
-            <dl className="ch-ux-stats" aria-label="UX portfolio statistics">
-              {UX_HERO_STATS.map(([value, label]) => (
-                <div className="ch-ux-stat" key={label}>
-                  <dt>{value}</dt>
-                  <dd>{label}</dd>
-                </div>
-              ))}
-            </dl>
           </motion.div>
+        ) : (
+          <motion.h1
+            className="ch-statement"
+            initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
+            transition={{ duration: 0.68, ease }}
+          >
+            {lead}{' '}
+            <em style={{ color: accentColor }}>{accent}</em>
+          </motion.h1>
         )}
 
-        <motion.div
-          className="ch-strip"
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...revealTransition, delay: 0.3 }}
-        >
-          <span className="ch-strip-item">{projectCount} project{projectCount === 1 ? '' : 's'}</span>
-          {proof && (
-            <>
-              <i className="ch-strip-dot" aria-hidden="true" />
-              <span className="ch-strip-item">{proof}</span>
-            </>
-          )}
-          <i className="ch-strip-dot" aria-hidden="true" />
-          <a
-            href="#lp-work"
-            className="ch-strip-link ch-work-cta"
-            style={{ color: accentColor }}
-            onClick={handleWorkClick}
-            aria-label={`See ${categoryName} projects`}
+        {!isUxPage && (
+          <motion.p
+            className="ch-sub"
+            initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
+            transition={{ ...revealTransition, delay: 0.16 }}
           >
-            <span>See the work</span>
-            <span className="ch-work-cta__arrow" aria-hidden="true">&darr;</span>
-          </a>
-        </motion.div>
+            {sub}
+          </motion.p>
+        )}
       </div>
 
       {/* 3D object beside the copy — never on top of it */}
@@ -202,11 +168,44 @@ export default function CategoryHero({ slug, accentColor, title, titleAccent, de
         >
           {show3D ? (
             <Suspense fallback={null}>
-              <CategoryObject3D slug={slug} size={560} style={{ width: 'min(100%, 560px)', height: 'auto', aspectRatio: '1 / 1' }} />
+              <CategoryObject3D slug={slug} size={460} style={{ width: 'min(100%, 460px)', height: 'auto', aspectRatio: '1 / 1' }} />
             </Suspense>
           ) : null}
         </motion.div>
       )}
+
+      <motion.div
+        className="ch-hero-footer"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ ...revealTransition, delay: 0.28 }}
+      >
+        <a
+          href="#lp-work"
+          className="ch-work-link figma-hover"
+          style={{ color: accentColor }}
+          onClick={handleWorkClick}
+          aria-label={`See ${categoryName} projects`}
+        >
+          <span>See work</span>
+          <span aria-hidden="true">&darr;</span>
+        </a>
+        <dl className="ch-hero-stats" aria-label={isUxPage ? 'UX portfolio statistics' : `${categoryName} project count`}>
+          {isUxPage ? (
+            UX_HERO_STATS.map(([value, label]) => (
+              <div className="ch-hero-stat" key={label}>
+                <dt>{value}</dt>
+                <dd>{label}</dd>
+              </div>
+            ))
+          ) : (
+            <div className="ch-hero-stat">
+              <dt>{projectCount}</dt>
+              <dd>project{projectCount === 1 ? '' : 's'}</dd>
+            </div>
+          )}
+        </dl>
+      </motion.div>
     </section>
   )
 }

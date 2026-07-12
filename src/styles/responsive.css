@@ -237,12 +237,14 @@
   ) {
     min-width: 0;
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
   }
   .project-main :is(.proj-title, .cs-display, .cs-section-title) {
     overflow-wrap: normal;
     word-break: normal;
-    hyphens: manual;
+    hyphens: none;
   }
   .cs-spectrum-label,
   .cs-spectrum-label-right { width: 90px; font-size: var(--text-xs); }

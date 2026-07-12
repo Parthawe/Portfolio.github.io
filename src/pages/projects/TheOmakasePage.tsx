@@ -342,6 +342,10 @@ export default function TheOmakasePage() {
         {/* Play the game */}
         <GameEmbed />
 
+        <CsExpandPreview
+          cta="Open the build and exhibition proof"
+          note="Cabinet photos, gameplay details, fabrication notes, exhibition proof, and reflections."
+        >
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -373,7 +377,6 @@ export default function TheOmakasePage() {
           </div>
         </section>
 
-        <CsExpandPreview>
         {/* Gameplay */}
         <section className="cs-section reveal" id="cs-gameplay">
           <div className="wrap">

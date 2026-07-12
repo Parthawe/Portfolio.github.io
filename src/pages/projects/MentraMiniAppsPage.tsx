@@ -107,11 +107,6 @@ export default function MentraMiniAppsPage() {
                 Notes turns live speech into searchable memory, which made it the clearest example of why the store needed real app depth.
               </figcaption>
             </figure>
-            <div className="mentra-miniapps-hero-gallery__stack" aria-label="Other MiniApp surfaces">
-              <img src={MINIAPP_ASSETS.transcript} width="420" height="911" alt="Live Transcript MiniApp screen" loading="lazy" decoding="async" />
-              <img src={MINIAPP_ASSETS.meet} width="390" height="844" alt="Meet MiniApp screen" loading="lazy" decoding="async" />
-              <img src={MINIAPP_ASSETS.guidance} width="363" height="783" alt="Guidance MiniApp screen" loading="lazy" decoding="async" />
-            </div>
           </div>
         </section>
 

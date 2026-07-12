@@ -1475,6 +1475,17 @@
   position: relative;
 }
 
+.cs-expand-preview--closed {
+  margin: clamp(2.5rem, 6vw, 5rem) 0;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--project-color, var(--ink)) 12%, transparent), transparent 36%),
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 78%, var(--bg-alt)), var(--bg));
+  box-shadow: 0 24px 70px -58px color-mix(in srgb, var(--ink) 44%, transparent);
+}
+
 .cs-expand-preview-content {
   max-height: clamp(30rem, 85vh, 46rem);
   overflow: hidden;
@@ -1510,6 +1521,12 @@
   gap: 0.45rem;
   padding: 0 1.5rem;
   text-align: center;
+}
+
+.cs-expand-preview--closed .cs-expand-preview-cta {
+  position: relative;
+  inset: auto;
+  padding: 0;
 }
 
 .cs-expand-preview-kicker {
@@ -4883,9 +4900,11 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  max-width: 100%;
 }
 .cs-compare-table {
   width: 100%;
+  min-width: 0;
   border-collapse: collapse;
   font-family: var(--sans);
   font-size: var(--text-sm);
@@ -6573,12 +6592,72 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: none;
   }
 
   .project-main .cs-compare-table-scroll {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: visible;
+  }
+
+  .project-main .cs-compare-table {
+    display: block;
+    width: 100%;
+  }
+
+  .project-main .cs-compare-table thead {
+    display: none;
+  }
+
+  .project-main .cs-compare-table tbody {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .project-main .cs-compare-table tr {
+    display: grid;
+    gap: 0.6rem;
+    padding: 0.9rem;
+    border: 1px solid var(--ink-08);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+  }
+
+  .project-main .cs-compare-table th,
+  .project-main .cs-compare-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 0;
+    border-bottom: 0;
+    text-align: left;
+  }
+
+  .project-main .cs-ct-feature {
+    display: block;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--ink-08);
+    color: var(--ink);
+  }
+
+  .project-main .cs-ct-cell::before {
+    content: attr(data-label);
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: var(--ls-wide);
+    line-height: 1.25;
+    text-transform: uppercase;
+    color: var(--ink-45);
+  }
+
+  .project-main .cs-ct-cell > * {
+    flex: 0 0 auto;
   }
 
   .project-main .proj-info-row,
@@ -7208,9 +7287,10 @@
 
 .mentra-miniapps-hero-gallery__inner {
   display: grid;
-  grid-template-columns: minmax(18rem, 0.64fr) minmax(16rem, 0.36fr);
+  grid-template-columns: 1fr;
   gap: clamp(1rem, 2.5vw, 2rem);
   align-items: center;
+  max-width: 62rem;
 }
 
 .mentra-miniapps-hero-gallery__primary,

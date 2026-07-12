@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsBody from '../../components/case-study/CsBody'
 import CsNumList from '../../components/case-study/CsNumList'
 import CsCredits from '../../components/case-study/CsCredits'
@@ -55,6 +56,11 @@ export default function UvLightPage() {
             </CsBody>
           </div>
         </section>
+
+        <CsExpandPreview
+          ctaLabel="Open the full installation story"
+          note="Research, room sequencing, UV tests, documentation, credits, and reflection."
+        >
 
         {/* Research */}
         <section className="cs-section reveal" id="cs-discovery">
@@ -209,6 +215,7 @@ export default function UvLightPage() {
         </section>
 
         <CsThanks />
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-background', label: 'Background' },

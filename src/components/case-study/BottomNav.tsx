@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useReadingProgress } from '../../hooks/useReadingProgress';
 import FigmaSelect from '../FigmaSelect';
@@ -16,15 +16,30 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const isDesktopSideRail = useMediaQuery('(min-width: 1200px)');
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
+  const [availableSections, setAvailableSections] = useState(sections);
   const visibleSections = useMemo(() => {
-    return sections.slice(0, 4);
-  }, [sections]);
+    return availableSections.slice(0, 4);
+  }, [availableSections]);
 
   useEffect(() => {
     const sideRailClass = 'case-side-nav';
     document.body.classList.toggle(sideRailClass, placement === 'side');
     return () => document.body.classList.remove(sideRailClass);
   }, [placement]);
+
+  useEffect(() => {
+    const updateAvailableSections = () => {
+      const mounted = sections.filter((section) => document.getElementById(section.id));
+      setAvailableSections(mounted);
+    };
+
+    updateAvailableSections();
+    const root = document.getElementById('main-content') || document.body;
+    const observer = new MutationObserver(updateAvailableSections);
+    observer.observe(root, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, [sections]);
 
   const showNav = useCallback(() => {
     const nav = navRef.current;
@@ -142,6 +157,8 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
     }
     window.scrollTo({ top, behavior: 'smooth' });
   };
+
+  if (!visibleSections.length && !modeAction && !liveUrl) return null;
 
   return (
     <nav
