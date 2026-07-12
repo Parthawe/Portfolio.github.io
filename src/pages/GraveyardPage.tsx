@@ -661,7 +661,7 @@ function IframePreview({ url, era, onClose }: { url: string; era: string; onClos
             <span className="gy-preview-era">{era}</span>
           </div>
           <div className="gy-preview-url-bar">
-            <span>{url.replace(/^\//, 'www.designwhich.works/')}</span>
+            <span>{url.replace(/^\//, 'designwhich.works/')}</span>
           </div>
           <button ref={closeButtonRef} className="gy-preview-close" type="button" onClick={onClose} aria-label="Close preview">
             ESC

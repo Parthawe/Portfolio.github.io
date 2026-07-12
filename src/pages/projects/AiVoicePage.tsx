@@ -49,7 +49,7 @@ export default function AiVoicePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="AI Voice Interface · Parth Pawar" />
         <meta property="og:description" content="Enterprise AI voice selection framed around tone, context, scenario testing, and reviewer confidence." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />

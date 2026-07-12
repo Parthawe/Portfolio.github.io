@@ -22,7 +22,7 @@ export default function KeyboardProjectPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Keyboard Project &middot; Parth Pawar" />
         <meta property="og:description" content="A tactile keyboard object that turns input into a readable physical data landscape." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/Keyboard/photos/keyboard-data-hero.webp" />
       </Helmet>
 
       <Nav />

@@ -48,7 +48,7 @@ export default function JugalbandiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Jugalbandi · Parth Pawar" />
         <meta property="og:description" content="A neural network made audible through a playable acoustic installation." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/jugalbandi_16x9.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/jugalbandi_16x9.webp" />
       </Helmet>
 
       <Nav />

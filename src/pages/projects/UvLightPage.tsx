@@ -19,7 +19,7 @@ export default function UvLightPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="UV Light Installation &middot; Parth Pawar" />
         <meta property="og:description" content="Blacklight installation with invisible ink, hidden messages, staged rooms, and a surveillance reveal." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/uv-light.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/uv-light.jpg" />
       </Helmet>
 
       <Nav />

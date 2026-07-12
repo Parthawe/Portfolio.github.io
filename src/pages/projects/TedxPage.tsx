@@ -17,7 +17,7 @@ export default function TedxPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="TEDx VITPUNE &middot; Parth Pawar" />
         <meta property="og:description" content="Sole stage designer for TEDx VIT Pune, working with an 8-person team to build a parallax cityscape stage for 800+ attendees." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/tedx.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/tedx.jpg" />
       </Helmet>
 
       <Nav />

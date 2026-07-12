@@ -75,7 +75,7 @@ export default function MentraPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra · Parth Pawar" />
         <meta property="og:description" content="Designing the OS, companion app, MiniApp Store, developer platform, and launch website for Mentra smart glasses." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/mentra.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/mentra.webp" />
       </Helmet>
 
       <Nav />

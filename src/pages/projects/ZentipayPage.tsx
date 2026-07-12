@@ -94,7 +94,7 @@ export default function ZentipayPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Trust-first fintech super app for cross-border transfer flows." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp" />
       </Helmet>
 
       <Nav />

@@ -22,7 +22,7 @@ export default function VjSoftwarePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VJ Parivar &middot; Parth Pawar" />
         <meta property="og:description" content="Vehicle parking management app for VJ residential societies, user research, UI/UX and prototyping." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/vj.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/vj.jpg" />
       </Helmet>
 
       <Nav />

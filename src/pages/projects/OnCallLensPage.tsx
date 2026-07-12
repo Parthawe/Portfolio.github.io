@@ -26,7 +26,7 @@ export default function OnCallLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OnCall Lens · Parth Pawar" />
         <meta property="og:description" content="Sentry alerts routed to an AI fix pipeline, with PR approval from smart glasses." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/oncall-lens.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/oncall-lens.webp" />
       </Helmet>
 
       <Nav />

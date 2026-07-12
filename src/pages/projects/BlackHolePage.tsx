@@ -38,7 +38,7 @@ export default function BlackHolePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Black Hole · Parth Pawar" />
         <meta property="og:description" content="Physical models exploring five black hole phenomena. Exhibited at the Horological Society of New York." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/black-hole.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/black-hole.jpg" />
       </Helmet>
 
       <Nav />

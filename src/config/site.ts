@@ -5,7 +5,7 @@ export const SITE_NAME = 'Parth Pawar'
  * Origin that actually serves the deployed site. Every canonical, OG, and
  * schema URL derives from these values.
  */
-export const SITE_ORIGIN = 'https://www.designwhich.works'
+export const SITE_ORIGIN = 'https://designwhich.works'
 export const SITE_BASE = ''
 /** Absolute prefix for page routes. The router basename strips SITE_BASE from pathnames. */
 export const SITE_URL = `${SITE_ORIGIN}${SITE_BASE}`

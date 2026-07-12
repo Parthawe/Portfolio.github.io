@@ -74,7 +74,7 @@ export default function MentraMiniAppsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra MiniApp Store &middot; Parth Pawar" />
         <meta property="og:description" content="An app ecosystem for smart glasses. Voice-first discovery, developer SDK, and the product patterns behind captions, translation, notes, and Mentra AI." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
       </Helmet>
 
       <Nav />

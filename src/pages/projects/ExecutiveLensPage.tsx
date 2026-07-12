@@ -25,7 +25,7 @@ export default function ExecutiveLensPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
         <meta property="og:description" content="Meeting intelligence for executives, from cited summaries to decision tracking and follow-up workflows." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/executivelens.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/executivelens.webp" />
       </Helmet>
 
       <Nav />

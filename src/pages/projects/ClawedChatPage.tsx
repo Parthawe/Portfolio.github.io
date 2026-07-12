@@ -55,7 +55,7 @@ export default function ClawedChatPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Clawed · Parth Pawar" />
         <meta property="og:description" content="Personal AI assistant for people on the go. Safety-first design with smart glasses integration and receipts for every action." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/clawed-chat_1x1.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/clawed-chat_1x1.webp" />
       </Helmet>
 
       <Nav />

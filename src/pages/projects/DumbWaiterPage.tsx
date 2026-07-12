@@ -35,7 +35,7 @@ export default function DumbWaiterPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Set Design for Pinter's The Dumb Waiter · Parth Pawar" />
         <meta property="og:description" content="A cinematic basement set model for two hitmen, an unseen boss, and a dumb waiter that turns waiting into threat." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/dumb-waiter/photos/set-wide.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/dumb-waiter/photos/set-wide.jpg" />
       </Helmet>
 
       <Nav />

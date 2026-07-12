@@ -47,7 +47,7 @@ export default function HealthAppPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Health App · Parth Pawar" />
         <meta property="og:description" content="A health-aware task planner with wellness integration." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/healthapp_16x9.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/healthapp_16x9.webp" />
       </Helmet>
 
       <Nav />

@@ -32,7 +32,7 @@ export default function DrowningPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Drowning · Parth Pawar" />
         <meta property="og:description" content="Scenic design for stage production inspired by abandoned greenhouse aesthetics." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/drowning.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/drowning.jpg" />
       </Helmet>
 
       <Nav />

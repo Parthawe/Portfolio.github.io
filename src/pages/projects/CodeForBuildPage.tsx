@@ -22,7 +22,7 @@ export default function CodeForBuildPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Code for Build &middot; Parth Pawar" />
         <meta property="og:description" content="A mobile-first coding education concept using 3D building blocks to make HTML/CSS structure easier to understand." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/code-for-build.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/code-for-build.jpg" />
       </Helmet>
 
       <Nav />

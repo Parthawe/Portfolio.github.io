@@ -20,7 +20,7 @@ export default function EnigmaPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Enigma &middot; Parth Pawar" />
         <meta property="og:description" content="A physical light sculpture that makes neural-network activity visible." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/enigma.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/enigma.jpg" />
       </Helmet>
 
       <Nav />

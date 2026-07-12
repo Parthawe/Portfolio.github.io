@@ -20,7 +20,7 @@ export default function SculpturePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Sculpture · Parth Pawar" />
         <meta property="og:description" content="Competition sculpture work for Firodia Karandak: practice, fabrication, result, and learning." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/Sculpture/1.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/Sculpture/1.jpg" />
       </Helmet>
 
       <Nav />

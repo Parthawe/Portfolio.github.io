@@ -21,7 +21,7 @@ export default function ShufflePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Shuffle · Parth Pawar" />
         <meta property="og:description" content="A physical simulator for the trade-offs of student life." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/shuffle_16x9.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/shuffle_16x9.webp" />
       </Helmet>
 
       <Nav />

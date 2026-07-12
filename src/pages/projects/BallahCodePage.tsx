@@ -74,7 +74,7 @@ export default function BallahCodePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Ballah Code &middot; Parth Pawar" />
         <meta property="og:description" content="AI-native desktop IDE where the AI works as a senior engineer, not a chatbot." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/ballah-code.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/ballah-code.webp" />
       </Helmet>
 
       <Nav />

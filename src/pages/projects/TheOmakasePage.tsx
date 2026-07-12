@@ -305,7 +305,7 @@ export default function TheOmakasePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Omakase · Parth Pawar" />
         <meta property="og:description" content="A playable arcade cabinet built around fast onboarding, competition, and custom RGB controls." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/the-omakase_16x9.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/the-omakase_16x9.webp" />
       </Helmet>
 
       <Nav />

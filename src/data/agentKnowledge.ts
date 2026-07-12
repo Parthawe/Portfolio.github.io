@@ -1066,7 +1066,7 @@ const rules: Rule[] = [
       const names = all.length ? all.map(p => p.name).join(', ') : 'Mentra, ZentiPay, Jugalbandi'
       const insights = all.filter(p => p.deep).slice(0, 3).map(p => `• ${p.name}: ${p.deep!.insight.split('.')[0]}.`).join('\n')
 
-      return `[EXPORT]\n**Parth Pawar, Portfolio Summary**\n\n**Projects reviewed:** ${names}\n\n${insights ? `**Key insights:**\n${insights}\n\n` : ''}**Themes:** Systems thinking, research rigor, design-engineering fluency\n**Contact:** ${bio.email}\n**Portfolio:** https://www.designwhich.works`
+      return `[EXPORT]\n**Parth Pawar, Portfolio Summary**\n\n**Projects reviewed:** ${names}\n\n${insights ? `**Key insights:**\n${insights}\n\n` : ''}**Themes:** Systems thinking, research rigor, design-engineering fluency\n**Contact:** ${bio.email}\n**Portfolio:** https://designwhich.works`
     }
   },
 

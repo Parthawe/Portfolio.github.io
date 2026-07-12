@@ -18,7 +18,7 @@ export default function VishwaConclavePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="VishwaConclave · Parth Pawar" />
         <meta property="og:description" content="Creative direction, branding, and web design for a multidisciplinary student-led conference." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/VishwaConclave/1.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/VishwaConclave/1.jpg" />
       </Helmet>
 
       <Nav />

@@ -22,7 +22,7 @@ export default function IbmPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="IBM Cancer Prognosis · Parth Pawar" />
         <meta property="og:description" content="Research glimpse: encrypted genomic computation, prognosis clusters, and what I learned about privacy-preserving AI." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" />
       </Helmet>
 
       <Nav />

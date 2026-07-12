@@ -20,7 +20,7 @@ export default function MakingOfTimePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Making of Time &middot; Parth Pawar" />
         <meta property="og:description" content="Three timekeeping systems built across shadow, mechanics, and code." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" />
       </Helmet>
 
       <Nav />

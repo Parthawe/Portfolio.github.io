@@ -25,7 +25,7 @@ export default function OrgDashboardPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="OrgDashboard · Parth Pawar" />
         <meta property="og:description" content="SaaS platform that gives AI agents a brain for your company, designing for two users simultaneously." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/org-dashboard.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/org-dashboard.webp" />
       </Helmet>
 
       <Nav />

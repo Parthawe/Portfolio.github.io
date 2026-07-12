@@ -20,7 +20,7 @@ export default function MoniacMachinePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Moniac Machine &middot; Parth Pawar" />
         <meta property="og:description" content="Economic strategy game inspired by the legendary 1949 Phillips hydraulic computer." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/moniac-machine.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/moniac-machine.jpg" />
       </Helmet>
 
       <Nav />

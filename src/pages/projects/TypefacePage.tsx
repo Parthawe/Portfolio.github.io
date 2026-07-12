@@ -68,7 +68,7 @@ export default function TypefacePage() {
           property="og:description"
           content="Interactive type specimen, glyph playground, vector editor, and downloadable font files."
         />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/Projects/Typeface/photos/hero-title.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/Projects/Typeface/photos/hero-title.jpg" />
       </Helmet>
 
       <Nav />

@@ -21,7 +21,7 @@ export default function RevolvingStagePage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Revolving Stage &middot; Parth Pawar" />
         <meta property="og:description" content="Engineered a 15 ft. revolving stage for theatre, supporting 250+ kgs and changing scenes without blackout." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/revolving-stage.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/revolving-stage.webp" />
       </Helmet>
 
       <Nav />

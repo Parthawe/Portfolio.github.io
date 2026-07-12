@@ -20,7 +20,7 @@ export default function ThePointCdcPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="The Point CDC · Parth Pawar" />
         <meta property="og:description" content="Website redesign for The Point CDC focused on programs, WiFi access, events, and mobile navigation." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/the-point-cdc_16x9.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/the-point-cdc_16x9.webp" />
       </Helmet>
 
       <Nav />

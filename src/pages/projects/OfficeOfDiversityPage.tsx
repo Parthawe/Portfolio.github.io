@@ -20,7 +20,7 @@ export default function OfficeOfDiversityPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Office of Diversity · Parth Pawar" />
         <meta property="og:description" content="Interactive IDBEA report for NYU Tisch, focused on accessible structure, data clarity, and responsive publishing." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/mockups/projects/office-of-diversity_16x9.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/office-of-diversity_16x9.webp" />
       </Helmet>
 
       <Nav />

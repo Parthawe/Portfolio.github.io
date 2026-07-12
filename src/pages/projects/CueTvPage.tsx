@@ -94,7 +94,7 @@ export default function CueTvPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="CueTV · Parth Pawar" />
         <meta property="og:description" content="OTT platform for opera, ballet, symphonies, designed discovery, playback, and retargeting ads." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/nda-cover.svg" />
       </Helmet>
 
       <Nav />

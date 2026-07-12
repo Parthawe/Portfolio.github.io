@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.designwhich.works/sitemap.xml
+Sitemap: https://designwhich.works/sitemap.xml

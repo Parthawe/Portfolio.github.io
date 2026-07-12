@@ -27,7 +27,7 @@ export default function RaahiPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Raahi · Parth Pawar" />
         <meta property="og:description" content="Streamlining Pune's public transport, integrating buses, metro, auto-rickshaws and shared cabs." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/raahi.jpg" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/raahi.jpg" />
       </Helmet>
 
       <Nav />

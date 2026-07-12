@@ -19,7 +19,7 @@ export default function AtpsPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ATPS · Parth Pawar" />
         <meta property="og:description" content="ArtTown Podcast Series, 40+ conversations with art and design professionals. 50k+ views." />
-        <meta property="og:image" content="https://www.designwhich.works/Assets/images/atps.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/images/atps.webp" />
       </Helmet>
 
       <Nav />

@@ -26,7 +26,7 @@ export default function MentraBrandPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mentra Brand & Packaging · Parth Pawar" />
         <meta property="og:description" content="Brand identity & packaging for AI smart glasses shipping at $299." />
-        <meta property="og:image" content={`https://www.designwhich.works${P}/render-both-frames.webp`} />
+        <meta property="og:image" content={`https://designwhich.works${P}/render-both-frames.webp`} />
       </Helmet>
 
       <Nav />
