@@ -113,11 +113,11 @@ export default function WorkPage() {
   const isTwoColumn = useMediaQuery('(max-width: 1180px)')
   const currentViewParam = searchParams.get('view')
   const viewMode: WorkViewMode =
-    currentViewParam === 'editorial'
-      ? 'editorial'
+    currentViewParam === 'library' || currentViewParam === 'index' || currentViewParam === 'playlist'
+      ? 'library'
       : currentViewParam === 'timeline'
         ? 'timeline'
-        : 'library'
+        : 'editorial'
   const [activeLibraryShelf, setActiveLibraryShelf] = useState('start-here')
   const [activeTimelineYear, setActiveTimelineYear] = useState(TIMELINE_PRESENT_KEY)
 

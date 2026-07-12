@@ -177,11 +177,16 @@ export default function Nav() {
 
   // On the Work page itself, the Work tab expands to show its three views.
   const isWorkPage = pathname === '/work';
-  const requestedWorkView = new URLSearchParams(search).get('view') || 'library';
-  const workView = requestedWorkView === 'playlist' ? 'library' : requestedWorkView;
+  const requestedWorkView = new URLSearchParams(search).get('view');
+  const workView =
+    requestedWorkView === 'library' || requestedWorkView === 'index' || requestedWorkView === 'playlist'
+      ? 'library'
+      : requestedWorkView === 'timeline'
+        ? 'timeline'
+        : 'editorial';
   const workViewLinks = [
-    { key: 'library', label: 'Index', to: '/work' },
-    { key: 'editorial', label: 'Editorial', to: '/work?view=editorial' },
+    { key: 'editorial', label: 'Editorial', to: '/work' },
+    { key: 'library', label: 'Index', to: '/work?view=library' },
     { key: 'timeline', label: 'Arc', to: '/work?view=timeline' },
   ];
 
