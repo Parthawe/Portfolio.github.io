@@ -646,7 +646,7 @@ export default function SiteInteractionTools() {
   const [exportTarget, setExportTarget] = useState<ExportTarget>('selection')
   const [exportStatus, setExportStatus] = useState<'ready' | 'exporting' | 'done' | 'fallback'>('ready')
   const [comments, setComments] = useState<PortfolioComment[]>([])
-  const [, setCommentsLoading] = useState(false)
+  const [commentsLoading, setCommentsLoading] = useState(false)
   const [commentsError, setCommentsError] = useState('')
   const [draftComment, setDraftComment] = useState<CommentDraft | null>(null)
   const [activeCommentId, setActiveCommentId] = useState<string | null>(null)
@@ -954,6 +954,15 @@ export default function SiteInteractionTools() {
     setOpen(true)
     setSelection(null)
     setMode(current => (current === nextMode ? null : nextMode))
+  }, [])
+
+  const beginCommentMode = useCallback(() => {
+    setOpen(true)
+    setSelection(null)
+    setDraftComment(null)
+    setActiveCommentId(null)
+    setCommentBody('')
+    setMode(current => (current === 'comment' ? null : 'comment'))
   }, [])
 
   // The eye in Appearance: show/hide the visitor's ink layer, Figma-style.
@@ -1273,11 +1282,12 @@ export default function SiteInteractionTools() {
       if (key === 'v') { event.preventDefault(); setMode(null); setSelection(null) }
       else if (key === 'k') { event.preventDefault(); setMode('select'); setSelection(null) }
       else if (key === 'p' || key === 'b') { event.preventDefault(); setMode('paint') }
+      else if (key === 'c') { event.preventDefault(); beginCommentMode() }
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [closeTools, draftComment, mode, open, toggleGrid, toggleRulers])
+  }, [beginCommentMode, closeTools, draftComment, mode, open, toggleGrid, toggleRulers])
 
   useEffect(() => {
     const onToggle = () => {
@@ -1466,7 +1476,7 @@ export default function SiteInteractionTools() {
         </div>
       )}
 
-      <div className={`site-comment-layer${mode === 'comment' ? ' is-commenting' : ''}`} data-viewport-version={viewportVersion} aria-label="Page comments">
+      <div className={`site-comment-layer${open ? ' is-open' : ''}${mode === 'comment' ? ' is-commenting' : ''}`} data-viewport-version={viewportVersion} aria-label="Page comments">
         {comments.map((comment, index) => (
           <button
             key={comment.id}
@@ -1863,6 +1873,58 @@ export default function SiteInteractionTools() {
               <span aria-hidden="true">✓</span>
               Keep portfolio readable
             </button>
+          </section>
+
+          <section className="site-tools__section site-tools__section--comments" aria-labelledby="site-tool-comments-title">
+            <div className="site-tools__section-head">
+              <h3 id="site-tool-comments-title">Comments</h3>
+              <button
+                type="button"
+                className={mode === 'comment' ? 'is-active' : ''}
+                onClick={beginCommentMode}
+                aria-label={mode === 'comment' ? 'Stop adding comments' : 'Add a comment anywhere on the page'}
+                aria-pressed={mode === 'comment'}
+                title={mode === 'comment' ? 'Stop adding comments' : 'Add comment anywhere (C)'}
+              >
+                <ToolIcon name="comment" />
+              </button>
+            </div>
+
+            <p className="site-comments-help">
+              {mode === 'comment'
+                ? 'Comment mode is on. Click any point on the page to pin a note.'
+                : 'Pin a note to any point on this page.'}
+            </p>
+
+            <div className="site-comments-status" aria-live="polite">
+              <span>{commentsLoading ? 'Loading...' : `${comments.length} on this page`}</span>
+              <span>{commentStoreMode === 'database' ? 'Shared notes' : 'Local only'}</span>
+            </div>
+
+            {commentsError && <p className="site-comments-error" role="alert">{commentsError}</p>}
+
+            {comments.length > 0 ? (
+              <div className="site-comments-list" aria-label="Comments on this page">
+                {comments.map((comment, index) => (
+                  <button
+                    key={comment.id}
+                    type="button"
+                    className={activeCommentId === comment.id ? 'is-active' : ''}
+                    onClick={() => {
+                      setDraftComment(null)
+                      setActiveCommentId(comment.id)
+                      setMode(null)
+                    }}
+                  >
+                    <span>{index + 1}</span>
+                    <strong>{comment.authorName}</strong>
+                    <em>{comment.body}</em>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <p className="site-comments-muted">No notes on this page yet.</p>
+            )}
           </section>
 
           <section className="site-tools__section site-tools__section--inspect" aria-labelledby="site-tool-inspect-title">

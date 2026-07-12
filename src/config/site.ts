@@ -9,6 +9,6 @@ export const SITE_ORIGIN = 'https://designwhich.works'
 export const SITE_BASE = ''
 /** Absolute prefix for page routes. The router basename strips SITE_BASE from pathnames. */
 export const SITE_URL = `${SITE_ORIGIN}${SITE_BASE}`
-export const DEFAULT_OG_IMAGE = '/Assets/images/mentra.webp'
+export const DEFAULT_OG_IMAGE = '/Assets/images/og-product-designer.png'
 export const CONTACT_EMAIL = 'parthpawar@nyu.edu'
 export const RESUME_URL = '/Assets/Application_Resume.pdf'

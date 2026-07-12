@@ -278,10 +278,10 @@ export default function AboutPage() {
     <>
       <Helmet>
         <title>About &middot; Parth Pawar</title>
-        <meta name="description" content="Parth Pawar, Design Engineer. Head of UI/UX at Mentra. Making complex systems feel simple. NYU ITP MPS '24." />
+        <meta name="description" content="Parth Pawar, Product Designer. Head of UI/UX at Mentra. Making complex systems feel simple. NYU ITP MPS '24." />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="About &middot; Parth Pawar" />
-        <meta property="og:description" content="Design Engineer. Head of UI/UX at Mentra. Making complex systems feel simple." />
+        <meta property="og:description" content="Product Designer. Head of UI/UX at Mentra. Making complex systems feel simple." />
         <meta property="og:image" content={`${SITE_ORIGIN}${DEFAULT_OG_IMAGE}`} />
         <link rel="canonical" href={`${SITE_URL}/about`} />
       </Helmet>

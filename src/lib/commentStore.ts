@@ -28,11 +28,13 @@ type SupabaseCommentRow = {
 
 const localStorageKey = 'portfolio-comments-v1'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+const supabasePublicKey = (
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY
+) as string | undefined
 const commentsTable = (import.meta.env.VITE_COMMENTS_TABLE as string | undefined) || 'portfolio_comments'
 
 function hasSupabaseConfig() {
-  return Boolean(supabaseUrl && supabaseAnonKey)
+  return Boolean(supabaseUrl && supabasePublicKey)
 }
 
 function supabaseEndpoint(query = '') {
@@ -42,10 +44,9 @@ function supabaseEndpoint(query = '') {
 }
 
 function supabaseHeaders(extra?: HeadersInit): HeadersInit {
-  if (!supabaseAnonKey) throw new Error('Missing Supabase anon key')
+  if (!supabasePublicKey) throw new Error('Missing Supabase publishable key')
   return {
-    apikey: supabaseAnonKey,
-    Authorization: `Bearer ${supabaseAnonKey}`,
+    apikey: supabasePublicKey,
     'Content-Type': 'application/json',
     ...extra,
   }

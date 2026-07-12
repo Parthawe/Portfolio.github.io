@@ -30,6 +30,9 @@ bun run dev
 | `VITE_EDGE_AI_MODEL` | No | Defaults to `gemini-2.5-flash` |
 | `VITE_ELEVENLABS_API_KEY` | No | ElevenLabs TTS for agent voice |
 | `VITE_ELEVENLABS_VOICE_ID` | No | Voice ID (defaults to Rachel) |
+| `VITE_SUPABASE_URL` | No | Supabase project URL for the portfolio guestbook |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | No | Supabase publishable key for the guestbook |
+| `VITE_COMMENTS_TABLE` | No | Defaults to `portfolio_comments` |
 
 ## Scripts
 
@@ -78,3 +81,12 @@ src/
 ## Deployment
 
 Pushes to `main` trigger automatic deployment to GitHub Pages via `.github/workflows/deploy.yml`.
+
+### Persistent footer comments
+
+The footer's canvas guestbook works locally without setup, but those notes are only stored in the visitor's browser. To make notes persist for every visitor:
+
+1. Create a Supabase project and run the table migration, followed by `20260712000100_enable_pending_comment_moderation.sql`.
+2. In GitHub, open **Settings → Secrets and variables → Actions** and add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` as repository secrets.
+3. Optional: add a `VITE_COMMENTS_TABLE` repository variable only when the table name differs from `portfolio_comments`.
+4. Deploy again. New notes will be saved as pending, then become public after approval in the Supabase dashboard.

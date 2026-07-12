@@ -35,13 +35,13 @@ function getHomeSchema() {
         '@type': 'WebSite',
         name: SITE_NAME,
         url: SITE_URL,
-        description: 'Portfolio of Parth Pawar, Design Engineer focused on AI wearables, fintech, and creative technology.',
+        description: 'Portfolio of Parth Pawar, Product Designer focused on AI wearables, fintech, civic tools, creative technology, and physical interaction.',
       },
       {
         '@type': 'Person',
         name: 'Parth Pawar',
         url: SITE_URL,
-        jobTitle: 'Design Engineer',
+        jobTitle: 'Product Designer',
         alumniOf: {
           '@type': 'CollegeOrUniversity',
           name: 'New York University Tisch School of the Arts',
@@ -68,8 +68,8 @@ function getRouteMeta(pathname: string): RouteMeta {
 
   if (pathname === '/') {
     return {
-      title: 'Parth Pawar, Design Engineer',
-      description: 'Portfolio of Parth Pawar, Design Engineer focused on AI wearables, fintech, creative technology, and product systems.',
+      title: 'Parth Pawar, Product Designer',
+      description: 'Portfolio of Parth Pawar, Product Designer crafting trusted systems across AI wearables, fintech, civic tools, creative technology, and physical interaction.',
       image: toAbsoluteUrl(DEFAULT_IMAGE),
       url,
       type: 'website',
@@ -108,7 +108,7 @@ function getRouteMeta(pathname: string): RouteMeta {
   if (pathname === '/about') {
     return {
       title: 'About · Parth Pawar',
-      description: 'About Parth Pawar, Design Engineer and Head of UI/UX at Mentra. Experience across AI wearables, fintech, and creative technology.',
+      description: 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra. Experience across AI wearables, fintech, civic tools, and creative technology.',
       image: toAbsoluteUrl('/Assets/character/me/1.webp'),
       url,
       type: 'website',
@@ -121,7 +121,7 @@ function getRouteMeta(pathname: string): RouteMeta {
         mainEntity: {
           '@type': 'Person',
           name: 'Parth Pawar',
-          jobTitle: 'Design Engineer',
+          jobTitle: 'Product Designer',
           worksFor: {
             '@type': 'Organization',
             name: 'Mentra',
@@ -259,7 +259,7 @@ function getRouteMeta(pathname: string): RouteMeta {
 
   return {
     title: 'Parth Pawar · Portfolio',
-    description: 'Portfolio of Parth Pawar, Design Engineer.',
+    description: 'Portfolio of Parth Pawar, Product Designer.',
     image: toAbsoluteUrl(DEFAULT_IMAGE),
     url,
     type: 'website',
@@ -285,6 +285,8 @@ export default function RouteSeo() {
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:image" content={meta.image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={meta.title} />

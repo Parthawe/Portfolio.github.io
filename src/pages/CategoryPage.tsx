@@ -9,6 +9,7 @@ import { Reveal } from '../components/Reveal'
 import ClientsMarquee from '../components/ClientsMarquee'
 import FigmaFrameLabel from '../components/FigmaFrameLabel'
 import FigmaSelect from '../components/FigmaSelect'
+import ParthDoesSection from '../components/ParthDoesSection'
 import {
   getProject,
   isHiddenProject,
@@ -62,18 +63,6 @@ const CATEGORY_ANNOTATION_LINKS = [
   { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
 ] as const
 
-const CATEGORY_ANNOTATION_ORDER = [
-  'ux-design',
-  'ai-wearables',
-  'creative-tech',
-  'fintech',
-  'crypto',
-  'installations',
-  'brand-visual',
-  'design-for-good',
-  'ai',
-] as const
-
 function addVisibleProject(list: Project[], seen: Set<string>, project?: Project) {
   if (!project || isHiddenProject(project) || seen.has(project.slug)) return
   seen.add(project.slug)
@@ -124,10 +113,6 @@ export default function CategoryPage() {
     ? visibleCategoryProjects.filter((project) => project.slug !== featuredProject.slug)
     : visibleCategoryProjects
   const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
-  const categoryIndex = Math.max(0, CATEGORY_ANNOTATION_ORDER.indexOf(slug as (typeof CATEGORY_ANNOTATION_ORDER)[number]))
-  const categoryNum = String(categoryIndex + 1).padStart(2, '0')
-  const categoryObjectSlug = slug === 'ai' ? 'ai-wearables' : slug
-
   return (
     <div className="category-page" style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
       <Helmet>
@@ -207,79 +192,8 @@ export default function CategoryPage() {
             </section>
           </Reveal>
 
-          {/* Category annotation */}
           <Reveal>
-            <section className="lp-parth-does" style={{ position: 'relative' }}>
-              <FigmaFrameLabel name="What Parth does" />
-              <div className="lp-parth-card">
-                <svg className="wr-about-border" preserveAspectRatio="none" aria-hidden="true">
-                  <line x1="12" y1="12" x2="12" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
-                  <line x1="100%" y1="12" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(-12,0)" />
-                  <line x1="12" y1="12" x2="100%" y2="12" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
-                  <line x1="12" y1="100%" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(0,-12)" />
-                </svg>
-                <div className="wr-about-dot" style={{ top: '11px' }} />
-                <div className="wr-about-dot" style={{ top: '30%' }} />
-                <div className="wr-about-dot" style={{ top: '53%' }} />
-                <div className="wr-about-dot" style={{ bottom: '11px' }} />
-
-                <div className="wr-about-top">
-                  <div className="wr-about-top-left">
-                    <span className="wr-about-num">{categoryNum}</span>
-                    <span className="wr-about-skill-label">{category.title.toUpperCase()} {category.titleAccent.toUpperCase()}</span>
-                  </div>
-                  <div className="wr-about-top-right">
-                    <span className="wr-about-dot-sq" />
-                    <span className="wr-label">ABOUT</span>
-                    <span className="wr-about-dot-sq" />
-                  </div>
-                </div>
-
-                <div className="lp-parth-body">
-                  <div className="lp-parth-object" aria-hidden="true">
-                    <span>{category.title} {category.titleAccent}</span>
-                    <span>Object study</span>
-                    <Suspense fallback={null}>
-                      <CategoryObject3D
-                        slug={categoryObjectSlug}
-                        size={230}
-                        className="lp-parth-object-canvas"
-                      />
-                    </Suspense>
-                  </div>
-
-                  <div className="lp-parth-copy">
-                    <h2 className="wr-about-heading">Parth Pawar</h2>
-                    <h2 className="wr-about-heading">does</h2>
-                    <div className="wr-about-cycle">
-                      <span className="wr-about-arrow" aria-hidden="true">&lt;</span>
-                      <span className="wr-about-skill">{category.title} {category.titleAccent}</span>
-                      <span className="wr-about-arrow" aria-hidden="true">&gt;</span>
-                      <span className="wr-about-arrow" aria-hidden="true">||</span>
-                    </div>
-                    <p className="wr-about-desc">
-                      I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi.
-                    </p>
-                    <Link to="/about" className="wr-about-readmore">read more.</Link>
-                  </div>
-                </div>
-
-                <div className="wr-about-vert" aria-hidden="true">PARTHPAWARWORKS</div>
-
-                <div className="wr-about-bottom">
-                  <div className="wr-about-bottom-left">
-                    <span className="wr-about-dot-circle" />
-                    <span className="wr-about-num">{categoryNum} / {String(CATEGORY_ANNOTATION_ORDER.length).padStart(2, '0')}</span>
-                  </div>
-                  <div className="wr-about-bottom-right">
-                    <span className="wr-about-dot-sq" />
-                    <span className="wr-about-meta-label">CURRENTLY BASED IN</span>
-                    <span className="wr-about-meta-val">SAN FRANCISCO, CA</span>
-                    <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <ParthDoesSection />
           </Reveal>
 
           <Reveal>

@@ -7,7 +7,7 @@ create table if not exists public.portfolio_comments (
   author_name text not null,
   author_email text,
   body text not null check (char_length(body) <= 2000),
-  status text not null default 'open' check (status in ('open', 'hidden')),
+  status text not null default 'pending' check (status in ('open', 'pending', 'hidden')),
   created_at timestamptz not null default now()
 );
 
@@ -24,4 +24,7 @@ create policy "Read visible portfolio comments"
 create policy "Create portfolio comments"
   on public.portfolio_comments
   for insert
-  with check (status = 'open');
+  with check (status = 'pending');
+
+-- Approve from the dashboard SQL editor:
+-- update public.portfolio_comments set status = 'open' where id = '<id>';

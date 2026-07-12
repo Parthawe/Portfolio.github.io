@@ -26,14 +26,17 @@ export default function ProjectQuickSummary({
     !project ||
     !project.summaryProblem ||
     !project.summaryRole ||
-    !project.summaryTeam ||
-    !project.summaryTimeline ||
     !project.summaryOutcome
   ) {
     return null
   }
 
   const isAccessLimited = isRequestAccessProject(project)
+  const compactMeta = [
+    project.summaryTeam ? { label: 'Team', value: project.summaryTeam } : null,
+    project.summaryTimeline ? { label: 'Timeline', value: project.summaryTimeline } : null,
+  ].filter((item): item is { label: string; value: string } => Boolean(item))
+  const proofStats = project.summaryStats?.slice(0, 3) ?? []
   const handleBridgeOpen = () => {
     onViewModeChange('full')
     if (typeof window !== 'undefined') {
@@ -49,11 +52,11 @@ export default function ProjectQuickSummary({
         <div className="cs-quick-summary-top">
           <div>
             <span className="cs-section-label">TL;DR</span>
-            <h2 className="cs-quick-summary-title">Problem, move, impact</h2>
+            <h2 className="cs-quick-summary-title">{project.name}</h2>
             <p className="cs-quick-summary-copy">
               {isAccessLimited
                 ? 'Start with the fast read. Deeper detail is shared directly after access is approved.'
-                : 'The shortest read of what was broken, what I owned, and what shipped.'}
+                : 'The public read focuses on the main bet. The full study keeps the proof and feature detail.'}
             </p>
           </div>
 
@@ -87,17 +90,9 @@ export default function ProjectQuickSummary({
               <span className="cs-quick-summary-label">Problem</span>
               <p>{project.summaryProblem}</p>
             </article>
-            <article className="cs-quick-summary-card cs-quick-summary-card--role">
-              <span className="cs-quick-summary-label">Role</span>
+            <article className="cs-quick-summary-card cs-quick-summary-card--move">
+              <span className="cs-quick-summary-label">Move</span>
               <p>{project.summaryRole}</p>
-            </article>
-            <article className="cs-quick-summary-card cs-quick-summary-card--team">
-              <span className="cs-quick-summary-label">Team</span>
-              <p>{project.summaryTeam}</p>
-            </article>
-            <article className="cs-quick-summary-card cs-quick-summary-card--timeline">
-              <span className="cs-quick-summary-label">Timeline</span>
-              <p>{project.summaryTimeline}</p>
             </article>
             <article className="cs-quick-summary-card cs-quick-summary-card--wide cs-quick-summary-card--outcome">
               <span className="cs-quick-summary-label">Outcome</span>
@@ -117,9 +112,20 @@ export default function ProjectQuickSummary({
           ) : null}
         </div>
 
-        {project.summaryStats?.length ? (
+        {compactMeta.length ? (
+          <div className="cs-quick-summary-meta-strip" aria-label="Project metadata">
+            {compactMeta.map((item) => (
+              <div className="cs-quick-summary-meta-item" key={item.label}>
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {proofStats.length ? (
           <div className="cs-quick-summary-stats" aria-label="Key proof points">
-            {project.summaryStats.map((stat) => (
+            {proofStats.map((stat) => (
               <div key={stat.label} className="cs-quick-summary-stat">
                 <span className="cs-quick-summary-stat-value">{stat.value}</span>
                 <span className="cs-quick-summary-stat-label">{stat.label}</span>

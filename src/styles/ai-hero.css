@@ -22,12 +22,8 @@
   justify-items: start;
   min-width: 0;
   width: 100%;
-  max-width: min(42rem, 52vw);
-  transform: none;
-}
-
-.ch--ux-design .ch-copy {
   max-width: 100%;
+  transform: none;
 }
 
 .ch-eyebrow {
@@ -185,7 +181,7 @@
   z-index: 3;
 }
 
-.ch--ux-design .ch-hero-footer {
+.ch-hero-footer {
   bottom: clamp(0.5rem, 1.2vw, 1.2rem);
 }
 
@@ -310,9 +306,6 @@
     font-size: clamp(2.95rem, 4.8vw, 4.6rem);
   }
   body.site-tools-open .ch-copy {
-    max-width: min(40rem, 52vw);
-  }
-  body.site-tools-open .ch--ux-design .ch-copy {
     max-width: min(100%, 62rem);
   }
 }

@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -182,22 +184,33 @@ function TransfiReviewerStory() {
 }
 
 export default function TransfiPage() {
-  const sections = [
-    { id: 'cs-public-story', label: 'Glimpse' },
-    { id: 'cs-process', label: 'Process' },
-    { id: 'case-study-access-transfi-project', label: 'Access' },
-  ]
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const sections = viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'case-study-access-transfi-project', label: 'Access' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-public-story', label: 'Glimpse' },
+        { id: 'cs-process', label: 'Process' },
+        { id: 'case-study-access-transfi-project', label: 'Access' },
+      ]
 
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
     if (typeof window !== 'undefined') {
-      const target = nextMode === 'full'
-        ? document.getElementById('case-study-access-transfi-project')
-        : null
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const handleAccessRequest = () => {
+    setViewMode('full')
+    if (typeof window !== 'undefined') {
+      window.setTimeout(() => {
+        document.getElementById('case-study-access-transfi-project')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 120)
     }
   }
 
@@ -246,32 +259,43 @@ export default function TransfiPage() {
           showHeaderSummary={false}
         />
 
-        <NdaPublicStory
+        <ProjectQuickSummary
           slug="transfi-project"
-          headline="Trust made operational."
-          lede="A public preview of the redesign shape: dashboards, widgets, and merchant-facing flows without exposing confidential constraints."
-          visuals={TRANSFI_PUBLIC_VISUALS}
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          fullEntryId="case-study-access-transfi-project"
         />
 
-        <NdaProcess
-          title="How I approached it"
-          intro="Two moves shaped the redesign: make trust visible in the interface, then focus the work around the highest-risk payment moments."
-          visuals={TRANSFI_PROCESS_VISUALS}
-          decisions={[
-            {
-              move: 'Turn trust into interface behavior.',
-              why: 'Show status, confirm risk, and make money moments reviewable.',
-            },
-            {
-              move: 'Design around payment-flow risk.',
-              why: 'Prioritize confusing steps first, then reuse patterns across markets.',
-            },
-          ]}
-          shift={{
-            before: 'Payment flows where trust was asserted, and users carried the uncertainty.',
-            after: 'Flows where interface behavior makes each step legible, reviewable, and safe by default.',
-          }}
-        />
+        {viewMode === 'full' ? (
+          <>
+            <NdaPublicStory
+              slug="transfi-project"
+              headline="Trust made operational."
+              lede="A public preview of the redesign shape: dashboards, widgets, and merchant-facing flows without exposing confidential constraints."
+              visuals={TRANSFI_PUBLIC_VISUALS}
+            />
+
+            <NdaProcess
+              title="How I approached it"
+              intro="Two moves shaped the redesign: make trust visible in the interface, then focus the work around the highest-risk payment moments."
+              visuals={TRANSFI_PROCESS_VISUALS}
+              decisions={[
+                {
+                  move: 'Turn trust into interface behavior.',
+                  why: 'Show status, confirm risk, and make money moments reviewable.',
+                },
+                {
+                  move: 'Design around payment-flow risk.',
+                  why: 'Prioritize confusing steps first, then reuse patterns across markets.',
+                },
+              ]}
+              shift={{
+                before: 'Payment flows where trust was asserted, and users carried the uncertainty.',
+                after: 'Flows where interface behavior makes each step legible, reviewable, and safe by default.',
+              }}
+            />
+          </>
+        ) : null}
 
         <NdaGate slug="transfi-project">
           <TransfiReviewerStory />
@@ -284,7 +308,7 @@ export default function TransfiPage() {
           placement="side"
           modeAction={{
             label: 'Request full case study',
-            onClick: () => handleViewModeChange('full'),
+            onClick: handleAccessRequest,
           }}
         />
 

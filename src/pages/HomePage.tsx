@@ -14,63 +14,11 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
 import { isLowPowerDevice } from '../utils/performance';
+import ParthDoesSection from '../components/ParthDoesSection';
 
 
 const HeroScene = lazy(() => import('../components/HeroScene'));
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
-
-interface Skill {
-  label: string;
-  objectSlug: string;
-  description: string;
-  mockupSrc: string;
-  mockupAlt: string;
-}
-
-const skills: Skill[] = [
-  {
-    label: 'UX Design',
-    objectSlug: 'ux-design',
-    description: 'I turn messy product flows into calm, learnable interfaces where every state explains what happens next.',
-    mockupSrc: '/Assets/mockups/projects/raahi-project_16x9.webp',
-    mockupAlt: 'Raahi transit product interface mockup',
-  },
-  {
-    label: 'Product Design',
-    objectSlug: 'ux-design',
-    description: 'I shape early product systems from research, structure, and shipped screens, not just polished mockups.',
-    mockupSrc: '/Assets/mockups/projects/mentra_16x9.webp',
-    mockupAlt: 'Mentra wearable OS product mockup',
-  },
-  {
-    label: 'Fintech',
-    objectSlug: 'fintech',
-    description: 'I design payment and crypto flows around confidence: visible risk, clear status, and reviewable decisions.',
-    mockupSrc: '/Assets/mockups/projects/zentipay_16x9.webp',
-    mockupAlt: 'ZentiPay fintech interface mockup',
-  },
-  {
-    label: 'Creative Technology',
-    objectSlug: 'creative-tech',
-    description: 'I prototype interfaces where software, motion, and physical interaction make complex ideas tangible.',
-    mockupSrc: '/Assets/mockups/projects/jugalbandi_16x9.webp',
-    mockupAlt: 'Jugalbandi interactive installation mockup',
-  },
-  {
-    label: 'Physical Computing',
-    objectSlug: 'installations',
-    description: 'I build responsive objects and installations that let people understand systems through touch and behavior.',
-    mockupSrc: '/Assets/mockups/projects/moniac-machine_16x9.webp',
-    mockupAlt: 'Moniac Machine physical computing mockup',
-  },
-  {
-    label: 'Installations',
-    objectSlug: 'installations',
-    description: 'I compose space, hardware, and interaction into experiences that feel legible without needing instructions.',
-    mockupSrc: '/Assets/mockups/projects/drowning_16x9.webp',
-    mockupAlt: 'Drowning stage installation mockup',
-  },
-];
 
 const disciplines = [
   { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
@@ -126,12 +74,10 @@ const IDENTITY_SLIDE_INTERVAL_MS = 6500;
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const [skillIdx, setSkillIdx] = useState(0);
   const [identityTab, setIdentityTab] = useState<(typeof identityTabs)[number]['id']>('who-i-am');
   const [heroWebOpen, setHeroWebOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
-  const [aboutRef, aboutInView] = useInView<HTMLElement>(0.08, '160px 0px');
   const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
   const archiveSingleColumn = useMediaQuery('(max-width: 360px)');
   const archiveTwoColumn = useMediaQuery('(max-width: 1100px)');
@@ -143,7 +89,6 @@ export default function HomePage() {
     delayMs: coarsePointer ? 520 : lowPowerDevice ? 2200 : 1800,
   });
   const mountDisciplineObjects = useDeferredMount(allowDecorative3D && disciplinesInView, { timeout: lowPowerDevice ? 2200 : 1400, delayMs: lowPowerDevice ? 360 : 150 });
-  const mountAboutObject = useDeferredMount(allowDecorative3D && aboutInView, { timeout: lowPowerDevice ? 2400 : 1600, delayMs: lowPowerDevice ? 360 : 120 });
   const archiveProjects = homepageSelectedProjects;
   const archiveColumnCount = archiveSingleColumn ? 1 : archiveTwoColumn ? 2 : 3;
   const archiveColumns = useMemo(
@@ -158,12 +103,6 @@ export default function HomePage() {
   const getFlagshipCoverShape = (slug: string): 'portrait' | 'square' =>
     slug === 'mentra' || slug === 'jugalbandi' ? 'portrait' : 'square';
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      setSkillIdx(prev => (prev + 1) % skills.length);
-    }, 3000);
-    return () => clearInterval(id);
-  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -208,11 +147,11 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Parth Pawar, Portfolio</title>
+        <title>Parth Pawar, Product Designer</title>
         <meta name="description" content="Portfolio of Parth Pawar, crafting trusted product experiences across AI wearables, fintech, civic systems, creative technology, and physical computing." />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Parth Pawar, Portfolio" />
-        <meta property="og:description" content="Product systems, AI wearable interfaces, fintech flows, civic systems, and physical interaction work by Parth Pawar." />
+        <meta property="og:title" content="Parth Pawar, Product Designer" />
+        <meta property="og:description" content="Product Designer crafting trusted systems across AI wearables, fintech, civic tools, creative technology, and physical interaction." />
         <meta property="og:image" content={`${SITE_ORIGIN}${DEFAULT_OG_IMAGE}`} />
         <link rel="canonical" href={SITE_URL} />
       </Helmet>
@@ -347,92 +286,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section className="wr-about-section" style={{ position: 'relative' }} ref={aboutRef}>
-            <FigmaFrameLabel name="About" />
-            <div className="wr-about-card" id="about-card">
-              <svg className="wr-about-border" preserveAspectRatio="none">
-                <line x1="12" y1="12" x2="12" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
-                <line x1="100%" y1="12" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(-12,0)" />
-                <line x1="12" y1="12" x2="100%" y2="12" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" />
-                <line x1="12" y1="100%" x2="100%" y2="100%" stroke="var(--ink-15)" strokeWidth="1" strokeDasharray="1 3" transform="translate(0,-12)" />
-              </svg>
-              <div className="wr-about-dot" style={{ top: '11px' }} />
-              <div className="wr-about-dot" style={{ top: '28%' }} />
-              <div className="wr-about-dot" style={{ top: '50%' }} />
-              <div className="wr-about-dot" style={{ top: '72%' }} />
-              <div className="wr-about-dot" style={{ bottom: '11px' }} />
-
-              <div className="wr-about-top">
-                <div className="wr-about-top-left">
-                  <span className="wr-about-num">{String(skillIdx + 1).padStart(2, '0')}</span>
-                  <span className="wr-about-skill-label">{skills[skillIdx].label.toUpperCase()}</span>
-                </div>
-                <div className="wr-about-top-right">
-                  <span className="wr-about-dot-sq" />
-                  <span className="wr-label">ABOUT</span>
-                  <span className="wr-about-dot-sq" />
-                </div>
-              </div>
-
-              <div className="wr-about-body">
-                <div className="wr-about-text">
-                  <h2 className="wr-about-heading">Parth Pawar</h2>
-                  <h2 className="wr-about-heading">does</h2>
-
-                  <div className="wr-about-cycle">
-                    <div className="wr-about-skill-wrap">
-                      <span className="wr-about-skill" key={skillIdx}>{skills[skillIdx].label}</span>
-                    </div>
-                  </div>
-
-                  <p className="wr-about-desc">
-                    {skills[skillIdx].description}
-                  </p>
-
-                  <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                    <Link to="/about" className="wr-about-readmore">read more.</Link>
-                  </div>
-
-                  <span className="wr-about-site" aria-hidden="true">PARTHPAWAR.COM</span>
-                </div>
-                <div className="wr-about-img-col">
-                  <div className="wr-about-object-wrap" id="about-img-wrap" aria-hidden="true">
-                    <div className="wr-about-object-stage">
-                      <div className="wr-about-object-shell" key={skills[skillIdx].label}>
-                        {mountAboutObject ? (
-                          <Suspense fallback={null}>
-                            <CategoryObject3D
-                              slug={skills[skillIdx].objectSlug}
-                              size={250}
-                              className="wr-about-object-canvas"
-                            />
-                          </Suspense>
-                        ) : null}
-                      </div>
-                    </div>
-                  </div>
-                  <figure className="wr-about-work-preview" key={`${skills[skillIdx].label}-mockup`}>
-                    <img src={skills[skillIdx].mockupSrc} alt={skills[skillIdx].mockupAlt} loading="lazy" />
-                  </figure>
-                </div>
-              </div>
-
-              <div className="wr-about-vert" aria-hidden="true">PARTHPAWARWORKS</div>
-
-              <div className="wr-about-bottom">
-                <div className="wr-about-bottom-left">
-                  <span className="wr-about-dot-circle" />
-                  <span className="wr-about-num">{String(skillIdx + 1).padStart(2, '0')} / {String(skills.length).padStart(2, '0')}</span>
-                </div>
-                <div className="wr-about-bottom-right">
-                  <span className="wr-about-dot-sq" />
-                  <span className="wr-about-meta-label">CURRENTLY BASED IN</span>
-                  <span className="wr-about-meta-val">SAN FRANCISCO, CA</span>
-                  <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
-                </div>
-              </div>
-            </div>
-          </section>
+          <ParthDoesSection />
 
           <section className="wr-disciplines" id="disciplines" style={{ position: 'relative' }} ref={disciplinesRef}>
             <FigmaFrameLabel name="Disciplines" />

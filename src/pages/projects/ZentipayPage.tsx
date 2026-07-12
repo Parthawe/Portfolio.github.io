@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
 import NdaReviewerGallery from '../../components/case-study/NdaReviewerGallery'
@@ -86,6 +88,36 @@ const ZENTIPAY_PROCESS_VISUALS = [
 ]
 
 export default function ZentipayPage() {
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const sections = viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'case-study-access-zentipay', label: 'Access' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-public-story', label: 'Glimpse' },
+        { id: 'cs-process', label: 'Process' },
+        { id: 'case-study-access-zentipay', label: 'Access' },
+      ]
+
+  const handleViewModeChange = (nextMode: 'summary' | 'full') => {
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const handleAccessRequest = () => {
+    setViewMode('full')
+    if (typeof window !== 'undefined') {
+      window.setTimeout(() => {
+        document.getElementById('case-study-access-zentipay')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 120)
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -142,46 +174,60 @@ export default function ZentipayPage() {
           ]}
         />
 
-        <NdaPublicStory
+        <ProjectQuickSummary
           slug="zentipay"
-          headline="Trust before transfer."
-          lede="A focused preview of the trust system: price clarity, progress states, review moments, and reusable fintech components."
-          visuals={ZENTIPAY_PUBLIC_VISUALS}
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          fullEntryId="case-study-access-zentipay"
         />
 
-        <NdaProcess
-          title="How I approached it"
-          intro="I reduced the work to three product moves: clarify the price, make risk reviewable, and reuse the trust language across the system."
-          visuals={ZENTIPAY_PROCESS_VISUALS}
-          decisions={[
-            {
-              move: 'Make the transfer understandable before money moves.',
-              why: 'Show amount, conversion, fees, and destination early.',
-            },
-            {
-              move: 'Turn risky actions into review moments.',
-              why: 'Give users a clear pause before irreversible steps.',
-            },
-            {
-              move: 'Create reusable trust patterns.',
-              why: 'Use the same status, confirmation, and proof language across flows.',
-            },
-          ]}
-          shift={{
-            before: 'Users learned cost, status, and risk too late in the flow.',
-            after: 'The product front-loads price clarity, progress, and review.',
-          }}
-        />
+        {viewMode === 'full' ? (
+          <>
+            <NdaPublicStory
+              slug="zentipay"
+              headline="Trust before transfer."
+              lede="A focused preview of the trust system: price clarity, progress states, review moments, and reusable fintech components."
+              visuals={ZENTIPAY_PUBLIC_VISUALS}
+            />
+
+            <NdaProcess
+              title="How I approached it"
+              intro="I reduced the work to three product moves: clarify the price, make risk reviewable, and reuse the trust language across the system."
+              visuals={ZENTIPAY_PROCESS_VISUALS}
+              decisions={[
+                {
+                  move: 'Make the transfer understandable before money moves.',
+                  why: 'Show amount, conversion, fees, and destination early.',
+                },
+                {
+                  move: 'Turn risky actions into review moments.',
+                  why: 'Give users a clear pause before irreversible steps.',
+                },
+                {
+                  move: 'Create reusable trust patterns.',
+                  why: 'Use the same status, confirmation, and proof language across flows.',
+                },
+              ]}
+              shift={{
+                before: 'Users learned cost, status, and risk too late in the flow.',
+                after: 'The product front-loads price clarity, progress, and review.',
+              }}
+            />
+          </>
+        ) : null}
 
         <NdaGate slug="zentipay">
           <NdaReviewerGallery groups={ZENTIPAY_REVIEWER_VISUALS} />
         </NdaGate>
 
-        <BottomNav sections={[
-          { id: 'cs-public-story', label: 'Glimpse' },
-          { id: 'cs-process', label: 'Process' },
-          { id: 'case-study-access-zentipay', label: 'Access' },
-        ]} placement="side" />
+        <BottomNav
+          sections={sections}
+          placement="side"
+          modeAction={{
+            label: 'Request full case study',
+            onClick: handleAccessRequest,
+          }}
+        />
 
 
       </main>

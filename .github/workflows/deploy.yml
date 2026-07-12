@@ -19,6 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VITE_NDA_ACCESS_SHA256: ${{ secrets.VITE_NDA_ACCESS_SHA256 }}
+      # These values are intentionally public client configuration. The
+      # database's row-level policies control what anonymous visitors can do.
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+      VITE_COMMENTS_TABLE: ${{ vars.VITE_COMMENTS_TABLE || 'portfolio_comments' }}
     steps:
       - uses: actions/checkout@v4
 

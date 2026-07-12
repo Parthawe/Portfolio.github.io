@@ -150,16 +150,10 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>I reviewed resident-service apps like MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety to see how they handled parking, complaints, vehicle records, payments, visitor logs, and society communication.</p>
             </CsBody>
-            <div className="vj-board-stack vj-board-stack--research">
-              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--research">
-                <img src="/Assets/Projects/vj/Desktop/4.webp" alt="User research personas, quotes, goals, and current case analysis" loading="lazy" />
-                <figcaption className="cs-img-caption">User research: two resident archetypes, goals, quotes, and current-case patterns.</figcaption>
-              </figure>
-              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--competitive">
-                <img src="/Assets/Projects/vj/Desktop/4.webp" alt="Competitive analysis matrix comparing resident service apps" loading="lazy" />
-                <figcaption className="cs-img-caption">Competitive analysis: where existing resident apps supported parking, complaints, payments, and visitor flows.</figcaption>
-              </figure>
-            </div>
+            <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--competitive-single">
+              <img src="/Assets/Projects/vj/Desktop/4.webp" alt="Competitive analysis matrix comparing resident service apps" loading="lazy" />
+              <figcaption className="cs-img-caption">Competitive analysis: where existing resident apps supported parking, complaints, payments, and visitor flows.</figcaption>
+            </figure>
 
             <h3 className="cs-section-subtitle">Findings</h3>
             <CsFeatureGrid features={[

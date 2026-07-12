@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -297,6 +298,29 @@ function GameEmbed() {
 }
 
 export default function TheOmakasePage() {
+  const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const sections = viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'TL;DR' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-film', label: 'Film' },
+        { id: 'cs-play', label: 'Play' },
+        { id: 'cs-gameplay', label: 'Gameplay' },
+        { id: 'cs-fabrication', label: 'Fabrication' },
+        { id: 'cs-exhibition', label: 'Exhibition' },
+        { id: 'cs-reflections', label: 'Reflections' },
+      ]
+
+  const handleViewModeChange = (nextMode: 'summary' | 'full') => {
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -325,6 +349,19 @@ export default function TheOmakasePage() {
           ]}
         />
 
+        <ProjectQuickSummary
+          slug="the-omakase"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          fullEntryId="cs-film"
+        />
+
+        <CsExpandPreview
+          expanded={viewMode === 'full'}
+          onExpand={() => handleViewModeChange('full')}
+          cta="Open the build and exhibition proof"
+          note="Cabinet photos, gameplay details, fabrication notes, exhibition proof, and reflections."
+        >
         {/* Video */}
         <section className="cs-slide reveal" id="cs-film">
           <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
@@ -342,10 +379,6 @@ export default function TheOmakasePage() {
         {/* Play the game */}
         <GameEmbed />
 
-        <CsExpandPreview
-          cta="Open the build and exhibition proof"
-          note="Cabinet photos, gameplay details, fabrication notes, exhibition proof, and reflections."
-        >
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -455,14 +488,13 @@ export default function TheOmakasePage() {
 
         </CsExpandPreview>
 
-        <BottomNav sections={[
-          { id: 'cs-film', label: 'Film' },
-          { id: 'cs-play', label: 'Play' },
-          { id: 'cs-gameplay', label: 'Gameplay' },
-          { id: 'cs-fabrication', label: 'Fabrication' },
-          { id: 'cs-exhibition', label: 'Exhibition' },
-          { id: 'cs-reflections', label: 'Reflections' },
-        ]} />
+        <BottomNav
+          sections={sections}
+          modeAction={{
+            label: 'Open full case study',
+            onClick: () => handleViewModeChange('full'),
+          }}
+        />
 
       </main>
 

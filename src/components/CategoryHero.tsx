@@ -7,41 +7,6 @@ const CategoryObject3D = lazy(() => import('./CategoryObject3D'))
 const ease = [0.16, 1, 0.3, 1] as const
 const revealTransition = { duration: 0.58, ease }
 
-/* The domain positioning statement — the landing page's headline.
-   Split into [lead, accent] so the accent phrase renders in the category colour. */
-const STATEMENTS: Record<string, [string, string]> = {
-  'ai':              ['AI that augments,', 'not replaces.'],
-  'ux-design':       ['The interface', 'is the product.'],
-  'ui':              ['Interfaces that', 'earn trust.'],
-  'creative-tech':   ['Code is just', 'another material.'],
-  'design-engineer': ['Prototype first,', 'prove fast.'],
-  'installations':   ['If a space needs a sign,', 'it already failed.'],
-  'brand-visual':    ['Typography is the', 'tone of voice.'],
-  'brand':           ['Identity that', 'carries the room.'],
-  'design-for-good': ['Design that', 'serves everyone.'],
-  'healthcare':      ['Care needs clarity,', 'not noise.'],
-  'fintech':         ['High stakes,', 'zero confusion.'],
-  'crypto':          ['High stakes,', 'clear rails.'],
-  'ai-wearables':    ['Ambient, glanceable,', 'safe.'],
-}
-
-/* One punchy subline per domain (what lives here + how it is judged). */
-const SUBLINES: Record<string, string> = {
-  'ai':              'Smart glasses, voice interfaces, on-device ML, and conversational AI — designed for humans, not manuals.',
-  'ux-design':       'Hi, I’m Parth, a Product Designer focused on crafting intuitive, user-centered experiences that make technology accessible and engaging.',
-  'ui':              'Interface systems, dashboards, mobile flows, and launch surfaces where hierarchy and states carry the trust.',
-  'creative-tech':   'Neural-network instruments, audio-reactive visuals, and interactive machines — code as a physical material.',
-  'design-engineer': 'React, motion, hardware, and prototypes used as design tools, not just delivery tools.',
-  'installations':   'Black holes you can hold, UV rooms with hidden messages, a 15-foot rotating stage — built and exhibited.',
-  'brand-visual':    'Custom typefaces, event art direction, and identity systems with factory-spec precision.',
-  'brand':           'Identity, typography, campaigns, and launch systems that make the product recognizable before the pitch.',
-  'design-for-good': 'Civic platforms, accessibility-first interfaces, and community tools — design as a public good.',
-  'healthcare':      'Health-facing interfaces where consent, comprehension, and next steps need to stay visible.',
-  'fintech':         'High-stakes interfaces for money movement — KYC flows, cross-border rails, trust-first product systems.',
-  'crypto':          'Trust-first interfaces for crypto flows — KYC, multi-rail payments, cross-border settlement.',
-  'ai-wearables':    'Intelligent interfaces for smart glasses and voice — ambient, glanceable, safe.',
-}
-
 /* Clean category names for the eyebrow — data titles carry legacy
    two-line splits ("Install-" / "ations & Fabrication"). */
 const CATEGORY_NAMES: Record<string, string> = {
@@ -64,7 +29,7 @@ const HERO_ROUTE_ALIASES: Record<string, string> = {
   ux: 'ux-design',
 }
 
-const UX_HERO_STATS = [
+const PORTFOLIO_STATS = [
   ['30+', 'projects'],
   ['∞', 'Memories'],
   ['5+', 'years of experience'],
@@ -334,12 +299,9 @@ interface CategoryHeroProps {
   projectCount: number
 }
 
-export default function CategoryHero({ slug, routeSlug, accentColor, title, titleAccent, description, has3D, projectCount }: CategoryHeroProps) {
+export default function CategoryHero({ slug, routeSlug, accentColor, title, titleAccent, has3D }: CategoryHeroProps) {
   const heroSlug = HERO_ROUTE_ALIASES[routeSlug ?? slug] ?? routeSlug ?? slug
-  const [lead, accent] = STATEMENTS[heroSlug] || STATEMENTS[slug] || [title, titleAccent]
-  const sub = SUBLINES[heroSlug] || SUBLINES[slug] || description
   const categoryName = CATEGORY_NAMES[heroSlug] || CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
-  const isAudienceLedPage = heroSlug === 'ux-design' || heroSlug === 'ui'
   const audienceItems = useMemo(() => CATEGORY_AUDIENCE[heroSlug] ?? CATEGORY_AUDIENCE[slug] ?? DEFAULT_AUDIENCE, [heroSlug, slug])
   const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
 
@@ -365,44 +327,14 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           {categoryName}
         </motion.span>
 
-        {isAudienceLedPage ? (
-          <motion.div
-            className="ch-audience-shell"
-            initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
-            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
-            transition={{ duration: 0.68, ease }}
-          >
-            <CategoryAudience items={audienceItems} accentColor={accentColor} categoryName={categoryName} />
-          </motion.div>
-        ) : (
-          <>
-            <motion.h1
-              className="ch-statement"
-              initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
-              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
-              transition={{ duration: 0.68, ease }}
-            >
-              {lead}{' '}
-              <em style={{ color: accentColor }}>{accent}</em>
-            </motion.h1>
-            <motion.p
-              className="ch-sub"
-              initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
-              transition={{ ...revealTransition, delay: 0.16 }}
-            >
-              {sub}
-            </motion.p>
-            <motion.div
-              className="ch-audience-shell ch-audience-shell--compact"
-              initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
-              transition={{ ...revealTransition, delay: 0.22 }}
-            >
-              <CategoryAudience items={audienceItems} accentColor={accentColor} categoryName={categoryName} />
-            </motion.div>
-          </>
-        )}
+        <motion.div
+          className="ch-audience-shell"
+          initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
+          transition={{ duration: 0.68, ease }}
+        >
+          <CategoryAudience items={audienceItems} accentColor={accentColor} categoryName={categoryName} />
+        </motion.div>
       </div>
 
       {/* 3D object beside the copy — never on top of it */}
@@ -438,20 +370,13 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           <span>See work</span>
           <span aria-hidden="true">&darr;</span>
         </a>
-        <dl className="ch-hero-stats" aria-label={isAudienceLedPage ? `${categoryName} portfolio statistics` : `${categoryName} project count`}>
-          {isAudienceLedPage ? (
-            UX_HERO_STATS.map(([value, label]) => (
-              <div className="ch-hero-stat" key={label}>
-                <dt>{value}</dt>
-                <dd>{label}</dd>
-              </div>
-            ))
-          ) : (
-            <div className="ch-hero-stat">
-              <dt>{projectCount}</dt>
-              <dd>project{projectCount === 1 ? '' : 's'}</dd>
+        <dl className="ch-hero-stats" aria-label={`${categoryName} portfolio statistics`}>
+          {PORTFOLIO_STATS.map(([value, label]) => (
+            <div className="ch-hero-stat" key={label}>
+              <dt>{value}</dt>
+              <dd>{label}</dd>
             </div>
-          )}
+          ))}
         </dl>
       </motion.div>
     </section>

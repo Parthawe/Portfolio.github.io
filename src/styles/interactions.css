@@ -730,6 +730,10 @@ body.site-tinted[data-theme="dark"] .site-tint-wash {
   display: none;
 }
 
+.site-comment-layer.is-open {
+  display: block;
+}
+
 .site-comment-pin {
   position: absolute;
   display: inline-grid;
