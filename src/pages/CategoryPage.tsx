@@ -144,6 +144,7 @@ export default function CategoryPage() {
           <Suspense fallback={null}>
             <CategoryHero
               slug={slug}
+              routeSlug={rawSlug}
               accentColor={category.accentColor}
               title={category.title}
               titleAccent={category.titleAccent}

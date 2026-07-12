@@ -86,68 +86,89 @@
   hyphens: none;
 }
 
-.ch-ux-intro {
+.ch-audience-shell {
   display: block;
-  width: min(100%, 96rem);
-  padding-top: clamp(1.25rem, 2.8vw, 2.35rem);
+  width: min(100%, 66rem);
+  padding-top: clamp(1.2rem, 2.4vw, 2rem);
 }
 
-.ch-ux-audience-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.1rem, 3vw, 2.35rem);
-  width: min(100%, 69rem);
+.ch-audience-shell--compact {
+  width: min(100%, 34rem);
+  padding-top: clamp(0.15rem, 0.7vw, 0.4rem);
 }
 
-.ch-ux-audience-item {
+.ch-audience {
   display: grid;
+  gap: clamp(0.85rem, 1.6vw, 1.15rem);
+  min-height: clamp(10rem, 17vw, 14.5rem);
   align-content: start;
-  gap: clamp(0.8rem, 1.3vw, 1.1rem);
-  padding: 0;
-  border: 0;
-  background: transparent;
+}
+
+.ch-audience-shell--compact .ch-audience {
+  min-height: clamp(7.7rem, 12vw, 10.4rem);
+}
+
+.ch-audience-item {
+  display: grid;
+  gap: clamp(1rem, 1.8vw, 1.35rem);
   text-align: left;
 }
 
-.ch-ux-audience-item h2 {
+.ch-audience-item h2 {
   display: grid;
   gap: 0.2rem;
   margin: 0;
   font-family: var(--sans);
-  font-size: clamp(1.02rem, 1.45vw, 1.36rem);
+  font-size: clamp(1.12rem, 1.85vw, 1.85rem);
   font-weight: 480;
-  line-height: 1.22;
-  color: var(--ink);
+  line-height: 1.18;
   letter-spacing: 0;
 }
 
-.ch-ux-audience-item p {
-  margin: 0;
-  max-width: 30ch;
-  font-family: var(--sans);
-  font-size: clamp(0.94rem, 1.15vw, 1.08rem);
-  font-weight: 400;
-  line-height: 1.45;
-  color: var(--ink-60);
-  text-wrap: pretty;
-  overflow-wrap: normal;
-  word-break: normal;
-  hyphens: none;
+.ch-audience-shell--compact .ch-audience-item h2 {
+  font-size: clamp(0.96rem, 1.18vw, 1.16rem);
 }
 
-.ch-ux-lede {
+.ch-audience-item p {
   margin: 0;
-  max-width: min(100%, 68rem);
+  max-width: 52ch;
   font-family: var(--sans);
-  font-size: clamp(1.75rem, 3.05vw, 3.05rem);
+  font-size: clamp(1.95rem, 4.4vw, 4.3rem);
   font-weight: 360;
-  line-height: 1.24;
+  line-height: 1.12;
   color: var(--ink);
   letter-spacing: 0;
   text-wrap: balance;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
+}
+
+.ch-audience-shell--compact .ch-audience-item p {
+  max-width: 36ch;
+  font-size: clamp(0.92rem, 1.12vw, 1.04rem);
+  font-weight: 400;
+  line-height: 1.46;
+  color: var(--ink-60);
+}
+
+.ch-audience-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+.ch-audience-dots span {
+  display: block;
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 999px;
+  background: var(--ink-12);
+  transition: width 320ms ease, background-color 320ms ease, opacity 320ms ease;
+}
+
+.ch-audience-dots span.is-active {
+  width: 1.45rem;
 }
 
 .ch-hero-footer {
@@ -222,9 +243,9 @@
 
 .ch-hero-stat dt {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(1.55rem, 2.4vw, 2.25rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 0.98;
   color: var(--ink);
 }
@@ -256,6 +277,11 @@
   pointer-events: none;
   transform: none;
   z-index: 1;
+}
+
+.ch--ai .ch-3d--side,
+.ch--ai-wearables .ch-3d--side {
+  top: clamp(3.75rem, 7vw, 6.5rem);
 }
 
 /* The canvas box must stay square: flex used to shrink its width to the
@@ -315,7 +341,7 @@
   }
   .ch-statement,
   .ch-sub,
-  .ch-ux-intro {
+  .ch-audience-shell {
     width: 100%;
     max-width: 100%;
   }
@@ -358,9 +384,9 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
   }
-  .ch-ux-audience-grid {
-    gap: 0.8rem;
-    width: 100%;
+  .ch-audience,
+  .ch-audience-shell--compact .ch-audience {
+    min-height: 0;
   }
 }
 
@@ -378,24 +404,24 @@
     font-size: clamp(0.92rem, 3.8vw, 1rem);
     line-height: 1.48;
   }
-  .ch-ux-audience-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .ch-audience-shell {
+    padding-top: 0.65rem;
   }
-  .ch-ux-audience-item {
-    gap: 0.42rem;
-    padding-bottom: 0.9rem;
-    border-bottom: 1px solid var(--ink-08);
+  .ch-audience-item {
+    gap: 0.55rem;
   }
-  .ch-ux-audience-item h2 {
+  .ch-audience-item h2,
+  .ch-audience-shell--compact .ch-audience-item h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
     font-size: clamp(1rem, 4.2vw, 1.2rem);
   }
-  .ch-ux-audience-item p {
+  .ch-audience-item p,
+  .ch-audience-shell--compact .ch-audience-item p {
     max-width: 34ch;
-    font-size: clamp(0.92rem, 3.75vw, 1rem);
+    font-size: clamp(1.32rem, 6.5vw, 2rem);
+    line-height: 1.18;
   }
   .ch-3d--side {
     min-height: clamp(15rem, 66vw, 20rem);

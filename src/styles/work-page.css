@@ -1305,22 +1305,6 @@
 #lp-work .pcard-masonry > *:nth-child(6n+5) .pcard-visual { aspect-ratio: 3 / 4; }
 #lp-work .pcard-masonry > *:nth-child(6n+6) .pcard-visual { aspect-ratio: 1 / 1; }
 
-#lp-work .pcard-masonry {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  column-count: initial;
-  column-gap: 0;
-  align-items: start;
-}
-
-#lp-work .pcard-masonry > * {
-  min-width: 0;
-  margin: 0;
-  break-inside: auto;
-  page-break-inside: auto;
-}
-
 #lp-work .pcard-name,
 #lp-work .pcard--featured .pcard-name,
 #lp-work .pcard--request-access .pcard-name {
@@ -1505,13 +1489,6 @@
   .pcard-masonry {
     column-count: 2;
     column-gap: 24px;
-  }
-
-  #lp-work .pcard-masonry {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-    column-count: initial;
-    column-gap: 0;
   }
 
   .work-library-shell {
@@ -1771,13 +1748,6 @@
     column-gap: 0;
   }
   .pcard-masonry > * { margin-bottom: 20px; }
-  #lp-work .pcard-masonry {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
-  }
-  #lp-work .pcard-masonry > * {
-    margin-bottom: 0;
-  }
   .page-work .abt-paper .wrap { padding-left: 16px; padding-right: 16px; }
   .work-page-header { padding-top: 96px; padding-bottom: 16px; }
   .work-page-title { font-size: clamp(2rem, 8vw, 3rem); line-height: 1.2; }

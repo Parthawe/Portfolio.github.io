@@ -1,5 +1,4 @@
 import { useRef, useMemo, useEffect, useState, useCallback } from 'react';
-import { createPortal } from 'react-dom';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Text, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -7,7 +6,6 @@ import { useThemeMode } from '../hooks/useThemeMode';
 import { usePrefersReduced } from '../hooks/usePrefersReduced';
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
 import { layoutHeroWeb, type WebNode, type WebEdge } from '../data/heroWeb';
-import { lockBodyScroll, unlockBodyScroll } from '../utils/bodyScrollLock';
 
 /* ─── Node config ─── */
 
@@ -2310,16 +2308,14 @@ export default function HeroScene({
   // Notify the page so it can fade the hero copy + raise the scrim.
   useEffect(() => { onExpandedChange?.(expanded); }, [expanded, onExpandedChange]);
 
-  // Esc collapses the web; while open, the page underneath is locked so the
-  // fixed web stage is the whole world.
+  // Esc collapses the web. The expanded web remains in the page flow, so the
+  // hero can scroll away instead of behaving like a modal overlay.
   useEffect(() => {
     if (!expanded) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setExpanded(false); };
     window.addEventListener('keydown', onKey);
-    lockBodyScroll('hero-web');
     return () => {
       window.removeEventListener('keydown', onKey);
-      unlockBodyScroll('hero-web');
     };
   }, [expanded]);
 
@@ -2374,7 +2370,7 @@ export default function HeroScene({
             <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-      ) : typeof document !== 'undefined' ? createPortal(backButton, document.body) : backButton}
+      ) : backButton}
     </>
   );
 }

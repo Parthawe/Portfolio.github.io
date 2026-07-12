@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom'
 import { CATEGORY_LABELS, getProject, type ProjectCategory } from '../data/projects'
 
 const STORAGE_KEY = 'pp-ambient-muted'
+const AMBIENT_GAIN_BOOST = 1.75
+const MAX_AMBIENT_GAIN = 0.06
 
 type AmbientProfileKey =
   | 'arrival'
@@ -342,6 +344,10 @@ function getAmbientProfile(pathname: string): AmbientProfile {
   return AMBIENT_PROFILES.focus
 }
 
+function getAudibleGain(profile: AmbientProfile) {
+  return Math.min(profile.gain * AMBIENT_GAIN_BOOST, MAX_AMBIENT_GAIN)
+}
+
 /** Very soft brown noise — distant rain / air */
 function createNoiseBuffer(ctx: AudioContext): AudioBuffer {
   const seconds = 5
@@ -508,7 +514,7 @@ export default function AmbientAudio() {
     if (suspendTimerRef.current) { window.clearTimeout(suspendTimerRef.current); suspendTimerRef.current = null }
     await rig.ctx.resume()
     retune(profile, 1.8)
-    fade(rig.master, profile.gain, 4)
+    fade(rig.master, getAudibleGain(profile), 4)
     setPlaying(true)
     showNoteTemporarily()
   }, [ensureRig, profile, retune, showNoteTemporarily])
@@ -535,7 +541,7 @@ export default function AmbientAudio() {
   useEffect(() => {
     retune(profile, 2.6)
     if (playing && rigRef.current) {
-      fade(rigRef.current.master, profile.gain, 2.4)
+      fade(rigRef.current.master, getAudibleGain(profile), 2.4)
       showNoteTemporarily(2600)
     }
   }, [playing, profile, retune, showNoteTemporarily])

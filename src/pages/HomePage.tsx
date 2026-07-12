@@ -22,15 +22,54 @@ const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
 interface Skill {
   label: string;
   objectSlug: string;
+  description: string;
+  mockupSrc: string;
+  mockupAlt: string;
 }
 
 const skills: Skill[] = [
-  { label: 'UX Design', objectSlug: 'ux-design' },
-  { label: 'Product Design', objectSlug: 'ux-design' },
-  { label: 'Fintech', objectSlug: 'fintech' },
-  { label: 'Creative Technology', objectSlug: 'creative-tech' },
-  { label: 'Physical Computing', objectSlug: 'installations' },
-  { label: 'Installations', objectSlug: 'installations' },
+  {
+    label: 'UX Design',
+    objectSlug: 'ux-design',
+    description: 'I turn messy product flows into calm, learnable interfaces where every state explains what happens next.',
+    mockupSrc: '/Assets/mockups/projects/raahi-project_16x9.webp',
+    mockupAlt: 'Raahi transit product interface mockup',
+  },
+  {
+    label: 'Product Design',
+    objectSlug: 'ux-design',
+    description: 'I shape early product systems from research, structure, and shipped screens, not just polished mockups.',
+    mockupSrc: '/Assets/mockups/projects/mentra_16x9.webp',
+    mockupAlt: 'Mentra wearable OS product mockup',
+  },
+  {
+    label: 'Fintech',
+    objectSlug: 'fintech',
+    description: 'I design payment and crypto flows around confidence: visible risk, clear status, and reviewable decisions.',
+    mockupSrc: '/Assets/mockups/projects/zentipay_16x9.webp',
+    mockupAlt: 'ZentiPay fintech interface mockup',
+  },
+  {
+    label: 'Creative Technology',
+    objectSlug: 'creative-tech',
+    description: 'I prototype interfaces where software, motion, and physical interaction make complex ideas tangible.',
+    mockupSrc: '/Assets/mockups/projects/jugalbandi_16x9.webp',
+    mockupAlt: 'Jugalbandi interactive installation mockup',
+  },
+  {
+    label: 'Physical Computing',
+    objectSlug: 'installations',
+    description: 'I build responsive objects and installations that let people understand systems through touch and behavior.',
+    mockupSrc: '/Assets/mockups/projects/moniac-machine_16x9.webp',
+    mockupAlt: 'Moniac Machine physical computing mockup',
+  },
+  {
+    label: 'Installations',
+    objectSlug: 'installations',
+    description: 'I compose space, hardware, and interaction into experiences that feel legible without needing instructions.',
+    mockupSrc: '/Assets/mockups/projects/drowning_16x9.webp',
+    mockupAlt: 'Drowning stage installation mockup',
+  },
 ];
 
 const disciplines = [
@@ -88,7 +127,6 @@ const IDENTITY_SLIDE_INTERVAL_MS = 6500;
 export default function HomePage() {
   const navigate = useNavigate();
   const [skillIdx, setSkillIdx] = useState(0);
-  const [skillPaused, setSkillPaused] = useState(false);
   const [identityTab, setIdentityTab] = useState<(typeof identityTabs)[number]['id']>('who-i-am');
   const [heroWebOpen, setHeroWebOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
@@ -121,12 +159,11 @@ export default function HomePage() {
     slug === 'mentra' || slug === 'jugalbandi' ? 'portrait' : 'square';
 
   useEffect(() => {
-    if (skillPaused) return;
     const id = setInterval(() => {
       setSkillIdx(prev => (prev + 1) % skills.length);
     }, 3000);
     return () => clearInterval(id);
-  }, [skillPaused]);
+  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -338,13 +375,29 @@ export default function HomePage() {
               </div>
 
               <div className="wr-about-body">
+                <div className="wr-about-text">
+                  <h2 className="wr-about-heading">Parth Pawar</h2>
+                  <h2 className="wr-about-heading">does</h2>
+
+                  <div className="wr-about-cycle">
+                    <div className="wr-about-skill-wrap">
+                      <span className="wr-about-skill" key={skillIdx}>{skills[skillIdx].label}</span>
+                    </div>
+                  </div>
+
+                  <p className="wr-about-desc">
+                    {skills[skillIdx].description}
+                  </p>
+
+                  <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                    <Link to="/about" className="wr-about-readmore">read more.</Link>
+                  </div>
+
+                  <span className="wr-about-site" aria-hidden="true">PARTHPAWAR.COM</span>
+                </div>
                 <div className="wr-about-img-col">
                   <div className="wr-about-object-wrap" id="about-img-wrap" aria-hidden="true">
                     <div className="wr-about-object-stage">
-                      <div className="wr-about-object-label">
-                        <span>{skills[skillIdx].label}</span>
-                        <span>Object study</span>
-                      </div>
                       <div className="wr-about-object-shell" key={skills[skillIdx].label}>
                         {mountAboutObject ? (
                           <Suspense fallback={null}>
@@ -358,29 +411,9 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="wr-about-text">
-                  <h2 className="wr-about-heading">Parth Pawar</h2>
-                  <h2 className="wr-about-heading">does</h2>
-
-                  <div className="wr-about-cycle">
-                    <button type="button" className="wr-about-arrow" onClick={() => { setSkillPaused(true); setSkillIdx(prev => (prev - 1 + skills.length) % skills.length); }} aria-label="Previous skill">&lt;</button>
-                    <div className="wr-about-skill-wrap">
-                      <span className="wr-about-skill" key={skillIdx}>{skills[skillIdx].label}</span>
-                    </div>
-                    <button type="button" className="wr-about-arrow" onClick={() => { setSkillPaused(true); setSkillIdx(prev => (prev + 1) % skills.length); }} aria-label="Next skill">&gt;</button>
-                    <button type="button" className="wr-about-arrow" onClick={() => setSkillPaused(p => !p)} aria-label={skillPaused ? 'Play' : 'Pause'} aria-pressed={!skillPaused}>{skillPaused ? '>' : '||'}</button>
-                  </div>
-
-                  <p className="wr-about-desc">
-                    I design interfaces that disappear, earning trust so quickly that people stop noticing the software. Head of UI/UX at Mentra, previously founding designer at ZentiPay and lead at TransFi.
-                  </p>
-
-                  <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                    <Link to="/about" className="wr-about-readmore">read more.</Link>
-                  </div>
-
-                  <span className="wr-about-site" aria-hidden="true">PARTHPAWAR.COM</span>
+                  <figure className="wr-about-work-preview" key={`${skills[skillIdx].label}-mockup`}>
+                    <img src={skills[skillIdx].mockupSrc} alt={skills[skillIdx].mockupAlt} loading="lazy" />
+                  </figure>
                 </div>
               </div>
 
