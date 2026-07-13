@@ -492,13 +492,13 @@ body.has-footer-reveal main {
 }
 
 .ft-cursor--parth {
-  color: #5b63f1;
+  color: var(--figma-cursor-accent, #5b63f1);
   animation: ft-cursor-wander 26s ease-in-out infinite;
 }
 .ft-cursor--parth .ft-cursor-tag {
-  background: linear-gradient(135deg, #5b63f1, #7c5cff);
+  background: var(--figma-cursor-accent, #5b63f1);
   color: #fff;
-  box-shadow: 0 0.4rem 1.2rem rgba(91, 99, 241, 0.24);
+  box-shadow: 0 0.4rem 1.2rem rgba(33, 105, 220, 0.28);
 }
 
 .ft-cursor--you {

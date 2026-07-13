@@ -10,6 +10,7 @@ export default function FigmaHUD() {
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const [dim, setDim] = useState<{ w: number; h: number } | null>(null)
   const [visible, setVisible] = useState(false)
+  const [isOverFooter, setIsOverFooter] = useState(false)
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   const rafRef = useRef(0)
 
@@ -30,6 +31,8 @@ export default function FigmaHUD() {
 
         // Check for figma-hover dimensions
         const el = document.elementFromPoint(e.clientX, e.clientY)
+        const nextIsOverFooter = Boolean(el?.closest('footer'))
+        setIsOverFooter((current) => current === nextIsOverFooter ? current : nextIsOverFooter)
         const hover = el?.closest('.figma-hover') as HTMLElement | null
         if (hover) {
           const rect = hover.getBoundingClientRect()
@@ -70,7 +73,10 @@ export default function FigmaHUD() {
   if (isMobile) return null
 
   const labelLeft = typeof document === 'undefined' ? pos.x + 16 : Math.max(pos.x + 16, getRulerOffset('inline') + 8)
-  const labelTop = typeof document === 'undefined' ? pos.y + 20 : Math.max(pos.y + 20, getRulerOffset('block') + 8)
+  const footerOffset = isOverFooter ? 12 : 0
+  const labelTop = typeof document === 'undefined'
+    ? pos.y + 20 + footerOffset
+    : Math.max(pos.y + 20 + footerOffset, getRulerOffset('block') + 8)
 
   return (
     <>

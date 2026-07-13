@@ -31,6 +31,9 @@ const CATEGORY_ALIASES: Record<string, string> = {
   ux: 'ux-design',
 }
 
+// Keep category chrome aligned with the Figma panel selection color.
+const CATEGORY_PAGE_ACCENT = 'var(--select-blue)'
+
 const CATEGORY_REGISTRY_KEY: Partial<Record<string, ProjectCategory>> = {
   ai: 'ai',
   'ai-wearables': 'ai',
@@ -114,7 +117,7 @@ export default function CategoryPage() {
     : visibleCategoryProjects
   const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
   return (
-    <div className="category-page" style={{ '--lp-accent': category.accentColor } as React.CSSProperties}>
+    <div className="category-page" style={{ '--lp-accent': CATEGORY_PAGE_ACCENT } as React.CSSProperties}>
       <Helmet>
         <title>{category.metaTitle}</title>
         <meta name="description" content={category.metaDescription} />
@@ -130,7 +133,7 @@ export default function CategoryPage() {
             <CategoryHero
               slug={slug}
               routeSlug={rawSlug}
-              accentColor={category.accentColor}
+              accentColor={CATEGORY_PAGE_ACCENT}
               title={category.title}
               titleAccent={category.titleAccent}
               description={category.description}

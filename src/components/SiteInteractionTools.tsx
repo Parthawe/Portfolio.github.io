@@ -236,6 +236,15 @@ const tintOptions = [
   { label: 'graphite', value: 'oklch(32% 0.02 265)' },
 ]
 
+const cursorAccentOptions = [
+  { label: 'blue', value: 'oklch(63% 0.19 258)' },
+  { label: 'iris', value: 'oklch(62% 0.18 288)' },
+  { label: 'cyan', value: 'oklch(72% 0.14 210)' },
+  { label: 'coral', value: 'oklch(66% 0.19 28)' },
+  { label: 'moss', value: 'oklch(66% 0.16 148)' },
+  { label: 'amber', value: 'oklch(76% 0.16 82)' },
+]
+
 const strokePresets: Array<{
   key: StrokePresetKey
   label: string
@@ -615,6 +624,7 @@ export default function SiteInteractionTools() {
   const [selection, setSelection] = useState<SelectionRect | null>(null)
   const [lastSelection, setLastSelection] = useState<SelectionRect | null>(null)
   const [activeTint, setActiveTint] = useState(tintOptions[0].label)
+  const [activeCursorAccent, setActiveCursorAccent] = useState(cursorAccentOptions[0].label)
   const [brushSize, setBrushSize] = useState(5)
   const [strokePreset, setStrokePreset] = useState<StrokePresetKey>('designer')
   const [paintOpacity, setPaintOpacity] = useState(72)
@@ -916,6 +926,11 @@ export default function SiteInteractionTools() {
     document.body.style.setProperty('--accent-hi-05', `color-mix(in srgb, ${value} 5%, transparent)`)
     resizeCanvas()
   }, [resizeCanvas])
+
+  const applyCursorAccent = useCallback((label: string, value: string) => {
+    setActiveCursorAccent(label)
+    document.documentElement.style.setProperty('--figma-cursor-accent', value)
+  }, [])
 
   const clearTint = useCallback(() => {
     setActiveTint(tintOptions[0].label)
@@ -2099,6 +2114,26 @@ export default function SiteInteractionTools() {
                   onClick={() => applyTint(option.label, option.value)}
                   aria-label={`Tint site ${option.label}`}
                   aria-pressed={activeTint === option.label}
+                />
+              ))}
+            </div>
+          </section>
+
+          <section className="site-tools__section site-tools__section--colors" aria-labelledby="site-tool-cursor-title">
+            <div>
+              <h3 id="site-tool-cursor-title">Cursor</h3>
+              <p>{activeCursorAccent}</p>
+            </div>
+            <div className="site-tools__color-dots" role="group" aria-label="Change Parth cursor color">
+              {cursorAccentOptions.map(option => (
+                <button
+                  key={option.label}
+                  type="button"
+                  className={`site-tools__color-dot${activeCursorAccent === option.label ? ' is-active' : ''}`}
+                  style={{ '--swatch': option.value } as CSSProperties}
+                  onClick={() => applyCursorAccent(option.label, option.value)}
+                  aria-label={`Set Parth cursor ${option.label}`}
+                  aria-pressed={activeCursorAccent === option.label}
                 />
               ))}
             </div>

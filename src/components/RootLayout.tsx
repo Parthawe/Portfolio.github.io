@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, lazy, Suspense } from 'react'
 import { Outlet, useLocation } from 'react-router-dom';
 import PageLoader from './PageLoader';
 import Lightbox from './Lightbox';
+import CollaboratorCursor from './CollaboratorCursor';
 import RouteSeo from './RouteSeo';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
@@ -395,6 +396,7 @@ export default function RootLayout() {
         <Outlet />
       </div>
       <Lightbox />
+      {enableFinePointerEffects && desktopCanvas && !coarsePointer && <CollaboratorCursor />}
       {/* AmbientAudio moved to Nav */}
       {enableFigmaChrome && figmaChromeReady && (
         <Suspense fallback={null}>
