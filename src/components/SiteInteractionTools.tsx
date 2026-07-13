@@ -478,19 +478,6 @@ function commentCardStyle(comment: Pick<PortfolioComment | CommentDraft, 'xPerce
   }
 }
 
-function commentTimeLabel(createdAt: string) {
-  try {
-    return new Intl.DateTimeFormat(undefined, {
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-    }).format(new Date(createdAt))
-  } catch {
-    return 'Now'
-  }
-}
-
 function replaceCanvasClones(sourceElement: HTMLElement, clone: HTMLElement) {
   const sourceCanvases = Array.from(sourceElement.querySelectorAll('canvas'))
   const clonedCanvases = Array.from(clone.querySelectorAll('canvas'))
@@ -648,6 +635,7 @@ export default function SiteInteractionTools() {
   const [comments, setComments] = useState<PortfolioComment[]>([])
   const [commentsLoading, setCommentsLoading] = useState(false)
   const [commentsError, setCommentsError] = useState('')
+  const [commentNotice, setCommentNotice] = useState('')
   const [draftComment, setDraftComment] = useState<CommentDraft | null>(null)
   const [activeCommentId, setActiveCommentId] = useState<string | null>(null)
   const [commentBody, setCommentBody] = useState('')
@@ -676,6 +664,8 @@ export default function SiteInteractionTools() {
   const lastPaintRef = useRef<Point | null>(null)
   const currentCommentRoute = normalizeCommentRoute(pathname)
   const commentStoreMode = getCommentStoreMode()
+  const publishedComments = comments.filter(comment => comment.status === 'open')
+  const pendingComments = comments.filter(comment => comment.status === 'pending')
   const activeStrokePreset = strokePresets.find(option => option.key === strokePreset) ?? strokePresets[0]
 
   useEffect(() => {
@@ -823,8 +813,9 @@ export default function SiteInteractionTools() {
 
     setCommentSaving(true)
     setCommentsError('')
+    setCommentNotice('')
     try {
-      const authorName = commentAuthor.trim() || 'Guest reviewer'
+      const authorName = commentAuthor.trim() || 'Guest'
       const authorEmail = commentEmail.trim() || null
       const saved = await createPortfolioComment({
         route: draftComment.route,
@@ -840,6 +831,11 @@ export default function SiteInteractionTools() {
       setDraftComment(null)
       setActiveCommentId(saved.id)
       setCommentBody('')
+      setCommentNotice(
+        commentStoreMode === 'database'
+          ? 'Your note was sent for review. It will appear publicly only after approval.'
+          : 'Your note is saved in this browser preview only.',
+      )
 
       try {
         window.localStorage.setItem('portfolio-comment-author', authorName)
@@ -854,7 +850,7 @@ export default function SiteInteractionTools() {
     } finally {
       setCommentSaving(false)
     }
-  }, [commentAuthor, commentBody, commentEmail, draftComment])
+  }, [commentAuthor, commentBody, commentEmail, commentStoreMode, draftComment])
 
   const resetAll = useCallback(() => {
     setMode(null)
@@ -962,6 +958,7 @@ export default function SiteInteractionTools() {
     setDraftComment(null)
     setActiveCommentId(null)
     setCommentBody('')
+    setCommentNotice('')
     setMode(current => (current === 'comment' ? null : 'comment'))
   }, [])
 
@@ -1363,6 +1360,7 @@ export default function SiteInteractionTools() {
     setDraftComment(null)
     setActiveCommentId(null)
     setCommentBody('')
+    setCommentNotice('')
     setSelectedLayerIndex(0)
     setCollapsedLayerKeys(new Set())
     setExportTarget('selection')
@@ -1441,6 +1439,18 @@ export default function SiteInteractionTools() {
     <>
       <div className={`site-tint-wash${activeTint ? ` site-tint-wash--${activeTint}` : ''}`} aria-hidden="true" />
       <canvas ref={canvasRef} className="site-paint-canvas" aria-hidden="true" />
+      {open && (
+        <button
+          type="button"
+          className={`site-comment-mobile-launcher${mode === 'comment' ? ' is-active' : ''}`}
+          onClick={beginCommentMode}
+          aria-label={mode === 'comment' ? 'Stop adding comments' : 'Add a comment anywhere on the page'}
+          aria-pressed={mode === 'comment'}
+          title={mode === 'comment' ? 'Stop adding comments' : 'Add comment anywhere'}
+        >
+          <ToolIcon name="comment" />
+        </button>
+      )}
       <div
         className={`site-tool-overlay${overlayActive ? ' is-active' : ''}${mode === 'paint' ? ' is-painting' : ''}${mode === 'comment' ? ' is-commenting' : ''}`}
         onPointerDown={onOverlayPointerDown}
@@ -1505,20 +1515,25 @@ export default function SiteInteractionTools() {
           <article className="site-comment-card" style={commentCardStyle(activeComment)} aria-label="Comment">
             <header>
               <strong>{activeComment.authorName}</strong>
-              <time dateTime={activeComment.createdAt}>{commentTimeLabel(activeComment.createdAt)}</time>
+              <span className={`site-comment-card__state is-${activeComment.status}`}>
+                {activeComment.status === 'pending' ? 'Awaiting review' : 'Published'}
+              </span>
               <button type="button" onClick={() => setActiveCommentId(null)} aria-label="Close comment">
                 <ToolIcon name="close-panel" />
               </button>
             </header>
             <p>{activeComment.body}</p>
+            {activeComment.status === 'pending' && (
+              <p className="site-comment-card__note">Visible only to you until it is reviewed.</p>
+            )}
           </article>
         )}
 
         {draftComment && (
           <form className="site-comment-card site-comment-card--draft" style={commentCardStyle(draftComment)} onSubmit={submitComment}>
             <header>
-              <strong>New comment</strong>
-              <span>{commentStoreMode === 'database' ? 'Database' : 'Local draft'}</span>
+              <strong>New note</strong>
+              <span>{commentStoreMode === 'database' ? 'Review required' : 'Browser preview'}</span>
               <button type="button" onClick={() => setDraftComment(null)} aria-label="Cancel comment">
                 <ToolIcon name="close-panel" />
               </button>
@@ -1534,9 +1549,14 @@ export default function SiteInteractionTools() {
               <input value={commentAuthor} onChange={event => setCommentAuthor(event.currentTarget.value)} placeholder="Name" aria-label="Your name" />
               <input value={commentEmail} onChange={event => setCommentEmail(event.currentTarget.value)} placeholder="Email optional" aria-label="Your email" />
             </div>
+            <p className="site-comment-card__note">
+              {commentStoreMode === 'database'
+                ? 'Only approved notes are visible to other visitors.'
+                : 'This preview is stored only in this browser.'}
+            </p>
             {commentsError && <p className="site-comment-card__error">{commentsError}</p>}
             <button type="submit" disabled={commentSaving || !commentBody.trim()}>
-              {commentSaving ? 'Saving...' : 'Post comment'}
+              {commentSaving ? 'Sending...' : commentStoreMode === 'database' ? 'Submit for review' : 'Save browser preview'}
             </button>
           </form>
         )}
@@ -1890,22 +1910,40 @@ export default function SiteInteractionTools() {
               </button>
             </div>
 
+            <button
+              type="button"
+              className={`site-comments-add${mode === 'comment' ? ' is-active' : ''}`}
+              onClick={beginCommentMode}
+              aria-pressed={mode === 'comment'}
+            >
+              <ToolIcon name="comment" />
+              {mode === 'comment' ? 'Click the page to place your note' : 'Add a note'}
+            </button>
+
             <p className="site-comments-help">
               {mode === 'comment'
-                ? 'Comment mode is on. Click any point on the page to pin a note.'
-                : 'Pin a note to any point on this page.'}
+                ? 'Choose the exact spot that needs feedback.'
+                : commentStoreMode === 'database'
+                  ? 'Every note is reviewed before it becomes public.'
+                  : 'Notes are saved only in this browser until comments are connected.'}
             </p>
 
             <div className="site-comments-status" aria-live="polite">
-              <span>{commentsLoading ? 'Loading...' : `${comments.length} on this page`}</span>
-              <span>{commentStoreMode === 'database' ? 'Shared notes' : 'Local only'}</span>
+              <span>{commentsLoading ? 'Loading...' : `${publishedComments.length} published`}</span>
+              <span>{commentStoreMode === 'database' ? 'Review before public' : 'Browser preview'}</span>
             </div>
 
             {commentsError && <p className="site-comments-error" role="alert">{commentsError}</p>}
+            {commentNotice && <p className="site-comments-notice" role="status">{commentNotice}</p>}
+            {pendingComments.length > 0 && (
+              <p className="site-comments-pending" role="status">
+                {pendingComments.length} note{pendingComments.length === 1 ? '' : 's'} awaiting review in this browser.
+              </p>
+            )}
 
-            {comments.length > 0 ? (
+            {publishedComments.length > 0 ? (
               <div className="site-comments-list" aria-label="Comments on this page">
-                {comments.map((comment, index) => (
+                {publishedComments.map((comment, index) => (
                   <button
                     key={comment.id}
                     type="button"
@@ -1923,7 +1961,7 @@ export default function SiteInteractionTools() {
                 ))}
               </div>
             ) : (
-              <p className="site-comments-muted">No notes on this page yet.</p>
+              <p className="site-comments-muted">No approved notes on this page yet.</p>
             )}
           </section>
 

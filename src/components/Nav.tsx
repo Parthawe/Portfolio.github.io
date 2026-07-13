@@ -190,9 +190,19 @@ export default function Nav() {
     { key: 'timeline', label: 'Arc', to: '/work?view=timeline' },
   ];
 
+  const handleSkipToContent = useCallback((event: React.MouseEvent<HTMLAnchorElement>) => {
+    const main = document.getElementById('main-content');
+    if (!main) return;
+
+    event.preventDefault();
+    main.tabIndex = -1;
+    main.focus({ preventScroll: true });
+    main.scrollIntoView({ block: 'start' });
+  }, []);
+
   return (
     <>
-      <a href="#main-content" className="skip-to-content">Skip to content</a>
+      <a href="#main-content" className="skip-to-content" onClick={handleSkipToContent}>Skip to content</a>
       <nav className="nav" id="nav" ref={navRef}>
         <div className="nav-inner">
           {/* Left group, logo + links in a single pill */}

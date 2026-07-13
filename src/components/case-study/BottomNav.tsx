@@ -14,12 +14,18 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const navRef = useRef<HTMLElement>(null);
   const progress = useReadingProgress();
   const isDesktopSideRail = useMediaQuery('(min-width: 1200px)');
+  const isPhone = useMediaQuery('(max-width: 680px)');
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
   const [availableSections, setAvailableSections] = useState(sections);
   const visibleSections = useMemo(() => {
-    return availableSections.slice(0, 4);
-  }, [availableSections]);
+    if (!isPhone) return availableSections.slice(0, 4);
+
+    // Keep the mobile rail readable without making visitors hunt for an
+    // offscreen primary action. The page itself remains the section navigator.
+    const limit = modeAction && liveUrl ? 1 : 2;
+    return availableSections.slice(0, limit);
+  }, [availableSections, isPhone, liveUrl, modeAction]);
 
   useEffect(() => {
     const sideRailClass = 'case-side-nav';

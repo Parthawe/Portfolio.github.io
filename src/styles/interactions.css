@@ -734,6 +734,10 @@ body.site-tinted[data-theme="dark"] .site-tint-wash {
   display: block;
 }
 
+.site-comment-mobile-launcher {
+  display: none;
+}
+
 .site-comment-pin {
   position: absolute;
   display: inline-grid;
@@ -828,6 +832,17 @@ body.site-tinted[data-theme="dark"] .site-tint-wash {
   line-height: 1;
 }
 
+.site-comment-card__state {
+  padding: 0.26rem 0.4rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+}
+
+.site-comment-card__state.is-pending {
+  background: color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 13%, transparent);
+  color: var(--site-tool-ink, var(--select-blue));
+}
+
 .site-comment-card header button {
   display: inline-grid;
   place-items: center;
@@ -849,6 +864,12 @@ body.site-tinted[data-theme="dark"] .site-tint-wash {
   color: color-mix(in srgb, currentColor 78%, transparent);
   font-size: 0.84rem;
   line-height: 1.45;
+}
+
+.site-comment-card__note {
+  color: color-mix(in srgb, currentColor 55%, transparent) !important;
+  font-size: 0.72rem !important;
+  line-height: 1.35 !important;
 }
 
 .site-comment-card textarea,
@@ -2248,9 +2269,36 @@ button.site-tools__field--toggle.is-active {
   color: var(--site-tool-ink, var(--select-blue));
 }
 
+.site-comments-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  min-height: 2.2rem;
+  border-radius: 0.52rem;
+  background: var(--site-tool-ink, var(--select-blue));
+  color: white;
+  font-family: var(--site-panel-font);
+  font-size: var(--site-panel-body);
+  font-weight: 700;
+}
+
+.site-comments-add:hover,
+.site-comments-add.is-active {
+  filter: brightness(1.05);
+  box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 26%, transparent);
+}
+
+.site-comments-add .site-ui-icon {
+  width: 0.86rem;
+  height: 0.86rem;
+}
+
 .site-comments-help,
 .site-comments-muted,
-.site-comments-error {
+.site-comments-error,
+.site-comments-notice,
+.site-comments-pending {
   margin: 0;
   font-size: var(--site-panel-small);
   line-height: 1.35;
@@ -2263,6 +2311,14 @@ button.site-tools__field--toggle.is-active {
 
 .site-comments-error {
   color: oklch(61% 0.2 28);
+}
+
+.site-comments-notice,
+.site-comments-pending {
+  padding: 0.48rem 0.54rem;
+  border-radius: 0.48rem;
+  background: color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 8%, transparent);
+  color: color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 76%, var(--ink));
 }
 
 .site-comments-status {
@@ -2454,6 +2510,32 @@ button.site-tools__field--toggle.is-active {
   .site-layers-panel,
   .site-tools {
     display: none !important;
+  }
+
+  .site-comment-mobile-launcher {
+    position: fixed;
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 916;
+    display: inline-grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    border-radius: 0.72rem;
+    background: color-mix(in srgb, var(--surface) 92%, white 8%);
+    color: var(--site-tool-ink, var(--select-blue));
+    box-shadow: 0 0.75rem 1.8rem rgba(20, 20, 20, 0.18);
+  }
+
+  .site-comment-mobile-launcher.is-active {
+    border-color: color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 48%, transparent);
+    background: color-mix(in srgb, var(--site-tool-ink, var(--select-blue)) 14%, var(--surface));
+  }
+
+  .site-comment-mobile-launcher .site-ui-icon {
+    width: 1.08rem;
+    height: 1.08rem;
   }
 }
 

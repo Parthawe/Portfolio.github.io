@@ -15,13 +15,16 @@
 
 /* --- Tokens --- */
 :root {
+  color-scheme: light;
   --bg:       #FAFAF8;
   --bg-alt:   #F2F1EE;
   --surface:  #FFFFFF;
   --ink:      #1A1A1A;
   --ink-70:   rgba(26,26,26,0.7);
-  --ink-40:   rgba(26,26,26,0.55); /* WCAG AA: ~4.7:1 on #FAFAF8 */
-  --ink-30:   rgba(26,26,26,0.3);
+  /* Shared muted text colors retain enough contrast for small labels on the
+     page and white card surfaces. Lower opacity tokens remain decorative. */
+  --ink-40:   rgba(26,26,26,0.64); /* WCAG AA: ~5.1:1 on #FAFAF8 */
+  --ink-30:   rgba(26,26,26,0.61); /* WCAG AA: ~4.7:1 on #FAFAF8 */
   --ink-15:   rgba(26,26,26,0.15);
   --ink-12:   rgba(26,26,26,0.12);
   --ink-08:   rgba(26,26,26,0.08);
@@ -51,7 +54,7 @@
   --accent-hi-05: rgba(168, 184, 216, 0.05);
   --footer-dark:  rgb(28, 28, 28);
 
-  --ink-50:   rgba(26,26,26,0.58); /* WCAG AA: ~4.8:1 on #FAFAF8 */
+  --ink-50:   rgba(26,26,26,0.66); /* WCAG AA: ~5.5:1 on #FAFAF8 */
 
   /* Spacing utilities */
   --gutter:   clamp(1.25rem, 4vw, 3rem);
@@ -223,9 +226,9 @@
   --surface:  #222220;
   --ink:      #EDEDEC;
   --ink-70:   rgba(237,237,236,0.7);
-  --ink-50:   rgba(237,237,236,0.58); /* WCAG AA: ~4.9:1 on #111110 */
-  --ink-40:   rgba(237,237,236,0.5);  /* WCAG AA: ~4.3:1 on #111110, large text OK */
-  --ink-30:   rgba(237,237,236,0.3);
+  --ink-50:   rgba(237,237,236,0.62); /* WCAG AA on #222220 cards */
+  --ink-40:   rgba(237,237,236,0.56); /* WCAG AA on #222220 cards */
+  --ink-30:   rgba(237,237,236,0.52); /* WCAG AA on #222220 cards */
   --ink-15:   rgba(237,237,236,0.15);
   --ink-12:   rgba(237,237,236,0.12);
   --ink-08:   rgba(237,237,236,0.08);
@@ -278,9 +281,9 @@
     --surface:  #222220;
     --ink:      #EDEDEC;
     --ink-70:   rgba(237,237,236,0.7);
-    --ink-50:   rgba(237,237,236,0.58);
-    --ink-40:   rgba(237,237,236,0.5);
-    --ink-30:   rgba(237,237,236,0.3);
+    --ink-50:   rgba(237,237,236,0.62);
+    --ink-40:   rgba(237,237,236,0.56);
+    --ink-30:   rgba(237,237,236,0.52);
     --ink-15:   rgba(237,237,236,0.15);
     --ink-12:   rgba(237,237,236,0.12);
     --ink-08:   rgba(237,237,236,0.08);

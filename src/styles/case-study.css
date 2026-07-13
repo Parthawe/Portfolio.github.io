@@ -6912,6 +6912,14 @@
     text-overflow: ellipsis;
   }
 
+  /* The primary case-study action is the one label that must never be
+     abbreviated. The control rail already scrolls horizontally when needed. */
+  .project-main .cs-bnav-action {
+    max-width: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
   .project-main .next-project-inner {
     display: grid;
     grid-template-columns: 1fr auto;
