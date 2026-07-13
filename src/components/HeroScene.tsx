@@ -1999,8 +1999,11 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
   const aspect = size.height > 0 ? size.width / size.height : 1;
   const useSafeDesktopLayout = !isMobile && (size.width < 1480 || aspect < 0.95);
   const nodes = useMemo(() => (useSafeDesktopLayout ? SAFE_DESKTOP_NODES : NODES), [useSafeDesktopLayout]);
+  // Phone screens get a closer, more deliberate resting composition. The
+  // desktop framing leaves too much empty air above the hero copy on portrait
+  // viewports, so the scene owns the visual stage without entering that copy.
   const sceneScale = isMobile
-    ? 0.7
+    ? 0.84
     : useSafeDesktopLayout
       ? clamp(size.width / 760, 0.5, 0.76)
       : 0.76;
@@ -2011,7 +2014,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
   // Expanded-web transition: 0 collapsed → 1 expanded.
   const introRef = useRef(0);
   const collapsedFadeRef = useRef(1);
-  const baseCameraZ = isMobile ? 9.5 : useSafeDesktopLayout ? 7.65 + narrowCameraPush : 7.25;
+  const baseCameraZ = isMobile ? 9 : useSafeDesktopLayout ? 7.65 + narrowCameraPush : 7.25;
   const baseCameraY = useSafeDesktopLayout ? 0.18 : 0.3;
   const expandedCameraZ = isMobile ? 11.85 : 12.6;
 

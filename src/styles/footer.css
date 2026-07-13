@@ -339,6 +339,11 @@
     padding: var(--space-8) 0 0;
   }
 
+  /* Keep the contact and directory band aligned to the mobile page gutter. */
+  .ft-top {
+    padding-inline: clamp(1rem, 5vw, 1.25rem);
+  }
+
   .ft-headline-sm {
     font-size: clamp(2.3rem, 13vw, 4.4rem);
   }
@@ -527,9 +532,9 @@ body.has-footer-reveal main {
     height: clamp(13rem, 56vw, 16rem);
     display: grid;
     align-content: center;
-    justify-items: end;
+    justify-items: center;
     gap: 0.72rem;
-    padding: 1.4rem 0.38rem 1.25rem 1.25rem;
+    padding: 1.25rem;
   }
   .ft-cursor { display: none; }
   .ft-scrap-ghost {
@@ -539,6 +544,7 @@ body.has-footer-reveal main {
     top: auto;
     bottom: auto;
     width: min(100%, 15.25rem);
+    justify-self: center;
     gap: 0.18rem;
     padding: 0.68rem 0.78rem 0.74rem;
   }
@@ -770,14 +776,8 @@ body.has-footer-reveal main {
   .ft-pin-bubble { max-width: 11rem; }
   .ft-pin-draft-box input { width: clamp(9rem, 60vw, 13rem); }
   .ft-scrap-scrawl {
-    position: relative;
-    left: auto;
-    top: auto;
-    justify-self: center;
-    transform: rotate(-1.6deg);
-    max-width: 58%;
-    line-height: 1.2;
-    white-space: normal;
+    /* The archive card carries the same message more clearly on touch screens. */
+    display: none;
   }
 }
 

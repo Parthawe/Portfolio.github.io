@@ -65,7 +65,10 @@ const inlineHotspots = []
 for (const file of projectPages) {
   const text = await readText(file)
   const shell = {
-    projectHeader: /<ProjectHeader\b/.test(text),
+    // Typeface is a deliberately custom, interactive specimen hero. Treat its
+    // semantic hero shell as the project-header equivalent rather than forcing
+    // the shared case-study component into a different visual language.
+    projectHeader: /<ProjectHeader\b|<section\s+className="tf-hero"/.test(text),
     bottomNav: /<BottomNav\b/.test(text),
     nextProject: /<NextProject\b/.test(text),
     footer: /<Footer\b/.test(text),
@@ -142,4 +145,3 @@ if (errors) {
 } else {
   console.log('\nDesign system audit passed blocking checks. Warnings above are refactor targets.')
 }
-

@@ -2,10 +2,24 @@ import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { categories } from '../data/categories'
 import { getProject, isHiddenProject, visibleProjects, type Project } from '../data/projects'
-import { SITE_NAME, SITE_ORIGIN, SITE_URL, DEFAULT_OG_IMAGE } from '../config/site'
+import {
+  SITE_NAME,
+  SITE_ORIGIN,
+  SITE_URL,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
+  DEFAULT_OG_IMAGE_ALT,
+} from '../config/site'
 
 const DEFAULT_IMAGE = DEFAULT_OG_IMAGE
 const NOINDEX_ROUTES = new Set(['/studio', '/graveyard', '/book'])
+const CATEGORY_ALIASES: Record<string, string> = {
+  '/ux': 'ux-design',
+  '/ui': 'ux-design',
+  '/design-engineer': 'creative-tech',
+  '/brand': 'brand-visual',
+  '/healthcare': 'design-for-good',
+}
 
 interface RouteMeta {
   title: string
@@ -14,6 +28,7 @@ interface RouteMeta {
   url: string
   type: 'website' | 'article'
   robots: string
+  imageAlt?: string
   schema?: Record<string, unknown>
 }
 
@@ -35,13 +50,15 @@ function getHomeSchema() {
         '@type': 'WebSite',
         name: SITE_NAME,
         url: SITE_URL,
-        description: 'Portfolio of Parth Pawar, Product Designer focused on AI wearables, fintech, civic tools, creative technology, and physical interaction.',
+        description: DEFAULT_DESCRIPTION,
+        inLanguage: 'en-US',
       },
       {
         '@type': 'Person',
         name: 'Parth Pawar',
         url: SITE_URL,
         jobTitle: 'Product Designer',
+        image: `${SITE_URL}/Assets/character/me/1.webp`,
         alumniOf: {
           '@type': 'CollegeOrUniversity',
           name: 'New York University Tisch School of the Arts',
@@ -74,6 +91,7 @@ function getRouteMeta(pathname: string): RouteMeta {
       url,
       type: 'website',
       robots,
+      imageAlt: DEFAULT_OG_IMAGE_ALT,
       schema: getHomeSchema(),
     }
   }
@@ -86,6 +104,7 @@ function getRouteMeta(pathname: string): RouteMeta {
       url,
       type: 'website',
       robots,
+      imageAlt: 'Selected product design and interaction work by Parth Pawar.',
       schema: {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
@@ -113,6 +132,7 @@ function getRouteMeta(pathname: string): RouteMeta {
       url,
       type: 'website',
       robots,
+      imageAlt: 'Portrait of Parth Pawar, Product Designer.',
       schema: {
         '@context': 'https://schema.org',
         '@type': 'ProfilePage',
@@ -139,6 +159,7 @@ function getRouteMeta(pathname: string): RouteMeta {
       url,
       type: 'website',
       robots,
+      imageAlt: DEFAULT_OG_IMAGE_ALT,
       schema: {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
@@ -149,8 +170,42 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  const category = categories.find(item => pathname === `/${item.slug}`)
+  if (pathname === '/playbook') {
+    return {
+      title: 'Design Playbook · Parth Pawar',
+      description: 'Principles, methods, and practical notes from Parth Pawar on designing trustworthy product systems.',
+      image: toAbsoluteUrl(DEFAULT_IMAGE),
+      url,
+      type: 'website',
+      robots,
+      imageAlt: DEFAULT_OG_IMAGE_ALT,
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Design Playbook',
+        url,
+        description: 'Principles and practical notes on designing trustworthy product systems.',
+        author: { '@type': 'Person', name: 'Parth Pawar', url: SITE_URL },
+      },
+    }
+  }
+
+  if (pathname === '/healthapp') {
+    return {
+      title: 'Health App Concept · Parth Pawar',
+      description: 'A healthcare product design concept by Parth Pawar focused on making complex information easier to understand and act on.',
+      image: toAbsoluteUrl(DEFAULT_IMAGE),
+      url,
+      type: 'article',
+      robots,
+      imageAlt: 'Health app product design concept by Parth Pawar.',
+    }
+  }
+
+  const categorySlug = CATEGORY_ALIASES[pathname] || pathname.replace(/^\//, '')
+  const category = categories.find(item => item.slug === categorySlug)
   if (category) {
+    const categoryUrl = `${SITE_URL}/${category.slug}`
     const projectsInCategory = [category.featured, ...category.moreProjects.flat()]
       .map(project => getProject(project.slug))
       .filter((project): project is Project => Boolean(project && !isHiddenProject(project)))
@@ -158,14 +213,15 @@ function getRouteMeta(pathname: string): RouteMeta {
       title: category.metaTitle,
       description: category.metaDescription,
       image: toAbsoluteUrl(projectsInCategory[0]?.image || category.featured.image),
-      url,
+      url: categoryUrl,
       type: 'website',
       robots,
+      imageAlt: `${category.title} portfolio work by Parth Pawar.`,
       schema: {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         name: `${category.title} ${category.titleAccent}`,
-        url,
+        url: categoryUrl,
         description: category.metaDescription,
         mainEntity: {
           '@type': 'ItemList',
@@ -201,25 +257,38 @@ function getRouteMeta(pathname: string): RouteMeta {
       url,
       type: 'article',
       robots,
+      imageAlt: project.cardMockupAlt || `${project.name} case study by Parth Pawar.`,
       schema: {
         '@context': 'https://schema.org',
-        '@type': 'CreativeWork',
-        name: `${project.name} Case Study`,
-        headline: `${project.name} Case Study`,
-        url,
-        image: toAbsoluteUrl(project.image || DEFAULT_IMAGE),
-        description: `${project.desc}.`,
-        author: {
-          '@type': 'Person',
-          name: 'Parth Pawar',
-          url: SITE_URL,
-        },
-        creator: {
-          '@type': 'Person',
-          name: 'Parth Pawar',
-        },
-        datePublished: year,
-        keywords: [project.tag, project.category, 'Parth Pawar', 'case study'],
+        '@graph': [
+          {
+            '@type': 'CreativeWork',
+            name: `${project.name} Case Study`,
+            headline: `${project.name} Case Study`,
+            url,
+            image: toAbsoluteUrl(project.image || DEFAULT_IMAGE),
+            description: `${project.desc}.`,
+            inLanguage: 'en-US',
+            author: {
+              '@type': 'Person',
+              name: 'Parth Pawar',
+              url: SITE_URL,
+            },
+            creator: {
+              '@type': 'Person',
+              name: 'Parth Pawar',
+            },
+            datePublished: year,
+            keywords: [project.tag, project.category, 'Parth Pawar', 'case study'],
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Work', item: `${SITE_URL}/work` },
+              { '@type': 'ListItem', position: 2, name: project.name, item: url },
+            ],
+          },
+        ],
       },
     }
   }
@@ -258,12 +327,13 @@ function getRouteMeta(pathname: string): RouteMeta {
   }
 
   return {
-    title: 'Parth Pawar · Portfolio',
-    description: 'Portfolio of Parth Pawar, Product Designer.',
+    title: 'Page not found · Parth Pawar',
+    description: 'This page is not available in the public portfolio.',
     image: toAbsoluteUrl(DEFAULT_IMAGE),
     url,
     type: 'website',
-    robots,
+    robots: 'noindex, nofollow',
+    imageAlt: DEFAULT_OG_IMAGE_ALT,
   }
 }
 
@@ -280,11 +350,13 @@ export default function RouteSeo() {
       <link rel="canonical" href={meta.url} />
 
       <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:type" content={meta.type} />
       <meta property="og:url" content={meta.url} />
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:image" content={meta.image} />
+      <meta property="og:image:alt" content={meta.imageAlt || DEFAULT_OG_IMAGE_ALT} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
 
@@ -292,6 +364,7 @@ export default function RouteSeo() {
       <meta name="twitter:title" content={meta.title} />
       <meta name="twitter:description" content={meta.description} />
       <meta name="twitter:image" content={meta.image} />
+      <meta name="twitter:image:alt" content={meta.imageAlt || DEFAULT_OG_IMAGE_ALT} />
 
       {meta.schema ? (
         <script type="application/ld+json">{JSON.stringify(meta.schema)}</script>

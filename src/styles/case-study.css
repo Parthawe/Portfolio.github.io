@@ -1024,6 +1024,42 @@
   backdrop-filter: none;
 }
 
+/* Visual heroes intentionally sit on dark, project-coloured fields. Their
+   metadata and fast read need their own contrast rules instead of inheriting
+   the light-page ink tokens. */
+.project-header--visual .proj-info-row--visual {
+  border-top-color: rgba(246, 252, 250, 0.28);
+}
+
+.project-header--visual .proj-info-label {
+  color: rgba(246, 252, 250, 0.62);
+}
+
+.project-header--visual .proj-info-val {
+  color: rgba(250, 253, 251, 0.96);
+}
+
+.project-header--visual .proj-fastread {
+  margin-top: clamp(1.75rem, 4vw, 2.75rem);
+  padding: clamp(1.1rem, 2.4vw, 1.5rem);
+  border: 1px solid color-mix(in srgb, var(--surface) 42%, transparent);
+  border-radius: var(--case-shell-radius, var(--radius));
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
+}
+
+.project-header--visual .proj-fastread :is(.proj-fastread-title, .proj-fastread-stat strong) {
+  color: var(--ink);
+}
+
+.project-header--visual .proj-fastread :is(.proj-fastread-kicker, .proj-fastread-meta, .proj-fastread-row dt) {
+  color: var(--ink-40);
+}
+
+.project-header--visual .proj-fastread .proj-fastread-row dd {
+  color: var(--ink-70);
+}
+
 @media (max-width: 900px) {
   .proj-visual-hero {
     min-height: auto;
@@ -6776,19 +6812,29 @@
   }
 
   .project-main .cs-expand-preview--closed {
-    min-height: 11rem;
-    margin: 2rem 0;
-    padding: 1.25rem;
-    border-radius: calc(var(--radius) + 8px);
+    width: min(calc(100% - 1.5rem), 32rem);
+    min-height: 0;
+    margin: 1.5rem auto 1.75rem;
+    padding: 1.25rem 1rem 1.15rem;
+    border-radius: var(--radius);
+  }
+
+  .project-main .cs-expand-preview--closed .cs-expand-preview-cta {
+    gap: 0.35rem;
   }
 
   .project-main .cs-expand-preview-note {
-    max-width: 24rem;
+    max-width: 29ch;
+    line-height: 1.5;
   }
 
   .project-main .cs-expand-preview-btn {
-    width: 100%;
-    max-width: 18rem;
+    width: auto;
+    min-width: min(100%, 15rem);
+    max-width: 100%;
+    min-height: 44px;
+    margin-top: 0.35rem;
+    padding-inline: 1.1rem;
     justify-content: center;
     white-space: normal;
     text-align: center;
@@ -6892,9 +6938,10 @@
   }
 
   .project-main .cs-bottom-nav {
-    max-width: calc(100vw - 1rem);
+    max-width: calc(100vw - 1.25rem);
     gap: 4px;
     padding: 4px;
+    overflow: clip;
   }
 
   .project-main .cs-bottom-nav.is-idle:not(.is-hidden) {
@@ -6916,13 +6963,82 @@
      abbreviated. The control rail already scrolls horizontally when needed. */
   .project-main .cs-bnav-action {
     max-width: none;
-    overflow: visible;
+    overflow: clip;
     text-overflow: clip;
+    white-space: nowrap;
   }
 
   .project-main .next-project-inner {
     display: grid;
     grid-template-columns: 1fr auto;
+  }
+}
+
+/* Keep the shared case controls fully readable on phones. Individual projects
+   can expose different combinations of section links and actions, so a bounded
+   grid is more reliable than a horizontally clipped rail. */
+@media (max-width: 680px) {
+  .project-main {
+    padding-bottom: calc(11rem + env(safe-area-inset-bottom));
+  }
+
+  .project-main .cs-bottom-nav {
+    right: 0.625rem;
+    bottom: max(0.625rem, env(safe-area-inset-bottom));
+    left: 0.625rem;
+    width: auto;
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.375rem;
+    padding: 0.375rem;
+    border-radius: var(--radius);
+    overflow: visible;
+    transform: translateY(0);
+  }
+
+  .project-main .cs-bottom-nav.is-hidden,
+  .project-main .cs-bottom-nav.is-before-hero {
+    transform: translateY(calc(100% + 1rem));
+  }
+
+  .project-main .cs-bottom-nav.is-before-hero {
+    transform: translateY(calc(100% + 1rem)) scale(0.98);
+  }
+
+  .project-main .cs-bottom-nav.is-idle:not(.is-hidden) {
+    opacity: 0.96;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .project-main .cs-bottom-nav.is-idle:hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .project-main .cs-bnav-link,
+  .project-main .cs-bnav-action {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    min-height: 42px;
+    padding: 0.55rem 0.625rem;
+    overflow: visible;
+    overflow-wrap: anywhere;
+    text-align: center;
+    text-overflow: clip;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  .project-main .cs-bnav-action {
+    letter-spacing: 0.05em;
+  }
+
+  .project-main .cs-bnav-live {
+    margin-left: 0;
   }
 }
 
@@ -7836,4 +7952,84 @@
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
+}
+
+/* Mobile branded-header guardrails: preserve contrast and keep media in flow. */
+.project-main:has(.project-header--visual) .project-header--visual :is(
+  .proj-visual-kicker,
+  .proj-visual-title,
+  .proj-visual-live,
+  .proj-info-val
+),
+.project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .project-header :is(
+  .proj-title,
+  .proj-subtitle,
+  .proj-live-link,
+  .proj-info-val
+) {
+  color: rgba(255, 255, 255, 0.96);
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+}
+
+.project-main:has(.project-header--visual) .project-header--visual .proj-info-label,
+.project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .project-header .proj-info-label {
+  color: rgba(255, 255, 255, 0.7);
+  -webkit-text-fill-color: currentColor;
+}
+
+.project-main:has(.project-header--visual) .project-header--visual .proj-info-row,
+.project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .project-header .proj-info-row {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+/* Framer's subtle hero parallax must never paint over the next content row. */
+.project-main .proj-hero-panel,
+.project-main .proj-hero-img,
+.project-main .proj-visual-stage,
+.project-main .proj-visual-hero__media {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+@media (max-width: 640px) {
+  .project-main:has(.project-header--visual),
+  .project-main:is(.project-main--transfi, .project-main--mentra-miniapps) {
+    padding-top: calc(var(--nav-h) + 2rem);
+  }
+
+  .project-main:has(.project-header--visual) .project-header,
+  .project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .project-header {
+    padding-top: 1rem;
+  }
+
+  .project-main .proj-hero-img img,
+  .project-main .proj-visual-hero__media img {
+    transform: none !important;
+  }
+
+  .project-main--mentra-miniapps .proj-hero-panel,
+  .project-main--mentra-miniapps .proj-hero-img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 2 / 1;
+  }
+
+  .project-main--mentra-miniapps .proj-hero-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .project-main:has(.project-header--visual) .proj-info-row,
+  .project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .proj-info-row {
+    gap: 1.15rem;
+  }
 }

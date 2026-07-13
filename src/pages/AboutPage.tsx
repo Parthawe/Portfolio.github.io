@@ -147,6 +147,11 @@ const offClockImages = [
   },
 ]
 
+const offClockRows = [
+  offClockImages.slice(0, 6),
+  [...offClockImages.slice(6)].reverse(),
+]
+
 const aboutCharacterFrames = Array.from(
   { length: 9 },
   (_, index) => `/Assets/character/me/${index + 1}.webp`,
@@ -425,31 +430,23 @@ export default function AboutPage() {
                   <h2 id="abt-beyond-title" className="abt-beyond-title"><em>What</em> I enjoy</h2>
                   <p className="abt-beyond-text">When I am not designing, I am usually building something just because I love it: a side project, a sketch, a painting, a small sculpture, or a meal that turns into a whole evening. I also like getting outside for treks and hikes whenever the city starts feeling too flat.</p>
                 </div>
-                <motion.div
-                  className="abt-image-asides"
-                  tabIndex={0}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, margin: '-30px' }}
-                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
-                  aria-label="Off the clock image reel"
-                >
-                  <div className="abt-image-asides-track">
-                    {[...offClockImages, ...offClockImages].map((item, i) => (
-                      <motion.figure
-                        key={`${item.label}-${i}`}
-                        className="abt-image-aside"
-                        aria-hidden={i >= offClockImages.length ? 'true' : undefined}
-                        variants={{
-                          hidden: { opacity: 0, y: 14, rotate: (i % 2 === 0 ? -3 : 3) },
-                          show: { opacity: 1, y: 0, rotate: (i % 2 === 0 ? -1.5 : 1.5), transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-                        }}
-                      >
-                        <img src={item.src} alt="" loading="lazy" decoding="async" />
-                      </motion.figure>
-                    ))}
-                  </div>
-                </motion.div>
+                <div className="abt-image-asides" aria-label="Off the clock image reel">
+                  {offClockRows.map((row, rowIndex) => (
+                    <div className="abt-image-asides-row" key={`off-clock-row-${rowIndex}`}>
+                      <div className={`abt-image-asides-track${rowIndex === 1 ? ' abt-image-asides-track--reverse' : ''}`}>
+                        {[...row, ...row].map((item, imageIndex) => (
+                          <figure
+                            key={`${item.label}-${rowIndex}-${imageIndex}`}
+                            className="abt-image-aside"
+                            aria-hidden={imageIndex >= row.length ? 'true' : undefined}
+                          >
+                            <img src={item.src} alt="" loading="lazy" decoding="async" />
+                          </figure>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </section>
 

@@ -21,10 +21,11 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const visibleSections = useMemo(() => {
     if (!isPhone) return availableSections.slice(0, 4);
 
-    // Keep the mobile rail readable without making visitors hunt for an
-    // offscreen primary action. The page itself remains the section navigator.
-    const limit = modeAction && liveUrl ? 1 : 2;
-    return availableSections.slice(0, limit);
+    // On phones the action is more useful than a horizontal section list.
+    // Keeping the rail to one clear job prevents controls from being clipped
+    // behind the browser edge while the document itself remains scrollable.
+    if (modeAction) return [];
+    return availableSections.slice(0, liveUrl ? 1 : 2);
   }, [availableSections, isPhone, liveUrl, modeAction]);
 
   useEffect(() => {

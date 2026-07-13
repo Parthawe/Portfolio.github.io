@@ -100,6 +100,23 @@
 @media (max-width: 768px) {
   .spotlight-reveal { cursor: auto; }
   .spotlight-circle { display: none; }
+
+  /* Display type is reserved for larger editorial moments. On a phone these
+     thought cards are reading content, so use the dependable sans face. */
+  .page-about .spotlight-front span,
+  .page-about .spotlight-behind-inline span {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 4.4vw, 1.25rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+  .page-about .spotlight-reveal {
+    padding: 1.25rem 0 1.65rem;
+  }
+  .page-about .spotlight-behind-inline {
+    padding: 1.25rem 0.25rem 1.65rem;
+  }
 }
 /* Also no cursor lens for touch input or reduced motion */
 @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {

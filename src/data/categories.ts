@@ -474,14 +474,14 @@ export const categories: CategoryData[] = [
       'Woodworking',
     ],
     featured: {
-      slug: 'black-hole',
-      title: 'Black Hole',
-      desc: 'Five physical models of black hole phenomena, from accretion disks to Hawking radiation, exhibited at the Horological Society of New York',
-      role: 'Designer & Fabricator · 2026',
-      image: '/Assets/images/black-hole.jpg',
-      bgColor: '#f0f0f5',
-      tag: 'SCIENCE + FABRICATION',
-      year: '2026',
+      slug: 'enigma',
+      title: 'Enigma',
+      desc: 'A 200-neuron light sculpture that turns an active neural network into a physical, visible system.',
+      role: 'Creative Technologist · 2023',
+      image: '/Assets/mockups/projects/enigma_16x9.webp',
+      bgColor: '#111827',
+      tag: 'DEEP LEARNING',
+      year: '2023',
     },
     moreProjects: [
       [
