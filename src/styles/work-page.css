@@ -1486,6 +1486,10 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .page-work :is(.work-bottom-nav, .work-filter-inline) .work-bnav-link {
+    padding-inline: 0.625rem;
+  }
+
   .pcard-masonry {
     column-count: 2;
     column-gap: 24px;

@@ -337,7 +337,7 @@ body.nav-on-dark .nav-toggle span {
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--dur-slow);
-  --surface-glass-bg: color-mix(in srgb, var(--glass-strong-bg) 92%, var(--bg) 8%);
+  --surface-glass-bg: color-mix(in srgb, var(--bg) 96%, transparent);
   --surface-glass-blur: blur(40px) saturate(1.5);
   border: none;
   box-shadow: none;
@@ -413,7 +413,7 @@ body.nav-on-dark .nav-toggle span {
   border-color: var(--ink);
 }
 [data-theme="dark"] .mobile-overlay {
-  --surface-glass-bg: color-mix(in srgb, var(--glass-strong-bg) 94%, var(--bg) 6%);
+  --surface-glass-bg: color-mix(in srgb, var(--bg) 96%, transparent);
 }
 
 /* Responsive handled in responsive.css */

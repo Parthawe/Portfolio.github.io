@@ -643,6 +643,19 @@ body.page-ready .wr-hero-stage {
   }
 }
 
+/* Wide phone landscape viewports are desktop-width but too short for the
+   vertically centred copy to clear the fixed navigation. */
+@media (min-width: 769px) and (max-height: 500px) {
+  .wr-hero-copy {
+    top: 5.25rem;
+    transform: none;
+  }
+
+  .wr-hero-title {
+    font-size: 3rem;
+  }
+}
+
 @media (min-width: 769px) {
   body.site-tools-open .wr-hero {
     --wr-hero-copy-space: clamp(25rem, 42vw, 34rem);

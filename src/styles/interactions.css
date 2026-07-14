@@ -3940,6 +3940,7 @@ body.nav-on-dark .reading-cursor__note {
 
 .reading-cursor-layer.is-conversing .reading-cursor--you .reading-cursor__identity {
   opacity: 0;
+  visibility: hidden;
 }
 
 .reading-cursor--you[data-label-side="above"] .reading-cursor__identity {
