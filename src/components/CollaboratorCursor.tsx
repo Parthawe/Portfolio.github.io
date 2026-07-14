@@ -137,6 +137,17 @@ function pageSteps(pathname: string): ParthStep[] {
     ]
   }
 
+  if (pathname === '/about') {
+    return [
+      { selectors: ['.abt-photo-hero'], label: 'hello', note: 'I design products, then keep making after work.' },
+      { selectors: ['.abt-table-wrap'], label: 'the path', note: 'The throughline is complex systems made clear.' },
+      { selectors: ['.abt-recognition'], label: 'proof', note: 'A few signals beyond the job title.' },
+      { selectors: ['.abt-vibe'], label: 'code + design', note: 'I use code to test the interaction.' },
+      { selectors: ['.abt-beyond'], label: 'off the clock', note: 'Making things is a habit, not just a job.' },
+      { selectors: ['[data-parth-comment-target]', '.ft-canvas-hint-btn', 'footer'], label: 'your turn', note: 'Leave me a note before you go.' },
+    ]
+  }
+
   if (CATEGORY_ROUTES.has(pathname)) {
     return [
       { selectors: ['.ch--landing', '.lp-hero'], label: 'how I see it', note: 'This is how I think about the practice.' },
@@ -211,12 +222,15 @@ function cursorCoordinates(x: number, y: number) {
 }
 
 export default function CollaboratorCursor() {
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
+  const normalizedPathname = pathname === '/' ? pathname : pathname.replace(/\/+$/, '')
+  const routeKey = `${normalizedPathname}${search}`
   const parthRef = useRef<HTMLDivElement>(null)
   const youRef = useRef<HTMLDivElement>(null)
   const parthCoordinatesRef = useRef<HTMLSpanElement>(null)
   const youCoordinatesRef = useRef<HTMLSpanElement>(null)
   const noteRef = useRef<HTMLDivElement>(null)
+  const statusRef = useRef<HTMLSpanElement>(null)
   const labelRef = useRef<HTMLSpanElement>(null)
   const pointer = useRef({ x: -160, y: -160, seen: false })
   const hoveredLabelTarget = useRef<HTMLElement | null>(null)
@@ -229,7 +243,9 @@ export default function CollaboratorCursor() {
   const typeTimer = useRef<number | null>(null)
   const parkTimer = useRef<number | null>(null)
   const actionTimer = useRef<number | null>(null)
+  const typingStep = useRef<number | null>(null)
   const parkedRef = useRef(false)
+  const spokenSteps = useRef(new Set<number>())
 
   const advanceToNextSection = () => {
     const parth = parthRef.current
@@ -254,6 +270,10 @@ export default function CollaboratorCursor() {
     const you = youRef.current
     if (!parth || !you) return
 
+    steps.current = []
+    activeIndex.current = -1
+    spokenSteps.current.clear()
+    if (statusRef.current) statusRef.current.textContent = ''
     parkedRef.current = false
     document.body.classList.add('collaborator-cursor-active')
 
@@ -268,6 +288,7 @@ export default function CollaboratorCursor() {
 
     const clearTyping = () => {
       parth.classList.remove('is-typing')
+      typingStep.current = null
       if (typeTimer.current !== null) {
         window.clearTimeout(typeTimer.current)
         typeTimer.current = null
@@ -309,13 +330,15 @@ export default function CollaboratorCursor() {
       parkTimer.current = window.setTimeout(parkCursor, delay)
     }
 
-    const typeNote = (message: string) => {
+    const typeNote = (message: string, stepIndex: number) => {
       const note = noteRef.current
       if (!note || !message) return
       clearTyping()
       note.textContent = ''
+      if (statusRef.current) statusRef.current.textContent = message
       setSpeaking(true)
       parth.classList.add('is-typing')
+      typingStep.current = stepIndex
       let index = 0
 
       const tick = () => {
@@ -327,6 +350,8 @@ export default function CollaboratorCursor() {
         } else {
           parth.classList.remove('is-typing')
           typeTimer.current = null
+          typingStep.current = null
+          spokenSteps.current.add(stepIndex)
           schedulePark()
         }
       }
@@ -335,8 +360,15 @@ export default function CollaboratorCursor() {
     }
 
     const refreshSteps = () => {
-      steps.current = resolveSteps(pathname)
-      if (!parkedRef.current) activeIndex.current = -1
+      const hadSteps = steps.current.length > 0
+      steps.current = resolveSteps(normalizedPathname)
+      if (!hadSteps && steps.current.length > 0) {
+        activeIndex.current = -1
+        parkedRef.current = false
+        parth.classList.remove('is-parked')
+      } else if (activeIndex.current >= steps.current.length) {
+        activeIndex.current = -1
+      }
       paint()
     }
 
@@ -391,7 +423,7 @@ export default function CollaboratorCursor() {
         step.anchor.classList.add('is-parth-target')
         parth.classList.remove('is-thinking')
         if (labelRef.current) labelRef.current.textContent = 'parth'
-        const message = intelligentNote(pathname, step)
+        const message = intelligentNote(normalizedPathname, step)
         if (noteRef.current) noteRef.current.textContent = ''
         schedule()
         setSpeaking(false)
@@ -399,8 +431,9 @@ export default function CollaboratorCursor() {
         if (settleTimer.current !== null) window.clearTimeout(settleTimer.current)
         if (thinkingTimer.current !== null) window.clearTimeout(thinkingTimer.current)
         thinkingTimer.current = window.setTimeout(() => {
+          thinkingTimer.current = null
           schedule()
-          if (!step.quiet) typeNote(message)
+          if (!step.quiet && !spokenSteps.current.has(index)) typeNote(message, index)
           else schedulePark(2600)
         }, 160)
       }
@@ -450,20 +483,33 @@ export default function CollaboratorCursor() {
     const onScroll = () => {
       parkedRef.current = false
       clearParkTimer()
+      if (thinkingTimer.current !== null) {
+        window.clearTimeout(thinkingTimer.current)
+        thinkingTimer.current = null
+      }
       parth.classList.remove('is-parked')
-      setSpeaking(false)
-      clearTyping()
       paint()
       if (settleTimer.current !== null) window.clearTimeout(settleTimer.current)
       settleTimer.current = window.setTimeout(() => {
-        const step = steps.current[activeIndex.current]
-        if (step && !step.quiet) typeNote(intelligentNote(pathname, step))
+        settleTimer.current = null
+        const index = activeIndex.current
+        const step = steps.current[index]
+        if (step && !step.quiet && !spokenSteps.current.has(index) && typingStep.current !== index) {
+          typeNote(intelligentNote(normalizedPathname, step), index)
+        } else if (!step || step.quiet || spokenSteps.current.has(index)) {
+          schedulePark(1800)
+        }
       }, 480)
     }
 
     const onVisibilityChange = () => {
       parth.classList.toggle('is-page-hidden', document.hidden)
     }
+
+    const routeObserver = new MutationObserver(() => {
+      if (steps.current.length === 0) refreshSteps()
+    })
+    routeObserver.observe(document.body, { childList: true, subtree: true })
 
     refreshSteps()
     refreshTimer.current = window.setTimeout(refreshSteps, 900)
@@ -477,6 +523,7 @@ export default function CollaboratorCursor() {
       document.removeEventListener('visibilitychange', onVisibilityChange)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', refreshSteps)
+      routeObserver.disconnect()
       if (frame.current !== null) window.cancelAnimationFrame(frame.current)
       if (settleTimer.current !== null) window.clearTimeout(settleTimer.current)
       if (refreshTimer.current !== null) window.clearTimeout(refreshTimer.current)
@@ -487,7 +534,7 @@ export default function CollaboratorCursor() {
       clearTarget()
       document.body.classList.remove('collaborator-cursor-active')
     }
-  }, [pathname])
+  }, [routeKey])
 
   return (
     <div className="reading-cursor-layer">
@@ -508,7 +555,8 @@ export default function CollaboratorCursor() {
             <span ref={parthCoordinatesRef} className="reading-cursor__coordinates">00,00</span>
           </span>
         </button>
-        <div ref={noteRef} className="reading-cursor__note" aria-live="polite" />
+        <div ref={noteRef} className="reading-cursor__note" aria-hidden="true" />
+        <span ref={statusRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true" />
       </div>
       <div ref={youRef} className="reading-cursor reading-cursor--you" aria-hidden="true">
         <PointerCursorGlyph className="reading-cursor__glyph" />
