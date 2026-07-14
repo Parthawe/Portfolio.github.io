@@ -3328,7 +3328,9 @@ body.nav-on-dark .site-figbar.surface-glass,
 }
 
 .reading-cursor__conversation,
-.reading-cursor__conversation * {
+.reading-cursor__conversation *,
+.reading-cursor__tour,
+.reading-cursor__tour * {
   pointer-events: auto;
 }
 
@@ -3347,6 +3349,11 @@ body.nav-on-dark .site-figbar.surface-glass,
 }
 
 .reading-cursor--parth.is-conversing .reading-cursor__note {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.reading-cursor--parth.is-conversing .reading-cursor__tour {
   visibility: hidden;
   opacity: 0;
 }
@@ -3627,6 +3634,62 @@ body.figma-coordinates-on .reading-cursor__coordinates {
 .reading-cursor--parth.is-speaking .reading-cursor__note {
   opacity: 1;
   transform: translateY(0);
+}
+
+.reading-cursor__tour {
+  z-index: 7;
+  grid-column: 2;
+  grid-row: 3;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  margin-top: 0.24rem;
+  padding: 0.14rem;
+  border: 1px solid rgba(49, 87, 246, 0.2);
+  border-radius: 0.42rem;
+  color: #1739ba;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 0.3rem 0.8rem rgba(10, 24, 86, 0.2);
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 0.58rem;
+  line-height: 1;
+  transition: opacity 120ms ease;
+}
+
+.reading-cursor__tour button {
+  display: inline-grid;
+  width: 1.2rem;
+  height: 1.2rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0.28rem;
+  color: #1739ba;
+  background: transparent;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1;
+}
+
+.reading-cursor__tour button:hover,
+.reading-cursor__tour button:focus-visible {
+  color: #fff;
+  background: #3157f6;
+  outline: none;
+}
+
+.reading-cursor__tour button:disabled {
+  color: #a8afca;
+  background: transparent;
+}
+
+.reading-cursor__tour span {
+  min-width: 2rem;
+  padding: 0 0.18rem;
+  color: #4a5270;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 .reading-cursor--parth.is-nearby .reading-cursor__note {

@@ -75,8 +75,14 @@ function buildPortfolioPrompt(payload: FolioAnswerPayload) {
     'Avoid corporate filler, generic praise, sales language, and phrases like "great question".',
     'A small playful aside is welcome when it fits, but answer the question first and never force a joke.',
     cursorSurface
-      ? 'This answer appears beside a cursor. Use 1 or 2 short sentences and no more than 42 words.'
+      ? 'This answer appears beside a cursor. Usually use 6 to 16 words. Never exceed 22 words. Use 1 or 2 short sentences and no bullets.'
       : 'Prefer 2 to 5 short sentences.',
+    cursorSurface
+      ? 'If currentTourStop exists, treat it as what the visitor is looking at now. Answer in that exact context without restating the section name.'
+      : '',
+    cursorSurface
+      ? 'If the request is unrelated, redirect with personality in 12 words or fewer. Do not explain your boundaries.'
+      : '',
     'Do not end every answer with a question. Ask at most one only when it genuinely helps the visitor choose what to see next.',
     'Link or navigation text is handled by the app, so do not output markdown links unless the user asks.',
     '',

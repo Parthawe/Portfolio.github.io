@@ -472,7 +472,15 @@ export async function sendMessage(
   userMessage: string,
   history: ChatHistory,
   onChunk?: (text: string) => void,
-  options?: { surface?: 'cursor' | 'panel' },
+  options?: {
+    surface?: 'cursor' | 'panel'
+    cursorContext?: {
+      section: string
+      note: string
+      step: number
+      total: number
+    }
+  },
 ): Promise<string> {
   syncRoute(history)
   if (options?.surface === 'cursor' && isCursorIdentityQuestion(userMessage)) {
@@ -480,7 +488,11 @@ export async function sendMessage(
     onChunk?.(CURSOR_IDENTITY_REPLY)
     return CURSOR_IDENTITY_REPLY
   }
-  if (!isPortfolioQuestion(userMessage, { route: history.route, lastProject: history.ctx.lastProject })) {
+  const portfolioQuestion = isPortfolioQuestion(userMessage, {
+    route: history.route,
+    lastProject: history.ctx.lastProject,
+  })
+  if (!portfolioQuestion && (options?.surface !== 'cursor' || !isEdgeAIEnabled())) {
     const scoped = options?.surface === 'cursor'
       ? CURSOR_SCOPE_REPLY
       : normalizeCopy(PORTFOLIO_SCOPE_REPLY)
@@ -488,7 +500,9 @@ export async function sendMessage(
     onChunk?.(scoped)
     return scoped
   }
-  const { text } = getResponse(userMessage, history.ctx)
+  const { text } = portfolioQuestion
+    ? getResponse(userMessage, history.ctx)
+    : { text: CURSOR_SCOPE_REPLY }
   await new Promise(resolve => setTimeout(resolve, 0))
   const localAnswer = normalizeCopy(text)
 
@@ -508,6 +522,7 @@ export async function sendMessage(
     context: {
       ...buildPublicEdgeContext(history.ctx, userMessage, localAnswer),
       recentConversation: history.turns.slice(-3),
+      currentTourStop: options?.cursorContext,
     },
     model: getEdgeAIModel(),
     surface: options?.surface || 'panel',

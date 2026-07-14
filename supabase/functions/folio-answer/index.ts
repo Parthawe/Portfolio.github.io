@@ -104,8 +104,14 @@ function portfolioPrompt(payload: FolioPayload) {
     'Answer the question immediately. Avoid corporate filler, generic praise, sales language, and "great question".',
     'One light playful aside is welcome when it fits. Never force a joke.',
     cursorSurface
-      ? 'This answer appears beside a cursor. Use 1 or 2 short sentences, no bullets, and no more than 42 words.'
+      ? 'This answer appears beside a cursor. Usually use 6 to 16 words. Never exceed 22 words. Use 1 or 2 short sentences and no bullets.'
       : 'Prefer 2 to 5 short sentences.',
+    cursorSurface
+      ? 'If currentTourStop exists, treat it as what the visitor is looking at now. Answer in that exact context without restating the section name.'
+      : '',
+    cursorSurface
+      ? 'If the request is unrelated, redirect with personality in 12 words or fewer. Do not explain your boundaries.'
+      : '',
     'Do not end every answer with a question. Ask at most one only when it genuinely helps the visitor choose what to see next.',
     'Never invent metrics, private client details, NDA material, unreleased work, or facts absent from the context.',
     'For request-access work, give only the safe public glimpse and invite the visitor to request access.',

@@ -1,12 +1,12 @@
 import { normalizeCopy } from '../utils/normalizeCopy'
 
-export const CURSOR_WORD_LIMIT = 42
-export const CURSOR_IDENTITY_REPLY = "I'm Parth's AI counterpart, not Parth himself. Think of me as the version that lives inside the portfolio and never needs coffee."
+export const CURSOR_WORD_LIMIT = 22
+export const CURSOR_IDENTITY_REPLY = "I'm Parth's portfolio twin: AI, opinionated, and permanently on the clock."
 
 const THINKING_LINES = [
-  'Let me think. I want to answer this cleanly.',
-  'I have a take. One second.',
-  'Connecting this to the work.',
+  'Thinking cleanly.',
+  'I have a take. One beat.',
+  'Connecting the dots.',
 ]
 
 const CODAS = {
@@ -79,7 +79,7 @@ export function shapeCursorAnswer(text: string, question: string, addEmotion = f
 
   const words = concise.split(/\s+/).filter(Boolean)
   return words.length > CURSOR_WORD_LIMIT
-    ? `${words.slice(0, CURSOR_WORD_LIMIT).join(' ')}...`
+    ? `${words.slice(0, CURSOR_WORD_LIMIT).join(' ').replace(/[,;:]+$/, '')}...`
     : concise
 }
 
@@ -93,7 +93,7 @@ export function isCursorAnswerUsable(text: string) {
   return !/^(as an ai|as a language model)|\b(i do not have feelings|i don't have feelings|i cannot feel emotions)\b/.test(normalized)
 }
 
-export const CURSOR_SCOPE_REPLY = "I'm staying inside the portfolio here. Ask me about a project, a decision, or whether I'd fit your team."
+export const CURSOR_SCOPE_REPLY = 'I live in this portfolio. Try a project, decision, or role fit.'
 
 export function isCursorIdentityQuestion(question: string) {
   return /\b(are you (?:a )?human|are you real|real person|are you parth|human or ai)\b/i.test(question)

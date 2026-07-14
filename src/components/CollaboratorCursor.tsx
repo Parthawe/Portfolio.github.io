@@ -115,12 +115,18 @@ function intelligentNote(pathname: string, step: ParthStep) {
   return step.note
 }
 
+function tourPrompt(pathname: string) {
+  if (pathname === '/work') return 'Help me choose'
+  if (pathname === '/' || pathname === '/about' || CATEGORY_ROUTES.has(pathname)) return 'Show me around'
+  return 'Tour this project'
+}
+
 function conversationPrompts(pathname: string) {
-  if (pathname === '/') return ['Where should I start?', 'What should I hire you for?', 'Surprise me']
-  if (pathname === '/work') return ['Best three?', 'Strongest research?', 'Show me range']
-  if (pathname === '/about') return ['What roles fit?', 'Can you code?', 'What drives the work?']
-  if (CATEGORY_ROUTES.has(pathname)) return ['Where should I start?', 'What connects these?', 'Strongest proof?']
-  return ['Why this?', 'What did I own?', 'What changed?']
+  if (pathname === '/') return [tourPrompt(pathname), 'Where should I start?', 'What should I hire you for?']
+  if (pathname === '/work') return [tourPrompt(pathname), 'Best three?', 'Show me range']
+  if (pathname === '/about') return [tourPrompt(pathname), 'What roles fit?', 'What drives the work?']
+  if (CATEGORY_ROUTES.has(pathname)) return [tourPrompt(pathname), 'Where should I start?', 'What connects these?']
+  return [tourPrompt(pathname), 'Why this?', 'What did I own?']
 }
 
 function contextualQuestion(pathname: string, question: string) {
@@ -252,6 +258,10 @@ export default function CollaboratorCursor() {
   const [reply, setReply] = useState('')
   const [asking, setAsking] = useState(false)
   const [thinkingLine, setThinkingLine] = useState('Let me think.')
+  const [tourActive, setTourActive] = useState(false)
+  const [tourPaused, setTourPaused] = useState(false)
+  const [tourIndex, setTourIndex] = useState(0)
+  const [tourTotal, setTourTotal] = useState(0)
   const layerRef = useRef<HTMLDivElement>(null)
   const parthRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLButtonElement>(null)
@@ -272,6 +282,7 @@ export default function CollaboratorCursor() {
   const typeTimer = useRef<number | null>(null)
   const parkTimer = useRef<number | null>(null)
   const actionTimer = useRef<number | null>(null)
+  const tourStartTimer = useRef<number | null>(null)
   const typingStep = useRef<number | null>(null)
   const parkedRef = useRef(false)
   const spokenSteps = useRef(new Set<number>())
@@ -281,6 +292,13 @@ export default function CollaboratorCursor() {
   const inputRef = useRef<HTMLInputElement>(null)
   const historyRef = useRef(createChatHistory(normalizedPathname))
   const requestIdRef = useRef(0)
+  const tourStepsRef = useRef<ResolvedStep[]>([])
+  const tourActiveRef = useRef(false)
+  const tourPausedRef = useRef(false)
+  const tourIndexRef = useRef(0)
+  const programmaticScrollUntilRef = useRef(0)
+  const tourGoRef = useRef<(index: number) => void>(() => {})
+  const tourFinishRef = useRef<() => void>(() => {})
 
   const setConversation = (open: boolean) => {
     const parth = parthRef.current
@@ -295,8 +313,66 @@ export default function CollaboratorCursor() {
     conversationOpenRef.current = open
     setConversationOpen(open)
     if (open) {
+      if (tourActiveRef.current) {
+        tourPausedRef.current = true
+        setTourPaused(true)
+      }
       window.requestAnimationFrame(() => inputRef.current?.focus())
     }
+  }
+
+  const finishTour = () => {
+    tourActiveRef.current = false
+    tourPausedRef.current = false
+    tourStepsRef.current = []
+    setTourActive(false)
+    setTourPaused(false)
+    setTourTotal(0)
+    tourFinishRef.current()
+  }
+
+  const goToTourStep = (index: number) => {
+    if (!tourActiveRef.current) return
+    tourPausedRef.current = false
+    setTourPaused(false)
+    tourGoRef.current(index)
+  }
+
+  const startTour = () => {
+    if (tourStartTimer.current !== null) window.clearTimeout(tourStartTimer.current)
+    const beginTour = () => {
+      tourStartTimer.current = null
+      const resolved = resolveSteps(normalizedPathname)
+      steps.current = resolved
+      const available = resolved
+        .filter(step => step.label !== 'your turn' && step.label !== 'next one')
+        .slice(0, 5)
+      if (available.length === 0) return
+
+      tourStepsRef.current = available
+      tourActiveRef.current = true
+      tourPausedRef.current = false
+      tourIndexRef.current = 0
+      setTourActive(true)
+      setTourPaused(false)
+      setTourIndex(0)
+      setTourTotal(available.length)
+      setConversation(false)
+      window.requestAnimationFrame(() => tourGoRef.current(0))
+    }
+
+    const fullCaseStudyButton = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('.cs-quick-summary-toggle-btn'),
+    ).find(button => button.textContent?.trim() === 'Full case study' && button.getAttribute('aria-selected') !== 'true')
+
+    if (fullCaseStudyButton) {
+      setConversation(false)
+      fullCaseStudyButton.click()
+      tourStartTimer.current = window.setTimeout(beginTour, 280)
+      return
+    }
+
+    beginTour()
   }
 
   const askParth = async (message: string) => {
@@ -311,11 +387,22 @@ export default function CollaboratorCursor() {
     const requestId = ++requestIdRef.current
 
     try {
+      const currentTourStep = tourStepsRef.current[tourIndexRef.current]
       const answer = await sendMessage(
         contextualQuestion(normalizedPathname, trimmed),
         historyRef.current,
         undefined,
-        { surface: 'cursor' },
+        {
+          surface: 'cursor',
+          cursorContext: tourActiveRef.current && currentTourStep
+            ? {
+                section: currentTourStep.label,
+                note: intelligentNote(normalizedPathname, currentTourStep),
+                step: tourIndexRef.current + 1,
+                total: tourStepsRef.current.length,
+              }
+            : undefined,
+        },
       )
       if (requestId === requestIdRef.current) setReply(answer)
     } catch {
@@ -340,6 +427,17 @@ export default function CollaboratorCursor() {
     setQuestion('')
     setReply('')
     setAsking(false)
+    tourActiveRef.current = false
+    tourPausedRef.current = false
+    tourStepsRef.current = []
+    if (tourStartTimer.current !== null) {
+      window.clearTimeout(tourStartTimer.current)
+      tourStartTimer.current = null
+    }
+    setTourActive(false)
+    setTourPaused(false)
+    setTourIndex(0)
+    setTourTotal(0)
     ambientCountRef.current = 0
     lastAmbientAtRef.current = 0
   }, [routeKey])
@@ -349,6 +447,15 @@ export default function CollaboratorCursor() {
       if (event.key === 'Escape' && conversationOpenRef.current) {
         setConversation(false)
         window.requestAnimationFrame(() => triggerRef.current?.focus())
+      } else if (event.key === 'Escape' && tourActiveRef.current) {
+        finishTour()
+      } else if (tourActiveRef.current && !conversationOpenRef.current && event.key === 'ArrowRight') {
+        event.preventDefault()
+        if (tourIndexRef.current >= tourStepsRef.current.length - 1) finishTour()
+        else goToTourStep(tourIndexRef.current + 1)
+      } else if (tourActiveRef.current && !conversationOpenRef.current && event.key === 'ArrowLeft') {
+        event.preventDefault()
+        goToTourStep(Math.max(0, tourIndexRef.current - 1))
       }
     }
     document.addEventListener('keydown', onKeyDown)
@@ -356,6 +463,13 @@ export default function CollaboratorCursor() {
   }, [])
 
   const advanceToNextSection = () => {
+    if (tourActiveRef.current) {
+      setConversation(false)
+      if (tourIndexRef.current >= tourStepsRef.current.length - 1) finishTour()
+      else goToTourStep(tourIndexRef.current + 1)
+      return
+    }
+
     const parth = parthRef.current
     const available = steps.current
       .map((step, index) => ({ step, index }))
@@ -417,7 +531,7 @@ export default function CollaboratorCursor() {
     }
 
     const parkCursor = () => {
-      if (conversationOpenRef.current) return
+      if (conversationOpenRef.current || tourActiveRef.current) return
       parkedRef.current = true
       clearParkTimer()
       clearTyping()
@@ -454,13 +568,16 @@ export default function CollaboratorCursor() {
       parkTimer.current = window.setTimeout(parkCursor, delay)
     }
 
-    const typeNote = (message: string, stepIndex: number) => {
+    const typeNote = (message: string, stepIndex: number, force = false) => {
       const note = noteRef.current
       if (!note || !message || conversationOpenRef.current) return
       const now = Date.now()
       if (
-        ambientCountRef.current >= 3
-        || (lastAmbientAtRef.current > 0 && now - lastAmbientAtRef.current < 9_000)
+        !force
+        && (
+          ambientCountRef.current >= 3
+          || (lastAmbientAtRef.current > 0 && now - lastAmbientAtRef.current < 9_000)
+        )
       ) {
         schedulePark(1800)
         return
@@ -491,6 +608,33 @@ export default function CollaboratorCursor() {
       }
 
       typeTimer.current = window.setTimeout(tick, 80)
+    }
+
+    tourGoRef.current = requestedIndex => {
+      const available = tourStepsRef.current.filter(step => document.documentElement.contains(step.element))
+      if (!tourActiveRef.current || available.length === 0) return
+
+      tourStepsRef.current = available
+      const nextIndex = clamp(requestedIndex, 0, available.length - 1)
+      const next = available[nextIndex]
+      tourIndexRef.current = nextIndex
+      tourPausedRef.current = false
+      programmaticScrollUntilRef.current = Date.now() + 900
+      setTourIndex(nextIndex)
+      setTourPaused(false)
+      setTourTotal(available.length)
+      activeIndex.current = -1
+      parkedRef.current = false
+      clearParkTimer()
+      clearTyping()
+      parth.classList.remove('is-parked')
+      next.element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      schedule()
+    }
+
+    tourFinishRef.current = () => {
+      parth.classList.remove('is-touring')
+      typeNote('Tour complete. Ask me where the risky decision was.', -2, true)
     }
 
     const refreshSteps = () => {
@@ -541,7 +685,7 @@ export default function CollaboratorCursor() {
       const anchorRect = step.anchor.getBoundingClientRect()
       const elementRect = step.element.getBoundingClientRect()
       const viewportInset = 18
-      const cursorWidth = Math.max(parth.offsetWidth, 128)
+      const cursorWidth = Math.max(parth.offsetWidth, 190)
       const rightX = anchorRect.right + 4
       const leftX = anchorRect.left - cursorWidth + 26
       const rightFits = rightX + cursorWidth <= window.innerWidth - viewportInset
@@ -577,17 +721,24 @@ export default function CollaboratorCursor() {
         thinkingTimer.current = window.setTimeout(() => {
           thinkingTimer.current = null
           schedule()
-          if (!step.quiet && !spokenSteps.current.has(index)) typeNote(message, index)
+          const isCurrentTourStop = tourActiveRef.current
+            && !tourPausedRef.current
+            && tourStepsRef.current[tourIndexRef.current] === step
+          if (isCurrentTourStop) typeNote(message, index, true)
+          else if (!step.quiet && !spokenSteps.current.has(index)) typeNote(message, index)
           else schedulePark(2600)
-        }, ambientDelay)
+        }, tourActiveRef.current ? 220 : ambientDelay)
       }
     }
 
     const paint = () => {
       frame.current = null
       if (!conversationOpenRef.current) {
-        const index = chooseStep()
-        const step = index >= 0 ? steps.current[index] : null
+        const selectedTourStep = tourActiveRef.current && !tourPausedRef.current
+          ? tourStepsRef.current[tourIndexRef.current]
+          : null
+        const index = selectedTourStep ? steps.current.indexOf(selectedTourStep) : chooseStep()
+        const step = selectedTourStep || (index >= 0 ? steps.current[index] : null)
 
         if (step) positionParth(step, index)
         else parkCursor()
@@ -631,6 +782,10 @@ export default function CollaboratorCursor() {
       if (conversationOpenRef.current) {
         schedule()
         return
+      }
+      if (tourActiveRef.current && Date.now() > programmaticScrollUntilRef.current) {
+        tourPausedRef.current = true
+        setTourPaused(true)
       }
       parkedRef.current = false
       clearParkTimer()
@@ -680,6 +835,9 @@ export default function CollaboratorCursor() {
       if (refreshTimer.current !== null) window.clearTimeout(refreshTimer.current)
       if (thinkingTimer.current !== null) window.clearTimeout(thinkingTimer.current)
       if (actionTimer.current !== null) window.clearTimeout(actionTimer.current)
+      if (tourStartTimer.current !== null) window.clearTimeout(tourStartTimer.current)
+      tourGoRef.current = () => {}
+      tourFinishRef.current = () => {}
       clearParkTimer()
       clearTyping()
       clearTarget()
@@ -687,11 +845,13 @@ export default function CollaboratorCursor() {
     }
   }, [routeKey])
 
+  const currentTourStep = tourStepsRef.current[tourIndex]
+
   return (
     <div ref={layerRef} className={`reading-cursor-layer${conversationOpen ? ' is-conversing' : ''}`}>
       <div
         ref={parthRef}
-        className={`reading-cursor reading-cursor--parth${conversationOpen ? ' is-conversing' : ''}`}
+        className={`reading-cursor reading-cursor--parth${conversationOpen ? ' is-conversing' : ''}${tourActive ? ' is-touring' : ''}`}
         data-side="right"
       >
         <button
@@ -712,11 +872,35 @@ export default function CollaboratorCursor() {
           Click to ask. I have opinions.
         </div>
         <div ref={noteRef} className="reading-cursor__note" aria-hidden="true" />
+        {tourActive && (
+          <div className="reading-cursor__tour" aria-label="Portfolio tour controls">
+            <button
+              type="button"
+              onClick={() => goToTourStep(Math.max(0, tourIndex - 1))}
+              disabled={tourIndex === 0}
+              aria-label="Previous tour stop"
+              title="Previous"
+            >&#8592;</button>
+            <span title={tourPaused ? 'Tour paused. Use an arrow to continue.' : currentTourStep?.label}>
+              {tourIndex + 1}/{tourTotal}
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                if (tourIndex >= tourTotal - 1) finishTour()
+                else goToTourStep(tourIndex + 1)
+              }}
+              aria-label={tourIndex >= tourTotal - 1 ? 'Finish tour' : 'Next tour stop'}
+              title={tourIndex >= tourTotal - 1 ? 'Finish' : 'Next'}
+            >{tourIndex >= tourTotal - 1 ? '\u2713' : '\u2192'}</button>
+            <button type="button" onClick={finishTour} aria-label="Exit tour" title="Exit">&#215;</button>
+          </div>
+        )}
         <span ref={statusRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true" />
         {conversationOpen && (
           <div className="reading-cursor__conversation" role="dialog" aria-label="Ask Parth about the portfolio">
             <div className="reading-cursor__conversation-head">
-              <span>Ask me about this work</span>
+              <span>{tourActive && currentTourStep ? `Ask about: ${currentTourStep.label}` : 'Ask me about this work'}</span>
               <div className="reading-cursor__conversation-actions">
                 <button type="button" onClick={advanceToNextSection} aria-label="Go to the next section" title="Next section">&#8595;</button>
                 <button type="button" onClick={() => setConversation(false)} aria-label="Close Ask Parth" title="Close">&#215;</button>
@@ -730,7 +914,14 @@ export default function CollaboratorCursor() {
             {!asking && !reply && (
               <div className="reading-cursor__prompts" aria-label="Suggested questions">
                 {conversationPrompts(normalizedPathname).map(prompt => (
-                  <button key={prompt} type="button" onClick={() => { void askParth(prompt) }}>{prompt}</button>
+                  <button
+                    key={prompt}
+                    type="button"
+                    onClick={() => {
+                      if (prompt === tourPrompt(normalizedPathname)) startTour()
+                      else void askParth(prompt)
+                    }}
+                  >{prompt}</button>
                 ))}
               </div>
             )}
