@@ -11,6 +11,7 @@ import {
 } from '../data/agentKnowledge'
 import { normalizeCopy, normalizeCopyList } from '../utils/normalizeCopy'
 import { getEdgeAIAnswer, getEdgeAIModel, isEdgeAIEnabled } from './edgeAI'
+import { updatePersonaFromMessage } from './personaInference'
 import {
   CURSOR_IDENTITY_REPLY,
   CURSOR_SCOPE_REPLY,
@@ -483,6 +484,7 @@ export async function sendMessage(
   },
 ): Promise<string> {
   syncRoute(history)
+  updatePersonaFromMessage(history.ctx, userMessage)
   if (options?.surface === 'cursor' && isCursorIdentityQuestion(userMessage)) {
     rememberTurn(history, userMessage, CURSOR_IDENTITY_REPLY)
     onChunk?.(CURSOR_IDENTITY_REPLY)
@@ -528,7 +530,7 @@ export async function sendMessage(
     surface: options?.surface || 'panel',
   })
 
-  const cursorEdgeAnswer = edgeAnswer && isCursorAnswerUsable(edgeAnswer) ? edgeAnswer : null
+  const cursorEdgeAnswer = edgeAnswer && isCursorAnswerUsable(edgeAnswer, userMessage) ? edgeAnswer : null
   const finalAnswer = options?.surface === 'cursor'
     ? shapeCursorAnswer(cursorEdgeAnswer || localAnswer, userMessage, !cursorEdgeAnswer)
     : normalizeCopy(edgeAnswer || localAnswer)

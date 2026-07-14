@@ -77,11 +77,15 @@ export function inferPersona(ctx: ChatContext): Persona {
 /** Check if the user's message hints at a persona */
 export function updatePersonaFromMessage(ctx: ChatContext, message: string): void {
   const q = message.toLowerCase()
-  if (/\b(hire|hiring|recruiter|role fit|job|position|jd|candidate)\b/.test(q)) {
+  if (/\b(hire|hiring|recruiter|roles? fit|design engineer role|product designer role|job|position|jd|candidate)\b/.test(q)) {
     // Boost recruiter signal by pretending referrer is linkedin
     ctx.persona = inferPersona({ ...ctx, referrer: ctx.referrer || 'linkedin.com' })
+  } else if (/\b(founder|startup|early.stage|zero.to.one|0.to.1|first designer)\b/.test(q)) {
+    ctx.persona = inferPersona({ ...ctx, referrer: ctx.referrer || 'wellfound.com' })
   } else if (/\b(how did you|how do you|your process|what tools|code review|show me the code)\b/.test(q)) {
     // Boost peer signal
     ctx.persona = inferPersona({ ...ctx, referrer: ctx.referrer || 'github.com' })
+  } else if (/\b(student|learning design|learn design|portfolio advice|break into design)\b/.test(q)) {
+    ctx.persona = 'student'
   }
 }

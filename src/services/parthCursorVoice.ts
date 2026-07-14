@@ -112,10 +112,17 @@ export function getCursorThinkingLine(question: string, route: string) {
   return THINKING_LINES[stableIndex(`${route}:${question}`, THINKING_LINES.length)]
 }
 
-export function isCursorAnswerUsable(text: string) {
+export function isCursorAnswerUsable(text: string, question = '') {
   const normalized = text.trim().toLowerCase()
   if (!normalized) return false
   if (/^(as an ai|as a language model)|\b(i do not have feelings|i don't have feelings|i cannot feel emotions)\b/.test(normalized)) {
+    return false
+  }
+  if (question && !isCursorIdentityQuestion(question) && /\b(ai counterpart|portfolio twin|i am an ai|i'm an ai)\b/.test(normalized)) {
+    return false
+  }
+  if (/\b(?:what roles? fit|role fit|hire (?:you|parth)|best fit)\b/i.test(question)
+      && !/\b(?:design engineer|senior product designer)\b/.test(normalized)) {
     return false
   }
   if (!/[.!?]["')\]]?$/.test(normalized)) return false

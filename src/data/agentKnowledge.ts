@@ -791,7 +791,7 @@ function cp(ctx: ChatContext): ProjectInfo | undefined {
 
 const rules: Rule[] = [
   // Where to start / hiring shortlist — persona-aware
-  { patterns: [/(?:hiring shortlist|recruiter|hiring manager|where should i start|what should i start with|start with three|shortlist)/i],
+  { patterns: [/(?:hiring shortlist|recruiter|hiring manager|where should i start|what should i start with|what should i see|show me first|best three|start with three|shortlist)/i],
     handler: (_, ctx) => {
       const visited = new Set(ctx.visitHistory.map(v => v.replace(/^\//, '')))
       const unseen = (slug: string) => !visited.has(slug)
@@ -856,6 +856,11 @@ const rules: Rule[] = [
     }
   },
 
+  // Student / portfolio learning
+  { patterns: [/(?:\b(?:i am|i'm|as a) (?:design )?student\b|portfolio advice|break into design|what can i learn here)/i],
+    handler: () => 'Start with constraints, show the decision, then prove what changed. Pretty screens come last.'
+  },
+
   // Design + code
   { patterns: [/(?:can he code|does he code|code too|design and build|build too|engineering depth)/i],
     handler: () => "Yes. React, TypeScript, Python, Swift, Arduino, and physical prototyping are all part of the practice.\n\nThe useful distinction is that Parth doesn't just hand off polished files, he can prototype the product logic, interaction edge cases, and physical behavior too."
@@ -906,6 +911,17 @@ const rules: Rule[] = [
     }
   },
 
+  // Private / NDA boundaries
+  { patterns: [/(?:private|nda|confidential|under wraps|not public)/i],
+    handler: (_, ctx) => {
+      const p = cp(ctx)
+      if (p?.nda && p.deep) {
+        return `I can share the public story: ${p.deep.oneLiner} Deeper internal details require approved access.`
+      }
+      return 'I only use public portfolio facts here. Nothing private gets guessed.'
+    }
+  },
+
   // Process
   { patterns: [/(?:process|how.*(?:build|make|create|approach|design|start)|methodology|workflow)/i],
     handler: (_, ctx) => {
@@ -914,6 +930,16 @@ const rules: Rule[] = [
       const cat = categories.find(c => ctx.route.replace(/^\//, '') === c.slug)
       if (cat) return cat.approach.pillars.map(x => `**${x.title}**, ${x.desc}`).join('\n\n')
       return "Parth's process: constraint-driven design, systems over screens, ship to learn. Ask about a specific project for the real details."
+    }
+  },
+
+  // Ownership / contribution
+  { patterns: [/(?:what did (?:parth|you|i) own|what was (?:parth's|your|my) role|ownership|contribution|responsibilit)/i],
+    handler: (_, ctx) => {
+      const p = cp(ctx)
+      if (p?.deep) return `I was ${p.role}. My scope covered ${p.deep.platforms}.`
+      if (p) return `I was ${p.role} on ${p.name}.`
+      return 'Name a project and I will separate my ownership from the team effort.'
     }
   },
 
