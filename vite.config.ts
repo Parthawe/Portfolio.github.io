@@ -56,6 +56,16 @@ function getGeminiText(data: unknown): string {
     .trim() || ''
 }
 
+function isCompleteCursorAnswer(answer: string) {
+  const normalized = answer.trim().toLowerCase()
+  if (!normalized || normalized.includes('...')) return false
+  if (normalized.split(/\s+/).length > 22) return false
+  if (!/[.!?]["')\]]?$/.test(normalized)) return false
+
+  const withoutPunctuation = normalized.replace(/[.!?"')\]]+$/, '')
+  return !/\b(?:a|an|and|as|at|because|by|for|from|if|in|of|or|the|to|with|which|who)$/.test(withoutPunctuation)
+}
+
 function buildPortfolioPrompt(payload: FolioAnswerPayload) {
   const publicContext = JSON.stringify(payload.context ?? {}, null, 2).slice(0, 55_000)
   const localAnswer = String(payload.localAnswer || '').slice(0, 4_000)
@@ -159,7 +169,8 @@ function localGeminiEdgePlugin(apiKey: string, defaultModel: string): Plugin {
               generationConfig: model.startsWith('gemini-3')
                 ? {
                     thinkingConfig: { thinkingLevel: 'low' },
-                    maxOutputTokens: payload.surface === 'cursor' ? 320 : 640,
+                    // Gemini 3 counts internal thinking against this budget.
+                    maxOutputTokens: payload.surface === 'cursor' ? 768 : 1_024,
                   }
                 : {
                     temperature: 0.35,
@@ -179,7 +190,8 @@ function localGeminiEdgePlugin(apiKey: string, defaultModel: string): Plugin {
           }
 
           const answer = getGeminiText(data)
-          if (answer) {
+          const completeAnswer = payload.surface !== 'cursor' || isCompleteCursorAnswer(answer)
+          if (answer && completeAnswer) {
             writeJson(res, 200, { answer, model })
             return
           }

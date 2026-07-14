@@ -75,6 +75,16 @@ function geminiText(data: unknown) {
   return parts?.map(part => part.text || '').join('').trim() || ''
 }
 
+function isCompleteCursorAnswer(answer: string) {
+  const normalized = answer.trim().toLowerCase()
+  if (!normalized || normalized.includes('...')) return false
+  if (normalized.split(/\s+/).length > 22) return false
+  if (!/[.!?]["')\]]?$/.test(normalized)) return false
+
+  const withoutPunctuation = normalized.replace(/[.!?"')\]]+$/, '')
+  return !/\b(?:a|an|and|as|at|because|by|for|from|if|in|of|or|the|to|with|which|who)$/.test(withoutPunctuation)
+}
+
 function modelFallbacks(requestedModel: string) {
   return Array.from(new Set([
     requestedModel,
@@ -185,7 +195,9 @@ Deno.serve(async request => {
       const generationConfig = model.startsWith('gemini-3')
         ? {
             thinkingConfig: { thinkingLevel: 'low' },
-            maxOutputTokens: payload.surface === 'cursor' ? 320 : 640,
+            // Gemini 3 counts internal thinking against this budget. Leave
+            // enough room for the short visible answer to finish cleanly.
+            maxOutputTokens: payload.surface === 'cursor' ? 768 : 1_024,
           }
         : {
             temperature: 0.72,
@@ -223,7 +235,8 @@ Deno.serve(async request => {
         }
 
         const answer = geminiText(data)
-        if (answer) {
+        const completeAnswer = payload.surface !== 'cursor' || isCompleteCursorAnswer(answer)
+        if (answer && completeAnswer) {
           return json(origin, 200, { answer: answer.slice(0, 2_200), model })
         }
       } catch (error) {
