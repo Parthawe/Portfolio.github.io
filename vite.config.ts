@@ -78,6 +78,9 @@ function buildPortfolioPrompt(payload: FolioAnswerPayload) {
       ? 'This answer appears beside a cursor. Usually use 6 to 16 words. Never exceed 22 words. Use 1 or 2 short sentences and no bullets.'
       : 'Prefer 2 to 5 short sentences.',
     cursorSurface
+      ? 'Every answer must be a complete grammatical thought. End cleanly, never trail off, and never use ellipses. Prefer one strong sentence; use two only when both fit.'
+      : '',
+    cursorSurface
       ? 'If currentTourStop exists, treat it as what the visitor is looking at now. Answer in that exact context without restating the section name.'
       : '',
     cursorSurface

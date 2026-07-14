@@ -917,6 +917,18 @@ const rules: Rule[] = [
     }
   },
 
+  // Decision / risk
+  { patterns: [/(?:risk|risky|riskiest|tradeoff|trade-off|hardest decision|biggest bet|key decision)/i],
+    handler: (_, ctx) => {
+      const p = cp(ctx)
+      if (p?.deep) {
+        ctx.lastTopic = 'insight'
+        return `${p.deep.insight} ${p.deep.opinion}`
+      }
+      return 'The recurring bet is systems over screens: solve the behavior first, then make it beautiful.'
+    }
+  },
+
   // Challenge
   { patterns: [/(?:challenge|hardest|difficult|struggle|problem|pain|obstacle)/i],
     handler: (_, ctx) => {

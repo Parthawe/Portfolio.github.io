@@ -13,6 +13,7 @@ const wordCount = (value: string) => value.split(/\s+/).filter(Boolean).length
 
 const longReply = Array.from({ length: 80 }, (_, index) => `word${index + 1}`).join(' ')
 assert.ok(wordCount(shapeCursorAnswer(longReply, 'Tell me more')) <= CURSOR_WORD_LIMIT)
+assert.match(shapeCursorAnswer(longReply, 'Tell me more'), /\.$/)
 
 const cleaned = shapeCursorAnswer(
   'Absolutely! Great question! **[Mentra](/mentra)** proves the platform idea. • The app store made it real.',
@@ -31,6 +32,17 @@ assert.equal(
 assert.equal(
   shapeCursorAnswer('Proves wearables can be a platform.', 'Why this?'),
   'The work proves wearables can be a platform.',
+)
+assert.equal(
+  shapeCursorAnswer(
+    'Best fit: design engineer in AI and wearables. I also enjoy owning research, interaction, prototyping, implementation, visual systems, team direction, and every messy decision between them.',
+    'What role fits?',
+  ),
+  'Best fit: design engineer in AI and wearables.',
+)
+assert.equal(
+  shapeCursorAnswer('Hardware momentum is useless without a cohesive software pattern', 'Why?'),
+  'Hardware momentum is useless without a cohesive software pattern.',
 )
 
 const emotional = shapeCursorAnswer(
@@ -53,6 +65,7 @@ assert.ok(wordCount(CURSOR_IDENTITY_REPLY) <= CURSOR_WORD_LIMIT)
 assert.equal(isCursorIdentityQuestion('Are you human?'), true)
 assert.equal(isCursorIdentityQuestion('What did you own?'), false)
 assert.equal(isCursorAnswerUsable('As an AI, I do not have feelings.'), false)
+assert.equal(isCursorAnswerUsable('The riskiest bet was rejecting disconnected demos to force'), false)
 assert.equal(isCursorAnswerUsable("I'm Parth's AI counterpart. I can still have a useful take on the work."), true)
 
 console.log('Parth cursor voice contract passed')

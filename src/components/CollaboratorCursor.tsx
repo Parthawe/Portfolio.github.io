@@ -135,6 +135,7 @@ function contextualQuestion(pathname: string, question: string) {
 
   const normalized = question.toLowerCase().replace(/[?.!]+$/, '').trim()
   if (normalized === 'why this') return `What was the challenge in ${project.name}, and why did it matter?`
+  if (normalized === 'why') return `Why did that decision matter in ${project.name}?`
   if (normalized === 'what did i own') return `What did Parth own on ${project.name}?`
   if (normalized === 'what changed') return `What was the outcome of ${project.name}?`
   return `On the current ${project.name} project page, ${question}`
@@ -954,7 +955,7 @@ export default function CollaboratorCursor() {
         )}
         <span ref={statusRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true" />
         {conversationOpen && (
-          <div className="reading-cursor__conversation" role="dialog" aria-label="Ask Parth about the portfolio">
+          <div className="reading-cursor__conversation surface-glass surface-glass--strong" role="dialog" aria-label="Ask Parth about the portfolio">
             <div className="reading-cursor__conversation-head">
               <span>{tourActive && currentTourStep ? `Ask about: ${currentTourStep.label}` : 'Ask me about this work'}</span>
               <div className="reading-cursor__conversation-actions">

@@ -66,21 +66,46 @@ function plainCopy(text: string) {
     .trim()
 }
 
+function ensureTerminalPunctuation(text: string) {
+  const trimmed = text.trim().replace(/[,;:]+$/, '')
+  if (!trimmed || /[.!?]["')\]]?$/.test(trimmed)) return trimmed
+  return `${trimmed}.`
+}
+
+function truncateCompleteThought(text: string) {
+  const words = text.split(/\s+/).filter(Boolean)
+  if (words.length <= CURSOR_WORD_LIMIT) return ensureTerminalPunctuation(text)
+
+  const shortened = words
+    .slice(0, CURSOR_WORD_LIMIT)
+    .join(' ')
+    .replace(/[,;:]+$/, '')
+
+  return ensureTerminalPunctuation(shortened)
+}
+
 export function shapeCursorAnswer(text: string, question: string, addEmotion = false) {
   const plain = plainCopy(text)
-  const sentences = plain.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [plain]
-  const selectedSentences = sentences.slice(0, 2)
-  let concise = selectedSentences.join(' ').trim()
+  const sentences = (plain.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [plain])
+    .map(sentence => sentence.trim())
+    .filter(Boolean)
+  const firstSentence = sentences[0] || plain
+  let concise = sentences.slice(0, 2).join(' ').trim()
 
   if (addEmotion && !/\b(i am proud|i'm proud|still feels|i would|i'd|honestly)\b/i.test(concise)) {
     const coda = emotionalCoda(question)
-    if (coda) concise = `${selectedSentences[0]?.trim() || concise} ${coda}`
+    if (coda) concise = `${firstSentence} ${coda}`
   }
 
-  const words = concise.split(/\s+/).filter(Boolean)
-  return words.length > CURSOR_WORD_LIMIT
-    ? `${words.slice(0, CURSOR_WORD_LIMIT).join(' ').replace(/[,;:]+$/, '')}...`
-    : concise
+  if (concise.split(/\s+/).filter(Boolean).length <= CURSOR_WORD_LIMIT) {
+    return ensureTerminalPunctuation(concise)
+  }
+
+  if (firstSentence.split(/\s+/).filter(Boolean).length <= CURSOR_WORD_LIMIT) {
+    return ensureTerminalPunctuation(firstSentence)
+  }
+
+  return truncateCompleteThought(firstSentence)
 }
 
 export function getCursorThinkingLine(question: string, route: string) {
@@ -90,7 +115,13 @@ export function getCursorThinkingLine(question: string, route: string) {
 export function isCursorAnswerUsable(text: string) {
   const normalized = text.trim().toLowerCase()
   if (!normalized) return false
-  return !/^(as an ai|as a language model)|\b(i do not have feelings|i don't have feelings|i cannot feel emotions)\b/.test(normalized)
+  if (/^(as an ai|as a language model)|\b(i do not have feelings|i don't have feelings|i cannot feel emotions)\b/.test(normalized)) {
+    return false
+  }
+  if (!/[.!?]["')\]]?$/.test(normalized)) return false
+
+  const withoutPunctuation = normalized.replace(/[.!?"')\]]+$/, '')
+  return !/\b(?:a|an|and|as|at|because|by|for|from|if|in|of|or|the|to|with|which|who)$/.test(withoutPunctuation)
 }
 
 export const CURSOR_SCOPE_REPLY = 'I live in this portfolio. Try a project, decision, or role fit.'
