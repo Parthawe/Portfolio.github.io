@@ -3,16 +3,9 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import PointerCursorGlyph from '../components/PointerCursorGlyph'
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number]
-
-function CursorGlyph() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 3l14 7-6.2 1.6L9 18 5 3z" fill="currentColor" stroke="rgba(0,0,0,0.35)" strokeWidth="1" />
-    </svg>
-  )
-}
 
 export default function NotFoundPage() {
   return (
@@ -65,11 +58,11 @@ export default function NotFoundPage() {
             </div>
 
             <div className="nf-cursor nf-cursor--parth" aria-hidden="true">
-              <CursorGlyph />
+              <PointerCursorGlyph className="nf-cursor__glyph" />
               <span>parth</span>
             </div>
             <div className="nf-cursor nf-cursor--you" aria-hidden="true">
-              <CursorGlyph />
+              <PointerCursorGlyph className="nf-cursor__glyph" />
               <span>you</span>
             </div>
 

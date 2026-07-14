@@ -206,7 +206,7 @@ body.site-tools-open .figma-hover[aria-selected="true"] > .figma-select {
 .figma-cursor-label {
   position: fixed;
   z-index: 9990;
-  display: flex;
+  display: none;
   align-items: center;
   gap: 8px;
   padding: 2px 6px;
@@ -223,6 +223,9 @@ body.site-tools-open .figma-hover[aria-selected="true"] > .figma-select {
   opacity: 0;
   transform: translateY(4px);
   transition: opacity 0.25s, transform 0.25s;
+}
+body.figma-coordinates-on .figma-cursor-label {
+  display: flex;
 }
 .figma-cursor-label--visible {
   opacity: 1;
@@ -1173,6 +1176,14 @@ hr.divider {
   align-items: flex-start;
   gap: 0.28rem;
   pointer-events: none;
+}
+.nf-cursor__glyph {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  filter:
+    drop-shadow(0 0.12rem 0.1rem rgba(0, 0, 0, 0.52))
+    drop-shadow(0 0.28rem 0.3rem rgba(0, 0, 0, 0.24));
 }
 .nf-cursor span {
   padding: 0.14rem 0.44rem;

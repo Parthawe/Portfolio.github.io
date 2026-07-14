@@ -166,11 +166,13 @@ export default function RootLayout() {
   useEffect(() => {
     const shouldShowCanvasChrome = enableFigmaChrome && desktopCanvas && finePointer && !coarsePointer && canvasChromePreferred && !isLowPowerDevice();
     document.body.classList.toggle('figma-grid-on', shouldShowCanvasChrome);
+    document.body.classList.toggle('figma-coordinates-on', shouldShowCanvasChrome);
     document.body.classList.toggle('figma-rulers-off', !shouldShowCanvasChrome);
     document.body.classList.toggle('figma-reader-mode', !shouldShowCanvasChrome);
 
     return () => {
       document.body.classList.remove('figma-grid-on');
+      document.body.classList.remove('figma-coordinates-on');
       document.body.classList.remove('figma-rulers-off');
       document.body.classList.remove('figma-reader-mode');
     };

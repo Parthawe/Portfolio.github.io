@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useInView, type MotionValue } from 'fr
 import FigmaSelect from './FigmaSelect'
 import { CONTACT_EMAIL } from '../config/site'
 import { createPortfolioComment, listPortfolioComments, type PortfolioComment } from '../lib/commentStore'
+import PointerCursorGlyph from './PointerCursorGlyph'
 
 /** All footer notes share one wall regardless of which page they were left on. */
 const GUESTBOOK_ROUTE = '/guestbook'
@@ -31,15 +32,6 @@ const footerGroups = [
     ],
   },
 ]
-
-/* ── Off-canvas scene: the artboard ends, the raw canvas begins ── */
-function CursorGlyph() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M5 3l14 7-6.2 1.6L9 18 5 3z" fill="currentColor" stroke="rgba(0,0,0,0.35)" strokeWidth="1" />
-    </svg>
-  )
-}
 
 /* Figma-style comment pin: circle with one squared corner */
 function CommentPinGlyph({ size = 18 }: { size?: number }) {
@@ -151,7 +143,12 @@ function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
         <span className="ft-canvas-framelabel" aria-hidden="true">portfolio.fig — end of frame</span>
         <span className="ft-canvas-hint">
           Notes left on the canvas — click anywhere to pin yours.
-          <button type="button" className="ft-canvas-hint-btn" onClick={() => openDraftAt(50, 46)}>
+          <button
+            type="button"
+            className="ft-canvas-hint-btn"
+            data-parth-comment-target
+            onClick={() => openDraftAt(50, 46)}
+          >
             + leave a note
           </button>
         </span>
@@ -241,15 +238,9 @@ function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
           </form>
         )}
 
-        {/* wandering collaborator cursor */}
-        <div className="ft-cursor ft-cursor--parth" aria-hidden="true">
-          <CursorGlyph />
-          <span className="ft-cursor-tag">parth</span>
-        </div>
-
         {/* the visitor's cursor, now in comment mode */}
         <div className={`ft-cursor ft-cursor--you ${tracking && !draft ? 'is-live' : ''}`} ref={youRef} aria-hidden="true">
-          <CommentPinGlyph size={16} />
+          <PointerCursorGlyph className="ft-cursor__glyph" size={22} />
           <span className="ft-cursor-tag">leave a note</span>
         </div>
       </div>

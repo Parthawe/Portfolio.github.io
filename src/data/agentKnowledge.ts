@@ -766,6 +766,9 @@ export function getProjectNarrative(slug: string) {
   return {
     name: project.name,
     link: project.link,
+    role: project.role,
+    category: project.category,
+    storyline: project.storyline,
     deep: project.deep,
   }
 }

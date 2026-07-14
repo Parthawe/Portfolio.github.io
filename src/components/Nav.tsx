@@ -86,25 +86,6 @@ export default function Nav() {
     const navContrastClass = 'nav-on-dark';
     document.body.classList.remove(navContrastClass);
 
-    const visualHero = document.querySelector<HTMLElement>('.project-main .proj-visual-hero');
-    if (visualHero) {
-      const updateVisualHeroContrast = () => {
-        const rect = visualHero.getBoundingClientRect();
-        const navBand = Math.max(300, window.innerHeight * 0.32);
-        document.body.classList.toggle(navContrastClass, rect.top <= navBand && rect.bottom >= 0);
-      };
-
-      updateVisualHeroContrast();
-      window.addEventListener('scroll', updateVisualHeroContrast, { passive: true });
-      window.addEventListener('resize', updateVisualHeroContrast);
-
-      return () => {
-        window.removeEventListener('scroll', updateVisualHeroContrast);
-        window.removeEventListener('resize', updateVisualHeroContrast);
-        document.body.classList.remove(navContrastClass);
-      };
-    }
-
     const darkZones = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-contrast="dark"]'));
     if (!darkZones.length) return undefined;
 
