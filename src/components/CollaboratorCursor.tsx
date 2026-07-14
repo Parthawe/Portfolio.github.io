@@ -225,6 +225,7 @@ export default function CollaboratorCursor() {
   const { pathname, search } = useLocation()
   const normalizedPathname = pathname === '/' ? pathname : pathname.replace(/\/+$/, '')
   const routeKey = `${normalizedPathname}${search}`
+  const layerRef = useRef<HTMLDivElement>(null)
   const parthRef = useRef<HTMLDivElement>(null)
   const youRef = useRef<HTMLDivElement>(null)
   const parthCoordinatesRef = useRef<HTMLSpanElement>(null)
@@ -360,6 +361,15 @@ export default function CollaboratorCursor() {
     }
 
     const refreshSteps = () => {
+      const suppressed = Boolean(document.querySelector('#main-content.not-found'))
+      if (layerRef.current) layerRef.current.hidden = suppressed
+      document.body.classList.toggle('collaborator-cursor-active', !suppressed)
+      if (suppressed) {
+        steps.current = []
+        activeIndex.current = -1
+        return
+      }
+
       const hadSteps = steps.current.length > 0
       steps.current = resolveSteps(normalizedPathname)
       if (!hadSteps && steps.current.length > 0) {
@@ -537,7 +547,7 @@ export default function CollaboratorCursor() {
   }, [routeKey])
 
   return (
-    <div className="reading-cursor-layer">
+    <div ref={layerRef} className="reading-cursor-layer">
       <div
         ref={parthRef}
         className="reading-cursor reading-cursor--parth"
