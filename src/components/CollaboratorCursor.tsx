@@ -233,6 +233,12 @@ function resolveSteps(pathname: string): ResolvedStep[] {
   })
 }
 
+function tourStepsFrom(resolved: ResolvedStep[]) {
+  return resolved
+    .filter(step => step.label !== 'your turn' && step.label !== 'next one')
+    .slice(0, 5)
+}
+
 function visibleScore(element: HTMLElement) {
   const rect = element.getBoundingClientRect()
   const viewportTop = 86
@@ -298,7 +304,7 @@ export default function CollaboratorCursor() {
   const tourIndexRef = useRef(0)
   const programmaticScrollUntilRef = useRef(0)
   const tourGoRef = useRef<(index: number) => void>(() => {})
-  const tourFinishRef = useRef<() => void>(() => {})
+  const tourFinishRef = useRef<(message?: string) => void>(() => {})
 
   const setConversation = (open: boolean) => {
     const parth = parthRef.current
@@ -321,14 +327,14 @@ export default function CollaboratorCursor() {
     }
   }
 
-  const finishTour = () => {
+  const finishTour = (message?: string) => {
     tourActiveRef.current = false
     tourPausedRef.current = false
     tourStepsRef.current = []
     setTourActive(false)
     setTourPaused(false)
     setTourTotal(0)
-    tourFinishRef.current()
+    tourFinishRef.current(message)
   }
 
   const goToTourStep = (index: number) => {
@@ -340,14 +346,27 @@ export default function CollaboratorCursor() {
 
   const startTour = () => {
     if (tourStartTimer.current !== null) window.clearTimeout(tourStartTimer.current)
-    const beginTour = () => {
+    const fullCaseStudyButton = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('.cs-quick-summary-toggle-btn'),
+    ).find(button => button.textContent?.trim() === 'Full case study' && button.getAttribute('aria-selected') !== 'true')
+
+    const beginTour = (attempt = 0) => {
+      const waitingForExpansion = fullCaseStudyButton
+        && fullCaseStudyButton.getAttribute('aria-selected') !== 'true'
+      if (waitingForExpansion && attempt < 8) {
+        tourStartTimer.current = window.setTimeout(() => beginTour(attempt + 1), 100 + attempt * 25)
+        return
+      }
+
       tourStartTimer.current = null
       const resolved = resolveSteps(normalizedPathname)
       steps.current = resolved
-      const available = resolved
-        .filter(step => step.label !== 'your turn' && step.label !== 'next one')
-        .slice(0, 5)
-      if (available.length === 0) return
+      const available = tourStepsFrom(resolved)
+      if (available.length === 0) {
+        setReply('No clean tour here yet. Ask me where to start.')
+        setConversation(true)
+        return
+      }
 
       tourStepsRef.current = available
       tourActiveRef.current = true
@@ -361,18 +380,14 @@ export default function CollaboratorCursor() {
       window.requestAnimationFrame(() => tourGoRef.current(0))
     }
 
-    const fullCaseStudyButton = Array.from(
-      document.querySelectorAll<HTMLButtonElement>('.cs-quick-summary-toggle-btn'),
-    ).find(button => button.textContent?.trim() === 'Full case study' && button.getAttribute('aria-selected') !== 'true')
-
     if (fullCaseStudyButton) {
       setConversation(false)
       fullCaseStudyButton.click()
-      tourStartTimer.current = window.setTimeout(beginTour, 280)
+      tourStartTimer.current = window.setTimeout(() => beginTour(), 80)
       return
     }
 
-    beginTour()
+    beginTour(8)
   }
 
   const askParth = async (message: string) => {
@@ -451,7 +466,9 @@ export default function CollaboratorCursor() {
         finishTour()
       } else if (tourActiveRef.current && !conversationOpenRef.current && event.key === 'ArrowRight') {
         event.preventDefault()
-        if (tourIndexRef.current >= tourStepsRef.current.length - 1) finishTour()
+        if (tourIndexRef.current >= tourStepsRef.current.length - 1) {
+          finishTour('Tour complete. Ask me where the risky decision was.')
+        }
         else goToTourStep(tourIndexRef.current + 1)
       } else if (tourActiveRef.current && !conversationOpenRef.current && event.key === 'ArrowLeft') {
         event.preventDefault()
@@ -465,7 +482,9 @@ export default function CollaboratorCursor() {
   const advanceToNextSection = () => {
     if (tourActiveRef.current) {
       setConversation(false)
-      if (tourIndexRef.current >= tourStepsRef.current.length - 1) finishTour()
+      if (tourIndexRef.current >= tourStepsRef.current.length - 1) {
+        finishTour('Tour complete. Ask me where the risky decision was.')
+      }
       else goToTourStep(tourIndexRef.current + 1)
       return
     }
@@ -612,7 +631,11 @@ export default function CollaboratorCursor() {
 
     tourGoRef.current = requestedIndex => {
       const available = tourStepsRef.current.filter(step => document.documentElement.contains(step.element))
-      if (!tourActiveRef.current || available.length === 0) return
+      if (!tourActiveRef.current) return
+      if (available.length === 0) {
+        finishTour('That section moved. I reset the tour.')
+        return
+      }
 
       tourStepsRef.current = available
       const nextIndex = clamp(requestedIndex, 0, available.length - 1)
@@ -632,9 +655,15 @@ export default function CollaboratorCursor() {
       schedule()
     }
 
-    tourFinishRef.current = () => {
+    tourFinishRef.current = message => {
       parth.classList.remove('is-touring')
-      typeNote('Tour complete. Ask me where the risky decision was.', -2, true)
+      clearTyping()
+      if (message) typeNote(message, -2, true)
+      else {
+        setSpeaking(false)
+        if (noteRef.current) noteRef.current.textContent = ''
+        schedulePark(800)
+      }
     }
 
     const refreshSteps = () => {
@@ -644,11 +673,33 @@ export default function CollaboratorCursor() {
       if (suppressed) {
         steps.current = []
         activeIndex.current = -1
+        if (tourActiveRef.current) finishTour()
         return
       }
 
       const hadSteps = steps.current.length > 0
-      steps.current = resolveSteps(normalizedPathname)
+      const previousTourLabel = tourStepsRef.current[tourIndexRef.current]?.label
+      const refreshedSteps = resolveSteps(normalizedPathname)
+      steps.current = refreshedSteps
+      if (tourActiveRef.current) {
+        const refreshedTour = tourStepsFrom(refreshedSteps)
+        if (refreshedTour.length === 0) {
+          finishTour('This page changed under me. Tour reset.')
+          return
+        }
+
+        const matchingIndex = previousTourLabel
+          ? refreshedTour.findIndex(step => step.label === previousTourLabel)
+          : -1
+        const refreshedIndex = matchingIndex >= 0
+          ? matchingIndex
+          : clamp(tourIndexRef.current, 0, refreshedTour.length - 1)
+        tourStepsRef.current = refreshedTour
+        tourIndexRef.current = refreshedIndex
+        setTourIndex(refreshedIndex)
+        setTourTotal(refreshedTour.length)
+        activeIndex.current = -1
+      }
       if (!hadSteps && steps.current.length > 0) {
         activeIndex.current = -1
         parkedRef.current = false
@@ -812,8 +863,11 @@ export default function CollaboratorCursor() {
       parth.classList.toggle('is-page-hidden', document.hidden)
     }
 
-    const routeObserver = new MutationObserver(() => {
-      if (steps.current.length === 0) refreshSteps()
+    const routeObserver = new MutationObserver(mutations => {
+      const hasPageMutation = mutations.some(mutation => !layerRef.current?.contains(mutation.target))
+      if (!hasPageMutation || (!tourActiveRef.current && steps.current.length > 0)) return
+      if (refreshTimer.current !== null) window.clearTimeout(refreshTimer.current)
+      refreshTimer.current = window.setTimeout(refreshSteps, 120)
     })
     routeObserver.observe(document.body, { childList: true, subtree: true })
 
@@ -887,13 +941,15 @@ export default function CollaboratorCursor() {
             <button
               type="button"
               onClick={() => {
-                if (tourIndex >= tourTotal - 1) finishTour()
+                if (tourIndex >= tourTotal - 1) {
+                  finishTour('Tour complete. Ask me where the risky decision was.')
+                }
                 else goToTourStep(tourIndex + 1)
               }}
               aria-label={tourIndex >= tourTotal - 1 ? 'Finish tour' : 'Next tour stop'}
               title={tourIndex >= tourTotal - 1 ? 'Finish' : 'Next'}
             >{tourIndex >= tourTotal - 1 ? '\u2713' : '\u2192'}</button>
-            <button type="button" onClick={finishTour} aria-label="Exit tour" title="Exit">&#215;</button>
+            <button type="button" onClick={() => finishTour()} aria-label="Exit tour" title="Exit">&#215;</button>
           </div>
         )}
         <span ref={statusRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true" />
