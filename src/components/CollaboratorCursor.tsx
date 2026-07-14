@@ -283,6 +283,15 @@ export default function CollaboratorCursor() {
   const requestIdRef = useRef(0)
 
   const setConversation = (open: boolean) => {
+    const parth = parthRef.current
+    if (parth) {
+      parth.classList.remove('is-nearby')
+      if (open) {
+        const rect = parth.getBoundingClientRect()
+        parth.dataset.side = rect.left + rect.width / 2 > window.innerWidth / 2 ? 'left' : 'right'
+        parth.dataset.vertical = rect.top > window.innerHeight * 0.58 ? 'above' : 'below'
+      }
+    }
     conversationOpenRef.current = open
     setConversationOpen(open)
     if (open) {
@@ -419,12 +428,25 @@ export default function CollaboratorCursor() {
       if (noteRef.current) noteRef.current.textContent = ''
       if (labelRef.current) labelRef.current.textContent = 'parth'
 
-      const x = Math.max(18, window.innerWidth - 86)
+      const x = Math.max(24, window.innerWidth - 116)
       const y = clamp(window.innerHeight * 0.62, 124, window.innerHeight - 132)
       parth.dataset.side = 'left'
       parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'
       setPosition(parth, x, y, true)
       if (parthCoordinatesRef.current) parthCoordinatesRef.current.textContent = cursorCoordinates(x, y)
+    }
+
+    const updateProximity = (x: number, y: number) => {
+      const trigger = triggerRef.current
+      if (!trigger || conversationOpenRef.current || !parth.classList.contains('is-visible')) {
+        parth.classList.remove('is-nearby')
+        return
+      }
+
+      const rect = trigger.getBoundingClientRect()
+      const distanceX = Math.max(rect.left - x, 0, x - rect.right)
+      const distanceY = Math.max(rect.top - y, 0, y - rect.bottom)
+      parth.classList.toggle('is-nearby', Math.hypot(distanceX, distanceY) <= 96)
     }
 
     const schedulePark = (delay = 4200) => {
@@ -563,24 +585,26 @@ export default function CollaboratorCursor() {
 
     const paint = () => {
       frame.current = null
-      const index = chooseStep()
-      const step = index >= 0 ? steps.current[index] : null
+      if (!conversationOpenRef.current) {
+        const index = chooseStep()
+        const step = index >= 0 ? steps.current[index] : null
 
-      if (step) positionParth(step, index)
-      else parkCursor()
+        if (step) positionParth(step, index)
+        else parkCursor()
+      }
 
       const youX = clamp(pointer.current.x - YOU_CURSOR_TIP_OFFSET.x, 0, window.innerWidth - 118)
       const youY = clamp(pointer.current.y - YOU_CURSOR_TIP_OFFSET.y, 0, window.innerHeight - 42)
       const hoveredRect = hoveredLabelTarget.current?.getBoundingClientRect()
-      const shouldLiftLabel = Boolean(
+      const shouldLiftLabel = parth.classList.contains('is-nearby') || Boolean(
         hoveredRect &&
-        hoveredRect.width > 0 &&
-        hoveredRect.height > 0 &&
-        pointer.current.x >= hoveredRect.left - 12 &&
-        pointer.current.x <= hoveredRect.right + 12 &&
-        pointer.current.y >= hoveredRect.top - 12 &&
-        pointer.current.y <= hoveredRect.bottom + 12 &&
-        hoveredRect.top > 56,
+          hoveredRect.width > 0 &&
+          hoveredRect.height > 0 &&
+          pointer.current.x >= hoveredRect.left - 12 &&
+          pointer.current.x <= hoveredRect.right + 12 &&
+          pointer.current.y >= hoveredRect.top - 12 &&
+          pointer.current.y <= hoveredRect.bottom + 12 &&
+          hoveredRect.top > 56,
       )
       you.dataset.labelSide = shouldLiftLabel ? 'above' : 'below'
       setPosition(you, youX, youY, pointer.current.seen)
@@ -595,6 +619,7 @@ export default function CollaboratorCursor() {
 
     const onPointerMove = (event: PointerEvent) => {
       pointer.current = { x: event.clientX, y: event.clientY, seen: true }
+      updateProximity(event.clientX, event.clientY)
       const hoverElement = document.elementFromPoint(event.clientX, event.clientY)
       hoveredLabelTarget.current = hoverElement instanceof HTMLElement
         ? hoverElement.closest<HTMLElement>(LABEL_AVOID_SELECTOR)
@@ -603,6 +628,10 @@ export default function CollaboratorCursor() {
     }
 
     const onScroll = () => {
+      if (conversationOpenRef.current) {
+        schedule()
+        return
+      }
       parkedRef.current = false
       clearParkTimer()
       if (thinkingTimer.current !== null) {
@@ -679,6 +708,9 @@ export default function CollaboratorCursor() {
             <span ref={parthCoordinatesRef} className="reading-cursor__coordinates">00,00</span>
           </span>
         </button>
+        <div className="reading-cursor__invite" aria-hidden="true">
+          Click to ask. I have opinions.
+        </div>
         <div ref={noteRef} className="reading-cursor__note" aria-hidden="true" />
         <span ref={statusRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true" />
         {conversationOpen && (

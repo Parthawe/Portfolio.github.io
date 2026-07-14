@@ -22,6 +22,7 @@ assert.equal(cleaned.includes('Great question'), false)
 assert.equal(cleaned.includes('Absolutely'), false)
 assert.equal(cleaned.includes('**'), false)
 assert.equal(cleaned.includes(']('), false)
+assert.equal(shapeCursorAnswer('The playful part is *Jugalbandi*.', 'What is playful?'), 'The playful part is Jugalbandi.')
 
 assert.equal(
   shapeCursorAnswer('Shipped the product with a four-person team.', 'What changed?'),

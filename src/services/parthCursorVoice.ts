@@ -57,6 +57,7 @@ function plainCopy(text: string) {
   return normalizeCopy(text)
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
     .replace(/(^|\s)[•*-]\s+/g, '$1')
     .replace(/^(?:(?:great question|good question|absolutely|certainly|of course)[,!.:\s-]*)+/i, '')
     .replace(/^(shipped|designed|built|created|led)\b/i, match => `I ${match.toLowerCase()}`)

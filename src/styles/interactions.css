@@ -3338,9 +3338,8 @@ body.nav-on-dark .site-figbar.surface-glass,
 }
 
 .reading-cursor--parth.is-conversing {
-  max-width: min(18rem, calc(100vw - 2.25rem));
   opacity: 1;
-  z-index: 2;
+  z-index: 4;
 }
 
 .reading-cursor--parth.is-conversing .reading-cursor__trigger {
@@ -3368,13 +3367,15 @@ body.nav-on-dark .site-figbar.surface-glass,
 }
 
 .reading-cursor--parth.is-parked:hover,
-.reading-cursor--parth.is-parked:focus-within {
+.reading-cursor--parth.is-parked:focus-within,
+.reading-cursor--parth.is-nearby {
   opacity: 1;
 }
 
 .reading-cursor--parth.is-parked:hover .reading-cursor__trigger,
-.reading-cursor--parth.is-parked:focus-within .reading-cursor__trigger {
-  transform: scale(1);
+.reading-cursor--parth.is-parked:focus-within .reading-cursor__trigger,
+.reading-cursor--parth.is-nearby .reading-cursor__trigger {
+  transform: scale(1.04);
 }
 
 .reading-cursor--you {
@@ -3450,6 +3451,8 @@ body.nav-on-dark .site-figbar.surface-glass,
 }
 
 .reading-cursor__trigger {
+  position: relative;
+  z-index: 5;
   grid-column: 1 / 3;
   grid-row: 1;
   display: grid;
@@ -3462,6 +3465,44 @@ body.nav-on-dark .site-figbar.surface-glass,
   color: inherit;
   background: transparent;
   text-align: left;
+  isolation: isolate;
+  transition: transform 180ms ease;
+}
+
+.reading-cursor__trigger::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: -0.75rem;
+  border-radius: 1rem;
+}
+
+.reading-cursor__trigger::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: -0.34rem -0.42rem;
+  border: 1px solid rgba(49, 87, 246, 0.22);
+  border-radius: 0.72rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 0.6rem 1.4rem rgba(12, 25, 78, 0.2),
+    0 0 0 0.22rem rgba(49, 87, 246, 0.1);
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 140ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reading-cursor__trigger > * {
+  position: relative;
+  z-index: 1;
+}
+
+.reading-cursor--parth.is-nearby .reading-cursor__trigger::after,
+.reading-cursor--parth .reading-cursor__trigger:hover::after,
+.reading-cursor--parth .reading-cursor__trigger:focus-visible::after {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .reading-cursor__trigger:focus-visible .reading-cursor__tag {
@@ -3542,16 +3583,64 @@ body.figma-coordinates-on .reading-cursor__coordinates {
     transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.reading-cursor__invite {
+  position: absolute;
+  z-index: 6;
+  top: 1.65rem;
+  left: 0;
+  width: max-content;
+  max-width: min(11rem, calc(100vw - 2rem));
+  padding: 0.38rem 0.52rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 0.52rem;
+  color: #fff;
+  background: #1739ba;
+  box-shadow: 0 0.5rem 1.25rem rgba(10, 24, 86, 0.28);
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 0.64rem;
+  font-weight: 520;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-0.25rem) scale(0.96);
+  transform-origin: top left;
+  transition: opacity 140ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.reading-cursor--parth[data-side="left"] .reading-cursor__invite {
+  right: 0;
+  left: auto;
+  transform-origin: top right;
+}
+
+.reading-cursor--parth.is-nearby:not(.is-conversing) .reading-cursor__invite {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.reading-cursor--parth.is-nearby .reading-cursor__note {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .reading-cursor--parth.is-speaking .reading-cursor__note {
   opacity: 1;
   transform: translateY(0);
 }
 
+.reading-cursor--parth.is-nearby .reading-cursor__note {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .reading-cursor__conversation {
-  grid-column: 2;
-  grid-row: 2;
+  position: absolute;
+  z-index: 2;
+  top: 1.55rem;
+  left: 0;
   width: min(18rem, calc(100vw - 2.75rem));
-  margin-top: 0.12rem;
+  margin: 0;
   padding: 0.48rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.55rem;
@@ -3565,9 +3654,20 @@ body.figma-coordinates-on .reading-cursor__coordinates {
   animation: parth-conversation-in 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.reading-cursor--parth[data-side="left"] .reading-cursor__conversation {
+  right: 0;
+  left: auto;
+  transform-origin: top right;
+}
+
 .reading-cursor--parth[data-vertical="above"] .reading-cursor__conversation {
-  transform: translateY(calc(-100% - 1.45rem));
+  top: auto;
+  bottom: 1.55rem;
   transform-origin: bottom left;
+}
+
+.reading-cursor--parth[data-side="left"][data-vertical="above"] .reading-cursor__conversation {
+  transform-origin: bottom right;
 }
 
 @keyframes parth-conversation-in {
@@ -3729,6 +3829,7 @@ body.nav-on-dark .reading-cursor__note {
 }
 
 .reading-cursor--you {
+  z-index: 10;
   max-width: none;
   transition: opacity 120ms ease;
 }
