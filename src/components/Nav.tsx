@@ -149,15 +149,16 @@ export default function Nav() {
     window.dispatchEvent(new CustomEvent('site-tools:preload'));
   }, []);
 
-  const isHome = pathname === '/';
-  const isAbout = pathname === '/about';
-  const isWriting = pathname === '/writing' || pathname.startsWith('/writing/');
-  const isWork = pathname === '/work' || pathname.startsWith('/work/');
+  const normalizedPathname = pathname === '/' ? pathname : pathname.replace(/\/+$/, '');
+  const isHome = normalizedPathname === '/';
+  const isAbout = normalizedPathname === '/about';
+  const isWriting = normalizedPathname === '/writing' || normalizedPathname.startsWith('/writing/');
+  const isWork = normalizedPathname === '/work' || normalizedPathname.startsWith('/work/');
   // Project and category pages also count as "work"
-  const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !['studio', 'book', 'graveyard'].some(r => pathname === `/${r}`));
+  const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !['studio', 'book', 'graveyard'].some(r => normalizedPathname === `/${r}`));
 
   // On the Work page itself, the Work tab expands to show its three views.
-  const isWorkPage = pathname === '/work';
+  const isWorkPage = normalizedPathname === '/work';
   const requestedWorkView = new URLSearchParams(search).get('view');
   const workView =
     requestedWorkView === 'library' || requestedWorkView === 'index' || requestedWorkView === 'playlist'
