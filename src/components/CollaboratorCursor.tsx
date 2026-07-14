@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getProjectNarrative } from '../data/agentKnowledge'
+import { createChatHistory, sendMessage } from '../services/agentAI'
+import { getCursorThinkingLine } from '../services/parthCursorVoice'
 import PointerCursorGlyph from './PointerCursorGlyph'
 
 type ParthStep = {
@@ -59,6 +61,7 @@ const ANCHOR_SELECTOR = [
 const LABEL_AVOID_SELECTOR = [
   'a',
   'button',
+  'input',
   '[role="button"]',
   '[data-parth-anchor]',
   '.pcard',
@@ -73,20 +76,20 @@ const clamp = (value: number, min: number, max: number) => Math.min(Math.max(val
 const YOU_CURSOR_TIP_OFFSET = { x: 2, y: 4 }
 
 const CATEGORY_CUES: Record<string, Partial<Record<string, string>>> = {
-  '/ai': { 'how I see it': 'I keep human judgment in the loop.', 'start here': 'I would start with AI that ships on hardware.' },
-  '/ai-wearables': { 'how I see it': 'I design for glances, voice, and real hardware.', 'start here': 'This is the platform story I would open first.' },
-  '/ux': { 'how I see it': 'I follow the decisions, not just the screens.', 'start here': 'Start where research changed the product.' },
-  '/ux-design': { 'how I see it': 'I follow the decisions, not just the screens.', 'start here': 'Start where research changed the product.' },
-  '/ui': { 'how I see it': 'I use the interface to make trust visible.', 'start here': 'This is my most complete product system.' },
-  '/design-engineer': { 'how I see it': 'For me, the prototype is part of the argument.', 'start here': 'Start where the design became working behavior.' },
-  '/creative-tech': { 'how I see it': 'This is where I bring code, material, and interaction together.', 'start here': 'I would begin with the live interaction.' },
-  '/installations': { 'how I see it': 'Here, the room becomes part of the interface.', 'start here': 'Start with the piece people could inhabit.' },
-  '/fintech': { 'how I see it': 'I make money movement feel legible and trustworthy.', 'start here': 'I would start with the highest-risk flow.' },
-  '/crypto': { 'how I see it': 'I turn complex rails into calmer decisions.', 'start here': 'Start where transaction risk becomes legible.' },
-  '/brand': { 'how I see it': 'I build identities that hold together as systems.', 'start here': 'I would start with the broadest visual system.' },
-  '/brand-visual': { 'how I see it': 'I build identities that hold together as systems.', 'start here': 'I would start with the broadest visual system.' },
-  '/healthcare': { 'how I see it': 'I design for clarity when the stakes are high.', 'start here': 'Start with the decision-support work.' },
-  '/design-for-good': { 'how I see it': 'I treat access as part of the system, not an add-on.', 'start here': 'Start where service and interface meet.' },
+  '/ai': { 'how I see it': 'AI gets interesting when the human still has the last word.', 'start here': 'I would start with the AI work that escaped the chat box.' },
+  '/ai-wearables': { 'how I see it': 'A tiny display is a ruthless design critic. I like that.', 'start here': 'This is the platform story I would open first.' },
+  '/ux': { 'how I see it': 'Pretty screens are the receipt. The decisions are the work.', 'start here': 'Start where research actually changed the product.' },
+  '/ux-design': { 'how I see it': 'Pretty screens are the receipt. The decisions are the work.', 'start here': 'Start where research actually changed the product.' },
+  '/ui': { 'how I see it': 'Good UI makes trust visible before anyone has to ask.', 'start here': 'This is my most complete product system.' },
+  '/design-engineer': { 'how I see it': 'If I can prototype it, we can argue with evidence.', 'start here': 'Start where the design became working behavior.' },
+  '/creative-tech': { 'how I see it': 'This is where code stops being a tool and joins the material.', 'start here': 'I would begin with the interaction you can actually feel.' },
+  '/installations': { 'how I see it': 'Here, the room is part of the interface. No viewport required.', 'start here': 'Start with the piece people could inhabit.' },
+  '/fintech': { 'how I see it': 'Money is stressful enough. The interface should not add suspense.', 'start here': 'I would start with the highest-risk flow.' },
+  '/crypto': { 'how I see it': 'Complex rails are fine. Confusing decisions are not.', 'start here': 'Start where transaction risk becomes legible.' },
+  '/brand': { 'how I see it': 'A logo is a moment. I care more about the system after it.', 'start here': 'I would start with the broadest visual system.' },
+  '/brand-visual': { 'how I see it': 'A logo is a moment. I care more about the system after it.', 'start here': 'I would start with the broadest visual system.' },
+  '/healthcare': { 'how I see it': 'When the stakes rise, clarity stops being cosmetic.', 'start here': 'Start with the decision-support work.' },
+  '/design-for-good': { 'how I see it': 'Access is part of the system, not the paragraph at the end.', 'start here': 'Start where service and interface meet.' },
 }
 
 function compactWords(value: string | undefined, fallback: string, limit = 10) {
@@ -104,22 +107,41 @@ function intelligentNote(pathname: string, step: ParthStep) {
   const project = getProjectNarrative(pathname.replace(/^\//, ''))
   if (!project?.deep) return step.note
 
-  if (step.label === 'what shipped') return compactWords(project.deep.outcome, step.note, 9)
-  if (step.label === 'quick version') return `${project.name}, in one useful pass.`
-  if (step.label === 'why') return compactWords(project.deep.challenge, step.note, 10)
-  if (step.label === 'what I chose') return compactWords(project.deep.insight, step.note, 10)
-  if (step.label === 'what changed') return compactWords(project.deep.outcome, step.note, 9)
+  if (step.label === 'what shipped') return `${compactWords(project.deep.outcome, step.note, 9)} That is the headline.`
+  if (step.label === 'quick version') return `${project.name}, minus the case-study homework.`
+  if (step.label === 'why') return `${compactWords(project.deep.challenge, step.note, 10)} That was the real knot.`
+  if (step.label === 'what I chose') return `${compactWords(project.deep.insight, step.note, 10)} That is the bet I would make again.`
+  if (step.label === 'what changed') return `${compactWords(project.deep.outcome, step.note, 9)} Proof beats polish.`
   return step.note
+}
+
+function conversationPrompts(pathname: string) {
+  if (pathname === '/') return ['Where should I start?', 'What should I hire you for?', 'Surprise me']
+  if (pathname === '/work') return ['Best three?', 'Strongest research?', 'Show me range']
+  if (pathname === '/about') return ['What roles fit?', 'Can you code?', 'What drives the work?']
+  if (CATEGORY_ROUTES.has(pathname)) return ['Where should I start?', 'What connects these?', 'Strongest proof?']
+  return ['Why this?', 'What did I own?', 'What changed?']
+}
+
+function contextualQuestion(pathname: string, question: string) {
+  const project = getProjectNarrative(pathname.replace(/^\//, ''))
+  if (!project) return question
+
+  const normalized = question.toLowerCase().replace(/[?.!]+$/, '').trim()
+  if (normalized === 'why this') return `What was the challenge in ${project.name}, and why did it matter?`
+  if (normalized === 'what did i own') return `What did Parth own on ${project.name}?`
+  if (normalized === 'what changed') return `What was the outcome of ${project.name}?`
+  return `On the current ${project.name} project page, ${question}`
 }
 
 function pageSteps(pathname: string): ParthStep[] {
   if (pathname === '/') {
     return [
-      { selectors: ['#hero'], label: 'welcome', note: "I'll show you the work I would start with." },
-      { selectors: ['.wr-featured-v2 [data-project]:first-of-type', '.wr-featured-v2'], label: 'start here', note: 'If you are short on time, I would start with these.' },
-      { selectors: ['.wr-identity'], label: 'about me', note: 'A little about me, then back to the work.' },
-      { selectors: ['.wr-disciplines'], label: 'what I do', note: 'I work across products, code, and physical interaction.' },
-      { selectors: ['.wr-archive'], label: 'more work', note: 'Some of the smaller experiments live here.' },
+      { selectors: ['#hero'], label: 'welcome', note: 'You made it. I have opinions about where to start.' },
+      { selectors: ['.wr-featured-v2 [data-project]:first-of-type', '.wr-featured-v2'], label: 'start here', note: 'Short on time? These are the projects I would defend first.' },
+      { selectors: ['.wr-identity'], label: 'about me', note: 'Context behind the pixels. I promise to keep it brief.' },
+      { selectors: ['.wr-disciplines'], label: 'what I do', note: 'Products, code, and physical interaction. I dislike staying in one lane.' },
+      { selectors: ['.wr-archive'], label: 'more work', note: 'The smaller experiments are where I let the edges get weird.' },
       {
         selectors: ['[data-parth-comment-target]', '.ft-canvas-hint-btn'],
         label: 'your turn',
@@ -130,20 +152,20 @@ function pageSteps(pathname: string): ParthStep[] {
 
   if (pathname === '/work') {
     return [
-      { selectors: ['.work-page-header'], label: 'welcome', note: 'The full library, organized for a quick scan.' },
-      { selectors: ['#work-project-results .pcard:first-of-type', '#work-project-results .work-library-row:first-of-type', '#work-project-results .work-timeline-feature'], label: 'start here', note: 'I would open this one first.' },
-      { selectors: ['.work-group--archive', '.work-library-shelves', '.work-timeline-main'], label: 'more work', note: 'The supporting work shows the range.', quiet: true },
+      { selectors: ['.work-page-header'], label: 'welcome', note: 'The whole shelf. I would still only make you open three.' },
+      { selectors: ['#work-project-results .pcard:first-of-type', '#work-project-results .work-library-row:first-of-type', '#work-project-results .work-timeline-feature'], label: 'start here', note: 'I would open this first. It makes the clearest argument.' },
+      { selectors: ['.work-group--archive', '.work-library-shelves', '.work-timeline-main'], label: 'more work', note: 'Range matters, but not at the cost of a point of view.', quiet: true },
       { selectors: ['[data-parth-comment-target]', '.ft-canvas-hint-btn', 'footer'], label: 'your turn', note: 'Leave me a note if something stood out.' },
     ]
   }
 
   if (pathname === '/about') {
     return [
-      { selectors: ['.abt-photo-hero'], label: 'hello', note: 'I design products, then keep making after work.' },
-      { selectors: ['.abt-table-wrap'], label: 'the path', note: 'The throughline is complex systems made clear.' },
-      { selectors: ['.abt-recognition'], label: 'proof', note: 'A few signals beyond the job title.' },
-      { selectors: ['.abt-vibe'], label: 'code + design', note: 'I use code to test the interaction.' },
-      { selectors: ['.abt-beyond'], label: 'off the clock', note: 'Making things is a habit, not just a job.' },
+      { selectors: ['.abt-photo-hero'], label: 'hello', note: 'I design products, then keep making when nobody asked.' },
+      { selectors: ['.abt-table-wrap'], label: 'the path', note: 'The path looks messy. The throughline is not.' },
+      { selectors: ['.abt-recognition'], label: 'proof', note: 'Nice signals. I care more about what survived contact with users.' },
+      { selectors: ['.abt-vibe'], label: 'code + design', note: 'Code lets me argue with working behavior, not slides.' },
+      { selectors: ['.abt-beyond'], label: 'off the clock', note: 'Apparently I do not know how to stop making things.' },
       { selectors: ['[data-parth-comment-target]', '.ft-canvas-hint-btn', 'footer'], label: 'your turn', note: 'Leave me a note before you go.' },
     ]
   }
@@ -160,12 +182,12 @@ function pageSteps(pathname: string): ParthStep[] {
   }
 
   return [
-    { selectors: ['.proj-visual-hero', '.proj-hero', '.project-hero', '#main-content > section:first-of-type'], label: 'what shipped', note: 'I like to show the outcome first.' },
-    { selectors: ['.cs-expand-preview', '#cs-summary', '.cs-quick-summary-shell'], label: 'quick version', note: 'Short on time? This is the two-minute version.' },
-    { selectors: ['#cs-context', '#cs-problem', '#cs-background', '#cs-overview'], label: 'why', note: 'This is the problem I was trying to solve.' },
-    { selectors: ['#cs-bet', '#cs-process', '#cs-design', '#cs-concept', '#cs-research', '#cs-challenges', '#cs-discover', '#cs-define', '#cs-develop'], label: 'what I chose', note: 'The important decisions live here.', avoidDenseMedia: true },
-    { selectors: ['#cs-impact', '#cs-results', '#cs-result', '#cs-outcome', '#cs-reflections', '#cs-learning'], label: 'what changed', note: 'This is what the work changed.' },
-    { selectors: ['.next-project', '.cs-next-project', '[class*="next-project"]'], label: 'next one', note: 'This is a good project to open next.', quiet: true },
+    { selectors: ['.proj-visual-hero', '.proj-hero', '.project-hero', '#main-content > section:first-of-type'], label: 'what shipped', note: 'Outcome first. Process has to earn your attention.' },
+    { selectors: ['.cs-expand-preview', '#cs-summary', '.cs-quick-summary-shell'], label: 'quick version', note: 'No homework. Here is the useful version.' },
+    { selectors: ['#cs-context', '#cs-problem', '#cs-background', '#cs-overview'], label: 'why', note: 'This was the tension I could not leave alone.' },
+    { selectors: ['#cs-bet', '#cs-process', '#cs-design', '#cs-concept', '#cs-research', '#cs-challenges', '#cs-discover', '#cs-define', '#cs-develop'], label: 'what I chose', note: 'Here is the bet, including the uncomfortable tradeoff.', avoidDenseMedia: true },
+    { selectors: ['#cs-impact', '#cs-results', '#cs-result', '#cs-outcome', '#cs-reflections', '#cs-learning'], label: 'what changed', note: 'If nothing changed, the case study is decoration.' },
+    { selectors: ['.next-project', '.cs-next-project', '[class*="next-project"]'], label: 'next one', note: 'I would pair this with the project below.', quiet: true },
     { selectors: ['[data-parth-comment-target]', '.ft-canvas-hint-btn', 'footer'], label: 'your turn', note: 'Tell me what stood out.' },
   ]
 }
@@ -225,8 +247,14 @@ export default function CollaboratorCursor() {
   const { pathname, search } = useLocation()
   const normalizedPathname = pathname === '/' ? pathname : pathname.replace(/\/+$/, '')
   const routeKey = `${normalizedPathname}${search}`
+  const [conversationOpen, setConversationOpen] = useState(false)
+  const [question, setQuestion] = useState('')
+  const [reply, setReply] = useState('')
+  const [asking, setAsking] = useState(false)
+  const [thinkingLine, setThinkingLine] = useState('Let me think.')
   const layerRef = useRef<HTMLDivElement>(null)
   const parthRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
   const youRef = useRef<HTMLDivElement>(null)
   const parthCoordinatesRef = useRef<HTMLSpanElement>(null)
   const youCoordinatesRef = useRef<HTMLSpanElement>(null)
@@ -247,6 +275,76 @@ export default function CollaboratorCursor() {
   const typingStep = useRef<number | null>(null)
   const parkedRef = useRef(false)
   const spokenSteps = useRef(new Set<number>())
+  const ambientCountRef = useRef(0)
+  const lastAmbientAtRef = useRef(0)
+  const conversationOpenRef = useRef(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const historyRef = useRef(createChatHistory(normalizedPathname))
+  const requestIdRef = useRef(0)
+
+  const setConversation = (open: boolean) => {
+    conversationOpenRef.current = open
+    setConversationOpen(open)
+    if (open) {
+      window.requestAnimationFrame(() => inputRef.current?.focus())
+    }
+  }
+
+  const askParth = async (message: string) => {
+    const trimmed = message.trim()
+    if (!trimmed || asking) return
+
+    setQuestion('')
+    setReply('')
+    setAsking(true)
+    setThinkingLine(getCursorThinkingLine(trimmed, normalizedPathname))
+    historyRef.current.route = normalizedPathname
+    const requestId = ++requestIdRef.current
+
+    try {
+      const answer = await sendMessage(
+        contextualQuestion(normalizedPathname, trimmed),
+        historyRef.current,
+        undefined,
+        { surface: 'cursor' },
+      )
+      if (requestId === requestIdRef.current) setReply(answer)
+    } catch {
+      if (requestId === requestIdRef.current) {
+        setReply('I dropped the thread. Try that once more?')
+      }
+    } finally {
+      if (requestId === requestIdRef.current) setAsking(false)
+    }
+  }
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    void askParth(question)
+  }
+
+  useEffect(() => {
+    historyRef.current = createChatHistory(normalizedPathname)
+    requestIdRef.current += 1
+    conversationOpenRef.current = false
+    setConversationOpen(false)
+    setQuestion('')
+    setReply('')
+    setAsking(false)
+    ambientCountRef.current = 0
+    lastAmbientAtRef.current = 0
+  }, [routeKey])
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && conversationOpenRef.current) {
+        setConversation(false)
+        window.requestAnimationFrame(() => triggerRef.current?.focus())
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [])
 
   const advanceToNextSection = () => {
     const parth = parthRef.current
@@ -254,6 +352,8 @@ export default function CollaboratorCursor() {
       .map((step, index) => ({ step, index }))
       .filter(({ step }) => document.documentElement.contains(step.element))
     if (!parth || available.length === 0) return
+
+    setConversation(false)
 
     const next = available.find(({ index }) => index > activeIndex.current) ?? available[0]
     if (actionTimer.current !== null) window.clearTimeout(actionTimer.current)
@@ -308,6 +408,7 @@ export default function CollaboratorCursor() {
     }
 
     const parkCursor = () => {
+      if (conversationOpenRef.current) return
       parkedRef.current = true
       clearParkTimer()
       clearTyping()
@@ -333,7 +434,15 @@ export default function CollaboratorCursor() {
 
     const typeNote = (message: string, stepIndex: number) => {
       const note = noteRef.current
-      if (!note || !message) return
+      if (!note || !message || conversationOpenRef.current) return
+      const now = Date.now()
+      if (
+        ambientCountRef.current >= 3
+        || (lastAmbientAtRef.current > 0 && now - lastAmbientAtRef.current < 9_000)
+      ) {
+        schedulePark(1800)
+        return
+      }
       clearTyping()
       note.textContent = ''
       if (statusRef.current) statusRef.current.textContent = message
@@ -353,6 +462,8 @@ export default function CollaboratorCursor() {
           typeTimer.current = null
           typingStep.current = null
           spokenSteps.current.add(stepIndex)
+          ambientCountRef.current += 1
+          lastAmbientAtRef.current = Date.now()
           schedulePark()
         }
       }
@@ -440,12 +551,13 @@ export default function CollaboratorCursor() {
         clearTyping()
         if (settleTimer.current !== null) window.clearTimeout(settleTimer.current)
         if (thinkingTimer.current !== null) window.clearTimeout(thinkingTimer.current)
+        const ambientDelay = ambientCountRef.current === 0 ? 700 : 320
         thinkingTimer.current = window.setTimeout(() => {
           thinkingTimer.current = null
           schedule()
           if (!step.quiet && !spokenSteps.current.has(index)) typeNote(message, index)
           else schedulePark(2600)
-        }, 160)
+        }, ambientDelay)
       }
     }
 
@@ -547,17 +659,19 @@ export default function CollaboratorCursor() {
   }, [routeKey])
 
   return (
-    <div ref={layerRef} className="reading-cursor-layer">
+    <div ref={layerRef} className={`reading-cursor-layer${conversationOpen ? ' is-conversing' : ''}`}>
       <div
         ref={parthRef}
-        className="reading-cursor reading-cursor--parth"
+        className={`reading-cursor reading-cursor--parth${conversationOpen ? ' is-conversing' : ''}`}
         data-side="right"
       >
         <button
+          ref={triggerRef}
           type="button"
           className="reading-cursor__trigger"
-          aria-label="Go to the next section with Parth"
-          onClick={advanceToNextSection}
+          aria-label={conversationOpen ? 'Close Ask Parth' : 'Ask Parth about this work'}
+          aria-expanded={conversationOpen}
+          onClick={() => setConversation(!conversationOpen)}
         >
           <PointerCursorGlyph className="reading-cursor__glyph" />
           <span className="reading-cursor__identity">
@@ -567,6 +681,41 @@ export default function CollaboratorCursor() {
         </button>
         <div ref={noteRef} className="reading-cursor__note" aria-hidden="true" />
         <span ref={statusRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true" />
+        {conversationOpen && (
+          <div className="reading-cursor__conversation" role="dialog" aria-label="Ask Parth about the portfolio">
+            <div className="reading-cursor__conversation-head">
+              <span>Ask me about this work</span>
+              <div className="reading-cursor__conversation-actions">
+                <button type="button" onClick={advanceToNextSection} aria-label="Go to the next section" title="Next section">&#8595;</button>
+                <button type="button" onClick={() => setConversation(false)} aria-label="Close Ask Parth" title="Close">&#215;</button>
+              </div>
+            </div>
+            {(asking || reply) && (
+              <div className={`reading-cursor__reply${asking ? ' is-thinking' : ''}`} role="status" aria-live="polite">
+                {asking ? thinkingLine : reply}
+              </div>
+            )}
+            {!asking && !reply && (
+              <div className="reading-cursor__prompts" aria-label="Suggested questions">
+                {conversationPrompts(normalizedPathname).map(prompt => (
+                  <button key={prompt} type="button" onClick={() => { void askParth(prompt) }}>{prompt}</button>
+                ))}
+              </div>
+            )}
+            <form className="reading-cursor__form" onSubmit={onSubmit}>
+              <input
+                ref={inputRef}
+                value={question}
+                onChange={event => setQuestion(event.target.value)}
+                maxLength={500}
+                placeholder={reply ? 'Ask a follow-up' : 'Ask one good question'}
+                aria-label="Question for Parth"
+                disabled={asking}
+              />
+              <button type="submit" disabled={asking || !question.trim()} aria-label="Send question">Send</button>
+            </form>
+          </div>
+        )}
       </div>
       <div ref={youRef} className="reading-cursor reading-cursor--you" aria-hidden="true">
         <PointerCursorGlyph className="reading-cursor__glyph" />

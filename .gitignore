@@ -4,9 +4,12 @@
 node_modules/
 package-lock.json
 .env
+.env.local
+.env.*.local
 .vite/
 dist/
 .claude/
+supabase/.temp/
 
 # Private/NDA material must not ship through GitHub Pages.
 .nda-private/

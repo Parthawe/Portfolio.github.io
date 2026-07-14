@@ -4,6 +4,7 @@ export interface EdgeAIRequest {
   localAnswer: string
   context: unknown
   model: string
+  surface?: 'cursor' | 'panel'
 }
 
 interface EdgeAIResponse {
@@ -12,13 +13,16 @@ interface EdgeAIResponse {
 }
 
 const EDGE_ENDPOINT = import.meta.env.VITE_EDGE_AI_ENDPOINT?.trim()
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL?.trim().replace(/\/$/, '')
 const EDGE_ENABLED =
   import.meta.env.VITE_EDGE_AI_ENABLED === '1' ||
   import.meta.env.VITE_EDGE_AI_ENABLED === 'true' ||
   Boolean(EDGE_ENDPOINT)
 
-const DEFAULT_ENDPOINT = '/api/folio-answer'
-const EDGE_MODEL = import.meta.env.VITE_EDGE_AI_MODEL?.trim() || 'gemini-2.5-flash'
+const DEFAULT_ENDPOINT = SUPABASE_URL
+  ? `${SUPABASE_URL}/functions/v1/folio-answer`
+  : '/api/folio-answer'
+const EDGE_MODEL = import.meta.env.VITE_EDGE_AI_MODEL?.trim() || 'gemini-3.1-flash-lite'
 
 export function isEdgeAIEnabled() {
   return EDGE_ENABLED
@@ -28,7 +32,7 @@ export function getEdgeAIModel() {
   return EDGE_MODEL
 }
 
-export async function getEdgeAIAnswer(payload: EdgeAIRequest, timeoutMs = 2800): Promise<string | null> {
+export async function getEdgeAIAnswer(payload: EdgeAIRequest, timeoutMs = 6500): Promise<string | null> {
   if (!EDGE_ENABLED || typeof fetch !== 'function') return null
 
   const controller = new AbortController()

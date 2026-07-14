@@ -52,6 +52,12 @@ const FOLLOW_UP_PATTERNS = [
   /^(tell me more|go deeper|keep going|what else)\b/i,
 ]
 
+const CLEARLY_OFF_TOPIC_PATTERNS = [
+  /\b(weather|forecast|temperature)\b/i,
+  /\b(stock price|sports score|recipe|horoscope)\b/i,
+  /\b(president|election|politics)\b/i,
+]
+
 function normalize(text: string): string {
   return text
     .toLowerCase()
@@ -87,6 +93,8 @@ export function isPortfolioQuestion(
 ): boolean {
   const query = normalize(message)
   if (!query) return true
+
+  if (CLEARLY_OFF_TOPIC_PATTERNS.some(pattern => pattern.test(message))) return false
 
   if ((options?.lastProject || (options?.route && options.route !== '/')) && FOLLOW_UP_PATTERNS.some(pattern => pattern.test(message))) {
     return true

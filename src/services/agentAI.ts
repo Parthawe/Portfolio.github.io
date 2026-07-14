@@ -11,10 +11,18 @@ import {
 } from '../data/agentKnowledge'
 import { normalizeCopy, normalizeCopyList } from '../utils/normalizeCopy'
 import { getEdgeAIAnswer, getEdgeAIModel, isEdgeAIEnabled } from './edgeAI'
+import {
+  CURSOR_IDENTITY_REPLY,
+  CURSOR_SCOPE_REPLY,
+  isCursorAnswerUsable,
+  isCursorIdentityQuestion,
+  shapeCursorAnswer,
+} from './parthCursorVoice'
 
 export interface ChatHistory {
   route: string
   ctx: ChatContext
+  turns: Array<{ question: string; answer: string }>
 }
 
 export interface TourStep {
@@ -369,7 +377,42 @@ function getAccessMode(project: Project) {
   return project.nda ? 'request' : 'public'
 }
 
-function buildPublicEdgeContext(ctx: ChatContext) {
+const DEFAULT_CONTEXT_PROJECTS = ['mentra', 'zentipay', 'clawed-chat', 'executivelens', 'jugalbandi']
+const EDGE_CATEGORY_ALIASES: Record<string, string> = {
+  ux: 'ux-design',
+  ui: 'ux-design',
+  'design-engineer': 'creative-tech',
+  brand: 'brand-visual',
+  healthcare: 'design-for-good',
+}
+
+function relevantProjectSlugs(ctx: ChatContext, message: string, localAnswer: string) {
+  const routeSlug = ctx.route.replace(/^\//, '').split(/[?#]/)[0]
+  const categorySlug = EDGE_CATEGORY_ALIASES[routeSlug] || routeSlug
+  const currentCategory = categories.find(category => category.slug === categorySlug)
+  const categorySlugs = currentCategory
+    ? [
+        currentCategory.featured.slug,
+        ...currentCategory.moreProjects.flat(2).map(project => project.slug),
+      ]
+    : []
+  const haystack = `${message} ${localAnswer}`.toLowerCase()
+  const directlyRelevant = projects
+    .filter(project => haystack.includes(project.slug.toLowerCase()) || haystack.includes(project.name.toLowerCase()))
+    .map(project => project.slug)
+
+  return Array.from(new Set([
+    routeSlug,
+    ctx.lastProject || '',
+    ...ctx.mentionedProjects.slice(-6),
+    ...directlyRelevant,
+    ...categorySlugs,
+    ...DEFAULT_CONTEXT_PROJECTS,
+  ].filter(Boolean))).slice(0, 10)
+}
+
+function buildPublicEdgeContext(ctx: ChatContext, message: string, localAnswer: string) {
+  const relevantSlugs = new Set(relevantProjectSlugs(ctx, message, localAnswer))
   return {
     instruction:
       'Answer as Parth Pawar portfolio guide. Use only this public context. If the user asks for private NDA details, give the safe public glimpse and invite an access request.',
@@ -384,7 +427,7 @@ function buildPublicEdgeContext(ctx: ChatContext) {
       title: `${category.title} ${category.titleAccent}`.trim(),
       description: category.description,
     })),
-    projects: projects.map(project => ({
+    projects: projects.filter(project => relevantSlugs.has(project.slug)).map(project => ({
       slug: project.slug,
       name: project.name,
       category: CATEGORY_LABELS[project.category],
@@ -402,6 +445,14 @@ function buildPublicEdgeContext(ctx: ChatContext) {
   }
 }
 
+function rememberTurn(history: ChatHistory, question: string, answer: string) {
+  history.turns.push({
+    question: question.slice(0, 500),
+    answer: answer.slice(0, 700),
+  })
+  history.turns = history.turns.slice(-3)
+}
+
 function getProjectFocus(project: Project, query: string): FocusTopic | undefined {
   const q = normalize(query)
   const specific = (PROJECT_SPECIFIC_FOCUS[project.slug] || []).find(topic =>
@@ -414,17 +465,26 @@ function getProjectFocus(project: Project, query: string): FocusTopic | undefine
 }
 
 export function createChatHistory(route: string): ChatHistory {
-  return { route, ctx: createContext(route) }
+  return { route, ctx: createContext(route), turns: [] }
 }
 
 export async function sendMessage(
   userMessage: string,
   history: ChatHistory,
   onChunk?: (text: string) => void,
+  options?: { surface?: 'cursor' | 'panel' },
 ): Promise<string> {
   syncRoute(history)
+  if (options?.surface === 'cursor' && isCursorIdentityQuestion(userMessage)) {
+    rememberTurn(history, userMessage, CURSOR_IDENTITY_REPLY)
+    onChunk?.(CURSOR_IDENTITY_REPLY)
+    return CURSOR_IDENTITY_REPLY
+  }
   if (!isPortfolioQuestion(userMessage, { route: history.route, lastProject: history.ctx.lastProject })) {
-    const scoped = normalizeCopy(PORTFOLIO_SCOPE_REPLY)
+    const scoped = options?.surface === 'cursor'
+      ? CURSOR_SCOPE_REPLY
+      : normalizeCopy(PORTFOLIO_SCOPE_REPLY)
+    rememberTurn(history, userMessage, scoped)
     onChunk?.(scoped)
     return scoped
   }
@@ -433,19 +493,31 @@ export async function sendMessage(
   const localAnswer = normalizeCopy(text)
 
   if (!isEdgeAIEnabled()) {
-    onChunk?.(localAnswer)
-    return localAnswer
+    const fallbackAnswer = options?.surface === 'cursor'
+      ? shapeCursorAnswer(localAnswer, userMessage, true)
+      : localAnswer
+    rememberTurn(history, userMessage, fallbackAnswer)
+    onChunk?.(fallbackAnswer)
+    return fallbackAnswer
   }
 
   const edgeAnswer = await getEdgeAIAnswer({
     message: userMessage,
     route: history.route,
     localAnswer,
-    context: buildPublicEdgeContext(history.ctx),
+    context: {
+      ...buildPublicEdgeContext(history.ctx, userMessage, localAnswer),
+      recentConversation: history.turns.slice(-3),
+    },
     model: getEdgeAIModel(),
+    surface: options?.surface || 'panel',
   })
 
-  const finalAnswer = normalizeCopy(edgeAnswer || localAnswer)
+  const cursorEdgeAnswer = edgeAnswer && isCursorAnswerUsable(edgeAnswer) ? edgeAnswer : null
+  const finalAnswer = options?.surface === 'cursor'
+    ? shapeCursorAnswer(cursorEdgeAnswer || localAnswer, userMessage, !cursorEdgeAnswer)
+    : normalizeCopy(edgeAnswer || localAnswer)
+  rememberTurn(history, userMessage, finalAnswer)
   onChunk?.(finalAnswer)
   return finalAnswer
 }
