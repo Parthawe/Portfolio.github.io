@@ -48,6 +48,7 @@ const routeLabels = new Map([
   ['code-for-build', 'Code for Build'],
   ['making-of-time', 'Making of Time'],
   ['moniac-machine', 'MONIAC Machine'],
+  ['dumb-waiter-set-design', 'The Dumb Waiter'],
   ['vj-software', 'VJ Software'],
   ['sea-of-salt', 'Sea of Salt'],
   ['mentra-brand', 'Mentra Brand'],
@@ -73,7 +74,7 @@ const routeDescriptions = new Map([
   ['raahi-project', 'A map-first civic mobility concept that made residential parking choices spatial, legible, and easier to trust.'],
   ['executivelens', 'An AI analytics workspace that turns meeting signals into visible, reviewable executive actions.'],
   ['black-hole', 'A physical and interactive exploration of black hole phenomena through time, gravity, and light.'],
-  ['dumb-waiter', 'A John Wick-inspired set design for Harold Pinter\'s The Dumb Waiter, built around confinement, waiting, and rising tension.'],
+  ['dumb-waiter-set-design', 'A John Wick-inspired set design for Harold Pinter\'s The Dumb Waiter, built around confinement, waiting, and rising tension.'],
   ['page-not-found', 'The requested page is not available in the public portfolio.'],
 ])
 const canonicalAliases = new Map([
