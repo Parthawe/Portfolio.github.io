@@ -430,7 +430,7 @@ export default function AboutPage() {
             </section>
 
             {/* ── Unified experience table ── */}
-            <section className="abt-table-wrap reveal">
+            <section id="experience" className="abt-table-wrap reveal">
               <table className="abt-table">
                 <tbody>
                   {rows.map((r, i) => (

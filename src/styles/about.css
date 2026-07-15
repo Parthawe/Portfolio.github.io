@@ -1736,6 +1736,7 @@
 .abt-table-wrap {
   padding-bottom: var(--space-10);
   max-width: 980px;
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
 }
 .abt-table { width: 100%; border-collapse: collapse; }
 .abt-table-section td { padding: 0; }
@@ -2775,6 +2776,42 @@
     margin-top: 0.35rem;
     font-size: 0.86rem;
     line-height: 1.5;
+  }
+
+  .abt-recognition-table,
+  .abt-recognition-table tbody,
+  .abt-recognition-table .abt-table-section,
+  .abt-recognition-table .abt-table-section td {
+    display: block;
+    width: 100%;
+    table-layout: auto;
+  }
+
+  .abt-recognition-table .abt-table-row {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--ink-06);
+  }
+
+  .abt-recognition-table .abt-table-row td {
+    display: block;
+    width: auto;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .abt-recognition-table .abt-table-date {
+    display: none;
+  }
+
+  .abt-recognition-table .abt-table-main {
+    padding: 0;
+  }
+
+  .abt-recognition-table .abt-table-role {
+    font-size: 0.94rem;
+    line-height: 1.4;
   }
 }
 
