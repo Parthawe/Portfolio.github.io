@@ -216,57 +216,52 @@ export default function NdaGate({
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="nda-inline-inner">
-        <div className="nda-inline-left">
-          <div className="nda-inline-text">
-            <h2 className="nda-inline-title">Full case study access</h2>
-            <p className="nda-inline-desc">
-              Enter the reviewer code to unlock the deeper page in this browser, or send a short access request.
-            </p>
-            <a
-              className="nda-inline-contact"
-              href={`mailto:${CONTACT_EMAIL}?subject=Access request: ${encodeURIComponent(projectName)}`}
-            >
-              Request by email instead
-            </a>
-          </div>
-        </div>
+        <header className="nda-inline-text">
+          <h2 className="nda-inline-title">Unlock the full case study</h2>
+          <p className="nda-inline-desc">
+            Use the reviewer code I shared with you.
+          </p>
+        </header>
 
         <div className="nda-access-stack">
-          <form className="nda-inline-form nda-inline-form--code nda-access-panel" onSubmit={handleCodeSubmit}>
-            <div className="nda-panel-head">
-              <div>
-                <span className="nda-panel-kicker">Have a code</span>
-                <strong>Unlock the full case study</strong>
-              </div>
-            </div>
+          <form
+            className="nda-inline-form nda-inline-form--code"
+            aria-label="Unlock with reviewer code"
+            onSubmit={handleCodeSubmit}
+          >
             <label className="nda-field">
-              <span>Access code</span>
+              <span>Reviewer code</span>
               <input
                 type="password"
                 className="nda-input"
                 value={accessCode}
                 onChange={e => setAccessCode(e.target.value)}
-                placeholder="reviewer code"
+                placeholder="Enter code"
                 autoComplete="current-password"
               />
             </label>
             <button type="submit" className="nda-request-submit nda-request-submit--secondary">
-              Unlock case study
+              Unlock
             </button>
             {codeMessage ? (
               <p className="nda-inline-confirmation">{codeMessage}</p>
             ) : null}
           </form>
 
-          <form className="nda-inline-form nda-inline-form--request nda-access-panel" onSubmit={handleSubmit}>
-            <div className="nda-panel-head">
-              <div>
-                <span className="nda-panel-kicker">Need access</span>
-                <strong>Send request</strong>
-              </div>
+          <form
+            className="nda-inline-form nda-inline-form--request"
+            aria-label="Request case study access"
+            onSubmit={handleSubmit}
+          >
+            <div className="nda-request-intro">
+              <span className="nda-request-kicker">No code?</span>
+              <h3>Request access</h3>
+              <p>
+                Share your work email and what you're reviewing so I can send the right level of detail.
+              </p>
             </div>
             <label className="nda-field">
-              <span>Email</span>
+              <span>Work email</span>
               <input
                 type="email"
                 className="nda-input"
@@ -278,21 +273,23 @@ export default function NdaGate({
               />
             </label>
             <label className="nda-field">
-              <span>Context</span>
+              <span>What are you reviewing?</span>
               <textarea
                 className="nda-input nda-textarea"
                 value={context}
                 onChange={e => setContext(e.target.value)}
-                placeholder="Hiring, collaboration, or review context"
+                placeholder="Hiring, collaboration, or project review"
                 rows={3}
               />
             </label>
             <button type="submit" className="nda-request-submit">
-              Request access
+              Send request
             </button>
             {sent ? (
               <p className="nda-inline-confirmation">Opening your email client with the request.</p>
-            ) : null}
+            ) : (
+              <p className="nda-request-helper">Opens a pre-filled email to Parth.</p>
+            )}
           </form>
         </div>
       </div>

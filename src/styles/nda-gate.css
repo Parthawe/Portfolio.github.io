@@ -4,11 +4,11 @@
 
 .nda-inline {
   --nda-accent: var(--project-color, #2d76ff);
-  width: min(760px, calc(100vw - 2rem));
+  width: min(640px, calc(100vw - 2rem));
   margin: clamp(3rem, 6vw, 5rem) auto;
-  padding: clamp(1rem, 2vw, 1.25rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
   border: 1px solid var(--ink-08);
-  border-left: 3px solid var(--nda-accent);
+  border-top: 2px solid var(--nda-accent);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 92%, var(--bg));
   position: relative;
@@ -18,11 +18,10 @@
 
 .nda-inline-inner {
   display: grid;
-  gap: 1rem;
+  gap: clamp(1.35rem, 3vw, 1.8rem);
   min-width: 0;
 }
 
-.nda-inline-left,
 .nda-inline-text,
 .nda-access-stack {
   min-width: 0;
@@ -30,116 +29,97 @@
 
 .nda-inline-text {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.55rem;
 }
 
-.nda-inline-label,
-.nda-panel-kicker,
-.nda-field {
+.nda-field > span,
+.nda-request-kicker {
   font-family: var(--mono);
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: var(--ls-wider);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-}
-
-.nda-inline-label {
-  color: var(--nda-accent);
 }
 
 .nda-inline-title {
   margin: 0;
   font-family: var(--sans);
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
-  font-weight: 650;
-  line-height: 1.15;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.12;
   letter-spacing: 0;
   color: var(--ink);
 }
 
 .nda-inline-desc {
-  max-width: 58ch;
+  max-width: 52ch;
   margin: 0;
   font-family: var(--sans);
   font-size: var(--text-sm);
-  color: var(--ink-50);
-  line-height: 1.55;
-}
-
-.nda-inline-contact {
-  width: fit-content;
-  max-width: 100%;
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: var(--text-sm);
-  font-weight: 650;
-  text-decoration-line: underline;
-  text-decoration-color: color-mix(in srgb, var(--nda-accent) 42%, var(--ink-30));
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.2em;
-  transition: color 0.2s, background 0.2s, text-decoration-color 0.2s;
-}
-
-.nda-inline-contact:hover {
-  color: color-mix(in srgb, var(--nda-accent) 35%, var(--ink));
-  background: color-mix(in srgb, var(--nda-accent) 8%, transparent);
-  text-decoration-color: currentColor;
+  color: var(--ink-70);
+  line-height: 1.6;
 }
 
 .nda-access-stack {
   display: grid;
-  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
 }
 
 .nda-inline-form {
   width: 100%;
-}
-
-.nda-access-panel {
   display: grid;
-  grid-template-columns: minmax(8rem, 0.7fr) minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 0.75rem;
-  padding: 0.85rem;
-  border: 1px solid var(--ink-08);
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--bg) 72%, var(--surface));
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
 }
 
-.nda-inline-form--request {
-  grid-template-columns: minmax(8rem, 0.62fr) minmax(0, 0.85fr) minmax(0, 1fr) auto;
+.nda-inline-form--code {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ink-08);
 }
 
-.nda-panel-head {
-  min-width: 0;
+.nda-request-intro {
   display: grid;
-  gap: 0.12rem;
-  align-self: center;
+  gap: 0.4rem;
+  margin-bottom: 0.15rem;
 }
 
-.nda-panel-kicker {
-  color: var(--ink-40);
+.nda-request-kicker {
+  color: color-mix(in srgb, var(--nda-accent) 52%, var(--ink));
 }
 
-.nda-panel-head strong {
+.nda-request-intro h3 {
+  margin: 0;
   font-family: var(--sans);
-  font-size: var(--text-sm);
-  line-height: 1.25;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--ink);
+}
+
+.nda-request-intro p {
+  max-width: 52ch;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--ink-70);
 }
 
 .nda-field {
   display: grid;
-  gap: 0.32rem;
+  gap: 0.45rem;
   min-width: 0;
+}
+
+.nda-field > span {
   color: var(--ink-40);
 }
 
 .nda-input {
   width: 100%;
   min-width: 0;
-  min-height: 40px;
-  padding: 0.62rem 0.7rem;
+  min-height: 48px;
+  padding: 0.75rem 0.85rem;
   border: 1px solid var(--ink-08);
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--surface) 86%, var(--bg));
@@ -147,6 +127,7 @@
   font-family: var(--sans);
   font-size: var(--text-sm);
   letter-spacing: 0;
+  text-transform: none;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
@@ -162,21 +143,20 @@
 }
 
 .nda-textarea {
-  min-height: 40px;
-  max-height: 6rem;
+  min-height: 96px;
+  max-height: 12rem;
   resize: vertical;
-  line-height: 1.35;
-  text-transform: none;
+  line-height: 1.45;
 }
 
 .nda-request-submit {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
+  min-height: 48px;
   width: 100%;
-  min-width: max-content;
-  padding: 0 0.9rem;
+  min-width: 0;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--ink);
   border-radius: var(--radius-sm);
   background: var(--ink);
@@ -196,7 +176,7 @@
 }
 
 .nda-request-submit:focus-visible,
-.nda-inline-contact:focus-visible {
+.nda-input:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--nda-accent) 68%, var(--ink));
   outline-offset: 3px;
 }
@@ -213,12 +193,19 @@
 }
 
 .nda-inline-confirmation {
-  grid-column: 1 / -1;
   margin: 0;
   font-family: var(--mono);
   font-size: var(--text-2xs);
   color: var(--ink-40);
   line-height: 1.5;
+}
+
+.nda-request-helper {
+  margin: -0.15rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ink-40);
+  text-align: center;
 }
 
 .nda-unlocked-section {
@@ -254,41 +241,11 @@
   color: var(--ink-50);
 }
 
-@media (min-width: 1024px) {
-  body.case-side-nav #case-study-access-transfi-project.nda-inline {
-    width: min(900px, calc(100vw - 23rem));
-  }
-
-  body.case-side-nav .nda-inline {
-    width: min(680px, calc(100vw - 23rem));
-    margin-left: max(2rem, calc((100vw - var(--max-w, 1180px)) / 2));
-    margin-right: auto;
-  }
-
-  body.case-side-nav .nda-access-panel,
-  body.case-side-nav .nda-inline-form--request {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-  }
-}
-
-@media (max-width: 900px) {
-  .nda-access-panel,
-  .nda-inline-form--request {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-  }
-
-  .nda-request-submit {
-    width: 100%;
-  }
-}
-
 @media (max-width: 640px) {
   .nda-inline {
-    width: min(100%, calc(100vw - 1.5rem));
+    width: calc(100vw - 2rem);
     margin: var(--space-8) auto;
-    padding: 0.9rem;
+    padding: 1.15rem;
   }
 
   .nda-inline-title {
@@ -298,10 +255,6 @@
 
 [data-theme="dark"] .nda-inline {
   border-color: var(--ink-08);
-  border-left-color: var(--nda-accent);
+  border-top-color: var(--nda-accent);
   box-shadow: none;
-}
-
-[data-theme="dark"] .nda-access-panel {
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
 }

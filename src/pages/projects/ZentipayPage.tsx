@@ -109,15 +109,6 @@ export default function ZentipayPage() {
     }
   }
 
-  const handleAccessRequest = () => {
-    setViewMode('full')
-    if (typeof window !== 'undefined') {
-      window.setTimeout(() => {
-        document.getElementById('case-study-access-zentipay')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }, 120)
-    }
-  }
-
   return (
     <>
       <Helmet>
@@ -224,10 +215,6 @@ export default function ZentipayPage() {
         <BottomNav
           sections={sections}
           placement="side"
-          modeAction={{
-            label: 'Request full case study',
-            onClick: handleAccessRequest,
-          }}
         />
 
 

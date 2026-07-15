@@ -205,15 +205,6 @@ export default function TransfiPage() {
     }
   }
 
-  const handleAccessRequest = () => {
-    setViewMode('full')
-    if (typeof window !== 'undefined') {
-      window.setTimeout(() => {
-        document.getElementById('case-study-access-transfi-project')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }, 120)
-    }
-  }
-
   return (
     <>
       <Helmet>
@@ -306,10 +297,6 @@ export default function TransfiPage() {
           sections={sections}
           liveUrl="https://www.transfi.com"
           placement="side"
-          modeAction={{
-            label: 'Request full case study',
-            onClick: handleAccessRequest,
-          }}
         />
 
       </main>
