@@ -3,7 +3,6 @@ import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import CsImage from '../../components/case-study/CsImage'
 import CsSection from '../../components/case-study/CsSection'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
@@ -11,32 +10,13 @@ import NdaProcess from '../../components/case-study/NdaProcess'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
-const AI_VOICE_ASSET = '/Assets/Projects/ai-voice'
-const aiVoiceAsset = (file: string) => `${AI_VOICE_ASSET}/${file}`
+const AI_VOICE_PUBLIC_PREVIEW = '/Assets/mockups/projects/ai-voice_16x9.webp'
 
 const AI_VOICE_PUBLIC_VISUALS = [
   {
-    src: aiVoiceAsset('cover.png'),
+    src: AI_VOICE_PUBLIC_PREVIEW,
     alt: 'Voice Matching interface showing three enterprise voice persona options.',
     label: 'Voice matching concept',
-  },
-]
-
-const AI_VOICE_PROCESS_VISUALS = [
-  {
-    src: aiVoiceAsset('voice-dna-builder.png'),
-    alt: 'Voice DNA Builder interface showing tone sliders, persona preview, transcript, and global voice search.',
-    label: 'Voice DNA builder',
-  },
-  {
-    src: aiVoiceAsset('journey-map.png'),
-    alt: 'Enterprise manager journey map for selecting and handing off an AI voice.',
-    label: 'Enterprise selection journey',
-  },
-  {
-    src: aiVoiceAsset('mood-based-matching.png'),
-    alt: 'Mood-based voice matching flow showing initial state, suggestions, persona stages, and transcript interaction.',
-    label: 'Mood-based matching flow',
   },
 ]
 
@@ -71,7 +51,7 @@ export default function AiVoicePage() {
           ]}
           heroExperience="visual"
           heroTone="ai"
-          visualHeroImage={aiVoiceAsset('cover.png')}
+          visualHeroImage={AI_VOICE_PUBLIC_PREVIEW}
           visualHeroAlt="Voice Matching enterprise interface cover with three suggested voice personas."
           visualSummary="Reframed enterprise voice selection around tone, context, and emotional fit instead of static demo lists."
         />
@@ -85,12 +65,11 @@ export default function AiVoicePage() {
 
         <CsExpandPreview
           ctaLabel="Open the product thinking"
-          note="Market audit, journey map, Voice DNA builder, and persona movement system."
+          note="Market audit, journey logic, Voice DNA rationale, and persona movement decisions."
         >
         <NdaProcess
           title="From demo list to decision system"
           intro="I treated voice selection as a product-confidence problem: compare fit, test context, and make the choice defensible for non-technical enterprise teams."
-          visuals={AI_VOICE_PROCESS_VISUALS}
           decisions={[
             {
               move: 'Audit the voice-selection market.',
@@ -126,13 +105,6 @@ export default function AiVoicePage() {
               guided way for enterprise managers to compare tone, scenario fit, and handoff confidence.
             </p>
           </div>
-          <CsImage
-            className="ai-voice-blue-img ai-voice-media--wide"
-            src={aiVoiceAsset('competitor-audit.png')}
-            alt="Competitive audit comparing Rime.ai, ElevenLabs, and Cartesia across onboarding, voice discovery, customization, and support."
-            caption="Competitive audit: the opportunity was a clearer selection experience."
-            aspectRatio="16 / 10"
-          />
         </CsSection>
 
         <CsSection id="cs-ai-voice-journey" label="Journey" title="The enterprise manager needed a defensible choice">
@@ -146,45 +118,12 @@ export default function AiVoicePage() {
               scenario, and adjustable parameters all visible in one place.
             </p>
           </div>
-          <CsImage
-            className="ai-voice-blue-img ai-voice-media--wide"
-            src={aiVoiceAsset('journey-map.png')}
-            alt="Customer journey map for an enterprise manager selecting an AI voice for a support line."
-            caption="Journey map: confidence drops when exploration has no guided feedback loop."
-            aspectRatio="16 / 9"
-          />
         </CsSection>
 
         <CsSection id="cs-ai-voice-system" label="System" title="Voice DNA made the choice inspectable">
-          <div className="ai-voice-artifact-grid">
-            <CsImage
-              className="ai-voice-blue-img"
-              src={aiVoiceAsset('voice-dna-builder.png')}
-              alt="Voice DNA Builder interface with persona, sliders, transcript, and global map."
-              caption="Builder surface"
-              aspectRatio="3 / 4"
-            />
-            <CsImage
-              className="ai-voice-blue-img"
-              src={aiVoiceAsset('annotated-builder.png')}
-              alt="Annotated Voice DNA Builder showing current persona, transcript, search place, global map, and parameters."
-              caption="Interface anatomy"
-              aspectRatio="3 / 4"
-            />
-            <CsImage
-              className="ai-voice-blue-img"
-              src={aiVoiceAsset('mood-based-matching.png')}
-              alt="Mood-based voice matching flow with stages and persona suggestions."
-              caption="Mood matching flow"
-              aspectRatio="3 / 4"
-            />
-            <CsImage
-              className="ai-voice-blue-img"
-              src={aiVoiceAsset('persona-movement.png')}
-              alt="Persona movement states for listen, think, and talk voice interaction."
-              caption="Persona movement states"
-              aspectRatio="3 / 4"
-            />
+          <div className="ai-voice-section-copy">
+            <p>Voice DNA translated subjective preferences into visible signals such as tone, speed, pitch, accent, and scenario fit.</p>
+            <p>The interface kept persona, transcript, and adjustable parameters together so reviewers could explain a choice instead of simply trusting a sample.</p>
           </div>
         </CsSection>
         </CsExpandPreview>

@@ -10,6 +10,10 @@
   background: var(--bg);
   position: relative;
 }
+
+.project-main :is(.cs-section, .cs-media-spotlight, .proj-fastread)[id] {
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
 .figma-grid-on .project-main {
   background-image:
     linear-gradient(to right, rgba(77, 158, 255, 0.05) 1px, transparent 1px),

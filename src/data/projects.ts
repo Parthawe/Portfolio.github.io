@@ -434,7 +434,7 @@ export const projects: Project[] = [
   {
     slug: 'cuetv',
     name: 'CueTV',
-    image: '/Assets/Projects/CueTV/refresh/hero-devices.png',
+    image: '/Assets/mockups/projects/cuetv_16x9.webp',
     tag: 'PRODUCT DESIGN',
     year: '2021',
     desc: 'Designed a niche arts OTT platform and retargeting system for opera, ballet, and classical audiences',
@@ -444,7 +444,7 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Assets/Projects/CueTV/refresh/hero-devices.png',
+      publicPreviewImage: '/Assets/mockups/projects/cuetv_16x9.webp',
       publicPreviewAlt: 'CueTV streaming platform across TV, laptop, tablet, and phone.',
     },
     archiveOrder: 9,
@@ -581,8 +581,8 @@ export const projects: Project[] = [
   {
     slug: 'ai-voice',
     name: 'AI Voice',
-    image: '/Assets/Projects/ai-voice/cover.png',
-    cardMockupSource: '/Assets/Projects/ai-voice/cover.png',
+    image: '/Assets/mockups/projects/ai-voice_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/ai-voice_16x9.webp',
     cardMockupAlt: 'Voice Matching enterprise interface showing three suggested voice personas.',
     tag: 'CONVERSATIONAL AI',
     year: '2025',
@@ -593,7 +593,7 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Assets/Projects/ai-voice/cover.png',
+      publicPreviewImage: '/Assets/mockups/projects/ai-voice_16x9.webp',
       publicPreviewAlt: 'Voice Matching enterprise interface cover for AI voice selection work.',
     },
     archiveOrder: 32,
