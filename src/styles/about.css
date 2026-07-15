@@ -3219,3 +3219,386 @@
     height: 9.65rem;
   }
 }
+
+/* Codex profile, a working-practice snapshot beneath Code with design. */
+.abt-codex {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin: clamp(2.5rem, 6vw, 5rem) 0;
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+
+.abt-codex-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(18rem, 1.3fr);
+  gap: 0.65rem clamp(1.5rem, 5vw, 5rem);
+  align-items: end;
+}
+
+.abt-codex-intro .sec-label {
+  grid-column: 1 / -1;
+}
+
+.abt-codex-intro h2 {
+  margin: 0;
+  font-family: var(--display-heading);
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.abt-codex-intro p {
+  margin: 0 0 0.3rem;
+  max-width: 38rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--ink-60);
+}
+
+.abt-codex-profile {
+  --codex-bg: #141719;
+  --codex-panel: #191d20;
+  --codex-line: rgba(255, 255, 255, 0.09);
+  --codex-copy: #f4f7f8;
+  --codex-muted: rgba(237, 244, 247, 0.56);
+  --codex-blue: #68b7f1;
+  position: relative;
+  padding: clamp(1.1rem, 3vw, 2.25rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% -12%, rgba(73, 141, 193, 0.18), transparent 31rem),
+    linear-gradient(145deg, #171a1c, var(--codex-bg));
+  box-shadow: 0 1.75rem 4rem rgba(10, 14, 18, 0.14);
+  color: var(--codex-copy);
+  overflow: hidden;
+}
+
+.abt-codex-profile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 100% 24px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, transparent 80%);
+}
+
+.abt-codex-identity,
+.abt-codex-stats,
+.abt-codex-activity,
+.abt-codex-practice {
+  position: relative;
+  z-index: 1;
+}
+
+.abt-codex-identity {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+  padding: clamp(0.75rem, 2vw, 1.5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
+}
+
+.abt-codex-avatar {
+  display: grid;
+  place-items: center;
+  width: clamp(4.75rem, 8vw, 6.5rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(138, 199, 241, 0.22);
+  border-radius: 50%;
+  background: #29445d;
+  box-shadow: 0 0.9rem 2rem rgba(0, 0, 0, 0.22);
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  font-weight: 500;
+  color: #f8fbfd;
+}
+
+.abt-codex-identity h3 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--codex-copy);
+}
+
+.abt-codex-identity p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--codex-muted);
+}
+
+.abt-codex-identity p span {
+  padding: 0.2rem 0.42rem;
+  border: 1px solid var(--codex-line);
+  border-radius: 999px;
+  color: rgba(244, 247, 248, 0.76);
+}
+
+.abt-codex-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  border: 1px solid var(--codex-line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.abt-codex-stat {
+  display: flex;
+  min-width: 0;
+  min-height: 5.1rem;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.75rem 0.55rem;
+  text-align: center;
+}
+
+.abt-codex-stat + .abt-codex-stat {
+  border-left: 1px solid var(--codex-line);
+}
+
+.abt-codex-stat dt {
+  font-size: clamp(0.72rem, 1.1vw, 0.9rem);
+  line-height: 1.25;
+  color: var(--codex-muted);
+}
+
+.abt-codex-stat dd {
+  margin: 0;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--codex-copy);
+}
+
+.abt-codex-activity {
+  margin-top: clamp(1.75rem, 4vw, 3rem);
+  padding-top: clamp(1.4rem, 3vw, 2.2rem);
+  border-top: 1px solid var(--codex-line);
+}
+
+.abt-codex-activity-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.abt-codex-activity-head h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--codex-copy);
+}
+
+.abt-codex-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18rem;
+}
+
+.abt-codex-tabs button {
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  font-size: 0.78rem;
+  color: var(--codex-muted);
+  cursor: pointer;
+}
+
+.abt-codex-tabs button:is(:hover, :focus-visible),
+.abt-codex-tabs button.is-active {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--codex-copy);
+}
+
+.abt-codex-tabs button:focus-visible,
+.abt-codex-heatmap-scroll:focus-visible {
+  outline: 2px solid var(--codex-blue);
+  outline-offset: 2px;
+}
+
+.abt-codex-heatmap-scroll {
+  max-width: 100%;
+  padding-bottom: 0.25rem;
+  overflow-x: auto;
+  scrollbar-color: rgba(104, 183, 241, 0.38) transparent;
+  scrollbar-width: thin;
+}
+
+.abt-codex-heatmap,
+.abt-codex-months {
+  min-width: 700px;
+}
+
+.abt-codex-heatmap {
+  display: grid;
+  grid-template-columns: repeat(53, minmax(7px, 1fr));
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  gap: 4px;
+}
+
+.abt-codex-heatmap span {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: #24292d;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.abt-codex-heatmap span:hover {
+  transform: scale(1.18);
+}
+
+.abt-codex-heatmap .is-level-1 { background: #27445b; }
+.abt-codex-heatmap .is-level-2 { background: #376f98; }
+.abt-codex-heatmap .is-level-3 { background: #55a3d8; }
+.abt-codex-heatmap .is-level-4 { background: #8ad2ff; }
+
+.abt-codex-months {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin-top: 0.65rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--codex-muted);
+}
+
+.abt-codex-months span:last-child {
+  text-align: right;
+}
+
+.abt-codex-practice {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(1.5rem, 3vw, 2.2rem);
+  padding-top: clamp(1.3rem, 2.5vw, 1.8rem);
+  border-top: 1px solid var(--codex-line);
+}
+
+.abt-codex-practice > div {
+  min-width: 0;
+  padding: 0 1rem;
+}
+
+.abt-codex-practice > div:first-child {
+  padding-left: 0;
+}
+
+.abt-codex-practice > div + div {
+  border-left: 1px solid var(--codex-line);
+}
+
+.abt-codex-practice > div > span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--codex-blue);
+}
+
+.abt-codex-practice h3 {
+  margin: 0.6rem 0 0.35rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  font-weight: 500;
+  color: var(--codex-copy);
+}
+
+.abt-codex-practice p {
+  margin: 0;
+  font-size: clamp(0.78rem, 1.1vw, 0.9rem);
+  line-height: 1.45;
+  color: var(--codex-muted);
+}
+
+@media (max-width: 760px) {
+  .abt-codex-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .abt-codex-intro .sec-label {
+    grid-column: auto;
+  }
+
+  .abt-codex-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .abt-codex-stat + .abt-codex-stat {
+    border-left: 0;
+  }
+
+  .abt-codex-stat:nth-child(even) {
+    border-left: 1px solid var(--codex-line);
+  }
+
+  .abt-codex-stat:nth-child(n+3) {
+    border-top: 1px solid var(--codex-line);
+  }
+
+  .abt-codex-stat:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .abt-codex {
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .abt-codex-intro h2 {
+    font-size: 2.35rem;
+  }
+
+  .abt-codex-intro p {
+    font-size: 0.92rem;
+  }
+
+  .abt-codex-profile {
+    padding: 0.9rem;
+  }
+
+  .abt-codex-activity-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .abt-codex-tabs {
+    width: 100%;
+  }
+
+  .abt-codex-tabs button {
+    flex: 1;
+  }
+
+  .abt-codex-practice {
+    grid-template-columns: 1fr;
+  }
+
+  .abt-codex-practice > div,
+  .abt-codex-practice > div:first-child {
+    padding: 0.9rem 0;
+  }
+
+  .abt-codex-practice > div:first-child {
+    padding-top: 0;
+  }
+
+  .abt-codex-practice > div + div {
+    border-top: 1px solid var(--codex-line);
+    border-left: 0;
+  }
+}

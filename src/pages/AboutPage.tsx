@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -173,6 +173,43 @@ const softwareRows = [
   softwareStack.filter((_, index) => index % 3 === 2),
 ]
 
+const codexStats = [
+  { value: '5.5B', label: 'Lifetime tokens' },
+  { value: '452M', label: 'Peak tokens' },
+  { value: '7h 4m', label: 'Longest task' },
+  { value: '24 days', label: 'Current streak' },
+  { value: '27 days', label: 'Longest streak' },
+]
+
+const codexMonths = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+const codexPractice = [
+  { title: 'Context first', text: 'Live repo. Real data. Current surface.' },
+  { title: 'Tight loops', text: 'Build, inspect, correct, repeat.' },
+  { title: 'Verify the finish', text: 'Tests, screenshots, deploy checks.' },
+]
+
+type CodexActivityMode = 'Daily' | 'Weekly' | 'Cumulative'
+
+function codexActivityLevel(index: number, mode: CodexActivityMode) {
+  const week = Math.floor(index / 7)
+  const day = index % 7
+  const pulse = (week * 17 + day * 11 + week * day) % 13
+
+  if (week < 34) return pulse === 0 ? 1 : 0
+
+  if (mode === 'Cumulative') {
+    return Math.min(4, 1 + Math.floor((week - 34) / 5) + (pulse > 9 ? 1 : 0))
+  }
+
+  if (mode === 'Weekly') {
+    return pulse < 2 ? 1 : pulse < 6 ? 2 : pulse < 10 ? 3 : 4
+  }
+
+  if (index >= 347) return pulse < 3 ? 3 : 4
+  if (week >= 45) return pulse < 4 ? 1 : pulse < 8 ? 2 : pulse < 11 ? 3 : 4
+  return pulse < 5 ? 0 : pulse < 8 ? 1 : pulse < 11 ? 2 : 3
+}
+
 type SimpleBrandIcon = {
   title: string
   hex: string
@@ -267,6 +304,80 @@ function SoftwareChip({ tool }: { tool: string }) {
       <SoftwareLogo tool={tool} />
       <span>{tool}</span>
     </span>
+  )
+}
+
+function CodexProfile() {
+  const [activityMode, setActivityMode] = useState<CodexActivityMode>('Daily')
+  const activity = Array.from({ length: 53 * 7 }, (_, index) => codexActivityLevel(index, activityMode))
+
+  return (
+    <section className="abt-codex reveal" aria-labelledby="abt-codex-title">
+      <div className="abt-codex-intro">
+        <span className="sec-label">Agent practice</span>
+        <h2 id="abt-codex-title">Codex, tuned through use.</h2>
+        <p>I treat agents like a working design system: shape the context, shorten the loop, and verify the output in the real product.</p>
+      </div>
+
+      <div className="abt-codex-profile">
+        <div className="abt-codex-identity">
+          <div className="abt-codex-avatar" aria-hidden="true">PP</div>
+          <div>
+            <h3>Parth Pawar</h3>
+            <p>@pawar.d.parth <span>Pro</span></p>
+          </div>
+        </div>
+
+        <dl className="abt-codex-stats" aria-label="Codex profile statistics">
+          {codexStats.map(stat => (
+            <div className="abt-codex-stat" key={stat.label}>
+              <dt>{stat.label}</dt>
+              <dd>{stat.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="abt-codex-activity">
+          <div className="abt-codex-activity-head">
+            <h3>Token activity</h3>
+            <div className="abt-codex-tabs" aria-label="Token activity view">
+              {(['Daily', 'Weekly', 'Cumulative'] as CodexActivityMode[]).map(mode => (
+                <button
+                  type="button"
+                  className={activityMode === mode ? 'is-active' : ''}
+                  aria-pressed={activityMode === mode}
+                  onClick={() => setActivityMode(mode)}
+                  key={mode}
+                >
+                  {mode}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="abt-codex-heatmap-scroll" tabIndex={0} aria-label={`${activityMode} Codex token activity from August to July`}>
+            <div className="abt-codex-heatmap">
+              {activity.map((level, index) => (
+                <span className={`is-level-${level}`} aria-hidden="true" key={`${activityMode}-${index}`} />
+              ))}
+            </div>
+            <div className="abt-codex-months" aria-hidden="true">
+              {codexMonths.map(month => <span key={month}>{month}</span>)}
+            </div>
+          </div>
+        </div>
+
+        <div className="abt-codex-practice" aria-label="How Parth works with Codex">
+          {codexPractice.map((item, index) => (
+            <div key={item.title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -412,6 +523,8 @@ export default function AboutPage() {
                 ))}
               </div>
             </section>
+
+            <CodexProfile />
 
             {/* ── Spotlight: after experience ── */}
             <section className="wr-reveal-section">

@@ -616,7 +616,7 @@ export function detectSection(): VisibleSection {
     ['.cs-overview, .project-overview', 'overview'],
     ['.abt-practice-grid', 'practices'],
     ['.abt-timeline, .abt-exp', 'experience'],
-    ['.abt-tools, .abt-skills', 'skills'],
+    ['.abt-codex, .abt-vibe, .abt-tools, .abt-skills', 'skills'],
     ['.wr-grid, .work-grid, .wr-archive', 'work'],
     ['.abt-hero, .abt-intro', 'about'],
   ]
@@ -864,6 +864,11 @@ const rules: Rule[] = [
   // Design + code
   { patterns: [/(?:can he code|does he code|code too|design and build|build too|engineering depth)/i],
     handler: () => "Yes. React, TypeScript, Python, Swift, Arduino, and physical prototyping are all part of the practice.\n\nThe useful distinction is that Parth doesn't just hand off polished files, he can prototype the product logic, interaction edge cases, and physical behavior too."
+  },
+
+  // Codex practice
+  { patterns: [/(?:codex|agent practice|ai workflow|uses? agents|token activity|5\.5b|five point five billion)/i],
+    handler: () => "Parth uses Codex as a working design partner: start from the live surface, build in tight loops, then verify with tests, screenshots, and deployment checks.\n\nThe 5.5B tokens show repetition. The real skill is turning that repetition into a reliable system."
   },
 
   // Greeting

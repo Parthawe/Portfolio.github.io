@@ -172,6 +172,7 @@ function pageSteps(pathname: string): ParthStep[] {
       { selectors: ['.abt-table-wrap'], label: 'the path', note: 'The path looks messy. The throughline is not.' },
       { selectors: ['.abt-recognition'], label: 'proof', note: 'Nice signals. I care more about what survived contact with users.' },
       { selectors: ['.abt-vibe'], label: 'code + design', note: 'Code lets me argue with working behavior, not slides.' },
+      { selectors: ['.abt-codex'], label: 'agent practice', note: 'Context, tight loops, verification. The token count is only the exhaust.' },
       { selectors: ['.abt-beyond'], label: 'off the clock', note: 'Apparently I do not know how to stop making things.' },
       { selectors: ['[data-parth-comment-target]', '.ft-canvas-hint-btn', 'footer'], label: 'your turn', note: 'Leave me a note before you go.' },
     ]
