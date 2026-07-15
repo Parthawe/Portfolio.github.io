@@ -1446,7 +1446,7 @@
   border: 0;
   background: transparent;
   width: 100%;
-  height: clamp(20rem, 42vw, 34rem);
+  height: clamp(15rem, 25vw, 21rem);
   min-height: 0;
   max-height: none;
 }
