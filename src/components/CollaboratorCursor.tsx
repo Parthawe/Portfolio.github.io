@@ -74,6 +74,7 @@ const LABEL_AVOID_SELECTOR = [
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max)
 
 const YOU_CURSOR_TIP_OFFSET = { x: 2, y: 4 }
+const TOUR_SLIDE_HOLD_MS = 5_000
 
 const CATEGORY_CUES: Record<string, Partial<Record<string, string>>> = {
   '/ai': { 'how I see it': 'AI gets interesting when the human still has the last word.', 'start here': 'I would start with the AI work that escaped the chat box.' },
@@ -291,6 +292,7 @@ export default function CollaboratorCursor() {
   const parkTimer = useRef<number | null>(null)
   const actionTimer = useRef<number | null>(null)
   const tourStartTimer = useRef<number | null>(null)
+  const tourAdvanceTimer = useRef<number | null>(null)
   const typingStep = useRef<number | null>(null)
   const parkedRef = useRef(false)
   const spokenSteps = useRef(new Set<number>())
@@ -309,6 +311,10 @@ export default function CollaboratorCursor() {
   const tourFinishRef = useRef<(message?: string) => void>(() => {})
 
   const setConversation = (open: boolean) => {
+    if (open && tourAdvanceTimer.current !== null) {
+      window.clearTimeout(tourAdvanceTimer.current)
+      tourAdvanceTimer.current = null
+    }
     const parth = parthRef.current
     if (parth) {
       parth.classList.remove('is-nearby')
@@ -344,6 +350,10 @@ export default function CollaboratorCursor() {
   }
 
   const finishTour = (message?: string) => {
+    if (tourAdvanceTimer.current !== null) {
+      window.clearTimeout(tourAdvanceTimer.current)
+      tourAdvanceTimer.current = null
+    }
     tourActiveRef.current = false
     tourPausedRef.current = false
     tourStepsRef.current = []
@@ -355,6 +365,10 @@ export default function CollaboratorCursor() {
 
   const goToTourStep = (index: number) => {
     if (!tourActiveRef.current) return
+    if (tourAdvanceTimer.current !== null) {
+      window.clearTimeout(tourAdvanceTimer.current)
+      tourAdvanceTimer.current = null
+    }
     tourPausedRef.current = false
     setTourPaused(false)
     tourGoRef.current(index)
@@ -364,7 +378,8 @@ export default function CollaboratorCursor() {
     if (tourStartTimer.current !== null) window.clearTimeout(tourStartTimer.current)
     const fullCaseStudyButton = Array.from(
       document.querySelectorAll<HTMLButtonElement>('.cs-quick-summary-toggle-btn'),
-    ).find(button => button.textContent?.trim() === 'Full case study' && button.getAttribute('aria-selected') !== 'true')
+    ).find(button => ['Full story', 'Full case study'].includes(button.textContent?.trim() ?? '')
+      && button.getAttribute('aria-selected') !== 'true')
 
     const beginTour = (attempt = 0) => {
       const waitingForExpansion = fullCaseStudyButton
@@ -552,6 +567,10 @@ export default function CollaboratorCursor() {
         window.clearTimeout(typeTimer.current)
         typeTimer.current = null
       }
+      if (tourAdvanceTimer.current !== null) {
+        window.clearTimeout(tourAdvanceTimer.current)
+        tourAdvanceTimer.current = null
+      }
     }
 
     const clearParkTimer = () => {
@@ -608,7 +627,7 @@ export default function CollaboratorCursor() {
       parkTimer.current = window.setTimeout(parkCursor, delay)
     }
 
-    const typeNote = (message: string, stepIndex: number, force = false) => {
+    const typeNote = (message: string, stepIndex: number, force = false, tourSlide = false) => {
       const note = noteRef.current
       if (!note || !message || conversationOpenRef.current) return
       const now = Date.now()
@@ -626,6 +645,22 @@ export default function CollaboratorCursor() {
       note.textContent = ''
       if (statusRef.current) statusRef.current.textContent = message
       setSpeaking(true)
+
+      if (tourSlide) {
+        note.textContent = message
+        spokenSteps.current.add(stepIndex)
+        const scheduledTourIndex = tourIndexRef.current
+        tourAdvanceTimer.current = window.setTimeout(() => {
+          tourAdvanceTimer.current = null
+          if (!tourActiveRef.current || tourPausedRef.current) return
+          const currentIndex = tourIndexRef.current
+          if (currentIndex !== scheduledTourIndex || !tourStepsRef.current[currentIndex]) return
+          if (currentIndex >= tourStepsRef.current.length - 1) finishTour()
+          else goToTourStep(currentIndex + 1)
+        }, TOUR_SLIDE_HOLD_MS)
+        return
+      }
+
       parth.classList.add('is-typing')
       typingStep.current = stepIndex
       let index = 0
@@ -663,7 +698,7 @@ export default function CollaboratorCursor() {
       const next = available[nextIndex]
       tourIndexRef.current = nextIndex
       tourPausedRef.current = false
-      programmaticScrollUntilRef.current = Date.now() + 900
+      programmaticScrollUntilRef.current = Date.now() + 1_400
       setTourIndex(nextIndex)
       setTourPaused(false)
       setTourTotal(available.length)
@@ -699,6 +734,7 @@ export default function CollaboratorCursor() {
       }
 
       const hadSteps = steps.current.length > 0
+      const previousActiveLabel = steps.current[activeIndex.current]?.label
       const previousTourLabel = tourStepsRef.current[tourIndexRef.current]?.label
       const refreshedSteps = resolveSteps(normalizedPathname)
       steps.current = refreshedSteps
@@ -719,7 +755,9 @@ export default function CollaboratorCursor() {
         tourIndexRef.current = refreshedIndex
         setTourIndex(refreshedIndex)
         setTourTotal(refreshedTour.length)
-        activeIndex.current = -1
+        activeIndex.current = previousActiveLabel
+          ? refreshedSteps.findIndex(step => step.label === previousActiveLabel)
+          : -1
       }
       if (!hadSteps && steps.current.length > 0) {
         activeIndex.current = -1
@@ -802,7 +840,7 @@ export default function CollaboratorCursor() {
           const isCurrentTourStop = tourActiveRef.current
             && !tourPausedRef.current
             && tourStepsRef.current[tourIndexRef.current] === step
-          if (isCurrentTourStop) typeNote(message, index, true)
+          if (isCurrentTourStop) typeNote(message, index, true, true)
           else if (!step.quiet && !spokenSteps.current.has(index)) typeNote(message, index)
           else schedulePark(2600)
         }, tourActiveRef.current ? 220 : ambientDelay)
@@ -864,6 +902,10 @@ export default function CollaboratorCursor() {
       if (tourActiveRef.current && Date.now() > programmaticScrollUntilRef.current) {
         tourPausedRef.current = true
         setTourPaused(true)
+        if (tourAdvanceTimer.current !== null) {
+          window.clearTimeout(tourAdvanceTimer.current)
+          tourAdvanceTimer.current = null
+        }
       }
       parkedRef.current = false
       clearParkTimer()
@@ -876,6 +918,14 @@ export default function CollaboratorCursor() {
       if (settleTimer.current !== null) window.clearTimeout(settleTimer.current)
       settleTimer.current = window.setTimeout(() => {
         settleTimer.current = null
+        if (tourActiveRef.current && !tourPausedRef.current) {
+          const tourStep = tourStepsRef.current[tourIndexRef.current]
+          const tourStepIndex = tourStep ? steps.current.indexOf(tourStep) : -1
+          if (tourStep && tourStepIndex >= 0) {
+            typeNote(intelligentNote(normalizedPathname, tourStep), tourStepIndex, true, true)
+          }
+          return
+        }
         const index = activeIndex.current
         const step = steps.current[index]
         if (step && !step.quiet && !spokenSteps.current.has(index) && typingStep.current !== index) {
@@ -917,6 +967,7 @@ export default function CollaboratorCursor() {
       if (thinkingTimer.current !== null) window.clearTimeout(thinkingTimer.current)
       if (actionTimer.current !== null) window.clearTimeout(actionTimer.current)
       if (tourStartTimer.current !== null) window.clearTimeout(tourStartTimer.current)
+      if (tourAdvanceTimer.current !== null) window.clearTimeout(tourAdvanceTimer.current)
       tourGoRef.current = () => {}
       tourFinishRef.current = () => {}
       clearParkTimer()
