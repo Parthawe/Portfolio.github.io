@@ -313,9 +313,23 @@ export default function CollaboratorCursor() {
     if (parth) {
       parth.classList.remove('is-nearby')
       if (open) {
-        const rect = parth.getBoundingClientRect()
-        parth.dataset.side = rect.left + rect.width / 2 > window.innerWidth / 2 ? 'left' : 'right'
-        parth.dataset.vertical = rect.top > window.innerHeight * 0.58 ? 'above' : 'below'
+        const trigger = triggerRef.current
+        const rect = trigger?.getBoundingClientRect() ?? parth.getBoundingClientRect()
+        let projectedRight = rect.right
+        let projectedBottom = rect.bottom
+        if (trigger && parth.style.transform) {
+          try {
+            const targetTransform = new DOMMatrixReadOnly(parth.style.transform)
+            projectedRight = targetTransform.m41 + trigger.offsetLeft + trigger.offsetWidth
+            projectedBottom = targetTransform.m42 + trigger.offsetTop + trigger.offsetHeight
+          } catch {
+            // The rendered rect remains a safe fallback for unsupported transform parsing.
+          }
+        }
+        const panelWidth = Math.min(304, window.innerWidth - 44)
+        const panelHeight = Math.min(360, window.innerHeight - 44)
+        parth.dataset.side = projectedRight + panelWidth > window.innerWidth - 18 ? 'left' : 'right'
+        parth.dataset.vertical = projectedBottom + panelHeight > window.innerHeight - 18 ? 'above' : 'below'
       }
     }
     conversationOpenRef.current = open
@@ -914,7 +928,6 @@ export default function CollaboratorCursor() {
       <div
         ref={parthRef}
         className={`reading-cursor reading-cursor--parth${conversationOpen ? ' is-conversing' : ''}${tourActive ? ' is-touring' : ''}`}
-        data-side="right"
       >
         <button
           ref={triggerRef}
