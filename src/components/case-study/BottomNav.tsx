@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useCallback, useState } from 'react';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useReadingProgress } from '../../hooks/useReadingProgress';
 import FigmaSelect from '../FigmaSelect';
 
@@ -13,21 +12,10 @@ interface BottomNavProps {
 export default function BottomNav({ sections, liveUrl, modeAction, placement = 'side' }: BottomNavProps) {
   const navRef = useRef<HTMLElement>(null);
   const progress = useReadingProgress();
-  const isDesktopSideRail = useMediaQuery('(min-width: 1200px)');
-  const isPhone = useMediaQuery('(max-width: 680px)');
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
-  const [expanded, setExpanded] = useState(false);
   const [availableSections, setAvailableSections] = useState(sections);
-  const visibleSections = useMemo(() => {
-    if (!isPhone) return availableSections.slice(0, 4);
-
-    // On phones the action is more useful than a horizontal section list.
-    // Keeping the rail to one clear job prevents controls from being clipped
-    // behind the browser edge while the document itself remains scrollable.
-    if (modeAction) return [];
-    return availableSections.slice(0, liveUrl ? 1 : 2);
-  }, [availableSections, isPhone, liveUrl, modeAction]);
+  const visibleSections = useMemo(() => availableSections.slice(0, 4), [availableSections]);
 
   useEffect(() => {
     const updateAvailableSections = () => {
@@ -148,7 +136,6 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   // Smooth scroll click handler
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    setExpanded(false);
     const target = document.getElementById(id);
     if (!target) return;
     const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 56;
@@ -166,10 +153,10 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   return (
     <nav
       ref={navRef}
-      className={`cs-bottom-nav cs-bottom-nav--${placement} surface-glass${expanded ? ' is-expanded' : ''}`}
+      className={`cs-bottom-nav cs-bottom-nav--${placement} surface-glass`}
       id="cs-bottom-nav"
       aria-label="Case study sections"
-      aria-orientation={placement === 'side' && isDesktopSideRail ? 'vertical' : 'horizontal'}
+      aria-orientation="horizontal"
       style={{ '--cs-bnav-progress': `${progress}%` } as React.CSSProperties}
       onMouseEnter={() => {
         clearTimeout(hideTimer.current);
@@ -186,23 +173,12 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       }}
       onBlur={(e) => {
         if (navRef.current?.contains(e.relatedTarget as Node)) return;
-        setExpanded(false);
         hideTimer.current = setTimeout(() => {
           navRef.current?.classList.add('is-idle');
         }, 2500);
       }}
     >
-      <button
-        type="button"
-        className="cs-bnav-trigger"
-        aria-label={expanded ? 'Close case controls' : 'Open case controls'}
-        aria-expanded={expanded}
-        title="Case controls"
-        onClick={() => setExpanded((current) => !current)}
-      >
-        <span aria-hidden="true">&#9776;</span>
-      </button>
-      <span className="cs-bnav-kicker">Case controls</span>
+      <span className="cs-bnav-kicker" aria-hidden="true">CS.</span>
       {/* Reading progress bar */}
       <div className="cs-bnav-progress" />
 
@@ -222,7 +198,6 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
           type="button"
           className="cs-bnav-link cs-bnav-action figma-hover"
           onClick={() => {
-            setExpanded(false)
             modeAction.onClick()
           }}
         >
@@ -236,7 +211,6 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
           target="_blank"
           rel="noopener noreferrer"
           className="cs-bnav-link cs-bnav-live figma-hover"
-          onClick={() => setExpanded(false)}
         >
           Live Site
           <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>

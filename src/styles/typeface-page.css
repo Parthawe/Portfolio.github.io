@@ -713,10 +713,6 @@ body.site-tools-open .typeface-page .tf-image-grid {
     font-size: clamp(4.2rem, 21vw, 8rem);
   }
 
-  .typeface-page .cs-bottom-nav {
-    display: none;
-  }
-
   .tf-specimen-word {
     font-size: clamp(4.2rem, 24vw, 9rem);
   }

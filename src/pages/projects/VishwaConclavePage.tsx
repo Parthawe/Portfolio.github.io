@@ -86,7 +86,7 @@ export default function VishwaConclavePage() {
         <CsSection id="cs-scope" label="02 &mdash; Scope" title="What Creative Direction Looked Like">
           <CsBody>
             <p>By the final event, creative direction meant owning every touchpoint the audience encountered. The scope included:</p>
-            <ul>
+            <ul className="cs-list">
               <li><strong>Domain design</strong> &mdash; visual identity for each event theme, from typography to color systems</li>
               <li><strong>Video production</strong> &mdash; speaker announcement reels, event trailers, recap films</li>
               <li><strong>Website &amp; development</strong> &mdash; responsive event site with countdown timers, speaker bios, and registration flows</li>

@@ -7,6 +7,7 @@ import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
+import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -108,24 +109,12 @@ export default function BreakGenPage() {
         </CsSection>
 
         <CsSection id="cs-features" label="04 · System" title="AI keycaps, 3D layout, auto PCB">
-            <div className="cs-feature-grid">
-              <div className="cs-feature-card">
-                <h3 className="cs-feature-title">AI Keycap Generation</h3>
-                <p className="cs-feature-desc">Describe your aesthetic in words. Meshy AI generates unique 3D keycap designs that match your vision.</p>
-              </div>
-              <div className="cs-feature-card">
-                <h3 className="cs-feature-title">3D Layout Editor</h3>
-                <p className="cs-feature-desc">Drag-and-drop key placement in a Three.js visual editor. See your keyboard take shape in real-time.</p>
-              </div>
-              <div className="cs-feature-card">
-                <h3 className="cs-feature-title">Auto PCB Generation</h3>
-                <p className="cs-feature-desc">Your visual layout translates directly into a KiCad schematic. No electrical engineering knowledge needed.</p>
-              </div>
-              <div className="cs-feature-card">
-                <h3 className="cs-feature-title">Physical Prototyping</h3>
-                <p className="cs-feature-desc">3D printed cases, laser-cut plates, CNC-machined parts. From screen to workbench.</p>
-              </div>
-            </div>
+          <CsFeatureGrid features={[
+            { title: 'AI Keycap Generation', desc: 'Describe your aesthetic in words. Meshy AI generates unique 3D keycap designs that match your vision.' },
+            { title: '3D Layout Editor', desc: 'Drag-and-drop key placement in a Three.js visual editor. See your keyboard take shape in real time.' },
+            { title: 'Auto PCB Generation', desc: 'Your visual layout translates directly into a KiCad schematic. No electrical engineering knowledge needed.' },
+            { title: 'Physical Prototyping', desc: '3D-printed cases, laser-cut plates, and CNC-machined parts move the design from screen to workbench.' },
+          ]} />
         </CsSection>
 
         <CsSection id="cs-outcome" label="05 · Outcome" title="200+ visitors at the ITP Thesis Show">
