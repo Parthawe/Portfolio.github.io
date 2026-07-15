@@ -32,10 +32,6 @@ export default function ProjectQuickSummary({
   }
 
   const isAccessLimited = isRequestAccessProject(project)
-  const compactMeta = [
-    project.summaryTeam ? { label: 'Team', value: project.summaryTeam } : null,
-    project.summaryTimeline ? { label: 'Timeline', value: project.summaryTimeline } : null,
-  ].filter((item): item is { label: string; value: string } => Boolean(item))
   const proofStats = project.summaryStats?.slice(0, 3) ?? []
   const handleBridgeOpen = () => {
     onViewModeChange('full')
@@ -111,17 +107,6 @@ export default function ProjectQuickSummary({
             </figure>
           ) : null}
         </div>
-
-        {compactMeta.length ? (
-          <div className="cs-quick-summary-meta-strip" aria-label="Project metadata">
-            {compactMeta.map((item) => (
-              <div className="cs-quick-summary-meta-item" key={item.label}>
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-              </div>
-            ))}
-          </div>
-        ) : null}
 
         {proofStats.length ? (
           <div className="cs-quick-summary-stats" aria-label="Key proof points">

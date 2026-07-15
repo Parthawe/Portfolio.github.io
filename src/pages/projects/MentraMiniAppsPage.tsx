@@ -90,7 +90,7 @@ export default function MentraMiniAppsPage() {
           subtitle="A voice-first app ecosystem for smart glasses: discovery, permissions, install flows, and platform patterns for captions, translation, notes, AI, and utilities"
           info={[
             { label: 'Role', value: 'Head of UI/UX (sole designer)' },
-            { label: 'Timeline', value: 'Q4 2025 &ndash; Q1 2026' },
+            { label: 'Timeline', value: 'Q4 2025 - Q1 2026' },
             { label: 'Platform', value: 'MentraOS + Companion App + Web Portal' },
             { label: 'Focus', value: 'Store, permissions, developer handoff' },
           ]}

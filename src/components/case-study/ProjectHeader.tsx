@@ -166,7 +166,7 @@ export default function ProjectHeader({
 
   if (heroExperience !== undefined || resolvedVisualHeroImage) {
     const visualKicker = heroEyebrow || 'Selected project'
-    const visualDeck = visualSummary || visualHeadline || subtitle
+    const visualDeck = visualHeadline || project?.summaryRole || visualSummary || subtitle
     const visualClasses = [
       'wrap',
       'project-header',

@@ -17,6 +17,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const isPhone = useMediaQuery('(max-width: 680px)');
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
+  const [expanded, setExpanded] = useState(false);
   const [availableSections, setAvailableSections] = useState(sections);
   const visibleSections = useMemo(() => {
     if (!isPhone) return availableSections.slice(0, 4);
@@ -27,12 +28,6 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
     if (modeAction) return [];
     return availableSections.slice(0, liveUrl ? 1 : 2);
   }, [availableSections, isPhone, liveUrl, modeAction]);
-
-  useEffect(() => {
-    const sideRailClass = 'case-side-nav';
-    document.body.classList.toggle(sideRailClass, placement === 'side');
-    return () => document.body.classList.remove(sideRailClass);
-  }, [placement]);
 
   useEffect(() => {
     const updateAvailableSections = () => {
@@ -153,6 +148,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   // Smooth scroll click handler
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+    setExpanded(false);
     const target = document.getElementById(id);
     if (!target) return;
     const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 56;
@@ -170,7 +166,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   return (
     <nav
       ref={navRef}
-      className={`cs-bottom-nav cs-bottom-nav--${placement} surface-glass`}
+      className={`cs-bottom-nav cs-bottom-nav--${placement} surface-glass${expanded ? ' is-expanded' : ''}`}
       id="cs-bottom-nav"
       aria-label="Case study sections"
       aria-orientation={placement === 'side' && isDesktopSideRail ? 'vertical' : 'horizontal'}
@@ -190,11 +186,22 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       }}
       onBlur={(e) => {
         if (navRef.current?.contains(e.relatedTarget as Node)) return;
+        setExpanded(false);
         hideTimer.current = setTimeout(() => {
           navRef.current?.classList.add('is-idle');
         }, 2500);
       }}
     >
+      <button
+        type="button"
+        className="cs-bnav-trigger"
+        aria-label={expanded ? 'Close case controls' : 'Open case controls'}
+        aria-expanded={expanded}
+        title="Case controls"
+        onClick={() => setExpanded((current) => !current)}
+      >
+        <span aria-hidden="true">&#9776;</span>
+      </button>
       <span className="cs-bnav-kicker">Case controls</span>
       {/* Reading progress bar */}
       <div className="cs-bnav-progress" />
@@ -214,7 +221,10 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
         <button
           type="button"
           className="cs-bnav-link cs-bnav-action figma-hover"
-          onClick={modeAction.onClick}
+          onClick={() => {
+            setExpanded(false)
+            modeAction.onClick()
+          }}
         >
           {modeAction.label}
           <FigmaSelect />
@@ -226,6 +236,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
           target="_blank"
           rel="noopener noreferrer"
           className="cs-bnav-link cs-bnav-live figma-hover"
+          onClick={() => setExpanded(false)}
         >
           Live Site
           <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>

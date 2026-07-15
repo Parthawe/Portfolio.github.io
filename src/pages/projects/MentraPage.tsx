@@ -201,7 +201,6 @@ export default function MentraPage() {
             <CsImage src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
             <CsImage src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
           </div>
-          <CsImage src="/Assets/images/mentra/companion-model-select.png" alt="Mentra companion app model selection screen shown on a phone held in hand" />
           <h3 className="cs-section-subtitle">Voice-First, Screen-Second</h3>
           <CsBody>
             <p>Voice carries the intent. The display only confirms state, progress, and response. That kept the HUD quiet.</p>

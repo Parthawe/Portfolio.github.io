@@ -187,23 +187,25 @@
 }
 .proj-title {
   font-family: var(--sans);
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1;
+  max-width: 32ch;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.2;
   letter-spacing: 0;
-  color: var(--ink);
-  margin: 0 0 1.25rem;
-  font-weight: 400;
+  color: var(--ink-70);
+  margin: 0 0 0.8rem;
+  font-weight: 600;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
 }
 .proj-subtitle {
   font-family: var(--sans);
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: var(--ink-50);
+  font-size: clamp(2rem, 3.4vw, 3.5rem);
+  color: var(--ink);
   margin: 0 0 2.5rem;
-  line-height: 1.7;
-  max-width: 56ch;
+  line-height: 1.08;
+  max-width: 27ch;
+  text-wrap: balance;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
@@ -901,24 +903,24 @@
 
 .proj-visual-project-name {
   margin: 0;
-  max-width: 18ch;
+  max-width: 32ch;
   font-family: var(--sans);
-  font-size: clamp(2.9rem, 6.5vw, 6.5rem);
-  font-weight: 500;
-  line-height: 0.98;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.2;
   letter-spacing: 0;
-  color: rgba(250, 253, 251, 0.98);
+  color: rgba(250, 253, 251, 0.78);
   text-wrap: balance;
   text-shadow: 0 1.4rem 4rem rgba(0, 0, 0, 0.24);
 }
 
 .proj-visual-title {
-  margin: 1rem 0 0;
-  max-width: 58ch;
+  margin: 0.8rem 0 0;
+  max-width: 31ch;
   font-family: var(--sans);
-  font-size: clamp(1.1rem, 1.75vw, 1.5rem);
+  font-size: clamp(2rem, 3.4vw, 3.5rem);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.08;
   letter-spacing: 0;
   color: rgba(250, 253, 251, 0.96);
   text-wrap: balance;
@@ -1045,15 +1047,24 @@
    metadata and fast read need their own contrast rules instead of inheriting
    the light-page ink tokens. */
 .project-header--visual .proj-info-row--visual {
-  border-top-color: rgba(246, 252, 250, 0.28);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid var(--ink-08);
+  border-radius: 0.5rem;
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .project-header--visual .proj-info-label {
-  color: rgba(246, 252, 250, 0.62);
+  color: var(--ink-50);
+  font-size: 1rem;
+  line-height: 1.35;
 }
 
 .project-header--visual .proj-info-val {
-  color: rgba(250, 253, 251, 0.96);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .project-header--visual .proj-fastread {
@@ -1085,8 +1096,9 @@
   }
 
   .proj-visual-title {
-    max-width: 52ch;
-    font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+    max-width: 29ch;
+    font-size: clamp(1.85rem, 4.8vw, 3rem);
+    line-height: 1.1;
   }
 
   .proj-visual-stage {
@@ -1151,9 +1163,9 @@
   }
 
   .proj-visual-title {
-    max-width: 42ch;
-    font-size: 1rem;
-    line-height: 1.5;
+    max-width: 24ch;
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.12;
   }
 
   .proj-visual-live {
@@ -1423,15 +1435,18 @@
   border-radius: var(--radius);
   border: 0;
   background: transparent;
-  min-height: 100%;
-  max-height: clamp(14rem, 30vw, 22rem);
+  width: 100%;
+  height: clamp(20rem, 42vw, 34rem);
+  min-height: 0;
+  max-height: none;
 }
 
 .cs-quick-summary-image img {
   width: 100%;
   height: 100%;
-  min-height: 100%;
+  min-height: 0;
   object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
@@ -1966,6 +1981,10 @@
   white-space: nowrap;
 }
 
+.cs-bnav-trigger {
+  display: none;
+}
+
 /* Reading progress bar, sits on top edge of the pill */
 .cs-bnav-progress {
   position: absolute;
@@ -2086,17 +2105,17 @@
 
 @media (min-width: 1200px) {
   .cs-bottom-nav--side {
-    top: 50%;
-    right: clamp(1.2rem, 2.2vw, 2.5rem);
-    bottom: auto;
-    left: auto;
-    transform: translateY(-50%) translateX(0);
+    top: auto;
+    right: auto;
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    left: clamp(1.2rem, 2.2vw, 2.5rem);
+    transform: translateY(0);
     flex-direction: column;
     align-items: stretch;
-    gap: 0.35rem;
-    width: min(13rem, calc(100vw - 2rem));
-    max-width: 13rem;
-    padding: 0.75rem;
+    gap: 0.25rem;
+    width: min(11.5rem, calc(100vw - 2rem));
+    max-width: 11.5rem;
+    padding: 0.6rem;
     border-radius: var(--radius-lg);
     overflow: visible;
     z-index: 130;
@@ -2109,7 +2128,8 @@
 
   .cs-bottom-nav--side .cs-bnav-kicker {
     display: block;
-    padding: 0.1rem 0.45rem 0.35rem;
+    padding: 0.1rem 0.35rem 0.25rem;
+    font-size: var(--text-xs);
   }
 
   .cs-bottom-nav--side .cs-bnav-progress {
@@ -2127,29 +2147,35 @@
     color: var(--ink-70);
     justify-content: space-between;
     width: 100%;
-    min-height: 2.75rem;
-    padding: 0.65rem 0.8rem;
+    min-height: 2.35rem;
+    padding: 0.5rem 0.65rem;
+    font-size: var(--text-sm);
+    line-height: 1.35;
     text-align: left;
     white-space: normal;
   }
 
   .cs-bottom-nav--side .cs-bnav-action {
     align-items: flex-start;
-    line-height: 1.35;
+    font-family: var(--sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
   }
 
   .cs-bottom-nav--side .cs-bnav-live {
     margin-left: 0;
     justify-content: center;
-    min-height: 3rem;
+    min-height: 2.5rem;
     color: var(--bg);
     background: var(--ink);
     border-color: var(--ink);
-    font-family: var(--mono);
-    font-size: var(--text-2xs);
-    font-weight: 700;
-    letter-spacing: var(--ls-wide);
-    text-transform: uppercase;
+    font-family: var(--sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
     line-height: 1.25;
   }
 
@@ -2158,42 +2184,23 @@
   }
 
   .cs-bottom-nav--side.is-hidden {
-    transform: translateY(-50%) translateX(18px);
+    transform: translateY(18px);
   }
 
   .cs-bottom-nav--side.is-before-hero {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-50%) translateX(24px) scale(0.98);
+    transform: translateY(24px) scale(0.98);
     pointer-events: none;
   }
 
   .cs-bottom-nav--side.is-idle:not(.is-hidden) {
     opacity: 0.82;
-    transform: translateY(-50%) translateX(5px) scale(0.99);
+    transform: translateY(5px) scale(0.99);
   }
 
   .cs-bottom-nav--side.is-idle:hover {
-    transform: translateY(-50%) translateX(0);
-  }
-}
-
-@media (min-width: 1200px) {
-  body.case-side-nav .project-main {
-    --case-side-rail-width: 14rem;
-    --case-side-rail-gap: clamp(4rem, 6vw, 7rem);
-    --case-side-content-max: min(
-      var(--w),
-      calc(100vw - var(--case-side-rail-width) - var(--case-side-rail-gap) - var(--pad))
-    );
-  }
-
-  body.case-side-nav .project-main .wrap,
-  body.case-side-nav .project-header.wrap {
-    width: min(100%, var(--case-side-content-max));
-    max-width: var(--case-side-content-max);
-    margin-left: max(var(--pad), calc((100vw - var(--max-w)) / 2));
-    margin-right: auto;
+    transform: translateY(0);
   }
 }
 
@@ -3864,12 +3871,12 @@
   color: var(--ink-70);
 }
 
-/* Features are compact learning notes, numbered without card framing. */
+/* Numbered evidence should scan like a system, not a paragraph stack. */
 .cs-feature-grid {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
   margin: 2.25rem 0;
-  border-top: 1px solid var(--ink-08);
   counter-reset: feature-counter;
 }
 .cs-feature-card {
@@ -3878,10 +3885,14 @@
   grid-template-columns: minmax(2.25rem, 3.25rem) minmax(0, 1fr);
   gap: 0.35rem 1.35rem;
   align-items: start;
-  max-width: 46rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--ink-08);
-  background: transparent;
+  max-width: none;
+  min-height: 9rem;
+  padding: 1.15rem;
+  border: 1px solid var(--ink-08);
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--project-color, var(--ink)) 7%, transparent), transparent 62%),
+    color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: none;
   position: relative;
 }
@@ -3910,6 +3921,7 @@
 }
 
 .cs-feature-grid--plain {
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.15rem;
   margin: 2rem 0;
   border-top: 0;
@@ -3929,6 +3941,12 @@
 
 .cs-feature-grid--plain .cs-feature-card-desc {
   max-width: 44ch;
+}
+
+@container (max-width: 42rem) {
+  .cs-feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .point-research-list .cs-feature-grid {
@@ -6160,6 +6178,17 @@
   align-items: start;
 }
 
+@media (min-width: 901px) {
+  .project-main--mentra-visual :is(#cs-challenges, #cs-os) .cs-section-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+  }
+
+  .project-main--mentra-visual :is(#cs-challenges, #cs-os) .cs-section-title {
+    max-width: 18ch;
+  }
+}
+
 .project-main--mentra-visual .cs-mentra-media-row .cs-img-full {
   width: 100%;
   max-width: none;
@@ -6566,6 +6595,14 @@
   }
 }
 
+/* The general media reset intentionally lets artwork breathe, but summary
+   thumbnails are bounded previews and must stay clipped to their frame. */
+.project-main figure.cs-quick-summary-image {
+  overflow: clip;
+  border-radius: 0.5rem;
+  contain: paint;
+}
+
 .project-main .cs-caption {
   max-width: 52ch;
   margin-top: 0.75rem;
@@ -6793,10 +6830,13 @@
   }
 
   .project-main .proj-title {
-    font-size: clamp(3.1rem, 18vw, 4.8rem);
+    font-size: clamp(1.05rem, 4.8vw, 1.25rem);
   }
 
   .project-main .proj-subtitle {
+    max-width: 24ch;
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.12;
     margin-bottom: 1.5rem;
   }
 
@@ -8117,7 +8157,7 @@
 @media (max-width: 640px) {
   .project-main .proj-visual-project-name {
     max-width: 100%;
-    font-size: clamp(1.75rem, 9.4vw, 3.5rem);
+    font-size: clamp(1.05rem, 4.8vw, 1.25rem);
     overflow-wrap: anywhere;
   }
 
@@ -8131,28 +8171,24 @@
   .proj-visual-kicker,
   .proj-visual-project-name,
   .proj-visual-title,
-  .proj-visual-live,
-  .proj-info-val
+  .proj-visual-live
 ),
 .project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .project-header :is(
   .proj-title,
   .proj-subtitle,
-  .proj-live-link,
-  .proj-info-val
+  .proj-live-link
 ) {
   color: rgba(255, 255, 255, 0.96);
   -webkit-text-fill-color: currentColor;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
 }
 
-.project-main:has(.project-header--visual) .project-header--visual .proj-info-label,
-.project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .project-header .proj-info-label {
+.project-main:is(.project-main--transfi, .project-main--mentra-miniapps):not(:has(.project-header--visual)) .project-header .proj-info-label {
   color: rgba(255, 255, 255, 0.7);
   -webkit-text-fill-color: currentColor;
 }
 
-.project-main:has(.project-header--visual) .project-header--visual .proj-info-row,
-.project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .project-header .proj-info-row {
+.project-main:is(.project-main--transfi, .project-main--mentra-miniapps):not(:has(.project-header--visual)) .project-header .proj-info-row {
   border-color: rgba(255, 255, 255, 0.24);
 }
 
@@ -8204,5 +8240,80 @@
   .project-main:has(.project-header--visual) .proj-info-row,
   .project-main:is(.project-main--transfi, .project-main--mentra-miniapps) .proj-info-row {
     gap: 1.15rem;
+  }
+}
+
+/* Case controls are utility chrome. Keep them at the same compact scale as
+   the primary navigation, after the project typography floor is applied. */
+@media (min-width: 1200px) {
+  .project-main .cs-bottom-nav--side {
+    width: 2.75rem;
+    height: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+    border-radius: 0.65rem;
+    overflow: hidden;
+    transition: width 0.24s ease, height 0.24s ease, padding 0.24s ease, opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .project-main .cs-bottom-nav--side.is-expanded {
+    width: min(11.5rem, calc(100vw - 2rem));
+    height: auto;
+    padding: 0.6rem;
+    overflow: visible;
+  }
+
+  .project-main .cs-bottom-nav--side:not(.is-expanded) > :not(.cs-bnav-trigger) {
+    display: none;
+  }
+
+  .project-main .cs-bottom-nav--side .cs-bnav-trigger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0.65rem;
+    color: var(--ink-70);
+    background: transparent;
+    font-family: var(--sans);
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .project-main .cs-bottom-nav--side.is-expanded .cs-bnav-trigger {
+    top: 0.35rem;
+    right: 0.35rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .project-main .cs-bottom-nav--side .cs-bnav-trigger:hover {
+    color: var(--ink);
+    background: var(--ink-04);
+  }
+
+  .project-main .cs-bottom-nav--side .cs-bnav-kicker {
+    padding: 0.1rem 2rem 0.25rem 0.35rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .project-main .cs-bottom-nav--side .cs-bnav-link,
+  .project-main .cs-bottom-nav--side .cs-bnav-action,
+  .project-main .cs-bottom-nav--side .cs-bnav-live {
+    min-height: 2.35rem;
+    padding: 0.5rem 0.65rem;
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-transform: none;
   }
 }
