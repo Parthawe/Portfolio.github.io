@@ -1857,6 +1857,10 @@
   color: var(--ink-30);
 }
 
+.abt-recognition-mobile {
+  display: none;
+}
+
 /* ── Beyond work ── */
 .abt-beyond {
   padding-bottom: var(--space-12); /* 4 units */
@@ -2782,44 +2786,61 @@
     line-height: 1.5;
   }
 
-  .abt-recognition-table,
-  .abt-recognition-table tbody,
-  .abt-recognition-table .abt-table-section,
-  .abt-recognition-table .abt-table-section td {
-    display: block;
-    width: 100%;
-    table-layout: auto;
+  .abt-recognition {
+    gap: 1rem;
+    scroll-margin-top: calc(var(--nav-h) + 1rem);
   }
 
-  .abt-recognition-table .abt-table-row {
-    display: block;
-    width: 100%;
-    padding: 0.8rem 0;
+  .abt-recognition-head {
+    gap: 0.5rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .abt-recognition-head h2 {
+    max-width: 12ch;
+    font-size: clamp(1.75rem, 8.5vw, 2.15rem);
+    line-height: 1.08;
+  }
+
+  .abt-recognition-table {
+    display: none;
+  }
+
+  .abt-recognition-mobile {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .abt-recognition-group {
+    min-width: 0;
+  }
+
+  .abt-recognition-group h3 {
+    margin: 0 0 0.35rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink-50);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .abt-recognition-group ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .abt-recognition-group li {
+    padding: 0.72rem 0;
     border-bottom: 1px solid var(--ink-06);
-  }
-
-  .abt-recognition-table .abt-table-row td {
-    display: block;
-    width: auto;
-    padding: 0;
-    border-bottom: 0;
-  }
-
-  .abt-recognition-table .abt-table-date {
-    display: none;
-  }
-
-  .abt-recognition-table .abt-table-co {
-    display: none;
-  }
-
-  .abt-recognition-table .abt-table-main {
-    padding: 0;
-  }
-
-  .abt-recognition-table .abt-table-role {
+    font-family: var(--sans);
     font-size: 0.94rem;
-    line-height: 1.4;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ink);
+    overflow-wrap: anywhere;
   }
 }
 

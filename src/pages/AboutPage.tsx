@@ -459,7 +459,7 @@ export default function AboutPage() {
               </table>
             </section>
 
-        <section className="abt-recognition reveal" aria-labelledby="abt-recognition-title">
+        <section id="recognition" className="abt-recognition reveal" aria-labelledby="abt-recognition-title">
           <div className="abt-recognition-head">
             <span className="sec-label">Awards / Recognition</span>
             <h2 id="abt-recognition-title">Proof beyond the job title</h2>
@@ -486,6 +486,18 @@ export default function AboutPage() {
                   ))}
                 </tbody>
               </table>
+              <div className="abt-recognition-mobile">
+                {recognitionGroups.map((group) => (
+                  <section className="abt-recognition-group" key={group.label}>
+                    <h3>{group.label}</h3>
+                    <ul>
+                      {group.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
             </section>
 
             {/* ── Vibe coding / software stack ── */}
