@@ -50,7 +50,8 @@ export default function VishwaConclavePage() {
         <CsSection id="cs-overview" label="Overview" title="Strategy Before Style">
           <CsBody>
             <p>VishwaConclave is a multidisciplinary student-led conference organized by students at Vishwakarma Institute of Technology, Pune. The event brings speakers from different fields into conversation with the student community, so the design system had to make each theme feel distinct while still belonging to one larger platform.</p>
-            <p>I joined as a Junior Designer in December 2019. Over the course of three years and five events, my responsibilities expanded to Creative Director &mdash; leading Marketing, Social Media, Aesthetics, Design, and Website. What started as executing speaker cards turned into owning the entire visual identity across campaigns, merchandise, recruitment, video production, and web experiences.</p>
+            <p>I joined as a Junior Designer in 2019. Across three years and five events, I grew into Creative Director for marketing, social, aesthetics, design, and web.</p>
+            <p>What started with speaker cards became ownership of the full identity across campaigns, merchandise, recruitment, video, and digital experiences.</p>
           </CsBody>
         </CsSection>
 

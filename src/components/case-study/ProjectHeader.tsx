@@ -118,19 +118,21 @@ export default function ProjectHeader({
   // One editorial narrative instead of two boxed grids: the fast-read summary
   // wins when present; the storyline arc is the fallback. Never both — they
   // repeat each other.
-  const narrativeRows = headerSummary
-    ? [
-        { label: 'Problem', copy: headerSummary.problem },
-        { label: 'Role & responsibilities', copy: headerSummary.role },
-        { label: 'Outcome', copy: headerSummary.outcome },
-      ]
-    : story
+  const narrativeRows = !showHeaderSummary
+    ? []
+    : headerSummary
       ? [
-          { label: 'Challenge', copy: story.challenge },
-          { label: 'Approach', copy: story.approach },
-          { label: 'Result', copy: story.result },
+          { label: 'Problem', copy: headerSummary.problem },
+          { label: 'Role & responsibilities', copy: headerSummary.role },
+          { label: 'Outcome', copy: headerSummary.outcome },
         ]
-      : []
+      : story
+        ? [
+            { label: 'Challenge', copy: story.challenge },
+            { label: 'Approach', copy: story.approach },
+            { label: 'Result', copy: story.result },
+          ]
+        : []
   const renderStoryAndSummary = (baseAnimIndex: number) =>
     narrativeRows.length ? (
       <section className={`proj-fastread hero-anim hero-anim-${baseAnimIndex}`} aria-label="Fast read summary">
@@ -166,7 +168,7 @@ export default function ProjectHeader({
 
   if (heroExperience !== undefined || resolvedVisualHeroImage) {
     const visualKicker = heroEyebrow || 'Selected project'
-    const visualDeck = visualHeadline || project?.summaryRole || visualSummary || subtitle
+    const visualDeck = visualHeadline || visualSummary || subtitle
     const visualClasses = [
       'wrap',
       'project-header',

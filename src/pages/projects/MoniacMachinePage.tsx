@@ -135,8 +135,8 @@ export default function MoniacMachinePage() {
         <CsSection id="cs-result" label="03 &mdash; Result" title="Result">
           <CsBody>
             <p>The game creates a practical understanding of macroeconomic feedback loops that textbooks struggle to convey. Playtesters consistently reported that after just a few rounds, they could predict how a change in interest rates would ripple through employment and inflation &mdash; a conceptual leap that often takes weeks to develop in a classroom setting.</p>
-            <p>The most revealing feedback came from economics students who said the game helped them understand why policy decisions are so difficult in practice. Reading about the tradeoff between inflation and unemployment is one thing; watching your carefully balanced economy collapse because you raised taxes two percentage points too high is another. The emotional stakes of the game, even though fictional, created a memorable learning experience that static diagrams cannot replicate.</p>
-            <p>The project was exhibited as an interactive installation where visitors could play individually or in teams, competing to maintain the healthiest economy over a fixed number of rounds. The competitive element added urgency and forced faster decision-making, mimicking the time pressure that real policymakers face. Several players returned multiple times, experimenting with different strategies &mdash; a strong signal that the game had succeeded in making economics genuinely engaging.</p>
+            <p>Economics students said the game made policy tradeoffs feel practical. Watching a balanced economy collapse after one tax change carried more weight than reading the same relationship in a diagram.</p>
+            <p>Visitors played alone or in teams to maintain the healthiest economy over a fixed number of rounds. Competition added urgency, and repeat players returned to test different strategies.</p>
           </CsBody>
         </CsSection>
 

@@ -1302,7 +1302,7 @@
 .cs-quick-summary-title {
   margin: 0.4rem 0 0.45rem;
   font-family: var(--serif);
-  font-size: clamp(1.55rem, 2.8vw, 2.35rem);
+  font-size: 1.75rem;
   font-weight: 400;
   line-height: 0.96;
   color: var(--ink);
@@ -1603,22 +1603,16 @@
   --cs-preview-accent: var(--project-color, #5c7ea8);
   display: grid;
   place-items: center;
-  min-height: clamp(10rem, 18vw, 14rem);
+  min-height: 9rem;
   margin: clamp(2rem, 5vw, 4rem) 0;
   padding: clamp(1.4rem, 3.5vw, 2.6rem);
-  border: 1px solid color-mix(in srgb, var(--cs-preview-accent) 52%, rgba(255, 255, 255, 0.2));
-  border-radius: var(--radius-xl);
+  border: 1px solid color-mix(in srgb, var(--cs-preview-accent) 22%, var(--ink-08));
+  border-top: 2px solid color-mix(in srgb, var(--cs-preview-accent) 76%, var(--ink));
+  border-radius: var(--radius);
   background:
-    radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--cs-preview-accent) 32%, transparent), transparent 38%),
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--cs-preview-accent) 60%, #334155 40%) 0%,
-      color-mix(in srgb, var(--cs-preview-accent) 42%, #111827 58%) 54%,
-      color-mix(in srgb, var(--cs-preview-accent) 24%, #0b111a 76%) 100%
-    );
-  box-shadow:
-    0 28px 80px -48px color-mix(in srgb, var(--cs-preview-accent) 64%, transparent),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    linear-gradient(135deg, color-mix(in srgb, var(--cs-preview-accent) 8%, transparent), transparent 64%),
+    color-mix(in srgb, var(--surface) 94%, var(--bg));
+  box-shadow: 0 18px 48px -38px color-mix(in srgb, var(--cs-preview-accent) 42%, transparent);
 }
 
 .cs-expand-preview-content {
@@ -1667,19 +1661,19 @@
 }
 
 .cs-expand-preview--closed .cs-expand-preview-kicker {
-  color: color-mix(in srgb, var(--cs-preview-accent) 36%, #eef6ff 64%);
+  color: color-mix(in srgb, var(--cs-preview-accent) 72%, var(--ink));
 }
 
 .cs-expand-preview--closed .cs-expand-preview-note {
-  color: color-mix(in srgb, var(--cs-preview-accent) 18%, #f6faff 82%);
-  opacity: 0.78;
+  color: var(--ink-70);
+  opacity: 1;
 }
 
 .cs-expand-preview--closed .cs-expand-preview-btn {
-  border-color: color-mix(in srgb, var(--cs-preview-accent) 24%, rgba(245, 249, 255, 0.9));
-  background: color-mix(in srgb, var(--cs-preview-accent) 18%, #f3f8ff 82%);
-  color: color-mix(in srgb, var(--cs-preview-accent) 42%, #07111f 58%);
-  box-shadow: 0 18px 38px -20px rgba(0, 0, 0, 0.45);
+  border-color: color-mix(in srgb, var(--cs-preview-accent) 30%, #111827 70%);
+  background: color-mix(in srgb, var(--cs-preview-accent) 30%, #111827 70%);
+  color: #f8fafc;
+  box-shadow: 0 14px 32px -22px color-mix(in srgb, var(--ink) 55%, transparent);
 }
 
 .cs-expand-preview-kicker {
@@ -1694,7 +1688,7 @@
 .cs-expand-preview-note {
   max-width: 42ch;
   margin: 0;
-  font-size: var(--text-sm);
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--ink-70);
 }
@@ -2244,6 +2238,7 @@
   top: calc(var(--nav-h) + 1.5rem);
   align-self: start;
   padding-right: clamp(0.5rem, 2vw, 1rem);
+  container-type: inline-size;
 }
 .cs-section-head::after {
   content: '';
@@ -2266,12 +2261,13 @@
 }
 .cs-section-title {
   font-family: var(--serif);
-  font-size: clamp(1.55rem,3.2vw,2.35rem);
+  font-size: clamp(1.35rem, 10cqi, 2.35rem);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-normal);
   color: var(--ink);
   margin: 0;
   font-weight: 300;
+  overflow-wrap: anywhere;
 }
 .cs-section-subtitle {
   font-family: var(--serif);
@@ -5339,7 +5335,8 @@
 .cs-flow-item {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  flex: 1 1 0;
+  min-width: 0;
 }
 .cs-flow-track--vertical .cs-flow-item {
   flex-direction: column;
@@ -5349,8 +5346,9 @@
   border: 1px solid var(--ink-06);
   border-radius: var(--radius);
   background: var(--surface);
-  min-width: 140px;
-  max-width: 200px;
+  min-width: 0;
+  max-width: none;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -5384,7 +5382,7 @@
   line-height: var(--lh-base);
 }
 .cs-flow-line--horizontal {
-  width: 32px;
+  width: 24px;
   height: 1px;
   background: var(--ink-15);
   flex-shrink: 0;
@@ -5806,8 +5804,8 @@
 }
 
 .project-main .cs-quick-summary-toggle-btn {
-  min-height: 38px;
-  padding: 0.55rem 0.75rem;
+  min-height: 48px;
+  padding: 0.7rem 0.9rem;
   font-size: 0.8125rem;
   line-height: 1;
   letter-spacing: 0.03em;
@@ -5889,6 +5887,8 @@
 
 .project-main .cs-section-title {
   max-width: 15ch;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .project-main .cs-section-content > :first-child {
@@ -7096,6 +7096,14 @@
     line-height: 1.55;
   }
 
+  .project-main .proj-fastread-stat {
+    padding-inline: 0.5rem;
+  }
+
+  .project-main .proj-fastread-stat:nth-child(odd) {
+    padding-left: 0;
+  }
+
   .project-main :is(
     .proj-overview-grid,
     .proj-story-grid,
@@ -7236,7 +7244,7 @@
     min-width: 0;
     width: 100%;
     max-width: none;
-    min-height: 42px;
+    min-height: 50px;
     padding: 0.55rem 0.625rem;
     overflow: visible;
     overflow-wrap: anywhere;
@@ -8455,7 +8463,7 @@
   .project-main .cs-bottom-nav--side .cs-bnav-action,
   .project-main .cs-bottom-nav--side .cs-bnav-live {
     width: auto;
-    min-height: 2.65rem;
+    min-height: 48px;
     padding: 0.55rem 0.7rem;
     overflow: visible;
     overflow-wrap: normal;

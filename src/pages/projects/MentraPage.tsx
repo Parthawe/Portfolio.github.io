@@ -126,7 +126,6 @@ export default function MentraPage() {
           slug="mentra"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
-          fullEntryId="cs-context"
         />
 
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>

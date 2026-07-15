@@ -170,7 +170,6 @@ export default function ZentipayPage() {
           slug="zentipay"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
-          fullEntryId="case-study-access-zentipay"
         />
 
         {viewMode === 'full' ? (

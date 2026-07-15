@@ -81,7 +81,8 @@ export default function SeaOfSaltPage() {
           <CsBody>
             <p>The installation is a single object on a black platform: a white cylindrical salt mill with a wooden handle, and a slider labeled &ldquo;Start of the Story&rdquo; on one end and &ldquo;End of the Story&rdquo; on the other.</p>
             <p>Slide the story forward. The mill turns. Real coarse sea salt grinds through the mechanism and scatters across the black surface. The further into the tale you go, the faster the mill grinds. By the climax &mdash; when the captain can&rsquo;t stop the mill &mdash; salt is pouring out. By the end, the platform is covered.</p>
-            <p>The question the piece asks is simple: <strong>what if advancing a story had physical consequences?</strong> In a book, you turn a page and nothing changes in the room. Here, every inch of the slider adds salt to the world. The story&rsquo;s tragedy (the mill can&rsquo;t stop) becomes the installation&rsquo;s reality (the salt keeps accumulating). Reading becomes grinding. The folktale becomes material.</p>
+            <p>The piece asks one question: <strong>what if advancing a story had physical consequences?</strong></p>
+            <p>Every inch of the slider adds salt to the room. The mill cannot stop, the salt keeps accumulating, and reading becomes a physical act.</p>
           </CsBody>
         </CsSection>
 
@@ -137,7 +138,8 @@ export default function SeaOfSaltPage() {
         <CsSection id="cs-reflection" label="04 &mdash; Reflection" title="What the Salt Taught Us">
           <CsBody>
             <p>The most surprising thing: people slid slowly. We expected visitors to rush to see what happened. Instead, they moved the slider inch by inch, watching salt fall, listening to the grinding, touching the crystals on the platform. The physical cost of advancing the narrative made people careful with the story in a way that text never does.</p>
-            <p>The folktale works because it explains something real (the ocean is salty) through something magical (an enchanted mill). The installation works for the same reason &mdash; it explains something abstract (narrative has consequences) through something physical (here is the salt your reading produced). Both use the gap between the real and the impossible to create meaning.</p>
+            <p>The folktale explains something real through an enchanted mill. The installation uses the same move: an abstract idea about narrative consequences becomes the salt produced by reading.</p>
+            <p>Both rely on the gap between the real and the impossible to create meaning.</p>
             <p>Several visitors asked if they could take salt home. Treating the story&rsquo;s residue as a souvenir meant the line between narrative and material had dissolved. That was the whole point.</p>
           </CsBody>
         </CsSection>

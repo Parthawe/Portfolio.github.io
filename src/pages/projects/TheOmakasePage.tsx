@@ -355,7 +355,6 @@ export default function TheOmakasePage() {
           slug="the-omakase"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
-          fullEntryId="cs-film"
         />
 
         <CsExpandPreview
@@ -493,7 +492,7 @@ export default function TheOmakasePage() {
         <BottomNav
           sections={sections}
           modeAction={{
-            label: 'Open full case study',
+            label: 'Full story',
             onClick: () => handleViewModeChange('full'),
           }}
         />

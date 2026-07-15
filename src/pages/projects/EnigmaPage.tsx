@@ -125,7 +125,8 @@ export default function EnigmaPage() {
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="03 &mdash; Exhibition" title="ITP Winter Show 2023">
           <CsBody>
-            <p>Enigma was exhibited at the ITP Winter Show 2023, NYU&rsquo;s flagship end-of-semester showcase where the Interactive Telecommunications Program opens its doors to the public. The show draws thousands of visitors over two days &mdash; designers, engineers, artists, families, and curious New Yorkers &mdash; making it an ideal venue to test how a broad audience engages with a piece about machine learning.</p>
+            <p>Enigma was exhibited at the ITP Winter Show 2023, NYU&rsquo;s public showcase for experimental technology and art.</p>
+            <p>Thousands of designers, engineers, artists, families, and curious New Yorkers made it the right place to test whether a broad audience could read a physical neural network.</p>
             <p>Visitors wrote letters on a tablet and watched the prediction ripple across the sculpture. Many repeated the same letter to see how different handwriting changed the path.</p>
             <p>The strongest reaction was recognition: people expected AI to feel opaque, but the lit pathways made the network feel structured and learnable.</p>
             <p>Enigma explores computation through light. Its sibling project, <a href="/jugalbandi" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Jugalbandi</a>, explores the same neural network architecture through sound &mdash; each hidden layer mapped to a different acoustic instrument. Together they show how the same invisible process can be made tangible through different senses.</p>

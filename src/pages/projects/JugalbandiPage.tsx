@@ -107,7 +107,6 @@ export default function JugalbandiPage() {
           slug="jugalbandi"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
-          fullEntryId="cs-background"
           variant="open"
         />
 

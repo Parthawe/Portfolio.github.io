@@ -99,7 +99,6 @@ export default function ClawedChatPage() {
           slug="clawed-chat"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
-          fullEntryId="cs-context"
         />
 
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>

@@ -190,7 +190,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
           className="cs-bnav-link figma-hover"
           onClick={(e) => handleClick(e, s.id)}
         >
-          {s.label}
+          {s.label.trim().toLowerCase() === 'tl;dr' ? 'Quick read' : s.label}
           <FigmaSelect />
         </a>
       ))}
@@ -214,7 +214,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
             document.querySelector<HTMLButtonElement>('.cs-expand-preview-btn')?.click();
           }}
         >
-          Full case study
+          Full story
           <FigmaSelect />
         </button>
       )}

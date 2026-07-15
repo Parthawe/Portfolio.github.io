@@ -207,9 +207,12 @@ export default function TypefacePage() {
             <div className="tf-split-copy">
               <p>
                 Butler&rsquo;s Slice started with objects that had been cut with intent &mdash; the clean bevel of a
-                kitchen blade, the rhythmic grooves of a hand-carved plate. The question was whether that
-                physical gesture could survive translation into letterforms: a cut that reads as deliberate
-                craft, not damage. Butler, a high-contrast serif, gave the slice something worth cutting into.
+                kitchen blade, the rhythmic grooves of a hand-carved plate.
+              </p>
+              <p>
+                The question was whether that physical gesture could survive translation into letterforms: a cut
+                that reads as deliberate craft, not damage. Butler, a high-contrast serif, gave the slice something
+                worth cutting into.
               </p>
             </div>
             <figure style={{ margin: 0 }}>

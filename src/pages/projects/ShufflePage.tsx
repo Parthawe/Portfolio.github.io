@@ -161,7 +161,8 @@ export default function ShufflePage() {
         <CsSection id="cs-exhibition" label="03 &mdash; In Play" title="Watching People Negotiate a Week">
           <CsBody>
             <p>On the ITP floor, the board needed no instructions. Sliders are an invitation&mdash;people instinctively reached for them, and the moment the other faders moved on their own, the rules were understood without a word.</p>
-            <p>What began as a quick interaction often turned into longer conversations about priorities and burnout. Watching someone hesitate before letting Sleep drop to raise Finals said more about graduate school than any survey could, and friends comparing their slider positions side by side turned the trade-offs into a debate. A playful, tactile interface opened up reflective dialogue that forms and calendars simply cannot.</p>
+            <p>A quick interaction often became a longer conversation about priorities and burnout. Watching someone lower Sleep to raise Finals made the tradeoff immediately legible.</p>
+            <p>Friends compared slider positions side by side, turning a tactile interface into the kind of reflective debate that forms and calendars rarely create.</p>
           </CsBody>
         </CsSection>
 

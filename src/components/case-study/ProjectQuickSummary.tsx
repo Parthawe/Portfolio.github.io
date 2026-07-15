@@ -1,5 +1,4 @@
 import { getProject, isRequestAccessProject } from '../../data/projects'
-import FigmaSelect from '../FigmaSelect'
 
 export type CaseStudyViewMode = 'summary' | 'full'
 
@@ -8,7 +7,6 @@ interface ProjectQuickSummaryProps {
   viewMode: CaseStudyViewMode
   onViewModeChange: (mode: CaseStudyViewMode) => void
   fullCaseStudyEnabled?: boolean
-  fullEntryId?: string
   variant?: 'card' | 'open'
 }
 
@@ -17,7 +15,6 @@ export default function ProjectQuickSummary({
   viewMode,
   onViewModeChange,
   fullCaseStudyEnabled = true,
-  fullEntryId = 'cs-context',
   variant = 'card',
 }: ProjectQuickSummaryProps) {
   const project = getProject(slug)
@@ -33,27 +30,14 @@ export default function ProjectQuickSummary({
 
   const isAccessLimited = isRequestAccessProject(project)
   const proofStats = project.summaryStats?.slice(0, 3) ?? []
-  const handleBridgeOpen = () => {
-    onViewModeChange('full')
-    if (typeof window !== 'undefined') {
-      window.setTimeout(() => {
-        document.getElementById(fullEntryId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }, 180)
-    }
-  }
 
   return (
     <section className="cs-quick-summary wrap reveal" id="cs-summary">
       <div className={`cs-quick-summary-shell cs-quick-summary-shell--${variant}${variant === 'card' ? ' surface-glass' : ''}`}>
         <div className="cs-quick-summary-top">
           <div>
-            <span className="cs-section-label">TL;DR</span>
-            <h2 className="cs-quick-summary-title">{project.name}</h2>
-            <p className="cs-quick-summary-copy">
-              {isAccessLimited
-                ? 'Problem, role, and outcome in a concise public view.'
-                : 'Problem, role, and outcome at a glance.'}
-            </p>
+            <span className="cs-section-label">Quick read</span>
+            <h2 className="cs-quick-summary-title">Problem, role, outcome</h2>
           </div>
 
           <div className="cs-quick-summary-toggle" role="tablist" aria-label="Case study view mode">
@@ -63,7 +47,7 @@ export default function ProjectQuickSummary({
               aria-selected={viewMode === 'summary'}
               onClick={() => onViewModeChange('summary')}
             >
-              2 min summary
+              Quick read
             </button>
             {fullCaseStudyEnabled ? (
               <button
@@ -72,7 +56,7 @@ export default function ProjectQuickSummary({
                 aria-selected={viewMode === 'full'}
                 onClick={() => onViewModeChange('full')}
               >
-                Full case study
+                {isAccessLimited ? 'Public story' : 'Full story'}
               </button>
             ) : (
               <span className="cs-quick-summary-toggle-note">Detailed internals available on request</span>
@@ -87,7 +71,7 @@ export default function ProjectQuickSummary({
               <p>{project.summaryProblem}</p>
             </article>
             <article className="cs-quick-summary-card cs-quick-summary-card--move">
-              <span className="cs-quick-summary-label">Role &amp; responsibilities</span>
+              <span className="cs-quick-summary-label">My role</span>
               <p>{project.summaryRole}</p>
             </article>
             <article className="cs-quick-summary-card cs-quick-summary-card--wide cs-quick-summary-card--outcome">
@@ -126,25 +110,6 @@ export default function ProjectQuickSummary({
           </blockquote>
         ) : null}
 
-        {viewMode === 'summary' && fullCaseStudyEnabled && isAccessLimited ? (
-          <div className="cs-quick-summary-bridge cs-quick-summary-bridge--request">
-            <div className="cs-quick-summary-bridge-copy">
-              <span className="cs-quick-summary-bridge-kicker">Protected detail</span>
-              <p>
-                The public preview keeps the sensitive work out of the static build. Use the access panel below to
-                request or unlock the deeper review.
-              </p>
-            </div>
-            <button
-              type="button"
-              className="cs-quick-summary-link figma-hover"
-              onClick={handleBridgeOpen}
-            >
-              Open access panel
-              <FigmaSelect />
-            </button>
-          </div>
-        ) : null}
       </div>
     </section>
   )

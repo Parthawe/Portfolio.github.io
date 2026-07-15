@@ -349,7 +349,7 @@
   .cs-bnav-link {
     font-size: var(--text-xs);
     padding: 0.4rem 0.55rem;
-    min-height: 44px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -383,7 +383,6 @@
   .proj-subtitle,
   .proj-visual-title,
   .cs-display,
-  .cs-section-title,
   .cs-quick-summary-title,
   .cs-media-spotlight-title,
   .cs-thanks-title,
@@ -405,6 +404,12 @@
 ),
 .ch :is(.ch-statement, .ch-sub, .ch-eyebrow, .ch-strip-item) {
   overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.project-main .cs-section-title {
+  overflow-wrap: anywhere;
   word-break: normal;
   hyphens: none;
 }

@@ -187,7 +187,8 @@ export default function VjSoftwarePage() {
             <span className="cs-section-label">Solution</span>
             <h2 className="cs-section-title">Around the Booking</h2>
             <CsBody>
-              <p>The booking flow only works because the screens around it carry the urgency and the aftermath. The Legal &amp; Pay hub surfaces the countdown before possession, the parking landing screen explains the priority window so residents understand why selecting early matters, and the post-booking view keeps both spots, owner details, and the legal document in one place.</p>
+              <p>The booking flow depends on the screens around it. The Legal &amp; Pay hub surfaces urgency before possession, while the parking landing screen explains why selecting early matters.</p>
+              <p>After booking, both spots, owner details, and the legal document stay together so residents can recover the decision later.</p>
             </CsBody>
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', alignItems: 'start' }}>
               <figure className="cs-img reveal">

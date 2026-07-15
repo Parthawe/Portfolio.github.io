@@ -254,7 +254,6 @@ export default function TransfiPage() {
           slug="transfi-project"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
-          fullEntryId="case-study-access-transfi-project"
         />
 
         {viewMode === 'full' ? (

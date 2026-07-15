@@ -102,8 +102,8 @@ export default function RevolvingStagePage() {
         <CsSection id="cs-engineering" label="Engineering" title="Mechanical Design">
           <CsBody>
             <p>The stage assembly consists of four main components: the wooden revolving stage (15 ft. expansion), a central axle, a caster wheel bearing assembly arranged in a circular pattern, and an 8 ft. &times; 8 ft. wooden base. The entire structure is designed for disassembly and transport.</p>
-            <p>Each component was engineered to balance structural integrity with practical constraints. The revolving platform needed to support at least 250 kg of static load &mdash; multiple actors, furniture, and set dressing &mdash; while rotating smoothly enough that transitions could happen during live scenes without distracting the audience. The wooden base distributes weight across the venue floor to prevent point loading that could damage the stage surface.</p>
-            <p>The modular design was critical because the entire assembly had to be transported to the venue, assembled on-site in a single day, and struck after the final performance. Every joint, bolt, and connection point was designed for tool-free or minimal-tool assembly, and the components were sized to fit through standard doorways and load into a standard truck bed.</p>
+            <p>The platform needed to support at least 250 kg of actors, furniture, and set dressing while rotating quietly enough for live dialogue.</p>
+            <p>The wooden base distributed the load across the venue floor. Modular joints kept assembly to one day, required minimal tools, and let every component fit through standard doorways.</p>
           </CsBody>
         </CsSection>
 
@@ -183,7 +183,8 @@ export default function RevolvingStagePage() {
         <CsSection id="cs-result" label="Result" title={'In \u2013 Action'}>
           <CsBody>
             <p>The revolving stage in live performance &mdash; capturing scene transitions, actor interactions, and the dynamic set changes during the theatrical play at Firodia Karandak.</p>
-            <p>During the performance, the stage executed over a dozen rotations across seven scene changes, each completed in under fifteen seconds. The backstage crew operated the rotation manually using a concealed push bar, with cue lights coordinated through the stage manager. The silent caster wheels proved essential &mdash; audience members later reported being unaware of the mechanical system beneath the set.</p>
+            <p>The stage completed more than a dozen rotations across seven scene changes, each in under fifteen seconds.</p>
+            <p>A concealed push bar, cue lights, and silent caster wheels let the backstage crew move the set without revealing the mechanism to the audience.</p>
             <p>The strongest moment was a 135-degree rotation during live dialogue. The set changed around the actors without blackout, proving the mechanism could carry theatrical ambition on a college budget.</p>
           </CsBody>
         </CsSection>
@@ -210,7 +211,8 @@ export default function RevolvingStagePage() {
         {/* Reflections */}
         <CsSection id="cs-reflections" label="Reflections" title="What Building a Stage Taught Me About Design">
           <CsBody style={{ maxWidth: '720px' }}>
-            <p>The revolving stage was the project that taught me design is not a visual discipline&mdash;it is a systems discipline. Every aesthetic decision was also a structural decision. The parallax effect I wanted required specific material thicknesses. The scene transitions I designed required specific rotation speeds. The lighting I planned required specific electrical loads. If any one system failed, the whole production failed.</p>
+            <p>The revolving stage taught me that design is a systems discipline. Every aesthetic choice also changed structure, motion, or electrical load.</p>
+            <p>Parallax required precise material thicknesses, transitions required controlled rotation speeds, and lighting required a reliable power plan. One weak system could compromise the whole production.</p>
             <p>Leading 65+ people taught me that specification is a design skill. Exact dimensions, paint codes, and assembly sequence helped the team execute without constant correction.</p>
           </CsBody>
         </CsSection>

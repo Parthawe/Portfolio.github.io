@@ -55,7 +55,7 @@
   max-width: 52ch;
   margin: 0;
   font-family: var(--sans);
-  font-size: var(--text-sm);
+  font-size: 1rem;
   color: var(--ink-70);
   line-height: 1.6;
 }
@@ -100,7 +100,7 @@
 .nda-request-intro p {
   max-width: 52ch;
   margin: 0;
-  font-size: var(--text-sm);
+  font-size: 1rem;
   line-height: 1.55;
   color: var(--ink-70);
 }
@@ -125,7 +125,7 @@
   background: color-mix(in srgb, var(--surface) 86%, var(--bg));
   color: var(--ink);
   font-family: var(--sans);
-  font-size: var(--text-sm);
+  font-size: 1rem;
   letter-spacing: 0;
   text-transform: none;
   outline: none;
@@ -202,7 +202,7 @@
 
 .nda-request-helper {
   margin: -0.15rem 0 0;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   line-height: 1.45;
   color: var(--ink-40);
   text-align: center;

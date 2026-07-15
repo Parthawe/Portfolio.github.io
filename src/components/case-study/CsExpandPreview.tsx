@@ -19,8 +19,8 @@ export default function CsExpandPreview({
   onExpand,
   children,
   cta,
-  ctaLabel = 'Read the full case study',
-  note = 'The decisions, constraints, and proof behind the outcome.',
+  ctaLabel = 'Open full story',
+  note = 'The process, decisions, and proof behind the outcome.',
 }: CsExpandPreviewProps) {
   const [internalExpanded, setInternalExpanded] = useState(false)
   const isExpanded = expanded ?? internalExpanded
@@ -33,7 +33,7 @@ export default function CsExpandPreview({
   return (
     <div className="cs-expand-preview cs-expand-preview--closed">
       <div className="cs-expand-preview-cta">
-        <span className="cs-expand-preview-kicker">Full case study</span>
+        <span className="cs-expand-preview-kicker">Deep dive</span>
         <p className="cs-expand-preview-note">{note}</p>
         <button type="button" className="cs-expand-preview-btn figma-hover" onClick={handleExpand}>
           {cta ?? ctaLabel}
