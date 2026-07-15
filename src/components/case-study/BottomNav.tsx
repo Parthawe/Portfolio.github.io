@@ -15,12 +15,14 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const isScrolling = useRef(false);
   const [availableSections, setAvailableSections] = useState(sections);
+  const [hasExpandAction, setHasExpandAction] = useState(false);
   const visibleSections = useMemo(() => availableSections.slice(0, 4), [availableSections]);
 
   useEffect(() => {
     const updateAvailableSections = () => {
       const mounted = sections.filter((section) => document.getElementById(section.id));
       setAvailableSections(mounted);
+      setHasExpandAction(Boolean(document.querySelector('.cs-expand-preview-btn')));
     };
 
     updateAvailableSections();
@@ -148,7 +150,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
     window.scrollTo({ top, behavior: 'smooth' });
   };
 
-  if (!visibleSections.length && !modeAction && !liveUrl) return null;
+  if (!visibleSections.length && !hasExpandAction && !modeAction && !liveUrl) return null;
 
   return (
     <nav
@@ -202,6 +204,18 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
           }}
         >
           {modeAction.label}
+          <FigmaSelect />
+        </button>
+      )}
+      {!modeAction && hasExpandAction && (
+        <button
+          type="button"
+          className="cs-bnav-link cs-bnav-action figma-hover"
+          onClick={() => {
+            document.querySelector<HTMLButtonElement>('.cs-expand-preview-btn')?.click();
+          }}
+        >
+          Full case study
           <FigmaSelect />
         </button>
       )}
