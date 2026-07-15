@@ -2747,6 +2747,10 @@
     border-bottom: 0;
   }
 
+  .abt-table-wrap .abt-table-co {
+    display: none;
+  }
+
   .abt-table-wrap .abt-table-date {
     min-width: 0;
     margin-bottom: 0.4rem;
@@ -2802,6 +2806,10 @@
   }
 
   .abt-recognition-table .abt-table-date {
+    display: none;
+  }
+
+  .abt-recognition-table .abt-table-co {
     display: none;
   }
 
