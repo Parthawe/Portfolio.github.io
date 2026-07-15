@@ -8311,8 +8311,8 @@
   }
 }
 
-/* Horizontal case-study dock. Its hierarchy follows the site reference: a
-   compact identity tile, distinct section tabs, and one high-contrast action. */
+/* Horizontal case-study dock, using the same adaptive glass language as the
+   primary navigation. */
 .project-main .cs-bottom-nav--side {
   top: auto;
   right: auto;
@@ -8327,15 +8327,16 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.35rem;
-  border: 0;
+  border: 1px solid var(--surface-glass-border);
   border-radius: 0.9rem;
   overflow-x: auto;
   overflow-y: hidden;
-  color: #fff;
-  background: #404040;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  color: var(--ink);
+  background: var(--surface-glass-bg);
+  box-shadow:
+    var(--surface-glass-shadow),
+    inset 0 1px 0 var(--surface-glass-highlight);
+  backdrop-filter: var(--surface-glass-blur);
   transform: translateY(0);
   transition: opacity 0.4s ease, transform 0.4s ease;
   overscroll-behavior-inline: contain;
@@ -8343,23 +8344,6 @@
 
 .project-main .cs-bottom-nav--side > * {
   flex: 0 0 auto;
-}
-
-.project-main .cs-bottom-nav--side .cs-bnav-kicker {
-  width: 3rem;
-  height: 3rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border-radius: 0.65rem;
-  color: #fff;
-  background: #222;
-  font-family: var(--sans);
-  font-size: 1rem;
-  font-weight: 750;
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 .project-main .cs-bottom-nav--side .cs-bnav-progress {
@@ -8385,11 +8369,11 @@
   align-items: center;
   justify-content: center;
   padding: 0.65rem 0.85rem;
-  border: 1px solid #585858;
+  border: 1px solid transparent;
   border-radius: 0.65rem;
   overflow: visible;
-  color: rgba(255, 255, 255, 0.76);
-  background: #3a3a3a;
+  color: var(--ink-70);
+  background: transparent;
   box-shadow: none;
   font-family: var(--sans);
   font-size: 0.8125rem;
@@ -8402,27 +8386,34 @@
   white-space: nowrap;
 }
 
-.project-main .cs-bottom-nav--side .cs-bnav-link:hover,
+.project-main .cs-bottom-nav--side .cs-bnav-link:hover {
+  color: var(--ink);
+  background: var(--ink-04);
+  border-color: var(--ink-08);
+  box-shadow: none;
+}
+
 .project-main .cs-bottom-nav--side .cs-bnav-link.active {
-  color: #fff;
-  background: #4b4b4b;
-  border-color: color-mix(in srgb, var(--project-color, #fff) 55%, #666);
-  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--project-color, #fff) 78%, transparent);
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--ink-08);
+  box-shadow: var(--shadow-sm);
 }
 
 .project-main .cs-bottom-nav--side .cs-bnav-live {
   margin-left: 0.15rem;
-  color: #202020;
-  background: #f4f4f4;
-  border-color: #f4f4f4;
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--ink-08);
+  box-shadow: var(--shadow-sm);
   font-weight: 650;
 }
 
 .project-main .cs-bottom-nav--side .cs-bnav-live:hover {
-  color: #111;
-  background: #fff;
-  border-color: #fff;
-  box-shadow: none;
+  color: var(--bg);
+  background: var(--ink);
+  border-color: var(--ink);
+  box-shadow: var(--shadow-md);
 }
 
 .project-main .cs-bottom-nav--side.is-hidden {
@@ -8458,16 +8449,6 @@
     border-radius: 0.8rem;
     overflow-x: auto;
     overflow-y: hidden;
-  }
-
-  .project-main .cs-bottom-nav--side .cs-bnav-kicker {
-    position: sticky;
-    left: 0;
-    z-index: 2;
-    width: 2.65rem;
-    height: 2.65rem;
-    border-radius: 0.58rem;
-    font-size: 0.875rem;
   }
 
   .project-main .cs-bottom-nav--side .cs-bnav-link,

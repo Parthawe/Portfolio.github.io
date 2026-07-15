@@ -180,7 +180,6 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
         }, 2500);
       }}
     >
-      <span className="cs-bnav-kicker" aria-hidden="true">CS.</span>
       {/* Reading progress bar */}
       <div className="cs-bnav-progress" />
 
