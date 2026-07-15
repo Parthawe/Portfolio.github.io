@@ -44,9 +44,10 @@ export default function LightingSlider({ beforeSrc, afterSrc, beforeLabel = 'Sta
         <div style={{
           position: 'absolute', bottom: 12, left: 16, right: 16,
           display: 'flex', justifyContent: 'space-between',
-          fontFamily: 'var(--mono)', fontSize: '8px',
-          letterSpacing: '0.08em', textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.4)',
+          fontFamily: 'var(--mono)', fontSize: '16px',
+          letterSpacing: '0.04em', textTransform: 'uppercase',
+          color: 'rgba(255,255,255,0.94)',
+          textShadow: '0 1px 8px rgba(0,0,0,0.9)',
           pointerEvents: 'none',
         }}>
           <span style={{ opacity: 1 - value }}>{beforeLabel}</span>
@@ -61,7 +62,7 @@ export default function LightingSlider({ beforeSrc, afterSrc, beforeLabel = 'Sta
         display: 'flex', alignItems: 'center', gap: 10,
         justifyContent: 'center',
       }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '7px', color: 'var(--ink-20)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'var(--ink-70)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Dark
         </span>
         <input
@@ -70,7 +71,7 @@ export default function LightingSlider({ beforeSrc, afterSrc, beforeLabel = 'Sta
           aria-label="Lighting intensity"
           style={{ width: 'clamp(120px, 30vw, 220px)', accentColor: 'var(--ink-30)' }}
         />
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '7px', color: 'var(--ink-20)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'var(--ink-70)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Lit
         </span>
       </div>

@@ -9,6 +9,7 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import GlyphPlayground from '../../components/GlyphPlayground'
 import GlyphEditor from '../../components/GlyphEditor'
+import { getProject } from '../../data/projects'
 
 const TYPEFACE_ASSET = '/Assets/Projects/Typeface'
 
@@ -53,6 +54,7 @@ export default function TypefacePage() {
     fontFamily: 'var(--tf-slice)',
     fontWeight: activeWeight.value,
   }
+  const project = getProject('typeface')
 
   return (
     <>
@@ -165,6 +167,32 @@ export default function TypefacePage() {
           </div>
         </section>
 
+        {project?.summaryProblem && project.summaryRole && project.summaryOutcome ? (
+          <section className="proj-fastread tf-project-summary" aria-label="Fast read summary">
+            <header className="proj-fastread-head">
+              <div>
+                <span className="proj-fastread-kicker">Fast read</span>
+                <h2 className="proj-fastread-title">Why this project matters</h2>
+              </div>
+              <p className="proj-fastread-meta">Type design · 2022</p>
+            </header>
+            <dl className="proj-fastread-list">
+              <div className="proj-fastread-row">
+                <dt>Problem</dt>
+                <dd>{project.summaryProblem}</dd>
+              </div>
+              <div className="proj-fastread-row">
+                <dt>Role &amp; responsibilities</dt>
+                <dd>{project.summaryRole}</dd>
+              </div>
+              <div className="proj-fastread-row">
+                <dt>Outcome</dt>
+                <dd>{project.summaryOutcome}</dd>
+              </div>
+            </dl>
+          </section>
+        ) : null}
+
         <CsExpandPreview
           ctaLabel="Open the full type specimen"
           note="Origin, concept, weights, glyph set, playground, editor, usage notes, and download."
@@ -192,7 +220,7 @@ export default function TypefacePage() {
                 decoding="async"
                 style={{ width: '100%', borderRadius: 'var(--radius-md, 12px)' }}
               />
-              <figcaption style={{ marginTop: '0.6rem', fontSize: '0.8rem', opacity: 0.55 }}>
+              <figcaption style={{ marginTop: '0.6rem', fontSize: '1rem', opacity: 0.7 }}>
                 The original inspiration board &mdash; elements that have been fine cut.
               </figcaption>
             </figure>

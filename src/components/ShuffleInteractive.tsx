@@ -237,17 +237,17 @@ export default function ShuffleInteractive() {
       </div>
 
       {/* Summary bar */}
-      <div style={{
-        padding: '0.75rem 1.25rem',
+      <div className="shuffle-summary" style={{
+        padding: '1rem 5rem 1rem 1.25rem',
         borderTop: `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
         background: dark ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.03)',
         display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-        gap: '4px', minHeight: '52px', position: 'relative',
+        gap: '6px', minHeight: '88px', position: 'relative',
       }}>
         {KEYS.map(k => {
           const v = values[k]
           return (
-            <div key={k} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', flex: 1, maxWidth: '48px' }}>
+            <div className="shuffle-summary-item" key={k} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', flex: 1, maxWidth: '48px' }}>
               <div style={{
                 width: '100%', maxWidth: '20px',
                 height: `${8 + v * 0.28}px`,
@@ -258,8 +258,8 @@ export default function ShuffleInteractive() {
                 boxShadow: v > 50 ? `0 0 ${v * 0.12}px ${glowColor}44` : 'none',
               }} />
               <span style={{
-                fontSize: '7px', letterSpacing: '0.05em',
-                color: dark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)',
+                fontSize: '16px', letterSpacing: '0.02em',
+                color: dark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.68)',
                 textTransform: 'uppercase', whiteSpace: 'nowrap',
               }}>
                 {k.slice(0, 3)}
@@ -270,15 +270,16 @@ export default function ShuffleInteractive() {
 
         {/* Reset button */}
         <button
+          className="shuffle-reset"
           onClick={resetAll}
           style={{
             position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
             padding: '4px 10px', borderRadius: 'var(--radius-pill)',
             border: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
             background: 'transparent',
-            color: dark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
-            fontFamily: 'var(--mono)', fontSize: '7px',
-            letterSpacing: '0.08em', textTransform: 'uppercase',
+            color: dark ? 'rgba(255,255,255,0.76)' : 'rgba(0,0,0,0.72)',
+            fontFamily: 'var(--mono)', fontSize: '16px',
+            letterSpacing: '0.04em', textTransform: 'uppercase',
             cursor: 'pointer',
           }}
         >
@@ -341,6 +342,25 @@ export default function ShuffleInteractive() {
         }
         @media (max-width: 640px) {
           .shuffle-grid-2col { grid-template-columns: 1fr !important; }
+          .shuffle-summary {
+            display: grid !important;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            align-items: end !important;
+            gap: 0.8rem 0.35rem !important;
+            min-height: 0 !important;
+            padding: 1rem !important;
+          }
+          .shuffle-summary-item {
+            min-width: 0;
+            max-width: none !important;
+          }
+          .shuffle-reset {
+            position: static !important;
+            grid-column: 1 / -1;
+            justify-self: start;
+            transform: none !important;
+            margin-top: 0.25rem;
+          }
         }
       `}</style>
     </div>
@@ -359,9 +379,9 @@ function RelationHint({ source, dark }: { source: Key; dark: boolean }) {
     }}>
       {edges.slice(0, 3).map(({ target, weight }) => (
         <span key={target} style={{
-          fontSize: '7px',
+          fontSize: '16px',
           letterSpacing: '0.03em',
-          color: dark ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.18)',
+          color: dark ? 'rgba(255,255,255,0.58)' : 'rgba(0,0,0,0.55)',
           display: 'inline-flex', alignItems: 'center', gap: '2px',
         }}>
           {weight > 0 ? '↗' : '↘'} {target.slice(0, 3)}
@@ -402,15 +422,15 @@ function SliderPanel({ labels, values, onChange, amber, glowColor, dark, transit
                 marginBottom: '6px',
               }}>
                 <span style={{
-                  fontSize: 'clamp(8px, 1.4vw, 11px)',
-                  letterSpacing: '0.1em', textTransform: 'uppercase',
+                  fontSize: '16px',
+                  letterSpacing: '0.04em', textTransform: 'uppercase',
                   color: isFlashing ? glowColor : amber,
                   fontWeight: 500,
                   transition: 'color 0.3s',
                 }}>
                   {label}
                 </span>
-                <div style={{ display: 'flex', gap: '0.5rem', fontSize: '10px', color: amber, opacity: 0.5 }}>
+                <div style={{ display: 'flex', gap: '0.5rem', fontSize: '16px', color: amber, opacity: 0.72 }}>
                   <span>−</span>
                   <span>+</span>
                 </div>

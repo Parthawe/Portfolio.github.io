@@ -210,7 +210,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
   color: var(--ink-40);
   background: transparent;
   border: none;
@@ -247,7 +247,7 @@
   .ge-svg { max-height: 400px; }
 }
 @media (max-width: 480px) {
-  .ge-char-btn { flex: 0 0 calc(100% / 10); font-size: 0.85rem; }
+  .ge-char-btn { flex: 0 0 calc(100% / 10); font-size: 1rem; }
   .ge-controls { padding: 1rem; gap: 1rem; }
   .ge-svg { max-height: 300px; }
 }

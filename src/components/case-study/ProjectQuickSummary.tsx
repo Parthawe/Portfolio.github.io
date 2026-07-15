@@ -55,8 +55,8 @@ export default function ProjectQuickSummary({
             <h2 className="cs-quick-summary-title">{project.name}</h2>
             <p className="cs-quick-summary-copy">
               {isAccessLimited
-                ? 'Start with the fast read. Deeper detail is shared directly after access is approved.'
-                : 'The public read focuses on the main bet. The full study keeps the proof and feature detail.'}
+                ? 'Problem, role, and outcome in a concise public view.'
+                : 'Problem, role, and outcome at a glance.'}
             </p>
           </div>
 
@@ -91,7 +91,7 @@ export default function ProjectQuickSummary({
               <p>{project.summaryProblem}</p>
             </article>
             <article className="cs-quick-summary-card cs-quick-summary-card--move">
-              <span className="cs-quick-summary-label">Move</span>
+              <span className="cs-quick-summary-label">Role &amp; responsibilities</span>
               <p>{project.summaryRole}</p>
             </article>
             <article className="cs-quick-summary-card cs-quick-summary-card--wide cs-quick-summary-card--outcome">

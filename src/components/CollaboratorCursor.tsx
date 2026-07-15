@@ -744,14 +744,20 @@ export default function CollaboratorCursor() {
       const rightFits = rightX + cursorWidth <= window.innerWidth - viewportInset
       let x = rightFits ? rightX : leftX
       let side = rightFits ? 'right' : 'left'
+      const isProjectHeroStep = step.label === 'what shipped'
 
-      if (x < viewportInset) {
+      if (isProjectHeroStep) {
+        x = window.innerWidth - cursorWidth - 34
+        side = 'left'
+      } else if (x < viewportInset) {
         x = elementRect.right - cursorWidth + 26
         side = 'inside'
       }
 
       x = clamp(x, viewportInset, Math.max(viewportInset, window.innerWidth - cursorWidth - viewportInset))
-      const y = clamp(anchorRect.bottom - 10, 96, window.innerHeight - 104)
+      const y = isProjectHeroStep
+        ? clamp(elementRect.top + Math.min(210, elementRect.height * 0.42), 96, window.innerHeight - 104)
+        : clamp(anchorRect.bottom - 10, 96, window.innerHeight - 104)
       setPosition(parth, x, y, true)
       parth.dataset.side = side
       parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'

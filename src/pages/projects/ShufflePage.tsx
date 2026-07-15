@@ -153,7 +153,7 @@ export default function ShufflePage() {
                 <img src="/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg" alt="Inside the enclosure: Arduino and breadboard wired with jumper cables, next to a close-up of a motorised fader mounted under the panel" loading="lazy" decoding="async" />
               </div>
             </div>
-            <p className="cs-caption" style={{ marginTop: '0.75rem', color: 'var(--ink-soft, #777)', fontSize: '0.85rem' }}>Under the hood: motorised faders on standoffs, and the Arduino-plus-breadboard brain that redistributes the week.</p>
+            <p className="cs-caption" style={{ marginTop: '0.75rem', color: 'var(--ink-soft, #777)', fontSize: '1rem' }}>Under the hood: motorised faders on standoffs, and the Arduino-plus-breadboard brain that redistributes the week.</p>
           </div>
         </section>
 

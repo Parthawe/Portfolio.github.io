@@ -172,6 +172,7 @@ export default function ZentipayPage() {
             { label: 'Platform', value: 'Web & Mobile' },
             { label: 'Timeline', value: '2025' },
           ]}
+          showHeaderSummary={false}
         />
 
         <ProjectQuickSummary

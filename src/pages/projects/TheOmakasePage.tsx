@@ -45,27 +45,27 @@ function KeyboardDiagram() {
 
   const KeyCap = ({ letter, ing }: { letter: string; ing: typeof ingredients[0] }) => (
     <div style={{
-      width: 52, height: 48, borderRadius: 8,
+      width: '100%', minWidth: 0, height: 64, borderRadius: 8,
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
       background: `${ing.color}15`, border: `2px solid ${ing.color}`,
       fontFamily: 'var(--mono)', lineHeight: 1, gap: 3,
-      position: 'relative',
+      position: 'relative', padding: '0 2px', boxSizing: 'border-box',
     }}>
       {/* Key letter */}
-      <span style={{ fontSize: '16px', fontWeight: 700, color: ing.color }}>
+      <span style={{ fontSize: '18px', fontWeight: 700, color: ing.color }}>
         {letter}
       </span>
       {/* Ingredient label */}
       <span style={{
-        fontSize: '6.5px', fontWeight: 500, letterSpacing: '0.04em',
-        textTransform: 'uppercase', color: ing.color, opacity: 0.8,
+        fontSize: '16px', fontWeight: 500, letterSpacing: '0.02em',
+        color: ing.color,
       }}>
         {ing.label}
       </span>
       {/* Color dot */}
       <div style={{
         position: 'absolute', top: 4, right: 4,
-        width: 5, height: 5, borderRadius: '50%',
+        width: 8, height: 8, borderRadius: '50%',
         background: ing.color,
       }} />
     </div>
@@ -74,17 +74,18 @@ function KeyboardDiagram() {
   const Player = ({ keys, label }: { keys: string[]; label: string }) => (
     <div style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
+      width: 'min(100%, 336px)',
     }}>
       <span style={{
-        fontFamily: 'var(--mono)', fontSize: '10px', fontWeight: 600,
-        letterSpacing: '0.08em', textTransform: 'uppercase',
-        color: 'var(--ink-50)',
+        fontFamily: 'var(--mono)', fontSize: '16px', fontWeight: 600,
+        letterSpacing: '0.04em', textTransform: 'uppercase',
+        color: 'var(--ink-70)',
       }}>
         {label}
       </span>
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(4, 52px)', gap: 5,
-        padding: '12px',
+        display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 4,
+        width: '100%', padding: '8px', boxSizing: 'border-box',
         borderRadius: 'var(--radius-md)',
         background: 'var(--ink-03)',
         border: '1px solid var(--ink-06)',
@@ -212,8 +213,8 @@ function GameEmbed() {
                   animation: 'omakase-spin 0.8s linear infinite',
                 }} />
                 <span style={{
-                  fontFamily: 'var(--mono)', fontSize: '8px', letterSpacing: '0.08em',
-                  textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)',
+                  fontFamily: 'var(--mono)', fontSize: '16px', letterSpacing: '0.04em',
+                  textTransform: 'uppercase', color: 'rgba(255,255,255,0.76)',
                 }}>
                   Loading Unity game&hellip;
                 </span>
@@ -347,6 +348,7 @@ export default function TheOmakasePage() {
             { label: 'Year', value: '2024' },
             { label: 'Role', value: 'Game designer + fabricator' },
           ]}
+          showHeaderSummary={false}
         />
 
         <ProjectQuickSummary

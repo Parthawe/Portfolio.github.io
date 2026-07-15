@@ -60,10 +60,10 @@ function Tank({ value, label, color, onChange, running }: {
 }) {
   const fillPct = Math.round(value)
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, flex: '1 1 0', minWidth: 70 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flex: '1 1 0', minWidth: 92 }}>
       {/* Tank container */}
       <div style={{
-        width: '100%', maxWidth: 64, height: 80,
+        width: '100%', maxWidth: 84, height: 96,
         borderRadius: 6, position: 'relative', overflow: 'hidden',
         background: 'rgba(255,255,255,0.02)',
         border: `1px solid ${color}25`,
@@ -87,7 +87,7 @@ function Tank({ value, label, color, onChange, running }: {
         <div style={{
           position: 'absolute', inset: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: 'var(--mono)', fontSize: 14, fontWeight: 700,
+          fontFamily: 'var(--mono)', fontSize: 16, fontWeight: 700,
           color, fontVariantNumeric: 'tabular-nums',
           textShadow: `0 0 12px ${color}30`,
         }}>
@@ -100,7 +100,7 @@ function Tank({ value, label, color, onChange, running }: {
         disabled={!running}
         aria-label={`${label}: ${fillPct}%`}
         style={{
-          width: '100%', maxWidth: 64, height: 3, appearance: 'none', WebkitAppearance: 'none',
+          width: '100%', maxWidth: 84, height: 4, appearance: 'none', WebkitAppearance: 'none',
           background: `linear-gradient(90deg, ${color} ${fillPct}%, rgba(255,255,255,0.04) ${fillPct}%)`,
           borderRadius: 2, outline: 'none',
           cursor: running ? 'pointer' : 'default', opacity: running ? 1 : 0.3,
@@ -109,8 +109,8 @@ function Tank({ value, label, color, onChange, running }: {
       />
       {/* Label */}
       <span style={{
-        fontFamily: 'var(--mono)', fontSize: 7, fontWeight: 500,
-        color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase',
+        fontFamily: 'var(--mono)', fontSize: 16, fontWeight: 500,
+        color: 'rgba(255,255,255,0.72)', textTransform: 'uppercase',
         letterSpacing: '0.04em', textAlign: 'center', lineHeight: 1.2,
       }}>{label}</span>
     </div>
@@ -124,12 +124,12 @@ function Meter({ label, value, color, warn }: {
   const bad = (warn === 'high' && value > 70) || (warn === 'low' && value < 30)
   const displayColor = bad ? '#ef4444' : color
   return (
-    <div style={{ flex: 1, minWidth: 70 }}>
+    <div style={{ flex: 1, minWidth: 130 }}>
       <div style={{
         display: 'flex', justifyContent: 'space-between', marginBottom: 3,
-        fontFamily: 'var(--mono)', fontSize: 8, letterSpacing: '0.04em', textTransform: 'uppercase',
+        fontFamily: 'var(--mono)', fontSize: 16, letterSpacing: '0.02em', textTransform: 'uppercase',
       }}>
-        <span style={{ color: 'rgba(255,255,255,0.25)' }}>{label}</span>
+        <span style={{ color: 'rgba(255,255,255,0.72)' }}>{label}</span>
         <span style={{ color: displayColor, fontWeight: 700 }}>{Math.round(value)}%</span>
       </div>
       <div style={{ height: 5, borderRadius: 3, background: 'rgba(255,255,255,0.04)', overflow: 'hidden' }}>
@@ -212,21 +212,22 @@ export default function MoniacSimulator() {
       {/* ── Header ── */}
       <div style={{
         padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        flexWrap: 'wrap', gap: 12,
         borderBottom: '1px solid rgba(255,255,255,0.04)',
       }}>
         <div>
-          <div style={{ fontSize: 7, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: 2 }}>
+          <div style={{ fontSize: 16, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.76)', marginBottom: 4 }}>
             MONIAC Economic Simulator
           </div>
           {running && (
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)' }}>
+            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)' }}>
               Balance the economy for 60 seconds
             </div>
           )}
         </div>
         {running ? (
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 6, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.15)' }}>Time</div>
+            <div style={{ fontSize: 16, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)' }}>Time</div>
             <div style={{
               fontSize: 28, fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: timerColor,
               lineHeight: 1, textShadow: timeLeft <= 10 ? '0 0 20px rgba(239,68,68,0.3)' : 'none',
@@ -238,7 +239,7 @@ export default function MoniacSimulator() {
           <button onClick={start} style={{
             padding: '10px 24px', borderRadius: 'var(--radius-pill)',
             border: '1px solid rgba(59,130,246,0.25)', background: 'rgba(59,130,246,0.08)',
-            color: '#60a5fa', fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
+            color: '#8bc1ff', fontSize: 16, fontWeight: 600, letterSpacing: '0.03em',
             textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'var(--mono)',
             transition: 'background 0.2s',
           }}
@@ -259,8 +260,8 @@ export default function MoniacSimulator() {
         }}>
           <span style={{ fontSize: 18 }}>{event.icon}</span>
           <div>
-            <div style={{ fontSize: 10, fontWeight: 700, color: '#eab308' }}>{event.name}</div>
-            <div style={{ fontSize: 8, color: 'rgba(255,255,255,0.3)', marginTop: 1 }}>{event.fx}</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#f4cc48' }}>{event.name}</div>
+            <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)', marginTop: 2 }}>{event.fx}</div>
           </div>
         </div>
       )}
@@ -298,12 +299,12 @@ export default function MoniacSimulator() {
             fontSize: 56, fontWeight: 800, color: res.c, lineHeight: 1,
             textShadow: `0 0 30px ${res.c}30`,
           }}>{res.l}</div>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', maxWidth: '30ch', margin: '8px auto 20px', lineHeight: 1.5 }}>
+          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.76)', maxWidth: '34ch', margin: '10px auto 20px', lineHeight: 1.5 }}>
             {res.m}
           </p>
           <div style={{
             display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 20,
-            fontSize: 9, color: 'rgba(255,255,255,0.25)',
+            fontSize: 16, color: 'rgba(255,255,255,0.72)', flexWrap: 'wrap',
           }}>
             <span>GDP <strong style={{ color: '#3b82f6' }}>{Math.round(e.gdp)}%</strong></span>
             <span>Jobs <strong style={{ color: '#22c55e' }}>{Math.round(e.employment)}%</strong></span>
@@ -313,7 +314,7 @@ export default function MoniacSimulator() {
           <button onClick={start} style={{
             padding: '10px 24px', borderRadius: 'var(--radius-pill)',
             border: `1px solid ${res.c}40`, background: `${res.c}10`,
-            color: res.c, fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
+            color: res.c, fontSize: 16, fontWeight: 600, letterSpacing: '0.03em',
             textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'var(--mono)',
           }}>
             Play Again
@@ -324,7 +325,7 @@ export default function MoniacSimulator() {
       {/* ── Idle ── */}
       {!running && !gameOver && (
         <div style={{ padding: '20px', textAlign: 'center' }}>
-          <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', lineHeight: 1.6, maxWidth: '42ch', margin: '0 auto' }}>
+          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.76)', lineHeight: 1.6, maxWidth: '48ch', margin: '0 auto' }}>
             Inspired by the 1949 Phillips Hydraulic Computer. Adjust 7 economic levers — each tank shows your setting as a water level. Keep GDP &amp; employment high, inflation &amp; debt low. Random events will test your strategy.
           </p>
         </div>

@@ -119,16 +119,16 @@ export default function MentraBrandPage() {
           {/* Swatches */}
           <div className="cs-brand-swatches" style={{ marginTop: 'var(--space-4)', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '0.5rem' }}>
             <div style={{ background: '#00B869', borderRadius: 'var(--radius-md)', padding: '2.5rem 1.5rem', display: 'flex', alignItems: 'flex-end' }}>
-              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '0.8rem', fontWeight: 600 }}>Mentra Green</span>
+              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem', fontWeight: 600 }}>Mentra Green</span>
             </div>
             <div style={{ background: '#FFFFFF', borderRadius: 'var(--radius-md)', padding: '2.5rem 1rem', display: 'flex', alignItems: 'flex-end', border: '1px solid #e5e5e5' }}>
-              <span style={{ color: '#737373', fontFamily: 'var(--font-mono, monospace)', fontSize: '0.75rem' }}>#FFF</span>
+              <span style={{ color: '#595959', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem' }}>#FFF</span>
             </div>
             <div style={{ background: '#737373', borderRadius: 'var(--radius-md)', padding: '2.5rem 1rem', display: 'flex', alignItems: 'flex-end' }}>
-              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '0.75rem' }}>#737373</span>
+              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem' }}>#737373</span>
             </div>
             <div style={{ background: '#0A0A0A', borderRadius: 'var(--radius-md)', padding: '2.5rem 1rem', display: 'flex', alignItems: 'flex-end' }}>
-              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '0.75rem' }}>#0A0A0A</span>
+              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem' }}>#0A0A0A</span>
             </div>
           </div>
           <CsBody style={{ marginTop: 'var(--space-5)' }}>

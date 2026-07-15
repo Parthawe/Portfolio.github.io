@@ -101,7 +101,7 @@
 }
 .gp-toggle-btn:hover { border-color: var(--ink-15); }
 .gp-toggle-switch {
-  font-size: 9px;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: 2px 6px;

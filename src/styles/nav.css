@@ -35,8 +35,8 @@
 .nav-logo {
   font-family: var(--mono);
   font-weight: 700;
-  font-size: var(--text-sm);
-  letter-spacing: var(--ls-wider);
+  font-size: 1rem;
+  letter-spacing: 0;
   color: var(--ink);
   text-decoration: none;
   padding: 0.45rem 0.85rem;

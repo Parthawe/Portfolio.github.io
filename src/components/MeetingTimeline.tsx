@@ -63,25 +63,25 @@ export default function MeetingTimeline() {
       {/* Header */}
       <div style={{
         padding: '10px 16px', borderBottom: '1px solid var(--ink-04)',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12,
       }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: 8, color: 'var(--ink-25)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           ExecutiveLens &middot; Meeting Replay
         </span>
         <div style={{ display: 'flex', gap: 6 }}>
           {!playing && progress === 0 && (
             <button onClick={() => setPlaying(true)} style={{
-              padding: '4px 12px', borderRadius: 'var(--radius-pill)',
+              padding: '8px 12px', borderRadius: 'var(--radius-pill)',
               border: '1px solid rgba(59,130,246,0.2)', background: 'rgba(59,130,246,0.06)',
-              color: '#60a5fa', fontFamily: 'var(--mono)', fontSize: 8,
+              color: '#3b82f6', fontFamily: 'var(--mono)', fontSize: 16,
               cursor: 'pointer', letterSpacing: '0.04em', textTransform: 'uppercase',
             }}>▶ Play Meeting</button>
           )}
           {(playing || progress > 0) && (
             <button onClick={reset} style={{
-              padding: '4px 10px', borderRadius: 'var(--radius-pill)',
+              padding: '8px 10px', borderRadius: 'var(--radius-pill)',
               border: '1px solid var(--ink-06)', background: 'var(--ink-03)',
-              color: 'var(--ink-25)', fontFamily: 'var(--mono)', fontSize: 7,
+              color: 'var(--ink-60)', fontFamily: 'var(--mono)', fontSize: 16,
               cursor: 'pointer', letterSpacing: '0.04em', textTransform: 'uppercase',
             }}>Reset</button>
           )}
@@ -96,19 +96,19 @@ export default function MeetingTimeline() {
         }} />
       </div>
 
-      <div style={{ display: 'flex', minHeight: 200 }}>
+      <div className="meeting-timeline-body" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', minHeight: 260 }}>
         {/* Transcript (left) */}
         <div style={{
-          flex: 1, padding: '12px 16px',
+          minWidth: 0, padding: '16px',
           borderRight: '1px solid var(--ink-04)',
           maxHeight: 280, overflowY: 'auto',
         }}>
           <div style={{
-            fontFamily: 'var(--mono)', fontSize: 7, color: 'var(--ink-15)',
+            fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)',
             textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8,
           }}>Live Transcript</div>
           {visibleLines.length === 0 && (
-            <div style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--ink-15)', fontStyle: 'italic' }}>
+            <div style={{ fontFamily: 'var(--sans)', fontSize: 16, color: 'var(--ink-50)', fontStyle: 'italic' }}>
               Press play to start the meeting...
             </div>
           )}
@@ -118,10 +118,10 @@ export default function MeetingTimeline() {
               animation: i === visibleLines.length - 1 ? 'fadeSlideIn 0.3s ease' : 'none',
             }}>
               <span style={{
-                fontFamily: 'var(--mono)', fontSize: 9, fontWeight: 600,
+                fontFamily: 'var(--mono)', fontSize: 16, fontWeight: 600,
                 color: line.speaker === 'Sarah' ? '#60a5fa' : line.speaker === 'Mike' ? '#f59e0b' : '#22c55e',
               }}>{line.speaker}</span>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--ink-50)', margin: '2px 0 0', lineHeight: 1.4 }}>
+              <p style={{ fontFamily: 'var(--sans)', fontSize: 16, color: 'var(--ink-70)', margin: '4px 0 0', lineHeight: 1.5 }}>
                 {line.text}
               </p>
             </div>
@@ -130,31 +130,31 @@ export default function MeetingTimeline() {
 
         {/* AI Summary (right) */}
         <div style={{
-          flex: 1, padding: '12px 16px',
-          opacity: showSummary ? 1 : 0.15,
+          minWidth: 0, padding: '16px',
+          opacity: showSummary ? 1 : 0.42,
           transition: 'opacity 0.5s',
         }}>
           <div style={{
-            fontFamily: 'var(--mono)', fontSize: 7, color: showSummary ? '#60a5fa' : 'var(--ink-15)',
+            fontFamily: 'var(--mono)', fontSize: 16, color: showSummary ? '#3b82f6' : 'var(--ink-40)',
             textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8,
             transition: 'color 0.3s',
           }}>
             {showSummary ? '✓ AI Summary Generated' : 'AI Summary (after meeting)'}
           </div>
 
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 8, color: 'var(--ink-20)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Decisions</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Decisions</div>
           {AI_SUMMARY.decisions.map((d, i) => (
-            <p key={i} style={{ fontFamily: 'var(--sans)', fontSize: 10, color: 'var(--ink-45)', margin: '0 0 8px', lineHeight: 1.4 }}>• {d}</p>
+            <p key={i} style={{ fontFamily: 'var(--sans)', fontSize: 16, color: 'var(--ink-70)', margin: '0 0 12px', lineHeight: 1.5 }}>• {d}</p>
           ))}
 
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 8, color: 'var(--ink-20)', marginBottom: 4, marginTop: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Action Items</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', marginBottom: 4, marginTop: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Action Items</div>
           {AI_SUMMARY.actions.map((a, i) => (
-            <div key={i} style={{ marginBottom: 6, fontSize: 10, color: 'var(--ink-45)', fontFamily: 'var(--sans)', lineHeight: 1.4 }}>
-              <strong style={{ color: 'var(--ink-50)' }}>{a.owner}</strong>: {a.task} <span style={{ fontFamily: 'var(--mono)', fontSize: 8, color: 'var(--ink-25)' }}>by {a.deadline}</span>
+            <div key={i} style={{ marginBottom: 10, fontSize: 16, color: 'var(--ink-70)', fontFamily: 'var(--sans)', lineHeight: 1.5 }}>
+              <strong style={{ color: 'var(--ink)' }}>{a.owner}</strong>: {a.task} <span style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)' }}>by {a.deadline}</span>
             </div>
           ))}
 
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 8, color: 'var(--ink-20)', marginTop: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Next: {AI_SUMMARY.nextMeeting}</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', marginTop: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Next: {AI_SUMMARY.nextMeeting}</div>
         </div>
       </div>
 
@@ -162,6 +162,13 @@ export default function MeetingTimeline() {
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(4px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 640px) {
+          .meeting-timeline-body { grid-template-columns: minmax(0, 1fr) !important; }
+          .meeting-timeline-body > :first-child {
+            border-right: 0 !important;
+            border-bottom: 1px solid var(--ink-04);
+          }
         }
       `}</style>
     </div>

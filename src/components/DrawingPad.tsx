@@ -163,7 +163,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             pointerEvents: 'none',
             color: 'rgba(255,255,255,0.12)',
-            fontFamily: 'var(--mono)', fontSize: '9px',
+            fontFamily: 'var(--mono)', fontSize: '16px',
             letterSpacing: '0.08em', textTransform: 'uppercase',
           }}>
             Draw a letter
@@ -193,7 +193,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
           border: '1px solid rgba(255,255,255,0.08)',
           background: 'rgba(255,255,255,0.03)',
           color: 'rgba(255,255,255,0.3)',
-          fontFamily: 'var(--mono)', fontSize: '7px',
+          fontFamily: 'var(--mono)', fontSize: '16px',
           letterSpacing: '0.08em', textTransform: 'uppercase',
           cursor: 'pointer',
         }}

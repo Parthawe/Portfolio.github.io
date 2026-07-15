@@ -674,7 +674,7 @@
 
 .project-main:has(.project-header--project-code-for-build) .cfb-block-card {
   display: grid;
-  grid-template-columns: minmax(8rem, 0.42fr) minmax(0, 0.58fr);
+  grid-template-columns: minmax(6rem, 0.34fr) minmax(8rem, 0.66fr);
   gap: clamp(0.9rem, 2vw, 1.25rem);
   align-items: center;
   min-height: 100%;
@@ -705,7 +705,7 @@
 
 .project-main:has(.project-header--project-code-for-build) .cfb-block-card p {
   margin: 0;
-  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  font-size: clamp(1rem, 1.1vw, 1.05rem);
   line-height: 1.55;
   color: var(--ink-70);
 }
@@ -895,13 +895,26 @@
   color: rgba(246, 252, 250, 0.68);
 }
 
-.proj-visual-title {
+.proj-visual-project-name {
   margin: 0;
-  max-width: 48ch;
+  max-width: 18ch;
   font-family: var(--sans);
-  font-size: clamp(1.9rem, 2.8vw, 3.1rem);
+  font-size: clamp(2.9rem, 6.5vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: 0;
+  color: rgba(250, 253, 251, 0.98);
+  text-wrap: balance;
+  text-shadow: 0 1.4rem 4rem rgba(0, 0, 0, 0.24);
+}
+
+.proj-visual-title {
+  margin: 1rem 0 0;
+  max-width: 58ch;
+  font-family: var(--sans);
+  font-size: clamp(1.1rem, 1.75vw, 1.5rem);
   font-weight: 400;
-  line-height: 1.16;
+  line-height: 1.5;
   letter-spacing: 0;
   color: rgba(250, 253, 251, 0.96);
   text-wrap: balance;
@@ -1068,8 +1081,8 @@
   }
 
   .proj-visual-title {
-    max-width: 48ch;
-    font-size: clamp(1.3rem, 3.6vw, 2.1rem);
+    max-width: 52ch;
+    font-size: clamp(1.05rem, 2.8vw, 1.35rem);
   }
 
   .proj-visual-stage {
@@ -1134,9 +1147,9 @@
   }
 
   .proj-visual-title {
-    max-width: 48ch;
-    font-size: clamp(1.05rem, 4.4vw, 1.35rem);
-    line-height: 1.3;
+    max-width: 42ch;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   .proj-visual-live {
@@ -3179,8 +3192,20 @@
 }
 
 .project-main--vj .vj-board-stack .cs-img-caption {
-  max-width: 38rem;
+  box-sizing: border-box;
+  width: min(38rem, calc(100vw - 2rem));
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 0.65rem;
+}
+
+.project-main--vj .cs-img-full--vj-board > .cs-img-caption {
+  box-sizing: border-box;
+  width: min(38rem, calc(100vw - 2rem));
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .cs-healthapp-board-list {
   display: grid;
@@ -3391,6 +3416,11 @@
 }
 
 .cuetv-refresh-card figcaption {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: min(38rem, calc(100vw - 2rem));
+  margin-left: auto;
+  margin-right: auto;
   padding: 0.75rem 1rem 0.85rem;
   font-family: var(--mono);
   font-size: var(--text-xs);
@@ -4036,7 +4066,7 @@
 .salt-sim__label,
 .salt-sim__reset {
   font-family: var(--mono);
-  font-size: clamp(0.58rem, 0.7vw, 0.68rem);
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: var(--ls-wide);
   line-height: 1;
@@ -4045,8 +4075,8 @@
 
 .salt-sim__readout span {
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-overflow: clip;
+  white-space: normal;
 }
 
 .salt-sim__readout strong {
@@ -4056,7 +4086,7 @@
 
 .salt-sim__label {
   color: rgba(10, 31, 47, 0.55);
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .salt-sim__range {
@@ -5636,9 +5666,12 @@
   --case-shell-radius: var(--radius);
   --case-media-radius: var(--radius-lg);
   --case-rule: var(--ink-08);
-  --case-copy: min(64ch, 100%);
+  --case-copy: min(62ch, 100%);
   --case-section-space: 4.75rem;
   --case-card-pad: 1.15rem;
+  --text-2xs: 1rem;
+  --text-xs: 1rem;
+  --text-sm: 1rem;
   --display: var(--sans);
   --display-heading: var(--sans);
   --serif: var(--sans);
@@ -5672,7 +5705,7 @@
   letter-spacing: 0;
 }
 
-.project-main :is(.proj-title, .proj-visual-title) {
+.project-main :is(.proj-title, .proj-visual-project-name, .proj-visual-title) {
   font-family: var(--sans);
   font-weight: 400;
   letter-spacing: 0;
@@ -5691,8 +5724,38 @@
   font-family: var(--mono);
   font-size: var(--text-2xs);
   font-weight: 600;
-  letter-spacing: var(--ls-wider);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.project-main :is(
+  .back-link,
+  .proj-visual-tag,
+  .proj-visual-meta__item,
+  .proj-fastread-kicker,
+  .proj-fastread-meta,
+  .proj-fastread-row dt,
+  .proj-hero-caption span,
+  .proj-hero-caption strong,
+  .proj-hero-stat strong,
+  .proj-hero-stat span,
+  .cs-thanks-cta,
+  .cs-nda-process-num,
+  .cs-nda-process-why,
+  .cs-nda-impact-head p,
+  .cs-nda-process-shift-col span,
+  .cs-nda-process-shift-col p,
+  .cs-img-caption
+) {
+  font-size: 1rem;
+}
+
+.project-main .cs-ct-cell::before {
+  font-size: 1rem;
+}
+
+.project-main :is(.cs-media-spotlight-copy p, .cs-nda-story-row-copy) {
+  font-size: clamp(1rem, 1.12vw, 1.1rem);
 }
 
 .project-main :is(.proj-meta, .cs-section-content, .cs-nda-story-proof, .proj-overview-card, .cs-quick-summary-details, .cs-body, .next-project-copy) {
@@ -5718,8 +5781,8 @@
 }
 
 .project-main .cs-section-grid {
-  grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
-  gap: 3rem;
+  grid-template-columns: minmax(16rem, 19rem) minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
 }
 
 .project-main .cs-section-head {
@@ -5735,7 +5798,7 @@
 }
 
 .project-main .cs-section-title {
-  max-width: 13ch;
+  max-width: 15ch;
 }
 
 .project-main .cs-section-content > :first-child {
@@ -5832,6 +5895,24 @@
 .project-main .proj-desc,
 .project-main .next-project-desc {
   max-width: var(--case-copy);
+}
+
+.project-main .cs-body,
+.project-main .cs-body p,
+.project-main .proj-desc,
+.project-main .next-project-desc {
+  font-size: clamp(1rem, 1.08vw, 1.1rem);
+  line-height: 1.72;
+}
+
+.project-main .proj-fastread-row {
+  grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+  gap: 2rem;
+}
+
+.project-main .cs-quick-summary-card {
+  grid-template-columns: minmax(12rem, 14rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
 }
 
 .project-main .cs-body > p:first-child {
@@ -6205,7 +6286,7 @@
 }
 
 .project-main--mentra-visual .cs-mentra-web-copy .cs-feature-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.7rem;
   margin-top: 0;
 }
@@ -6409,11 +6490,19 @@
 }
 
 .project-main--office-diversity .ofd-report-slices {
-  width: min(64rem, calc(100vw - 6rem));
+  width: min(52.5rem, 100%);
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+  transform: none;
 }
 
 .project-main--office-diversity .ofd-report-slices figure {
   width: min(100%, 52.5rem);
+}
+
+.project-main:has(.project-header--project-moniac-machine) .cs-media-spotlight-title {
+  font-size: clamp(2.2rem, 4vw, 4rem);
 }
 
 .project-main :is(.cs-slide iframe, .cs-media iframe) {
@@ -6643,7 +6732,7 @@
   }
 
   .project-main .cs-section-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
 
@@ -6779,7 +6868,7 @@
     flex: 1 1 auto;
     min-width: 0;
     font-family: var(--mono);
-    font-size: 0.68rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: var(--ls-wide);
     line-height: 1.25;
@@ -6795,6 +6884,18 @@
   .project-main .cs-quick-summary-details,
   .project-main .cs-quick-summary-stats {
     grid-template-columns: 1fr;
+  }
+
+  .project-main .cs-quick-summary-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  .project-main .cs-quick-summary-card p {
+    width: 100%;
+    min-width: 0;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .project-main .cs-quick-summary-meta-strip {
@@ -6879,7 +6980,7 @@
 
   .project-main .proj-fastread-row dd {
     max-width: 100%;
-    font-size: 0.98rem;
+    font-size: 1rem;
     line-height: 1.55;
   }
 
@@ -7067,7 +7168,7 @@
 .cs-nda-process-intro {
   margin: 0.95rem 0 0;
   max-width: 38rem;
-  font-size: clamp(0.98rem, 1.15vw, 1.12rem);
+  font-size: clamp(1rem, 1.15vw, 1.12rem);
   line-height: 1.55;
   color: var(--case-copy, var(--ink));
   opacity: 0.78;
@@ -7270,7 +7371,7 @@
 }
 .cs-nda-process-num {
   font-variant-numeric: tabular-nums;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--project-color, var(--ink));
@@ -7287,7 +7388,7 @@
 }
 .cs-nda-process-why {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.42;
   color: var(--case-copy, var(--ink));
   opacity: 0.76;
@@ -7302,6 +7403,9 @@
   align-items: end;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin-bottom: clamp(0.9rem, 1.8vw, 1.2rem);
 }
 .cs-nda-impact-head h3 {
@@ -7314,9 +7418,10 @@
   color: var(--ink);
 }
 .cs-nda-impact-head p {
-  margin: 0;
+  margin: 0 0.5rem 0 0;
+  min-width: 0;
   max-width: 18rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.45;
   color: var(--case-copy, var(--ink));
   opacity: 0.64;
@@ -7340,7 +7445,7 @@
 }
 .cs-nda-process-shift-col span {
   display: block;
-  font-size: 0.72rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   opacity: 0.6;
@@ -7348,7 +7453,7 @@
 }
 .cs-nda-process-shift-col p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
   color: var(--ink);
 }
@@ -7395,7 +7500,7 @@
 .ai-voice-section-copy p {
   margin: 0;
   max-width: 42rem;
-  font-size: clamp(0.98rem, 1.12vw, 1.08rem);
+  font-size: clamp(1rem, 1.12vw, 1.08rem);
   line-height: 1.62;
   color: var(--case-copy, var(--ink));
   opacity: 0.82;
@@ -7428,12 +7533,12 @@
 }
 
 .project-main--ballah-code .cs-section-grid {
-  grid-template-columns: minmax(11rem, 16rem) minmax(0, 1fr);
+  grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
   gap: clamp(2rem, 3.2vw, 3.4rem);
 }
 
 .project-main--ballah-code .cs-section-title {
-  font-size: clamp(2.25rem, 4.8vw, 4.25rem);
+  font-size: clamp(2rem, 2.8vw, 2.6rem);
   line-height: 1.02;
 }
 
@@ -7514,7 +7619,7 @@
   }
 
   .project-main--ballah-code .cs-section-title {
-    font-size: clamp(2.1rem, 12vw, 3.6rem);
+    font-size: clamp(2rem, 9vw, 2.6rem);
     overflow-wrap: normal;
   }
 
@@ -7807,7 +7912,7 @@
     max-width: none;
   }
   .cs-nda-impact-head { display: block; }
-  .cs-nda-impact-head p { margin-top: 0.45rem; text-align: left; }
+  .cs-nda-impact-head p { margin: 0.45rem 0 0; text-align: left; }
   .cs-nda-process-shift-arrow { transform: rotate(90deg); align-self: center; }
   .ai-voice-artifact-grid { grid-template-columns: 1fr; }
   .project-main:has(.project-header--project-code-for-build) .cfb-evidence-grid,
@@ -7924,7 +8029,7 @@
 /* Caption under CsImage figures */
 .cs-img-caption {
   margin-top: 0.6rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1.5;
   letter-spacing: 0.01em;
   color: var(--ink);
@@ -7937,6 +8042,7 @@
   h3,
   .proj-title,
   .proj-subtitle,
+  .proj-visual-project-name,
   .proj-visual-title,
   .cs-display,
   .cs-section-title,
@@ -7954,9 +8060,72 @@
   hyphens: none;
 }
 
+/* Long case-study labels must remain inside their content column at every width. */
+.project-main :is(
+  .cs-section-title,
+  .cs-display,
+  .cs-nda-process-title,
+  .cs-media-spotlight-title,
+  .cs-feature-card-title,
+  .cfb-block-card h3
+) {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Clawed Chat has a long five-step flow; a vertical read is clearer than a clipped rail. */
+.project-main:has(.project-header--project-clawed-chat) .cs-flow-track--horizontal {
+  flex-direction: column;
+  align-items: stretch;
+  overflow-x: visible;
+}
+
+.project-main:has(.project-header--project-clawed-chat) .cs-flow-track--horizontal .cs-flow-item {
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.project-main:has(.project-header--project-clawed-chat) .cs-flow-track--horizontal .cs-flow-node {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+}
+
+.project-main:has(.project-header--project-clawed-chat) .cs-flow-track--horizontal .cs-flow-line--horizontal {
+  width: 1px;
+  height: 24px;
+  align-self: center;
+}
+
+.project-main:has(.project-header--project-clawed-chat) .cs-flow-track--horizontal .cs-flow-line--horizontal::after {
+  right: auto;
+  top: auto;
+  bottom: -1px;
+  left: -3px;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 5px solid var(--ink-15);
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .project-main .proj-visual-project-name {
+    max-width: 100%;
+    font-size: clamp(1.75rem, 9.4vw, 3.5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .project-main :is(.cs-display, .cs-nda-process-title) {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+}
+
 /* Mobile branded-header guardrails: preserve contrast and keep media in flow. */
 .project-main:has(.project-header--visual) .project-header--visual :is(
   .proj-visual-kicker,
+  .proj-visual-project-name,
   .proj-visual-title,
   .proj-visual-live,
   .proj-info-val

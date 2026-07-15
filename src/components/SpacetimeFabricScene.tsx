@@ -519,7 +519,7 @@ export default function SpacetimeFabricScene() {
           background: '#050508',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           textAlign: 'center', padding: '2rem',
-          color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', lineHeight: 1.6,
+          color: 'rgba(255,255,255,0.76)', fontSize: '1rem', lineHeight: 1.6,
         }}
       >
         This interactive spacetime simulation needs WebGL, which isn’t
@@ -560,11 +560,11 @@ export default function SpacetimeFabricScene() {
       {/* Hint overlay */}
       <div style={{
         position: 'absolute', top: 14, left: 14, right: 14,
-        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12,
+        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12,
         pointerEvents: 'none',
       }}>
         <span style={{
-          fontFamily: 'var(--mono)', fontSize: '10px',
+          fontFamily: 'var(--mono)', fontSize: '16px',
           letterSpacing: '0.08em', textTransform: 'uppercase',
           color: 'rgba(226,244,255,0.8)',
           padding: '7px 10px', borderRadius: '999px',
@@ -576,7 +576,8 @@ export default function SpacetimeFabricScene() {
           Drag masses
         </span>
         <span style={{
-          fontFamily: 'var(--mono)', fontSize: '10px',
+          fontFamily: 'var(--mono)', fontSize: '16px',
+          maxWidth: 'min(100%, 26rem)',
           letterSpacing: '0.08em', textTransform: 'uppercase',
           color: 'rgba(226,244,255,0.72)',
           padding: '7px 10px', borderRadius: '999px',

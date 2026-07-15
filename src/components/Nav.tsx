@@ -189,7 +189,7 @@ export default function Nav() {
         <div className="nav-inner">
           {/* Left group, logo + links in a single pill */}
           <div className="nav-left-pill surface-glass figma-hover">
-            <Link to="/" className="nav-logo figma-hover">PP<FigmaSelect /></Link>
+            <Link to="/" className="nav-logo figma-hover" aria-label="Parth Pawar, home">Parth<FigmaSelect /></Link>
             <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
             {isWorkPage && (
               <div className="nav-work-views" aria-label="Work page views">

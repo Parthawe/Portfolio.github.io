@@ -229,18 +229,18 @@ export function TimeDilation() {
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
       </div>
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 12,
-        padding: '10px 0', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: 12,
+        padding: '10px 0',
       }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '8px', color: 'rgba(239,68,68,0.5)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'rgba(248,113,113,0.9)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Event horizon
         </span>
         <input type="range" min={5} max={100} value={distance * 100}
           onChange={e => setDistance(Number(e.target.value) / 100)}
           aria-label="Distance from black hole"
-          style={{ width: 180, accentColor: '#666' }}
+          style={{ width: 'min(180px, 100%)', flex: '1 1 10rem', accentColor: '#999' }}
         />
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '8px', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'rgba(255,255,255,0.72)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Far away
         </span>
       </div>
@@ -491,7 +491,7 @@ export function GravLensing() {
       }}>
         <span style={{
           fontFamily: 'var(--mono)',
-          fontSize: '10px',
+          fontSize: '16px',
           color: 'rgba(226,244,255,0.72)',
           textTransform: 'uppercase',
           letterSpacing: '0.08em',
@@ -501,7 +501,7 @@ export function GravLensing() {
           aria-label="Black hole mass" className="black-hole-mass-slider" style={{ width: '100%', accentColor: '#7dd3fc' }} />
         <span style={{
           fontFamily: 'var(--mono)',
-          fontSize: '10px',
+          fontSize: '16px',
           color: 'rgba(226,244,255,0.72)',
           fontVariantNumeric: 'tabular-nums',
         }}>{massStrength}%</span>
@@ -695,8 +695,8 @@ export function BinaryMerger() {
         <button onClick={restart} style={{
           padding: '4px 14px', borderRadius: 'var(--radius-pill)',
           border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)',
-          color: 'rgba(255,255,255,0.25)', fontFamily: 'var(--mono)', fontSize: '7px',
-          letterSpacing: '0.06em', textTransform: 'uppercase', cursor: 'pointer',
+          color: 'rgba(255,255,255,0.76)', fontFamily: 'var(--mono)', fontSize: '16px',
+          letterSpacing: '0.04em', textTransform: 'uppercase', cursor: 'pointer',
         }}>
           Restart
         </button>

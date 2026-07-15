@@ -37,6 +37,12 @@
   color: var(--ink);
 }
 
+.tf-project-summary {
+  width: min(1180px, calc(100% - clamp(2rem, 8vw, 8rem)));
+  margin: 0 auto;
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+
 .typeface-page::before {
   opacity: 0.42;
 }
@@ -160,7 +166,7 @@
 }
 
 .tf-card-label {
-  font-size: 0.65rem;
+  font-size: 1rem;
   color: oklch(0.78 0.012 260);
 }
 
@@ -217,7 +223,7 @@
 }
 
 .tf-toolbar-group > span {
-  font-size: 0.64rem;
+  font-size: 1rem;
   color: var(--ink-40);
 }
 
@@ -235,7 +241,7 @@
   background: var(--surface);
   color: var(--ink-60);
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 

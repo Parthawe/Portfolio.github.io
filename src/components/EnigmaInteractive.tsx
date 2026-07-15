@@ -474,11 +474,11 @@ export default function EnigmaInteractive() {
               display: 'flex', justifyContent: 'center', pointerEvents: 'none',
             }}>
               <span style={{
-                fontFamily: 'var(--mono)', fontSize: '7px',
-                letterSpacing: '0.08em', textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.1)',
-                padding: '2px 6px', borderRadius: 'var(--radius-pill)',
-                background: 'rgba(255,255,255,0.02)',
+                fontFamily: 'var(--mono)', fontSize: '16px',
+                letterSpacing: '0.04em', textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.78)',
+                padding: '6px 10px', borderRadius: 'var(--radius-pill)',
+                background: 'rgba(0,0,0,0.56)',
               }}>
                 Auto &middot; Press a key or draw below
               </span>
@@ -496,8 +496,8 @@ export default function EnigmaInteractive() {
         }}>
           {/* Instruction text */}
           <p style={{
-            fontFamily: 'var(--mono)', fontSize: '9px', lineHeight: 1.6,
-            color: 'rgba(255,255,255,0.3)', textAlign: 'center',
+            fontFamily: 'var(--mono)', fontSize: '16px', lineHeight: 1.6,
+            color: 'rgba(255,255,255,0.76)', textAlign: 'center',
             margin: '0 0 12px', maxWidth: '50ch', marginLeft: 'auto', marginRight: 'auto',
           }}>
             Draw a letter on the pad below, or press any key A–Z on your keyboard.
@@ -532,9 +532,9 @@ export default function EnigmaInteractive() {
                 {activeLetter || '?'}
               </div>
               <span style={{
-                fontFamily: 'var(--mono)', fontSize: '7px',
-                letterSpacing: '0.06em', textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.15)',
+                fontFamily: 'var(--mono)', fontSize: '16px',
+                letterSpacing: '0.04em', textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.68)',
               }}>
                 {activeLetter ? 'Predicted' : 'Waiting'}
               </span>
@@ -554,9 +554,9 @@ export default function EnigmaInteractive() {
                   padding: '5px 14px', borderRadius: 'var(--radius-pill)',
                   border: `1px solid ${isAuto ? 'rgba(0,200,255,0.2)' : 'rgba(255,255,255,0.08)'}`,
                   background: isAuto ? 'rgba(0,200,255,0.06)' : 'rgba(255,255,255,0.02)',
-                  color: isAuto ? 'rgba(0,200,255,0.6)' : 'rgba(255,255,255,0.2)',
-                  fontFamily: 'var(--mono)', fontSize: '7px',
-                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                  color: isAuto ? 'rgba(97,218,255,0.96)' : 'rgba(255,255,255,0.72)',
+                  fontFamily: 'var(--mono)', fontSize: '16px',
+                  letterSpacing: '0.04em', textTransform: 'uppercase',
                   cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 5,
                   transition: 'all 0.2s',
                 }}
@@ -584,9 +584,9 @@ export default function EnigmaInteractive() {
               padding: '6px 12px', borderRadius: 'var(--radius-pill)',
               border: '1px solid rgba(255,255,255,0.08)',
               background: 'rgba(255,255,255,0.03)',
-              color: 'rgba(255,255,255,0.25)',
-              fontFamily: 'var(--mono)', fontSize: '7px',
-              letterSpacing: '0.06em', textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.8)',
+              fontFamily: 'var(--mono)', fontSize: '16px',
+              letterSpacing: '0.04em', textTransform: 'uppercase',
               cursor: 'pointer', display: 'none', margin: '10px auto 0',
             }}
           >

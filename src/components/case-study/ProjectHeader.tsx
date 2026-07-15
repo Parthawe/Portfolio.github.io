@@ -121,7 +121,7 @@ export default function ProjectHeader({
   const narrativeRows = headerSummary
     ? [
         { label: 'Problem', copy: headerSummary.problem },
-        { label: 'Role', copy: headerSummary.role },
+        { label: 'Role & responsibilities', copy: headerSummary.role },
         { label: 'Outcome', copy: headerSummary.outcome },
       ]
     : story
@@ -165,8 +165,8 @@ export default function ProjectHeader({
     ) : null
 
   if (heroExperience !== undefined || resolvedVisualHeroImage) {
-    const visualKicker = heroEyebrow || title
-    const visualTitle = visualSummary || visualHeadline || subtitle
+    const visualKicker = heroEyebrow || 'Selected project'
+    const visualDeck = visualSummary || visualHeadline || subtitle
     const visualClasses = [
       'wrap',
       'project-header',
@@ -191,7 +191,8 @@ export default function ProjectHeader({
 
           <div className="proj-visual-hero__copy">
             <span className="proj-visual-kicker">{visualKicker}</span>
-            <h1 className="proj-visual-title">{visualTitle}</h1>
+            <h1 className="proj-visual-project-name">{title}</h1>
+            <p className="proj-visual-title">{visualDeck}</p>
             {liveUrl && (
               <a
                 href={liveUrl}
