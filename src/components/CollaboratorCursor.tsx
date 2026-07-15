@@ -577,9 +577,14 @@ export default function CollaboratorCursor() {
       if (noteRef.current) noteRef.current.textContent = ''
       if (labelRef.current) labelRef.current.textContent = 'parth'
 
-      const x = Math.max(24, window.innerWidth - 116)
-      const y = clamp(window.innerHeight * 0.62, 124, window.innerHeight - 132)
-      parth.dataset.side = 'left'
+      const isHomepageRest = normalizedPathname === '/'
+      const x = isHomepageRest
+        ? clamp(40, 24, Math.max(24, window.innerWidth - 116))
+        : Math.max(24, window.innerWidth - 116)
+      const y = isHomepageRest
+        ? clamp(window.innerHeight - 160, 124, window.innerHeight - 132)
+        : clamp(window.innerHeight * 0.62, 124, window.innerHeight - 132)
+      parth.dataset.side = isHomepageRest ? 'right' : 'left'
       parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'
       setPosition(parth, x, y, true)
       if (parthCoordinatesRef.current) parthCoordinatesRef.current.textContent = cursorCoordinates(x, y)
