@@ -19,7 +19,7 @@ export default function CsExpandPreview({
   onExpand,
   children,
   cta,
-  ctaLabel = 'Open full story',
+  ctaLabel = 'Reveal full story',
   note = 'The process, decisions, and proof behind the outcome.',
 }: CsExpandPreviewProps) {
   const [internalExpanded, setInternalExpanded] = useState(false)
@@ -32,6 +32,11 @@ export default function CsExpandPreview({
 
   return (
     <div className="cs-expand-preview cs-expand-preview--closed">
+      <div className="cs-expand-preview-glimpse" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
       <div className="cs-expand-preview-cta">
         <span className="cs-expand-preview-kicker">Deep dive</span>
         <p className="cs-expand-preview-note">{note}</p>
