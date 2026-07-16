@@ -437,6 +437,11 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    excludedProjects: ['vj-software'],
+    archiveSection: {
+      label: 'UI/UX Archive Projects',
+      projects: ['raahi-project', 'transfi-project', 'ballah-code'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
