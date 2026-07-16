@@ -275,7 +275,7 @@
 
 .ch-3d--side {
   position: absolute;
-  top: 0;
+  top: clamp(1.5rem, 3vh, 2.25rem);
   right: 0;
   display: flex;
   align-items: center;
@@ -363,7 +363,7 @@
   }
   .ch-3d--side {
     position: absolute;
-    top: calc(var(--nav-h) + 0.5rem);
+    top: calc(var(--nav-h) + 1.25rem);
     right: 0;
     bottom: auto;
     left: auto;
