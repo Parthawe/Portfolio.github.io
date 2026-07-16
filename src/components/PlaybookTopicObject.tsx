@@ -6,6 +6,7 @@ import { useInView } from '../hooks/useInView'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
 import { useThemeMode } from '../hooks/useThemeMode'
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable'
+import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded'
 import type { PlaybookObjectKind } from '../data/playbook'
 
 type SceneProps = {
@@ -428,13 +429,14 @@ export default function PlaybookTopicObject({ topic, title }: { topic: PlaybookO
   const dark = useThemeMode()
   const reduced = usePrefersReduced()
   const webglOk = useWebGLAvailable()
+  const performanceDegraded = usePerformanceDegraded()
   const [ref, inView] = useInView<HTMLDivElement>(0.08, '220px 0px')
   const mountScene = useDeferredMount(inView, { timeout: 1400, delayMs: 80 })
   const palette = paletteFor(topic, dark)
 
   return (
     <div ref={ref} className="pb-object-stage" aria-hidden="true">
-      {webglOk && mountScene ? (
+      {webglOk && mountScene && !performanceDegraded ? (
         <Canvas
           camera={{ position: [0, 0, 3.5], fov: 34 }}
           dpr={[1, 1.75]}

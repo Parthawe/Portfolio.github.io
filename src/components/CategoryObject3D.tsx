@@ -12,6 +12,7 @@ import {
 } from './HeroObjects3D';
 import { useThemeMode } from '../hooks/useThemeMode';
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
+import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded';
 
 const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolean }>> = {
   installations: TrussStructure,
@@ -157,12 +158,13 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
   const dark = darkProp ?? themeDark;
   const mouseRef = useRef({ x: 0, y: 0 });
   const webglOk = useWebGLAvailable();
+  const performanceDegraded = usePerformanceDegraded();
 
   if (!CATEGORY_OBJECTS[slug]) return null;
 
   // No WebGL: this is a decorative accent, so collapse it gracefully
   // rather than letting R3F throw and take down the page.
-  if (!webglOk) return null;
+  if (!webglOk || performanceDegraded) return null;
 
   // Hover states scale parts of the objects up to ~1.6x, and Float/drag add
   // extra travel — so the canvas draws on a larger bleed area centered on the

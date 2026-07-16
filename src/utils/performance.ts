@@ -5,6 +5,16 @@ type NavigatorWithPerformanceHints = Navigator & {
   }
 }
 
+export const PERFORMANCE_MODE_EVENT = 'portfolio:performance-mode'
+const PERFORMANCE_MODE_SESSION_KEY = 'portfolio-performance-mode'
+
+type PerformanceModeReason = 'device' | 'runtime' | 'forced'
+
+type PerformanceModeDetail = {
+  degraded: true
+  reason: PerformanceModeReason
+}
+
 export function prefersReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
@@ -16,23 +26,171 @@ export function isLowPowerDevice() {
   const memory = nav.deviceMemory
   const cores = nav.hardwareConcurrency
   const touchOrTablet = window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1180px)').matches
-  const limitedMemory = typeof memory === 'number' && memory <= 4
-  const midMemoryLaptop = typeof memory === 'number' && memory <= 8 && typeof cores === 'number' && cores <= 8
-  const midCoreLaptop = typeof cores === 'number' && cores <= 8
+  const severelyLimitedMemory = typeof memory === 'number' && memory <= 2
+  const severelyLimitedCpu = typeof cores === 'number' && cores <= 2
+  const constrainedLaptop =
+    typeof memory === 'number' && memory <= 4 &&
+    typeof cores === 'number' && cores <= 4
 
   return Boolean(
     prefersReducedMotion() ||
     nav.connection?.saveData ||
     touchOrTablet ||
-    limitedMemory ||
-    midMemoryLaptop ||
-    midCoreLaptop,
+    severelyLimitedMemory ||
+    severelyLimitedCpu ||
+    constrainedLaptop,
   )
+}
+
+export function isPerformanceDegraded() {
+  return typeof document !== 'undefined' &&
+    document.documentElement.classList.contains('is-low-power-device')
+}
+
+function activatePerformanceMode(reason: PerformanceModeReason) {
+  if (typeof document === 'undefined') return
+
+  const root = document.documentElement
+  const wasDegraded = root.classList.contains('is-low-power-device')
+  root.classList.add('is-low-power-device')
+  root.classList.toggle(
+    'is-runtime-performance-degraded',
+    reason === 'runtime' || reason === 'forced',
+  )
+  root.dataset.performanceMode = 'reduced'
+
+  try {
+    window.sessionStorage.setItem(PERFORMANCE_MODE_SESSION_KEY, reason)
+  } catch {
+    // Session storage can be unavailable in private contexts.
+  }
+
+  if (!wasDegraded) {
+    window.dispatchEvent(new CustomEvent<PerformanceModeDetail>(PERFORMANCE_MODE_EVENT, {
+      detail: { degraded: true, reason },
+    }))
+  }
 }
 
 export function applyPerformanceModeClass() {
   if (typeof document === 'undefined') return
-  document.documentElement.classList.toggle('is-low-power-device', isLowPowerDevice())
+
+  let savedReason: PerformanceModeReason | null = null
+  try {
+    const saved = window.sessionStorage.getItem(PERFORMANCE_MODE_SESSION_KEY)
+    if (saved === 'device' || saved === 'runtime' || saved === 'forced') {
+      savedReason = saved
+    }
+  } catch {
+    // Session storage can be unavailable in private contexts.
+  }
+
+  const forced = new URLSearchParams(window.location.search).get('perf') === 'emergency'
+  if (forced) activatePerformanceMode('forced')
+  else if (savedReason) activatePerformanceMode(savedReason)
+  else if (isLowPowerDevice()) activatePerformanceMode('device')
+  else document.documentElement.dataset.performanceMode = 'full'
+}
+
+export function startRuntimePerformanceMonitor() {
+  if (typeof window === 'undefined' || isPerformanceDegraded()) return () => undefined
+
+  const WARMUP_MS = 2200
+  const WINDOW_MS = 4200
+  const SLOW_FRAME_MS = 45
+  const VERY_SLOW_FRAME_MS = 90
+  const startedAt = performance.now()
+  let previousFrame = startedAt
+  let windowStartedAt = startedAt
+  let frameDeltas: number[] = []
+  let longTaskCount = 0
+  let longTaskBlockedMs = 0
+  let severeWindows = 0
+  let frameId = 0
+  let stopped = false
+
+  const observer = typeof PerformanceObserver !== 'undefined' &&
+    PerformanceObserver.supportedEntryTypes?.includes('longtask')
+    ? new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          longTaskCount += 1
+          longTaskBlockedMs += entry.duration
+        }
+      })
+    : null
+
+  observer?.observe({ entryTypes: ['longtask'] })
+
+  const resetWindow = (now: number) => {
+    windowStartedAt = now
+    frameDeltas = []
+    longTaskCount = 0
+    longTaskBlockedMs = 0
+  }
+
+  const finish = (reason: PerformanceModeReason) => {
+    if (stopped) return
+    stopped = true
+    cancelAnimationFrame(frameId)
+    observer?.disconnect()
+    activatePerformanceMode(reason)
+  }
+
+  const sample = (now: number) => {
+    if (stopped) return
+
+    if (document.visibilityState !== 'visible') {
+      previousFrame = now
+      resetWindow(now)
+      frameId = requestAnimationFrame(sample)
+      return
+    }
+
+    const delta = now - previousFrame
+    previousFrame = now
+    if (delta > 0 && delta < 1000) frameDeltas.push(delta)
+
+    if (now - startedAt < WARMUP_MS) {
+      resetWindow(now)
+      frameId = requestAnimationFrame(sample)
+      return
+    }
+
+    if (now - windowStartedAt >= WINDOW_MS) {
+      const averageDelta = frameDeltas.length
+        ? frameDeltas.reduce((sum, value) => sum + value, 0) / frameDeltas.length
+        : 0
+      const slowRatio = frameDeltas.length
+        ? frameDeltas.filter((value) => value >= SLOW_FRAME_MS).length / frameDeltas.length
+        : 0
+      const verySlowFrames = frameDeltas.filter((value) => value >= VERY_SLOW_FRAME_MS).length
+      const enoughEvidence = frameDeltas.length >= 24
+      const severeFramePressure = enoughEvidence && averageDelta >= 42 && slowRatio >= 0.35
+      const severeStutter = enoughEvidence && slowRatio >= 0.48 && verySlowFrames >= 4
+      const severeMainThreadBlock = longTaskBlockedMs >= 900 || longTaskCount >= 6
+      const criticalFreeze = longTaskBlockedMs >= 1600 || verySlowFrames >= 10
+      const severe = severeFramePressure || severeStutter || severeMainThreadBlock
+
+      severeWindows = severe ? severeWindows + 1 : Math.max(0, severeWindows - 1)
+
+      if (criticalFreeze || severeWindows >= 2) {
+        finish('runtime')
+        return
+      }
+
+      resetWindow(now)
+    }
+
+    frameId = requestAnimationFrame(sample)
+  }
+
+  frameId = requestAnimationFrame(sample)
+
+  return () => {
+    stopped = true
+    cancelAnimationFrame(frameId)
+    observer?.disconnect()
+  }
 }
 
 export const CANVAS_CHROME_PREF_KEY = 'portfolio-canvas-chrome'

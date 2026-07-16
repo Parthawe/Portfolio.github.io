@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { useThemeMode } from '../hooks/useThemeMode';
 import { usePrefersReduced } from '../hooks/usePrefersReduced';
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
+import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded';
 import { layoutHeroWeb, type WebNode, type WebEdge } from '../data/heroWeb';
 
 /* ─── Node config ─── */
@@ -2288,6 +2289,7 @@ export default function HeroScene({
   const reduced = usePrefersReduced();
   const dark = useThemeMode();
   const webglOk = useWebGLAvailable();
+  const performanceDegraded = usePerformanceDegraded();
   const [isMobile] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false,
   );
@@ -2339,7 +2341,7 @@ export default function HeroScene({
   // WebGL unavailable (older device, disabled GPU): keep the hero area's
   // layout intact but skip the 3D canvas (and the web affordance) instead of
   // crashing the page.
-  if (!webglOk) {
+  if (!webglOk || performanceDegraded) {
     return <div ref={containerRef} className="hero-3d-canvas" aria-hidden="true" />;
   }
 

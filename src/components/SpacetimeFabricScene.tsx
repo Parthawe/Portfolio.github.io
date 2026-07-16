@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo, useCallback, Suspense } from 'rea
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable'
+import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded'
 
 /* ═══════════════════════════════════════════════════════════
    Spacetime Fabric — interactive gravitational well.
@@ -478,6 +479,7 @@ function GravityScene({ masses, onDrag, onRemove, onAdd }: {
 export default function SpacetimeFabricScene() {
   const containerRef = useRef<HTMLDivElement>(null)
   const webglOk = useWebGLAvailable()
+  const performanceDegraded = usePerformanceDegraded()
   const [inView, setInView] = useState(false)
   const [masses, setMasses] = useState<Mass[]>([
     { id: 1, x: 0, z: 0, strength: 1.4 },
@@ -541,11 +543,11 @@ export default function SpacetimeFabricScene() {
       }}
     >
       <Canvas
-        dpr={[1, 1.5]}
+        dpr={performanceDegraded ? 1 : [1, 1.5]}
         camera={{ position: [0, 4.4, 5.3], fov: 44 }}
         gl={{ antialias: true, alpha: false }}
         style={{ background: 'radial-gradient(circle at 50% 70%, #07345d 0%, #04172b 45%, #020711 100%)' }}
-        frameloop={inView ? 'always' : 'never'}
+        frameloop={inView && !performanceDegraded ? 'always' : 'demand'}
       >
         <Suspense fallback={null}>
           <GravityScene

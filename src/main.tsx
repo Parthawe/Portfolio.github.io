@@ -4,7 +4,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App'
 import './styles/globals.css'
-import { applyPerformanceModeClass, isLowPowerDevice, prefersReducedMotion } from './utils/performance'
+import {
+  applyPerformanceModeClass,
+  isLowPowerDevice,
+  isPerformanceDegraded,
+  PERFORMANCE_MODE_EVENT,
+  prefersReducedMotion,
+  startRuntimePerformanceMonitor,
+} from './utils/performance'
 
 applyPerformanceModeClass()
 
@@ -25,6 +32,7 @@ type IdleCapableWindow = Window & {
 function shouldUseLenis() {
   if (prefersReducedMotion()) return false
   if (isLowPowerDevice()) return false
+  if (isPerformanceDegraded()) return false
   if (window.innerWidth < 1181) return false
   if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return false
   return true
@@ -55,14 +63,30 @@ function startLenis() {
     resizeObserver?.observe(document.documentElement)
     window.addEventListener('resize', updateScrollLimit, { passive: true })
 
+    let frameId = 0
+    let stopped = false
+
+    const stop = () => {
+      if (stopped) return
+      stopped = true
+      cancelAnimationFrame(frameId)
+      resizeObserver?.disconnect()
+      window.removeEventListener('resize', updateScrollLimit)
+      window.removeEventListener(PERFORMANCE_MODE_EVENT, stop)
+      lenis.destroy()
+      delete (window as unknown as Record<string, unknown>).__lenis
+    }
+
     function raf(time: number) {
+      if (stopped) return
       lenis.raf(time)
       if (window.scrollY > maxScroll + 2) {
         lenis.scrollTo(maxScroll, { immediate: true })
       }
-      requestAnimationFrame(raf)
+      frameId = requestAnimationFrame(raf)
     }
-    requestAnimationFrame(raf)
+    frameId = requestAnimationFrame(raf)
+    window.addEventListener(PERFORMANCE_MODE_EVENT, stop)
 
     ;(window as unknown as Record<string, unknown>).__lenis = lenis
   })
@@ -71,6 +95,7 @@ function startLenis() {
 // Smooth scroll is a desktop enhancement. Native scrolling is faster and cleaner on touch.
 requestAnimationFrame(() => {
   requestAnimationFrame(() => {
+    startRuntimePerformanceMonitor()
     const idleWindow = window as IdleCapableWindow
     if (typeof idleWindow.requestIdleCallback === 'function') {
       idleWindow.requestIdleCallback(startLenis, { timeout: 2400 })

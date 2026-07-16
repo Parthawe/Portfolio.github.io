@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
 import { useThemeMode } from '../hooks/useThemeMode'
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable'
+import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded'
 
 type BinaryPoint = {
   x: number
@@ -263,10 +264,11 @@ export default function BinaryFlower() {
   const reduced = usePrefersReduced()
   const dark = useThemeMode()
   const webGLAvailable = useWebGLAvailable()
+  const performanceDegraded = usePerformanceDegraded()
 
   return (
     <div className="abt-binary-flower" aria-label="Morphing generative binary object">
-      {webGLAvailable ? (
+      {webGLAvailable && !performanceDegraded ? (
         <Canvas
           className="abt-binary-flower-canvas"
           camera={{ position: [0, 0, 5.15], fov: 43 }}
