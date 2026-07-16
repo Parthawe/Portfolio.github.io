@@ -559,7 +559,7 @@ export default function AboutPage() {
                   {offClockRows.map((row, rowIndex) => (
                     <div className="abt-image-asides-row" key={`off-clock-row-${rowIndex}`}>
                       <div className={`abt-image-asides-track${rowIndex === 1 ? ' abt-image-asides-track--reverse' : ''}`}>
-                        {[...row, ...row].map((item, imageIndex) => (
+                        {[...row, ...row, ...row, ...row].map((item, imageIndex) => (
                           <figure
                             key={`${item.label}-${rowIndex}-${imageIndex}`}
                             className="abt-image-aside"
