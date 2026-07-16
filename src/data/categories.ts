@@ -745,6 +745,10 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    archiveSection: {
+      label: 'UI/UX Archive Projects',
+      projects: ['mentra', 'vj-software', 'cuetv'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
@@ -803,6 +807,17 @@ export const categories: CategoryData[] = [
     moreProjects: [
       [
         {
+          slug: 'ibm',
+          image: '/Assets/mockups/projects/ibm_16x9.webp',
+          alt: 'IBM Cancer Prognosis',
+          name: 'IBM Cancer Prognosis',
+          result: 'Encrypted genomic workflows for cancer prognosis without exposing raw patient data',
+          role: 'Research Intern · 2020',
+          tag: 'HEALTHCARE AI',
+          year: '2020',
+          desc: 'Encrypted genomic workflows for cancer prognosis without exposing raw patient data',
+        },
+        {
           slug: 'the-point-cdc',
           image: '/Assets/images/the-point-cdc.webp',
           alt: 'The Point CDC',
@@ -826,6 +841,10 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    archiveSection: {
+      label: 'UI/UX Archive Projects',
+      projects: ['the-point-cdc', 'office-of-diversity', 'code-for-build'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
