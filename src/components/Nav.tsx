@@ -24,13 +24,13 @@ export default function Nav() {
   const [interactOn, setInteractOn] = useState(false);
 
   const closeMenu = useCallback(() => {
-    if (!isOpenRef.current) return;
+    const wasOpen = isOpenRef.current;
     isOpenRef.current = false;
     setMenuOpen(false);
     overlayRef.current?.classList.remove('open');
     toggleRef.current?.classList.remove('open');
     unlockBodyScroll('nav-menu');
-    if (lastFocusedRef.current instanceof HTMLElement) {
+    if (wasOpen && lastFocusedRef.current instanceof HTMLElement) {
       lastFocusedRef.current.focus();
       lastFocusedRef.current = null;
     }
@@ -72,8 +72,10 @@ export default function Nav() {
       }
     };
     document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('pageshow', closeMenu);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('pageshow', closeMenu);
       unlockBodyScroll('nav-menu');
     };
   }, [closeMenu]);

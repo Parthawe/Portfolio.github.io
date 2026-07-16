@@ -2,6 +2,23 @@
    RESPONSIVE
    ================================================ */
 @media (max-width: 1024px) {
+  /* Android Chrome is unreliable when the root scroller combines
+     overflow-x: clip with blocked vertical overscroll. Keep the document as
+     the native vertical scroller; modal locks still win through inline styles. */
+  html {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    overscroll-behavior-y: auto;
+  }
+
   .project-main,
   .page-work,
   .page-about,
