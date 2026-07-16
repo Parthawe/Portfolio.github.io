@@ -476,11 +476,11 @@ export default function AboutPage() {
                         </tr>
                       )}
                       <tr className="abt-table-row">
-                        <td className="abt-table-date">{r.section || ''}</td>
+                        <td className="abt-table-date" aria-hidden="true" />
                         <td className="abt-table-main">
                           <span className="abt-table-role">{r.role}</span>
                         </td>
-                        <td className="abt-table-co">{r.co}</td>
+                        <td className="abt-table-co" aria-hidden="true" />
                       </tr>
                     </Fragment>
                   ))}
