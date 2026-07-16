@@ -15,18 +15,19 @@ export default function FigmaZoom() {
     document.documentElement.style.setProperty('--page-zoom', String(level / 100))
     const wrapper = document.getElementById('root')
     if (wrapper) {
+      // CSS zoom participates in layout. A transform only changed the visual
+      // size, leaving the root's original height as empty scroll after footer.
+      wrapper.style.transform = ''
+      wrapper.style.transformOrigin = ''
+      wrapper.style.minHeight = ''
       if (level === 100) {
-        wrapper.style.transform = ''
-        wrapper.style.transformOrigin = ''
+        wrapper.style.zoom = ''
         wrapper.style.width = ''
-        wrapper.style.minHeight = ''
         document.body.style.overflow = ''
       } else {
         const scale = level / 100
-        wrapper.style.transform = `scale(${scale})`
-        wrapper.style.transformOrigin = 'top center'
+        wrapper.style.zoom = String(scale)
         wrapper.style.width = `${100 / scale}%`
-        wrapper.style.minHeight = `${100 / scale}vh`
         document.body.style.overflow = ''
       }
     }
