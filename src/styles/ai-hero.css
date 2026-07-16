@@ -85,7 +85,10 @@
 .ch-audience-shell {
   display: block;
   width: min(100%, 66rem);
+  height: clamp(17rem, 24vw, 21rem);
   padding-top: clamp(1.2rem, 2.4vw, 2rem);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .ch-audience-shell--compact {
@@ -94,10 +97,9 @@
 }
 
 .ch-audience {
-  display: grid;
-  gap: clamp(0.85rem, 1.6vw, 1.15rem);
-  min-height: clamp(10rem, 17vw, 14.5rem);
-  align-content: start;
+  position: relative;
+  height: 100%;
+  min-height: 0;
 }
 
 .ch-audience-shell--compact .ch-audience {
@@ -105,8 +107,12 @@
 }
 
 .ch-audience-item {
+  position: absolute;
+  inset: 0 0 auto;
   display: grid;
   gap: clamp(1rem, 1.8vw, 1.35rem);
+  width: 100%;
+  min-width: 0;
   text-align: left;
 }
 
@@ -129,7 +135,7 @@
   margin: 0;
   max-width: 52ch;
   font-family: var(--sans);
-  font-size: clamp(1.95rem, 4.4vw, 4.3rem);
+  font-size: clamp(1.75rem, 3.35vw, 3.5rem);
   font-weight: 360;
   line-height: 1.12;
   color: var(--ink);
@@ -138,6 +144,11 @@
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 .ch-audience-shell--compact .ch-audience-item p {
@@ -149,6 +160,9 @@
 }
 
 .ch-audience-dots {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   display: inline-flex;
   align-items: center;
   gap: 0.42rem;
@@ -276,7 +290,7 @@
 }
 
 .ch--landing:has(.ch-3d--side) .ch-copy {
-  padding-right: clamp(12rem, 23vw, 20rem);
+  padding-right: clamp(10rem, 20vw, 18rem);
 }
 
 .ch-3d--side,
@@ -338,6 +352,9 @@
     padding-top: clamp(8rem, 22vw, 12rem);
     padding-right: 0;
   }
+  .ch--landing:has(.ch-3d--side) .ch-copy {
+    padding-right: 0;
+  }
   .ch-statement,
   .ch-sub,
   .ch-audience-shell {
@@ -390,6 +407,9 @@
   .ch-audience-shell--compact .ch-audience {
     min-height: 0;
   }
+  .ch-audience-shell {
+    height: clamp(15.5rem, 34vw, 18rem);
+  }
 }
 
 @media (max-width: 480px) {
@@ -407,6 +427,7 @@
     line-height: 1.48;
   }
   .ch-audience-shell {
+    height: 10.75rem;
     padding-top: 0.65rem;
   }
   .ch-audience-item {
@@ -422,8 +443,10 @@
   .ch-audience-item p,
   .ch-audience-shell--compact .ch-audience-item p {
     max-width: 34ch;
-    font-size: clamp(1.32rem, 6.5vw, 2rem);
+    font-size: clamp(1.18rem, 5.2vw, 1.45rem);
     line-height: 1.18;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
   .ch-3d--side { width: 8rem; }
   .ch-hero-stats {
