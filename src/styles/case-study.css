@@ -608,7 +608,7 @@
   html,
   body {
     overflow-y: auto;
-    overscroll-behavior-y: auto;
+    overscroll-behavior-y: none;
   }
 
   body:has(.project-main) {
