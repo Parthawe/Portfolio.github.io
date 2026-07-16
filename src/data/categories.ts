@@ -571,6 +571,10 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    archiveSection: {
+      label: 'Stage Design',
+      projects: ['dumb-waiter-set-design', 'drowning', 'revolving-stage'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
