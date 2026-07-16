@@ -1360,6 +1360,329 @@ hr.divider {
   transform: translate(2px, -2px);
 }
 
+/* Error boundary: the 404 canvas language, kept dependency-light so the
+   recovery screen remains useful when a page component fails. */
+.app-error {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(1rem, 2.5vw, 2rem);
+  overflow-x: hidden;
+  background: var(--bg, #fafaf8);
+  color: var(--ink, #1a1a1a);
+  font-family: var(--sans, system-ui, sans-serif);
+}
+
+.app-error__bar,
+.app-error__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--mono, system-ui, sans-serif);
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--ink-40, rgba(26, 26, 26, 0.64));
+}
+
+.app-error__file,
+.app-error__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--ink-08, rgba(26, 26, 26, 0.08));
+  border-radius: var(--radius, 8px);
+  background: color-mix(in srgb, var(--surface, #fff) 88%, transparent);
+}
+
+.app-error__file i {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 2px;
+  background: var(--select-blue, #4d9eff);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--select-blue, #4d9eff) 16%, transparent);
+}
+
+.app-error__status::before {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--error, #e55555);
+}
+
+.app-error__main {
+  width: min(100%, 980px);
+  min-height: calc(100vh - 7rem);
+  min-height: calc(100dvh - 7rem);
+  margin: 0 auto;
+  display: grid;
+  place-content: center;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+.app-error__wordmark {
+  margin-bottom: -0.18em;
+  font-family: var(--display-heading, Georgia, serif);
+  font-size: clamp(4.5rem, 13vw, 9rem);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--ink, #1a1a1a);
+  opacity: 0.92;
+}
+
+.app-error__canvas {
+  position: relative;
+  width: 100%;
+  min-height: clamp(310px, 44vh, 410px);
+  display: grid;
+  place-items: center;
+  padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.25rem, 6vw, 4rem);
+  border: 1px solid var(--ink-12, rgba(26, 26, 26, 0.12));
+  border-radius: var(--radius-lg, 12px);
+  background-color: var(--surface, #fff);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--ink, #1a1a1a) 12%, transparent) 0.75px, transparent 0.75px);
+  background-size: 22px 22px;
+  box-shadow: var(--shadow-md, 0 1rem 3rem rgba(0, 0, 0, 0.08));
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.app-error__canvas::before,
+.app-error__canvas::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: color-mix(in srgb, var(--select-blue, #4d9eff) 12%, transparent);
+}
+
+.app-error__canvas::before {
+  inset: 0 auto 0 34%;
+  width: 1px;
+}
+
+.app-error__canvas::after {
+  inset: 63% 0 auto;
+  height: 1px;
+}
+
+.app-error__layer {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: var(--mono, system-ui, sans-serif);
+  font-size: var(--text-2xs, 0.6875rem);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide, 0.06em);
+  color: var(--ink-40, rgba(26, 26, 26, 0.64));
+}
+
+.app-error__selection {
+  position: absolute;
+  top: 14%;
+  right: 8%;
+  width: clamp(100px, 16vw, 160px);
+  aspect-ratio: 1.45;
+  border: 1.5px dashed color-mix(in srgb, var(--select-blue, #4d9eff) 72%, transparent);
+  background: color-mix(in srgb, var(--select-blue, #4d9eff) 8%, transparent);
+}
+
+.app-error__selection > span {
+  position: absolute;
+  right: -1px;
+  bottom: -1.55rem;
+  padding: 0.2rem 0.42rem;
+  border-radius: 4px;
+  background: var(--select-blue, #4d9eff);
+  color: #fff;
+  font-family: var(--mono, system-ui, sans-serif);
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+.app-error__handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--select-blue, #4d9eff);
+  background: var(--surface, #fff);
+}
+
+.app-error__handle--tl { top: -4px; left: -4px; }
+.app-error__handle--tr { top: -4px; right: -4px; }
+.app-error__handle--br { right: -4px; bottom: -4px; }
+.app-error__handle--bl { bottom: -4px; left: -4px; }
+
+.app-error__cursor {
+  position: absolute;
+  right: 22%;
+  top: 44%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.25rem;
+  color: var(--select-blue, #4d9eff);
+  animation: app-error-cursor-drift 5s ease-in-out infinite;
+}
+
+.app-error__cursor-glyph {
+  width: 1.35rem;
+  height: 1.35rem;
+  filter: drop-shadow(0 0.2rem 0.2rem rgba(0, 0, 0, 0.3));
+}
+
+.app-error__cursor span {
+  padding: 0.16rem 0.45rem;
+  border-radius: 999px;
+  background: var(--select-blue, #4d9eff);
+  color: #fff;
+  font-family: var(--mono, system-ui, sans-serif);
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+
+@keyframes app-error-cursor-drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(18px, -12px); }
+}
+
+.app-error__copy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 560px);
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.app-error__eyebrow {
+  font-family: var(--mono, system-ui, sans-serif);
+  font-size: var(--text-xs, 0.75rem);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide, 0.06em);
+  color: var(--select-blue, #4d9eff);
+}
+
+.app-error__copy h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--display-heading, Georgia, serif);
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0;
+  color: var(--ink, #1a1a1a);
+}
+
+.app-error__copy p {
+  margin: 0;
+  font-size: var(--text-base, 1rem);
+  line-height: 1.55;
+  color: var(--ink-50, rgba(26, 26, 26, 0.66));
+}
+
+.app-error__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 0.35rem;
+}
+
+.app-error__actions button,
+.app-error__actions a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--ink-15, rgba(26, 26, 26, 0.15));
+  border-radius: var(--radius, 8px);
+  font: 600 var(--text-sm, 0.8125rem)/1 var(--sans, system-ui, sans-serif);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--motion-fast, 180ms), background var(--motion-fast, 180ms), border-color var(--motion-fast, 180ms);
+}
+
+.app-error__actions button {
+  border-color: var(--ink, #1a1a1a);
+  background: var(--ink, #1a1a1a);
+  color: var(--bg, #fafaf8);
+}
+
+.app-error__actions a {
+  background: var(--surface, #fff);
+  color: var(--ink, #1a1a1a);
+}
+
+.app-error__actions button:hover,
+.app-error__actions a:hover {
+  transform: translateY(-2px);
+  border-color: var(--select-blue, #4d9eff);
+}
+
+.app-error__actions button:focus-visible,
+.app-error__actions a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--select-blue, #4d9eff) 36%, transparent);
+  outline-offset: 3px;
+}
+
+.app-error__note {
+  position: absolute;
+  left: 4%;
+  bottom: 8%;
+  width: min(230px, 28%);
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--ink-12, rgba(26, 26, 26, 0.12));
+  border-radius: 8px 8px 8px 2px;
+  background: color-mix(in srgb, var(--surface, #fff) 94%, transparent);
+  box-shadow: var(--shadow-sm, 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08));
+  font-size: var(--text-xs, 0.75rem);
+  line-height: 1.4;
+  color: var(--ink-50, rgba(26, 26, 26, 0.66));
+}
+
+.app-error__note strong { color: var(--ink, #1a1a1a); }
+.app-error__note em {
+  font-style: normal;
+  font-family: var(--mono, system-ui, sans-serif);
+  color: var(--ink-40, rgba(26, 26, 26, 0.64));
+}
+
+.app-error__foot {
+  padding: 0 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .app-error { padding: 0.8rem; }
+  .app-error__main { min-height: calc(100dvh - 5rem); }
+  .app-error__wordmark { font-size: clamp(4rem, 24vw, 6rem); }
+  .app-error__canvas {
+    min-height: 520px;
+    padding: 7rem 1.1rem 8rem;
+  }
+  .app-error__selection { top: 9%; right: 8%; }
+  .app-error__cursor { top: 24%; right: 22%; }
+  .app-error__note {
+    left: 50%;
+    bottom: 1rem;
+    width: calc(100% - 2rem);
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .app-error__foot span:last-child { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-error__cursor { animation: none; }
+  .app-error__actions button,
+  .app-error__actions a { transition: none; }
+}
+
 
 /* ═══════════════════════════════════════
    GLOBAL RULERS, fixed to viewport sides

@@ -2,12 +2,15 @@ import { lazy, Suspense, Component, type ReactNode } from 'react'
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import RootLayout from './components/RootLayout'
 import PixelLoaderVisual from './components/PixelLoaderVisual'
+import PointerCursorGlyph from './components/PointerCursorGlyph'
 import { visibleProjects } from './data/projects'
 
-class ErrorBoundaryInner extends Component<{ children: ReactNode; resetKey: string }, { hasError: boolean; prevKey: string }> {
+type ErrorBoundaryProps = { children: ReactNode; resetKey: string }
+
+class ErrorBoundaryInner extends Component<ErrorBoundaryProps, { hasError: boolean; prevKey: string }> {
   state = { hasError: false, prevKey: '' }
   static getDerivedStateFromError() { return { hasError: true } }
-  static getDerivedStateFromProps(props: { resetKey: string }, state: { hasError: boolean; prevKey: string }) {
+  static getDerivedStateFromProps(props: ErrorBoundaryProps, state: { hasError: boolean; prevKey: string }) {
     // Reset error state when route changes
     if (props.resetKey !== state.prevKey) {
       return { hasError: false, prevKey: props.resetKey }
@@ -17,14 +20,53 @@ class ErrorBoundaryInner extends Component<{ children: ReactNode; resetKey: stri
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--ff-sans, system-ui)', color: 'var(--ink, #111)', background: 'var(--bg, #faf9f6)' }}>
-          <img
-            src="/Assets/favicon.svg"
-            alt="Parth Pawar"
-            style={{ width: '2.5rem', height: '2.5rem', marginBottom: '0.75rem', borderRadius: '0.625rem' }}
-          />
-          <p style={{ marginBottom: '1rem', opacity: 0.6 }}>Something went wrong.</p>
-          <a href="/" style={{ textDecoration: 'underline' }}>Go home</a>
+        <div className="app-error" role="alert">
+          <header className="app-error__bar">
+            <span className="app-error__file"><i aria-hidden="true" />portfolio.fig</span>
+            <span className="app-error__status">Render paused</span>
+          </header>
+
+          <main className="app-error__main">
+            <div className="app-error__wordmark" aria-hidden="true">ERR</div>
+
+            <section className="app-error__canvas" aria-labelledby="app-error-title">
+              <span className="app-error__layer" aria-hidden="true">Frame / unavailable</span>
+
+              <div className="app-error__selection" aria-hidden="true">
+                <i className="app-error__handle app-error__handle--tl" />
+                <i className="app-error__handle app-error__handle--tr" />
+                <i className="app-error__handle app-error__handle--br" />
+                <i className="app-error__handle app-error__handle--bl" />
+                <span>0 x 0</span>
+              </div>
+
+              <div className="app-error__cursor" aria-hidden="true">
+                <PointerCursorGlyph className="app-error__cursor-glyph" />
+                <span>parth</span>
+              </div>
+
+              <div className="app-error__copy">
+                <span className="app-error__eyebrow">That was not supposed to happen.</span>
+                <h1 id="app-error-title">This frame stopped rendering.</h1>
+                <p>Reload it, or head home. Your place is saved.</p>
+                <div className="app-error__actions">
+                  <button type="button" onClick={() => window.location.reload()}>Retry frame</button>
+                  <a href="/">Homepage</a>
+                </div>
+              </div>
+
+              <aside className="app-error__note" aria-hidden="true">
+                <strong>Quick repair?</strong>
+                <span>I may have pushed one pixel too far.</span>
+                <em>- p.</em>
+              </aside>
+            </section>
+
+            <footer className="app-error__foot" aria-hidden="true">
+              <span>Autosaved</span>
+              <span>Design systems should fail gracefully, too.</span>
+            </footer>
+          </main>
         </div>
       )
     }
