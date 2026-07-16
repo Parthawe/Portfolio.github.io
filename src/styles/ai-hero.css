@@ -261,23 +261,27 @@
 
 .ch-3d--side {
   position: absolute;
-  top: clamp(1.2rem, 2vw, 2rem);
-  right: clamp(0rem, 2vw, 2rem);
+  top: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 0;
-  width: clamp(13rem, 24vw, 24rem);
-  max-width: 100%;
+  width: clamp(10rem, 18vw, 16rem);
+  max-width: 28%;
   min-height: 0;
   pointer-events: none;
   transform: none;
   z-index: 1;
 }
 
-.ch--ai .ch-3d--side,
-.ch--ai-wearables .ch-3d--side {
-  top: clamp(3.75rem, 7vw, 6.5rem);
+.ch--landing:has(.ch-3d--side) .ch-copy {
+  padding-right: clamp(12rem, 23vw, 20rem);
+}
+
+.ch-3d--side,
+.ch-3d--side * {
+  pointer-events: none !important;
 }
 
 /* The canvas box must stay square: flex used to shrink its width to the
@@ -293,8 +297,8 @@
    slices it into a hard cut. Clamp it square to the space available
    (equal max on both axes keeps the render undistorted). */
 .ch-3d--side > * > div {
-  max-width: clamp(13rem, 24vw, 24rem) !important;
-  max-height: clamp(13rem, 24vw, 24rem) !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
 }
 
 /* ── Site tools open: tighten ── */
@@ -331,6 +335,8 @@
   .ch-copy {
     transform: none;
     max-width: 100%;
+    padding-top: clamp(8rem, 22vw, 12rem);
+    padding-right: 0;
   }
   .ch-statement,
   .ch-sub,
@@ -339,24 +345,27 @@
     max-width: 100%;
   }
   .ch-3d--side {
-    position: relative;
-    inset: auto;
-    order: -1;
-    width: 100%;
-    min-height: clamp(17rem, 66vw, 24rem);
+    position: absolute;
+    top: calc(var(--nav-h) + 0.5rem);
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: clamp(8rem, 22vw, 12rem);
+    max-width: none;
+    min-height: 0;
     transform: none;
-    justify-self: stretch;
     overflow: visible;
   }
   .ch-3d--side > * {
-    width: min(100%, 24rem) !important;
-    height: min(100vw - 2rem, 24rem) !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
     transform: scale(1);
     transform-origin: center;
   }
   .ch-3d--side > * > div {
     max-width: 100% !important;
-    max-height: min(100vw - 2rem, 24rem) !important;
+    max-height: 100% !important;
   }
   .ch-hero-footer {
     position: relative;
@@ -416,13 +425,7 @@
     font-size: clamp(1.32rem, 6.5vw, 2rem);
     line-height: 1.18;
   }
-  .ch-3d--side {
-    min-height: clamp(15rem, 66vw, 20rem);
-  }
-  .ch-3d--side > * {
-    width: min(100%, 20rem) !important;
-    height: min(100vw - 2rem, 20rem) !important;
-  }
+  .ch-3d--side { width: 8rem; }
   .ch-hero-stats {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
