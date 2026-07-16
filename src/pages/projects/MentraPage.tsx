@@ -37,10 +37,10 @@ export default function MentraPage() {
         { id: 'cs-os', label: 'MentraOS' },
         { id: 'cs-store', label: 'MiniApp Store' },
         { id: 'cs-timeline', label: 'Timeline' },
-        { id: 'cs-website', label: 'Live Site' },
         { id: 'cs-impact', label: 'Impact' },
         { id: 'cs-learnings', label: 'Learnings' },
         { id: 'cs-whats-next', label: "What's Next" },
+        { id: 'cs-website', label: 'Live Site' },
       ]
 
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
@@ -168,7 +168,6 @@ export default function MentraPage() {
             { title: 'Developer Gravity', desc: 'The store, docs, and submission flow had to make glasses feel worth building for.' },
             { title: 'Visible Trust', desc: 'Camera, permissions, and privacy states needed to be legible to the wearer and the room.' },
           ]} />
-          <CsImage src="/Assets/images/mentra/render-transparent.webp" alt="Mentra Live transparent frame render showing the camera module, temple electronics, and lens assembly" />
         </CsSection>
 
         <CsSection id="cs-companion" label="Companion App" title="Setup Without the Usual Bluetooth Pain">
@@ -247,35 +246,6 @@ export default function MentraPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-website" label="Live Product" title="The Website Had to Sell the Platform">
-          <div className="cs-mentra-web-block">
-            <figure>
-              <img src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
-              <figcaption>Live site flow: field use, integrations, and product proof.</figcaption>
-            </figure>
-            <div className="cs-mentra-web-copy">
-              <CsBody>
-                <p>The site had to move Mentra out of &ldquo;cool gadget&rdquo; territory and into a work platform with clear use cases, specs, and developer surfaces.</p>
-                <p>I sequenced the story around field use, custom AI workflows, open-source SDK control, MiniApps, specs, support, and buying confidence.</p>
-              </CsBody>
-              <div className="cs-mentra-web-facts" aria-label="Mentra website product story">
-                <span><strong>Buying path</strong> Specs + checkout</span>
-                <span><strong>Core audience</strong> Field teams</span>
-                <span><strong>Platform layer</strong> SDK + MiniApps</span>
-                <span><strong>Fulfillment</strong> 1-3 days</span>
-              </div>
-              <CsFeatureGrid
-                features={[
-                  { title: 'Field work first', desc: 'Led with hands-free capture and AI help during real operations.' },
-                  { title: 'Platform proof', desc: 'Explained SDK, custom apps, MiniApps, and distribution as reasons to choose Mentra.' },
-                  { title: 'Lower buying risk', desc: 'Moved price, shipping, returns, warranty, specs, and support into the decision path.' },
-                  { title: 'Sharper positioning', desc: 'Framed Mentra against closed consumer glasses as an open work platform.' },
-                ]}
-              />
-            </div>
-          </div>
-        </CsSection>
-
         <CsSection id="cs-impact" label="Impact" title="Shipping, Not Pitching">
           <CsBody style={{ marginBottom: '2rem' }}>
             <p>Mentra is live, priced, backed, covered, and shipping. My work turned the product from hardware promise into a usable platform story.</p>
@@ -312,6 +282,35 @@ export default function MentraPage() {
             { num: '2', title: 'Developer Onboarding', desc: 'Make submission, review, and store listings easier for first external builders.' },
             { num: '3', title: 'Accessibility Foundations', desc: 'Design captioning and audio-description patterns ahead of hardware support.' },
           ]} />
+        </CsSection>
+
+        <CsSection id="cs-website" label="Live Product" title="The Website Had to Sell the Platform">
+          <div className="cs-mentra-web-block">
+            <figure>
+              <img src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
+              <figcaption>Live site flow: field use, integrations, and product proof.</figcaption>
+            </figure>
+            <div className="cs-mentra-web-copy">
+              <CsBody>
+                <p>The site had to move Mentra out of &ldquo;cool gadget&rdquo; territory and into a work platform with clear use cases, specs, and developer surfaces.</p>
+                <p>I sequenced the story around field use, custom AI workflows, open-source SDK control, MiniApps, specs, support, and buying confidence.</p>
+              </CsBody>
+              <div className="cs-mentra-web-facts" aria-label="Mentra website product story">
+                <span><strong>Buying path</strong> Specs + checkout</span>
+                <span><strong>Core audience</strong> Field teams</span>
+                <span><strong>Platform layer</strong> SDK + MiniApps</span>
+                <span><strong>Fulfillment</strong> 1-3 days</span>
+              </div>
+              <CsFeatureGrid
+                features={[
+                  { title: 'Field work first', desc: 'Led with hands-free capture and AI help during real operations.' },
+                  { title: 'Platform proof', desc: 'Explained SDK, custom apps, MiniApps, and distribution as reasons to choose Mentra.' },
+                  { title: 'Lower buying risk', desc: 'Moved price, shipping, returns, warranty, specs, and support into the decision path.' },
+                  { title: 'Sharper positioning', desc: 'Framed Mentra against closed consumer glasses as an open work platform.' },
+                ]}
+              />
+            </div>
+          </div>
         </CsSection>
 
         <CsSection label="Credits" title="Team">
