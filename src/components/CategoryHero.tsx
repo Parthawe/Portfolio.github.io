@@ -35,6 +35,12 @@ const PORTFOLIO_STATS = [
   ['5+', 'years of experience'],
 ] as const
 
+const WEARABLE_PORTFOLIO_STATS = [
+  ['30+', 'projects'],
+  ['∞', 'Memories'],
+  ['6+', 'years of experience'],
+] as const
+
 type AudienceItem = {
   label: string
   text: string
@@ -303,6 +309,7 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
   const heroSlug = HERO_ROUTE_ALIASES[routeSlug ?? slug] ?? routeSlug ?? slug
   const categoryName = CATEGORY_NAMES[heroSlug] || CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
   const audienceItems = useMemo(() => CATEGORY_AUDIENCE[heroSlug] ?? CATEGORY_AUDIENCE[slug] ?? DEFAULT_AUDIENCE, [heroSlug, slug])
+  const portfolioStats = heroSlug === 'ai-wearables' ? WEARABLE_PORTFOLIO_STATS : PORTFOLIO_STATS
   const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
 
   const handleWorkClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -371,7 +378,7 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           <span aria-hidden="true">&darr;</span>
         </a>
         <dl className="ch-hero-stats" aria-label={`${categoryName} portfolio statistics`}>
-          {PORTFOLIO_STATS.map(([value, label]) => (
+          {portfolioStats.map(([value, label]) => (
             <div className="ch-hero-stat" key={label}>
               <dt>{value}</dt>
               <dd>{label}</dd>
