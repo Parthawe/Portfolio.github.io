@@ -162,6 +162,11 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    excludedProjects: ['ai-voice', 'ibm'],
+    archiveSection: {
+      label: 'UI/UX Archive Projects',
+      projects: ['raahi-project', 'transfi-project', 'ballah-code'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
