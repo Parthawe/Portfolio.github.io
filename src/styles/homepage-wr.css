@@ -145,7 +145,7 @@ body.page-ready .wr-hero.is-scene-ready {
 .hero-web-trigger {
   position: absolute;
   left: 50%;
-  bottom: clamp(3.25rem, 9vw, 6rem);
+  bottom: clamp(1.5rem, 4vw, 3rem);
   transform: translateX(-50%);
   z-index: 5;
   display: inline-flex;
