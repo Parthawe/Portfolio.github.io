@@ -304,6 +304,10 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    archiveSection: {
+      label: 'Research Projects',
+      projects: ['cuetv', 'code-for-build', 'ibm'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
