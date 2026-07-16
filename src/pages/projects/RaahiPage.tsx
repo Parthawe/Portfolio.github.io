@@ -132,11 +132,6 @@ export default function RaahiPage() {
               <p>The color system maps directly to transport modes: cab, bus, walk, bike-share, local, cycle, auto, and metro. Each mode gets a distinct pair so route changes are readable at a glance.</p>
             </CsBody>
             <CsImage
-              src={raahiAsset('Frame 2547.png')}
-              alt="Raahi project styleguide sheet — brand blue and orange, neutral grays, distinct color pairs for each of the eight transport modes, accent states, and the full typography scale"
-              caption="The styleguide itself: one color pair per transport mode, so a rider can tell a bus leg from a metro leg at a glance."
-            />
-            <CsImage
               src={raahiAsset('Frame 2547-1.png')}
               alt="Raahi extended styleguide strip showing transport-mode colors and typography rules"
               caption="A tighter system strip for transport-mode colors, typography, and repeatable UI language."
@@ -259,6 +254,11 @@ export default function RaahiPage() {
             <CsBody style={{ marginBottom: '2rem' }}>
               <p>The kiosk greets riders in English, Hindi, or Marathi and offers four simple paths: view the timetable, check a route, buy a ticket, or get a day pass. No app, no account -- the same service, standing at the stop.</p>
             </CsBody>
+            <CsImage
+              src={raahiAsset('Frame 2547.png')}
+              alt="Raahi kiosk screens for buying tickets, choosing a language, and checking routes, paired with the transport-mode color system"
+              caption="The kiosk applies one color pair per transport mode, keeping route changes readable across ticketing, maps, and welcome states."
+            />
             <div className="raahi-kiosk-row">
               <div className="cs-img reveal"><img src={raahiAsset('welcome.png')} alt="Kiosk welcome screen with key transit actions and language choices" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src={raahiAsset('kiosk home.png')} alt="Kiosk ticket and route screen with transit options and map context" loading="lazy" decoding="async" /></div>
