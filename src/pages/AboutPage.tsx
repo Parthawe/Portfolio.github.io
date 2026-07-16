@@ -145,11 +145,67 @@ const offClockImages = [
     src: '/Assets/images/about/off-clock/yc-founder-visit.webp',
     label: 'Founder visits',
   },
+  {
+    src: '/Assets/images/about/off-clock/edge-nyc.jpg',
+    label: 'Edge NYC',
+  },
+  {
+    src: '/Assets/images/about/off-clock/nyu-graduation-wall.jpg',
+    label: 'Graduation day',
+  },
+  {
+    src: '/Assets/images/about/off-clock/chicago-river.jpg',
+    label: 'Chicago river',
+  },
+  {
+    src: '/Assets/images/about/off-clock/gym-mirror.jpg',
+    label: 'Gym days',
+  },
+  {
+    src: '/Assets/images/about/off-clock/west-village-cafe.jpg',
+    label: 'West Village cafe',
+  },
+  {
+    src: '/Assets/images/about/off-clock/seattle-waterfront.jpg',
+    label: 'Seattle waterfront',
+  },
+  {
+    src: '/Assets/images/about/off-clock/bellagio-garden.jpg',
+    label: 'Bellagio garden',
+  },
+  {
+    src: '/Assets/images/about/off-clock/seattle-overlook.jpg',
+    label: 'Seattle overlook',
+  },
+  {
+    src: '/Assets/images/about/off-clock/vintage-car-museum.jpg',
+    label: 'Vintage cars',
+  },
+  {
+    src: '/Assets/images/about/off-clock/museum-architecture.jpg',
+    label: 'Museum architecture',
+  },
+  {
+    src: '/Assets/images/about/off-clock/plaid-mirror.jpg',
+    label: 'Mirror moments',
+  },
+  {
+    src: '/Assets/images/about/off-clock/yellow-sweater.jpg',
+    label: 'Sunday light',
+  },
+  {
+    src: '/Assets/images/about/off-clock/studio-smart-glasses.jpg',
+    label: 'Smart glasses portrait',
+  },
+  {
+    src: '/Assets/images/about/off-clock/coastal-sunset.jpg',
+    label: 'Coastal sunset',
+  },
 ]
 
 const offClockRows = [
-  offClockImages.slice(0, 6),
-  [...offClockImages.slice(6)].reverse(),
+  offClockImages.filter((_, index) => index % 2 === 0),
+  offClockImages.filter((_, index) => index % 2 === 1).reverse(),
 ]
 
 const aboutCharacterFrames = Array.from(
