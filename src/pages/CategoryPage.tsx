@@ -111,11 +111,24 @@ export default function CategoryPage() {
     addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(projectSlug))
   })
 
-  const featuredProject = visibleCategoryProjects[0] ?? null
-  const visibleMoreProjects = featuredProject
-    ? visibleCategoryProjects.filter((project) => project.slug !== featuredProject.slug)
-    : visibleCategoryProjects
-  const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length
+  const excludedProjectSlugs = new Set(category.excludedProjects ?? [])
+  const archiveProjectSlugs = new Set(category.archiveSection?.projects ?? [])
+  const featuredProject = visibleCategoryProjects.find(
+    (project) => !excludedProjectSlugs.has(project.slug) && !archiveProjectSlugs.has(project.slug),
+  ) ?? null
+  const visibleMoreProjects = visibleCategoryProjects.filter(
+    (project) => project.slug !== featuredProject?.slug
+      && !excludedProjectSlugs.has(project.slug)
+      && !archiveProjectSlugs.has(project.slug),
+  )
+  const archiveProjects = (category.archiveSection?.projects ?? []).reduce<Project[]>((projects, projectSlug) => {
+    const project = getProject(projectSlug)
+    if (project && !isHiddenProject(project) && !projects.some((item) => item.slug === project.slug)) {
+      projects.push(project)
+    }
+    return projects
+  }, [])
+  const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length + archiveProjects.length
   return (
     <div className="category-page" style={{ '--lp-accent': CATEGORY_PAGE_ACCENT } as React.CSSProperties}>
       <Helmet>
@@ -185,6 +198,30 @@ export default function CategoryPage() {
                   ))}
                 </div>
               </>
+            )}
+
+            {category.archiveSection && archiveProjects.length > 0 && (
+              <section className="lp-project-archive" aria-labelledby="lp-project-archive-title">
+                <p className="lp-section-label" id="lp-project-archive-title">
+                  {category.archiveSection.label}
+                </p>
+                <div className="lp-project-archive-grid">
+                  {archiveProjects.map((project) => (
+                    <Reveal key={project.slug}>
+                      <ProjectCard
+                        slug={project.slug}
+                        name={project.name}
+                        image={project.image}
+                        tag={project.tag}
+                        year={project.year}
+                        desc={project.desc}
+                        tilt={false}
+                        nda={project.nda}
+                      />
+                    </Reveal>
+                  ))}
+                </div>
+              </section>
             )}
           </div>
 

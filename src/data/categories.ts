@@ -29,6 +29,11 @@ export interface CategoryData {
     year?: string
     desc?: string
   }[][]
+  excludedProjects?: string[]
+  archiveSection?: {
+    label: string
+    projects: string[]
+  }
   approach: {
     label: string
     pillars: { num: string; title: string; desc: string }[]
@@ -893,27 +898,27 @@ export const categories: CategoryData[] = [
     stats: ['7 AI/wearable projects', 'Smart glasses to voice', 'On-device to cloud'],
     tools: ['Figma', 'AR Prototyping', 'Voice UI', 'LLM Integration', 'Gesture Design', 'Responsible AI'],
     featured: {
-      slug: 'mentra-miniapps',
-      title: 'Mentra MiniApps',
-      desc: 'Voice-first miniapp ecosystem for smart glasses',
-      role: 'Platform Designer · 2025–26',
-      image: '/Assets/images/mentra/appstore-hero.webp',
+      slug: 'mentra',
+      title: 'Mentra',
+      desc: 'AI smart glasses OS, companion app, store, and launch website',
+      role: 'Head of UI/UX · 2025–Present',
+      image: '/Assets/images/mentra.webp',
       bgColor: '#fdf2f8',
-      tag: 'PLATFORM DESIGN',
-      year: '2025–26',
+      tag: 'AI WEARABLES',
+      year: '2025–Present',
     },
     moreProjects: [
       [
         {
-          slug: 'mentra',
-          image: '/Assets/images/mentra.webp',
-          alt: 'Mentra',
-          name: 'Mentra',
-          result: 'AI smart glasses OS, companion app, store, and launch website',
-          role: 'Head of UI/UX · 2025–Present',
-          tag: 'AI WEARABLES',
-          year: '2025–Present',
-          desc: 'AI smart glasses OS, companion app, store, and launch website',
+          slug: 'mentra-miniapps',
+          image: '/Assets/images/mentra/appstore-hero.webp',
+          alt: 'Mentra MiniApps',
+          name: 'Mentra MiniApps',
+          result: 'Voice-first miniapp ecosystem for smart glasses',
+          role: 'Platform Designer · 2025–26',
+          tag: 'PLATFORM DESIGN',
+          year: '2025–26',
+          desc: 'Voice-first miniapp ecosystem for smart glasses',
         },
         {
           slug: 'clawed-chat',
@@ -951,44 +956,12 @@ export const categories: CategoryData[] = [
           desc: 'Sentry alerts to automated PR fixes via smart glasses',
         },
       ],
-      [
-        {
-          slug: 'ballah-code',
-          image: '/Assets/images/ballah-code.webp',
-          alt: 'Ballah Code',
-          name: 'Ballah Code',
-          result: 'AI coding workspace',
-          role: 'Designer · 2026',
-          tag: 'DEV TOOLS',
-          year: '2026',
-          desc: 'AI coding workspace',
-        },
-        {
-          slug: 'ai-voice',
-          image: '/Assets/images/nda-cover.svg',
-          alt: 'AI Voice Interface',
-          name: 'AI Voice Interface',
-          result: 'Conversational AI and voice-driven interaction',
-          role: 'Designer · 2025',
-          tag: 'VOICE UI',
-          year: '2025',
-          desc: 'Conversational AI and voice-driven interaction',
-        },
-      ],
-      [
-        {
-          slug: 'ibm',
-          image: '/Assets/Projects/CancerPrognosis/photos/hero-illustration.png',
-          alt: 'IBM Cancer Prognosis',
-          name: 'IBM Cancer Prognosis',
-          result: 'Encrypted genomic workflows for cancer prognosis',
-          role: 'Research Intern · 2020',
-          tag: 'HEALTHCARE AI',
-          year: '2020',
-          desc: 'Encrypted genomic workflows for cancer prognosis',
-        },
-      ],
     ],
+    excludedProjects: ['ai-voice', 'ibm'],
+    archiveSection: {
+      label: 'UI/UX Archive Projects',
+      projects: ['raahi-project', 'transfi-project', 'ballah-code'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
