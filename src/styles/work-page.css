@@ -367,7 +367,7 @@
 
 .work-library-row {
   display: grid;
-  grid-template-columns: 40px 74px minmax(11rem, 0.85fr) minmax(18rem, 1.15fr) minmax(8rem, 0.22fr);
+  grid-template-columns: 40px 74px minmax(9rem, 0.85fr) minmax(0, 1.15fr) minmax(7.5rem, 0.22fr);
   gap: 0.75rem;
   align-items: center;
 }
@@ -454,7 +454,8 @@
   justify-self: end;
   width: 100%;
   text-align: right;
-  text-wrap: nowrap;
+  line-height: 1.35;
+  text-wrap: balance;
 }
 
 .work-timeline-shell {
