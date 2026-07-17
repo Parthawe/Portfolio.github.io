@@ -123,6 +123,66 @@
   aspect-ratio: 1 / 1;
 }
 
+.motion-index-card-grid > :last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.motion-index-card-grid > :last-child:nth-child(odd) .pcard-visual {
+  aspect-ratio: 16 / 9;
+}
+
+.motion-index-proposal {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.65fr);
+  gap: clamp(2rem, 7vw, 8rem);
+  align-items: end;
+  margin-bottom: clamp(5rem, 9vw, 9rem);
+  padding: clamp(2rem, 5vw, 5rem);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--case-shell-radius);
+  background: #0a0b0d;
+  color: #fff;
+}
+
+.motion-index-proposal .lp-section-label { color: rgba(255,255,255,0.4); }
+
+.motion-index-proposal h2 {
+  max-width: 13ch;
+  margin: clamp(3rem, 7vw, 7rem) 0 0;
+  font-size: clamp(2.7rem, 5.8vw, 6.4rem);
+  font-weight: 400;
+  line-height: 0.97;
+  letter-spacing: -0.055em;
+}
+
+.motion-index-proposal > div:last-child p {
+  margin: 0 0 2rem;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.65;
+}
+
+.motion-index-proposal a {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font: 600 0.72rem/1 var(--mono);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 220ms ease, background 220ms ease;
+}
+
+.motion-index-proposal a:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+
 .motion-index-method {
   padding: clamp(5rem, 9vw, 9rem) 0;
   border-top: 1px solid var(--ink-08);
@@ -1361,7 +1421,8 @@
 @media (max-width: 900px) {
   .motion-index-hero__copy,
   .motion-index-hero__bottom,
-  .motion-index-method__heading { grid-template-columns: 1fr; }
+  .motion-index-method__heading,
+  .motion-index-proposal { grid-template-columns: 1fr; }
   .motion-index-method__grid { grid-template-columns: repeat(2, 1fr); }
   .vishwa-brief-grid,
   .mentra-brief-grid,
@@ -1404,6 +1465,10 @@
   .motion-project-main--mentra .motion-frame-grid,
   .motion-project-main--transfi .motion-frame-grid,
   .motion-output-list { grid-template-columns: 1fr; }
+  .motion-index-card-grid > :last-child:nth-child(odd) { grid-column: auto; }
+  .motion-index-card-grid > :last-child:nth-child(odd) .pcard-visual { aspect-ratio: 1 / 1; }
+  .motion-index-proposal { padding: 1.25rem; }
+  .motion-index-proposal h2 { font-size: clamp(2.6rem, 13vw, 4.5rem); }
   .motion-frame-grid figure:last-child { grid-column: auto; }
   .motion-index-method__grid article { min-height: 210px; }
   .vishwa-brief-grid article { min-height: 190px; }

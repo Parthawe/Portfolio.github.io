@@ -956,6 +956,19 @@ function MotionLanding() {
           </section>
 
           <Reveal>
+            <section className="motion-index-proposal" aria-labelledby="motion-proposal-title">
+              <div>
+                <p className="lp-section-label">Current creative-studio study</p>
+                <h2 id="motion-proposal-title">A motion system for products that think in public.</h2>
+              </div>
+              <div>
+                <p>An independent response to Perplexity’s Motion Designer role: one product-true launch prototype, three GTM territories, and a reusable After Effects production system.</p>
+                <a className="figma-hover" href="/perplexity">View the Perplexity study <span aria-hidden="true">↗</span></a>
+              </div>
+            </section>
+          </Reveal>
+
+          <Reveal>
             <section className="motion-index-method" aria-labelledby="motion-method-title">
               <p className="lp-section-label">How the work is built</p>
               <div className="motion-index-method__heading">
