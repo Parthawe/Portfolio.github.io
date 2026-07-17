@@ -936,7 +936,7 @@ function MotionLanding() {
             </Reveal>
 
             <p className="lp-section-label motion-index-work__secondary-label">Selected motion systems &amp; editorial work</p>
-            <div className="motion-index-card-grid">
+            <div className="pcard-masonry motion-index-card-grid">
               {projects.slice(1).map((project) => (
                 <Reveal key={project.key}>
                   <ProjectCard
