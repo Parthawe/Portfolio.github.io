@@ -172,59 +172,64 @@ const projects: MotionProject[] = [
   {
     key: 'transfi',
     path: 'transfi-identity-motion',
-    title: 'TransFi Identity in Motion',
-    cardTitle: 'TransFi: Trust at transaction speed',
-    descriptor: 'An identity-motion study connecting one directional mark to merchant-product states and a confirmed transaction.',
-    discipline: 'Identity motion / Product launch',
-    year: '2022',
+    title: 'TransFi — One Transaction, Made Legible',
+    cardTitle: 'TransFi: One transaction, made legible',
+    descriptor: 'A product-motion system that follows one cross-border payment from currency choice to verified delivery—using real TransFi interface states instead of abstract fintech spectacle.',
+    discipline: 'Product motion / Fintech GTM',
+    year: '2022–23',
     color: '#48d8ff',
     categorySlug: 'fintech',
     heroImage: '/Assets/mockups/projects/transfi-project_16x9.webp',
     heroAlt: 'TransFi identity, merchant dashboard, and customer checkout presentation',
-    intro: 'Using direction for momentum and restraint for financial confidence.',
-    truthNote: 'The animated mark and merchant interface come from my original TransFi design work. This page reframes those existing artifacts as a concise motion study; confidential campaign performance and internal production files are not claimed.',
-    challenge: 'Fintech motion often adds speed without adding understanding. The edit needed to connect a recognizable identity to dense merchant tooling while keeping amounts and transaction states calm and legible.',
-    move: 'Let the folded mark establish one left-to-right route, then use that same vector to reveal product layers. Values decelerate into place instead of bouncing or spinning.',
-    outcome: 'Brand energy and product credibility can share the same edit: a clear opening signal, an ordered dashboard reveal, and an unmistakable settled state.',
-    roles: ['Identity design', 'Motion study', 'Product design', 'Art direction', 'GTM framing'],
-    storyTitle: 'Signal. Route. Explain. Settle.',
-    artTitle: 'One continuous route from brand signal to product proof',
-    artNote: 'The folded identity provides direction, while real merchant interfaces carry the evidence. Cyan is reserved for the route and state confirmation.',
+    intro: 'Make money movement feel continuous—even when the infrastructure is complex.',
+    truthNote: 'The identity, dashboard, checkout, payment-method, verification, order-status, and responsive product frames are from my original TransFi design work. The storyboard, motion grammar, and After Effects architecture shown here are a portfolio production system built from those shipped sources—not a claim that this exact GTM film shipped or produced unverified campaign results.',
+    challenge: 'A cross-border payment changes currency, method, network, verification state, and ownership before it is complete. Showing every layer at once creates noise; hiding the steps makes the product feel like a black box. The story needed momentum without making financial information feel unstable.',
+    move: 'Follow one transaction—not a feature montage. The amount becomes the visual anchor while the interface moves through choose, wallet, method, verification, confirmation, and delivery. Expressive motion opens the story; productive motion carries every money and status state.',
+    outcome: 'One state-based master can become a launch explainer, a checkout walkthrough, a status-story cutdown, dashboard feature clips, and responsive social versions while preserving amounts, labels, and confirmation moments.',
+    roles: ['Product design', 'Motion system', 'Storyboard', 'Art direction', 'Template architecture'],
+    storyTitle: 'Choose. Verify. Move. Confirm.',
+    artTitle: 'The transaction is the protagonist—not the network',
+    artNote: 'Real checkout and dashboard states provide the proof. Blue carries continuity, cyan marks active movement, green is reserved for confirmed status, and financial values never spin, bounce, or blur between states.',
     beats: [
-      { time: '00:00', title: 'Signal', body: 'The folded mark creates a fast, recognizable opening.' },
-      { time: '00:02', title: 'Route', body: 'Its direction becomes the path into the merchant product.' },
-      { time: '00:05', title: 'Explain', body: 'Dashboard layers enter in the order a merchant needs them.' },
-      { time: '00:09', title: 'Settle', body: 'The transaction resolves with a firm hold and no celebratory noise.' },
+      { time: '00:00', title: 'Orient', body: 'A single amount and directional mark establish what is moving before the interface appears.' },
+      { time: '00:02', title: 'Choose', body: 'Currency and asset enter as paired decisions; the amount stays fixed to preserve continuity.' },
+      { time: '00:05', title: 'Authorize', body: 'Wallet, payment method, and verification arrive one at a time in the order the customer acts.' },
+      { time: '00:09', title: 'Track', body: 'The six-step journey becomes a status route, showing progress without pretending settlement is instantaneous.' },
+      { time: '00:13', title: 'Confirm', body: 'Order summary and merchant dashboard hold on the resolved state long enough to read.' },
+      { time: '00:16', title: 'Sign off', body: 'The route folds back into the mark with one product sentence and no extra feature claims.' },
     ],
     principles: [
-      { label: 'Direction', value: 'One continuous left-to-right route' },
-      { label: 'Data', value: 'Firm deceleration and clear endpoints' },
-      { label: 'Hierarchy', value: 'Status and amount before decoration' },
-      { label: 'Sound', value: 'Transfer, verify, low confirmation tone' },
+      { label: 'Continuity', value: 'One amount persists from choice to confirmation' },
+      { label: 'State', value: 'Every transition has an origin, action, and resolved endpoint' },
+      { label: 'Hierarchy', value: 'Amount → status → method → supporting detail' },
+      { label: 'Accessibility', value: 'Meaning survives sound-off, pause, and reduced motion' },
     ],
     frames: [
-      { src: '/Assets/mockups/projects/transfi-project_16x9.webp', alt: 'TransFi identity and product presentation', caption: '01 — Brand signal', fit: 'cover' },
-      { src: '/Assets/Projects/Transfi/public/Customer dashboard Users.png', alt: 'TransFi customer dashboard users interface', caption: '02 — Operational context', fit: 'cover' },
-      { src: '/Assets/Projects/Transfi/public/Order Summary.png', alt: 'TransFi order summary with transaction status', caption: '03 — Product proof', fit: 'contain' },
+      { src: '/Assets/Projects/Transfi/public/Group 1000004741.png', alt: 'TransFi currency selection visual with USD, BTC, and EUR layers', caption: '01 — Currency choice', fit: 'contain' },
+      { src: '/Assets/Projects/Transfi/public/Frame 427318638.png', alt: 'TransFi buy-crypto widget with currency and asset selection screens', caption: '02 — Checkout entry', fit: 'contain' },
+      { src: '/Assets/Projects/Transfi/public/Frame 427318646.png', alt: 'Six-step TransFi checkout journey from currency choice to crypto delivery', caption: '03 — Journey continuity', fit: 'cover' },
+      { src: '/Assets/Projects/Transfi/public/Order Summary.png', alt: 'TransFi order summary with amount, fees, and delivery status', caption: '04 — Resolved state', fit: 'contain' },
     ],
     decisions: [
-      { removed: 'Fast dashboard montage', kept: 'One continuous route', reason: 'Continuity makes a complex payment journey easier to follow.' },
-      { removed: 'Elastic amount animation', kept: 'Firm deceleration and hold', reason: 'Financial values should feel resolved, not playful or uncertain.' },
-      { removed: 'Technology spectacle', kept: 'Merchant-facing product proof', reason: 'Trust comes from readable states and confirmation.' },
+      { removed: 'Coins, particles, and a spinning globe', kept: 'One observable transaction', reason: 'A real payment journey demonstrates global infrastructure more credibly than generic fintech symbols.' },
+      { removed: 'A fast six-screen carousel', kept: 'One action per beat', reason: 'Choice, authorization, verification, and settlement have different meanings and need separate attention.' },
+      { removed: 'Elastic numbers and rolling counters', kept: 'Persistent amount with a firm settle', reason: 'Financial values should feel stable and comparable across every state.' },
+      { removed: 'A confetti success moment', kept: 'Status change, timestamp, and quiet hold', reason: 'Confirmation is evidence. The interface should communicate completion without obscuring the details.' },
     ],
     aeBuild: [
-      { layer: 'IDENT_FOLD', technique: 'Vector paths + Graph Editor', purpose: 'The mark assembles with a precise curve and a non-elastic settle.' },
-      { layer: 'ROUTE_LINE', technique: 'Trim Paths + expressions', purpose: 'One directional control connects the identity, route, and interface reveal.' },
-      { layer: 'DASHBOARD_UI', technique: 'Pre-comps + null controls', purpose: 'Dense product surfaces reveal by decision priority instead of moving as one screenshot.' },
-      { layer: 'DELIVERY_SET', technique: 'Responsive compositions', purpose: 'Protected UI and title zones survive horizontal, square, and vertical crops.' },
+      { layer: '00_MASTER_TRANSACTION', technique: '1920×1080 · 18 sec · six markers', purpose: 'One marked sequence protects the order from customer intent to merchant confirmation.' },
+      { layer: '01_AMOUNT_ANCHOR', technique: 'Text controls + currency variants', purpose: 'Amount, asset, and rate update without drifting between scenes or requiring duplicate animation.' },
+      { layer: '02_STATE_ROUTE', technique: 'Shape layer + Trim Paths', purpose: 'A single route controls progress, chapter handoffs, and the final identity fold.' },
+      { layer: '03_PRODUCT_STATES', technique: 'Figma exports + protected pre-comps', purpose: 'Checkout, KYC, payment, order, and dashboard modules reveal by decision priority.' },
+      { layer: '90_DELIVERY_SET', technique: 'Responsive comps + Essential Graphics', purpose: 'Copy, currency, status, CTA, captions, and crops remain editable for new corridors.' },
     ],
     deliveries: [
-      { key: '06 seconds', value: 'Identity signal / social bumper' },
-      { key: '15 seconds', value: 'Route → dashboard → confirmation' },
-      { key: '30 seconds', value: 'Transaction explainer' },
+      { key: '03 seconds', value: 'Identity / confirmation sting' },
+      { key: '06 seconds', value: 'Choose → pay checkout story' },
+      { key: '18 seconds', value: 'End-to-end transaction master' },
       { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
     ],
-    outputs: ['Identity sting', 'Dashboard reveal', 'Transaction story', 'Social loop'],
+    outputs: ['Transaction master', 'Checkout walkthrough', 'Status-story template', 'Responsive social cutdowns'],
   },
 ]
 
@@ -305,12 +310,29 @@ function MentraReel() {
 
 function TransfiReel({ motionOn }: { motionOn: boolean }) {
   return (
-    <div className="motion-preview motion-preview--transfi" role="img" aria-label="TransFi motion preview connecting the identity to the merchant dashboard">
-      <div className="motion-transfi__mark" aria-hidden="true">
-        <img src={motionOn ? transfiMotion : '/Assets/mockups/projects/transfi-project_16x9.webp'} alt="" />
+    <div className={`motion-preview motion-preview--transfi${motionOn ? '' : ' is-paused'}`} role="img" aria-label="TransFi transaction motion preview moving from currency choice through payment status to confirmation">
+      <div className="motion-transfi__status" aria-hidden="true"><span>TRANSFI / TRANSACTION 01</span><span>18 SEC MASTER</span></div>
+      <div className="motion-transfi__chapter-labels" aria-hidden="true">
+        <span>01 / ORIENT</span><span>02 / CHOOSE</span><span>03 / MOVE</span><span>04 / CONFIRM</span>
       </div>
-      <img className="motion-transfi__ui" src="/Assets/Projects/Transfi/public/Customer dashboard Users.png" alt="" aria-hidden="true" />
-      <div className="motion-transfi__route" aria-hidden="true"><i /><i /><i /></div>
+      <div className="motion-transfi__scene motion-transfi__scene--signal" aria-hidden="true">
+        <div><img src={transfiMotion} alt="" /></div>
+        <strong>One payment.<br />Every state visible.</strong>
+        <p><span>$300.00</span><small>USD → 0.0925 BTC</small></p>
+      </div>
+      <div className="motion-transfi__scene motion-transfi__scene--choose" aria-hidden="true">
+        <img src="/Assets/Projects/Transfi/public/Group 1000004741.png" alt="" />
+        <div><small>CHOOSE THE CORRIDOR</small><strong>USD → BTC</strong><span>Amount remains anchored</span></div>
+      </div>
+      <div className="motion-transfi__scene motion-transfi__scene--move" aria-hidden="true">
+        <img src="/Assets/Projects/Transfi/public/Frame 427318646.png" alt="" />
+        <div><small>FOLLOW THE STATE</small><strong>Choose · verify · pay · deliver</strong></div>
+      </div>
+      <div className="motion-transfi__scene motion-transfi__scene--confirm" aria-hidden="true">
+        <img src="/Assets/Projects/Transfi/public/Order Summary.png" alt="" />
+        <div><small>TRANSACTION STATE</small><strong>Payment complete.</strong><span>Amount, fees, method, and status remain readable.</span></div>
+      </div>
+      <div className="motion-transfi__timeline" aria-hidden="true"><i /><span>CHOOSE</span><span>VERIFY</span><span>MOVE</span><span>CONFIRM</span></div>
     </div>
   )
 }
@@ -593,6 +615,140 @@ function MentraAeStack() {
   )
 }
 
+function TransfiCommunicationBrief() {
+  const items = [
+    ['Audience', 'Merchant, growth, and operations teams evaluating whether a global payment flow feels understandable and trustworthy.'],
+    ['Communication job', 'Explain one payment from customer intent to confirmed delivery without turning the infrastructure into a black box.'],
+    ['Product proof', 'Real checkout, payment-method, verification, order-status, and dashboard frames from the TransFi product work.'],
+    ['Delivery constraint', 'Amounts and statuses must stay readable across social crops, sound-off playback, pauses, and localized currency variants.'],
+  ]
+  const states = [
+    ['01', 'Choose', 'Amount + currency'],
+    ['02', 'Connect', 'Wallet address'],
+    ['03', 'Authorize', 'Payment method'],
+    ['04', 'Verify', 'Identity state'],
+    ['05', 'Track', 'Order progress'],
+    ['06', 'Confirm', 'Delivery + record'],
+  ]
+
+  return (
+    <>
+      <div className="mentra-brief-grid transfi-brief-grid">
+        {items.map(([label, value], index) => (
+          <article key={label}><span>0{index + 1}</span><small>{label}</small><p>{value}</p></article>
+        ))}
+      </div>
+      <div className="transfi-state-model" aria-label="TransFi transaction state model">
+        <p>Transaction model</p>
+        <div>
+          {states.map(([num, title, detail]) => (
+            <article key={num}><span>{num}</span><strong>{title}</strong><small>{detail}</small></article>
+          ))}
+        </div>
+      </div>
+    </>
+  )
+}
+
+function TransfiMotionSystem() {
+  const tokens = [
+    ['Brand signal', '560–720 ms', 'Mark assembly and chapter open'],
+    ['State change', '240–360 ms', 'Panel handoff and progress advance'],
+    ['Data update', '160–220 ms', 'Amount, method, and status replacement'],
+    ['Proof hold', '1.4–2.0 sec', 'Fee breakdown, verification, and confirmation'],
+  ]
+  const stateRules = [
+    ['Awaiting input', 'Blue focus ring', 'Only the next available action moves.'],
+    ['Processing', 'Cyan route', 'Progress advances; the amount stays fixed.'],
+    ['Needs attention', 'Amber hold', 'Pause on the relevant field—never shake the whole screen.'],
+    ['Completed', 'Green + timestamp', 'One firm settle, then enough time to verify the record.'],
+  ]
+
+  return (
+    <>
+      <div className="mentra-reference-bar">
+        <div><small>Research translated into the system</small><strong>Treat money as state—not spectacle.</strong></div>
+        <a href="https://www.transfi.com/solutions/payment-gateway" target="_blank" rel="noreferrer">Product truth / global payment flow ↗</a>
+        <a href="https://wise.design/foundations/motion-system" target="_blank" rel="noreferrer">Financial motion / pace and weight ↗</a>
+        <a href="https://wise.design/foundations/transitions" target="_blank" rel="noreferrer">Transition continuity / spatial logic ↗</a>
+      </div>
+
+      <div className="mentra-source-grid transfi-source-grid">
+        <article className="mentra-source-card mentra-source-card--os transfi-source-card">
+          <img src="/Assets/Projects/Transfi/public/Group 1000004741.png" alt="TransFi currency-selection product visual" loading="lazy" />
+          <p><span>01 · Intent</span><strong>Currency choice gives the story a concrete starting point.</strong></p>
+        </article>
+        <article className="mentra-source-card mentra-source-card--os transfi-source-card">
+          <img src="/Assets/Projects/Transfi/public/Frame 427318638.png" alt="TransFi buy-crypto widget with currency and asset selectors" loading="lazy" />
+          <p><span>02 · Choice</span><strong>Real interface states show what the customer actually controls.</strong></p>
+        </article>
+        <article className="mentra-source-card transfi-source-card transfi-source-card--journey">
+          <img src="/Assets/Projects/Transfi/public/Frame 427318646.png" alt="TransFi six-step checkout and delivery journey" loading="lazy" />
+          <p><span>03 · Route</span><strong>The six shipped screens become one continuous transaction path.</strong></p>
+        </article>
+        <article className="mentra-source-card mentra-source-card--os transfi-source-card transfi-source-card--summary">
+          <img src="/Assets/Projects/Transfi/public/Order Summary.png" alt="TransFi order summary with fees and delivery status" loading="lazy" />
+          <p><span>04 · Evidence</span><strong>The resolved record—not confetti—is the payoff.</strong></p>
+        </article>
+      </div>
+
+      <div className="mentra-token-grid" aria-label="TransFi motion timing tokens">
+        {tokens.map(([name, timing, use], index) => (
+          <article key={name}><span>0{index + 1}</span><small>{name}</small><strong>{timing}</strong><p>{use}</p></article>
+        ))}
+      </div>
+
+      <div className="transfi-state-rules" aria-label="TransFi state motion behavior">
+        <div><small>Status logic</small><h3>Motion changes with transaction risk.</h3><p>A new state is not automatically a new animation. Behavior depends on whether the customer should act, wait, inspect, or trust that the payment is complete.</p></div>
+        <section>
+          {stateRules.map(([state, signal, behavior]) => (
+            <article key={state}><strong>{state}</strong><span>{signal}</span><p>{behavior}</p></article>
+          ))}
+        </section>
+      </div>
+
+      <div className="mentra-format-map transfi-format-map">
+        <div className="mentra-format-map__copy">
+          <small>Responsive composition</small>
+          <h3>Protect the amount and the next action.</h3>
+          <p>The horizontal master can show the customer journey and merchant context together. The vertical cut follows one state at a time, keeps the amount in the upper third, and reserves the lower zone for the active action or confirmation.</p>
+        </div>
+        <figure className="mentra-format mentra-format--wide transfi-format transfi-format--wide">
+          <img src="/Assets/Projects/Transfi/public/Frame 427318646.png" alt="TransFi transaction journey in a horizontal delivery frame" loading="lazy" />
+          <i aria-hidden="true" /><figcaption>16:9 · end-to-end master</figcaption>
+        </figure>
+        <figure className="mentra-format mentra-format--vertical transfi-format transfi-format--vertical">
+          <img src="/Assets/Projects/Transfi/public/Order Summary.png" alt="TransFi order summary in a vertical delivery frame" loading="lazy" />
+          <i aria-hidden="true" /><figcaption>9:16 · status story</figcaption>
+        </figure>
+      </div>
+    </>
+  )
+}
+
+function TransfiAeStack() {
+  const rows = [
+    ['00_MASTER_TRANSACTION', '1920 × 1080 · 540 frames', 'Master'],
+    ['01_AMOUNT_ANCHOR', 'Value · fiat · asset · rate', 'Controls'],
+    ['02_STATE_ROUTE', 'Progress · chapter · final fold', 'Shape rig'],
+    ['03_PRODUCT_STATES', 'Checkout · KYC · order · dashboard', 'Protected'],
+    ['04_TYPE_CAPTIONS_AUDIO', 'Benefit · status · sound-off copy', 'Editable'],
+    ['90_DELIVERY_SET', '16:9 · 4:5 · 1:1 · 9:16', 'Inherited'],
+  ]
+
+  return (
+    <div className="motion-ae-stack" aria-label="TransFi After Effects transaction-story structure">
+      <div className="motion-ae-stack__head"><span>After Effects project map</span><span>Motion-system specification</span></div>
+      {rows.map(([name, contents, kind], index) => (
+        <div className="motion-ae-stack__row" key={name}>
+          <i style={{ '--row-color': index === 0 ? '#48d8ff' : index === rows.length - 1 ? '#35b878' : '#2458e6' } as CSSProperties} />
+          <code>{name}</code><span>{contents}</span><small>{kind}</small>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function MotionLanding() {
   return (
     <div className="motion-index-page category-page">
@@ -703,8 +859,9 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
   const style = { '--project-color': project.color } as CSSProperties
   const isVishwa = project.key === 'vishwa'
   const isMentra = project.key === 'mentra'
-  const hasBrief = isVishwa || isMentra
-  const hasSystemSection = isVishwa || isMentra
+  const isTransfi = project.key === 'transfi'
+  const hasBrief = isVishwa || isMentra || isTransfi
+  const hasSystemSection = isVishwa || isMentra || isTransfi
   const sectionNumber = (number: number, afterSystem = false) => String(number + (hasBrief ? 1 : 0) + (afterSystem && hasSystemSection ? 1 : 0)).padStart(2, '0')
 
   return (
@@ -730,7 +887,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             { label: 'Role', value: project.roles.join(' · ') },
             { label: 'Year', value: project.year },
             { label: 'Scope', value: project.outputs.join(' · ') },
-            { label: 'Status', value: isMentra ? 'Documented motion system · shipped source assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Portfolio motion study' },
+            { label: 'Status', value: isMentra ? 'Documented motion system · shipped source assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Documented motion system · shipped product sources' },
           ]}
           heroExperience="visual"
           heroEyebrow="Selected motion study"
@@ -765,11 +922,20 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           </CsSection>
         )}
 
+        {isTransfi && (
+          <CsSection id="motion-brief" label="01 — Communication brief" title="Make one complex payment feel observable from intent to delivery.">
+            <CsBody>
+              <p>The story has to communicate both sides of trust: the customer understands the next action, and the merchant can see what happened. The brief converts the product flow into six visible states instead of hiding complexity behind generic speed claims.</p>
+            </CsBody>
+            <TransfiCommunicationBrief />
+          </CsSection>
+        )}
+
         <CsSection id="motion-story" label={`${sectionNumber(1)} — Storyboard`} title={project.storyTitle}>
-          <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : isMentra ? 'The 15-second master moves from recognition to proof. Expressive chapter changes earn attention; product renders, first-person use, and MentraOS states receive quieter holds so the viewer can understand what is being shown.' : project.move}</p></CsBody>
+          <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : isMentra ? 'The 15-second master moves from recognition to proof. Expressive chapter changes earn attention; product renders, first-person use, and MentraOS states receive quieter holds so the viewer can understand what is being shown.' : 'The 18-second master follows one illustrative transaction. The amount anchors the sequence; customer actions advance it; verification and settlement receive longer holds because those are the moments where trust is either earned or lost.'}</p></CsBody>
           <div className="motion-case-preview">
             <ProjectReel project={project} motionOn={motionOn} />
-            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : isMentra ? '15-second launch-system prototype' : 'Motion preview'}</span><span>{isVishwa ? 'Playback controls included' : 'Reduced-motion preference respected'}</span></p>
+            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : isMentra ? '15-second launch-system prototype' : '18-second transaction-system prototype'}</span><span>{isVishwa ? 'Playback controls included' : isTransfi ? 'Illustrative values from source UI · reduced-motion respected' : 'Reduced-motion preference respected'}</span></p>
           </div>
           <CsSteps steps={project.beats.map((beat) => ({ num: beat.time, title: beat.title, desc: beat.body }))} />
         </CsSection>
@@ -792,6 +958,15 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           </CsSection>
         )}
 
+        {isTransfi && (
+          <CsSection id="motion-system" label="03 — Motion grammar" title="Fast enough to feel responsive. Stable enough to trust.">
+            <CsBody>
+              <p>The research produced a transaction grammar rather than an effects board: natural weight for financial motion, spatial continuity between steps, one persistent amount, and different behaviors for waiting, processing, attention, and completed states.</p>
+            </CsBody>
+            <TransfiMotionSystem />
+          </CsSection>
+        )}
+
         <CsSection id="art-direction" label={`${sectionNumber(2, true)} — Art direction`} title={project.artTitle}>
           <CsBody><p>{project.artNote}</p></CsBody>
           <div className="motion-frame-grid">
@@ -805,21 +980,22 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           <CsInfoGrid items={project.principles.map((principle) => ({ key: principle.label, value: principle.value }))} />
         </CsSection>
 
-        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the hardware story' : 'Specific choices, tied to the product'}>
-          <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : isMentra ? 'Every decision protects one of the four proof layers. The system avoids effects that make the brand louder while making the product less specific.' : 'The process is shown through the decisions that changed the sequence—not reconstructed sketches or invented approval history.'}</p></CsBody>
+        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the hardware story' : 'Specific choices, tied to transaction trust'}>
+          <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : isMentra ? 'Every decision protects one of the four proof layers. The system avoids effects that make the brand louder while making the product less specific.' : 'Every decision protects continuity, comprehension, or confidence. The system removes familiar fintech effects whenever they make the actual product journey less observable.'}</p></CsBody>
           <DecisionList decisions={project.decisions} />
         </CsSection>
 
         <CsSection id="after-effects" label={`${sectionNumber(4, true)} — After Effects build`} title="An editable master, not a mysterious hero file">
           <CsBody>
-            <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : isMentra ? 'This build plan turns the motion grammar into an editable launch tool: one marked master, one controlled identity route, swappable product renders, protected POV and OS modules, and delivery compositions that inherit timing instead of duplicating it.' : 'The approved direction maps into named controls, reusable pre-comps, deliberate easing, and responsive delivery compositions. This production plan is explicit about how the study would be carried into After Effects without presenting a hypothetical project file as a shipped artifact.'}</p>
+            <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : isMentra ? 'This build plan turns the motion grammar into an editable launch tool: one marked master, one controlled identity route, swappable product renders, protected POV and OS modules, and delivery compositions that inherit timing instead of duplicating it.' : 'This build plan turns one transaction into an editable GTM tool: a persistent amount controller, a six-marker state route, protected product pre-comps, localized copy fields, and delivery versions that inherit the same timing instead of recreating it.'}</p>
           </CsBody>
           <div className="motion-ae-callout">
             <span>Ae</span>
-            <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : isMentra ? 'Illustrator identity vectors + Blender render passes + Figma MentraOS states → After Effects rig, compositing, captions, and responsive versions → Premiere sound edit → Media Encoder delivery.' : 'Illustrator and Figma source art → After Effects animation and compositing → Premiere edit and captions → Media Encoder masters and social versions.'}</p></div>
+            <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : isMentra ? 'Illustrator identity vectors + Blender render passes + Figma MentraOS states → After Effects rig, compositing, captions, and responsive versions → Premiere sound edit → Media Encoder delivery.' : 'Illustrator identity vectors + Figma checkout and dashboard states → After Effects route rig, amount controls, compositing, and captions → Premiere sound edit → Media Encoder delivery.'}</p></div>
           </div>
           {isVishwa && <VishwaAeStack />}
           {isMentra && <MentraAeStack />}
+          {isTransfi && <TransfiAeStack />}
           <CsSteps steps={project.aeBuild.map((item, index) => ({ num: `0${index + 1}`, title: `${item.layer} · ${item.technique}`, desc: item.purpose }))} />
           <CsInfoGrid items={project.deliveries} />
         </CsSection>
@@ -840,7 +1016,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           ...(hasBrief ? [{ id: 'motion-brief', label: 'Brief' }] : []),
           { id: 'motion-story', label: 'Storyboard' },
           ...(isVishwa ? [{ id: 'campaign-archive', label: 'Archive' }] : []),
-          ...(isMentra ? [{ id: 'motion-system', label: 'Motion system' }] : []),
+          ...(isMentra || isTransfi ? [{ id: 'motion-system', label: 'Motion system' }] : []),
           { id: 'art-direction', label: 'Art direction' },
           { id: 'motion-decisions', label: 'Decisions' },
           { id: 'after-effects', label: 'After Effects' },
