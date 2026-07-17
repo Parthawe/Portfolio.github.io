@@ -387,6 +387,15 @@ function CampaignVideo({ src, poster, title, note, href, className = '' }: { src
   )
 }
 
+function MotionArtifact({ src, title, note, className = '' }: { src: string; title: string; note: string; className?: string }) {
+  return (
+    <figure className={`vishwa-video motion-source-artifact ${className}`.trim()}>
+      <div><img src={src} alt={title} loading="lazy" /></div>
+      <figcaption><span>{title}</span><small>{note}</small></figcaption>
+    </figure>
+  )
+}
+
 function VishwaCampaignArchive() {
   const films = [
     {
@@ -464,6 +473,65 @@ function VishwaCampaignArchive() {
             href="https://www.instagram.com/reel/Coz2-6Eo1KE/"
           />
         </div>
+      </div>
+    </>
+  )
+}
+
+function MentraVideoEvidence() {
+  return (
+    <>
+      <div className="motion-video-provenance">
+        <span>Source-footage note</span>
+        <p>These are current films published by Mentra. They verify the physical product, real-world use, and the platform context available to the proposed campaign system; I am not presenting either finished edit as a film I directed.</p>
+      </div>
+      <div className="vishwa-video-grid motion-source-video-grid">
+        <CampaignVideo
+          src="/Assets/Projects/mentra-brand/motion/official-site-hero.mp4"
+          poster="/Assets/Projects/mentra-brand/motion/official-site-hero-poster.png"
+          title="Mentra site hero · real-world work"
+          note="Official Mentra footage · campaign source reference"
+          href="https://mentraglass.com/"
+        />
+        <CampaignVideo
+          src="/Assets/Projects/mentra-brand/motion/official-product-intro.mp4"
+          poster="/Assets/Projects/mentra-brand/motion/official-product-intro-poster.png"
+          title="Mentra Live · product introduction"
+          note="Official Mentra product film · campaign source reference"
+          href="https://mentraglass.com/"
+        />
+      </div>
+      <div className="motion-video-research-links">
+        <div><small>Additional official production context</small><strong>The footage library also has a product-unboxing story and a factory-build story—useful for hardware proof cutdowns.</strong></div>
+        <a href="https://www.youtube.com/watch?v=-96QvIVzcMc" target="_blank" rel="noreferrer">Product unboxing ↗</a>
+        <a href="https://www.youtube.com/watch?v=bhtVIJdsMS4" target="_blank" rel="noreferrer">Building 1,000 glasses ↗</a>
+      </div>
+    </>
+  )
+}
+
+function TransfiVideoEvidence() {
+  return (
+    <>
+      <div className="motion-video-provenance">
+        <span>Archive boundary</span>
+        <p>The animated identity loop is from the original project archive. The current TransFi site film is included as later brand and product context—not as a film from my 2022–23 project scope or an edit I directed.</p>
+      </div>
+      <div className="vishwa-video-grid motion-source-video-grid">
+        <MotionArtifact
+          src={transfiMotion}
+          title="TransFi identity loop"
+          note="Original project archive · animated brand study"
+          className="is-contain"
+        />
+        <CampaignVideo
+          src="/Assets/Projects/Transfi/motion/official-site-hero.mp4"
+          poster="/Assets/Projects/Transfi/motion/official-site-hero-poster.jpg"
+          title="TransFi · stablecoin infrastructure"
+          note="Current official site film · later brand reference"
+          href="https://www.transfi.com/"
+          className="is-contain"
+        />
       </div>
     </>
   )
@@ -874,7 +942,8 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
   const isTransfi = project.key === 'transfi'
   const hasBrief = isVishwa || isMentra || isTransfi
   const hasSystemSection = isVishwa || isMentra || isTransfi
-  const sectionNumber = (number: number, afterSystem = false) => String(number + (hasBrief ? 1 : 0) + (afterSystem && hasSystemSection ? 1 : 0)).padStart(2, '0')
+  const hasSourceVideoSection = isMentra || isTransfi
+  const sectionNumber = (number: number, afterSystem = false, afterSourceVideo = false) => String(number + (hasBrief ? 1 : 0) + (afterSystem && hasSystemSection ? 1 : 0) + (afterSourceVideo && hasSourceVideoSection ? 1 : 0)).padStart(2, '0')
 
   return (
     <>
@@ -979,7 +1048,25 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           </CsSection>
         )}
 
-        <CsSection id="art-direction" label={`${sectionNumber(2, true)} — Art direction`} title={project.artTitle}>
+        {isMentra && (
+          <CsSection id="source-video" label="04 — Source footage" title="The product footage is real. The proposed edit stays clearly labeled.">
+            <CsBody>
+              <p>The strongest campaign route is to cut from approved footage instead of simulating a product that already exists. These films establish the available visual truth; the storyboard above defines how I would reorganize that material into the Moment → Wear → Use → Extend advertising sequence.</p>
+            </CsBody>
+            <MentraVideoEvidence />
+          </CsSection>
+        )}
+
+        {isTransfi && (
+          <CsSection id="source-video" label="04 — Motion archive" title="Original identity motion, paired with the brand’s current product context.">
+            <CsBody>
+              <p>The archive contains one original animated identity study rather than a fabricated campaign reel. Pairing it with TransFi’s current official film shows the gap the proposed transaction story is designed to solve: move from broad infrastructure energy into a legible, state-by-state explanation of the product.</p>
+            </CsBody>
+            <TransfiVideoEvidence />
+          </CsSection>
+        )}
+
+        <CsSection id="art-direction" label={`${sectionNumber(2, true, true)} — Art direction`} title={project.artTitle}>
           <CsBody><p>{project.artNote}</p></CsBody>
           <div className="motion-frame-grid">
             {project.frames.map((frame) => (
@@ -992,12 +1079,12 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           <CsInfoGrid items={project.principles.map((principle) => ({ key: principle.label, value: principle.value }))} />
         </CsSection>
 
-        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the advertising story' : 'Specific choices, tied to transaction trust'}>
+        <CsSection id="motion-decisions" label={`${sectionNumber(3, true, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the advertising story' : 'Specific choices, tied to transaction trust'}>
           <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : isMentra ? 'Every decision protects the advertising hierarchy: desire first, proof second, platform third. The system avoids category clichés that make the brand louder while making the human benefit less specific.' : 'Every decision protects continuity, comprehension, or confidence. The system removes familiar fintech effects whenever they make the actual product journey less observable.'}</p></CsBody>
           <DecisionList decisions={project.decisions} />
         </CsSection>
 
-        <CsSection id="after-effects" label={`${sectionNumber(4, true)} — After Effects build`} title="An editable master, not a mysterious hero file">
+        <CsSection id="after-effects" label={`${sectionNumber(4, true, true)} — After Effects build`} title="An editable master, not a mysterious hero file">
           <CsBody>
             <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : isMentra ? 'This build plan turns the advertising grammar into a reusable campaign tool: one master hierarchy, a swappable Stream/Hear/Focus/Build hook family, protected lifestyle and product modules, and paid-social compositions that inherit timing instead of duplicating it.' : 'This build plan turns one transaction into an editable GTM tool: a persistent amount controller, a six-marker state route, protected product pre-comps, localized copy fields, and delivery versions that inherit the same timing instead of recreating it.'}</p>
           </CsBody>
@@ -1012,7 +1099,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           <CsInfoGrid items={project.deliveries} />
         </CsSection>
 
-        <CsSection id="scope" label={`${sectionNumber(5, true)} — Scope & authorship`} title="Clear about what is shipped and what is studied">
+        <CsSection id="scope" label={`${sectionNumber(5, true, true)} — Scope & authorship`} title="Clear about what is shipped and what is studied">
           <CsBody><p>{project.truthNote}</p></CsBody>
           <ul className="motion-output-list">
             {project.outputs.map((output) => <li key={output}>{output}<span aria-hidden="true">↗</span></li>)}
@@ -1029,6 +1116,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           { id: 'motion-story', label: 'Storyboard' },
           ...(isVishwa ? [{ id: 'campaign-archive', label: 'Archive' }] : []),
           ...(isMentra || isTransfi ? [{ id: 'motion-system', label: 'Motion system' }] : []),
+          ...(hasSourceVideoSection ? [{ id: 'source-video', label: 'Footage' }] : []),
           { id: 'art-direction', label: 'Art direction' },
           { id: 'motion-decisions', label: 'Decisions' },
           { id: 'after-effects', label: 'After Effects' },

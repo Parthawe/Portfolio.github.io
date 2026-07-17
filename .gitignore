@@ -23,6 +23,8 @@ public/Assets/Projects/CueTV/
 public/Assets/Projects/Transfi/*
 !public/Assets/Projects/Transfi/public/
 !public/Assets/Projects/Transfi/public/**
+!public/Assets/Projects/Transfi/motion/
+!public/Assets/Projects/Transfi/motion/**
 public/Assets/Projects/Transfi/reviewer/
 public/Assets/Projects/ai-voice/
 public/Assets/Projects/health-app/
