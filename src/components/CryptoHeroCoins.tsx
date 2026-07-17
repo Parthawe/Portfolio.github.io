@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { siBitcoin, siEthereum, siSolana, type SimpleIcon } from 'simple-icons'
 
@@ -7,13 +7,14 @@ type Coin = {
   ticker: string
   icon: SimpleIcon
   color: string
+  surface: string
   frequency: number
 }
 
 const COINS: Coin[] = [
-  { name: 'Bitcoin', ticker: 'BTC', icon: siBitcoin, color: '#f7931a', frequency: 523.25 },
-  { name: 'Ethereum', ticker: 'ETH', icon: siEthereum, color: '#627eea', frequency: 659.25 },
-  { name: 'Solana', ticker: 'SOL', icon: siSolana, color: '#28d9a5', frequency: 783.99 },
+  { name: 'Bitcoin', ticker: 'BTC', icon: siBitcoin, color: '#ffffff', surface: '#f7931a', frequency: 523.25 },
+  { name: 'Ethereum', ticker: 'ETH', icon: siEthereum, color: '#627eea', surface: '#eeecff', frequency: 659.25 },
+  { name: 'Solana', ticker: 'SOL', icon: siSolana, color: '#32e4b4', surface: '#111116', frequency: 783.99 },
 ]
 
 function CoinMark({ coin }: { coin: Coin }) {
@@ -77,105 +78,41 @@ export default function CryptoHeroCoins() {
   }, [playCoinTone])
 
   return (
-    <div className={`crypto-stage${activeCoin ? ' is-sonic' : ''}`} aria-label="A crypto payment settlement flow designed around clear fees, status, and recovery">
-      <motion.button
-        className={`crypto-stage-coin crypto-stage-coin--btc${activeCoin === 'BTC' ? ' is-ringing' : ''}`}
-        type="button"
-        onClick={() => activateCoin(COINS[0])}
-        initial={{ opacity: 0, scale: 0.7, rotate: -12 }}
-        animate={{ opacity: 1, scale: 1, rotate: -6, y: reduceMotion ? 0 : [0, -5, 0] }}
-        transition={{ opacity: { duration: 0.4 }, scale: { duration: 0.6, type: 'spring' }, y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' } }}
-        aria-label="Spin Bitcoin coin and play its tone"
-        aria-pressed={activeCoin === 'BTC'}
-      >
-        <span className="crypto-coin-body" key={`btc-${spinCount}`}>
-          <span className="crypto-coin-face crypto-coin-face--front"><CoinMark coin={COINS[0]} /></span>
-          <span className="crypto-coin-rim" aria-hidden="true" />
-          <span className="crypto-coin-face crypto-coin-face--back" aria-hidden="true">BTC</span>
-        </span>
-      </motion.button>
-
-      <motion.button
-        className={`crypto-stage-coin crypto-stage-coin--eth${activeCoin === 'ETH' ? ' is-ringing' : ''}`}
-        type="button"
-        onClick={() => activateCoin(COINS[1])}
-        initial={{ opacity: 0, scale: 0.7, rotate: 10 }}
-        animate={{ opacity: 1, scale: 1, rotate: 5, y: reduceMotion ? 0 : [0, 5, 0] }}
-        transition={{ opacity: { duration: 0.4, delay: 0.1 }, scale: { duration: 0.6, delay: 0.1, type: 'spring' }, y: { duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: -1.4 } }}
-        aria-label="Spin Ethereum coin and play its tone"
-        aria-pressed={activeCoin === 'ETH'}
-      >
-        <span className="crypto-coin-body" key={`eth-${spinCount}`}>
-          <span className="crypto-coin-face crypto-coin-face--front"><CoinMark coin={COINS[1]} /></span>
-          <span className="crypto-coin-rim" aria-hidden="true" />
-          <span className="crypto-coin-face crypto-coin-face--back" aria-hidden="true">ETH</span>
-        </span>
-      </motion.button>
-
-      <span className="crypto-coin-hint" aria-hidden="true"><i /> Tap a coin · sound on</span>
-      <span className="sr-only" aria-live="polite">{lastPlayedCoin ? `${lastPlayedCoin} coin tone played` : ''}</span>
-
-      <div className="crypto-console">
-        <header className="crypto-console-bar">
-          <span><i aria-hidden="true" /> Settlement design</span>
-          <span>03:27 UTC</span>
-        </header>
-
-        <div className="crypto-console-body">
-          <div className="crypto-token-list" aria-label="Supported networks">
-            {COINS.map((coin, index) => (
-              <motion.div
-                className={index === 1 ? 'is-active' : undefined}
-                key={coin.ticker}
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.38, delay: 0.18 + index * 0.08 }}
-              >
-                <CoinMark coin={coin} />
-                <span>{coin.ticker}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.article
-            className="crypto-transfer-card"
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.52, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+    <div className="crypto-stage" aria-label="Interactive Bitcoin, Ethereum, and Solana coins">
+      <div className="crypto-coin-cluster">
+        {COINS.map((coin, index) => (
+          <motion.button
+            className={`crypto-stage-coin crypto-stage-coin--${coin.ticker.toLowerCase()}${activeCoin === coin.ticker ? ' is-ringing' : ''}`}
+            style={{ '--coin-surface': coin.surface } as CSSProperties}
+            type="button"
+            onClick={() => activateCoin(coin)}
+            initial={{ opacity: 0, scale: 0.72, y: 12 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: reduceMotion ? 0 : [0, index % 2 === 0 ? -7 : 7, 0],
+            }}
+            transition={{
+              opacity: { duration: 0.42, delay: index * 0.1 },
+              scale: { duration: 0.62, delay: index * 0.1, type: 'spring' },
+              y: { duration: 5.2 + index * 0.55, repeat: Infinity, ease: 'easeInOut', delay: -index * 1.2 },
+            }}
+            aria-label={`Spin ${coin.name} coin and play its tone`}
+            aria-pressed={activeCoin === coin.ticker}
+            key={coin.ticker}
           >
-            <div className="crypto-transfer-heading">
-              <span>Cross-border transfer</span>
-              <i>Quote locked · 00:42</i>
-            </div>
-            <div className="crypto-transfer-amount">
-              <span>You send</span>
-              <strong>1,250.00 <small>USDC</small></strong>
-              <em>≈ $1,250.00 USD</em>
-            </div>
-            <dl className="crypto-transfer-details">
-              <div><dt>Route</dt><dd>USDC → USD</dd></div>
-              <div><dt>Network</dt><dd>Ethereum</dd></div>
-              <div><dt>Fee</dt><dd>$6.42</dd></div>
-              <div><dt>Arrival</dt><dd>&lt; 2 min</dd></div>
-            </dl>
-            <div className="crypto-review-state">
-              <span><i aria-hidden="true" /> KYC verified</span>
-              <strong>Ready to review →</strong>
-            </div>
-          </motion.article>
-
-          <div className="crypto-proof-rail" aria-label="Transaction states">
-            <span><i aria-hidden="true" /> Intent</span>
-            <span className="is-current"><i aria-hidden="true" /> Review</span>
-            <span><i aria-hidden="true" /> Receipt</span>
-          </div>
-        </div>
-
-        <footer className="crypto-console-footer">
-          <span>Clarity before commitment</span>
-          <span className="crypto-console-verified"><i aria-hidden="true" /> Receipt verified · 0x71F…9AD</span>
-        </footer>
+            <span className="crypto-coin-body" key={`${coin.ticker}-${spinCount}`}>
+              <span className="crypto-coin-edge" aria-hidden="true" />
+              <span className="crypto-coin-face crypto-coin-face--front"><CoinMark coin={coin} /></span>
+              <span className="crypto-coin-face crypto-coin-face--back" aria-hidden="true">{coin.ticker}</span>
+            </span>
+            <span className="crypto-coin-label" aria-hidden="true">{coin.name}</span>
+          </motion.button>
+        ))}
       </div>
+
+      <p className="crypto-coin-hint"><span aria-hidden="true">↻</span> Tap a coin to hear it</p>
+      <span className="sr-only" aria-live="polite">{lastPlayedCoin ? `${lastPlayedCoin} coin tone played` : ''}</span>
     </div>
   )
 }

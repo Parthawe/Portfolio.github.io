@@ -624,3 +624,200 @@
     transition: none !important;
   }
 }
+
+/* Simplified coin-only hero composition. The earlier settlement UI styles are
+   intentionally retained above for reuse, while this final layer keeps the
+   live hero focused on recognizable crypto objects. */
+.crypto-stage {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 0.9;
+  background: none;
+}
+
+.crypto-stage::before,
+.crypto-stage::after {
+  content: none;
+}
+
+.crypto-coin-cluster {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.crypto-stage-coin {
+  position: absolute;
+  display: block;
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  perspective: 900px;
+}
+
+.crypto-stage-coin--btc {
+  top: 29%;
+  left: 3%;
+  z-index: 3;
+  width: clamp(7.7rem, 12vw, 9.6rem);
+}
+
+.crypto-stage-coin--eth {
+  top: 5%;
+  right: 9%;
+  z-index: 2;
+  width: clamp(6.2rem, 9.5vw, 7.6rem);
+}
+
+.crypto-stage-coin--sol {
+  right: 1%;
+  bottom: 8%;
+  z-index: 1;
+  width: clamp(5.4rem, 8.4vw, 6.7rem);
+}
+
+.crypto-stage-coin::after {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  z-index: -1;
+  border: 1px solid color-mix(in srgb, var(--coin-surface) 36%, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.78);
+  pointer-events: none;
+}
+
+.crypto-stage-coin.is-ringing::after {
+  animation: crypto-coin-pulse 0.86s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.crypto-coin-body {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+  animation: crypto-coin-breathe 6.8s ease-in-out infinite;
+  filter: drop-shadow(0 26px 30px rgba(5, 4, 18, 0.24));
+}
+
+.crypto-stage-coin--eth .crypto-coin-body { animation-delay: -2.1s; }
+.crypto-stage-coin--sol .crypto-coin-body { animation-delay: -4.2s; }
+
+.crypto-stage-coin.is-ringing .crypto-coin-body {
+  animation: crypto-coin-simple-spin 0.82s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.crypto-coin-face,
+.crypto-coin-edge {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.crypto-coin-edge {
+  inset: 3%;
+  background: color-mix(in srgb, var(--coin-surface) 72%, #050509 28%);
+  border: 1px solid color-mix(in srgb, #fff 20%, transparent);
+  transform: translateZ(-7px);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--coin-surface) 80%, #08080d 20%);
+}
+
+.crypto-coin-face {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background:
+    radial-gradient(circle at 32% 23%, rgba(255,255,255,0.42), transparent 22%),
+    var(--coin-surface);
+  box-shadow:
+    inset 0 0 0 5px color-mix(in srgb, #fff 10%, transparent),
+    inset -12px -16px 22px rgba(0,0,0,0.17),
+    inset 7px 8px 16px rgba(255,255,255,0.1);
+}
+
+.crypto-coin-face--front { transform: translateZ(4px); }
+
+.crypto-coin-face--back {
+  transform: rotateY(180deg) translateZ(4px);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: color-mix(in srgb, #fff 82%, var(--coin-surface));
+}
+
+.crypto-stage-coin svg {
+  width: 43%;
+  height: 43%;
+  fill: currentColor;
+  filter: drop-shadow(0 4px 7px rgba(0,0,0,0.2));
+}
+
+.crypto-coin-label {
+  position: absolute;
+  top: calc(100% + 0.68rem);
+  left: 50%;
+  font-family: var(--mono);
+  font-size: clamp(0.5rem, 0.62vw, 0.6rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.crypto-coin-hint {
+  right: auto;
+  bottom: 2%;
+  left: 10%;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--ink-40);
+}
+
+.crypto-coin-hint span {
+  font-size: 0.9rem;
+  line-height: 0;
+  color: var(--crypto-violet);
+}
+
+@keyframes crypto-coin-breathe {
+  0%, 100% { transform: rotateX(2deg) rotateY(-8deg); }
+  50% { transform: rotateX(-3deg) rotateY(11deg); }
+}
+
+@keyframes crypto-coin-simple-spin {
+  0% { transform: rotateX(0deg) rotateY(0deg) scale(1); }
+  52% { transform: rotateX(8deg) rotateY(390deg) scale(1.06); }
+  100% { transform: rotateX(0deg) rotateY(720deg) scale(1); }
+}
+
+@keyframes crypto-coin-pulse {
+  0% { opacity: 0.52; transform: scale(0.78); }
+  100% { opacity: 0; transform: scale(1.32); }
+}
+
+@media (max-width: 900px) {
+  .crypto-stage { aspect-ratio: 1 / 0.9; }
+  .crypto-stage-coin--btc { top: 28%; left: 2%; width: 5.2rem; }
+  .crypto-stage-coin--eth { top: 4%; right: 8%; width: 4.2rem; }
+  .crypto-stage-coin--sol { right: 0; bottom: 9%; width: 3.75rem; }
+  .crypto-coin-label { top: calc(100% + 0.38rem); font-size: 0.42rem; }
+  .crypto-coin-hint { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crypto-stage-coin,
+  .crypto-stage-coin::after,
+  .crypto-coin-body {
+    animation: none !important;
+    transition: none !important;
+  }
+}
