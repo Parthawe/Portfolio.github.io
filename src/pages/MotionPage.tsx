@@ -24,8 +24,12 @@ type MotionProject = {
   move: string
   outcome: string
   roles: string[]
+  brief: Array<{ label: string; value: string; note: string }>
   beats: Array<{ time: string; title: string; body: string }>
   principles: Array<{ label: string; value: string; note: string }>
+  craft: Array<{ label: string; value: string; note: string }>
+  cutdowns: Array<{ runtime: string; job: string; sequence: string; delivery: string }>
+  qc: string[]
   aeBuild: Array<{ layer: string; technique: string; purpose: string }>
   outputs: string[]
 }
@@ -52,6 +56,12 @@ const projects: MotionProject[] = [
     outcome:
       'One narrative grammar can now scale from a six-second social sting to a 30-second product explainer without changing the meaning of the product.',
     roles: ['Concept', 'Storyboard', 'Motion direction', 'Product design', '3D art direction'],
+    brief: [
+      { label: 'Audience', value: 'People evaluating an AI agent', note: 'They need to understand control before they believe the speed claim.' },
+      { label: 'Story job', value: 'Make invisible work accountable', note: 'Translate an off-screen agent workflow into visible decisions and evidence.' },
+      { label: 'One sentence', value: 'Ask. Plan. Approve. Receive proof.', note: 'The entire edit must still communicate this sentence with audio muted.' },
+      { label: 'Primary surfaces', value: 'Launch page + social GTM', note: 'A modular system for web, LinkedIn, X, Reels, and launch presentations.' },
+    ],
     beats: [
       { time: '00:00', title: 'Ask', body: 'Begin on a human prompt, not an AI spectacle.' },
       { time: '00:03', title: 'Plan', body: 'The claw travels; the system exposes what it understood.' },
@@ -62,6 +72,23 @@ const projects: MotionProject[] = [
       { label: 'Pacing', value: 'Fast → held → resolved', note: 'Energy around the work, calm around consent.' },
       { label: 'Hierarchy', value: 'One verb per beat', note: 'Every frame should read before the next arrives.' },
       { label: 'Depth', value: '2D UI + 3D signal', note: 'The object adds character; the interface keeps the story true.' },
+    ],
+    craft: [
+      { label: 'Master', value: '30s / 24 fps', note: 'Built as four modular beats so shorter edits do not need new animation.' },
+      { label: 'Timing', value: '70 / 30 energy split', note: 'Acceleration lives around the task; approval receives the longest uninterrupted hold.' },
+      { label: 'Typography', value: 'One verb per frame', note: 'Large, active language carries the story before product UI enters.' },
+      { label: 'Sound', value: 'Pulse, click, receipt', note: 'A restrained tactile score supports state changes without becoming science-fiction theater.' },
+    ],
+    cutdowns: [
+      { runtime: '06s', job: 'Signal', sequence: 'ASK → APPROVE → RECEIPT', delivery: 'Launch sting / paid social' },
+      { runtime: '15s', job: 'Explain', sequence: 'Prompt → plan → consent → proof', delivery: 'Organic social / feature launch' },
+      { runtime: '30s', job: 'Convince', sequence: 'Problem → workflow → safety → result', delivery: 'Launch page / presentation' },
+    ],
+    qc: [
+      'Approval remains on-screen long enough to read at mobile size.',
+      'No task visually resolves before the user-consent frame appears.',
+      'Interface copy survives a 360px-wide vertical crop.',
+      'The full story remains understandable with sound turned off.',
     ],
     aeBuild: [
       { layer: 'CTRL_MASTER', technique: 'Expression controls', purpose: 'One panel drives color, copy, duration, safe areas, and format switches.' },
@@ -92,6 +119,12 @@ const projects: MotionProject[] = [
     outcome:
       'A small motion kit gives a fast-moving team recognizable openings, transitions, product reveals, and end cards without asking every asset to be art-directed from zero.',
     roles: ['Brand system', 'Motion principles', 'Storyboard', '3D direction', 'Template logic'],
+    brief: [
+      { label: 'Audience', value: 'Customers, creators, and developers', note: 'Three audiences should recognize the same company even when the message changes.' },
+      { label: 'Story job', value: 'Turn identity into product behavior', note: 'The mark should explain how Mentra assembles a hardware and software platform.' },
+      { label: 'One sentence', value: 'The mark becomes the object; the object opens a world.', note: 'Every transition begins with the same folded geometric logic.' },
+      { label: 'Primary surfaces', value: 'Launches + creator toolkit', note: 'Hardware reveals, MiniApp news, social campaigns, explainers, and end cards.' },
+    ],
     beats: [
       { time: '01', title: 'Fragment', body: 'Begin with one green plane: a clue, not a logo.' },
       { time: '02', title: 'Assemble', body: 'Additional planes arrive with shared direction and stagger.' },
@@ -102,6 +135,23 @@ const projects: MotionProject[] = [
       { label: 'Geometry', value: 'Fold, do not dissolve', note: 'Transitions inherit the angles of the identity.' },
       { label: 'Color', value: 'Green earns attention', note: 'Neutral space keeps the product precise and technical.' },
       { label: 'Repeatability', value: '3-beat modules', note: 'Open, explain, sign off: reusable across launch formats.' },
+    ],
+    craft: [
+      { label: 'Master', value: '15s / 24 fps', note: 'A modular product reveal with a three-second ident embedded at the front and back.' },
+      { label: 'Timing', value: 'Geometric 60 / 40 ease', note: 'Planes arrive decisively, share direction, and settle without elastic overshoot.' },
+      { label: 'Typography', value: 'Short technical labels', note: 'Type behaves like a product annotation, giving the object room to remain central.' },
+      { label: 'Sound', value: 'Fold, air, hinge', note: 'Layered paper-like folds and a soft mechanical latch connect identity to hardware.' },
+    ],
+    cutdowns: [
+      { runtime: '03s', job: 'Identify', sequence: 'Fragment → mark → Mentra', delivery: 'Logo ident / end card' },
+      { runtime: '06s', job: 'Reveal', sequence: 'Mark → silhouette → product', delivery: 'Social opener / teaser' },
+      { runtime: '15s', job: 'Launch', sequence: 'Rule → product → capability → CTA', delivery: 'GTM film / creator template' },
+    ],
+    qc: [
+      'Every transition inherits the mark’s established fold angle.',
+      'Mentra Green never competes with an unrelated highlight color.',
+      'The physical product is recognizable before supporting copy enters.',
+      'Editable creator controls cannot break logo spacing or safe areas.',
     ],
     aeBuild: [
       { layer: 'MARK_RIG', technique: 'Shape layers + parenting', purpose: 'Every green plane shares the same directional logic, anchor behavior, and fold angle.' },
@@ -132,6 +182,12 @@ const projects: MotionProject[] = [
     outcome:
       'Brand energy and product credibility live in the same edit: a recognizable opening, a calm interface reveal, and a clean transaction resolution.',
     roles: ['Identity design', 'Motion study', 'Product design', 'Art direction', 'GTM framing'],
+    brief: [
+      { label: 'Audience', value: 'Merchant and fintech teams', note: 'Viewers need confidence in the transaction state, not a spectacle around money.' },
+      { label: 'Story job', value: 'Connect brand speed to product trust', note: 'Use the identity to orient the journey, then let product evidence take over.' },
+      { label: 'One sentence', value: 'A clear route turns movement into a settled transaction.', note: 'Direction creates momentum; restraint creates confidence.' },
+      { label: 'Primary surfaces', value: 'Product launch + merchant GTM', note: 'Social loops, dashboard reveals, sales presentations, and transaction explainers.' },
+    ],
     beats: [
       { time: '00:00', title: 'Signal', body: 'The folded mark creates a fast, ownable opening.' },
       { time: '00:02', title: 'Route', body: 'Its direction becomes the path into the product.' },
@@ -142,6 +198,23 @@ const projects: MotionProject[] = [
       { label: 'Rhythm', value: 'Directional, not frantic', note: 'Speed is carried by vectors, not constant cutting.' },
       { label: 'Data', value: 'Settle with confidence', note: 'Financial states use restrained easing and clear endpoints.' },
       { label: 'Continuity', value: 'Mark → route → UI', note: 'One movement connects identity and product.' },
+    ],
+    craft: [
+      { label: 'Master', value: '15s / 24 fps', note: 'A concise brand-to-product edit with a 30-second transaction extension.' },
+      { label: 'Timing', value: 'Linear route, eased arrival', note: 'The path advances at a constant rate; UI and values decelerate into clear endpoints.' },
+      { label: 'Typography', value: 'Status before decoration', note: 'Amounts, labels, and confirmation language stay readable while the identity remains secondary.' },
+      { label: 'Sound', value: 'Transfer, verify, settle', note: 'Quiet directional ticks resolve into one low confirmation tone—never a casino-style reward.' },
+    ],
+    cutdowns: [
+      { runtime: '06s', job: 'Signal', sequence: 'Mark → route → settled state', delivery: 'Identity loop / social bumper' },
+      { runtime: '15s', job: 'Explain', sequence: 'Route → dashboard → confirmation', delivery: 'Product launch / merchant social' },
+      { runtime: '30s', job: 'Reassure', sequence: 'Context → transaction → verification → proof', delivery: 'Sales story / explainer' },
+    ],
+    qc: [
+      'Amounts and status labels remain readable in every platform crop.',
+      'Transaction states use more than color to communicate completion.',
+      'Financial data never bounces, spins, or overshoots its endpoint.',
+      'The final confirmed state holds before the edit returns to brand.',
     ],
     aeBuild: [
       { layer: 'IDENT_FOLD', technique: 'Vector paths + Graph Editor', purpose: 'The identity assembles with precise speed curves and a firm, non-elastic settle.' },
@@ -268,6 +341,124 @@ function ProjectReel({ project, motionOn, compact = false }: { project: MotionPr
   if (project.key === 'clawed') return <ClawedReel compact={compact} />
   if (project.key === 'mentra') return <MentraReel compact={compact} />
   return <TransfiReel motionOn={motionOn} compact={compact} />
+}
+
+function ProjectStoryboardFrame({ project, index }: { project: MotionProject; index: number }) {
+  if (project.key === 'clawed') {
+    return (
+      <div className={`motion-storyboard__frame motion-storyboard__frame--clawed is-beat-${index + 1}`} aria-hidden="true">
+        <span>{String(index + 1).padStart(2, '0')}</span>
+        {index === 0 && <div className="story-clawed__prompt"><small>YOU</small><b>Prepare the launch brief</b><i>↗</i></div>}
+        {index === 1 && <><em>PLAN</em><img src="/Assets/Projects/Clawed.chat/claw-3d.png" alt="" /></>}
+        {index === 2 && <div className="story-clawed__approval"><small>REVIEW REQUIRED</small><b>Approve this action?</b><i>Approve</i></div>}
+        {index === 3 && <div className="story-clawed__receipt"><small>RECEIPT 024</small><b>Brief ready</b><i>Approved by you</i></div>}
+      </div>
+    )
+  }
+
+  if (project.key === 'mentra') {
+    const frames = [
+      '/Assets/Projects/mentra-brand/photos/logo-animation-5.png',
+      '/Assets/Projects/mentra-brand/photos/logo-animation-1.png',
+      '/Assets/Projects/mentra-brand/photos/logo-animation-3.png',
+      '/Assets/Projects/mentra-brand/photos/render-transparent-full.webp',
+    ]
+    return (
+      <div className={`motion-storyboard__frame motion-storyboard__frame--mentra is-beat-${index + 1}`} aria-hidden="true">
+        <span>{String(index + 1).padStart(2, '0')}</span>
+        <small>{['FRAGMENT', 'ASSEMBLE', 'TRANSFORM', 'REVEAL'][index]}</small>
+        <img src={frames[index]} alt="" />
+      </div>
+    )
+  }
+
+  return (
+    <div className={`motion-storyboard__frame motion-storyboard__frame--transfi is-beat-${index + 1}`} aria-hidden="true">
+      <span>{String(index + 1).padStart(2, '0')}</span>
+      {index === 0 && <><small>SIGNAL</small><img src="/Assets/mockups/projects/transfi-project_16x9.webp" alt="" /></>}
+      {index === 1 && <div className="story-transfi__route"><small>USD</small><i /><i /><i /><b>USDC</b></div>}
+      {index === 2 && <img src="/Assets/Projects/Transfi/public/Customer dashboard Users.png" alt="" />}
+      {index === 3 && <div className="story-transfi__settle"><small>TRANSACTION STATUS</small><b>Complete</b><i>✓</i></div>}
+    </div>
+  )
+}
+
+function CreativeBrief({ project }: { project: MotionProject }) {
+  return (
+    <section className="motion-brief motion-shell reveal" aria-labelledby={`${project.key}-brief-title`}>
+      <div className="motion-brief__heading">
+        <p className="motion-section-label">Creative brief / Before keyframes</p>
+        <div>
+          <h2 id={`${project.key}-brief-title`}>A clear assignment makes expressive work useful.</h2>
+          <p>The creative direction begins by fixing the audience, communication job, single-sentence story, and delivery surfaces. Every later motion decision has something concrete to answer to.</p>
+        </div>
+      </div>
+      <div className="motion-brief__grid">
+        {project.brief.map((item, index) => (
+          <article key={item.label}>
+            <span>0{index + 1}</span>
+            <small>{item.label}</small>
+            <h3>{item.value}</h3>
+            <p>{item.note}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function EditArchitecture({ project }: { project: MotionProject }) {
+  return (
+    <section className="motion-edit-system reveal" aria-labelledby={`${project.key}-edit-title`}>
+      <div className="motion-shell">
+        <div className="motion-edit-system__heading">
+          <p className="motion-section-label">Edit architecture / Craft decisions</p>
+          <div>
+            <h2 id={`${project.key}-edit-title`}>One motion language, built for three levels of attention.</h2>
+            <p>Timing, type, sound, and delivery are designed together. The six-second cut signals the idea, the fifteen-second cut explains the move, and the extended story earns the audience’s confidence.</p>
+          </div>
+        </div>
+
+        <div className="motion-edit-system__craft">
+          {project.craft.map((item, index) => (
+            <article key={item.label}>
+              <span>0{index + 1}</span>
+              <small>{item.label}</small>
+              <h3>{item.value}</h3>
+              <p>{item.note}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="motion-edit-system__cutdowns">
+          <div className="motion-edit-system__subhead">
+            <span>Cutdown map</span>
+            <p>The same source system, edited around a different audience commitment.</p>
+          </div>
+          <div className="motion-edit-system__cutdown-list">
+            {project.cutdowns.map((cutdown) => (
+              <article key={cutdown.runtime}>
+                <strong>{cutdown.runtime}</strong>
+                <span>{cutdown.job}</span>
+                <p>{cutdown.sequence}</p>
+                <small>{cutdown.delivery}</small>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="motion-edit-system__qc">
+          <div>
+            <span>Final QC / Non-negotiables</span>
+            <h3>Polish is clarity that survives delivery.</h3>
+          </div>
+          <ul>
+            {project.qc.map((check) => <li key={check}><i aria-hidden="true">✓</i>{check}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 function MotionWordmark() {
@@ -603,6 +794,8 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
           <p>{project.truthNote}</p>
         </section>
 
+        <CreativeBrief project={project} />
+
         <section className="motion-case-story motion-shell reveal">
           <div className="motion-case-story__lead">
             <p className="motion-section-label">The motion decision</p>
@@ -667,10 +860,7 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
             <div className="motion-storyboard__grid">
               {project.beats.map((beat, index) => (
                 <article key={beat.title}>
-                  <div className="motion-storyboard__frame">
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    <i /><i /><i />
-                  </div>
+                  <ProjectStoryboardFrame project={project} index={index} />
                   <span>{beat.time}</span>
                   <h3>{beat.title}</h3>
                   <p>{beat.body}</p>
@@ -696,6 +886,8 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
             ))}
           </div>
         </section>
+
+        <EditArchitecture project={project} />
 
         <AfterEffectsBuild project={project} />
 

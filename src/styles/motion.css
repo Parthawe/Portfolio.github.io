@@ -233,9 +233,11 @@
 .motion-system h2,
 .motion-ae h2,
 .motion-contact h2,
+.motion-brief h2,
 .motion-case-story h2,
 .motion-storyboard h2,
 .motion-principles h2,
+.motion-edit-system h2,
 .motion-ae-build h2,
 .motion-outputs h2 {
   margin: 0;
@@ -1142,6 +1144,71 @@
   line-height: 1.4;
 }
 
+.motion-brief {
+  padding: clamp(6rem, 10vw, 10rem) 0;
+  border-top: 1px solid var(--motion-black);
+}
+
+.motion-brief__heading {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+  gap: 4rem;
+}
+
+.motion-brief__heading h2 {
+  max-width: 15ch;
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+}
+
+.motion-brief__heading > div > p {
+  max-width: 52rem;
+  margin: 2rem 0 0;
+  color: rgba(11,11,11,0.62);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.motion-brief__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(5rem, 8vw, 8rem);
+  border-top: 1px solid var(--motion-black);
+  border-left: 1px solid var(--motion-black);
+}
+
+.motion-brief__grid article {
+  min-height: 300px;
+  padding: 1.4rem;
+  border-right: 1px solid var(--motion-black);
+  border-bottom: 1px solid var(--motion-black);
+}
+
+.motion-brief__grid article > span {
+  color: var(--motion-project-color);
+  font: 700 0.68rem/1 var(--mono);
+}
+
+.motion-brief__grid small {
+  display: block;
+  margin-top: 4rem;
+  font: 650 0.64rem/1.2 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.motion-brief__grid h3 {
+  max-width: 14ch;
+  margin: 1rem 0;
+  font: 500 clamp(1.5rem, 2vw, 2.15rem)/1.05 var(--display);
+}
+
+.motion-brief__grid p {
+  margin: 0;
+  color: rgba(11,11,11,0.58);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
 .motion-case-story {
   padding: clamp(6rem, 10vw, 10rem) 0;
   border-top: 1px solid var(--motion-black);
@@ -1250,25 +1317,96 @@
 
 .motion-storyboard__frame > span {
   position: absolute;
+  z-index: 5;
   top: 1rem;
   left: 1rem;
   color: rgba(255,255,255,0.42);
   font: 700 0.62rem/1 var(--mono);
 }
 
-.motion-storyboard__frame i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 42%;
-  height: 2px;
-  background: var(--motion-project-color);
-  transform: translate(-50%, -50%) rotate(-28deg);
-  animation: storyboardMark 4s var(--ease-in-out) infinite alternate;
+.motion-storyboard__frame--clawed {
+  background:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+    #171313;
+  background-size: 28px 28px;
 }
 
-.motion-storyboard__frame i:nth-of-type(2) { width: 28%; transform: translate(-78%, 22px) rotate(28deg); animation-delay: -1.2s; }
-.motion-storyboard__frame i:nth-of-type(3) { width: 18%; transform: translate(15%, -29px) rotate(90deg); animation-delay: -2.4s; }
+.story-clawed__prompt,
+.story-clawed__approval,
+.story-clawed__receipt {
+  position: absolute;
+  right: 8%;
+  bottom: 10%;
+  left: 8%;
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(15,15,15,0.92);
+  box-shadow: 0 16px 38px rgba(0,0,0,0.28);
+  animation: storyboardCard 4.8s var(--ease-in-out) infinite alternate;
+}
+
+.story-clawed__prompt small,
+.story-clawed__approval small,
+.story-clawed__receipt small {
+  color: rgba(255,255,255,0.45);
+  font: 650 0.52rem/1 var(--mono);
+  letter-spacing: 0.08em;
+}
+
+.story-clawed__prompt b,
+.story-clawed__approval b,
+.story-clawed__receipt b { font: 600 clamp(0.72rem, 1.1vw, 1rem)/1.2 var(--sans); }
+.story-clawed__prompt i { justify-self: end; color: var(--motion-project-color); font-style: normal; }
+.story-clawed__approval i { justify-self: start; padding: 0.45rem 0.65rem; background: var(--motion-project-color); color: #0b0b0b; font: 700 0.52rem/1 var(--mono); font-style: normal; text-transform: uppercase; }
+.story-clawed__receipt { border-color: color-mix(in srgb, var(--motion-project-color) 56%, transparent); }
+.story-clawed__receipt i { color: var(--motion-project-color); font: 600 0.55rem/1 var(--mono); font-style: normal; text-transform: uppercase; }
+.motion-storyboard__frame--clawed > em { position: absolute; top: 21%; left: 8%; color: var(--motion-project-color); font: 800 clamp(2.2rem, 4vw, 4rem)/0.85 var(--sans); font-style: normal; letter-spacing: -0.08em; }
+.motion-storyboard__frame--clawed > img { position: absolute; right: -8%; bottom: -14%; width: 78%; filter: drop-shadow(0 18px 30px rgba(0,0,0,0.35)); animation: storyboardClaw 5s var(--ease-in-out) infinite alternate; }
+
+.motion-storyboard__frame--mentra {
+  background: #eceee9;
+}
+
+.motion-storyboard__frame--mentra > span { color: rgba(0,0,0,0.38); }
+.motion-storyboard__frame--mentra > small { position: absolute; z-index: 2; right: 0.8rem; bottom: 0.8rem; color: #0b0b0b; font: 700 0.52rem/1 var(--mono); letter-spacing: 0.08em; }
+.motion-storyboard__frame--mentra > img { position: absolute; inset: 13%; width: 74%; height: 74%; object-fit: contain; animation: storyboardMentra 5s var(--ease-in-out) infinite alternate; }
+.motion-storyboard__frame--mentra.is-beat-1 { background: color-mix(in srgb, var(--motion-project-color) 18%, #f1f2ed); }
+.motion-storyboard__frame--mentra.is-beat-2 { background: color-mix(in srgb, var(--motion-project-color) 28%, #f1f2ed); }
+.motion-storyboard__frame--mentra.is-beat-3 { background: var(--motion-project-color); }
+.motion-storyboard__frame--mentra.is-beat-4 { background: #e7ebe5; }
+.motion-storyboard__frame--mentra.is-beat-4 > img { inset: 4% -12% -12% 3%; width: 110%; height: 110%; }
+
+.motion-storyboard__frame--transfi {
+  background: #0d1640;
+}
+
+.motion-storyboard__frame--transfi > small { position: absolute; z-index: 2; right: 0.8rem; bottom: 0.8rem; color: var(--motion-project-color); font: 700 0.52rem/1 var(--mono); letter-spacing: 0.08em; }
+.motion-storyboard__frame--transfi > img { position: absolute; inset: 9%; width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3)); animation: storyboardTransfi 5s var(--ease-in-out) infinite alternate; }
+.motion-storyboard__frame--transfi.is-beat-1 > img { inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.86; }
+.motion-storyboard__frame--transfi.is-beat-3 > img { inset: 13% 4% 4% 10%; width: 104%; height: 83%; object-fit: cover; object-position: left top; }
+
+.story-transfi__route {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 12%;
+}
+
+.story-transfi__route::before { position: absolute; right: 18%; left: 18%; height: 2px; background: var(--motion-project-color); content: ''; transform-origin: left; animation: storyboardRoute 3.8s var(--ease-in-out) infinite; }
+.story-transfi__route small,
+.story-transfi__route b { position: relative; z-index: 2; display: grid; width: 44px; aspect-ratio: 1; place-items: center; border: 1px solid var(--motion-project-color); border-radius: 50%; background: #0d1640; color: #fff; font: 700 0.55rem/1 var(--mono); }
+.story-transfi__route i { position: relative; z-index: 2; width: 7px; aspect-ratio: 1; border-radius: 50%; background: var(--motion-project-color); box-shadow: 0 0 14px color-mix(in srgb, var(--motion-project-color) 65%, transparent); animation: storyboardNode 3.8s var(--ease-in-out) infinite; }
+.story-transfi__route i:nth-of-type(2) { animation-delay: 0.16s; }
+.story-transfi__route i:nth-of-type(3) { animation-delay: 0.32s; }
+.story-transfi__settle { position: absolute; inset: 19% 10%; display: grid; place-content: center; justify-items: center; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.05); text-align: center; }
+.story-transfi__settle small { color: rgba(255,255,255,0.42); font: 650 0.5rem/1 var(--mono); letter-spacing: 0.08em; }
+.story-transfi__settle b { margin-top: 0.7rem; font: 500 clamp(1.6rem, 3vw, 2.8rem)/1 var(--display); }
+.story-transfi__settle i { display: grid; width: 34px; aspect-ratio: 1; margin-top: 1rem; place-items: center; border-radius: 50%; background: var(--motion-project-color); color: #0d1640; font-style: normal; animation: storyboardConfirm 3.8s var(--ease-out-expo) infinite; }
 
 .motion-principles {
   padding: clamp(7rem, 12vw, 12rem) 0;
@@ -1299,6 +1437,85 @@
 .motion-principles__grid article > p { margin: 4rem 0 0.8rem; font: 650 0.68rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
 .motion-principles__grid h3 { margin: 0 0 1rem; font: 500 clamp(1.8rem, 2.6vw, 2.7rem)/1 var(--display); }
 .motion-principles__grid small { display: block; max-width: 27ch; color: rgba(11,11,11,0.58); font-size: 0.82rem; line-height: 1.5; }
+
+.motion-edit-system {
+  padding: clamp(7rem, 12vw, 12rem) 0;
+  background: #e8e6df;
+}
+
+.motion-edit-system__heading {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.4fr) minmax(0, 1fr);
+  gap: 4rem;
+}
+
+.motion-edit-system__heading h2 { max-width: 15ch; font-size: clamp(2.8rem, 5vw, 5.5rem); }
+.motion-edit-system__heading > div > p { max-width: 52rem; margin: 2rem 0 0; color: rgba(11,11,11,0.62); font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.55; }
+
+.motion-edit-system__craft {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(5rem, 8vw, 8rem);
+  border-top: 1px solid var(--motion-black);
+  border-left: 1px solid var(--motion-black);
+}
+
+.motion-edit-system__craft article {
+  min-height: 290px;
+  padding: 1.4rem;
+  border-right: 1px solid var(--motion-black);
+  border-bottom: 1px solid var(--motion-black);
+}
+
+.motion-edit-system__craft article > span { color: var(--motion-project-color); font: 700 0.68rem/1 var(--mono); }
+.motion-edit-system__craft small { display: block; margin-top: 4rem; font: 650 0.62rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.motion-edit-system__craft h3 { margin: 1rem 0; font: 500 clamp(1.55rem, 2.1vw, 2.3rem)/1 var(--display); }
+.motion-edit-system__craft p { margin: 0; color: rgba(11,11,11,0.56); font-size: 0.82rem; line-height: 1.55; }
+
+.motion-edit-system__cutdowns {
+  margin-top: clamp(5rem, 8vw, 8rem);
+}
+
+.motion-edit-system__subhead {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.3fr) 1fr;
+  gap: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--motion-black);
+}
+
+.motion-edit-system__subhead span,
+.motion-edit-system__qc > div > span { font: 700 0.66rem/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.motion-edit-system__subhead p { max-width: 42rem; margin: 0; color: rgba(11,11,11,0.58); font-size: 0.9rem; line-height: 1.45; }
+
+.motion-edit-system__cutdown-list article {
+  display: grid;
+  grid-template-columns: minmax(80px, 0.16fr) minmax(100px, 0.2fr) minmax(240px, 1fr) minmax(180px, 0.36fr);
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid rgba(11,11,11,0.18);
+}
+
+.motion-edit-system__cutdown-list strong { color: var(--motion-project-color); font: 500 clamp(1.8rem, 3vw, 3rem)/1 var(--display); }
+.motion-edit-system__cutdown-list span { font: 700 0.65rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.motion-edit-system__cutdown-list p { margin: 0; font: 500 clamp(1rem, 1.4vw, 1.22rem)/1.35 var(--sans); }
+.motion-edit-system__cutdown-list small { justify-self: end; text-align: right; color: rgba(11,11,11,0.54); font: 600 0.62rem/1.4 var(--mono); text-transform: uppercase; }
+
+.motion-edit-system__qc {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.6fr) 1fr;
+  gap: clamp(3rem, 8vw, 8rem);
+  margin-top: clamp(5rem, 8vw, 8rem);
+  padding: clamp(2rem, 5vw, 4rem);
+  background: var(--motion-black);
+  color: #fff;
+}
+
+.motion-edit-system__qc h3 { max-width: 12ch; margin: 2rem 0 0; font: 400 clamp(2rem, 3.8vw, 4rem)/0.95 var(--display); letter-spacing: -0.04em; }
+.motion-edit-system__qc ul { margin: 0; padding: 0; border-top: 1px solid rgba(255,255,255,0.2); list-style: none; }
+.motion-edit-system__qc li { display: grid; grid-template-columns: 28px 1fr; gap: 0.8rem; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.16); color: rgba(255,255,255,0.7); font-size: 0.86rem; line-height: 1.45; }
+.motion-edit-system__qc li i { display: grid; width: 20px; aspect-ratio: 1; place-items: center; border: 1px solid var(--motion-project-color); border-radius: 50%; color: var(--motion-project-color); font: 700 0.55rem/1 var(--mono); font-style: normal; }
 
 .motion-ae-build {
   --ae-purple: #9999ff;
@@ -1447,7 +1664,43 @@
 @keyframes transfiUi { 0%, 30% { opacity: 0; transform: translate(18%, -44%) scale(0.9); } 48%, 82% { opacity: 1; transform: translate(0, -50%) scale(1); } 100% { opacity: 0.25; transform: translate(-3%, -52%) scale(1.02); } }
 @keyframes transfiRoute { 0%, 30% { transform: scaleX(0); } 48%, 82% { transform: scaleX(1); } 100% { transform: scaleX(0); transform-origin: right; } }
 
-@keyframes storyboardMark { to { transform: translate(-50%, -50%) rotate(28deg) scaleX(0.72); } }
+@keyframes storyboardCard {
+  from { transform: translateY(5px); border-color: rgba(255,255,255,0.18); }
+  to { transform: translateY(-4px); border-color: color-mix(in srgb, var(--motion-project-color) 54%, transparent); }
+}
+
+@keyframes storyboardClaw {
+  from { transform: translate3d(8%, 8%, 0) rotate(-7deg); }
+  to { transform: translate3d(-4%, -6%, 0) rotate(5deg); }
+}
+
+@keyframes storyboardMentra {
+  from { transform: scale(0.92) rotate(-2deg); }
+  to { transform: scale(1.03) rotate(1deg); }
+}
+
+@keyframes storyboardTransfi {
+  from { transform: translateX(3%) scale(0.96); opacity: 0.72; }
+  to { transform: translateX(-2%) scale(1); opacity: 1; }
+}
+
+@keyframes storyboardRoute {
+  0%, 12% { transform: scaleX(0); opacity: 0.25; }
+  55%, 88% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0.45; }
+}
+
+@keyframes storyboardNode {
+  0%, 22% { transform: scale(0.45); opacity: 0.28; }
+  48%, 88% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.86); opacity: 0.62; }
+}
+
+@keyframes storyboardConfirm {
+  0%, 28% { transform: scale(0.4); opacity: 0; }
+  55%, 88% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.92); opacity: 0.7; }
+}
 
 @keyframes aeTrackBuild {
   0%, 12% { transform: scaleX(0); opacity: 0.2; }
@@ -1469,9 +1722,11 @@
   .motion-benchmark__heading,
   .motion-case-hero__copy,
   .motion-case-context,
+  .motion-brief__heading,
   .motion-case-story__lead,
   .motion-storyboard__heading,
   .motion-principles__heading,
+  .motion-edit-system__heading,
   .motion-ae-build__heading,
   .motion-outputs,
   .motion-system__heading,
@@ -1483,7 +1738,9 @@
   .motion-system__steps,
   .motion-storyboard__grid,
   .motion-benchmark__grid,
+  .motion-brief__grid,
   .motion-ae__skills,
+  .motion-edit-system__craft,
   .motion-ae-build__grid { grid-template-columns: 1fr 1fr; }
   .motion-edit-ladder { grid-template-columns: 1fr; gap: 1rem; }
   .motion-case-hero { min-height: auto; }
@@ -1492,6 +1749,9 @@
   .motion-media-pair img,
   .motion-media-grid img { min-height: 280px; }
   .motion-storyboard__grid article { margin-bottom: 2rem; }
+  .motion-edit-system__cutdown-list article { grid-template-columns: 80px 100px 1fr; }
+  .motion-edit-system__cutdown-list small { grid-column: 3; justify-self: start; text-align: left; }
+  .motion-edit-system__qc { grid-template-columns: 1fr; }
   .motion-ae__formats { max-width: 620px; }
   .motion-ae__pipeline { grid-template-columns: 1fr 1fr; }
   .motion-ae__pipeline > b { display: none; }
@@ -1525,7 +1785,9 @@
   .motion-storyboard__grid,
   .motion-principles__grid,
   .motion-benchmark__grid,
+  .motion-brief__grid,
   .motion-ae__skills,
+  .motion-edit-system__craft,
   .motion-ae-build__grid,
   .motion-media-pair,
   .motion-media-grid { grid-template-columns: 1fr; }
@@ -1537,6 +1799,10 @@
   .motion-capability-list span:nth-child(even) { padding-left: 0; border-left: 0; }
   .motion-case-hero__copy { padding-top: 5rem; }
   .motion-case-story__rows article { grid-template-columns: 1fr; gap: 0.8rem; }
+  .motion-edit-system__subhead,
+  .motion-edit-system__cutdown-list article { grid-template-columns: 1fr; gap: 0.7rem; }
+  .motion-edit-system__cutdown-list small { grid-column: auto; }
+  .motion-edit-system__qc { padding: 2rem 1.25rem; }
   .motion-benchmark__takeaway,
   .motion-ae-build__handoff { grid-template-columns: 1fr; gap: 0.8rem; }
   .motion-ae__interface { grid-template-columns: 1fr; grid-template-rows: auto minmax(300px, 1fr) auto; }
