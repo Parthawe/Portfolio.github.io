@@ -10,7 +10,6 @@ import ClientsMarquee from '../components/ClientsMarquee'
 import FigmaFrameLabel from '../components/FigmaFrameLabel'
 import FigmaSelect from '../components/FigmaSelect'
 import ParthDoesSection from '../components/ParthDoesSection'
-import CryptoDesignSignature from '../components/CryptoDesignSignature'
 import {
   getProject,
   isHiddenProject,
@@ -131,7 +130,7 @@ export default function CategoryPage() {
   }, [])
   const projectCount = (featuredProject ? 1 : 0) + visibleMoreProjects.length + archiveProjects.length
   return (
-    <div className={`category-page category-page--${slug}`} style={{ '--lp-accent': CATEGORY_PAGE_ACCENT } as React.CSSProperties}>
+    <div className="category-page" style={{ '--lp-accent': CATEGORY_PAGE_ACCENT } as React.CSSProperties}>
       <Helmet>
         <title>{category.metaTitle}</title>
         <meta name="description" content={category.metaDescription} />
@@ -225,12 +224,6 @@ export default function CategoryPage() {
               </section>
             )}
           </div>
-
-          {slug === 'crypto' ? (
-            <Reveal>
-              <CryptoDesignSignature />
-            </Reveal>
-          ) : null}
 
           {/* Impact proof: later in the page, after the work has context. */}
           <Reveal>
