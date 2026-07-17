@@ -30,6 +30,15 @@ type MotionProject = {
   craft: Array<{ label: string; value: string; note: string }>
   cutdowns: Array<{ runtime: string; job: string; sequence: string; delivery: string }>
   qc: string[]
+  artDirection: {
+    headline: string
+    palette: Array<{ name: string; value: string }>
+    rules: Array<{ label: string; value: string }>
+    frames: Array<{ src: string; alt: string; label: string; note: string; fit?: 'cover' | 'contain' }>
+  }
+  iterations: Array<{ avoided: string; chosen: string; reason: string }>
+  evidence: Array<{ label: string; value: string; note: string }>
+  reflection: { title: string; body: string }
   aeBuild: Array<{ layer: string; technique: string; purpose: string }>
   outputs: string[]
 }
@@ -90,6 +99,39 @@ const projects: MotionProject[] = [
       'Interface copy survives a 360px-wide vertical crop.',
       'The full story remains understandable with sound turned off.',
     ],
+    artDirection: {
+      headline: 'A red signal moves through a black system, then resolves as proof.',
+      palette: [
+        { name: 'Signal', value: '#ff4b32' },
+        { name: 'Ink', value: '#171313' },
+        { name: 'Paper', value: '#f4f1e9' },
+        { name: 'Proof', value: '#ffffff' },
+      ],
+      rules: [
+        { label: 'Shape', value: 'One character object against strict interface rectangles.' },
+        { label: 'Type', value: 'Oversized verbs for narrative; compact mono labels for evidence.' },
+        { label: 'Image', value: 'Product UI remains crisp while the claw carries depth and personality.' },
+      ],
+      frames: [
+        { src: '/Assets/Projects/Clawed.chat/landing-hero.webp', alt: 'Clawed launch page with the promise Your AI agent live in 30 seconds', label: 'Promise', note: 'Open on the product claim, not a generic AI metaphor.' },
+        { src: '/Assets/Projects/Clawed.chat/claw-3d.png', alt: 'Red three-dimensional Clawed character object', label: 'Character', note: 'Use one recognizable object to carry intent between product states.', fit: 'contain' },
+        { src: '/Assets/Projects/Clawed.chat/deploy-options.webp', alt: 'Clawed deployment interface with cloud and local options', label: 'Control', note: 'Product decisions remain the visual center of the story.' },
+      ],
+    },
+    iterations: [
+      { avoided: 'Ambient AI glow', chosen: 'Verb-led product states', reason: 'The audience needs to understand the workflow, not infer intelligence from atmosphere.' },
+      { avoided: 'Instant approval flash', chosen: 'A deliberate consent hold', reason: 'The edit slows at the exact moment where user control matters most.' },
+      { avoided: 'Confetti after completion', chosen: 'A durable receipt', reason: 'Accountability is a better product payoff than celebration.' },
+    ],
+    evidence: [
+      { label: 'Product foundation', value: '10-week build', note: 'The shipped web and glasses product established the trust model behind the motion story.' },
+      { label: 'Research signal', value: '6 moderated sessions', note: 'Qualitative product feedback reinforced the value of approvals, receipts, and visible system state.' },
+      { label: 'Claim boundary', value: 'Portfolio motion extension', note: 'The product is real and shipped; this documented GTM motion system was developed for this portfolio.' },
+    ],
+    reflection: {
+      title: 'Motion can make trust visible.',
+      body: 'The most expressive moment is not the fastest one. It is the pause before an action, when the interface gives the user time to understand and decide. In an AI story, pacing becomes part of the safety model.',
+    },
     aeBuild: [
       { layer: 'CTRL_MASTER', technique: 'Expression controls', purpose: 'One panel drives color, copy, duration, safe areas, and format switches.' },
       { layer: 'VERB_SYSTEM', technique: 'Text animators + Graph Editor', purpose: 'ASK, PLAN, APPROVE, and DONE share one rig while the approval beat receives a longer hold.' },
@@ -153,6 +195,39 @@ const projects: MotionProject[] = [
       'The physical product is recognizable before supporting copy enters.',
       'Editable creator controls cannot break logo spacing or safe areas.',
     ],
+    artDirection: {
+      headline: 'One folded plane becomes a mark, a pair of glasses, and a frame for the world.',
+      palette: [
+        { name: 'Mentra', value: '#00c978' },
+        { name: 'Carbon', value: '#0a0a0a' },
+        { name: 'Mist', value: '#e7ebe5' },
+        { name: 'White', value: '#ffffff' },
+      ],
+      rules: [
+        { label: 'Shape', value: 'Parallelogram planes fold, align, and reveal—never dissolve.' },
+        { label: 'Type', value: 'Short technical labels annotate the object instead of competing with it.' },
+        { label: 'Image', value: 'Product renders stay precise; lifestyle frames show the world the glasses enter.' },
+      ],
+      frames: [
+        { src: '/Assets/Projects/mentra-brand/photos/logo-animation-3.png', alt: 'Mentra logo-animation frame built from folded green planes', label: 'Behavior', note: 'The identity supplies the transition rule.', fit: 'contain' },
+        { src: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp', alt: 'Black and transparent Mentra smart glasses product renders', label: 'Object', note: 'The motion resolves into the physical product, not the graphic effect.' },
+        { src: '/Assets/Projects/mentra-brand/photos/ad-stream.webp', alt: 'Mentra Stream Your World campaign application', label: 'World', note: 'The same system stretches into expressive campaign storytelling.' },
+      ],
+    },
+    iterations: [
+      { avoided: 'Opacity dissolves', chosen: 'Geometric folds', reason: 'A transition should strengthen recognition by inheriting the identity’s actual construction.' },
+      { avoided: 'Green on every surface', chosen: 'Green as a timed signal', reason: 'Restraint gives the brand color meaning and keeps hardware imagery precise.' },
+      { avoided: 'A unique film for every launch', chosen: 'Three-beat motion modules', reason: 'A growing team needs a reusable behavior, not repeated reinvention.' },
+    ],
+    evidence: [
+      { label: 'Brand foundation', value: 'Shipping system', note: 'The identity, packaging, renders, creator guide, and launch surfaces are in use.' },
+      { label: 'Scale signal', value: '24 social templates', note: 'The existing static system proved the need for protected zones and controlled variation.' },
+      { label: 'Claim boundary', value: 'Documented motion expansion', note: 'The brand assets and logo frames are real; this case study develops them into a complete motion toolkit.' },
+    ],
+    reflection: {
+      title: 'Behavior is a brand asset.',
+      body: 'A logo file tells a team what a brand looks like. A motion rule tells them how it enters, transforms, and leaves. For a hardware platform with many audiences, that behavior can create continuity long after a launch film is finished.',
+    },
     aeBuild: [
       { layer: 'MARK_RIG', technique: 'Shape layers + parenting', purpose: 'Every green plane shares the same directional logic, anchor behavior, and fold angle.' },
       { layer: 'OBJECT_REVEAL', technique: 'Pre-comps + track mattes', purpose: 'The mark becomes the glasses through a continuous geometric reveal instead of a decorative dissolve.' },
@@ -216,6 +291,39 @@ const projects: MotionProject[] = [
       'Financial data never bounces, spins, or overshoots its endpoint.',
       'The final confirmed state holds before the edit returns to brand.',
     ],
+    artDirection: {
+      headline: 'A directional identity creates momentum; restrained product motion earns confidence.',
+      palette: [
+        { name: 'Route', value: '#48d8ff' },
+        { name: 'Deep', value: '#0d1640' },
+        { name: 'Brand', value: '#232d95' },
+        { name: 'Clear', value: '#f5f7ff' },
+      ],
+      rules: [
+        { label: 'Shape', value: 'The folded mark becomes a route that consistently moves left to right.' },
+        { label: 'Type', value: 'Amounts and transaction states remain primary; campaign language stays secondary.' },
+        { label: 'Image', value: 'Dense interfaces reveal by decision priority rather than arriving as flat screenshots.' },
+      ],
+      frames: [
+        { src: '/Assets/mockups/projects/transfi-project_16x9.webp', alt: 'TransFi identity with merchant dashboard and customer checkout', label: 'Signal', note: 'Establish one recognizable direction before entering the product.' },
+        { src: '/Assets/Projects/Transfi/public/Customer dashboard Users.png', alt: 'TransFi customer dashboard users interface', label: 'System', note: 'Reveal operational information in the order a merchant needs it.' },
+        { src: '/Assets/Projects/Transfi/public/Order Summary.png', alt: 'TransFi order summary and transaction status interface', label: 'Proof', note: 'End on the settled financial state, not the transition.', fit: 'contain' },
+      ],
+    },
+    iterations: [
+      { avoided: 'Fast dashboard montage', chosen: 'One continuous route', reason: 'Continuity makes a complex payment journey easier to follow than more cuts.' },
+      { avoided: 'Elastic number animation', chosen: 'Firm deceleration and hold', reason: 'Financial values should feel resolved, not playful or uncertain.' },
+      { avoided: 'Crypto spectacle', chosen: 'Merchant-facing product proof', reason: 'Trust comes from readable states, confirmation, and operational clarity.' },
+    ],
+    evidence: [
+      { label: 'Product foundation', value: 'Lead design, 2022–23', note: 'The identity and public merchant-interface artifacts come from the original product work.' },
+      { label: 'Evaluation signal', value: 'Legibility + continuity', note: 'The motion direction is judged against status clarity, crop safety, and product truth—not vanity metrics.' },
+      { label: 'Claim boundary', value: 'Access-limited project', note: 'Confidential constraints and performance data remain private; no campaign-result claims are made.' },
+    ],
+    reflection: {
+      title: 'Confidence often moves less.',
+      body: 'Fintech motion does not need to make money feel exciting. It needs to make change understandable and endpoints unmistakable. Direction creates momentum; restraint tells the viewer the transaction is under control.',
+    },
     aeBuild: [
       { layer: 'IDENT_FOLD', technique: 'Vector paths + Graph Editor', purpose: 'The identity assembles with precise speed curves and a firm, non-elastic settle.' },
       { layer: 'ROUTE_LINE', technique: 'Trim Paths + expressions', purpose: 'One directional control connects the mark, transaction path, and interface reveal.' },
@@ -402,6 +510,107 @@ function CreativeBrief({ project }: { project: MotionProject }) {
             <p>{item.note}</p>
           </article>
         ))}
+      </div>
+    </section>
+  )
+}
+
+function ArtDirection({ project }: { project: MotionProject }) {
+  return (
+    <section className="motion-art-direction reveal" aria-labelledby={`${project.key}-art-title`}>
+      <div className="motion-shell">
+        <div className="motion-art-direction__heading">
+          <p className="motion-section-label">Art direction / Styleframe system</p>
+          <div>
+            <h2 id={`${project.key}-art-title`}>{project.artDirection.headline}</h2>
+            <p>Color, geometry, typography, and image behavior are defined before animation. The frames can change, but the visual logic remains recognizable.</p>
+          </div>
+        </div>
+
+        <div className="motion-art-direction__palette" aria-label={`${project.shortTitle} motion color palette`}>
+          {project.artDirection.palette.map((color) => (
+            <div key={color.name} style={{ '--swatch': color.value } as React.CSSProperties}>
+              <i aria-hidden="true" />
+              <span>{color.name}</span>
+              <small>{color.value}</small>
+            </div>
+          ))}
+        </div>
+
+        <div className="motion-art-direction__rules">
+          {project.artDirection.rules.map((rule, index) => (
+            <article key={rule.label}>
+              <span>0{index + 1}</span>
+              <small>{rule.label}</small>
+              <p>{rule.value}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="motion-art-direction__frames">
+          {project.artDirection.frames.map((frame, index) => (
+            <figure className={frame.fit === 'contain' ? 'is-contain' : ''} key={frame.src}>
+              <div><img src={frame.src} alt={frame.alt} loading="lazy" /></div>
+              <figcaption>
+                <span>0{index + 1} / {frame.label}</span>
+                <p>{frame.note}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function IterationLog({ project }: { project: MotionProject }) {
+  return (
+    <section className="motion-iteration motion-shell reveal" aria-labelledby={`${project.key}-iteration-title`}>
+      <div className="motion-iteration__heading">
+        <p className="motion-section-label">Direction review / Decisions by subtraction</p>
+        <div>
+          <h2 id={`${project.key}-iteration-title`}>The strongest move is often knowing what not to animate.</h2>
+          <p>Each choice removes a familiar motion shortcut and replaces it with behavior tied to this product, this audience, and this communication job.</p>
+        </div>
+      </div>
+      <div className="motion-iteration__list">
+        {project.iterations.map((iteration, index) => (
+          <article key={iteration.chosen}>
+            <span>0{index + 1}</span>
+            <div><small>Avoided</small><p>{iteration.avoided}</p></div>
+            <b aria-hidden="true">→</b>
+            <div><small>Chosen</small><h3>{iteration.chosen}</h3></div>
+            <div><small>Because</small><p>{iteration.reason}</p></div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function EvidenceReflection({ project }: { project: MotionProject }) {
+  return (
+    <section className="motion-evidence reveal" data-nav-contrast="dark" aria-labelledby={`${project.key}-evidence-title`}>
+      <div className="motion-shell">
+        <div className="motion-evidence__heading">
+          <p className="motion-section-label">Evidence / Honest boundaries</p>
+          <h2 id={`${project.key}-evidence-title`}>Specific about the work. Precise about the claim.</h2>
+        </div>
+        <div className="motion-evidence__grid">
+          {project.evidence.map((item, index) => (
+            <article key={item.label}>
+              <span>0{index + 1}</span>
+              <small>{item.label}</small>
+              <h3>{item.value}</h3>
+              <p>{item.note}</p>
+            </article>
+          ))}
+        </div>
+        <blockquote>
+          <span>Reflection</span>
+          <h3>{project.reflection.title}</h3>
+          <p>{project.reflection.body}</p>
+        </blockquote>
       </div>
     </section>
   )
@@ -808,48 +1017,7 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
           </div>
         </section>
 
-        {project.key === 'clawed' && (
-          <section className="motion-media-pair motion-shell reveal">
-            <figure>
-              <img src="/Assets/Projects/Clawed.chat/landing-hero.webp" alt="Clawed launch page introducing an AI agent live in 30 seconds" loading="lazy" />
-              <figcaption>Launch surface / Keep the promise immediate.</figcaption>
-            </figure>
-            <figure>
-              <img src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Clawed product interface comparing cloud deployment and local Mac companion options" loading="lazy" />
-              <figcaption>Product truth / Slow down where the user chooses.</figcaption>
-            </figure>
-          </section>
-        )}
-
-        {project.key === 'mentra' && (
-          <section className="motion-media-grid motion-shell reveal">
-            <figure className="motion-media-grid__wide">
-              <img src="/Assets/Projects/mentra-brand/photos/render-both-frames.webp" alt="Two Mentra smart-glasses frames from the brand render library" loading="lazy" />
-              <figcaption>Object / The reveal ends on the product, not the effect.</figcaption>
-            </figure>
-            <figure>
-              <img src="/Assets/Projects/mentra-brand/photos/logo-3d-iridescent.webp" alt="Iridescent 3D Mentra logo" loading="lazy" />
-              <figcaption>Material variation.</figcaption>
-            </figure>
-            <figure>
-              <img src="/Assets/Projects/mentra-brand/photos/ad-stream.webp" alt="Mentra social campaign artwork" loading="lazy" />
-              <figcaption>Campaign application.</figcaption>
-            </figure>
-          </section>
-        )}
-
-        {project.key === 'transfi' && (
-          <section className="motion-media-pair motion-shell reveal">
-            <figure>
-              <img src="/Assets/mockups/projects/transfi-project_16x9.webp" alt="TransFi brand mark with merchant dashboard and customer checkout" loading="lazy" />
-              <figcaption>Brand to product / One visual route.</figcaption>
-            </figure>
-            <figure>
-              <img src="/Assets/Projects/Transfi/public/Order Summary.png" alt="TransFi order summary interface" loading="lazy" />
-              <figcaption>Resolution / Financial states settle cleanly.</figcaption>
-            </figure>
-          </section>
-        )}
+        <ArtDirection project={project} />
 
         <section className="motion-storyboard reveal" data-nav-contrast="dark">
           <div className="motion-shell">
@@ -887,9 +1055,13 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
           </div>
         </section>
 
+        <IterationLog project={project} />
+
         <EditArchitecture project={project} />
 
         <AfterEffectsBuild project={project} />
+
+        <EvidenceReflection project={project} />
 
         <section className="motion-outputs motion-shell reveal">
           <p className="motion-section-label">Designed as a family</p>
