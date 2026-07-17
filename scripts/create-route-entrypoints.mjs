@@ -89,6 +89,28 @@ const routeDescriptions = new Map([
   ['dumb-waiter-set-design', 'A John Wick-inspired set design for Harold Pinter\'s The Dumb Waiter, built around confinement, waiting, and rising tension.'],
   ['page-not-found', 'The requested page is not available in the public portfolio.'],
 ])
+const routeSocialPreviews = new Map([
+  ['motion', {
+    image: '/Assets/images/og-motion/vishwa.jpg',
+    alt: 'VishwaConclave campaign artwork from the motion design portfolio of Parth Pawar.',
+  }],
+  ['motion/vishwa-conclave-motion', {
+    image: '/Assets/images/og-motion/vishwa.jpg',
+    alt: 'VishwaConclave campaign artwork showing the EPOCH identity and 2021 event system.',
+  }],
+  ['motion/mentra-motion-language', {
+    image: '/Assets/images/og-motion/mentra.jpg',
+    alt: 'Black and transparent Mentra smart glasses presented as a motion-design product study.',
+  }],
+  ['motion/transfi-identity-motion', {
+    image: '/Assets/images/og-motion/transfi.jpg',
+    alt: 'TransFi interface and identity frames from a cross-border payment motion study.',
+  }],
+  ['motion/editing-motion-stories', {
+    image: '/Assets/images/og-motion/editing.jpg',
+    alt: 'A monochrome Enigma installation frame from the editorial motion case study.',
+  }],
+])
 const canonicalAliases = new Map([
   ['ux', 'ux-design'],
   ['ui', 'ux-design'],
@@ -125,6 +147,14 @@ function withRouteMeta(html, route, { noindex = false } = {}) {
   output = replaceMeta(output, 'property', 'og:url', url)
   output = replaceMeta(output, 'name', 'twitter:title', title)
   output = replaceMeta(output, 'name', 'twitter:description', description)
+  const socialPreview = routeSocialPreviews.get(canonicalRoute)
+  if (socialPreview) {
+    const imageUrl = `${siteOrigin}${socialPreview.image}`
+    output = replaceMeta(output, 'property', 'og:image', imageUrl)
+    output = replaceMeta(output, 'property', 'og:image:alt', socialPreview.alt)
+    output = replaceMeta(output, 'name', 'twitter:image', imageUrl)
+    output = replaceMeta(output, 'name', 'twitter:image:alt', socialPreview.alt)
+  }
   if (noindex) {
     output = output.replace('</head>', '    <meta name="robots" content="noindex, nofollow" />\n  </head>')
   }
