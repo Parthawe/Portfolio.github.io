@@ -803,6 +803,12 @@
   column-gap: 24px;
 }
 
+/* The UI/UX label already provides its own divider, so avoid a second line
+   between the contemporary cards and the archive on the crypto page. */
+.wrap:has(.ch--crypto) .lp-project-archive {
+  border-top: 0;
+}
+
 @media (max-width: 900px) {
   .crypto-stage { aspect-ratio: 1 / 0.9; }
   .crypto-stage-coin--btc { top: 28%; left: 2%; width: 5.2rem; }
