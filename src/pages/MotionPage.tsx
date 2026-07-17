@@ -43,6 +43,15 @@ type MotionProject = {
   outputs: string[]
 }
 
+type ProcessBoard = {
+  src: string
+  alt: string
+  question: string
+  caption: string
+  notes: Array<{ label: string; value: string }>
+  passes: Array<{ version: string; focus: string; change: string }>
+}
+
 const projects: MotionProject[] = [
   {
     key: 'clawed',
@@ -334,6 +343,57 @@ const projects: MotionProject[] = [
   },
 ]
 
+const processBoards: Record<ProjectKey, ProcessBoard> = {
+  clawed: {
+    src: '/Assets/Projects/motion-process/clawed-working-board.webp',
+    alt: 'Hand-drawn Clawed storyboard with eight frames showing prompt, planning, approval, execution, and receipt',
+    question: 'How can an autonomous workflow feel fast without hiding the moment where a person stays in control?',
+    caption: 'Reconstructed from the product’s real approval and receipt model, this working board records the narrative, timing, and crop decisions used to build the portfolio motion study.',
+    notes: [
+      { label: 'Story spine', value: 'Prompt → plan → hold → proof' },
+      { label: 'Longest beat', value: 'Human approval' },
+      { label: 'Protected crop', value: '16:9 master / 9:16 center' },
+    ],
+    passes: [
+      { version: 'v01', focus: 'Story order', change: 'Separated the invisible workflow into four readable product states.' },
+      { version: 'v03', focus: 'Consent timing', change: 'Extended the approval hold and removed the instant-success transition.' },
+      { version: 'v05', focus: 'Format family', change: 'Protected the verb, action, and receipt inside vertical social crops.' },
+    ],
+  },
+  mentra: {
+    src: '/Assets/Projects/motion-process/mentra-working-board.webp',
+    alt: 'Hand-drawn Mentra storyboard with folded planes becoming a smart-glasses silhouette and a world-layer reveal',
+    question: 'Can the same geometric behavior explain the identity, the physical glasses, and the world seen through them?',
+    caption: 'This reconstructed working board starts with the shipped identity geometry, then tests how fold, alignment, parallax, and crop behavior can become a repeatable launch language.',
+    notes: [
+      { label: 'Source geometry', value: 'Folded parallelogram planes' },
+      { label: 'Transition rule', value: 'Fold / align / reveal' },
+      { label: 'Product priority', value: 'Silhouette before copy' },
+    ],
+    passes: [
+      { version: 'v01', focus: 'Form studies', change: 'Compared fold, slide, and dissolve against the identity’s construction.' },
+      { version: 'v04', focus: 'Object bridge', change: 'Aligned the animated planes to the glasses silhouette before the reveal.' },
+      { version: 'v06', focus: 'Template safety', change: 'Locked brand color, logo space, and crop controls for creator output.' },
+    ],
+  },
+  transfi: {
+    src: '/Assets/Projects/motion-process/transfi-working-board.webp',
+    alt: 'Hand-drawn TransFi storyboard with a directional mark becoming a route, dashboard layers, and transaction confirmation',
+    question: 'How can a payment journey carry momentum while every amount, state, and endpoint still feels calm and trustworthy?',
+    caption: 'This reconstructed working board follows the original identity and merchant-product artifacts through one continuous route, from signal to operational context to a settled transaction state.',
+    notes: [
+      { label: 'Direction', value: 'One continuous left-to-right route' },
+      { label: 'Easing rule', value: 'Firm deceleration / no bounce' },
+      { label: 'Final proof', value: 'Confirmed transaction state' },
+    ],
+    passes: [
+      { version: 'v01', focus: 'Continuity', change: 'Joined the identity, transaction route, and dashboard with one vector.' },
+      { version: 'v03', focus: 'State timing', change: 'Removed elastic amount changes and added a firm confirmation hold.' },
+      { version: 'v05', focus: 'Delivery', change: 'Checked status clarity across horizontal, square, and vertical crops.' },
+    ],
+  },
+}
+
 const motionBenchmarks = [
   {
     studio: 'BUCK × Zapier',
@@ -515,6 +575,86 @@ function CreativeBrief({ project }: { project: MotionProject }) {
   )
 }
 
+function ProcessEvidence({ project }: { project: MotionProject }) {
+  const process = processBoards[project.key]
+
+  return (
+    <section className="motion-storyboard motion-process reveal" data-nav-contrast="dark" aria-labelledby={`${project.key}-process-title`}>
+      <div className="motion-shell">
+        <div className="motion-storyboard__heading">
+          <p className="motion-section-label">Process evidence / Board → animatic → revision</p>
+          <div>
+            <h2 id={`${project.key}-process-title`}>The finished move is the last visible layer.</h2>
+            <p className="motion-process__question">{process.question}</p>
+          </div>
+        </div>
+
+        <figure className="motion-process__board">
+          <div className="motion-process__board-bar">
+            <span><i aria-hidden="true" /> Process reconstruction / Working board</span>
+            <span>{project.shortTitle} / study notes</span>
+          </div>
+          <div className="motion-process__board-image">
+            <img src={process.src} alt={process.alt} loading="lazy" />
+          </div>
+          <figcaption>
+            <p>{process.caption}</p>
+            <dl>
+              {process.notes.map((note) => (
+                <div key={note.label}>
+                  <dt>{note.label}</dt>
+                  <dd>{note.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </figcaption>
+        </figure>
+
+        <div className="motion-process__phase-heading">
+          <span>01 / Rough animatic</span>
+          <div>
+            <h3>Four frames prove the story before polish begins.</h3>
+            <p>The sketch sheet explores possibilities. The animatic removes them until one readable sequence remains, with a clear job and a timed hold for every beat.</p>
+          </div>
+        </div>
+        <div className="motion-storyboard__grid motion-process__animatic-grid">
+          {project.beats.map((beat, index) => (
+            <article key={beat.title}>
+              <ProjectStoryboardFrame project={project} index={index} />
+              <span>{beat.time}</span>
+              <h3>{beat.title}</h3>
+              <p>{beat.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="motion-process__review">
+          <div className="motion-process__review-heading">
+            <span>02 / Study iteration log</span>
+            <div>
+              <h3>Each pass removes a shortcut that weakens the product story.</h3>
+              <p>Version labels document the study passes; the decision trail shows what changed and why the final behavior belongs to this product.</p>
+            </div>
+          </div>
+          <div className="motion-process__review-list">
+            {project.iterations.map((iteration, index) => {
+              const pass = process.passes[index]
+              return (
+                <article key={iteration.chosen}>
+                  <div className="motion-process__version"><strong>{pass.version}</strong><span>{pass.focus}</span></div>
+                  <div><small>Removed</small><p>{iteration.avoided}</p></div>
+                  <b aria-hidden="true">→</b>
+                  <div><small>Kept</small><h4>{iteration.chosen}</h4><p>{pass.change} {iteration.reason}</p></div>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function ArtDirection({ project }: { project: MotionProject }) {
   return (
     <section className="motion-art-direction reveal" aria-labelledby={`${project.key}-art-title`}>
@@ -558,31 +698,6 @@ function ArtDirection({ project }: { project: MotionProject }) {
             </figure>
           ))}
         </div>
-      </div>
-    </section>
-  )
-}
-
-function IterationLog({ project }: { project: MotionProject }) {
-  return (
-    <section className="motion-iteration motion-shell reveal" aria-labelledby={`${project.key}-iteration-title`}>
-      <div className="motion-iteration__heading">
-        <p className="motion-section-label">Direction review / Decisions by subtraction</p>
-        <div>
-          <h2 id={`${project.key}-iteration-title`}>The strongest move is often knowing what not to animate.</h2>
-          <p>Each choice removes a familiar motion shortcut and replaces it with behavior tied to this product, this audience, and this communication job.</p>
-        </div>
-      </div>
-      <div className="motion-iteration__list">
-        {project.iterations.map((iteration, index) => (
-          <article key={iteration.chosen}>
-            <span>0{index + 1}</span>
-            <div><small>Avoided</small><p>{iteration.avoided}</p></div>
-            <b aria-hidden="true">→</b>
-            <div><small>Chosen</small><h3>{iteration.chosen}</h3></div>
-            <div><small>Because</small><p>{iteration.reason}</p></div>
-          </article>
-        ))}
       </div>
     </section>
   )
@@ -1017,26 +1132,9 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
           </div>
         </section>
 
-        <ArtDirection project={project} />
+        <ProcessEvidence project={project} />
 
-        <section className="motion-storyboard reveal" data-nav-contrast="dark">
-          <div className="motion-shell">
-            <div className="motion-storyboard__heading">
-              <p className="motion-section-label">Storyboard / Four beats</p>
-              <h2>A complete thought before a complete animation.</h2>
-            </div>
-            <div className="motion-storyboard__grid">
-              {project.beats.map((beat, index) => (
-                <article key={beat.title}>
-                  <ProjectStoryboardFrame project={project} index={index} />
-                  <span>{beat.time}</span>
-                  <h3>{beat.title}</h3>
-                  <p>{beat.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ArtDirection project={project} />
 
         <section className="motion-principles motion-shell reveal">
           <div className="motion-principles__heading">
@@ -1054,8 +1152,6 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
             ))}
           </div>
         </section>
-
-        <IterationLog project={project} />
 
         <EditArchitecture project={project} />
 
