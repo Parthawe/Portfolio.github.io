@@ -24,13 +24,44 @@ function CoinMark({ coin }: { coin: Coin }) {
 
 export default function CryptoHeroCoins() {
   return (
-    <div className="crypto-console" aria-label="A crypto payment settlement flow designed around clear fees, status, and recovery">
-      <header className="crypto-console-bar">
-        <span><i aria-hidden="true" /> Settlement design</span>
-        <span>03:27 UTC</span>
-      </header>
+    <div className="crypto-stage" aria-label="A crypto payment settlement flow designed around clear fees, status, and recovery">
+      <svg className="crypto-stage-network" viewBox="0 0 440 390" aria-hidden="true">
+        <path d="M42 76C112 28 179 43 220 94S329 159 403 98" />
+        <path d="M23 281C92 233 149 250 211 302S335 351 418 293" />
+        <path d="M71 35C116 121 80 214 32 354" />
+        <circle cx="42" cy="76" r="3" />
+        <circle cx="403" cy="98" r="3" />
+        <circle cx="23" cy="281" r="3" />
+        <circle cx="418" cy="293" r="3" />
+      </svg>
 
-      <div className="crypto-console-body">
+      <motion.span
+        className="crypto-stage-coin crypto-stage-coin--btc"
+        initial={{ opacity: 0, scale: 0.7, rotate: -12 }}
+        animate={{ opacity: 1, scale: 1, rotate: -6, y: [0, -5, 0] }}
+        transition={{ opacity: { duration: 0.4 }, scale: { duration: 0.6, type: 'spring' }, y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut' } }}
+        aria-hidden="true"
+      >
+        <CoinMark coin={COINS[0]} />
+      </motion.span>
+
+      <motion.span
+        className="crypto-stage-coin crypto-stage-coin--eth"
+        initial={{ opacity: 0, scale: 0.7, rotate: 10 }}
+        animate={{ opacity: 1, scale: 1, rotate: 5, y: [0, 5, 0] }}
+        transition={{ opacity: { duration: 0.4, delay: 0.1 }, scale: { duration: 0.6, delay: 0.1, type: 'spring' }, y: { duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: -1.4 } }}
+        aria-hidden="true"
+      >
+        <CoinMark coin={COINS[1]} />
+      </motion.span>
+
+      <div className="crypto-console">
+        <header className="crypto-console-bar">
+          <span><i aria-hidden="true" /> Settlement design</span>
+          <span>03:27 UTC</span>
+        </header>
+
+        <div className="crypto-console-body">
         <div className="crypto-token-list" aria-label="Supported networks">
           {COINS.map((coin, index) => (
             <motion.div
@@ -78,12 +109,24 @@ export default function CryptoHeroCoins() {
           <span className="is-current"><i aria-hidden="true" /> Review</span>
           <span><i aria-hidden="true" /> Receipt</span>
         </div>
+        </div>
+
+        <footer className="crypto-console-footer">
+          <span>Clarity before commitment</span>
+          <span>Fees · status · recovery</span>
+        </footer>
       </div>
 
-      <footer className="crypto-console-footer">
-        <span>Clarity before commitment</span>
-        <span>Fees · status · recovery</span>
-      </footer>
+      <motion.div
+        className="crypto-receipt-proof"
+        initial={{ opacity: 0, x: 12, y: 8 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 0.55, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        aria-hidden="true"
+      >
+        <span><i /> Receipt verified</span>
+        <strong>0x71F…9AD</strong>
+      </motion.div>
     </div>
   )
 }

@@ -314,6 +314,7 @@ interface CategoryHeroProps {
 
 export default function CategoryHero({ slug, routeSlug, accentColor, title, titleAccent, has3D }: CategoryHeroProps) {
   const heroSlug = HERO_ROUTE_ALIASES[routeSlug ?? slug] ?? routeSlug ?? slug
+  const isCrypto = heroSlug === 'crypto'
   const categoryName = CATEGORY_NAMES[heroSlug] || CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
   const audienceItems = useMemo(() => CATEGORY_AUDIENCE[heroSlug] ?? CATEGORY_AUDIENCE[slug] ?? DEFAULT_AUDIENCE, [heroSlug, slug])
   const portfolioStats = heroSlug === 'crypto'
@@ -335,24 +336,53 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
   return (
     <section className={`ch ch--landing ch--${slug}`}>
       <div className="ch-copy">
-        <motion.span
-          className="ch-eyebrow"
-          initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
-          transition={{ ...revealTransition, delay: 0.08 }}
-        >
-          <i className="ch-eyebrow-dot" style={{ background: accentColor }} aria-hidden="true" />
-          {categoryName}
-        </motion.span>
+        {isCrypto ? (
+          <motion.div
+            className="crypto-hero-copy"
+            initial={{ opacity: 0, y: 16, filter: 'blur(5px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
+            transition={{ duration: 0.72, ease }}
+          >
+            <span className="ch-eyebrow crypto-hero-eyebrow">
+              <i className="ch-eyebrow-dot" style={{ background: accentColor }} aria-hidden="true" />
+              {categoryName}
+            </span>
+            <p className="crypto-hero-number">01 / Product systems for money in motion</p>
+            <h1 className="crypto-hero-title">
+              <span>Crypto rails.</span>
+              <em>Human confidence.</em>
+            </h1>
+            <p className="crypto-hero-description">
+              I design cross-border payments, wallet flows, fees, KYC, failure states, and receipts so people can act without guessing.
+            </p>
+            <ul className="crypto-hero-tags" aria-label="Crypto product design focus areas">
+              <li>Payment rails</li>
+              <li>Compliance UX</li>
+              <li>Recovery states</li>
+            </ul>
+          </motion.div>
+        ) : (
+          <>
+            <motion.span
+              className="ch-eyebrow"
+              initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
+              transition={{ ...revealTransition, delay: 0.08 }}
+            >
+              <i className="ch-eyebrow-dot" style={{ background: accentColor }} aria-hidden="true" />
+              {categoryName}
+            </motion.span>
 
-        <motion.div
-          className="ch-audience-shell"
-          initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
-          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
-          transition={{ duration: 0.68, ease }}
-        >
-          <CategoryAudience items={audienceItems} accentColor={accentColor} categoryName={categoryName} />
-        </motion.div>
+            <motion.div
+              className="ch-audience-shell"
+              initial={{ opacity: 0, y: 16, scale: 0.992, filter: 'blur(5px)' }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0)' }}
+              transition={{ duration: 0.68, ease }}
+            >
+              <CategoryAudience items={audienceItems} accentColor={accentColor} categoryName={categoryName} />
+            </motion.div>
+          </>
+        )}
       </div>
 
       {/* 3D object beside the copy — never on top of it */}
@@ -387,7 +417,7 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           onClick={handleWorkClick}
           aria-label={`See ${categoryName} projects`}
         >
-          <span>See work</span>
+          <span>{isCrypto ? 'View crypto work' : 'See work'}</span>
           <span aria-hidden="true">&darr;</span>
         </a>
         <dl className="ch-hero-stats" aria-label={`${categoryName} portfolio statistics`}>
