@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState, type MouseEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useDeferredMount } from '../hooks/useDeferredMount'
+import CryptoHeroCoins from './CryptoHeroCoins'
 
 const CategoryObject3D = lazy(() => import('./CategoryObject3D'))
 
@@ -39,6 +40,12 @@ const WEARABLE_PORTFOLIO_STATS = [
   ['30+', 'projects'],
   ['∞', 'Memories'],
   ['6+', 'years of experience'],
+] as const
+
+const CRYPTO_PORTFOLIO_STATS = [
+  ['2', 'products shipped'],
+  ['3+', 'years in Web3'],
+  ['Multi-market', 'payment rails'],
 ] as const
 
 type AudienceItem = {
@@ -309,7 +316,11 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
   const heroSlug = HERO_ROUTE_ALIASES[routeSlug ?? slug] ?? routeSlug ?? slug
   const categoryName = CATEGORY_NAMES[heroSlug] || CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
   const audienceItems = useMemo(() => CATEGORY_AUDIENCE[heroSlug] ?? CATEGORY_AUDIENCE[slug] ?? DEFAULT_AUDIENCE, [heroSlug, slug])
-  const portfolioStats = heroSlug === 'ai-wearables' ? WEARABLE_PORTFOLIO_STATS : PORTFOLIO_STATS
+  const portfolioStats = heroSlug === 'crypto'
+    ? CRYPTO_PORTFOLIO_STATS
+    : heroSlug === 'ai-wearables'
+      ? WEARABLE_PORTFOLIO_STATS
+      : PORTFOLIO_STATS
   const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
 
   const handleWorkClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -353,7 +364,9 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           transition={{ duration: 0.82, delay: 0.16, ease }}
           aria-hidden="true"
         >
-          {show3D ? (
+          {slug === 'crypto' ? (
+            <CryptoHeroCoins />
+          ) : show3D ? (
             <Suspense fallback={null}>
               <CategoryObject3D slug={slug} size={460} style={{ width: 'min(100%, 460px)', height: 'auto', aspectRatio: '1 / 1' }} />
             </Suspense>
