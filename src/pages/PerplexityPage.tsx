@@ -9,53 +9,110 @@ import '../styles/perplexity.css'
 const roleNeeds = [
   {
     number: '01',
-    title: 'A video engine, not one hero film',
-    body: 'The role is production-first: concept, storyboard, animate, finish, and keep a high-volume social pipeline moving without lowering the craft bar.',
+    title: 'Ship the channel',
+    body: 'This is a video-production role first: concept, storyboard, animate, finish, and keep a high-volume social pipeline moving without lowering the craft bar.',
   },
   {
     number: '02',
-    title: 'Product truth made immediate',
-    body: 'AI stories become credible when the viewer can see the question, the work, the sources, and the outcome—not only an abstract promise about intelligence.',
+    title: 'Make AI observable',
+    body: 'The product story is strongest when viewers can see the request, orchestration, evidence, artifact, and moment of control—not only an abstract promise about intelligence.',
   },
   {
     number: '03',
-    title: 'A system that compounds',
+    title: 'Build the repeatable layer',
     body: 'Motion principles, modular After Effects builds, and planned delivery formats let every launch move faster than the last while remaining distinctly Perplexity.',
   },
 ]
 
+const productSignals = [
+  {
+    product: 'Computer',
+    truth: 'A general-purpose digital worker that breaks down requests and executes complete workflows across tools and time.',
+    motion: 'Reveal the orchestration: task → specialists → progress → finished artifact.',
+    href: 'https://www.perplexity.ai/products/computer',
+  },
+  {
+    product: 'Deep Research',
+    truth: 'Plans before acting, searches iteratively, exposes progress and citations, then turns findings into work-ready outputs inside Computer.',
+    motion: 'Let evidence accumulate and become a report, deck, dashboard, or site—not a magic loading state.',
+    href: 'https://www.perplexity.ai/hub/blog/deep-research-now-in-computer',
+  },
+  {
+    product: 'Comet',
+    truth: 'A browser assistant designed to understand, build, email, create, and shop inside the flow of browsing.',
+    motion: 'Keep intent, action, and confirmation connected so capability never erases user control.',
+    href: 'https://www.perplexity.ai/comet',
+  },
+]
+
+const conceptRoutes = [
+  {
+    number: 'A',
+    title: 'Model constellation',
+    thought: 'Specialist models assemble around one request.',
+    verdict: 'Visually expressive, but too close to generic AI spectacle. The product and user outcome disappear.',
+    status: 'Set aside',
+    visual: 'constellation',
+  },
+  {
+    number: 'B',
+    title: 'Interface chase',
+    thought: 'A cursor races through a sequence of product states.',
+    verdict: 'Proves speed, but turns the story into a feature tour and gives evidence no time to land.',
+    status: 'Set aside',
+    visual: 'cursor',
+  },
+  {
+    number: 'C',
+    title: 'Evidence becomes work',
+    thought: 'A real request branches into research, then resolves as a useful artifact.',
+    verdict: 'Chosen because it connects Computer, Deep Research, citations, and a human outcome in one repeatable story.',
+    status: 'Selected',
+    visual: 'evidence',
+  },
+]
+
+const sketchFrames = [
+  ['01', 'Outcome first', 'Open on the finished brief.'],
+  ['02', 'Decompose', 'One request becomes a plan.'],
+  ['03', 'Work in parallel', 'Research and tools split.'],
+  ['04', 'Keep the trail', 'Sources stay with claims.'],
+  ['05', 'Build the artifact', 'Evidence becomes usable work.'],
+  ['06', 'Hold for review', 'Trust, then the next action.'],
+]
+
 const storyBeats = [
-  ['00–02', 'Ask', 'Open on a useful human intent, already in motion.'],
-  ['02–05', 'Understand', 'Turn the prompt into a visible plan instead of a loading abstraction.'],
-  ['05–10', 'Work', 'Let research, sources, and actions accumulate with readable cause and effect.'],
-  ['10–13', 'Verify', 'Hold on the answer, source trail, or completed action long enough to trust it.'],
-  ['13–15', 'Land', 'Resolve to one product sentence and one next step.'],
+  ['00–02', 'Outcome', 'Open on the finished artifact so the value lands before the explanation.'],
+  ['02–04', 'Ask', 'Reveal the useful human request that started the work.'],
+  ['04–08', 'Orchestrate', 'Show parallel research and tool use as one readable plan.'],
+  ['08–12', 'Prove', 'Attach sources to the finding and hold long enough to verify it.'],
+  ['12–15', 'Deliver', 'Return to the artifact, the Perplexity mark, and one next action.'],
 ]
 
 const territories = [
   {
     number: '01',
-    label: 'Search + Deep Research',
-    title: 'From question to evidence.',
-    body: 'A launch-film family that turns the invisible work of research into a legible sequence: intent, branching inquiry, source convergence, cited answer.',
-    deliverables: '15s launch · 6s proof · 9:16 source story',
-    visual: 'research',
+    label: 'Perplexity Computer',
+    title: 'One prompt. A whole workflow.',
+    body: 'Make delegation understandable without diagram overload: request, task plan, parallel specialists, live progress, finished deliverable.',
+    deliverables: '30s launch · 15s use case · 6s outcome',
+    visual: 'computer',
   },
   {
     number: '02',
-    label: 'Comet',
-    title: 'From prompt to delegated action.',
-    body: 'Show the browser doing useful work while preserving control: understand the request, form a plan, act across steps, return for confirmation.',
-    deliverables: '30s hero · 15s use case · feature cutdowns',
-    visual: 'comet',
+    label: 'Deep Research in Computer',
+    title: 'Evidence becomes finished work.',
+    body: 'Turn iterative research into a visible narrative: plan, search, compare, cite, then build a report, deck, dashboard, or site.',
+    deliverables: '15s launch · 9:16 proof · 6s citation hold',
+    visual: 'research',
   },
   {
     number: '03',
-    label: 'Social + GTM',
-    title: 'One launch. A complete cut family.',
-    body: 'Design the master and its derivatives together so hooks, proof moments, captions, and end cards survive every duration and crop.',
-    deliverables: '16:9 · 1:1 · 4:5 · 9:16 · still',
-    visual: 'formats',
+    label: 'Comet',
+    title: 'The browser moves work forward.',
+    body: 'Show understanding, action, and confirmation in one spatial model so the assistant feels capable without making the user feel absent.',
+    deliverables: '15s use case · feature cutdowns · 9:16 story',
+    visual: 'comet',
   },
 ]
 
@@ -146,39 +203,39 @@ function useMotionControl() {
 
 function PerplexityPrototype({ playing }: { playing: boolean }) {
   return (
-    <div className={`perp-prototype${playing ? '' : ' is-paused'}`} role="img" aria-label="Speculative Perplexity launch-film prototype moving from a question through research and cited evidence to a completed action">
+    <div className={`perp-prototype${playing ? '' : ' is-paused'}`} role="img" aria-label="Speculative Perplexity Computer launch-film prototype moving from a request through parallel research and cited evidence to a finished campaign brief">
       <div className="perp-prototype__top" aria-hidden="true">
-        <span>PERPLEXITY / CREATIVE STUDIO STUDY</span>
+        <span><img src="/Assets/brands/perplexity-mark.svg" alt="" /> PERPLEXITY / COMPUTER STUDY</span>
         <span>15 SEC MASTER · 01</span>
       </div>
 
       <div className="perp-prototype__scene perp-prototype__scene--ask" aria-hidden="true">
-        <p>What changed in AI browsers<br />and what should I try first?</p>
-        <span><i /> Ask anything</span>
+        <p>Research the AI browser category<br />and turn it into a launch brief.</p>
+        <span><i /> Start a task</span>
       </div>
 
       <div className="perp-prototype__scene perp-prototype__scene--research" aria-hidden="true">
         <div className="perp-research-map">
-          <span>Intent</span><i /><span>Compare</span><i /><span>Verify</span><i /><span>Answer</span>
+          <span>Plan</span><i /><span>Search</span><i /><span>Compare</span><i /><span>Build</span>
         </div>
         <div className="perp-source-stack">
-          <span><b>01</b> Product documentation</span>
-          <span><b>02</b> Launch announcement</span>
-          <span><b>03</b> Independent reporting</span>
+          <span><b>01</b> Product pages</span>
+          <span><b>02</b> Market reporting</span>
+          <span><b>03</b> Audience signals</span>
         </div>
-        <strong>Research that<br />shows its work.</strong>
+        <strong>Computer works<br />across the whole brief.</strong>
       </div>
 
       <div className="perp-prototype__scene perp-prototype__scene--answer" aria-hidden="true">
-        <small>ANSWER / 6 SOURCES</small>
-        <h2>The browser becomes an active collaborator.</h2>
-        <p>Compare options, act across steps, and keep the source trail visible.</p>
-        <div><span>1</span><span>2</span><span>3</span><span>+3</span></div>
+        <small>CAMPAIGN BRIEF / 18 SOURCES</small>
+        <h2>A cited brief, ready to review.</h2>
+        <p>Audience, positioning, proof points, channels, and open questions—built from live evidence.</p>
+        <div><span>1</span><span>2</span><span>3</span><span>+15</span></div>
       </div>
 
       <div className="perp-prototype__scene perp-prototype__scene--land" aria-hidden="true">
-        <p>Perplexity</p>
-        <strong>Knowledge to action.</strong>
+        <div className="perp-prototype__brand"><img src="/Assets/brands/perplexity-mark.svg" alt="" /><p>Perplexity</p></div>
+        <strong>Chat answers.<br />Computer works.</strong>
         <span>Independent motion study</span>
       </div>
 
@@ -190,6 +247,16 @@ function PerplexityPrototype({ playing }: { playing: boolean }) {
 }
 
 function TerritoryVisual({ type }: { type: string }) {
+  if (type === 'computer') {
+    return (
+      <div className="perp-territory-visual perp-territory-visual--computer" aria-hidden="true">
+        <div className="perp-computer-task"><span>Task</span><strong>Launch brief</strong></div>
+        <div className="perp-computer-agents"><span>Research</span><span>Analysis</span><span>Writing</span><span>Design</span></div>
+        <div className="perp-computer-output"><span>Output</span><strong>Brief.pdf</strong></div>
+      </div>
+    )
+  }
+
   if (type === 'research') {
     return (
       <div className="perp-territory-visual perp-territory-visual--research" aria-hidden="true">
@@ -211,10 +278,15 @@ function TerritoryVisual({ type }: { type: string }) {
     )
   }
 
+  return null
+}
+
+function ConceptVisual({ type }: { type: string }) {
   return (
-    <div className="perp-territory-visual perp-territory-visual--formats" aria-hidden="true">
-      <div><span>16:9</span></div><div><span>4:5</span></div><div><span>9:16</span></div>
-      <p>One master / every cut</p>
+    <div className={`perp-concept-visual perp-concept-visual--${type}`} aria-hidden="true">
+      {type === 'constellation' ? <><i /><i /><i /><i /><span /></> : null}
+      {type === 'cursor' ? <><span>Ask</span><i /><span>Work</span><i /><span>Done</span><b>↗</b></> : null}
+      {type === 'evidence' ? <><span>Request</span><i /><span>Sources</span><i /><span>Brief</span><b>✓</b></> : null}
     </div>
   )
 }
@@ -227,9 +299,9 @@ export default function PerplexityPage() {
     <>
       <Helmet>
         <title>Perplexity Creative Studio Motion Study · Parth Pawar</title>
-        <meta name="description" content="An independent motion and GTM system proposal for Perplexity Creative Studio, grounded in product truth, cited answers, reusable After Effects builds, and social delivery." />
+        <meta name="description" content="An independent Creative Studio motion proposal for Perplexity Computer, Deep Research, and Comet—from ideation and storyboard to a reusable After Effects production system." />
         <meta property="og:title" content="Perplexity Creative Studio Motion Study · Parth Pawar" />
-        <meta property="og:description" content="What I would build for Perplexity: product-true launch stories, a scalable motion grammar, and a high-output social production system." />
+        <meta property="og:description" content="A product-grounded Perplexity motion study: concept routes, a working launch prototype, GTM cut families, and a scalable production system." />
         <link rel="canonical" href="https://designwhich.works/perplexity" />
       </Helmet>
 
@@ -243,12 +315,15 @@ export default function PerplexityPage() {
             </div>
 
             <div className="perp-hero__title">
-              <p>Perplexity<br />Motion Study</p>
-              <h1 id="perp-title">A motion system for products that think in public.</h1>
+              <div className="perp-hero__brand-lockup">
+                <img src="/Assets/brands/perplexity-mark.svg" alt="" />
+                <div><span>Perplexity</span><small>Creative Studio study</small></div>
+              </div>
+              <h1 id="perp-title">Motion for AI that does the work—and shows enough to trust it.</h1>
             </div>
 
             <div className="perp-hero__intro">
-              <p>Perplexity has a rare motion problem: make fast-moving AI capabilities feel immediate without hiding how the product reached an answer or completed an action.</p>
+              <p>A job-specific study for Perplexity Computer, Deep Research, and Comet: one launch prototype, a deliberate concept choice, and the production system behind a high-volume social family.</p>
               <div>
                 <a className="perp-button perp-button--solid figma-hover" href="#prototype">View the concept <span>↓</span></a>
                 <Link className="perp-button figma-hover" to="/motion">Motion portfolio <span>↗</span></Link>
@@ -260,7 +335,7 @@ export default function PerplexityPage() {
             <div className="perp-section-head">
               <p><span>00</span> Working prototype</p>
               <div>
-                <h2 id="prototype-title">Question → work → evidence → action.</h2>
+                <h2 id="prototype-title">One request becomes visible work.</h2>
                 <button type="button" onClick={() => setPlaying((current) => !current)} aria-pressed={!playing}>
                   <i aria-hidden="true">{playing ? 'Ⅱ' : '▶'}</i>{playing ? 'Pause motion' : 'Play motion'}
                 </button>
@@ -268,7 +343,7 @@ export default function PerplexityPage() {
             </div>
             <PerplexityPrototype playing={playing} />
             <div className="perp-prototype-caption">
-              <span>Speculative launch-story prototype · product language study, not Perplexity product UI</span>
+              <span>Speculative Computer launch story · grounded in public product language, not Perplexity product UI</span>
               <span>CSS motion · reduced-motion safe</span>
             </div>
           </section>
@@ -277,7 +352,7 @@ export default function PerplexityPage() {
             <section className="perp-role" aria-labelledby="role-title">
               <div className="perp-section-head">
                 <p><span>01</span> Reading the role</p>
-                <div><h2 id="role-title">The brief asks for output and infrastructure.</h2></div>
+                <div><h2 id="role-title">The brief asks for output, product judgment, and infrastructure.</h2></div>
               </div>
               <div className="perp-role__grid">
                 {roleNeeds.map((item) => (
@@ -287,13 +362,59 @@ export default function PerplexityPage() {
               <a className="perp-source-link" href="https://jobs.ashbyhq.com/Perplexity/39d520eb-6b81-4b61-8b23-5efcdac4cad9" target="_blank" rel="noreferrer">
                 <span>Source</span><strong>Member of Creative Studio (Motion Designer) · official role</strong><i>↗</i>
               </a>
+
+              <div className="perp-product-truth">
+                <div className="perp-product-truth__head">
+                  <span>Product reading</span>
+                  <h3>What is true now—and what motion needs to reveal.</h3>
+                </div>
+                <div className="perp-product-truth__rows">
+                  {productSignals.map((item, index) => (
+                    <a href={item.href} target="_blank" rel="noreferrer" key={item.product}>
+                      <span>0{index + 1}</span>
+                      <h4>{item.product}</h4>
+                      <p>{item.truth}</p>
+                      <strong>{item.motion}</strong>
+                      <i aria-hidden="true">↗</i>
+                    </a>
+                  ))}
+                </div>
+              </div>
             </section>
           </Reveal>
 
+          <section className="perp-ideation" aria-labelledby="ideation-title">
+            <div className="perp-section-head">
+              <p><span>02</span> Concept development</p>
+              <div><h2 id="ideation-title">Three ideas entered. One survived the product test.</h2><p>The chosen route had to communicate a real capability, preserve evidence, create an emotional payoff, and scale into a repeatable social family.</p></div>
+            </div>
+            <div className="perp-concept-grid">
+              {conceptRoutes.map((concept) => (
+                <Reveal key={concept.number}>
+                  <article className={concept.status === 'Selected' ? 'is-selected' : ''}>
+                    <ConceptVisual type={concept.visual} />
+                    <div className="perp-concept-card__meta"><span>{concept.number}</span><small>{concept.status}</small></div>
+                    <h3>{concept.title}</h3>
+                    <p>{concept.thought}</p>
+                    <strong>{concept.verdict}</strong>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+            <div className="perp-sketchbook">
+              <div className="perp-sketchbook__head"><span><img src="/Assets/brands/perplexity-mark.svg" alt="" /> Selected route / paper edit</span><p>Outcome first. Then reveal the orchestration and evidence that made it possible.</p></div>
+              <div className="perp-sketchbook__frames">
+                {sketchFrames.map(([number, title, note]) => (
+                  <article className={`perp-sketch--${number}`} key={number}><span>{number}</span><div><i /><i /><i /></div><h3>{title}</h3><p>{note}</p></article>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <section className="perp-territories" aria-labelledby="territories-title">
             <div className="perp-section-head">
-              <p><span>02</span> Three launch territories</p>
-              <div><h2 id="territories-title">What I would make first.</h2><p>Three repeatable stories, each tied to a product truth and built as a family of social outputs.</p></div>
+              <p><span>03</span> Launch territories</p>
+              <div><h2 id="territories-title">A pipeline, not a one-off reel.</h2><p>Three repeatable stories tied to current products and designed with their social cut families from the start.</p></div>
             </div>
             <div className="perp-territories__grid">
               {territories.map((territory) => (
@@ -314,8 +435,8 @@ export default function PerplexityPage() {
           <Reveal>
             <section className="perp-story" aria-labelledby="story-title">
               <div className="perp-section-head perp-section-head--light">
-                <p><span>03</span> Fifteen-second story</p>
-                <div><h2 id="story-title">Speed belongs in the work. Trust belongs in the hold.</h2></div>
+                <p><span>04</span> Fifteen-second story</p>
+                <div><h2 id="story-title">Lead with value. Earn belief in the middle.</h2></div>
               </div>
               <div className="perp-story__track">
                 {storyBeats.map(([time, title, body]) => (
@@ -328,7 +449,7 @@ export default function PerplexityPage() {
 
           <section className="perp-principles" aria-labelledby="principles-title">
             <div className="perp-section-head">
-              <p><span>04</span> Motion grammar</p>
+              <p><span>05</span> Motion grammar</p>
               <div><h2 id="principles-title">Tighter, not busier.</h2><p>The reference point is the restraint and system thinking visible in Rob Diaz’s Perplexity work—not an imitation of his frames.</p></div>
             </div>
             <div className="perp-principles__grid">
@@ -337,16 +458,16 @@ export default function PerplexityPage() {
               ))}
             </div>
             <div className="perp-reference-links">
-              <a href="https://robdiaz.com/" target="_blank" rel="noreferrer"><span>Reference</span><strong>Rob Diaz · motion systems and selected Perplexity work</strong><i>↗</i></a>
+              <a href="https://robdiaz.com/work/perplexity-deep-research" target="_blank" rel="noreferrer"><span>Reference</span><strong>Rob Diaz · Deep Research in Perplexity Computer</strong><i>↗</i></a>
               <a href="https://robdiaz.com/articles/motion-design-workflow-2026" target="_blank" rel="noreferrer"><span>Process reference</span><strong>Clarity, timing, craft, and scalable production</strong><i>↗</i></a>
-              <a href="https://www.perplexity.ai/comet" target="_blank" rel="noreferrer"><span>Product source</span><strong>Comet · the browser that works for you</strong><i>↗</i></a>
+              <a href="https://www.perplexity.ai/products/computer" target="_blank" rel="noreferrer"><span>Product source</span><strong>Computer · a general-purpose digital worker</strong><i>↗</i></a>
             </div>
           </section>
 
           <Reveal>
             <section className="perp-production" aria-labelledby="production-title">
               <div className="perp-section-head">
-                <p><span>05</span> After Effects system</p>
+                <p><span>06</span> After Effects system</p>
                 <div><h2 id="production-title">One editable master. A complete delivery family.</h2><p>Figma preserves product truth; After Effects owns timing, compositing, and reusable modules; Premiere owns editorial and sound; Media Encoder creates controlled outputs.</p></div>
               </div>
               <div className="perp-production__body">
@@ -371,7 +492,7 @@ export default function PerplexityPage() {
 
           <section className="perp-proof" aria-labelledby="proof-title">
             <div className="perp-section-head">
-              <p><span>06</span> Evidence from current work</p>
+              <p><span>07</span> Evidence from current work</p>
               <div><h2 id="proof-title">The proposal is connected to work already done.</h2><p>Each study demonstrates a different part of the role: campaign cadence, GTM storytelling, product-state clarity, or editorial construction.</p></div>
             </div>
             <div className="perp-proof__grid">
@@ -390,7 +511,7 @@ export default function PerplexityPage() {
           <Reveal>
             <section className="perp-ninety" aria-labelledby="ninety-title">
               <div className="perp-section-head">
-                <p><span>07</span> First ninety days</p>
+                <p><span>08</span> First ninety days</p>
                 <div><h2 id="ninety-title">Ship first. Systematize what proves useful.</h2></div>
               </div>
               <div className="perp-ninety__grid">

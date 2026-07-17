@@ -70,7 +70,7 @@ const routeDescriptions = new Map([
   ['motion/mentra-motion-language', 'An advertising-motion system for smart glasses that leads with lived moments, proves wearability, and closes on MentraOS using real Mentra campaign assets.'],
   ['motion/transfi-identity-motion', 'A product-motion system following one cross-border payment from currency choice to verified delivery through real TransFi interface states.'],
   ['motion/editing-motion-stories', 'A video-editing case study across Enigma, The Omakase, Making of Time, and Drowning, covering selects, structure, pacing, sound, motion graphics, and delivery.'],
-  ['perplexity', 'An independent Creative Studio motion proposal for Perplexity, connecting product-true launch storytelling, social GTM systems, and reusable After Effects production.'],
+  ['perplexity', 'An independent Creative Studio motion proposal for Perplexity Computer, Deep Research, and Comet—from product research and ideation to a working launch prototype and reusable After Effects system.'],
   ['healthapp', 'A healthcare product design concept by Parth Pawar focused on making complex information easier to understand and act on.'],
   ['ux-design', 'UX design work by Parth Pawar across product systems, flows, interfaces, and service experiences.'],
   ['creative-tech', 'Creative technology work by Parth Pawar spanning code, prototypes, physical computing, and interactive systems.'],
