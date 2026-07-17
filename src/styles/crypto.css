@@ -6,15 +6,7 @@
 }
 
 .ch--crypto::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 86% 30%, color-mix(in srgb, var(--crypto-violet) 11%, transparent), transparent 23rem),
-    radial-gradient(circle at 70% 8%, color-mix(in srgb, var(--crypto-mint) 5%, transparent), transparent 18rem);
-  mask-image: linear-gradient(to bottom, #000 0, #000 78%, transparent 100%);
+  content: none;
 }
 
 .crypto-hero-copy {
