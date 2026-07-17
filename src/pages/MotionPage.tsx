@@ -110,64 +110,64 @@ const projects: MotionProject[] = [
   {
     key: 'mentra',
     path: 'mentra-motion-language',
-    title: 'Mentra — From Mark to Point of View',
-    cardTitle: 'Mentra: From mark to point of view',
-    descriptor: 'A modular launch-motion system connecting the shipped identity, AI glasses, first-person capture, and MentraOS without losing product clarity.',
-    discipline: 'Hardware motion / GTM system',
+    title: 'Mentra — Sell the Moment, Then the Hardware',
+    cardTitle: 'Mentra: Sell the moment, then the hardware',
+    descriptor: 'An advertising-motion system for smart glasses that leads with lived moments, proves wearability, and closes on MentraOS—built from real Mentra campaign and product assets.',
+    discipline: 'Advertising motion / Hardware GTM',
     year: '2025–26',
     color: '#00b869',
     categorySlug: 'brand-visual',
     heroImage: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
     heroAlt: 'Black and transparent Mentra smart glasses product renders',
-    intro: 'The brand moves like the product behaves: capture, reveal, return to the world.',
-    truthNote: 'The identity, packaging, product renders, campaign assets, MentraOS interfaces, and logo-animation frames are from my shipped Mentra work. The launch sequence and After Effects architecture documented here are a portfolio motion system built from those real sources—not a claim that one finished campaign film shipped in this exact form or produced unverified performance results.',
-    challenge: 'Mentra has to feel credible as hardware, useful as an everyday camera, and open as a developer platform. A fast social edit can easily flatten those three stories into a feature montage or make the glasses feel like an abstract AI prop.',
-    move: 'Give every asset one communication job. The mark establishes behavior, macro renders prove the hardware, first-person footage explains the benefit, and MentraOS closes on the ecosystem. Expressive motion earns attention at chapter changes; productive motion keeps UI and copy readable.',
-    outcome: 'One 15-second master becomes a three-second ident, a six-second hardware reveal, vertical feature stories, MiniApp announcements, and a protected end-card family without inventing a new transition for every launch.',
-    roles: ['Brand direction', 'Motion system', 'Storyboard', '3D direction', 'Template architecture'],
-    storyTitle: 'Signal. Build. See. Extend.',
-    artTitle: 'One diagonal behavior, four layers of product truth',
-    artNote: 'The mark supplies the angle and direction, the renders supply physical proof, real campaign imagery supplies the human point of view, and MentraOS supplies the system layer. Green appears as a signal—not a wash over every frame.',
+    intro: 'The technology should leave the frame before the person leaves the moment.',
+    truthNote: 'The identity, packaging, product renders, Stream, Hear, Focus, and teaser campaign assets, MentraOS interfaces, and logo-animation frames are from my Mentra work. The 15-second advertising sequence and After Effects architecture documented here are a portfolio campaign system assembled from those real sources—not a claim that this exact hero edit shipped or produced unverified performance results. Even Realities is cited only as category research; no competitor imagery, copy, or layouts are used in the Mentra work.',
+    challenge: 'Smart-glasses advertising often begins with “AI,” interface overlays, and specifications before giving people a reason to care. Mentra still has to prove credible hardware and an open platform, but the advertisement first needs to make hands-free capture and open-ear audio feel desirable in an ordinary life moment.',
+    move: 'Lead with a recognizable human moment, present the glasses as eyewear, demonstrate one capability, then reveal the hardware and MentraOS system behind it. Each short ad gets one promise—Stream, Hear, Focus, or Build—rather than carrying the entire feature list.',
+    outcome: 'One campaign idea becomes a 15-second launch film, six-second benefit spots, vertical paid-social stories, hardware proof cutdowns, and MiniApp announcements—held together by one visual route and one advertising hierarchy.',
+    roles: ['Creative direction', 'Advertising system', 'Motion design', 'Storyboard', 'Template architecture'],
+    storyTitle: 'Moment. Wear. Use. Extend.',
+    artTitle: 'People first. Product second. Platform third.',
+    artNote: 'Human campaign frames establish desire, clean renders establish wearability and build quality, and MentraOS establishes what the product can become. White type stays direct; green acts as a recognition signal; interface overlays appear only when they explain a real capability.',
     beats: [
-      { time: '00:00', title: 'Signal', body: 'One folded plane establishes direction before the complete mark arrives.' },
-      { time: '00:02', title: 'Build', body: 'The mark’s three parts become a reveal path for the physical glasses.' },
-      { time: '00:05', title: 'Prove', body: 'Macro and exploded renders hold long enough to establish real hardware detail.' },
-      { time: '00:08', title: 'See', body: 'A first-person frame answers the most important question: what does this let me experience?' },
-      { time: '00:11', title: 'Extend', body: 'MentraOS and MiniApp states show that the hardware is a platform, not a closed demo.' },
-      { time: '00:14', title: 'Sign off', body: 'The mark returns with one launch message and a stable call to action.' },
+      { time: '00:00', title: 'Moment', body: 'Open on a human scene and a single promise: Stream your world without stepping out of it.' },
+      { time: '00:03', title: 'Wear', body: 'A clean product reveal makes the glasses feel familiar, desirable, and physically believable.' },
+      { time: '00:06', title: 'Use', body: 'Demonstrate one capability—capture or audio—without turning the frame into a feature dashboard.' },
+      { time: '00:10', title: 'Prove', body: 'Macro and exploded views hold long enough to establish the camera, temple, and construction.' },
+      { time: '00:12', title: 'Extend', body: 'MentraOS reframes the glasses as an open platform after the core benefit is understood.' },
+      { time: '00:14', title: 'Act', body: 'Close on one message and one CTA, with a stable product silhouette and no final feature pile-up.' },
     ],
     principles: [
-      { label: 'Continuity', value: 'The mark’s 28° diagonal guides every major transition' },
-      { label: 'Expression', value: 'Reserved for ident, product reveal, and chapter changes' },
-      { label: 'Productivity', value: 'Short, precise motion for UI, captions, and feature proof' },
-      { label: 'Accessibility', value: 'Static hierarchy survives sound-off and reduced-motion playback' },
+      { label: 'Advertising hierarchy', value: 'Human tension → benefit → product → platform → action' },
+      { label: 'One promise', value: 'Stream, Hear, Focus, or Build—never all four in one short ad' },
+      { label: 'Wearability', value: 'Show the glasses on a person before exposing technical construction' },
+      { label: 'Accessibility', value: 'Benefit and CTA survive sound-off and reduced-motion playback' },
     ],
     frames: [
-      { src: '/Assets/Projects/mentra-brand/photos/logo-animation-3.png', alt: 'Mentra logo-animation frame made from folded green planes', caption: '01 — Identity signal', fit: 'contain' },
-      { src: '/Assets/Projects/mentra-brand/photos/render-exploded.webp', alt: 'Exploded Mentra Live smart-glasses render showing product components', caption: '02 — Hardware proof', fit: 'cover' },
-      { src: '/Assets/Projects/mentra-brand/photos/text-bubble-1.webp', alt: 'Mentra Live in use with a speech bubble overlay', caption: '03 — Human point of view', fit: 'cover' },
-      { src: '/Assets/images/mentra/os-all-apps.png', alt: 'MentraOS interface showing available smart-glasses applications', caption: '04 — Platform layer', fit: 'contain' },
+      { src: '/Assets/Projects/mentra-brand/photos/ad-stream.webp', alt: 'Mentra Stream Your World vertical campaign advertisement', caption: '01 — Human moment', fit: 'cover' },
+      { src: '/Assets/Projects/mentra-brand/photos/ad-hear.webp', alt: 'Mentra Hear Your Audio Hear the World campaign advertisement', caption: '02 — Single benefit', fit: 'cover' },
+      { src: '/Assets/Projects/mentra-brand/photos/render-exploded.webp', alt: 'Exploded Mentra Live smart-glasses render showing product components', caption: '03 — Hardware proof', fit: 'cover' },
+      { src: '/Assets/images/mentra/os-all-apps.png', alt: 'MentraOS interface showing available smart-glasses applications', caption: '04 — Platform extension', fit: 'contain' },
     ],
     decisions: [
-      { removed: 'A 3D logo spin', kept: 'Three planes assembling on one route', reason: 'The movement teaches how the mark is built and creates a reusable transition path.' },
-      { removed: 'A rapid feature montage', kept: 'One proof layer per chapter', reason: 'Hardware, point of view, and ecosystem each need enough time to be understood.' },
-      { removed: 'Floating HUD decoration', kept: 'Real MentraOS states', reason: 'Product truth is more credible than generic interface graphics added in post.' },
-      { removed: 'Elastic overshoot', kept: 'A fast arrival and firm settle', reason: 'The glasses should feel lightweight and responsive, not toy-like.' },
+      { removed: 'Opening on “AI smart glasses”', kept: 'Opening on an uninterrupted life moment', reason: 'The audience understands the human benefit before being asked to understand the category.' },
+      { removed: 'A rapid four-feature montage', kept: 'One promise per paid-social spot', reason: 'Stream, Hear, Focus, and Build become memorable campaign territories instead of competing captions.' },
+      { removed: 'Floating speculative HUD graphics', kept: 'Real campaign imagery and MentraOS states', reason: 'Product truth is more persuasive than generic interface decoration added in post.' },
+      { removed: 'A dramatic logo-first ending', kept: 'Product silhouette, benefit, and one CTA', reason: 'The advertisement closes on what the viewer gets—not only on who made it.' },
     ],
     aeBuild: [
-      { layer: '00_MASTER_15S', technique: '3840×2160 · 30 fps · chapter markers', purpose: 'The master edit protects the mark → hardware → POV → ecosystem narrative.' },
-      { layer: '01_MARK_ROUTE', technique: 'Shape layers + null controls', purpose: 'One angle, stagger, and settle control the ident and major scene wipes.' },
-      { layer: '02_PRODUCT_STAGE', technique: 'Render passes + track mattes', purpose: 'Black, clear, macro, and exploded variants can swap without changing timing.' },
-      { layer: '03_POV_AND_OS', technique: 'Protected media pre-comps', purpose: 'First-person footage and real product states retain legible focal zones.' },
-      { layer: '90_DELIVERY_SET', technique: 'Responsive comps + Essential Graphics', purpose: 'Copy, CTA, colorway, captions, and crops remain editable for the launch team.' },
+      { layer: '00_MASTER_CAMPAIGN', technique: '3840×2160 · 15 sec · five markers', purpose: 'The master protects the moment → wearability → capability → product → platform hierarchy.' },
+      { layer: '01_HOOK_FAMILY', technique: 'Essential Graphics + copy controls', purpose: 'Stream, Hear, Focus, and Build swap as campaign promises without changing the edit grammar.' },
+      { layer: '02_LIFE_MOMENT', technique: 'Protected media + focal-point nulls', purpose: 'Lifestyle footage reframes cleanly while keeping faces, eyewear, and benefit copy readable.' },
+      { layer: '03_PRODUCT_AND_OS', technique: 'Render passes + protected pre-comps', purpose: 'Hardware, macro detail, and MentraOS can enter as proof without interrupting the human story.' },
+      { layer: '90_PAID_SOCIAL_SET', technique: 'Responsive comps + inherited timing', purpose: 'Six-second and 15-second versions share captions, CTA, safe zones, and product end cards.' },
     ],
     deliveries: [
-      { key: '03 seconds', value: 'Ident / end card / partner badge' },
-      { key: '06 seconds', value: 'Mark → hardware reveal' },
-      { key: '15 seconds', value: 'Hardware → POV → ecosystem launch story' },
+      { key: '03 seconds', value: 'Product end card / retargeting sting' },
+      { key: '06 seconds', value: 'Single-benefit paid-social spot' },
+      { key: '15 seconds', value: 'Moment → product → platform campaign story' },
       { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
     ],
-    outputs: ['Logo ident', 'Hardware reveal', 'Feature story', 'MiniApp launch template'],
+    outputs: ['Launch advertisement', 'Benefit spot family', 'Hardware proof cutdown', 'MiniApp announcement template'],
   },
   {
     key: 'transfi',
@@ -274,36 +274,32 @@ function VishwaReel({ motionOn }: { motionOn: boolean }) {
 
 function MentraReel() {
   return (
-    <div className="motion-preview motion-preview--mentra" role="img" aria-label="Mentra motion prototype moving from the identity to the smart glasses, first-person use, and MentraOS">
+    <div className="motion-preview motion-preview--mentra" role="img" aria-label="Mentra advertising prototype moving from a lived moment to wearable hardware, a single benefit, and MentraOS">
       <div className="motion-mentra__status" aria-hidden="true">
-        <span>MENTRA LIVE / LAUNCH MASTER</span>
-        <span>15 SEC · 30 FPS</span>
+        <span>MENTRA LIVE / PAID SOCIAL SYSTEM</span>
+        <span>15 SEC MASTER</span>
       </div>
       <div className="motion-mentra__chapter-labels" aria-hidden="true">
-        <span>01 / SIGNAL</span><span>02 / HARDWARE</span><span>03 / POINT OF VIEW</span><span>04 / ECOSYSTEM</span>
+        <span>01 / MOMENT</span><span>02 / WEAR</span><span>03 / USE</span><span>04 / EXTEND</span>
       </div>
-      <div className="motion-mentra__scene motion-mentra__scene--mark" aria-hidden="true">
-        <div className="motion-mentra__mark-frames">
-          <img src="/Assets/Projects/mentra-brand/photos/logo-animation-5.png" alt="" />
-          <img src="/Assets/Projects/mentra-brand/photos/logo-animation-1.png" alt="" />
-          <img src="/Assets/Projects/mentra-brand/photos/logo-animation-3.png" alt="" />
-        </div>
-        <strong>Move through the world.<br />Stay in the moment.</strong>
+      <div className="motion-mentra__scene motion-mentra__scene--moment" aria-hidden="true">
+        <img src="/Assets/Projects/mentra-brand/photos/ad-stream.webp" alt="" />
+        <div><small>MENTRA LIVE</small><strong>Stream your world.</strong><span>Stay in the moment. Bring it with you.</span></div>
       </div>
       <div className="motion-mentra__scene motion-mentra__scene--hardware" aria-hidden="true">
-        <span>Open hardware for everyday perspective</span>
+        <span>Designed to wear.<br />Ready to capture.</span>
         <img src="/Assets/Projects/mentra-brand/photos/render-both-frames.webp" alt="" />
         <i />
       </div>
       <div className="motion-mentra__scene motion-mentra__scene--pov" aria-hidden="true">
-        <img src="/Assets/Projects/mentra-brand/photos/text-bubble-1.webp" alt="" />
-        <div><small>FIRST-PERSON CAPTURE</small><strong>Stream your world.</strong></div>
+        <img src="/Assets/Projects/mentra-brand/photos/ad-hear.webp" alt="" />
+        <div><small>ONE BENEFIT / ONE SPOT</small><strong>Hear your audio.<br />Hear the world.</strong></div>
       </div>
       <div className="motion-mentra__scene motion-mentra__scene--platform" aria-hidden="true">
         <img src="/Assets/images/mentra/os-all-apps.png" alt="" />
-        <div><small>POWERED BY MENTRAOS</small><strong>Hardware becomes a platform.</strong><span>Build · install · extend</span></div>
+        <div><small>POWERED BY MENTRAOS</small><strong>One pair. More possibilities.</strong><span>Build · install · extend</span></div>
       </div>
-      <div className="motion-mentra__timeline" aria-hidden="true"><i /><span>MARK</span><span>BUILD</span><span>SEE</span><span>EXTEND</span></div>
+      <div className="motion-mentra__timeline" aria-hidden="true"><i /><span>MOMENT</span><span>WEAR</span><span>USE</span><span>EXTEND</span></div>
     </div>
   )
 }
@@ -498,10 +494,10 @@ function VishwaAeStack() {
 
 function MentraCommunicationBrief() {
   const items = [
-    ['Audience', 'Early adopters, creators, and developers who need to see a useful product—not “AI” as atmosphere.'],
-    ['Communication job', 'Connect the physical glasses to first-person capture and the open MentraOS ecosystem in one short story.'],
-    ['Product proof', 'Real renders, real use imagery, and real interface states—each with enough time to read.'],
-    ['Delivery constraint', 'A repeatable social pipeline that works sound-off, across crops, without rebuilding every launch from zero.'],
+    ['Audience', 'Creators and early adopters who want useful everyday eyewear—not another device competing for their attention.'],
+    ['Communication job', 'Make the life moment desirable first, then prove Mentra can capture, play, and extend it without getting in the way.'],
+    ['Campaign proof', 'Real Stream, Hear, Focus, teaser, hardware, and MentraOS assets—each assigned one advertising job.'],
+    ['Delivery constraint', 'One recognizable campaign across six- and 15-second paid social, sound-off viewing, and responsive crops.'],
   ]
 
   return (
@@ -511,16 +507,16 @@ function MentraCommunicationBrief() {
           <article key={label}><span>0{index + 1}</span><small>{label}</small><p>{value}</p></article>
         ))}
       </div>
-      <div className="mentra-story-ladder" aria-label="Mentra launch story sequence">
-        <p>Proof ladder</p>
+      <div className="mentra-story-ladder" aria-label="Mentra advertising story sequence">
+        <p>Advertising ladder</p>
         <div>
-          <span><small>Recognize</small><strong>Mark</strong></span>
+          <span><small>Desire</small><strong>Moment</strong></span>
           <i aria-hidden="true">→</i>
-          <span><small>Believe</small><strong>Hardware</strong></span>
+          <span><small>Accept</small><strong>Wearability</strong></span>
           <i aria-hidden="true">→</i>
-          <span><small>Imagine</small><strong>Point of view</strong></span>
+          <span><small>Understand</small><strong>Capability</strong></span>
           <i aria-hidden="true">→</i>
-          <span><small>Extend</small><strong>Ecosystem</strong></span>
+          <span><small>Believe</small><strong>Platform</strong></span>
         </div>
       </div>
     </>
@@ -529,41 +525,57 @@ function MentraCommunicationBrief() {
 
 function MentraMotionSystem() {
   const tokens = [
-    ['Expressive', '720–900 ms', 'Ident, product reveal, chapter change'],
-    ['Transition', '320–480 ms', 'Diagonal wipe, crop change, media handoff'],
-    ['Productive', '160–240 ms', 'Caption, UI state, feature confirmation'],
-    ['Reading hold', '1.2–1.8 sec', 'Product detail, benefit, CTA'],
+    ['Hook', '0–800 ms', 'Human tension or benefit visible in the first frame'],
+    ['Moment', '1.6–2.4 sec', 'Enough time to recognize the person, place, and desire'],
+    ['Proof', '800–1,200 ms', 'Wearability, camera, audio, or MentraOS—not all at once'],
+    ['Action hold', '1.2–1.8 sec', 'Product silhouette, benefit line, and one CTA'],
+  ]
+  const benchmarkMoves = [
+    ['Human situation before specification', 'Open on celebration, concentration, or listening—then reveal how Mentra supports it.'],
+    ['Eyewear before electronics', 'Show frames on a person before macro, exploded, or operating-system proof.'],
+    ['One scenario per story', 'Separate Stream, Hear, Focus, and Build into memorable short-form territories.'],
+    ['Technology recedes', 'Keep interface and platform proof late in the edit, after the core human benefit is clear.'],
   ]
 
   return (
     <>
       <div className="mentra-reference-bar">
-        <div><small>Research translated into the system</small><strong>Use motion to clarify utility, hierarchy, and continuity.</strong></div>
-        <a href="https://about.fb.com/news/2023/09/new-ray-ban-meta-smart-glasses/" target="_blank" rel="noreferrer">Hardware launch / POV utility ↗</a>
-        <a href="https://carbondesignsystem.com/elements/motion/overview/" target="_blank" rel="noreferrer">Expressive vs productive ↗</a>
-        <a href="https://developer.apple.com/design/human-interface-guidelines/motion" target="_blank" rel="noreferrer">Purpose and accessibility ↗</a>
+        <div><small>Category research translated into Mentra</small><strong>Sell the human advantage before explaining the technology.</strong></div>
+        <a href="https://www.evenrealities.com/" target="_blank" rel="noreferrer">Even Realities / benefit-first category benchmark ↗</a>
+        <a href="https://www.youtube.com/watch?v=DD5-hGUDF7c" target="_blank" rel="noreferrer">Even G2 / human-situation campaign film ↗</a>
+        <a href="https://developer.apple.com/design/human-interface-guidelines/motion" target="_blank" rel="noreferrer">Purpose, restraint, and accessibility ↗</a>
+      </div>
+
+      <div className="mentra-benchmark">
+        <div className="mentra-benchmark__intro">
+          <small>Competitive benchmark → original response</small>
+          <h3>What Even Realities gets right—and how Mentra makes it its own.</h3>
+          <p>Even Realities demonstrates that smart-glasses advertising is strongest when it begins with people, familiar eyewear, and a specific life advantage. Mentra adapts that strategy to a different product truth: first-person capture, open-ear audio, and an open MiniApp platform.</p>
+          <span>No competitor assets, layouts, or copy are used.</span>
+        </div>
+        <div className="mentra-benchmark__moves">
+          {benchmarkMoves.map(([principle, response], index) => (
+            <article key={principle}><span>0{index + 1}</span><strong>{principle}</strong><p>{response}</p></article>
+          ))}
+        </div>
       </div>
 
       <div className="mentra-source-grid">
-        <article className="mentra-source-card mentra-source-card--mark">
-          <div>
-            <img src="/Assets/Projects/mentra-brand/photos/logo-animation-5.png" alt="One plane from the Mentra logo construction" loading="lazy" />
-            <img src="/Assets/Projects/mentra-brand/photos/logo-animation-1.png" alt="Three separated planes from the Mentra logo construction" loading="lazy" />
-            <img src="/Assets/Projects/mentra-brand/photos/logo-animation-3.png" alt="Mentra glasses silhouette from the logo animation study" loading="lazy" />
-          </div>
-          <p><span>01 · Identity</span><strong>The diagonal becomes the transition rule.</strong></p>
+        <article className="mentra-source-card mentra-source-card--ad">
+          <img src="/Assets/Projects/mentra-brand/photos/ad-stream.webp" alt="Mentra Stream Your World campaign concept" loading="lazy" />
+          <p><span>01 · Stream</span><strong>Lead with a moment worth keeping.</strong></p>
         </article>
-        <article className="mentra-source-card">
-          <img src="/Assets/Projects/mentra-brand/photos/render-exploded.webp" alt="Exploded Mentra Live smart-glasses product render" loading="lazy" />
-          <p><span>02 · Hardware</span><strong>Render passes provide physical evidence.</strong></p>
+        <article className="mentra-source-card mentra-source-card--ad">
+          <img src="/Assets/Projects/mentra-brand/photos/ad-hear.webp" alt="Mentra Hear Your Audio Hear the World campaign concept" loading="lazy" />
+          <p><span>02 · Hear</span><strong>Show audio without visual isolation.</strong></p>
         </article>
-        <article className="mentra-source-card">
-          <img src="/Assets/Projects/mentra-brand/photos/text-bubble-1.webp" alt="Mentra Live shown in a real first-person use context" loading="lazy" />
-          <p><span>03 · Perspective</span><strong>Real use explains the benefit faster than a spec list.</strong></p>
+        <article className="mentra-source-card mentra-source-card--ad">
+          <img src="/Assets/Projects/mentra-brand/photos/ad-4.webp" alt="Mentra Focus campaign concept with smart glasses shown on a person" loading="lazy" />
+          <p><span>03 · Focus</span><strong>Turn an attention tension into a product desire.</strong></p>
         </article>
         <article className="mentra-source-card mentra-source-card--os">
           <img src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS applications interface" loading="lazy" />
-          <p><span>04 · Ecosystem</span><strong>Product UI proves the platform story.</strong></p>
+          <p><span>04 · Build</span><strong>Close on an ecosystem that can keep expanding.</strong></p>
         </article>
       </div>
 
@@ -575,17 +587,17 @@ function MentraMotionSystem() {
 
       <div className="mentra-format-map">
         <div className="mentra-format-map__copy">
-          <small>Responsive composition</small>
-          <h3>Reframe the story, not just the crop.</h3>
-          <p>The horizontal master keeps the physical product and benefit in one field. The vertical version promotes one use case, enlarges type, and moves the CTA into a protected lower zone.</p>
+          <small>Paid-social composition</small>
+          <h3>One campaign. Different attention conditions.</h3>
+          <p>The horizontal master carries the complete moment-to-platform story. The vertical spot begins on the human hook, enlarges one benefit, and reserves a stable lower zone for product and action.</p>
         </div>
         <figure className="mentra-format mentra-format--wide">
           <img src="/Assets/Projects/mentra-brand/photos/render-both-frames.webp" alt="Mentra product render in a horizontal delivery frame" loading="lazy" />
-          <i aria-hidden="true" /><figcaption>16:9 · product launch master</figcaption>
+          <i aria-hidden="true" /><figcaption>16:9 · campaign master</figcaption>
         </figure>
         <figure className="mentra-format mentra-format--vertical">
           <img src="/Assets/Projects/mentra-brand/photos/ad-stream.webp" alt="Stream Your World Mentra campaign in a vertical delivery frame" loading="lazy" />
-          <i aria-hidden="true" /><figcaption>9:16 · feature story</figcaption>
+          <i aria-hidden="true" /><figcaption>9:16 · single-benefit spot</figcaption>
         </figure>
       </div>
     </>
@@ -594,12 +606,12 @@ function MentraMotionSystem() {
 
 function MentraAeStack() {
   const rows = [
-    ['00_MASTER_15S', '3840 × 2160 · 450 frames', 'Master'],
-    ['01_MARK_ROUTE', 'Angle · stagger · settle', 'Controls'],
-    ['02_PRODUCT_STAGE', 'Black · clear · macro · exploded', 'Pre-comp'],
-    ['03_POV_AND_OS', 'Use footage · interface states', 'Protected'],
-    ['04_TYPE_AND_CAPTIONS', 'Benefit · feature · CTA', 'Editable'],
-    ['90_DELIVERY_SET', '16:9 · 4:5 · 1:1 · 9:16', 'Inherited'],
+    ['00_MASTER_CAMPAIGN', '3840 × 2160 · 450 frames', 'Master'],
+    ['01_HOOK_FAMILY', 'Stream · Hear · Focus · Build', 'Controls'],
+    ['02_LIFE_MOMENT', 'People · eyewear · focal zones', 'Protected'],
+    ['03_PRODUCT_AND_OS', 'Wear · macro · exploded · apps', 'Pre-comp'],
+    ['04_TYPE_CAPTIONS_CTA', 'Benefit · subtitles · action', 'Editable'],
+    ['90_PAID_SOCIAL_SET', '16:9 · 4:5 · 1:1 · 9:16', 'Inherited'],
   ]
 
   return (
@@ -887,7 +899,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             { label: 'Role', value: project.roles.join(' · ') },
             { label: 'Year', value: project.year },
             { label: 'Scope', value: project.outputs.join(' · ') },
-            { label: 'Status', value: isMentra ? 'Documented motion system · shipped source assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Documented motion system · shipped product sources' },
+            { label: 'Status', value: isMentra ? 'Documented advertising system · real Mentra source assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Documented motion system · shipped product sources' },
           ]}
           heroExperience="visual"
           heroEyebrow="Selected motion study"
@@ -914,9 +926,9 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
         )}
 
         {isMentra && (
-          <CsSection id="motion-brief" label="01 — Communication brief" title="Make the glasses believable, then make the ecosystem feel inevitable.">
+          <CsSection id="motion-brief" label="01 — Advertising brief" title="Make the moment desirable before making the technology impressive.">
             <CsBody>
-              <p>The launch story has to answer four questions in order: who is this, is the hardware real, what can I do with it, and why does an open platform matter? The motion brief turns those questions into a modular proof sequence rather than a list of specifications.</p>
+              <p>The advertising story has to answer four questions in order: do I recognize this moment, would I wear these glasses, what can they do for me, and why does the open platform matter? The brief turns those questions into a campaign ladder rather than a specification montage.</p>
             </CsBody>
             <MentraCommunicationBrief />
           </CsSection>
@@ -932,10 +944,10 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
         )}
 
         <CsSection id="motion-story" label={`${sectionNumber(1)} — Storyboard`} title={project.storyTitle}>
-          <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : isMentra ? 'The 15-second master moves from recognition to proof. Expressive chapter changes earn attention; product renders, first-person use, and MentraOS states receive quieter holds so the viewer can understand what is being shown.' : 'The 18-second master follows one illustrative transaction. The amount anchors the sequence; customer actions advance it; verification and settlement receive longer holds because those are the moments where trust is either earned or lost.'}</p></CsBody>
+          <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : isMentra ? 'The 15-second master opens on a life moment, moves through wearability and one capability, then earns the right to show hardware and MentraOS. Expressive movement hooks attention; quieter product holds provide proof; one stable message closes the advertisement.' : 'The 18-second master follows one illustrative transaction. The amount anchors the sequence; customer actions advance it; verification and settlement receive longer holds because those are the moments where trust is either earned or lost.'}</p></CsBody>
           <div className="motion-case-preview">
             <ProjectReel project={project} motionOn={motionOn} />
-            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : isMentra ? '15-second launch-system prototype' : '18-second transaction-system prototype'}</span><span>{isVishwa ? 'Playback controls included' : isTransfi ? 'Illustrative values from source UI · reduced-motion respected' : 'Reduced-motion preference respected'}</span></p>
+            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : isMentra ? '15-second advertising-system prototype' : '18-second transaction-system prototype'}</span><span>{isVishwa ? 'Playback controls included' : isTransfi ? 'Illustrative values from source UI · reduced-motion respected' : 'Real Mentra campaign assets · reduced-motion respected'}</span></p>
           </div>
           <CsSteps steps={project.beats.map((beat) => ({ num: beat.time, title: beat.title, desc: beat.body }))} />
         </CsSection>
@@ -950,9 +962,9 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
         )}
 
         {isMentra && (
-          <CsSection id="motion-system" label="03 — Motion grammar" title="Expressive for launches. Productive for proof.">
+          <CsSection id="motion-system" label="03 — Advertising strategy & motion grammar" title="Human first. Wearable second. Technical only when it proves the promise.">
             <CsBody>
-              <p>The research did not produce a moodboard of effects. It produced roles for motion: point-of-view storytelling to communicate wearable utility, expressive movement for major launch moments, productive movement for interface clarity, and a static alternative whenever movement is reduced.</p>
+              <p>Even Realities is used here as a category benchmark because its advertising gives everyday situations, familiar eyewear, and one human advantage priority over specifications. Mentra adapts that hierarchy to its own truth—first-person capture, open-ear audio, and an open platform—without borrowing competitor visuals or copy.</p>
             </CsBody>
             <MentraMotionSystem />
           </CsSection>
@@ -980,18 +992,18 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           <CsInfoGrid items={project.principles.map((principle) => ({ key: principle.label, value: principle.value }))} />
         </CsSection>
 
-        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the hardware story' : 'Specific choices, tied to transaction trust'}>
-          <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : isMentra ? 'Every decision protects one of the four proof layers. The system avoids effects that make the brand louder while making the product less specific.' : 'Every decision protects continuity, comprehension, or confidence. The system removes familiar fintech effects whenever they make the actual product journey less observable.'}</p></CsBody>
+        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the advertising story' : 'Specific choices, tied to transaction trust'}>
+          <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : isMentra ? 'Every decision protects the advertising hierarchy: desire first, proof second, platform third. The system avoids category clichés that make the brand louder while making the human benefit less specific.' : 'Every decision protects continuity, comprehension, or confidence. The system removes familiar fintech effects whenever they make the actual product journey less observable.'}</p></CsBody>
           <DecisionList decisions={project.decisions} />
         </CsSection>
 
         <CsSection id="after-effects" label={`${sectionNumber(4, true)} — After Effects build`} title="An editable master, not a mysterious hero file">
           <CsBody>
-            <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : isMentra ? 'This build plan turns the motion grammar into an editable launch tool: one marked master, one controlled identity route, swappable product renders, protected POV and OS modules, and delivery compositions that inherit timing instead of duplicating it.' : 'This build plan turns one transaction into an editable GTM tool: a persistent amount controller, a six-marker state route, protected product pre-comps, localized copy fields, and delivery versions that inherit the same timing instead of recreating it.'}</p>
+            <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : isMentra ? 'This build plan turns the advertising grammar into a reusable campaign tool: one master hierarchy, a swappable Stream/Hear/Focus/Build hook family, protected lifestyle and product modules, and paid-social compositions that inherit timing instead of duplicating it.' : 'This build plan turns one transaction into an editable GTM tool: a persistent amount controller, a six-marker state route, protected product pre-comps, localized copy fields, and delivery versions that inherit the same timing instead of recreating it.'}</p>
           </CsBody>
           <div className="motion-ae-callout">
             <span>Ae</span>
-            <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : isMentra ? 'Illustrator identity vectors + Blender render passes + Figma MentraOS states → After Effects rig, compositing, captions, and responsive versions → Premiere sound edit → Media Encoder delivery.' : 'Illustrator identity vectors + Figma checkout and dashboard states → After Effects route rig, amount controls, compositing, and captions → Premiere sound edit → Media Encoder delivery.'}</p></div>
+            <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : isMentra ? 'Photoshop campaign frames + Illustrator identity vectors + Blender render passes + Figma MentraOS states → After Effects campaign rig, captions, and responsive versions → Premiere sound edit → Media Encoder delivery.' : 'Illustrator identity vectors + Figma checkout and dashboard states → After Effects route rig, amount controls, compositing, and captions → Premiere sound edit → Media Encoder delivery.'}</p></div>
           </div>
           {isVishwa && <VishwaAeStack />}
           {isMentra && <MentraAeStack />}

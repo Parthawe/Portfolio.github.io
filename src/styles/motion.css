@@ -327,44 +327,42 @@
   opacity: 0;
 }
 
-.motion-mentra__scene--mark { animation: motionMentraMarkScene 15s ease-in-out infinite; }
+.motion-mentra__scene--moment { animation: motionMentraMomentScene 15s ease-in-out infinite; }
 .motion-mentra__scene--hardware { animation: motionMentraHardwareScene 15s ease-in-out infinite; }
 .motion-mentra__scene--pov { animation: motionMentraPovScene 15s ease-in-out infinite; }
 .motion-mentra__scene--platform { animation: motionMentraPlatformScene 15s ease-in-out infinite; }
 
-.motion-mentra__mark-frames {
+.motion-mentra__scene--moment > img {
   position: absolute;
-  top: 25%;
+  top: 12%;
   right: 4.5%;
-  display: flex;
-  width: 46%;
-  gap: 0.65rem;
+  height: 78%;
+  border-radius: 9px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.16);
+  object-fit: cover;
+  object-position: center 42%;
+  transform: translate3d(8%, 3%, 0);
+  animation: motionMentraMomentAsset 15s cubic-bezier(.2,.8,.2,1) infinite;
 }
 
-.motion-mentra__mark-frames img {
-  width: calc(33.333% - 0.44rem);
-  aspect-ratio: 1;
-  border: 1px solid rgba(10,10,10,0.08);
-  border-radius: 6px;
-  background: #fff;
-  object-fit: contain;
-  transform: translateY(22px);
-  animation: motionMentraFrame 15s cubic-bezier(.2,.8,.2,1) infinite;
-}
-
-.motion-mentra__mark-frames img:nth-child(2) { animation-delay: 0.12s; }
-.motion-mentra__mark-frames img:nth-child(3) { animation-delay: 0.24s; }
-
-.motion-mentra__scene--mark > strong {
+.motion-mentra__scene--moment > div {
   position: absolute;
-  bottom: 18%;
+  top: 28%;
   left: 4.5%;
-  max-width: 11ch;
-  font-size: clamp(1.9rem, 4.4vw, 4.7rem);
-  font-weight: 450;
-  line-height: 0.98;
-  letter-spacing: -0.045em;
+  display: grid;
+  max-width: 45%;
+  gap: 0.8rem;
 }
+
+.motion-mentra__scene--moment small { color: var(--project-color); font: 600 clamp(0.52rem, 0.8vw, 0.7rem)/1 var(--mono); letter-spacing: 0.06em; }
+.motion-mentra__scene--moment strong {
+  max-width: 8ch;
+  font-size: clamp(2.2rem, 5.4vw, 5.8rem);
+  font-weight: 450;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+.motion-mentra__scene--moment span { color: rgba(10,10,10,0.5); font-size: clamp(0.78rem, 1.1vw, 1rem); line-height: 1.4; }
 
 .motion-mentra__scene--hardware > span {
   position: absolute;
@@ -399,34 +397,40 @@
 }
 
 .motion-mentra__scene--pov img {
-  width: 100%;
+  position: absolute;
+  right: 0;
+  width: 58%;
   height: 100%;
   filter: saturate(0.86) contrast(1.03);
   object-fit: cover;
+  object-position: center 28%;
   transform: scale(1.06);
   animation: motionMentraPovImage 15s ease-in-out infinite;
 }
 
+.motion-mentra__scene--pov { background: #122432; }
+
 .motion-mentra__scene--pov::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.6), transparent 52%);
+  background: linear-gradient(90deg, rgba(7,17,25,0.96) 0 41%, rgba(7,17,25,0.5) 52%, transparent 72%);
   content: '';
 }
 
 .motion-mentra__scene--pov > div {
   position: absolute;
   z-index: 2;
-  bottom: 16%;
+  top: 30%;
   left: 4.5%;
   display: grid;
+  max-width: 46%;
   gap: 0.65rem;
   color: #fff;
 }
 
 .motion-mentra__scene--pov small,
 .motion-mentra__scene--platform small { color: var(--project-color); font: 600 clamp(0.52rem, 0.8vw, 0.7rem)/1 var(--mono); letter-spacing: 0.06em; }
-.motion-mentra__scene--pov strong { font-size: clamp(2rem, 5vw, 5.3rem); font-weight: 450; line-height: 0.95; letter-spacing: -0.05em; }
+.motion-mentra__scene--pov strong { font-size: clamp(1.8rem, 4.5vw, 4.8rem); font-weight: 450; line-height: 0.95; letter-spacing: -0.05em; }
 
 .motion-mentra__scene--platform {
   background: #0b0d0c;
@@ -926,6 +930,35 @@
 .mentra-reference-bar strong { margin-top: 1.5rem; font-size: 1rem; font-weight: 500; line-height: 1.4; }
 .mentra-reference-bar a { color: var(--ink-60); font: 600 0.7rem/1.45 var(--mono); text-transform: uppercase; }
 
+.mentra-benchmark {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(430px, 1.45fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin: clamp(2rem, 5vw, 4rem) 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: var(--case-shell-radius);
+  background: #0b0d0c;
+  color: #fff;
+}
+
+.mentra-benchmark__intro { align-self: center; }
+.mentra-benchmark__intro > small { color: var(--project-color); font: 600 0.68rem/1.25 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.mentra-benchmark__intro h3 { margin: 1rem 0; font-size: clamp(2rem, 3.5vw, 3.8rem); font-weight: 450; line-height: 0.98; letter-spacing: -0.05em; }
+.mentra-benchmark__intro p { margin: 0; color: rgba(255,255,255,0.58); font-size: 0.94rem; line-height: 1.6; }
+.mentra-benchmark__intro > span { display: block; margin-top: 1.25rem; color: rgba(255,255,255,0.38); font: 600 0.62rem/1.4 var(--mono); text-transform: uppercase; }
+.mentra-benchmark__moves { border-top: 1px solid rgba(255,255,255,0.14); }
+.mentra-benchmark__moves article {
+  display: grid;
+  grid-template-columns: 36px minmax(150px, 0.8fr) minmax(220px, 1.2fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.mentra-benchmark__moves article > span { color: var(--project-color); font: 600 0.7rem/1 var(--mono); }
+.mentra-benchmark__moves strong { font-size: 0.92rem; font-weight: 600; line-height: 1.4; }
+.mentra-benchmark__moves p { margin: 0; color: rgba(255,255,255,0.52); font-size: 0.86rem; line-height: 1.5; }
+
 .mentra-source-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -949,6 +982,9 @@
 }
 
 .mentra-source-card > img { object-fit: cover; }
+.mentra-source-card--ad > img { object-position: center 34%; }
+.mentra-source-card--ad:nth-child(2) > img { object-position: center 22%; }
+.mentra-source-card--ad:nth-child(3) > img { object-position: center 29%; }
 
 .mentra-source-card--mark > div {
   display: grid;
@@ -1236,11 +1272,11 @@
 .motion-output-list span { color: var(--project-color); }
 
 @keyframes motionMentraLabel { 0%, 4%, 23%, 100% { opacity: 0; transform: translateY(8px); } 7%, 19% { opacity: 1; transform: translateY(0); } }
-@keyframes motionMentraMarkScene { 0%, 20% { opacity: 1; } 24%, 100% { opacity: 0; } }
+@keyframes motionMentraMomentScene { 0%, 20% { opacity: 1; } 24%, 100% { opacity: 0; } }
 @keyframes motionMentraHardwareScene { 0%, 18%, 50%, 100% { opacity: 0; } 22%, 46% { opacity: 1; } }
 @keyframes motionMentraPovScene { 0%, 44%, 76%, 100% { opacity: 0; } 49%, 72% { opacity: 1; } }
 @keyframes motionMentraPlatformScene { 0%, 70%, 100% { opacity: 0; } 75%, 96% { opacity: 1; } }
-@keyframes motionMentraFrame { 0%, 3% { opacity: 0.2; transform: translateY(22px); } 8%, 22% { opacity: 1; transform: translateY(0); } 27%, 100% { opacity: 0.2; transform: translateY(-6px); } }
+@keyframes motionMentraMomentAsset { 0%, 2% { transform: translate3d(8%, 3%, 0); } 10%, 22% { transform: translate3d(0, 0, 0); } 27%, 100% { transform: translate3d(-2%, -1%, 0); } }
 @keyframes motionMentraProductIn { 0%, 18% { transform: translate3d(12%, 8%, 0); } 28%, 48% { transform: translate3d(0, 0, 0); } 54%, 100% { transform: translate3d(-3%, -1%, 0); } }
 @keyframes motionMentraRule { 0%, 20% { transform: scaleX(0); } 30%, 48% { transform: scaleX(1); } 54%, 100% { transform: scaleX(0); } }
 @keyframes motionMentraPovImage { 0%, 44% { transform: scale(1.06); } 72% { transform: scale(1); } 78%, 100% { transform: scale(1.02); } }
@@ -1269,6 +1305,7 @@
   .mentra-token-grid { grid-template-columns: repeat(2, 1fr); }
   .transfi-state-model > div { grid-template-columns: repeat(3, 1fr); }
   .transfi-state-rules { grid-template-columns: 1fr; }
+  .mentra-benchmark { grid-template-columns: 1fr; }
   .mentra-reference-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mentra-reference-bar > * { border-right: 1px solid var(--ink-08); border-bottom: 1px solid var(--ink-08); }
   .mentra-reference-bar > *:nth-child(even) { border-right: 0; }
@@ -1318,6 +1355,8 @@
   .mentra-reference-bar > * { min-height: 96px; border-right: 0; border-bottom: 1px solid var(--ink-08); }
   .mentra-reference-bar > *:nth-last-child(-n+2) { border-bottom: 1px solid var(--ink-08); }
   .mentra-reference-bar > *:last-child { border-bottom: 0; }
+  .mentra-benchmark__moves article { grid-template-columns: 32px 1fr; }
+  .mentra-benchmark__moves article p { grid-column: 2; }
   .mentra-token-grid article { min-height: 190px; }
   .mentra-format-map { grid-template-columns: 1fr 0.62fr; align-items: end; }
   .mentra-format-map__copy { grid-column: 1 / -1; }
@@ -1341,13 +1380,15 @@
   .motion-ae-stack__row small { font-size: 0.56rem; }
   .motion-mentra__status { font-size: 0.42rem; }
   .motion-mentra__chapter-labels span { top: 14%; font-size: 0.48rem; }
-  .motion-mentra__mark-frames { top: 24%; right: 4%; width: 52%; gap: 0.3rem; }
-  .motion-mentra__mark-frames img { width: calc(33.333% - 0.2rem); }
-  .motion-mentra__scene--mark > strong { bottom: 17%; font-size: clamp(1.4rem, 7vw, 2rem); }
+  .motion-mentra__scene--moment > img { top: 16%; right: 4%; height: 70%; }
+  .motion-mentra__scene--moment > div { top: 32%; max-width: 50%; gap: 0.45rem; }
+  .motion-mentra__scene--moment strong { font-size: clamp(1.45rem, 8vw, 2.2rem); }
+  .motion-mentra__scene--moment span { font-size: 0.66rem; }
   .motion-mentra__scene--hardware > span { top: 23%; font-size: 1.15rem; }
   .motion-mentra__scene--hardware img { right: -12%; bottom: -5%; width: 88%; }
-  .motion-mentra__scene--pov > div { bottom: 18%; }
-  .motion-mentra__scene--pov strong { font-size: 1.8rem; }
+  .motion-mentra__scene--pov img { width: 61%; }
+  .motion-mentra__scene--pov > div { top: 30%; bottom: auto; max-width: 50%; }
+  .motion-mentra__scene--pov strong { font-size: 1.45rem; }
   .motion-mentra__scene--platform > img { right: 4%; bottom: -8%; width: 42%; }
   .motion-mentra__scene--platform > div { top: 28%; max-width: 48%; }
   .motion-mentra__scene--platform strong { font-size: 1.45rem; }
