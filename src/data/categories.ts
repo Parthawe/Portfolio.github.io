@@ -912,6 +912,10 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    archiveSection: {
+      label: 'UI/UX',
+      projects: ['mentra', 'raahi-project', 'clawed-chat'],
+    },
     approach: {
       label: 'Design Approach',
       pillars: [
