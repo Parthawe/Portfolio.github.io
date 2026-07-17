@@ -16,7 +16,7 @@ import BottomNav from '../components/case-study/BottomNav'
 import transfiMotion from '../../Assets/Projects/cover/Transfi.gif'
 import '../styles/motion.css'
 
-type ProjectKey = 'clawed' | 'mentra' | 'transfi'
+type ProjectKey = 'vishwa' | 'mentra' | 'transfi'
 
 type MotionProject = {
   key: ProjectKey
@@ -50,61 +50,62 @@ type MotionProject = {
 
 const projects: MotionProject[] = [
   {
-    key: 'clawed',
-    path: 'clawed-agent-story',
-    title: 'Clawed Motion System',
-    cardTitle: 'Clawed: From intent to action',
-    descriptor: 'A product-motion study that turns an invisible AI-agent workflow into a clear sequence of ask, plan, approve, and receive proof.',
-    discipline: 'Product motion / GTM story',
-    year: '2026',
-    color: '#ff5a45',
-    categorySlug: 'ai',
-    heroImage: '/Assets/Projects/Clawed.chat/landing-hero.webp',
-    heroAlt: 'Clawed product launch page showing the AI-agent positioning and product interface',
-    intro: 'Making an AI agent feel fast while keeping human control visible.',
-    truthNote: 'The product interface, 3D claw, positioning, and approval model come from the shipped Clawed work. The motion direction and production plan are a self-directed portfolio extension built from those real product decisions.',
-    challenge: 'Most of the agent’s work happens off-screen. A launch story could become abstract hype or a dense screen recording, neither of which explains where the user remains in control.',
-    move: 'Reduce the product to four verbs and give each one a spatial job. The claw carries intent forward, interface cards expose decisions, and the edit deliberately slows at approval.',
-    outcome: 'The same narrative can support a short social signal, a feature explanation, or a longer product story without changing the trust model.',
-    roles: ['Concept', 'Storyboard', 'Motion direction', 'Product design', '3D art direction'],
-    storyTitle: 'Ask. Plan. Approve. Receive proof.',
-    artTitle: 'One red signal moving through a precise product system',
-    artNote: 'The motion direction uses the existing interface and 3D object as the source material. Large verbs establish the narrative; product states provide the evidence.',
+    key: 'vishwa',
+    path: 'vishwa-conclave-motion',
+    title: 'VishwaConclave — A Campaign System in Motion',
+    cardTitle: 'VishwaConclave: An event identity in motion',
+    descriptor: 'Creative direction for a student-led conference campaign, connecting theme films, speaker reveals, web, merchandise, and event programming into one launch rhythm.',
+    discipline: 'Creative direction / Campaign motion',
+    year: '2020–21',
+    color: '#b14cff',
+    categorySlug: 'brand-visual',
+    heroImage: '/Assets/mockups/projects/vishwaconclave_16x9.webp',
+    heroAlt: 'VishwaConclave campaign identity shown across event and social applications',
+    intro: 'One annual theme, released as a sequence—not a single poster.',
+    truthNote: 'I worked with VishwaConclave from December 2019 through May 2021, growing from junior designer to Creative Director. The 2020–21 campaign films and posts shown here come from the official VishwaConclave archive. My scope covered creative direction, campaign system, social, web, and video production with a wider student team. Where a specialist partner executed a film, that credit is shown. The 2022–23 clips are included only as post-tenure archive references.',
+    challenge: 'An abstract annual theme had to become understandable before the event—and stay recognizable through weeks of speaker announcements, website and merchandise releases, reminders, countdowns, and live-programming content.',
+    move: 'Treat the campaign as an editorial sequence. Begin with intrigue, reveal the theme through dimensional type and camera movement, then move from atmosphere to proof: speakers, site, schedule, experience, and registration.',
+    outcome: 'The identity could change pace without losing its voice: cinematic for the theme, editorial for speakers, direct for conversion, and energetic near the event. Motion became the connective tissue between each release.',
+    roles: ['Creative direction', 'Campaign system', 'Storyboarding', 'Video production', 'Social design'],
+    storyTitle: 'Intrigue. Reveal. Prove. Accelerate.',
+    artTitle: 'Dimensional type turns an abstract theme into a place',
+    artNote: 'Perspective, layered typography, deep violet, and controlled bursts of white created continuity across film and static output. The system could feel cinematic without making every announcement difficult to read.',
     beats: [
-      { time: '00:00', title: 'Ask', body: 'Start with the human prompt so the viewer understands where intent originates.' },
-      { time: '00:03', title: 'Plan', body: 'Move through the task plan while the interface reveals what the system understood.' },
-      { time: '00:07', title: 'Approve', body: 'Hold on the decision instead of treating consent as a passing transition.' },
-      { time: '00:11', title: 'Proof', body: 'Resolve on a durable receipt that shows what happened and who approved it.' },
+      { time: '01', title: 'Intrigue', body: 'Trailers establish a world before explaining it, using fragments, scale, and directional camera movement.' },
+      { time: '02', title: 'Reveal', body: 'The annual theme becomes the hero and the visual metaphor becomes explicit.' },
+      { time: '03', title: 'Prove', body: 'Speaker, website, merchandise, and experience drops turn atmosphere into concrete reasons to attend.' },
+      { time: '04', title: 'Accelerate', body: 'Countdown and event-day edits shorten the rhythm while preserving the campaign typography and color signal.' },
     ],
     principles: [
-      { label: 'Pacing', value: 'Fast around the task; calm around consent' },
-      { label: 'Hierarchy', value: 'One product verb per beat' },
-      { label: 'Depth', value: '3D character for continuity; UI for truth' },
-      { label: 'Sound', value: 'Pulse, approval click, receipt settle' },
+      { label: 'Space', value: 'Type behaves like architecture, not a flat caption' },
+      { label: 'Rhythm', value: 'Slow-burn reveal → clear proof → urgent countdown' },
+      { label: 'Hierarchy', value: 'Theme first; speaker and registration information held still' },
+      { label: 'System', value: 'One visual grammar across film, feed, story, web, and merchandise' },
     ],
     frames: [
-      { src: '/Assets/Projects/Clawed.chat/landing-hero.webp', alt: 'Clawed launch page and primary product promise', caption: '01 — Product promise', fit: 'cover' },
-      { src: '/Assets/Projects/Clawed.chat/claw-3d.png', alt: 'Red three-dimensional Clawed object', caption: '02 — Continuity object', fit: 'contain' },
-      { src: '/Assets/Projects/Clawed.chat/deploy-options.webp', alt: 'Clawed deployment options interface', caption: '03 — Product control', fit: 'cover' },
+      { src: '/Assets/Projects/VishwaConclave/motion-2021/manifesto.jpg', alt: 'VishwaConclave 2021 Accelerating the Paradigm Shift manifesto poster', caption: '01 — Theme manifesto', fit: 'cover' },
+      { src: '/Assets/Projects/VishwaConclave/motion-2021/uddhab-speaker-2.jpg', alt: 'Illustrated VishwaConclave speaker artwork for Uddhab Bharali', caption: '02 — Speaker identity', fit: 'cover' },
+      { src: '/Assets/Projects/VishwaConclave/motion-2021/musical-experience.jpg', alt: 'VishwaConclave 2021 musical experience announcement', caption: '03 — Programme reveal', fit: 'cover' },
+      { src: '/Assets/Projects/VishwaConclave/motion-2021/merchandise.jpg', alt: 'VishwaConclave 2021 merchandise bundle announcement', caption: '04 — Campaign extension', fit: 'cover' },
     ],
     decisions: [
-      { removed: 'Ambient AI glow', kept: 'Readable product states', reason: 'The workflow should be understood, not inferred from atmosphere.' },
-      { removed: 'Constant speed', kept: 'A deliberate approval hold', reason: 'Pacing makes the user-control model visible.' },
-      { removed: 'Celebration at completion', kept: 'A durable receipt', reason: 'Accountability is a stronger payoff than confetti.' },
+      { removed: 'One visual tempo for every post', kept: 'A campaign with changing gears', reason: 'Theme films earn attention slowly; speaker and registration posts need immediate clarity.' },
+      { removed: 'Decorative 3D as spectacle', kept: 'Dimension as the theme metaphor', reason: 'Perspective and depth make “paradigm shift” tangible instead of merely futuristic.' },
+      { removed: 'Independent launch assets', kept: 'A sequenced release calendar', reason: 'Each drop answers the question created by the one before it and moves the audience closer to the event.' },
     ],
     aeBuild: [
-      { layer: 'CTRL_MASTER', technique: 'Expression controls', purpose: 'Color, copy, beat duration, and format-safe areas live in one control layer.' },
-      { layer: 'VERB_SYSTEM', technique: 'Text animators + Graph Editor', purpose: 'The four verbs share one rig while approval receives its own longer timing.' },
-      { layer: 'CLAW + UI', technique: 'Pre-comps, track mattes, 3D camera', purpose: 'The object carries continuity while interface cards stay readable and editable.' },
-      { layer: 'DELIVERY_SET', technique: 'Responsive compositions', purpose: 'The master adapts to horizontal, feed, and vertical output without rebuilding.' },
+      { layer: '00_MASTER_CAMPAIGN', technique: '16:9 edit + named markers', purpose: 'The narrative master protects the reveal order and provides a source for shorter cuts.' },
+      { layer: '01_TYPE_WORLD', technique: '3D layers + cameras + null controls', purpose: 'Type, light, and perspective share one controllable dimensional system.' },
+      { layer: '02_CONTENT_MODULES', technique: 'Protected pre-comps', purpose: 'Speaker, date, website, programme, and CTA cards can change without rebuilding transitions.' },
+      { layer: '90_SOCIAL_DELIVERY', technique: 'Responsive 4:5 and 9:16 comps', purpose: 'Safe zones and inherited timing keep the edit legible across social formats.' },
     ],
     deliveries: [
-      { key: '06 seconds', value: 'Ask → approve → proof' },
-      { key: '15 seconds', value: 'Prompt → plan → consent → receipt' },
-      { key: '30 seconds', value: 'Problem → workflow → safety → result' },
+      { key: 'Trailer', value: 'Atmosphere and theme anticipation' },
+      { key: 'Hero film', value: 'Theme reveal and campaign world' },
+      { key: 'Content modules', value: 'Speaker · site · merchandise · programme' },
       { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
     ],
-    outputs: ['Launch opener', 'Product story', 'Approval beat', 'Social cutdowns'],
+    outputs: ['Theme film', 'Campaign trailers', 'Speaker reveals', 'Social launch system'],
   },
   {
     key: 'mentra',
@@ -238,14 +239,25 @@ function useMotionPreference() {
   return motionOn
 }
 
-function ClawedReel() {
+function VishwaReel({ motionOn }: { motionOn: boolean }) {
   return (
-    <div className="motion-preview motion-preview--clawed" role="img" aria-label="Clawed motion preview showing ask, plan, approve, and proof">
-      <div className="motion-preview__grid" aria-hidden="true" />
-      <div className="motion-clawed__verbs" aria-hidden="true"><span>ASK</span><span>PLAN</span><span>APPROVE</span><span>PROOF</span></div>
-      <img className="motion-clawed__object" src="/Assets/Projects/Clawed.chat/claw-3d.png" alt="" />
-      <div className="motion-clawed__card motion-clawed__card--request" aria-hidden="true"><small>REQUEST</small><strong>Prepare launch brief</strong></div>
-      <div className="motion-clawed__card motion-clawed__card--receipt" aria-hidden="true"><small>RECEIPT 024</small><strong>Brief ready</strong><em>Approved by you</em></div>
+    <div className="motion-preview motion-preview--vishwa">
+      <video
+        autoPlay={motionOn}
+        controls
+        loop
+        muted
+        playsInline
+        poster="/Assets/Projects/VishwaConclave/motion-2021/posters/crafting-decade-theme.mp4.png"
+        preload="metadata"
+        aria-label="VishwaConclave Crafting the Decade campaign film from 2020"
+      >
+        <source src="/Assets/Projects/VishwaConclave/motion-2021/crafting-decade-theme.mp4" type="video/mp4" />
+      </video>
+      <div className="motion-vishwa__label" aria-hidden="true">
+        <span>Official campaign archive</span>
+        <strong>Crafting the Decade · 2020</strong>
+      </div>
     </div>
   )
 }
@@ -277,9 +289,162 @@ function TransfiReel({ motionOn }: { motionOn: boolean }) {
 }
 
 function ProjectReel({ project, motionOn }: { project: MotionProject; motionOn: boolean }) {
-  if (project.key === 'clawed') return <ClawedReel />
+  if (project.key === 'vishwa') return <VishwaReel motionOn={motionOn} />
   if (project.key === 'mentra') return <MentraReel />
   return <TransfiReel motionOn={motionOn} />
+}
+
+function VishwaCampaignBrief() {
+  const items = [
+    ['Audience', 'Students and young professionals deciding whether an unfamiliar conference was worth their attention.'],
+    ['Communication job', 'Make an abstract annual theme feel intriguing first, then concrete enough to act on.'],
+    ['Campaign proof', 'Speakers, website, programme, merchandise, registration, and the live experience.'],
+    ['Production constraint', 'A student team shipping a high-frequency campaign across film, feed, story, and web.'],
+  ]
+
+  return (
+    <>
+      <div className="vishwa-brief-grid">
+        {items.map(([label, value], index) => (
+          <article key={label}><span>0{index + 1}</span><small>{label}</small><p>{value}</p></article>
+        ))}
+      </div>
+      <div className="vishwa-cadence" aria-label="VishwaConclave campaign release sequence">
+        <p>Campaign cadence</p>
+        <div>
+          <span><small>01</small><strong>Tease</strong></span>
+          <i aria-hidden="true">→</i>
+          <span><small>02</small><strong>Reveal</strong></span>
+          <i aria-hidden="true">→</i>
+          <span><small>03</small><strong>Prove</strong></span>
+          <i aria-hidden="true">→</i>
+          <span><small>04</small><strong>Convert</strong></span>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function CampaignVideo({ src, poster, title, note, href, className = '' }: { src: string; poster?: string; title: string; note: string; href?: string; className?: string }) {
+  return (
+    <figure className={`vishwa-video ${className}`.trim()}>
+      <div>
+        <video controls playsInline poster={poster} preload="metadata" aria-label={title}>
+          <source src={src} type="video/mp4" />
+        </video>
+      </div>
+      <figcaption>
+        <span>{title}</span>
+        <small>{note}</small>
+        {href && <a href={href} target="_blank" rel="noreferrer">View original post ↗</a>}
+      </figcaption>
+    </figure>
+  )
+}
+
+function VishwaCampaignArchive() {
+  const films = [
+    {
+      src: '/Assets/Projects/VishwaConclave/motion-2021/crafting-decade-theme.mp4',
+      poster: '/Assets/Projects/VishwaConclave/motion-2021/posters/crafting-decade-theme.mp4.png',
+      title: 'Theme film · Crafting the Decade',
+      note: '2020 · 60-second campaign film',
+      href: 'https://www.instagram.com/p/CHfpIWpjDUw/',
+    },
+    {
+      src: '/Assets/Projects/VishwaConclave/motion-2021/crafting-decade-trailer.mp4',
+      poster: '/Assets/Projects/VishwaConclave/motion-2021/posters/crafting-decade-trailer.mp4.png',
+      title: 'Trailer · Crafting the Decade',
+      note: '2020 · 40-second anticipation cut',
+      href: 'https://www.instagram.com/p/CHkrXXAjthA/',
+    },
+    {
+      src: '/Assets/Projects/VishwaConclave/motion-2021/website-release.mp4',
+      poster: '/Assets/Projects/VishwaConclave/motion-2021/posters/website-release.mp4.png',
+      title: 'Website release',
+      note: '2021 · product and registration proof',
+      href: 'https://www.instagram.com/p/CL13dm2jz24/',
+    },
+    {
+      src: '/Assets/Projects/VishwaConclave/motion-2021/event-story.mp4',
+      poster: '/Assets/Projects/VishwaConclave/motion-2021/posters/event-story.mp4.png',
+      title: 'Event experience',
+      note: '2021 · programme-led social film',
+      href: 'https://www.instagram.com/p/CNaMg6AgO_9/',
+    },
+  ]
+
+  return (
+    <>
+      <div className="vishwa-video-grid">
+        {films.map((film) => <CampaignVideo key={film.src} {...film} />)}
+      </div>
+
+      <div className="vishwa-production-credit">
+        <div>
+          <p className="vishwa-production-credit__eyebrow">Collaboration credit</p>
+          <h3>2021 theme-release film</h3>
+          <p>The official post credits animation to <strong>Parallel Studio</strong>. My case-study scope is the creative direction and campaign system around the film; I do not present the specialist animation execution as my individual work.</p>
+          <a href="https://www.instagram.com/p/CLEvdDdDYRg/" target="_blank" rel="noreferrer">View the original credit ↗</a>
+        </div>
+        <CampaignVideo
+          src="/Assets/Projects/VishwaConclave/motion-2021/theme-release.mp4"
+          poster="/Assets/Projects/VishwaConclave/motion-2021/posters/theme-release.mp4.png"
+          title="Accelerating the Paradigm Shift"
+          note="2021 · animation by Parallel Studio"
+        />
+      </div>
+
+      <div className="vishwa-reference-block">
+        <div className="vishwa-reference-block__copy">
+          <p className="vishwa-production-credit__eyebrow">Archive continuation · reference only</p>
+          <h3>The visual language kept evolving after my tenure.</h3>
+          <p>These 2022 and 2023 clips are not included as authored work. They are useful evidence of how later teams continued exploring dimensional type, object choreography, and vertical-first event storytelling.</p>
+        </div>
+        <div className="vishwa-reference-grid">
+          <CampaignVideo
+            className="is-portrait"
+            src="/Assets/Projects/VishwaConclave/motion-2021/reference-2022-horizons.mp4"
+            poster="/Assets/Projects/VishwaConclave/motion-2021/posters/reference-2022-horizons.mp4.png"
+            title="Transcending Horizons"
+            note="2022 · post-tenure reference"
+            href="https://www.instagram.com/tv/CZrIf15A_PQ/"
+          />
+          <CampaignVideo
+            className="is-portrait"
+            src="/Assets/Projects/VishwaConclave/motion-2021/reference-2023-coalescence.mp4"
+            poster="/Assets/Projects/VishwaConclave/motion-2021/posters/reference-2023-coalescence.mp4.png"
+            title="Coalesce of Dispersion"
+            note="2023 · post-tenure reference"
+            href="https://www.instagram.com/reel/Coz2-6Eo1KE/"
+          />
+        </div>
+      </div>
+    </>
+  )
+}
+
+function VishwaAeStack() {
+  const rows = [
+    ['00_MASTER_CAMPAIGN', '1920 × 1080 · edit markers', 'Master'],
+    ['01_CTRL_WORLD', 'Color · light · depth · timing', 'Controls'],
+    ['02_TYPE_ARCHITECTURE', '3D layers · cameras · nulls', 'Pre-comp'],
+    ['03_CONTENT_MODULES', 'Speaker · website · programme · CTA', 'Pre-comp'],
+    ['04_AUDIO_EDIT', 'Music edit · hits · room tone', 'Pre-comp'],
+    ['90_DELIVERY_9x16', '1080 × 1920 · protected zones', 'Inherited'],
+  ]
+
+  return (
+    <div className="motion-ae-stack" aria-label="Documented After Effects rebuild structure">
+      <div className="motion-ae-stack__head"><span>After Effects project map</span><span>Documented rebuild</span></div>
+      {rows.map(([name, contents, kind], index) => (
+        <div className="motion-ae-stack__row" key={name}>
+          <i style={{ '--row-color': index === 0 ? '#b14cff' : index === rows.length - 1 ? '#ff7438' : '#7d3be8' } as CSSProperties} />
+          <code>{name}</code><span>{contents}</span><small>{kind}</small>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 function MotionLanding() {
@@ -390,6 +555,8 @@ function DecisionList({ decisions }: { decisions: MotionProject['decisions'] }) 
 function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motionOn: boolean }) {
   const nextProject = projects[(projects.indexOf(project) + 1) % projects.length]
   const style = { '--project-color': project.color } as CSSProperties
+  const isVishwa = project.key === 'vishwa'
+  const sectionNumber = (number: number, afterArchive = false) => String(number + (isVishwa ? 1 + (afterArchive ? 1 : 0) : 0)).padStart(2, '0')
 
   return (
     <>
@@ -414,7 +581,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             { label: 'Role', value: project.roles.join(' · ') },
             { label: 'Year', value: project.year },
             { label: 'Scope', value: project.outputs.join(' · ') },
-            { label: 'Status', value: project.key === 'mentra' ? 'Built from shipping brand assets' : 'Portfolio motion study' },
+            { label: 'Status', value: project.key === 'mentra' ? 'Built from shipping brand assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Portfolio motion study' },
           ]}
           heroExperience="visual"
           heroEyebrow="Selected motion study"
@@ -431,16 +598,34 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           { label: 'System outcome', content: project.outcome },
         ]} />
 
-        <CsSection id="motion-story" label="01 — Storyboard" title={project.storyTitle}>
-          <CsBody><p>{project.move}</p></CsBody>
+        {isVishwa && (
+          <CsSection id="motion-brief" label="01 — Campaign brief" title="Build anticipation, then keep earning attention until event day.">
+            <CsBody>
+              <p>VishwaConclave needed more than an annual look. The campaign had to introduce an idea, establish cultural credibility, reveal the people and programme behind it, and create urgency—while a student team continued producing at social speed.</p>
+            </CsBody>
+            <VishwaCampaignBrief />
+          </CsSection>
+        )}
+
+        <CsSection id="motion-story" label={`${sectionNumber(1)} — Storyboard`} title={project.storyTitle}>
+          <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : project.move}</p></CsBody>
           <div className="motion-case-preview">
             <ProjectReel project={project} motionOn={motionOn} />
-            <p><span>Motion preview</span><span>Reduced-motion preference respected</span></p>
+            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : 'Motion preview'}</span><span>Playback controls included</span></p>
           </div>
           <CsSteps steps={project.beats.map((beat) => ({ num: beat.time, title: beat.title, desc: beat.body }))} />
         </CsSection>
 
-        <CsSection id="art-direction" label="02 — Art direction" title={project.artTitle}>
+        {isVishwa && (
+          <CsSection id="campaign-archive" label="03 — Original campaign archive" title="The process is visible in the work that actually shipped.">
+            <CsBody>
+              <p>Rather than reconstructing fake sketches or an invented approval trail, this section uses the official 2020–21 Instagram archive. It shows how the campaign moved from cinematic theme-building into practical launch communication.</p>
+            </CsBody>
+            <VishwaCampaignArchive />
+          </CsSection>
+        )}
+
+        <CsSection id="art-direction" label={`${sectionNumber(2, true)} — Art direction`} title={project.artTitle}>
           <CsBody><p>{project.artNote}</p></CsBody>
           <div className="motion-frame-grid">
             {project.frames.map((frame) => (
@@ -453,24 +638,25 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           <CsInfoGrid items={project.principles.map((principle) => ({ key: principle.label, value: principle.value }))} />
         </CsSection>
 
-        <CsSection id="motion-decisions" label="03 — Motion decisions" title="Specific choices, tied to the product">
-          <CsBody><p>The process is shown through the decisions that changed the sequence—not reconstructed sketches or invented approval history.</p></CsBody>
+        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : 'Specific choices, tied to the product'}>
+          <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : 'The process is shown through the decisions that changed the sequence—not reconstructed sketches or invented approval history.'}</p></CsBody>
           <DecisionList decisions={project.decisions} />
         </CsSection>
 
-        <CsSection id="after-effects" label="04 — After Effects build plan" title="An editable master, not a mysterious hero file">
+        <CsSection id="after-effects" label={`${sectionNumber(4, true)} — After Effects build`} title="An editable master, not a mysterious hero file">
           <CsBody>
-            <p>The approved direction maps into named controls, reusable pre-comps, deliberate easing, and responsive delivery compositions. This production plan is explicit about how the study would be carried into After Effects without presenting a hypothetical project file as a shipped artifact.</p>
+            <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : 'The approved direction maps into named controls, reusable pre-comps, deliberate easing, and responsive delivery compositions. This production plan is explicit about how the study would be carried into After Effects without presenting a hypothetical project file as a shipped artifact.'}</p>
           </CsBody>
           <div className="motion-ae-callout">
             <span>Ae</span>
-            <div><strong>Production spine</strong><p>Illustrator and Figma source art → After Effects animation and compositing → Premiere edit and captions → Media Encoder masters and social versions.</p></div>
+            <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : 'Illustrator and Figma source art → After Effects animation and compositing → Premiere edit and captions → Media Encoder masters and social versions.'}</p></div>
           </div>
+          {isVishwa && <VishwaAeStack />}
           <CsSteps steps={project.aeBuild.map((item, index) => ({ num: `0${index + 1}`, title: `${item.layer} · ${item.technique}`, desc: item.purpose }))} />
           <CsInfoGrid items={project.deliveries} />
         </CsSection>
 
-        <CsSection id="scope" label="05 — Scope & authorship" title="Clear about what is shipped and what is studied">
+        <CsSection id="scope" label={`${sectionNumber(5, true)} — Scope & authorship`} title="Clear about what is shipped and what is studied">
           <CsBody><p>{project.truthNote}</p></CsBody>
           <ul className="motion-output-list">
             {project.outputs.map((output) => <li key={output}>{output}<span aria-hidden="true">↗</span></li>)}
@@ -483,7 +669,9 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           image={nextProject.heroImage}
         />
         <BottomNav sections={[
+          ...(isVishwa ? [{ id: 'motion-brief', label: 'Brief' }] : []),
           { id: 'motion-story', label: 'Storyboard' },
+          ...(isVishwa ? [{ id: 'campaign-archive', label: 'Archive' }] : []),
           { id: 'art-direction', label: 'Art direction' },
           { id: 'motion-decisions', label: 'Decisions' },
           { id: 'after-effects', label: 'After Effects' },
@@ -501,6 +689,7 @@ export default function MotionPage() {
   const project = useMemo(() => projects.find((item) => item.path === childPath), [childPath])
 
   if (!childPath) return <MotionLanding />
+  if (childPath === 'clawed-agent-story') return <Navigate to="/motion/vishwa-conclave-motion" replace />
   if (!project) return <Navigate to="/motion" replace />
   return <MotionCaseStudy project={project} motionOn={motionOn} />
 }

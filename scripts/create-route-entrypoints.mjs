@@ -29,6 +29,10 @@ const routeLabels = new Map([
   ['crypto', 'Crypto & Payments'],
   ['ai-wearables', 'AI & Wearables'],
   ['playbook', 'Design Playbook'],
+  ['motion', 'Motion Design'],
+  ['motion/vishwa-conclave-motion', 'VishwaConclave — A Campaign System in Motion'],
+  ['motion/mentra-motion-language', 'Mentra Motion Language'],
+  ['motion/transfi-identity-motion', 'TransFi Identity in Motion'],
   ['healthapp', 'Health App Concept'],
   ['mentra-miniapps', 'Mentra MiniApps'],
   ['transfi-project', 'TransFi'],
@@ -59,6 +63,10 @@ const routeDescriptions = new Map([
   ['about', 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra.'],
   ['accessibility', 'Accessibility notes and commitments for the portfolio of Parth Pawar.'],
   ['playbook', 'Principles, methods, and practical notes from Parth Pawar on designing trustworthy product systems.'],
+  ['motion', 'Motion direction and animation systems by Parth Pawar across campaign, brand, product, and social storytelling.'],
+  ['motion/vishwa-conclave-motion', 'Creative direction for VishwaConclave, connecting original theme films, speaker reveals, web, merchandise, and event programming into one campaign rhythm.'],
+  ['motion/mentra-motion-language', 'A modular motion language connecting the shipped Mentra identity, smart-glasses hardware, and launch system.'],
+  ['motion/transfi-identity-motion', 'An identity-motion study connecting the TransFi mark to merchant product states and transaction confirmation.'],
   ['healthapp', 'A healthcare product design concept by Parth Pawar focused on making complex information easier to understand and act on.'],
   ['ux-design', 'UX design work by Parth Pawar across product systems, flows, interfaces, and service experiences.'],
   ['creative-tech', 'Creative technology work by Parth Pawar spanning code, prototypes, physical computing, and interactive systems.'],
@@ -142,6 +150,14 @@ for (const route of routes) {
   const routeDir = join(distDir, route)
   mkdirSync(routeDir, { recursive: true })
   writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route))
+  written += 1
+}
+
+// Keep retired case-study URLs loadable so the client-side route can redirect them.
+for (const route of ['motion/clawed-agent-story']) {
+  const routeDir = join(distDir, route)
+  mkdirSync(routeDir, { recursive: true })
+  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, 'motion/vishwa-conclave-motion', { noindex: true }))
   written += 1
 }
 
