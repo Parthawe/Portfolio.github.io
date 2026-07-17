@@ -13,10 +13,11 @@ import CsInfoGrid from '../components/case-study/CsInfoGrid'
 import CsSteps from '../components/case-study/CsSteps'
 import NextProject from '../components/case-study/NextProject'
 import BottomNav from '../components/case-study/BottomNav'
+import EditingMotionCaseStudy from './EditingMotionCaseStudy'
 import transfiMotion from '../../Assets/Projects/cover/Transfi.gif'
 import '../styles/motion.css'
 
-type ProjectKey = 'vishwa' | 'mentra' | 'transfi'
+type ProjectKey = 'vishwa' | 'mentra' | 'transfi' | 'editorial'
 
 type MotionProject = {
   key: ProjectKey
@@ -230,6 +231,67 @@ const projects: MotionProject[] = [
       { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
     ],
     outputs: ['Transaction master', 'Checkout walkthrough', 'Status-story template', 'Responsive social cutdowns'],
+  },
+  {
+    key: 'editorial',
+    path: 'editing-motion-stories',
+    title: 'Cutting Systems into Stories',
+    cardTitle: 'Selected film editing: Enigma, Omakase + more',
+    descriptor: 'A practical breakdown of how project footage becomes a clear film through selects, paper edits, cause-and-effect cutting, sound, motion graphics, and responsive delivery.',
+    discipline: 'Video editing / Editorial direction',
+    year: '2023–25',
+    color: '#ff6847',
+    categorySlug: 'creative-tech',
+    heroImage: '/Assets/mockups/projects/enigma_16x9.webp',
+    heroAlt: 'Enigma neural-network sculpture illuminated during exhibition',
+    intro: 'A good project film reveals the idea before it asks for attention.',
+    truthNote: 'This case study documents my editorial reasoning, assembly, motion-graphics, sound, and delivery practice across project films built from my work. Collaborative project and production contributions remain credited on the linked full case studies.',
+    challenge: 'Interactive objects and performances are easy to make visually exciting but difficult to explain. A beauty reel alone cannot show what changed, why it matters, or how the audience participates.',
+    move: 'Give each film one sentence and one visible transformation, then organize gestures, system responses, proof shots, atmosphere, and reactions around that narrative spine.',
+    outcome: 'A repeatable editorial workflow connects four very different subjects while allowing each film to earn its own pace, sound behavior, and graphic intervention.',
+    roles: ['Video editing', 'Editorial direction', 'Motion graphics', 'Sound design', 'Delivery'],
+    storyTitle: 'Promise. Input. System. Payoff. Resolve.',
+    artTitle: 'The cut follows the idea',
+    artNote: 'Visual variety comes from the projects. Editorial consistency comes from clear causality, motivated inserts, sound continuity, restrained graphics, and proof holds.',
+    beats: [
+      { time: '01', title: 'Promise', body: 'Open on the transformation the viewer should understand—not a logo or generic montage.' },
+      { time: '02', title: 'Input', body: 'Show the gesture, object, or spatial condition that begins the system.' },
+      { time: '03', title: 'System', body: 'Use sequence, inserts, and sound to make the behavior legible.' },
+      { time: '04', title: 'Payoff', body: 'Hold on the prediction, score, mechanism, or emotional state long enough to verify it.' },
+      { time: '05', title: 'Resolve', body: 'Close on meaning and context without adding a second story.' },
+    ],
+    principles: [
+      { label: 'Story', value: 'One sentence before one timeline' },
+      { label: 'Causality', value: 'Input precedes response; response precedes payoff' },
+      { label: 'Sound', value: 'Bridges preserve continuity across visual cuts' },
+      { label: 'Versions', value: 'One master supports captions, crops, and cutdowns' },
+    ],
+    frames: [
+      { src: '/Assets/Projects/Enigma/photos/tablet-input.jpg', alt: 'Visitor drawing on the Enigma tablet', caption: '01 — Cause before spectacle' },
+      { src: '/Assets/Projects/the-omakase/photos/head-to-head-match.webp', alt: 'Two players competing at The Omakase', caption: '02 — Action before explanation' },
+      { src: '/Assets/Projects/making-of-time/photos/blue-dial-hero.webp', alt: 'Mechanical watch dial from Making of Time', caption: '03 — Match ideas, not objects' },
+      { src: '/Assets/Projects/Drowning/photos/WhatsApp Image 2024-10-10 at 11.54.18.webp', alt: 'Drowning greenhouse set during performance', caption: '04 — Restraint creates pressure' },
+    ],
+    decisions: [
+      { removed: 'Chronological documentation dump', kept: 'One transformation per film', reason: 'A viewer can understand the project before absorbing its full process.' },
+      { removed: 'Music-led montage first', kept: 'Causality before polish', reason: 'The story must work through picture and sync sound before a track supplies energy.' },
+      { removed: 'Constant cutting speed', kept: 'Pace earned by the subject', reason: 'Competition, computation, craft, and performance require different durations.' },
+      { removed: 'Graphics over every shot', kept: 'Labels only where footage cannot explain state', reason: 'Motion graphics clarify the system without competing with the project itself.' },
+    ],
+    aeBuild: [
+      { layer: '01_INGEST_AND_SELECTS', technique: 'Story-function bins + stringouts', purpose: 'Gestures, details, environments, reactions, and proof shots stay searchable by narrative responsibility.' },
+      { layer: '10_STORY_MASTER', technique: 'Marked Premiere Pro sequence', purpose: 'Promise, input, system, payoff, and resolve remain visible before polish.' },
+      { layer: '20_AUDIO', technique: 'Sync + room tone + designed actions', purpose: 'Sound bridges preserve continuity and give physical behavior weight.' },
+      { layer: '30_GFX_AND_COMPS', technique: 'Focused After Effects round-trips', purpose: 'Tracked screens, cleanup, state labels, titles, and end cards receive intervention without fragmenting the edit.' },
+      { layer: '90_DELIVERY', technique: 'Inherited versions', purpose: 'Captioned, vertical, sound-off, and shorter outputs stay tied to one approved narrative master.' },
+    ],
+    deliveries: [
+      { key: 'Portfolio', value: '16:9 narrative master' },
+      { key: 'Accessible', value: 'Captioned and sound-off versions' },
+      { key: 'Social', value: '4:5 and 9:16 reframes' },
+      { key: 'Cutdowns', value: 'Short hook, demo, and proof edits' },
+    ],
+    outputs: ['Narrative project films', 'Demo cutdowns', 'Captioned versions', 'Responsive social masters'],
   },
 ]
 
@@ -836,7 +898,7 @@ function MotionLanding() {
         <title>Motion Design · Parth Pawar</title>
         <meta name="description" content="Motion direction and animation systems for AI products, hardware launches, identity, and social GTM storytelling." />
         <meta property="og:title" content="Motion Design · Parth Pawar" />
-        <meta property="og:description" content="Three motion case studies grounded in real product and brand work." />
+        <meta property="og:description" content="Four motion case studies grounded in real product, brand, campaign, and editorial work." />
         <link rel="canonical" href="https://designwhich.works/motion" />
       </Helmet>
       <Nav />
@@ -851,7 +913,7 @@ function MotionLanding() {
             <div className="motion-index-hero__bottom">
               <a href="#lp-work" className="motion-index-hero__link figma-hover">See work <span aria-hidden="true">↓</span></a>
               <dl>
-                <div><dt>03</dt><dd>Case studies</dd></div>
+                <div><dt>04</dt><dd>Case studies</dd></div>
                 <div><dt>2D + 3D</dt><dd>Motion craft</dd></div>
                 <div><dt>AE</dt><dd>Production system</dd></div>
               </dl>
@@ -873,7 +935,7 @@ function MotionLanding() {
               />
             </Reveal>
 
-            <p className="lp-section-label motion-index-work__secondary-label">Selected motion systems</p>
+            <p className="lp-section-label motion-index-work__secondary-label">Selected motion systems &amp; editorial work</p>
             <div className="motion-index-card-grid">
               {projects.slice(1).map((project) => (
                 <Reveal key={project.key}>
@@ -1136,5 +1198,6 @@ export default function MotionPage() {
   if (!childPath) return <MotionLanding />
   if (childPath === 'clawed-agent-story') return <Navigate to="/motion/vishwa-conclave-motion" replace />
   if (!project) return <Navigate to="/motion" replace />
+  if (project.key === 'editorial') return <EditingMotionCaseStudy />
   return <MotionCaseStudy project={project} motionOn={motionOn} />
 }
