@@ -90,6 +90,7 @@ const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 const StudioPage = lazy(() => import('./pages/StudioPage'))
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
 const HealthAppPage = lazy(() => import('./pages/projects/HealthAppPage'))
+const MotionPage = lazy(() => import('./pages/MotionPage'))
 
 // Project page components — auto-generated from registry
 const projectPages = visibleProjects.map(p => ({
@@ -146,6 +147,7 @@ export default function App() {
           <Route path="/book" element={<BookPage />} />
           <Route path="/graveyard" element={<GraveyardPage />} />
           <Route path="/studio" element={<StudioPage />} />
+          <Route path="/motion/*" element={<MotionPage />} />
 
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
