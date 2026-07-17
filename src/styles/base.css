@@ -1372,7 +1372,6 @@ hr.divider {
   font-family: var(--sans, system-ui, sans-serif);
 }
 
-.app-error__bar,
 .app-error__foot {
   display: flex;
   align-items: center;
@@ -1381,33 +1380,6 @@ hr.divider {
   font-family: var(--mono, system-ui, sans-serif);
   font-size: var(--text-xs, 0.75rem);
   color: var(--ink-40, rgba(26, 26, 26, 0.64));
-}
-
-.app-error__file,
-.app-error__status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid var(--ink-08, rgba(26, 26, 26, 0.08));
-  border-radius: var(--radius, 8px);
-  background: color-mix(in srgb, var(--surface, #fff) 88%, transparent);
-}
-
-.app-error__file i {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 2px;
-  background: var(--select-blue, #4d9eff);
-  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--select-blue, #4d9eff) 16%, transparent);
-}
-
-.app-error__status::before {
-  content: '';
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: var(--error, #e55555);
 }
 
 .app-error__main {

@@ -1,6 +1,7 @@
 import { lazy, Suspense, Component, type ReactNode } from 'react'
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import RootLayout from './components/RootLayout'
+import Nav from './components/Nav'
 import PixelLoaderVisual from './components/PixelLoaderVisual'
 import PointerCursorGlyph from './components/PointerCursorGlyph'
 import { visibleProjects } from './data/projects'
@@ -20,54 +21,52 @@ class ErrorBoundaryInner extends Component<ErrorBoundaryProps, { hasError: boole
   render() {
     if (this.state.hasError) {
       return (
-        <div className="app-error" role="alert">
-          <header className="app-error__bar">
-            <span className="app-error__file"><i aria-hidden="true" />portfolio.fig</span>
-            <span className="app-error__status">Render paused</span>
-          </header>
+        <>
+          <Nav />
+          <div className="app-error" role="alert">
+            <main className="app-error__main">
+              <div className="app-error__wordmark" aria-hidden="true">ERR</div>
 
-          <main className="app-error__main">
-            <div className="app-error__wordmark" aria-hidden="true">ERR</div>
+              <section className="app-error__canvas" aria-labelledby="app-error-title">
+                <span className="app-error__layer" aria-hidden="true">Frame / unavailable</span>
 
-            <section className="app-error__canvas" aria-labelledby="app-error-title">
-              <span className="app-error__layer" aria-hidden="true">Frame / unavailable</span>
-
-              <div className="app-error__selection" aria-hidden="true">
-                <i className="app-error__handle app-error__handle--tl" />
-                <i className="app-error__handle app-error__handle--tr" />
-                <i className="app-error__handle app-error__handle--br" />
-                <i className="app-error__handle app-error__handle--bl" />
-                <span>0 x 0</span>
-              </div>
-
-              <div className="app-error__cursor" aria-hidden="true">
-                <PointerCursorGlyph className="app-error__cursor-glyph" />
-                <span>parth</span>
-              </div>
-
-              <div className="app-error__copy">
-                <span className="app-error__eyebrow">That was not supposed to happen.</span>
-                <h1 id="app-error-title">This frame stopped rendering.</h1>
-                <p>Reload it, or head home. Your place is saved.</p>
-                <div className="app-error__actions">
-                  <button type="button" onClick={() => window.location.reload()}>Retry frame</button>
-                  <a href="/">Homepage</a>
+                <div className="app-error__selection" aria-hidden="true">
+                  <i className="app-error__handle app-error__handle--tl" />
+                  <i className="app-error__handle app-error__handle--tr" />
+                  <i className="app-error__handle app-error__handle--br" />
+                  <i className="app-error__handle app-error__handle--bl" />
+                  <span>0 x 0</span>
                 </div>
-              </div>
 
-              <aside className="app-error__note" aria-hidden="true">
-                <strong>Quick repair?</strong>
-                <span>I may have pushed one pixel too far.</span>
-                <em>- p.</em>
-              </aside>
-            </section>
+                <div className="app-error__cursor" aria-hidden="true">
+                  <PointerCursorGlyph className="app-error__cursor-glyph" />
+                  <span>parth</span>
+                </div>
 
-            <footer className="app-error__foot" aria-hidden="true">
-              <span>Autosaved</span>
-              <span>Design systems should fail gracefully, too.</span>
-            </footer>
-          </main>
-        </div>
+                <div className="app-error__copy">
+                  <span className="app-error__eyebrow">That was not supposed to happen.</span>
+                  <h1 id="app-error-title">This frame stopped rendering.</h1>
+                  <p>Reload it, or head home. Your place is saved.</p>
+                  <div className="app-error__actions">
+                    <button type="button" onClick={() => window.location.reload()}>Retry frame</button>
+                    <a href="/">Homepage</a>
+                  </div>
+                </div>
+
+                <aside className="app-error__note" aria-hidden="true">
+                  <strong>Quick repair?</strong>
+                  <span>I may have pushed one pixel too far.</span>
+                  <em>- p.</em>
+                </aside>
+              </section>
+
+              <footer className="app-error__foot" aria-hidden="true">
+                <span>Autosaved</span>
+                <span>Design systems should fail gracefully, too.</span>
+              </footer>
+            </main>
+          </div>
+        </>
       )
     }
     return this.props.children
