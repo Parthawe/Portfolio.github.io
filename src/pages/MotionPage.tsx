@@ -110,59 +110,64 @@ const projects: MotionProject[] = [
   {
     key: 'mentra',
     path: 'mentra-motion-language',
-    title: 'Mentra Motion Language',
-    cardTitle: 'Mentra: A brand that becomes the product',
-    descriptor: 'A modular motion language connecting the shipped identity, the physical glasses, and the world around them.',
-    discipline: 'Brand motion / Launch system',
+    title: 'Mentra — From Mark to Point of View',
+    cardTitle: 'Mentra: From mark to point of view',
+    descriptor: 'A modular launch-motion system connecting the shipped identity, AI glasses, first-person capture, and MentraOS without losing product clarity.',
+    discipline: 'Hardware motion / GTM system',
     year: '2025–26',
     color: '#00b869',
     categorySlug: 'brand-visual',
     heroImage: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
     heroAlt: 'Black and transparent Mentra smart glasses product renders',
-    intro: 'Turning the identity’s folded geometry into reusable product behavior.',
-    truthNote: 'The identity, packaging, render library, logo-animation frames, and launch assets are from my shipped Mentra work. This case study organizes those real assets into a documented motion language for launches and social output.',
-    challenge: 'Mentra communicates with customers, developers, and creators across hardware launches, MiniApp news, packaging, and social content. The motion needed to remain recognizable without forcing every asset into the same composition.',
-    move: 'Use the mark’s actual construction as the transition rule. Planes fold, align, and reveal; they do not dissolve. The behavior connects the graphic identity to the physical glasses.',
-    outcome: 'A small set of repeatable openings, transformations, and end cards can keep a fast-moving launch pipeline visually coherent.',
-    roles: ['Brand system', 'Motion principles', 'Storyboard', '3D direction', 'Template logic'],
-    storyTitle: 'The mark becomes the object; the object opens a world.',
-    artTitle: 'Folded planes connect identity, hardware, and experience',
-    artNote: 'The source material is the shipped Mentra identity and product render system. Motion follows the same angles, neutral space, and controlled use of green.',
+    intro: 'The brand moves like the product behaves: capture, reveal, return to the world.',
+    truthNote: 'The identity, packaging, product renders, campaign assets, MentraOS interfaces, and logo-animation frames are from my shipped Mentra work. The launch sequence and After Effects architecture documented here are a portfolio motion system built from those real sources—not a claim that one finished campaign film shipped in this exact form or produced unverified performance results.',
+    challenge: 'Mentra has to feel credible as hardware, useful as an everyday camera, and open as a developer platform. A fast social edit can easily flatten those three stories into a feature montage or make the glasses feel like an abstract AI prop.',
+    move: 'Give every asset one communication job. The mark establishes behavior, macro renders prove the hardware, first-person footage explains the benefit, and MentraOS closes on the ecosystem. Expressive motion earns attention at chapter changes; productive motion keeps UI and copy readable.',
+    outcome: 'One 15-second master becomes a three-second ident, a six-second hardware reveal, vertical feature stories, MiniApp announcements, and a protected end-card family without inventing a new transition for every launch.',
+    roles: ['Brand direction', 'Motion system', 'Storyboard', '3D direction', 'Template architecture'],
+    storyTitle: 'Signal. Build. See. Extend.',
+    artTitle: 'One diagonal behavior, four layers of product truth',
+    artNote: 'The mark supplies the angle and direction, the renders supply physical proof, real campaign imagery supplies the human point of view, and MentraOS supplies the system layer. Green appears as a signal—not a wash over every frame.',
     beats: [
-      { time: '01', title: 'Fragment', body: 'Begin with one plane so the behavior is introduced before the full mark.' },
-      { time: '02', title: 'Assemble', body: 'Additional planes arrive with a shared direction and restrained stagger.' },
-      { time: '03', title: 'Transform', body: 'The geometry aligns with the physical glasses silhouette.' },
-      { time: '04', title: 'Reveal', body: 'The product enters only after the construction rule is understood.' },
+      { time: '00:00', title: 'Signal', body: 'One folded plane establishes direction before the complete mark arrives.' },
+      { time: '00:02', title: 'Build', body: 'The mark’s three parts become a reveal path for the physical glasses.' },
+      { time: '00:05', title: 'Prove', body: 'Macro and exploded renders hold long enough to establish real hardware detail.' },
+      { time: '00:08', title: 'See', body: 'A first-person frame answers the most important question: what does this let me experience?' },
+      { time: '00:11', title: 'Extend', body: 'MentraOS and MiniApp states show that the hardware is a platform, not a closed demo.' },
+      { time: '00:14', title: 'Sign off', body: 'The mark returns with one launch message and a stable call to action.' },
     ],
     principles: [
-      { label: 'Geometry', value: 'Fold and align; never dissolve' },
-      { label: 'Color', value: 'Green works as a timed signal' },
-      { label: 'Rhythm', value: 'Decisive arrival with no elastic overshoot' },
-      { label: 'Scale', value: 'Open, reveal, and sign-off modules' },
+      { label: 'Continuity', value: 'The mark’s 28° diagonal guides every major transition' },
+      { label: 'Expression', value: 'Reserved for ident, product reveal, and chapter changes' },
+      { label: 'Productivity', value: 'Short, precise motion for UI, captions, and feature proof' },
+      { label: 'Accessibility', value: 'Static hierarchy survives sound-off and reduced-motion playback' },
     ],
     frames: [
-      { src: '/Assets/Projects/mentra-brand/photos/logo-animation-3.png', alt: 'Mentra logo-animation frame made from folded green planes', caption: '01 — Identity behavior', fit: 'contain' },
-      { src: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp', alt: 'Mentra black and transparent smart glasses renders', caption: '02 — Physical object', fit: 'contain' },
-      { src: '/Assets/Projects/mentra-brand/photos/ad-stream.webp', alt: 'Mentra Stream Your World campaign application', caption: '03 — Campaign world', fit: 'cover' },
+      { src: '/Assets/Projects/mentra-brand/photos/logo-animation-3.png', alt: 'Mentra logo-animation frame made from folded green planes', caption: '01 — Identity signal', fit: 'contain' },
+      { src: '/Assets/Projects/mentra-brand/photos/render-exploded.webp', alt: 'Exploded Mentra Live smart-glasses render showing product components', caption: '02 — Hardware proof', fit: 'cover' },
+      { src: '/Assets/Projects/mentra-brand/photos/text-bubble-1.webp', alt: 'Mentra Live in use with a speech bubble overlay', caption: '03 — Human point of view', fit: 'cover' },
+      { src: '/Assets/images/mentra/os-all-apps.png', alt: 'MentraOS interface showing available smart-glasses applications', caption: '04 — Platform layer', fit: 'contain' },
     ],
     decisions: [
-      { removed: 'Opacity dissolves', kept: 'Geometric folds', reason: 'The transition inherits the identity’s construction instead of adding unrelated motion.' },
-      { removed: 'Green on every surface', kept: 'Green as a signal', reason: 'Restraint gives the brand color a clear job.' },
-      { removed: 'A unique film per launch', kept: 'Reusable motion modules', reason: 'A growing team needs repeatable behavior and protected brand zones.' },
+      { removed: 'A 3D logo spin', kept: 'Three planes assembling on one route', reason: 'The movement teaches how the mark is built and creates a reusable transition path.' },
+      { removed: 'A rapid feature montage', kept: 'One proof layer per chapter', reason: 'Hardware, point of view, and ecosystem each need enough time to be understood.' },
+      { removed: 'Floating HUD decoration', kept: 'Real MentraOS states', reason: 'Product truth is more credible than generic interface graphics added in post.' },
+      { removed: 'Elastic overshoot', kept: 'A fast arrival and firm settle', reason: 'The glasses should feel lightweight and responsive, not toy-like.' },
     ],
     aeBuild: [
-      { layer: 'SOURCE_VECTORS', technique: 'Illustrator preparation', purpose: 'Clean, named planes preserve the mark geometry before animation begins.' },
-      { layer: 'MARK_RIG', technique: 'Shape layers + parenting', purpose: 'Shared anchors and timing controls keep every fold consistent.' },
-      { layer: 'PRODUCT_REVEAL', technique: 'Track mattes + render compositing', purpose: 'The mark becomes the glasses through one continuous geometric bridge.' },
-      { layer: 'MOGRT_OUTPUT', technique: 'Essential Graphics', purpose: 'Launch name, date, CTA, product color, and crop remain safely editable.' },
+      { layer: '00_MASTER_15S', technique: '3840×2160 · 30 fps · chapter markers', purpose: 'The master edit protects the mark → hardware → POV → ecosystem narrative.' },
+      { layer: '01_MARK_ROUTE', technique: 'Shape layers + null controls', purpose: 'One angle, stagger, and settle control the ident and major scene wipes.' },
+      { layer: '02_PRODUCT_STAGE', technique: 'Render passes + track mattes', purpose: 'Black, clear, macro, and exploded variants can swap without changing timing.' },
+      { layer: '03_POV_AND_OS', technique: 'Protected media pre-comps', purpose: 'First-person footage and real product states retain legible focal zones.' },
+      { layer: '90_DELIVERY_SET', technique: 'Responsive comps + Essential Graphics', purpose: 'Copy, CTA, colorway, captions, and crops remain editable for the launch team.' },
     ],
     deliveries: [
-      { key: '03 seconds', value: 'Logo ident / end card' },
-      { key: '06 seconds', value: 'Mark → product reveal' },
-      { key: '15 seconds', value: 'Launch story / creator template' },
+      { key: '03 seconds', value: 'Ident / end card / partner badge' },
+      { key: '06 seconds', value: 'Mark → hardware reveal' },
+      { key: '15 seconds', value: 'Hardware → POV → ecosystem launch story' },
       { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
     ],
-    outputs: ['Logo ident', 'Product reveal', 'Social opener', 'End-card template'],
+    outputs: ['Logo ident', 'Hardware reveal', 'Feature story', 'MiniApp launch template'],
   },
   {
     key: 'transfi',
@@ -264,14 +269,36 @@ function VishwaReel({ motionOn }: { motionOn: boolean }) {
 
 function MentraReel() {
   return (
-    <div className="motion-preview motion-preview--mentra" role="img" aria-label="Mentra motion preview showing folded identity planes becoming the smart glasses">
-      <div className="motion-mentra__words" aria-hidden="true"><span>MARK</span><span>OBJECT</span><span>WORLD</span></div>
-      <div className="motion-mentra__frames" aria-hidden="true">
-        <img src="/Assets/Projects/mentra-brand/photos/logo-animation-5.png" alt="" />
-        <img src="/Assets/Projects/mentra-brand/photos/logo-animation-1.png" alt="" />
-        <img src="/Assets/Projects/mentra-brand/photos/logo-animation-3.png" alt="" />
+    <div className="motion-preview motion-preview--mentra" role="img" aria-label="Mentra motion prototype moving from the identity to the smart glasses, first-person use, and MentraOS">
+      <div className="motion-mentra__status" aria-hidden="true">
+        <span>MENTRA LIVE / LAUNCH MASTER</span>
+        <span>15 SEC · 30 FPS</span>
       </div>
-      <img className="motion-mentra__product" src="/Assets/Projects/mentra-brand/photos/render-transparent-full.webp" alt="" />
+      <div className="motion-mentra__chapter-labels" aria-hidden="true">
+        <span>01 / SIGNAL</span><span>02 / HARDWARE</span><span>03 / POINT OF VIEW</span><span>04 / ECOSYSTEM</span>
+      </div>
+      <div className="motion-mentra__scene motion-mentra__scene--mark" aria-hidden="true">
+        <div className="motion-mentra__mark-frames">
+          <img src="/Assets/Projects/mentra-brand/photos/logo-animation-5.png" alt="" />
+          <img src="/Assets/Projects/mentra-brand/photos/logo-animation-1.png" alt="" />
+          <img src="/Assets/Projects/mentra-brand/photos/logo-animation-3.png" alt="" />
+        </div>
+        <strong>Move through the world.<br />Stay in the moment.</strong>
+      </div>
+      <div className="motion-mentra__scene motion-mentra__scene--hardware" aria-hidden="true">
+        <span>Open hardware for everyday perspective</span>
+        <img src="/Assets/Projects/mentra-brand/photos/render-both-frames.webp" alt="" />
+        <i />
+      </div>
+      <div className="motion-mentra__scene motion-mentra__scene--pov" aria-hidden="true">
+        <img src="/Assets/Projects/mentra-brand/photos/text-bubble-1.webp" alt="" />
+        <div><small>FIRST-PERSON CAPTURE</small><strong>Stream your world.</strong></div>
+      </div>
+      <div className="motion-mentra__scene motion-mentra__scene--platform" aria-hidden="true">
+        <img src="/Assets/images/mentra/os-all-apps.png" alt="" />
+        <div><small>POWERED BY MENTRAOS</small><strong>Hardware becomes a platform.</strong><span>Build · install · extend</span></div>
+      </div>
+      <div className="motion-mentra__timeline" aria-hidden="true"><i /><span>MARK</span><span>BUILD</span><span>SEE</span><span>EXTEND</span></div>
     </div>
   )
 }
@@ -447,6 +474,125 @@ function VishwaAeStack() {
   )
 }
 
+function MentraCommunicationBrief() {
+  const items = [
+    ['Audience', 'Early adopters, creators, and developers who need to see a useful product—not “AI” as atmosphere.'],
+    ['Communication job', 'Connect the physical glasses to first-person capture and the open MentraOS ecosystem in one short story.'],
+    ['Product proof', 'Real renders, real use imagery, and real interface states—each with enough time to read.'],
+    ['Delivery constraint', 'A repeatable social pipeline that works sound-off, across crops, without rebuilding every launch from zero.'],
+  ]
+
+  return (
+    <>
+      <div className="mentra-brief-grid">
+        {items.map(([label, value], index) => (
+          <article key={label}><span>0{index + 1}</span><small>{label}</small><p>{value}</p></article>
+        ))}
+      </div>
+      <div className="mentra-story-ladder" aria-label="Mentra launch story sequence">
+        <p>Proof ladder</p>
+        <div>
+          <span><small>Recognize</small><strong>Mark</strong></span>
+          <i aria-hidden="true">→</i>
+          <span><small>Believe</small><strong>Hardware</strong></span>
+          <i aria-hidden="true">→</i>
+          <span><small>Imagine</small><strong>Point of view</strong></span>
+          <i aria-hidden="true">→</i>
+          <span><small>Extend</small><strong>Ecosystem</strong></span>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function MentraMotionSystem() {
+  const tokens = [
+    ['Expressive', '720–900 ms', 'Ident, product reveal, chapter change'],
+    ['Transition', '320–480 ms', 'Diagonal wipe, crop change, media handoff'],
+    ['Productive', '160–240 ms', 'Caption, UI state, feature confirmation'],
+    ['Reading hold', '1.2–1.8 sec', 'Product detail, benefit, CTA'],
+  ]
+
+  return (
+    <>
+      <div className="mentra-reference-bar">
+        <div><small>Research translated into the system</small><strong>Use motion to clarify utility, hierarchy, and continuity.</strong></div>
+        <a href="https://about.fb.com/news/2023/09/new-ray-ban-meta-smart-glasses/" target="_blank" rel="noreferrer">Hardware launch / POV utility ↗</a>
+        <a href="https://carbondesignsystem.com/elements/motion/overview/" target="_blank" rel="noreferrer">Expressive vs productive ↗</a>
+        <a href="https://developer.apple.com/design/human-interface-guidelines/motion" target="_blank" rel="noreferrer">Purpose and accessibility ↗</a>
+      </div>
+
+      <div className="mentra-source-grid">
+        <article className="mentra-source-card mentra-source-card--mark">
+          <div>
+            <img src="/Assets/Projects/mentra-brand/photos/logo-animation-5.png" alt="One plane from the Mentra logo construction" loading="lazy" />
+            <img src="/Assets/Projects/mentra-brand/photos/logo-animation-1.png" alt="Three separated planes from the Mentra logo construction" loading="lazy" />
+            <img src="/Assets/Projects/mentra-brand/photos/logo-animation-3.png" alt="Mentra glasses silhouette from the logo animation study" loading="lazy" />
+          </div>
+          <p><span>01 · Identity</span><strong>The diagonal becomes the transition rule.</strong></p>
+        </article>
+        <article className="mentra-source-card">
+          <img src="/Assets/Projects/mentra-brand/photos/render-exploded.webp" alt="Exploded Mentra Live smart-glasses product render" loading="lazy" />
+          <p><span>02 · Hardware</span><strong>Render passes provide physical evidence.</strong></p>
+        </article>
+        <article className="mentra-source-card">
+          <img src="/Assets/Projects/mentra-brand/photos/text-bubble-1.webp" alt="Mentra Live shown in a real first-person use context" loading="lazy" />
+          <p><span>03 · Perspective</span><strong>Real use explains the benefit faster than a spec list.</strong></p>
+        </article>
+        <article className="mentra-source-card mentra-source-card--os">
+          <img src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS applications interface" loading="lazy" />
+          <p><span>04 · Ecosystem</span><strong>Product UI proves the platform story.</strong></p>
+        </article>
+      </div>
+
+      <div className="mentra-token-grid" aria-label="Mentra motion timing tokens">
+        {tokens.map(([name, timing, use], index) => (
+          <article key={name}><span>0{index + 1}</span><small>{name}</small><strong>{timing}</strong><p>{use}</p></article>
+        ))}
+      </div>
+
+      <div className="mentra-format-map">
+        <div className="mentra-format-map__copy">
+          <small>Responsive composition</small>
+          <h3>Reframe the story, not just the crop.</h3>
+          <p>The horizontal master keeps the physical product and benefit in one field. The vertical version promotes one use case, enlarges type, and moves the CTA into a protected lower zone.</p>
+        </div>
+        <figure className="mentra-format mentra-format--wide">
+          <img src="/Assets/Projects/mentra-brand/photos/render-both-frames.webp" alt="Mentra product render in a horizontal delivery frame" loading="lazy" />
+          <i aria-hidden="true" /><figcaption>16:9 · product launch master</figcaption>
+        </figure>
+        <figure className="mentra-format mentra-format--vertical">
+          <img src="/Assets/Projects/mentra-brand/photos/ad-stream.webp" alt="Stream Your World Mentra campaign in a vertical delivery frame" loading="lazy" />
+          <i aria-hidden="true" /><figcaption>9:16 · feature story</figcaption>
+        </figure>
+      </div>
+    </>
+  )
+}
+
+function MentraAeStack() {
+  const rows = [
+    ['00_MASTER_15S', '3840 × 2160 · 450 frames', 'Master'],
+    ['01_MARK_ROUTE', 'Angle · stagger · settle', 'Controls'],
+    ['02_PRODUCT_STAGE', 'Black · clear · macro · exploded', 'Pre-comp'],
+    ['03_POV_AND_OS', 'Use footage · interface states', 'Protected'],
+    ['04_TYPE_AND_CAPTIONS', 'Benefit · feature · CTA', 'Editable'],
+    ['90_DELIVERY_SET', '16:9 · 4:5 · 1:1 · 9:16', 'Inherited'],
+  ]
+
+  return (
+    <div className="motion-ae-stack" aria-label="Mentra After Effects launch-system structure">
+      <div className="motion-ae-stack__head"><span>After Effects project map</span><span>Motion-system specification</span></div>
+      {rows.map(([name, contents, kind], index) => (
+        <div className="motion-ae-stack__row" key={name}>
+          <i style={{ '--row-color': index === 0 ? '#00b869' : index === rows.length - 1 ? '#62d7ff' : '#79d6a8' } as CSSProperties} />
+          <code>{name}</code><span>{contents}</span><small>{kind}</small>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function MotionLanding() {
   return (
     <div className="motion-index-page category-page">
@@ -556,7 +702,10 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
   const nextProject = projects[(projects.indexOf(project) + 1) % projects.length]
   const style = { '--project-color': project.color } as CSSProperties
   const isVishwa = project.key === 'vishwa'
-  const sectionNumber = (number: number, afterArchive = false) => String(number + (isVishwa ? 1 + (afterArchive ? 1 : 0) : 0)).padStart(2, '0')
+  const isMentra = project.key === 'mentra'
+  const hasBrief = isVishwa || isMentra
+  const hasSystemSection = isVishwa || isMentra
+  const sectionNumber = (number: number, afterSystem = false) => String(number + (hasBrief ? 1 : 0) + (afterSystem && hasSystemSection ? 1 : 0)).padStart(2, '0')
 
   return (
     <>
@@ -581,7 +730,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             { label: 'Role', value: project.roles.join(' · ') },
             { label: 'Year', value: project.year },
             { label: 'Scope', value: project.outputs.join(' · ') },
-            { label: 'Status', value: project.key === 'mentra' ? 'Built from shipping brand assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Portfolio motion study' },
+            { label: 'Status', value: isMentra ? 'Documented motion system · shipped source assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Portfolio motion study' },
           ]}
           heroExperience="visual"
           heroEyebrow="Selected motion study"
@@ -607,11 +756,20 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           </CsSection>
         )}
 
+        {isMentra && (
+          <CsSection id="motion-brief" label="01 — Communication brief" title="Make the glasses believable, then make the ecosystem feel inevitable.">
+            <CsBody>
+              <p>The launch story has to answer four questions in order: who is this, is the hardware real, what can I do with it, and why does an open platform matter? The motion brief turns those questions into a modular proof sequence rather than a list of specifications.</p>
+            </CsBody>
+            <MentraCommunicationBrief />
+          </CsSection>
+        )}
+
         <CsSection id="motion-story" label={`${sectionNumber(1)} — Storyboard`} title={project.storyTitle}>
-          <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : project.move}</p></CsBody>
+          <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : isMentra ? 'The 15-second master moves from recognition to proof. Expressive chapter changes earn attention; product renders, first-person use, and MentraOS states receive quieter holds so the viewer can understand what is being shown.' : project.move}</p></CsBody>
           <div className="motion-case-preview">
             <ProjectReel project={project} motionOn={motionOn} />
-            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : 'Motion preview'}</span><span>Playback controls included</span></p>
+            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : isMentra ? '15-second launch-system prototype' : 'Motion preview'}</span><span>{isVishwa ? 'Playback controls included' : 'Reduced-motion preference respected'}</span></p>
           </div>
           <CsSteps steps={project.beats.map((beat) => ({ num: beat.time, title: beat.title, desc: beat.body }))} />
         </CsSection>
@@ -622,6 +780,15 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
               <p>Rather than reconstructing fake sketches or an invented approval trail, this section uses the official 2020–21 Instagram archive. It shows how the campaign moved from cinematic theme-building into practical launch communication.</p>
             </CsBody>
             <VishwaCampaignArchive />
+          </CsSection>
+        )}
+
+        {isMentra && (
+          <CsSection id="motion-system" label="03 — Motion grammar" title="Expressive for launches. Productive for proof.">
+            <CsBody>
+              <p>The research did not produce a moodboard of effects. It produced roles for motion: point-of-view storytelling to communicate wearable utility, expressive movement for major launch moments, productive movement for interface clarity, and a static alternative whenever movement is reduced.</p>
+            </CsBody>
+            <MentraMotionSystem />
           </CsSection>
         )}
 
@@ -638,20 +805,21 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           <CsInfoGrid items={project.principles.map((principle) => ({ key: principle.label, value: principle.value }))} />
         </CsSection>
 
-        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : 'Specific choices, tied to the product'}>
-          <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : 'The process is shown through the decisions that changed the sequence—not reconstructed sketches or invented approval history.'}</p></CsBody>
+        <CsSection id="motion-decisions" label={`${sectionNumber(3, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the hardware story' : 'Specific choices, tied to the product'}>
+          <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : isMentra ? 'Every decision protects one of the four proof layers. The system avoids effects that make the brand louder while making the product less specific.' : 'The process is shown through the decisions that changed the sequence—not reconstructed sketches or invented approval history.'}</p></CsBody>
           <DecisionList decisions={project.decisions} />
         </CsSection>
 
         <CsSection id="after-effects" label={`${sectionNumber(4, true)} — After Effects build`} title="An editable master, not a mysterious hero file">
           <CsBody>
-            <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : 'The approved direction maps into named controls, reusable pre-comps, deliberate easing, and responsive delivery compositions. This production plan is explicit about how the study would be carried into After Effects without presenting a hypothetical project file as a shipped artifact.'}</p>
+            <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : isMentra ? 'This build plan turns the motion grammar into an editable launch tool: one marked master, one controlled identity route, swappable product renders, protected POV and OS modules, and delivery compositions that inherit timing instead of duplicating it.' : 'The approved direction maps into named controls, reusable pre-comps, deliberate easing, and responsive delivery compositions. This production plan is explicit about how the study would be carried into After Effects without presenting a hypothetical project file as a shipped artifact.'}</p>
           </CsBody>
           <div className="motion-ae-callout">
             <span>Ae</span>
-            <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : 'Illustrator and Figma source art → After Effects animation and compositing → Premiere edit and captions → Media Encoder masters and social versions.'}</p></div>
+            <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : isMentra ? 'Illustrator identity vectors + Blender render passes + Figma MentraOS states → After Effects rig, compositing, captions, and responsive versions → Premiere sound edit → Media Encoder delivery.' : 'Illustrator and Figma source art → After Effects animation and compositing → Premiere edit and captions → Media Encoder masters and social versions.'}</p></div>
           </div>
           {isVishwa && <VishwaAeStack />}
+          {isMentra && <MentraAeStack />}
           <CsSteps steps={project.aeBuild.map((item, index) => ({ num: `0${index + 1}`, title: `${item.layer} · ${item.technique}`, desc: item.purpose }))} />
           <CsInfoGrid items={project.deliveries} />
         </CsSection>
@@ -669,9 +837,10 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           image={nextProject.heroImage}
         />
         <BottomNav sections={[
-          ...(isVishwa ? [{ id: 'motion-brief', label: 'Brief' }] : []),
+          ...(hasBrief ? [{ id: 'motion-brief', label: 'Brief' }] : []),
           { id: 'motion-story', label: 'Storyboard' },
           ...(isVishwa ? [{ id: 'campaign-archive', label: 'Archive' }] : []),
+          ...(isMentra ? [{ id: 'motion-system', label: 'Motion system' }] : []),
           { id: 'art-direction', label: 'Art direction' },
           { id: 'motion-decisions', label: 'Decisions' },
           { id: 'after-effects', label: 'After Effects' },
