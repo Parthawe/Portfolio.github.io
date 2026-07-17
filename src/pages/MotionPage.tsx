@@ -26,6 +26,7 @@ type MotionProject = {
   roles: string[]
   beats: Array<{ time: string; title: string; body: string }>
   principles: Array<{ label: string; value: string; note: string }>
+  aeBuild: Array<{ layer: string; technique: string; purpose: string }>
   outputs: string[]
 }
 
@@ -62,6 +63,12 @@ const projects: MotionProject[] = [
       { label: 'Hierarchy', value: 'One verb per beat', note: 'Every frame should read before the next arrives.' },
       { label: 'Depth', value: '2D UI + 3D signal', note: 'The object adds character; the interface keeps the story true.' },
     ],
+    aeBuild: [
+      { layer: 'CTRL_MASTER', technique: 'Expression controls', purpose: 'One panel drives color, copy, duration, safe areas, and format switches.' },
+      { layer: 'VERB_SYSTEM', technique: 'Text animators + Graph Editor', purpose: 'ASK, PLAN, APPROVE, and DONE share one rig while the approval beat receives a longer hold.' },
+      { layer: 'CLAW_3D_PASS', technique: '3D compositing + camera', purpose: 'The rendered claw adds character and depth without competing with the product interface.' },
+      { layer: 'UI_RECEIPTS', technique: 'Shape layers + track mattes', purpose: 'Request, approval, and receipt cards enter as readable product evidence.' },
+    ],
     outputs: ['6s launch sting', '15s social cut', '30s product story', '1:1 / 4:5 / 16:9 masters'],
   },
   {
@@ -95,6 +102,12 @@ const projects: MotionProject[] = [
       { label: 'Geometry', value: 'Fold, do not dissolve', note: 'Transitions inherit the angles of the identity.' },
       { label: 'Color', value: 'Green earns attention', note: 'Neutral space keeps the product precise and technical.' },
       { label: 'Repeatability', value: '3-beat modules', note: 'Open, explain, sign off: reusable across launch formats.' },
+    ],
+    aeBuild: [
+      { layer: 'MARK_RIG', technique: 'Shape layers + parenting', purpose: 'Every green plane shares the same directional logic, anchor behavior, and fold angle.' },
+      { layer: 'OBJECT_REVEAL', technique: 'Pre-comps + track mattes', purpose: 'The mark becomes the glasses through a continuous geometric reveal instead of a decorative dissolve.' },
+      { layer: 'PRODUCT_PASS', technique: 'Time remapping + compositing', purpose: 'Render timing can change without rebuilding the surrounding typography and end card.' },
+      { layer: 'MOGRT_OUTPUT', technique: 'Essential Graphics', purpose: 'Launch name, date, CTA, product color, and crop can be versioned safely in Premiere.' },
     ],
     outputs: ['Logo ident', 'Product reveal', 'Social opener', 'End-card system', 'Creator templates'],
   },
@@ -130,7 +143,40 @@ const projects: MotionProject[] = [
       { label: 'Data', value: 'Settle with confidence', note: 'Financial states use restrained easing and clear endpoints.' },
       { label: 'Continuity', value: 'Mark → route → UI', note: 'One movement connects identity and product.' },
     ],
+    aeBuild: [
+      { layer: 'IDENT_FOLD', technique: 'Vector paths + Graph Editor', purpose: 'The identity assembles with precise speed curves and a firm, non-elastic settle.' },
+      { layer: 'ROUTE_LINE', technique: 'Trim Paths + expressions', purpose: 'One directional control connects the mark, transaction path, and interface reveal.' },
+      { layer: 'DASHBOARD_UI', technique: 'Pre-comps + null controls', purpose: 'Dense product surfaces reveal by decision priority rather than moving as one flat screenshot.' },
+      { layer: 'DELIVERY_SET', technique: 'Responsive comps', purpose: 'Protected title and UI zones survive 16:9, 4:5, 1:1, and 9:16 crops.' },
+    ],
     outputs: ['Identity sting', 'Dashboard reveal', 'Transaction explainer', 'Social launch loop'],
+  },
+]
+
+const motionBenchmarks = [
+  {
+    studio: 'BUCK × Zapier',
+    principle: 'Begin with product truth.',
+    note: 'A motion library becomes memorable when every visual metaphor explains a real capability, not just a brand mood.',
+    href: 'https://buck.co/work/zapier-motion-library',
+  },
+  {
+    studio: 'Pentagram × Intrinsic',
+    principle: 'Let the product define the behavior.',
+    note: 'Kinematic movement from the robotics platform becomes the identity’s motion rule, connecting expression to function.',
+    href: 'https://www.pentagram.com/work/intrinsic',
+  },
+  {
+    studio: 'Studio Dumbar × Instagram',
+    principle: 'Use one system across product and marketing.',
+    note: 'A flexible motion language can feel expressive in campaigns and still remain balanced inside a product experience.',
+    href: 'https://www.linkedin.com/posts/studio-dumbar_finally-after-1-year-in-the-works-we-can-activity-7173255502540197888-h47P',
+  },
+  {
+    studio: 'Variable × Hebbia',
+    principle: 'Scale with tools, not a static deck.',
+    note: 'Presets, controlled variation, and an approachable motion tool make a dynamic identity usable beyond its original makers.',
+    href: 'https://variable.io/hebbia-motion-tool/',
   },
 ]
 
@@ -232,6 +278,156 @@ function MotionWordmark() {
   )
 }
 
+function MotionBenchmark() {
+  return (
+    <section className="motion-benchmark motion-shell reveal" aria-labelledby="motion-benchmark-title">
+      <div className="motion-benchmark__heading">
+        <p className="motion-section-label">Benchmark study / 04 references</p>
+        <div>
+          <h2 id="motion-benchmark-title">What the best motion work proves.</h2>
+          <p>I studied motion systems made for product launches, technology brands, and high-output teams. Four patterns became the bar for these case studies.</p>
+        </div>
+      </div>
+      <div className="motion-benchmark__grid">
+        {motionBenchmarks.map((reference, index) => (
+          <a key={reference.studio} href={reference.href} target="_blank" rel="noreferrer">
+            <span>0{index + 1}</span>
+            <small>{reference.studio}</small>
+            <h3>{reference.principle}</h3>
+            <p>{reference.note}</p>
+            <b aria-hidden="true">↗</b>
+          </a>
+        ))}
+      </div>
+      <p className="motion-benchmark__takeaway"><span>Applied here</span> Product truth shapes the movement. Each project has one recognizable behavior, a documented system, an editable production structure, and a family of social outputs.</p>
+    </section>
+  )
+}
+
+function AfterEffectsProduction() {
+  const aeSkills = [
+    ['Animate', 'Keyframes, text animators, path animation, and the Graph Editor turn styleframes into controlled timing and spacing.'],
+    ['Composite', 'Pre-comps, masks, track mattes, blend modes, cameras, lights, and render passes bring 2D and 3D into one visual hierarchy.'],
+    ['Automate', 'Expressions connect repeated properties so one control can update color, delay, count, copy behavior, or format logic across a system.'],
+    ['Template', 'Essential Graphics exposes only the controls an editor needs, packaging approved motion as a reusable .mogrt for Premiere.'],
+  ]
+
+  return (
+    <section className="motion-ae reveal" data-nav-contrast="dark" aria-labelledby="motion-ae-title">
+      <div className="motion-shell">
+        <div className="motion-ae__heading">
+          <p className="motion-section-label">Adobe After Effects / Production spine</p>
+          <div>
+            <h2 id="motion-ae-title">A polished film is only half the deliverable.</h2>
+            <p>After Effects is where I turn approved styleframes into timed, composited, versionable systems. The goal is not a mysterious hero file. It is a clean master comp that another editor can understand, update, and ship.</p>
+          </div>
+        </div>
+
+        <div className="motion-ae__interface" role="img" aria-label="Diagram of an organized Adobe After Effects project with asset folders, a composition viewer, controller layer, animation layers, and social delivery timeline">
+          <div className="motion-ae__appbar">
+            <span className="motion-ae__appicon">Ae</span>
+            <span>GTM_MASTER_v07.aep</span>
+            <span>32 bpc / Rec.709</span>
+          </div>
+          <div className="motion-ae__bins" aria-hidden="true">
+            <strong>PROJECT</strong>
+            <span>01_ASSETS</span>
+            <span>02_STYLEFRAMES</span>
+            <span>03_PRECOMPS</span>
+            <span className="is-active">04_MASTER_COMPS</span>
+            <span>05_DELIVERABLES</span>
+          </div>
+          <div className="motion-ae__viewer" aria-hidden="true">
+            <small>GTM_MASTER_15S / ACTIVE CAMERA</small>
+            <div className="motion-ae__viewer-copy"><span>MAKE</span><span>IT</span><span>CLEAR.</span></div>
+            <i className="motion-ae__viewer-safe" />
+          </div>
+          <div className="motion-ae__timeline" aria-hidden="true">
+            <div className="motion-ae__ruler"><span>00:00</span><span>00:05</span><span>00:10</span><span>00:15</span></div>
+            {[
+              ['CTRL_MASTER', '100%'],
+              ['TYPE_SYSTEM', '78%'],
+              ['PRODUCT_UI', '62%'],
+              ['3D_RENDER_PASS', '48%'],
+              ['SOUND_MARKERS', '88%'],
+            ].map(([label, width], index) => (
+              <div className="motion-ae__track" key={label}>
+                <span>{label}</span><i style={{ '--ae-track-width': width, '--ae-track-delay': `${index * 0.6}s` } as React.CSSProperties} />
+              </div>
+            ))}
+            <b className="motion-ae__playhead" />
+          </div>
+        </div>
+
+        <div className="motion-ae__skills">
+          {aeSkills.map(([title, body], index) => (
+            <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>
+          ))}
+        </div>
+
+        <div className="motion-ae__delivery">
+          <div>
+            <p className="motion-section-label">One master / Four social frames</p>
+            <h3>Compose for the crop before the crop happens.</h3>
+          </div>
+          <div className="motion-ae__formats" aria-label="Social motion delivery formats">
+            <div className="is-wide"><i /><strong>16:9</strong><span>Launch / web</span></div>
+            <div className="is-portrait"><i /><strong>9:16</strong><span>Stories / reels</span></div>
+            <div className="is-feed"><i /><strong>4:5</strong><span>Feed / social</span></div>
+            <div className="is-square"><i /><strong>1:1</strong><span>Flexible cut</span></div>
+          </div>
+        </div>
+
+        <div className="motion-ae__pipeline" aria-label="Adobe motion production pipeline">
+          <div><span>01</span><strong>Figma + Illustrator + Photoshop</strong><small>Styleframes, vectors, source art</small></div>
+          <b aria-hidden="true">→</b>
+          <div><span>02</span><strong>After Effects</strong><small>Animation, compositing, motion templates</small></div>
+          <b aria-hidden="true">→</b>
+          <div><span>03</span><strong>Premiere Pro</strong><small>Edit, sound, captions, review</small></div>
+          <b aria-hidden="true">→</b>
+          <div><span>04</span><strong>Media Encoder</strong><small>Masters, platform exports, QC</small></div>
+        </div>
+
+        <div className="motion-ae__references">
+          <span>Technical references</span>
+          <a href="https://helpx.adobe.com/after-effects/using/animation-basics.html" target="_blank" rel="noreferrer">Keyframes, expressions &amp; Graph Editor ↗</a>
+          <a href="https://helpx.adobe.com/after-effects/using/creating-motion-graphics-templates.html" target="_blank" rel="noreferrer">Essential Graphics &amp; .mogrt templates ↗</a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function AfterEffectsBuild({ project }: { project: MotionProject }) {
+  return (
+    <section className="motion-ae-build reveal" data-nav-contrast="dark">
+      <div className="motion-shell">
+        <div className="motion-ae-build__heading">
+          <p className="motion-section-label">After Effects / Build map</p>
+          <div>
+            <h2>How the master comp stays fast, precise, and editable.</h2>
+            <p>The animation is organized around named systems instead of one-off layers. That makes timing changes, feedback, format versions, and handoff much less fragile.</p>
+          </div>
+        </div>
+        <div className="motion-ae-build__grid">
+          {project.aeBuild.map((item, index) => (
+            <article key={item.layer}>
+              <span>0{index + 1}</span>
+              <small>{item.layer}</small>
+              <h3>{item.technique}</h3>
+              <p>{item.purpose}</p>
+            </article>
+          ))}
+        </div>
+        <div className="motion-ae-build__handoff">
+          <span>Handoff package</span>
+          <p>Collected .aep · linked fonts and footage · expression-safe controls · render notes · approved masters · social cutdowns</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function MotionLanding({ motionOn, setMotionOn }: { motionOn: boolean; setMotionOn: (value: boolean) => void }) {
   return (
     <div className={`motion-page${motionOn ? '' : ' motion-is-paused'}`}>
@@ -263,8 +459,8 @@ function MotionLanding({ motionOn, setMotionOn }: { motionOn: boolean; setMotion
           </div>
           <div className="motion-hero__ticker" aria-hidden="true">
             <div>
-              <span>CONCEPT</span><i /> <span>STORYBOARD</span><i /> <span>2D + 3D</span><i /> <span>PRODUCT TRUTH</span><i /> <span>SOCIAL CUTDOWNS</span><i />
-              <span>CONCEPT</span><i /> <span>STORYBOARD</span><i /> <span>2D + 3D</span><i /> <span>PRODUCT TRUTH</span><i /> <span>SOCIAL CUTDOWNS</span><i />
+              <span>CONCEPT</span><i /> <span>STORYBOARD</span><i /> <span>AFTER EFFECTS</span><i /> <span>2D + 3D</span><i /> <span>PRODUCT TRUTH</span><i /> <span>SOCIAL CUTDOWNS</span><i />
+              <span>CONCEPT</span><i /> <span>STORYBOARD</span><i /> <span>AFTER EFFECTS</span><i /> <span>2D + 3D</span><i /> <span>PRODUCT TRUTH</span><i /> <span>SOCIAL CUTDOWNS</span><i />
             </div>
           </div>
         </section>
@@ -280,7 +476,7 @@ function MotionLanding({ motionOn, setMotionOn }: { motionOn: boolean; setMotion
               <div className="motion-capability-list">
                 <span>Concept → final delivery</span>
                 <span>Product + brand motion</span>
-                <span>2D, 3D, prototypes</span>
+                <span>After Effects / 2D + 3D</span>
                 <span>Reusable motion systems</span>
               </div>
             </div>
@@ -318,6 +514,8 @@ function MotionLanding({ motionOn, setMotionOn }: { motionOn: boolean; setMotion
           </div>
         </section>
 
+        <MotionBenchmark />
+
         <section className="motion-system reveal" data-nav-contrast="dark">
           <div className="motion-shell">
             <div className="motion-system__heading">
@@ -343,6 +541,8 @@ function MotionLanding({ motionOn, setMotionOn }: { motionOn: boolean; setMotion
             </div>
           </div>
         </section>
+
+        <AfterEffectsProduction />
 
         <section className="motion-contact motion-shell reveal">
           <p className="motion-section-label">Available for the next story</p>
@@ -496,6 +696,8 @@ function MotionCaseStudy({ project, motionOn, setMotionOn }: { project: MotionPr
             ))}
           </div>
         </section>
+
+        <AfterEffectsBuild project={project} />
 
         <section className="motion-outputs motion-shell reveal">
           <p className="motion-section-label">Designed as a family</p>
