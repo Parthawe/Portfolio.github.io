@@ -796,6 +796,13 @@
   100% { opacity: 0; transform: scale(1.32); }
 }
 
+/* Two contemporary projects should span the row instead of reserving an
+   empty third masonry column. This stays scoped to the crypto category. */
+.wrap:has(.ch--crypto) #lp-work > .pcard-masonry {
+  column-count: 2;
+  column-gap: 24px;
+}
+
 @media (max-width: 900px) {
   .crypto-stage { aspect-ratio: 1 / 0.9; }
   .crypto-stage-coin--btc { top: 28%; left: 2%; width: 5.2rem; }
@@ -803,6 +810,13 @@
   .crypto-stage-coin--sol { right: 0; bottom: 9%; width: 3.75rem; }
   .crypto-coin-label { top: calc(100% + 0.38rem); font-size: 0.42rem; }
   .crypto-coin-hint { display: none; }
+}
+
+@media (max-width: 540px) {
+  .wrap:has(.ch--crypto) #lp-work > .pcard-masonry {
+    column-count: 1;
+    column-gap: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
