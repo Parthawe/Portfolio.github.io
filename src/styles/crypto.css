@@ -128,31 +128,6 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1.08 / 1;
-  perspective: 1200px;
-}
-
-.crypto-stage::before {
-  content: '';
-  position: absolute;
-  inset: 12% 5% 7% 8%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 48% 46%, color-mix(in srgb, var(--crypto-violet) 18%, transparent), transparent 52%),
-    radial-gradient(circle at 72% 68%, color-mix(in srgb, var(--crypto-mint) 9%, transparent), transparent 38%);
-  filter: blur(24px);
-}
-
-.crypto-stage-network {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  fill: color-mix(in srgb, var(--crypto-mint) 75%, var(--surface));
-  stroke: color-mix(in srgb, var(--crypto-violet) 28%, transparent);
-  stroke-width: 1;
-  stroke-dasharray: 3 6;
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--crypto-violet) 24%, transparent));
 }
 
 .crypto-stage-coin {
@@ -191,30 +166,27 @@
   margin: 8% auto 0;
   padding: 0.55rem;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--crypto-violet) 25%, var(--ink-08));
+  border: 0;
   border-radius: 1.15rem;
-  background:
-    linear-gradient(to right, color-mix(in srgb, var(--crypto-violet) 5%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--crypto-violet) 5%, transparent) 1px, transparent 1px),
-    color-mix(in srgb, var(--surface) 86%, transparent);
-  background-size: 28px 28px, 28px 28px, auto;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--surface) 98%, #fff 2%),
+    color-mix(in srgb, var(--surface) 94%, var(--crypto-violet) 6%)
+  );
   box-shadow:
-    0 30px 70px color-mix(in srgb, var(--crypto-violet) 14%, transparent),
-    inset 0 1px 0 color-mix(in srgb, #fff 32%, transparent);
+    0 34px 80px rgba(10, 8, 28, 0.18),
+    0 10px 28px rgba(10, 8, 28, 0.08),
+    inset 0 1px 0 color-mix(in srgb, #fff 40%, transparent);
   backdrop-filter: blur(20px);
   pointer-events: none;
-  transform: rotateY(-2.5deg) rotateX(0.8deg);
-  transform-origin: 50% 50%;
 }
 
 .crypto-console::after {
   content: '';
   position: absolute;
-  inset: auto -18% -45% 28%;
-  height: 72%;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--crypto-violet) 13%, transparent);
-  filter: blur(36px);
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(120deg, color-mix(in srgb, #fff 7%, transparent), transparent 28%);
   pointer-events: none;
 }
 
@@ -444,47 +416,19 @@
   border-top: 1px solid var(--ink-08);
 }
 
-.crypto-console-footer span:last-child { color: var(--crypto-violet); }
-
-.crypto-receipt-proof {
-  position: absolute;
-  right: 2%;
-  bottom: 5%;
-  z-index: 6;
-  display: grid;
-  gap: 0.18rem;
-  min-width: 8.6rem;
-  padding: 0.58rem 0.7rem;
-  border: 1px solid color-mix(in srgb, var(--crypto-mint) 26%, var(--ink-08));
-  border-radius: 0.7rem;
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
-  box-shadow: 0 16px 34px rgba(10,8,28,0.18), inset 0 1px 0 rgba(255,255,255,0.3);
-  backdrop-filter: blur(16px);
-  font-family: var(--mono);
-  text-transform: uppercase;
-}
-
-.crypto-receipt-proof span {
+.crypto-console-verified {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.48rem;
-  letter-spacing: 0.07em;
-  color: var(--ink-50);
+  color: color-mix(in srgb, var(--crypto-mint) 62%, var(--ink)) !important;
 }
 
-.crypto-receipt-proof span i {
+.crypto-console-verified i {
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
   background: var(--crypto-mint);
   box-shadow: 0 0 12px color-mix(in srgb, var(--crypto-mint) 70%, transparent);
-}
-
-.crypto-receipt-proof strong {
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  color: var(--ink);
 }
 
 @media (max-width: 900px) {
@@ -505,9 +449,8 @@
   .crypto-hero-tags { margin-top: 0.9rem; }
 
   .crypto-stage { aspect-ratio: 1.08 / 1; }
-  .crypto-stage-network,
   .crypto-stage-coin,
-  .crypto-receipt-proof { display: none; }
+  .crypto-console-verified { display: none; }
   .crypto-console { width: 100%; margin-top: 0; transform: none; }
 
   .crypto-console { padding: 0.38rem; border-radius: 0.9rem; }
