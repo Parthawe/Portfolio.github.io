@@ -869,10 +869,20 @@
 
 .vishwa-video figcaption {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 0.4rem 1rem;
+  align-items: start;
   padding: 0.8rem 0;
   border-bottom: 1px solid var(--ink-08);
+}
+
+.vishwa-video figcaption span,
+.vishwa-video figcaption small,
+.vishwa-video figcaption a {
+  min-width: 0;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .vishwa-video figcaption span { font-size: 0.95rem; font-weight: 500; }
@@ -884,6 +894,7 @@
   text-transform: uppercase;
 }
 
+.vishwa-video figcaption small { text-align: right; }
 .vishwa-video figcaption a { grid-column: 1 / -1; width: fit-content; color: var(--project-color); }
 
 .motion-video-provenance {
@@ -1531,6 +1542,7 @@
   .motion-vishwa__label { top: 0.6rem; left: 0.6rem; padding: 0.55rem 0.6rem; }
   .motion-vishwa__label span { font-size: 0.5rem; }
   .vishwa-video figcaption { grid-template-columns: 1fr; }
+  .vishwa-video figcaption small { text-align: left; }
   .motion-video-provenance { grid-template-columns: 1fr; gap: 0.75rem; }
   .motion-video-research-links { grid-template-columns: 1fr; }
   .motion-video-research-links > div { grid-column: auto; }
