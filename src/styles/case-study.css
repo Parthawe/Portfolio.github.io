@@ -3272,11 +3272,13 @@
 }
 .cs-img-full--healthapp-board {
   width: min(76rem, calc(100vw - 22rem));
-  max-width: none;
-  margin-left: 50%;
-  margin-right: 0;
+  max-width: 100%;
+  justify-self: center;
+  margin: 0;
   padding: 0;
-  transform: translateX(-50%);
+  box-sizing: border-box;
+  transform: none;
+  overflow: hidden;
 }
 .cs-img-full--healthapp-board img {
   width: 100%;
@@ -7122,6 +7124,11 @@
     margin-right: auto;
     padding: 0 var(--pad);
     transform: none;
+  }
+
+  .project-main--healthapp .cs-img-full--healthapp-board {
+    max-width: 100%;
+    padding: 0;
   }
 
   .project-main .point-board-stack {
