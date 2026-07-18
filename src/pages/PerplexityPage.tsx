@@ -293,7 +293,7 @@ function ConceptVisual({ type }: { type: string }) {
 
 export default function PerplexityPage() {
   const { playing, setPlaying } = useMotionControl()
-  const style = { '--project-color': '#18a999' } as CSSProperties
+  const style = { '--project-color': 'var(--ink)' } as CSSProperties
 
   return (
     <>
@@ -316,8 +316,11 @@ export default function PerplexityPage() {
 
             <div className="perp-hero__title">
               <div className="perp-hero__brand-lockup">
-                <img src="/Assets/brands/perplexity-mark.svg" alt="" />
-                <div><span>Perplexity</span><small>Creative Studio study</small></div>
+                <div className="perp-hero__mark-stage" aria-hidden="true">
+                  <img src="/Assets/brands/perplexity-mark.svg" alt="" />
+                  <i />
+                </div>
+                <div className="perp-hero__brand-caption"><span>Perplexity</span><small>Creative Studio study</small></div>
               </div>
               <h1 id="perp-title">Motion for AI that does the work—and shows enough to trust it.</h1>
             </div>
@@ -475,7 +478,7 @@ export default function PerplexityPage() {
                   <div className="perp-ae-map__head"><span>After Effects project map</span><span>Speculative production architecture</span></div>
                   {productionRows.map(([name, contents, type], index) => (
                     <div className="perp-ae-map__row" key={name}>
-                      <i style={{ '--row': index === 0 ? '#18a999' : index === productionRows.length - 1 ? '#7b61ff' : '#568dff' } as CSSProperties} />
+                      <i style={{ '--row': index === 0 ? 'var(--ink)' : index === productionRows.length - 1 ? 'color-mix(in srgb, var(--ink) 38%, transparent)' : 'color-mix(in srgb, var(--ink) 68%, transparent)' } as CSSProperties} />
                       <code>{name}</code><span>{contents}</span><small>{type}</small>
                     </div>
                   ))}
