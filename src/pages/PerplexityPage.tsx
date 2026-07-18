@@ -27,21 +27,64 @@ const roleNeeds = [
 const productSignals = [
   {
     product: 'Computer',
-    truth: 'A general-purpose digital worker that breaks down requests and executes complete workflows across tools and time.',
-    motion: 'Reveal the orchestration: task → specialists → progress → finished artifact.',
+    truth: 'A general-purpose digital worker that can run complete workflows in the background, from a single task through research, tools, and a finished artifact.',
+    motion: 'Reveal the orchestration without turning long-running work into a decorative loading loop.',
     href: 'https://www.perplexity.ai/products/computer',
   },
   {
     product: 'Deep Research',
-    truth: 'Plans before acting, searches iteratively, exposes progress and citations, then turns findings into work-ready outputs inside Computer.',
-    motion: 'Let evidence accumulate and become a report, deck, dashboard, or site—not a magic loading state.',
-    href: 'https://www.perplexity.ai/hub/blog/deep-research-now-in-computer',
+    truth: 'Builds a research plan, searches primary sources in parallel, cites every claim, and turns the result into reports, decks, spreadsheets, or dashboards.',
+    motion: 'Keep the source attached as evidence moves from research into an editable deliverable.',
+    href: 'https://www.perplexity.ai/hub/products/deep-research',
   },
   {
     product: 'Comet',
-    truth: 'A browser assistant designed to understand, build, email, create, and shop inside the flow of browsing.',
-    motion: 'Keep intent, action, and confirmation connected so capability never erases user control.',
-    href: 'https://www.perplexity.ai/comet',
+    truth: 'A browser assistant with page and cross-tab context that can summarize, navigate, fill forms, and complete tasks inside the browsing flow.',
+    motion: 'Show scope, action, and permission as one sequence so autonomy never hides control.',
+    href: 'https://www.perplexity.ai/comet/resources/articles/comet-quick-start-guide',
+  },
+]
+
+const productInterventions = [
+  {
+    number: '01',
+    product: 'Computer',
+    moment: 'Returning to long-running work',
+    observed: 'Computer can work in the background for hours or months, run recurring tasks, and accept guidance while it works.',
+    change: 'Use a resumable progress narrative: completed, active, waiting, review. On return, reveal only what changed since the last visit.',
+    restraint: 'No perpetual “AI is working” loop.',
+    sequence: ['Ask', 'Work', 'Wait', 'Review'],
+    href: 'https://www.perplexity.ai/products/computer',
+  },
+  {
+    number: '02',
+    product: 'Deep Research',
+    moment: 'Evidence becoming a deliverable',
+    observed: 'A question becomes a plan, many retrieval steps, cited claims, and a report, deck, spreadsheet, or dashboard.',
+    change: 'Let citations keep their identity as a claim moves into the artifact; use a deliberate hold when the recommendation appears.',
+    restraint: 'No unreadable source ticker.',
+    sequence: ['Plan', 'Search', 'Cite', 'Build'],
+    href: 'https://www.perplexity.ai/hub/products/deep-research',
+  },
+  {
+    number: '03',
+    product: 'Comet',
+    moment: 'Moving from reading to action',
+    observed: 'Comet can use page and cross-tab context and automate browser tasks; Enterprise permissions can require case-by-case consent before browser control.',
+    change: 'Keep the scope visible, preview the action, pause for consent, then show completion with a clear route to recover or revise.',
+    restraint: 'Never animate past consent.',
+    sequence: ['Scope', 'Preview', 'Confirm', 'Done'],
+    href: 'https://www.perplexity.ai/help-center/en/articles/13531023-managing-comet-assistant-permissions',
+  },
+  {
+    number: '04',
+    product: 'Create files & apps',
+    moment: 'Revising generated work',
+    observed: 'Perplexity can preview and edit documents, presentations, spreadsheets, and apps, with follow-up prompts and version history.',
+    change: 'Preserve shared content anchors between formats, then highlight the exact edit so a revision reads as a change—not a replacement.',
+    restraint: 'Do not wipe the whole canvas.',
+    sequence: ['Draft', 'Preview', 'Revise', 'Export'],
+    href: 'https://www.perplexity.ai/help-center/en/articles/12528830-creating-assets-with-perplexity-overview',
   },
 ]
 
@@ -419,6 +462,33 @@ export default function PerplexityPage() {
                       <i aria-hidden="true">↗</i>
                     </a>
                   ))}
+                </div>
+
+                <div className="perp-intervention-audit">
+                  <header className="perp-intervention-audit__head">
+                    <div>
+                      <span>Current-product intervention audit</span>
+                      <h3>Four moments where motion can improve comprehension now.</h3>
+                    </div>
+                    <p>These are proposals, not claims about Perplexity’s current interface. Each starts from documented product behavior and names the point where motion should help—or deliberately stop.</p>
+                  </header>
+                  <div className="perp-intervention-audit__grid">
+                    {productInterventions.map((item) => (
+                      <article key={item.product}>
+                        <div className="perp-intervention-audit__meta"><span>{item.number}</span><small>{item.moment}</small></div>
+                        <h4>{item.product}</h4>
+                        <p>{item.observed}</p>
+                        <div className="perp-intervention-sequence" aria-label={`${item.product} motion sequence`}>
+                          {item.sequence.map((phase, index) => <span style={{ '--phase': index } as CSSProperties} key={phase}>{phase}</span>)}
+                        </div>
+                        <dl>
+                          <div><dt>Motion change</dt><dd>{item.change}</dd></div>
+                          <div><dt>Restraint</dt><dd>{item.restraint}</dd></div>
+                        </dl>
+                        <a href={item.href} target="_blank" rel="noreferrer">Official product source <span>↗</span></a>
+                      </article>
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>
