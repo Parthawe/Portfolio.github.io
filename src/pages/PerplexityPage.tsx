@@ -295,6 +295,11 @@ export default function PerplexityPage() {
   const { playing, setPlaying } = useMotionControl()
   const style = { '--project-color': 'var(--ink)' } as CSSProperties
 
+  useEffect(() => {
+    document.body.classList.add('page-perplexity-monochrome')
+    return () => document.body.classList.remove('page-perplexity-monochrome')
+  }, [])
+
   return (
     <>
       <Helmet>

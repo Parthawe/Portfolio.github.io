@@ -1,3 +1,34 @@
+.page-perplexity-monochrome {
+  --bg: #111;
+  --bg-alt: #1a1a1a;
+  --surface: #222;
+  --ink: #f2f2f2;
+  --ink-90: rgba(242,242,242,0.9);
+  --ink-80: rgba(242,242,242,0.8);
+  --ink-70: rgba(242,242,242,0.7);
+  --ink-60: rgba(242,242,242,0.6);
+  --ink-50: rgba(242,242,242,0.62);
+  --ink-40: rgba(242,242,242,0.56);
+  --ink-30: rgba(242,242,242,0.52);
+  --ink-15: rgba(242,242,242,0.15);
+  --ink-12: rgba(242,242,242,0.12);
+  --ink-08: rgba(242,242,242,0.08);
+  --ink-06: rgba(242,242,242,0.06);
+  --ink-04: rgba(242,242,242,0.04);
+  --accent: #fff;
+  --accent-hi: #fff !important;
+  --accent-hi-70: rgba(255,255,255,0.7) !important;
+  --accent-hi-50: rgba(255,255,255,0.5) !important;
+  --accent-hi-30: rgba(255,255,255,0.3) !important;
+  --accent-hi-15: rgba(255,255,255,0.15) !important;
+  --accent-hi-08: rgba(255,255,255,0.08) !important;
+  --accent-hi-05: rgba(255,255,255,0.05) !important;
+  --select-blue: #fff !important;
+  --site-tool-ink: #fff !important;
+  --figma-chrome-accent: #fff !important;
+  --folio-glow-color: #fff !important;
+}
+
 .perplexity-page {
   --perp-accent: var(--ink);
   --perp-blue: var(--ink);
