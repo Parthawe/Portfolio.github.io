@@ -845,6 +845,7 @@
 .perp-system-map > header small { font: inherit; }
 
 .perp-system-map__flow {
+  --perp-system-route-y: 34%;
   position: relative;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -889,7 +890,7 @@
 .perp-system-map__route {
   position: absolute;
   z-index: 1;
-  top: 50%;
+  top: var(--perp-system-route-y);
   right: 3.5%;
   left: 3.5%;
   height: 1px;
@@ -899,7 +900,7 @@
 .perp-system-map__signal {
   position: absolute;
   z-index: 4;
-  top: calc(50% - 14px);
+  top: calc(var(--perp-system-route-y) - 14px);
   left: 3.5%;
   display: grid;
   width: 28px;
