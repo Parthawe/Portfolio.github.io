@@ -835,14 +835,14 @@ export const categories: CategoryData[] = [
         },
         {
           slug: 'medimorpho',
-          image: '/Assets/Projects/MediMorpho/medimorpho-16x9.svg',
-          alt: 'MediMorpho multilingual healthcare interpretation concept',
-          name: 'MediMorpho',
+          image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
+          alt: 'NYU Langone Health building signage for an independent academic healthcare concept',
+          name: 'NYU Langone',
           result: 'A multilingual care model shaped by 20 primary-research interviews',
           role: 'Service Designer · 2024',
           tag: 'HEALTHCARE UX',
           year: '2024',
-          desc: 'Language identification, live interpretation, and a shared clinical recap for clearer care',
+          desc: 'Independent research into language identification, live interpretation, and a shared clinical recap',
         },
         {
           slug: 'the-point-cdc',

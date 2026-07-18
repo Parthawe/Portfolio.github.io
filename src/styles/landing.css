@@ -1321,6 +1321,12 @@ html.is-low-power-device .cl-marquee-track {
   column-gap: 24px;
 }
 
+/* Keep the supplied NYU Langone sign legible when its landscape photograph
+   is art-directed into the contemporary-work portrait card. */
+.wrap:has(.ch--design-for-good) #lp-work .pcard[href="/medimorpho"] .pcard-visual img {
+  object-position: 66% 50%;
+}
+
 @media (max-width: 880px) {
   .wrap:has(.ch--design-for-good) #lp-work > .pcard-masonry {
     column-count: 2;

@@ -3799,6 +3799,105 @@
   box-shadow: 0 30px 80px rgba(49, 8, 76, 0.16);
 }
 
+.project-main--medimorpho .proj-visual-stage {
+  border-radius: clamp(1.15rem, 2.4vw, 2rem);
+  background: var(--medimorpho-purple-deep);
+  box-shadow: 0 32px 90px rgba(37, 7, 56, 0.24);
+}
+
+.medimorpho-hero-photo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.medimorpho-hero-photo > img {
+  filter: saturate(0.88) contrast(1.04);
+  transform: scale(1.012);
+}
+
+.medimorpho-hero-photo__wash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(20, 8, 34, 0.03) 35%, rgba(20, 8, 34, 0.68) 100%),
+    linear-gradient(90deg, rgba(50, 5, 80, 0.38), transparent 42%);
+}
+
+.medimorpho-hero-photo__label,
+.medimorpho-hero-photo__proof {
+  position: absolute;
+  z-index: 3;
+  color: #fff;
+}
+
+.medimorpho-hero-photo__label {
+  left: clamp(1.2rem, 3vw, 2.6rem);
+  bottom: clamp(1.25rem, 3vw, 2.6rem);
+  display: grid;
+  gap: 0.3rem;
+  max-width: min(27rem, 62%);
+}
+
+.medimorpho-hero-photo__label span,
+.medimorpho-hero-photo__label small,
+.medimorpho-hero-photo__proof span {
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+
+.medimorpho-hero-photo__label span {
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  color: var(--medimorpho-mint);
+}
+
+.medimorpho-hero-photo__label strong {
+  font-family: var(--sans);
+  font-size: clamp(1.7rem, 3.5vw, 3.25rem);
+  font-weight: 450;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.medimorpho-hero-photo__label small {
+  margin-top: 0.25rem;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.medimorpho-hero-photo__proof {
+  right: clamp(1.2rem, 3vw, 2.6rem);
+  bottom: clamp(1.25rem, 3vw, 2.6rem);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.medimorpho-hero-photo__proof span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.38rem;
+  padding: 0.58rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(21, 8, 34, 0.42);
+  backdrop-filter: blur(14px);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+}
+
+.medimorpho-hero-photo__proof b {
+  color: #fff;
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+}
+
 .medimorpho-context-band {
   margin-top: clamp(2rem, 5vw, 4rem);
   color: #fff;
@@ -3860,6 +3959,93 @@
 
 .project-main--medimorpho .cs-nda-image-card--hero img {
   background: var(--medimorpho-purple-deep);
+}
+
+.medimorpho-research-atlas {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.medimorpho-research-atlas::before {
+  content: '';
+  position: absolute;
+  top: 2.75rem;
+  left: 8%;
+  right: 8%;
+  border-top: 1px dashed color-mix(in srgb, var(--medimorpho-purple) 32%, var(--ink-08));
+  pointer-events: none;
+}
+
+.medimorpho-research-atlas__card {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  padding: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 17%, var(--ink-08));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 96%, var(--medimorpho-lilac));
+  box-shadow: 0 14px 34px rgba(43, 15, 58, 0.06);
+}
+
+.medimorpho-research-atlas__icon {
+  display: grid;
+  width: 3.7rem;
+  height: 3.7rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 24%, var(--ink-08));
+  border-radius: 1rem;
+  color: var(--medimorpho-purple);
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.9), transparent 38%),
+    var(--medimorpho-lilac);
+}
+
+.medimorpho-research-atlas__icon svg {
+  width: 2rem;
+  height: 2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.medimorpho-research-atlas__card > p {
+  margin: 2.4rem 0 0.5rem;
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-research-atlas__card h3 {
+  margin: 0 0 0.7rem;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.3vw, 1.18rem);
+  font-weight: 570;
+  line-height: 1.25;
+}
+
+.medimorpho-research-atlas__card small {
+  display: block;
+  color: var(--ink-60);
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.project-main--medimorpho #cs-medimorpho-research .cs-stat-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+[data-theme="dark"] .project-main--medimorpho .medimorpho-research-atlas__card > p {
+  color: var(--medimorpho-mint);
 }
 
 .medimorpho-privacy-note {
@@ -4055,7 +4241,18 @@
   color: rgba(255, 255, 255, 0.64);
 }
 
+@media (max-width: 1180px) {
+  .medimorpho-research-atlas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .medimorpho-research-atlas::before {
+    content: none;
+  }
+}
+
 @media (max-width: 1040px) {
+
   .medimorpho-affinity {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -4085,6 +4282,15 @@
 }
 
 @media (max-width: 700px) {
+  .medimorpho-hero-photo__label {
+    max-width: calc(100% - 2.4rem);
+  }
+
+  .medimorpho-hero-photo__label small,
+  .medimorpho-hero-photo__proof {
+    display: none;
+  }
+
   .medimorpho-context-band__inner {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
@@ -4095,6 +4301,7 @@
   }
 
   .medimorpho-privacy-note,
+  .medimorpho-research-atlas,
   .medimorpho-affinity,
   .medimorpho-service-flow {
     grid-template-columns: minmax(0, 1fr);
@@ -8858,8 +9065,8 @@
 }
 
 /* Project-specific hero sizing must come after the shared media guardrails.
-   MediMorpho uses a wide authored cover, so it should fill the stage rather
-   than collapse to the browser's 300px intrinsic image width. */
+   The NYU context photograph is the authored cover, so it fills the stage
+   without collapsing to the browser's 300px intrinsic image width. */
 .project-main--medimorpho .proj-visual-hero__media {
   position: absolute;
   inset: 0;
@@ -8870,7 +9077,8 @@
 .project-main--medimorpho .proj-visual-hero__media img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 50% 52%;
 }
 
 @media (max-width: 900px) {
