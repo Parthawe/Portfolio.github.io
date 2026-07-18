@@ -122,8 +122,8 @@ const projects: MotionProject[] = [
     year: '2025–26',
     color: '#00b869',
     categorySlug: 'brand-visual',
-    heroImage: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
-    heroAlt: 'Black and transparent Mentra smart glasses product renders',
+    heroImage: '/Assets/Projects/mentra-brand/motion/official-site-hero-poster.png',
+    heroAlt: 'Mentra smart glasses shown in the official site hero film',
     intro: 'The technology should leave the frame before the person leaves the moment.',
     evidence: 'Original Mentra identity, packaging, advertising concepts, product renders, MentraOS states, and published product footage.',
     authorship: 'Brand and art direction, advertising assets, renders, and the visual system. Official Mentra films are source references only.',
@@ -344,6 +344,29 @@ function VishwaReel({ motionOn }: { motionOn: boolean }) {
   )
 }
 
+function MentraHeroFilm({ motionOn }: { motionOn: boolean }) {
+  return (
+    <figure className="motion-hero-film motion-hero-film--mentra">
+      <video
+        autoPlay={motionOn}
+        controls
+        loop
+        muted
+        playsInline
+        poster="/Assets/Projects/mentra-brand/motion/official-site-hero-poster.png"
+        preload="metadata"
+        aria-label="Official Mentra site hero film showing Mentra smart glasses"
+      >
+        <source src="/Assets/Projects/mentra-brand/motion/official-site-hero.mp4" type="video/mp4" />
+      </video>
+      <figcaption>
+        <span>Official Mentra source footage</span>
+        <small>Campaign reference · film not directed by Parth</small>
+      </figcaption>
+    </figure>
+  )
+}
+
 function MentraReel() {
   return (
     <div className="motion-preview motion-preview--mentra" role="img" aria-label="Mentra advertising prototype moving from a lived moment to wearable hardware, a single benefit, and MentraOS">
@@ -520,16 +543,9 @@ function MentraVideoEvidence() {
     <>
       <div className="motion-video-provenance">
         <span>Source-footage note</span>
-        <p>These films were published by Mentra. They verify the physical product, real-world use, and platform context available to the proposed campaign system; I am not presenting either finished edit as a film I directed.</p>
+        <p>The hero film and product introduction were published by Mentra. They verify the physical product, real-world use, and platform context available to the proposed campaign system; I am not presenting either finished edit as a film I directed.</p>
       </div>
-      <div className="vishwa-video-grid motion-source-video-grid">
-        <CampaignVideo
-          src="/Assets/Projects/mentra-brand/motion/official-site-hero.mp4"
-          poster="/Assets/Projects/mentra-brand/motion/official-site-hero-poster.png"
-          title="Mentra site hero · real-world work"
-          note="Official Mentra footage · campaign source reference"
-          href="https://mentraglass.com/"
-        />
+      <div className="vishwa-video-grid motion-source-video-grid motion-source-video-grid--single">
         <CampaignVideo
           src="/Assets/Projects/mentra-brand/motion/official-product-intro.mp4"
           poster="/Assets/Projects/mentra-brand/motion/official-product-intro-poster.png"
@@ -750,7 +766,7 @@ function TransfiMotionSystem() {
   )
 }
 
-function MotionLanding() {
+function MotionLanding({ motionOn }: { motionOn: boolean }) {
   return (
     <div className="motion-index-page category-page">
       <Helmet>
@@ -802,8 +818,8 @@ function MotionLanding() {
                     slug={`motion/${project.path}`}
                     name={project.cardTitle}
                     image={project.heroImage}
-                    hoverMediaSrc={project.key === 'transfi' ? transfiMotion : undefined}
-                    hoverMediaKind="image"
+                    hoverMediaSrc={project.key === 'mentra' && motionOn ? '/Assets/Projects/mentra-brand/motion/official-site-hero.mp4' : project.key === 'transfi' ? transfiMotion : undefined}
+                    hoverMediaKind={project.key === 'mentra' ? 'video' : 'image'}
                     tag={project.discipline}
                     year={project.year}
                     desc={project.descriptor}
@@ -920,11 +936,11 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             { label: 'Status', value: isMentra ? 'Portfolio proposal · original Mentra source assets' : isVishwa ? 'Shipped campaign archive · collaborative production' : 'Portfolio proposal · original TransFi product states' },
           ]}
           heroExperience="visual"
-          heroEyebrow={isVishwa ? 'Shipped campaign archive' : 'Product-grounded motion proposal'}
+          heroEyebrow={isVishwa ? 'Shipped campaign archive' : isMentra ? 'Official source footage · independent motion proposal' : 'Product-grounded motion proposal'}
           visualHeadline={project.intro}
           visualHeroImage={project.heroImage}
           visualHeroAlt={project.heroAlt}
-          visualHeroMedia={isVishwa ? <VishwaReel motionOn={motionOn} /> : undefined}
+          visualHeroMedia={isVishwa ? <VishwaReel motionOn={motionOn} /> : isMentra ? <MentraHeroFilm motionOn={motionOn} /> : undefined}
           heroTone="motion"
           showHeaderSummary={false}
         />
@@ -1072,7 +1088,7 @@ export default function MotionPage() {
   const childPath = pathname.replace(/^\/motion\/?/, '').replace(/\/$/, '')
   const project = useMemo(() => projects.find((item) => item.path === childPath), [childPath])
 
-  if (!childPath) return <MotionLanding />
+  if (!childPath) return <MotionLanding motionOn={motionOn} />
   if (childPath === 'clawed-agent-story') return <Navigate to="/motion/vishwa-conclave-motion" replace />
   if (!project) return <Navigate to="/motion" replace />
   if (project.key === 'editorial') return <EditingMotionCaseStudy />

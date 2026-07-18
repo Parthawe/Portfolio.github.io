@@ -318,6 +318,74 @@
   object-fit: contain;
 }
 
+.motion-project-main--mentra .proj-visual-stage {
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  background: #e8f1fa;
+}
+
+.motion-project-main--mentra .proj-visual-hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.motion-hero-film {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #e8f1fa;
+}
+
+.motion-hero-film video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #e8f1fa;
+  object-fit: cover;
+}
+
+.motion-hero-film figcaption {
+  position: absolute;
+  z-index: 3;
+  top: clamp(0.7rem, 1.8vw, 1.25rem);
+  left: clamp(0.7rem, 1.8vw, 1.25rem);
+  display: grid;
+  gap: 0.28rem;
+  max-width: min(78%, 420px);
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 7px;
+  background: rgba(10,10,10,0.76);
+  color: #fff;
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.motion-hero-film figcaption span,
+.motion-hero-film figcaption small {
+  font: 600 clamp(0.48rem, 0.72vw, 0.65rem)/1.3 var(--mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.motion-hero-film figcaption small { color: rgba(255,255,255,0.58); }
+
+.motion-index-card-grid .pcard--has-hover-media[href="/motion/mentra-motion-language"] .pcard-hover-media {
+  opacity: 1;
+  transform: none;
+}
+
+.motion-index-card-grid .pcard--has-hover-media[href="/motion/mentra-motion-language"] .pcard-visual > img:first-child {
+  opacity: 0;
+}
+
 .motion-case-preview {
   margin: clamp(2rem, 5vw, 4rem) 0;
 }
@@ -977,6 +1045,7 @@
 }
 
 .motion-source-video-grid { margin-top: clamp(1.5rem, 4vw, 3rem); }
+.motion-source-video-grid--single { grid-template-columns: minmax(0, 1fr); }
 
 .vishwa-production-credit {
   display: grid;
