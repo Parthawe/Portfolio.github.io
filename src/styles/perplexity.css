@@ -1367,10 +1367,10 @@
 
 .perp-territory-visual--computer {
   display: grid;
-  grid-template-columns: 0.8fr 1.1fr 0.8fr;
-  gap: 0.75rem;
+  grid-template-columns: minmax(54px, 0.68fr) minmax(0, 1.55fr) minmax(54px, 0.68fr);
+  gap: 0.5rem;
   align-items: center;
-  padding: 9%;
+  padding: 9% 4%;
   background: #0b0b0b;
 }
 
@@ -1396,16 +1396,50 @@
 .perp-computer-output strong { font-size: 0.72rem; font-weight: 500; }
 .perp-computer-task { animation: perpComputerTask 8s ease-in-out infinite; }
 .perp-computer-output { animation: perpComputerOutput 8s ease-in-out infinite; }
-.perp-computer-agents { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
-.perp-computer-agents span {
+.perp-computer-agents {
+  position: relative;
   display: grid;
-  min-height: 54px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.perp-computer-agents::before,
+.perp-computer-agents::after {
+  position: absolute;
+  z-index: 0;
+  background: rgba(255,255,255,0.16);
+  content: '';
+}
+
+.perp-computer-agents::before {
+  top: 50%;
+  right: 10%;
+  left: 10%;
+  height: 1px;
+}
+
+.perp-computer-agents::after {
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  width: 1px;
+}
+
+.perp-computer-agents span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  max-width: 70px;
+  aspect-ratio: 1;
+  justify-self: center;
   place-items: center;
   border: 1px solid rgba(255,255,255,0.3);
   border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.62);
-  font: 600 0.42rem/1 var(--mono);
+  background: #101010;
+  color: rgba(255,255,255,0.72);
+  font: 600 0.52rem/1 var(--mono);
+  letter-spacing: -0.02em;
   animation: perpComputerAgent 8s ease-in-out infinite;
 }
 .perp-computer-agents span:nth-child(2) { animation-delay: 0.18s; }
