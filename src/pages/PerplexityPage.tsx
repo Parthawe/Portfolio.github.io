@@ -246,10 +246,40 @@ function PerplexityPrototype({ playing }: { playing: boolean }) {
   )
 }
 
+function PerplexitySystemMap() {
+  const stages = [
+    ['01', 'Request', 'Keep the human intent visible.'],
+    ['02', 'Plan', 'Show how the work decomposes.'],
+    ['03', 'Evidence', 'Attach sources to the claim.'],
+    ['04', 'Artifact', 'Turn research into useful work.'],
+    ['05', 'Review', 'Return control before action.'],
+  ]
+
+  return (
+    <div className="perp-system-map" role="img" aria-label="Perplexity motion model showing a request becoming a plan, evidence, a finished artifact, and a review moment">
+      <header>
+        <span><img src="/Assets/brands/perplexity-mark.svg" alt="" /> Perplexity product motion model</span>
+        <small>Intent stays visible from request to result</small>
+      </header>
+      <div className="perp-system-map__flow" aria-hidden="true">
+        {stages.map(([number, title, note], index) => (
+          <div className="perp-system-map__stage" style={{ '--stage': index } as CSSProperties} key={number}>
+            <span>{number}</span><strong>{title}</strong><small>{note}</small>
+          </div>
+        ))}
+        <i className="perp-system-map__route" />
+        <b className="perp-system-map__signal"><img src="/Assets/brands/perplexity-mark.svg" alt="" /></b>
+      </div>
+      <footer><span>Computer orchestrates</span><span>Deep Research proves</span><span>Comet acts with confirmation</span></footer>
+    </div>
+  )
+}
+
 function TerritoryVisual({ type }: { type: string }) {
   if (type === 'computer') {
     return (
       <div className="perp-territory-visual perp-territory-visual--computer" aria-hidden="true">
+        <div className="perp-territory-brand"><img src="/Assets/brands/perplexity-mark.svg" alt="" /><span>Computer · orchestration</span></div>
         <div className="perp-computer-task"><span>Task</span><strong>Launch brief</strong></div>
         <div className="perp-computer-agents"><span>Research</span><span>Analysis</span><span>Writing</span><span>Design</span></div>
         <div className="perp-computer-output"><span>Output</span><strong>Brief.pdf</strong></div>
@@ -260,6 +290,7 @@ function TerritoryVisual({ type }: { type: string }) {
   if (type === 'research') {
     return (
       <div className="perp-territory-visual perp-territory-visual--research" aria-hidden="true">
+        <div className="perp-territory-brand"><img src="/Assets/brands/perplexity-mark.svg" alt="" /><span>Deep Research · evidence</span></div>
         <div><span>Question</span><strong>Why now?</strong></div>
         <i />
         <div><span>Sources</span><b>01</b><b>02</b><b>03</b></div>
@@ -272,6 +303,7 @@ function TerritoryVisual({ type }: { type: string }) {
   if (type === 'comet') {
     return (
       <div className="perp-territory-visual perp-territory-visual--comet" aria-hidden="true">
+        <div className="perp-territory-brand"><img src="/Assets/brands/perplexity-mark.svg" alt="" /><span>Comet · action with control</span></div>
         <p><span>01</span> Understand</p><p><span>02</span> Plan</p><p><span>03</span> Act</p><p><span>04</span> Confirm</p>
         <i />
       </div>
@@ -311,7 +343,7 @@ export default function PerplexityPage() {
       </Helmet>
 
       <Nav />
-      <main id="main-content" className="perplexity-page" style={style}>
+      <main id="main-content" className={`perplexity-page${playing ? '' : ' is-motion-paused'}`} style={style}>
         <div className="wrap">
           <section className="perp-hero" aria-labelledby="perp-title">
             <div className="perp-hero__eyebrow">
@@ -376,6 +408,7 @@ export default function PerplexityPage() {
                   <span>Product reading</span>
                   <h3>What is true now—and what motion needs to reveal.</h3>
                 </div>
+                <PerplexitySystemMap />
                 <div className="perp-product-truth__rows">
                   {productSignals.map((item, index) => (
                     <a href={item.href} target="_blank" rel="noreferrer" key={item.product}>
