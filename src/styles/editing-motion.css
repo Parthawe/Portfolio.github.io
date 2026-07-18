@@ -126,8 +126,8 @@
 
 .editing-film figcaption {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.6rem 1rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.55rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--ink-08);
 }
@@ -135,8 +135,18 @@
 .editing-film figcaption > div { display: grid; gap: 0.3rem; }
 .editing-film figcaption span { color: var(--project-color); font: 600 0.7rem/1.2 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .editing-film figcaption strong { font-size: 1rem; font-weight: 500; line-height: 1.35; }
-.editing-film figcaption small { color: var(--ink-40); font: 600 0.65rem/1.35 var(--mono); letter-spacing: 0.04em; text-align: right; text-transform: uppercase; }
-.editing-film figcaption a { grid-column: 1 / -1; width: fit-content; color: var(--project-color); font: 600 0.7rem/1.2 var(--mono); }
+.editing-film figcaption small {
+  min-width: 0;
+  max-width: 52ch;
+  color: var(--ink-40);
+  font: 600 0.65rem/1.45 var(--mono);
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.editing-film figcaption a { width: fit-content; color: var(--project-color); font: 600 0.7rem/1.2 var(--mono); }
 
 .editing-workflow {
   display: grid;
