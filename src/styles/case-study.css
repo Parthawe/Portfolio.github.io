@@ -968,6 +968,8 @@
   pointer-events: none;
 }
 
+.proj-visual-hero__media--interactive { pointer-events: auto; }
+
 .proj-visual-hero__media::before {
   content: none;
 }

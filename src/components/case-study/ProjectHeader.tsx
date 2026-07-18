@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef } from 'react'
+import { lazy, Suspense, useRef, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import FigmaSelect from '../FigmaSelect'
@@ -27,6 +27,7 @@ interface ProjectHeaderProps {
   visualSummary?: string
   visualHeroImage?: string
   visualHeroAlt?: string
+  visualHeroMedia?: ReactNode
   liveLabel?: string
 }
 
@@ -65,6 +66,7 @@ export default function ProjectHeader({
   visualSummary,
   visualHeroImage,
   visualHeroAlt,
+  visualHeroMedia,
   liveLabel = 'Visit Live Site',
 }: ProjectHeaderProps) {
   const location = useLocation()
@@ -216,16 +218,18 @@ export default function ProjectHeader({
               <span />
             </div>
 
-            {resolvedVisualHeroImage && (
-              <div className="proj-visual-hero__media" ref={heroRef}>
-                <motion.img
-                  src={resolvedVisualHeroImage}
-                  alt={resolvedVisualHeroAlt}
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                  style={heroMotionStyle}
-                />
+            {(visualHeroMedia || resolvedVisualHeroImage) && (
+              <div className={`proj-visual-hero__media${visualHeroMedia ? ' proj-visual-hero__media--interactive' : ''}`} ref={heroRef}>
+                {visualHeroMedia || (
+                  <motion.img
+                    src={resolvedVisualHeroImage}
+                    alt={resolvedVisualHeroAlt}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    style={heroMotionStyle}
+                  />
+                )}
               </div>
             )}
           </div>

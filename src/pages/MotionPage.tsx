@@ -1050,6 +1050,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           visualHeadline={project.intro}
           visualHeroImage={project.heroImage}
           visualHeroAlt={project.heroAlt}
+          visualHeroMedia={isVishwa ? <VishwaReel motionOn={motionOn} /> : undefined}
           heroTone="motion"
           showHeaderSummary={false}
         />
@@ -1089,10 +1090,12 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
 
         <CsSection id="motion-story" label={`${sectionNumber(1)} — Storyboard`} title={project.storyTitle}>
           <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : isMentra ? 'The 15-second master opens on a life moment, moves through wearability and one capability, then earns the right to show hardware and MentraOS. Expressive movement hooks attention; quieter product holds provide proof; one stable message closes the advertisement.' : 'The 18-second master follows one illustrative transaction. The amount anchors the sequence; customer actions advance it; verification and settlement receive longer holds because those are the moments where trust is either earned or lost.'}</p></CsBody>
-          <div className="motion-case-preview">
-            <ProjectReel project={project} motionOn={motionOn} />
-            <p><span>{isVishwa ? 'Original Instagram campaign film · 2020' : isMentra ? '15-second advertising-system prototype' : '18-second transaction-system prototype'}</span><span>{isVishwa ? 'Playback controls included' : isTransfi ? 'Illustrative values from source UI · reduced-motion respected' : 'Real Mentra campaign assets · reduced-motion respected'}</span></p>
-          </div>
+          {!isVishwa && (
+            <div className="motion-case-preview">
+              <ProjectReel project={project} motionOn={motionOn} />
+              <p><span>{isMentra ? '15-second advertising-system prototype' : '18-second transaction-system prototype'}</span><span>{isTransfi ? 'Illustrative values from source UI · reduced-motion respected' : 'Real Mentra campaign assets · reduced-motion respected'}</span></p>
+            </div>
+          )}
           <CsSteps steps={project.beats.map((beat) => ({ num: beat.time, title: beat.title, desc: beat.body }))} />
         </CsSection>
 
