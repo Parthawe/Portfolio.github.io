@@ -125,13 +125,13 @@ const projects: MotionProject[] = [
     heroImage: '/Assets/Projects/mentra-brand/motion/official-site-hero-poster.png',
     heroAlt: 'Mentra smart glasses shown in the official site hero film',
     intro: 'The technology should leave the frame before the person leaves the moment.',
-    evidence: 'Original Mentra identity, packaging, advertising concepts, product renders, MentraOS states, and published product footage.',
-    authorship: 'Brand and art direction, advertising assets, renders, and the visual system. Official Mentra films are source references only.',
+    evidence: 'Original Mentra identity, companion-app onboarding, glasses motion, advertising concepts, product renders, MentraOS states, and published product footage.',
+    authorship: 'Brand and art direction, companion-app onboarding, glasses motion, advertising assets, renders, and the visual system. Official Mentra films are source references only.',
     studyBoundary: 'The 15-second storyboard and After Effects production plan are a portfolio proposal—not a shipped campaign or a performance claim.',
     challenge: 'Smart-glasses advertising often begins with “AI,” interface overlays, and specifications before giving people a reason to care. Mentra still has to prove credible hardware and an open platform, but the advertisement first needs to make hands-free capture and open-ear audio feel desirable in an ordinary life moment.',
-    move: 'Lead with a recognizable human moment, present the glasses as eyewear, demonstrate one capability, then reveal the hardware and MentraOS system behind it. Each short ad gets one promise—Stream, Hear, Focus, or Build—rather than carrying the entire feature list.',
-    outcome: 'The proposal defines one hierarchy that can support a 15-second story, shorter single-benefit cuts, hardware proof, and MiniApp announcements without mixing every claim into one ad.',
-    roles: ['Creative direction', 'Advertising system', 'Motion design', 'Storyboard', 'Template architecture'],
+    move: 'Lead with a recognizable human moment, present the glasses as eyewear, demonstrate one capability, then reveal the hardware and MentraOS system behind it. In onboarding, animate the physical glasses before the matching app instruction so wear, scan, confirm, and ask feel like one continuous setup.',
+    outcome: 'The glasses-led onboarding pattern supported a first-run flow reduced from 12 steps to 4 in internal product work. The advertising proposal extends the same clarity into a 15-second story and shorter single-benefit cuts.',
+    roles: ['Creative direction', 'Advertising system', 'Motion design', 'Product onboarding', 'Storyboard'],
     storyTitle: 'Moment. Wear. Use. Extend.',
     artTitle: 'People first. Product second. Platform third.',
     artNote: 'Human campaign frames establish desire, clean renders establish wearability and build quality, and MentraOS establishes what the product can become. White type stays direct; green acts as a recognition signal; interface overlays appear only when they explain a real capability.',
@@ -147,6 +147,7 @@ const projects: MotionProject[] = [
       { label: 'Advertising hierarchy', value: 'Human tension → benefit → product → platform → action' },
       { label: 'One promise', value: 'Stream, Hear, Focus, or Build—never all four in one short ad' },
       { label: 'Wearability', value: 'Show the glasses on a person before exposing technical construction' },
+      { label: 'Onboarding', value: 'Physical glasses motion → app confirmation → one next action' },
       { label: 'Accessibility', value: 'Benefit and CTA survive sound-off and reduced-motion playback' },
     ],
     frames: [
@@ -159,7 +160,7 @@ const projects: MotionProject[] = [
       { removed: 'Opening on “AI smart glasses”', kept: 'Opening on an uninterrupted life moment', reason: 'The audience understands the human benefit before being asked to understand the category.' },
       { removed: 'A rapid four-feature montage', kept: 'One promise per paid-social spot', reason: 'Stream, Hear, Focus, and Build become memorable campaign territories instead of competing captions.' },
       { removed: 'Floating speculative HUD graphics', kept: 'Real campaign imagery and MentraOS states', reason: 'Product truth is more persuasive than generic interface decoration added in post.' },
-      { removed: 'A dramatic logo-first ending', kept: 'Product silhouette, benefit, and one CTA', reason: 'The advertisement closes on what the viewer gets—not only on who made it.' },
+      { removed: 'Four static setup instructions', kept: 'Glasses motion paired with one app state', reason: 'Animating the physical action first made wear, scan, confirm, and ask easier to follow as one continuous onboarding sequence.' },
     ],
     aeBuild: [
       { layer: '00_MASTER_CAMPAIGN', technique: '15-second working master + five beats', purpose: 'The master protects the moment → wearability → capability → product → platform hierarchy.' },
@@ -174,7 +175,7 @@ const projects: MotionProject[] = [
       { key: 'Hook family', value: 'Stream · Hear · Focus · Build' },
       { key: 'Surfaces', value: 'Landscape · feed · story' },
     ],
-    outputs: ['Paid-social storyboard', 'Benefit spot system', 'Hardware proof sequence', 'MiniApp announcement template'],
+    outputs: ['Paid-social storyboard', 'Benefit spot system', 'Hardware proof sequence', 'Onboarding motion pattern'],
   },
   {
     key: 'transfi',
@@ -589,6 +590,38 @@ function MentraCommunicationBrief() {
   )
 }
 
+function MentraOnboardingMotion() {
+  const steps = [
+    ['01', 'Wear'],
+    ['02', 'Scan'],
+    ['03', 'Confirm'],
+    ['04', 'Ask'],
+  ]
+
+  return (
+    <section className="mentra-onboarding-motion" aria-labelledby="mentra-onboarding-title">
+      <div className="mentra-onboarding-motion__visual" aria-hidden="true">
+        <span>Mentra Live · first-run motion</span>
+        <img src="/Assets/images/mentra/glasses-angle.png" alt="" />
+        <div>
+          {steps.map(([number, title]) => <p key={number}><small>{number}</small><strong>{title}</strong></p>)}
+        </div>
+        <i />
+      </div>
+      <div className="mentra-onboarding-motion__copy">
+        <small>Product onboarding · authored motion pattern</small>
+        <h3 id="mentra-onboarding-title">Let the glasses show what happens next.</h3>
+        <p>I used the glasses animation to connect each physical action to its companion-app response. The device moves first; then one instruction—wear, scan, confirm, or ask—explains what to do next.</p>
+        <div>
+          <p><strong>12 → 4</strong><span>Setup steps</span></p>
+          <p><strong>&lt; 60s</strong><span>Internal onboarding test</span></p>
+        </div>
+        <a href="/mentra#cs-companion">View the complete onboarding flow ↗</a>
+      </div>
+    </section>
+  )
+}
+
 function MentraMotionSystem() {
   const tokens = [
     ['Hook', 'First frame', 'The benefit is legible before the first transition begins.'],
@@ -604,6 +637,8 @@ function MentraMotionSystem() {
 
   return (
     <>
+      <MentraOnboardingMotion />
+
       <div className="mentra-benchmark">
         <div className="mentra-benchmark__intro">
           <small>One category reference → an original response</small>
@@ -1012,7 +1047,8 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
         {isMentra && (
           <CsSection id="motion-system" label={`${sectionNumbers.system} — Advertising strategy & motion grammar`} title="Human first. Wearable second. Technical only when it proves the promise.">
             <CsBody>
-              <p>Even Realities is used here as a category benchmark because its advertising gives everyday situations, familiar eyewear, and one human advantage priority over specifications. Mentra adapts that hierarchy to its own truth—first-person capture, open-ear audio, and an open platform—without borrowing competitor visuals or copy.</p>
+              <p>The same hierarchy guides onboarding and advertising: show the physical or human action first, then reveal one next step or capability. The onboarding pattern comes from my product work; the paid-social system remains a portfolio proposal.</p>
+              <p>Even Realities is cited only as a category benchmark for beginning with people and familiar eyewear. No competitor visuals or copy are used.</p>
             </CsBody>
             <MentraMotionSystem />
           </CsSection>
