@@ -4200,6 +4200,17 @@
   color: #fff;
 }
 
+.medimorpho-access--early {
+  padding: clamp(3rem, 6vw, 5.5rem) 0;
+}
+
+.medimorpho-access__layout {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.68fr) minmax(0, 1.32fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
 .medimorpho-access__intro {
   max-width: 46rem;
   margin-bottom: 2.25rem;
@@ -4217,6 +4228,14 @@
   font-weight: 300;
   letter-spacing: -0.045em;
   line-height: 0.98;
+}
+
+.medimorpho-access--early .medimorpho-access__intro {
+  margin: 0;
+}
+
+.medimorpho-access--early .medimorpho-access__intro h2 {
+  font-size: clamp(2.35rem, 4.6vw, 4.2rem);
 }
 
 .medimorpho-access__intro p {
@@ -4278,6 +4297,13 @@
 
   .medimorpho-service-flow__item > i {
     display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .medimorpho-access__layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
   }
 }
 

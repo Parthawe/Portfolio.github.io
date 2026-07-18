@@ -22,6 +22,25 @@
   min-width: 0;
 }
 
+.nda-inline--compact {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.nda-inline--compact .nda-access-stack {
+  grid-template-columns: minmax(12rem, 0.72fr) minmax(18rem, 1.28fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: start;
+}
+
+.nda-inline--compact .nda-inline-form--code {
+  padding: 0 clamp(1rem, 2vw, 1.5rem) 0 0;
+  border-right: 1px solid var(--ink-08);
+  border-bottom: 0;
+}
+
 .nda-inline-text,
 .nda-access-stack {
   min-width: 0;
@@ -30,6 +49,10 @@
 .nda-inline-text {
   display: grid;
   gap: 0.55rem;
+}
+
+.medimorpho-access--early .nda-inline-text {
+  display: none;
 }
 
 .nda-field > span,
@@ -250,6 +273,18 @@
 
   .nda-inline-title {
     font-size: clamp(1.25rem, 6vw, 1.55rem);
+  }
+}
+
+@media (max-width: 920px) {
+  .nda-inline--compact .nda-access-stack {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nda-inline--compact .nda-inline-form--code {
+    padding: 0 0 1.25rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--ink-08);
   }
 }
 

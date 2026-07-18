@@ -6,6 +6,7 @@ import { CONTACT_EMAIL } from '../config/site'
 interface NdaGateProps {
   slug: string
   children?: ReactNode
+  compact?: boolean
 }
 
 const GLOBAL_ACCESS_HASH = import.meta.env.VITE_NDA_ACCESS_SHA256?.trim().toLowerCase()
@@ -110,6 +111,7 @@ function storeAccess(slug: string, hash: string) {
 export default function NdaGate({
   slug,
   children,
+  compact = false,
 }: NdaGateProps) {
   const project = getProject(slug)
   const projectName = project?.name || 'this project'
@@ -210,7 +212,7 @@ export default function NdaGate({
   return (
     <motion.div
       id={`case-study-access-${slug}`}
-      className="nda-inline"
+      className={`nda-inline${compact ? ' nda-inline--compact' : ''}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}

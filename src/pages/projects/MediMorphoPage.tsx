@@ -159,6 +159,7 @@ export default function MediMorphoPage() {
           subtitle="A multilingual care system designed to preserve meaning, confidence, and patient agency across a healthcare encounter."
           heroImage={COVER}
           heroAlt="NYU Langone Health building signage, the healthcare setting used for the MediMorpho academic concept."
+          showHeaderSummary={false}
           visualHeroMedia={(
             <div className="medimorpho-hero-photo">
               <img
@@ -199,6 +200,17 @@ export default function MediMorphoPage() {
                 Independent academic concept using NYU Langone as the care setting. MediMorpho is not an official NYU Langone product or commissioned engagement.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className="cs-section medimorpho-access medimorpho-access--early reveal" id="cs-medimorpho-access">
+          <div className="wrap medimorpho-access__layout">
+            <div className="medimorpho-access__intro">
+              <span>NDA case study</span>
+              <h2>Go straight to the full research.</h2>
+              <p>Enter the reviewer code or request access. The concise public preview continues below.</p>
+            </div>
+            <NdaGate slug="medimorpho" compact />
           </div>
         </section>
 
@@ -341,23 +353,12 @@ export default function MediMorphoPage() {
           />
         </CsSection>
 
-        <section className="cs-section medimorpho-access reveal" id="cs-medimorpho-access">
-          <div className="wrap">
-            <div className="medimorpho-access__intro">
-              <span>04 · NDA access</span>
-              <h2>The full research trail stays private.</h2>
-              <p>Request access to review the complete boards, interview synthesis, journey map, and concept development.</p>
-            </div>
-            <NdaGate slug="medimorpho" />
-          </div>
-        </section>
-
         <BottomNav
           sections={[
+            { id: 'cs-medimorpho-access', label: 'Access' },
             { id: 'cs-public-story', label: 'Glimpse' },
             { id: 'cs-medimorpho-research', label: 'Research' },
             { id: 'cs-medimorpho-model', label: 'Model' },
-            { id: 'cs-medimorpho-access', label: 'Access' },
           ]}
           placement="side"
         />
