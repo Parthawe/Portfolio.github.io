@@ -8,6 +8,8 @@ import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import CsImage from '../../components/case-study/CsImage'
+import CsSection from '../../components/case-study/CsSection'
+import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 
 const HEALTH_APP_COVER = '/Assets/mockups/projects/healthapp_16x9.webp'
 const HEALTH_APP_ORIGINAL = '/Assets/Projects/HealthApp/optimized/cover-original.webp'
@@ -52,7 +54,7 @@ export default function HealthAppPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#4285F4' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--healthapp" style={{ '--project-color': '#4285F4' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -77,7 +79,39 @@ export default function HealthAppPage() {
           visuals={HEALTH_APP_PUBLIC_VISUALS}
         />
 
+        <CsSection
+          id="cs-healthapp-model"
+          label="01 · Product model"
+          title="The schedule adapts before the person burns out."
+        >
+          <p className="cs-body-lg">
+            Most wellness apps report what already happened, while task managers keep asking for more. Health App connects the two: lightweight signals change the load, order, and timing of the day before the plan becomes unrealistic.
+          </p>
+          <CsFeatureGrid
+            className="cs-healthapp-signal-grid"
+            features={[
+              {
+                title: 'Sleep sets capacity',
+                desc: 'A low-recovery night reduces the day\'s cognitive load instead of treating every morning as identical.',
+              },
+              {
+                title: 'Energy shapes sequence',
+                desc: 'High-focus work lands in stronger windows; routine work moves into lower-energy periods.',
+              },
+              {
+                title: 'Care becomes calendar',
+                desc: 'Food, movement, and recovery receive protected time rather than competing with the task list.',
+              },
+              {
+                title: 'Adjustments stay legible',
+                desc: 'The interface explains why a plan changed, keeping the user in control of every recommendation.',
+              },
+            ]}
+          />
+        </CsSection>
+
         <CsExpandPreview
+          expanded
           cta="Open the planning boards"
           note="Process moves, original boards, task surfaces, screen set, and calendar logic."
         >
@@ -148,6 +182,7 @@ export default function HealthAppPage() {
         <BottomNav
           sections={[
             { id: 'cs-public-story', label: 'Glimpse' },
+            { id: 'cs-healthapp-model', label: 'Model' },
             { id: 'cs-process', label: 'Process' },
             { id: 'cs-healthapp-screens', label: 'Screens' },
           ]}

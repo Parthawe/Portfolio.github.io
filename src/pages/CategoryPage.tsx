@@ -66,8 +66,17 @@ const CATEGORY_ANNOTATION_LINKS = [
   { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
 ] as const
 
-function addVisibleProject(list: Project[], seen: Set<string>, project?: Project) {
-  if (!project || isHiddenProject(project) || seen.has(project.slug)) return
+function addVisibleProject(
+  list: Project[],
+  seen: Set<string>,
+  project?: Project,
+  includedHiddenProjects: ReadonlySet<string> = new Set(),
+) {
+  if (
+    !project
+    || (isHiddenProject(project) && !includedHiddenProjects.has(project.slug))
+    || seen.has(project.slug)
+  ) return
   seen.add(project.slug)
   list.push(project)
 }
@@ -96,19 +105,20 @@ export default function CategoryPage() {
 
   const seenProjectSlugs = new Set<string>()
   const visibleCategoryProjects: Project[] = []
+  const includedHiddenProjects = new Set(category.includedHiddenProjects ?? [])
 
-  addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(category.featured.slug))
+  addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(category.featured.slug), includedHiddenProjects)
   category.moreProjects.flat().forEach((project) => {
-    addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(project.slug))
+    addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(project.slug), includedHiddenProjects)
   })
   const registryCategory = CATEGORY_REGISTRY_KEY[slug]
   if (registryCategory) {
     projectsByCategory(registryCategory).forEach((project) => {
-      addVisibleProject(visibleCategoryProjects, seenProjectSlugs, project)
+      addVisibleProject(visibleCategoryProjects, seenProjectSlugs, project, includedHiddenProjects)
     })
   }
   EXTRA_CATEGORY_PROJECTS[slug]?.forEach((projectSlug) => {
-    addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(projectSlug))
+    addVisibleProject(visibleCategoryProjects, seenProjectSlugs, getProject(projectSlug), includedHiddenProjects)
   })
 
   const excludedProjectSlugs = new Set(category.excludedProjects ?? [])

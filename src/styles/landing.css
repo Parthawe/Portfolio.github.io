@@ -1314,3 +1314,16 @@ html.is-low-power-device .cl-marquee-track {
     grid-template-columns: 1fr;
   }
 }
+/* Healthcare intentionally pairs two contemporary case studies. Let both
+   cards use the full row instead of leaving an empty masonry column. */
+.wrap:has(.ch--design-for-good) #lp-work > .pcard-masonry {
+  column-count: 2;
+  column-gap: 24px;
+}
+
+@media (max-width: 540px) {
+  .wrap:has(.ch--design-for-good) #lp-work > .pcard-masonry {
+    column-count: 1;
+    column-gap: 0;
+  }
+}

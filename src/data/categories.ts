@@ -29,6 +29,7 @@ export interface CategoryData {
     year?: string
     desc?: string
   }[][]
+  includedHiddenProjects?: string[]
   excludedProjects?: string[]
   archiveSection?: {
     label: string
@@ -822,6 +823,17 @@ export const categories: CategoryData[] = [
           desc: 'Encrypted genomic workflows for cancer prognosis without exposing raw patient data',
         },
         {
+          slug: 'healthapp',
+          image: '/Assets/mockups/projects/healthapp_16x9.webp',
+          alt: 'Health App',
+          name: 'Health App',
+          result: 'Health-aware planning shaped by sleep, movement, nutrition, and energy',
+          role: 'Product Designer · 2024',
+          tag: 'DIGITAL HEALTH',
+          year: '2024',
+          desc: 'A calmer daily planner that adapts work to the person doing it',
+        },
+        {
           slug: 'the-point-cdc',
           image: '/Assets/images/the-point-cdc.webp',
           alt: 'The Point CDC',
@@ -845,6 +857,7 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
+    includedHiddenProjects: ['healthapp'],
     archiveSection: {
       label: 'UI/UX Archive Projects',
       projects: ['the-point-cdc', 'office-of-diversity', 'code-for-build'],

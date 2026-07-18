@@ -3259,6 +3259,17 @@
   display: grid;
   gap: clamp(2.5rem, 5vw, 5rem);
 }
+.project-main--healthapp .cs-healthapp-signal-grid {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+.project-main--healthapp .cs-healthapp-signal-grid .cs-feature-card {
+  border-color: color-mix(in srgb, var(--project-color) 22%, var(--ink-08));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--project-color) 9%, var(--surface)), var(--surface) 58%);
+}
+.project-main--healthapp .cs-healthapp-signal-grid .cs-feature-card-title {
+  color: var(--project-color);
+}
 .cs-img-full--healthapp-board {
   width: min(76rem, calc(100vw - 22rem));
   max-width: none;
