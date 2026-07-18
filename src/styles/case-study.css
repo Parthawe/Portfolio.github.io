@@ -4106,6 +4106,580 @@
   text-transform: uppercase;
 }
 
+.medimorpho-protected-intro__grid--report h2 {
+  max-width: 14ch;
+  font-size: clamp(2.8rem, 4.8vw, 4.8rem);
+}
+
+.medimorpho-report-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  padding: 0.82rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.medimorpho-report-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(141, 240, 211, 0.5);
+  background: rgba(141, 240, 211, 0.11);
+}
+
+.medimorpho-report-link--light {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--medimorpho-purple) 28%, var(--ink-08));
+  background: color-mix(in srgb, var(--medimorpho-purple) 8%, var(--surface));
+}
+
+.medimorpho-source-visual {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1.25rem;
+  background: #f7fafa;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.medimorpho-source-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.medimorpho-source-visual figcaption {
+  padding: 0.8rem 1rem;
+  color: rgba(255, 255, 255, 0.62);
+  background: var(--medimorpho-purple-deep);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-problem-statement {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.32fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: start;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.4rem, 3vw, 2.3rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 22%, var(--ink-08));
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 92% 16%, color-mix(in srgb, var(--medimorpho-mint) 18%, transparent), transparent 32%),
+    color-mix(in srgb, var(--surface) 94%, var(--medimorpho-lilac));
+}
+
+.medimorpho-problem-statement > span,
+.medimorpho-section-kicker,
+.medimorpho-takeaway-head > span,
+.medimorpho-next-step > div:first-child > span,
+.medimorpho-boundary-note > span {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.medimorpho-problem-statement p {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.4vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+}
+
+.medimorpho-evidence-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.medimorpho-evidence-stats article {
+  min-width: 0;
+  min-height: 13rem;
+  padding: clamp(1.15rem, 2.5vw, 1.75rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 18%, var(--ink-08));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 95%, var(--medimorpho-lilac));
+}
+
+.medimorpho-evidence-stats strong {
+  display: block;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  font-weight: 420;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.medimorpho-evidence-stats p {
+  max-width: 30ch;
+  margin: 2.2rem 0 1.2rem;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.medimorpho-evidence-stats a {
+  color: var(--ink-50);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-underline-offset: 0.25rem;
+}
+
+.medimorpho-source-note {
+  margin: 1rem 0 clamp(3rem, 6vw, 6rem);
+  color: var(--ink-40);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+.medimorpho-system-grid,
+.medimorpho-competitive-block {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.medimorpho-system-grid > div:first-child,
+.medimorpho-competitive-block > div:first-child {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.medimorpho-system-grid h3,
+.medimorpho-competitive-block h3 {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1.45rem, 2.6vw, 2.4rem);
+  font-weight: 470;
+  letter-spacing: -0.025em;
+  line-height: 1.13;
+}
+
+.medimorpho-system-grid ul {
+  grid-column: 2;
+  display: grid;
+  gap: 0.7rem;
+  margin: -1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.medimorpho-system-grid li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.medimorpho-system-grid li::before {
+  content: '';
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 50%;
+  background: var(--medimorpho-purple);
+}
+
+.medimorpho-artifact {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 20%, var(--ink-08));
+  border-radius: 1rem;
+  background: #f7fbfa;
+  box-shadow: 0 24px 64px rgba(24, 10, 34, 0.1);
+}
+
+.medimorpho-artifact > a {
+  display: block;
+  overflow: hidden;
+  background: #fff;
+}
+
+.medimorpho-artifact img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.medimorpho-artifact:hover img {
+  transform: scale(1.012);
+}
+
+.medimorpho-artifact figcaption {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.25rem 1rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.medimorpho-artifact figcaption > span {
+  grid-column: 1 / -1;
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-artifact figcaption strong {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  font-weight: 580;
+}
+
+.medimorpho-artifact figcaption small {
+  color: var(--ink-40);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  text-transform: uppercase;
+}
+
+.medimorpho-process-track {
+  display: grid;
+  margin-top: clamp(2rem, 5vw, 4rem);
+  border-top: 1px solid var(--ink-08);
+}
+
+.medimorpho-process-track article {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(5rem, 0.38fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.medimorpho-process-track article > span {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--medimorpho-purple-deep);
+  background: var(--medimorpho-mint);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+}
+
+.medimorpho-process-track article[data-state='next'] > span {
+  color: #fff;
+  background: var(--medimorpho-purple);
+}
+
+.medimorpho-process-track article[data-state='later'] {
+  opacity: 0.55;
+}
+
+.medimorpho-process-track small {
+  color: var(--ink-40);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-process-track strong {
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--text-base);
+  font-weight: 500;
+}
+
+.medimorpho-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 6rem);
+}
+
+.medimorpho-secondary-grid article {
+  min-height: 14rem;
+  padding: clamp(1.15rem, 2.5vw, 1.7rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 18%, var(--ink-08));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 95%, var(--medimorpho-lilac));
+}
+
+.medimorpho-secondary-grid article > span {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+}
+
+.medimorpho-secondary-grid h3 {
+  margin: 3rem 0 0.7rem;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 580;
+  line-height: 1.3;
+}
+
+.medimorpho-secondary-grid p {
+  margin: 0;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.medimorpho-competitive-lenses {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: -1rem;
+}
+
+.medimorpho-competitive-lenses span {
+  padding: 0.48rem 0.62rem;
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 20%, var(--ink-08));
+  border-radius: 999px;
+  color: var(--ink-60);
+  background: color-mix(in srgb, var(--medimorpho-purple) 6%, var(--surface));
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  line-height: 1.3;
+}
+
+.medimorpho-research-methods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.medimorpho-research-methods > div {
+  padding: clamp(1.15rem, 2.5vw, 1.7rem);
+  border: 1px solid var(--ink-08);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.medimorpho-research-methods p,
+.medimorpho-research-methods ul {
+  margin: 1.1rem 0 0;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.medimorpho-research-methods ul {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1rem;
+}
+
+.medimorpho-artifact-grid {
+  display: grid;
+  gap: 1rem;
+  margin: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 6rem);
+}
+
+.medimorpho-takeaway-head {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.4fr) minmax(0, 1fr);
+  gap: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--ink-08);
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.medimorpho-takeaway-head p {
+  margin: 0;
+  color: var(--ink-50);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.medimorpho-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.medimorpho-tech-grid > article {
+  display: flex;
+  min-width: 0;
+  min-height: 25rem;
+  flex-direction: column;
+  padding: clamp(1.15rem, 2.5vw, 1.7rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 18%, var(--ink-08));
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 90% 8%, color-mix(in srgb, var(--medimorpho-mint) 12%, transparent), transparent 30%),
+    color-mix(in srgb, var(--surface) 96%, var(--medimorpho-lilac));
+}
+
+.medimorpho-tech-grid__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.medimorpho-tech-grid__head > span {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--medimorpho-purple-deep);
+  background: var(--medimorpho-mint);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+}
+
+.medimorpho-tech-grid__head small {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-tech-grid h3 {
+  margin: 2.6rem 0 0.7rem;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+
+.medimorpho-tech-grid > article > p,
+.medimorpho-tech-grid__use p {
+  margin: 0;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.medimorpho-tech-grid__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin: 1.5rem 0;
+}
+
+.medimorpho-tech-grid__tools span {
+  padding: 0.38rem 0.5rem;
+  border: 1px solid var(--ink-08);
+  border-radius: 999px;
+  color: var(--ink-50);
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+}
+
+.medimorpho-tech-grid__use {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ink-08);
+}
+
+.medimorpho-tech-grid__use > span {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-next-step {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 22%, var(--ink-08));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 94%, var(--medimorpho-lilac));
+}
+
+.medimorpho-next-step h3 {
+  margin: 1.2rem 0 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.medimorpho-next-step > div:last-child {
+  display: grid;
+  gap: 1rem;
+}
+
+.medimorpho-next-step > div:last-child p {
+  margin: 0;
+  color: var(--ink-60);
+  font-size: var(--text-base);
+  line-height: 1.65;
+}
+
+.medimorpho-boundary-note {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.3fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-bottom: 0;
+  padding: 1.2rem 0;
+  border-top: 1px solid var(--ink-08);
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.medimorpho-boundary-note p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
 .medimorpho-project-brief {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -4680,6 +5254,15 @@
 [data-theme="dark"] .project-main--medimorpho :is(
   .medimorpho-hmw > span,
   .medimorpho-framing-grid article > span,
+  .medimorpho-problem-statement > span,
+  .medimorpho-section-kicker,
+  .medimorpho-takeaway-head > span,
+  .medimorpho-next-step > div:first-child > span,
+  .medimorpho-boundary-note > span,
+  .medimorpho-artifact figcaption > span,
+  .medimorpho-secondary-grid article > span,
+  .medimorpho-tech-grid__head small,
+  .medimorpho-tech-grid__use > span,
   .medimorpho-journey__row small,
   .medimorpho-service-flow__node span,
   .medimorpho-scope span,
@@ -4822,6 +5405,18 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
   }
+
+  .medimorpho-system-grid > div:first-child,
+  .medimorpho-competitive-block > div:first-child,
+  .medimorpho-next-step {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .medimorpho-system-grid ul,
+  .medimorpho-competitive-lenses {
+    grid-column: 1;
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 700px) {
@@ -4870,6 +5465,43 @@
   .medimorpho-hmw {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
+  }
+
+  .medimorpho-problem-statement,
+  .medimorpho-evidence-stats,
+  .medimorpho-secondary-grid,
+  .medimorpho-research-methods,
+  .medimorpho-takeaway-head,
+  .medimorpho-tech-grid,
+  .medimorpho-boundary-note {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .medimorpho-evidence-stats article,
+  .medimorpho-secondary-grid article,
+  .medimorpho-tech-grid > article {
+    min-height: 0;
+  }
+
+  .medimorpho-process-track article {
+    grid-template-columns: 2.8rem minmax(4.5rem, 0.38fr) minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .medimorpho-process-track strong {
+    font-size: var(--text-sm);
+  }
+
+  .medimorpho-artifact figcaption {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .medimorpho-artifact figcaption > span {
+    grid-column: 1;
+  }
+
+  .medimorpho-artifact figcaption small {
+    display: none;
   }
 
   .medimorpho-framing-grid article {

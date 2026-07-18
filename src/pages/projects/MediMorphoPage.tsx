@@ -17,13 +17,13 @@ export default function MediMorphoPage() {
         <title>NYU Langone Healthcare Case Study · Parth Pawar</title>
         <meta
           name="description"
-          content="An independent NYU healthcare service concept for clearer patient-clinician communication, shaped by 20 primary-research interviews."
+          content="An independent NYU healthcare UX research case study examining language, communication, and system-navigation barriers through 20 interviews."
         />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="NYU Langone Healthcare Case Study · Parth Pawar" />
         <meta
           property="og:description"
-          content="A public-safe look at the research and service model behind a multilingual healthcare experience."
+          content="A reviewer-gated UX research case study covering the system map, interviews, synthesis, journey mapping, and technical exploration."
         />
         <meta property="og:image" content={`https://designwhich.works${COVER}`} />
       </Helmet>
@@ -42,7 +42,7 @@ export default function MediMorphoPage() {
           tags={['Healthcare UX', 'Service Design', 'Research', 'NDA']}
           title="NYU Langone"
           heroEyebrow="MediMorpho · Independent academic concept"
-          subtitle="A multilingual care system designed to preserve meaning, confidence, and patient agency across a healthcare encounter."
+          subtitle="A research-led exploration of how language and cultural barriers intensify an already fragmented healthcare journey."
           heroImage={COVER}
           heroAlt="NYU Langone Health building signage, the healthcare setting used for the MediMorpho academic concept."
           showHeaderSummary={false}
@@ -59,7 +59,7 @@ export default function MediMorphoPage() {
               <div className="medimorpho-hero-photo__label">
                 <span>Independent academic concept</span>
                 <strong>MediMorpho</strong>
-                <small>Research → service model → multilingual care</small>
+                <small>Ecosystem research → interviews → synthesis</small>
               </div>
               <div className="medimorpho-hero-photo__proof" aria-label="Project research proof points">
                 <span><b>20</b> interviews</span>
@@ -69,7 +69,7 @@ export default function MediMorphoPage() {
           )}
           info={[
             { label: 'Context', value: 'NYU academic concept' },
-            { label: 'Role', value: 'Service Designer' },
+            { label: 'Role', value: 'UX Research & Service Design' },
             { label: 'Team', value: '5 NYU students' },
             { label: 'Timeline', value: 'Jan–Feb 2024' },
           ]}
@@ -80,14 +80,14 @@ export default function MediMorphoPage() {
             <div className="medimorpho-access__intro">
               <span>NDA case study</span>
               <h2>The UX work begins after access.</h2>
-              <p>Enter the reviewer code or request access to review the research, synthesis, journey map, service model, and MVP decisions.</p>
+              <p>Enter the reviewer code or request access to review the original research, system map, interview synthesis, journey map, and technical exploration.</p>
               <div className="medimorpho-access__contents" aria-label="Protected case study contents">
                 <span>Problem framing</span>
+                <span>System map</span>
                 <span>20 interviews</span>
                 <span>Affinity synthesis</span>
                 <span>Journey map</span>
-                <span>Service blueprint</span>
-                <span>MVP scope</span>
+                <span>Technical research</span>
               </div>
             </div>
             <NdaGate slug="medimorpho" compact />
