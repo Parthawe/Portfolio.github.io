@@ -1,7 +1,37 @@
 .editing-motion-main {
   --project-color: #ff6847;
   --editing-dark: #111116;
-  --editing-track: #34343d;
+}
+
+.editing-evidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 1440px);
+  margin: 0 auto;
+  border-top: 1px solid var(--ink-08);
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.editing-evidence > div {
+  min-width: 0;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border-right: 1px solid var(--ink-08);
+}
+
+.editing-evidence > div:last-child { border-right: 0; }
+.editing-evidence small {
+  color: var(--project-color);
+  font: 600 0.68rem/1.2 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.editing-evidence p {
+  max-width: 42ch;
+  margin: 0.75rem 0 0;
+  color: var(--ink-60);
+  font-size: 0.88rem;
+  line-height: 1.55;
 }
 
 .editing-motion-main .project-header--motion .proj-visual-hero__media {
@@ -172,49 +202,6 @@
 .editing-anatomy__copy h3 { margin: 1rem 0; font-size: clamp(2rem, 3.8vw, 4rem); font-weight: 450; line-height: 0.98; letter-spacing: -0.05em; }
 .editing-anatomy__copy p { margin: 0; color: var(--ink-60); font-size: 0.95rem; line-height: 1.65; }
 
-.editing-timeline {
-  position: relative;
-  overflow: hidden;
-  margin: clamp(2.5rem, 6vw, 5rem) 0;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: var(--case-shell-radius);
-  background: var(--editing-dark);
-  color: #fff;
-}
-
-.editing-timeline > header {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1.15rem;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.64);
-  font: 600 0.7rem/1 var(--mono);
-  letter-spacing: 0.05em;
-}
-
-.editing-timeline__ruler {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  margin-left: 145px;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.36);
-  font: 500 0.6rem/1 var(--mono);
-}
-
-.editing-timeline__playhead { position: absolute; top: 42px; bottom: 0; left: 58%; z-index: 2; width: 1px; background: #ff6257; pointer-events: none; }
-.editing-timeline__playhead::before { position: absolute; top: 0; left: -4px; width: 9px; height: 8px; background: #ff6257; content: ''; clip-path: polygon(0 0, 100% 0, 50% 100%); }
-
-.editing-track { display: grid; grid-template-columns: 145px minmax(0, 1fr); border-bottom: 1px solid rgba(255,255,255,0.08); }
-.editing-track:last-child { border-bottom: 0; }
-.editing-track > strong { padding: 0.9rem 0.75rem; border-right: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); font: 600 0.62rem/1.2 var(--mono); }
-.editing-track > div { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px; padding: 0.35rem; }
-.editing-track i { display: flex; min-height: 47px; align-items: center; padding: 0.45rem; border-radius: 2px; background: #4f4f69; color: rgba(255,255,255,0.86); font: 600 0.56rem/1.2 var(--mono); font-style: normal; }
-.editing-track:nth-of-type(5) i { background: #275674; }
-.editing-track:nth-of-type(6) i { background: #375d45; }
-.editing-track i.is-empty { background: rgba(255,255,255,0.025); }
-
 .editing-cut-notes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink-08); border-left: 1px solid var(--ink-08); }
 .editing-cut-notes article { min-height: 185px; padding: 1rem; border-right: 1px solid var(--ink-08); border-bottom: 1px solid var(--ink-08); }
 .editing-cut-notes strong { color: var(--project-color); font-size: 0.95rem; font-weight: 600; }
@@ -286,11 +273,9 @@
   .editing-workflow article { min-height: 230px; }
   .editing-workflow h3 { margin-top: 3.5rem; }
   .editing-anatomy__image { min-height: 260px; }
-  .editing-timeline__ruler { margin-left: 92px; }
-  .editing-track { grid-template-columns: 92px minmax(0, 1fr); }
-  .editing-track > strong { padding: 0.65rem 0.5rem; font-size: 0.52rem; }
-  .editing-track > div { overflow-x: auto; grid-template-columns: repeat(5, minmax(72px, 1fr)); }
-  .editing-track i { min-height: 42px; font-size: 0.5rem; }
+  .editing-evidence { grid-template-columns: 1fr; }
+  .editing-evidence > div { border-right: 0; border-bottom: 1px solid var(--ink-08); }
+  .editing-evidence > div:last-child { border-bottom: 0; }
   .editing-production-stack > header { align-items: flex-start; flex-direction: column; }
   .editing-production-stack__row { grid-template-columns: 7px minmax(0, 1fr) auto; }
   .editing-production-stack__row > span { display: none; }

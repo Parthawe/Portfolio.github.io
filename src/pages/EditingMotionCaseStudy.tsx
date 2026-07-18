@@ -87,14 +87,6 @@ const anatomies = [
   },
 ]
 
-const editTracks = [
-  { label: 'V3 · TYPE / STATE', clips: ['OPEN', '', 'CONTEXT', '', 'END CARD'] },
-  { label: 'V2 · INSERTS', clips: ['', 'DETAIL', 'UI / ACTION', 'REACTION', ''] },
-  { label: 'V1 · STORY', clips: ['PROMISE', 'INPUT', 'SYSTEM', 'PAYOFF', 'RESOLVE'] },
-  { label: 'A2 · SOUND DESIGN', clips: ['ROOM', 'GESTURE', 'MECHANISM', 'IMPACT', 'TAIL'] },
-  { label: 'A1 · SYNC / MUSIC', clips: ['SYNC', 'BED', 'BED', 'BED', 'MIX'] },
-]
-
 function EditingHeroFilm() {
   const reduceMotion = Boolean(useReducedMotion())
   const playback = reduceMotion ? '&autoplay=0' : '&autoplay=1&muted=1&loop=1&autopause=0'
@@ -162,19 +154,17 @@ function EditAnatomies() {
   )
 }
 
-function EditorialTimeline() {
+function EditingEvidence() {
+  const items = [
+    ['Evidence shown', 'Four completed project films.'],
+    ['My contribution', 'Portfolio editing and motion graphics; original project roles appear on the linked pages.'],
+    ['Case-study focus', 'Story structure, pacing, graphics, and delivery—not solo authorship of every project artifact.'],
+  ]
+
   return (
-    <div className="editing-timeline" aria-label="Documented Premiere Pro master sequence">
-      <header><span>SELECTED_FILMS_MASTER_v12</span><time>00:00:28:12</time></header>
-      <div className="editing-timeline__ruler"><span>00:00</span><span>00:06</span><span>00:12</span><span>00:18</span><span>00:24</span><span>00:30</span></div>
-      <div className="editing-timeline__playhead" aria-hidden="true" />
-      {editTracks.map((track) => (
-        <div className="editing-track" key={track.label}>
-          <strong>{track.label}</strong>
-          <div>{track.clips.map((clip, index) => <i className={clip ? '' : 'is-empty'} key={`${track.label}-${index}`}>{clip && <span>{clip}</span>}</i>)}</div>
-        </div>
-      ))}
-    </div>
+    <aside className="editing-evidence" aria-label="Film evidence and authorship">
+      {items.map(([label, value]) => <div key={label}><small>{label}</small><p>{value}</p></div>)}
+    </aside>
   )
 }
 
@@ -183,7 +173,7 @@ export default function EditingMotionCaseStudy() {
     <>
       <Helmet>
         <title>Cutting Systems into Stories · Motion Design · Parth Pawar</title>
-        <meta name="description" content="A video-editing case study across Enigma, The Omakase, Making of Time, and Drowning—covering selects, story structure, pacing, sound, motion graphics, and delivery." />
+        <meta name="description" content="Four completed project films, with a concise look at story structure, pacing, motion graphics, and delivery." />
         <meta property="og:title" content="Cutting Systems into Stories · Parth Pawar" />
         <meta property="og:description" content="How four project films were shaped through editorial structure, pacing, sound, and motion graphics." />
         <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/enigma_16x9.webp" />
@@ -214,15 +204,16 @@ export default function EditingMotionCaseStudy() {
           showHeaderSummary={false}
         />
 
+        <EditingEvidence />
+
         <CsSection id="selected-films" label="01 — Selected films" title="Four subjects. Four editorial rhythms.">
-          <CsBody><p>Each film is cut around the one behavior the viewer needs to understand.</p></CsBody>
+          <CsBody><p>These films document projects I created, designed, built, or staged. This page focuses on how their footage was shaped into a clear story; each linked project page preserves the underlying role.</p></CsBody>
           <SelectedFilms />
         </CsSection>
 
-        <CsSection id="editing-process" label="02 — Editing process" title="Clarity before polish.">
-          <CsBody><p>Find the transformation, prove it in the cut, then add sound and motion.</p></CsBody>
+        <CsSection id="editing-process" label="02 — Editing process" title="One question before the timeline.">
+          <CsBody><p>What changes, what causes it, and what proves it? The same questions guide every edit; the pace does not.</p></CsBody>
           <EditorialWorkflow />
-          <EditorialTimeline />
         </CsSection>
 
         <CsSection id="edit-anatomy" label="03 — Edit decisions" title="The pace follows the subject.">
@@ -238,7 +229,7 @@ export default function EditingMotionCaseStudy() {
           </div>
           <div className="editing-finish-list">
             <p><span>Delivery</span>16:9 master · captions · sound-off · 4:5 and 9:16 cutdowns</p>
-            <p><span>Authorship</span>Editing, motion graphics, sound, and delivery by Parth Pawar. Full project pages retain collaborator credits.</p>
+            <p><span>Authorship</span>Portfolio edits and motion graphics by Parth Pawar. The films draw on collaborative project footage; linked project pages retain the underlying roles and credits.</p>
           </div>
         </CsSection>
 

@@ -251,6 +251,37 @@
   --serif: var(--sans);
 }
 
+.motion-evidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(calc(100% - clamp(2rem, 8vw, 8rem)), 1440px);
+  margin: 0 auto;
+  border-top: 1px solid var(--ink-08);
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.motion-evidence > div {
+  min-width: 0;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border-right: 1px solid var(--ink-08);
+}
+
+.motion-evidence > div:last-child { border-right: 0; }
+.motion-evidence small {
+  color: var(--project-color);
+  font: 600 0.68rem/1.2 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.motion-evidence p {
+  max-width: 42ch;
+  margin: 0.75rem 0 0;
+  color: var(--ink-60);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
 .motion-project-main .project-header--motion .proj-visual-hero__media {
   background: color-mix(in srgb, var(--project-color) 12%, #121212);
 }
@@ -946,33 +977,8 @@
 }
 
 .motion-source-video-grid { margin-top: clamp(1.5rem, 4vw, 3rem); }
-.motion-source-artifact > div { background: color-mix(in srgb, var(--project-color) 12%, #09000d); }
 
-.motion-video-research-links {
-  display: grid;
-  grid-template-columns: minmax(260px, 1.4fr) repeat(2, minmax(150px, 0.55fr));
-  margin: 0 0 clamp(2rem, 5vw, 4rem);
-  border: 1px solid var(--ink-08);
-  border-radius: var(--case-media-radius);
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-}
-
-.motion-video-research-links > * {
-  display: flex;
-  min-height: 112px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-  border-right: 1px solid var(--ink-08);
-}
-
-.motion-video-research-links > *:last-child { border-right: 0; }
-.motion-video-research-links small { color: var(--project-color); font: 600 0.68rem/1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; }
-.motion-video-research-links strong { margin-top: 1.5rem; font-size: 0.94rem; font-weight: 500; line-height: 1.45; }
-.motion-video-research-links a { color: var(--ink-60); font: 600 0.7rem/1.45 var(--mono); text-transform: uppercase; }
-
-.vishwa-production-credit,
-.vishwa-reference-block {
+.vishwa-production-credit {
   display: grid;
   grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.2fr);
   gap: clamp(2rem, 6vw, 6rem);
@@ -992,20 +998,9 @@
   text-transform: uppercase;
 }
 
-.vishwa-production-credit h3,
-.vishwa-reference-block h3 { margin: 0; font-size: clamp(1.8rem, 3vw, 3.2rem); font-weight: 450; line-height: 1.05; letter-spacing: -0.035em; }
-.vishwa-production-credit > div > p:not(.vishwa-production-credit__eyebrow),
-.vishwa-reference-block__copy > p:not(.vishwa-production-credit__eyebrow) { margin: 1.25rem 0; color: var(--ink-60); line-height: 1.65; }
+.vishwa-production-credit h3 { margin: 0; font-size: clamp(1.8rem, 3vw, 3.2rem); font-weight: 450; line-height: 1.05; letter-spacing: -0.035em; }
+.vishwa-production-credit > div > p:not(.vishwa-production-credit__eyebrow) { margin: 1.25rem 0; color: var(--ink-60); line-height: 1.65; }
 .vishwa-production-credit > div > a { color: var(--project-color); font: 600 0.78rem/1 var(--mono); }
-
-.vishwa-reference-block {
-  grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-}
-
-.vishwa-reference-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-.vishwa-reference-grid .vishwa-video figcaption { grid-template-columns: 1fr; gap: 0.35rem; }
-.vishwa-reference-grid .vishwa-video figcaption small { text-align: left; }
 .vishwa-video.is-portrait > div { aspect-ratio: 9 / 14; }
 .vishwa-video.is-portrait video { object-fit: contain; }
 
@@ -1064,30 +1059,6 @@
 .mentra-story-ladder small { color: var(--ink-40); font: 600 0.7rem/1 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; }
 .mentra-story-ladder strong { color: var(--project-color); font-size: clamp(1.25rem, 2.2vw, 2.1rem); font-weight: 500; letter-spacing: -0.03em; }
 .mentra-story-ladder i { color: var(--ink-20); font-style: normal; }
-
-.mentra-reference-bar {
-  display: grid;
-  grid-template-columns: minmax(250px, 1.2fr) repeat(3, minmax(150px, 0.7fr));
-  gap: 0;
-  margin: clamp(2rem, 5vw, 4rem) 0;
-  border: 1px solid var(--ink-08);
-  border-radius: var(--case-shell-radius);
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-}
-
-.mentra-reference-bar > * {
-  display: flex;
-  min-height: 120px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-  border-right: 1px solid var(--ink-08);
-}
-
-.mentra-reference-bar > *:last-child { border-right: 0; }
-.mentra-reference-bar small { color: var(--project-color); font: 600 0.68rem/1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; }
-.mentra-reference-bar strong { margin-top: 1.5rem; font-size: 1rem; font-weight: 500; line-height: 1.4; }
-.mentra-reference-bar a { color: var(--ink-60); font: 600 0.7rem/1.45 var(--mono); text-transform: uppercase; }
 
 .mentra-benchmark {
   display: grid;
@@ -1283,41 +1254,6 @@
 .transfi-format--wide > img { padding: 3%; background: #f3f6ff; object-fit: contain; }
 .transfi-format--vertical > img { background: #fff; object-fit: contain; }
 
-.motion-ae-stack {
-  overflow: hidden;
-  margin: 0 0 clamp(2.5rem, 6vw, 5rem);
-  border: 1px solid var(--ink-08);
-  border-radius: var(--case-shell-radius);
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
-}
-
-.motion-ae-stack__head {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 0;
-  padding: 1rem 1.15rem;
-  border-bottom: 1px solid var(--ink-08);
-  color: var(--ink-40);
-  font: 600 0.72rem/1 var(--mono);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.motion-ae-stack__row {
-  display: grid;
-  grid-template-columns: 8px minmax(180px, 0.8fr) minmax(240px, 1.35fr) minmax(90px, 0.45fr);
-  gap: 1rem;
-  align-items: center;
-  padding: 0.85rem 1.15rem;
-  border-bottom: 1px solid var(--ink-08);
-}
-.motion-ae-stack__row:last-child { border-bottom: 0; }
-.motion-ae-stack__row > i { width: 8px; aspect-ratio: 1; border-radius: 2px; background: var(--row-color); }
-.motion-ae-stack__row code { color: var(--ink-90); font: 600 0.78rem/1.2 var(--mono); }
-.motion-ae-stack__row span { color: var(--ink-60); font-size: 0.9rem; }
-.motion-ae-stack__row small { color: var(--ink-40); font: 600 0.68rem/1 var(--mono); text-transform: uppercase; }
-
 .motion-frame-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1409,27 +1345,6 @@
 .motion-ae-callout strong { font-size: 1.15rem; }
 .motion-ae-callout p { margin: 0.45rem 0 0; color: var(--ink-60); line-height: 1.55; }
 
-.motion-output-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: clamp(2rem, 5vw, 4rem) 0 0;
-  padding: 0;
-  border-top: 1px solid var(--ink-08);
-  list-style: none;
-}
-
-.motion-output-list li {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--ink-08);
-}
-
-.motion-output-list li:nth-child(odd) { padding-right: 1rem; }
-.motion-output-list li:nth-child(even) { padding-left: 1rem; border-left: 1px solid var(--ink-08); }
-.motion-output-list span { color: var(--project-color); }
-
 @keyframes motionMentraLabel { 0%, 4%, 23%, 100% { opacity: 0; transform: translateY(8px); } 7%, 19% { opacity: 1; transform: translateY(0); } }
 @keyframes motionMentraMomentScene { 0%, 20% { opacity: 1; } 24%, 100% { opacity: 0; } }
 @keyframes motionMentraHardwareScene { 0%, 18%, 50%, 100% { opacity: 0; } 22%, 46% { opacity: 1; } }
@@ -1484,10 +1399,6 @@
   .transfi-state-model > div { grid-template-columns: repeat(3, 1fr); }
   .transfi-state-rules { grid-template-columns: 1fr; }
   .mentra-benchmark { grid-template-columns: 1fr; }
-  .mentra-reference-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .mentra-reference-bar > * { border-right: 1px solid var(--ink-08); border-bottom: 1px solid var(--ink-08); }
-  .mentra-reference-bar > *:nth-child(even) { border-right: 0; }
-  .mentra-reference-bar > *:nth-last-child(-n+2) { border-bottom: 0; }
   .mentra-format-map { grid-template-columns: 1fr 1.4fr 0.6fr; }
   .motion-frame-grid { grid-template-columns: 1fr 1fr; }
   .motion-frame-grid figure:last-child { grid-column: 1 / -1; }
@@ -1495,11 +1406,7 @@
   .motion-project-main--mentra .motion-frame-grid figure:last-child,
   .motion-project-main--transfi .motion-frame-grid figure:last-child { grid-column: auto; }
   .motion-decision-list article { grid-template-columns: 36px 1fr 28px 1.2fr; }
-  .motion-ae-stack__row { grid-template-columns: 8px minmax(160px, 0.8fr) minmax(200px, 1.2fr) minmax(70px, 0.4fr); }
-  .vishwa-production-credit,
-  .vishwa-reference-block { grid-template-columns: 1fr; }
-  .motion-video-research-links { grid-template-columns: 1fr 1fr; }
-  .motion-video-research-links > div { grid-column: 1 / -1; border-right: 0; border-bottom: 1px solid var(--ink-08); }
+  .vishwa-production-credit { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 620px) {
@@ -1532,8 +1439,7 @@
   .motion-frame-grid,
   .motion-project-main--vishwa .motion-frame-grid,
   .motion-project-main--mentra .motion-frame-grid,
-  .motion-project-main--transfi .motion-frame-grid,
-  .motion-output-list { grid-template-columns: 1fr; }
+  .motion-project-main--transfi .motion-frame-grid { grid-template-columns: 1fr; }
   .motion-index-proposal { padding: 1.25rem; }
   .motion-index-proposal h2 { font-size: clamp(2rem, 9vw, 2.8rem); }
   .motion-frame-grid figure:last-child { grid-column: auto; }
@@ -1548,10 +1454,6 @@
   .mentra-story-ladder > div span:nth-of-type(3) { grid-column: 1; }
   .mentra-story-ladder > div i:nth-of-type(3) { display: none; }
   .mentra-story-ladder strong { font-size: 1.25rem; }
-  .mentra-reference-bar { grid-template-columns: 1fr; }
-  .mentra-reference-bar > * { min-height: 96px; border-right: 0; border-bottom: 1px solid var(--ink-08); }
-  .mentra-reference-bar > *:nth-last-child(-n+2) { border-bottom: 1px solid var(--ink-08); }
-  .mentra-reference-bar > *:last-child { border-bottom: 0; }
   .mentra-benchmark__moves article { grid-template-columns: 32px 1fr; }
   .mentra-benchmark__moves article p { grid-column: 2; }
   .mentra-token-grid article { min-height: 190px; }
@@ -1568,19 +1470,12 @@
   .vishwa-video figcaption { grid-template-columns: 1fr; }
   .vishwa-video figcaption small { text-align: left; }
   .motion-video-provenance { grid-template-columns: 1fr; gap: 0.75rem; }
-  .motion-video-research-links { grid-template-columns: 1fr; }
-  .motion-video-research-links > div { grid-column: auto; }
-  .motion-video-research-links > * { min-height: 94px; border-right: 0; border-bottom: 1px solid var(--ink-08); }
-  .motion-video-research-links > *:last-child { border-bottom: 0; }
-  .vishwa-reference-grid { gap: 0.65rem; }
   .vishwa-video.is-portrait figcaption span { font-size: 0.78rem; }
   .vishwa-video.is-portrait figcaption small,
   .vishwa-video.is-portrait figcaption a { font-size: 0.55rem; }
-  .motion-ae-stack__head { align-items: flex-start; flex-direction: column; }
-  .motion-ae-stack__row { grid-template-columns: 8px minmax(0, 1fr) auto; gap: 0.65rem; }
-  .motion-ae-stack__row code { overflow: hidden; font-size: 0.64rem; text-overflow: ellipsis; }
-  .motion-ae-stack__row span { display: none; }
-  .motion-ae-stack__row small { font-size: 0.56rem; }
+  .motion-evidence { grid-template-columns: 1fr; }
+  .motion-evidence > div { border-right: 0; border-bottom: 1px solid var(--ink-08); }
+  .motion-evidence > div:last-child { border-bottom: 0; }
   .motion-mentra__status { font-size: 0.42rem; }
   .motion-mentra__chapter-labels span { top: 14%; font-size: 0.48rem; }
   .motion-mentra__scene--moment > img { top: 16%; right: 4%; height: 70%; }
@@ -1615,8 +1510,6 @@
   .motion-decision-list article > b { display: none; }
   .motion-decision-list article > div:last-child { grid-column: 2; }
   .motion-ae-callout { grid-template-columns: 1fr; }
-  .motion-output-list li:nth-child(odd),
-  .motion-output-list li:nth-child(even) { padding-inline: 0; border-left: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

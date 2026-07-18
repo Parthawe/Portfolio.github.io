@@ -32,7 +32,9 @@ type MotionProject = {
   heroImage: string
   heroAlt: string
   intro: string
-  truthNote: string
+  evidence: string
+  authorship: string
+  studyBoundary: string
   challenge: string
   move: string
   outcome: string
@@ -55,7 +57,7 @@ const projects: MotionProject[] = [
     path: 'vishwa-conclave-motion',
     title: 'VishwaConclave — A Campaign System in Motion',
     cardTitle: 'VishwaConclave: An event identity in motion',
-    descriptor: 'Creative direction for a student-led conference campaign, connecting theme films, speaker reveals, web, merchandise, and event programming into one launch rhythm.',
+    descriptor: 'Official 2020–21 campaign archive showing how creative direction connected theme films, speaker reveals, web, merchandise, and event programming.',
     discipline: 'Creative direction / Campaign motion',
     year: '2020–21',
     color: '#b14cff',
@@ -63,10 +65,12 @@ const projects: MotionProject[] = [
     heroImage: '/Assets/mockups/projects/vishwaconclave_16x9.webp',
     heroAlt: 'VishwaConclave campaign identity shown across event and social applications',
     intro: 'One annual theme, released as a sequence—not a single poster.',
-    truthNote: 'I worked with VishwaConclave from December 2019 through May 2021, growing from junior designer to Creative Director. The 2020–21 campaign films and posts shown here come from the official VishwaConclave archive. My scope covered creative direction, campaign system, social, web, and video production with a wider student team. Where a specialist partner executed a film, that credit is shown. The 2022–23 clips are included only as post-tenure archive references.',
+    evidence: 'Official VishwaConclave films and campaign posts from 2020–21.',
+    authorship: 'Creative direction, campaign system, social, web, and video production with a wider student team.',
+    studyBoundary: 'The After Effects file plan is a retrospective rebuild—not the original team file. Parallel Studio retains the credited 2021 specialist-animation work.',
     challenge: 'An abstract annual theme had to become understandable before the event—and stay recognizable through weeks of speaker announcements, website and merchandise releases, reminders, countdowns, and live-programming content.',
     move: 'Treat the campaign as an editorial sequence. Begin with intrigue, reveal the theme through dimensional type and camera movement, then move from atmosphere to proof: speakers, site, schedule, experience, and registration.',
-    outcome: 'The identity could change pace without losing its voice: cinematic for the theme, editorial for speakers, direct for conversion, and energetic near the event. Motion became the connective tissue between each release.',
+    outcome: 'The archive shows one identity changing pace without losing its voice: cinematic for the theme, editorial for speakers, direct for registration, and faster near the event.',
     roles: ['Creative direction', 'Campaign system', 'Storyboarding', 'Video production', 'Social design'],
     storyTitle: 'Intrigue. Reveal. Prove. Accelerate.',
     artTitle: 'Dimensional type turns an abstract theme into a place',
@@ -95,16 +99,16 @@ const projects: MotionProject[] = [
       { removed: 'Independent launch assets', kept: 'A sequenced release calendar', reason: 'Each drop answers the question created by the one before it and moves the audience closer to the event.' },
     ],
     aeBuild: [
-      { layer: '00_MASTER_CAMPAIGN', technique: '16:9 edit + named markers', purpose: 'The narrative master protects the reveal order and provides a source for shorter cuts.' },
+      { layer: '00_MASTER_CAMPAIGN', technique: 'Campaign edit + named release markers', purpose: 'The master protects the reveal order and provides a source for shorter cuts.' },
       { layer: '01_TYPE_WORLD', technique: '3D layers + cameras + null controls', purpose: 'Type, light, and perspective share one controllable dimensional system.' },
       { layer: '02_CONTENT_MODULES', technique: 'Protected pre-comps', purpose: 'Speaker, date, website, programme, and CTA cards can change without rebuilding transitions.' },
-      { layer: '90_SOCIAL_DELIVERY', technique: 'Responsive 4:5 and 9:16 comps', purpose: 'Safe zones and inherited timing keep the edit legible across social formats.' },
+      { layer: '90_SOCIAL_DELIVERY', technique: 'Feed, story, and web-safe versions', purpose: 'Protected zones and inherited timing keep each release legible across campaign surfaces.' },
     ],
     deliveries: [
-      { key: 'Trailer', value: 'Atmosphere and theme anticipation' },
-      { key: 'Hero film', value: 'Theme reveal and campaign world' },
+      { key: 'Campaign master', value: 'Theme reveal and narrative order' },
+      { key: 'Short cuts', value: 'Anticipation and registration reminders' },
       { key: 'Content modules', value: 'Speaker · site · merchandise · programme' },
-      { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
+      { key: 'Surfaces', value: 'Feed · story · web · event screen' },
     ],
     outputs: ['Theme film', 'Campaign trailers', 'Speaker reveals', 'Social launch system'],
   },
@@ -113,7 +117,7 @@ const projects: MotionProject[] = [
     path: 'mentra-motion-language',
     title: 'Mentra — Sell the Moment, Then the Hardware',
     cardTitle: 'Mentra: Sell the moment, then the hardware',
-    descriptor: 'An advertising-motion system for smart glasses that leads with lived moments, proves wearability, and closes on MentraOS—built from real Mentra campaign and product assets.',
+    descriptor: 'A proposed 15-second paid-social system built from Mentra brand, product, and campaign assets I designed—clearly separated from official footage.',
     discipline: 'Advertising motion / Hardware GTM',
     year: '2025–26',
     color: '#00b869',
@@ -121,10 +125,12 @@ const projects: MotionProject[] = [
     heroImage: '/Assets/Projects/mentra-brand/photos/render-both-frames.webp',
     heroAlt: 'Black and transparent Mentra smart glasses product renders',
     intro: 'The technology should leave the frame before the person leaves the moment.',
-    truthNote: 'The identity, packaging, product renders, Stream, Hear, Focus, and teaser campaign assets, MentraOS interfaces, and logo-animation frames are from my Mentra work. The 15-second advertising sequence and After Effects architecture documented here are a portfolio campaign system assembled from those real sources—not a claim that this exact hero edit shipped or produced unverified performance results. Even Realities is cited only as category research; no competitor imagery, copy, or layouts are used in the Mentra work.',
+    evidence: 'Original Mentra identity, packaging, advertising concepts, product renders, MentraOS states, and published product footage.',
+    authorship: 'Brand and art direction, advertising assets, renders, and the visual system. Official Mentra films are source references only.',
+    studyBoundary: 'The 15-second storyboard and After Effects production plan are a portfolio proposal—not a shipped campaign or a performance claim.',
     challenge: 'Smart-glasses advertising often begins with “AI,” interface overlays, and specifications before giving people a reason to care. Mentra still has to prove credible hardware and an open platform, but the advertisement first needs to make hands-free capture and open-ear audio feel desirable in an ordinary life moment.',
     move: 'Lead with a recognizable human moment, present the glasses as eyewear, demonstrate one capability, then reveal the hardware and MentraOS system behind it. Each short ad gets one promise—Stream, Hear, Focus, or Build—rather than carrying the entire feature list.',
-    outcome: 'One campaign idea becomes a 15-second launch film, six-second benefit spots, vertical paid-social stories, hardware proof cutdowns, and MiniApp announcements—held together by one visual route and one advertising hierarchy.',
+    outcome: 'The proposal defines one hierarchy that can support a 15-second story, shorter single-benefit cuts, hardware proof, and MiniApp announcements without mixing every claim into one ad.',
     roles: ['Creative direction', 'Advertising system', 'Motion design', 'Storyboard', 'Template architecture'],
     storyTitle: 'Moment. Wear. Use. Extend.',
     artTitle: 'People first. Product second. Platform third.',
@@ -156,26 +162,26 @@ const projects: MotionProject[] = [
       { removed: 'A dramatic logo-first ending', kept: 'Product silhouette, benefit, and one CTA', reason: 'The advertisement closes on what the viewer gets—not only on who made it.' },
     ],
     aeBuild: [
-      { layer: '00_MASTER_CAMPAIGN', technique: '3840×2160 · 15 sec · five markers', purpose: 'The master protects the moment → wearability → capability → product → platform hierarchy.' },
+      { layer: '00_MASTER_CAMPAIGN', technique: '15-second working master + five beats', purpose: 'The master protects the moment → wearability → capability → product → platform hierarchy.' },
       { layer: '01_HOOK_FAMILY', technique: 'Essential Graphics + copy controls', purpose: 'Stream, Hear, Focus, and Build swap as campaign promises without changing the edit grammar.' },
       { layer: '02_LIFE_MOMENT', technique: 'Protected media + focal-point nulls', purpose: 'Lifestyle footage reframes cleanly while keeping faces, eyewear, and benefit copy readable.' },
       { layer: '03_PRODUCT_AND_OS', technique: 'Render passes + protected pre-comps', purpose: 'Hardware, macro detail, and MentraOS can enter as proof without interrupting the human story.' },
-      { layer: '90_PAID_SOCIAL_SET', technique: 'Responsive comps + inherited timing', purpose: 'Six-second and 15-second versions share captions, CTA, safe zones, and product end cards.' },
+      { layer: '90_PAID_SOCIAL_SET', technique: 'Responsive versions + inherited timing', purpose: 'Short and full versions share captions, CTA, safe zones, and product end cards.' },
     ],
     deliveries: [
-      { key: '03 seconds', value: 'Product end card / retargeting sting' },
-      { key: '06 seconds', value: 'Single-benefit paid-social spot' },
-      { key: '15 seconds', value: 'Moment → product → platform campaign story' },
-      { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
+      { key: 'Working master', value: '15-second Moment → Wear → Use → Extend story' },
+      { key: 'Short cuts', value: 'One benefit and one product proof' },
+      { key: 'Hook family', value: 'Stream · Hear · Focus · Build' },
+      { key: 'Surfaces', value: 'Landscape · feed · story' },
     ],
-    outputs: ['Launch advertisement', 'Benefit spot family', 'Hardware proof cutdown', 'MiniApp announcement template'],
+    outputs: ['Paid-social storyboard', 'Benefit spot system', 'Hardware proof sequence', 'MiniApp announcement template'],
   },
   {
     key: 'transfi',
     path: 'transfi-identity-motion',
     title: 'TransFi — One Transaction, Made Legible',
     cardTitle: 'TransFi: One transaction, made legible',
-    descriptor: 'A product-motion system that follows one cross-border payment from currency choice to verified delivery—using real TransFi interface states instead of abstract fintech spectacle.',
+    descriptor: 'A proposed transaction story built from product and brand states I designed for TransFi, following one payment from intent to confirmed delivery.',
     discipline: 'Product motion / Fintech GTM',
     year: '2022–23',
     color: '#48d8ff',
@@ -183,10 +189,12 @@ const projects: MotionProject[] = [
     heroImage: '/Assets/mockups/projects/transfi-project_16x9.webp',
     heroAlt: 'TransFi identity, merchant dashboard, and customer checkout presentation',
     intro: 'Make money movement feel continuous—even when the infrastructure is complex.',
-    truthNote: 'The identity, dashboard, checkout, payment-method, verification, order-status, and responsive product frames are from my original TransFi design work. The storyboard, motion grammar, and After Effects architecture shown here are a portfolio production system built from those shipped sources—not a claim that this exact GTM film shipped or produced unverified campaign results.',
+    evidence: 'Original project archive: identity motion, checkout, verification, order-status, and merchant-dashboard states.',
+    authorship: 'Lead product design, brand, and systems work. The product screens and identity loop come from that project archive.',
+    studyBoundary: 'The 18-second storyboard and After Effects production plan are a portfolio proposal—not a shipped GTM film or a campaign-results claim.',
     challenge: 'A cross-border payment changes currency, method, network, verification state, and ownership before it is complete. Showing every layer at once creates noise; hiding the steps makes the product feel like a black box. The story needed momentum without making financial information feel unstable.',
     move: 'Follow one transaction—not a feature montage. The amount becomes the visual anchor while the interface moves through choose, wallet, method, verification, confirmation, and delivery. Expressive motion opens the story; productive motion carries every money and status state.',
-    outcome: 'One state-based master can become a launch explainer, a checkout walkthrough, a status-story cutdown, dashboard feature clips, and responsive social versions while preserving amounts, labels, and confirmation moments.',
+    outcome: 'The proposal defines a state-based story that preserves amounts, labels, and confirmation moments while adapting to a launch explainer, checkout walkthrough, or status cutdown.',
     roles: ['Product design', 'Motion system', 'Storyboard', 'Art direction', 'Template architecture'],
     storyTitle: 'Choose. Verify. Move. Confirm.',
     artTitle: 'The transaction is the protagonist—not the network',
@@ -218,17 +226,17 @@ const projects: MotionProject[] = [
       { removed: 'A confetti success moment', kept: 'Status change, timestamp, and quiet hold', reason: 'Confirmation is evidence. The interface should communicate completion without obscuring the details.' },
     ],
     aeBuild: [
-      { layer: '00_MASTER_TRANSACTION', technique: '1920×1080 · 18 sec · six markers', purpose: 'One marked sequence protects the order from customer intent to merchant confirmation.' },
+      { layer: '00_MASTER_TRANSACTION', technique: '18-second working story + six markers', purpose: 'One marked sequence protects the order from customer intent to merchant confirmation.' },
       { layer: '01_AMOUNT_ANCHOR', technique: 'Text controls + currency variants', purpose: 'Amount, asset, and rate update without drifting between scenes or requiring duplicate animation.' },
       { layer: '02_STATE_ROUTE', technique: 'Shape layer + Trim Paths', purpose: 'A single route controls progress, chapter handoffs, and the final identity fold.' },
       { layer: '03_PRODUCT_STATES', technique: 'Figma exports + protected pre-comps', purpose: 'Checkout, KYC, payment, order, and dashboard modules reveal by decision priority.' },
       { layer: '90_DELIVERY_SET', technique: 'Responsive comps + Essential Graphics', purpose: 'Copy, currency, status, CTA, captions, and crops remain editable for new corridors.' },
     ],
     deliveries: [
-      { key: '03 seconds', value: 'Identity / confirmation sting' },
-      { key: '06 seconds', value: 'Choose → pay checkout story' },
-      { key: '18 seconds', value: 'End-to-end transaction master' },
-      { key: 'Formats', value: '16:9 / 4:5 / 1:1 / 9:16' },
+      { key: 'Working story', value: '18-second intent → delivery sequence' },
+      { key: 'Short cut', value: 'Choose → authorize → confirm' },
+      { key: 'State template', value: 'Waiting · processing · attention · complete' },
+      { key: 'Surfaces', value: 'Landscape · feed · story' },
     ],
     outputs: ['Transaction master', 'Checkout walkthrough', 'Status-story template', 'Responsive social cutdowns'],
   },
@@ -237,7 +245,7 @@ const projects: MotionProject[] = [
     path: 'editing-motion-stories',
     title: 'Cutting Systems into Stories',
     cardTitle: 'Selected film editing: Enigma, Omakase + more',
-    descriptor: 'A practical breakdown of how project footage becomes a clear film through selects, paper edits, cause-and-effect cutting, sound, motion graphics, and responsive delivery.',
+    descriptor: 'Four completed project films, with a practical breakdown of selects, cause-and-effect cutting, sound, restrained graphics, and delivery.',
     discipline: 'Video editing / Editorial direction',
     year: '2023–25',
     color: '#ff6847',
@@ -245,7 +253,9 @@ const projects: MotionProject[] = [
     heroImage: '/Assets/mockups/projects/enigma_16x9.webp',
     heroAlt: 'Enigma neural-network sculpture illuminated during exhibition',
     intro: 'A good project film reveals the idea before it asks for attention.',
-    truthNote: 'This case study documents my editorial reasoning, assembly, motion-graphics, sound, and delivery practice across project films built from my work. Collaborative project and production contributions remain credited on the linked full case studies.',
+    evidence: 'Four completed films for Enigma, The Omakase, Making of Time, and Drowning.',
+    authorship: 'Portfolio editing and motion graphics by Parth Pawar; the underlying projects were built with the roles and collaborators named on their full pages.',
+    studyBoundary: 'The case study explains editorial decisions; it does not recast collaborative project production as solo work.',
     challenge: 'Interactive objects and performances are easy to make visually exciting but difficult to explain. A beauty reel alone cannot show what changed, why it matters, or how the audience participates.',
     move: 'Give each film one sentence and one visible transformation, then organize gestures, system responses, proof shots, atmosphere, and reactions around that narrative spine.',
     outcome: 'A repeatable editorial workflow connects four very different subjects while allowing each film to earn its own pace, sound behavior, and graphic intervention.',
@@ -449,29 +459,20 @@ function CampaignVideo({ src, poster, title, note, href, className = '' }: { src
   )
 }
 
-function MotionArtifact({ src, title, note, className = '' }: { src: string; title: string; note: string; className?: string }) {
-  return (
-    <figure className={`vishwa-video motion-source-artifact ${className}`.trim()}>
-      <div><img src={src} alt={title} loading="lazy" /></div>
-      <figcaption><span>{title}</span><small>{note}</small></figcaption>
-    </figure>
-  )
-}
-
 function VishwaCampaignArchive() {
   const films = [
     {
       src: '/Assets/Projects/VishwaConclave/motion-2021/crafting-decade-theme.mp4',
       poster: '/Assets/Projects/VishwaConclave/motion-2021/posters/crafting-decade-theme.mp4.png',
       title: 'Theme film · Crafting the Decade',
-      note: '2020 · 60-second campaign film',
+      note: '2020 · official campaign film',
       href: 'https://www.instagram.com/p/CHfpIWpjDUw/',
     },
     {
       src: '/Assets/Projects/VishwaConclave/motion-2021/crafting-decade-trailer.mp4',
       poster: '/Assets/Projects/VishwaConclave/motion-2021/posters/crafting-decade-trailer.mp4.png',
       title: 'Trailer · Crafting the Decade',
-      note: '2020 · 40-second anticipation cut',
+      note: '2020 · official anticipation cut',
       href: 'https://www.instagram.com/p/CHkrXXAjthA/',
     },
     {
@@ -510,32 +511,6 @@ function VishwaCampaignArchive() {
           note="2021 · animation by Parallel Studio"
         />
       </div>
-
-      <div className="vishwa-reference-block">
-        <div className="vishwa-reference-block__copy">
-          <p className="vishwa-production-credit__eyebrow">Archive continuation · reference only</p>
-          <h3>The visual language kept evolving after my tenure.</h3>
-          <p>These 2022 and 2023 clips are not included as authored work. They are useful evidence of how later teams continued exploring dimensional type, object choreography, and vertical-first event storytelling.</p>
-        </div>
-        <div className="vishwa-reference-grid">
-          <CampaignVideo
-            className="is-portrait"
-            src="/Assets/Projects/VishwaConclave/motion-2021/reference-2022-horizons.mp4"
-            poster="/Assets/Projects/VishwaConclave/motion-2021/posters/reference-2022-horizons.mp4.png"
-            title="Transcending Horizons"
-            note="2022 · post-tenure reference"
-            href="https://www.instagram.com/tv/CZrIf15A_PQ/"
-          />
-          <CampaignVideo
-            className="is-portrait"
-            src="/Assets/Projects/VishwaConclave/motion-2021/reference-2023-coalescence.mp4"
-            poster="/Assets/Projects/VishwaConclave/motion-2021/posters/reference-2023-coalescence.mp4.png"
-            title="Coalesce of Dispersion"
-            note="2023 · post-tenure reference"
-            href="https://www.instagram.com/reel/Coz2-6Eo1KE/"
-          />
-        </div>
-      </div>
     </>
   )
 }
@@ -545,7 +520,7 @@ function MentraVideoEvidence() {
     <>
       <div className="motion-video-provenance">
         <span>Source-footage note</span>
-        <p>These are current films published by Mentra. They verify the physical product, real-world use, and the platform context available to the proposed campaign system; I am not presenting either finished edit as a film I directed.</p>
+        <p>These films were published by Mentra. They verify the physical product, real-world use, and platform context available to the proposed campaign system; I am not presenting either finished edit as a film I directed.</p>
       </div>
       <div className="vishwa-video-grid motion-source-video-grid">
         <CampaignVideo
@@ -563,62 +538,7 @@ function MentraVideoEvidence() {
           href="https://mentraglass.com/"
         />
       </div>
-      <div className="motion-video-research-links">
-        <div><small>Additional official production context</small><strong>The footage library also has a product-unboxing story and a factory-build story—useful for hardware proof cutdowns.</strong></div>
-        <a href="https://www.youtube.com/watch?v=-96QvIVzcMc" target="_blank" rel="noreferrer">Product unboxing ↗</a>
-        <a href="https://www.youtube.com/watch?v=bhtVIJdsMS4" target="_blank" rel="noreferrer">Building 1,000 glasses ↗</a>
-      </div>
     </>
-  )
-}
-
-function TransfiVideoEvidence() {
-  return (
-    <>
-      <div className="motion-video-provenance">
-        <span>Archive boundary</span>
-        <p>The animated identity loop is from the original project archive. The current TransFi site film is included as later brand and product context—not as a film from my 2022–23 project scope or an edit I directed.</p>
-      </div>
-      <div className="vishwa-video-grid motion-source-video-grid">
-        <MotionArtifact
-          src={transfiMotion}
-          title="TransFi identity loop"
-          note="Original project archive · animated brand study"
-          className="is-contain"
-        />
-        <CampaignVideo
-          src="/Assets/Projects/Transfi/motion/official-site-hero.mp4"
-          poster="/Assets/Projects/Transfi/motion/official-site-hero-poster.jpg"
-          title="TransFi · stablecoin infrastructure"
-          note="Current official site film · later brand reference"
-          href="https://www.transfi.com/"
-          className="is-contain"
-        />
-      </div>
-    </>
-  )
-}
-
-function VishwaAeStack() {
-  const rows = [
-    ['00_MASTER_CAMPAIGN', '1920 × 1080 · edit markers', 'Master'],
-    ['01_CTRL_WORLD', 'Color · light · depth · timing', 'Controls'],
-    ['02_TYPE_ARCHITECTURE', '3D layers · cameras · nulls', 'Pre-comp'],
-    ['03_CONTENT_MODULES', 'Speaker · website · programme · CTA', 'Pre-comp'],
-    ['04_AUDIO_EDIT', 'Music edit · hits · room tone', 'Pre-comp'],
-    ['90_DELIVERY_9x16', '1080 × 1920 · protected zones', 'Inherited'],
-  ]
-
-  return (
-    <div className="motion-ae-stack" aria-label="Documented After Effects rebuild structure">
-      <div className="motion-ae-stack__head"><span>After Effects project map</span><span>Documented rebuild</span></div>
-      {rows.map(([name, contents, kind], index) => (
-        <div className="motion-ae-stack__row" key={name}>
-          <i style={{ '--row-color': index === 0 ? '#b14cff' : index === rows.length - 1 ? '#ff7438' : '#7d3be8' } as CSSProperties} />
-          <code>{name}</code><span>{contents}</span><small>{kind}</small>
-        </div>
-      ))}
-    </div>
   )
 }
 
@@ -655,33 +575,25 @@ function MentraCommunicationBrief() {
 
 function MentraMotionSystem() {
   const tokens = [
-    ['Hook', '0–800 ms', 'Human tension or benefit visible in the first frame'],
-    ['Moment', '1.6–2.4 sec', 'Enough time to recognize the person, place, and desire'],
-    ['Proof', '800–1,200 ms', 'Wearability, camera, audio, or MentraOS—not all at once'],
-    ['Action hold', '1.2–1.8 sec', 'Product silhouette, benefit line, and one CTA'],
+    ['Hook', 'First frame', 'The benefit is legible before the first transition begins.'],
+    ['Moment', 'Longest hold', 'The person, place, and reason to care receive more time than the interface.'],
+    ['Proof', 'One object', 'Wearability, camera, audio, or MentraOS proves one promise at a time.'],
+    ['Action', 'Stable close', 'The product silhouette, benefit line, and CTA stop moving together.'],
   ]
   const benchmarkMoves = [
     ['Human situation before specification', 'Open on celebration, concentration, or listening—then reveal how Mentra supports it.'],
     ['Eyewear before electronics', 'Show frames on a person before macro, exploded, or operating-system proof.'],
-    ['One scenario per story', 'Separate Stream, Hear, Focus, and Build into memorable short-form territories.'],
-    ['Technology recedes', 'Keep interface and platform proof late in the edit, after the core human benefit is clear.'],
+    ['One scenario per story', 'Separate Stream, Hear, Focus, and Build instead of compressing them into one feature reel.'],
   ]
 
   return (
     <>
-      <div className="mentra-reference-bar">
-        <div><small>Category research translated into Mentra</small><strong>Sell the human advantage before explaining the technology.</strong></div>
-        <a href="https://www.evenrealities.com/" target="_blank" rel="noreferrer">Even Realities / benefit-first category benchmark ↗</a>
-        <a href="https://www.youtube.com/watch?v=DD5-hGUDF7c" target="_blank" rel="noreferrer">Even G2 / human-situation campaign film ↗</a>
-        <a href="https://developer.apple.com/design/human-interface-guidelines/motion" target="_blank" rel="noreferrer">Purpose, restraint, and accessibility ↗</a>
-      </div>
-
       <div className="mentra-benchmark">
         <div className="mentra-benchmark__intro">
-          <small>Competitive benchmark → original response</small>
-          <h3>What Even Realities gets right—and how Mentra makes it its own.</h3>
-          <p>Even Realities demonstrates that smart-glasses advertising is strongest when it begins with people, familiar eyewear, and a specific life advantage. Mentra adapts that strategy to a different product truth: first-person capture, open-ear audio, and an open MiniApp platform.</p>
-          <span>No competitor assets, layouts, or copy are used.</span>
+          <small>One category reference → an original response</small>
+          <h3>Borrow the lesson, not the look.</h3>
+          <p>Even Realities is useful because its advertising begins with people and familiar eyewear. Mentra applies that hierarchy to different product truths: first-person capture, open-ear audio, and an open MiniApp platform.</p>
+          <span><a href="https://www.evenrealities.com/" target="_blank" rel="noreferrer">View the category reference ↗</a> · No competitor assets, layouts, or copy are used.</span>
         </div>
         <div className="mentra-benchmark__moves">
           {benchmarkMoves.map(([principle, response], index) => (
@@ -709,7 +621,7 @@ function MentraMotionSystem() {
         </article>
       </div>
 
-      <div className="mentra-token-grid" aria-label="Mentra motion timing tokens">
+      <div className="mentra-token-grid" aria-label="Mentra motion timing decisions">
         {tokens.map(([name, timing, use], index) => (
           <article key={name}><span>0{index + 1}</span><small>{name}</small><strong>{timing}</strong><p>{use}</p></article>
         ))}
@@ -731,29 +643,6 @@ function MentraMotionSystem() {
         </figure>
       </div>
     </>
-  )
-}
-
-function MentraAeStack() {
-  const rows = [
-    ['00_MASTER_CAMPAIGN', '3840 × 2160 · 450 frames', 'Master'],
-    ['01_HOOK_FAMILY', 'Stream · Hear · Focus · Build', 'Controls'],
-    ['02_LIFE_MOMENT', 'People · eyewear · focal zones', 'Protected'],
-    ['03_PRODUCT_AND_OS', 'Wear · macro · exploded · apps', 'Pre-comp'],
-    ['04_TYPE_CAPTIONS_CTA', 'Benefit · subtitles · action', 'Editable'],
-    ['90_PAID_SOCIAL_SET', '16:9 · 4:5 · 1:1 · 9:16', 'Inherited'],
-  ]
-
-  return (
-    <div className="motion-ae-stack" aria-label="Mentra After Effects launch-system structure">
-      <div className="motion-ae-stack__head"><span>After Effects project map</span><span>Motion-system specification</span></div>
-      {rows.map(([name, contents, kind], index) => (
-        <div className="motion-ae-stack__row" key={name}>
-          <i style={{ '--row-color': index === 0 ? '#00b869' : index === rows.length - 1 ? '#62d7ff' : '#79d6a8' } as CSSProperties} />
-          <code>{name}</code><span>{contents}</span><small>{kind}</small>
-        </div>
-      ))}
-    </div>
   )
 }
 
@@ -794,10 +683,10 @@ function TransfiCommunicationBrief() {
 
 function TransfiMotionSystem() {
   const tokens = [
-    ['Brand signal', '560–720 ms', 'Mark assembly and chapter open'],
-    ['State change', '240–360 ms', 'Panel handoff and progress advance'],
-    ['Data update', '160–220 ms', 'Amount, method, and status replacement'],
-    ['Proof hold', '1.4–2.0 sec', 'Fee breakdown, verification, and confirmation'],
+    ['Brand signal', 'Chapter open', 'The identity introduces the route, then gets out of the transaction.'],
+    ['State change', 'One handoff', 'The next panel enters only after the current action resolves.'],
+    ['Data update', 'Fixed anchor', 'Amount and currency change without drifting around the frame.'],
+    ['Proof hold', 'Longest pause', 'Fees, verification, and confirmation remain readable before the next cut.'],
   ]
   const stateRules = [
     ['Awaiting input', 'Blue focus ring', 'Only the next available action moves.'],
@@ -808,13 +697,6 @@ function TransfiMotionSystem() {
 
   return (
     <>
-      <div className="mentra-reference-bar">
-        <div><small>Research translated into the system</small><strong>Treat money as state—not spectacle.</strong></div>
-        <a href="https://www.transfi.com/solutions/payment-gateway" target="_blank" rel="noreferrer">Product truth / global payment flow ↗</a>
-        <a href="https://wise.design/foundations/motion-system" target="_blank" rel="noreferrer">Financial motion / pace and weight ↗</a>
-        <a href="https://wise.design/foundations/transitions" target="_blank" rel="noreferrer">Transition continuity / spatial logic ↗</a>
-      </div>
-
       <div className="mentra-source-grid transfi-source-grid">
         <article className="mentra-source-card mentra-source-card--os transfi-source-card">
           <img src="/Assets/Projects/Transfi/public/Group 1000004741.png" alt="TransFi currency-selection product visual" loading="lazy" />
@@ -826,7 +708,7 @@ function TransfiMotionSystem() {
         </article>
         <article className="mentra-source-card transfi-source-card transfi-source-card--journey">
           <img src="/Assets/Projects/Transfi/public/Frame 427318646.png" alt="TransFi six-step checkout and delivery journey" loading="lazy" />
-          <p><span>03 · Route</span><strong>The six shipped screens become one continuous transaction path.</strong></p>
+          <p><span>03 · Route</span><strong>The six source screens become one continuous transaction path.</strong></p>
         </article>
         <article className="mentra-source-card mentra-source-card--os transfi-source-card transfi-source-card--summary">
           <img src="/Assets/Projects/Transfi/public/Order Summary.png" alt="TransFi order summary with fees and delivery status" loading="lazy" />
@@ -834,7 +716,7 @@ function TransfiMotionSystem() {
         </article>
       </div>
 
-      <div className="mentra-token-grid" aria-label="TransFi motion timing tokens">
+      <div className="mentra-token-grid" aria-label="TransFi motion timing decisions">
         {tokens.map(([name, timing, use], index) => (
           <article key={name}><span>0{index + 1}</span><small>{name}</small><strong>{timing}</strong><p>{use}</p></article>
         ))}
@@ -868,37 +750,14 @@ function TransfiMotionSystem() {
   )
 }
 
-function TransfiAeStack() {
-  const rows = [
-    ['00_MASTER_TRANSACTION', '1920 × 1080 · 540 frames', 'Master'],
-    ['01_AMOUNT_ANCHOR', 'Value · fiat · asset · rate', 'Controls'],
-    ['02_STATE_ROUTE', 'Progress · chapter · final fold', 'Shape rig'],
-    ['03_PRODUCT_STATES', 'Checkout · KYC · order · dashboard', 'Protected'],
-    ['04_TYPE_CAPTIONS_AUDIO', 'Benefit · status · sound-off copy', 'Editable'],
-    ['90_DELIVERY_SET', '16:9 · 4:5 · 1:1 · 9:16', 'Inherited'],
-  ]
-
-  return (
-    <div className="motion-ae-stack" aria-label="TransFi After Effects transaction-story structure">
-      <div className="motion-ae-stack__head"><span>After Effects project map</span><span>Motion-system specification</span></div>
-      {rows.map(([name, contents, kind], index) => (
-        <div className="motion-ae-stack__row" key={name}>
-          <i style={{ '--row-color': index === 0 ? '#48d8ff' : index === rows.length - 1 ? '#35b878' : '#2458e6' } as CSSProperties} />
-          <code>{name}</code><span>{contents}</span><small>{kind}</small>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 function MotionLanding() {
   return (
     <div className="motion-index-page category-page">
       <Helmet>
         <title>Motion Design · Parth Pawar</title>
-        <meta name="description" content="Motion direction and animation systems for AI products, hardware launches, identity, and social GTM storytelling." />
+        <meta name="description" content="Motion direction across a shipped event campaign, proposed product stories built from original design work, and four completed editorial films." />
         <meta property="og:title" content="Motion Design · Parth Pawar" />
-        <meta property="og:description" content="Four motion case studies grounded in real product, brand, campaign, and editorial work." />
+        <meta property="og:description" content="Four motion case studies with clear authorship boundaries: shipped campaign work, product-grounded proposals, and completed films." />
         <link rel="canonical" href="https://designwhich.works/motion" />
       </Helmet>
       <Nav />
@@ -908,20 +767,20 @@ function MotionLanding() {
             <p className="motion-index-hero__eyebrow"><i aria-hidden="true" /> Motion design</p>
             <div className="motion-index-hero__copy">
               <span>Motion<br />Direction</span>
-              <h1>Motion systems that make complex products easier to understand.</h1>
+              <h1>Motion that explains the idea, proves the product, and earns the pace.</h1>
             </div>
             <div className="motion-index-hero__bottom">
               <a href="#lp-work" className="motion-index-hero__link figma-hover">See work <span aria-hidden="true">↓</span></a>
               <dl>
                 <div><dt>04</dt><dd>Case studies</dd></div>
-                <div><dt>2D + 3D</dt><dd>Motion craft</dd></div>
-                <div><dt>AE</dt><dd>Production system</dd></div>
+                <div><dt>Campaign + product</dt><dd>Story types</dd></div>
+                <div><dt>AE + Premiere</dt><dd>Production tools</dd></div>
               </dl>
             </div>
           </section>
 
           <section id="lp-work" className="motion-index-work">
-            <p className="lp-section-label">Flagship motion study</p>
+            <p className="lp-section-label">Shipped campaign archive</p>
             <Reveal>
               <ProjectCard
                 slug={`motion/${projects[0].path}`}
@@ -935,7 +794,7 @@ function MotionLanding() {
               />
             </Reveal>
 
-            <p className="lp-section-label motion-index-work__secondary-label">Selected motion systems &amp; editorial work</p>
+            <p className="lp-section-label motion-index-work__secondary-label">Product-grounded proposals &amp; completed films</p>
             <div className="pcard-masonry motion-index-card-grid">
               {projects.slice(1).map((project) => (
                 <Reveal key={project.key}>
@@ -958,11 +817,11 @@ function MotionLanding() {
           <Reveal>
             <section className="motion-index-proposal" aria-labelledby="motion-proposal-title">
               <div>
-                <p className="lp-section-label">Current creative-studio study</p>
+                <p className="lp-section-label">Independent creative-studio concept</p>
                 <h2 id="motion-proposal-title">A motion system for products that think in public.</h2>
               </div>
               <div>
-                <p>An independent response to Perplexity’s Motion Designer role: one product-true launch prototype, three GTM territories, and a reusable After Effects production system.</p>
+                <p>A clearly labeled proposal for Perplexity: one launch-story prototype, three product-specific territories, and a production plan built around real product behavior.</p>
                 <a className="figma-hover" href="/perplexity">View the Perplexity study <span aria-hidden="true">↗</span></a>
               </div>
             </section>
@@ -977,10 +836,10 @@ function MotionLanding() {
               </div>
               <div className="motion-index-method__grid">
                 {[
-                  ['01', 'Find the sentence', 'Define the audience, communication job, and one idea the edit must make clearer.'],
-                  ['02', 'Build the beats', 'Order real product and brand artifacts into a readable storyboard before polishing movement.'],
-                  ['03', 'Animate hierarchy', 'Use timing, spacing, composition, and sound to direct attention—not to decorate every frame.'],
-                  ['04', 'Design the family', 'Structure the master for crops, cutdowns, captions, templates, and future versioning.'],
+                  ['01', 'Start with evidence', 'Separate shipped work, source material, collaboration, and the proposed layer before shaping the story.'],
+                  ['02', 'Write the sentence', 'Define the audience, communication job, and one idea the edit must make clearer.'],
+                  ['03', 'Build cause and effect', 'Order real product and brand artifacts into a storyboard before polishing movement.'],
+                  ['04', 'Version from one idea', 'Plan crops, captions, cutdowns, and templates only after the main story works.'],
                 ].map(([num, title, body]) => (
                   <article key={num}><span>{num}</span><h3>{title}</h3><p>{body}</p></article>
                 ))}
@@ -1009,6 +868,20 @@ function DecisionList({ decisions }: { decisions: MotionProject['decisions'] }) 
   )
 }
 
+function MotionEvidence({ project }: { project: MotionProject }) {
+  const items = [
+    ['Evidence shown', project.evidence],
+    ['My authorship', project.authorship],
+    ['Study boundary', project.studyBoundary],
+  ]
+
+  return (
+    <aside className="motion-evidence" aria-label="Project evidence and authorship">
+      {items.map(([label, value]) => <div key={label}><small>{label}</small><p>{value}</p></div>)}
+    </aside>
+  )
+}
+
 function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motionOn: boolean }) {
   const nextProject = projects[(projects.indexOf(project) + 1) % projects.length]
   const style = { '--project-color': project.color } as CSSProperties
@@ -1016,9 +889,10 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
   const isMentra = project.key === 'mentra'
   const isTransfi = project.key === 'transfi'
   const hasBrief = isVishwa || isMentra || isTransfi
-  const hasSystemSection = isVishwa || isMentra || isTransfi
-  const hasSourceVideoSection = isMentra || isTransfi
-  const sectionNumber = (number: number, afterSystem = false, afterSourceVideo = false) => String(number + (hasBrief ? 1 : 0) + (afterSystem && hasSystemSection ? 1 : 0) + (afterSourceVideo && hasSourceVideoSection ? 1 : 0)).padStart(2, '0')
+  const hasSourceVideoSection = isMentra
+  const sectionNumbers = isMentra
+    ? { story: '03', system: '04', art: '05', decisions: '06', afterEffects: '07' }
+    : { story: '02', system: '03', art: '04', decisions: '05', afterEffects: '06' }
 
   return (
     <>
@@ -1043,10 +917,10 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             { label: 'Role', value: project.roles.join(' · ') },
             { label: 'Year', value: project.year },
             { label: 'Scope', value: project.outputs.join(' · ') },
-            { label: 'Status', value: isMentra ? 'Documented advertising system · real Mentra source assets' : isVishwa ? 'Original campaign archive · Creative Director, 2019–21' : 'Documented motion system · shipped product sources' },
+            { label: 'Status', value: isMentra ? 'Portfolio proposal · original Mentra source assets' : isVishwa ? 'Shipped campaign archive · collaborative production' : 'Portfolio proposal · original TransFi product states' },
           ]}
           heroExperience="visual"
-          heroEyebrow="Selected motion study"
+          heroEyebrow={isVishwa ? 'Shipped campaign archive' : 'Product-grounded motion proposal'}
           visualHeadline={project.intro}
           visualHeroImage={project.heroImage}
           visualHeroAlt={project.heroAlt}
@@ -1060,6 +934,8 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           { label: 'Motion direction', content: project.move },
           { label: 'System outcome', content: project.outcome },
         ]} />
+
+        <MotionEvidence project={project} />
 
         {isVishwa && (
           <CsSection id="motion-brief" label="01 — Campaign brief" title="Build anticipation, then keep earning attention until event day.">
@@ -1088,7 +964,16 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           </CsSection>
         )}
 
-        <CsSection id="motion-story" label={`${sectionNumber(1)} — Storyboard`} title={project.storyTitle}>
+        {isMentra && (
+          <CsSection id="source-video" label="02 — Source footage" title="Official footage defines what the proposed edit may show.">
+            <CsBody>
+              <p>These films establish the product, how it is worn, and where it is used. The storyboard reorganizes approved source material; it does not invent a different product or imply that I directed the original footage.</p>
+            </CsBody>
+            <MentraVideoEvidence />
+          </CsSection>
+        )}
+
+        <CsSection id="motion-story" label={`${sectionNumbers.story} — Storyboard`} title={project.storyTitle}>
           <CsBody><p>{isVishwa ? 'The storyboard was not only a shot list; it was the release order of the campaign. Each phase had a different communication job, and the pacing became more direct as the event moved closer.' : isMentra ? 'The 15-second master opens on a life moment, moves through wearability and one capability, then earns the right to show hardware and MentraOS. Expressive movement hooks attention; quieter product holds provide proof; one stable message closes the advertisement.' : 'The 18-second master follows one illustrative transaction. The amount anchors the sequence; customer actions advance it; verification and settlement receive longer holds because those are the moments where trust is either earned or lost.'}</p></CsBody>
           {!isVishwa && (
             <div className="motion-case-preview">
@@ -1100,16 +985,16 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
         </CsSection>
 
         {isVishwa && (
-          <CsSection id="campaign-archive" label="03 — Original campaign archive" title="The process is visible in the work that actually shipped.">
+          <CsSection id="campaign-archive" label="03 — Original campaign archive" title="The shipped sequence is the strongest process evidence.">
             <CsBody>
-              <p>Rather than reconstructing fake sketches or an invented approval trail, this section uses the official 2020–21 Instagram archive. It shows how the campaign moved from cinematic theme-building into practical launch communication.</p>
+              <p>The official 2020–21 archive shows how the campaign moved from theme-building into speakers, website, programme, and registration. Specialist execution remains credited where it appears.</p>
             </CsBody>
             <VishwaCampaignArchive />
           </CsSection>
         )}
 
         {isMentra && (
-          <CsSection id="motion-system" label="03 — Advertising strategy & motion grammar" title="Human first. Wearable second. Technical only when it proves the promise.">
+          <CsSection id="motion-system" label={`${sectionNumbers.system} — Advertising strategy & motion grammar`} title="Human first. Wearable second. Technical only when it proves the promise.">
             <CsBody>
               <p>Even Realities is used here as a category benchmark because its advertising gives everyday situations, familiar eyewear, and one human advantage priority over specifications. Mentra adapts that hierarchy to its own truth—first-person capture, open-ear audio, and an open platform—without borrowing competitor visuals or copy.</p>
             </CsBody>
@@ -1118,7 +1003,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
         )}
 
         {isTransfi && (
-          <CsSection id="motion-system" label="03 — Motion grammar" title="Fast enough to feel responsive. Stable enough to trust.">
+          <CsSection id="motion-system" label={`${sectionNumbers.system} — Motion grammar`} title="Fast enough to feel responsive. Stable enough to trust.">
             <CsBody>
               <p>The research produced a transaction grammar rather than an effects board: natural weight for financial motion, spatial continuity between steps, one persistent amount, and different behaviors for waiting, processing, attention, and completed states.</p>
             </CsBody>
@@ -1126,25 +1011,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           </CsSection>
         )}
 
-        {isMentra && (
-          <CsSection id="source-video" label="04 — Source footage" title="The product footage is real. The proposed edit stays clearly labeled.">
-            <CsBody>
-              <p>The strongest campaign route is to cut from approved footage instead of simulating a product that already exists. These films establish the available visual truth; the storyboard above defines how I would reorganize that material into the Moment → Wear → Use → Extend advertising sequence.</p>
-            </CsBody>
-            <MentraVideoEvidence />
-          </CsSection>
-        )}
-
-        {isTransfi && (
-          <CsSection id="source-video" label="04 — Motion archive" title="Original identity motion, paired with the brand’s current product context.">
-            <CsBody>
-              <p>The archive contains one original animated identity study rather than a fabricated campaign reel. Pairing it with TransFi’s current official film shows the gap the proposed transaction story is designed to solve: move from broad infrastructure energy into a legible, state-by-state explanation of the product.</p>
-            </CsBody>
-            <TransfiVideoEvidence />
-          </CsSection>
-        )}
-
-        <CsSection id="art-direction" label={`${sectionNumber(2, true, true)} — Art direction`} title={project.artTitle}>
+        <CsSection id="art-direction" label={`${sectionNumbers.art} — Art direction`} title={project.artTitle}>
           <CsBody><p>{project.artNote}</p></CsBody>
           <div className="motion-frame-grid">
             {project.frames.map((frame) => (
@@ -1157,12 +1024,16 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
           <CsInfoGrid items={project.principles.map((principle) => ({ key: principle.label, value: principle.value }))} />
         </CsSection>
 
-        <CsSection id="motion-decisions" label={`${sectionNumber(3, true, true)} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the advertising story' : 'Specific choices, tied to transaction trust'}>
+        <CsSection id="motion-decisions" label={`${sectionNumbers.decisions} — Motion decisions`} title={isVishwa ? 'Specific choices, tied to the campaign' : isMentra ? 'Specific choices, tied to the advertising story' : 'Specific choices, tied to transaction trust'}>
           <CsBody><p>{isVishwa ? 'The same campaign could be atmospheric or informational because the motion rules were attached to communication jobs, not to a single visual effect.' : isMentra ? 'Every decision protects the advertising hierarchy: desire first, proof second, platform third. The system avoids category clichés that make the brand louder while making the human benefit less specific.' : 'Every decision protects continuity, comprehension, or confidence. The system removes familiar fintech effects whenever they make the actual product journey less observable.'}</p></CsBody>
           <DecisionList decisions={project.decisions} />
         </CsSection>
 
-        <CsSection id="after-effects" label={`${sectionNumber(4, true, true)} — After Effects build`} title="An editable master, not a mysterious hero file">
+        <CsSection
+          id="after-effects"
+          label={`${sectionNumbers.afterEffects} — After Effects production plan`}
+          title={isVishwa ? 'A retrospective rebuild for the campaign archive.' : isMentra ? 'One editable file for the campaign family.' : 'One editable file for the transaction story.'}
+        >
           <CsBody>
             <p>{isVishwa ? 'The original media survives; the old team project file is not presented as a current deliverable. This is a documented After Effects rebuild showing how I would now organize the campaign for faster iteration, specialist collaboration, and consistent social versions.' : isMentra ? 'This build plan turns the advertising grammar into a reusable campaign tool: one master hierarchy, a swappable Stream/Hear/Focus/Build hook family, protected lifestyle and product modules, and paid-social compositions that inherit timing instead of duplicating it.' : 'This build plan turns one transaction into an editable GTM tool: a persistent amount controller, a six-marker state route, protected product pre-comps, localized copy fields, and delivery versions that inherit the same timing instead of recreating it.'}</p>
           </CsBody>
@@ -1170,18 +1041,8 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             <span>Ae</span>
             <div><strong>Production spine</strong><p>{isVishwa ? 'Illustrator and Photoshop source art → After Effects type, camera, compositing, and modular content pre-comps → Premiere edit and audio → Media Encoder delivery set.' : isMentra ? 'Photoshop campaign frames + Illustrator identity vectors + Blender render passes + Figma MentraOS states → After Effects campaign rig, captions, and responsive versions → Premiere sound edit → Media Encoder delivery.' : 'Illustrator identity vectors + Figma checkout and dashboard states → After Effects route rig, amount controls, compositing, and captions → Premiere sound edit → Media Encoder delivery.'}</p></div>
           </div>
-          {isVishwa && <VishwaAeStack />}
-          {isMentra && <MentraAeStack />}
-          {isTransfi && <TransfiAeStack />}
           <CsSteps steps={project.aeBuild.map((item, index) => ({ num: `0${index + 1}`, title: `${item.layer} · ${item.technique}`, desc: item.purpose }))} />
           <CsInfoGrid items={project.deliveries} />
-        </CsSection>
-
-        <CsSection id="scope" label={`${sectionNumber(5, true, true)} — Scope & authorship`} title="Clear about what is shipped and what is studied">
-          <CsBody><p>{project.truthNote}</p></CsBody>
-          <ul className="motion-output-list">
-            {project.outputs.map((output) => <li key={output}>{output}<span aria-hidden="true">↗</span></li>)}
-          </ul>
         </CsSection>
 
         <NextProject
@@ -1191,10 +1052,10 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
         />
         <BottomNav sections={[
           ...(hasBrief ? [{ id: 'motion-brief', label: 'Brief' }] : []),
+          ...(hasSourceVideoSection ? [{ id: 'source-video', label: 'Footage' }] : []),
           { id: 'motion-story', label: 'Storyboard' },
           ...(isVishwa ? [{ id: 'campaign-archive', label: 'Archive' }] : []),
           ...(isMentra || isTransfi ? [{ id: 'motion-system', label: 'Motion system' }] : []),
-          ...(hasSourceVideoSection ? [{ id: 'source-video', label: 'Footage' }] : []),
           { id: 'art-direction', label: 'Art direction' },
           { id: 'motion-decisions', label: 'Decisions' },
           { id: 'after-effects', label: 'After Effects' },
