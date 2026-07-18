@@ -836,13 +836,13 @@ export const categories: CategoryData[] = [
         {
           slug: 'medimorpho',
           image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
-          alt: 'NYU Langone Health building signage for an independent academic healthcare concept',
+          alt: 'NYU Langone Health building signage for a healthcare UX research case study',
           name: 'NYU Langone',
           result: 'A multilingual care model shaped by 20 primary-research interviews',
           role: 'Service Designer · 2024',
           tag: 'HEALTHCARE UX',
           year: '2024',
-          desc: 'Independent research into language identification, live interpretation, and a shared clinical recap',
+          desc: 'Research into language identification, live interpretation, and a shared clinical recap',
         },
         {
           slug: 'the-point-cdc',

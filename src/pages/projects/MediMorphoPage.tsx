@@ -17,7 +17,7 @@ export default function MediMorphoPage() {
         <title>NYU Langone Healthcare Case Study · Parth Pawar</title>
         <meta
           name="description"
-          content="An independent NYU healthcare UX research case study examining language, communication, and system-navigation barriers through 20 interviews."
+          content="A NYU Langone healthcare UX research case study examining language, communication, and system-navigation barriers through 20 interviews."
         />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="NYU Langone Healthcare Case Study · Parth Pawar" />
@@ -41,24 +41,24 @@ export default function MediMorphoPage() {
           categorySlug="design-for-good"
           tags={['Healthcare UX', 'Service Design', 'Research', 'NDA']}
           title="NYU Langone"
-          heroEyebrow="MediMorpho · Independent academic concept"
+          heroEyebrow="NYU Langone · Healthcare UX research"
           subtitle="A research-led exploration of how language and cultural barriers intensify an already fragmented healthcare journey."
           heroImage={COVER}
-          heroAlt="NYU Langone Health building signage, the healthcare setting used for the MediMorpho academic concept."
+          heroAlt="NYU Langone Health building signage for the healthcare UX research case study."
           showHeaderSummary={false}
           visualHeroMedia={(
             <div className="medimorpho-hero-photo">
               <img
                 src={COVER}
-                alt="NYU Langone Health building signage, the healthcare setting used for the MediMorpho academic concept."
+                alt="NYU Langone Health building signage for the healthcare UX research case study."
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
               />
               <div className="medimorpho-hero-photo__wash" aria-hidden="true" />
               <div className="medimorpho-hero-photo__label">
-                <span>Independent academic concept</span>
-                <strong>MediMorpho</strong>
+                <span>Healthcare UX research</span>
+                <strong>NYU Langone</strong>
                 <small>Ecosystem research → interviews → synthesis</small>
               </div>
               <div className="medimorpho-hero-photo__proof" aria-label="Project research proof points">
@@ -68,7 +68,7 @@ export default function MediMorphoPage() {
             </div>
           )}
           info={[
-            { label: 'Context', value: 'NYU academic concept' },
+            { label: 'Context', value: 'NYU Langone' },
             { label: 'Role', value: 'UX Research & Service Design' },
             { label: 'Team', value: '5 NYU students' },
             { label: 'Timeline', value: 'Jan–Feb 2024' },

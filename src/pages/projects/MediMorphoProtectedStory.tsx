@@ -177,7 +177,7 @@ export default function MediMorphoProtectedStory() {
             </div>
             <div>
               <span>Healthcare research context</span>
-              <p>Independent academic research using NYU Langone as the care setting. This is not an official NYU Langone product or commissioned engagement.</p>
+              <p>Healthcare UX research focused on the NYU Langone care setting and the journey of patients with limited English proficiency.</p>
             </div>
           </div>
 
