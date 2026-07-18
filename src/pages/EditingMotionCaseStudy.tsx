@@ -3,10 +3,8 @@ import { useReducedMotion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectHeader from '../components/case-study/ProjectHeader'
-import ProjectOverview from '../components/case-study/ProjectOverview'
 import CsSection from '../components/case-study/CsSection'
 import CsBody from '../components/case-study/CsBody'
-import CsInfoGrid from '../components/case-study/CsInfoGrid'
 import NextProject from '../components/case-study/NextProject'
 import BottomNav from '../components/case-study/BottomNav'
 import '../styles/editing-motion.css'
@@ -18,7 +16,7 @@ const films = [
     subtitle: 'Make invisible computation visible',
     src: 'https://player.vimeo.com/video/895893649?h=d78737dcdb&title=0&byline=0&portrait=0&dnt=1',
     href: '/enigma',
-    note: 'Explanatory edit · gesture → signal → prediction',
+    note: 'Gesture → signal → prediction',
     featured: true,
   },
   {
@@ -27,7 +25,7 @@ const films = [
     subtitle: 'Turn a physical game into immediate competition',
     src: 'https://player.vimeo.com/video/996020990?title=0&byline=0&portrait=0&dnt=1',
     href: '/the-omakase',
-    note: 'Kinetic demo · hands → screen → opponent → score',
+    note: 'Hands → screen → opponent → score',
   },
   {
     key: 'time',
@@ -35,7 +33,7 @@ const films = [
     subtitle: 'Connect three objects through one idea',
     src: 'https://player.vimeo.com/video/1010457989?title=0&byline=0&portrait=0&dnt=1',
     href: '/making-of-time',
-    note: 'Process film · shadow → escapement → software',
+    note: 'Shadow → escapement → software',
   },
   {
     key: 'drowning',
@@ -43,17 +41,15 @@ const films = [
     subtitle: 'Let the room become the emotional argument',
     src: 'https://player.vimeo.com/video/1026164956?title=0&byline=0&portrait=0&dnt=1',
     href: '/drowning',
-    note: 'Atmospheric edit · threshold → texture → body → enclosure',
+    note: 'Threshold → texture → body → enclosure',
   },
 ]
 
 const workflows = [
-  ['01', 'Ingest by story function', 'Separate gestures, details, environments, reactions, and proof shots. Shoot day is metadata; editorial purpose is the bin structure.'],
-  ['02', 'Build a selects stringout', 'Keep the cleanest action, the clearest consequence, and the most human response. Near-duplicates go before music enters the timeline.'],
-  ['03', 'Write the paper edit', 'Reduce the film to one sentence, then arrange four to six beats that make that sentence visible without explanatory padding.'],
-  ['04', 'Cut for cause and effect', 'Show the input before the system response, the rule before the payoff, and the spatial context before close detail.'],
-  ['05', 'Design sound and graphics', 'Use sound bridges to preserve continuity and motion graphics only where footage cannot communicate state, sequence, or context alone.'],
-  ['06', 'Version from one master', 'Lock the narrative spine once, then build shorter, vertical, captioned, and sound-off outputs without changing the core claim.'],
+  ['01', 'Find the story', 'Sort footage by what it explains: input, response, detail, and reaction.'],
+  ['02', 'Write one sentence', 'Define the change the viewer must understand before opening the timeline.'],
+  ['03', 'Cut cause to effect', 'Show the action before the response. Earn the hero shot after the idea is clear.'],
+  ['04', 'Finish once', 'Add sound and graphics after the story works, then version from one master.'],
 ]
 
 const anatomies = [
@@ -63,8 +59,7 @@ const anatomies = [
     image: '/Assets/Projects/Enigma/photos/tablet-input.jpg',
     alt: 'A visitor drawing a letter on the Enigma input tablet',
     thesis: 'Cause before spectacle',
-    body: 'The light sculpture is visually rich, but a beauty montage would hide the idea. The edit begins with the hand-drawn input, follows the activation through the physical network, and only then earns the wide hero shot.',
-    beats: ['Draw', 'Travel', 'Resolve', 'React'],
+    body: 'Input first, then the network, then the wide reveal. The spectacle lands because the system is already clear.',
   },
   {
     key: 'omakase',
@@ -72,8 +67,7 @@ const anatomies = [
     image: '/Assets/Projects/the-omakase/photos/head-to-head-match.webp',
     alt: 'Two players competing head to head at The Omakase arcade cabinet',
     thesis: 'Action before explanation',
-    body: 'The film teaches the game through repeated visual relationships: colored order, matching button, physical press, score change, opponent response. Reaction shots are the punctuation—not decoration.',
-    beats: ['Order', 'Press', 'Score', 'Compete'],
+    body: 'Order, press, score, reaction. Repetition teaches the game without stopping to explain it.',
   },
   {
     key: 'time',
@@ -81,8 +75,7 @@ const anatomies = [
     image: '/Assets/Projects/making-of-time/photos/blue-dial-hero.webp',
     alt: 'Blue mechanical watch dial photographed for Making of Time',
     thesis: 'Match ideas, not objects',
-    body: 'A sundial, watch movement, and software clock do not share a literal shape. The cut connects them through rhythm: shadow advances, an escapement releases, and a color field updates.',
-    beats: ['Shadow', 'Tick', 'Measure', 'Transform'],
+    body: 'Shadow, escapement, and software are linked by rhythm rather than literal shape.',
   },
   {
     key: 'drowning',
@@ -90,8 +83,7 @@ const anatomies = [
     image: '/Assets/Projects/Drowning/photos/WhatsApp Image 2024-10-10 at 11.54.18.webp',
     alt: 'The Drowning greenhouse set illuminated during performance',
     thesis: 'Restraint creates pressure',
-    body: 'The performance edit holds longer than the product films. Wide frames establish the greenhouse as a room; material details and bodies arrive gradually so enclosure is felt before it is explained.',
-    beats: ['Enter', 'Observe', 'Compress', 'Hold'],
+    body: 'Longer holds and delayed close-ups let the greenhouse become the pressure.',
   },
 ]
 
@@ -116,10 +108,6 @@ function EditingHeroFilm() {
         loading="eager"
         title="Enigma project film — selected editorial practice"
       />
-      <figcaption aria-hidden="true">
-        <span>Enigma</span>
-        <span>Selected editorial film · 2023</span>
-      </figcaption>
     </figure>
   )
 }
@@ -167,9 +155,6 @@ function EditAnatomies() {
           <div className="editing-anatomy__image"><img src={item.image} alt={item.alt} loading="lazy" /></div>
           <div className="editing-anatomy__copy">
             <small>{item.title}</small><h3>{item.thesis}</h3><p>{item.body}</p>
-            <div className="editing-anatomy__beats" aria-label={`${item.title} edit beats`}>
-              {item.beats.map((beat, index) => <span key={beat}>{beat}{index < item.beats.length - 1 && <i aria-hidden="true">→</i>}</span>)}
-            </div>
           </div>
         </article>
       ))}
@@ -193,38 +178,6 @@ function EditorialTimeline() {
   )
 }
 
-function ProductionMaps() {
-  const premiereRows = [
-    ['01_INGEST', 'Camera originals · phone footage · screen records', 'Source'],
-    ['02_SELECTS_ACTION', 'Gestures · controls · reactions · proof', 'Stringout'],
-    ['03_SELECTS_DETAIL', 'Materials · interfaces · mechanisms · light', 'Stringout'],
-    ['10_STORY_MASTER', 'Promise · input · system · payoff · resolve', 'Sequence'],
-    ['20_AUDIO', 'Sync · room tone · effects · music · mix', 'Sequence'],
-    ['90_DELIVERY', 'Master · captions · vertical · cutdowns', 'Versions'],
-  ]
-  const afterEffectsRows = [
-    ['00_GFX_MASTER', 'Title-safe guides · global type controls', 'Master'],
-    ['01_STATE_LABELS', 'Input · process · output · outcome', 'Pre-comp'],
-    ['02_SCREEN_COMPOSITES', 'Track · mask · replace · grade match', 'Pre-comp'],
-    ['03_CLEANUP', 'Stabilize · remove distractions · isolate light', 'Pre-comp'],
-    ['90_MOGRT_EXPORT', 'Editable title and end-card controls', 'Template'],
-  ]
-
-  const stack = (title: string, note: string, rows: string[][], color: string) => (
-    <div className="editing-production-stack">
-      <header><span>{title}</span><small>{note}</small></header>
-      {rows.map(([name, contents, kind], index) => (
-        <div className="editing-production-stack__row" key={name}>
-          <i style={{ '--track-color': index === 0 ? color : index === rows.length - 1 ? '#8f8f98' : '#64646e' } as React.CSSProperties} />
-          <code>{name}</code><span>{contents}</span><small>{kind}</small>
-        </div>
-      ))}
-    </div>
-  )
-
-  return <div className="editing-production-grid">{stack('Premiere Pro project map', 'Editorial master', premiereRows, '#9999ff')}{stack('After Effects project map', 'Graphics and finish', afterEffectsRows, '#6fd6ff')}</div>
-}
-
 export default function EditingMotionCaseStudy() {
   return (
     <>
@@ -244,12 +197,12 @@ export default function EditingMotionCaseStudy() {
           categorySlug="creative-tech"
           tags={['Video editing', 'Editorial direction', 'Motion graphics']}
           title="Cutting Systems into Stories"
-          subtitle="How Enigma, The Omakase, Making of Time, and Drowning became films—not documentation dumps"
+          subtitle="Editing interactive systems into films that explain the idea before the spectacle"
           info={[
-            { label: 'Role', value: 'Editor · Director · Motion designer' },
+            { label: 'Role', value: 'Editor · Motion designer' },
             { label: 'Years', value: '2023–25' },
-            { label: 'Tools', value: 'Premiere Pro · After Effects · Audition · Media Encoder' },
-            { label: 'Scope', value: 'Selects · story edit · sound · graphics · finish · delivery' },
+            { label: 'Tools', value: 'Premiere Pro · After Effects' },
+            { label: 'Scope', value: 'Story edit · sound · graphics' },
           ]}
           heroExperience="visual"
           heroEyebrow="Selected editorial practice"
@@ -261,93 +214,40 @@ export default function EditingMotionCaseStudy() {
           showHeaderSummary={false}
         />
 
-        <ProjectOverview sections={[
-          { label: 'The challenge', content: 'Interactive objects, installations, and performances are difficult to understand through a beauty reel alone. Each film needed to explain what changes, why it matters, and how it feels—without slowing into a tutorial.' },
-          { label: 'Editorial direction', content: 'Find the decisive cause-and-effect loop in each project, build the edit around that loop, then let pacing, sound, inserts, and graphics protect comprehension.' },
-          { label: 'The system', content: 'One repeatable workflow moves from labeled footage and a paper edit into a Premiere master, focused After Effects comps, an intentional mix, and reusable delivery versions.' },
-        ]} />
-
-        <CsSection id="editing-brief" label="01 — Editorial brief" title="Do not summarize the whole project. Find the one transformation the viewer must understand.">
-          <CsBody>
-            <p>Every project contains too much material: build footage, screens, interactions, details, exhibition coverage, and final hero shots. The editorial job is subtraction. Each film receives one sentence, one visual transformation, and a shot hierarchy that earns the payoff.</p>
-          </CsBody>
-          <div className="editing-brief-grid">
-            {[
-              ['Subject', 'Interactive systems, physical objects, installation, and performance'],
-              ['Audience', 'A viewer meeting the work for the first time—often on a small screen'],
-              ['Editorial job', 'Make input, behavior, and consequence readable before adding atmosphere'],
-              ['Delivery reality', 'Portfolio master, sound-off playback, embeds, social crops, and captions'],
-            ].map(([label, value], index) => <article key={label}><span>0{index + 1}</span><small>{label}</small><p>{value}</p></article>)}
-          </div>
-          <div className="editing-thesis"><small>Working rule</small><strong>If a cut does not clarify cause, increase feeling, or preserve rhythm, it leaves the sequence.</strong></div>
-        </CsSection>
-
-        <CsSection id="selected-films" label="02 — Selected films" title="Four subjects. Four editorial rhythms. One commitment to clarity.">
-          <CsBody><p>The films are presented in full before the breakdown. Enigma and Omakase lead because they show the range most relevant to product storytelling: one makes a hidden system legible; the other makes physical interaction feel immediate.</p></CsBody>
+        <CsSection id="selected-films" label="01 — Selected films" title="Four subjects. Four editorial rhythms.">
+          <CsBody><p>Each film is cut around the one behavior the viewer needs to understand.</p></CsBody>
           <SelectedFilms />
         </CsSection>
 
-        <CsSection id="editing-process" label="03 — Editing process" title="From footage to a sentence, then from a sentence to a sequence.">
-          <CsBody><p>The process begins before the timeline looks impressive. Footage is organized by what it communicates, near-duplicates are removed, and the story is tested without titles or music. Polish arrives after causality works.</p></CsBody>
+        <CsSection id="editing-process" label="02 — Editing process" title="Clarity before polish.">
+          <CsBody><p>Find the transformation, prove it in the cut, then add sound and motion.</p></CsBody>
           <EditorialWorkflow />
+          <EditorialTimeline />
         </CsSection>
 
-        <CsSection id="edit-anatomy" label="04 — Edit anatomy" title="The cut rule changes with the subject.">
-          <CsBody><p>Fast is not a style. Enigma needs the latency of a system response, Omakase needs competitive pressure, Making of Time needs associative rhythm, and Drowning needs duration. The edit earns its pace from the idea.</p></CsBody>
+        <CsSection id="edit-anatomy" label="03 — Edit decisions" title="The pace follows the subject.">
+          <CsBody><p>Enigma needs latency. Omakase needs pressure. Time needs rhythm. Drowning needs duration.</p></CsBody>
           <EditAnatomies />
         </CsSection>
 
-        <CsSection id="premiere-map" label="05 — Premiere Pro sequence" title="The timeline is arranged by narrative responsibility, not visual novelty.">
-          <CsBody><p>The story track stays continuous. Inserts explain action without replacing spatial context; titles name only what footage cannot; sound begins before and ends after cuts to prevent the sequence from feeling like disconnected clips.</p></CsBody>
-          <EditorialTimeline />
-          <div className="editing-cut-notes">
-            {[
-              ['J-cuts', 'Introduce mechanism, room, or crowd sound before the matching image so transitions feel motivated.'],
-              ['L-cuts', 'Let reactions, mechanical tails, and atmosphere continue after the picture changes to preserve consequence.'],
-              ['Insert discipline', 'Use detail shots to explain a gesture or state—not to hide a weak story transition.'],
-              ['Proof holds', 'Hold on prediction, score, mechanism, or final spatial state long enough for the viewer to verify it.'],
-            ].map(([title, body]) => <article key={title}><strong>{title}</strong><p>{body}</p></article>)}
-          </div>
-        </CsSection>
-
-        <CsSection id="post-production" label="06 — Post-production system" title="Premiere owns the story. After Effects solves the shots that need intervention.">
-          <CsBody><p>Keeping responsibilities separate prevents endless round-tripping. Premiere holds selects, structure, sync, pacing, and the mix. After Effects receives only tracked screens, cleanup shots, state labels, title modules, and the end card.</p></CsBody>
-          <ProductionMaps />
+        <CsSection id="post-production" label="04 — Finish" title="Premiere owns the story. After Effects handles intervention.">
+          <CsBody><p>Structure stays in Premiere. Tracked graphics, composites, cleanup, and title motion move to After Effects.</p></CsBody>
           <div className="editing-tool-grid">
-            <article><span>Pr</span><div><strong>Editorial spine</strong><p>Ingest, selects, paper-edit assembly, pacing, multicam and sync, captions, audio layout, and version sequences.</p></div></article>
-            <article><span>Ae</span><div><strong>Motion and composites</strong><p>Screen replacements, tracked labels, stabilization, cleanup, light isolation, title behavior, and reusable end cards.</p></div></article>
-            <article><span>Au</span><div><strong>Audio repair and mix</strong><p>Noise reduction, dialogue cleanup, mechanism emphasis, room-tone continuity, EQ, and loudness-aware masters.</p></div></article>
+            <article><span>Pr</span><div><strong>Editorial spine</strong><p>Selects, story structure, pacing, sync, sound layout, captions, and delivery versions.</p></div></article>
+            <article><span>Ae</span><div><strong>Motion and composites</strong><p>Tracked screens, stabilization, cleanup, state labels, title motion, and reusable end cards.</p></div></article>
           </div>
-        </CsSection>
-
-        <CsSection id="delivery" label="07 — Sound, color & delivery" title="Finish for the way the film will actually be watched.">
-          <CsBody><p>The master is not the final deliverable; it is the source of a family. Captions, safe zones, smaller-screen legibility, audio normalization, thumbnail frames, and platform compression are planned before export rather than repaired afterward.</p></CsBody>
-          <CsInfoGrid items={[
-            { key: 'Sound', value: 'Sync cleanup · room tone · designed actions · music edit · loudness pass' },
-            { key: 'Color', value: 'Shot matching · exposure continuity · selective saturation · display-safe contrast' },
-            { key: 'Graphics', value: 'Opening promise · state label · minimal annotation · stable end card' },
-            { key: 'Masters', value: '16:9 portfolio · captioned · sound-off · 4:5 · 9:16 · short cutdown' },
-          ]} />
-          <ul className="motion-output-list">
-            {['Narrative portfolio films', 'Project demo cutdowns', 'Captioned and sound-off versions', 'Responsive social masters'].map((output) => <li key={output}>{output}<span aria-hidden="true">↗</span></li>)}
-          </ul>
-        </CsSection>
-
-        <CsSection id="authorship" label="08 — Scope & authorship" title="The edit is mine; the projects remain collaborative where collaboration exists.">
-          <CsBody>
-            <p>This case study documents my editorial reasoning, assembly, motion-graphics, sound, and delivery practice across project films built from my work. It does not imply that every camera angle, performance, fabrication task, or collaborator contribution was solo. The full project pages linked above preserve the broader project context and credits.</p>
-          </CsBody>
+          <div className="editing-finish-list">
+            <p><span>Delivery</span>16:9 master · captions · sound-off · 4:5 and 9:16 cutdowns</p>
+            <p><span>Authorship</span>Editing, motion graphics, sound, and delivery by Parth Pawar. Full project pages retain collaborator credits.</p>
+          </div>
         </CsSection>
 
         <NextProject slug="motion/vishwa-conclave-motion" title="VishwaConclave: An event identity in motion" image="/Assets/mockups/projects/vishwaconclave_16x9.webp" />
         <BottomNav sections={[
-          { id: 'editing-brief', label: 'Brief' },
           { id: 'selected-films', label: 'Films' },
           { id: 'editing-process', label: 'Process' },
-          { id: 'edit-anatomy', label: 'Anatomy' },
-          { id: 'premiere-map', label: 'Timeline' },
-          { id: 'post-production', label: 'Post' },
-          { id: 'delivery', label: 'Delivery' },
+          { id: 'edit-anatomy', label: 'Decisions' },
+          { id: 'post-production', label: 'Finish' },
         ]} />
       </main>
       <Footer />

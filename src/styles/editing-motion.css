@@ -44,23 +44,6 @@
   border: 0;
 }
 
-.editing-hero-film figcaption {
-  position: absolute;
-  z-index: 2;
-  right: clamp(0.75rem, 2vw, 1.25rem);
-  bottom: clamp(0.75rem, 2vw, 1.25rem);
-  left: clamp(0.75rem, 2vw, 1.25rem);
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  color: rgba(255, 255, 255, 0.72);
-  font: 600 0.62rem/1.2 var(--mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
-  pointer-events: none;
-}
-
 .editing-brief-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -150,21 +133,21 @@
 
 .editing-workflow {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: clamp(2.5rem, 6vw, 5rem) 0 0;
   border-top: 1px solid var(--ink-08);
   border-left: 1px solid var(--ink-08);
 }
 
 .editing-workflow article {
-  min-height: 270px;
+  min-height: 220px;
   padding: 1.15rem;
   border-right: 1px solid var(--ink-08);
   border-bottom: 1px solid var(--ink-08);
 }
 
 .editing-workflow span { color: var(--project-color); font: 600 0.72rem/1 var(--mono); }
-.editing-workflow h3 { margin: 5rem 0 0.85rem; font-size: 1.28rem; font-weight: 500; letter-spacing: -0.025em; }
+.editing-workflow h3 { margin: 3rem 0 0.85rem; font-size: 1.28rem; font-weight: 500; letter-spacing: -0.025em; }
 .editing-workflow p { margin: 0; color: var(--ink-60); font-size: 0.9rem; line-height: 1.55; }
 
 .editing-anatomy-grid { display: grid; gap: clamp(2rem, 5vw, 4rem); margin: clamp(2.5rem, 6vw, 5rem) 0 0; }
@@ -188,16 +171,6 @@
 .editing-anatomy__copy > small { color: var(--project-color); font: 600 0.7rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
 .editing-anatomy__copy h3 { margin: 1rem 0; font-size: clamp(2rem, 3.8vw, 4rem); font-weight: 450; line-height: 0.98; letter-spacing: -0.05em; }
 .editing-anatomy__copy p { margin: 0; color: var(--ink-60); font-size: 0.95rem; line-height: 1.65; }
-
-.editing-anatomy__beats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: clamp(2rem, 5vw, 4rem);
-  border-top: 1px solid var(--ink-08);
-}
-
-.editing-anatomy__beats span { position: relative; padding: 0.9rem 0.4rem 0 0; color: var(--ink-70); font: 600 0.65rem/1.2 var(--mono); text-transform: uppercase; }
-.editing-anatomy__beats i { position: absolute; right: 0.3rem; color: var(--ink-20); font-style: normal; }
 
 .editing-timeline {
   position: relative;
@@ -257,7 +230,7 @@
 .editing-production-stack__row span { color: var(--ink-60); font-size: 0.76rem; line-height: 1.4; }
 .editing-production-stack__row small { color: var(--ink-40); font: 600 0.58rem/1 var(--mono); text-transform: uppercase; }
 
-.editing-tool-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.editing-tool-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .editing-tool-grid article { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 1rem; min-height: 180px; padding: 1rem; border: 1px solid var(--ink-08); border-radius: var(--case-media-radius); }
 .editing-tool-grid article > span { display: grid; width: 58px; height: 58px; place-items: center; border-radius: 8px; background: #00005b; color: #9999ff; font: 600 1.25rem/1 var(--sans); }
 .editing-tool-grid article:nth-child(2) > span { color: #6fd6ff; }
@@ -265,10 +238,34 @@
 .editing-tool-grid strong { font-size: 1rem; font-weight: 600; }
 .editing-tool-grid p { margin: 1rem 0 0; color: var(--ink-60); font-size: 0.86rem; line-height: 1.5; }
 
+.editing-finish-list {
+  display: grid;
+  margin-top: clamp(2rem, 5vw, 4rem);
+  border-top: 1px solid var(--ink-08);
+}
+
+.editing-finish-list p {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.28fr) minmax(0, 1fr);
+  gap: 1rem;
+  margin: 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--ink-08);
+  color: var(--ink-60);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.editing-finish-list span {
+  color: var(--project-color);
+  font: 600 0.68rem/1.4 var(--mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 980px) {
   .editing-brief-grid,
   .editing-cut-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .editing-workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .editing-anatomy { grid-template-columns: 1fr; }
   .editing-anatomy:nth-child(even) .editing-anatomy__image { order: initial; }
   .editing-anatomy__image { min-height: 360px; }
@@ -277,7 +274,6 @@
 }
 
 @media (max-width: 680px) {
-  .editing-hero-film figcaption span:last-child { display: none; }
   .editing-brief-grid,
   .editing-film-grid,
   .editing-workflow,
@@ -290,7 +286,6 @@
   .editing-workflow article { min-height: 230px; }
   .editing-workflow h3 { margin-top: 3.5rem; }
   .editing-anatomy__image { min-height: 260px; }
-  .editing-anatomy__beats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .editing-timeline__ruler { margin-left: 92px; }
   .editing-track { grid-template-columns: 92px minmax(0, 1fr); }
   .editing-track > strong { padding: 0.65rem 0.5rem; font-size: 0.52rem; }
@@ -301,4 +296,5 @@
   .editing-production-stack__row > span { display: none; }
   .editing-tool-grid article { grid-template-columns: 48px minmax(0, 1fr); }
   .editing-tool-grid article > span { width: 48px; height: 48px; }
+  .editing-finish-list p { grid-template-columns: 1fr; gap: 0.45rem; }
 }
