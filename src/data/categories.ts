@@ -790,7 +790,7 @@ export const categories: CategoryData[] = [
     metaTitle: 'Design for Good · Parth Pawar',
     metaDescription:
       'Impact-driven design, accessibility, community development, and equity in education.',
-    stats: ['4 healthcare & impact systems', 'Community-centered', 'Accessibility-first'],
+    stats: ['3 impact projects', 'Community-centered', 'Accessibility-first'],
     tools: [
       'Figma',
       'Co-design',
@@ -832,17 +832,6 @@ export const categories: CategoryData[] = [
           tag: 'DIGITAL HEALTH',
           year: '2024',
           desc: 'A calmer daily planner that adapts work to the person doing it',
-        },
-        {
-          slug: 'medimorpho',
-          image: '/Assets/Projects/MediMorpho/medimorpho-16x9.svg',
-          alt: 'MediMorpho multilingual healthcare interpretation concept',
-          name: 'MediMorpho',
-          result: 'A multilingual care model shaped by 20 primary-research interviews',
-          role: 'Service Designer · 2024',
-          tag: 'HEALTHCARE UX',
-          year: '2024',
-          desc: 'Language identification, live interpretation, and a shared clinical recap for clearer care',
         },
         {
           slug: 'the-point-cdc',
