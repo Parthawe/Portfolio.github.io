@@ -1417,6 +1417,19 @@
 .transfi-format--wide > img { padding: 3%; background: #f3f6ff; object-fit: contain; }
 .transfi-format--vertical > img { background: #fff; object-fit: contain; }
 
+:is(
+  .mentra-onboarding-motion,
+  .mentra-benchmark,
+  .mentra-source-grid,
+  .mentra-token-grid,
+  .mentra-format-map,
+  .transfi-state-rules
+) {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
 .motion-frame-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1531,6 +1544,22 @@
 @keyframes motionTransfiMoveAsset { 0%, 40% { transform: translateY(9%); } 51%, 68% { transform: translateY(0); } 74%, 100% { transform: translateY(-3%); } }
 @keyframes motionTransfiConfirmAsset { 0%, 66% { transform: translateY(7%); } 78%, 97% { transform: translateY(0); } 100% { transform: translateY(2%); } }
 @keyframes motionTransfiTimeline { 0% { transform: scaleX(0); } 97%, 100% { transform: scaleX(1); } }
+
+@container (max-width: 720px) {
+  .mentra-onboarding-motion,
+  .mentra-benchmark,
+  .transfi-state-rules {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mentra-format-map {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr);
+  }
+
+  .mentra-format-map__copy {
+    grid-column: 1 / -1;
+  }
+}
 
 @media (max-width: 900px) {
   .motion-index-hero {
