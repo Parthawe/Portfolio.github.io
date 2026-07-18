@@ -1314,11 +1314,17 @@ html.is-low-power-device .cl-marquee-track {
     grid-template-columns: 1fr;
   }
 }
-/* Healthcare intentionally pairs two contemporary case studies. Let both
-   cards use the full row instead of leaving an empty masonry column. */
+/* Healthcare carries three contemporary studies; keep the row balanced so
+   MediMorpho, IBM, and Health App read as one curated set. */
 .wrap:has(.ch--design-for-good) #lp-work > .pcard-masonry {
-  column-count: 2;
+  column-count: 3;
   column-gap: 24px;
+}
+
+@media (max-width: 880px) {
+  .wrap:has(.ch--design-for-good) #lp-work > .pcard-masonry {
+    column-count: 2;
+  }
 }
 
 @media (max-width: 540px) {

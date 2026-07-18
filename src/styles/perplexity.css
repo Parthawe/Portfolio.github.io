@@ -26,7 +26,58 @@
   --select-blue: #fff !important;
   --site-tool-ink: #fff !important;
   --figma-chrome-accent: #fff !important;
+  --figma-cursor-accent: #fff !important;
   --folio-glow-color: #fff !important;
+  --site-panel-bg: #171717;
+  --site-panel-section: #1c1c1c;
+  --site-panel-control: #252525;
+  --site-panel-control-hover: #2d2d2d;
+  --site-panel-line: rgba(255,255,255,0.11);
+  --site-panel-selected: #333;
+  --site-panel-selected-strong: #444;
+}
+
+.page-perplexity-monochrome .reading-cursor--parth,
+.page-perplexity-monochrome .reading-cursor--parth .reading-cursor__trigger,
+.page-perplexity-monochrome .reading-cursor--parth .reading-cursor__glyph,
+.page-perplexity-monochrome .reading-cursor--parth .reading-cursor__identity {
+  color: #fff !important;
+}
+
+.page-perplexity-monochrome .reading-cursor--parth {
+  --parth-panel-bg: rgba(23,23,23,0.96);
+  --parth-panel-section: #1c1c1c;
+  --parth-panel-control: #252525;
+  --parth-panel-control-hover: #2d2d2d;
+  --parth-panel-ink: #f2f2f2;
+  --parth-panel-muted: rgba(242,242,242,0.66);
+  --parth-panel-line: rgba(242,242,242,0.13);
+  --parth-panel-accent: #fff;
+  --parth-panel-highlight: rgba(255,255,255,0.12);
+}
+
+.page-perplexity-monochrome .reading-cursor--parth .reading-cursor__glyph path {
+  fill: #fff !important;
+}
+
+.page-perplexity-monochrome .reading-cursor--parth .reading-cursor__tag,
+.page-perplexity-monochrome .reading-cursor__invite,
+.page-perplexity-monochrome .reading-cursor__note,
+.page-perplexity-monochrome .ft-cursor-tag {
+  border-color: rgba(255,255,255,0.24) !important;
+  background: #fff !important;
+  box-shadow: 0 0.24rem 0.7rem rgba(0,0,0,0.34) !important;
+  color: #050505 !important;
+}
+
+.page-perplexity-monochrome .reading-cursor--parth .reading-cursor__trigger::after {
+  border-color: rgba(255,255,255,0.24);
+  background: #111;
+  box-shadow: 0 0.6rem 1.4rem rgba(0,0,0,0.28);
+}
+
+.page-perplexity-monochrome .reading-cursor__trigger:focus-visible .reading-cursor__tag {
+  box-shadow: 0 0 0 4px #444 !important;
 }
 
 .perplexity-page {
