@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { useReducedMotion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectHeader from '../components/case-study/ProjectHeader'
@@ -101,6 +102,27 @@ const editTracks = [
   { label: 'A2 · SOUND DESIGN', clips: ['ROOM', 'GESTURE', 'MECHANISM', 'IMPACT', 'TAIL'] },
   { label: 'A1 · SYNC / MUSIC', clips: ['SYNC', 'BED', 'BED', 'BED', 'MIX'] },
 ]
+
+function EditingHeroFilm() {
+  const reduceMotion = Boolean(useReducedMotion())
+  const playback = reduceMotion ? '&autoplay=0' : '&autoplay=1&muted=1&loop=1&autopause=0'
+
+  return (
+    <figure className="editing-hero-film">
+      <iframe
+        src={`https://player.vimeo.com/video/895893649?h=d78737dcdb&title=0&byline=0&portrait=0&dnt=1${playback}`}
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        loading="eager"
+        title="Enigma project film — selected editorial practice"
+      />
+      <figcaption aria-hidden="true">
+        <span>Enigma</span>
+        <span>Selected editorial film · 2023</span>
+      </figcaption>
+    </figure>
+  )
+}
 
 function SelectedFilms() {
   return (
@@ -234,6 +256,7 @@ export default function EditingMotionCaseStudy() {
           visualHeadline="A good project film reveals the idea before it asks for attention."
           visualHeroImage="/Assets/mockups/projects/enigma_16x9.webp"
           visualHeroAlt="Enigma neural-network sculpture illuminated in a dark exhibition space"
+          visualHeroMedia={<EditingHeroFilm />}
           heroTone="motion"
           showHeaderSummary={false}
         />
