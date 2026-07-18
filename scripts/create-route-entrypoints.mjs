@@ -36,6 +36,7 @@ const routeLabels = new Map([
   ['motion/editing-motion-stories', 'Cutting Systems into Stories'],
   ['perplexity', 'Perplexity Creative Studio Motion Study'],
   ['healthapp', 'Health App Concept'],
+  ['medimorpho', 'MediMorpho'],
   ['mentra-miniapps', 'Mentra MiniApps'],
   ['transfi-project', 'TransFi'],
   ['clawed-chat', 'Clawed'],
@@ -72,6 +73,7 @@ const routeDescriptions = new Map([
   ['motion/editing-motion-stories', 'A video-editing case study across Enigma, The Omakase, Making of Time, and Drowning, covering selects, structure, pacing, sound, motion graphics, and delivery.'],
   ['perplexity', 'An independent Creative Studio motion proposal for Perplexity Computer, Deep Research, and Comet—from product research and ideation to a working launch prototype and reusable After Effects system.'],
   ['healthapp', 'A healthcare product design concept by Parth Pawar focused on making complex information easier to understand and act on.'],
+  ['medimorpho', 'A multilingual healthcare service concept shaped by 20 primary-research interviews, designed to make meaning and next steps clearer across a care encounter.'],
   ['ux-design', 'UX design work by Parth Pawar across product systems, flows, interfaces, and service experiences.'],
   ['creative-tech', 'Creative technology work by Parth Pawar spanning code, prototypes, physical computing, and interactive systems.'],
   ['installations', 'Installations and physical interaction work by Parth Pawar.'],
@@ -90,6 +92,10 @@ const routeDescriptions = new Map([
   ['page-not-found', 'The requested page is not available in the public portfolio.'],
 ])
 const routeSocialPreviews = new Map([
+  ['medimorpho', {
+    image: '/Assets/Projects/MediMorpho/medimorpho-16x9.svg',
+    alt: 'MediMorpho multilingual healthcare interpretation concept by Parth Pawar.',
+  }],
   ['motion', {
     image: '/Assets/images/og-motion/vishwa.jpg',
     alt: 'VishwaConclave campaign artwork from the motion design portfolio of Parth Pawar.',
