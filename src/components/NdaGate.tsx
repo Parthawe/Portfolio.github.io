@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { getProject } from '../data/projects'
 import { CONTACT_EMAIL } from '../config/site'
@@ -7,7 +7,11 @@ interface NdaGateProps {
   slug: string
   children?: ReactNode
   compact?: boolean
+  hideWhenLocked?: boolean
+  unlockedMode?: 'section' | 'flow'
 }
+
+const NDA_UNLOCK_EVENT = 'portfolio-nda-unlocked'
 
 const GLOBAL_ACCESS_HASH = import.meta.env.VITE_NDA_ACCESS_SHA256?.trim().toLowerCase()
 const PLAIN_ACCESS_CODE = import.meta.env.VITE_NDA_ACCESS_CODE?.trim()
@@ -112,6 +116,8 @@ export default function NdaGate({
   slug,
   children,
   compact = false,
+  hideWhenLocked = false,
+  unlockedMode = 'section',
 }: NdaGateProps) {
   const project = getProject(slug)
   const projectName = project?.name || 'this project'
@@ -128,6 +134,16 @@ export default function NdaGate({
     const stored = getStoredAccess(slug)
     return Boolean(stored && GLOBAL_ACCESS_HASH && stored === GLOBAL_ACCESS_HASH)
   })
+
+  useEffect(() => {
+    const handleUnlock = (event: Event) => {
+      const unlockedSlug = (event as CustomEvent<{ slug?: string }>).detail?.slug
+      if (unlockedSlug === slug) setVerified(true)
+    }
+
+    window.addEventListener(NDA_UNLOCK_EVENT, handleUnlock)
+    return () => window.removeEventListener(NDA_UNLOCK_EVENT, handleUnlock)
+  }, [slug])
 
   const mailtoHref = useMemo(() => {
     const subject = `Access request: ${projectName}`
@@ -177,6 +193,7 @@ export default function NdaGate({
 
       if (matchesHash || matchesPlainCode) {
         setVerified(true)
+        window.dispatchEvent(new CustomEvent(NDA_UNLOCK_EVENT, { detail: { slug } }))
         setAccessCode('')
         setCodeMessage('Access code accepted for this browser session.')
         // Persist only in hash mode; the plain-code fallback is local-dev
@@ -194,7 +211,23 @@ export default function NdaGate({
   }
 
   if (verified) {
-    return children ? (
+    if (!children) return null
+
+    if (unlockedMode === 'flow') {
+      return (
+        <motion.div
+          id={`case-study-access-${slug}`}
+          className="nda-unlocked-flow"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {children}
+        </motion.div>
+      )
+    }
+
+    return (
       <motion.section
         id={`case-study-access-${slug}`}
         className="nda-unlocked-section cs-section"
@@ -206,8 +239,10 @@ export default function NdaGate({
           {children}
         </div>
       </motion.section>
-    ) : null
+    )
   }
+
+  if (hideWhenLocked) return null
 
   return (
     <motion.div

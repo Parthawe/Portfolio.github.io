@@ -3961,10 +3961,256 @@
   background: var(--medimorpho-purple-deep);
 }
 
+.nda-unlocked-flow,
+.medimorpho-protected-story {
+  min-width: 0;
+}
+
+.medimorpho-protected-loading {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  color: var(--ink-50);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-protected-intro {
+  color: #fff;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(141, 240, 211, 0.16), transparent 31%),
+    radial-gradient(circle at 12% 92%, rgba(105, 41, 152, 0.42), transparent 34%),
+    var(--medimorpho-purple-deep);
+}
+
+.medimorpho-protected-intro__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: clamp(2rem, 5vw, 4.5rem);
+  color: var(--medimorpho-mint);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.medimorpho-protected-context {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1.55fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  margin-bottom: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.medimorpho-protected-context__brand {
+  display: flex;
+  align-items: center;
+  min-height: 6.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.medimorpho-protected-context__brand img {
+  display: block;
+  width: min(100%, 12rem);
+  height: auto;
+}
+
+.medimorpho-protected-context > div:last-child > span {
+  color: var(--medimorpho-mint);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.medimorpho-protected-context p {
+  max-width: 62ch;
+  margin: 0.75rem 0 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.medimorpho-protected-intro__flag > span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 1rem rgba(141, 240, 211, 0.74);
+}
+
+.medimorpho-protected-intro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(22rem, 1.12fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: center;
+}
+
+.medimorpho-protected-intro__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--medimorpho-mint);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.medimorpho-protected-intro h2 {
+  max-width: 12ch;
+  margin: 0 0 1.5rem;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5.6vw, 5.6rem);
+  font-weight: 300;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.medimorpho-protected-intro .cs-body-lg {
+  max-width: 56ch;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.medimorpho-protected-intro__visual {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+}
+
+.medimorpho-protected-intro__visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.medimorpho-protected-intro__visual figcaption {
+  padding: 0.8rem 1rem;
+  color: rgba(255, 255, 255, 0.54);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-project-brief {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(3rem, 7vw, 7rem) 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.medimorpho-project-brief > div {
+  min-width: 0;
+  padding: 1.4rem clamp(0.85rem, 2vw, 1.5rem);
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.medimorpho-project-brief > div:first-child {
+  border-left: 0;
+}
+
+.medimorpho-project-brief dt {
+  margin-bottom: 0.7rem;
+  color: var(--medimorpho-mint);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.medimorpho-project-brief dd {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.medimorpho-hmw {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  margin: 0 0 clamp(3rem, 6vw, 6rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  border-top: 1px solid color-mix(in srgb, var(--medimorpho-purple) 30%, var(--ink-08));
+  border-bottom: 1px solid color-mix(in srgb, var(--medimorpho-purple) 30%, var(--ink-08));
+}
+
+.medimorpho-hmw > span {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.medimorpho-hmw blockquote {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.medimorpho-framing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.medimorpho-framing-grid article {
+  min-height: 15rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 18%, var(--ink-08));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 96%, var(--medimorpho-lilac));
+}
+
+.medimorpho-framing-grid article > span {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+}
+
+.medimorpho-framing-grid h3 {
+  margin: 4rem 0 0.7rem;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 580;
+}
+
+.medimorpho-framing-grid p {
+  margin: 0;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
 .medimorpho-research-atlas {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
   margin: clamp(2rem, 4vw, 3.25rem) 0;
 }
@@ -4078,7 +4324,7 @@
 
 .medimorpho-affinity {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
   margin-top: 2.75rem;
 }
@@ -4123,10 +4369,84 @@
   line-height: 1.62;
 }
 
+.medimorpho-journey {
+  margin-top: clamp(2rem, 5vw, 4rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 22%, var(--ink-08));
+  border-radius: 1rem;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.medimorpho-journey__head,
+.medimorpho-journey__row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.72fr) repeat(3, minmax(0, 1fr));
+}
+
+.medimorpho-journey__head {
+  color: rgba(255, 255, 255, 0.7);
+  background: var(--medimorpho-purple-deep);
+}
+
+.medimorpho-journey__head span {
+  padding: 0.9rem 1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.medimorpho-journey__head span:first-child {
+  border-left: 0;
+  color: var(--medimorpho-mint);
+}
+
+.medimorpho-journey__row {
+  border-top: 1px solid color-mix(in srgb, var(--medimorpho-purple) 16%, var(--ink-08));
+}
+
+.medimorpho-journey__row > * {
+  min-width: 0;
+  margin: 0;
+  padding: clamp(1rem, 2vw, 1.45rem);
+  border-left: 1px solid color-mix(in srgb, var(--medimorpho-purple) 13%, var(--ink-08));
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.medimorpho-journey__row > *:first-child {
+  border-left: 0;
+}
+
+.medimorpho-journey__row > div {
+  display: grid;
+  align-content: start;
+  gap: 1.7rem;
+  background: color-mix(in srgb, var(--surface) 94%, var(--medimorpho-lilac));
+}
+
+.medimorpho-journey__row small {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+}
+
+.medimorpho-journey__row strong {
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 590;
+}
+
 .medimorpho-service-flow {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
-  gap: 0;
+  gap: 0.7rem;
   margin: 3rem 0 1rem;
   padding: clamp(1rem, 2vw, 1.6rem);
   border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 24%, var(--ink-08));
@@ -4138,10 +4458,7 @@
 }
 
 .medimorpho-service-flow__item {
-  display: flex;
-  flex: 1 1 0;
-  align-items: center;
-  min-width: 0;
+  display: contents;
 }
 
 .medimorpho-service-flow__node {
@@ -4181,16 +4498,97 @@
 }
 
 .medimorpho-service-flow__item > i {
-  flex: 0 0 1.55rem;
-  color: var(--medimorpho-purple);
-  font-family: var(--mono);
-  font-size: 1rem;
-  font-style: normal;
-  text-align: center;
+  display: none;
 }
 
 .project-main--medimorpho .medimorpho-feasibility-grid .cs-feature-card {
   border-color: color-mix(in srgb, var(--medimorpho-purple) 20%, var(--ink-08));
+}
+
+.medimorpho-scope {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: clamp(2rem, 4vw, 3.25rem);
+}
+
+.medimorpho-scope article {
+  min-width: 0;
+  padding: clamp(1.15rem, 2.5vw, 1.75rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 20%, var(--ink-08));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 95%, var(--medimorpho-lilac));
+}
+
+.medimorpho-scope span,
+.medimorpho-outcome-grid > div > span {
+  color: var(--medimorpho-purple);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+}
+
+.medimorpho-scope h3 {
+  margin: 2.8rem 0 0.65rem;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 580;
+}
+
+.medimorpho-scope p {
+  margin: 0;
+  color: var(--ink-60);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.medimorpho-outcome-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(18rem, 1.16fr);
+  gap: clamp(2rem, 7vw, 8rem);
+  align-items: start;
+}
+
+.medimorpho-outcome-grid .cs-body-lg {
+  margin: 0;
+}
+
+.medimorpho-outcome-grid > div {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 20%, var(--ink-08));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 94%, var(--medimorpho-lilac));
+}
+
+.medimorpho-outcome-grid ul {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.medimorpho-outcome-grid li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--ink-70);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.medimorpho-outcome-grid li::before {
+  content: '';
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--medimorpho-purple);
+  box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--medimorpho-purple) 11%, transparent);
 }
 
 .medimorpho-access {
@@ -4246,6 +4644,25 @@
   line-height: 1.65;
 }
 
+.medimorpho-access__contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.5rem;
+}
+
+.medimorpho-access__contents span {
+  padding: 0.48rem 0.62rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.05);
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
 .project-main--medimorpho .medimorpho-access .nda-inline {
   border-color: rgba(255, 255, 255, 0.16);
   color: #fff;
@@ -4260,17 +4677,51 @@
   color: rgba(255, 255, 255, 0.64);
 }
 
+[data-theme="dark"] .project-main--medimorpho :is(
+  .medimorpho-hmw > span,
+  .medimorpho-framing-grid article > span,
+  .medimorpho-journey__row small,
+  .medimorpho-service-flow__node span,
+  .medimorpho-scope span,
+  .medimorpho-outcome-grid > div > span,
+  .medimorpho-privacy-note span
+) {
+  color: var(--medimorpho-mint);
+}
+
+[data-theme="dark"] .project-main--medimorpho .medimorpho-outcome-grid li::before {
+  background: var(--medimorpho-mint);
+}
+
 @media (max-width: 1180px) {
-  .medimorpho-research-atlas {
+  .medimorpho-research-atlas,
+  .medimorpho-framing-grid,
+  .medimorpho-project-brief {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .medimorpho-research-atlas::before {
     content: none;
   }
+
+  .medimorpho-project-brief > div:nth-child(3) {
+    border-left: 0;
+  }
+
+  .medimorpho-project-brief > div:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
 }
 
 @media (max-width: 1040px) {
+
+  .medimorpho-protected-intro__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .medimorpho-protected-intro h2 {
+    max-width: 13ch;
+  }
 
   .medimorpho-affinity {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4298,12 +4749,78 @@
   .medimorpho-service-flow__item > i {
     display: none;
   }
+
+  .medimorpho-journey {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .medimorpho-journey__head {
+    display: none;
+  }
+
+  .medimorpho-journey__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    border: 1px solid color-mix(in srgb, var(--medimorpho-purple) 22%, var(--ink-08));
+    border-radius: 1rem;
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .medimorpho-journey__row > * {
+    border-top: 1px solid color-mix(in srgb, var(--medimorpho-purple) 13%, var(--ink-08));
+    border-left: 0;
+  }
+
+  .medimorpho-journey__row > *:first-child {
+    border-top: 0;
+  }
+
+  .medimorpho-journey__row > p::before {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--medimorpho-purple);
+    font-family: var(--mono);
+    font-size: var(--text-2xs);
+    font-weight: 700;
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+  }
+
+  .medimorpho-journey__row > p:nth-child(2)::before {
+    content: 'Patient need';
+  }
+
+  .medimorpho-journey__row > p:nth-child(3)::before {
+    content: 'Breakdown';
+  }
+
+  .medimorpho-journey__row > p:nth-child(4)::before {
+    content: 'Design response';
+  }
 }
 
 @media (max-width: 900px) {
   .medimorpho-access__layout {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.75rem;
+  }
+
+  .medimorpho-scope,
+  .medimorpho-journey {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .medimorpho-outcome-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
   }
 }
 
@@ -4322,15 +4839,45 @@
     gap: 1.5rem;
   }
 
+  .medimorpho-protected-context {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
   .medimorpho-context-band__brand {
     min-height: 6rem;
   }
 
   .medimorpho-privacy-note,
   .medimorpho-research-atlas,
+  .medimorpho-framing-grid,
+  .medimorpho-project-brief,
   .medimorpho-affinity,
   .medimorpho-service-flow {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .medimorpho-project-brief > div,
+  .medimorpho-project-brief > div:nth-child(3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: 0;
+  }
+
+  .medimorpho-project-brief > div:first-child {
+    border-top: 0;
+  }
+
+  .medimorpho-hmw {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .medimorpho-framing-grid article {
+    min-height: 0;
+  }
+
+  .medimorpho-framing-grid h3 {
+    margin-top: 2.5rem;
   }
 
   .medimorpho-affinity__card {
