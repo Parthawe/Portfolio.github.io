@@ -72,29 +72,21 @@ const recognitionGroups = [
   {
     label: 'Awards',
     items: [
-      'Red Burns + ITP Scholarships, 2024',
-      'Tisch Scholarship, 2023',
-      'Firodia Karandak competition recognition',
+      { title: 'Red Burns + ITP Scholarships', meta: 'NYU ITP · 2024', theme: 'impact' },
+      { title: 'Tisch Scholarship', meta: 'NYU Tisch · 2023', theme: 'tisch' },
+      { title: 'Firodia Karandak', meta: 'Competition recognition', theme: 'firodia' },
     ],
   },
   {
     label: 'Exhibitions',
     items: [
-      'ITP Thesis Show',
-      'ITP Spring / Winter Shows',
-      'Maker Faire Coney Island',
-      'WonderVille NYC',
+      { title: 'ITP Thesis Show', meta: 'New York City', theme: 'thesis' },
+      { title: 'ITP Spring / Winter Shows', meta: 'NYU ITP', theme: 'seasonal' },
+      { title: 'Maker Faire Coney Island', meta: 'Public exhibition', theme: 'maker' },
+      { title: 'WonderVille NYC', meta: 'Brooklyn, New York', theme: 'wonderville' },
     ],
   },
 ]
-
-const recognitionRows: Row[] = recognitionGroups.flatMap((group) =>
-  group.items.map((item, index) => ({
-    section: index === 0 ? group.label : undefined,
-    role: item,
-    co: group.label,
-  })),
-)
 
 const offClockImages = [
   {
@@ -372,7 +364,7 @@ function CodexProfile() {
       <div className="abt-codex-intro">
         <span className="sec-label">Agent practice</span>
         <h2 id="abt-codex-title">Codex, tuned through use.</h2>
-        <p>I treat agents like a working design system: shape the context, shorten the loop, and verify the output in the real product.</p>
+        <p>I treat agents like a working design system: shape the context, shorten the loop, and verify the output in the real product. This portfolio skips the site-builder handoff; it is shaped directly in code, with Codex in the loop.</p>
       </div>
 
       <div className="abt-codex-profile">
@@ -520,40 +512,28 @@ export default function AboutPage() {
             <span className="sec-label">Awards / Recognition</span>
             <h2 id="abt-recognition-title">Proof beyond the job title</h2>
           </div>
-              <table className="abt-table abt-recognition-table">
-                <tbody>
-                  {recognitionRows.map((r, i) => (
-                    <Fragment key={`${r.co}-${r.role}-${i}`}>
-                      {r.section && (
-                        <tr className="abt-table-section">
-                          <td colSpan={3}>
-                            <span className="abt-table-section-label">{r.section}</span>
-                          </td>
-                        </tr>
-                      )}
-                      <tr className="abt-table-row">
-                        <td className="abt-table-date" aria-hidden="true" />
-                        <td className="abt-table-main">
-                          <span className="abt-table-role">{r.role}</span>
-                        </td>
-                        <td className="abt-table-co" aria-hidden="true" />
-                      </tr>
-                    </Fragment>
+          <div className="abt-award-shelves">
+            {recognitionGroups.map((group) => (
+              <section
+                className="abt-award-shelf"
+                style={{ '--award-count': group.items.length } as CSSProperties}
+                aria-labelledby={`award-shelf-${group.label.toLowerCase()}`}
+                key={group.label}
+              >
+                <h3 id={`award-shelf-${group.label.toLowerCase()}`}>{group.label}</h3>
+                <div className="abt-award-shelf__cards">
+                  {group.items.map((item, index) => (
+                    <article className={`abt-award-card is-${item.theme}`} key={item.title}>
+                      <span className="abt-award-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                      <div className="abt-award-card__mark" aria-hidden="true"><i /><i /><i /></div>
+                      <h4>{item.title}</h4>
+                      <p>{item.meta}</p>
+                    </article>
                   ))}
-                </tbody>
-              </table>
-              <div className="abt-recognition-mobile">
-                {recognitionGroups.map((group) => (
-                  <section className="abt-recognition-group" key={group.label}>
-                    <h3>{group.label}</h3>
-                    <ul>
-                      {group.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </section>
-                ))}
-              </div>
+                </div>
+              </section>
+            ))}
+          </div>
             </section>
 
             {/* ── Vibe coding / software stack ── */}

@@ -5,6 +5,7 @@ import FigmaSelect from './FigmaSelect'
 import { CONTACT_EMAIL } from '../config/site'
 import { createPortfolioComment, listPortfolioComments, type PortfolioComment } from '../lib/commentStore'
 import PointerCursorGlyph from './PointerCursorGlyph'
+import PocketArcadeLauncher from './PocketArcadeLauncher'
 
 /** All footer notes share one wall regardless of which page they were left on. */
 const GUESTBOOK_ROUTE = '/guestbook'
@@ -106,7 +107,7 @@ function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
 
   const handleZoneClick = (e: React.MouseEvent) => {
     // Only empty canvas starts a note — pins, links, and the open draft handle their own clicks.
-    if ((e.target as HTMLElement).closest('.ft-pin, .ft-pin-draft, .ft-scrap-ghost')) return
+    if ((e.target as HTMLElement).closest('.ft-pin, .ft-pin-draft, .ft-scrap-ghost, .ft-arcade-dock')) return
     const r = zoneRef.current?.getBoundingClientRect()
     if (!r) return
     openDraftAt(((e.clientX - r.left) / r.width) * 100, ((e.clientY - r.top) / r.height) * 100)
@@ -189,6 +190,10 @@ function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
           <FigmaSelect />
         </Link>
 
+        <div className="ft-arcade-dock" onClick={(e) => e.stopPropagation()}>
+          <PocketArcadeLauncher />
+        </div>
+
         {/* visitor notes pinned to the canvas */}
         {notes.map((note, index) => (
           <button
@@ -243,6 +248,7 @@ function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
           <PointerCursorGlyph className="ft-cursor__glyph" size={22} />
           <span className="ft-cursor-tag">leave a note</span>
         </div>
+
       </div>
     </div>
   )

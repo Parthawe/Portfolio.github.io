@@ -1815,8 +1815,8 @@
 
 .abt-recognition {
   display: grid;
-  gap: var(--space-4);
-  max-width: 980px;
+  gap: var(--space-6);
+  width: 100%;
   padding-bottom: var(--space-10);
 }
 
@@ -1836,29 +1836,157 @@
   color: var(--ink);
 }
 
-.abt-recognition-table .abt-table-section-label {
-  padding-top: var(--space-4);
+.abt-award-shelves {
+  display: grid;
+  gap: clamp(3.5rem, 7vh, 5.5rem);
+  padding-top: 0.75rem;
 }
 
-.abt-recognition-table .abt-table-section:first-child .abt-table-section-label {
-  padding-top: 0;
+.abt-award-shelf {
+  position: relative;
+  padding: 0 clamp(0.65rem, 2vw, 1.5rem) 1.15rem;
 }
 
-.abt-recognition-table .abt-table-date {
-  width: 156px;
-  color: var(--ink-30);
+.abt-award-shelf h3 {
+  margin: 0 0 0.85rem;
+  color: var(--ink-50);
+  font: 500 0.68rem/1.3 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.abt-recognition-table .abt-table-role {
-  font-weight: 500;
+.abt-award-shelf::before,
+.abt-award-shelf::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0.72rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  border-radius: 0.18rem;
+  background: color-mix(in srgb, var(--paper) 94%, var(--ink) 6%);
+  box-shadow: 0 0.7rem 1.1rem color-mix(in srgb, var(--ink) 16%, transparent);
 }
 
-.abt-recognition-table .abt-table-co {
-  color: var(--ink-30);
+.abt-award-shelf::after {
+  z-index: 1;
+  bottom: -0.55rem;
+  left: 1.2rem;
+  height: 0.5rem;
+  border: 0;
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  filter: blur(0.45rem);
 }
 
-.abt-recognition-mobile {
-  display: none;
+.abt-award-shelf__cards {
+  display: grid;
+  grid-template-columns: repeat(var(--award-count), minmax(0, 1fr));
+  align-items: end;
+  gap: clamp(1rem, 3vw, 3.25rem);
+}
+
+.abt-award-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.28rem;
+  background: #f2efe7;
+  color: #151515;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.abt-award-card:hover {
+  transform: translateY(-0.35rem) rotate(-0.4deg);
+  box-shadow: 0 1.4rem 2.6rem rgba(0, 0, 0, 0.2);
+}
+
+.abt-award-card:nth-child(even):hover {
+  transform: translateY(-0.35rem) rotate(0.4deg);
+}
+
+.abt-award-card__number {
+  position: relative;
+  z-index: 2;
+  align-self: flex-end;
+  font: 600 0.62rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  opacity: 0.58;
+}
+
+.abt-award-card h4 {
+  position: relative;
+  z-index: 2;
+  max-width: 13ch;
+  margin: auto 0 0;
+  font-family: var(--sans);
+  font-size: 1.35rem;
+  font-weight: 650;
+  line-height: 1.02;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.abt-award-card p {
+  position: relative;
+  z-index: 2;
+  margin: 0.65rem 0 0;
+  font: 500 0.62rem/1.35 var(--mono);
+  letter-spacing: 0;
+  opacity: 0.68;
+}
+
+.abt-award-card__mark {
+  position: absolute;
+  z-index: 1;
+  inset: 12% 10% auto auto;
+  width: 44%;
+  aspect-ratio: 1;
+}
+
+.abt-award-card__mark i {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.24;
+}
+
+.abt-award-card__mark i:nth-child(1) { inset: 0 20% 34% 8%; }
+.abt-award-card__mark i:nth-child(2) { inset: 28% 0 5% 38%; }
+.abt-award-card__mark i:nth-child(3) { inset: 52% 48% 0 0; }
+
+.abt-award-card.is-impact { background: #efff65; color: #1b1b1b; }
+.abt-award-card.is-impact::before { content: ''; position: absolute; inset: -12% 58% 48% -10%; border-radius: 40%; background: #ff6b35; transform: rotate(24deg); }
+.abt-award-card.is-tisch { background: #4c075a; color: #fff5ff; }
+.abt-award-card.is-tisch h4 { font-family: var(--serif); font-size: 1.65rem; font-weight: 400; }
+.abt-award-card.is-firodia { background: #eee8dc; color: #111; }
+.abt-award-card.is-firodia .abt-award-card__mark i { border-radius: 0.2rem 80% 0.2rem 80%; background: #8c8c8c; opacity: 0.5; transform: rotate(35deg); }
+.abt-award-card.is-thesis { background: #151515; color: #f6f3ed; }
+.abt-award-card.is-thesis::before { content: ''; position: absolute; inset: 52% -12% -18% 38%; border-radius: 50% 50% 8% 50%; background: #ff684e; }
+.abt-award-card.is-seasonal { background: #ff735e; color: #321713; }
+.abt-award-card.is-seasonal .abt-award-card__mark i { border-radius: 0.15rem; background: #fff4cb; opacity: 0.68; }
+.abt-award-card.is-maker { background: #86a8ff; color: #101f45; }
+.abt-award-card.is-maker::before,
+.abt-award-card.is-maker::after { content: ''; position: absolute; width: 0.8rem; aspect-ratio: 1; background: #fff; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.abt-award-card.is-maker::before { top: 20%; left: 14%; }
+.abt-award-card.is-maker::after { right: 15%; bottom: 18%; transform: scale(1.5); }
+.abt-award-card.is-wonderville { background: #a9e5df; color: #133d43; }
+.abt-award-card.is-wonderville .abt-award-card__mark { transform: rotate(45deg); }
+
+[data-theme="dark"] .abt-award-shelf::before {
+  background: #292929;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.46);
 }
 
 /* ── Beyond work ── */
@@ -2802,45 +2930,39 @@
     line-height: 1.08;
   }
 
-  .abt-recognition-table {
-    display: none;
+  .abt-award-shelves {
+    gap: 3.5rem;
+    padding-top: 0.25rem;
   }
 
-  .abt-recognition-mobile {
-    display: grid;
-    gap: 1.5rem;
+  .abt-award-shelf {
+    padding-inline: 0.25rem;
   }
 
-  .abt-recognition-group {
-    min-width: 0;
+  .abt-award-shelf__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
   }
 
-  .abt-recognition-group h3 {
-    margin: 0 0 0.35rem;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--ink-50);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  .abt-award-card {
+    padding: 0.9rem;
   }
 
-  .abt-recognition-group ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .abt-award-card h4,
+  .abt-award-card.is-tisch h4 {
+    max-width: 12ch;
+    font-size: 1rem;
+    line-height: 1.05;
   }
 
-  .abt-recognition-group li {
-    padding: 0.72rem 0;
-    border-bottom: 1px solid var(--ink-06);
-    font-family: var(--sans);
-    font-size: 0.94rem;
-    font-weight: 500;
-    line-height: 1.45;
-    color: var(--ink);
-    overflow-wrap: anywhere;
+  .abt-award-card p {
+    margin-top: 0.45rem;
+    font-size: 0.54rem;
+  }
+
+  .abt-award-card:hover,
+  .abt-award-card:nth-child(even):hover {
+    transform: none;
   }
 }
 

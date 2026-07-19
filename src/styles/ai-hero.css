@@ -295,7 +295,7 @@
 
 .ch-3d--side,
 .ch-3d--side * {
-  pointer-events: none !important;
+  pointer-events: none;
 }
 
 /* Crypto's side artifact contains intentional coin controls. Keep the

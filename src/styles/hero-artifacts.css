@@ -1,0 +1,1365 @@
+/* Personal category artifacts: scoped to the existing right-side hero slot. */
+.ch--landing:not(.ch--crypto):not(.ch--fintech) .ch-3d--side {
+  top: calc(var(--nav-h) + clamp(1.2rem, 2.6vh, 2rem));
+  width: clamp(16rem, 25vw, 22rem);
+  max-width: 36%;
+}
+
+.ch--landing:not(.ch--crypto):not(.ch--fintech):has(.ch-3d--side) .ch-copy {
+  padding-right: clamp(16rem, 29vw, 26rem);
+}
+
+.category-hero-artifact,
+.hero-artifact {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+}
+
+.category-hero-artifact {
+  isolation: isolate;
+  filter: drop-shadow(0 1.7rem 2rem rgba(2, 9, 24, 0.2));
+}
+
+.ch--brand .ch-3d--side,
+.ch--brand .ch-3d--side *,
+.ch--brand-visual .ch-3d--side,
+.ch--brand-visual .ch-3d--side * {
+  pointer-events: auto !important;
+}
+
+.hero-artifact--brand {
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.hero-artifact--brand:active { cursor: grabbing; }
+
+.artifact-collection__orbit {
+  position: absolute;
+  z-index: -2;
+  inset: 12%;
+  border: 1px solid color-mix(in srgb, var(--select-blue) 18%, transparent);
+  border-radius: 50%;
+  transform: rotateX(66deg) rotateZ(-11deg);
+  box-shadow:
+    inset 0 0 1.8rem color-mix(in srgb, var(--select-blue) 5%, transparent),
+    0 0 2rem color-mix(in srgb, var(--select-blue) 4%, transparent);
+  animation: artifact-orbit 18s linear infinite;
+}
+
+.artifact-collection__orbit::before,
+.artifact-collection__orbit::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0.34rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--select-blue);
+  box-shadow: 0 0 0.7rem var(--select-blue);
+}
+.artifact-collection__orbit::before { left: -0.17rem; }
+.artifact-collection__orbit::after { right: -0.17rem; }
+
+.artifact-collection__shadow {
+  position: absolute;
+  z-index: -3;
+  right: 18%;
+  bottom: 15%;
+  left: 18%;
+  height: 8%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  filter: blur(15px);
+  transform: rotate(-3deg);
+}
+
+.hero-artifact::before {
+  content: '';
+  position: absolute;
+  inset: 17%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--select-blue) 16%, transparent), transparent 70%);
+  filter: blur(24px);
+}
+
+.artifact-signature {
+  position: absolute;
+  z-index: 8;
+  right: 17%;
+  bottom: 15%;
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--select-blue) 45%, var(--ink-15));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.14);
+  font-family: var(--serif);
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--select-blue);
+  backdrop-filter: blur(8px);
+}
+
+/* AI / experimental smart-glasses product object */
+.category-hero-artifact--ai-wearables .artifact-collection__orbit,
+.category-hero-artifact--ai .artifact-collection__orbit {
+  inset: 20% 7%;
+  border-color: color-mix(in srgb, var(--select-blue) 10%, transparent);
+  opacity: 0.42;
+}
+
+.category-hero-artifact--ai-wearables .artifact-collection__shadow,
+.category-hero-artifact--ai .artifact-collection__shadow {
+  right: 8%;
+  bottom: 26%;
+  left: 8%;
+  height: 5%;
+  opacity: 0.7;
+}
+
+.hero-artifact--ai::before {
+  inset: 22% 4%;
+  background: radial-gradient(ellipse, rgba(64, 133, 255, 0.16), transparent 68%);
+}
+
+.artifact-ai__product {
+  position: absolute;
+  z-index: 3;
+  top: 15%;
+  left: -24%;
+  display: block;
+  width: 148%;
+  height: auto;
+  user-select: none;
+  filter: brightness(1.08) contrast(1.04) drop-shadow(0 1.25rem 1.4rem rgba(0, 0, 0, 0.38));
+}
+
+.artifact-ai__halo {
+  position: absolute;
+  z-index: 2;
+  top: 29%;
+  left: 7%;
+  width: 86%;
+  height: 34%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(74, 139, 255, 0.13), transparent 70%);
+  filter: blur(18px);
+}
+
+.artifact-ai__scan {
+  position: absolute;
+  z-index: 4;
+  top: 35%;
+  left: 19%;
+  width: 62%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(90, 153, 255, 0.12) 18%, rgba(127, 177, 255, 0.72) 50%, rgba(90, 153, 255, 0.12) 82%, transparent);
+  box-shadow: 0 0 0.8rem rgba(82, 147, 255, 0.24);
+  animation: artifact-ai-scan 4.8s ease-in-out infinite;
+}
+
+/* UX / graphite design-review console */
+.ch--ux-design .ch-3d--side,
+.ch--ux-design .ch-3d--side *,
+.ch--ui .ch-3d--side,
+.ch--ui .ch-3d--side * {
+  pointer-events: auto !important;
+}
+
+.hero-artifact--ux-monitor {
+  perspective: 900px;
+  touch-action: pan-y;
+}
+
+.hero-artifact--ux-monitor::before {
+  inset: 2%;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(61, 132, 255, 0.11), transparent 66%);
+  box-shadow: none;
+}
+
+.artifact-ux-monitor {
+  position: absolute;
+  z-index: 2;
+  top: 11%;
+  left: -5%;
+  width: 110%;
+  aspect-ratio: 1.12;
+  transform-style: preserve-3d;
+  transform: rotateX(5deg) rotateY(-9deg) rotateZ(-0.7deg);
+  filter: drop-shadow(0 1.55rem 1.4rem rgba(6, 12, 24, 0.24));
+  animation: artifact-ux-console-float 8s ease-in-out infinite;
+}
+
+.artifact-ux-monitor__rear {
+  position: absolute;
+  z-index: 0;
+  top: 3.8%;
+  left: 4%;
+  display: block;
+  width: 92%;
+  height: 66%;
+  border: 1px solid rgba(157, 174, 199, 0.18);
+  border-radius: 1.15rem;
+  background: linear-gradient(145deg, #111722, #05080e 72%);
+  box-shadow: 0.46rem 0.58rem 0 #030509, 0.7rem 0.82rem 1rem rgba(1, 4, 10, 0.34);
+  transform: translate3d(0.32rem, 0.42rem, -20px);
+}
+
+.artifact-ux-monitor__display {
+  position: absolute;
+  z-index: 3;
+  top: 1%;
+  left: 2%;
+  width: 92%;
+  height: 66%;
+  overflow: hidden;
+  border: 1px solid rgba(173, 190, 213, 0.32);
+  border-radius: 1.15rem;
+  background: linear-gradient(145deg, #232c3b, #080c13 55%, #161d29);
+  box-shadow:
+    inset 0.12rem 0.12rem 0.24rem rgba(255, 255, 255, 0.13),
+    inset -0.2rem -0.24rem 0.35rem rgba(0, 0, 0, 0.38),
+    0 0.9rem 1.2rem rgba(4, 9, 20, 0.2);
+  transform-style: preserve-3d;
+  transform: translateZ(12px);
+}
+
+.artifact-ux-monitor__display::after {
+  content: '';
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(122deg, rgba(255, 255, 255, 0.12), transparent 26%, transparent 70%, rgba(101, 142, 205, 0.07));
+  pointer-events: none;
+}
+
+.artifact-ux-monitor__topbar {
+  position: absolute;
+  z-index: 9;
+  top: 4.8%;
+  right: 5.5%;
+  left: 5.5%;
+  display: flex;
+  align-items: center;
+  height: 7%;
+  color: rgba(219, 229, 244, 0.66);
+  font-family: var(--mono);
+  line-height: 1;
+  letter-spacing: 0.12em;
+}
+.artifact-ux-monitor__topbar b { font-size: 0.42rem; font-weight: 650; }
+.artifact-ux-monitor__topbar i {
+  width: 0.3rem;
+  aspect-ratio: 1;
+  margin-right: 0.25rem;
+  margin-left: auto;
+  border-radius: 50%;
+  background: #58e2b7;
+  box-shadow: 0 0 0.48rem rgba(88, 226, 183, 0.58);
+  animation: artifact-ux-console-live 2.4s ease-in-out infinite;
+}
+.artifact-ux-monitor__topbar small { font-size: 0.38rem; }
+
+.artifact-ux-monitor__screen {
+  position: absolute;
+  z-index: 4;
+  top: 14.5%;
+  left: 5.2%;
+  display: block;
+  width: 89.6%;
+  height: 78%;
+  overflow: hidden;
+  border: 1px solid rgba(103, 129, 168, 0.32);
+  border-radius: 0.68rem;
+  background: #080c13;
+  box-shadow: inset 0 0 0 1px rgba(31, 42, 60, 0.86), inset 0 0 1rem rgba(42, 100, 210, 0.12);
+  color: white;
+  transform: translateZ(8px);
+}
+
+.artifact-ux-monitor__screen figure {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.artifact-ux-monitor__screen figure > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.86) contrast(1.06) brightness(0.92);
+  transition: filter 240ms ease, transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.artifact-ux-monitor__screen figure > img.is-contained {
+  object-fit: contain;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(57, 92, 149, 0.2), transparent 50%),
+    #080c13;
+}
+
+.artifact-ux-monitor__screen:hover figure > img,
+.artifact-ux-monitor__screen:focus-visible figure > img {
+  filter: saturate(1.02) contrast(1.06) brightness(0.98);
+  transform: scale(1.04);
+}
+
+.artifact-ux-monitor__screen figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1.5rem 0.72rem 0.52rem;
+  background: linear-gradient(to top, rgba(4, 10, 22, 0.88), transparent);
+  font-family: var(--sans);
+  font-size: clamp(0.55rem, 0.8vw, 0.75rem);
+  font-weight: 620;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.artifact-ux-monitor__screen figcaption small {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+}
+
+.artifact-ux-monitor__next {
+  position: absolute;
+  z-index: 6;
+  top: 28%;
+  right: -1%;
+  display: grid;
+  place-items: center;
+  width: 8.5%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(169, 186, 209, 0.34);
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 30%, #53647d, #19202d 62%, #070a10);
+  color: rgba(239, 244, 252, 0.86);
+  box-shadow: inset 0.1rem 0.1rem 0.18rem rgba(255,255,255,0.18), 0.26rem 0.34rem 0 #030509, 0 0.65rem 0.85rem rgba(1, 4, 10, 0.28);
+  cursor: pointer;
+  transform: translateZ(32px);
+}
+
+.artifact-ux-monitor__next span {
+  display: block;
+  font: 420 1rem/1 var(--sans);
+  transition: transform 220ms ease;
+}
+
+.artifact-ux-monitor__next:hover span,
+.artifact-ux-monitor__next:focus-visible span { transform: translateX(0.12rem) scale(1.12); }
+
+.artifact-ux-monitor__selectors {
+  position: absolute;
+  z-index: 6;
+  top: 56.5%;
+  left: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: auto;
+  height: auto;
+  padding: 0.25rem 0.34rem;
+  border: 1px solid rgba(166, 182, 207, 0.22);
+  border-radius: 999px;
+  background: rgba(8, 12, 19, 0.82);
+  box-shadow: 0.18rem 0.24rem 0 rgba(2, 4, 8, 0.72), 0 0.42rem 0.7rem rgba(1, 5, 12, 0.25);
+  transform: translateZ(28px);
+}
+
+.artifact-ux-monitor__selectors button {
+  width: 0.42rem;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 1px solid rgba(25, 68, 132, 0.18);
+  border-radius: 50%;
+  background: #708198;
+  box-shadow: inset 0.06rem 0.06rem 0.08rem rgba(255,255,255,0.28);
+  cursor: pointer;
+  transition: transform 220ms ease, filter 220ms ease;
+}
+
+.artifact-ux-monitor__selectors button:nth-child(2) { background: #708198; }
+.artifact-ux-monitor__selectors button:nth-child(3) { background: #708198; }
+.artifact-ux-monitor__selectors button:hover,
+.artifact-ux-monitor__selectors button:focus-visible,
+.artifact-ux-monitor__selectors button.is-active {
+  background: #58e2b7;
+  box-shadow: 0 0 0.48rem rgba(88, 226, 183, 0.55);
+  transform: scale(1.12);
+}
+
+.artifact-ux-monitor__scan {
+  position: absolute;
+  z-index: 7;
+  top: 14%;
+  bottom: 7%;
+  left: 6%;
+  width: 1px;
+  background: linear-gradient(transparent, rgba(90, 153, 255, 0.62), transparent);
+  opacity: 0.5;
+  animation: artifact-ux-console-scan 5.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.artifact-ux-monitor__hinge {
+  position: absolute;
+  z-index: 2;
+  top: 65%;
+  left: 43%;
+  width: 14%;
+  height: 6%;
+  border: 1px solid rgba(132, 149, 174, 0.24);
+  border-radius: 999px;
+  background: linear-gradient(#313c4d, #080c13);
+  box-shadow: 0.22rem 0.25rem 0 #030509;
+  transform: translateZ(5px);
+}
+
+.artifact-ux-monitor__stand {
+  position: absolute;
+  z-index: 1;
+  top: 67%;
+  left: 46.5%;
+  width: 7%;
+  height: 20%;
+  border: 1px solid rgba(138, 155, 181, 0.24);
+  background: linear-gradient(90deg, #111722, #3b475b 48%, #0a0e16);
+  box-shadow: 0.24rem 0.3rem 0 #030509;
+  transform: perspective(500px) rotateX(-5deg) translateZ(-5px);
+}
+
+.artifact-ux-monitor__base {
+  position: absolute;
+  z-index: 2;
+  top: 84%;
+  left: 28%;
+  width: 44%;
+  height: 8%;
+  border: 1px solid rgba(143, 159, 184, 0.25);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #46546a, #111722 62%, #05070c);
+  box-shadow: 0.34rem 0.42rem 0 #020408, 0 0.75rem 1rem rgba(3, 7, 14, 0.3);
+  transform: rotateX(62deg) translateZ(8px);
+}
+
+.artifact-ux-monitor__note {
+  position: absolute;
+  z-index: 8;
+  right: 7%;
+  bottom: 1%;
+  color: color-mix(in srgb, var(--ink) 44%, transparent);
+  font: 650 0.38rem/1 var(--mono);
+  letter-spacing: 0.13em;
+  transform: translateZ(20px);
+}
+
+/* Previous annotated screen-flow styles remain for archived variants. */
+.artifact-ux__screen {
+  position: absolute;
+  display: block;
+  width: 51%;
+  height: 40%;
+  overflow: hidden;
+  border: 1px solid var(--ink-15);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--surface) 90%, #dbe9ff);
+  box-shadow: 0 1.1rem 2rem rgba(7, 18, 42, 0.16);
+  transform-style: preserve-3d;
+}
+.artifact-ux__screen--1 { z-index: 1; top: 14%; left: 18%; transform: rotate(-9deg) translateZ(-20px); opacity: 0.55; }
+.artifact-ux__screen--2 { z-index: 2; top: 26%; left: 33%; transform: rotate(7deg) translateZ(-10px); opacity: 0.75; }
+.artifact-ux__screen--3 { z-index: 3; top: 40%; left: 19%; transform: rotate(-2deg); }
+.artifact-ux__screen i { position: absolute; display: block; border-radius: 999px; background: var(--ink-12); }
+.artifact-ux__nav { top: 10%; left: 8%; width: 84%; height: 7%; }
+.artifact-ux__title { top: 29%; left: 9%; width: 54%; height: 10%; background: color-mix(in srgb, var(--select-blue) 64%, var(--ink-08)) !important; }
+.artifact-ux__line { top: 48%; left: 9%; width: 72%; height: 6%; }
+.artifact-ux__button { right: 9%; bottom: 12%; width: 30%; height: 13%; background: var(--select-blue) !important; }
+.artifact-ux__path { position: absolute; z-index: 5; inset: 0; overflow: visible; fill: none; stroke: var(--select-blue); stroke-width: 1.6; stroke-dasharray: 4 5; opacity: 0.8; }
+.artifact-ux__path path { animation: artifact-dash 8s linear infinite; }
+.artifact-ux__node { position: absolute; z-index: 6; width: 0.58rem; aspect-ratio: 1; border: 2px solid var(--surface); border-radius: 50%; background: var(--select-blue); box-shadow: 0 0 0 1px var(--select-blue); }
+.artifact-ux__node--1 { top: 69%; left: 17%; }
+.artifact-ux__node--2 { top: 70%; left: 46%; }
+.artifact-ux__node--3 { top: 48%; left: 57%; }
+.artifact-ux__node--4 { top: 38%; right: 13%; }
+.artifact-ux__cursor { position: absolute; z-index: 8; top: 58%; left: 53%; width: 1.2rem; height: 1.45rem; background: var(--ink); clip-path: polygon(0 0, 100% 70%, 57% 72%, 38% 100%); animation: artifact-cursor 6s ease-in-out infinite; }
+.artifact-ux__axis { position:absolute; z-index:0; inset:12%; border:1px solid color-mix(in srgb,var(--select-blue) 12%,transparent); border-radius:1.4rem; transform:rotate(45deg) scale(.72); }
+.artifact-ux__screen::after { content:''; position:absolute; inset:0; border-top:1px solid rgba(255,255,255,.14); background:linear-gradient(120deg,rgba(255,255,255,.07),transparent 42%); pointer-events:none; }
+
+/* Creative technology / working prototype */
+.ch--creative-tech .hero-artifact--prototype,
+.ch--design-engineer .hero-artifact--prototype,
+.hero-artifact--prototype {
+  cursor: grab;
+  perspective: 780px;
+  touch-action: pan-y;
+}
+
+.hero-artifact--prototype:active { cursor: grabbing; }
+
+.artifact-proto__assembly {
+  position: absolute;
+  z-index: 3;
+  inset: 4%;
+  display: block;
+  transform-style: preserve-3d;
+  animation: artifact-proto-breathe 7.8s ease-in-out infinite;
+}
+
+.artifact-proto__board {
+  position: absolute;
+  z-index: 2;
+  inset: 22% 17%;
+  border: 1px solid color-mix(in srgb, #f59e0b 45%, var(--ink-15));
+  border-radius: 1.2rem;
+  background:
+    radial-gradient(circle, var(--ink-12) 0 1px, transparent 1.5px) 0 0 / 0.8rem 0.8rem,
+    color-mix(in srgb, var(--surface) 92%, #f59e0b);
+  box-shadow:
+    inset 0.12rem 0.12rem 0.42rem rgba(255, 255, 255, 0.72),
+    inset -0.25rem -0.32rem 0.58rem rgba(114, 69, 0, 0.12),
+    0 0.28rem 0 #cf9f49,
+    0 0.48rem 0 #a96d16,
+    0 1.45rem 2rem rgba(22, 14, 3, 0.22);
+  transform: rotateX(53deg) rotateZ(-11deg) translateZ(10px);
+  transform-style: preserve-3d;
+}
+.artifact-proto__board::after {
+  content: '';
+  position: absolute;
+  inset: 4%;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  border-radius: 0.9rem;
+  transform: translateZ(3px);
+  pointer-events: none;
+}
+.artifact-proto__chip { position: absolute; top: 31%; left: 36%; display: grid; place-items: center; width: 29%; aspect-ratio: 1; border: 0.32rem solid #30343e; border-radius: 0.35rem; background: linear-gradient(145deg, #242833, #090a0e 68%); color: #f7bd4d; box-shadow: inset 0.12rem 0.12rem 0.18rem rgba(255,255,255,.12), 0 0.24rem 0 #08090d, 0 0.55rem 0.9rem rgba(16, 9, 0, 0.34), 0 0 1.1rem rgba(245, 158, 11, 0.22); transform: translateZ(13px); }
+.artifact-proto__chip b { font: 600 1.25rem/1 var(--serif); }
+.artifact-proto__port { position: absolute; width: 0.52rem; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 32% 25%, #fff1b6 0 10%, #f59e0b 42%, #9a5b02 100%); box-shadow: inset -.12rem -.14rem .18rem rgba(83,45,0,.24), 0 .18rem .22rem rgba(68,38,0,.28), 0 0 0.6rem rgba(245,158,11,.72); transform: translateZ(8px); animation: artifact-signal 3s ease-in-out infinite; }
+.artifact-proto__port--1 { top: 15%; left: 14%; }.artifact-proto__port--2 { top: 18%; right: 18%; animation-delay: -.5s; }.artifact-proto__port--3 { top: 65%; left: 12%; animation-delay: -1s; }.artifact-proto__port--4 { bottom: 12%; right: 15%; animation-delay: -1.5s; }.artifact-proto__port--5 { top: 45%; right: 8%; animation-delay: -2s; }.artifact-proto__port--6 { bottom: 8%; left: 42%; animation-delay: -2.5s; }
+.artifact-proto__dial { position: absolute; width: 1.2rem; aspect-ratio: 1; border: 0.18rem solid #9e6509; border-radius: 50%; background: radial-gradient(circle at 32% 24%, #ffe8a4 0 8%, #edac35 38%, #9e6509 100%); box-shadow: inset -0.2rem -0.2rem 0.3rem rgba(58, 30, 0, 0.25), 0 .28rem .34rem rgba(68,38,0,.28); transform: translateZ(10px); }
+.artifact-proto__dial--one { top: 17%; left: 38%; }.artifact-proto__dial--two { right: 18%; bottom: 20%; }
+.artifact-proto__wires { position: absolute; z-index: 4; inset: 0; overflow: visible; fill: none; stroke: #f59e0b; stroke-width: 2.2; stroke-linecap: round; }
+.artifact-proto__wires path:nth-child(2) { stroke: #e94b78; }.artifact-proto__wires path:nth-child(3) { stroke: #4aa7ff; }
+.artifact-proto__pulse { position: absolute; z-index: 5; top: 27%; left: 28%; width: 44%; aspect-ratio: 1; border: 1px solid rgba(245, 158, 11, 0.6); border-radius: 50%; animation: artifact-pulse 3.2s ease-out infinite; }
+.artifact-proto__rail { position:absolute; z-index:3; left:20%; width:60%; height:.32rem; border-radius:999px; background:repeating-linear-gradient(90deg,#d7a94d 0 .22rem,transparent .22rem .52rem); opacity:.72; transform:rotate(-11deg); }
+.artifact-proto__rail--top { top:25%; }.artifact-proto__rail--bottom { bottom:25%; }
+.artifact-proto__chip::before,.artifact-proto__chip::after { content:''; position:absolute; top:-.29rem; bottom:-.29rem; width:.24rem; background:repeating-linear-gradient(to bottom,#c6a65c 0 .16rem,transparent .16rem .34rem); }
+.artifact-proto__chip::before { left:-.48rem; }.artifact-proto__chip::after { right:-.48rem; }
+.artifact-proto__floor {
+  position: absolute;
+  z-index: 0;
+  right: 10%;
+  bottom: 11%;
+  left: 10%;
+  height: 22%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(55, 31, 0, 0.24), transparent 68%);
+  filter: blur(12px);
+  transform: rotateX(72deg);
+}
+.artifact-proto__badge,
+.artifact-service__status {
+  position: absolute;
+  z-index: 8;
+  right: 5%;
+  bottom: 8%;
+  display: flex;
+  gap: .3rem;
+  align-items: center;
+  padding: .28rem .42rem;
+  border: 1px solid var(--ink-12);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow: 0 .52rem .85rem rgba(33, 19, 2, .1);
+  font: 700 .36rem/1 var(--sans);
+  letter-spacing: .1em;
+  color: var(--muted);
+  backdrop-filter: blur(8px);
+}
+.artifact-proto__badge i,
+.artifact-service__status i {
+  width: .34rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 .45rem rgba(245, 158, 11, .72);
+}
+
+/* Creative technology / biomechanical butterfly */
+.ch--creative-tech .ch-3d--side,
+.ch--creative-tech .ch-3d--side * {
+  pointer-events: auto !important;
+}
+
+.hero-artifact--creative-tech {
+  cursor: crosshair;
+  perspective: 820px;
+  touch-action: pan-y;
+}
+
+.hero-artifact--creative-tech::before {
+  inset: 4%;
+  border: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 56%, rgba(255, 166, 115, 0.2), transparent 25%),
+    radial-gradient(circle, rgba(74, 167, 255, 0.1), transparent 66%);
+  box-shadow: none;
+}
+
+.category-hero-artifact--creative-tech .artifact-collection__orbit {
+  opacity: 0.23;
+  border-color: rgba(74, 167, 255, 0.2);
+}
+
+.artifact-creative__aura {
+  position: absolute;
+  z-index: 0;
+  inset: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 172, 117, 0.16), rgba(74, 167, 255, 0.07) 42%, transparent 71%);
+  filter: blur(14px);
+  animation: artifact-creative-aura 5.4s ease-in-out infinite;
+}
+
+.artifact-creative__object {
+  position: absolute;
+  z-index: 3;
+  inset: 1%;
+  display: block;
+  transform-style: preserve-3d;
+  animation: artifact-creative-hover 7.2s ease-in-out infinite;
+}
+
+.artifact-creative__object img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  filter:
+    drop-shadow(0 0.75rem 0.72rem rgba(22, 33, 43, 0.18))
+    drop-shadow(0 0 0.48rem rgba(255, 187, 139, 0.16));
+}
+
+.artifact-creative__wing {
+  backface-visibility: visible;
+  transform-style: preserve-3d;
+}
+
+.artifact-creative__wing--left {
+  clip-path: polygon(0 0, 51.5% 0, 51.5% 100%, 0 100%);
+  transform-origin: 51% 57%;
+  animation: artifact-creative-wing-left 5.8s ease-in-out infinite;
+}
+
+.artifact-creative__wing--right {
+  clip-path: polygon(48.5% 0, 100% 0, 100% 100%, 48.5% 100%);
+  transform-origin: 49% 57%;
+  animation: artifact-creative-wing-right 5.8s ease-in-out infinite;
+}
+
+.artifact-creative__core {
+  z-index: 3;
+  clip-path: polygon(39% 25%, 61% 25%, 67% 96%, 33% 96%);
+  transform: translateZ(20px) scale(1.015);
+  animation: artifact-creative-heartbeat 3.2s ease-in-out infinite;
+}
+
+.artifact-creative__scan {
+  position: absolute;
+  z-index: 5;
+  top: 16%;
+  bottom: 16%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(transparent, rgba(255, 126, 94, 0.62), rgba(74, 167, 255, 0.46), transparent);
+  box-shadow: 0 0 0.55rem rgba(255, 135, 93, 0.44);
+  opacity: 0.55;
+  animation: artifact-creative-scan 4.2s ease-in-out infinite;
+}
+
+.artifact-creative__signal {
+  position: absolute;
+  z-index: 6;
+  width: 0.48rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  background: #ff815f;
+  box-shadow: 0 0 0.65rem rgba(255, 112, 76, 0.65);
+  animation: artifact-creative-signal 2.8s ease-in-out infinite;
+}
+.artifact-creative__signal--one { top: 18%; left: 17%; }
+.artifact-creative__signal--two { top: 29%; right: 13%; animation-delay: -0.9s; background: #4aa7ff; box-shadow: 0 0 0.65rem rgba(74, 167, 255, 0.62); }
+.artifact-creative__signal--three { right: 28%; bottom: 17%; animation-delay: -1.8s; }
+
+/* Installation / live rotating translucent sculpture */
+.ch--installations .ch-3d--side,
+.ch--installations .ch-3d--side * {
+  pointer-events: auto !important;
+}
+
+.hero-artifact--installation-sculpture {
+  cursor: grab;
+  perspective: 760px;
+  touch-action: pan-y;
+}
+
+.hero-artifact--installation-sculpture:active { cursor: grabbing; }
+
+.hero-artifact--installation-sculpture::before {
+  inset: 10%;
+  background: radial-gradient(circle, rgba(255, 63, 88, 0.13), rgba(255, 201, 212, 0.08) 38%, transparent 72%);
+}
+
+.category-hero-artifact--installations .artifact-collection__orbit { opacity: 0.18; }
+.category-hero-artifact--installations .artifact-collection__shadow { bottom: 9%; opacity: 0.64; }
+
+.artifact-install-sculpture__scene {
+  position: absolute;
+  z-index: 3;
+  inset: 13%;
+  display: block;
+  transform-style: preserve-3d;
+  perspective: 620px;
+  animation: artifact-install-sculpture-turn 18s ease-in-out infinite;
+}
+
+.artifact-install-sculpture__glow {
+  position: absolute;
+  z-index: 1;
+  inset: 19%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 65, 82, 0.12), transparent 67%);
+  filter: blur(18px);
+  animation: artifact-install-sculpture-glow 5s ease-in-out infinite;
+}
+
+.artifact-install-sculpture__ring {
+  position: absolute;
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.artifact-install-sculpture__ring b {
+  --ring-depth: calc((var(--ring-layer) - 5) * 2.5px);
+  position: absolute;
+  inset: 0;
+  display: block;
+  border: clamp(0.72rem, 1.65vw, 1.05rem) solid color-mix(
+    in srgb,
+    rgba(255, 244, 248, 0.82) calc(54% + var(--ring-layer) * 3%),
+    rgba(207, 151, 169, 0.68)
+  );
+  border-radius: inherit;
+  background: rgba(255, 222, 232, 0.045);
+  box-shadow:
+    inset 0.2rem 0.22rem 0.3rem rgba(255, 255, 255, 0.66),
+    inset -0.28rem -0.3rem 0.42rem rgba(135, 75, 94, 0.24),
+    0 0.1rem 0.18rem rgba(81, 34, 49, 0.12);
+  transform: translateZ(var(--ring-depth));
+  backface-visibility: visible;
+}
+
+.artifact-install-sculpture__ring b:first-child {
+  border-color: rgba(183, 125, 144, 0.52);
+  filter: brightness(0.86) saturate(0.75);
+}
+
+.artifact-install-sculpture__ring b:last-child {
+  border-color: rgba(255, 252, 253, 0.94);
+  box-shadow:
+    inset 0.26rem 0.28rem 0.38rem rgba(255, 255, 255, 0.9),
+    inset -0.32rem -0.35rem 0.5rem rgba(150, 83, 104, 0.2),
+    0 0.72rem 1.15rem rgba(77, 31, 47, 0.18);
+}
+
+.artifact-install-sculpture__ring--one {
+  inset: 13% 8%;
+  border-radius: 48%;
+  transform: rotateX(68deg) rotateZ(18deg) translateZ(18px);
+  animation: artifact-install-ring-one 8.5s linear infinite;
+}
+
+.artifact-install-sculpture__ring--two {
+  inset: 18% 15%;
+  border-radius: 42% 56% 48% 52%;
+  transform: rotateY(69deg) rotateZ(-22deg) translateZ(-8px);
+  animation: artifact-install-ring-two 11s linear infinite reverse;
+}
+
+.artifact-install-sculpture__ring--three {
+  inset: 26%;
+  border-radius: 50% 43% 48% 46%;
+  transform: rotateX(44deg) rotateY(38deg) translateZ(40px);
+  animation: artifact-install-ring-three 7s linear infinite;
+}
+
+.artifact-install-sculpture__sphere {
+  position: absolute;
+  z-index: 5;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 31% 24%, #ff7b83 0 9%, #ff2439 34%, #e8001d 72%, #9f0017 100%);
+  box-shadow: inset -0.35rem -0.42rem 0.75rem rgba(93, 0, 15, 0.24), 0 0.85rem 1.2rem rgba(111, 10, 28, 0.2);
+}
+
+.artifact-install-sculpture__sphere--one {
+  top: 37%;
+  left: 39%;
+  width: 25%;
+  transform: translateZ(66px);
+  animation: artifact-install-sphere-one 6s ease-in-out infinite;
+}
+
+.artifact-install-sculpture__sphere--two {
+  top: 8%;
+  left: 10%;
+  width: 13%;
+  transform: translateZ(-18px);
+  animation: artifact-install-sphere-two 7.5s ease-in-out infinite;
+}
+
+.artifact-install-sculpture__sphere--three {
+  right: 6%;
+  bottom: 13%;
+  width: 16%;
+  transform: translateZ(24px);
+  animation: artifact-install-sphere-three 8.2s ease-in-out infinite;
+}
+
+.artifact-install-sculpture__block {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  --block-depth: 24px;
+  transform-style: preserve-3d;
+}
+
+.artifact-install-sculpture__block-face {
+  position: absolute;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(242, 192, 208, 0.42));
+  box-shadow: inset 0.22rem 0.22rem 0.46rem rgba(255, 255, 255, 0.68);
+  backface-visibility: visible;
+}
+
+.artifact-install-sculpture__block-face--front,
+.artifact-install-sculpture__block-face--back {
+  inset: 0;
+  border-radius: 0.55rem;
+}
+.artifact-install-sculpture__block-face--front { transform: translateZ(calc(var(--block-depth) / 2)); }
+.artifact-install-sculpture__block-face--back {
+  transform: rotateY(180deg) translateZ(calc(var(--block-depth) / 2));
+  background: rgba(190, 129, 148, 0.5);
+}
+.artifact-install-sculpture__block-face--left,
+.artifact-install-sculpture__block-face--right {
+  top: 0;
+  width: var(--block-depth);
+  height: 100%;
+  background: linear-gradient(90deg, rgba(170, 105, 126, 0.52), rgba(255, 235, 241, 0.72));
+}
+.artifact-install-sculpture__block-face--left { left: 0; transform: translateX(-50%) rotateY(90deg); }
+.artifact-install-sculpture__block-face--right { right: 0; transform: translateX(50%) rotateY(90deg); }
+.artifact-install-sculpture__block-face--top,
+.artifact-install-sculpture__block-face--bottom {
+  left: 0;
+  width: 100%;
+  height: var(--block-depth);
+  background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(219, 158, 178, 0.5));
+}
+.artifact-install-sculpture__block-face--top { top: 0; transform: translateY(-50%) rotateX(90deg); }
+.artifact-install-sculpture__block-face--bottom { bottom: 0; transform: translateY(50%) rotateX(90deg); }
+
+.artifact-install-sculpture__block--one {
+  top: 12%;
+  right: 14%;
+  width: 42%;
+  height: 18%;
+  transform: translateZ(28px) rotateY(-24deg) rotateZ(16deg);
+}
+
+.artifact-install-sculpture__block--two {
+  bottom: 8%;
+  left: 20%;
+  width: 24%;
+  height: 49%;
+  transform: translateZ(-24px) rotateX(13deg) rotateY(31deg) rotateZ(-12deg);
+}
+
+.artifact-install-sculpture__floor {
+  position: absolute;
+  z-index: 0;
+  right: 8%;
+  bottom: 4%;
+  left: 8%;
+  height: 29%;
+  border-radius: 50%;
+  background: repeating-radial-gradient(ellipse, transparent 0 1.15rem, rgba(255, 70, 92, 0.08) 1.2rem 1.26rem);
+  transform: rotateX(69deg);
+}
+
+.artifact-install-sculpture__axis {
+  position: absolute;
+  z-index: 6;
+  right: 9%;
+  bottom: 11%;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid var(--ink-12);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.artifact-install-sculpture__axis i {
+  width: 0.38rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ff2439;
+}
+.artifact-install-sculpture__axis i:nth-child(2) { background: rgba(255, 122, 145, 0.72); }
+.artifact-install-sculpture__axis i:nth-child(3) { background: rgba(255, 221, 228, 0.9); }
+
+/* Healthcare / floating care toolkit */
+.ch--healthcare .ch-3d--side,
+.ch--healthcare .ch-3d--side * {
+  pointer-events: auto !important;
+}
+
+.ch--design-for-good .ch-3d--side,
+.ch--design-for-good .ch-3d--side * {
+  pointer-events: auto !important;
+}
+
+.hero-artifact--healthcare-toolkit {
+  cursor: grab;
+  perspective: 800px;
+  touch-action: pan-y;
+}
+.hero-artifact--healthcare-toolkit:active { cursor: grabbing; }
+
+.hero-artifact--healthcare-toolkit::before {
+  inset: 5%;
+  border: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 48% 54%, rgba(70, 153, 255, 0.13), transparent 34%),
+    radial-gradient(circle at 62% 35%, rgba(255, 102, 92, 0.1), transparent 58%);
+  box-shadow: none;
+}
+
+.category-hero-artifact--healthcare .artifact-collection__orbit {
+  border-color: rgba(70, 153, 255, 0.2);
+  opacity: 0.25;
+}
+
+.artifact-healthcare__aura {
+  position: absolute;
+  z-index: 0;
+  inset: 11%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(82, 162, 255, 0.14), rgba(255, 115, 96, 0.06) 46%, transparent 72%);
+  filter: blur(15px);
+  animation: artifact-healthcare-aura 5.6s ease-in-out infinite;
+}
+
+.artifact-healthcare__product {
+  position: absolute;
+  z-index: 3;
+  inset: -2%;
+  display: block;
+  width: 104%;
+  height: 104%;
+  object-fit: contain;
+  user-select: none;
+  filter:
+    drop-shadow(0 0.9rem 0.78rem rgba(19, 36, 61, 0.19))
+    drop-shadow(0 0 0.45rem rgba(78, 157, 255, 0.12));
+}
+
+.artifact-healthcare__pulse {
+  position: absolute;
+  z-index: 5;
+  top: 26%;
+  left: 50%;
+  width: 16%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 99, 89, 0.48);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: artifact-healthcare-pulse 3.1s ease-out infinite;
+}
+.artifact-healthcare__pulse i {
+  position: absolute;
+  inset: 31%;
+  border-radius: 50%;
+  background: rgba(255, 99, 89, 0.18);
+  box-shadow: 0 0 0.75rem rgba(255, 99, 89, 0.3);
+}
+
+.artifact-healthcare__capsule {
+  position: absolute;
+  z-index: 6;
+  display: block;
+  width: 1.35rem;
+  height: 0.58rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f5f7fb 0 50%, #5877bc 50%);
+  box-shadow: 0 0.45rem 0.65rem rgba(25, 45, 78, 0.18);
+  animation: artifact-healthcare-capsule 5.2s ease-in-out infinite;
+}
+.artifact-healthcare__capsule--one { top: 17%; right: 12%; transform: rotate(-28deg); }
+.artifact-healthcare__capsule--two {
+  bottom: 16%;
+  left: 12%;
+  transform: rotate(22deg) scale(0.76);
+  animation-delay: -2.6s;
+  background: linear-gradient(90deg, #f6f8fb 0 50%, #ff7466 50%);
+}
+
+.artifact-healthcare__status {
+  position: absolute;
+  z-index: 7;
+  right: 7%;
+  bottom: 9%;
+  display: flex;
+  gap: 0.34rem;
+  align-items: center;
+  padding: 0.28rem 0.42rem;
+  border: 1px solid var(--ink-12);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow: 0 0.5rem 0.85rem rgba(20, 37, 62, 0.09);
+  backdrop-filter: blur(8px);
+}
+.artifact-healthcare__status i {
+  width: 0.36rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #4e9dff;
+  box-shadow: 0 0 0.45rem rgba(78, 157, 255, 0.62);
+  animation: artifact-healthcare-status 2.4s ease-in-out infinite;
+}
+.artifact-healthcare__status b {
+  font: 700 0.39rem/1 var(--sans);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+/* Archived stage-and-light styles remain available for project-level scenes. */
+.hero-artifact--installation { perspective: 700px; }
+.artifact-install__truss { position: absolute; z-index: 3; display: block; border: 0.18rem solid #a8adb9; background: repeating-linear-gradient(45deg, transparent 0 0.45rem, #7b8290 0.48rem 0.57rem, transparent 0.6rem 0.92rem); box-shadow: 0 0.5rem 1rem rgba(0,0,0,.2); }
+.artifact-install__truss--top { top: 17%; left: 17%; width: 66%; height: 1rem; transform: rotateX(12deg); }
+.artifact-install__truss--left,.artifact-install__truss--right { top: 20%; width: 1rem; height: 48%; }
+.artifact-install__truss--left { left: 17%; transform: rotateZ(2deg); }.artifact-install__truss--right { right: 17%; transform: rotateZ(-2deg); }
+.artifact-install__lamp { position: absolute; z-index: 4; top: 22%; width: 1.25rem; height: 1.6rem; border-radius: 0.28rem 0.28rem 50% 50%; background: #242832; box-shadow: 0 0.4rem 0.6rem rgba(0,0,0,.3); }
+.artifact-install__lamp--one { left: 34%; transform: rotate(12deg); }.artifact-install__lamp--two { right: 34%; transform: rotate(-12deg); }
+.artifact-install__lamp i { position: absolute; top: 82%; left: 50%; width: 5rem; height: 9rem; translate: -50% 0; background: linear-gradient(to bottom, rgba(99,102,241,.25), transparent 75%); clip-path: polygon(44% 0,56% 0,100% 100%,0 100%); filter: blur(2px); animation: artifact-light 5s ease-in-out infinite; }
+.artifact-install__lamp--two i { background: linear-gradient(to bottom, rgba(236,72,153,.22), transparent 75%); animation-delay: -2.5s; }
+.artifact-install__stage { position: absolute; z-index: 5; bottom: 19%; left: 25%; display: grid; place-items: center; width: 50%; height: 19%; border: 1px solid #707786; border-radius: 50%; background: radial-gradient(ellipse, #555d6d, #1c2028 72%); box-shadow: 0 0.75rem 0 #11141a, 0 1.2rem 1.5rem rgba(0,0,0,.35); animation: artifact-stage 12s linear infinite; }
+.artifact-install__stage i { font: italic 1.2rem/1 var(--serif); color: rgba(255,255,255,.68); }
+.artifact-install__floor { position:absolute; z-index:0; right:11%; bottom:9%; left:11%; height:31%; border-radius:50%; background:repeating-radial-gradient(ellipse at center,transparent 0 1.2rem,rgba(99,102,241,.12) 1.25rem 1.32rem); transform:rotateX(66deg); }
+.artifact-install__stage::before { content:''; position:absolute; inset:14%; border:1px solid rgba(255,255,255,.16); border-radius:50%; }
+
+/* Brand / typographic specimen */
+.category-hero-artifact--brand .artifact-collection__orbit,
+.category-hero-artifact--brand-visual .artifact-collection__orbit {
+  inset: 9%;
+  border-color: color-mix(in srgb, #8f7cff 13%, transparent);
+  opacity: 0.3;
+}
+
+.category-hero-artifact--brand .artifact-collection__shadow,
+.category-hero-artifact--brand-visual .artifact-collection__shadow {
+  right: 12%;
+  bottom: 7%;
+  left: 12%;
+  height: 7%;
+  opacity: 0.75;
+}
+
+.hero-artifact--brand::before {
+  inset: 8%;
+  background: radial-gradient(circle, rgba(91, 99, 255, 0.14), rgba(236, 72, 153, 0.06) 45%, transparent 72%);
+}
+
+.artifact-brand__product {
+  position: absolute;
+  z-index: 3;
+  top: -7%;
+  left: -2%;
+  display: block;
+  width: 104%;
+  height: auto;
+  user-select: none;
+  filter: saturate(0.96) drop-shadow(0 1.45rem 1.65rem rgba(2, 5, 18, 0.32));
+}
+
+.artifact-brand__aura {
+  position: absolute;
+  z-index: 2;
+  inset: 16% 11%;
+  border-radius: 50%;
+  background: conic-gradient(from 190deg, rgba(47, 94, 242, 0.12), rgba(245, 119, 174, 0.13), rgba(255, 182, 65, 0.1), rgba(47, 94, 242, 0.12));
+  filter: blur(24px);
+  animation: artifact-brand-aura 12s linear infinite;
+}
+
+.artifact-brand__satellite {
+  position: absolute;
+  z-index: 5;
+  display: block;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  pointer-events: none !important;
+  box-shadow: 0 0.5rem 1rem rgba(22, 33, 79, 0.2);
+  animation: artifact-brand-satellite 5.8s ease-in-out infinite;
+}
+
+.artifact-brand__satellite--one {
+  top: 15%;
+  left: 8%;
+  width: 0.64rem;
+  background: #f778b5;
+}
+
+.artifact-brand__satellite--two {
+  top: 43%;
+  right: 3%;
+  width: 0.48rem;
+  background: #4269e8;
+  animation-delay: -1.9s;
+}
+
+.artifact-brand__satellite--three {
+  right: 20%;
+  bottom: 7%;
+  width: 0.58rem;
+  background: #ffb83f;
+  animation-delay: -3.8s;
+}
+
+.artifact-brand__card { position: absolute; display: grid; place-items: center; width: 43%; height: 57%; border: 1px solid var(--ink-15); border-radius: 0.9rem; box-shadow: 0 1.2rem 2rem rgba(10,5,20,.2); transform-origin: 50% 100%; }
+.artifact-brand__card b { font-family: var(--serif); font-weight: 300; }
+.artifact-brand__card--back { z-index: 1; top: 18%; left: 12%; background: #e7daff; color: #542a91; transform: rotate(-15deg); }
+.artifact-brand__card--back b { font-size: 2.3rem; font-style: italic; }
+.artifact-brand__card--middle { z-index: 2; top: 14%; right: 11%; background: #f0a7d7; color: #4f163c; transform: rotate(12deg); }
+.artifact-brand__card--middle b { font-size: 3.5rem; }
+.artifact-brand__card--front { z-index: 3; top: 24%; left: 28%; overflow: hidden; background: #17121e; color: #fff; transform: rotate(-1deg); animation: artifact-card 6.5s ease-in-out infinite; }
+.artifact-brand__card--front b { font-size: 5.4rem; font-style: italic; line-height: 1; }
+.artifact-brand__card--front i { position: absolute; right: -30%; bottom: -14%; width: 88%; aspect-ratio: 1; border: 1px solid #d946ef; border-radius: 50%; }
+.artifact-brand__swatches { position: absolute; z-index: 6; right: 12%; bottom: 14%; display: flex; gap: 0.25rem; padding: 0.32rem; border: 1px solid var(--ink-12); border-radius: 999px; background: color-mix(in srgb, var(--surface) 86%, transparent); backdrop-filter: blur(8px); }
+.artifact-brand__swatches i { width: 0.62rem; aspect-ratio: 1; border-radius: 50%; background: #d946ef; }.artifact-brand__swatches i:nth-child(2){background:#6d3db8}.artifact-brand__swatches i:nth-child(3){background:#f0a7d7}.artifact-brand__swatches i:nth-child(4){background:#17121e}
+.artifact-brand__grid { position:absolute; z-index:0; inset:14%; border-radius:1.5rem; background:linear-gradient(rgba(217,70,239,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(217,70,239,.08) 1px,transparent 1px); background-size:1.15rem 1.15rem; transform:rotate(-8deg); mask-image:radial-gradient(circle,#000 22%,transparent 72%); }
+.artifact-brand__card::after { content:''; position:absolute; inset:.45rem; border:1px solid rgba(255,255,255,.12); border-radius:.56rem; pointer-events:none; }
+
+/* Design for Good and Healthcare / connected service path */
+.hero-artifact--service {
+  cursor: grab;
+  perspective: 800px;
+  touch-action: pan-y;
+}
+.hero-artifact--service:active { cursor: grabbing; }
+.artifact-service__network {
+  position: absolute;
+  z-index: 3;
+  inset: 5%;
+  display: block;
+  transform: rotateX(18deg) rotateY(-8deg) translateZ(12px);
+  transform-style: preserve-3d;
+  animation: artifact-service-float 8.2s ease-in-out infinite;
+}
+.artifact-service__route { position: absolute; z-index: 2; inset: 0; overflow: visible; fill: none; stroke: #10b981; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 5 6; filter: drop-shadow(0 .14rem .16rem rgba(0, 80, 54, .24)); transform: translateZ(5px); }
+.artifact-service__route > path:first-child { animation: artifact-dash 9s linear infinite; }
+.artifact-service__node { position: absolute; z-index: 5; display: grid; place-items: center; width: 2.4rem; aspect-ratio: 1; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: radial-gradient(circle at 34% 27%, rgba(255,255,255,.98) 0 9%, #dff8ed 34%, #5ad1a6 72%, #087b57 100%); box-shadow: inset -.22rem -.28rem .34rem rgba(0,76,52,.22), 0 .22rem 0 #087452, 0 .48rem .72rem rgba(0,60,40,.24), 0 0 0 .12rem rgba(16,185,129,.12); transform-style: preserve-3d; }
+.artifact-service__node::before { content:''; position:absolute; top:24%; width:28%; aspect-ratio:1; border-radius:50%; background:#10b981; }
+.artifact-service__node::after { content:''; position:absolute; bottom:20%; width:48%; height:26%; border-radius:50% 50% 42% 42%; background:#10b981; }
+.artifact-service__node i { position:absolute; z-index:2; font:700 .88rem/1 var(--sans); color:white; }
+.artifact-service__node--1 { top: 56%; left: 8%; transform: translateZ(8px); }.artifact-service__node--2 { top: 59%; left: 36%; transform: translateZ(24px); }.artifact-service__node--3 { top: 39%; left: 58%; transform: translateZ(42px); }.artifact-service__node--4 { top: 36%; right: 5%; transform: translateZ(18px); }
+.artifact-service__halo { position:absolute; z-index:1; top:30%; right:9%; width:42%; aspect-ratio:1; border:1px solid rgba(16,185,129,.35); border-radius:50%; animation:artifact-pulse 3.5s ease-out infinite; }
+.hero-artifact--health .artifact-service__route { stroke:#7c75ff; }
+.hero-artifact--health .artifact-service__pulse-line { stroke:#e7567d; stroke-width:1.6; stroke-dasharray:none; animation:artifact-pulse-line 4s ease-in-out infinite; }
+.hero-artifact--health .artifact-service__node { border-color:rgba(124,117,255,.48); background:color-mix(in srgb,var(--surface) 88%,#7c75ff); }
+.hero-artifact--health .artifact-service__node::before,.hero-artifact--health .artifact-service__node::after { background:#7c75ff; }
+.hero-artifact--health .artifact-service__halo { border-color:rgba(124,117,255,.36); }
+.artifact-service__field { position:absolute; z-index:0; top:22%; right:4%; width:60%; aspect-ratio:1; border:1px solid rgba(16,185,129,.14); border-radius:50%; background:repeating-radial-gradient(circle,transparent 0 1.4rem,rgba(16,185,129,.09) 1.46rem 1.52rem), radial-gradient(circle,rgba(16,185,129,.08),transparent 68%); box-shadow: inset 0 0 1.8rem rgba(16,185,129,.06); opacity:.82; transform: translateZ(-16px); }
+.hero-artifact--health .artifact-service__field { background:repeating-radial-gradient(circle,transparent 0 1.4rem,rgba(124,117,255,.1) 1.46rem 1.52rem); }
+.artifact-service__node { animation:artifact-waypoint 4.8s ease-in-out infinite; }
+.artifact-service__node:nth-of-type(3) { animation-delay:-1.2s; }.artifact-service__node:nth-of-type(4) { animation-delay:-2.4s; }.artifact-service__node:nth-of-type(5) { animation-delay:-3.6s; }
+.artifact-service__floor {
+  position: absolute;
+  z-index: 0;
+  right: 9%;
+  bottom: 10%;
+  left: 9%;
+  height: 20%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 68, 47, .2), transparent 70%);
+  filter: blur(12px);
+  transform: rotateX(72deg);
+}
+.artifact-service__status { right: 8%; bottom: 9%; }
+.artifact-service__status i { background: #10b981; box-shadow: 0 0 .45rem rgba(16,185,129,.72); }
+
+@keyframes artifact-ai-scan {
+  0%, 100% { transform: translateY(-1.4rem); opacity: 0; }
+  18%, 82% { opacity: 0.7; }
+  50% { transform: translateY(3.2rem); opacity: 1; }
+}
+@keyframes artifact-ux-console-float {
+  0%, 100% { transform: rotateX(5deg) rotateY(-9deg) rotateZ(-0.7deg) translate3d(0, 0, 0); }
+  50% { transform: rotateX(7deg) rotateY(-5deg) rotateZ(0.35deg) translate3d(0.12rem, -0.35rem, 14px); }
+}
+@keyframes artifact-ux-console-live { 50% { transform: scale(1.45); opacity: 0.52; } }
+@keyframes artifact-ux-console-scan {
+  0%, 100% { left: 6%; opacity: 0; }
+  18%, 82% { opacity: 0.48; }
+  50% { left: 93%; opacity: 0.68; }
+}
+@keyframes artifact-signal {
+  0%, 100% { transform: translateZ(8px) scale(1); opacity: 1; }
+  50% { transform: translateZ(15px) scale(1.42); opacity: .55; }
+}
+@keyframes artifact-dash { to { stroke-dashoffset: -90; } }
+@keyframes artifact-cursor { 0%,100% { transform: translate(0,0) rotate(-12deg); } 50% { transform: translate(2.2rem,-1.7rem) rotate(-12deg); } }
+@keyframes artifact-pulse { 0% { transform: scale(.68); opacity:.7; } 100% { transform: scale(1.35); opacity:0; } }
+@keyframes artifact-creative-aura { 50% { transform: scale(1.12); opacity: 0.66; } }
+@keyframes artifact-creative-hover { 50% { transform: translate3d(0, -0.42rem, 12px) rotateZ(0.45deg); } }
+@keyframes artifact-creative-wing-left {
+  0%, 100% { transform: perspective(700px) rotateY(0deg) rotateZ(0deg); }
+  48% { transform: perspective(700px) rotateY(-9deg) rotateZ(-1.25deg) translateX(-0.14rem); }
+}
+@keyframes artifact-creative-wing-right {
+  0%, 100% { transform: perspective(700px) rotateY(0deg) rotateZ(0deg); }
+  48% { transform: perspective(700px) rotateY(9deg) rotateZ(1.25deg) translateX(0.14rem); }
+}
+@keyframes artifact-creative-heartbeat {
+  0%, 42%, 100% { transform: translateZ(20px) scale(1.015); filter: drop-shadow(0 0 0.25rem rgba(255, 151, 98, 0.22)); }
+  48% { transform: translateZ(31px) scale(1.045); filter: drop-shadow(0 0 0.72rem rgba(255, 151, 98, 0.6)); }
+  55% { transform: translateZ(25px) scale(1.026); filter: drop-shadow(0 0 0.4rem rgba(255, 151, 98, 0.36)); }
+}
+@keyframes artifact-creative-scan {
+  0%, 100% { transform: translateX(-5.2rem); opacity: 0; }
+  18%, 82% { opacity: 0.54; }
+  50% { transform: translateX(5.2rem); opacity: 0.72; }
+}
+@keyframes artifact-creative-signal { 50% { transform: scale(1.55); opacity: 0.42; } }
+@keyframes artifact-healthcare-aura { 50% { transform: scale(1.1); opacity: 0.7; } }
+@keyframes artifact-healthcare-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.58); opacity: 0; }
+  22% { opacity: 0.75; }
+  100% { transform: translate(-50%, -50%) scale(1.48); opacity: 0; }
+}
+@keyframes artifact-healthcare-capsule {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0.26rem -0.46rem; }
+}
+@keyframes artifact-healthcare-status { 50% { transform: scale(1.45); opacity: 0.5; } }
+@keyframes artifact-light { 50% { transform: rotate(5deg); opacity:.45; } }
+@keyframes artifact-stage { to { transform: rotateY(360deg); } }
+@keyframes artifact-card { 50% { transform: rotate(3deg) translateY(-.35rem); } }
+@keyframes artifact-pulse-line { 50% { opacity:.35; } }
+@keyframes artifact-orbit { to { transform:rotateX(66deg) rotateZ(349deg); } }
+@keyframes artifact-waypoint { 50% { box-shadow:0 0.85rem 1.4rem rgba(0,60,40,.2),0 0 0 .34rem rgba(16,185,129,.08); } }
+@keyframes artifact-proto-breathe {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateZ(-.25deg); }
+  50% { transform: translate3d(.12rem, -.32rem, 18px) rotateZ(.35deg); }
+}
+@keyframes artifact-service-float {
+  0%, 100% { transform: rotateX(18deg) rotateY(-8deg) translate3d(0, 0, 12px); }
+  50% { transform: rotateX(21deg) rotateY(-3deg) translate3d(.12rem, -.3rem, 28px); }
+}
+@keyframes artifact-install-sculpture-turn {
+  0%, 100% { transform: rotateX(22deg) rotateY(-24deg) rotateZ(-4deg) translateZ(0); }
+  50% { transform: rotateX(31deg) rotateY(28deg) rotateZ(4deg) translateZ(18px); }
+}
+@keyframes artifact-install-sculpture-glow { 50% { transform: scale(1.13); opacity: 0.58; } }
+@keyframes artifact-install-ring-one {
+  from { transform: rotateX(68deg) rotateZ(18deg) translateZ(18px); }
+  to { transform: rotateX(68deg) rotateZ(378deg) translateZ(18px); }
+}
+@keyframes artifact-install-ring-two {
+  from { transform: rotateY(69deg) rotateZ(-22deg) translateZ(-8px); }
+  to { transform: rotateY(429deg) rotateZ(-22deg) translateZ(-8px); }
+}
+@keyframes artifact-install-ring-three {
+  from { transform: rotateX(44deg) rotateY(38deg) translateZ(40px); }
+  to { transform: rotateX(404deg) rotateY(218deg) translateZ(40px); }
+}
+@keyframes artifact-install-sphere-one {
+  0%, 100% { transform: translate3d(0, 0, 66px); }
+  50% { transform: translate3d(0.55rem, -0.75rem, 88px) scale(1.08); }
+}
+@keyframes artifact-install-sphere-two {
+  0%, 100% { transform: translate3d(0, 0, -18px); }
+  50% { transform: translate3d(-0.45rem, 0.65rem, 8px) scale(0.9); }
+}
+@keyframes artifact-install-sphere-three {
+  0%, 100% { transform: translate3d(0, 0, 24px); }
+  50% { transform: translate3d(-0.7rem, -0.45rem, 52px) scale(1.12); }
+}
+@keyframes artifact-brand-aura { to { transform: rotate(360deg); } }
+@keyframes artifact-brand-satellite {
+  0%, 100% { transform: translate3d(0, 0, 18px) scale(0.9); }
+  50% { transform: translate3d(0.35rem, -0.7rem, 48px) scale(1.18); }
+}
+
+@media (max-width: 900px) {
+  .ch--landing:not(.ch--crypto):not(.ch--fintech) .ch-3d--side {
+    top: calc(var(--nav-h) + 1rem);
+    width: clamp(10rem, 29vw, 14rem);
+    max-width: none;
+  }
+  .ch--landing:not(.ch--crypto):not(.ch--fintech):has(.ch-3d--side) .ch-copy {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .ch--landing:not(.ch--crypto):not(.ch--fintech) .ch-3d--side {
+    right: 0;
+    width: 8.25rem;
+  }
+  .artifact-signature { width: 1rem; font-size: .6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-hero-artifact *,
+  .category-hero-artifact {
+    animation: none !important;
+    transition: none !important;
+  }
+}

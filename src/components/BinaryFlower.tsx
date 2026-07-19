@@ -226,9 +226,22 @@ function BinaryGlyphField({
   )
 }
 
-function BinaryFlowerScene({ reduced, dark }: { reduced: boolean; dark: boolean }) {
+function BinaryFlowerScene({
+  reduced,
+  dark,
+  performanceDegraded,
+}: {
+  reduced: boolean
+  dark: boolean
+  performanceDegraded: boolean
+}) {
   const groupRef = useRef<THREE.Group>(null)
-  const points = useMemo(() => createBinaryPointSets(), [])
+  const points = useMemo(() => {
+    const allPoints = createBinaryPointSets()
+    return performanceDegraded
+      ? allPoints.filter((_, index) => index % 2 === 0)
+      : allPoints
+  }, [performanceDegraded])
   const zeros = useMemo(() => points.filter((_, index) => index % 3 === 0), [points])
   const ones = useMemo(() => points.filter((_, index) => index % 3 !== 0), [points])
 
@@ -268,14 +281,22 @@ export default function BinaryFlower() {
 
   return (
     <div className="abt-binary-flower" aria-label="Morphing generative binary object">
-      {webGLAvailable && !performanceDegraded ? (
+      {webGLAvailable ? (
         <Canvas
           className="abt-binary-flower-canvas"
           camera={{ position: [0, 0, 5.15], fov: 43 }}
-          dpr={[1, 1.75]}
-          gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
+          dpr={performanceDegraded ? 1 : [1, 1.75]}
+          gl={{
+            alpha: true,
+            antialias: !performanceDegraded,
+            powerPreference: performanceDegraded ? 'low-power' : 'high-performance',
+          }}
         >
-          <BinaryFlowerScene reduced={reduced} dark={dark} />
+          <BinaryFlowerScene
+            reduced={reduced}
+            dark={dark}
+            performanceDegraded={performanceDegraded}
+          />
         </Canvas>
       ) : (
         <BinaryFlowerFallback />

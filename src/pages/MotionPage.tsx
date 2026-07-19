@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState, type CSSProperties } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties, type PointerEvent } from 'react'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { Navigate, useLocation } from 'react-router-dom'
 import Nav from '../components/Nav'
@@ -807,6 +808,57 @@ function TransfiMotionSystem() {
   )
 }
 
+function MotionHeroArtifact({ motionOn }: { motionOn: boolean }) {
+  const rawRotateX = useMotionValue(0)
+  const rawRotateY = useMotionValue(0)
+  const rotateX = useSpring(rawRotateX, { stiffness: 175, damping: 19, mass: 0.7 })
+  const rotateY = useSpring(rawRotateY, { stiffness: 175, damping: 19, mass: 0.7 })
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!motionOn) return
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5
+    rawRotateX.set(y * -10)
+    rawRotateY.set(x * 13)
+  }
+
+  const resetTilt = () => {
+    rawRotateX.set(0)
+    rawRotateY.set(0)
+  }
+
+  return (
+    <motion.div
+      className={`motion-hero-artifact${motionOn ? '' : ' is-paused'}`}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetTilt}
+      onPointerCancel={resetTilt}
+      animate={motionOn ? { y: [0, -5, 2, 0], rotateZ: [0, 0.7, -0.45, 0] } : undefined}
+      transition={{ duration: 9, ease: 'easeInOut', repeat: Infinity }}
+      style={{ rotateX, rotateY, transformPerspective: 760 }}
+      aria-hidden="true"
+    >
+      <span className="motion-hero-artifact__aura" />
+      <motion.img
+        className="motion-hero-artifact__palette"
+        src="/Assets/generated/motion-palette-v1.webp"
+        alt=""
+        draggable={false}
+        animate={motionOn ? { scale: [1, 1.025, 0.992, 1] } : undefined}
+        transition={{ duration: 7.2, ease: 'easeInOut', repeat: Infinity }}
+      />
+      <span className="motion-hero-tool motion-hero-tool--play"><i /></span>
+      <span className="motion-hero-tool motion-hero-tool--timeline"><i /><i /><i /></span>
+      <span className="motion-hero-tool motion-hero-tool--curve">
+        <svg viewBox="0 0 44 44"><path d="M8 31 C14 31 14 13 22 13 S30 31 36 13" /><circle cx="8" cy="31" r="2" /><circle cx="36" cy="13" r="2" /></svg>
+      </span>
+      <span className="motion-hero-tool motion-hero-tool--frame"><i /><i /><i /><i /></span>
+      <span className="motion-hero-artifact__timecode">00:12:24</span>
+    </motion.div>
+  )
+}
+
 function MotionLanding({ motionOn }: { motionOn: boolean }) {
   return (
     <div className="motion-index-page category-page">
@@ -826,6 +878,7 @@ function MotionLanding({ motionOn }: { motionOn: boolean }) {
               <span>Motion<br />Direction</span>
               <h1>Motion that explains the idea, proves the product, and earns the pace.</h1>
             </div>
+            <MotionHeroArtifact motionOn={motionOn} />
             <div className="motion-index-hero__bottom">
               <a href="#lp-work" className="motion-index-hero__link figma-hover">See work <span aria-hidden="true">↓</span></a>
               <dl>

@@ -1,9 +1,8 @@
-import { lazy, Suspense, useEffect, useMemo, useState, type MouseEvent } from 'react'
+import { useEffect, useMemo, useState, type MouseEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useDeferredMount } from '../hooks/useDeferredMount'
 import CryptoHeroCoins from './CryptoHeroCoins'
-
-const CategoryObject3D = lazy(() => import('./CategoryObject3D'))
+import FintechHeroCoins from './FintechHeroCoins'
+import CategoryHeroArtifact from './CategoryHeroArtifact'
 
 const ease = [0.16, 1, 0.3, 1] as const
 const revealTransition = { duration: 0.58, ease }
@@ -322,7 +321,6 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
     : heroSlug === 'ai-wearables'
       ? WEARABLE_PORTFOLIO_STATS
       : PORTFOLIO_STATS
-  const show3D = useDeferredMount(has3D, { timeout: 1300, delayMs: 120 })
 
   const handleWorkClick = (event: MouseEvent<HTMLAnchorElement>) => {
     const target = document.getElementById('lp-work')
@@ -392,15 +390,14 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           initial={{ opacity: 0, scale: 0.985, filter: 'blur(6px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
           transition={{ duration: 0.82, delay: 0.16, ease }}
-          aria-hidden="true"
         >
           {slug === 'crypto' ? (
             <CryptoHeroCoins />
-          ) : show3D ? (
-            <Suspense fallback={null}>
-              <CategoryObject3D slug={slug} size={460} style={{ width: 'min(100%, 460px)', height: 'auto', aspectRatio: '1 / 1' }} />
-            </Suspense>
-          ) : null}
+          ) : slug === 'fintech' ? (
+            <FintechHeroCoins />
+          ) : (
+            <CategoryHeroArtifact slug={heroSlug} />
+          )}
         </motion.div>
       )}
 

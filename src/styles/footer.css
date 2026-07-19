@@ -430,6 +430,138 @@ body.has-footer-reveal main {
   background-size: 22px 22px;
 }
 
+.ft-arcade-launcher {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 0.55rem;
+  width: 9.5rem;
+  min-height: 13.5rem;
+  padding: 0.7rem 0.7rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: 0.85rem 0.85rem 1.5rem 0.85rem;
+  background: color-mix(in srgb, var(--surface) 96%, var(--bg));
+  color: color-mix(in srgb, var(--ink) 72%, transparent);
+  box-shadow: 0 1rem 2.4rem color-mix(in srgb, var(--ink) 14%, transparent), inset 0 1px 0 color-mix(in srgb, var(--bg) 72%, transparent);
+  font-family: var(--mono, monospace);
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: color var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast);
+}
+
+.ft-arcade-launcher__icon {
+  display: none;
+}
+
+.ft-arcade-launcher__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ft-arcade-launcher__device {
+  display: grid;
+  grid-template-rows: 1fr 3.5rem;
+  width: 100%;
+  height: 11.25rem;
+  padding: 0.42rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 24%, transparent);
+  border-radius: 0.52rem 0.52rem 1.1rem 0.52rem;
+  background: color-mix(in srgb, var(--bg) 92%, var(--surface));
+  box-shadow: inset 0 -0.18rem 0 color-mix(in srgb, var(--ink) 9%, transparent);
+}
+
+.ft-arcade-launcher__screen {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 0.28rem solid var(--ink);
+  border-radius: 0.22rem;
+  background:
+    linear-gradient(color-mix(in srgb, var(--ink) 9%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--ink) 9%, transparent) 1px, transparent 1px),
+    color-mix(in srgb, var(--bg) 88%, var(--ink));
+  background-size: 9px 9px;
+}
+
+.ft-arcade-launcher__screen i {
+  position: absolute;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--ink);
+}
+
+.ft-arcade-launcher__screen i:nth-child(1) { left: 42%; top: 28%; }
+.ft-arcade-launcher__screen i:nth-child(2) { left: 50%; top: 38%; }
+.ft-arcade-launcher__screen i:nth-child(3) { left: 42%; top: 48%; }
+.ft-arcade-launcher__screen i:nth-child(4) { left: 50%; top: 58%; }
+.ft-arcade-launcher__screen i:nth-child(5) { left: 58%; top: 58%; }
+
+.ft-arcade-launcher__controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+}
+
+.ft-arcade-launcher__dpad {
+  position: relative;
+  width: 2.8rem;
+  height: 1rem;
+  border-radius: 0.18rem;
+  background: var(--ink);
+}
+
+.ft-arcade-launcher__dpad::after {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  top: -0.9rem;
+  width: 1rem;
+  height: 2.8rem;
+  border-radius: 0.18rem;
+  background: var(--ink);
+}
+
+.ft-arcade-launcher__buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 0.78rem);
+  gap: 0.28rem;
+  transform: rotate(-7deg);
+}
+
+.ft-arcade-launcher__buttons i {
+  width: 0.78rem;
+  height: 0.78rem;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.ft-arcade-launcher:hover,
+.ft-arcade-launcher:focus-visible {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--select-blue, #4a90e2) 55%, transparent);
+  transform: translateY(-3px);
+}
+
+.ft-arcade-launcher:focus-visible {
+  outline: 2px solid var(--select-blue, #4a90e2);
+  outline-offset: 3px;
+}
+
+.ft-arcade-dock {
+  position: absolute;
+  right: 2.25rem;
+  bottom: 1.25rem;
+  z-index: 6;
+}
+
 /* stray pen path */
 .ft-scrap-path {
   position: absolute;
@@ -534,7 +666,7 @@ body.has-footer-reveal main {
   .ft-cursor--you { display: none; }
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (max-width: 720px), (hover: none), (pointer: coarse) {
   .ft-canvas-zone {
     cursor: auto;
     height: clamp(13rem, 56vw, 16rem);
@@ -562,6 +694,22 @@ body.has-footer-reveal main {
     overflow-wrap: anywhere;
   }
   .ft-scrap-path { display: none; }
+  .ft-arcade-dock {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    justify-self: center;
+  }
+  .ft-arcade-dock .ft-arcade-launcher {
+    display: inline-flex;
+    width: auto;
+    min-height: 2.75rem;
+    padding: 0.58rem 0.78rem;
+    border-radius: 0.6rem;
+    gap: 0.5rem;
+  }
+  .ft-arcade-dock .ft-arcade-launcher__device { display: none; }
+  .ft-arcade-dock .ft-arcade-launcher__icon { display: inline-grid; }
 }
 
 .ft-clock-you {

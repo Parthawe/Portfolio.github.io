@@ -1,0 +1,59 @@
+import { lazy, Suspense, useRef, useState } from 'react'
+
+const PocketArcade = lazy(() => import('./PocketArcade'))
+
+function GamepadGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.4 8.3h9.2a4.1 4.1 0 0 1 3.9 5.4l-1.2 3.5a2.4 2.4 0 0 1-3.8 1.1l-1.7-1.4h-3.6l-1.7 1.4a2.4 2.4 0 0 1-3.8-1.1l-1.2-3.5a4.1 4.1 0 0 1 3.9-5.4Z" />
+      <path d="M7.2 12.1v3.2M5.6 13.7h3.2M15.9 12.8h.01M18 14.8h.01" />
+    </svg>
+  )
+}
+
+export default function PocketArcadeLauncher() {
+  const [open, setOpen] = useState(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+
+  const closeArcade = () => {
+    setOpen(false)
+    window.requestAnimationFrame(() => triggerRef.current?.focus())
+  }
+
+  return (
+    <>
+      <button
+        ref={triggerRef}
+        type="button"
+        className="ft-arcade-launcher"
+        aria-label="Open Pocket Arcade"
+        aria-haspopup="dialog"
+        onPointerDown={(event) => {
+          event.stopPropagation()
+          setOpen(true)
+        }}
+        onClick={(event) => {
+          event.stopPropagation()
+          setOpen(true)
+        }}
+      >
+        <span className="ft-arcade-launcher__device" aria-hidden="true">
+          <span className="ft-arcade-launcher__screen">
+            <i /><i /><i /><i /><i />
+          </span>
+          <span className="ft-arcade-launcher__controls">
+            <span className="ft-arcade-launcher__dpad" />
+            <span className="ft-arcade-launcher__buttons"><i /><i /><i /><i /></span>
+          </span>
+        </span>
+        <span className="ft-arcade-launcher__icon"><GamepadGlyph /></span>
+        <span className="ft-arcade-launcher__label">Pocket Arcade</span>
+      </button>
+      {open && (
+        <Suspense fallback={<span className="sr-only" role="status">Loading Pocket Arcade</span>}>
+          <PocketArcade onClose={closeArcade} />
+        </Suspense>
+      )}
+    </>
+  )
+}
