@@ -7,6 +7,7 @@ import { usePrefersReduced } from '../hooks/usePrefersReduced';
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
 import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded';
 import { layoutHeroWeb, type WebNode, type WebEdge } from '../data/heroWeb';
+import SuperwhiteHighlight from './SuperwhiteHighlight';
 
 /* ─── Node config ─── */
 
@@ -2369,7 +2370,9 @@ export default function HeroScene({
           onClick={() => setExpanded(true)}
           aria-label="Explore the skills and projects web"
         >
-          <span className="hero-web-trigger-dot" aria-hidden="true" />
+          <span className="hero-web-trigger-dot" aria-hidden="true">
+            <SuperwhiteHighlight className="hero-web-trigger-superwhite" />
+          </span>
           See how it connects
           <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -174,11 +174,24 @@ body.page-ready .wr-hero.is-scene-ready {
 .hero-web-trigger svg { opacity: 0.6; }
 .hero-web-trigger:hover svg { opacity: 1; }
 .hero-web-trigger-dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
   width: 6px;
   height: 6px;
   border-radius: 999px;
   background: var(--select-blue);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--select-blue) 22%, transparent);
+  overflow: hidden;
+}
+.hero-web-trigger-superwhite {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: inherit;
+  object-fit: cover;
+  pointer-events: none;
 }
 @keyframes heroWebTriggerIn {
   to { opacity: 1; }
