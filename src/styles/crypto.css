@@ -833,3 +833,112 @@
     transition: none !important;
   }
 }
+
+/* Reference-led 3D coin orbit. The generated render supplies the material
+   realism; this layer keeps the object responsive, interactive, and quiet. */
+.crypto-coin-orbit {
+  appearance: none;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 108%;
+  aspect-ratio: 1;
+  margin: -4% 0 0 -4%;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.crypto-coin-orbit::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--crypto-violet) 18%, transparent),
+    transparent 68%
+  );
+  filter: blur(26px);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.crypto-coin-orbit:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--crypto-violet) 76%, #fff);
+  outline-offset: -0.1rem;
+}
+
+.crypto-coin-orbit img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  mix-blend-mode: normal;
+  filter: drop-shadow(0 2rem 2.8rem rgba(8, 5, 24, 0.3));
+  pointer-events: none;
+}
+
+.crypto-coin-orbit.is-ringing img {
+  animation: crypto-orbit-chime 0.92s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.crypto-coin-orbit + .crypto-coin-hint {
+  right: auto;
+  bottom: -1%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+@keyframes crypto-orbit-chime {
+  0% { transform: rotateZ(0deg) scale(1); }
+  38% { transform: rotateZ(3deg) scale(1.035); }
+  68% { transform: rotateZ(-1.4deg) scale(1.014); }
+  100% { transform: rotateZ(0deg) scale(1); }
+}
+
+@media (max-width: 900px) {
+  .crypto-coin-orbit {
+    width: 116%;
+    margin: -8% 0 0 -8%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ch--crypto .ch-3d--side {
+    right: auto;
+    left: 50%;
+    width: min(16rem, 66vw);
+    translate: -50% 0;
+  }
+
+  .crypto-coin-orbit {
+    width: 112%;
+    margin: -6% 0 0 -6%;
+  }
+
+  .crypto-hero-title {
+    font-size: clamp(2.35rem, 10vw, 2.8rem);
+  }
+
+  .crypto-coin-orbit + .crypto-coin-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crypto-coin-orbit,
+  .crypto-coin-orbit img {
+    animation: none !important;
+    transition: none !important;
+  }
+}
