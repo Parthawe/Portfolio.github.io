@@ -887,7 +887,31 @@
   pointer-events: none;
 }
 
-.crypto-coin-orbit.is-ringing img {
+.crypto-coin-orbit__canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.crypto-coin-orbit__canvas canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  pointer-events: none !important;
+}
+
+.crypto-coin-orbit__fallback {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  transform-origin: center;
+  animation: crypto-orbit-fallback-spin 30s linear infinite;
+}
+
+.crypto-coin-orbit.is-ringing :is(img, .crypto-coin-orbit__canvas) {
   animation: crypto-orbit-chime 0.92s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -906,6 +930,10 @@
   100% { transform: rotateZ(0deg) scale(1); }
 }
 
+@keyframes crypto-orbit-fallback-spin {
+  to { transform: rotateZ(360deg); }
+}
+
 @media (max-width: 900px) {
   .crypto-coin-orbit {
     width: 116%;
@@ -919,6 +947,10 @@
     left: 50%;
     width: min(16rem, 66vw);
     translate: -50% 0;
+  }
+
+  .ch--crypto .ch-copy {
+    padding-top: clamp(14.5rem, 62vw, 15.5rem);
   }
 
   .crypto-coin-orbit {
@@ -937,7 +969,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .crypto-coin-orbit,
-  .crypto-coin-orbit img {
+  .crypto-coin-orbit img,
+  .crypto-coin-orbit__canvas {
     animation: none !important;
     transition: none !important;
   }
