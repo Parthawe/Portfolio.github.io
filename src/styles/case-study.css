@@ -10352,3 +10352,48 @@
     max-height: none;
   }
 }
+
+/* NYU's four context fields should scan as a compact project brief on small
+   screens. The shared one-column fallback made this card disproportionately
+   tall and pushed the actual access story too far down the page. */
+.project-main--medimorpho .proj-info-label {
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+}
+
+.project-main--medimorpho .proj-info-val {
+  font-size: 0.95rem;
+  line-height: 1.42;
+}
+
+@media (max-width: 480px) {
+  .project-main--medimorpho .proj-visual-hero {
+    gap: 1.2rem;
+  }
+
+  .project-main--medimorpho .proj-visual-title {
+    font-size: clamp(1.65rem, 7.2vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .project-main--medimorpho .proj-info-row--visual {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.15rem 0.9rem;
+    padding: 1rem;
+  }
+
+  .project-main--medimorpho .proj-info-item {
+    gap: 0.3rem;
+  }
+
+  .project-main--medimorpho .medimorpho-access--overview {
+    padding-top: 2.75rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .project-main--medimorpho .proj-info-row--visual {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
