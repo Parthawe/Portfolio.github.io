@@ -12,6 +12,7 @@ const revealTransition = { duration: 0.58, ease }
 const CATEGORY_NAMES: Record<string, string> = {
   'ai':              'AI & Wearables',
   'ux-design':       'UX Design',
+  'ux-research':     'UX Research',
   'ui':              'UI Design',
   'creative-tech':   'Creative Tech',
   'design-engineer': 'Design Engineer',
@@ -80,6 +81,20 @@ const CATEGORY_AUDIENCE: Record<string, readonly AudienceItem[]> = {
     {
       label: 'Product\nManager',
       text: 'Messy requirements turned into clear journeys, edge states, and decisions engineering can build from.',
+    },
+  ],
+  'ux-research': [
+    {
+      label: 'Research\n& Synthesis',
+      text: 'Research that turns lived experience into clear product direction instead of decorative documentation.',
+    },
+    {
+      label: 'Fieldwork\n& Interviews',
+      text: 'Healthcare, transit, housing, and community systems studied through context, language, behavior, and real constraints.',
+    },
+    {
+      label: 'Evidence\nTo Action',
+      text: 'Interviews, affinity themes, and journey models connected directly to priorities, prototypes, and the next decision.',
     },
   ],
   'ui': [

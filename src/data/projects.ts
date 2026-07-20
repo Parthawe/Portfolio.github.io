@@ -40,6 +40,8 @@ export interface Project {
   desc: string
   /** Category key for filtering */
   category: ProjectCategory
+  /** Additional disciplines where the same project provides meaningful proof */
+  secondaryCategories?: ProjectCategory[]
   /** Lazy import factory for the page component */
   page: () => Promise<{ default: React.ComponentType }>
   /** Mark as access-limited/private */
@@ -100,7 +102,7 @@ export interface Project {
   }
 }
 
-export type ProjectCategory = 'ux' | 'ai' | 'creative' | 'install' | 'brand' | 'good'
+export type ProjectCategory = 'ux' | 'research' | 'ai' | 'creative' | 'install' | 'brand' | 'good'
 
 export interface CategoryFilter {
   key: string
@@ -110,6 +112,7 @@ export interface CategoryFilter {
 export const CATEGORIES: CategoryFilter[] = [
   { key: 'all', label: 'All' },
   { key: 'ux', label: 'UX Design' },
+  { key: 'research', label: 'UX Research' },
   { key: 'good', label: 'Design for Good' },
   { key: 'ai', label: 'AI & Wearables' },
   { key: 'creative', label: 'Creative Tech' },
@@ -119,6 +122,7 @@ export const CATEGORIES: CategoryFilter[] = [
 
 export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
   ux: 'UX Design',
+  research: 'UX Research',
   ai: 'AI & Wearables',
   creative: 'Creative Technology',
   install: 'Installations',
@@ -506,6 +510,7 @@ export const projects: Project[] = [
     year: '2024',
     desc: 'Healthcare UX research into clearer multilingual care, communication, and follow-through',
     category: 'good',
+    secondaryCategories: ['research'],
     page: () => import('../pages/projects/MediMorphoPage'),
     nda: true,
     access: {
@@ -666,6 +671,7 @@ export const projects: Project[] = [
     year: '2022',
     desc: 'Service design for Pune public transit — app, kiosk, and in-vehicle systems',
     category: 'good',
+    secondaryCategories: ['research'],
     page: () => import('../pages/projects/RaahiPage'),
     featured: true,
     featuredOrder: 3,
@@ -701,6 +707,7 @@ export const projects: Project[] = [
     year: '2025',
     desc: 'Rebuilt a Bronx nonprofit platform to make community programs, spaces, and services easier to navigate',
     category: 'good',
+    secondaryCategories: ['research'],
     page: () => import('../pages/projects/ThePointCdcPage'),
     archiveOrder: 7,
     tier: 'b',
@@ -875,6 +882,7 @@ export const projects: Project[] = [
     year: '2022',
     desc: 'Reframed residential parking as a spatial decision instead of a back-office booking flow',
     category: 'ux',
+    secondaryCategories: ['research'],
     page: () => import('../pages/projects/VjSoftwarePage'),
     archiveOrder: 18,
     tier: 'b',
@@ -1239,6 +1247,7 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Inclusive design research — edge cases, emotional states, and the humans personas miss',
     category: 'good',
+    secondaryCategories: ['research'],
     page: () => import('../pages/projects/MessyHumansPage'),
     archiveOrder: 41,
     tier: 'd',
@@ -1873,12 +1882,12 @@ export const allProjectsCurated = (() => {
 })()
 
 export function filterProjectsByCategory(items: Project[], cat: ProjectCategory): Project[] {
-  return items.filter(p => p.category === cat && isPubliclyVisibleProject(p))
+  return items.filter(p => (p.category === cat || p.secondaryCategories?.includes(cat)) && isPubliclyVisibleProject(p))
 }
 
 /** Get projects by category */
 export function projectsByCategory(cat: ProjectCategory): Project[] {
-  return visibleProjects.filter(p => p.category === cat)
+  return visibleProjects.filter(p => p.category === cat || p.secondaryCategories?.includes(cat))
 }
 
 /** Find a single project by slug */

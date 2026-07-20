@@ -24,6 +24,7 @@ const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
 
 const disciplines = [
   { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
+  { label: 'UX Research', slug: 'ux-research', link: '/ux-research' },
   { label: 'AI & Wearables', slug: 'ai', link: '/ai' },
   { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
   { label: 'Installations', slug: 'installations', link: '/installations' },
@@ -308,7 +309,13 @@ export default function HomePage() {
 
           <ParthDoesSection />
 
-          <section className="wr-disciplines" id="disciplines" style={{ position: 'relative' }} ref={disciplinesRef}>
+          <section
+            className="wr-disciplines"
+            id="disciplines"
+            style={{ position: 'relative' }}
+            ref={disciplinesRef}
+            hidden={!heroSceneReady || heroSceneUnavailable}
+          >
             <FigmaFrameLabel name="Disciplines" />
             <div className="wrap wr-disciplines-grid">
               {disciplines.map((d, i) => (

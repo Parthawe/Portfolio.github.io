@@ -27,6 +27,7 @@ interface WorkFilterEventDetail {
 
 const LIBRARY_SECTION_COPY: Record<ProjectCategory, string> = {
   ux: 'Product systems, flows, and interfaces built to ship clearly at scale.',
+  research: 'Interviews, field evidence, synthesis, and journey models that clarify what teams should build next.',
   ai: 'Voice, wearables, and interface layers where software changes how hardware feels.',
   creative: 'Interactive systems and technical experiments that turn prototypes into experiences.',
   install: 'Spatial work, responsive environments, and physical storytelling in public space.',

@@ -78,6 +78,48 @@
   transition: background var(--dur-base), border-color var(--dur-base), box-shadow var(--dur-base);
 }
 
+.nav-canvas-panel--easter {
+  transform-origin: right center;
+  animation: nav-easter-tools-in var(--dur-base) var(--ease-out) both;
+}
+
+@keyframes nav-easter-tools-in {
+  from { opacity: 0; transform: translateX(0.45rem) scale(0.96); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.nav-easter-toggle {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  color: var(--ink-40);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  transition: color var(--dur-base), background var(--dur-base), border-color var(--dur-base), box-shadow var(--dur-base), transform var(--dur-base);
+}
+
+.nav-easter-toggle:hover,
+.nav-easter-toggle--active {
+  color: var(--ink);
+  --surface-glass-bg: color-mix(in srgb, var(--glass-subtle-bg) 84%, var(--select-blue) 10%);
+  --surface-glass-border: color-mix(in srgb, var(--select-blue) 26%, var(--ink-12));
+  background: var(--surface-glass-bg);
+  border-color: var(--surface-glass-border);
+}
+
+.nav-easter-toggle--active {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--select-blue) 22%, transparent);
+}
+
+.nav-easter-toggle:focus-visible {
+  outline: 2px solid var(--select-blue);
+  outline-offset: 2px;
+}
+
 .nav-theme-wrap {
   display: flex;
 }
@@ -170,6 +212,7 @@
 }
 @media (max-width: 768px) {
   .nav-canvas-panel { display: none; }
+  .nav-easter-toggle { display: none; }
   .ambient-ui { display: none; }
   .nav-theme-wrap { display: none; }
 
@@ -221,6 +264,7 @@
 
 body.nav-on-dark .nav-left-pill.surface-glass,
 body.nav-on-dark .nav-canvas-panel.surface-glass,
+body.nav-on-dark .nav-easter-toggle.surface-glass,
 body.nav-on-dark .nav-theme-wrap .theme-toggle.surface-glass,
 body.nav-on-dark .nav-right > .ambient-ui .ambient-toggle.surface-glass,
 body.nav-on-dark .nav-right > .ambient-ui .ambient-note.surface-glass {
@@ -234,6 +278,7 @@ body.nav-on-dark .nav-right > .ambient-ui .ambient-note.surface-glass {
 body.nav-on-dark .nav-logo,
 body.nav-on-dark .nav-pill-link,
 body.nav-on-dark .nav-grid-toggle,
+body.nav-on-dark .nav-easter-toggle,
 body.nav-on-dark .nav-right > .theme-toggle,
 body.nav-on-dark .nav-right > .ambient-ui .ambient-toggle,
 body.nav-on-dark .nav-right > .ambient-ui .ambient-note {
@@ -251,6 +296,13 @@ body.nav-on-dark .nav-logo:hover,
 body.nav-on-dark .nav-grid-toggle:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.14);
+}
+
+body.nav-on-dark .nav-easter-toggle:hover,
+body.nav-on-dark .nav-easter-toggle--active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 body.nav-on-dark .nav-grid-toggle--active {
@@ -276,7 +328,7 @@ body.nav-on-dark .nav-toggle span {
   --surface-glass-border: var(--glass-scrolled-border);
   --surface-glass-shadow: var(--glass-scrolled-shadow);
 }
-.nav.scrolled :is(.nav-canvas-panel, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
+.nav.scrolled :is(.nav-canvas-panel, .nav-easter-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-bg: var(--glass-scrolled);
   --surface-glass-border: var(--glass-scrolled-border);
   --surface-glass-shadow: var(--glass-scrolled-shadow);
@@ -287,7 +339,7 @@ body.nav-on-dark .nav-toggle span {
   transform: scale(0.97);
   --surface-glass-blur: blur(20px) saturate(1.6);
 }
-.nav.scrolled-deep :is(.nav-canvas-panel, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
+.nav.scrolled-deep :is(.nav-canvas-panel, .nav-easter-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-blur: blur(18px) saturate(1.55);
 }
 .nav.scrolled-deep .nav-cta {
@@ -377,6 +429,7 @@ body.nav-on-dark .nav-toggle span {
    over scrolled content without adding a visible surface. */
 [data-theme="dark"] .nav-left-pill.surface-glass,
 [data-theme="dark"] .nav-canvas-panel.surface-glass,
+[data-theme="dark"] .nav-easter-toggle.surface-glass,
 [data-theme="dark"] .nav-theme-wrap .theme-toggle.surface-glass,
 [data-theme="dark"] .nav-mobile-theme.surface-glass,
 [data-theme="dark"] .nav-right > .ambient-ui .ambient-toggle.surface-glass,

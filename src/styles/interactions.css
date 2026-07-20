@@ -2827,7 +2827,7 @@ h3.text-highlight .text-highlight-text {
 }
 .wr-disciplines-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: var(--space-4);
 }
 .wr-discipline-item {
@@ -3387,9 +3387,10 @@ body.nav-on-dark .reading-cursor--parth,
   opacity: 0;
 }
 
-.reading-cursor--parth.is-parked {
+.reading-cursor--parth.is-parked.is-visible {
   opacity: 0.66;
   transform-origin: top left;
+  transition: opacity 120ms ease;
 }
 
 .reading-cursor--parth.is-parked .reading-cursor__trigger {

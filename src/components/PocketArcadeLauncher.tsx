@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 
 const PocketArcade = lazy(() => import('./PocketArcade'))
 
@@ -11,9 +11,19 @@ function GamepadGlyph() {
   )
 }
 
-export default function PocketArcadeLauncher() {
+export default function PocketArcadeLauncher({ inlineDesktop = false }: { inlineDesktop?: boolean }) {
   const [open, setOpen] = useState(false)
+  const [showInline, setShowInline] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!inlineDesktop) return
+    const query = window.matchMedia('(min-width: 761px)')
+    const sync = () => setShowInline(query.matches)
+    sync()
+    query.addEventListener('change', sync)
+    return () => query.removeEventListener('change', sync)
+  }, [inlineDesktop])
 
   const closeArcade = () => {
     setOpen(false)
@@ -22,10 +32,17 @@ export default function PocketArcadeLauncher() {
 
   return (
     <>
+      {inlineDesktop && showInline && (
+        <div className="ft-arcade-inline">
+          <Suspense fallback={<span className="ft-arcade-loading" role="status">Loading arcade...</span>}>
+            <PocketArcade embedded />
+          </Suspense>
+        </div>
+      )}
       <button
         ref={triggerRef}
         type="button"
-        className="ft-arcade-launcher"
+        className={`ft-arcade-launcher${inlineDesktop ? ' ft-arcade-launcher--mobile' : ''}`}
         aria-label="Open Pocket Arcade"
         aria-haspopup="dialog"
         onPointerDown={(event) => {

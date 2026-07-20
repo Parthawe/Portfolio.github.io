@@ -22,6 +22,7 @@ const CATEGORY_ROUTES = new Set([
   '/ai',
   '/ux',
   '/ux-design',
+  '/ux-research',
   '/ui',
   '/design-engineer',
   '/creative-tech',
@@ -81,6 +82,7 @@ const CATEGORY_CUES: Record<string, Partial<Record<string, string>>> = {
   '/ai-wearables': { 'how I see it': 'A tiny display is a ruthless design critic. I like that.', 'start here': 'This is the platform story I would open first.' },
   '/ux': { 'how I see it': 'Pretty screens are the receipt. The decisions are the work.', 'start here': 'Start where research actually changed the product.' },
   '/ux-design': { 'how I see it': 'Pretty screens are the receipt. The decisions are the work.', 'start here': 'Start where research actually changed the product.' },
+  '/ux-research': { 'how I see it': 'Research matters when it changes the decision, not just the deck.', 'start here': 'Start with the twenty interviews behind the healthcare story.' },
   '/ui': { 'how I see it': 'Good UI makes trust visible before anyone has to ask.', 'start here': 'This is my most complete product system.' },
   '/design-engineer': { 'how I see it': 'If I can prototype it, we can argue with evidence.', 'start here': 'Start where the design became working behavior.' },
   '/creative-tech': { 'how I see it': 'This is where code stops being a tool and joins the material.', 'start here': 'I would begin with the interaction you can actually feel.' },
@@ -596,14 +598,11 @@ export default function CollaboratorCursor() {
       if (noteRef.current) noteRef.current.textContent = ''
       if (labelRef.current) labelRef.current.textContent = 'parth'
 
-      const isHomepageRest = normalizedPathname === '/'
-      const x = isHomepageRest
-        ? clamp(40, 24, Math.max(24, window.innerWidth - 116))
-        : Math.max(24, window.innerWidth - 116)
-      const y = isHomepageRest
-        ? clamp(window.innerHeight - 160, 124, window.innerHeight - 132)
-        : clamp(window.innerHeight * 0.62, 124, window.innerHeight - 132)
-      parth.dataset.side = isHomepageRest ? 'right' : 'left'
+      // Keep the idle collaborator in one calm, predictable place across the site.
+      // It only leaves this resting position during an explicitly started tour.
+      const x = clamp(32, 24, Math.max(24, window.innerWidth - 116))
+      const y = clamp(window.innerHeight * 0.58, 124, window.innerHeight - 132)
+      parth.dataset.side = 'right'
       parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'
       setPosition(parth, x, y, true)
       if (parthCoordinatesRef.current) parthCoordinatesRef.current.textContent = cursorCoordinates(x, y)
@@ -850,14 +849,16 @@ export default function CollaboratorCursor() {
     const paint = () => {
       frame.current = null
       if (!conversationOpenRef.current) {
-        const selectedTourStep = tourActiveRef.current && !tourPausedRef.current
-          ? tourStepsRef.current[tourIndexRef.current]
-          : null
-        const index = selectedTourStep ? steps.current.indexOf(selectedTourStep) : chooseStep()
-        const step = selectedTourStep || (index >= 0 ? steps.current[index] : null)
+        if (tourActiveRef.current) {
+          const selectedTourStep = tourStepsRef.current[tourIndexRef.current]
+          const index = selectedTourStep ? steps.current.indexOf(selectedTourStep) : chooseStep()
+          const step = selectedTourStep || (index >= 0 ? steps.current[index] : null)
 
-        if (step) positionParth(step, index)
-        else parkCursor()
+          if (step) positionParth(step, index)
+          else parkCursor()
+        } else {
+          parkCursor()
+        }
       }
 
       const youX = clamp(pointer.current.x - YOU_CURSOR_TIP_OFFSET.x, 0, window.innerWidth - 118)
@@ -897,6 +898,11 @@ export default function CollaboratorCursor() {
     const onScroll = () => {
       if (conversationOpenRef.current) {
         schedule()
+        return
+      }
+      if (!tourActiveRef.current) {
+        // Idle Parth is viewport-fixed; scrolling should not wake or reposition him.
+        if (!parkedRef.current) parkCursor()
         return
       }
       if (tourActiveRef.current && Date.now() > programmaticScrollUntilRef.current) {

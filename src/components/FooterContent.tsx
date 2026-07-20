@@ -22,16 +22,6 @@ const footerGroups = [
       { label: 'Accessibility', to: '/accessibility' },
     ],
   },
-  {
-    title: 'Practices',
-    links: [
-      { label: 'UX Design', to: '/ux-design' },
-      { label: 'AI & Wearables', to: '/ai' },
-      { label: 'Creative Tech', to: '/creative-tech' },
-      { label: 'Installations', to: '/installations' },
-      { label: 'Brand & Visual', to: '/brand-visual' },
-    ],
-  },
 ]
 
 /* Figma-style comment pin: circle with one squared corner */
@@ -370,9 +360,9 @@ export default function FooterContent({ footerRef }: { footerRef: RefObject<HTML
               ))}
             </nav>
           ))}
-          <div className="ft-link-group ft-arcade-shelf">
+          <div className="ft-link-group ft-arcade-shelf" id="footer-arcade">
             <h3>Play</h3>
-            <PocketArcadeLauncher />
+            <PocketArcadeLauncher inlineDesktop />
           </div>
         </motion.div>
       </motion.div>

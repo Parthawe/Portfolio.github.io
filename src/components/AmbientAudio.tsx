@@ -246,6 +246,7 @@ const AMBIENT_PROFILES: Record<AmbientProfileKey, AmbientProfile> = {
 
 const CATEGORY_PROFILE_KEYS: Record<ProjectCategory, AmbientProfileKey> = {
   ux: 'focus',
+  research: 'focus',
   ai: 'signal',
   creative: 'exhibit',
   install: 'stage',
@@ -263,6 +264,7 @@ const ROUTE_PROFILE_KEYS: Record<string, AmbientProfileKey> = {
   '/ai': 'signal',
   '/ux': 'focus',
   '/ux-design': 'focus',
+  '/ux-research': 'focus',
   '/ui': 'focus',
   '/design-engineer': 'exhibit',
   '/creative-tech': 'exhibit',
@@ -280,6 +282,7 @@ const ROUTE_LABELS: Partial<Record<string, string>> = {
   '/ai': 'AI & Wearables',
   '/ux': 'UX Design',
   '/ux-design': 'UX Design',
+  '/ux-research': 'UX Research',
   '/ui': 'UX Design',
   '/design-engineer': 'Creative Technology',
   '/creative-tech': 'Creative Technology',
@@ -323,6 +326,7 @@ const CATEGORY_ROUTE_CATEGORY: Partial<Record<string, ProjectCategory>> = {
   '/ai': 'ai',
   '/ux': 'ux',
   '/ux-design': 'ux',
+  '/ux-research': 'research',
   '/ui': 'ux',
   '/design-engineer': 'creative',
   '/creative-tech': 'creative',

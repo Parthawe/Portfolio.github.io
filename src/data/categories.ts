@@ -341,6 +341,111 @@ export const categories: CategoryData[] = [
   },
 
   {
+    slug: 'ux-research',
+    accentColor: '#0ea5e9',
+    title: 'UX',
+    titleAccent: 'Research',
+    description:
+      'Research that turns lived experience into clear product direction through interviews, field studies, synthesis, journey models, and validation.',
+    metaTitle: 'UX Research · Parth Pawar',
+    metaDescription:
+      'UX research case studies spanning healthcare, transit, community services, inclusive design, interviews, affinity mapping, journey mapping, and synthesis.',
+    stats: ['20+ interviews', 'Fieldwork to synthesis', 'Healthcare · Civic · Product'],
+    tools: [
+      'User Interviews',
+      'Contextual Inquiry',
+      'Affinity Mapping',
+      'Journey Mapping',
+      'Usability Testing',
+      'Research Synthesis',
+    ],
+    featured: {
+      slug: 'medimorpho',
+      title: 'NYU Langone',
+      desc: 'Healthcare research into multilingual care, communication, and follow-through',
+      role: 'Service Designer · 2024',
+      image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
+      bgColor: '#e0f2fe',
+      tag: 'HEALTHCARE UX',
+      year: '2024',
+    },
+    moreProjects: [
+      [
+        {
+          slug: 'raahi-project',
+          image: '/Assets/images/raahi.jpg',
+          alt: 'Raahi transit research and service design',
+          name: 'Raahi',
+          result: 'Field research and service mapping across Pune public transit',
+          role: 'User Researcher & UI Designer · 2022',
+          tag: 'CIVIC RESEARCH',
+          year: '2022',
+          desc: 'Field research, rider archetypes, journey maps, and a connected transit service model',
+        },
+        {
+          slug: 'the-point-cdc',
+          image: '/Assets/mockups/projects/the-point-cdc_16x9.webp',
+          alt: 'The Point CDC community research',
+          name: 'The Point CDC',
+          result: 'Community interviews translated into clearer programs and navigation',
+          role: 'UX Researcher & Designer · 2025',
+          tag: 'COMMUNITY RESEARCH',
+          year: '2025',
+          desc: 'Community listening, synthesis, information architecture, and accessible service navigation',
+        },
+      ],
+      [
+        {
+          slug: 'vj-software',
+          image: '/Assets/images/vj.jpg',
+          alt: 'VJ Parivar residential research',
+          name: 'VJ Parivar',
+          result: 'Resident research reframed parking as a spatial decision',
+          role: 'UX Researcher & Designer · 2022',
+          tag: 'PRODUCT RESEARCH',
+          year: '2022',
+          desc: 'User research, journey mapping, feature definition, and prototype validation',
+        },
+        {
+          slug: 'messy-humans',
+          image: '/Assets/images/messy-humans.svg',
+          alt: 'Designing for Messy Humans inclusive research',
+          name: 'Designing for Messy Humans',
+          result: 'Inclusive research into emotional states, constraints, and edge cases',
+          role: 'Design Researcher · 2023',
+          tag: 'INCLUSIVE RESEARCH',
+          year: '2023',
+          desc: 'Contextual inquiry, diary studies, and inclusive audits beyond clean personas',
+        },
+      ],
+    ],
+    approach: {
+      label: 'Research Practice',
+      pillars: [
+        {
+          num: '01',
+          title: 'Listen in context',
+          desc: 'Start with people, environments, language, constraints, and the workarounds already in use.',
+        },
+        {
+          num: '02',
+          title: 'Synthesize visibly',
+          desc: 'Turn observations into themes, journey models, and opportunity areas the whole team can inspect.',
+        },
+        {
+          num: '03',
+          title: 'Connect evidence to action',
+          desc: 'Carry findings into product priorities, service decisions, prototypes, and the next validation question.',
+        },
+      ],
+    },
+    cta: {
+      headline: 'Need clarity before committing to a solution?',
+      sub: 'I turn interviews, field evidence, and messy systems into focused product direction.',
+    },
+  },
+
+  {
     slug: 'creative-tech',
     accentColor: '#f59e0b',
     title: 'Creative',

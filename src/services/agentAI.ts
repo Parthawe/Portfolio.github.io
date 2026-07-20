@@ -80,6 +80,7 @@ const WORK_VIEW_CONFIG: Record<WorkViewMode, {
 const CATEGORY_ALIASES: Record<string, string[]> = {
   ai: ['ai', 'ai wearables', 'ai and wearables', 'machine learning'],
   'ux-design': ['ux', 'ux design', 'product design'],
+  'ux-research': ['ux research', 'user research', 'design research', 'research case studies'],
   'creative-tech': ['creative tech', 'creative technology', 'creative'],
   installations: ['installations', 'installation', 'physical work'],
   'brand-visual': ['brand', 'brand visual', 'visual design'],
@@ -148,6 +149,7 @@ interface FocusTopic {
 const WORK_FILTER_ALIASES: Record<'all' | ProjectCategory, string[]> = {
   all: ['all', 'all work', 'all projects', 'everything', 'full archive'],
   ux: ['ux', 'ux design', 'product design', 'ux work'],
+  research: ['ux research', 'user research', 'research work', 'design research'],
   ai: ['ai', 'ai work', 'wearables', 'ai wearables', 'smart glasses'],
   creative: ['creative', 'creative tech', 'creative technology', 'creative work'],
   install: ['installations', 'installation', 'physical work', 'sculpture', 'physical computing'],

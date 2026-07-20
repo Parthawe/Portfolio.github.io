@@ -21,7 +21,7 @@ import {
 const CategoryHero = lazy(() => import('../components/CategoryHero'))
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'))
 
-const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'brand-visual', 'ai', 'creative-tech', 'fintech', 'crypto', 'ai-wearables'])
+const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'ux-research', 'brand-visual', 'ai', 'creative-tech', 'fintech', 'crypto', 'ai-wearables'])
 
 const CATEGORY_ALIASES: Record<string, string> = {
   brand: 'brand-visual',
@@ -38,6 +38,7 @@ const CATEGORY_REGISTRY_KEY: Partial<Record<string, ProjectCategory>> = {
   ai: 'ai',
   'ai-wearables': 'ai',
   'ux-design': 'ux',
+  'ux-research': 'research',
   'creative-tech': 'creative',
   installations: 'install',
   'brand-visual': 'brand',
@@ -59,6 +60,7 @@ const EXTRA_CATEGORY_PROJECTS: Partial<Record<string, string[]>> = {
 
 const CATEGORY_ANNOTATION_LINKS = [
   { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
+  { label: 'UX Research', slug: 'ux-research', link: '/ux-research' },
   { label: 'AI & Wearables', slug: 'ai-wearables', link: '/ai-wearables' },
   { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
   { label: 'Installations', slug: 'installations', link: '/installations' },

@@ -47,6 +47,55 @@ function UxArtifact() {
   )
 }
 
+function ResearchArtifact() {
+  const reducedMotion = useReducedMotion()
+  const rawRotateX = useMotionValue(0)
+  const rawRotateY = useMotionValue(0)
+  const rotateX = useSpring(rawRotateX, { stiffness: 165, damping: 21, mass: 0.76 })
+  const rotateY = useSpring(rawRotateY, { stiffness: 165, damping: 21, mass: 0.76 })
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (reducedMotion) return
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5
+    rawRotateX.set(y * -10)
+    rawRotateY.set(x * 13)
+  }
+
+  const resetTilt = () => {
+    rawRotateX.set(0)
+    rawRotateY.set(0)
+  }
+
+  return (
+    <motion.div
+      className="hero-artifact hero-artifact--research"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetTilt}
+      onPointerCancel={resetTilt}
+      whileHover={reducedMotion ? undefined : { scale: 1.025 }}
+      style={{ rotateX, rotateY, transformPerspective: 900 }}
+    >
+      <span className="artifact-research__floor" />
+      <span className="artifact-research__board">
+        <span className="artifact-research__card artifact-research__card--one"><i /><i /><i /></span>
+        <span className="artifact-research__card artifact-research__card--two"><i /><i /><i /></span>
+        <span className="artifact-research__card artifact-research__card--three"><i /><i /><i /></span>
+        <span className="artifact-research__path artifact-research__path--one" />
+        <span className="artifact-research__path artifact-research__path--two" />
+        <span className="artifact-research__insight"><b>01</b><i /><i /></span>
+      </span>
+      <span className="artifact-research__lens"><i /></span>
+      <span className="artifact-research__note artifact-research__note--one" />
+      <span className="artifact-research__note artifact-research__note--two" />
+      <span className="artifact-research__participant artifact-research__participant--one"><i /></span>
+      <span className="artifact-research__participant artifact-research__participant--two"><i /></span>
+      <span className="artifact-research__label"><i /> FIELD NOTES → SYNTHESIS</span>
+    </motion.div>
+  )
+}
+
 function CreativeTechArtifact() {
   const reducedMotion = useReducedMotion()
   const rawRotateX = useMotionValue(0)
@@ -381,6 +430,8 @@ export default function CategoryHeroArtifact({ slug }: ArtifactProps) {
   const reducedMotion = useReducedMotion()
   const artifact = slug === 'ai' || slug === 'ai-wearables'
     ? <AiArtifact />
+    : slug === 'ux-research'
+      ? <ResearchArtifact />
     : slug === 'ux-design' || slug === 'ui'
       ? <UxArtifact />
       : slug === 'creative-tech'

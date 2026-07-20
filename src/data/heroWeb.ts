@@ -59,7 +59,7 @@ const LINKS: { label: string; route: string }[] = [
   { label: 'Interaction Design', route: '/ux-design' },
   { label: 'Design Systems', route: '/ux-design' },
   { label: 'Prototyping', route: '/ux-design' },
-  { label: 'User Research', route: '/ux-design' },
+  { label: 'User Research', route: '/ux-research' },
   { label: 'Information Architecture', route: '/ux-design' },
   { label: 'Interface Design', route: '/ux-design' },
   { label: 'Service Design', route: '/ux-design' },

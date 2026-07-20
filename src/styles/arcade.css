@@ -40,9 +40,25 @@
     0 2rem 4rem rgba(0, 0, 0, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
     inset 0 -0.2rem 0 rgba(0, 0, 0, 0.08);
-  font-family: var(--mono, ui-monospace, monospace);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
   pointer-events: auto !important;
   touch-action: manipulation;
+}
+
+.arcade-console--embedded {
+  width: 100%;
+  max-width: 27rem;
+  max-height: none;
+  overflow: visible;
+  box-shadow:
+    0 1rem 2.5rem rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -0.2rem 0 rgba(0, 0, 0, 0.08);
+}
+
+.arcade-console--embedded:focus-visible {
+  outline: 2px solid var(--select-blue, #4a90e2);
+  outline-offset: 4px;
 }
 
 [data-theme="dark"] .arcade-console {
@@ -56,6 +72,13 @@
   --arcade-screen: #101010;
   box-shadow:
     0 2rem 4rem rgba(0, 0, 0, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -0.2rem 0 rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .arcade-console--embedded {
+  box-shadow:
+    0 1rem 2.5rem rgba(0, 0, 0, 0.42),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     inset 0 -0.2rem 0 rgba(0, 0, 0, 0.7);
 }
@@ -123,7 +146,7 @@
   border-radius: 0.12rem;
   background: var(--arcade-screen);
   box-shadow: inset 0 0 1.15rem rgba(0, 0, 0, 0.16);
-  image-rendering: pixelated;
+  image-rendering: auto;
   touch-action: none;
 }
 
@@ -143,7 +166,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 6.7rem 2.25rem;
+  grid-template-rows: 6.9rem 2.4rem;
   align-items: center;
   gap: 0.35rem 0.8rem;
   min-height: 9.25rem;
@@ -159,6 +182,7 @@
   cursor: pointer;
   touch-action: manipulation;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .arcade-control:focus-visible,
@@ -169,60 +193,64 @@
 }
 
 .arcade-dpad {
+  --dpad-cell: 2.15rem;
   position: relative;
   grid-column: 1;
   grid-row: 1;
-  width: 6.15rem;
-  height: 6.15rem;
+  display: grid;
+  grid-template-columns: repeat(3, var(--dpad-cell));
+  grid-template-rows: repeat(3, var(--dpad-cell));
+  width: calc(var(--dpad-cell) * 3);
+  height: calc(var(--dpad-cell) * 3);
   justify-self: center;
+  filter: drop-shadow(0 3px 0 var(--arcade-control-shadow));
 }
 
 .arcade-dpad .arcade-control,
 .arcade-dpad__center {
-  position: absolute;
-  width: 2.3rem;
-  height: 2.3rem;
+  position: relative;
+  width: var(--dpad-cell);
+  height: var(--dpad-cell);
   border: 1px solid var(--arcade-edge);
   border-radius: 0.28rem;
   background: var(--arcade-control);
   color: var(--arcade-ink);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,.14), 0 3px 0 var(--arcade-control-shadow);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.18);
 }
 
 .arcade-dpad .arcade-control:active {
-  transform: translateY(2px);
-  box-shadow: inset 0 2px 3px rgba(0,0,0,.28), 0 1px 0 var(--arcade-control-shadow);
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.28);
 }
 
 .arcade-dpad .arcade-control span { font-size: 0; }
 .arcade-dpad .arcade-control::after { content: ''; position: absolute; inset: 0; margin: auto; width: 0; height: 0; border: 0.42rem solid transparent; }
-.arcade-dpad__up { left: 1.925rem; top: 0; }
+.arcade-dpad__up { grid-column: 2; grid-row: 1; border-radius: 0.42rem 0.42rem 0 0 !important; border-bottom: 0 !important; }
 .arcade-dpad__up::after { border-bottom-color: var(--arcade-ink) !important; transform: translateY(-0.23rem); }
-.arcade-dpad__left { left: 0; top: 1.925rem; }
+.arcade-dpad__left { grid-column: 1; grid-row: 2; border-radius: 0.42rem 0 0 0.42rem !important; border-right: 0 !important; }
 .arcade-dpad__left::after { border-right-color: var(--arcade-ink) !important; transform: translateX(-0.23rem); }
-.arcade-dpad__right { right: 0; top: 1.925rem; }
+.arcade-dpad__right { grid-column: 3; grid-row: 2; border-radius: 0 0.42rem 0.42rem 0 !important; border-left: 0 !important; }
 .arcade-dpad__right::after { border-left-color: var(--arcade-ink) !important; transform: translateX(0.23rem); }
-.arcade-dpad__down { left: 1.925rem; bottom: 0; }
+.arcade-dpad__down { grid-column: 2; grid-row: 3; border-radius: 0 0 0.42rem 0.42rem !important; border-top: 0 !important; }
 .arcade-dpad__down::after { border-top-color: var(--arcade-ink) !important; transform: translateY(0.23rem); }
-.arcade-dpad__center { left: 1.925rem; top: 1.925rem; z-index: 2; border-radius: 0; box-shadow: none; }
+.arcade-dpad__center { grid-column: 2; grid-row: 2; z-index: 2; border-radius: 0; border-top: 0; border-bottom: 0; box-shadow: none; }
 
 .arcade-actions {
   grid-column: 2;
   grid-row: 1;
   display: grid;
-  grid-template-columns: repeat(2, 2.45rem);
-  grid-template-rows: repeat(2, 2.45rem);
-  gap: 0.48rem;
+  grid-template-columns: repeat(2, 2.65rem);
+  grid-template-rows: repeat(2, 2.65rem);
+  gap: 0.62rem;
   width: max-content;
   justify-self: center;
-  transform: rotate(-7deg);
 }
 
 .arcade-action {
   display: grid;
   place-items: center;
-  width: 2.45rem;
-  height: 2.45rem;
+  width: 2.65rem;
+  height: 2.65rem;
   border: 1px solid var(--arcade-edge);
   border-radius: 50%;
   background: var(--arcade-control);
@@ -235,20 +263,21 @@
   box-shadow: inset 0 2px 3px rgba(0,0,0,.24), 0 1px 0 var(--arcade-control-shadow);
 }
 
-.arcade-action span { transform: rotate(7deg); font-size: 0.62rem; }
+.arcade-action span { font-size: 0.68rem; font-weight: 600; }
 
 .arcade-menu-button {
   grid-column: 1;
   grid-row: 2;
   justify-self: end;
-  width: 3.25rem;
+  width: 3.65rem;
+  min-height: 2rem;
   padding: 0.42rem 0.3rem;
   border: 1px solid var(--arcade-edge);
   border-radius: 999px;
   background: var(--arcade-raised);
   color: var(--arcade-ink);
-  font-size: 0.55rem;
-  letter-spacing: 0.08em;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
   box-shadow: 0 2px 0 var(--arcade-control-shadow);
 }
 
@@ -257,20 +286,26 @@
   grid-row: 2;
   display: flex;
   justify-content: start;
-  gap: 0.45rem;
-  transform: rotate(-5deg);
+  gap: 0.5rem;
 }
 
 .arcade-system-controls button {
-  width: 3.1rem;
+  width: 3.65rem;
+  min-height: 2rem;
   padding: 0.37rem 0.1rem;
   border: 1px solid var(--arcade-edge);
   border-radius: 999px;
   background: var(--arcade-control);
   color: var(--arcade-ink);
   box-shadow: 0 2px 0 var(--arcade-control-shadow);
-  font-size: 0.49rem;
-  letter-spacing: 0.05em;
+  font-size: 0.54rem;
+  letter-spacing: 0.03em;
+}
+
+.arcade-menu-button:active,
+.arcade-system-controls button:active {
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .arcade-speaker {
@@ -305,8 +340,8 @@
   .arcade-console__topline { min-height: 1.35rem; }
   .arcade-screen-bezel { padding: 0.48rem; }
   .arcade-body { grid-template-rows: 5.75rem 2rem; min-height: 8rem; }
-  .arcade-dpad { transform: scale(0.82); }
-  .arcade-actions { transform: rotate(-7deg) scale(0.88); }
+  .arcade-dpad { transform: scale(0.86); }
+  .arcade-actions { transform: scale(0.9); }
   .arcade-speaker { display: none; }
 }
 
@@ -315,7 +350,7 @@
   .arcade-console__topline { min-height: 1.2rem; padding-bottom: 0; }
   .arcade-body { grid-template-rows: 4.8rem 1.8rem; min-height: 6.9rem; }
   .arcade-dpad { transform: scale(0.7); }
-  .arcade-actions { transform: rotate(-7deg) scale(0.74); }
+  .arcade-actions { transform: scale(0.76); }
   .arcade-key-hint { display: none; }
 }
 

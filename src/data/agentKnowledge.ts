@@ -40,6 +40,7 @@ const projectIndex = new Map<string, ProjectInfo>()
 const nameIndex = new Map<string, ProjectInfo>()
 const PROJECT_CATEGORY_SLUGS: Record<ProjectCategory, string> = {
   ux: 'ux-design',
+  research: 'ux-research',
   ai: 'ai',
   creative: 'creative-tech',
   install: 'installations',

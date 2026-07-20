@@ -76,7 +76,7 @@ function makeState(id: GameId): GameState {
 
 function text(ctx: CanvasRenderingContext2D, colors: ArcadeColors, value: string, x: number, y: number, size = 12, color = colors.text, align: CanvasTextAlign = 'left') {
   ctx.fillStyle = color
-  ctx.font = `700 ${size}px ui-monospace, SFMono-Regular, Menlo, monospace`
+  ctx.font = `600 ${size}px SFMono-Regular, Menlo, Monaco, Consolas, monospace`
   ctx.textAlign = align
   ctx.textBaseline = 'middle'
   ctx.fillText(value, x, y)
@@ -156,12 +156,14 @@ function GamepadButton({ action, label, onPress, onRelease, className = '' }: {
   )
 }
 
-export default function PocketArcade({ onClose }: { onClose: () => void }) {
+export default function PocketArcade({ onClose = () => {}, embedded = false }: { onClose?: () => void; embedded?: boolean }) {
   const dark = useThemeMode()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
+  const consoleRef = useRef<HTMLElement>(null)
   const frameRef = useRef(0)
   const lastRef = useRef(0)
+  const visibleRef = useRef(!embedded)
   const selectedRef = useRef(0)
   const modeRef = useRef<Mode>('menu')
   const gameRef = useRef<GameId>('snake')
@@ -233,16 +235,17 @@ export default function PocketArcade({ onClose }: { onClose: () => void }) {
   const release = useCallback((action: Action) => heldRef.current.delete(action), [])
 
   useEffect(() => {
-    closeRef.current?.focus()
+    if (!embedded) closeRef.current?.focus()
     const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    if (!embedded) document.body.style.overflow = 'hidden'
     const onKeyDown = (event: KeyboardEvent) => {
+      if (embedded && !consoleRef.current?.contains(document.activeElement)) return
       const map: Record<string, Action | undefined> = {
         ArrowUp: 'up', w: 'up', W: 'up', ArrowDown: 'down', s: 'down', S: 'down',
         ArrowLeft: 'left', a: 'left', A: 'left', ArrowRight: 'right', d: 'right', D: 'right',
         Enter: 'a', ' ': 'a', Backspace: 'b', m: 'menu', M: 'menu',
       }
-      if (event.key === 'Escape') { onClose(); return }
+      if (event.key === 'Escape') { if (!embedded) onClose(); return }
       const action = map[event.key]
       if (action) { event.preventDefault(); if (!event.repeat) press(action) }
     }
@@ -254,17 +257,37 @@ export default function PocketArcade({ onClose }: { onClose: () => void }) {
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('keyup', onKeyUp)
     return () => {
-      document.body.style.overflow = previousOverflow
+      if (!embedded) document.body.style.overflow = previousOverflow
       window.removeEventListener('keydown', onKeyDown)
       window.removeEventListener('keyup', onKeyUp)
     }
-  }, [onClose, press, release])
+  }, [embedded, onClose, press, release])
+
+  useEffect(() => {
+    if (!embedded) {
+      visibleRef.current = true
+      return
+    }
+    const consoleElement = consoleRef.current
+    if (!consoleElement) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { visibleRef.current = entry.isIntersecting },
+      { rootMargin: '180px' },
+    )
+    observer.observe(consoleElement)
+    return () => observer.disconnect()
+  }, [embedded])
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const ctx = canvas?.getContext('2d')
-    if (!canvas || !ctx) return
-    ctx.imageSmoothingEnabled = false
+    if (!canvas) return
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2)
+    canvas.width = Math.round(W * pixelRatio)
+    canvas.height = Math.round(H * pixelRatio)
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+    ctx.imageSmoothingEnabled = true
 
     const draw = () => {
       const colors = dark ? DARK_COLORS : LIGHT_COLORS
@@ -372,6 +395,11 @@ export default function PocketArcade({ onClose }: { onClose: () => void }) {
     }
 
     const loop = (now: number) => {
+      if (!visibleRef.current) {
+        lastRef.current = now
+        frameRef.current = requestAnimationFrame(loop)
+        return
+      }
       const dt = Math.min(0.034, (now - (lastRef.current || now)) / 1000)
       lastRef.current = now
       update(dt); draw()
@@ -383,12 +411,23 @@ export default function PocketArcade({ onClose }: { onClose: () => void }) {
     return () => { cancelAnimationFrame(frameRef.current); document.removeEventListener('visibilitychange', visibility) }
   }, [dark, endGame])
 
-  return createPortal(
-    <div className="arcade-overlay" role="presentation" data-cursor-exclude onPointerDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
-      <section className="arcade-console" role="dialog" aria-modal="true" aria-labelledby="arcade-title" onPointerDown={(event) => event.stopPropagation()} onClick={(event) => event.stopPropagation()}>
+  const console = (
+      <section
+        ref={consoleRef}
+        className={`arcade-console${embedded ? ' arcade-console--embedded' : ''}`}
+        role={embedded ? 'region' : 'dialog'}
+        aria-modal={embedded ? undefined : true}
+        aria-labelledby="arcade-title"
+        tabIndex={embedded ? 0 : undefined}
+        onPointerDownCapture={(event) => {
+          if (embedded) event.currentTarget.focus({ preventScroll: true })
+        }}
+        onPointerDown={(event) => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="arcade-console__topline">
           <span id="arcade-title">POCKET ARCADE / 05</span>
-          <button ref={closeRef} type="button" className="arcade-close" onClick={onClose} aria-label="Close Pocket Arcade">×</button>
+          {!embedded && <button ref={closeRef} type="button" className="arcade-close" onClick={onClose} aria-label="Close Pocket Arcade">×</button>}
         </div>
         <div className="arcade-screen-bezel">
           <canvas ref={canvasRef} width={W} height={H} aria-label={`${mode === 'menu' ? `Game menu, ${games[selected].label} selected` : games.find(game => game.id === gameRef.current)?.label}, score ${score}`} />
@@ -415,8 +454,17 @@ export default function PocketArcade({ onClose }: { onClose: () => void }) {
           </div>
           <span className="arcade-speaker" aria-hidden="true" />
         </div>
-        <p className="arcade-key-hint">ARROWS / WASD · ENTER / SPACE · ESC TO CLOSE</p>
+        <p className="arcade-key-hint">
+          {embedded ? 'CLICK OR TAB IN · ARROWS / WASD · ENTER / SPACE' : 'ARROWS / WASD · ENTER / SPACE · ESC TO CLOSE'}
+        </p>
       </section>
+  )
+
+  if (embedded) return console
+
+  return createPortal(
+    <div className="arcade-overlay" role="presentation" data-cursor-exclude onPointerDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
+      {console}
     </div>,
     document.body,
   )

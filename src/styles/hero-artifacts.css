@@ -552,6 +552,213 @@
 .artifact-ux__axis { position:absolute; z-index:0; inset:12%; border:1px solid color-mix(in srgb,var(--select-blue) 12%,transparent); border-radius:1.4rem; transform:rotate(45deg) scale(.72); }
 .artifact-ux__screen::after { content:''; position:absolute; inset:0; border-top:1px solid rgba(255,255,255,.14); background:linear-gradient(120deg,rgba(255,255,255,.07),transparent 42%); pointer-events:none; }
 
+/* UX Research / evidence board */
+.ch--ux-research .ch-3d--side,
+.ch--ux-research .ch-3d--side * {
+  pointer-events: auto !important;
+}
+
+.hero-artifact--research {
+  cursor: grab;
+  perspective: 900px;
+  touch-action: pan-y;
+}
+
+.hero-artifact--research:active { cursor: grabbing; }
+
+.hero-artifact--research::before {
+  inset: 9%;
+  background:
+    radial-gradient(circle at 33% 32%, rgba(78, 142, 255, 0.2), transparent 42%),
+    radial-gradient(circle at 69% 63%, rgba(47, 209, 163, 0.14), transparent 40%);
+  filter: blur(19px);
+}
+
+.artifact-research__floor {
+  position: absolute;
+  z-index: 0;
+  right: 8%;
+  bottom: 6%;
+  left: 8%;
+  height: 24%;
+  border: 1px solid color-mix(in srgb, var(--select-blue) 20%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--select-blue) 15%, transparent), transparent 68%);
+  filter: blur(1px);
+  transform: rotateX(72deg) translateZ(-34px);
+}
+
+.artifact-research__board {
+  position: absolute;
+  z-index: 2;
+  inset: 13% 12% 18%;
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(color-mix(in srgb, var(--select-blue) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--select-blue) 6%, transparent) 1px, transparent 1px),
+    color-mix(in srgb, var(--surface) 93%, #dcecff);
+  background-size: 1rem 1rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 1.4rem 2.2rem rgba(4, 15, 35, 0.2);
+  transform: rotateX(8deg) rotateY(-8deg) rotateZ(-2deg) translateZ(10px);
+  transform-style: preserve-3d;
+  animation: artifact-research-board 8s ease-in-out infinite;
+}
+
+.artifact-research__card {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  align-content: start;
+  gap: 0.34rem;
+  width: 34%;
+  height: 29%;
+  padding: 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 0.62rem;
+  box-shadow: 0 0.65rem 1rem rgba(10, 28, 52, 0.16);
+  transform-style: preserve-3d;
+}
+
+.artifact-research__card i {
+  display: block;
+  width: 74%;
+  height: 0.22rem;
+  border-radius: 999px;
+  background: rgba(17, 31, 50, 0.28);
+}
+
+.artifact-research__card i:nth-child(2) { width: 91%; }
+.artifact-research__card i:nth-child(3) { width: 54%; }
+.artifact-research__card--one { top: 12%; left: 9%; background: linear-gradient(145deg, #a9d3ff, #75b5f4); transform: translateZ(34px) rotate(-3deg); }
+.artifact-research__card--two { top: 18%; right: 8%; background: linear-gradient(145deg, #ffe497, #ffc85d); transform: translateZ(50px) rotate(4deg); }
+.artifact-research__card--three { right: 25%; bottom: 10%; background: linear-gradient(145deg, #a6f2da, #65d8b4); transform: translateZ(62px) rotate(-1deg); }
+
+.artifact-research__path {
+  position: absolute;
+  z-index: 2;
+  height: 2px;
+  transform-origin: 0 50%;
+  background: color-mix(in srgb, var(--select-blue) 54%, transparent);
+  box-shadow: 0 0 0.5rem color-mix(in srgb, var(--select-blue) 20%, transparent);
+}
+
+.artifact-research__path::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -0.28rem;
+  width: 0.5rem;
+  aspect-ratio: 1;
+  border: 2px solid var(--select-blue);
+  border-radius: 50%;
+  background: var(--surface);
+  translate: 0 -50%;
+}
+
+.artifact-research__path--one { top: 38%; left: 39%; width: 27%; transform: rotate(-8deg) translateZ(28px); }
+.artifact-research__path--two { top: 58%; left: 27%; width: 32%; transform: rotate(22deg) translateZ(30px); }
+
+.artifact-research__insight {
+  position: absolute;
+  z-index: 6;
+  bottom: 9%;
+  left: 8%;
+  width: 24%;
+  height: 27%;
+  padding: 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--select-blue) 36%, transparent);
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--surface) 92%, #dcecff);
+  box-shadow: 0 0.7rem 1rem rgba(8, 27, 53, 0.15);
+  transform: translateZ(72px) rotate(2deg);
+}
+
+.artifact-research__insight b { font-family: var(--mono); font-size: 0.7rem; color: var(--select-blue); }
+.artifact-research__insight i { display: block; width: 82%; height: 0.2rem; margin-top: 0.42rem; border-radius: 999px; background: color-mix(in srgb, var(--ink) 22%, transparent); }
+.artifact-research__insight i:last-child { width: 56%; }
+
+.artifact-research__lens {
+  position: absolute;
+  z-index: 8;
+  top: 23%;
+  left: 35%;
+  width: 29%;
+  aspect-ratio: 1;
+  border: 0.48rem solid #2767d8;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.5), rgba(134, 204, 255, 0.17) 48%, rgba(46, 105, 197, 0.14));
+  box-shadow: inset 0 0 0.8rem rgba(255,255,255,.26), 0 1rem 1.4rem rgba(11, 39, 82, 0.22);
+  transform: translateZ(95px) rotateY(-7deg);
+  animation: artifact-research-lens 6.4s ease-in-out infinite;
+}
+
+.artifact-research__lens::after {
+  content: '';
+  position: absolute;
+  right: -19%;
+  bottom: -42%;
+  width: 20%;
+  height: 58%;
+  border-radius: 999px;
+  background: linear-gradient(#367be9, #194caa);
+  transform: rotate(-38deg);
+  box-shadow: 0 0.6rem 0.8rem rgba(13, 49, 107, 0.25);
+}
+
+.artifact-research__lens i {
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  background: #72d9bc;
+  box-shadow: -0.55rem -0.28rem 0 -0.2rem #ffc85d, 0.52rem 0.25rem 0 -0.22rem #79b8ff;
+}
+
+.artifact-research__note { position: absolute; z-index: 7; width: 12%; aspect-ratio: 1; border-radius: 0.35rem; box-shadow: 0 0.55rem 0.8rem rgba(10, 25, 45, 0.16); }
+.artifact-research__note--one { top: 12%; right: 12%; background: #ffc85d; transform: translateZ(78px) rotate(13deg); }
+.artifact-research__note--two { right: 6%; bottom: 24%; background: #8fe2cb; transform: translateZ(84px) rotate(-9deg); }
+
+.artifact-research__participant { position: absolute; z-index: 5; display: grid; place-items: end center; width: 9%; height: 15%; }
+.artifact-research__participant::before { content: ''; width: 46%; aspect-ratio: 1; border-radius: 50%; background: #f8fbff; box-shadow: 0 0.35rem 0.55rem rgba(9, 27, 54, 0.15); }
+.artifact-research__participant i { width: 86%; height: 45%; margin-top: -0.08rem; border-radius: 999px 999px 0.35rem 0.35rem; background: #7db8f5; }
+.artifact-research__participant--one { top: 8%; left: 6%; transform: translateZ(70px) rotate(-7deg); }
+.artifact-research__participant--two { right: 8%; bottom: 8%; transform: translateZ(70px) rotate(8deg); }
+.artifact-research__participant--two i { background: #65d8b4; }
+
+.artifact-research__label {
+  position: absolute;
+  z-index: 9;
+  right: 13%;
+  bottom: 8%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.35rem 0.58rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  box-shadow: 0 0.55rem 1rem rgba(5, 20, 42, 0.13);
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.artifact-research__label i { width: 0.38rem; aspect-ratio: 1; border-radius: 50%; background: #54d1ad; box-shadow: 0 0 0.5rem rgba(84, 209, 173, 0.52); }
+
+@keyframes artifact-research-board {
+  0%, 100% { transform: rotateX(8deg) rotateY(-8deg) rotateZ(-2deg) translate3d(0, 0, 10px); }
+  50% { transform: rotateX(6deg) rotateY(-4deg) rotateZ(-0.5deg) translate3d(0, -5px, 18px); }
+}
+
+@keyframes artifact-research-lens {
+  0%, 100% { transform: translate3d(0, 0, 95px) rotateY(-7deg); }
+  50% { transform: translate3d(8px, -6px, 108px) rotateY(2deg); }
+}
+
 /* Creative technology / working prototype */
 .ch--creative-tech .hero-artifact--prototype,
 .ch--design-engineer .hero-artifact--prototype,

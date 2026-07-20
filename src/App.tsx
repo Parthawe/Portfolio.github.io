@@ -122,6 +122,7 @@ export default function App() {
           <Route path="/ai" element={<CategoryPage />} />
           <Route path="/ux" element={<Navigate to="/ux-design" replace />} />
           <Route path="/ux-design" element={<CategoryPage />} />
+          <Route path="/ux-research" element={<CategoryPage />} />
           <Route path="/ui" element={<Navigate to="/ux-design" replace />} />
           <Route path="/design-engineer" element={<CategoryPage />} />
           <Route path="/creative-tech" element={<CategoryPage />} />

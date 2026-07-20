@@ -287,6 +287,7 @@ function strokePresetPath(key: StrokePresetKey) {
 const categoryPaths: Record<string, string> = {
   all: '/work',
   ux: '/ux-design',
+  research: '/ux-research',
   good: '/design-for-good',
   ai: '/ai-wearables',
   creative: '/creative-tech',
