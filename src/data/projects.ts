@@ -1247,7 +1247,6 @@ export const projects: Project[] = [
     year: '2023',
     desc: 'Inclusive design research — edge cases, emotional states, and the humans personas miss',
     category: 'good',
-    secondaryCategories: ['research'],
     page: () => import('../pages/projects/MessyHumansPage'),
     archiveOrder: 41,
     tier: 'd',

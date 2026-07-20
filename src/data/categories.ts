@@ -346,11 +346,11 @@ export const categories: CategoryData[] = [
     title: 'UX',
     titleAccent: 'Research',
     description:
-      'Research that turns lived experience into clear product direction through interviews, field studies, synthesis, journey models, and validation.',
+      'Research that finds the decision inside a messy human system—then makes the evidence useful to product, service, and design teams.',
     metaTitle: 'UX Research · Parth Pawar',
     metaDescription:
       'UX research case studies spanning healthcare, transit, community services, inclusive design, interviews, affinity mapping, journey mapping, and synthesis.',
-    stats: ['20+ interviews', 'Fieldwork to synthesis', 'Healthcare · Civic · Product'],
+    stats: ['20 primary interviews', '4 research contexts', 'Evidence → decisions'],
     tools: [
       'User Interviews',
       'Contextual Inquiry',
@@ -387,14 +387,12 @@ export const categories: CategoryData[] = [
           image: '/Assets/mockups/projects/the-point-cdc_16x9.webp',
           alt: 'The Point CDC community research',
           name: 'The Point CDC',
-          result: 'Community interviews translated into clearer programs and navigation',
+          result: 'A content and navigation audit translated into clearer program discovery',
           role: 'UX Researcher & Designer · 2025',
           tag: 'COMMUNITY RESEARCH',
           year: '2025',
-          desc: 'Community listening, synthesis, information architecture, and accessible service navigation',
+          desc: 'Content audit, information architecture, mobile-first wayfinding, and accessible service navigation',
         },
-      ],
-      [
         {
           slug: 'vj-software',
           image: '/Assets/images/vj.jpg',
@@ -406,19 +404,9 @@ export const categories: CategoryData[] = [
           year: '2022',
           desc: 'User research, journey mapping, feature definition, and prototype validation',
         },
-        {
-          slug: 'messy-humans',
-          image: '/Assets/images/messy-humans.svg',
-          alt: 'Designing for Messy Humans inclusive research',
-          name: 'Designing for Messy Humans',
-          result: 'Inclusive research into emotional states, constraints, and edge cases',
-          role: 'Design Researcher · 2023',
-          tag: 'INCLUSIVE RESEARCH',
-          year: '2023',
-          desc: 'Contextual inquiry, diary studies, and inclusive audits beyond clean personas',
-        },
       ],
     ],
+    excludedProjects: ['messy-humans'],
     approach: {
       label: 'Research Practice',
       pillars: [
