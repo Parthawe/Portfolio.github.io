@@ -3472,30 +3472,8 @@
 /* Codex profile, a working-practice snapshot beneath Code with design. */
 .abt-codex {
   display: grid;
-  gap: clamp(1.25rem, 2.5vw, 2rem);
   margin: clamp(2.5rem, 6vw, 5rem) 0;
   scroll-margin-top: calc(var(--nav-h) + 1.5rem);
-}
-
-.abt-codex-intro {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.65rem;
-}
-
-.abt-codex-intro .sec-label {
-  grid-column: 1 / -1;
-}
-
-.abt-codex-intro h2 {
-  max-width: 10ch;
-  margin: 0;
-  font-family: var(--display-heading);
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
-  font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: 0;
-  color: var(--ink);
 }
 
 .abt-codex-profile {
@@ -3575,10 +3553,43 @@
 .abt-codex-identity {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 4rem);
   padding: 0.35rem 0 1.15rem;
   text-align: left;
+}
+
+.abt-codex-person {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.abt-codex-profile-heading {
+  display: grid;
+  justify-items: end;
+  gap: 0.35rem;
+  max-width: 21rem;
+  text-align: right;
+}
+
+.abt-codex-profile-heading > span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--codex-muted);
+}
+
+.abt-codex-profile-heading h2 {
+  margin: 0;
+  font-family: var(--display-heading);
+  font-size: clamp(1.55rem, 3vw, 2.65rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--codex-copy);
 }
 
 .abt-codex-avatar {
@@ -3803,12 +3814,16 @@
 }
 
 @media (max-width: 760px) {
-  .abt-codex-intro {
-    grid-template-columns: 1fr;
+  .abt-codex-identity {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.1rem;
   }
 
-  .abt-codex-intro .sec-label {
-    grid-column: auto;
+  .abt-codex-profile-heading {
+    justify-items: start;
+    max-width: none;
+    text-align: left;
   }
 
   .abt-codex-stats {
@@ -3836,10 +3851,6 @@
   .abt-codex {
     gap: 1rem;
     margin: 2rem 0;
-  }
-
-  .abt-codex-intro h2 {
-    font-size: 2.35rem;
   }
 
   .abt-codex-profile {

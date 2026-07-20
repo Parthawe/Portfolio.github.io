@@ -69,7 +69,23 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        <CsExpandPreview>
+        <CsExpandPreview
+          cta="Reveal the full Raahi story"
+          note="Continue into the field research, service blueprint, interface system, and final proof."
+          preview={(
+            <article className="cs-expand-preview-article-copy raahi-article-preview">
+              <span className="cs-section-label">Research</span>
+              <h2 className="cs-display">Understanding Users</h2>
+              <p>We mapped the commute before designing features: what riders needed, where information broke, and which touchpoints had to work together for the service to feel reliable.</p>
+              <p>Field research revealed that route planning, ticketing, stop information, kiosks, and in-vehicle guidance were experienced as disconnected systems—even though riders understood them as one continuous journey.</p>
+              <div className="cs-tags" aria-hidden="true">
+                <span className="cs-tag-item">Data Analysis</span>
+                <span className="cs-tag-item">Qualitative</span>
+                <span className="cs-tag-item">Service Blueprint</span>
+              </div>
+            </article>
+          )}
+        >
         {/* Research */}
         <section className="cs-section reveal" id="cs-research">
           <div className="wrap">

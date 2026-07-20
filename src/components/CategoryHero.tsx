@@ -33,7 +33,7 @@ const HERO_ROUTE_ALIASES: Record<string, string> = {
 const PORTFOLIO_STATS = [
   ['30+', 'projects'],
   ['∞', 'Memories'],
-  ['5+', 'years of experience'],
+  ['6+', 'years of experience'],
 ] as const
 
 const WEARABLE_PORTFOLIO_STATS = [

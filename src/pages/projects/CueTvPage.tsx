@@ -10,19 +10,44 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 const CUETV_PUBLIC_PREVIEW = '/Assets/mockups/projects/cuetv_16x9.webp'
+const CUETV_REFRESH = '/Assets/Projects/CueTV/refresh'
 
 const CUETV_PUBLIC_VISUALS = [
   {
-    src: CUETV_PUBLIC_PREVIEW,
-    alt: 'CueTV streaming interface presented in a public product mockup.',
-    label: 'Product system preview',
+    src: `${CUETV_REFRESH}/mobile-discovery.png`,
+    alt: 'CueTV mobile discovery flow for browsing specialist performing-arts programming.',
+    label: 'Mobile discovery',
+    variant: 'tall',
+  },
+  {
+    src: `${CUETV_REFRESH}/platforms.png`,
+    alt: 'CueTV platform system shown across television, laptop, tablet, and phone.',
+    label: 'Cross-platform playback',
     variant: 'wide',
   },
   {
-    src: '/Assets/images/cuetv.jpg',
-    alt: 'CueTV public project cover showing its performing-arts catalogue direction.',
-    label: 'Catalogue art direction',
-    variant: 'wide',
+    src: `${CUETV_REFRESH}/poster-cascade.png`,
+    alt: 'Layered CueTV programming posters demonstrating catalogue art direction.',
+    label: 'Catalogue system',
+    variant: 'poster',
+  },
+  {
+    src: `${CUETV_REFRESH}/gifting-banner.png`,
+    alt: 'CueTV gifting campaign banner designed as a return and acquisition moment.',
+    label: 'Gifting campaign',
+    variant: 'banner',
+  },
+  {
+    src: `${CUETV_REFRESH}/audience-map.png`,
+    alt: 'CueTV audience map connecting specialist viewer needs with discovery paths.',
+    label: 'Audience map',
+    variant: 'board',
+  },
+  {
+    src: `${CUETV_REFRESH}/funnel-stages.png`,
+    alt: 'CueTV audience funnel from awareness through return viewing.',
+    label: 'Return-visit funnel',
+    variant: 'strip',
   },
 ]
 
@@ -35,7 +60,7 @@ export default function CueTvPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="CueTV · Parth Pawar" />
         <meta property="og:description" content="OTT platform for opera, ballet, symphonies, designed discovery, playback, and retargeting ads." />
-        <meta property="og:image" content="https://designwhich.works/Assets/images/nda-cover.svg" />
+        <meta property="og:image" content={`https://designwhich.works${CUETV_PUBLIC_PREVIEW}`} />
       </Helmet>
 
       <Nav />
@@ -57,7 +82,7 @@ export default function CueTvPage() {
             { label: 'Year', value: '2021' },
           ]}
           liveUrl="https://www.cuetv.online"
-          heroImage={CUETV_PUBLIC_PREVIEW}
+          heroImage={`${CUETV_REFRESH}/hero-devices.png`}
           heroAlt="CueTV streaming platform shown across TV, laptop, tablet, phone, and remote."
         />
 
@@ -67,9 +92,14 @@ export default function CueTvPage() {
           lede="The product story is simple: discovery and growth had to work together for a niche cultural catalogue."
           visuals={[
             {
-              src: CUETV_PUBLIC_PREVIEW,
-              alt: 'CueTV streaming interface presented in a public product mockup.',
-              label: 'CueTV product preview',
+              src: `${CUETV_REFRESH}/campaign-collage.png`,
+              alt: 'CueTV campaign collage showing distinct audience and catalogue moments.',
+              label: 'Audience and campaign system',
+            },
+            {
+              src: `${CUETV_REFRESH}/awareness-flow.png`,
+              alt: 'CueTV awareness flow connecting audience signals to discovery and return visits.',
+              label: 'Awareness to return flow',
             },
           ]}
         />

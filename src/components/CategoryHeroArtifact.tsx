@@ -48,57 +48,16 @@ function UxArtifact() {
 }
 
 function ResearchArtifact() {
-  const reducedMotion = useReducedMotion()
-  const rawRotateX = useMotionValue(0)
-  const rawRotateY = useMotionValue(0)
-  const rotateX = useSpring(rawRotateX, { stiffness: 165, damping: 21, mass: 0.76 })
-  const rotateY = useSpring(rawRotateY, { stiffness: 165, damping: 21, mass: 0.76 })
-
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (reducedMotion) return
-    const bounds = event.currentTarget.getBoundingClientRect()
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5
-    rawRotateX.set(y * -10)
-    rawRotateY.set(x * 13)
-  }
-
-  const resetTilt = () => {
-    rawRotateX.set(0)
-    rawRotateY.set(0)
-  }
-
   return (
-    <motion.div
-      className="hero-artifact hero-artifact--research-archive"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={resetTilt}
-      onPointerCancel={resetTilt}
-      whileHover={reducedMotion ? undefined : { scale: 1.018 }}
-      style={{ rotateX, rotateY, transformPerspective: 900 }}
-    >
-      <span className="artifact-research-archive__halo" />
-      <span className="artifact-research-archive__grid" />
-
-      <figure className="artifact-research-archive__pin artifact-research-archive__pin--archive">
-        <img src="/Assets/generated/research-reference-archive.webp" alt="" draggable={false} />
-        <figcaption><i>01</i><span>Collect</span></figcaption>
-      </figure>
-
-      <figure className="artifact-research-archive__pin artifact-research-archive__pin--folder">
-        <img src="/Assets/generated/research-reference-folder.webp" alt="" draggable={false} />
-        <figcaption><i>02</i><span>Organize</span></figcaption>
-      </figure>
-
-      <figure className="artifact-research-archive__pin artifact-research-archive__pin--synthesis">
-        <img src="/Assets/generated/research-reference-synthesis.webp" alt="" draggable={false} />
-        <figcaption><i>03</i><span>Synthesize</span></figcaption>
-      </figure>
-
-      <span className="artifact-research-archive__thread artifact-research-archive__thread--one" />
-      <span className="artifact-research-archive__thread artifact-research-archive__thread--two" />
-      <span className="artifact-research-archive__label"><i /> Field notes → product direction</span>
-    </motion.div>
+    <div className="hero-artifact hero-artifact--research-single">
+      <img
+        className="artifact-research-single__image"
+        src="/Assets/generated/ux-research-paper-cutout.png"
+        alt=""
+        draggable={false}
+        fetchPriority="high"
+      />
+    </div>
   )
 }
 

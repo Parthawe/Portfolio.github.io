@@ -978,6 +978,32 @@
   50% { transform: rotate(0deg) translate3d(4px, -6px, 100px); }
 }
 
+/* UX Research: one transparent supplied object, intentionally unframed. */
+.category-hero-artifact--ux-research {
+  filter: drop-shadow(0 1.5rem 1.7rem rgba(3, 10, 28, 0.22));
+}
+
+.category-hero-artifact--ux-research .artifact-collection__orbit,
+.category-hero-artifact--ux-research .artifact-collection__shadow,
+.hero-artifact--research-single::before {
+  display: none;
+}
+
+.hero-artifact--research-single {
+  display: grid;
+  place-items: center;
+}
+
+.artifact-research-single__image {
+  display: block;
+  width: 112%;
+  max-width: none;
+  height: 112%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
 /* Creative technology / working prototype */
 .ch--creative-tech .hero-artifact--prototype,
 .ch--design-engineer .hero-artifact--prototype,

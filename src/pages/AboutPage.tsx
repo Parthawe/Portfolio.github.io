@@ -365,17 +365,18 @@ function CodexProfile() {
 
   return (
     <section className="abt-codex reveal" aria-labelledby="abt-codex-title">
-      <div className="abt-codex-intro">
-        <span className="sec-label">Agent practice</span>
-        <h2 id="abt-codex-title">Codex, tuned through use.</h2>
-      </div>
-
       <div className="abt-codex-profile">
         <div className="abt-codex-identity">
-          <div className="abt-codex-avatar" aria-hidden="true">PP</div>
-          <div>
-            <h3>Parth Pawar</h3>
-            <p>@pawar.d.parth <span>Pro</span></p>
+          <div className="abt-codex-person">
+            <div className="abt-codex-avatar" aria-hidden="true">PP</div>
+            <div>
+              <h3>Parth Pawar</h3>
+              <p>@pawar.d.parth <span>Pro</span></p>
+            </div>
+          </div>
+          <div className="abt-codex-profile-heading">
+            <span>Agent practice</span>
+            <h2 id="abt-codex-title">Codex, tuned through use.</h2>
           </div>
         </div>
 

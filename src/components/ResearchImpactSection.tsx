@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import FigmaFrameLabel from './FigmaFrameLabel'
+import type { CSSProperties } from 'react'
 
 const evidenceStats = [
   { value: '20', label: 'Primary interviews', detail: 'Flagship healthcare study' },
   { value: '16', label: 'Multilingual participants', detail: 'People with limited English proficiency' },
   { value: '04', label: 'Healthcare professionals', detail: 'Clinical and care-system perspectives' },
-  { value: '04', label: 'Research contexts', detail: 'Health, transit, housing, and streaming' },
+  { value: '04', label: 'Research contexts', detail: 'Health, transit, housing, and wearables' },
 ] as const
 
 const decisions = [
@@ -28,29 +28,26 @@ const decisions = [
     change: 'A map-first booking experience that makes the physical decision visible before commitment.',
   },
   {
-    project: 'CueTV',
-    href: '/cuetv',
-    finding: 'Specialist arts audiences browse with intent that generic entertainment categories miss.',
-    change: 'Precise discovery paired with a repeatable audience re-engagement system.',
+    project: 'Mentra',
+    href: '/mentra',
+    finding: 'Setup, daily use, apps, and buying were being designed as separate smart-glasses experiences.',
+    change: 'One platform model connecting the OS, companion app, MiniApp Store, privacy cues, and launch story.',
   },
 ] as const
 
 const methods = [
-  'Study framing',
-  'User interviews',
-  'Contextual inquiry',
-  'Affinity mapping',
-  'Journey mapping',
-  'Task analysis',
-  'Audience research',
-  'Prototype validation',
+  { name: 'Contextual inquiry', x: 18, y: 20 },
+  { name: 'User interviews', x: 31, y: 32 },
+  { name: 'Affinity mapping', x: 43, y: 47 },
+  { name: 'Journey mapping', x: 55, y: 38 },
+  { name: 'Audience research', x: 29, y: 72 },
+  { name: 'Task analysis', x: 66, y: 63 },
+  { name: 'Prototype validation', x: 82, y: 74 },
 ] as const
 
 export default function ResearchImpactSection() {
   return (
     <section className="research-impact" aria-labelledby="research-impact-title">
-      <FigmaFrameLabel name="Research evidence" />
-
       <div className="research-impact__intro">
         <p className="research-impact__eyebrow"><i aria-hidden="true" /> Evidence → decision</p>
         <h2 id="research-impact-title">Research is useful when it changes what gets built.</h2>
@@ -72,6 +69,37 @@ export default function ResearchImpactSection() {
         ))}
       </dl>
 
+      <div className="research-impact__map">
+        <div className="research-impact__map-copy">
+          <span>Method selection</span>
+          <h3>Match the method to the question—not the trend.</h3>
+          <p>
+            The study moves from open-ended learning toward focused evaluation,
+            combining behavioral depth with measurable evidence as confidence grows.
+          </p>
+        </div>
+
+        <figure className="research-impact__matrix" aria-labelledby="research-methods-title">
+          <figcaption id="research-methods-title">Research methods across a study</figcaption>
+          <span className="research-impact__axis research-impact__axis--top">Qualitative</span>
+          <span className="research-impact__axis research-impact__axis--bottom">Quantitative</span>
+          <span className="research-impact__axis research-impact__axis--left">Generative</span>
+          <span className="research-impact__axis research-impact__axis--right">Evaluative</span>
+          <div className="research-impact__plot" aria-hidden="true">
+            {methods.map((method, index) => (
+              <span
+                key={method.name}
+                className="research-impact__method-point"
+                style={{ '--method-x': `${method.x}%`, '--method-y': `${method.y}%` } as CSSProperties}
+              >
+                <i>{String(index + 1).padStart(2, '0')}</i>
+                <b>{method.name}</b>
+              </span>
+            ))}
+          </div>
+        </figure>
+      </div>
+
       <div className="research-impact__ledger">
         <div className="research-impact__ledger-head" aria-hidden="true">
           <span>Context</span>
@@ -87,12 +115,6 @@ export default function ResearchImpactSection() {
         ))}
       </div>
 
-      <div className="research-impact__methods" aria-label="Research methods represented">
-        <span>Methods represented</span>
-        <ul>
-          {methods.map((method) => <li key={method}>{method}</li>)}
-        </ul>
-      </div>
     </section>
   )
 }

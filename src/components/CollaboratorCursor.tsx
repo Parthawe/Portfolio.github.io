@@ -18,6 +18,11 @@ type ResolvedStep = ParthStep & {
   anchor: HTMLElement
 }
 
+type ParthRevealDetail = {
+  element: HTMLElement
+  message: string
+}
+
 const CATEGORY_ROUTES = new Set([
   '/ai',
   '/ux',
@@ -76,6 +81,9 @@ const clamp = (value: number, min: number, max: number) => Math.min(Math.max(val
 
 const YOU_CURSOR_TIP_OFFSET = { x: 2, y: 4 }
 const TOUR_SLIDE_HOLD_MS = 5_000
+const WELCOME_DELAY_MS = 1_600
+const WELCOME_HOLD_MS = 4_500
+const WELCOMED_ROUTES = new Set<string>()
 
 const CATEGORY_CUES: Record<string, Partial<Record<string, string>>> = {
   '/ai': { 'how I see it': 'AI gets interesting when the human still has the last word.', 'start here': 'I would start with the AI work that escaped the chat box.' },
@@ -122,6 +130,14 @@ function tourPrompt(pathname: string) {
   if (pathname === '/work') return 'Help me choose'
   if (pathname === '/' || pathname === '/about' || CATEGORY_ROUTES.has(pathname)) return 'Show me around'
   return 'Tour this project'
+}
+
+function pageWelcome(pathname: string) {
+  if (pathname === '/') return 'Welcome. Take your time — click me if you want help choosing where to start.'
+  if (pathname === '/work') return 'Welcome to the work. Click me if you want a shorter path through it.'
+  if (pathname === '/about') return 'Welcome. This is the person behind the work — ask me anything along the way.'
+  if (CATEGORY_ROUTES.has(pathname)) return 'Welcome. Click me if you want a guided path through this collection.'
+  return 'Welcome in. Click me if you want the decisions behind this project.'
 }
 
 function conversationPrompts(pathname: string) {
@@ -295,6 +311,7 @@ export default function CollaboratorCursor() {
   const actionTimer = useRef<number | null>(null)
   const tourStartTimer = useRef<number | null>(null)
   const tourAdvanceTimer = useRef<number | null>(null)
+  const welcomeTimer = useRef<number | null>(null)
   const typingStep = useRef<number | null>(null)
   const parkedRef = useRef(false)
   const spokenSteps = useRef(new Set<number>())
@@ -309,6 +326,8 @@ export default function CollaboratorCursor() {
   const tourPausedRef = useRef(false)
   const tourIndexRef = useRef(0)
   const programmaticScrollUntilRef = useRef(0)
+  const revealTargetRef = useRef<HTMLElement | null>(null)
+  const welcomeActiveRef = useRef(false)
   const tourGoRef = useRef<(index: number) => void>(() => {})
   const tourFinishRef = useRef<(message?: string) => void>(() => {})
 
@@ -321,6 +340,17 @@ export default function CollaboratorCursor() {
     if (parth) {
       parth.classList.remove('is-nearby')
       if (open) {
+        welcomeActiveRef.current = false
+        if (welcomeTimer.current !== null) {
+          window.clearTimeout(welcomeTimer.current)
+          welcomeTimer.current = null
+        }
+        if (parkTimer.current !== null) {
+          window.clearTimeout(parkTimer.current)
+          parkTimer.current = null
+        }
+        parth.classList.remove('is-welcoming', 'is-speaking')
+        if (noteRef.current) noteRef.current.textContent = ''
         const trigger = triggerRef.current
         const rect = trigger?.getBoundingClientRect() ?? parth.getBoundingClientRect()
         let projectedRight = rect.right
@@ -588,20 +618,23 @@ export default function CollaboratorCursor() {
 
     const parkCursor = () => {
       if (conversationOpenRef.current || tourActiveRef.current) return
+      welcomeActiveRef.current = false
       parkedRef.current = true
       clearParkTimer()
       clearTyping()
       clearTarget()
       setSpeaking(false)
       parth.classList.remove('is-thinking')
+      parth.classList.remove('is-revealing')
+      parth.classList.remove('is-welcoming')
       parth.classList.add('is-parked')
       if (noteRef.current) noteRef.current.textContent = ''
       if (labelRef.current) labelRef.current.textContent = 'parth'
 
       // Keep the idle collaborator in one calm, predictable place across the site.
       // It only leaves this resting position during an explicitly started tour.
-      const x = clamp(32, 24, Math.max(24, window.innerWidth - 116))
-      const y = clamp(window.innerHeight * 0.58, 124, window.innerHeight - 132)
+      const x = clamp(56, 32, Math.max(32, window.innerWidth - 116))
+      const y = clamp(window.innerHeight * 0.64, 124, window.innerHeight - 132)
       parth.dataset.side = 'right'
       parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'
       setPosition(parth, x, y, true)
@@ -846,10 +879,90 @@ export default function CollaboratorCursor() {
       }
     }
 
+    const showReveal = (element: HTMLElement, message: string) => {
+      if (conversationOpenRef.current || tourActiveRef.current || !document.documentElement.contains(element)) return
+      welcomeActiveRef.current = false
+      revealTargetRef.current = element
+      parkedRef.current = false
+      clearParkTimer()
+      clearTyping()
+      clearTarget()
+      parth.classList.remove('is-parked', 'is-thinking', 'is-welcoming')
+      parth.classList.add('is-revealing')
+      element.classList.add('is-parth-target')
+      if (labelRef.current) labelRef.current.textContent = 'parth'
+      if (noteRef.current) noteRef.current.textContent = message
+      if (statusRef.current) statusRef.current.textContent = message
+      setSpeaking(true)
+
+      const rect = element.getBoundingClientRect()
+      const x = clamp(rect.left + 12, 18, Math.max(18, window.innerWidth - 310))
+      const y = clamp(rect.top + rect.height * 0.55, 96, window.innerHeight - 132)
+      parth.dataset.side = 'right'
+      parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'
+      setPosition(parth, x, y, true)
+      if (parthCoordinatesRef.current) parthCoordinatesRef.current.textContent = cursorCoordinates(x, y)
+    }
+
+    const hideReveal = (element?: HTMLElement) => {
+      if (element && revealTargetRef.current !== element) return
+      revealTargetRef.current = null
+      clearTarget()
+      setSpeaking(false)
+      parth.classList.remove('is-revealing')
+      if (noteRef.current) noteRef.current.textContent = ''
+      parkCursor()
+    }
+
+    const cancelWelcome = () => {
+      WELCOMED_ROUTES.add(routeKey)
+      if (welcomeTimer.current !== null) {
+        window.clearTimeout(welcomeTimer.current)
+        welcomeTimer.current = null
+      }
+    }
+
+    const dismissWelcome = () => {
+      const wasWelcoming = welcomeActiveRef.current
+      cancelWelcome()
+      if (!wasWelcoming) return
+
+      welcomeActiveRef.current = false
+      parth.classList.remove('is-welcoming', 'is-speaking')
+      if (noteRef.current) noteRef.current.textContent = ''
+      if (statusRef.current) statusRef.current.textContent = ''
+      parkCursor()
+    }
+
+    const showWelcome = () => {
+      welcomeTimer.current = null
+      if (
+        WELCOMED_ROUTES.has(routeKey)
+        || document.hidden
+        || conversationOpenRef.current
+        || tourActiveRef.current
+        || revealTargetRef.current
+      ) return
+
+      WELCOMED_ROUTES.add(routeKey)
+      parkCursor()
+      welcomeActiveRef.current = true
+      parkedRef.current = false
+      parth.classList.remove('is-parked')
+      parth.classList.add('is-welcoming')
+      const message = pageWelcome(normalizedPathname)
+      if (noteRef.current) noteRef.current.textContent = message
+      if (statusRef.current) statusRef.current.textContent = message
+      setSpeaking(true)
+      schedulePark(WELCOME_HOLD_MS)
+    }
+
     const paint = () => {
       frame.current = null
       if (!conversationOpenRef.current) {
-        if (tourActiveRef.current) {
+        if (revealTargetRef.current || welcomeActiveRef.current) {
+          // A short welcome or explicit hidden-message interaction owns Parth until it ends.
+        } else if (tourActiveRef.current) {
           const selectedTourStep = tourStepsRef.current[tourIndexRef.current]
           const index = selectedTourStep ? steps.current.indexOf(selectedTourStep) : chooseStep()
           const step = selectedTourStep || (index >= 0 ? steps.current[index] : null)
@@ -896,11 +1009,13 @@ export default function CollaboratorCursor() {
     }
 
     const onScroll = () => {
+      if (welcomeTimer.current !== null || welcomeActiveRef.current) dismissWelcome()
       if (conversationOpenRef.current) {
         schedule()
         return
       }
       if (!tourActiveRef.current) {
+        if (revealTargetRef.current) hideReveal()
         // Idle Parth is viewport-fixed; scrolling should not wake or reposition him.
         if (!parkedRef.current) parkCursor()
         return
@@ -944,6 +1059,21 @@ export default function CollaboratorCursor() {
 
     const onVisibilityChange = () => {
       parth.classList.toggle('is-page-hidden', document.hidden)
+      if (document.hidden && (welcomeTimer.current !== null || welcomeActiveRef.current)) dismissWelcome()
+    }
+
+    const onDirectUserIntent = () => {
+      if (welcomeTimer.current !== null || welcomeActiveRef.current) dismissWelcome()
+    }
+
+    const onParthReveal = (event: Event) => {
+      const detail = (event as CustomEvent<ParthRevealDetail>).detail
+      if (detail?.element && detail.message) showReveal(detail.element, detail.message)
+    }
+
+    const onParthRevealEnd = (event: Event) => {
+      const detail = (event as CustomEvent<Pick<ParthRevealDetail, 'element'>>).detail
+      hideReveal(detail?.element)
     }
 
     const routeObserver = new MutationObserver(mutations => {
@@ -956,14 +1086,23 @@ export default function CollaboratorCursor() {
 
     refreshSteps()
     refreshTimer.current = window.setTimeout(refreshSteps, 900)
+    welcomeTimer.current = window.setTimeout(showWelcome, WELCOME_DELAY_MS)
     document.addEventListener('pointermove', onPointerMove, { passive: true })
+    document.addEventListener('pointerdown', onDirectUserIntent, { passive: true })
+    document.addEventListener('keydown', onDirectUserIntent)
     document.addEventListener('visibilitychange', onVisibilityChange)
+    window.addEventListener('parth-cursor:reveal', onParthReveal)
+    window.addEventListener('parth-cursor:reveal-end', onParthRevealEnd)
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', refreshSteps)
 
     return () => {
       document.removeEventListener('pointermove', onPointerMove)
+      document.removeEventListener('pointerdown', onDirectUserIntent)
+      document.removeEventListener('keydown', onDirectUserIntent)
       document.removeEventListener('visibilitychange', onVisibilityChange)
+      window.removeEventListener('parth-cursor:reveal', onParthReveal)
+      window.removeEventListener('parth-cursor:reveal-end', onParthRevealEnd)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', refreshSteps)
       routeObserver.disconnect()
@@ -974,11 +1113,14 @@ export default function CollaboratorCursor() {
       if (actionTimer.current !== null) window.clearTimeout(actionTimer.current)
       if (tourStartTimer.current !== null) window.clearTimeout(tourStartTimer.current)
       if (tourAdvanceTimer.current !== null) window.clearTimeout(tourAdvanceTimer.current)
+      if (welcomeTimer.current !== null) window.clearTimeout(welcomeTimer.current)
       tourGoRef.current = () => {}
       tourFinishRef.current = () => {}
       clearParkTimer()
       clearTyping()
       clearTarget()
+      revealTargetRef.current = null
+      welcomeActiveRef.current = false
       document.body.classList.remove('collaborator-cursor-active')
     }
   }, [routeKey])
@@ -1006,7 +1148,7 @@ export default function CollaboratorCursor() {
           </span>
         </button>
         <div className="reading-cursor__invite" aria-hidden="true">
-          Click to ask. I have opinions.
+          Click to ask Parth
         </div>
         <div ref={noteRef} className="reading-cursor__note" aria-hidden="true" />
         {tourActive && (

@@ -252,6 +252,13 @@ export default function NdaGate({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
+      <div className="nda-inline-preview" aria-label={`Preview of ${projectName}`}>
+        <span>{project?.tag ?? 'Protected case study'}</span>
+        <h2>{projectName}: protected story</h2>
+        <p>{project?.summaryProblem ?? project?.desc ?? 'The full process, decisions, and evidence are available to reviewers.'}</p>
+        <p>{project?.summaryOutcome ?? 'Research artifacts, working decisions, and final proof continue after access.'}</p>
+        <div className="nda-inline-preview-fade" aria-hidden="true" />
+      </div>
       <div className="nda-inline-inner">
         <header className="nda-inline-text">
           <h2 className="nda-inline-title">Unlock the full case study</h2>

@@ -7,8 +7,20 @@
 
 .spotlight-reveal {
   position: relative;
-  cursor: none;
+  cursor: pointer;
   padding: 1.5rem 0;
+}
+
+.spotlight-reveal--parth {
+  border-radius: 1rem;
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.spotlight-reveal--parth:hover,
+.spotlight-reveal--parth:focus-visible {
+  background: color-mix(in srgb, var(--select-blue, #4d9eff) 4%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--select-blue, #4d9eff) 16%, transparent);
+  outline: none;
 }
 
 /* Front text — normal site serif, centered */
@@ -173,6 +185,17 @@
   color: var(--ink);
   opacity: 0.38;
   animation: spotlight-hint-pulse 2.4s ease-in-out infinite;
+}
+
+.spotlight-hint--parth {
+  animation: none;
+  opacity: 0.3;
+  transition: opacity 140ms ease;
+}
+
+.spotlight-reveal--parth:hover .spotlight-hint--parth,
+.spotlight-reveal--parth:focus-visible .spotlight-hint--parth {
+  opacity: 0.72;
 }
 @keyframes spotlight-hint-pulse {
   0%, 100% { opacity: 0.2; }
@@ -3514,6 +3537,10 @@ body.nav-on-dark .reading-cursor--parth,
   border-radius: 1rem;
 }
 
+.reading-cursor--parth .reading-cursor__trigger::before {
+  inset: -1rem -1.35rem;
+}
+
 .reading-cursor__trigger::after {
   content: '';
   position: absolute;
@@ -3656,6 +3683,27 @@ body.figma-coordinates-on .reading-cursor__coordinates {
   transform: translateY(0) scale(1);
 }
 
+.reading-cursor--parth.is-parked:not(.is-conversing) .reading-cursor__invite {
+  border-color: var(--parth-panel-line);
+  color: var(--parth-panel-muted);
+  background: color-mix(in srgb, var(--parth-panel-bg) 88%, transparent);
+  box-shadow: none;
+  opacity: 0.58;
+  transform: translateY(0) scale(1);
+}
+
+.reading-cursor--parth.is-parked:hover .reading-cursor__invite,
+.reading-cursor--parth.is-parked:focus-within .reading-cursor__invite,
+.reading-cursor--parth.is-parked.is-nearby .reading-cursor__invite {
+  color: var(--parth-panel-ink);
+  opacity: 1;
+}
+
+.reading-cursor--parth.is-welcoming .reading-cursor__invite,
+.reading-cursor--parth.is-speaking .reading-cursor__invite {
+  opacity: 0;
+}
+
 .reading-cursor--parth.is-nearby .reading-cursor__note {
   visibility: hidden;
   opacity: 0;
@@ -3664,6 +3712,21 @@ body.figma-coordinates-on .reading-cursor__coordinates {
 .reading-cursor--parth.is-speaking .reading-cursor__note {
   opacity: 1;
   transform: translateY(0);
+}
+
+.reading-cursor--parth.is-revealing .reading-cursor__note {
+  width: max-content;
+  max-width: min(17rem, calc(100vw - 3rem));
+  padding: 0.58rem 0.72rem;
+  font-size: 0.74rem;
+  line-height: 1.3;
+}
+
+.reading-cursor--parth.is-welcoming .reading-cursor__note {
+  max-width: min(14.5rem, calc(100vw - 5.5rem));
+  padding: 0.5rem 0.64rem;
+  font-size: 0.71rem;
+  line-height: 1.3;
 }
 
 .reading-cursor__tour {
