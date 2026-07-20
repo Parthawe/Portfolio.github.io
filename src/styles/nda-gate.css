@@ -266,13 +266,39 @@
 
 @media (max-width: 640px) {
   .nda-inline {
-    width: calc(100vw - 2rem);
+    width: 100%;
+    max-width: 100%;
     margin: var(--space-8) auto;
-    padding: 1.15rem;
+    padding: 1rem;
+    border-radius: 0.85rem;
   }
 
   .nda-inline-title {
     font-size: clamp(1.25rem, 6vw, 1.55rem);
+  }
+
+  .nda-inline--compact {
+    margin: 0;
+  }
+
+  .nda-inline-inner,
+  .nda-access-stack,
+  .nda-inline-form {
+    gap: 1rem;
+  }
+
+  .nda-inline--compact .nda-inline-form--code {
+    padding-bottom: 1rem;
+  }
+
+  .nda-request-intro p,
+  .nda-request-helper {
+    font-size: 0.9rem;
+  }
+
+  .nda-input,
+  .nda-request-submit {
+    min-height: 48px;
   }
 }
 

@@ -6,7 +6,7 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import NdaGate from '../../components/NdaGate'
 import NextProject from '../../components/case-study/NextProject'
 
-const COVER = '/Assets/Projects/MediMorpho/nyu-langone-building.png'
+const COVER = '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp'
 
 const MediMorphoProtectedStory = lazy(() => import('./MediMorphoProtectedStory'))
 

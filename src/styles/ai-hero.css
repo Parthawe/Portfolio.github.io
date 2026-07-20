@@ -481,7 +481,17 @@
     font-size: 1.08rem;
     line-height: 1.2;
   }
-  .ch-3d--side { width: 8rem; }
+  .ch-3d--side {
+    top: calc(var(--nav-h) + 0.85rem);
+    width: min(7.5rem, 34vw);
+  }
+  .ch-copy {
+    padding-top: clamp(7.25rem, 34vw, 8.5rem);
+  }
+  .ch-work-link {
+    min-height: 2.75rem;
+    padding-inline: 0.85rem;
+  }
   .ch-hero-stats {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -501,5 +511,23 @@
     letter-spacing: 0.06em;
     white-space: normal;
     text-wrap: balance;
+  }
+}
+
+@media (max-width: 360px) {
+  .ch-statement {
+    font-size: clamp(2.1rem, 10.7vw, 2.5rem);
+  }
+
+  .ch-hero-stat {
+    padding-inline: 0.4rem;
+  }
+
+  .ch-hero-stat dt {
+    font-size: 1.2rem;
+  }
+
+  .ch-hero-stat dd {
+    font-size: 0.5rem;
   }
 }

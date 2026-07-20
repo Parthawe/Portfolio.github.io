@@ -444,6 +444,7 @@ export const projects: Project[] = [
     year: '2021',
     desc: 'Designed a niche arts OTT platform and retargeting system for opera, ballet, and classical audiences',
     category: 'ux',
+    secondaryCategories: ['research'],
     page: () => import('../pages/projects/CueTvPage'),
     nda: true,
     access: {
@@ -502,9 +503,9 @@ export const projects: Project[] = [
   {
     slug: 'medimorpho',
     name: 'NYU Langone',
-    image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
-    cardMockup: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
-    cover16x9: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
+    image: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
+    cardMockup: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
+    cover16x9: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
     cardMockupAlt: 'NYU Langone Health building signage for a healthcare UX research case study.',
     tag: 'HEALTHCARE UX',
     year: '2024',
@@ -516,7 +517,7 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Research glimpse',
-      publicPreviewImage: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
+      publicPreviewImage: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
       publicPreviewAlt: 'NYU Langone Health building signage, the context for this healthcare UX research case study.',
     },
     archiveOrder: 24,
@@ -707,7 +708,6 @@ export const projects: Project[] = [
     year: '2025',
     desc: 'Rebuilt a Bronx nonprofit platform to make community programs, spaces, and services easier to navigate',
     category: 'good',
-    secondaryCategories: ['research'],
     page: () => import('../pages/projects/ThePointCdcPage'),
     archiveOrder: 7,
     tier: 'b',

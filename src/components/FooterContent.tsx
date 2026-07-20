@@ -22,6 +22,16 @@ const footerGroups = [
       { label: 'Accessibility', to: '/accessibility' },
     ],
   },
+  {
+    title: 'Categories',
+    links: [
+      { label: 'AI + Wearables', to: '/ai-wearables' },
+      { label: 'Design Engineering', to: '/design-engineer' },
+      { label: 'Fintech', to: '/fintech' },
+      { label: 'Creative Technology', to: '/creative-tech' },
+      { label: 'Brand + Visual', to: '/brand-visual' },
+    ],
+  },
 ]
 
 /* Figma-style comment pin: circle with one squared corner */
@@ -349,17 +359,19 @@ export default function FooterContent({ footerRef }: { footerRef: RefObject<HTML
         </div>
 
         <motion.div className="ft-top-links" style={a(infoY, infoOpacity)} aria-label="Footer navigation">
-          {footerGroups.map(group => (
-            <nav className="ft-link-group" aria-label={group.title} key={group.title}>
-              <h3>{group.title}</h3>
-              {group.links.map(link => (
-                <Link key={link.label} to={link.to} className="ft-info-link figma-hover">
-                  {link.label}
-                  <FigmaSelect />
-                </Link>
-              ))}
-            </nav>
-          ))}
+          <div className="ft-nav-stack">
+            {footerGroups.map(group => (
+              <nav className="ft-link-group" aria-label={group.title} key={group.title}>
+                <h3>{group.title}</h3>
+                {group.links.map(link => (
+                  <Link key={link.label} to={link.to} className="ft-info-link figma-hover">
+                    {link.label}
+                    <FigmaSelect />
+                  </Link>
+                ))}
+              </nav>
+            ))}
+          </div>
           <div className="ft-link-group ft-arcade-shelf" id="footer-arcade">
             <PocketArcadeLauncher inlineDesktop />
           </div>

@@ -70,28 +70,34 @@ function ResearchArtifact() {
 
   return (
     <motion.div
-      className="hero-artifact hero-artifact--research"
+      className="hero-artifact hero-artifact--research-archive"
       onPointerMove={handlePointerMove}
       onPointerLeave={resetTilt}
       onPointerCancel={resetTilt}
-      whileHover={reducedMotion ? undefined : { scale: 1.025 }}
+      whileHover={reducedMotion ? undefined : { scale: 1.018 }}
       style={{ rotateX, rotateY, transformPerspective: 900 }}
     >
-      <span className="artifact-research__floor" />
-      <span className="artifact-research__board">
-        <span className="artifact-research__card artifact-research__card--one"><i /><i /><i /></span>
-        <span className="artifact-research__card artifact-research__card--two"><i /><i /><i /></span>
-        <span className="artifact-research__card artifact-research__card--three"><i /><i /><i /></span>
-        <span className="artifact-research__path artifact-research__path--one" />
-        <span className="artifact-research__path artifact-research__path--two" />
-        <span className="artifact-research__insight"><b>01</b><i /><i /></span>
-      </span>
-      <span className="artifact-research__lens"><i /></span>
-      <span className="artifact-research__note artifact-research__note--one" />
-      <span className="artifact-research__note artifact-research__note--two" />
-      <span className="artifact-research__participant artifact-research__participant--one"><i /></span>
-      <span className="artifact-research__participant artifact-research__participant--two"><i /></span>
-      <span className="artifact-research__label"><i /> FIELD NOTES → SYNTHESIS</span>
+      <span className="artifact-research-archive__halo" />
+      <span className="artifact-research-archive__grid" />
+
+      <figure className="artifact-research-archive__pin artifact-research-archive__pin--archive">
+        <img src="/Assets/generated/research-reference-archive.webp" alt="" draggable={false} />
+        <figcaption><i>01</i><span>Collect</span></figcaption>
+      </figure>
+
+      <figure className="artifact-research-archive__pin artifact-research-archive__pin--folder">
+        <img src="/Assets/generated/research-reference-folder.webp" alt="" draggable={false} />
+        <figcaption><i>02</i><span>Organize</span></figcaption>
+      </figure>
+
+      <figure className="artifact-research-archive__pin artifact-research-archive__pin--synthesis">
+        <img src="/Assets/generated/research-reference-synthesis.webp" alt="" draggable={false} />
+        <figcaption><i>03</i><span>Synthesize</span></figcaption>
+      </figure>
+
+      <span className="artifact-research-archive__thread artifact-research-archive__thread--one" />
+      <span className="artifact-research-archive__thread artifact-research-archive__thread--two" />
+      <span className="artifact-research-archive__label"><i /> Field notes → product direction</span>
     </motion.div>
   )
 }

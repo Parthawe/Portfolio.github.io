@@ -50,9 +50,11 @@
   max-width: 23rem;
   max-height: none;
   overflow: visible;
-  gap: 0.45rem;
-  padding: 0.65rem 0.72rem 0.58rem;
+  gap: 0.55rem;
+  padding: 0.72rem 0.78rem 0.68rem;
   border-radius: 0.9rem 0.9rem 1.85rem 0.9rem;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--arcade-shell) 96%, white 4%), var(--arcade-shell));
   box-shadow:
     0 1rem 2.5rem rgba(0, 0, 0, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
@@ -62,7 +64,7 @@
 .arcade-console--embedded .arcade-console__topline {
   min-height: 1.15rem;
   padding-bottom: 0;
-  font-size: 0.5rem;
+  font-size: 0.52rem;
 }
 
 .arcade-console--embedded .arcade-screen-bezel {
@@ -70,8 +72,8 @@
 }
 
 .arcade-console--embedded .arcade-body {
-  grid-template-rows: 5.25rem 1.75rem;
-  gap: 0.15rem 0.45rem;
+  grid-template-rows: 5.4rem 1.8rem;
+  gap: 0.2rem 0.45rem;
   min-height: 7.15rem;
   padding: 0.1rem 0.15rem 0;
 }
@@ -81,7 +83,7 @@
 }
 
 .arcade-console--embedded .arcade-actions {
-  transform: scale(0.78);
+  transform: scale(0.72);
 }
 
 .arcade-console--embedded .arcade-menu-button,
@@ -93,7 +95,7 @@
 }
 
 .arcade-console--embedded .arcade-system-controls {
-  gap: 0.35rem;
+  gap: 0.42rem;
 }
 
 .arcade-console--embedded .arcade-speaker {
@@ -102,8 +104,8 @@
 }
 
 .arcade-console--embedded .arcade-key-hint {
-  margin-top: 0;
-  font-size: 0.43rem;
+  margin-top: 0.08rem;
+  font-size: 0.46rem;
 }
 
 .arcade-console--embedded:focus-visible {
@@ -151,6 +153,42 @@
   letter-spacing: 0.14em;
 }
 
+.arcade-console__topline > span:first-child {
+  color: var(--arcade-ink);
+  font-weight: 700;
+}
+
+.arcade-console__topline small {
+  color: var(--arcade-muted);
+  font: inherit;
+}
+
+.arcade-console__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  color: var(--arcade-muted);
+  font-size: 0.46rem;
+  letter-spacing: 0.1em;
+}
+
+.arcade-console__status i {
+  width: 0.34rem;
+  height: 0.34rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.arcade-console__status--playing {
+  color: var(--arcade-ink);
+}
+
+.arcade-console__status--playing i {
+  background: currentColor;
+  box-shadow: 0 0 0.45rem color-mix(in srgb, currentColor 42%, transparent);
+}
+
 .arcade-close {
   display: grid;
   place-items: center;
@@ -181,7 +219,20 @@
   border: 1px solid var(--arcade-edge);
   border-radius: 0.65rem;
   background: #202020;
-  box-shadow: inset 0 0 0 2px #0a0a0a;
+  box-shadow:
+    inset 0 0 0 2px #0a0a0a,
+    0 0.35rem 0.9rem rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.arcade-screen-bezel::after {
+  content: '';
+  position: absolute;
+  inset: 0.62rem;
+  border-radius: 0.12rem;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 3px);
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 [data-theme="dark"] .arcade-screen-bezel {
@@ -196,6 +247,7 @@
   border-radius: 0.12rem;
   background: var(--arcade-screen);
   box-shadow: inset 0 0 1.15rem rgba(0, 0, 0, 0.16);
+  filter: contrast(1.06);
   image-rendering: auto;
   touch-action: none;
 }
@@ -216,7 +268,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 6.9rem 2.4rem;
+  grid-template-rows: 7.2rem 2.4rem;
   align-items: center;
   gap: 0.35rem 0.8rem;
   min-height: 9.25rem;
@@ -286,21 +338,22 @@
 .arcade-dpad__center { grid-column: 2; grid-row: 2; z-index: 2; border-radius: 0; border-top: 0; border-bottom: 0; box-shadow: none; }
 
 .arcade-actions {
+  --action-size: 2.5rem;
   grid-column: 2;
   grid-row: 1;
   display: grid;
-  grid-template-columns: repeat(2, 2.65rem);
-  grid-template-rows: repeat(2, 2.65rem);
-  gap: 0.62rem;
-  width: max-content;
+  grid-template-columns: repeat(3, var(--action-size));
+  grid-template-rows: repeat(3, var(--action-size));
+  width: calc(var(--action-size) * 3);
+  height: calc(var(--action-size) * 3);
   justify-self: center;
 }
 
 .arcade-action {
   display: grid;
   place-items: center;
-  width: 2.65rem;
-  height: 2.65rem;
+  width: var(--action-size);
+  height: var(--action-size);
   border: 1px solid var(--arcade-edge);
   border-radius: 50%;
   background: var(--arcade-control);
@@ -315,10 +368,12 @@
 
 .arcade-action span { font-size: 0.68rem; font-weight: 600; }
 
+.arcade-action--x { grid-column: 2; grid-row: 1; }
+.arcade-action--y { grid-column: 1; grid-row: 2; }
+.arcade-action--b { grid-column: 2; grid-row: 3; }
+.arcade-action--a { grid-column: 3; grid-row: 2; }
+
 .arcade-menu-button {
-  grid-column: 1;
-  grid-row: 2;
-  justify-self: end;
   width: 3.65rem;
   min-height: 2rem;
   padding: 0.42rem 0.3rem;
@@ -332,10 +387,10 @@
 }
 
 .arcade-system-controls {
-  grid-column: 2;
+  grid-column: 1 / -1;
   grid-row: 2;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -374,9 +429,49 @@
   grid-area: hint;
   margin: 0.1rem 0 0;
   color: var(--arcade-muted);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.32rem 0.62rem;
   font-size: 0.49rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-align: center;
+}
+
+.arcade-key-hint > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.24rem;
+  white-space: nowrap;
+}
+
+.arcade-key-hint__lead {
+  color: var(--arcade-ink);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.arcade-key-hint kbd {
+  padding: 0.14rem 0.26rem;
+  border: 1px solid var(--arcade-edge);
+  border-radius: 0.24rem;
+  background: var(--arcade-raised);
+  color: var(--arcade-ink);
+  box-shadow: 0 1px 0 var(--arcade-control-shadow);
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .arcade-console__status--playing i {
+    animation: arcade-status-pulse 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes arcade-status-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
 
 @media (max-width: 480px) {
@@ -393,6 +488,28 @@
   .arcade-dpad { transform: scale(0.86); }
   .arcade-actions { transform: scale(0.9); }
   .arcade-speaker { display: none; }
+  .arcade-key-hint {
+    gap: 0.3rem 0.45rem;
+  }
+  .arcade-key-hint__lead {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .arcade-overlay { padding: 0.35rem; }
+  .arcade-console {
+    max-height: calc(100dvh - 0.7rem);
+    padding: 0.55rem;
+  }
+  .arcade-body {
+    grid-template-rows: 5.1rem 1.8rem;
+    min-height: 7.2rem;
+  }
+  .arcade-dpad { transform: scale(0.78); }
+  .arcade-actions { transform: scale(0.82); }
+  .arcade-key-hint { font-size: 0.44rem; }
 }
 
 @media (max-height: 660px) {

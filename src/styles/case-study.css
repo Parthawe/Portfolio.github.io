@@ -5446,6 +5446,39 @@
 }
 
 @media (max-width: 700px) {
+  .medimorpho-access--overview {
+    padding: 3.25rem 0;
+  }
+
+  .medimorpho-access--gate {
+    padding: 1.25rem 0 3.25rem;
+  }
+
+  .medimorpho-access__intro--overview {
+    gap: 1.25rem;
+  }
+
+  .medimorpho-access__intro--overview h2 {
+    max-width: 12ch;
+    font-size: clamp(2.25rem, 11vw, 3.2rem);
+    line-height: 1;
+  }
+
+  .medimorpho-access__intro p {
+    font-size: 0.98rem;
+    line-height: 1.58;
+  }
+
+  .medimorpho-access__contents {
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+  }
+
+  .medimorpho-access__contents span {
+    padding: 0.42rem 0.55rem;
+    font-size: 0.62rem;
+  }
+
   .medimorpho-hero-photo__label {
     max-width: calc(100% - 2.4rem);
   }

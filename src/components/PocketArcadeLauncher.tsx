@@ -34,6 +34,10 @@ export default function PocketArcadeLauncher({ inlineDesktop = false }: { inline
     <>
       {inlineDesktop && showInline && (
         <div className="ft-arcade-inline">
+          <div className="ft-arcade-intro">
+            <span>INTERMISSION / OPTIONAL</span>
+            <p>Five tiny games. Keyboard or buttons.</p>
+          </div>
           <Suspense fallback={<span className="ft-arcade-loading" role="status">Loading arcade...</span>}>
             <PocketArcade embedded />
           </Suspense>

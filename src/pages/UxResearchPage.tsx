@@ -26,7 +26,7 @@ const researchCases: ResearchCase[] = [
     title: 'NYU Langone',
     context: 'Multilingual healthcare communication',
     year: '2024',
-    image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
+    image: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
     imageAlt: 'NYU Langone Health building signage, the context for the healthcare research study.',
     evidence: '20 primary interviews: 16 people with limited English proficiency and 4 healthcare professionals. The team consolidated the evidence into four affinity themes.',
     methods: ['Study framing', 'Interviews', 'Secondary research', 'Affinity mapping', 'Journey mapping'],
@@ -58,16 +58,16 @@ const researchCases: ResearchCase[] = [
     boundary: 'Client project completed with UX lead Akshita Anand; research inputs and product decisions are presented without inflating the study size.',
   },
   {
-    slug: 'the-point-cdc',
-    title: 'The Point CDC',
-    context: 'Community-service discovery',
-    year: '2025',
-    image: '/Assets/mockups/projects/the-point-cdc_16x9.webp',
-    imageAlt: 'The Point CDC community website shown across responsive layouts.',
-    evidence: 'A content and navigation audit showed that internal program categories made residents work too hard to find services, spaces, and community resources.',
-    methods: ['Content audit', 'Information architecture', 'Accessibility review', 'Responsive validation'],
-    decision: 'The information architecture was reorganized around resident intent, shortening the path from an immediate need to the right program detail.',
-    boundary: 'Community-focused redesign. This is a structural and evaluative research story, not a claim of a large primary-interview study.',
+    slug: 'cuetv',
+    title: 'CueTV',
+    context: 'Arts-streaming audience discovery',
+    year: '2021',
+    image: '/Assets/mockups/projects/cuetv_16x9.webp',
+    imageAlt: 'CueTV streaming platform across television, laptop, tablet, and phone.',
+    evidence: 'Audience research showed that opera, ballet, and classical viewers browse with specialist intent that generic entertainment categories and growth patterns do not support.',
+    methods: ['Audience research', 'Browsing analysis', 'Content architecture', 'Journey mapping', 'Growth-system strategy'],
+    decision: 'The platform direction paired precise arts discovery with a repeatable retargeting system, connecting browsing behavior to re-engagement instead of treating them as separate problems.',
+    boundary: 'Client product work completed with product and growth stakeholders. Public material shows the platform strategy while client-sensitive research detail remains limited.',
   },
 ]
 
@@ -106,7 +106,7 @@ const leadershipSignals = [
     num: '06',
     title: 'Validate and measure',
     body: 'Return to concepts with task-based evaluation, accessibility checks, responsive validation, and explicit experience-quality signals.',
-    proof: 'VJ Parivar · The Point CDC',
+    proof: 'VJ Parivar · CueTV',
   },
 ]
 
@@ -151,7 +151,7 @@ export default function UxResearchPage() {
     <div className="uxr-page category-page">
       <Helmet>
         <title>UX Research · Parth Pawar</title>
-        <meta name="description" content="UX research portfolio spanning healthcare, transit, housing, and community services—from study framing and fieldwork to synthesis, product direction, and validation." />
+        <meta name="description" content="UX research portfolio spanning healthcare, transit, residential services, and arts streaming—from study framing and fieldwork to synthesis, product direction, and validation." />
         <meta property="og:title" content="UX Research · Parth Pawar" />
         <meta property="og:description" content="Four evidence-led UX research studies showing methods, synthesis, decisions, and honest project boundaries." />
         <link rel="canonical" href="https://designwhich.works/ux-research" />

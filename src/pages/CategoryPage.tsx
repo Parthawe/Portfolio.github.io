@@ -10,6 +10,7 @@ import ClientsMarquee from '../components/ClientsMarquee'
 import FigmaFrameLabel from '../components/FigmaFrameLabel'
 import FigmaSelect from '../components/FigmaSelect'
 import ParthDoesSection from '../components/ParthDoesSection'
+import ResearchImpactSection from '../components/ResearchImpactSection'
 import {
   getProject,
   isHiddenProject,
@@ -245,32 +246,34 @@ export default function CategoryPage() {
           </Reveal>
 
           <Reveal>
-            <ParthDoesSection />
+            {slug === 'ux-research' ? <ResearchImpactSection /> : <ParthDoesSection />}
           </Reveal>
 
-          <Reveal>
-            <section className="lp-category-disciplines" style={{ position: 'relative' }}>
-              <FigmaFrameLabel name="Disciplines" />
-              <div className="lp-category-disciplines-grid">
-                {CATEGORY_ANNOTATION_LINKS.map((item, index) => (
-                  <Link
-                    key={item.slug}
-                    to={item.link}
-                    className={`lp-category-discipline figma-hover${item.slug === slug || (slug === 'ai' && item.slug === 'ai-wearables') ? ' is-active' : ''}`}
-                    style={{ transitionDelay: `${index * 0.04}s` }}
-                  >
-                    <span className="lp-category-discipline-object" aria-hidden="true">
-                      <Suspense fallback={null}>
-                        <CategoryObject3D slug={item.slug} size={76} />
-                      </Suspense>
-                    </span>
-                    <span className="lp-category-discipline-label">{item.label}</span>
-                    <FigmaSelect />
-                  </Link>
-                ))}
-              </div>
-            </section>
-          </Reveal>
+          {slug !== 'ux-research' && (
+            <Reveal>
+              <section className="lp-category-disciplines" style={{ position: 'relative' }}>
+                <FigmaFrameLabel name="Disciplines" />
+                <div className="lp-category-disciplines-grid">
+                  {CATEGORY_ANNOTATION_LINKS.map((item, index) => (
+                    <Link
+                      key={item.slug}
+                      to={item.link}
+                      className={`lp-category-discipline figma-hover${item.slug === slug || (slug === 'ai' && item.slug === 'ai-wearables') ? ' is-active' : ''}`}
+                      style={{ transitionDelay: `${index * 0.04}s` }}
+                    >
+                      <span className="lp-category-discipline-object" aria-hidden="true">
+                        <Suspense fallback={null}>
+                          <CategoryObject3D slug={item.slug} size={76} />
+                        </Suspense>
+                      </span>
+                      <span className="lp-category-discipline-label">{item.label}</span>
+                      <FigmaSelect />
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            </Reveal>
+          )}
         </div>
 
       </div>

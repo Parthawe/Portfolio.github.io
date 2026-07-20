@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useThemeMode } from '../hooks/useThemeMode'
 import '../styles/arcade.css'
@@ -93,13 +93,17 @@ function panel(ctx: CanvasRenderingContext2D, colors: ArcadeColors) {
 
 function drawMenu(ctx: CanvasRenderingContext2D, selected: number, colors: ArcadeColors) {
   panel(ctx, colors)
-  text(ctx, colors, 'POCKET ARCADE', 18, 23, 16, colors.red)
-  text(ctx, colors, 'CHOOSE A GAME', 18, 44, 9, colors.muted)
+  text(ctx, colors, 'POCKET ARCADE', 18, 22, 16, colors.red)
+  text(ctx, colors, '05 GAMES / SELECT ONE', 18, 43, 8, colors.muted)
+  ctx.strokeStyle = colors.grid
+  ctx.beginPath(); ctx.moveTo(18, 55); ctx.lineTo(W - 18, 55); ctx.stroke()
   games.forEach((game, index) => {
     const y = 72 + index * 27
     if (selected === index) {
       ctx.fillStyle = colors.selected
       ctx.fillRect(12, y - 11, W - 24, 22)
+      ctx.fillStyle = colors.green
+      ctx.fillRect(12, y - 11, 3, 22)
       text(ctx, colors, '▶', 21, y, 9, colors.green)
     }
     text(ctx, colors, game.label, 39, y, 12, selected === index ? colors.green : colors.text)
@@ -158,6 +162,9 @@ function GamepadButton({ action, label, onPress, onRelease, className = '' }: {
 
 export default function PocketArcade({ onClose = () => {}, embedded = false }: { onClose?: () => void; embedded?: boolean }) {
   const dark = useThemeMode()
+  const instanceId = useId().replace(/:/g, '')
+  const titleId = `arcade-title-${instanceId}`
+  const hintId = `arcade-hint-${instanceId}`
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const consoleRef = useRef<HTMLElement>(null)
@@ -173,6 +180,8 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
   const [mode, setMode] = useState<Mode>('menu')
   const [selected, setSelected] = useState(0)
   const [score, setScore] = useState(0)
+  const activeGame = games.find(game => game.id === gameRef.current)?.label ?? games[selected].label
+  const statusLabel = mode === 'menu' ? 'READY' : mode === 'playing' ? 'PLAYING' : 'GAME OVER'
 
   const syncScore = (value: number) => {
     scoreRef.current = value
@@ -417,7 +426,8 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
         className={`arcade-console${embedded ? ' arcade-console--embedded' : ''}`}
         role={embedded ? 'region' : 'dialog'}
         aria-modal={embedded ? undefined : true}
-        aria-labelledby="arcade-title"
+        aria-labelledby={titleId}
+        aria-describedby={hintId}
         tabIndex={embedded ? 0 : undefined}
         onPointerDownCapture={(event) => {
           if (embedded) event.currentTarget.focus({ preventScroll: true })
@@ -426,11 +436,15 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
         onClick={(event) => event.stopPropagation()}
       >
         <div className="arcade-console__topline">
-          <span id="arcade-title">POCKET ARCADE / 05</span>
+          <span id={titleId}>POCKET ARCADE <small>/ 05</small></span>
+          <span className={`arcade-console__status arcade-console__status--${mode}`}>
+            <i aria-hidden="true" />
+            {statusLabel}
+          </span>
           {!embedded && <button ref={closeRef} type="button" className="arcade-close" onClick={onClose} aria-label="Close Pocket Arcade">×</button>}
         </div>
         <div className="arcade-screen-bezel">
-          <canvas ref={canvasRef} width={W} height={H} aria-label={`${mode === 'menu' ? `Game menu, ${games[selected].label} selected` : games.find(game => game.id === gameRef.current)?.label}, score ${score}`} />
+          <canvas ref={canvasRef} width={W} height={H} aria-label={`${mode === 'menu' ? `Game menu, ${games[selected].label} selected` : activeGame}, score ${score}`} />
           <span className="arcade-power" aria-hidden="true" />
         </div>
         <div className="arcade-body">
@@ -441,7 +455,6 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
             <GamepadButton action="right" label="Right" onPress={press} onRelease={release} className="arcade-dpad__right" />
             <GamepadButton action="down" label="Down" onPress={press} onRelease={release} className="arcade-dpad__down" />
           </div>
-          <button type="button" className="arcade-menu-button" onClick={goMenu}>MENU</button>
           <div className="arcade-actions">
             <GamepadButton action="menu" label="X" onPress={press} onRelease={release} className="arcade-action arcade-action--x" />
             <GamepadButton action="b" label="Y" onPress={press} onRelease={release} className="arcade-action arcade-action--y" />
@@ -449,13 +462,17 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
             <GamepadButton action="a" label="A" onPress={press} onRelease={release} className="arcade-action arcade-action--a" />
           </div>
           <div className="arcade-system-controls">
+            <button type="button" className="arcade-menu-button" onClick={goMenu}>MENU</button>
             <button type="button" onClick={() => { if (modeRef.current === 'menu') startGame(); else goMenu() }}>SELECT</button>
             <button type="button" onClick={() => startGame()}>START</button>
           </div>
           <span className="arcade-speaker" aria-hidden="true" />
         </div>
-        <p className="arcade-key-hint">
-          {embedded ? 'CLICK OR TAB IN · ARROWS / WASD · ENTER / SPACE' : 'ARROWS / WASD · ENTER / SPACE · ESC TO CLOSE'}
+        <p className="arcade-key-hint" id={hintId}>
+          {embedded && <span className="arcade-key-hint__lead">Click or tab in</span>}
+          <span><kbd>↑ ↓ ← →</kbd> move</span>
+          <span><kbd>Enter</kbd> play</span>
+          {!embedded && <span><kbd>Esc</kbd> close</span>}
         </p>
       </section>
   )
