@@ -91,7 +91,6 @@ const StudioPage = lazy(() => import('./pages/StudioPage'))
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
 const HealthAppPage = lazy(() => import('./pages/projects/HealthAppPage'))
 const MotionPage = lazy(() => import('./pages/MotionPage'))
-const UxResearchPage = lazy(() => import('./pages/UxResearchPage'))
 const PerplexityPage = lazy(() => import('./pages/PerplexityPage'))
 
 // Project page components — auto-generated from registry
@@ -123,7 +122,7 @@ export default function App() {
           <Route path="/ai" element={<CategoryPage />} />
           <Route path="/ux" element={<Navigate to="/ux-design" replace />} />
           <Route path="/ux-design" element={<CategoryPage />} />
-          <Route path="/ux-research" element={<UxResearchPage />} />
+          <Route path="/ux-research" element={<CategoryPage />} />
           <Route path="/ui" element={<Navigate to="/ux-design" replace />} />
           <Route path="/design-engineer" element={<CategoryPage />} />
           <Route path="/creative-tech" element={<CategoryPage />} />
