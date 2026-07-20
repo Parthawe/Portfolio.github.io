@@ -364,7 +364,6 @@ function CodexProfile() {
       <div className="abt-codex-intro">
         <span className="sec-label">Agent practice</span>
         <h2 id="abt-codex-title">Codex, tuned through use.</h2>
-        <p>I treat agents like a working design system: shape the context, shorten the loop, and verify the output in the real product. This portfolio skips the site-builder handoff; it is shaped directly in code, with Codex in the loop.</p>
       </div>
 
       <div className="abt-codex-profile">
