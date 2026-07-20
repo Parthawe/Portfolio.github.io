@@ -443,11 +443,11 @@
 
 @media (min-width: 769px) {
   .page-work .bt-toolbar {
-    bottom: calc(5.85rem + env(safe-area-inset-bottom));
+    bottom: calc(1.25rem + env(safe-area-inset-bottom));
   }
 
   .page-work .ht-preview-float {
-    bottom: calc(5.85rem + 52px + env(safe-area-inset-bottom));
+    bottom: calc(1.25rem + 52px + env(safe-area-inset-bottom));
   }
 }
 

@@ -2516,3 +2516,23 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
     transform: none;
   }
 }
+
+/* Pair the editorial filter rail with the hand-control chip as one bottom
+   control row. The rail follows the same 48px content gutter as the work grid
+   and reserves the right side for the hand control instead of floating at the
+   viewport centre. */
+@media (min-width: 769px) {
+  .page-work .work-bottom-nav {
+    left: 48px;
+    right: auto;
+    bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    width: max-content;
+    max-width: calc(100vw - 48px - 11rem);
+    justify-content: flex-start;
+    transform: none;
+  }
+
+  .page-work .work-bottom-nav.is-hidden {
+    transform: translateY(16px);
+  }
+}
