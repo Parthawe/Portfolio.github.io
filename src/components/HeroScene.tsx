@@ -2282,9 +2282,11 @@ export { useHoverLerp, useVirtualTime, mix };
 export default function HeroScene({
   onNavigate,
   onExpandedChange,
+  onReady,
 }: {
   onNavigate?: (path: string) => void;
   onExpandedChange?: (expanded: boolean) => void;
+  onReady?: () => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReduced();
@@ -2350,6 +2352,7 @@ export default function HeroScene({
     <>
       <div ref={containerRef} className={`hero-3d-canvas${expanded ? ' hero-3d-canvas--web' : ''}`}>
         <Canvas
+          onCreated={onReady}
           frameloop={visible ? 'always' : 'never'}
           dpr={[1, 2]}
           gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.4 }}

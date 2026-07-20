@@ -265,6 +265,11 @@ function CategoryAudience({ items, accentColor, categoryName }: { items: readonl
   }, [items.length])
 
   const item = items[index] ?? items[0]
+  const sentenceDensity = item.text.length >= 110
+    ? 'ch-audience-copy--extra-long'
+    : item.text.length >= 92
+      ? 'ch-audience-copy--long'
+      : 'ch-audience-copy--standard'
 
   return (
     <div className="ch-audience" aria-label={`${categoryName} audience note`}>
@@ -282,7 +287,7 @@ function CategoryAudience({ items, accentColor, categoryName }: { items: readonl
               <span key={line}>{line}</span>
             ))}
           </h2>
-          <p>{item.text}</p>
+          <p className={`ch-audience-copy ${sentenceDensity}`}>{item.text}</p>
         </motion.article>
       </AnimatePresence>
       <div className="ch-audience-dots" aria-hidden="true">

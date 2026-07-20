@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
 import type { CSSProperties, PointerEvent } from 'react'
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
 
 type ArtifactProps = {
   slug: string
@@ -8,26 +7,6 @@ type ArtifactProps = {
 
 const signalDots = Array.from({ length: 6 }, (_, index) => index)
 const flowNodes = Array.from({ length: 4 }, (_, index) => index)
-const uxMonitorProjects = [
-  {
-    name: 'Mentra',
-    href: '/mentra',
-    image: '/Assets/images/mentra/appstore-hero.webp',
-    fit: 'contain',
-  },
-  {
-    name: 'TransFi',
-    href: '/transfi-project',
-    image: '/Assets/Projects/Transfi/public/Frame 427318646.png',
-    fit: 'cover',
-  },
-  {
-    name: 'Raahi',
-    href: '/raahi-project',
-    image: '/Assets/Projects/Raahi/photos/raahi-system-overview.webp',
-    fit: 'contain',
-  },
-]
 
 function AiArtifact() {
   return (
@@ -46,85 +25,38 @@ function AiArtifact() {
 
 function UxArtifact() {
   const reducedMotion = useReducedMotion()
-  const [activeProject, setActiveProject] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const project = uxMonitorProjects[activeProject]
-
-  useEffect(() => {
-    if (reducedMotion || isPaused) return undefined
-    const timer = window.setInterval(() => {
-      setActiveProject((current) => (current + 1) % uxMonitorProjects.length)
-    }, 3400)
-    return () => window.clearInterval(timer)
-  }, [isPaused, reducedMotion])
-
-  const showNextProject = () => {
-    setActiveProject((current) => (current + 1) % uxMonitorProjects.length)
-  }
 
   return (
     <motion.div
-      className="hero-artifact hero-artifact--ux hero-artifact--ux-monitor"
-      onPointerEnter={() => setIsPaused(true)}
-      onPointerLeave={() => setIsPaused(false)}
-      whileHover={reducedMotion ? undefined : { rotateY: -4, rotateX: 2, scale: 1.025 }}
+      className="hero-artifact hero-artifact--ux hero-artifact--ux-research"
+      whileHover={reducedMotion ? undefined : { rotateY: -5, rotateX: 2, scale: 1.025 }}
       transition={{ type: 'spring', stiffness: 170, damping: 18 }}
     >
-      <div className="artifact-ux-monitor">
-        <span className="artifact-ux-monitor__rear" />
-        <div className="artifact-ux-monitor__display">
-          <span className="artifact-ux-monitor__topbar">
-            <b>DESIGN REVIEW</b>
-            <i />
-            <small>LIVE</small>
-          </span>
-          <a
-            className="artifact-ux-monitor__screen"
-            href={project.href}
-            aria-label={`View ${project.name} project`}
-          >
-            <AnimatePresence initial={false} mode="wait">
-              <motion.figure
-                key={project.name}
-                initial={reducedMotion ? false : { opacity: 0, x: 18, scale: 0.98 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={reducedMotion ? undefined : { opacity: 0, x: -16, scale: 1.02 }}
-                transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <img className={project.fit === 'contain' ? 'is-contained' : ''} src={project.image} alt="" draggable={false} />
-                <figcaption>
-                  <span>{project.name}</span>
-                  <small>{String(activeProject + 1).padStart(2, '0')} / 03</small>
-                </figcaption>
-              </motion.figure>
-            </AnimatePresence>
-          </a>
-          <span className="artifact-ux-monitor__scan" />
-        </div>
-        <span className="artifact-ux-monitor__hinge" />
-        <span className="artifact-ux-monitor__stand" />
-        <span className="artifact-ux-monitor__base" />
-        <button
-          className="artifact-ux-monitor__next"
-          type="button"
-          onClick={showNextProject}
-          aria-label="Show next project"
-        >
-          <span>›</span>
-        </button>
-        <span className="artifact-ux-monitor__selectors" role="group" aria-label="Choose project">
-          {uxMonitorProjects.map((item, index) => (
-            <button
-              className={index === activeProject ? 'is-active' : ''}
-              type="button"
-              onClick={() => setActiveProject(index)}
-              aria-label={`Show ${item.name}`}
-              aria-pressed={index === activeProject}
-              key={item.name}
-            />
-          ))}
+      <div className="artifact-ux-research">
+        <span className="artifact-ux-research__ground" />
+        <span className="artifact-ux-research__book">
+          <i />
+          <b />
         </span>
-        <span className="artifact-ux-monitor__note">PRODUCT SYSTEMS · 03</span>
+        <span className="artifact-ux-research__phone">
+          <i className="artifact-ux-research__phone-top" />
+          <i className="artifact-ux-research__avatar" />
+          <i className="artifact-ux-research__message artifact-ux-research__message--one" />
+          <i className="artifact-ux-research__message artifact-ux-research__message--two" />
+          <i className="artifact-ux-research__message artifact-ux-research__message--three" />
+        </span>
+        <span className="artifact-ux-research__magnifier">
+          <i />
+        </span>
+        <span className="artifact-ux-research__palette">
+          <i /><i /><i /><i /><i /><i />
+        </span>
+        <span className="artifact-ux-research__pen" />
+        <span className="artifact-ux-research__plane" />
+        <span className="artifact-ux-research__clip artifact-ux-research__clip--one" />
+        <span className="artifact-ux-research__clip artifact-ux-research__clip--two" />
+        <span className="artifact-ux-research__flower" />
+        <span className="artifact-ux-research__tag">UX FIELD NOTES</span>
       </div>
     </motion.div>
   )
@@ -413,7 +345,7 @@ function ServiceArtifact({ healthcare = false }: { healthcare?: boolean }) {
 
   return (
     <motion.div
-      className={`hero-artifact hero-artifact--service${healthcare ? ' hero-artifact--health' : ''}`}
+      className={`hero-artifact hero-artifact--service${healthcare ? ' hero-artifact--health' : ' hero-artifact--good-faces'}`}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetTilt}
       onPointerCancel={resetTilt}
@@ -421,22 +353,41 @@ function ServiceArtifact({ healthcare = false }: { healthcare?: boolean }) {
       whileTap={reducedMotion ? undefined : { scale: 0.985 }}
       style={{ rotateX, rotateY, transformPerspective: 800 }}
     >
-      <span className="artifact-service__floor" />
-      <span className="artifact-service__network">
-        <span className="artifact-service__field" />
-        <svg className="artifact-service__route" viewBox="0 0 300 300" aria-hidden="true">
-          <path d="M42 190 C73 111 119 225 151 153 S220 84 263 134" />
-          {healthcare && <path className="artifact-service__pulse-line" d="M37 151 H92 L111 126 L132 179 L151 145 H267" />}
-        </svg>
-        {flowNodes.map((node) => (
-          <span className={`artifact-service__node artifact-service__node--${node + 1}`} key={node}>
-            <i>{healthcare && node === 2 ? '+' : ''}</i>
+      {healthcare ? (
+        <>
+          <span className="artifact-service__floor" />
+          <span className="artifact-service__network">
+            <span className="artifact-service__field" />
+            <svg className="artifact-service__route" viewBox="0 0 300 300" aria-hidden="true">
+              <path d="M42 190 C73 111 119 225 151 153 S220 84 263 134" />
+              <path className="artifact-service__pulse-line" d="M37 151 H92 L111 126 L132 179 L151 145 H267" />
+            </svg>
+            {flowNodes.map((node) => (
+              <span className={`artifact-service__node artifact-service__node--${node + 1}`} key={node}>
+                <i>{node === 2 ? '+' : ''}</i>
+              </span>
+            ))}
+            <span className="artifact-service__halo" />
           </span>
-        ))}
-        <span className="artifact-service__halo" />
-      </span>
-      <span className="artifact-service__status"><i />SYSTEM CONNECTED</span>
-      <span className="artifact-signature">P</span>
+          <span className="artifact-service__status"><i />SYSTEM CONNECTED</span>
+          <span className="artifact-signature">P</span>
+        </>
+      ) : (
+        <>
+          <span className="artifact-good__floor" />
+          <span className="artifact-good__cluster">
+            <span className="artifact-good__face artifact-good__face--blue"><b /><i /></span>
+            <span className="artifact-good__face artifact-good__face--pink"><b /><i /></span>
+            <span className="artifact-good__face artifact-good__face--green"><b /><i /></span>
+            <span className="artifact-good__face artifact-good__face--orange"><b /><i /></span>
+            <span className="artifact-good__face artifact-good__face--yellow"><b /><i /></span>
+            <span className="artifact-good__bubble"><i /><i /><i /></span>
+            <span className="artifact-good__spark" />
+          </span>
+          <span className="artifact-good__label"><i />HUMAN SIGNALS</span>
+          <span className="artifact-signature">P</span>
+        </>
+      )}
     </motion.div>
   )
 }

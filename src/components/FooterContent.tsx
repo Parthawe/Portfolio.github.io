@@ -107,7 +107,7 @@ function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
 
   const handleZoneClick = (e: React.MouseEvent) => {
     // Only empty canvas starts a note — pins, links, and the open draft handle their own clicks.
-    if ((e.target as HTMLElement).closest('.ft-pin, .ft-pin-draft, .ft-scrap-ghost, .ft-arcade-dock')) return
+    if ((e.target as HTMLElement).closest('.ft-pin, .ft-pin-draft, .ft-scrap-ghost')) return
     const r = zoneRef.current?.getBoundingClientRect()
     if (!r) return
     openDraftAt(((e.clientX - r.left) / r.width) * 100, ((e.clientY - r.top) / r.height) * 100)
@@ -189,10 +189,6 @@ function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
           <span className="ft-scrap-ghost-hint">deleted frames live in the graveyard &rarr;</span>
           <FigmaSelect />
         </Link>
-
-        <div className="ft-arcade-dock" onClick={(e) => e.stopPropagation()}>
-          <PocketArcadeLauncher />
-        </div>
 
         {/* visitor notes pinned to the canvas */}
         {notes.map((note, index) => (
@@ -374,6 +370,10 @@ export default function FooterContent({ footerRef }: { footerRef: RefObject<HTML
               ))}
             </nav>
           ))}
+          <div className="ft-link-group ft-arcade-shelf">
+            <h3>Play</h3>
+            <PocketArcadeLauncher />
+          </div>
         </motion.div>
       </motion.div>
 

@@ -11,6 +11,8 @@ import FigmaFrameLabel from '../components/FigmaFrameLabel';
 import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useInView } from '../hooks/useInView';
 import { useMediaQuery } from '../hooks/useMediaQuery';
+import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded';
+import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
 import { featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
 import { isLowPowerDevice } from '../utils/performance';
@@ -76,17 +78,22 @@ export default function HomePage() {
   const navigate = useNavigate();
   const [identityTab, setIdentityTab] = useState<(typeof identityTabs)[number]['id']>('who-i-am');
   const [heroWebOpen, setHeroWebOpen] = useState(false);
+  const [heroSceneReady, setHeroSceneReady] = useState(false);
+  const [heroSceneTimedOut, setHeroSceneTimedOut] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
   const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
   const archiveSingleColumn = useMediaQuery('(max-width: 360px)');
   const archiveTwoColumn = useMediaQuery('(max-width: 1100px)');
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const performanceDegraded = usePerformanceDegraded();
+  const webglAvailable = useWebGLAvailable();
   const lowPowerDevice = isLowPowerDevice();
   const allowDecorative3D = !prefersReducedMotion;
-  const mountHeroScene = useDeferredMount(allowDecorative3D, {
-    timeout: coarsePointer ? 2600 : lowPowerDevice ? 4600 : 3600,
-    delayMs: coarsePointer ? 520 : lowPowerDevice ? 2200 : 1800,
+  const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || heroSceneTimedOut;
+  const mountHeroScene = useDeferredMount(!heroSceneUnavailable, {
+    timeout: coarsePointer ? 900 : lowPowerDevice ? 1100 : 1200,
+    delayMs: coarsePointer ? 220 : lowPowerDevice ? 400 : 350,
   });
   const mountDisciplineObjects = useDeferredMount(allowDecorative3D && disciplinesInView, { timeout: lowPowerDevice ? 2200 : 1400, delayMs: lowPowerDevice ? 360 : 150 });
   const archiveProjects = homepageSelectedProjects;
@@ -116,6 +123,12 @@ export default function HomePage() {
 
     return () => window.clearInterval(id);
   }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    if (!mountHeroScene || heroSceneReady || heroSceneUnavailable) return;
+    const timeoutId = window.setTimeout(() => setHeroSceneTimedOut(true), 6000);
+    return () => window.clearTimeout(timeoutId);
+  }, [heroSceneReady, heroSceneUnavailable, mountHeroScene]);
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -157,7 +170,7 @@ export default function HomePage() {
       </Helmet>
 
       <section
-        className={`wr-hero${mountHeroScene ? ' is-scene-ready' : ''}${heroWebOpen ? ' wr-hero--web-open' : ''}`}
+        className={`wr-hero${heroSceneReady ? ' is-scene-ready' : ''}${heroSceneUnavailable ? ' wr-hero--no-scene' : ''}${heroWebOpen ? ' wr-hero--web-open' : ''}`}
         id="hero"
         ref={heroRef}
         style={{ position: 'relative' }}
@@ -170,7 +183,14 @@ export default function HomePage() {
         <div className="wr-hero-3d">
           {mountHeroScene ? (
             <Suspense fallback={null}>
-              <HeroScene onNavigate={navigate} onExpandedChange={setHeroWebOpen} />
+              <HeroScene
+                onNavigate={navigate}
+                onExpandedChange={setHeroWebOpen}
+                onReady={() => {
+                  setHeroSceneReady(true);
+                  setHeroSceneTimedOut(false);
+                }}
+              />
             </Suspense>
           ) : null}
         </div>

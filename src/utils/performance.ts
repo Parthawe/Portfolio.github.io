@@ -25,7 +25,9 @@ export function isLowPowerDevice() {
   const nav = navigator as NavigatorWithPerformanceHints
   const memory = nav.deviceMemory
   const cores = nav.hardwareConcurrency
-  const touchOrTablet = window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1180px)').matches
+  const coarseInput = window.matchMedia('(hover: none), (pointer: coarse)').matches
+  const phoneViewport = window.matchMedia('(max-width: 768px)').matches
+  const touchOrTablet = phoneViewport || (coarseInput && window.innerWidth <= 1180)
   const severelyLimitedMemory = typeof memory === 'number' && memory <= 2
   const severelyLimitedCpu = typeof cores === 'number' && cores <= 2
   const constrainedLaptop =
@@ -85,11 +87,23 @@ export function applyPerformanceModeClass() {
     // Session storage can be unavailable in private contexts.
   }
 
+  const clearPerformanceMode = () => {
+    document.documentElement.classList.remove('is-low-power-device', 'is-runtime-performance-degraded')
+    document.documentElement.dataset.performanceMode = 'full'
+    try {
+      window.sessionStorage.removeItem(PERFORMANCE_MODE_SESSION_KEY)
+    } catch {
+      // Session storage can be unavailable in private contexts.
+    }
+  }
+
   const forced = new URLSearchParams(window.location.search).get('perf') === 'emergency'
-  if (forced) activatePerformanceMode('forced')
-  else if (savedReason) activatePerformanceMode(savedReason)
-  else if (isLowPowerDevice()) activatePerformanceMode('device')
-  else document.documentElement.dataset.performanceMode = 'full'
+  const deviceIsLowPower = isLowPowerDevice()
+  if (forced || savedReason === 'forced') activatePerformanceMode('forced')
+  else if (deviceIsLowPower) activatePerformanceMode('device')
+  // Runtime degradation is intentionally temporary. A reload starts a fresh
+  // measurement window so a single slow moment cannot disable 3D indefinitely.
+  else clearPerformanceMode()
 }
 
 export function startRuntimePerformanceMonitor() {

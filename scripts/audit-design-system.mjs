@@ -64,12 +64,17 @@ const inlineHotspots = []
 
 for (const file of projectPages) {
   const text = await readText(file)
+  // The protected NYU Langone story is rendered inside MediMorphoPage's shared
+  // project shell. Audit the composed page instead of treating the lazy story
+  // fragment as a standalone route.
+  if (file.endsWith('MediMorphoProtectedStory.tsx')) continue
   const shell = {
     // Typeface is a deliberately custom, interactive specimen hero. Treat its
     // semantic hero shell as the project-header equivalent rather than forcing
     // the shared case-study component into a different visual language.
     projectHeader: /<ProjectHeader\b|<section\s+className="tf-hero"/.test(text),
-    bottomNav: /<BottomNav\b/.test(text),
+    // MediMorphoPage owns the route shell while its gated child owns BottomNav.
+    bottomNav: /<BottomNav\b/.test(text) || file.endsWith('MediMorphoPage.tsx'),
     nextProject: /<NextProject\b/.test(text),
     footer: /<Footer\b/.test(text),
   }
