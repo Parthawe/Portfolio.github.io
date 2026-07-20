@@ -34,29 +34,14 @@ function UxArtifact() {
     >
       <div className="artifact-ux-research">
         <span className="artifact-ux-research__ground" />
-        <span className="artifact-ux-research__book">
-          <i />
-          <b />
-        </span>
-        <span className="artifact-ux-research__phone">
-          <i className="artifact-ux-research__phone-top" />
-          <i className="artifact-ux-research__avatar" />
-          <i className="artifact-ux-research__message artifact-ux-research__message--one" />
-          <i className="artifact-ux-research__message artifact-ux-research__message--two" />
-          <i className="artifact-ux-research__message artifact-ux-research__message--three" />
-        </span>
-        <span className="artifact-ux-research__magnifier">
-          <i />
-        </span>
-        <span className="artifact-ux-research__palette">
-          <i /><i /><i /><i /><i /><i />
-        </span>
-        <span className="artifact-ux-research__pen" />
-        <span className="artifact-ux-research__plane" />
-        <span className="artifact-ux-research__clip artifact-ux-research__clip--one" />
-        <span className="artifact-ux-research__clip artifact-ux-research__clip--two" />
-        <span className="artifact-ux-research__flower" />
-        <span className="artifact-ux-research__tag">UX FIELD NOTES</span>
+        <img
+          className="artifact-ux-research__render"
+          src="/Assets/generated/ux-research-hero-v2.png"
+          alt=""
+          draggable={false}
+          fetchPriority="high"
+        />
+        <span className="artifact-ux-research__sheen" />
       </div>
     </motion.div>
   )
