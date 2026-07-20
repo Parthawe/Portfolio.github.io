@@ -953,6 +953,18 @@ body.page-ready .wr-hero-stage {
   }
 }
 
+/* Give the text-only hero enough measure to form three deliberate lines on
+   larger screens. Mobile keeps the narrower editorial wrap above. */
+@media (min-width: 769px) {
+  .wr-hero--no-scene .wr-hero-copy {
+    width: min(58rem, calc(100vw - (2 * var(--chrome-inline))));
+  }
+
+  .wr-hero--no-scene .wr-hero-title {
+    max-width: 15.5ch;
+  }
+}
+
 @media (max-width: 768px) and (orientation: landscape) {
   .wr-hero {
     min-height: 44rem;
