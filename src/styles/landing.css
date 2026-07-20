@@ -1067,15 +1067,15 @@ html.is-low-power-device .cl-marquee-track {
 }
 
 .pb-values {
-  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2.5rem, 4vw, 4rem);
 }
 
 .pb-value {
   display: grid;
-  grid-template-columns: minmax(0, 0.88fr) minmax(220px, 0.66fr) minmax(0, 1.06fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: start;
-  padding-bottom: clamp(2.75rem, 5.5vw, 4.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.72fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: center;
+  padding-bottom: clamp(2.25rem, 4.5vw, 3.75rem);
   scroll-margin-top: calc(var(--nav-h) + 2rem);
 }
 
@@ -1106,7 +1106,7 @@ html.is-low-power-device .cl-marquee-track {
 
 .pb-value-summary {
   margin: 1rem 0 0;
-  max-width: 34ch;
+  max-width: 46ch;
   font-family: var(--sans);
   font-size: clamp(0.98rem, 1.25vw, 1.08rem);
   line-height: 1.65;
@@ -1147,7 +1147,6 @@ html.is-low-power-device .cl-marquee-track {
 .pb-value-media {
   position: relative;
   display: grid;
-  gap: 0.9rem;
   align-content: start;
   padding: clamp(0.95rem, 1.8vw, 1.2rem);
   border: 1px solid var(--ink-08);
@@ -1202,43 +1201,6 @@ html.is-low-power-device .cl-marquee-track {
   color: var(--ink-45);
 }
 
-.pb-value-caption {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  font-family: var(--sans);
-  font-size: 0.92rem;
-  line-height: 1.62;
-  color: var(--ink-58);
-}
-
-.pb-value-points {
-  display: grid;
-  gap: clamp(1.4rem, 2.6vw, 2.2rem);
-  align-content: start;
-}
-
-.pb-point {
-  padding-top: 0.1rem;
-}
-
-.pb-point-lead {
-  margin: 0 0 0.45rem;
-  font-family: var(--serif-read);
-  font-size: clamp(1.08rem, 1.6vw, 1.25rem);
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.pb-point-body {
-  margin: 0;
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  line-height: 1.68;
-  color: var(--ink-55);
-  max-width: 58ch;
-}
-
 .pb-value-divider {
   grid-column: 1 / -1;
   width: 100%;
@@ -1283,10 +1245,17 @@ html.is-low-power-device .cl-marquee-track {
   text-decoration: underline;
 }
 
+@media (max-width: 1080px) {
+  .pb-value {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  }
+}
+
 @media (max-width: 760px) {
   .pb-value {
     grid-template-columns: 1fr;
     gap: 1.4rem;
+    align-items: start;
   }
 
   .pb-value-summary {
@@ -1295,23 +1264,6 @@ html.is-low-power-device .cl-marquee-track {
 
   .pb-object-stage {
     min-height: 200px;
-  }
-}
-
-@media (max-width: 1080px) {
-  .pb-value {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
-  }
-
-  .pb-value-points {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .pb-value-points {
-    grid-template-columns: 1fr;
   }
 }
 /* Healthcare carries three contemporary studies; keep the row balanced so

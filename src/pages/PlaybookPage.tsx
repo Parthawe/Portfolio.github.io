@@ -48,8 +48,7 @@ export default function PlaybookPage() {
             <em>every project.</em>
           </h1>
           <p className="pb-sub">
-            The working values behind the portfolio, the ones that decide what gets simplified,
-            prototyped, protected, or shipped. They travel with me from smart glasses to civic systems.
+            Eight principles I use to make decisions, from smart glasses to civic systems.
           </p>
         </header>
 
@@ -75,16 +74,7 @@ export default function PlaybookPage() {
                 </div>
                 <aside className="pb-value-media">
                   <PlaybookTopicObject topic={value.object} title={value.title} />
-                  <p className="pb-value-caption">{value.caption}</p>
                 </aside>
-                <div className="pb-value-points">
-                  {value.points.map((point) => (
-                    <div key={point.lead} className="pb-point">
-                      <h3 className="pb-point-lead">{point.lead}</h3>
-                      <p className="pb-point-body">{point.body}</p>
-                    </div>
-                  ))}
-                </div>
                 {index < PLAYBOOK_VALUES.length - 1 && <hr className="pb-value-divider" />}
               </section>
             </Reveal>
