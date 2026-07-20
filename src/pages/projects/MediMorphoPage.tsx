@@ -75,22 +75,31 @@ export default function MediMorphoPage() {
           ]}
         />
 
-        <section className="cs-section medimorpho-access medimorpho-access--early reveal" id="cs-medimorpho-access">
-          <div className="wrap medimorpho-access__layout">
-            <div className="medimorpho-access__intro">
+        <section className="cs-section medimorpho-access medimorpho-access--overview reveal" id="cs-medimorpho-access">
+          <div className="wrap">
+            <div className="medimorpho-access__intro medimorpho-access__intro--overview">
               <span>NDA case study</span>
               <h2>The UX work begins after access.</h2>
-              <p>Enter the reviewer code or request access to review the original research, system map, interview synthesis, journey map, and technical exploration.</p>
-              <div className="medimorpho-access__contents" aria-label="Protected case study contents">
-                <span>Problem framing</span>
-                <span>System map</span>
-                <span>20 interviews</span>
-                <span>Affinity synthesis</span>
-                <span>Journey map</span>
-                <span>Technical research</span>
+              <div className="medimorpho-access__summary">
+                <p>The detailed case study contains the original research, system map, interview synthesis, journey map, and technical exploration.</p>
+                <div className="medimorpho-access__contents" aria-label="Protected case study contents">
+                  <span>Problem framing</span>
+                  <span>System map</span>
+                  <span>20 interviews</span>
+                  <span>Affinity synthesis</span>
+                  <span>Journey map</span>
+                  <span>Technical research</span>
+                </div>
               </div>
             </div>
-            <NdaGate slug="medimorpho" compact />
+          </div>
+        </section>
+
+        <section className="cs-section medimorpho-access medimorpho-access--gate reveal" aria-label="Case study access">
+          <div className="wrap">
+            <div className="medimorpho-access__gate">
+              <NdaGate slug="medimorpho" compact />
+            </div>
           </div>
         </section>
 
