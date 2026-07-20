@@ -361,7 +361,6 @@ export default function FooterContent({ footerRef }: { footerRef: RefObject<HTML
             </nav>
           ))}
           <div className="ft-link-group ft-arcade-shelf" id="footer-arcade">
-            <h3>Play</h3>
             <PocketArcadeLauncher inlineDesktop />
           </div>
         </motion.div>

@@ -47,13 +47,63 @@
 
 .arcade-console--embedded {
   width: 100%;
-  max-width: 27rem;
+  max-width: 23rem;
   max-height: none;
   overflow: visible;
+  gap: 0.45rem;
+  padding: 0.65rem 0.72rem 0.58rem;
+  border-radius: 0.9rem 0.9rem 1.85rem 0.9rem;
   box-shadow:
     0 1rem 2.5rem rgba(0, 0, 0, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.72),
     inset 0 -0.2rem 0 rgba(0, 0, 0, 0.08);
+}
+
+.arcade-console--embedded .arcade-console__topline {
+  min-height: 1.15rem;
+  padding-bottom: 0;
+  font-size: 0.5rem;
+}
+
+.arcade-console--embedded .arcade-screen-bezel {
+  padding: 0.46rem;
+}
+
+.arcade-console--embedded .arcade-body {
+  grid-template-rows: 5.25rem 1.75rem;
+  gap: 0.15rem 0.45rem;
+  min-height: 7.15rem;
+  padding: 0.1rem 0.15rem 0;
+}
+
+.arcade-console--embedded .arcade-dpad {
+  transform: scale(0.72);
+}
+
+.arcade-console--embedded .arcade-actions {
+  transform: scale(0.78);
+}
+
+.arcade-console--embedded .arcade-menu-button,
+.arcade-console--embedded .arcade-system-controls button {
+  width: 3.15rem;
+  min-height: 1.7rem;
+  padding-block: 0.25rem;
+  font-size: 0.48rem;
+}
+
+.arcade-console--embedded .arcade-system-controls {
+  gap: 0.35rem;
+}
+
+.arcade-console--embedded .arcade-speaker {
+  width: 2rem;
+  height: 0.9rem;
+}
+
+.arcade-console--embedded .arcade-key-hint {
+  margin-top: 0;
+  font-size: 0.43rem;
 }
 
 .arcade-console--embedded:focus-visible {
