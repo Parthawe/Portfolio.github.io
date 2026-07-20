@@ -222,11 +222,11 @@ const softwareRows = [
 ]
 
 const codexStats = [
-  { value: '5.5B', label: 'Lifetime tokens' },
-  { value: '452M', label: 'Peak tokens' },
-  { value: '7h 4m', label: 'Longest task' },
-  { value: '24 days', label: 'Current streak' },
-  { value: '27 days', label: 'Longest streak' },
+  { value: '10.2B', label: 'Lifetime tokens' },
+  { value: '1.5B', label: 'Peak tokens' },
+  { value: '7h 4m', label: 'Longest chat' },
+  { value: '30 days', label: 'Current streak' },
+  { value: '30 days', label: 'Longest streak' },
 ]
 
 const codexMonths = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
@@ -243,19 +243,23 @@ function codexActivityLevel(index: number, mode: CodexActivityMode) {
   const day = index % 7
   const pulse = (week * 17 + day * 11 + week * day) % 13
 
-  if (week < 34) return pulse === 0 ? 1 : 0
+  // The current snapshot is quiet through March, begins to build in April,
+  // and shows sustained daily use from May through July.
+  if (week < 35) return 0
 
   if (mode === 'Cumulative') {
-    return Math.min(4, 1 + Math.floor((week - 34) / 5) + (pulse > 9 ? 1 : 0))
+    if (week < 40) return pulse > 10 ? 1 : 0
+    return Math.min(4, 1 + Math.floor((week - 40) / 4) + (pulse > 9 ? 1 : 0))
   }
 
   if (mode === 'Weekly') {
+    if (week < 40) return pulse < 3 ? 1 : 0
     return pulse < 2 ? 1 : pulse < 6 ? 2 : pulse < 10 ? 3 : 4
   }
 
-  if (index >= 347) return pulse < 3 ? 3 : 4
-  if (week >= 45) return pulse < 4 ? 1 : pulse < 8 ? 2 : pulse < 11 ? 3 : 4
-  return pulse < 5 ? 0 : pulse < 8 ? 1 : pulse < 11 ? 2 : 3
+  if (index >= 341) return pulse < 3 ? 3 : 4
+  if (week >= 40) return pulse < 3 ? 1 : pulse < 7 ? 2 : pulse < 10 ? 3 : 4
+  return pulse < 9 ? 0 : pulse < 11 ? 1 : 2
 }
 
 type SimpleBrandIcon = {
