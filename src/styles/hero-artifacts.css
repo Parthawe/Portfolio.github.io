@@ -866,10 +866,14 @@
 }
 
 .artifact-install-sculpture__sphere {
+  --sphere-size: 18.5%;
   position: absolute;
   z-index: 5;
   display: block;
-  aspect-ratio: 1;
+  width: var(--sphere-size);
+  height: var(--sphere-size);
+  aspect-ratio: 1 / 1;
+  flex: 0 0 auto;
   border-radius: 50%;
   background:
     radial-gradient(circle at 29% 23%, rgba(255, 255, 255, 0.98) 0 8%, rgba(225, 229, 235, 0.9) 13%, transparent 24%),
@@ -879,6 +883,7 @@
     inset 0.28rem 0.28rem 0.48rem rgba(255, 255, 255, 0.78),
     0 0.85rem 1.2rem rgba(12, 15, 20, 0.2);
   transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .artifact-install-sculpture__sphere::before {
@@ -904,17 +909,17 @@
 }
 
 .artifact-install-sculpture__sphere--one {
-  top: 37%;
-  left: 39%;
-  width: 25%;
+  --sphere-size: 18.5%;
+  top: 40.4%;
+  left: 41.9%;
   transform: translateZ(66px);
   animation: artifact-install-sphere-one 6s ease-in-out infinite;
 }
 
 .artifact-install-sculpture__sphere--two {
-  top: 8%;
-  left: 10%;
-  width: 13%;
+  --sphere-size: 9.65%;
+  top: 18.9%;
+  left: 20.4%;
   background:
     radial-gradient(circle at 31% 22%, #ffffff 0 9%, rgba(255, 255, 255, 0.65) 17%, transparent 26%),
     radial-gradient(circle at 68% 72%, #0b0d11 0 14%, #2f343c 45%, #d4d8dd 100%);
@@ -923,9 +928,9 @@
 }
 
 .artifact-install-sculpture__sphere--three {
-  right: 6%;
-  bottom: 13%;
-  width: 16%;
+  --sphere-size: 11.85%;
+  right: 17.4%;
+  bottom: 22.6%;
   background:
     radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.94) 0 8%, rgba(230, 234, 239, 0.8) 15%, transparent 25%),
     radial-gradient(circle at 68% 74%, #101218 0 13%, #3c424c 45%, #f8fafc 100%);

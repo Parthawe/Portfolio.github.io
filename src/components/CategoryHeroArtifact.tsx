@@ -203,10 +203,10 @@ function InstallationArtifact() {
         {renderRing('three')}
         {renderBlock('one')}
         {renderBlock('two')}
-        <i className="artifact-install-sculpture__sphere artifact-install-sculpture__sphere--one" />
-        <i className="artifact-install-sculpture__sphere artifact-install-sculpture__sphere--two" />
-        <i className="artifact-install-sculpture__sphere artifact-install-sculpture__sphere--three" />
       </span>
+      <i className="artifact-install-sculpture__sphere artifact-install-sculpture__sphere--one" />
+      <i className="artifact-install-sculpture__sphere artifact-install-sculpture__sphere--two" />
+      <i className="artifact-install-sculpture__sphere artifact-install-sculpture__sphere--three" />
       <span className="artifact-install-sculpture__axis"><i /><i /><i /></span>
     </motion.div>
   )
