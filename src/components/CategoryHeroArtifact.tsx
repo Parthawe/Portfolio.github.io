@@ -360,17 +360,17 @@ function ServiceArtifact({ healthcare = false }: { healthcare?: boolean }) {
       ) : (
         <>
           <span className="artifact-good__floor" />
-          <span className="artifact-good__cluster">
-            <span className="artifact-good__face artifact-good__face--blue"><b /><i /></span>
-            <span className="artifact-good__face artifact-good__face--pink"><b /><i /></span>
-            <span className="artifact-good__face artifact-good__face--green"><b /><i /></span>
-            <span className="artifact-good__face artifact-good__face--orange"><b /><i /></span>
-            <span className="artifact-good__face artifact-good__face--yellow"><b /><i /></span>
-            <span className="artifact-good__bubble"><i /><i /><i /></span>
-            <span className="artifact-good__spark" />
+          <span className="artifact-human__cluster">
+            <span className="artifact-human__face artifact-human__face--arch artifact-human__face--curious"><b /><i /></span>
+            <span className="artifact-human__face artifact-human__face--calm"><b /><i /></span>
+            <span className="artifact-human__face artifact-human__face--joy"><b /><i /></span>
+            <span className="artifact-human__face artifact-human__face--watch"><b /><i /></span>
+            <span className="artifact-human__face artifact-human__face--wink"><b /><i /></span>
+            <span className="artifact-human__bubble"><i /><i /><i /></span>
+            <span className="artifact-human__spark" />
+            <span className="artifact-human__dot artifact-human__dot--one" />
+            <span className="artifact-human__dot artifact-human__dot--two" />
           </span>
-          <span className="artifact-good__label"><i />HUMAN SIGNALS</span>
-          <span className="artifact-signature">P</span>
         </>
       )}
     </motion.div>
