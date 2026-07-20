@@ -3291,6 +3291,12 @@ body.nav-on-dark .site-figbar.surface-glass,
   pointer-events: none;
 }
 
+/* Figma mode hides the native pointer, so the collaborator cursor must remain
+   above the inspector chrome when the pointer enters the right-hand panel. */
+body.site-tools-open .reading-cursor-layer {
+  z-index: 950;
+}
+
 .reading-cursor {
   position: absolute;
   top: 0;
