@@ -18,15 +18,49 @@ const raahiAsset = (fileName: string) => (
   `${RAAHI_ASSET_BASE}/${encodeURIComponent(fileName)}`
 )
 
+const RAAHI_RESEARCH_QUESTIONS = [
+  'Where does confidence break across planning, waiting, boarding, transferring, and arrival?',
+  'Which information must remain consistent across mobile, stop-level, and in-vehicle touchpoints?',
+  'How do language, familiarity, and transport dependence change what a rider needs from the service?',
+  'Which parts of the journey require continuity rather than another standalone feature?',
+]
+
+const RAAHI_DECISIONS = [
+  {
+    index: '01',
+    signal: 'Riders experience a commute as one journey even when information is split across operators and surfaces.',
+    implication: 'Optimizing a mobile route planner alone would leave the most fragile handoffs unresolved.',
+    response: 'Design app, kiosk, and in-vehicle guidance as one service architecture with shared route language.',
+  },
+  {
+    index: '02',
+    signal: 'Rider archetypes differed in confidence, convenience needs, and dependence on public transport.',
+    implication: 'A single expert-commuter flow would disadvantage riders who need more orientation and reassurance.',
+    response: 'Prioritize saved places, leg-by-leg guidance, familiar modes, and stop-level access without requiring an account.',
+  },
+  {
+    index: '03',
+    signal: 'Route changes, tickets, and mode switches create repeated interpretation work during a trip.',
+    implication: 'Continuity depends on recognizable information, not merely access to more data.',
+    response: 'Use a transport-mode color system and repeat the same route hierarchy across planning and live guidance.',
+  },
+  {
+    index: '04',
+    signal: 'Pune riders navigate across Marathi, Hindi, and English and may encounter the service without the app.',
+    implication: 'Localization and physical access are core service requirements.',
+    response: 'Carry the three-language model into kiosk entry points and study the identity across scripts.',
+  },
+]
+
 export default function RaahiPage() {
   return (
     <>
       <Helmet>
-        <title>Raahi &middot; Parth Pawar</title>
-        <meta name="description" content="Raahi, Streamlining Pune's public transport system to make it accessible and convenient. A service design project integrating buses, metro, auto-rickshaws and shared cabs." />
+        <title>Raahi Public Transit Research Case Study &middot; Parth Pawar</title>
+        <meta name="description" content="An in-depth service research case study connecting rider evidence to decisions across mobile, kiosk, and in-vehicle public-transit touchpoints in Pune." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Raahi · Parth Pawar" />
-        <meta property="og:description" content="Streamlining Pune's public transport, integrating buses, metro, auto-rickshaws and shared cabs." />
+        <meta property="og:description" content="How rider research and service mapping reframed Pune transit as one connected journey across digital and physical touchpoints." />
         <meta property="og:image" content="https://designwhich.works/Assets/images/raahi.jpg" />
       </Helmet>
 
@@ -40,13 +74,12 @@ export default function RaahiPage() {
           backLabel="Back to Work"
           tags={['UX', 'Research', 'Service Design', 'Mobile']}
           title="Raahi"
-          subtitle="A service system for Pune transit across app, kiosk, and in-vehicle guidance"
+          subtitle="A research-led service study reframed Pune transit as one continuous rider journey across planning, waiting, boarding, transferring, and arrival."
           info={[
-            { label: 'Domain', value: 'Pune Public Transit' },
-            { label: 'Scope', value: 'App, kiosk, in-vehicle guidance' },
-            { label: 'Role', value: 'Research + UI design' },
-            { label: 'Duration', value: '3 Months' },
-            { label: 'Year', value: '2022' },
+            { label: 'Decision at risk', value: 'Where should one service connect fragmented transit touchpoints?' },
+            { label: 'My contribution', value: 'Research, service synthesis, brand, and UI system' },
+            { label: 'Team', value: '2 designers' },
+            { label: 'Duration', value: '3 months · 2022' },
           ]}
         />
 
@@ -58,12 +91,12 @@ export default function RaahiPage() {
           <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">Pune transit felt fragmented across routes, stops, tickets, and vehicle information. Raahi treats the commute as one service, connecting route planning, ticketing, live guidance, kiosks, and in-vehicle displays so riders spend less effort decoding the system.</span>
+              <span className="cs-label-row-val">The central research question was not “What should a transit app contain?” It was “Where does a rider lose confidence across the full trip?” Raahi used that frame to connect route planning, ticketing, stop information, transfer guidance, kiosks, and in-vehicle displays.</span>
             </div>
 
             <div className="cs-label-row">
-              <span className="cs-label-row-key">My Role</span>
-              <span className="cs-label-row-val">I worked with one fellow designer from research through final concept, focusing on field research, service insights, brand identity, and UI systems.</span>
+              <span className="cs-label-row-key">My contribution</span>
+              <span className="cs-label-row-val">I worked with one fellow designer from research through concept development, contributing to inquiry, rider models, service synthesis, brand identity, and interface systems. This is a concept case study, not a launched transit service.</span>
             </div>
 
           </div>
@@ -74,10 +107,10 @@ export default function RaahiPage() {
           note="Continue into the field research, service blueprint, interface system, and final proof."
           preview={(
             <article className="cs-expand-preview-article-copy raahi-article-preview">
-              <span className="cs-section-label">Research</span>
-              <h2 className="cs-display">Understanding Users</h2>
-              <p>We mapped the commute before designing features: what riders needed, where information broke, and which touchpoints had to work together for the service to feel reliable.</p>
-              <p>Field research revealed that route planning, ticketing, stop information, kiosks, and in-vehicle guidance were experienced as disconnected systems—even though riders understood them as one continuous journey.</p>
+              <span className="cs-section-label">In-depth service research</span>
+              <h2 className="cs-display">The commute—not the app—was the object of research.</h2>
+              <p>We mapped what riders needed, where information broke, and which touchpoints had to work together for the service to feel dependable.</p>
+              <p>The synthesis moved the concept away from a standalone trip planner and toward continuity across mobile, kiosk, stop, and vehicle.</p>
               <div className="cs-tags" aria-hidden="true">
                 <span className="cs-tag-item">Data Analysis</span>
                 <span className="cs-tag-item">Qualitative</span>
@@ -89,16 +122,32 @@ export default function RaahiPage() {
         {/* Research */}
         <section className="cs-section reveal" id="cs-research">
           <div className="wrap">
-            <span className="cs-section-label">Research</span>
-            <h2 className="cs-display">Understanding Users</h2>
+            <span className="cs-section-label">01 · Study framing</span>
+            <h2 className="cs-display">The object of research was the commute—not the app.</h2>
             <CsBody>
-              <p>We mapped the commute before designing features: what riders needed, where information broke, and which touchpoints had to work together for the service to feel reliable.</p>
+              <p>A route can be technically available and still feel unusable when the rider cannot confidently interpret the stop, transfer, ticket, or next vehicle. We studied the surrounding service to identify where continuity mattered most.</p>
             </CsBody>
             <div className="cs-tags">
-              <span className="cs-tag-item">Data Analysis</span>
-              <span className="cs-tag-item">Quantitative</span>
-              <span className="cs-tag-item">Qualitative</span>
-              <span className="cs-tag-item">Problems</span>
+              <span className="cs-tag-item">Problem-space mapping</span>
+              <span className="cs-tag-item">Rider archetypes</span>
+              <span className="cs-tag-item">Journey mapping</span>
+              <span className="cs-tag-item">Service blueprint</span>
+            </div>
+
+            <div className="raahi-research-brief">
+              <article><span>Decision at risk</span><p>Whether to optimize one digital touchpoint or define a connected service across the commute.</p></article>
+              <article><span>Unit of analysis</span><p>The end-to-end rider journey: plan, reach the stop, board, transfer, stay oriented, and arrive.</p></article>
+              <article><span>Collaboration</span><p>Two designers shared research and concept work; my focus extended through service synthesis, brand, and UI.</p></article>
+              <article><span>Evidence boundary</span><p>The surviving project record contains synthesis artifacts but not a reliable participant count or formal sampling record.</p></article>
+            </div>
+
+            <div className="raahi-research-questions">
+              <span>Research questions</span>
+              <ol>
+                {RAAHI_RESEARCH_QUESTIONS.map((question, index) => (
+                  <li key={question}><b>{String(index + 1).padStart(2, '0')}</b><p>{question}</p></li>
+                ))}
+              </ol>
             </div>
             <div className="raahi-research-grid">
               <div className="cs-img reveal">
@@ -128,6 +177,23 @@ export default function RaahiPage() {
               <div className="cs-img reveal raahi-ia-kiosk">
                 <img src={raahiAsset('information architecture_kiosk.png')} alt="Information architecture diagram for the Raahi kiosk experience" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Kiosk information architecture for stop-level use.</figcaption>
+              </div>
+            </div>
+
+            <div className="raahi-decision-section">
+              <span className="cs-section-label">02 · Evidence to decision</span>
+              <h2 className="cs-display">The synthesis changed the service architecture.</h2>
+              <p>The artifacts became useful when they changed what we designed. Each row below makes that reasoning explicit.</p>
+              <div className="raahi-decision-ledger" aria-label="Raahi evidence, implication, and service decision">
+                <div className="raahi-decision-ledger__head" aria-hidden="true"><span>Signal</span><span>Implication</span><span>Service response</span></div>
+                {RAAHI_DECISIONS.map((item) => (
+                  <article key={item.index}>
+                    <b>{item.index}</b>
+                    <p>{item.signal}</p>
+                    <p>{item.implication}</p>
+                    <p>{item.response}</p>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
@@ -282,20 +348,35 @@ export default function RaahiPage() {
           </div>
         </section>
 
-        {/* Results */}
+        {/* Concept outcome */}
         <section className="cs-section reveal" id="cs-results">
           <div className="wrap">
-            <span className="cs-section-label">Results &amp; Impact</span>
-            <h2 className="cs-section-title">What the Design Aims For</h2>
+            <span className="cs-section-label">03 · Concept outcome</span>
+            <h2 className="cs-section-title">A testable service hypothesis—not an impact claim.</h2>
             <CsFeatureGrid features={[
               { title: 'Lower cognitive load', desc: 'Route planning, ticketing, and live guidance sit in one flow instead of scattered decisions.' },
               { title: 'Multilingual by design', desc: 'The naming, script study, and three-language kiosk make language part of the service design, not a late translation layer.' },
             ]} />
             <CsStatGrid style={{ marginTop: '2.5rem' }} stats={[
-              { label: 'Planning Flow Target', value: '<2 min' },
               { label: 'Transport Modes Represented', value: '8' },
               { label: 'Languages Supported', value: '3' },
+              { label: 'Primary Service Surfaces', value: '3' },
             ]} />
+
+            <div className="raahi-study-boundary" role="note">
+              <div>
+                <span>What this case demonstrates</span>
+                <p>System framing, research synthesis, and translation of a rider journey into coordinated physical and digital touchpoints.</p>
+              </div>
+              <div>
+                <span>What remains unproven</span>
+                <p>The record does not document usability-test results, operational feasibility, adoption, accessibility compliance, or live transit outcomes.</p>
+              </div>
+              <div>
+                <span>Next study</span>
+                <p>Test transfer comprehension and recovery with frequent riders, occasional riders, and people less familiar with Pune transit, using app, kiosk, and in-vehicle scenarios together.</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -322,7 +403,7 @@ export default function RaahiPage() {
 
         <BottomNav sections={[
           { id: 'cs-research', label: 'Research' },
-          { id: 'cs-system', label: 'Design System' },
+          { id: 'cs-system', label: 'System' },
           { id: 'cs-visual', label: 'Visual Design' },
           { id: 'cs-features', label: 'Features' },
           { id: 'cs-touchpoints', label: 'Touchpoints' },

@@ -28,10 +28,10 @@ const researchCases: ResearchCase[] = [
     year: '2024',
     image: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
     imageAlt: 'NYU Langone Health building signage, the context for the healthcare research study.',
-    evidence: '20 primary interviews: 16 people with limited English proficiency and 4 healthcare professionals. The team consolidated the evidence into four affinity themes.',
-    methods: ['Study framing', 'Interviews', 'Secondary research', 'Affinity mapping', 'Journey mapping'],
+    evidence: '20 primary interviews: 16 non-native speakers with U.S. care experience and 4 healthcare professionals. The team consolidated the evidence into four affinity themes.',
+    methods: ['Decision framing', '20 interviews', 'Secondary research', 'Affinity mapping', 'Journey mapping', 'Technical opportunity scan'],
     decision: 'The research moved the concept away from translation as a single feature and toward a shared encounter model: language identification, live understanding, and a clear post-visit recap.',
-    boundary: 'Five-person NYU student team. Public page shows the research framing; detailed material remains request-only.',
+    boundary: 'Five-person NYU team. The full synthesized case and supplied artifacts are public; participant identities and raw notes remain private.',
   },
   {
     slug: 'raahi-project',
@@ -40,10 +40,10 @@ const researchCases: ResearchCase[] = [
     year: '2022',
     image: '/Assets/mockups/projects/raahi-project_16x9.webp',
     imageAlt: 'Raahi public-transit service across mobile and physical touchpoints.',
-    evidence: 'Rider needs and breakdowns were studied across the mobile app, kiosk, vehicle, route information, and wayfinding—not as isolated screens.',
-    methods: ['Field research', 'Rider archetypes', 'Journey models', 'Service mapping'],
+    evidence: 'Rider archetypes, journey models, and a service blueprint exposed breakdowns across planning, stops, vehicles, route information, and wayfinding—not as isolated screens.',
+    methods: ['Decision framing', 'Problem-space mapping', 'Rider archetypes', 'Journey models', 'Service blueprint', 'Information architecture'],
     decision: 'The product direction became one connected journey spanning digital and physical touchpoints, with continuity as the central service requirement.',
-    boundary: 'Self-initiated civic project completed with one fellow designer; the case study separates service framing from final interface work.',
+    boundary: 'Two-designer concept study. The available record does not preserve a defensible participant count or measured live-service outcome, and the case says so directly.',
   },
   {
     slug: 'vj-software',
@@ -86,9 +86,9 @@ const leadershipSignals = [
   },
   {
     num: '03',
-    title: 'Own the full study loop',
-    body: 'Carry the work from framing and participant planning through moderation, analysis, synthesis, reporting, and the next validation question.',
-    proof: '20-interview healthcare study',
+    title: 'Work across the study loop',
+    body: 'Connect framing, participant inquiry, analysis, synthesis, reporting, and the next validation question while making individual and team ownership explicit.',
+    proof: 'NYU Langone · Raahi',
   },
   {
     num: '04',
@@ -151,9 +151,9 @@ export default function UxResearchPage() {
     <div className="uxr-page category-page">
       <Helmet>
         <title>UX Research · Parth Pawar</title>
-        <meta name="description" content="UX research portfolio spanning healthcare, transit, residential services, and arts streaming—from study framing and fieldwork to synthesis, product direction, and validation." />
+        <meta name="description" content="Two in-depth UX research case studies in multilingual healthcare and public transit, supported by additional product research work." />
         <meta property="og:title" content="UX Research · Parth Pawar" />
-        <meta property="og:description" content="Four evidence-led UX research studies showing methods, synthesis, decisions, and honest project boundaries." />
+        <meta property="og:description" content="Two in-depth UX research case studies showing framing, methods, synthesis, decisions, collaboration boundaries, and limitations." />
         <link rel="canonical" href="https://designwhich.works/ux-research" />
       </Helmet>
       <Nav />
@@ -170,7 +170,7 @@ export default function UxResearchPage() {
             <div className="uxr-hero__bottom">
               <a href="#research-work" className="uxr-button figma-hover">See research <span aria-hidden="true">↓</span></a>
               <dl>
-                <div><dt>04</dt><dd>Case studies</dd></div>
+                <div><dt>02</dt><dd>In-depth case studies</dd></div>
                 <div><dt>20</dt><dd>Primary interviews</dd></div>
                 <div><dt>Generative + evaluative</dt><dd>Research range</dd></div>
               </dl>
@@ -181,8 +181,8 @@ export default function UxResearchPage() {
             <section className="uxr-leadership" aria-labelledby="uxr-leadership-title">
               <p className="uxr-section-label">Research leadership in practice</p>
               <div className="uxr-section-heading">
-                <h2 id="uxr-leadership-title">A research portfolio organized by what the work changes.</h2>
-                <p>The case studies below are not arranged as a methods checklist. They show end-to-end ownership, methodological judgment, actionable synthesis, cross-functional influence, and honest limits on what each study proves.</p>
+                <h2 id="uxr-leadership-title">Depth means showing how evidence changed a decision.</h2>
+                <p>The two principal cases expose the research question, study structure, synthesis, service decisions, collaboration boundaries, methodological limits, and next validation round—not just the final artifact.</p>
               </div>
               <div className="uxr-signal-grid">
                 {leadershipSignals.map((signal) => (
@@ -200,12 +200,19 @@ export default function UxResearchPage() {
           <section id="research-work" className="uxr-work" aria-labelledby="uxr-work-title">
             <p className="uxr-section-label">Selected research work</p>
             <div className="uxr-section-heading uxr-section-heading--work">
-              <h2 id="uxr-work-title">Evidence, method, decision.</h2>
-              <p>Every project states what was learned, what changed, and where the public evidence stops.</p>
+              <h2 id="uxr-work-title">Two complex systems. Two inspectable research stories.</h2>
+              <p>NYU Langone traces a multilingual healthcare study through 20 interviews. Raahi shows how service research shaped decisions across digital and physical transit touchpoints.</p>
             </div>
             <Reveal><ResearchCaseCard study={researchCases[0]} featured /></Reveal>
+            <div className="uxr-case-grid uxr-case-grid--depth">
+              <Reveal><ResearchCaseCard study={researchCases[1]} /></Reveal>
+            </div>
+            <div className="uxr-section-heading uxr-section-heading--supporting">
+              <h2>Supporting research work.</h2>
+              <p>Additional cases show evaluative and product-research range without presenting thinner evidence as equivalent to the two studies above.</p>
+            </div>
             <div className="uxr-case-grid">
-              {researchCases.slice(1).map((study) => <Reveal key={study.slug}><ResearchCaseCard study={study} /></Reveal>)}
+              {researchCases.slice(2).map((study) => <Reveal key={study.slug}><ResearchCaseCard study={study} /></Reveal>)}
             </div>
           </section>
 

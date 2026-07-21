@@ -399,6 +399,26 @@
   margin-top: clamp(1rem, 2vw, 1.5rem);
 }
 
+.uxr-case-grid--depth {
+  grid-template-columns: minmax(0, 1fr);
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.uxr-case-grid.uxr-case-grid--depth .uxr-case {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+}
+
+@media (max-width: 760px) {
+  .uxr-case-grid.uxr-case-grid--depth .uxr-case {
+    display: flex;
+  }
+}
+
+.uxr-section-heading--supporting {
+  margin-top: clamp(3rem, 7vw, 6rem);
+}
+
 .uxr-case-grid .uxr-case {
   display: flex;
   height: 100%;

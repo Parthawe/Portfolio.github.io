@@ -141,7 +141,6 @@ export const NDA_PROJECT_SLUGS = [
   'zentipay',
   'cuetv',
   'ai-voice',
-  'medimorpho',
 ] as const
 
 const defaultCardMockup = (slug: string) => `/Assets/mockups/projects/${slug}.webp`
@@ -511,20 +510,13 @@ export const projects: Project[] = [
     category: 'good',
     secondaryCategories: ['research'],
     page: () => import('../pages/projects/MediMorphoPage'),
-    nda: true,
-    access: {
-      mode: 'request',
-      publicLabel: 'Research glimpse',
-      publicPreviewImage: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
-      publicPreviewAlt: 'NYU Langone Health building signage, the context for this healthcare UX research case study.',
-    },
     archiveOrder: 24,
-    tier: 'b',
+    tier: 'a',
     summaryProblem: 'Patients with limited English proficiency can lose meaning, confidence, and agency when symptoms and medical terminology move between languages.',
     summaryRole: 'Service designer in a five-person NYU student team, spanning primary research, synthesis, system framing, and concept direction.',
     summaryTeam: 'Five-person NYU student team',
     summaryTimeline: 'January–February 2024',
-    summaryOutcome: 'Defined a multilingual care model that turns language identification, live transcription, translation, and a shared recap into one understandable encounter.',
+    summaryOutcome: 'Reframed the opportunity from standalone translation to a continuity-of-care model spanning live understanding, patient education, and a post-visit recap.',
     summaryStats: [
       { label: 'Research interviews', value: '20' },
       { label: 'LEP participants', value: '16' },

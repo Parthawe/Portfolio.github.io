@@ -73,6 +73,13 @@ const QUESTION_CATEGORIES = [
   'Product-idea feedback',
 ]
 
+const RESEARCH_QUESTIONS = [
+  'Where does meaning break before, during, and after a healthcare visit?',
+  'Which barriers come from language, and which come from navigating the healthcare system?',
+  'How do patients preserve instructions, terminology, and next steps after the conversation ends?',
+  'Which intervention ideas are desirable enough to explore and credible enough for technical review?',
+]
+
 const TAKEAWAYS = [
   {
     index: '01',
@@ -93,6 +100,33 @@ const TAKEAWAYS = [
     index: '04',
     title: 'The healthcare system is unfamiliar',
     copy: 'Participants relied on care providers for insurance information and prioritized treatment over navigating insurance complexity.',
+  },
+]
+
+const DECISION_CHAIN = [
+  {
+    index: '01',
+    evidence: 'Participants still preferred direct communication even when translation tools were available.',
+    implication: 'Availability of translation did not guarantee trust or shared understanding.',
+    decision: 'Frame the service around a shared clinical encounter—not a standalone translation utility.',
+  },
+  {
+    index: '02',
+    evidence: 'Participants took notes and then researched unfamiliar language again after the visit.',
+    implication: 'The communication problem continued after the appointment ended.',
+    decision: 'Make a clear, reviewable post-visit recap part of the core service model.',
+  },
+  {
+    index: '03',
+    evidence: 'People relied on providers for insurance information and struggled with system familiarity.',
+    implication: 'Language support alone could not resolve navigation uncertainty.',
+    decision: 'Include patient education and next-step guidance in the concept direction.',
+  },
+  {
+    index: '04',
+    evidence: 'Translation, note-taking, and patient education emerged together in product-idea feedback.',
+    implication: 'The strongest opportunity was a connected set of supports across the visit.',
+    decision: 'Explore language identification, live understanding, and recap as one continuity-of-care model.',
   },
 ]
 
@@ -183,7 +217,7 @@ export default function MediMorphoProtectedStory() {
 
           <div className="medimorpho-protected-intro__flag">
             <span aria-hidden="true" />
-            Reviewer access granted
+            In-depth research case study
           </div>
 
           <div className="medimorpho-protected-intro__grid medimorpho-protected-intro__grid--report">
@@ -191,7 +225,7 @@ export default function MediMorphoProtectedStory() {
               <p className="medimorpho-protected-intro__eyebrow">UX research case study · January–February 2024</p>
               <h2>Making healthcare easier to understand across language.</h2>
               <p className="cs-body-lg">
-                The supplied five-page report documents the discovery and definition phase: ecosystem research, 20 interviews, affinity synthesis, a journey map, competitive analysis, and technical exploration.
+                This study asked where a multilingual care service should intervene. A five-person NYU team combined ecosystem research, 20 interviews, affinity synthesis, journey mapping, competitive analysis, and a technical opportunity scan to move from a broad access problem to a focused service direction.
               </p>
               <a className="medimorpho-report-link" href={REPORT_PDF} target="_blank" rel="noreferrer">
                 Open original research report <span aria-hidden="true">↗</span>
@@ -204,11 +238,26 @@ export default function MediMorphoProtectedStory() {
           </div>
 
           <dl className="medimorpho-project-brief" aria-label="Project brief">
-            <div><dt>Challenge</dt><dd>Understand how language and cultural barriers intensify an already fragmented care journey.</dd></div>
-            <div><dt>Phase</dt><dd>Discovery and definition—not a shipped product or validated final solution.</dd></div>
+            <div><dt>Decision at risk</dt><dd>Should the concept focus on translation, navigation, visit documentation, or a broader continuity-of-care service?</dd></div>
+            <div><dt>My contribution</dt><dd>Primary research, synthesis, system framing, and concept direction within a five-person student team.</dd></div>
             <div><dt>Methods</dt><dd>Secondary research, competitive review, 20 interviews, affinity mapping, journey mapping, and technical research.</dd></div>
-            <div><dt>Output</dt><dd>A focused problem statement, system map, research insights, and directions for a second research round.</dd></div>
+            <div><dt>Outcome</dt><dd>A focused problem statement, traceable service model, and a defined agenda for the next research round.</dd></div>
           </dl>
+
+          <div className="medimorpho-accountability" aria-label="Ownership and public case study boundaries">
+            <article>
+              <span>My research scope</span>
+              <p>I contributed across primary interviews, synthesis, system framing, and concept direction. The case distinguishes that contribution from work completed by the wider team.</p>
+            </article>
+            <article>
+              <span>Collaboration boundary</span>
+              <p>The work was completed by five NYU students. Two developers on the team conducted the deeper technical-tool review documented in the source report.</p>
+            </article>
+            <article>
+              <span>Public evidence</span>
+              <p>This page shows aggregated findings and supplied artifacts. Participant identities and raw interview notes remain private.</p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -227,6 +276,18 @@ export default function MediMorphoProtectedStory() {
         <div className="medimorpho-problem-statement">
           <span>Problem statement</span>
           <p>Navigating the fragmented U.S. healthcare system is challenging for patients with limited English proficiency.</p>
+        </div>
+
+        <div className="medimorpho-research-questions">
+          <div>
+            <span className="medimorpho-section-kicker">Research questions</span>
+            <h3>Four questions kept the study tied to a decision.</h3>
+          </div>
+          <ol>
+            {RESEARCH_QUESTIONS.map((question, index) => (
+              <li key={question}><span>{String(index + 1).padStart(2, '0')}</span><p>{question}</p></li>
+            ))}
+          </ol>
         </div>
 
         <div className="medimorpho-evidence-stats" aria-label="Secondary research context signals">
@@ -372,8 +433,32 @@ export default function MediMorphoProtectedStory() {
       </CsSection>
 
       <CsSection
+        id="cs-medimorpho-decisions"
+        label="05 · Evidence to decision"
+        title="The synthesis changed the unit of design."
+      >
+        <p className="cs-body-lg">
+          The study did not produce a list of requested features. It connected recurring evidence to implications, then used those implications to define what the next concept needed to support.
+        </p>
+
+        <div className="medimorpho-decision-ledger" aria-label="Research evidence, implications, and decisions">
+          <div className="medimorpho-decision-ledger__head" aria-hidden="true">
+            <span>Evidence</span><span>Interpretation</span><span>Decision changed</span>
+          </div>
+          {DECISION_CHAIN.map((item) => (
+            <article key={item.index}>
+              <b>{item.index}</b>
+              <p>{item.evidence}</p>
+              <p>{item.implication}</p>
+              <p>{item.decision}</p>
+            </article>
+          ))}
+        </div>
+      </CsSection>
+
+      <CsSection
         id="cs-medimorpho-technical"
-        label="05 · Technical research"
+        label="06 · Technical research"
         title="Feasibility was explored before a product direction was chosen."
       >
         <p className="cs-body-lg">
@@ -400,23 +485,42 @@ export default function MediMorphoProtectedStory() {
 
       <CsSection
         id="cs-medimorpho-next"
-        label="06 · Research boundary"
-        title="The honest outcome was a sharper next research round."
+        label="07 · Rigor, limits, and next round"
+        title="The study reduced uncertainty without pretending to prove a product."
       >
+        <div className="medimorpho-rigor-grid">
+          <article>
+            <span>What the evidence supports</span>
+            <p>Recurring qualitative needs across two participant groups, a system-level problem frame, and a service direction worth testing.</p>
+          </article>
+          <article>
+            <span>What it does not support</span>
+            <p>Clinical efficacy, technical accuracy, market demand, or a measured improvement in comprehension or health outcomes.</p>
+          </article>
+          <article>
+            <span>Documentation gap</span>
+            <p>The source report does not specify recruitment mechanics, moderator allocation, saturation criteria, or a formal coding protocol.</p>
+          </article>
+          <article>
+            <span>Highest-risk assumptions</span>
+            <p>Translation accuracy, patient consent, privacy, clinician workflow fit, accessibility, and the safety of generated medical language.</p>
+          </article>
+        </div>
+
         <div className="medimorpho-next-step">
           <div>
-            <span>Documented next step</span>
-            <h3>Move from research into ideation, then broaden validation.</h3>
+            <span>Next study I would lead</span>
+            <h3>Test the encounter model before expanding the feature set.</h3>
           </div>
           <div>
-            <p>The report proposes ideating possible solutions and conducting a second round of quantitative and qualitative research.</p>
-            <p>That next round would include a broader demographic of LEP patients who have experienced New York’s fragmented healthcare services.</p>
+            <p>Recruit a broader LEP cohort across language groups, visit types, and levels of healthcare-system familiarity, alongside clinicians and interpreters.</p>
+            <p>Use scenario-based concept testing to evaluate comprehension, confidence, correction behavior, consent, and post-visit recall before any clinical pilot.</p>
           </div>
         </div>
 
         <div className="medimorpho-boundary-note" role="note">
           <span>Case-study boundary</span>
-          <p>The supplied report does not document a final interface, prototype test, launch, or measured product outcome. This page therefore ends at research synthesis and technical exploration instead of inventing a later-stage result.</p>
+          <p>The source report does not document a final interface, prototype test, launch, or measured product outcome. This case therefore ends at research synthesis and technical exploration. The stronger result is a more defensible next decision—not an invented success metric.</p>
         </div>
 
         <a className="medimorpho-report-link medimorpho-report-link--light" href={REPORT_PDF} target="_blank" rel="noreferrer">
@@ -430,6 +534,7 @@ export default function MediMorphoProtectedStory() {
           { id: 'cs-medimorpho-problem', label: 'Problem' },
           { id: 'cs-medimorpho-process', label: 'Process' },
           { id: 'cs-medimorpho-primary', label: 'Interviews' },
+          { id: 'cs-medimorpho-decisions', label: 'Decisions' },
           { id: 'cs-medimorpho-technical', label: 'Technical' },
           { id: 'cs-medimorpho-next', label: 'Next' },
         ]}
