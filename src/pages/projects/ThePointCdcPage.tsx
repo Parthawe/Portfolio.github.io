@@ -243,15 +243,15 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
             <div className="point-board-stack point-board-stack--redesign" aria-label="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme">
               <figure className="point-board-panel point-board-panel--redesign-top">
-                <img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Homepage hero and grouped navigation annotation" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/homepage-hero.png" alt="Redesigned homepage hero with grouped navigation and clear community entry points" loading="lazy" />
                 <figcaption>Grouped navigation and clearer entry points.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-mid">
-                <img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Program cards and responsive layout annotation" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="Angled overview of the redesigned program, team, partnership, and resource pages" loading="lazy" />
                 <figcaption>Programs surfaced as scan-friendly cards.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-bottom">
-                <img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Footer and mobile navigation annotation" loading="lazy" />
+                <img src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive desktop and mobile views of The Point CDC website" loading="lazy" />
                 <figcaption>Mobile and footer structure made easier to follow.</figcaption>
               </figure>
             </div>
@@ -261,7 +261,7 @@ export default function ThePointCdcPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive: desktop and mobile side by side" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign explaining the new homepage hierarchy and navigation" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
           </div>

@@ -182,8 +182,8 @@ export const projects: Project[] = [
       cite: 'Early beta tester',
     },
     hoverMedia: {
-      src: '/Assets/images/mentra/appstore-hero.webp',
-      alt: 'Mentra app store and smart-glasses UI preview.',
+      src: '/Assets/images/mentra/appstore-device.png',
+      alt: 'Mentra companion app store shown on a mobile device.',
     },
     previewMedia: {
       playlist: {
@@ -191,8 +191,8 @@ export const projects: Project[] = [
         alt: 'Angled perspective render of Mentra smart glasses.',
       },
       library: {
-        src: '/Assets/images/mentra/appstore-hero.webp',
-        alt: 'Mentra app store and smart-glasses UI preview.',
+        src: '/Assets/images/mentra/appstore-translation.webp',
+        alt: 'Mentra translation MiniApp presented within the app store experience.',
       },
     },
     storyline: {
@@ -204,7 +204,7 @@ export const projects: Project[] = [
   {
     slug: 'mentra-miniapps',
     name: 'MiniApps in OS',
-    image: '/Assets/images/mentra/appstore-hero.webp',
+    image: '/Assets/mockups/projects/mentra-miniapps_16x9.webp',
     tag: 'PLATFORM DESIGN',
     year: '2025\u201326',
     desc: 'Voice-first miniapp ecosystem for smart glasses spanning captions, translation, notes, AI, and utility apps',
@@ -217,8 +217,8 @@ export const projects: Project[] = [
     summaryTeam: 'Sole designer partnering with 4 engineers, product, and the MentraOS open-source developer community.',
     summaryTimeline: 'Late 2025 to 2026',
     summaryOutcome: 'Turned Mentra from a single-device demo into a platform with voice-first discovery, transparent permissions, and a first wave of usable apps.',
-    summaryImage: '/Assets/images/mentra/appstore-hero.webp',
-    summaryImageAlt: 'Mentra miniapp store and companion app surfaces showing voice-first discovery.',
+    summaryImage: '/Assets/Projects/mentra-miniapps/figma/meet-home.png',
+    summaryImageAlt: 'MentraOS Meet miniapp home screen designed for a glanceable wearable display.',
     cardMockupSource: `${IMG}/mentra/os-all-apps.png`,
     summaryStats: [
       { label: 'Display canvas', value: '640×400' },
@@ -228,12 +228,12 @@ export const projects: Project[] = [
     ],
     previewMedia: {
       playlist: {
-        src: '/Assets/images/mentra/glasses-angle.png',
-        alt: 'Angled perspective render of Mentra smart glasses representing the MiniApps platform.',
+        src: '/Assets/Projects/mentra-miniapps/figma/conversations.png',
+        alt: 'MentraOS conversation history for the wearable MiniApps platform.',
       },
       library: {
-        src: '/Assets/images/mentra/appstore-hero.webp',
-        alt: 'Mentra miniapp store and companion app surfaces showing voice-first discovery.',
+        src: '/Assets/Projects/mentra-miniapps/figma/guidance.png',
+        alt: 'MentraOS guidance interface showing a MiniApp adapted to the glasses display.',
       },
     },
     storyline: {
@@ -307,8 +307,8 @@ export const projects: Project[] = [
     access: {
       mode: 'request',
       publicLabel: 'Quick glimpse',
-      publicPreviewImage: '/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
-      publicPreviewAlt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
+      publicPreviewImage: '/Assets/Projects/ZentiPay/reviewer/landing-page.webp',
+      publicPreviewAlt: 'ZentiPay public landing page introducing the trust-first money transfer product.',
     },
     archiveOrder: 2,
     tier: 'a',
@@ -320,8 +320,8 @@ export const projects: Project[] = [
     summaryTeam: 'Sole designer working with product and engineering across web and mobile.',
     summaryTimeline: '2025',
     summaryOutcome: 'Improved user confidence by making pricing, progress, and trust legible earlier in the transfer flow.',
-    summaryImage: '/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
-    summaryImageAlt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
+    summaryImage: '/Assets/Projects/ZentiPay/reviewer/dashboard-1.webp',
+    summaryImageAlt: 'ZentiPay dashboard showing balances, transfers, and transaction status.',
     summaryStats: [
       { label: 'Domain', value: 'Fintech' },
       { label: 'Team', value: 'Solo designer' },
@@ -337,11 +337,11 @@ export const projects: Project[] = [
   {
     slug: 'clawed-chat',
     name: 'Clawed',
-    image: '/Assets/mockups/projects/clawed-chat_1x1.webp',
-    cardMockup: '/Assets/mockups/projects/clawed-chat_1x1.webp',
+    image: '/Assets/mockups/projects/clawed-chat_16x9.webp',
+    cardMockup: '/Assets/mockups/projects/clawed-chat_4x5.webp',
     cardMockupSquare: '/Assets/mockups/projects/clawed-chat_1x1.webp',
-    cardMockupSource: '/Assets/mockups/projects/clawed-chat_1x1.webp',
-    cardMockupAlt: 'Clawed AI assistant square cover.',
+    cardMockupSource: '/Assets/mockups/projects/clawed-chat_4x5.webp',
+    cardMockupAlt: 'Clawed AI assistant cover showing the product across web and smart-glasses contexts.',
     tag: 'AI ASSISTANT',
     year: '2026',
     desc: 'AI assistant with receipts for every action — safety-first on glasses and web',
@@ -504,9 +504,7 @@ export const projects: Project[] = [
     slug: 'medimorpho',
     name: 'NYU Langone',
     image: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
-    cardMockup: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
-    cover16x9: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
-    cardMockupAlt: 'NYU Langone Health building signage for a healthcare UX research case study.',
+    cardMockupAlt: 'Healthcare UX research cover showing multilingual care moving from evidence to a shared decision.',
     tag: 'HEALTHCARE UX',
     year: '2024',
     desc: 'Healthcare UX research into clearer multilingual care, communication, and follow-through',
@@ -627,7 +625,7 @@ export const projects: Project[] = [
     slug: 'ai-voice',
     name: 'AI Voice',
     image: '/Assets/mockups/projects/ai-voice_16x9.webp',
-    cardMockupSource: '/Assets/mockups/projects/ai-voice_16x9.webp',
+    cardMockupSource: '/Assets/mockups/projects/ai-voice_4x5.webp',
     cardMockupAlt: 'Voice Matching enterprise interface showing three suggested voice personas.',
     tag: 'CONVERSATIONAL AI',
     year: '2025',
@@ -833,7 +831,7 @@ export const projects: Project[] = [
     slug: 'breakgen',
     name: 'BreakGen',
     image: '/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
-    cardMockup: '/Assets/Projects/Keyboard/photos/breakgen-demo-live.png',
+    cardMockup: '/Assets/mockups/projects/breakgen_4x5.webp',
     cardMockupAlt: 'BreakGen interactive demo showing a workspace, preview chamber, controls, and artifact-backed state.',
     tag: 'ITP THESIS',
     year: '2025',
@@ -850,8 +848,8 @@ export const projects: Project[] = [
     summaryTeam: 'Individual thesis project with faculty advising and critique support.',
     summaryTimeline: '2024 to 2025 thesis cycle',
     summaryOutcome: 'Created a platform that turns prompts, layouts, and ergonomic choices into fabrication-ready keyboard outputs and drew 200+ visitors at the thesis show.',
-    summaryImage: '/Assets/Projects/Keyboard/photos/breakgen-launch-live.png',
-    summaryImageAlt: 'BreakGen launch page showing the AI keyboard fabrication product story.',
+    summaryImage: '/Assets/Projects/Keyboard/photos/data-sculpture.png',
+    summaryImageAlt: 'BreakGen keyboard data sculpture connecting language patterns to a physical keyboard form.',
     summaryStats: [
       { label: 'Visitors reached', value: '200+' },
       { label: 'Live designs', value: '50+' },
@@ -1287,7 +1285,7 @@ export const projects: Project[] = [
   {
     slug: 'arcade-lab',
     name: 'Arcade Lab',
-    image: '/Assets/Projects/the-omakase/photos/cabinet-front.webp', // shares image with Omakase (it's the ancestor)
+    image: '/Assets/mockups/projects/arcade-lab.webp',
     tag: 'GAME PROTOTYPING',
     year: '2023',
     desc: 'Rapid game experiments — physical controllers & party mechanics leading to The Omakase',
@@ -1763,14 +1761,11 @@ for (const project of projects) {
   }
 }
 
-const clawedSquareCover = `${MOCKUPS}/clawed-chat_1x1.webp`
-const clawedProject = projects.find(project => project.slug === 'clawed-chat')
-if (clawedProject) {
-  clawedProject.image = clawedSquareCover
-  clawedProject.cardMockup = clawedSquareCover
-  clawedProject.cardMockupSquare = clawedSquareCover
-  clawedProject.cover16x9 = clawedSquareCover
-  clawedProject.cardMockupSource = clawedSquareCover
+const medimorphoProject = projects.find(project => project.slug === 'medimorpho')
+if (medimorphoProject) {
+  medimorphoProject.cardMockup = '/Assets/Projects/MediMorpho/medimorpho-4x5.svg'
+  medimorphoProject.cardMockupSquare = '/Assets/Projects/MediMorpho/research/cover-illustration.webp'
+  medimorphoProject.cover16x9 = '/Assets/Projects/MediMorpho/medimorpho-16x9.svg'
 }
 
 /* ──────────────────────────────────────────────────────────────────────

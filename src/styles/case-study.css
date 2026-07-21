@@ -10900,3 +10900,32 @@
     line-height: 1.68;
   }
 }
+
+/* The optional site tint styles alternate generic .cs-section backgrounds.
+   This NDA band is intentionally dark in every theme, so preserve its own
+   contrast instead of allowing the generic light section treatment through. */
+.project-main--medimorpho .medimorpho-access,
+body.site-tinted .project-main--medimorpho .medimorpho-access,
+body.site-tinted .project-main--medimorpho .medimorpho-access:nth-child(even) {
+  color: #fff;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(141, 240, 211, 0.13), transparent 27%),
+    linear-gradient(120deg, #140b1e 0%, #24102f 58%, #160d1e 100%);
+}
+
+.project-main--medimorpho .medimorpho-access :is(
+  .medimorpho-access__intro h2,
+  .medimorpho-access__intro p
+) {
+  color: #fff;
+}
+
+.project-main--medimorpho .medimorpho-access .medimorpho-access__intro p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.project-main--medimorpho .medimorpho-access__contents span {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+}

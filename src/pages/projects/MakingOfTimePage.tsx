@@ -61,7 +61,7 @@ export default function MakingOfTimePage() {
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" alt="Custom mechanical watch: octagonal bezel, blue guilloche dial, steel bracelet" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Minimalist sundial-inspired watch: white face, leather strap" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/mockups/projects/making-of-time_16x9.webp" alt="Making of Time project overview featuring the physical watch studies" loading="lazy" /></div>
             </div>
           </div>
         </section>

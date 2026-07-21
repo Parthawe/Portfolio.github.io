@@ -114,7 +114,7 @@ export default function BlackHolePage() {
                 borderRadius: 'var(--radius-lg)', overflow: 'hidden',
                 position: 'relative', border: '1px solid rgba(255,255,255,0.06)',
               }}>
-                <img src="/Assets/Projects/black-hole-assets/fabric-of-universe.jpg" alt="Spacetime fabric model" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                <img src="/Assets/mockups/projects/black-hole_16x9.webp" alt="Black Hole interactive installation project overview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
                 <div style={{
                   position: 'absolute', inset: 0,
                   background: 'linear-gradient(135deg, rgba(5,5,16,0.7), rgba(26,26,46,0.5))',

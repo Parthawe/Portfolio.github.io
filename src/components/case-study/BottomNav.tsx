@@ -85,21 +85,22 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       pairs.forEach((p) => sectionObserver!.observe(p.section));
     }
 
-    // --- Hide when footer is visible ---
-    let footerObserver: IntersectionObserver | undefined;
-    const footer = document.querySelector('.footer');
-    if (footer) {
-      footerObserver = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            nav.classList.add('is-hidden');
-          } else {
-            nav.classList.remove('is-hidden');
-          }
+    // --- Keep the dock clear of the next-project handoff and footer ---
+    let endGuardObserver: IntersectionObserver | undefined;
+    const endGuards = document.querySelectorAll('.next-project, .footer');
+    if (endGuards.length) {
+      const visibleEndGuards = new Set<Element>();
+      endGuardObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) visibleEndGuards.add(entry.target);
+            else visibleEndGuards.delete(entry.target);
+          });
+          nav.classList.toggle('is-hidden', visibleEndGuards.size > 0);
         },
         { threshold: 0.1 }
       );
-      footerObserver.observe(footer);
+      endGuards.forEach((guard) => endGuardObserver!.observe(guard));
     }
 
     // --- Keep case controls out of the opening hero ---
@@ -125,7 +126,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
 
     return () => {
       sectionObserver?.disconnect();
-      footerObserver?.disconnect();
+      endGuardObserver?.disconnect();
       if (updateHeroGuard) {
         window.removeEventListener('scroll', updateHeroGuard);
         window.removeEventListener('resize', updateHeroGuard);

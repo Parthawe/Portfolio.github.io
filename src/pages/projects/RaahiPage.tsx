@@ -332,7 +332,7 @@ export default function RaahiPage() {
 
       </main>
 
-        <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Assets/images/mentra/appstore-hero.webp" />
+        <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
       <Footer />
     </>
   )

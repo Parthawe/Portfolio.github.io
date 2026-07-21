@@ -206,17 +206,14 @@
 .artifact-ux-research {
   position: absolute;
   z-index: 2;
-  inset: 1% 0 5%;
-  overflow: hidden;
-  border: 1px solid rgba(209, 246, 226, 0.42);
-  border-radius: clamp(1.1rem, 4vw, 1.7rem);
-  background: #cfece3;
+  inset: -5% -7% -2%;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   transform-style: preserve-3d;
-  transform: rotateX(8deg) rotateY(-9deg) rotateZ(-1deg);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    0 1.35rem 2.4rem rgba(7, 30, 22, 0.2),
-    0 0.25rem 0.8rem rgba(20, 91, 65, 0.1);
+  transform: rotateX(3deg) rotateY(-6deg) rotateZ(-1deg);
+  box-shadow: none;
   animation: artifact-ux-research-float 8s ease-in-out infinite;
 }
 
@@ -227,41 +224,32 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transform: scale(1.025) translateZ(22px);
+  object-fit: contain;
+  transform: scale(1.04) translateZ(22px);
+  filter: drop-shadow(0 1.3rem 1.1rem rgba(0, 0, 0, 0.28));
   transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), filter 500ms ease;
   user-select: none;
   pointer-events: none;
 }
 
 .hero-artifact--ux-research:hover .artifact-ux-research__render {
-  transform: scale(1.065) translate3d(0, -0.18rem, 34px);
-  filter: saturate(1.04) contrast(1.015);
+  transform: scale(1.075) translate3d(0, -0.18rem, 34px);
+  filter: saturate(1.04) contrast(1.015) drop-shadow(0 1.45rem 1.2rem rgba(0, 0, 0, 0.3));
 }
 
 .artifact-ux-research__sheen {
-  position: absolute;
-  z-index: 3;
-  inset: -36% 42% -36% -28%;
-  border-radius: 50%;
-  background: linear-gradient(112deg, transparent 34%, rgba(255, 255, 255, 0.23) 49%, transparent 64%);
-  mix-blend-mode: screen;
-  transform: translate3d(-58%, 0, 58px) rotate(8deg);
-  animation: artifact-ux-sheen 7.8s ease-in-out infinite;
-  pointer-events: none;
+  display: none;
 }
 
 .artifact-ux-research__ground {
-  position: absolute;
-  z-index: 1;
-  right: 10%;
-  bottom: -4%;
-  left: 10%;
-  height: 18%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(19, 91, 65, 0.28), transparent 72%);
-  filter: blur(18px);
-  transform: rotateX(72deg) translateZ(-24px);
+  display: none;
+}
+
+.category-hero-artifact--ux-design .artifact-collection__orbit,
+.category-hero-artifact--ux-design .artifact-collection__shadow,
+.category-hero-artifact--ui .artifact-collection__orbit,
+.category-hero-artifact--ui .artifact-collection__shadow {
+  display: none;
 }
 
 .artifact-ux-research__book {

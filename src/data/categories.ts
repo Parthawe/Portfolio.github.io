@@ -406,7 +406,7 @@ export const categories: CategoryData[] = [
         },
       ],
     ],
-    excludedProjects: ['messy-humans'],
+    excludedProjects: ['cuetv', 'messy-humans'],
     approach: {
       label: 'Research Practice',
       pillars: [

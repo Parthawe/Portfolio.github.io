@@ -37,7 +37,7 @@ export default function BreakGenPage() {
             { label: 'Stack', value: 'React, Three.js, Meshy AI, KiCad' },
           ]}
           liveUrl="https://parthawe.github.io/BreakGen/"
-          heroImage="/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
+          heroImage="/Assets/mockups/projects/breakgen_16x9.webp"
           heroAlt="BreakGen public launch page showing the product narrative and AI keyboard fabrication platform."
         />
 

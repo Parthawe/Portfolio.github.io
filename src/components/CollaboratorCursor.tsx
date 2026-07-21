@@ -634,7 +634,7 @@ export default function CollaboratorCursor() {
       // Keep the idle collaborator in one calm, predictable place across the site.
       // It only leaves this resting position during an explicitly started tour.
       const x = clamp(56, 32, Math.max(32, window.innerWidth - 116))
-      const y = clamp(window.innerHeight * 0.64, 124, window.innerHeight - 132)
+      const y = clamp(window.innerHeight * 0.72, 124, window.innerHeight - 132)
       parth.dataset.side = 'right'
       parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'
       setPosition(parth, x, y, true)

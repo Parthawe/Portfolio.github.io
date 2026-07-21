@@ -36,7 +36,7 @@ function UxArtifact() {
         <span className="artifact-ux-research__ground" />
         <img
           className="artifact-ux-research__render"
-          src="/Assets/generated/ux-research-hero-v2.png"
+          src="/Assets/generated/ux-design-hero-transparent.png"
           alt=""
           draggable={false}
           fetchPriority="high"

@@ -46,7 +46,7 @@ export default function RevolvingStagePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2022' },
           ]}
-          heroImage="/Assets/Projects/RevolvingStage/photos/performance-collage.webp"
+          heroImage="/Assets/mockups/projects/revolving-stage_16x9.webp"
           heroAlt="Revolving Stage, designing a revolving stage for theatre play with stage photo and 3D render"
         />
 
