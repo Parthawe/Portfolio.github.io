@@ -38,8 +38,9 @@
 }
 
 .tf-project-summary {
-  width: min(1180px, calc(100% - clamp(2rem, 8vw, 8rem)));
-  margin: 0 auto;
+  grid-area: auto;
+  width: 100%;
+  margin: clamp(0.25rem, 1vw, 0.75rem) 0 0;
   scroll-margin-top: calc(var(--nav-h) + 1.5rem);
 }
 
@@ -739,6 +740,14 @@ body.site-tools-open .typeface-page .tf-image-grid {
 }
 
 @media (max-width: 520px) {
+  .tf-hero {
+    padding-top: calc(var(--nav-h) + 0.5rem);
+  }
+
+  .tf-kicker-row > span {
+    display: none;
+  }
+
   .tf-specimen-toolbar,
   .tf-specimen-footer {
     display: grid;

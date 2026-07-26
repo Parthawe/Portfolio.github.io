@@ -119,7 +119,6 @@ export default function MentraPage() {
         visualHeroImage="/Assets/mockups/projects/mentra_16x9.webp"
         visualHeroAlt="Mentra generated cover showing the AI glasses product system and companion app"
         liveLabel="Open Mentra"
-        showHeaderSummary={false}
       />
 
         <ProjectQuickSummary

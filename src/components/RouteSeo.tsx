@@ -10,15 +10,16 @@ import {
   DEFAULT_OG_IMAGE,
   DEFAULT_OG_IMAGE_ALT,
 } from '../config/site'
+import { normalizePathname } from '../utils/normalizePathname'
 
 const DEFAULT_IMAGE = DEFAULT_OG_IMAGE
-const NOINDEX_ROUTES = new Set(['/studio', '/graveyard', '/book'])
+const NOINDEX_ROUTES = new Set(['studio', 'graveyard', 'book'])
 const CATEGORY_ALIASES: Record<string, string> = {
-  '/ux': 'ux-design',
-  '/ui': 'ux-design',
-  '/design-engineer': 'creative-tech',
-  '/brand': 'brand-visual',
-  '/healthcare': 'design-for-good',
+  ux: 'ux-design',
+  ui: 'ux-design',
+  'design-engineer': 'creative-tech',
+  brand: 'brand-visual',
+  healthcare: 'design-for-good',
 }
 
 interface RouteMeta {
@@ -79,11 +80,12 @@ function getHomeSchema() {
   }
 }
 
-function getRouteMeta(pathname: string): RouteMeta {
-  const url = pathname === '/' ? SITE_URL : `${SITE_URL}${pathname}`
-  const robots = NOINDEX_ROUTES.has(pathname) ? 'noindex, nofollow' : 'index, follow'
+export function getRouteMeta(pathname: string): RouteMeta {
+  const route = normalizePathname(pathname)
+  const url = route ? `${SITE_URL}/${route}` : SITE_URL
+  const robots = NOINDEX_ROUTES.has(route) ? 'noindex, nofollow' : 'index, follow'
 
-  if (pathname === '/') {
+  if (!route) {
     return {
       title: 'Parth Pawar, Product Designer',
       description: 'Portfolio of Parth Pawar, Product Designer crafting trusted systems across AI wearables, fintech, civic tools, creative technology, and physical interaction.',
@@ -96,7 +98,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/work') {
+  if (route === 'work') {
     return {
       title: 'Work · Parth Pawar',
       description: 'Selected work by Parth Pawar across AI wearables, fintech, UX design, creative technology, installations, and brand systems.',
@@ -124,7 +126,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/about') {
+  if (route === 'about') {
     return {
       title: 'About · Parth Pawar',
       description: 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra. Experience across AI wearables, fintech, civic tools, and creative technology.',
@@ -151,7 +153,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/accessibility') {
+  if (route === 'accessibility') {
     return {
       title: 'Accessibility · Parth Pawar',
       description: 'Accessibility notes for Parth Pawar portfolio, including current decisions, known concerns, and planned improvements.',
@@ -170,7 +172,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/playbook') {
+  if (route === 'playbook') {
     return {
       title: 'Design Playbook · Parth Pawar',
       description: 'Principles, methods, and practical notes from Parth Pawar on designing trustworthy product systems.',
@@ -190,7 +192,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/healthapp') {
+  if (route === 'healthapp') {
     return {
       title: 'Health App Concept · Parth Pawar',
       description: 'A healthcare product design concept by Parth Pawar focused on making complex information easier to understand and act on.',
@@ -202,7 +204,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  const categorySlug = CATEGORY_ALIASES[pathname] || pathname.replace(/^\//, '')
+  const categorySlug = CATEGORY_ALIASES[route] || route
   const category = categories.find(item => item.slug === categorySlug)
   if (category) {
     const categoryUrl = `${SITE_URL}/${category.slug}`
@@ -236,8 +238,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  const slug = pathname.replace(/^\//, '')
-  const project = getProject(slug)
+  const project = getProject(route)
   if (isHiddenProject(project)) {
     return {
       title: 'Page not found · Parth Pawar',
@@ -293,7 +294,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/studio') {
+  if (route === 'studio') {
     return {
       title: 'Studio · Parth Pawar',
       description: 'Interactive design studio by Parth Pawar.',
@@ -304,7 +305,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/book') {
+  if (route === 'book') {
     return {
       title: 'Book · Parth Pawar',
       description: 'Portfolio book by Parth Pawar.',
@@ -315,7 +316,7 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
-  if (pathname === '/graveyard') {
+  if (route === 'graveyard') {
     return {
       title: 'Graveyard · Parth Pawar',
       description: 'Archive of previous portfolio experiments by Parth Pawar.',

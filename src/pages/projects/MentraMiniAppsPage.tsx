@@ -101,7 +101,7 @@ export default function MentraMiniAppsPage() {
         <section className="cs-section mentra-miniapps-hero-gallery reveal" aria-label="MiniApp system previews">
           <div className="wrap mentra-miniapps-hero-gallery__inner">
             <figure className="mentra-miniapps-hero-gallery__primary">
-              <img src={MINIAPP_ASSETS.notes} width="419" height="909" alt="Mentra Notes MiniApp running as part of the smart glasses ecosystem" loading="eager" decoding="async" />
+              <img src={MINIAPP_ASSETS.notes} width="419" height="909" alt="Mentra Notes MiniApp running as part of the smart glasses ecosystem" loading="lazy" decoding="async" />
               <figcaption>
                 <span>Featured MiniApp</span>
                 Notes turns live speech into searchable memory, which made it the clearest example of why the store needed real app depth.

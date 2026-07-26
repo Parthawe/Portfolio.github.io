@@ -92,7 +92,6 @@ export default function ClawedChatPage() {
           liveUrl="https://clawed.chat"
           heroImage="/Assets/Projects/Clawed.chat/landing-hero.webp"
           heroAlt="Clawed.chat landing page: Your AI agent, live in 30 seconds"
-          showHeaderSummary={false}
         />
 
         <ProjectQuickSummary

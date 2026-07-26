@@ -83,7 +83,13 @@ export default function JugalbandiPage() {
             { label: 'Context', value: 'NYU \u2013 ITP' },
             { label: 'Duration', value: '5 Months' },
           ]}
-          showHeaderSummary={false}
+        />
+
+        <ProjectQuickSummary
+          slug="jugalbandi"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          variant="open"
         />
 
         <CsMediaSpotlight
@@ -102,13 +108,6 @@ export default function JugalbandiPage() {
             title="Jugalbandi Performance"
           />
         </CsMediaSpotlight>
-
-        <ProjectQuickSummary
-          slug="jugalbandi"
-          viewMode={viewMode}
-          onViewModeChange={handleViewModeChange}
-          variant="open"
-        />
 
         {viewMode === 'full' ? (
         <>

@@ -5,6 +5,7 @@ import Nav from './components/Nav'
 import PixelLoaderVisual from './components/PixelLoaderVisual'
 import PointerCursorGlyph from './components/PointerCursorGlyph'
 import { visibleProjects } from './data/projects'
+import { toCanonicalPathname } from './utils/normalizePathname'
 
 type ErrorBoundaryProps = { children: ReactNode; resetKey: string }
 
@@ -108,6 +109,22 @@ function Loading() {
 }
 
 export default function App() {
+  const location = useLocation()
+  const canonicalPathname = toCanonicalPathname(location.pathname)
+
+  if (location.pathname !== canonicalPathname) {
+    return (
+      <Navigate
+        to={{
+          pathname: canonicalPathname,
+          search: location.search,
+          hash: location.hash,
+        }}
+        replace
+      />
+    )
+  }
+
   return (
     <ErrorBoundary>
     <Suspense fallback={<Loading />}>

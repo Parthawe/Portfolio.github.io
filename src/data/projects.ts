@@ -15,6 +15,38 @@
  *  Thin-but-presentable projects should route to a small glimpse page.
  */
 
+export type ProjectStage =
+  | 'shipped'
+  | 'beta'
+  | 'delivered'
+  | 'research'
+  | 'prototype'
+  | 'concept'
+  | 'exhibited'
+  | 'built'
+
+export type ProjectEvidenceKind =
+  | 'measured'
+  | 'observed'
+  | 'shipped'
+  | 'artifact'
+  | 'target'
+  | 'scope'
+
+export interface ProjectProof {
+  label: string
+  value: string
+  kind: ProjectEvidenceKind
+}
+
+export interface ProjectPageIntro {
+  stage: ProjectStage
+  what: string
+  ownership: string
+  result: string
+  proofs: readonly [ProjectProof, ProjectProof]
+}
+
 export interface Project {
   /** URL slug — becomes the route path */
   slug: string
@@ -100,6 +132,8 @@ export interface Project {
     approach: string
     result: string
   }
+  /** Recruiter-facing project-page opening; intentionally separate from card copy */
+  pageIntro?: ProjectPageIntro
 }
 
 export type ProjectCategory = 'ux' | 'research' | 'ai' | 'creative' | 'install' | 'brand' | 'good'
@@ -269,7 +303,7 @@ export const projects: Project[] = [
     summaryRole: 'Lead Product Designer across dashboard UX, consumer widget flows, design system, and brand.',
     summaryTeam: 'Lead designer partnering with product, founder, and engineering.',
     summaryTimeline: '2022–23',
-    summaryOutcome: 'Simplified merchant onboarding and made the payment infrastructure easier to evaluate, trust, and operate.',
+    summaryOutcome: 'Delivered merchant onboarding, dashboard, and payment-widget designs that made the infrastructure’s key states explicit.',
     summaryImage: '/Assets/Projects/Transfi/public/Group%20550.png',
     summaryImageAlt: 'TransFi dashboard and buy-crypto widget shown across laptop and phone mockups.',
     summaryStats: [
@@ -318,7 +352,7 @@ export const projects: Project[] = [
     summaryRole: 'Founding product designer across research, onboarding, information architecture, transaction flows, and the core design system.',
     summaryTeam: 'Sole designer working with product and engineering across web and mobile.',
     summaryTimeline: '2025',
-    summaryOutcome: 'Improved user confidence by making pricing, progress, and trust legible earlier in the transfer flow.',
+    summaryOutcome: 'Delivered transfer flows that make pricing, progress, review, and recovery visible before money moves.',
     summaryImage: '/Assets/Projects/ZentiPay/reviewer/dashboard-1.webp',
     summaryImageAlt: 'ZentiPay dashboard showing balances, transfers, and transaction status.',
     summaryStats: [
@@ -542,7 +576,7 @@ export const projects: Project[] = [
     archiveOrder: 25,
     tier: 'c',
     summaryProblem: 'Cancer prognosis systems need genomic signal to be useful, but sharing raw patient data creates a serious privacy risk during computation.',
-    summaryRole: 'Researcher and engineer working across encrypted system design, data analysis, and the clinical computation pipeline.',
+    summaryRole: 'Research contributor working across privacy framing, data analysis, and interpretation.',
     summaryTeam: 'Research internship at IBM with healthcare and cryptography guidance.',
     summaryTimeline: '8 months in 2020',
     summaryOutcome: 'Explored a homomorphic-encryption workflow that kept genomic data encrypted while still supporting survival prediction and treatment clustering.',
@@ -554,7 +588,7 @@ export const projects: Project[] = [
     ],
     storyline: {
       challenge: 'Healthcare AI needs rich genomic data, but patient privacy makes ordinary machine-learning pipelines hard to trust.',
-      approach: 'I explored encrypted computation as the method, keeping genomic data protected while still supporting survival analysis and treatment clustering.',
+      approach: 'I contributed to research framing and analysis around encrypted computation, survival analysis, and treatment clustering.',
       result: 'The project shows technical research judgment: privacy was treated as the core product constraint, not a compliance note added later.',
     },
   },
@@ -572,12 +606,12 @@ export const projects: Project[] = [
     archiveOrder: 17,
     tier: 'b',
     summaryProblem: 'AI coding tools often feel either too magical or too shallow, leaving developers unsure what the system changed and why.',
-    summaryRole: 'Designed the IDE model, tool surfaces, interaction patterns, and product framing for an AI-native development environment.',
-    summaryTeam: 'Independent product design and prototyping project.',
+    summaryRole: 'Product designer for the IDE model, tool surfaces, interaction patterns, and product framing.',
+    summaryTeam: 'Product design collaboration with creator and founder Isaiah Ballah.',
     summaryTimeline: '2026',
     summaryOutcome: 'Framed the editor around visible tools, senior-engineer review habits, and clearer handoffs between AI suggestions and developer control.',
     summaryStats: [
-      { label: 'AI tools', value: '17' },
+      { label: 'Build', value: 'macOS prototype' },
       { label: 'Surface', value: 'Desktop IDE' },
       { label: 'Core input', value: 'Chat + terminal' },
       { label: 'Focus', value: 'Context' },
@@ -671,10 +705,10 @@ export const projects: Project[] = [
     selected: true,
     selectedOrder: 7,
     summaryProblem: 'Pune public transit broke trust across buses, metro, kiosks, and in-vehicle touchpoints, especially for riders who were not already fluent in the system.',
-    summaryRole: 'User researcher and UI designer across service design, brand identity, app flows, kiosk UX, and in-vehicle information surfaces.',
+    summaryRole: 'Co-researcher and UI designer, leading synthesis, brand, interface design, and connected touchpoint framing.',
     summaryTeam: 'Collaborated with one fellow designer on a self-initiated civic design project.',
     summaryTimeline: '3 months in 2022',
-    summaryOutcome: 'Built a connected transit concept that reduced commuter anxiety by treating the journey as one service instead of disconnected tools.',
+    summaryOutcome: 'Built a connected transit concept spanning mobile, kiosk, and in-vehicle experiences.',
     summaryImage: '/Assets/Projects/Raahi/photos/raahi-hero.webp',
     summaryImageAlt: 'Raahi hero concept showing transit app, bus, and connected wayfinding system.',
     summaryStats: [
@@ -705,7 +739,7 @@ export const projects: Project[] = [
     summaryRole: 'UX designer across information architecture, community program navigation, responsive page structure, and accessibility-minded content hierarchy.',
     summaryTeam: 'Community-focused web redesign project for The Point CDC.',
     summaryTimeline: '2025',
-    summaryOutcome: 'Rebuilt the experience around clearer service discovery, mobile-first navigation, and a calmer path from need to program detail.',
+    summaryOutcome: 'Shipped a mobile-first site organized around community programs, events, spaces, services, and WiFi access.',
     summaryStats: [
       { label: 'Context', value: 'Bronx nonprofit' },
       { label: 'Primary users', value: 'Mobile residents' },
@@ -734,9 +768,9 @@ export const projects: Project[] = [
     summaryRole: 'Website publishing designer translating report content into a clearer accessible web structure.',
     summaryTeam: 'Worked within an NYU Tisch context with accessibility as a core requirement.',
     summaryTimeline: '3 months in 2024',
-    summaryOutcome: 'Created a compact web report structure that made IDBEA milestones and progress easier for the Tisch community to read.',
+    summaryOutcome: 'Published a responsive web report with scannable sections, descriptive alt text, and explanatory chart context.',
     summaryStats: [
-      { label: 'Standard', value: 'WCAG 2.1 AA' },
+      { label: 'Accessibility', value: 'Alt text + chart context' },
       { label: 'Format shift', value: 'Report to web' },
       { label: 'Context', value: 'NYU Tisch' },
       { label: 'Year', value: '2024' },
@@ -1315,7 +1349,7 @@ export const projects: Project[] = [
     summaryRole: 'Designed and fabricated the full set of physical models, interactives, and exhibition-ready storytelling surfaces.',
     summaryTeam: 'Built with applied mathematics collaboration from Saee Joshi and mentorship from Jeffrey J Feddersen.',
     summaryTimeline: '2025',
-    summaryOutcome: 'Turned five astrophysics concepts into tangible experiences for museum exhibition, making time dilation, lensing, and mergers legible through form.',
+    summaryOutcome: 'Built five physical models, including three interactive pieces, for museum exhibition.',
     summaryImage: '/Assets/Projects/black-hole-assets/time-trap.jpg',
     summaryImageAlt: 'Black Hole installation showing the time dilation physical model.',
     summaryStats: [
@@ -1491,7 +1525,7 @@ export const projects: Project[] = [
     image: `${IMG}/drowning.jpg`,
     tag: 'SCENIC DESIGN',
     year: '2024',
-    desc: 'Abandoned greenhouse set for NYU theatre — multi-layer lighting for 100+ audience',
+    desc: 'Abandoned greenhouse set for NYU theatre with multi-layer lighting and performer-safe backstage access',
     category: 'install',
     page: () => import('../pages/projects/DrowningPage'),
     archiveOrder: 28,
@@ -1512,7 +1546,7 @@ export const projects: Project[] = [
     name: 'Sculpture',
     image: '/Assets/Projects/Sculpture/1.jpg',
     tag: 'SCULPTURE',
-    year: '2020',
+    year: '2019–22',
     desc: 'Competition sculpture glimpse from beginner practice to finished piece',
     category: 'install',
     page: () => import('../pages/projects/SculpturePage'),
@@ -1577,7 +1611,7 @@ export const projects: Project[] = [
     cardMockup: '/Assets/images/tedx.jpg',
     cardMockupAlt: 'TEDxVITPune stage: red TEDx letters and box-column skyline set with the red circular stage',
     tag: 'ART DIRECTION',
-    year: '2021',
+    year: '2019',
     desc: 'Sole stage designer on an 8-person team building a parallax cityscape stage for 800-plus attendees',
     category: 'brand',
     page: () => import('../pages/projects/TedxPage'),
@@ -1586,7 +1620,7 @@ export const projects: Project[] = [
     summaryProblem: 'A large student conference needed a stage identity that could feel iconic in the room, photograph well, and stay buildable for a small stage team.',
     summaryRole: 'Art director and sole stage designer leading the visual concept, stage direction, production coordination, and execution.',
     summaryTeam: '8-person stage team for TEDxVITPune.',
-    summaryTimeline: '2021',
+    summaryTimeline: '2019',
     summaryOutcome: 'Delivered a parallax cityscape stage for 800-plus attendees, turning the event identity into a strong spatial experience.',
     summaryStats: [
       { label: 'Audience', value: '800+' },
@@ -1614,7 +1648,7 @@ export const projects: Project[] = [
     summaryProblem: 'A phone-only beginner learner needed a more visual way to understand HTML and CSS layout structure.',
     summaryRole: 'Interaction designer exploring lesson flow, block metaphors, mobile UI, and 3D visual explanation.',
     summaryTeam: 'Self-initiated education concept.',
-    summaryTimeline: '2021',
+    summaryTimeline: '3 months in 2021',
     summaryOutcome: 'Created a mobile prototype concept where containers, padding, images, text, and buttons became stackable 3D blocks.',
     summaryStats: [
       { label: 'Audience', value: 'Teen learners' },
@@ -1683,7 +1717,7 @@ export const projects: Project[] = [
     name: 'VishwaConclave',
     image: '/Assets/Projects/VishwaConclave/1.jpg',
     tag: 'CREATIVE DIRECTION',
-    year: '2021',
+    year: '2019–21',
     desc: 'Creative direction, branding, and web design for a student conference',
     category: 'brand',
     page: () => import('../pages/projects/VishwaConclavePage'),
@@ -1692,7 +1726,7 @@ export const projects: Project[] = [
     summaryProblem: 'A student conference needed a visual identity and web presence that could hold many speakers, sessions, and promotional moments.',
     summaryRole: 'Creative direction, branding, and web design.',
     summaryTeam: 'Student conference organizing team.',
-    summaryTimeline: '2021',
+    summaryTimeline: 'Dec 2019 to May 2021',
     summaryOutcome: 'Delivered a conference identity and digital presence across event communications.',
     storyline: {
       challenge: 'Create a coherent public face for a multi-speaker student event.',
@@ -1701,6 +1735,382 @@ export const projects: Project[] = [
     },
   },
 ]
+
+export const PROJECT_PAGE_INTRO_SLUGS = [
+  'mentra',
+  'transfi-project',
+  'clawed-chat',
+  'raahi-project',
+  'zentipay',
+  'executivelens',
+  'mentra-miniapps',
+  'ballah-code',
+  'vj-software',
+  'office-of-diversity',
+  'jugalbandi',
+  'enigma',
+  'shuffle',
+  'the-omakase',
+  'ibm',
+  'medimorpho',
+  'the-point-cdc',
+  'ai-voice',
+  'cuetv',
+  'code-for-build',
+  'making-of-time',
+  'black-hole',
+  'mentra-brand',
+  'revolving-stage',
+  'moniac-machine',
+  'dumb-waiter-set-design',
+  'sea-of-salt',
+  'drowning',
+  'sculpture',
+  'tedx',
+  'typeface',
+  'vishwaconclave',
+  'healthapp',
+] as const
+
+export type ProjectPageIntroSlug = (typeof PROJECT_PAGE_INTRO_SLUGS)[number]
+
+export const PROJECT_PAGE_INTROS = {
+  mentra: {
+    stage: 'shipped',
+    what: 'An operating system, companion app, MiniApp Store, and launch site for AI smart glasses.',
+    ownership: 'As Head of UI/UX, I owned the experience across six connected product surfaces.',
+    result: 'I shipped one coherent platform story, including a setup flow reduced from twelve steps to four.',
+    proofs: [
+      { label: 'Setup flow', value: '12→4 steps', kind: 'measured' },
+      { label: 'Product scope', value: 'Six shipped surfaces', kind: 'shipped' },
+    ],
+  },
+  'transfi-project': {
+    stage: 'delivered',
+    what: 'A multi-market crypto payment platform for merchants and their customers.',
+    ownership: 'I led product design across dashboard onboarding, payment-widget states, the design system, and brand.',
+    result: 'I delivered a clearer public-safe experience for evaluating and operating complex payment infrastructure.',
+    proofs: [
+      { label: 'Merchant product', value: 'Dashboard + onboarding', kind: 'scope' },
+      { label: 'Customer product', value: 'Payment-widget states', kind: 'scope' },
+    ],
+  },
+  'clawed-chat': {
+    stage: 'shipped',
+    what: 'A safety-first AI assistant for smart glasses and the web, with receipts for every action.',
+    ownership: 'As sole product designer, I owned the experience, approvals, safety tiers, and launch story.',
+    result: 'Early testing found that receipts helped participants feel more autonomous and created a useful action history.',
+    proofs: [
+      { label: 'User testing', value: '5/6 reported more autonomy', kind: 'observed' },
+      { label: 'Receipt behavior', value: '4/6 used receipts as a log', kind: 'observed' },
+    ],
+  },
+  'raahi-project': {
+    stage: 'concept',
+    what: 'A connected service concept spanning Pune public transit before, during, and after a journey.',
+    ownership: 'In a two-designer collaboration, I led synthesis, brand, interface design, and connected touchpoint framing.',
+    result: 'We produced one service model covering eight transit modes across mobile, kiosk, and in-vehicle experiences.',
+    proofs: [
+      { label: 'System coverage', value: 'Eight transit modes', kind: 'scope' },
+      { label: 'Service coverage', value: 'Four touchpoints', kind: 'scope' },
+    ],
+  },
+  zentipay: {
+    stage: 'delivered',
+    what: 'A trust-first cross-border payment product designed for web and mobile.',
+    ownership: 'As founding and sole product designer, I owned research, onboarding, transaction flows, and the core design system.',
+    result: 'I delivered transfer journeys that surface fees, progress, review, and recovery before money moves.',
+    proofs: [
+      { label: 'Platform scope', value: 'Web + mobile flows', kind: 'scope' },
+      { label: 'Trust system', value: 'Fees + progress visibility', kind: 'scope' },
+    ],
+  },
+  executivelens: {
+    stage: 'beta',
+    what: 'An AI meeting-intelligence product that connects conversations to decisions, owners, and follow-through.',
+    ownership: 'As sole product designer, I owned meeting capture, dashboard narrative, mobile briefing, and AI trust patterns.',
+    result: 'I delivered the closed-beta experience around a concise morning brief for executive teams.',
+    proofs: [
+      { label: 'Release', value: 'Closed beta', kind: 'shipped' },
+      { label: 'Core workflow', value: 'Morning brief', kind: 'observed' },
+    ],
+  },
+  'mentra-miniapps': {
+    stage: 'shipped',
+    what: 'A voice-first app ecosystem for smart glasses, from discovery and installation to permissions and daily use.',
+    ownership: 'I owned the store, install flows, permission model, and shared platform patterns.',
+    result: 'I shipped the first ecosystem experience and framed a fifteen-minute Quickstart goal for developers.',
+    proofs: [
+      { label: 'Platform flows', value: 'Store + install + permissions', kind: 'shipped' },
+      { label: 'Quickstart', value: '15 minutes', kind: 'target' },
+    ],
+  },
+  'ballah-code': {
+    stage: 'prototype',
+    what: 'A functional macOS prototype for an AI-native development environment with inspectable tools and actions.',
+    ownership: 'Working with creator and founder Isaiah Ballah, I designed the product model, tool surfaces, and interaction patterns.',
+    result: 'I translated the product direction into a reviewable interface that keeps AI actions visible to developers.',
+    proofs: [
+      { label: 'Build', value: 'Functional macOS core', kind: 'artifact' },
+      { label: 'Interaction model', value: 'Inspectable agent actions', kind: 'artifact' },
+    ],
+  },
+  'vj-software': {
+    stage: 'prototype',
+    what: 'A map-first residential parking experience for apartment society residents.',
+    ownership: 'With UX lead Akshita Anand, I contributed research, flow strategy, interface design, and high-fidelity prototypes.',
+    result: 'The three-month engagement produced a spatial booking concept grounded in two primary resident personas.',
+    proofs: [
+      { label: 'Research frame', value: 'Two primary personas', kind: 'scope' },
+      { label: 'Engagement', value: 'Three-month project', kind: 'scope' },
+    ],
+  },
+  'office-of-diversity': {
+    stage: 'shipped',
+    what: 'A responsive web edition of NYU Tisch’s 2024 IDBEA report.',
+    ownership: 'I translated dense report content into scannable sections, visual summaries, and accessible reading patterns.',
+    result: 'I published the report online with descriptive alt text and explanatory context for charts.',
+    proofs: [
+      { label: 'Published artifact', value: '2024 web report', kind: 'shipped' },
+      { label: 'Accessibility practice', value: 'Alt text + chart context', kind: 'artifact' },
+    ],
+  },
+  jugalbandi: {
+    stage: 'exhibited',
+    what: 'A neural-network instrument that performs acoustic duets with human musicians.',
+    ownership: 'I independently designed and fabricated the concept, behavior, electronics, instrument mechanisms, and installation.',
+    result: 'I built a 1.2-metre playable work and exhibited it at two public shows.',
+    proofs: [
+      { label: 'Physical scale', value: '1.2-metre mechanism', kind: 'artifact' },
+      { label: 'Public showing', value: 'Two exhibitions', kind: 'observed' },
+    ],
+  },
+  enigma: {
+    stage: 'exhibited',
+    what: 'A physical light sculpture that makes neural-network activation visible in space.',
+    ownership: 'I designed the sculpture, interaction logic, network visualization, fabrication, and exhibition story.',
+    result: 'I built a working 200-node installation and presented it at the ITP Winter Show.',
+    proofs: [
+      { label: 'Network model', value: '200 LED nodes', kind: 'artifact' },
+      { label: 'Public showing', value: 'ITP Winter Show', kind: 'observed' },
+    ],
+  },
+  shuffle: {
+    stage: 'built',
+    what: 'A motorized physical interface that turns student-life balance into a zero-sum system.',
+    ownership: 'I independently designed and fabricated the board, interaction rules, electronics, and control software.',
+    result: 'I built eight linked sliders whose movement makes every change in priorities physically affect the others.',
+    proofs: [
+      { label: 'Physical interface', value: 'Eight motorized sliders', kind: 'artifact' },
+      { label: 'Technical build', value: 'Arduino + C++', kind: 'artifact' },
+    ],
+  },
+  'the-omakase': {
+    stage: 'exhibited',
+    what: 'A two-player sushi arcade game designed as a custom physical cabinet.',
+    ownership: 'I independently designed the game, cabinet, RGB controllers, visual system, and exhibition experience.',
+    result: 'I built the complete playable artifact and exhibited it at ITP and WonderVille.',
+    proofs: [
+      { label: 'Game format', value: 'Two-player cabinet', kind: 'artifact' },
+      { label: 'Public showing', value: 'Two exhibitions', kind: 'observed' },
+    ],
+  },
+  ibm: {
+    stage: 'research',
+    what: 'An IBM research exploration of privacy-preserving genomic workflows for cancer prognosis.',
+    ownership: 'As a research contributor, I worked on privacy framing, data analysis, and interpretation.',
+    result: 'The eight-month internship explored encrypted computation across seven prognosis groups without positioning raw patient data as a product input.',
+    proofs: [
+      { label: 'Research period', value: 'Eight-month internship', kind: 'scope' },
+      { label: 'Analysis scope', value: 'Seven prognosis groups', kind: 'scope' },
+    ],
+  },
+  medimorpho: {
+    stage: 'research',
+    what: 'Healthcare UX research into clearer multilingual communication during and after clinical visits.',
+    ownership: 'Within a five-person student team, I contributed primary research, synthesis, product framing, and concept direction.',
+    result: 'The team synthesized twenty interviews, including sixteen limited-English-proficiency participants, into a continuity-of-care service direction.',
+    proofs: [
+      { label: 'Primary research', value: '20 interviews', kind: 'scope' },
+      { label: 'Participant group', value: '16 LEP participants', kind: 'scope' },
+    ],
+  },
+  'the-point-cdc': {
+    stage: 'shipped',
+    what: 'A public website for a Bronx nonprofit’s community programs, services, events, spaces, and WiFi access.',
+    ownership: 'I owned information architecture, program navigation, responsive structure, and accessibility-minded content hierarchy.',
+    result: 'I shipped a mobile-first site organized around resident needs rather than internal departments.',
+    proofs: [
+      { label: 'Published artifact', value: 'Live public site', kind: 'shipped' },
+      { label: 'Information scope', value: 'Programs + events + WiFi', kind: 'scope' },
+    ],
+  },
+  'ai-voice': {
+    stage: 'delivered',
+    what: 'An access-limited enterprise tool for evaluating and selecting AI voices.',
+    ownership: 'I structured voice selection, scenario evaluation, tone comparison, and reviewer confidence.',
+    result: 'I delivered a decision framework that treats voice choice as a product behavior tied to context and emotional fit.',
+    proofs: [
+      { label: 'Research input', value: 'Market audit', kind: 'scope' },
+      { label: 'Decision model', value: 'Persona + scenario + tone', kind: 'artifact' },
+    ],
+  },
+  cuetv: {
+    stage: 'delivered',
+    what: 'A niche streaming product and retargeting system for opera, ballet, and classical audiences.',
+    ownership: 'I designed audience research, discovery and playback flows, platform structure, and ad-system logic.',
+    result: 'The seven-month engagement delivered a joined product and growth framework for discovery, playback, and re-engagement.',
+    proofs: [
+      { label: 'Engagement', value: 'Seven months', kind: 'scope' },
+      { label: 'Product scope', value: 'Discovery + playback + retargeting', kind: 'scope' },
+    ],
+  },
+  'code-for-build': {
+    stage: 'prototype',
+    what: 'A mobile-first coding education concept that explains HTML and CSS through stackable 3D blocks.',
+    ownership: 'I independently designed the lesson flow, block metaphor, interface, visual system, and prototype.',
+    result: 'The three-month project produced a working learning model built from seven reusable block types.',
+    proofs: [
+      { label: 'Project span', value: 'Three-month prototype', kind: 'scope' },
+      { label: 'Learning system', value: 'Seven block types', kind: 'artifact' },
+    ],
+  },
+  'making-of-time': {
+    stage: 'built',
+    what: 'A material study of timekeeping across shadow, mechanical movement, and software.',
+    ownership: 'I independently designed and built the fabrication, physical-computing, and interface work.',
+    result: 'I completed three connected artifacts—a sundial, mechanical watch study, and software clock—to compare how each medium represents time.',
+    proofs: [
+      { label: 'Completed work', value: 'Three artifacts', kind: 'artifact' },
+      { label: 'Media', value: 'Sun + gear + code', kind: 'scope' },
+    ],
+  },
+  'black-hole': {
+    stage: 'exhibited',
+    what: 'A museum exhibition translating black-hole phenomena into tangible physical models.',
+    ownership: 'I designed and fabricated the models, interactives, and exhibition storytelling, with applied-mathematics collaboration from Saee Joshi.',
+    result: 'I built five models, including three interactive pieces, for exhibition at the Horological Society of New York.',
+    proofs: [
+      { label: 'Exhibition set', value: 'Five physical models', kind: 'artifact' },
+      { label: 'Interactive work', value: 'Three interactives', kind: 'artifact' },
+    ],
+  },
+  'mentra-brand': {
+    stage: 'shipped',
+    what: 'The brand and packaging system for Mentra’s AI smart glasses.',
+    ownership: 'As sole designer, I owned identity, packaging, printed matter, render direction, advertising, and social templates.',
+    result: 'I shipped the system across customer packaging and launch materials after seven packaging iterations.',
+    proofs: [
+      { label: 'Packaging development', value: 'Seven iterations', kind: 'scope' },
+      { label: 'Launch system', value: '24 templates', kind: 'shipped' },
+    ],
+  },
+  'revolving-stage': {
+    stage: 'built',
+    what: 'A fifteen-foot rotating theatre stage engineered for live scenic transitions.',
+    ownership: 'I designed and engineered the platform, axle system, load strategy, and stage behavior.',
+    result: 'I built the production mechanism for performer and scenery movement against a 250-plus-kilogram design-load target.',
+    proofs: [
+      { label: 'Built scale', value: '15-foot rotating stage', kind: 'artifact' },
+      { label: 'Design load', value: '250+ kg', kind: 'target' },
+    ],
+  },
+  'moniac-machine': {
+    stage: 'exhibited',
+    what: 'A playable strategy game translating the 1949 MONIAC economic computer into systems interaction.',
+    ownership: 'I independently designed the game rules, physical-digital interface, feedback loops, and learning experience.',
+    result: 'I built an exhibition game where seven policy levers drive a concentrated sixty-second round.',
+    proofs: [
+      { label: 'System controls', value: 'Seven levers', kind: 'artifact' },
+      { label: 'Play format', value: '60-second round', kind: 'artifact' },
+    ],
+  },
+  'dumb-waiter-set-design': {
+    stage: 'prototype',
+    what: 'A scale-model scenic proposal for Harold Pinter’s The Dumb Waiter.',
+    ownership: 'I independently designed the spatial concept, model, prop system, thresholds, and visual tone.',
+    result: 'I built a cinematic basement model that makes the play’s unseen authority physically present.',
+    proofs: [
+      { label: 'Deliverable', value: 'Scale model', kind: 'artifact' },
+      { label: 'Project mode', value: 'Independent proposal', kind: 'scope' },
+    ],
+  },
+  'sea-of-salt': {
+    stage: 'exhibited',
+    what: 'A storytelling machine that grinds real salt as a Norse folktale advances.',
+    ownership: 'I co-created and fabricated the complete work with Audrey Oh.',
+    result: 'Together we built an exhibited interaction that turns narrative consequence into physical residue.',
+    proofs: [
+      { label: 'Physical output', value: 'Real salt', kind: 'artifact' },
+      { label: 'Collaboration', value: 'Co-created with Audrey Oh', kind: 'scope' },
+    ],
+  },
+  drowning: {
+    stage: 'built',
+    what: 'An abandoned-greenhouse scenic environment for a live NYU theatre production.',
+    ownership: 'I designed structure, materials, layered lighting, backstage access, and performer-safety affordances.',
+    result: 'Across seven weeks, I built a production-ready set that balanced atmosphere with repeatable stage use.',
+    proofs: [
+      { label: 'Production span', value: 'Seven weeks', kind: 'scope' },
+      { label: 'Completed work', value: 'Live-theatre set', kind: 'artifact' },
+    ],
+  },
+  sculpture: {
+    stage: 'built',
+    what: 'A competition sculpture developed through anatomy study, armature building, and repeated material practice.',
+    ownership: 'I independently shaped the learning process, fabrication, form studies, and final finish.',
+    result: 'I completed the physical work as part of a broader sculpture practice from December 2019 through March 2022.',
+    proofs: [
+      { label: 'Completed work', value: 'Competition sculpture', kind: 'artifact' },
+      { label: 'Practice period', value: 'Dec 2019–Mar 2022', kind: 'scope' },
+    ],
+  },
+  tedx: {
+    stage: 'built',
+    what: 'A parallax cityscape stage for the 2019 TEDxVITPune conference.',
+    ownership: 'As art director and sole stage designer, I led concept, visual direction, production coordination, and execution.',
+    result: 'With an eight-person production team, I delivered the live stage for an audience of more than 800.',
+    proofs: [
+      { label: 'Event audience', value: '800+', kind: 'observed' },
+      { label: 'Production team', value: 'Eight people', kind: 'scope' },
+    ],
+  },
+  typeface: {
+    stage: 'built',
+    what: 'A variable display typeface built around a repeatable geometric slice rule.',
+    ownership: 'I independently designed the concept, glyph system, spacing, slice logic, weights, and interactive specimen.',
+    result: 'I completed more than 400 glyphs across three weights while keeping one visual grammar consistent.',
+    proofs: [
+      { label: 'Character set', value: '400+ glyphs', kind: 'artifact' },
+      { label: 'Type system', value: 'Three weights', kind: 'artifact' },
+    ],
+  },
+  vishwaconclave: {
+    stage: 'built',
+    what: 'A conference identity and digital presence developed from December 2019 through May 2021.',
+    ownership: 'I led creative direction, branding, web design, and public-facing visual communications.',
+    result: 'The organizing system supported five conferences across eight departments and their promotional moments.',
+    proofs: [
+      { label: 'Conference program', value: 'Five conferences', kind: 'scope' },
+      { label: 'Organization', value: 'Eight departments', kind: 'scope' },
+    ],
+  },
+  healthapp: {
+    stage: 'concept',
+    what: 'A health-aware daily-planning concept that adapts work to sleep, movement, nutrition, and energy.',
+    ownership: 'I independently developed the product strategy, interaction model, task flow, and visual prototype.',
+    result: 'The four-month concept produced a connected planning, tracking, and daily check-in experience.',
+    proofs: [
+      { label: 'Project span', value: 'Four-month concept', kind: 'scope' },
+      { label: 'Experience scope', value: 'Tracking + check-in', kind: 'artifact' },
+    ],
+  },
+} satisfies Record<ProjectPageIntroSlug, ProjectPageIntro>
+
+for (const slug of PROJECT_PAGE_INTRO_SLUGS) {
+  const project = projects.find(candidate => candidate.slug === slug)
+  if (project) project.pageIntro = PROJECT_PAGE_INTROS[slug]
+}
 
 for (const project of projects) {
   const publicPreview = project.access?.publicPreviewImage

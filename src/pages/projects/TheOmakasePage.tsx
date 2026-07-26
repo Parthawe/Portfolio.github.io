@@ -348,7 +348,6 @@ export default function TheOmakasePage() {
             { label: 'Year', value: '2024' },
             { label: 'Role', value: 'Game designer + fabricator' },
           ]}
-          showHeaderSummary={false}
         />
 
         <ProjectQuickSummary
@@ -460,7 +459,7 @@ export default function TheOmakasePage() {
             <p className="cs-section-label">03 &mdash; Exhibition</p>
             <h3 className="cs-section-title">Exhibition</h3>
             <CsBody>
-              <p>At the ITP Spring Show 2024, 200+ people played and a line formed around the cabinet. The format worked because every match was also a performance for the people waiting.</p>
+              <p>At the ITP Spring Show 2024, the two-player cabinet made every match legible as a small public performance.</p>
               <p>It later held up at Wonderville Brooklyn, where the louder bar context pushed the same core loop harder: fast onboarding, visible competition, instant rematches.</p>
             </CsBody>
           </div>

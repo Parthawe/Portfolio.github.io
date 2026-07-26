@@ -45,7 +45,7 @@ export default function IbmPage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="eager" />
+            <img src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="lazy" />
           </div>
         </section>
 

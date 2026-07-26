@@ -42,7 +42,7 @@ export default function SculpturePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/Sculpture/1.jpg" alt="Figurative sculpture under dramatic low-key lighting" loading="eager" />
+            <img src="/Assets/Projects/Sculpture/1.jpg" alt="Figurative sculpture under dramatic low-key lighting" loading="lazy" />
           </div>
         </section>
 

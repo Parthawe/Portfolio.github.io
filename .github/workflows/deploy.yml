@@ -35,7 +35,26 @@ jobs:
 
       - run: bun install --frozen-lockfile
 
-      - run: bun run build
+      - name: Validate project intro contract
+        run: bun run test:project-intros
+
+      - name: Validate portfolio copy evidence
+        run: bun run test:portfolio-copy
+
+      - name: Validate portfolio agent
+        run: bun run test:agent
+
+      - name: Validate route normalization
+        run: bun run test:routes
+
+      - name: Audit design system
+        run: bun run design:audit
+
+      - name: Build production site and static routes
+        run: bun run build
+
+      - name: Validate static route entrypoints
+        run: bun run test:static-routes
 
       - uses: actions/upload-pages-artifact@v3
         with:

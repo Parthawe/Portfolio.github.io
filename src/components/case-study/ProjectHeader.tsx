@@ -5,6 +5,7 @@ import FigmaSelect from '../FigmaSelect'
 import { useDeferredMount } from '../../hooks/useDeferredMount'
 import { getProject } from '../../data/projects'
 import { isLowPowerDevice } from '../../utils/performance'
+import ProjectFastRead from './ProjectFastRead'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
@@ -78,6 +79,7 @@ export default function ProjectHeader({
   const currentSlug = location.pathname.split('/').filter(Boolean).pop() ?? ''
   const project = getProject(currentSlug)
   const story = project?.storyline
+  const pageIntro = project?.pageIntro
   const resolvedHeroImage =
     heroImage ||
     project?.access?.publicPreviewImage ||
@@ -116,7 +118,7 @@ export default function ProjectHeader({
   const heroY = useTransform(scrollYProgress, [0, 1], ['-3%', '3%'])
   const heroScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1, 1.02])
   const heroMotionStyle = reduceMotion ? undefined : { y: heroY, scale: heroScale }
-  const proofStats = (headerSummary?.stats ?? []).slice(0, 4)
+  const proofStats = pageIntro ? [] : (headerSummary?.stats ?? []).slice(0, 4)
   // One editorial narrative instead of two boxed grids: the fast-read summary
   // wins when present; the storyline arc is the fallback. Never both — they
   // repeat each other.
@@ -196,7 +198,7 @@ export default function ProjectHeader({
           <div className="proj-visual-hero__copy">
             <span className="proj-visual-kicker">{visualKicker}</span>
             <h1 className="proj-visual-project-name">{title}</h1>
-            <p className="proj-visual-title">{visualDeck}</p>
+            {!pageIntro ? <p className="proj-visual-title">{visualDeck}</p> : null}
             {liveUrl && (
               <a
                 href={liveUrl}
@@ -210,6 +212,15 @@ export default function ProjectHeader({
               </a>
             )}
           </div>
+
+          {pageIntro ? (
+            <ProjectFastRead
+              intro={pageIntro}
+              projectTitle={title}
+              variant="visual"
+              className="hero-anim hero-anim-2"
+            />
+          ) : null}
 
           <div className="proj-visual-stage">
             <div className="proj-visual-hero__chrome" aria-hidden="true">
@@ -244,7 +255,7 @@ export default function ProjectHeader({
           ))}
         </div>
 
-        {renderStoryAndSummary(3)}
+        {!pageIntro ? renderStoryAndSummary(3) : null}
       </div>
     )
   }
@@ -257,7 +268,14 @@ export default function ProjectHeader({
           <FigmaSelect />
         </Link>
       </div>
-      <section className={`proj-hero-system ${resolvedHeroImage ? 'proj-hero-system--media' : 'proj-hero-system--text'}`} aria-label={`${title} project introduction`}>
+      <section
+        className={[
+          'proj-hero-system',
+          resolvedHeroImage ? 'proj-hero-system--media' : 'proj-hero-system--text',
+          pageIntro ? 'proj-hero-system--fast-read' : '',
+        ].filter(Boolean).join(' ')}
+        aria-label={`${title} project introduction`}
+      >
         <div className="proj-meta">
           {categorySlug && (
             <div className="proj-3d-ornament">
@@ -276,7 +294,7 @@ export default function ProjectHeader({
             ))}
           </div>
           <h1 className="proj-title hero-anim hero-anim-1">{title}</h1>
-          <p className="proj-subtitle hero-anim hero-anim-2">{subtitle}</p>
+          {!pageIntro ? <p className="proj-subtitle hero-anim hero-anim-2">{subtitle}</p> : null}
           {liveUrl && (
             <a
               href={liveUrl}
@@ -290,6 +308,14 @@ export default function ProjectHeader({
             </a>
           )}
         </div>
+
+        {pageIntro ? (
+          <ProjectFastRead
+            intro={pageIntro}
+            projectTitle={title}
+            className="hero-anim hero-anim-3"
+          />
+        ) : null}
 
         {resolvedHeroImage && (
           <div className="proj-hero-panel hero-anim hero-anim-3">
@@ -330,7 +356,7 @@ export default function ProjectHeader({
         </div>
       </section>
 
-      {renderStoryAndSummary(4)}
+      {!pageIntro ? renderStoryAndSummary(4) : null}
     </div>
   )
 }

@@ -10,6 +10,7 @@ import NextProject from '../../components/case-study/NextProject'
 import GlyphPlayground from '../../components/GlyphPlayground'
 import GlyphEditor from '../../components/GlyphEditor'
 import { getProject } from '../../data/projects'
+import ProjectFastRead from '../../components/case-study/ProjectFastRead'
 
 const TYPEFACE_ASSET = '/Assets/Projects/Typeface'
 
@@ -87,6 +88,14 @@ export default function TypefacePage() {
             </div>
 
             <h1>Butler&rsquo;s Slice</h1>
+
+            {project?.pageIntro ? (
+              <ProjectFastRead
+                intro={project.pageIntro}
+                projectTitle={project.name}
+                className="tf-project-summary"
+              />
+            ) : null}
 
             <div className="tf-hero-grid">
               <p className="tf-lede">
@@ -166,32 +175,6 @@ export default function TypefacePage() {
             </div>
           </div>
         </section>
-
-        {project?.summaryProblem && project.summaryRole && project.summaryOutcome ? (
-          <section className="proj-fastread tf-project-summary" aria-label="Fast read summary">
-            <header className="proj-fastread-head">
-              <div>
-                <span className="proj-fastread-kicker">Fast read</span>
-                <h2 className="proj-fastread-title">Why this project matters</h2>
-              </div>
-              <p className="proj-fastread-meta">Type design · 2022</p>
-            </header>
-            <dl className="proj-fastread-list">
-              <div className="proj-fastread-row">
-                <dt>Problem</dt>
-                <dd>{project.summaryProblem}</dd>
-              </div>
-              <div className="proj-fastread-row">
-                <dt>Role &amp; responsibilities</dt>
-                <dd>{project.summaryRole}</dd>
-              </div>
-              <div className="proj-fastread-row">
-                <dt>Outcome</dt>
-                <dd>{project.summaryOutcome}</dd>
-              </div>
-            </dl>
-          </section>
-        ) : null}
 
         <CsExpandPreview
           ctaLabel="Open the full type specimen"

@@ -7,7 +7,11 @@
     "dev": "node scripts/sync-pdf-worker.mjs && vite",
     "design:audit": "node scripts/audit-design-system.mjs",
     "test:agent": "bun scripts/check-parth-cursor-voice.ts",
-    "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && tsc -b && vite build && node scripts/create-route-entrypoints.mjs",
+    "test:portfolio-copy": "bun scripts/check-portfolio-copy.ts",
+    "test:project-intros": "bun scripts/check-project-intros.ts",
+    "test:routes": "bun scripts/check-route-integrity.ts",
+    "test:static-routes": "node scripts/check-static-routes.mjs",
+    "build": "node scripts/sync-pdf-worker.mjs && tsc -b && vite build && node scripts/freshen-sitemap.mjs && node scripts/create-route-entrypoints.mjs",
     "preview": "node scripts/sync-pdf-worker.mjs && vite preview"
   },
   "dependencies": {

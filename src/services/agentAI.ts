@@ -10,6 +10,7 @@ import {
   type ChatContext,
 } from '../data/agentKnowledge'
 import { normalizeCopy, normalizeCopyList } from '../utils/normalizeCopy'
+import { normalizePathname } from '../utils/normalizePathname'
 import { getEdgeAIAnswer, getEdgeAIModel, isEdgeAIEnabled } from './edgeAI'
 import { updatePersonaFromMessage } from './personaInference'
 import {
@@ -390,7 +391,7 @@ const EDGE_CATEGORY_ALIASES: Record<string, string> = {
 }
 
 function relevantProjectSlugs(ctx: ChatContext, message: string, localAnswer: string) {
-  const routeSlug = ctx.route.replace(/^\//, '').split(/[?#]/)[0]
+  const routeSlug = normalizePathname(ctx.route)
   const categorySlug = EDGE_CATEGORY_ALIASES[routeSlug] || routeSlug
   const currentCategory = categories.find(category => category.slug === categorySlug)
   const categorySlugs = currentCategory
@@ -438,11 +439,9 @@ function buildPublicEdgeContext(ctx: ChatContext, message: string, localAnswer: 
       year: project.year,
       desc: project.desc,
       access: getAccessMode(project),
-      summaryProblem: project.summaryProblem,
-      summaryRole: project.summaryRole,
       summaryTeam: project.summaryTeam,
       summaryTimeline: project.summaryTimeline,
-      summaryOutcome: project.summaryOutcome,
+      pageIntro: project.pageIntro,
       storyline: project.storyline,
     })),
   }
@@ -545,7 +544,7 @@ export function getChips(route: string, questionCount: number, lastQuestion?: st
   if (questionCount === 0 || !lastQuestion) {
     if (STARTER_CHIPS[route]) return normalizeCopyList(STARTER_CHIPS[route])
 
-    const slug = route.replace(/^\//, '')
+    const slug = normalizePathname(route)
     if (slug && slug !== 'work' && slug !== 'about') {
       return normalizeCopyList(['What was the challenge?', 'Key insight', 'Why it matters', 'Related work'])
     }
@@ -730,7 +729,7 @@ function getWorkTourSteps(): TourStep[] {
 }
 
 function getProjectTour(route: string): TourStep[] {
-  const slug = route.replace(/^\//, '')
+  const slug = normalizePathname(route)
   const project = findProject(slug)
   const label = project?.name || slug.replace(/-/g, ' ')
   const narrative = getProjectNarrative(slug)
@@ -816,7 +815,7 @@ export function getTourSteps(route: string): TourStep[] {
     return STATIC_TOURS[route].map(step => ({ ...step, text: normalizeCopy(step.text) }))
   }
 
-  const slug = route.replace(/^\//, '')
+  const slug = normalizePathname(route)
   if (slug) {
     return getProjectTour(slug).map(step => ({ ...step, text: normalizeCopy(step.text) }))
   }

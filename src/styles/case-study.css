@@ -92,6 +92,26 @@
   max-width: 780px;
 }
 
+.proj-hero-system--fast-read {
+  align-items: start;
+}
+
+.proj-hero-system--media.proj-hero-system--fast-read {
+  grid-template-columns: minmax(20rem, 0.78fr) minmax(24rem, 1fr);
+  grid-template-areas:
+    "meta fastread"
+    "media media"
+    "info info";
+}
+
+.proj-hero-system--text.proj-hero-system--fast-read {
+  max-width: 980px;
+  grid-template-areas:
+    "meta"
+    "fastread"
+    "info";
+}
+
 .proj-meta {
   grid-area: meta;
   min-width: 0;
@@ -129,6 +149,19 @@
 
 .proj-visual-hero {
   position: relative;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "copy"
+    "fastread"
+    "stage";
+}
+
+.proj-visual-hero__copy {
+  grid-area: copy;
+}
+
+.proj-visual-stage {
+  grid-area: stage;
 }
 
 .proj-3d-ornament--visual {
@@ -371,6 +404,210 @@
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
+}
+
+/* ── Recruiter fast read ─────────────────────────────────────────────
+   The project registry supplies verified, project-page-only copy. This rail
+   intentionally precedes hero media in both DOM and visual order. ── */
+.project-fast-read {
+  grid-area: fastread;
+  min-width: 0;
+  align-self: stretch;
+  display: grid;
+  align-content: start;
+  margin: 0;
+  border-top: 1px solid var(--ink-15);
+  border-bottom: 1px solid var(--ink-15);
+  color: var(--ink);
+}
+
+.project-fast-read__head,
+.project-fast-read__row {
+  display: grid;
+  grid-template-columns: minmax(5.75rem, 7.5rem) minmax(0, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.project-fast-read__head {
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.project-fast-read__stage,
+.project-fast-read__row dt,
+.project-fast-read__proof dt,
+.project-fast-read__target {
+  font-family: var(--mono);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wider);
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.project-fast-read__stage {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 1.65rem;
+  padding: 0.25rem 0.52rem;
+  border: 1px solid color-mix(in srgb, var(--project-color, var(--ink)) 36%, var(--ink-15));
+  border-radius: var(--radius-pill);
+  color: color-mix(in srgb, var(--project-color, var(--ink)) 72%, var(--ink));
+  background: color-mix(in srgb, var(--project-color, var(--surface)) 8%, var(--surface));
+  white-space: nowrap;
+}
+
+.project-fast-read__what {
+  margin: 0;
+  max-width: 54ch;
+  font-family: var(--serif-read);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.project-fast-read__story,
+.project-fast-read__proofs {
+  margin: 0;
+}
+
+.project-fast-read__row {
+  padding: 0.78rem 0;
+  border-bottom: 1px solid var(--ink-08);
+}
+
+.project-fast-read__row dt,
+.project-fast-read__proof dt {
+  color: var(--ink-40);
+}
+
+.project-fast-read__row dd {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--sans);
+  font-size: clamp(0.94rem, 1.15vw, 1.04rem);
+  line-height: 1.5;
+  color: var(--ink-70);
+}
+
+.project-fast-read__proofs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-fast-read__proof {
+  min-width: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  padding: 0.85rem 0;
+}
+
+.project-fast-read__proof + .project-fast-read__proof {
+  padding-left: clamp(0.85rem, 2vw, 1.4rem);
+  border-left: 1px solid var(--ink-08);
+}
+
+.project-fast-read__proof dd {
+  margin: 0;
+  font-family: var(--serif-read);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.project-fast-read__proof dt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.project-fast-read__target {
+  display: inline-flex;
+  padding: 0.12rem 0.36rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  color: color-mix(in srgb, var(--project-color, var(--ink)) 76%, var(--ink));
+  font-size: 0.58rem;
+}
+
+.project-fast-read--visual {
+  width: min(72rem, 100%);
+  margin-inline: auto;
+  padding: clamp(0.85rem, 2vw, 1.15rem);
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px) {
+  .proj-hero-system--media.proj-hero-system--fast-read {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "meta"
+      "fastread"
+      "media"
+      "info";
+  }
+}
+
+@media (max-width: 480px) {
+  .project-fast-read--visual {
+    padding: 0.72rem;
+  }
+
+  .project-fast-read__row {
+    grid-template-columns: minmax(4.75rem, 5.5rem) minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .project-fast-read__head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+
+  .project-fast-read__head,
+  .project-fast-read__row,
+  .project-fast-read__proof {
+    padding-top: 0.68rem;
+    padding-bottom: 0.68rem;
+  }
+
+  .project-fast-read__what {
+    font-size: 1rem;
+    line-height: 1.32;
+  }
+
+  .project-fast-read__row dd {
+    font-size: 0.9rem;
+    line-height: 1.42;
+  }
+
+  .project-fast-read__proof dd {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .project-fast-read__proofs {
+    grid-template-columns: 1fr;
+  }
+
+  .project-fast-read__proof + .project-fast-read__proof {
+    padding-left: 0;
+    border-top: 1px solid var(--ink-08);
+    border-left: 0;
+  }
 }
 
 /* Live site link */
@@ -9127,6 +9364,14 @@
       "media"
       "info";
     align-items: start;
+  }
+
+  .project-main .proj-hero-system--media.proj-hero-system--fast-read {
+    grid-template-areas:
+      "meta"
+      "fastread"
+      "media"
+      "info";
   }
 
   .project-main .proj-hero-img img {

@@ -247,7 +247,6 @@ export default function TransfiPage() {
             { label: 'Duration', value: '2022\u201323' },
           ]}
           liveUrl="https://www.transfi.com"
-          showHeaderSummary={false}
         />
 
         <ProjectQuickSummary

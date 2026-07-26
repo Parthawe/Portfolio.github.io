@@ -1,5 +1,12 @@
 import { categories } from './categories'
-import { CATEGORY_LABELS, visibleProjects as projects, type ProjectCategory } from './projects'
+import {
+  CATEGORY_LABELS,
+  getProject,
+  visibleProjects,
+  type ProjectCategory,
+  type ProjectPageIntro,
+} from './projects'
+import { normalizePathname } from '../utils/normalizePathname'
 
 /* ── Types ─────────────────────────────────────────────── */
 
@@ -28,6 +35,7 @@ interface ProjectInfo {
   year: string
   link: string
   nda?: boolean
+  pageIntro?: ProjectPageIntro
   storyline?: {
     challenge: string
     approach: string
@@ -38,6 +46,8 @@ interface ProjectInfo {
 
 const projectIndex = new Map<string, ProjectInfo>()
 const nameIndex = new Map<string, ProjectInfo>()
+const healthAppProject = getProject('healthapp')
+const projects = healthAppProject ? [...visibleProjects, healthAppProject] : visibleProjects
 const PROJECT_CATEGORY_SLUGS: Record<ProjectCategory, string> = {
   ux: 'ux-design',
   research: 'ux-research',
@@ -54,7 +64,7 @@ const deepMap: Record<string, ProjectDeep> = {
   mentra: {
     oneLiner: 'The first smart glasses with a real app store. Parth designed the entire platform, OS, app, and ecosystem.',
     challenge: 'A 640×400px display. Users glance for 2 seconds max. Every phone UI convention breaks here, scrolling, tapping, even reading.',
-    outcome: '$299 launch, 88% Batch 2 pre-orders claimed, open-source OS.',
+    outcome: 'Shipped a four-step setup and a connected product system across six surfaces.',
     insight: 'Wearable UI is the opposite of phone UI. Design for peripheral vision, not focus. Voice-first, glance-not-gaze.',
     process: 'Tore apart every smart glasses failure from the last decade. Found 12 reasons they failed, most were software. Built the OS around 3 principles: glance-not-gaze, voice-first, peripheral-priority.',
     whyItMatters: 'Proves wearables can be a platform, not just a gadget. The app store changes the economics entirely.',
@@ -94,9 +104,9 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'Clawed runs on Mentra glasses too, you can approve AI actions by voice while walking.',
   },
   executivelens: {
-    oneLiner: 'Saves executives 5.2 hrs/week by passively listening to meetings and surfacing decisions.',
+    oneLiner: 'A closed-beta morning brief that turns meeting signals into reviewable executive actions.',
     challenge: 'Executives check 6+ tools per hour. The information exists, it\'s scattered across Slack, email, and dashboards.',
-    outcome: '5.2 hrs/week saved. 87% adoption in 2 weeks.',
+    outcome: 'Reached closed beta with a morning-brief workflow.',
     insight: 'The best tool is invisible. It listens, auto-researches, surfaces decisions. No manual input.',
     process: 'Shadowed 8 executives for a week. Mapped information flows. Found they context-switch constantly. Built a system that\'s passive by default.',
     whyItMatters: 'Shows how AI augments knowledge work without adding another tool to learn.',
@@ -137,13 +147,13 @@ const deepMap: Record<string, ProjectDeep> = {
   'ballah-code': {
     oneLiner: 'What happens when AI isn\'t a sidebar in the IDE, it\'s the foundation.',
     challenge: 'Every IDE bolts AI on as a chat panel. What if AI was woven into every action instead?',
-    outcome: 'AI-native IDE with 17 production tools — designed the full product UX.',
+    outcome: 'A functional macOS core with inspectable agent actions.',
     insight: 'Pair programming > autocomplete. Full-project context makes AI actually useful, not just clever.',
     process: 'Joined as product designer alongside creator Isaiah Ballah. Designed the multi-workspace layout, AI tool interactions, streaming feedback patterns, and terminal integration UX.',
     whyItMatters: 'Explores what dev tools look like when AI is primary, not secondary.',
     duration: '2026',
     team: 'Isaiah Ballah (Creator/Founder) + Parth Pawar (Product Designer)',
-    platforms: 'Desktop (macOS/Win/Linux)',
+    platforms: 'Desktop (macOS)',
     opinion: 'Parth designed the UX for Isaiah Ballah\'s vision — the product solves real workflow problems because it was built by someone who lives in the terminal.',
     connectedTo: ['clawed-chat', 'ai-voice'],
   },
@@ -194,7 +204,7 @@ const deepMap: Record<string, ProjectDeep> = {
     insight: 'Conference branding is environmental design. Has to work at 50 feet (stage) and 5 inches (phone) simultaneously.',
     process: 'Started with the theme, not the logo. Let the concept drive every touchpoint, stage, print, digital, merch.',
     whyItMatters: 'Early career project that shows Parth could already think in systems, not just artifacts.',
-    duration: '2021',
+    duration: '2019',
     team: 'Lead Visual Designer',
     platforms: 'Print, Digital, Environmental',
     opinion: 'For an early project, the systems thinking here is impressive. Every piece connects.',
@@ -234,7 +244,7 @@ const deepMap: Record<string, ProjectDeep> = {
     insight: 'Scientific visualization is most powerful when it uses the body, not the screen. Weight, texture, and light teach faster than equations.',
     process: 'Researched 5 black hole phenomena (accretion, lensing, jets, spaghettification, Hawking radiation). Modeled each in Blender, fabricated with 3D printing and mixed media.',
     whyItMatters: 'Shows the fabrication range: from digital to physical, from design to science communication.',
-    duration: '2026',
+    duration: '2025',
     team: 'Solo',
     platforms: 'Physical (3D printing, mixed media)',
     opinion: 'The venue alone, Horological Society of NY, says something about the quality bar. These aren\'t school projects, they\'re exhibition pieces.',
@@ -341,7 +351,7 @@ const deepMap: Record<string, ProjectDeep> = {
     challenge: 'Most clinical AI decrypts patient data before analyzing it, exposing the most sensitive information a person can share. The weak point isn\'t storage or transit, it\'s computation itself.',
     outcome: 'A research pipeline produced Kaplan-Meier survival curves for seven treatment groups, with encrypted transfer overhead measured at 42s client-side and 28s server-side.',
     insight: 'Homomorphic encryption lets the model work on the signal without ever seeing the patient in the clear. Privacy cost was measured in seconds, not usefulness.',
-    process: 'Feature selection and validation on clinical and genomic inputs, encryption with IBM\'s FHE toolkit, a neural-network workflow on encrypted data, decryption only at the point of interpretation for clustering and survival curves.',
+    process: 'Contributed to privacy framing, analysis, and interpretation within a mentored research team using IBM\'s FHE toolkit.',
     whyItMatters: 'Removes the compromise at the heart of clinical AI: the promise of privacy that breaks the moment raw data reaches a server.',
     duration: '8 months, 2020',
     team: 'Research internship at IBM, with mentors and a 4-engineer student team',
@@ -381,7 +391,7 @@ const deepMap: Record<string, ProjectDeep> = {
   'mentra-miniapps': {
     oneLiner: 'The first app ecosystem for smart glasses, a store you talk to instead of scroll.',
     challenge: 'You can\'t browse 500 apps on a 640×400 transparent display while walking. No scrolling, no tapping, no screenshot carousels, the only reliable input is voice.',
-    outcome: 'Shipped with the Mentra Glass launch: voice-first install, transparent permissions, live developer portal, open-source SDK, and Batch 2 pre-orders 88% claimed.',
+    outcome: 'Shipped store, install, and permission flows with a public developer Quickstart target.',
     insight: 'Voice-first discovery isn\'t a workaround for a small screen, it\'s better than visual browsing. You don\'t shop for apps, the right one appears when you need it.',
     process: 'Organized the store by intent, not category: what you\'re doing, where you are, what you\'re asking for. Then designed the product grammar letting captions, translation, notes, and Mentra AI coexist without feeling like a random pile of features.',
     whyItMatters: 'Meta Ray-Ban does what Meta decides. Mentra does what anyone with an idea builds for it. That\'s the difference between a gadget and a platform.',
@@ -505,21 +515,52 @@ const deepMap: Record<string, ProjectDeep> = {
   },
 }
 
+function formatPageIntroOutcome(pageIntro: ProjectPageIntro): string {
+  const proofs = pageIntro.proofs.map(proof => {
+    const prefix = proof.kind === 'target' ? 'Target — ' : ''
+    return `${prefix}${proof.label}: ${proof.value}`
+  })
+  return `${pageIntro.result} ${proofs.join('. ')}.`
+}
+
 for (const project of projects) {
   const registryStory = project.storyline
   const deep = deepMap[project.slug]
+  const pageIntro = project.pageIntro
+  const canonicalOutcome = pageIntro ? formatPageIntroOutcome(pageIntro) : undefined
+  const canonicalDeep: ProjectDeep | undefined = pageIntro
+    ? {
+        oneLiner: pageIntro.what,
+        challenge: registryStory?.challenge || pageIntro.what,
+        outcome: canonicalOutcome!,
+        insight: registryStory?.result || pageIntro.result,
+        process: registryStory?.approach || pageIntro.ownership,
+        whyItMatters: pageIntro.result,
+        duration: project.summaryTimeline || project.year,
+        team: project.summaryTeam || pageIntro.ownership,
+        platforms: 'Public scope and artifacts are documented in the case study.',
+        opinion: deep?.opinion || `The strongest part of ${project.name} is the relationship between ownership, decisions, and evidence.`,
+        connectedTo: deep?.connectedTo || [],
+      }
+    : undefined
   const info: ProjectInfo = {
     slug: project.slug,
     name: project.name,
     desc: project.desc,
-    role: project.summaryRole || deep?.team || 'Designer',
+    role: pageIntro?.ownership || project.summaryRole || deep?.team || 'Designer',
     category: CATEGORY_LABELS[project.category],
     categorySlug: PROJECT_CATEGORY_SLUGS[project.category],
     year: project.year,
     link: `/${project.slug}`,
     nda: project.nda,
+    pageIntro,
     storyline: registryStory,
-    deep: deep
+    deep: pageIntro && canonicalDeep
+      ? {
+          ...deep,
+          ...canonicalDeep,
+        }
+      : deep
       ? {
           ...deep,
           challenge: registryStory?.challenge || deep.challenge,
@@ -632,17 +673,18 @@ export function detectSection(): VisibleSection {
 
 export function getRouteGreeting(path: string): string {
   const section = detectSection()
+  const route = normalizePathname(path)
 
-  if (path === '/') return pick([
+  if (!route) return pick([
     "Hey, I'm Folio. I know every project here. Tell me what you're looking for and I'll point you to the right ones, or say 'tour' and I'll walk the whole page.",
     "Welcome. I can shortlist the three strongest projects for what you care about, walk you through a case study, or just answer anything. What's useful?",
     "Pick a project, ask for a hiring shortlist, or say 'tour' and I'll guide you through. I have opinions about all of this.",
   ])
-  if (path === '/work') return pick([
+  if (route === 'work') return pick([
     "Full archive. Three views now: Editorial, Index, and Arc. Ask for one and I’ll switch to it, or ask for a shortlist.",
     "This is everything. Six disciplines, from fintech to light sculptures. I can switch the page into Index or Arc mode if you want a different read.",
   ])
-  if (path === '/about') {
+  if (route === 'about') {
     if (section === 'skills') return "Those tools? They're not decorative. Ask me how any of them gets used in a real shipped project."
     if (section === 'experience') return "Want the real story behind any of these roles? The Mentra and ZentiPay ones are the most interesting."
     if (section === 'practices') return "100 days of poems, 100 days of sketches, 45 podcast episodes. These explain where the consistency comes from. Ask me about any of them."
@@ -652,13 +694,12 @@ export function getRouteGreeting(path: string): string {
     ])
   }
 
-  if (path === '/playbook') return "This is the playbook, the eight values behind every project here. Ask me how any of them shows up in real shipped work, that's the interesting part."
+  if (route === 'playbook') return "This is the playbook, the eight values behind every project here. Ask me how any of them shows up in real shipped work, that's the interesting part."
 
-  const cat = categories.find(c => path === `/${c.slug}`)
+  const cat = categories.find(c => route === c.slug)
   if (cat) return `${cat.title} ${cat.titleAccent}. I know every project here, ask about any of them or say 'tour' for the guided version.`
 
-  const slug = path.replace(/^\//, '')
-  const p = projectIndex.get(slug)
+  const p = projectIndex.get(route)
   if (p?.deep) return `${p.deep.oneLiner} Say 'tour' and I'll walk the case study, or ask about the challenge, process, or why it matters.`
   if (p) return `**${p.name}**, ${p.desc}. Ask me anything or say 'tour' for the walkthrough.`
 
@@ -669,7 +710,7 @@ export function getRouteGreeting(path: string): string {
 
 export function getDynamicChips(path: string, qCount: number, lastSlug?: string, ctx?: ChatContext): string[] {
   const section = detectSection()
-  const slug = path.replace(/^\//, '')
+  const slug = normalizePathname(path)
   const p = projectIndex.get(slug) || (lastSlug ? projectIndex.get(lastSlug) : undefined)
   const persona = ctx?.persona || 'unknown'
   const scrollDepth = ctx?.scrollDepth || 0
@@ -690,8 +731,8 @@ export function getDynamicChips(path: string, qCount: number, lastSlug?: string,
     if (visited.length > 3) {
       const last2 = visited.filter(v => v !== '/' && v !== '/work' && v !== '/about').slice(-2)
       if (last2.length === 2) {
-        const a = projectIndex.get(last2[0].replace(/^\//, ''))
-        const b = projectIndex.get(last2[1].replace(/^\//, ''))
+        const a = projectIndex.get(normalizePathname(last2[0]))
+        const b = projectIndex.get(normalizePathname(last2[1]))
         if (a && b) chips.push(`Compare ${a.name} and ${b.name}`)
       }
     }
@@ -709,15 +750,15 @@ export function getDynamicChips(path: string, qCount: number, lastSlug?: string,
   }
   if (p) return [`More on ${p.name}`, 'Similar projects', 'Best work', 'Contact']
 
-  const cat = categories.find(c => path === `/${c.slug}`)
+  const cat = categories.find(c => slug === c.slug)
   if (cat) return [`Best ${cat.title} project`, 'Design approach', 'All categories', 'Contact']
 
-  if (path === '/') {
+  if (!slug) {
     if (persona === 'recruiter' || persona === 'hm') return ['Hiring shortlist', 'Role fit', 'Best research process', 'Most ambitious project']
     return ['Hiring shortlist', 'Most ambitious project', 'Best research process', 'Creative range']
   }
-  if (path === '/work') return ['Index view', 'Arc view', 'Start with flagship work', 'Best research process']
-  if (path === '/about') {
+  if (slug === 'work') return ['Index view', 'Arc view', 'Start with flagship work', 'Best research process']
+  if (slug === 'about') {
     if (section === 'skills') return ['How he uses Figma', 'Code + design?', 'Favorite tool', 'Physical work']
     if (section === 'experience') return ['Best role?', 'Mentra story', 'ZentiPay story', 'Teaching at NYU']
     if (section === 'practices') return ['Why poetry?', 'The podcast', 'Sketching habit', 'Fun facts']
@@ -761,13 +802,14 @@ export function createContext(route: string): ChatContext {
 }
 
 export function getProjectNarrative(slug: string) {
-  const project = projectIndex.get(slug)
+  const project = projectIndex.get(normalizePathname(slug))
   if (!project) return undefined
 
   return {
     name: project.name,
     link: project.link,
     role: project.role,
+    pageIntro: project.pageIntro,
     category: project.category,
     storyline: project.storyline,
     deep: project.deep,
@@ -786,7 +828,7 @@ interface Rule { patterns: RegExp[]; handler: (m: RegExpMatchArray, c: ChatConte
 
 function cp(ctx: ChatContext): ProjectInfo | undefined {
   if (ctx.lastProject) return projectIndex.get(ctx.lastProject)
-  const s = ctx.route.replace(/^\//, '')
+  const s = normalizePathname(ctx.route)
   return projectIndex.get(s)
 }
 
@@ -794,7 +836,7 @@ const rules: Rule[] = [
   // Where to start / hiring shortlist — persona-aware
   { patterns: [/(?:hiring shortlist|recruiter|hiring manager|where should i start|what should i start with|what should i see|show me first|best three|start with three|shortlist)/i],
     handler: (_, ctx) => {
-      const visited = new Set(ctx.visitHistory.map(v => v.replace(/^\//, '')))
+      const visited = new Set(ctx.visitHistory.map(normalizePathname))
       const unseen = (slug: string) => !visited.has(slug)
 
       if (ctx.persona === 'founder') {
@@ -810,7 +852,7 @@ const rules: Rule[] = [
       }
       // Default / recruiter / hm
       const picks = [
-        unseen('mentra') ? '• **[Mentra](/mentra)** for systems ambition, full OS, companion app, and app store.' : '• **[ExecutiveLens](/executivelens)** for AI meeting intelligence, 87% adoption.',
+        unseen('mentra') ? '• **[Mentra](/mentra)** for systems ambition across the OS, companion app, and app store.' : '• **[ExecutiveLens](/executivelens)** for a closed-beta morning brief.',
         unseen('zentipay') ? '• **[ZentiPay](/zentipay)** for research rigor and trust-driven fintech thinking.' : '• **[TransFi](/transfi-project)** for payment-infrastructure scale and merchant UX.',
         unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)** for creative range beyond product UI.' : '• **[Clawed](/clawed-chat)** for AI trust architecture.',
       ]
@@ -933,7 +975,7 @@ const rules: Rule[] = [
     handler: (_, ctx) => {
       const p = cp(ctx)
       if (p?.deep) { ctx.lastTopic = 'process'; return `**How ${p.name} was built:**\n\n${p.deep.process}` }
-      const cat = categories.find(c => ctx.route.replace(/^\//, '') === c.slug)
+      const cat = categories.find(c => normalizePathname(ctx.route) === c.slug)
       if (cat) return cat.approach.pillars.map(x => `**${x.title}**, ${x.desc}`).join('\n\n')
       return "Parth's process: constraint-driven design, systems over screens, ship to learn. Ask about a specific project for the real details."
     }
@@ -943,6 +985,7 @@ const rules: Rule[] = [
   { patterns: [/(?:what did (?:parth|you|i) own|what was (?:parth's|your|my) role|ownership|contribution|responsibilit)/i],
     handler: (_, ctx) => {
       const p = cp(ctx)
+      if (p?.pageIntro) return p.pageIntro.ownership
       if (p?.deep) return `I was ${p.role}. My scope covered ${p.deep.platforms}.`
       if (p) return `I was ${p.role} on ${p.name}.`
       return 'Name a project and I will separate my ownership from the team effort.'
@@ -971,9 +1014,10 @@ const rules: Rule[] = [
   },
 
   // Outcome
-  { patterns: [/(?:outcome|result|impact|numbers|metrics|data|success|ship|launch)/i],
+  { patterns: [/(?:outcome|result|impact|numbers|metrics|data|success|ship|launch|what changed)/i],
     handler: (_, ctx) => {
       const p = cp(ctx)
+      if (p?.pageIntro) { ctx.lastTopic = 'outcome'; return formatPageIntroOutcome(p.pageIntro) }
       if (p?.deep) { ctx.lastTopic = 'outcome'; return p.deep.outcome }
       return "Mentra: launch demand. ZentiPay: trust-first transfers. TransFi: payment infrastructure. Ask about any one."
     }
@@ -1028,7 +1072,7 @@ const rules: Rule[] = [
       // If no projects named, suggest comparing last two visited
       if (found.length < 2) {
         const projectSlugs = ctx.visitHistory
-          .map(v => v.replace(/^\//, ''))
+          .map(normalizePathname)
           .filter(s => projectIndex.has(s))
         const unique = [...new Set(projectSlugs)].slice(-2)
         for (const s of unique) { const p = projectIndex.get(s); if (p && !found.includes(p)) found.push(p) }
@@ -1061,7 +1105,7 @@ const rules: Rule[] = [
   // Best / favorite — persona-aware
   { patterns: [/(?:best|favorite|top|flagship|proudest|must.see|recommend)/i],
     handler: (_, ctx) => {
-      const cat = categories.find(c => ctx.route.replace(/^\//, '') === c.slug)
+      const cat = categories.find(c => normalizePathname(ctx.route) === c.slug)
       if (cat) { const f = cat.featured; return `**${f.title}**, ${f.desc}\n\n→ [/${f.slug}](/${f.slug})` }
 
       if (ctx.persona === 'founder') return "If I had to pick three for a founder:\n\n• **[Mentra](/mentra)**, full platform ownership from zero\n• **[Clawed](/clawed-chat)**, AI trust architecture, shipped\n• **[ZentiPay](/zentipay)**, founding designer, research to product\n\nWhich one?"
@@ -1081,7 +1125,7 @@ const rules: Rule[] = [
     handler: (_, ctx) => {
       if (ctx.persona === 'founder') return "**[Mentra](/mentra)**. Designing an entire OS, companion app, and app store for a device that doesn't have established design patterns. That's the hardest systems problem here."
       if (ctx.persona === 'peer') return "**[Jugalbandi](/jugalbandi)**. Two strangers collaborate through sound without speaking. If the interaction needs instructions, it failed. That's a design philosophy, not just a project."
-      return "**[Mentra](/mentra)**. Full platform from scratch, $299 launch, 88% pre-orders. It proves systems thinking, research depth, and shipping under real hardware constraints."
+      return "**[Mentra](/mentra)**. A shipped system spanning six product surfaces, with setup reduced from twelve steps to four. It shows systems thinking under real hardware constraints."
     }
   },
 
@@ -1108,7 +1152,7 @@ const rules: Rule[] = [
   { patterns: [/(?:send.*summary|export summary|share.*summary|clipboard|copy.*summary|email.*summary|mailto|summary for)/i],
     handler: (_, ctx) => {
       const discussed = [...new Set(ctx.mentionedProjects)].map(s => projectIndex.get(s)).filter((p): p is ProjectInfo => !!p)
-      const visited = [...new Set(ctx.visitHistory.map(v => v.replace(/^\//, '')).filter(s => projectIndex.has(s)))].map(s => projectIndex.get(s)!).filter((p): p is ProjectInfo => !!p)
+      const visited = [...new Set(ctx.visitHistory.map(normalizePathname).filter(s => projectIndex.has(s)))].map(s => projectIndex.get(s)!).filter((p): p is ProjectInfo => !!p)
       const all = [...new Set([...discussed, ...visited])]
       const names = all.length ? all.map(p => p.name).join(', ') : 'Mentra, ZentiPay, Jugalbandi'
       const insights = all.filter(p => p.deep).slice(0, 3).map(p => `• ${p.name}: ${p.deep!.insight.split('.')[0]}.`).join('\n')
@@ -1214,10 +1258,11 @@ const rules: Rule[] = [
       const p = cp(ctx)
       if (p?.deep) return `**${p.name}**, ${p.deep.oneLiner}`
       if (p) return `**${p.name}**, ${p.desc}`
-      if (ctx.route === '/') return "Home page."
-      if (ctx.route === '/work') return "Full project archive."
-      if (ctx.route === '/about') return "About Parth."
-      const cat = categories.find(c => ctx.route === `/${c.slug}`)
+      const route = normalizePathname(ctx.route)
+      if (!route) return "Home page."
+      if (route === 'work') return "Full project archive."
+      if (route === 'about') return "About Parth."
+      const cat = categories.find(c => route === c.slug)
       if (cat) return `**${cat.title} ${cat.titleAccent}** category.`
       return `${ctx.route}`
     }

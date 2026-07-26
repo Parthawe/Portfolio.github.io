@@ -47,8 +47,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/salt-ground.webp" alt="Salt mill grinding salt onto the black platform as the story advances" loading="eager" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/overview.webp" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="eager" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/salt-ground.webp" alt="Salt mill grinding salt onto the black platform as the story advances" loading="lazy" /></div>
+              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/overview.webp" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="lazy" /></div>
             </div>
           </div>
         </section>

@@ -42,7 +42,6 @@ export default function MediMorphoPage() {
           subtitle="A 20-interview team study traced where meaning breaks before, during, and after care—and reframed translation from a feature into a continuity-of-care problem."
           heroImage={COVER}
           heroAlt="NYU Langone Health building signage for the healthcare UX research case study."
-          showHeaderSummary={false}
           visualHeroMedia={(
             <div className="medimorpho-hero-photo">
               <img

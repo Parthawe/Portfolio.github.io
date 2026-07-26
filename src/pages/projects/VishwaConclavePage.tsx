@@ -42,7 +42,7 @@ export default function VishwaConclavePage() {
         {/* Hero image */}
         <section className="cs-slide cs-slide--top-half reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/VishwaConclave/1.jpg" alt="VishwaConclave brand identity overview showing event posters across three years" loading="eager" />
+            <img src="/Assets/Projects/VishwaConclave/1.jpg" alt="VishwaConclave brand identity overview showing event posters across three years" loading="lazy" />
           </div>
         </section>
 

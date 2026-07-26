@@ -41,7 +41,7 @@ export default function NdaPublicStory({ slug, headline, lede, visuals = [] }: N
           {primaryVisual ? (
             <div className="cs-nda-image-gallery" aria-label={`${project.name} public visual preview`}>
               <figure className="cs-nda-image-card cs-nda-image-card--hero">
-                <img src={primaryVisual.src} alt={primaryVisual.alt} loading="eager" decoding="async" />
+                <img src={primaryVisual.src} alt={primaryVisual.alt} loading="lazy" decoding="async" />
                 <figcaption>{primaryVisual.label}</figcaption>
               </figure>
             </div>

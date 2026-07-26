@@ -232,7 +232,7 @@ export default function MediMorphoProtectedStory() {
               </a>
             </div>
             <figure className="medimorpho-source-visual">
-              <img src={COVER_ILLUSTRATION} alt="Illustration from the supplied NYU Langone research report showing a patient speaking with a clinician." loading="eager" decoding="async" />
+              <img src={COVER_ILLUSTRATION} alt="Illustration from the supplied NYU Langone research report showing a patient speaking with a clinician." loading="lazy" decoding="async" />
               <figcaption>Source artwork from the supplied research report</figcaption>
             </figure>
           </div>

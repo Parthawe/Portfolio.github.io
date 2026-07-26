@@ -6,7 +6,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = process.argv[2] ? resolve(process.cwd(), process.argv[2]) : join(root, 'dist')
 const indexPath = join(distDir, 'index.html')
 const notFoundPath = join(distDir, '404.html')
-const sitemapPath = join(root, 'public', 'sitemap.xml')
+const sitemapPath = join(distDir, 'sitemap.xml')
 const siteBase = '/'
 
 if (!existsSync(indexPath)) {

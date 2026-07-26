@@ -9,6 +9,7 @@ import {
   shapeCursorAnswer,
 } from '../src/services/parthCursorVoice'
 import { createContext, getResponse } from '../src/data/agentKnowledge'
+import { getProject } from '../src/data/projects'
 import { isPortfolioQuestion } from '../src/data/portfolioKnowledgeBase'
 import { updatePersonaFromMessage } from '../src/services/personaInference'
 
@@ -77,7 +78,10 @@ assert.equal(isCursorAnswerUsable('Best fit: design engineer or senior product d
 
 assert.equal(isPortfolioQuestion('Where should I start?', { route: '/' }), true)
 const ownershipContext = createContext('/mentra')
-assert.match(getResponse('What did Parth own on Mentra?', ownershipContext).text, /^I was /)
+assert.equal(
+  getResponse('What did Parth own on Mentra?', ownershipContext).text,
+  getProject('mentra')?.pageIntro?.ownership,
+)
 
 const recruiterContext = createContext('/about')
 updatePersonaFromMessage(recruiterContext, 'Would he fit this design engineer role?')

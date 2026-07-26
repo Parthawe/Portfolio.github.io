@@ -21,15 +21,18 @@ export default function ProjectQuickSummary({
 
   if (
     !project ||
-    !project.summaryProblem ||
-    !project.summaryRole ||
-    !project.summaryOutcome
+    !(project.storyline?.challenge || project.summaryProblem)
   ) {
     return null
   }
 
   const isAccessLimited = isRequestAccessProject(project)
-  const proofStats = project.summaryStats?.slice(0, 3) ?? []
+  const challenge = project.storyline?.challenge || project.summaryProblem
+  const approach = project.storyline?.approach
+  // The recruiter-facing header owns proof. Keep legacy stats only for
+  // unscoped/archive projects so expandable stories never repeat or weaken the
+  // two verified proof points above the hero.
+  const proofStats = project.pageIntro ? [] : (project.summaryStats ?? []).slice(0, 3)
 
   return (
     <section className="cs-quick-summary wrap reveal" id="cs-summary">
@@ -37,7 +40,7 @@ export default function ProjectQuickSummary({
         <div className="cs-quick-summary-top">
           <div>
             <span className="cs-section-label">Quick read</span>
-            <h2 className="cs-quick-summary-title">Problem, role, outcome</h2>
+            <h2 className="cs-quick-summary-title">Challenge and approach</h2>
           </div>
 
           <div className="cs-quick-summary-toggle" role="tablist" aria-label="Case study view mode">
@@ -68,16 +71,14 @@ export default function ProjectQuickSummary({
           <div className="cs-quick-summary-details">
             <article className="cs-quick-summary-card cs-quick-summary-card--problem">
               <span className="cs-quick-summary-label">Problem</span>
-              <p>{project.summaryProblem}</p>
+              <p>{challenge}</p>
             </article>
-            <article className="cs-quick-summary-card cs-quick-summary-card--move">
-              <span className="cs-quick-summary-label">My role</span>
-              <p>{project.summaryRole}</p>
-            </article>
-            <article className="cs-quick-summary-card cs-quick-summary-card--wide cs-quick-summary-card--outcome">
-              <span className="cs-quick-summary-label">Outcome</span>
-              <p>{project.summaryOutcome}</p>
-            </article>
+            {approach ? (
+              <article className="cs-quick-summary-card cs-quick-summary-card--wide cs-quick-summary-card--move">
+                <span className="cs-quick-summary-label">Approach</span>
+                <p>{approach}</p>
+              </article>
+            ) : null}
           </div>
 
           {project.summaryImage ? (
@@ -85,7 +86,7 @@ export default function ProjectQuickSummary({
               <img
                 src={project.summaryImage}
                 alt={project.summaryImageAlt || `${project.name} summary artifact`}
-                loading="eager"
+                loading="lazy"
                 decoding="async"
               />
             </figure>

@@ -1,11 +1,13 @@
-// Stamps every <lastmod> in public/sitemap.xml with the build date so the
-// sitemap never goes stale. Runs as part of `bun run build`.
+// Stamp the built sitemap, never the tracked public source, so ordinary builds
+// do not leave date-only changes in the worktree.
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const sitemapPath = join(root, 'public', 'sitemap.xml')
+const sitemapPath = process.argv[2]
+  ? resolve(process.cwd(), process.argv[2])
+  : join(root, 'dist', 'sitemap.xml')
 
 const today = new Date().toISOString().slice(0, 10)
 const xml = readFileSync(sitemapPath, 'utf8')
