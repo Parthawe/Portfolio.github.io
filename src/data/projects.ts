@@ -1823,6 +1823,9 @@ const WORK_SELECTED_COUNT = 6
 const HOMEPAGE_SELECTED_ARCHIVE_COUNT = 8
 const WORK_PRIORITY = new Map<string, number>(WORK_PRIORITY_SLUGS.map((slug, index) => [slug, index]))
 const WORK_SELECTED_SLUGS = new Set<string>(WORK_PRIORITY_SLUGS.slice(0, WORK_SELECTED_COUNT))
+const HOME_WORK_LISTING_HIDDEN_SLUGS = new Set<string>([
+  'ballah-code',
+])
 
 const getWorkPriority = (project: Project) => WORK_PRIORITY.get(project.slug) ?? Number.MAX_SAFE_INTEGER
 
@@ -1842,29 +1845,32 @@ export const visibleProjects = projects
   .filter(isPubliclyVisibleProject)
   .sort(sortByWorkPriority)
 
+const homeWorkListingProjects = visibleProjects
+  .filter(p => !HOME_WORK_LISTING_HIDDEN_SLUGS.has(p.slug))
+
 /** S-Tier: flagship projects for homepage featured grid */
-export const featuredProjects = visibleProjects
+export const featuredProjects = homeWorkListingProjects
   .filter(p => p.featured)
   .sort(sortByWorkPriority)
 
 /** Explicit recruiter-facing work list */
-export const selectedWorkProjects = visibleProjects
+export const selectedWorkProjects = homeWorkListingProjects
   .filter(p => WORK_SELECTED_SLUGS.has(p.slug))
   .sort(sortByWorkPriority)
 
 /** Homepage follow-on grid after flagship work */
-export const homepageSelectedProjects = visibleProjects
+export const homepageSelectedProjects = homeWorkListingProjects
   .filter(p => !p.featured)
   .slice(0, HOMEPAGE_SELECTED_ARCHIVE_COUNT)
 
 /** Remaining visible work shown below the fold on /work */
-export const archiveWorkProjects = visibleProjects
+export const archiveWorkProjects = homeWorkListingProjects
   .filter(p => !selectedWorkProjects.some(selected => selected.slug === p.slug))
   .sort(sortByWorkPriority)
 
 /** All projects for the Work page in curated mixed order */
 export const allProjectsCurated = (() => {
-  return visibleProjects
+  return homeWorkListingProjects
 })()
 
 export function filterProjectsByCategory(items: Project[], cat: ProjectCategory): Project[] {
