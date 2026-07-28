@@ -10,7 +10,7 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 const CUETV_PUBLIC_PREVIEW = '/Assets/mockups/projects/cuetv_16x9.webp'
-const CUETV_REFRESH = '/Assets/Projects/CueTV/refresh'
+const CUETV_REFRESH = '/Assets/Projects/cuetv-public/refresh'
 
 const CUETV_PUBLIC_VISUALS = [
   {
