@@ -125,7 +125,7 @@ export default function App() {
           <Route path="/ux-research" element={<CategoryPage />} />
           <Route path="/ui" element={<Navigate to="/ux-design" replace />} />
           <Route path="/design-engineering" element={<CategoryPage />} />
-          <Route path="/design-engineer" element={<Navigate to="/design-engineering" replace />} />
+          <Route path="/design-engineer" element={<CategoryPage />} />
           <Route path="/creative-tech" element={<Navigate to="/design-engineering" replace />} />
           <Route path="/installations" element={<CategoryPage />} />
           <Route path="/brand" element={<CategoryPage />} />

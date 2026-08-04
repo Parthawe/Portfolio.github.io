@@ -27,6 +27,8 @@ const CATEGORY_NAMES: Record<string, string> = {
 
 const HERO_ROUTE_ALIASES: Record<string, string> = {
   ux: 'ux-design',
+  'design-engineer': 'design-engineering',
+  'creative-tech': 'design-engineering',
 }
 
 const PORTFOLIO_STATS = [
