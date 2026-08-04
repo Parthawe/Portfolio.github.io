@@ -15,14 +15,14 @@ if (!existsSync(indexPath)) {
 
 const indexHtml = readFileSync(indexPath, 'utf8')
 const siteOrigin = 'https://designwhich.works'
-const defaultDescription = 'Portfolio of Parth Pawar, a Product Designer crafting trusted systems across AI wearables, fintech, civic tools, creative technology, and physical interaction.'
+const defaultDescription = 'Portfolio of Parth Pawar, a Product Designer crafting trusted systems across AI wearables, fintech, civic tools, design engineering, and physical interaction.'
 const routeLabels = new Map([
   ['work', 'Work'],
   ['about', 'About'],
   ['accessibility', 'Accessibility'],
   ['ux-design', 'UX Design'],
   ['ux-research', 'UX Research'],
-  ['creative-tech', 'Creative Technology'],
+  ['design-engineering', 'Design Engineering'],
   ['installations', 'Installations'],
   ['brand-visual', 'Brand & Visual'],
   ['design-for-good', 'Design for Good'],
@@ -77,7 +77,7 @@ const routeDescriptions = new Map([
   ['medimorpho', 'An independent NYU healthcare service concept shaped by 20 primary-research interviews, designed to make meaning and next steps clearer across a care encounter.'],
   ['ux-design', 'UX design work by Parth Pawar across product systems, flows, interfaces, and service experiences.'],
   ['ux-research', 'UX research work by Parth Pawar across healthcare, civic systems, community programs, and product discovery.'],
-  ['creative-tech', 'Creative technology work by Parth Pawar spanning code, prototypes, physical computing, and interactive systems.'],
+  ['design-engineering', 'Design engineering work by Parth Pawar across production interfaces, interaction systems, and front-end prototypes.'],
   ['installations', 'Installations and physical interaction work by Parth Pawar.'],
   ['brand-visual', 'Brand and visual design work by Parth Pawar across identity, systems, and communication.'],
   ['design-for-good', 'Civic, education, accessibility, and design-for-good work by Parth Pawar.'],
@@ -122,7 +122,8 @@ const routeSocialPreviews = new Map([
 const canonicalAliases = new Map([
   ['ux', 'ux-design'],
   ['ui', 'ux-design'],
-  ['design-engineer', 'creative-tech'],
+  ['design-engineer', 'design-engineering'],
+  ['creative-tech', 'design-engineering'],
   ['brand', 'brand-visual'],
   ['healthcare', 'design-for-good'],
 ])
@@ -176,7 +177,7 @@ writeFileSync(
 )
 
 const sitemap = readFileSync(sitemapPath, 'utf8')
-const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
   .map((match) => {
     try {
       return new URL(match[1]).pathname.replace(/^\/+|\/+$/g, '')
@@ -185,6 +186,7 @@ const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
     }
   })
   .filter(Boolean)
+const routes = [...new Set([...sitemapRoutes, 'design-engineering', 'design-engineer', 'creative-tech'])]
 
 let written = 0
 for (const route of routes) {
