@@ -8,7 +8,6 @@ import {
   MorphingScreens,
   StackedPlates,
   LensAssembly,
-  GlassCrystal,
 } from './HeroObjects3D';
 import { useThemeMode } from '../hooks/useThemeMode';
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
@@ -24,7 +23,7 @@ const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolea
   'brand-visual': StackedPlates,
   ai: LensAssembly,
   'ai-wearables': LensAssembly,
-  'creative-tech': GlassCrystal,
+  'design-engineering': MorphingScreens,
 };
 
 // The objects are modeled at slightly different world sizes (the truss cube's
@@ -32,7 +31,7 @@ const CATEGORY_OBJECTS: Record<string, React.FC<{ dark: boolean; hovered: boolea
 // per slug — every object should read the same size in the same slot.
 const OBJECT_SCALE: Record<string, number> = {
   installations: 0.76,
-  'creative-tech': 1.42,
+  'design-engineering': 1.12,
   'design-for-good': 1.16,
   'ux-design': 1.12,
   'ux-research': 1.12,

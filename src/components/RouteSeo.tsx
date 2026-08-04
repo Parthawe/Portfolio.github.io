@@ -16,7 +16,8 @@ const NOINDEX_ROUTES = new Set(['/studio', '/graveyard', '/book'])
 const CATEGORY_ALIASES: Record<string, string> = {
   '/ux': 'ux-design',
   '/ui': 'ux-design',
-  '/design-engineer': 'creative-tech',
+  '/design-engineer': 'design-engineering',
+  '/creative-tech': 'design-engineering',
   '/brand': 'brand-visual',
   '/healthcare': 'design-for-good',
 }
@@ -71,7 +72,7 @@ function getHomeSchema() {
           'UX Design',
           'AI Wearables',
           'Fintech',
-          'Creative Technology',
+          'Design Engineering',
           'Physical Computing',
         ],
       },
@@ -86,7 +87,7 @@ function getRouteMeta(pathname: string): RouteMeta {
   if (pathname === '/') {
     return {
       title: 'Parth Pawar, Product Designer',
-      description: 'Portfolio of Parth Pawar, Product Designer crafting trusted systems across AI wearables, fintech, civic tools, creative technology, and physical interaction.',
+      description: 'Portfolio of Parth Pawar, Product Designer crafting trusted systems across AI wearables, fintech, civic tools, design engineering, and physical interaction.',
       image: toAbsoluteUrl(DEFAULT_IMAGE),
       url,
       type: 'website',
@@ -99,7 +100,7 @@ function getRouteMeta(pathname: string): RouteMeta {
   if (pathname === '/work') {
     return {
       title: 'Work · Parth Pawar',
-      description: 'Selected work by Parth Pawar across AI wearables, fintech, UX design, creative technology, installations, and brand systems.',
+      description: 'Selected work by Parth Pawar across AI wearables, fintech, UX design, design engineering, installations, and brand systems.',
       image: toAbsoluteUrl(DEFAULT_IMAGE),
       url,
       type: 'website',
@@ -127,7 +128,7 @@ function getRouteMeta(pathname: string): RouteMeta {
   if (pathname === '/about') {
     return {
       title: 'About · Parth Pawar',
-      description: 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra. Experience across AI wearables, fintech, civic tools, and creative technology.',
+      description: 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra. Experience across AI wearables, fintech, civic tools, and design engineering.',
       image: toAbsoluteUrl('/Assets/character/me/1.webp'),
       url,
       type: 'website',

@@ -22,11 +22,11 @@ import {
 const CategoryHero = lazy(() => import('../components/CategoryHero'))
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'))
 
-const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'ux-research', 'brand-visual', 'ai', 'creative-tech', 'fintech', 'crypto', 'ai-wearables'])
+const CATEGORIES_WITH_3D = new Set(['installations', 'design-for-good', 'ux-design', 'ux-research', 'brand-visual', 'ai', 'design-engineering', 'fintech', 'crypto', 'ai-wearables'])
 
 const CATEGORY_ALIASES: Record<string, string> = {
   brand: 'brand-visual',
-  'design-engineer': 'creative-tech',
+  'design-engineer': 'design-engineering',
   healthcare: 'design-for-good',
   ui: 'ux-design',
   ux: 'ux-design',
@@ -40,7 +40,6 @@ const CATEGORY_REGISTRY_KEY: Partial<Record<string, ProjectCategory>> = {
   'ai-wearables': 'ai',
   'ux-design': 'ux',
   'ux-research': 'research',
-  'creative-tech': 'creative',
   installations: 'install',
   'brand-visual': 'brand',
   'design-for-good': 'good',
@@ -51,7 +50,7 @@ const CATEGORY_REGISTRY_KEY: Partial<Record<string, ProjectCategory>> = {
    out downstream either way). */
 const EXTRA_CATEGORY_PROJECTS: Partial<Record<string, string[]>> = {
   'ux-design': ['mentra', 'mentra-miniapps', 'executivelens', 'raahi-project'],
-  'creative-tech': ['vj-software', 'black-hole', 'moniac-machine'],
+  'design-engineering': ['mentra', 'clawed-chat', 'executivelens', 'oncall-lens', 'ballah-code', 'zentipay', 'transfi-project', 'healthapp'],
   installations: ['jugalbandi', 'enigma', 'sea-of-salt'],
   'brand-visual': ['mentra-brand', 'office-of-diversity', 'sea-of-salt'],
   fintech: ['moniac-machine', 'executivelens'],
@@ -63,7 +62,7 @@ const CATEGORY_ANNOTATION_LINKS = [
   { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
   { label: 'UX Research', slug: 'ux-research', link: '/ux-research' },
   { label: 'AI & Wearables', slug: 'ai-wearables', link: '/ai-wearables' },
-  { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
+  { label: 'Design Engineering', slug: 'design-engineering', link: '/design-engineering' },
   { label: 'Installations', slug: 'installations', link: '/installations' },
   { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
   { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },

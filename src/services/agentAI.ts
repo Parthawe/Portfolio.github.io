@@ -384,7 +384,7 @@ const DEFAULT_CONTEXT_PROJECTS = ['mentra', 'zentipay', 'clawed-chat', 'executiv
 const EDGE_CATEGORY_ALIASES: Record<string, string> = {
   ux: 'ux-design',
   ui: 'ux-design',
-  'design-engineer': 'creative-tech',
+  'design-engineer': 'design-engineering',
   brand: 'brand-visual',
   healthcare: 'design-for-good',
 }

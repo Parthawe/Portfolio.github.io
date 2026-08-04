@@ -32,7 +32,7 @@ function getSignals(ctx: ChatContext): Signal[] {
 
   // 4+ project pages visited — browsing deeply
   // Exclude exact category paths, not startsWith (to avoid filtering /ai-voice, etc.)
-  const CATEGORY_PATHS = new Set(['/', '/work', '/about', '/ai', '/ux', '/ux-design', '/ux-research', '/ui', '/design-engineer', '/creative-tech', '/installations', '/brand', '/brand-visual', '/healthcare', '/fintech', '/design-for-good', '/crypto', '/ai-wearables', '/book', '/studio', '/graveyard'])
+  const CATEGORY_PATHS = new Set(['/', '/work', '/about', '/ai', '/ux', '/ux-design', '/ux-research', '/ui', '/design-engineer', '/design-engineering', '/creative-tech', '/installations', '/brand', '/brand-visual', '/healthcare', '/fintech', '/design-for-good', '/crypto', '/ai-wearables', '/book', '/studio', '/graveyard'])
   const projectPages = hist.filter(p => !CATEGORY_PATHS.has(p))
   if (projectPages.length >= 4) signals.push({ weight: 2, persona: 'peer' })
   if (projectPages.length >= 2 && projectPages.length < 4) signals.push({ weight: 1, persona: 'hm' })

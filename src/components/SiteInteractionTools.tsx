@@ -290,7 +290,7 @@ const categoryPaths: Record<string, string> = {
   research: '/ux-research',
   good: '/design-for-good',
   ai: '/ai-wearables',
-  creative: '/creative-tech',
+  creative: '/design-engineering',
   install: '/installations',
   brand: '/brand-visual',
 }

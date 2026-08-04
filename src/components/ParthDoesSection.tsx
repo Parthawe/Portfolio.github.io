@@ -39,11 +39,11 @@ const skills: Skill[] = [
     mockupAlt: 'ZentiPay fintech interface mockup',
   },
   {
-    label: 'Creative Technology',
-    objectSlug: 'creative-tech',
-    description: 'I prototype interfaces where software, motion, and physical interaction make complex ideas tangible.',
-    mockupSrc: '/Assets/mockups/projects/jugalbandi_16x9.webp',
-    mockupAlt: 'Jugalbandi interactive installation mockup',
+    label: 'Design Engineering',
+    objectSlug: 'design-engineering',
+    description: 'I carry interface systems from Figma into responsive, accessible production code.',
+    mockupSrc: '/Assets/mockups/projects/mentra_16x9.webp',
+    mockupAlt: 'Mentra product interface mockup',
   },
   {
     label: 'Physical Computing',

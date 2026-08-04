@@ -42,7 +42,7 @@ const PROJECT_CATEGORY_SLUGS: Record<ProjectCategory, string> = {
   ux: 'ux-design',
   research: 'ux-research',
   ai: 'ai',
-  creative: 'creative-tech',
+  creative: 'design-engineering',
   install: 'installations',
   brand: 'brand-visual',
   good: 'design-for-good',

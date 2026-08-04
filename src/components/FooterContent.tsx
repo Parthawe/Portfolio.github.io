@@ -26,9 +26,9 @@ const footerGroups = [
     title: 'Categories',
     links: [
       { label: 'AI + Wearables', to: '/ai-wearables' },
-      { label: 'Design Engineering', to: '/design-engineer' },
+      { label: 'UX Design', to: '/ux-design' },
       { label: 'Fintech', to: '/fintech' },
-      { label: 'Creative Technology', to: '/creative-tech' },
+      { label: 'Design Engineering', to: '/design-engineering' },
       { label: 'Brand + Visual', to: '/brand-visual' },
     ],
   },

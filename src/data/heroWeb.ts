@@ -47,7 +47,7 @@ export const HUB_IDS = [
   'ux-design',
   'brand-visual',
   'ai',
-  'creative-tech',
+  'design-engineering',
 ] as const
 
 // Disciplines behind the work — each links to the page that talks about that
@@ -63,16 +63,16 @@ const LINKS: { label: string; route: string }[] = [
   { label: 'Information Architecture', route: '/ux-design' },
   { label: 'Interface Design', route: '/ux-design' },
   { label: 'Service Design', route: '/ux-design' },
-  // Creative technology
-  { label: 'Creative Coding', route: '/creative-tech' },
-  { label: 'Generative Art', route: '/creative-tech' },
-  { label: 'Virtual Reality', route: '/creative-tech' },
-  { label: 'AR / XR', route: '/creative-tech' },
-  { label: 'Spatial Design', route: '/creative-tech' },
-  { label: 'Physical Computing', route: '/creative-tech' },
-  { label: 'Data Visualization', route: '/creative-tech' },
-  { label: 'Voice UI', route: '/creative-tech' },
-  { label: 'Motion Graphics', route: '/creative-tech' },
+  // Design engineering
+  { label: 'Front-end Systems', route: '/design-engineering' },
+  { label: 'Design Systems', route: '/design-engineering' },
+  { label: 'Interaction Prototypes', route: '/design-engineering' },
+  { label: 'Responsive UI', route: '/design-engineering' },
+  { label: 'State Design', route: '/design-engineering' },
+  { label: 'TypeScript', route: '/design-engineering' },
+  { label: 'React', route: '/design-engineering' },
+  { label: 'Accessibility', route: '/design-engineering' },
+  { label: 'Motion Systems', route: '/design-engineering' },
   // AI & wearables
   { label: 'Responsible AI', route: '/ai' },
   { label: 'Machine Learning', route: '/ai' },

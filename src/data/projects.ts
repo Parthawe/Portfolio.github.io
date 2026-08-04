@@ -115,7 +115,7 @@ export const CATEGORIES: CategoryFilter[] = [
   { key: 'research', label: 'UX Research' },
   { key: 'good', label: 'Design for Good' },
   { key: 'ai', label: 'AI & Wearables' },
-  { key: 'creative', label: 'Creative Tech' },
+  { key: 'creative', label: 'Design Engineering' },
   { key: 'install', label: 'Installations' },
   { key: 'brand', label: 'Brand & Visual' },
 ]
@@ -124,7 +124,7 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
   ux: 'UX Design',
   research: 'UX Research',
   ai: 'AI & Wearables',
-  creative: 'Creative Technology',
+  creative: 'Design Engineering',
   install: 'Installations',
   brand: 'Brand & Visual',
   good: 'Design for Good',
@@ -1873,12 +1873,29 @@ export const allProjectsCurated = (() => {
   return homeWorkListingProjects
 })()
 
+const DESIGN_ENGINEERING_PROJECT_SLUGS = new Set([
+  'mentra',
+  'clawed-chat',
+  'executivelens',
+  'oncall-lens',
+  'ballah-code',
+  'zentipay',
+  'transfi-project',
+  'healthapp',
+])
+
 export function filterProjectsByCategory(items: Project[], cat: ProjectCategory): Project[] {
+  if (cat === 'creative') {
+    return items.filter(p => DESIGN_ENGINEERING_PROJECT_SLUGS.has(p.slug) && isPubliclyVisibleProject(p))
+  }
   return items.filter(p => (p.category === cat || p.secondaryCategories?.includes(cat)) && isPubliclyVisibleProject(p))
 }
 
 /** Get projects by category */
 export function projectsByCategory(cat: ProjectCategory): Project[] {
+  if (cat === 'creative') {
+    return visibleProjects.filter(p => DESIGN_ENGINEERING_PROJECT_SLUGS.has(p.slug))
+  }
   return visibleProjects.filter(p => p.category === cat || p.secondaryCategories?.includes(cat))
 }
 

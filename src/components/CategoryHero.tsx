@@ -14,8 +14,7 @@ const CATEGORY_NAMES: Record<string, string> = {
   'ux-design':       'UX Design',
   'ux-research':     'UX Research',
   'ui':              'UI Design',
-  'creative-tech':   'Creative Tech',
-  'design-engineer': 'Design Engineer',
+  'design-engineering': 'Design Engineering',
   'installations':   'Installations',
   'brand-visual':    'Brand & Visual',
   'brand':           'Brand',
@@ -167,21 +166,7 @@ const CATEGORY_AUDIENCE: Record<string, readonly AudienceItem[]> = {
       text: 'The anxious parts get designed first: conversion, confirmation, pending states, failed payments, and what happens next.',
     },
   ],
-  'creative-tech': [
-    {
-      label: 'Creative\nSystems',
-      text: 'Interactive work where code, sound, hardware, and physical behavior are part of the design language.',
-    },
-    {
-      label: 'Prototype\nBuilders',
-      text: 'Playable systems, generative tools, and embodied interfaces built to answer questions static mockups cannot.',
-    },
-    {
-      label: 'Show\nReady',
-      text: 'Experiences made legible in public: quick to understand, satisfying to touch, and strong enough to survive a demo.',
-    },
-  ],
-  'design-engineer': [
+  'design-engineering': [
     {
       label: 'Design\nEngineer',
       text: 'I bridge Figma, React, motion, and prototyping so ideas get tested in the medium they depend on.',
@@ -352,7 +337,7 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
   }
 
   return (
-    <section className={`ch ch--landing ch--${slug}`}>
+    <section className={`ch ch--landing ch--${slug}`} data-category={slug}>
       <div className="ch-copy">
         {isCrypto ? (
           <motion.div

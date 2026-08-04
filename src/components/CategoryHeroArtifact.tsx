@@ -401,7 +401,7 @@ export default function CategoryHeroArtifact({ slug }: ArtifactProps) {
       ? <UxArtifact />
       : slug === 'creative-tech'
         ? <CreativeTechArtifact />
-        : slug === 'design-engineer'
+        : slug === 'design-engineering' || slug === 'design-engineer'
           ? <PrototypeArtifact />
         : slug === 'installations'
           ? <InstallationArtifact />

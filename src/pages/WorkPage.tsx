@@ -29,7 +29,7 @@ const LIBRARY_SECTION_COPY: Record<ProjectCategory, string> = {
   ux: 'Product systems, flows, and interfaces built to ship clearly at scale.',
   research: 'Interviews, field evidence, synthesis, and journey models that clarify what teams should build next.',
   ai: 'Voice, wearables, and interface layers where software changes how hardware feels.',
-  creative: 'Interactive systems and technical experiments that turn prototypes into experiences.',
+  creative: 'Shipped interfaces and working prototypes carried from product intent into production code.',
   install: 'Spatial work, responsive environments, and physical storytelling in public space.',
   brand: 'Identity, campaigns, and visual systems shaped for recall, not just decoration.',
   good: 'Civic, educational, and community work where design has to earn trust quickly.',
@@ -446,7 +446,7 @@ export default function WorkPage() {
     <>
       <Helmet>
         <title>Work · Parth Pawar</title>
-        <meta name="description" content="Selected work by Parth Pawar, product design, AI wearables, fintech, creative technology, installations." />
+        <meta name="description" content="Selected work by Parth Pawar across product design, design engineering, AI wearables, fintech, and installations." />
       </Helmet>
 
       <Nav />

@@ -26,7 +26,7 @@ const disciplines = [
   { label: 'UX Design', slug: 'ux-design', link: '/ux-design' },
   { label: 'UX Research', slug: 'ux-research', link: '/ux-research' },
   { label: 'AI & Wearables', slug: 'ai', link: '/ai' },
-  { label: 'Creative Tech', slug: 'creative-tech', link: '/creative-tech' },
+  { label: 'Design Engineering', slug: 'design-engineering', link: '/design-engineering' },
   { label: 'Installations', slug: 'installations', link: '/installations' },
   { label: 'Brand & Visual', slug: 'brand-visual', link: '/brand-visual' },
   { label: 'Design for Good', slug: 'design-for-good', link: '/design-for-good' },
@@ -162,10 +162,10 @@ export default function HomePage() {
     <>
       <Helmet>
         <title>Parth Pawar, Product Designer</title>
-        <meta name="description" content="Portfolio of Parth Pawar, crafting trusted product experiences across AI wearables, fintech, civic systems, creative technology, and physical computing." />
+        <meta name="description" content="Portfolio of Parth Pawar, crafting trusted product experiences across AI wearables, fintech, civic systems, design engineering, and physical computing." />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Parth Pawar, Product Designer" />
-        <meta property="og:description" content="Product Designer crafting trusted systems across AI wearables, fintech, civic tools, creative technology, and physical interaction." />
+        <meta property="og:description" content="Product Designer crafting trusted systems across AI wearables, fintech, civic tools, design engineering, and physical interaction." />
         <meta property="og:image" content={`${SITE_ORIGIN}${DEFAULT_OG_IMAGE}`} />
         <link rel="canonical" href={SITE_URL} />
       </Helmet>
