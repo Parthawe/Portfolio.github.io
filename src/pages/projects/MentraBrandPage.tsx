@@ -9,7 +9,6 @@ import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsImage from '../../components/case-study/CsImage'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
-import CsStatGrid from '../../components/case-study/CsStatGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -31,7 +30,7 @@ export default function MentraBrandPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#00B869' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--mentra-brand" style={{ '--project-color': '#00B869' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -40,6 +39,7 @@ export default function MentraBrandPage() {
           tags={['Brand Identity', 'Packaging Design', 'Art Direction', 'Smart Glasses']}
           title="Mentra Brand & Packaging"
           subtitle="Designing the retail, launch, and packaging system that helps new hardware earn trust before first use"
+          visualTitleMode="stacked"
           info={[
             { label: 'Role', value: 'Head of UI/UX — sole designer across all brand surfaces' },
             { label: 'Timeline', value: 'Q3 2025 – Present' },
@@ -64,13 +64,6 @@ export default function MentraBrandPage() {
           ]}
         />
 
-        <CsStatGrid style={{ marginTop: '-1rem' }} stats={[
-          { label: 'Packaging iterations', value: '7' },
-          { label: 'Booklet print rounds', value: '4' },
-          { label: 'Social templates shipped', value: '24' },
-          { label: 'Render families', value: '3' },
-        ]} />
-
         {/* ── Hero render ── */}
         <CsImage src={`${P}/packaging-box-black.png`} alt="Mentra Live packaging dieline for the black frame variant, showing product renders, logo placement, QR setup panel, and box structure" />
 
@@ -87,12 +80,12 @@ export default function MentraBrandPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div className="cs-img reveal" style={{ background: '#fff', padding: '4rem 3rem', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #e8e8e8' }}>
-                <img src={`${P}/logo.svg`} alt="Mentra logomark on white" style={{ maxWidth: '140px' }} loading="lazy" />
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
+              <div className="cs-img reveal mentra-brand-logo-stage mentra-brand-logo-stage--light">
+                <img className="mentra-brand-logo-stage__mark" src={`${P}/logo.svg`} alt="Mentra logomark on white" loading="lazy" />
               </div>
-              <div className="cs-img reveal" style={{ background: '#0A0A0A', padding: '4rem 3rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src={`${P}/powered-by-badge.png`} alt="Powered by Mentra badge on dark background" style={{ maxWidth: '240px' }} loading="lazy" />
+              <div className="cs-img reveal mentra-brand-logo-stage mentra-brand-logo-stage--dark">
+                <img className="mentra-brand-logo-stage__badge" src={`${P}/powered-by-badge.png`} alt="Powered by Mentra badge on dark background" loading="lazy" />
               </div>
             </div>
           </div>
@@ -101,7 +94,7 @@ export default function MentraBrandPage() {
         {/* 3D logo explorations — the mark as a physical object */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three">
               <div className="cs-img reveal"><img src={`${P}/logo-3d-green.webp`} alt="3D logo: glossy green on white — the primary brand mark rendered as physical object" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/logo-3d-black.webp`} alt="3D logo: glossy black on dark — premium variant for dark contexts" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/logo-3d-iridescent.webp`} alt="3D logo: iridescent blue crystal — exploration for special editions and events" loading="lazy" /></div>
@@ -117,24 +110,26 @@ export default function MentraBrandPage() {
             <p>Most smart glasses brands default to blue. Mentra needed instant recognition, so the system uses one green, three neutrals, and strict rules for creators using assets without supervision.</p>
           </CsBody>
           {/* Swatches */}
-          <div className="cs-brand-swatches" style={{ marginTop: 'var(--space-4)', display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '0.5rem' }}>
-            <div style={{ background: '#00B869', borderRadius: 'var(--radius-md)', padding: '2.5rem 1.5rem', display: 'flex', alignItems: 'flex-end' }}>
-              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem', fontWeight: 600 }}>Mentra Green</span>
+          <div className="cs-brand-swatches mentra-brand-swatches" role="list" aria-label="Mentra brand colors">
+            <div className="mentra-brand-swatch mentra-brand-swatch--green" role="listitem">
+              <span><strong>Mentra Green</strong><small>#00B869</small></span>
             </div>
-            <div style={{ background: '#FFFFFF', borderRadius: 'var(--radius-md)', padding: '2.5rem 1rem', display: 'flex', alignItems: 'flex-end', border: '1px solid #e5e5e5' }}>
-              <span style={{ color: '#595959', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem' }}>#FFF</span>
+            <div className="mentra-brand-swatch mentra-brand-swatch--white" role="listitem">
+              <span><strong>White</strong><small>#FFFFFF</small></span>
             </div>
-            <div style={{ background: '#737373', borderRadius: 'var(--radius-md)', padding: '2.5rem 1rem', display: 'flex', alignItems: 'flex-end' }}>
-              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem' }}>#737373</span>
+            <div className="mentra-brand-swatch mentra-brand-swatch--gray" role="listitem">
+              <span><strong>Gray</strong><small>#737373</small></span>
             </div>
-            <div style={{ background: '#0A0A0A', borderRadius: 'var(--radius-md)', padding: '2.5rem 1rem', display: 'flex', alignItems: 'flex-end' }}>
-              <span style={{ color: '#fff', fontFamily: 'var(--font-mono, monospace)', fontSize: '1rem' }}>#0A0A0A</span>
+            <div className="mentra-brand-swatch mentra-brand-swatch--black" role="listitem">
+              <span><strong>Black</strong><small>#0A0A0A</small></span>
             </div>
           </div>
-          <CsBody style={{ marginTop: 'var(--space-5)' }}>
+          <div className="mentra-brand-type-note">
+          <CsBody>
             <p>Red Hat Display gave the brand a useful balance: geometric enough for tech credibility, soft enough for a consumer hardware product.</p>
           </CsBody>
-          <div className="cs-label-row" style={{ marginTop: 'var(--space-3)' }}>
+          </div>
+          <div className="cs-label-row mentra-brand-type-spec">
             <span className="cs-label-row-key">Typeface</span>
             <span className="cs-label-row-val">Red Hat Display &mdash; geometric sans-serif</span>
           </div>
@@ -163,7 +158,7 @@ export default function MentraBrandPage() {
         {/* Both packaging variants */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
               <div className="cs-img reveal"><img src={`${P}/packaging-box-black.png`} alt="Black frame packaging: die-cut layout with product renders, brand pattern, QR quickstart, Powered by MentraOS on flap" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/packaging-box-clear-1.webp`} alt="Clear frame packaging: transparent frame renders, same structural layout, different product photography" loading="lazy" /></div>
             </div>
@@ -173,7 +168,7 @@ export default function MentraBrandPage() {
         {/* Bottom label — the manufacturing precision shot */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <p className="cs-section-label" style={{ marginBottom: 'var(--space-3)' }}>Bottom Label &mdash; Factory Spec</p>
+            <p className="cs-section-label mentra-brand-media-label">Bottom Label &mdash; Factory Spec</p>
             <div className="cs-img reveal"><img src={`${P}/packaging-box-clear-2.webp`} alt="Bottom label production spec: FCC ID, CE marking, Prop 65 warning, barcode, model number — red measurement annotations for factory" loading="lazy" /></div>
           </div>
         </section>
@@ -198,7 +193,7 @@ export default function MentraBrandPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
               <div className="cs-img reveal"><img src={`${P}/yt-unboxing-1.webp`} alt="YouTube thumbnail: creator holding Mentra Live box and charging case — UNBOXING MENTRA LIVE" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/yt-unboxing-2.webp`} alt="YouTube thumbnail: creator revealing glasses from box — SMART GLASSES REVEALED" loading="lazy" /></div>
             </div>
@@ -228,14 +223,14 @@ export default function MentraBrandPage() {
         {/* Booklet spread */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem' }}>
-              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-1.webp`} alt="Page 1: QR code and Mentra logo — scan to download app" loading="lazy" /></div>
-              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-2.webp`} alt="Page 2: Line-art illustration of glasses with intro text" loading="lazy" /></div>
-              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-3.webp`} alt="Page 3: Hardware at a glance — 9 labeled components" loading="lazy" /></div>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--compact">
+              <div className="cs-img reveal mentra-brand-booklet-page"><img src={`${P}/booklet-page-1.webp`} alt="Page 1: QR code and Mentra logo — scan to download app" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img src={`${P}/booklet-page-2.webp`} alt="Page 2: Line-art illustration of glasses with intro text" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img src={`${P}/booklet-page-3.webp`} alt="Page 3: Hardware at a glance — 9 labeled components" loading="lazy" /></div>
             </div>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '0.75rem' }}>
-              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-5.webp`} alt="Page 5: Turn on/off — hand holding glasses at power button" loading="lazy" /></div>
-              <div className="cs-img reveal" style={{ background: '#f5f5f5', borderRadius: 'var(--radius-md)' }}><img src={`${P}/booklet-page-9.webp`} alt="Page 9: Charging case — glasses clicking into place" loading="lazy" /></div>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two mentra-brand-grid--compact mentra-brand-grid--follow">
+              <div className="cs-img reveal mentra-brand-booklet-page"><img src={`${P}/booklet-page-5.webp`} alt="Page 5: Turn on/off — hand holding glasses at power button" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img src={`${P}/booklet-page-9.webp`} alt="Page 9: Charging case — glasses clicking into place" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -270,12 +265,12 @@ export default function MentraBrandPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three">
               <div className="cs-img reveal"><img src={`${P}/editorial-portrait-1.webp`} alt="Isarelov shoot: model looking right, minimal studio, black frame" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/editorial-portrait-2.webp`} alt="Isarelov shoot: front-facing, Mentra Live as everyday eyewear" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/editorial-portrait-3.webp`} alt="Isarelov shoot: button-up shirt, professional context" loading="lazy" /></div>
             </div>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--follow">
               <div className="cs-img reveal"><img src={`${P}/studio-shot-1.webp`} alt="Studio shoot: dark urban setting, cinematic lighting" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/studio-shot-2.webp`} alt="Studio shoot: product in low-light context" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/studio-shot-3.webp`} alt="Studio shoot: lifestyle, technology in daily use" loading="lazy" /></div>
@@ -286,7 +281,7 @@ export default function MentraBrandPage() {
         {/* Product-in-hand: the real hardware */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '0.75rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--four mentra-brand-grid--compact">
               <div className="cs-img reveal"><img src={`${P}/product-hand-front.webp`} alt="Hardware in hand: front view, matte finish visible" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/product-hand-angle.webp`} alt="Hardware in hand: angle, camera module visible" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/product-folded.webp`} alt="Folded glasses from above, hinge detail" loading="lazy" /></div>
@@ -306,11 +301,11 @@ export default function MentraBrandPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
               <div className="cs-img reveal"><img src={`${P}/cover-twitter-green.png`} alt="Twitter/X cover: green variant" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/cover-linkedin-light.png`} alt="LinkedIn cover: light variant" loading="lazy" /></div>
             </div>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--follow">
               <div className="cs-img reveal"><img src={`${P}/cover-youtube-light.webp`} alt="YouTube banner" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/cover-github-light.webp`} alt="GitHub social preview" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/cover-reddit-light.webp`} alt="Reddit banner" loading="lazy" /></div>
@@ -330,7 +325,7 @@ export default function MentraBrandPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '0.75rem' }}>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--four mentra-brand-grid--compact">
               <div className="cs-img reveal"><img src={`${P}/ad-stream.webp`} alt="Stream Your World — birthday through lens" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/ad-hear.webp`} alt="Hear Your Audio, The World — jogging" loading="lazy" /></div>
               <div className="cs-img reveal"><img src={`${P}/ad-3.webp`} alt="Shipping Soon — teaser on green" loading="lazy" /></div>
@@ -349,15 +344,15 @@ export default function MentraBrandPage() {
         </CsSection>
 
         {/* Dark section for renders */}
-        <section className="cs-section reveal" style={{ background: '#0A0A0A', padding: 'clamp(2rem, 5vw, 4rem) 0' }}>
+        <section className="cs-section reveal mentra-brand-render-stage">
           <div className="wrap">
-            <div className="cs-img reveal" style={{ border: 'none', background: 'transparent' }}>
-              <img src={`${P}/render-black-camera.webp`} alt="Black frame: camera module macro, Mentra logo on temple" loading="lazy" style={{ borderRadius: 'var(--radius-lg)' }} />
+            <div className="cs-img reveal mentra-brand-render">
+              <img className="mentra-brand-render__hero" src={`${P}/render-black-camera.webp`} alt="Black frame: camera module macro, Mentra logo on temple" loading="lazy" />
             </div>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
-              <div className="cs-img reveal" style={{ border: 'none', background: 'transparent' }}><img src={`${P}/render-hinge-detail.webp`} alt="Hinge detail: power button, USB-C" loading="lazy" style={{ borderRadius: 'var(--radius-md)' }} /></div>
-              <div className="cs-img reveal" style={{ border: 'none', background: 'transparent' }}><img src={`${P}/render-black-temple.webp`} alt="Temple depth-of-field" loading="lazy" style={{ borderRadius: 'var(--radius-md)' }} /></div>
-              <div className="cs-img reveal" style={{ border: 'none', background: 'transparent' }}><img src={`${P}/render-black-front.webp`} alt="Front view, dark background" loading="lazy" style={{ borderRadius: 'var(--radius-md)' }} /></div>
+            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--follow">
+              <div className="cs-img reveal mentra-brand-render"><img src={`${P}/render-hinge-detail.webp`} alt="Hinge detail: power button, USB-C" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-render"><img src={`${P}/render-black-temple.webp`} alt="Temple depth-of-field" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-render"><img src={`${P}/render-black-front.webp`} alt="Front view, dark background" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -401,7 +396,7 @@ export default function MentraBrandPage() {
           ]} />
         </CsSection>
 
-        <CsThanks contactCta style={{ marginTop: '4rem' }} />
+        <div className="mentra-brand-thanks"><CsThanks contactCta /></div>
 
         </CsExpandPreview>
 

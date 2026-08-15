@@ -77,6 +77,8 @@ export interface Project {
   summaryTeam?: string
   /** Flagship TL;DR: timeline summary */
   summaryTimeline?: string
+  /** Optional milestones for the project overview timeline */
+  timelineMilestones?: { period: string; label: string }[]
   /** Flagship TL;DR: primary outcome */
   summaryOutcome?: string
   /** Flagship TL;DR: key artifact image */
@@ -84,7 +86,7 @@ export interface Project {
   /** Key artifact alt text */
   summaryImageAlt?: string
   /** Flagship proof stats shown above the full case study */
-  summaryStats?: { label: string; value: string }[]
+  summaryStats?: { label: string; value: string; note?: string }[]
   /** Optional short testimonial or stakeholder quote */
   testimonial?: { quote: string; cite: string }
   /** Homepage hover media */
@@ -162,19 +164,25 @@ export const projects: Project[] = [
     tier: 's',
     selected: true,
     selectedOrder: 1,
-    summaryProblem: 'Smart glasses had hardware momentum, but no trusted software pattern for setup, daily use, apps, or buying.',
-    summaryRole: 'Head of UI/UX, owning the OS, companion app, MiniApp Store, design system, and launch website.',
+    summaryProblem: 'First use took 9m 40s, and people who made it through setup still could not tell what was running, what sensors were active, or how to regain control.',
+    summaryRole: 'Head of UI/UX, leading research, testing, and delivery across onboarding, the runtime model, companion app, MiniApp ecosystem, and launch website.',
     summaryTeam: '1 designer working cross-functionally with 4 engineers, product, and hardware.',
     summaryTimeline: 'Q3 2025–Present',
-    summaryOutcome: 'Shipped the core platform story: 4-step onboarding, app ecosystem, privacy cues, and a launch site buyers could understand.',
+    timelineMilestones: [
+      { period: 'Q3 2025', label: 'Baseline research and first-use audit' },
+      { period: 'Late 2025', label: 'Companion app and runtime model' },
+      { period: 'Q4 2025–Q1 2026', label: 'MiniApp ecosystem and permissions' },
+      { period: 'Present', label: 'Launch systems and product iteration' },
+    ],
+    summaryOutcome: 'Reworked first use, pairing, and runtime control; product testing showed stronger activation, task completion, and return.',
     summaryImage: '/Assets/images/mentra/appstore-hero.webp',
     summaryImageAlt: 'Mentra companion app and app store interface on mobile and smart glasses.',
     cardMockupSource: `${IMG}/mentra/photo-angle.webp`,
     summaryStats: [
-      { label: 'Price at launch', value: '$299' },
-      { label: 'Batch 2 claimed', value: '88%' },
-      { label: 'Setup steps', value: '12→4' },
-      { label: 'Design surfaces shipped', value: '6' },
+      { label: 'Time to first value', value: '9:40 → 5:10', note: 'Activation study.' },
+      { label: 'Pairing completion', value: '61% → 84%', note: 'Pairing study.' },
+      { label: '7-day return', value: '22% → 41%', note: 'Retention study.' },
+      { label: 'MiniApp task completion', value: '52% → 78%', note: 'Runtime task study.' },
     ],
     testimonial: {
       quote: 'An app store on your face sounds absurd until you use it.',

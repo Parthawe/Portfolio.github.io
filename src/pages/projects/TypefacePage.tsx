@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import ProjectHeader from '../../components/case-study/ProjectHeader'
 import GlyphPlayground from '../../components/GlyphPlayground'
 import GlyphEditor from '../../components/GlyphEditor'
-import { getProject } from '../../data/projects'
 
 const TYPEFACE_ASSET = '/Assets/Projects/Typeface'
 
@@ -54,8 +53,6 @@ export default function TypefacePage() {
     fontFamily: 'var(--tf-slice)',
     fontWeight: activeWeight.value,
   }
-  const project = getProject('typeface')
-
   return (
     <>
       <Helmet>
@@ -76,43 +73,32 @@ export default function TypefacePage() {
       <Nav />
 
       <main id="main-content" className="project-main typeface-page" style={{ '--project-color': '#5B63D3' } as React.CSSProperties}>
-        <section className="tf-hero" id="tf-overview">
+        <div id="tf-overview">
+          <ProjectHeader
+            backLink="/work"
+            backLabel="Back to Work"
+            tags={['Type Design', 'Editorial Display', 'Interactive Specimen']}
+            title="Butler’s Slice"
+            subtitle="A display serif cut for editorial scale, built as a usable family rather than a one-off lettering experiment."
+            info={[
+              { label: 'Role', value: 'Type designer and developer' },
+              { label: 'Team / context', value: 'Independent type design project' },
+              { label: 'Timeline', value: '2022' },
+            ]}
+            heroImage={`${TYPEFACE_ASSET}/photos/hero-title.jpg`}
+            heroAlt="Butler’s Slice cover specimen"
+            heroExperience="visual"
+            heroTone="typeface"
+            visualSummary="A display serif cut for editorial scale, built as a complete 400-plus glyph family."
+            visualTitleMode="stacked"
+            liveUrl={`${TYPEFACE_ASSET}/butlers-slice.zip`}
+            liveLabel="Download family"
+            liveDownload
+          />
+        </div>
+
+        <section className="tf-specimen-section" aria-label="Interactive type specimen">
           <div className="tf-hero-shell">
-            <div className="tf-kicker-row">
-              <Link to="/work" className="tf-back-link">
-                Back to Work
-              </Link>
-              <span>Typeface / 2022</span>
-              <span>Free display family</span>
-            </div>
-
-            <h1>Butler&rsquo;s Slice</h1>
-
-            <div className="tf-hero-grid">
-              <p className="tf-lede">
-                A display serif cut for editorial scale, built as a usable specimen with three weights, web files,
-                and interactive glyph tools.
-              </p>
-
-              <aside className="tf-font-card" aria-label="Typeface summary">
-                <div>
-                  <span className="tf-card-label">Family</span>
-                  <strong>Butler&rsquo;s Slice</strong>
-                </div>
-                <div>
-                  <span className="tf-card-label">Current weight</span>
-                  <strong>{activeWeight.label}</strong>
-                </div>
-                <div>
-                  <span className="tf-card-label">Files</span>
-                  <strong>9 web + print files</strong>
-                </div>
-                <a href={`${TYPEFACE_ASSET}/butlers-slice.zip`} download className="tf-download-link">
-                  Download family
-                </a>
-              </aside>
-            </div>
-
             <div className="tf-live-specimen" aria-label="Live type specimen">
               <div className="tf-specimen-toolbar">
                 <div className="tf-toolbar-group">
@@ -166,32 +152,6 @@ export default function TypefacePage() {
             </div>
           </div>
         </section>
-
-        {project?.summaryProblem && project.summaryRole && project.summaryOutcome ? (
-          <section className="proj-fastread tf-project-summary" aria-label="Fast read summary">
-            <header className="proj-fastread-head">
-              <div>
-                <span className="proj-fastread-kicker">Fast read</span>
-                <h2 className="proj-fastread-title">Why this project matters</h2>
-              </div>
-              <p className="proj-fastread-meta">Type design · 2022</p>
-            </header>
-            <dl className="proj-fastread-list">
-              <div className="proj-fastread-row">
-                <dt>Problem</dt>
-                <dd>{project.summaryProblem}</dd>
-              </div>
-              <div className="proj-fastread-row">
-                <dt>Role &amp; responsibilities</dt>
-                <dd>{project.summaryRole}</dd>
-              </div>
-              <div className="proj-fastread-row">
-                <dt>Outcome</dt>
-                <dd>{project.summaryOutcome}</dd>
-              </div>
-            </dl>
-          </section>
-        ) : null}
 
         <CsExpandPreview
           ctaLabel="Open the full type specimen"

@@ -8,6 +8,11 @@ interface ProjectQuickSummaryProps {
   onViewModeChange: (mode: CaseStudyViewMode) => void
   fullCaseStudyEnabled?: boolean
   variant?: 'card' | 'open'
+  label?: string
+  title?: string
+  proofLimit?: number
+  proofHeading?: string
+  showImage?: boolean
 }
 
 export default function ProjectQuickSummary({
@@ -16,6 +21,11 @@ export default function ProjectQuickSummary({
   onViewModeChange,
   fullCaseStudyEnabled = true,
   variant = 'card',
+  label = 'Quick read',
+  title = 'Problem, role, outcome',
+  proofLimit = 3,
+  proofHeading,
+  showImage = true,
 }: ProjectQuickSummaryProps) {
   const project = getProject(slug)
 
@@ -29,22 +39,22 @@ export default function ProjectQuickSummary({
   }
 
   const isAccessLimited = isRequestAccessProject(project)
-  const proofStats = project.summaryStats?.slice(0, 3) ?? []
+  const proofStats = project.summaryStats?.slice(0, proofLimit) ?? []
 
   return (
     <section className="cs-quick-summary wrap reveal" id="cs-summary">
       <div className={`cs-quick-summary-shell cs-quick-summary-shell--${variant}${variant === 'card' ? ' surface-glass' : ''}`}>
         <div className="cs-quick-summary-top">
           <div>
-            <span className="cs-section-label">Quick read</span>
-            <h2 className="cs-quick-summary-title">Problem, role, outcome</h2>
+            {label ? <span className="cs-section-label">{label}</span> : null}
+            <h2 className="cs-quick-summary-title">{title}</h2>
           </div>
 
-          <div className="cs-quick-summary-toggle" role="tablist" aria-label="Case study view mode">
+          <div className="cs-quick-summary-toggle" role="group" aria-label="Case study view mode">
             <button
               type="button"
               className={`cs-quick-summary-toggle-btn${viewMode === 'summary' ? ' is-active' : ''}`}
-              aria-selected={viewMode === 'summary'}
+              aria-pressed={viewMode === 'summary'}
               onClick={() => onViewModeChange('summary')}
             >
               Quick read
@@ -53,7 +63,7 @@ export default function ProjectQuickSummary({
               <button
                 type="button"
                 className={`cs-quick-summary-toggle-btn${viewMode === 'full' ? ' is-active' : ''}`}
-                aria-selected={viewMode === 'full'}
+                aria-pressed={viewMode === 'full'}
                 onClick={() => onViewModeChange('full')}
               >
                 {isAccessLimited ? 'Public story' : 'Full story'}
@@ -80,7 +90,7 @@ export default function ProjectQuickSummary({
             </article>
           </div>
 
-          {project.summaryImage ? (
+          {showImage && project.summaryImage ? (
             <figure className="cs-quick-summary-image">
               <img
                 src={project.summaryImage}
@@ -93,14 +103,18 @@ export default function ProjectQuickSummary({
         </div>
 
         {proofStats.length ? (
-          <div className="cs-quick-summary-stats" aria-label="Key proof points">
-            {proofStats.map((stat) => (
-              <div key={stat.label} className="cs-quick-summary-stat">
-                <span className="cs-quick-summary-stat-value">{stat.value}</span>
-                <span className="cs-quick-summary-stat-label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
+          <>
+            {proofHeading ? <h3 className="cs-quick-summary-proof-title">{proofHeading}</h3> : null}
+            <div className="cs-quick-summary-stats" aria-label="Key proof points">
+              {proofStats.map((stat) => (
+                <div key={stat.label} className="cs-quick-summary-stat">
+                  <span className="cs-quick-summary-stat-value">{stat.value}</span>
+                  <span className="cs-quick-summary-stat-label">{stat.label}</span>
+                  {stat.note ? <span className="cs-quick-summary-stat-note">{stat.note}</span> : null}
+                </div>
+              ))}
+            </div>
+          </>
         ) : null}
 
         {project.testimonial ? (

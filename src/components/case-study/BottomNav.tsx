@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { useReadingProgress } from '../../hooks/useReadingProgress';
 import FigmaSelect from '../FigmaSelect';
 
@@ -16,7 +16,11 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const isScrolling = useRef(false);
   const [availableSections, setAvailableSections] = useState(sections);
   const [hasExpandAction, setHasExpandAction] = useState(false);
-  const visibleSections = useMemo(() => availableSections.slice(0, 4), [availableSections]);
+  const [activeSectionId, setActiveSectionId] = useState(sections[0]?.id ?? '');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const usesChapterMenu = availableSections.length > 3;
+  const directSections = usesChapterMenu ? [] : availableSections;
+  const activeSection = availableSections.find((section) => section.id === activeSectionId) ?? availableSections[0];
 
   useEffect(() => {
     const updateAvailableSections = () => {
@@ -32,6 +36,27 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
 
     return () => observer.disconnect();
   }, [sections]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (navRef.current?.contains(event.target as Node)) return;
+      setMenuOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setMenuOpen(false);
+      navRef.current?.querySelector<HTMLButtonElement>('.cs-bnav-chapters')?.focus();
+    };
+
+    document.addEventListener('pointerdown', closeOnOutsideClick);
+    document.addEventListener('keydown', closeOnEscape);
+    return () => {
+      document.removeEventListener('pointerdown', closeOnOutsideClick);
+      document.removeEventListener('keydown', closeOnEscape);
+    };
+  }, [menuOpen]);
 
   const showNav = useCallback(() => {
     const nav = navRef.current;
@@ -51,16 +76,9 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
     nav.classList.add('is-before-hero');
 
     // --- Active section tracking ---
-    const links = nav.querySelectorAll<HTMLAnchorElement>('.cs-bnav-link:not(.cs-bnav-live)');
-    const pairs: { link: HTMLAnchorElement; section: HTMLElement }[] = [];
-
-    links.forEach((link) => {
-      const href = link.getAttribute('href');
-      if (!href) return;
-      const id = href.replace('#', '');
-      const section = document.getElementById(id);
-      if (section) pairs.push({ link, section });
-    });
+    const pairs = availableSections
+      .map((section) => ({ config: section, element: document.getElementById(section.id) }))
+      .filter((pair): pair is { config: { id: string; label: string }; element: HTMLElement } => Boolean(pair.element));
 
     let sectionObserver: IntersectionObserver | undefined;
     if (pairs.length) {
@@ -68,21 +86,14 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              links.forEach((l) => {
-                l.classList.remove('active');
-                l.removeAttribute('aria-current');
-              });
-              const match = pairs.find((p) => p.section === entry.target);
-              if (match) {
-                match.link.classList.add('active');
-                match.link.setAttribute('aria-current', 'true');
-              }
+              const match = pairs.find((pair) => pair.element === entry.target);
+              if (match) setActiveSectionId(match.config.id);
             }
           });
         },
         { rootMargin: '-25% 0px -65% 0px' }
       );
-      pairs.forEach((p) => sectionObserver!.observe(p.section));
+      pairs.forEach((pair) => sectionObserver!.observe(pair.element));
     }
 
     // --- Keep the dock clear of the next-project handoff and footer ---
@@ -110,13 +121,16 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       updateHeroGuard = () => {
         const rect = hero.getBoundingClientRect();
         const releaseLine = 0;
-        nav.classList.toggle('is-before-hero', rect.bottom > releaseLine);
+        const isReading = rect.bottom <= releaseLine;
+        nav.classList.toggle('is-before-hero', !isReading);
+        document.body.classList.toggle('case-study-reading', isReading);
       };
       updateHeroGuard();
       window.addEventListener('scroll', updateHeroGuard, { passive: true });
       window.addEventListener('resize', updateHeroGuard);
     } else {
       nav.classList.remove('is-before-hero');
+      document.body.classList.add('case-study-reading');
     }
 
     // --- Auto-hide on scroll pause ---
@@ -133,12 +147,14 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       }
       window.removeEventListener('scroll', showNav);
       clearTimeout(hideTimer.current);
+      document.body.classList.remove('case-study-reading');
     };
-  }, [visibleSections, showNav]);
+  }, [availableSections, showNav]);
 
   // Smooth scroll click handler
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+    setMenuOpen(false);
     const target = document.getElementById(id);
     if (!target) return;
     const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 56;
@@ -151,7 +167,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
     window.scrollTo({ top, behavior: 'smooth' });
   };
 
-  if (!visibleSections.length && !hasExpandAction && !modeAction && !liveUrl) return null;
+  if (!availableSections.length && !hasExpandAction && !modeAction && !liveUrl) return null;
 
   return (
     <nav
@@ -184,11 +200,56 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       {/* Reading progress bar */}
       <div className="cs-bnav-progress" />
 
-      {visibleSections.map((s) => (
+      {usesChapterMenu && activeSection ? (
+        <div className="cs-bnav-chapter-control">
+          <button
+            type="button"
+            className="cs-bnav-link cs-bnav-chapters figma-hover"
+            aria-expanded={menuOpen}
+            aria-controls="cs-bnav-chapter-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="cs-bnav-current-prefix">Chapter</span>
+            <span className="cs-bnav-current-label">{activeSection.label}</span>
+            <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+              <path d="M2.5 7.5 6 4l3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <FigmaSelect />
+          </button>
+          <div
+            id="cs-bnav-chapter-menu"
+            className={`cs-bnav-menu${menuOpen ? ' is-open' : ''}`}
+            aria-hidden={!menuOpen}
+          >
+            <div className="cs-bnav-menu-head">
+              <span>Case study chapters</span>
+              <span>{availableSections.length}</span>
+            </div>
+            <div className="cs-bnav-menu-list">
+              {availableSections.map((section, index) => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={`cs-bnav-menu-link${section.id === activeSectionId ? ' active' : ''}`}
+                  aria-current={section.id === activeSectionId ? 'location' : undefined}
+                  tabIndex={menuOpen ? 0 : -1}
+                  onClick={(event) => handleClick(event, section.id)}
+                >
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {section.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {directSections.map((s) => (
         <a
           key={s.id}
           href={`#${s.id}`}
-          className="cs-bnav-link figma-hover"
+          className={`cs-bnav-link figma-hover${s.id === activeSectionId ? ' active' : ''}`}
+          aria-current={s.id === activeSectionId ? 'location' : undefined}
           onClick={(e) => handleClick(e, s.id)}
         >
           {s.label.trim().toLowerCase() === 'tl;dr' ? 'Quick read' : s.label}
@@ -226,7 +287,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
           rel="noopener noreferrer"
           className="cs-bnav-link cs-bnav-live figma-hover"
         >
-          Live Site
+          Live site
           <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           <FigmaSelect />
         </a>

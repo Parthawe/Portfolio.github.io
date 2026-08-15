@@ -22,6 +22,34 @@ const CATEGORY_ALIASES: Record<string, string> = {
   '/healthcare': 'design-for-good',
 }
 
+const MOTION_ROUTE_META: Record<string, { title: string; description: string; image: string }> = {
+  '/motion': {
+    title: 'Motion Design · Parth Pawar',
+    description: 'Motion systems, campaign archives, editorial studies, and production plans grounded in real product and brand behavior.',
+    image: '/Assets/mockups/projects/vishwaconclave_16x9.webp',
+  },
+  '/motion/vishwa-conclave-motion': {
+    title: 'VishwaConclave Motion Case Study · Parth Pawar',
+    description: 'Official campaign archive showing how one event identity connected theme films, speaker reveals, web, merchandise, and programming.',
+    image: '/Assets/mockups/projects/vishwaconclave_16x9.webp',
+  },
+  '/motion/mentra-motion-language': {
+    title: 'Mentra Motion Language · Parth Pawar',
+    description: 'A product-grounded advertising and motion-system proposal using original Mentra source assets.',
+    image: '/Assets/mockups/projects/mentra_16x9.webp',
+  },
+  '/motion/transfi-identity-motion': {
+    title: 'TransFi Identity Motion · Parth Pawar',
+    description: 'A motion system that makes a complex payment observable from intent through delivery.',
+    image: '/Assets/mockups/projects/transfi-project_16x9.webp',
+  },
+  '/motion/editing-motion-stories': {
+    title: 'Cutting Systems into Stories · Parth Pawar',
+    description: 'Four completed project films examined through story structure, pacing, motion graphics, and delivery.',
+    image: '/Assets/mockups/projects/enigma_16x9.webp',
+  },
+}
+
 interface RouteMeta {
   title: string
   description: string
@@ -200,6 +228,19 @@ function getRouteMeta(pathname: string): RouteMeta {
       type: 'article',
       robots,
       imageAlt: 'Health app product design concept by Parth Pawar.',
+    }
+  }
+
+  const motionMeta = MOTION_ROUTE_META[pathname]
+  if (motionMeta) {
+    return {
+      title: motionMeta.title,
+      description: motionMeta.description,
+      image: toAbsoluteUrl(motionMeta.image),
+      url,
+      type: pathname === '/motion' ? 'website' : 'article',
+      robots,
+      imageAlt: `${motionMeta.title.replace(' · Parth Pawar', '')} by Parth Pawar.`,
     }
   }
 

@@ -37,17 +37,34 @@
   color: var(--ink);
 }
 
-.tf-project-summary {
-  width: min(1180px, calc(100% - clamp(2rem, 8vw, 8rem)));
-  margin: 0 auto;
-  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
-}
-
 .typeface-page::before {
   opacity: 0.42;
 }
 
-.tf-hero,
+.typeface-page .project-header--typeface .proj-visual-title {
+  max-width: min(100%, 72rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.typeface-page .project-header--typeface .proj-visual-title__name {
+  color: rgba(250, 253, 251, 0.98);
+  font-family: var(--tf-slice);
+  font-size: clamp(4.5rem, 11vw, 10.5rem);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: 0;
+}
+
+.typeface-page .project-header--typeface .proj-visual-title__deck {
+  max-width: 42ch;
+  color: rgba(250, 253, 251, 0.76);
+  font-family: var(--sans);
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.tf-specimen-section,
 .tf-section,
 .tf-split-section,
 .tf-tool-section,
@@ -56,8 +73,8 @@
   margin-inline: auto;
 }
 
-.tf-hero {
-  padding: clamp(7rem, 10vw, 10rem) 0 clamp(3rem, 7vw, 6rem);
+.tf-specimen-section {
+  padding: clamp(1rem, 3vw, 2.5rem) 0 clamp(3rem, 7vw, 6rem);
 }
 
 .tf-hero-shell {
@@ -234,7 +251,7 @@
 }
 
 .tf-chip-row button {
-  min-height: 2rem;
+  min-height: 44px;
   border: 1px solid var(--ink-06);
   border-radius: 6px;
   padding: 0.35rem 0.7rem;
@@ -607,7 +624,7 @@
 
 @media (min-width: 1024px) {
   body.case-side-nav .typeface-page > :is(
-    .tf-hero,
+    .tf-specimen-section,
     .tf-section,
     .tf-split-section,
     .tf-tool-section,
@@ -622,7 +639,7 @@
 }
 
 body.site-tools-open .typeface-page > :is(
-  .tf-hero,
+  .tf-specimen-section,
   .tf-section,
   .tf-split-section,
   .tf-tool-section,
@@ -695,7 +712,7 @@ body.site-tools-open .typeface-page .tf-image-grid {
 }
 
 @media (max-width: 820px) {
-  .tf-hero,
+  .tf-specimen-section,
   .tf-section,
   .tf-split-section,
   .tf-tool-section,
@@ -703,10 +720,6 @@ body.site-tools-open .typeface-page .tf-image-grid {
   .tf-image-stage,
   .tf-image-grid {
     width: min(100% - 1.5rem, 1480px);
-  }
-
-  .tf-hero {
-    padding-top: 7rem;
   }
 
   .tf-hero h1 {
@@ -739,6 +752,10 @@ body.site-tools-open .typeface-page .tf-image-grid {
 }
 
 @media (max-width: 520px) {
+  .typeface-page .project-header--typeface .proj-visual-title__name {
+    font-size: clamp(3.75rem, 19vw, 6.5rem);
+  }
+
   .tf-specimen-toolbar,
   .tf-specimen-footer {
     display: grid;

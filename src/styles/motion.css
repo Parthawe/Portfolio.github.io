@@ -1996,3 +1996,42 @@
   0%, 100% { transform: translate3d(0, 0, 18px) rotateX(8deg) rotateY(12deg); }
   50% { opacity: 0.7; transform: translate3d(0.08rem, -0.2rem, 30px) rotateX(12deg) rotateY(17deg); }
 }
+
+/* Final small-screen guardrails for authored motion scenes. The scene keeps
+   its composition, while its frame and supporting copy stay inside the same
+   responsive reading width as the rest of the case-study system. */
+@media (max-width: 620px) {
+  .motion-project-main :is(
+    .motion-preview,
+    .vishwa-video,
+    .mentra-onboarding-motion,
+    .mentra-onboarding-motion__visual,
+    .mentra-format-map,
+    .transfi-state-model,
+    .transfi-state-rules
+  ) {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .motion-project-main :is(
+    .motion-index-proposal h2,
+    .mentra-benchmark__intro h3,
+    .mentra-format-map__copy h3,
+    .transfi-state-rules > div h3,
+    .vishwa-production-credit h3
+  ) {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .mentra-onboarding-motion__visual {
+    min-height: clamp(24rem, 125vw, 31rem);
+  }
+
+  .mentra-onboarding-motion__visual video {
+    width: auto;
+    height: min(110vw, 27rem);
+    max-width: 90%;
+  }
+}

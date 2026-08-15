@@ -22,13 +22,15 @@ interface ProjectHeaderProps {
   showHeaderSummary?: boolean
   heroExperience?: 'visual'
   heroTone?: string
-  heroEyebrow?: string
   visualHeadline?: string
   visualSummary?: string
   visualHeroImage?: string
   visualHeroAlt?: string
   visualHeroMedia?: ReactNode
   liveLabel?: string
+  liveDownload?: boolean | string
+  visualBriefMode?: 'combined' | 'split'
+  visualTitleMode?: 'sentence' | 'stacked'
 }
 
 const TIMELINE_LABELS = ['timeline', 'duration', 'year']
@@ -61,13 +63,15 @@ export default function ProjectHeader({
   showHeaderSummary = true,
   heroExperience,
   heroTone,
-  heroEyebrow,
   visualHeadline,
   visualSummary,
   visualHeroImage,
   visualHeroAlt,
   visualHeroMedia,
   liveLabel = 'Visit Live Site',
+  liveDownload,
+  visualBriefMode = 'combined',
+  visualTitleMode,
 }: ProjectHeaderProps) {
   const location = useLocation()
   const heroRef = useRef<HTMLDivElement>(null)
@@ -169,8 +173,16 @@ export default function ProjectHeader({
     ) : null
 
   if (heroExperience !== undefined || resolvedVisualHeroImage) {
-    const visualKicker = heroEyebrow || 'Selected project'
     const visualDeck = visualHeadline || visualSummary || subtitle
+    const resolvedVisualTitleMode = visualTitleMode ?? (
+      title.length + visualDeck.length > 90 ? 'stacked' : 'sentence'
+    )
+    const visualProblem = project?.summaryProblem ?? story?.challenge ?? subtitle
+    const visualOutcome = project?.summaryOutcome ?? story?.result ?? null
+    const visualRole = findInfoValue(info, ROLE_LABELS) ?? project?.summaryRole ?? null
+    const visualTimeline = findInfoValue(info, TIMELINE_LABELS) ?? project?.summaryTimeline ?? null
+    const visualContext = findInfoValue(info, CONTEXT_LABELS) ?? project?.summaryTeam ?? null
+    const timelineMilestones = project?.timelineMilestones ?? []
     const visualClasses = [
       'wrap',
       'project-header',
@@ -183,32 +195,41 @@ export default function ProjectHeader({
     return (
       <div className={visualClasses}>
         <section className="proj-visual-hero hero-anim hero-anim-1" aria-label={`${title} project introduction`}>
-          {categorySlug && (
-            <div className="proj-3d-ornament proj-3d-ornament--visual">
-              {showCategoryOrnament ? (
-                <Suspense fallback={null}>
-                  <CategoryObject3D slug={categorySlug} size={ornamentSize} />
-                </Suspense>
-              ) : null}
-            </div>
-          )}
-
           <div className="proj-visual-hero__copy">
-            <span className="proj-visual-kicker">{visualKicker}</span>
-            <h1 className="proj-visual-project-name">{title}</h1>
-            <p className="proj-visual-title">{visualDeck}</p>
-            {liveUrl && (
-              <a
-                href={liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="proj-visual-live figma-hover"
-              >
-                {liveLabel}
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                <FigmaSelect />
-              </a>
-            )}
+            <h1 className={`proj-visual-title proj-visual-title--${resolvedVisualTitleMode}`}>
+              {resolvedVisualTitleMode === 'stacked' ? (
+                <>
+                  <span className="proj-visual-title__name">{title}</span>
+                  <span className="proj-visual-title__deck">{visualDeck}</span>
+                </>
+              ) : (
+                <><span className="proj-visual-title__name">{title}:</span> {visualDeck}</>
+              )}
+            </h1>
+            <div className="proj-visual-actions">
+              <div className="proj-visual-hero__tags" aria-label="Project disciplines">
+                {tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="proj-visual-tag">{tag}</span>
+                ))}
+              </div>
+              {liveUrl && (
+                <a
+                  href={liveUrl}
+                  target={liveDownload ? undefined : '_blank'}
+                  rel={liveDownload ? undefined : 'noopener noreferrer'}
+                  download={liveDownload || undefined}
+                  className="proj-visual-live figma-hover"
+                >
+                  {liveLabel}
+                  {liveDownload ? (
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5v7M4 6l3 3 3-3M2 11.5h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  )}
+                  <FigmaSelect />
+                </a>
+              )}
+            </div>
           </div>
 
           <div className="proj-visual-stage">
@@ -235,16 +256,37 @@ export default function ProjectHeader({
           </div>
         </section>
 
-        <div className="proj-info-row proj-info-row--visual hero-anim hero-anim-2">
-          {info.map((item) => (
-            <div key={item.label} className="proj-info-item">
-              <span className="proj-info-label">{item.label}</span>
-              <span className="proj-info-val">{item.value}</span>
-            </div>
-          ))}
-        </div>
-
-        {renderStoryAndSummary(3)}
+        <section className={`proj-visual-brief proj-visual-brief--${visualBriefMode} hero-anim hero-anim-2`} aria-label={`${title} project overview`}>
+          {visualBriefMode === 'combined' ? (
+            <p className="proj-visual-brief__copy">
+              {visualProblem}{visualOutcome ? ` ${visualOutcome}` : ''}
+            </p>
+          ) : (
+            <>
+              <p className="proj-visual-brief__copy">{visualProblem}</p>
+              {visualOutcome ? <p className="proj-visual-brief__copy">{visualOutcome}</p> : null}
+            </>
+          )}
+          <dl className="proj-visual-brief__facts">
+            {visualRole ? <div><dt>Role</dt><dd>{visualRole}</dd></div> : null}
+            {visualContext ? <div><dt>Team / context</dt><dd>{visualContext}</dd></div> : null}
+            {timelineMilestones.length ? (
+              <div className="proj-visual-timeline">
+                <dt>Timeline</dt>
+                <dd>
+                  <ol>
+                    {timelineMilestones.map((milestone) => (
+                      <li key={`${milestone.period}-${milestone.label}`}>
+                        <strong>{milestone.period}</strong>
+                        <span>{milestone.label}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </dd>
+              </div>
+            ) : visualTimeline ? <div className="proj-visual-timeline"><dt>Timeline</dt><dd>{visualTimeline}</dd></div> : null}
+          </dl>
+        </section>
       </div>
     )
   }
@@ -280,12 +322,17 @@ export default function ProjectHeader({
           {liveUrl && (
             <a
               href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={liveDownload ? undefined : '_blank'}
+              rel={liveDownload ? undefined : 'noopener noreferrer'}
+              download={liveDownload || undefined}
               className="proj-live-link hero-anim hero-anim-4 figma-hover"
             >
               {liveLabel}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              {liveDownload ? (
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5v7M4 6l3 3 3-3M2 11.5h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              )}
               <FigmaSelect />
             </a>
           )}

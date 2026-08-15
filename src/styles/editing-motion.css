@@ -72,6 +72,41 @@
   width: 100%;
   height: 100%;
   border: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.editing-hero-film.is-loaded iframe {
+  opacity: 1;
+}
+
+.editing-hero-film__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.editing-hero-film.is-loaded .editing-hero-film__poster,
+.editing-hero-film.is-loaded .editing-hero-film__status {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.editing-hero-film__status {
+  position: absolute;
+  z-index: 1;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-pill);
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(8, 8, 11, 0.72);
+  font-size: 0.75rem;
+  transition: opacity 0.2s ease;
 }
 
 .editing-brief-grid {
@@ -159,7 +194,14 @@
   overflow-wrap: normal;
   word-break: normal;
 }
-.editing-film figcaption a { width: fit-content; color: var(--project-color); font: 600 0.7rem/1.2 var(--mono); }
+.editing-film figcaption a {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  color: var(--project-color);
+  font: 600 0.7rem/1.2 var(--mono);
+}
 
 .editing-workflow {
   display: grid;

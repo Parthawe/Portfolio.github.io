@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
@@ -89,16 +90,25 @@ const anatomies = [
 
 function EditingHeroFilm() {
   const reduceMotion = Boolean(useReducedMotion())
+  const [loaded, setLoaded] = useState(false)
   const playback = reduceMotion ? '&autoplay=0' : '&autoplay=1&muted=1&loop=1&autopause=0'
 
   return (
-    <figure className="editing-hero-film">
+    <figure className={`editing-hero-film${loaded ? ' is-loaded' : ''}`}>
+      <img
+        className="editing-hero-film__poster"
+        src="/Assets/mockups/projects/enigma_16x9.webp"
+        alt=""
+        aria-hidden="true"
+      />
+      <span className="editing-hero-film__status" role="status">Loading project film</span>
       <iframe
         src={`https://player.vimeo.com/video/895893649?h=d78737dcdb&title=0&byline=0&portrait=0&dnt=1${playback}`}
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
         loading="eager"
         title="Enigma project film — selected editorial practice"
+        onLoad={() => setLoaded(true)}
       />
     </figure>
   )
@@ -195,7 +205,7 @@ export default function EditingMotionCaseStudy() {
             { label: 'Scope', value: 'Story edit · sound · graphics' },
           ]}
           heroExperience="visual"
-          heroEyebrow="Selected editorial practice"
+          visualTitleMode="stacked"
           visualHeadline="A good project film reveals the idea before it asks for attention."
           visualHeroImage="/Assets/mockups/projects/enigma_16x9.webp"
           visualHeroAlt="Enigma neural-network sculpture illuminated in a dark exhibition space"

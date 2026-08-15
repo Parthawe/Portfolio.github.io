@@ -96,6 +96,35 @@ Every public case study should use this order unless the project has a strong re
 11. `NextProject`
 12. `Footer`
 
+#### Shared opening system
+
+Mentra is the reference for the project-page opening, not a template for every chapter. Reuse these decisions across public and request-access projects:
+
+1. The title and project name form one sentence by default. Use the stacked title mode when the deck is long or the project’s own typography needs to lead. Do not place an eyebrow above the title.
+2. Keep no more than three discipline tags beside one compact live-product action.
+3. Use one edge-to-edge hero image inside the same outer gutter as the navigation. The media frame keeps a consistent radius at every breakpoint.
+4. Follow the hero with one concise overview row: narrative first, role and team second, timeline third. The narrative combines the problem and outcome by default.
+5. Use sentence case for interface labels. Preserve real acronyms and product names.
+6. On smaller screens, stack the overview in reading order: narrative, role, team, timeline.
+
+`ProjectHeader` owns this opening system. Use `visualBriefMode="split"` only when the problem and outcome need to remain separate for comprehension.
+
+Hero media is content, not decoration. Keep the project’s supplied image, poster, video controls, embed title, reduced-motion behavior, and aspect ratio. Pass a custom film or interactive preview through `visualHeroMedia`; the shared frame will size and clip it without replacing the underlying asset.
+
+#### Shared reading behavior
+
+- `ProjectQuickSummary` owns the quick-read path for flagship work. Its open variant can omit the image when the page already has a strong hero.
+- `CsExpandPreview` must show real faded story content before the reveal action. A blank gate or isolated button does not communicate that content continues.
+- `BottomNav` shows up to three direct destinations. Longer stories use a current-chapter control with a complete chapter menu, and the rail must remain clear of site controls, reading content, and safe areas.
+- Space should create the default section rhythm. Use a divider only when it explains a table, sequence, comparison, or control boundary.
+
+Keep these decisions project-specific:
+
+- Project color and background treatment.
+- Bespoke evidence chapters, diagrams, and interactive media.
+- Mentra's three-size, regular-weight typography constraint.
+- Mentra's product-testing metrics, green theme, and custom editorial problem/impact sections.
+
 ### Request-Access Case Studies
 
 Request-access projects should show a safe public story first, then request access.

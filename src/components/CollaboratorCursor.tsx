@@ -413,11 +413,11 @@ export default function CollaboratorCursor() {
     const fullCaseStudyButton = Array.from(
       document.querySelectorAll<HTMLButtonElement>('.cs-quick-summary-toggle-btn'),
     ).find(button => ['Full story', 'Full case study'].includes(button.textContent?.trim() ?? '')
-      && button.getAttribute('aria-selected') !== 'true')
+      && button.getAttribute('aria-pressed') !== 'true')
 
     const beginTour = (attempt = 0) => {
       const waitingForExpansion = fullCaseStudyButton
-        && fullCaseStudyButton.getAttribute('aria-selected') !== 'true'
+        && fullCaseStudyButton.getAttribute('aria-pressed') !== 'true'
       if (waitingForExpansion && attempt < 8) {
         tourStartTimer.current = window.setTimeout(() => beginTour(attempt + 1), 100 + attempt * 25)
         return

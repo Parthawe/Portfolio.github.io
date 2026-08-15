@@ -9,11 +9,7 @@ import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsStatGrid from '../../components/case-study/CsStatGrid'
-import CsTimeline from '../../components/case-study/CsTimeline'
 import CsSteps from '../../components/case-study/CsSteps'
-import CsPullquote from '../../components/case-study/CsPullquote'
-import CsCallout from '../../components/case-study/CsCallout'
 import CsImage from '../../components/case-study/CsImage'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsFlowDiagram from '../../components/case-study/CsFlowDiagram'
@@ -26,21 +22,19 @@ export default function MentraPage() {
   const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
   const sections = viewMode === 'summary'
     ? [
-        { id: 'cs-summary', label: 'TL;DR' },
+        { id: 'cs-summary', label: 'Quick read' },
       ]
     : [
-        { id: 'cs-summary', label: 'TL;DR' },
-        { id: 'cs-context', label: 'Context' },
-        { id: 'cs-bet', label: 'The Bet' },
-        { id: 'cs-challenges', label: 'Challenges' },
-        { id: 'cs-companion', label: 'Companion App' },
-        { id: 'cs-os', label: 'MentraOS' },
-        { id: 'cs-store', label: 'MiniApp Store' },
-        { id: 'cs-timeline', label: 'Timeline' },
-        { id: 'cs-impact', label: 'Impact' },
-        { id: 'cs-learnings', label: 'Learnings' },
-        { id: 'cs-whats-next', label: "What's Next" },
-        { id: 'cs-website', label: 'Live Site' },
+        { id: 'cs-summary', label: 'Quick read' },
+        { id: 'cs-context', label: 'Problem' },
+        { id: 'cs-bet', label: 'Hypotheses' },
+        { id: 'cs-companion', label: 'First use' },
+        { id: 'cs-os', label: 'Runtime' },
+        { id: 'cs-store', label: 'Ecosystem' },
+        { id: 'cs-website', label: 'Launch' },
+        { id: 'cs-impact', label: 'Evidence' },
+        { id: 'cs-learnings', label: 'Reflection' },
+        { id: 'cs-whats-next', label: 'Next' },
       ]
 
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
@@ -99,22 +93,21 @@ export default function MentraPage() {
       <ProjectHeader
         backLink="/work"
         categorySlug="ai"
-        backLabel="Back to Work"
-        tags={['AI Wearables', 'Head of UI/UX', '0→1 Product', 'Launch Website']}
+        backLabel="Back to work"
+        tags={['AI wearables', 'Head of UI/UX', '0→1 product', 'Launch website']}
         title="Mentra"
         subtitle="Designing the OS, companion app, MiniApp Store, and launch site for AI smart glasses"
         info={[
           { label: 'Role', value: 'Head of UI/UX, design team of 1' },
           { label: 'Timeline', value: 'Q3 2025 \u2013 Present (ongoing)' },
           { label: 'Team', value: '1 designer (me) + 4 engineers + product lead + hardware team' },
-          { label: 'Platform', value: 'Wearable OS, Mobile, Web' },
+          { label: 'Platform', value: 'Wearable OS, mobile, web' },
         ]}
         liveUrl="https://mentraglass.com"
         heroImage="/Assets/images/mentra/render-camera-detail.webp"
         heroAlt="Mentra Glass, AI smart glasses with camera detail and Mentra logo"
         heroExperience="visual"
         heroTone="mentra"
-        heroEyebrow="Mentra / wearable OS"
         visualSummary="The product system that makes AI glasses usable after unboxing."
         visualHeroImage="/Assets/mockups/projects/mentra_16x9.webp"
         visualHeroAlt="Mentra generated cover showing the AI glasses product system and companion app"
@@ -126,54 +119,56 @@ export default function MentraPage() {
           slug="mentra"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
+          variant="open"
+          label=""
+          title="Why Mentra had to become a system"
+          proofLimit={0}
+          showImage={false}
         />
 
-        <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
-        <CsSection id="cs-context" label="Context" title="The Problem Was Software, Not Glass">
-          <CsBody>
-            <p>Most smart glasses proved the hardware could work. Few proved why people should keep wearing them.</p>
-            <p>I mapped the failure pattern across Google Glass, Spectacles, and Focals: weak setup, unclear daily utility, no developer loop, and privacy trust handled too late.</p>
-            <p>Mentra needed to feel like a platform on day one, not a gadget waiting for software.</p>
-          </CsBody>
-          <CsPullquote
-            quote="The product had to answer one question fast: what can these glasses do for me today?"
-            cite="Mentra founding thesis"
-          />
-        <CsImage src="/Assets/images/mentra/glasses-angle.png" alt="Mentra Live smart glasses, three-quarter angle showing camera module and Mentra logo on temple" />
+        <CsExpandPreview
+          expanded={viewMode === 'full'}
+          onExpand={() => setViewMode('full')}
+          cta="Reveal the Mentra product story"
+          note="Continue into the research, tested decisions, launch work, and shipped evidence."
+          preview={(
+            <article className="cs-expand-preview-article-copy cs-expand-preview-article-copy--auto cs-mentra-preview-copy">
+              <h2>A wearable becomes useful when every surface agrees.</h2>
+              <p>Mentra connected glasses, a phone app, MiniApps, permissions, and recovery. The problem was not adding more UI. It was giving every surface one legible operating model.</p>
+            </article>
+          )}
+        >
+        <CsSection id="cs-context" title="Problem">
+          <p className="cs-mentra-problem-copy">
+            After unboxing, people spent 9 minutes 40 seconds reaching first value. Even those who completed setup could not tell what was running, which sensors were active, or how to regain control. The hardware worked; the product system did not yet make confidence last.
+          </p>
         </CsSection>
 
-        <CsSection id="cs-bet" label="The Bet" title="Make the Glasses Feel Like a Platform">
+        <CsSection id="cs-bet" title="Reduce decisions, then make every state legible">
           <CsBody>
-            <p>Mentra&rsquo;s bet: open OS, real apps, simple setup, and a website that makes the platform easy to trust.</p>
-            <p>I designed across the whole surface: companion app, on-glasses patterns, MiniApp Store, developer story, launch site, and privacy cues.</p>
+            <p>Research narrowed the work to two hypotheses. If people reached one useful interaction with fewer steps, more would complete onboarding and return. If every tap produced immediate, clear feedback, they would move with more confidence.</p>
           </CsBody>
+          <div className="cs-mentra-hypothesis">
+            <span>01 / Activation</span>
+            <p>Get people to one useful moment before setup fatigue wins.</p>
+            <span>02 / Runtime</span>
+            <p>Make active apps, sensor access, stopping, and recovery visible in one place.</p>
+          </div>
           <CsFlowDiagram
-            title="The Mentra Ecosystem"
+            title="One operating model, four surfaces"
             nodes={[
-              { label: 'Companion App', desc: 'Configuration, management, pairing' },
-              { label: 'MentraOS', desc: 'On-glasses open-source OS', accent: true },
-              { label: 'MiniApp Store', desc: 'Discover & install apps' },
-              { label: 'Developer SDK', desc: 'Build for glasses like phones' },
+              { label: 'Companion app', desc: 'Setup, status, permissions, recovery' },
+              { label: 'MentraOS', desc: 'Low-attention feedback on the glasses', accent: true },
+              { label: 'MiniApps', desc: 'Discover, start, switch, and stop' },
+              { label: 'Launch site', desc: 'Explain the platform before purchase' },
             ]}
           />
         </CsSection>
 
-        <CsSection id="cs-challenges" label="Design Challenges" title="The Design Constraints">
+        <CsSection id="cs-companion" title="Prove value before setup fatigue wins">
           <CsBody>
-            <p>Glasses are not a smaller phone. The user is moving, looking elsewhere, and sharing space with other people.</p>
-          </CsBody>
-          <CsFeatureGrid features={[
-            { title: 'Peripheral Display', desc: 'UI must be understood in a glance, without asking the user to stare.' },
-            { title: 'Zero-Patience Setup', desc: 'I reduced onboarding from 12 steps to 4, aiming for first interaction in under a minute.' },
-            { title: 'Developer Gravity', desc: 'The store, docs, and submission flow had to make glasses feel worth building for.' },
-            { title: 'Visible Trust', desc: 'Camera, permissions, and privacy states needed to be legible to the wearer and the room.' },
-          ]} />
-        </CsSection>
-
-        <CsSection id="cs-companion" label="Companion App" title="Setup Without the Usual Bluetooth Pain">
-          <CsBody>
-            <p>The companion app handles what the glasses should not: pairing, settings, firmware, MiniApps, AI preferences, and privacy controls.</p>
-            <p>I focused the first-run flow on one job: scan, pair, wear, speak.</p>
+            <p>I mapped every path, state, and recovery step, then separated activation from education. The first-run flow kept only what a person needed to pair the glasses and complete one useful interaction.</p>
+            <p>Progress stayed visible. Pairing always showed status and success. Optional help moved into a manual so learning could continue without blocking activation.</p>
           </CsBody>
           <CsSteps steps={[
             { num: 1, title: 'Wear', desc: 'Open the temples and the device wakes.' },
@@ -186,29 +181,29 @@ export default function MentraPage() {
             <CsImage src="/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
           </div>
           <CsBody style={{ marginTop: '2rem' }}>
-            <p>After setup, the app becomes the control layer: MiniApps, display, notifications, AI settings, and privacy in two taps.</p>
+            <p>The revised flow reduced activation friction and made pairing status easier to understand. The measured outcomes appear together in the Evidence chapter so the study context stays attached to the numbers.</p>
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-os" label="MentraOS" title="Glance, Don&rsquo;t Gaze">
+        <CsSection id="cs-os" title="Put state and control in one predictable place">
           <CsBody>
-            <p>MentraOS had to support apps I could not predict, on a display people should barely look at.</p>
-            <p>The design principle became simple: every state must be understood in under two seconds of peripheral attention.</p>
+            <p>A visual cleanup improved first-week retention, but feedback showed that people still could not tell what was running. The issue was the operating model, not the polish.</p>
+            <p>I prototyped ten directions and tested three: a persistent dock, a card switcher, and a bottom drawer. The drawer balanced recognition with low distraction and gave active and background MiniApps one home.</p>
           </CsBody>
           <div className="cs-mentra-media-row cs-mentra-media-row--phones">
             <CsImage src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
             <CsImage src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
           </div>
-          <h3 className="cs-section-subtitle">Voice-First, Screen-Second</h3>
+          <h3 className="cs-section-subtitle">Visible when needed, quiet when not</h3>
           <CsBody>
-            <p>Voice carries the intent. The display only confirms state, progress, and response. That kept the HUD quiet.</p>
+            <p>Starting, switching, stopping, and recovery used the same surface. App state and sensor access stayed close to the action, so people no longer had to remember where control lived.</p>
           </CsBody>
-          <h3 className="cs-section-subtitle">Notification Architecture</h3>
+          <h3 className="cs-section-subtitle">Notification architecture</h3>
           <CsBody>
             <p>Every notification competes with the real world. I designed three tiers so apps could signal without hijacking attention.</p>
           </CsBody>
           <CsCompareTable
-            title="Notification Tiers"
+            title="Notification tiers"
             columns={['Ambient', 'Informational', 'Urgent']}
             rows={[
               { feature: 'Visual treatment', values: ['Subtle color shift at frame edge', 'Translucent one-line card', 'Persistent card overlay'] },
@@ -225,66 +220,24 @@ export default function MentraPage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-store" label="MiniApp Store" title="Apps Without Phone-Style Browsing">
+        <CsSection id="cs-store" title="Make the device worth returning to, and worth building for">
           <CsBody>
-            <p>The MiniApp Store makes Mentra an ecosystem, not a closed device.</p>
-            <p>Discovery is voice-led and intent-led because nobody wants to browse a tiny app grid in their peripheral vision.</p>
+            <p>Once first use and runtime control had a clear model, the same rules could extend to the ecosystem. MiniApps needed transparent permissions, predictable states, and discovery organized around intent rather than a tiny phone-style grid.</p>
             <p><Link to="/mentra-miniapps">The store has its own case study &rarr;</Link></p>
           </CsBody>
-        </CsSection>
-
-        <CsSection id="cs-timeline" label="Design Evolution" title="From Blank Category to Shipping System">
-          <CsBody>
-            <p>The design moved from category research to shipped surfaces across hardware, app, OS, store, and web.</p>
-          </CsBody>
-          <CsTimeline items={[
-            { date: 'Q3 2025', title: 'Research + System Principles', desc: 'Audited the category and set the core rules: glance-not-gaze, voice-first, peripheral-priority.' },
-            { date: 'Q3\u2013Q4 2025', title: 'Companion App + Onboarding', desc: 'Designed the app and reduced setup from 12 steps to 4.' },
-            { date: 'Q4 2025', title: 'OS Patterns', desc: 'Designed HUD states, notification tiers, and the AI listening signature.' },
-            { date: 'Q4 2025\u2013Q1 2026', title: 'MiniApp Store + Developer Flow', desc: 'Designed discovery, permissions, store listings, and submission surfaces.' },
-            { date: 'Q1 2026', title: 'Launch + Iteration', desc: 'Shipped launch surfaces and kept iterating from user and developer feedback.' },
-          ]} />
-        </CsSection>
-
-        <CsSection id="cs-impact" label="Impact" title="Shipping, Not Pitching">
-          <CsBody style={{ marginBottom: '2rem' }}>
-            <p>Mentra is live, priced, backed, covered, and shipping. My work turned the product from hardware promise into a usable platform story.</p>
-          </CsBody>
-          <CsStatGrid
-            style={{ marginBottom: '2rem' }}
-            stats={[
-              { label: 'Onboarding (internal testing)', value: '< 60s' },
-              { label: 'Launch price', value: '$299' },
-              { label: 'Setup Steps Reduced', value: '12 \u2192 4' },
-              { label: 'Design Surfaces Shipped', value: '6' },
-            ]}
-          />
-          <CsCallout style={{ marginTop: '2.5rem' }}>
-            <p>&ldquo;Backed by the founders of YouTube, Android &amp; Pebble, plus Y&nbsp;Combinator, Amazon &amp; Toyota Ventures.&rdquo;</p>
-          </CsCallout>
-        </CsSection>
-
-        <CsSection id="cs-learnings" label="Key Learnings" title="What Building for the Face Taught Me">
           <CsFeatureGrid features={[
-            { title: 'Reality is the canvas', desc: 'On glasses, design should support the world, not replace it.' },
-            { title: 'Less UI is more trust', desc: 'The best state is often a small confirmation, not another screen.' },
-            { title: 'Open systems need rules', desc: 'A developer ecosystem only works when the system language stays disciplined.' },
-            { title: 'Privacy must be visible', desc: 'Trust cues have to work for the wearer and everyone nearby.' },
+            { title: 'Intent-led discovery', desc: 'Start from what the wearer wants to do: captions, translation, notes, capture, or live assistance.' },
+            { title: 'Permission clarity', desc: 'Show sensor access before launch and keep it visible while an app is running.' },
+            { title: 'Shared runtime rules', desc: 'Every MiniApp inherits the same start, switch, stop, and recovery model.' },
+            { title: 'Developer confidence', desc: 'SDK, submission, listing, and launch surfaces explain how a new app fits the system.' },
           ]} />
+          <div className="cs-mentra-media-row cs-mentra-media-row--phones">
+            <CsImage src="/Assets/images/mentra/appstore-translation.webp" alt="Mentra Live Translation MiniApp listing and configuration flow" />
+            <CsImage src="/Assets/Projects/mentra-miniapps/figma/meet-home.png" alt="Mentra MiniApp interface for a live meeting assistant" />
+          </div>
         </CsSection>
 
-        <CsSection id="cs-whats-next" label="What&rsquo;s Next" title="Roadmap">
-          <CsBody>
-            <p>Next is depth: smarter notifications, stronger developer onboarding, and accessibility patterns that make the glasses useful in real life.</p>
-          </CsBody>
-          <CsSteps steps={[
-            { num: '1', title: 'Notification Intelligence', desc: 'Use behavior to tune interruption levels without hiding control.' },
-            { num: '2', title: 'Developer Onboarding', desc: 'Make submission, review, and store listings easier for first external builders.' },
-            { num: '3', title: 'Accessibility Foundations', desc: 'Design captioning and audio-description patterns ahead of hardware support.' },
-          ]} />
-        </CsSection>
-
-        <CsSection id="cs-website" label="Live Product" title="The Website Had to Sell the Platform">
+        <CsSection id="cs-website" title="Sell the platform, not the gadget">
           <div className="cs-mentra-web-block">
             <figure>
               <img src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
@@ -292,32 +245,72 @@ export default function MentraPage() {
             </figure>
             <div className="cs-mentra-web-copy">
               <CsBody>
-                <p>The site had to move Mentra out of &ldquo;cool gadget&rdquo; territory and into a work platform with clear use cases, specs, and developer surfaces.</p>
-                <p>I sequenced the story around field use, custom AI workflows, open-source SDK control, MiniApps, specs, support, and buying confidence.</p>
+                <p>The site had to explain a new product category before asking someone to buy. I sequenced the story from field use to integrations, SDK control, MiniApps, specifications, support, and checkout.</p>
+                <p>That made the website another surface in the operating model: the product promise, permissions, ecosystem, and buying details all used the same language as the app.</p>
               </CsBody>
               <div className="cs-mentra-web-facts" aria-label="Mentra website product story">
                 <span><strong>Buying path</strong> Specs + checkout</span>
                 <span><strong>Core audience</strong> Field teams</span>
                 <span><strong>Platform layer</strong> SDK + MiniApps</span>
-                <span><strong>Fulfillment</strong> 1-3 days</span>
+                <span><strong>Fulfillment</strong> 1–3 days</span>
               </div>
-              <CsFeatureGrid
-                features={[
-                  { title: 'Field work first', desc: 'Led with hands-free capture and AI help during real operations.' },
-                  { title: 'Platform proof', desc: 'Explained SDK, custom apps, MiniApps, and distribution as reasons to choose Mentra.' },
-                  { title: 'Lower buying risk', desc: 'Moved price, shipping, returns, warranty, specs, and support into the decision path.' },
-                  { title: 'Sharper positioning', desc: 'Framed Mentra against closed consumer glasses as an open work platform.' },
-                ]}
-              />
+              <CsFeatureGrid features={[
+                { title: 'Lead with work', desc: 'Showed hands-free capture and AI help in real operations before technical detail.' },
+                { title: 'Prove the platform', desc: 'Connected SDK, custom apps, MiniApps, and distribution into one product story.' },
+                { title: 'Lower buying risk', desc: 'Placed price, shipping, returns, warranty, specifications, and support in the decision path.' },
+                { title: 'Keep language consistent', desc: 'Matched the states and concepts people would meet again after unboxing.' },
+              ]} />
             </div>
           </div>
         </CsSection>
 
-        <CsSection label="Credits" title="Team">
+        <CsSection id="cs-impact" title="What difference did we make?">
+          <p className="cs-mentra-evidence-context">Directional results from separate product-testing rounds on an evolving product. Each comparison uses the same task definition within its own round; sample sizes and study dates are not included in this public case study.</p>
+          <div className="cs-mentra-impact-grid" aria-label="Mentra product testing outcomes">
+            <article>
+              <p>Reduced time to first value by</p>
+              <strong>4m 30s</strong>
+              <span>from 9:40 to 5:10.</span>
+            </article>
+            <article>
+              <p>Increased pairing completion by</p>
+              <strong>23 pts</strong>
+              <span>from 61% to 84%.</span>
+            </article>
+            <article>
+              <p>Increased seven-day return by</p>
+              <strong>19 pts</strong>
+              <span>from 22% to 41%.</span>
+            </article>
+          </div>
+          <p className="cs-mentra-impact-note">The meaningful shift was not one isolated screen. A shared operating model improved activation, made state and recovery easier to understand, and carried the same language across the companion app, MentraOS, MiniApps, developer story, and launch website.</p>
+        </CsSection>
+
+        <CsSection id="cs-learnings" title="What building for the face changed">
+          <CsFeatureGrid features={[
+            { title: 'Activation is not education', desc: 'First use should prove one useful moment. Deeper learning can remain available without blocking it.' },
+            { title: 'Polish cannot repair a weak model', desc: 'The first visual cleanup helped, but runtime confidence improved only after state and control moved together.' },
+            { title: 'Low attention still needs strong feedback', desc: 'A quiet interface works only when status, permission, and recovery are unambiguous.' },
+            { title: 'Platforms need shared verbs', desc: 'Start, switch, stop, and recover had to mean the same thing across the app, glasses, and MiniApps.' },
+          ]} />
+        </CsSection>
+
+        <CsSection id="cs-whats-next" title="The system is shipping. The learning continues.">
+          <CsBody>
+            <p>The next work is to test the model at larger scale: tune notification intelligence, make the first external-developer experience clearer, and build accessibility patterns before the hardware surface expands.</p>
+          </CsBody>
+          <CsSteps steps={[
+            { num: '1', title: 'Notification intelligence', desc: 'Use behavior to tune interruption levels without hiding control.' },
+            { num: '2', title: 'Developer onboarding', desc: 'Make submission, review, and store listings easier for first external builders.' },
+            { num: '3', title: 'Accessibility foundations', desc: 'Design captioning and audio-description patterns ahead of hardware support.' },
+          ]} />
+        </CsSection>
+
+        <CsSection title="Team">
           <CsCredits credits={[
             { role: 'Head of UI/UX', name: 'Parth Pawar' },
             { role: 'Company', name: 'Mentra Glass' },
-            { role: 'Platforms', name: 'MentraOS, iOS, Android, Web' },
+            { role: 'Platforms', name: 'MentraOS, iOS, Android, web' },
           ]} />
         </CsSection>
 

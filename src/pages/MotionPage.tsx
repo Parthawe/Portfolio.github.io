@@ -1030,7 +1030,7 @@ function MotionCaseStudy({ project, motionOn }: { project: MotionProject; motion
             { label: 'Status', value: isMentra ? 'Portfolio proposal · original Mentra source assets' : isVishwa ? 'Shipped campaign archive · collaborative production' : 'Portfolio proposal · original TransFi product states' },
           ]}
           heroExperience="visual"
-          heroEyebrow={isVishwa ? 'Shipped campaign archive' : isMentra ? 'Official source footage · independent motion proposal' : 'Product-grounded motion proposal'}
+          visualTitleMode="stacked"
           visualHeadline={project.intro}
           visualHeroImage={project.heroImage}
           visualHeroAlt={project.heroAlt}

@@ -4030,6 +4030,17 @@ body.nav-on-dark .reading-cursor__note {
   body.collaborator-cursor-active * {
     cursor: none !important;
   }
+
+  body.case-study-reading.collaborator-cursor-active,
+  body.case-study-reading.collaborator-cursor-active * {
+    cursor: revert !important;
+  }
+}
+
+body.case-study-reading .reading-cursor-layer,
+body.case-study-reading .bt-toolbar-btn--hand {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse), (max-width: 768px) {
