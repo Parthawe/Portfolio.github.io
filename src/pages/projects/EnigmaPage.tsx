@@ -65,7 +65,7 @@ export default function EnigmaPage() {
             <span className="cs-label-row-key">Network</span>
             <span className="cs-label-row-val">28 input &rarr; 12 hidden &rarr; 8 hidden &rarr; 26 output (A&ndash;Z)</span>
           </div>
-          <div style={{ marginTop: 'var(--space-5)' }}>
+          <div className="project-content-block--roomy">
             <EnigmaInteractive />
           </div>
         </CsSection>
@@ -77,7 +77,7 @@ export default function EnigmaPage() {
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/person-viewing.webp" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" decoding="async" /></div>
             </div>
@@ -87,7 +87,7 @@ export default function EnigmaPage() {
         {/* Detail photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--three">
               <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/alphabet-layer.webp" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/wire-detail.webp" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Enigma/photos/neuron-closeup.webp" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" decoding="async" /></div>
@@ -107,7 +107,7 @@ export default function EnigmaPage() {
           <CsBody>
             <p>Enigma makes a neural network visible. A visitor writes a letter, and 200 LEDs reveal the model&rsquo;s pathway from input to prediction.</p>
             <p>The wall-mounted panel turns the model structure into space: input on one edge, hidden layers through the center, alphabet output on the other. When a letter is submitted, light moves through the sculpture in real time.</p>
-            <p>The project builds on <a href="https://pangenerator.com/projects/the-abacus/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>The Abacus</a> by <a href="https://pangenerator.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>panGenerator Studio</a>, extending the idea from digit recognition to the full alphabet.</p>
+            <p>The project builds on <a href="https://pangenerator.com/projects/the-abacus/" target="_blank" rel="noopener noreferrer" className="project-text-link">The Abacus</a> by <a href="https://pangenerator.com/" target="_blank" rel="noopener noreferrer" className="project-text-link">panGenerator Studio</a>, extending the idea from digit recognition to the full alphabet.</p>
           </CsBody>
         </CsSection>
 
@@ -129,10 +129,10 @@ export default function EnigmaPage() {
             <p>Thousands of designers, engineers, artists, families, and curious New Yorkers made it the right place to test whether a broad audience could read a physical neural network.</p>
             <p>Visitors wrote letters on a tablet and watched the prediction ripple across the sculpture. Many repeated the same letter to see how different handwriting changed the path.</p>
             <p>The strongest reaction was recognition: people expected AI to feel opaque, but the lit pathways made the network feel structured and learnable.</p>
-            <p>Enigma explores computation through light. Its sibling project, <a href="/jugalbandi" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Jugalbandi</a>, explores the same neural network architecture through sound &mdash; each hidden layer mapped to a different acoustic instrument. Together they show how the same invisible process can be made tangible through different senses.</p>
+            <p>Enigma explores computation through light. Its sibling project, <a href="/jugalbandi" className="project-text-link">Jugalbandi</a>, explores the same neural network architecture through sound &mdash; each hidden layer mapped to a different acoustic instrument. Together they show how the same invisible process can be made tangible through different senses.</p>
           </CsBody>
 
-          <figure className="cs-img reveal" style={{ maxWidth: '640px', margin: '2.5rem auto 0' }}>
+          <figure className="cs-img reveal project-media--narrow">
             <img src="/Assets/Projects/Enigma/photos/tablet-input.jpg" alt="A visitor's hand mid-stroke on the tablet, which prompts: Please draw one Alphabet" loading="lazy" decoding="async" />
             <figcaption className="cs-img-caption">Where every interaction started: the tablet prompt read &ldquo;Please draw one Alphabet,&rdquo; and the stroke propagated through 200 neurons before the visitor lifted their finger.</figcaption>
           </figure>

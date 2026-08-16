@@ -180,7 +180,7 @@ export default function MentraPage() {
             <CsImage src="/Assets/images/mentra/appstore-hero.webp" alt="MentraOS companion app, home screen with glasses status, background apps, and active captions" />
             <CsImage src="/Assets/images/mentra/appstore-device.png" alt="Companion app device settings, Even Realities G1 connection, brightness controls, battery status" />
           </div>
-          <CsBody style={{ marginTop: '2rem' }}>
+          <CsBody className="cs-body--space-before">
             <p>The revised flow reduced activation friction and made pairing status easier to understand. The measured outcomes appear together in the Evidence chapter so the study context stays attached to the numbers.</p>
           </CsBody>
         </CsSection>
@@ -314,7 +314,7 @@ export default function MentraPage() {
           ]} />
         </CsSection>
 
-        <CsThanks contactCta style={{ marginTop: '4rem' }} />
+        <CsThanks contactCta className="cs-thanks--separated" />
         </CsExpandPreview>
 
         <BottomNav

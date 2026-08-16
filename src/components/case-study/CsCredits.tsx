@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import BrandIcon, { hasBrandIcon } from "../BrandIcon";
+import { sentenceCaseProjectLabel } from '../../utils/projectPresentation';
 
 interface CsCreditsProps {
   credits: { role: string; name: string }[];
+  className?: string;
   style?: React.CSSProperties;
 }
 
@@ -36,10 +38,10 @@ function NameWithIcons({ name }: { name: string }) {
   );
 }
 
-export default function CsCredits({ credits, style }: CsCreditsProps) {
+export default function CsCredits({ credits, className, style }: CsCreditsProps) {
   return (
     <motion.div
-      className="cs-credits"
+      className={`cs-credits${className ? ` ${className}` : ''}`}
       style={style}
       variants={container}
       initial="hidden"
@@ -48,7 +50,7 @@ export default function CsCredits({ credits, style }: CsCreditsProps) {
     >
       {credits.map((c) => (
         <motion.div key={c.role} className="cs-credit-item" variants={item}>
-          <span className="cs-credit-role">{c.role}</span>
+          <span className="cs-credit-role">{sentenceCaseProjectLabel(c.role)}</span>
           <NameWithIcons name={c.name} />
         </motion.div>
       ))}

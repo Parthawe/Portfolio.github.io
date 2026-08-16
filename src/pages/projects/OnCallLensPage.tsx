@@ -111,7 +111,7 @@ export default function OnCallLensPage() {
             { num: '3', title: 'Tap to Fix', desc: 'The engineer taps the \u201cFix\u201d button on the glasses frame. This triggers the backend orchestrator to spin up a Daytona workspace, clone the repo, and dispatch the Claude agent to analyze the error and write a patch.' },
             { num: '4', title: 'PR Ready', desc: 'Minutes later, a second card appears on the glasses: \u201cFix ready for review.\u201d The engineer taps to see a diff summary, the CodeRabbit review score, and two buttons \u2014 Approve or Reject. One tap to merge. Done.' },
           ]} />
-          <CsBody style={{ marginTop: '2rem' }}>
+          <CsBody className="cs-body--space-before">
             <p>The entire flow &mdash; from Sentry alert to merged PR &mdash; can complete without the engineer ever leaving bed. The glasses handle triage and approval. The AI handles everything else.</p>
           </CsBody>
         </CsSection>
@@ -146,7 +146,7 @@ export default function OnCallLensPage() {
         </CsSection>
 
         <CsSection id="cs-impact" label="Impact" title="Built in 24 Hours at Sentry HQ">
-          <CsBody style={{ marginBottom: '2rem' }}>
+          <CsBody className="cs-body--space-after">
             <p>OnCall Lens was built from scratch at the Daytona HackSprint #4 in San Francisco, January 24, 2026, hosted at Sentry&rsquo;s headquarters. In twenty-four hours, we went from a whiteboard sketch to a working demo: a real Sentry alert triggering a real Claude agent in a real Daytona workspace, producing a real PR reviewed by CodeRabbit, all controlled from smart glasses.</p>
           </CsBody>
           <CsInfoGrid items={[

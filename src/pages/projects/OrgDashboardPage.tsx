@@ -73,7 +73,7 @@ export default function OrgDashboardPage() {
             <p>&ldquo;The OrgDashboard CLI is not a standalone agent &mdash; it is an extension to any existing agent harness. When added as an MCP server to Claude Code, Zed, or Cursor, the agent gains organizational awareness without replacing any of the harness&rsquo;s existing tools.&rdquo;</p>
           </CsCallout>
           <div className="cs-slide reveal">
-            <img src="/Assets/images/org-dashboard.webp" alt="Dashboard overview" loading="lazy" style={{ borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', width: '100%', height: 'auto' }} />
+            <img src="/Assets/images/org-dashboard.webp" alt="Dashboard overview" loading="lazy" className="project-media-frame project-media-frame--dark" />
           </div>
           <p className="cs-caption">Dashboard overview &mdash; the human-facing home screen showing connected integrations, knowledge base health, and pending agent actions</p>
         </CsSection>
@@ -116,7 +116,7 @@ export default function OrgDashboardPage() {
         </CsSection>
 
         <CsSection id="cs-system" label="Design System" title="Built for Developer Trust">
-          <CsBody style={{ marginBottom: '2rem' }}>
+          <CsBody className="cs-body--space-after">
             <p>The design system was built from scratch for a developer-facing SaaS product. Three font families, each with a distinct purpose. A grayscale-first color system. Components that prioritize clarity over personality.</p>
           </CsBody>
           <CsInfoGrid items={[
@@ -136,7 +136,7 @@ export default function OrgDashboardPage() {
         </CsSection>
 
         <CsSection id="cs-surfaces" label="Product Surfaces" title="Four Surfaces, One Coherent Experience">
-          <CsBody style={{ marginBottom: '2rem' }}>
+          <CsBody className="cs-body--space-after">
             <p>OrgDashboard lives across four distinct surfaces. Each was designed for its specific context while sharing a unified data model and design language.</p>
           </CsBody>
           <CsSteps steps={[
@@ -175,7 +175,7 @@ export default function OrgDashboardPage() {
             { role: 'Stack', name: 'React 19, Tailwind, shadcn/ui, Clerk, Composio' },
             { role: 'Backend', name: 'Bun, Hono, MongoDB, MCP SDK' },
           ]} />
-          <CsThanks contactCta style={{ marginTop: '4rem' }} />
+          <CsThanks contactCta className="cs-thanks--separated" />
         </CsSection>
 
         <BottomNav sections={[

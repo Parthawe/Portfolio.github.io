@@ -94,7 +94,7 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>Press play to see the core interaction: live transcript in, cited decisions and action items out.</p>
           </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="project-content-block">
             <MeetingTimeline />
           </div>
         </CsSection>
@@ -156,7 +156,7 @@ export default function ExecutiveLensPage() {
         </CsSection>
 
         <CsSection id="cs-impact" label="Impact" title="Early Beta Signal">
-          <CsBody style={{ marginBottom: '2rem' }}>
+          <CsBody className="cs-body--space-after">
             <p>In closed beta, the strongest signal was behavior: executives began treating the dashboard as a morning brief for decisions, owners, and follow-through instead of another analytics surface.</p>
           </CsBody>
           <CsPullquote

@@ -1,7 +1,8 @@
 import { useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { isRequestAccessProject, projects } from "../../data/projects";
+import { isRequestAccessProject, projects, visibleProjects } from "../../data/projects";
+import { sentenceCaseProjectLabel } from "../../utils/projectPresentation";
 
 interface NextProjectProps {
   slug: string;
@@ -10,14 +11,25 @@ interface NextProjectProps {
 }
 
 export default function NextProject({ slug, title, image }: NextProjectProps) {
-  const project = projects.find(pr => pr.slug === slug)
+  const location = useLocation()
+  const currentSlug = location.pathname.split('/').filter(Boolean).pop() ?? ''
+  const currentIndex = visibleProjects.findIndex(project => project.slug === currentSlug)
+  const registryNext = currentIndex >= 0 && visibleProjects.length
+    ? visibleProjects[(currentIndex + 1) % visibleProjects.length]
+    : undefined
+  const project = registryNext ?? projects.find(pr => pr.slug === slug)
+  const targetSlug = project?.slug ?? slug
   const hiddenTarget = Boolean(project?.hidden)
   const requestAccess = isRequestAccessProject(project)
   const resolvedTitle = hiddenTarget ? 'Browse more work' : project?.name || title
   const resolvedImage = project?.cardMockup || project?.image || image
   const resolvedAlt = project?.cardMockupAlt || resolvedTitle
-  const resolvedHref = hiddenTarget ? '/work' : `/${slug}`
-  const resolvedMeta = hiddenTarget ? 'Public work index' : project?.tag
+  const resolvedHref = hiddenTarget ? '/work' : `/${targetSlug}`
+  const resolvedMeta = hiddenTarget
+    ? 'Public work index'
+    : project?.tag
+      ? sentenceCaseProjectLabel(project.tag)
+      : undefined
   const resolvedDesc = hiddenTarget ? 'Continue with visible projects instead of a hidden archive entry.' : project?.desc
   const prefetch = useCallback(() => {
     if (!hiddenTarget && project?.page) project.page()

@@ -90,7 +90,7 @@ export default function BreakGenPage() {
             <p>BreakGen now has two public surfaces: a launch page that frames the thesis as a product, and an interactive demo where the workspace, preview chamber, control surface, and export logic can be inspected directly.</p>
           </CsBody>
 
-          <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
+          <div className="cs-img-grid project-image-grid--two project-image-grid--spaced">
             <div className="cs-img reveal">
               <img
                 src="/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
@@ -121,7 +121,7 @@ export default function BreakGenPage() {
             <CsBody>
               <p>BreakGen was presented at the ITP Thesis Show at NYU Tisch, Spring 2025. Over 200 visitors interacted with the platform, and multiple working keyboard prototypes were fabricated and demonstrated live.</p>
             </CsBody>
-            <div className="cs-label-row" style={{ marginTop: '2rem' }}>
+            <div className="cs-label-row project-label-row--spaced">
               <span className="cs-label-row-key">Advisor</span>
               <span className="cs-label-row-val">Luisa Pereira &mdash; NYU Interactive Telecommunications Program</span>
             </div>
@@ -129,8 +129,8 @@ export default function BreakGenPage() {
 
         {/* Read the full case study */}
         <section className="cs-section reveal" id="cs-full-case">
-          <div className="wrap" style={{ textAlign: 'center', padding: '3rem 0' }}>
-            <a href="/keyboard-project" style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+          <div className="wrap project-closing-link">
+            <a href="/keyboard-project">
               See the earlier physical keyboard study &rarr;
             </a>
           </div>

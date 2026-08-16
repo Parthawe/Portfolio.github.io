@@ -84,7 +84,7 @@ export default function UvLightPage() {
               <p>The camera-feed layer worked because it arrived after people had relaxed into play. The room first invited them in, then revealed they were being watched.</p>
             </CsBody>
             <div className="cs-img-full"><img src="/Assets/Projects/UVLight/photos/1000051727.webp" alt="Whiteboard brainstorming: room layouts, puzzle concepts, and interaction flow sketches" loading="lazy" /></div>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/1000051740.png" alt="Observation whiteboard: show rather than tell, bias, monitoring concepts" loading="lazy" /></div>
               <figure className="cs-img reveal">
                 <img src="/Assets/Projects/UVLight/photos/1000051772.png" alt="Whiteboard close-up of an early four-room concept, murder, stolen data, money heist, with timing math for cycling groups of participants through the rooms" loading="lazy" decoding="async" />
@@ -124,7 +124,7 @@ export default function UvLightPage() {
         {/* Van Gogh inspiration */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-4.png" alt="Van Gogh Almond Blossom pamphlet held during the experience setup" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/letter---1.png" alt="Van Gogh letter pamphlet: Paint the Soul" loading="lazy" /></div>
             </div>
@@ -137,7 +137,7 @@ export default function UvLightPage() {
           <div className="wrap">
             <p className="cs-section-label">Documentation</p>
             <h2 className="cs-section-title">The Experience</h2>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-1.png" alt="UV-lit room: participants discovering hidden projections under blacklight" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-2.png" alt="Participant discovering hidden UV drawings on the floor" loading="lazy" /></div>
             </div>
@@ -153,7 +153,7 @@ export default function UvLightPage() {
               <p>Participants filled portrait cards with casual answers: sleep, coffee, work, weekend plans, sketches. Under UV, hidden annotations reframed those answers as collected data.</p>
               <p>The point was not that surveillance always looks sinister. It often arrives as invitation, convenience, and play.</p>
             </CsBody>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', alignItems: 'start' }}>
+            <div className="cs-img-grid project-image-grid--three project-image-grid--top-aligned">
               <figure className="cs-img reveal">
                 <img src="/Assets/Projects/UVLight/photos/screenshot-2023-12-26-at-1.08-1.png" alt="The blank portrait card in daylight: scattered questions about coffee, sleep, work, weekend plans, and a prompt to draw anything" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Stage one: the card as participants received it. Just friendly questions and blank lines.</figcaption>
@@ -172,7 +172,7 @@ export default function UvLightPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--three">
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-6.png" alt="Participants sitting around glowing UV puzzle on the floor" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-7.png" alt="Close-up: glowing UV element in participant's hand" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/UVLight/photos/image-5.png" alt="UV-lit room with Starry Night projection and participants" loading="lazy" /></div>
@@ -207,7 +207,7 @@ export default function UvLightPage() {
           <div className="wrap">
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What I Learned</h2>
-            <CsBody style={{ maxWidth: '720px' }}>
+            <CsBody className="cs-body--measure">
               <p>Spatial work needs narrative discipline. The participant should know enough to keep going, but not so much that the answer arrives before the experience does.</p>
               <p>The strongest moment was structural, not spectacular: the camera feed changed the audience from participants into observed subjects.</p>
             </CsBody>

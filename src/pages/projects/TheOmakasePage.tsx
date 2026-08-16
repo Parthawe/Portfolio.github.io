@@ -44,52 +44,29 @@ function KeyboardDiagram() {
   const p2 = ['U', 'I', 'O', 'P', 'J', 'K', 'L', ';']
 
   const KeyCap = ({ letter, ing }: { letter: string; ing: typeof ingredients[0] }) => (
-    <div style={{
-      width: '100%', minWidth: 0, height: 64, borderRadius: 8,
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      background: `${ing.color}15`, border: `2px solid ${ing.color}`,
-      fontFamily: 'var(--mono)', lineHeight: 1, gap: 3,
-      position: 'relative', padding: '0 2px', boxSizing: 'border-box',
-    }}>
+    <div
+      className="omakase-keycap"
+      style={{ '--omakase-key-color': ing.color, '--omakase-key-tint': `${ing.color}15` } as React.CSSProperties}
+    >
       {/* Key letter */}
-      <span style={{ fontSize: '18px', fontWeight: 700, color: ing.color }}>
+      <strong>
         {letter}
-      </span>
+      </strong>
       {/* Ingredient label */}
-      <span style={{
-        fontSize: '16px', fontWeight: 500, letterSpacing: '0.02em',
-        color: ing.color,
-      }}>
+      <span>
         {ing.label}
       </span>
       {/* Color dot */}
-      <div style={{
-        position: 'absolute', top: 4, right: 4,
-        width: 8, height: 8, borderRadius: '50%',
-        background: ing.color,
-      }} />
+      <i aria-hidden="true" />
     </div>
   )
 
   const Player = ({ keys, label }: { keys: string[]; label: string }) => (
-    <div style={{
-      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
-      width: 'min(100%, 336px)',
-    }}>
-      <span style={{
-        fontFamily: 'var(--mono)', fontSize: '16px', fontWeight: 600,
-        letterSpacing: '0.04em', textTransform: 'uppercase',
-        color: 'var(--ink-70)',
-      }}>
+    <div className="omakase-player-controls">
+      <span className="omakase-player-controls__label">
         {label}
       </span>
-      <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 4,
-        width: '100%', padding: '8px', boxSizing: 'border-box',
-        borderRadius: 'var(--radius-md)',
-        background: 'var(--ink-03)',
-        border: '1px solid var(--ink-06)',
-      }}>
+      <div className="omakase-keyboard-grid">
         {keys.map((k, i) => (
           <KeyCap key={k} letter={k} ing={ingredients[i]} />
         ))}
@@ -98,11 +75,7 @@ function KeyboardDiagram() {
   )
 
   return (
-    <div style={{
-      display: 'flex', justifyContent: 'center', alignItems: 'flex-start',
-      gap: 'clamp(20px, 5vw, 48px)',
-      flexWrap: 'wrap', padding: 'var(--space-4) 0',
-    }}>
+    <div className="omakase-keyboard-diagram">
       <Player keys={p1} label="Player 1 (Left)" />
       <Player keys={p2} label="Player 2 (Right)" />
     </div>
@@ -142,59 +115,33 @@ function GameEmbed() {
       {/* Game container */}
       <div
         ref={containerRef}
-        style={{
-          position: 'relative', width: '100%', aspectRatio: '16 / 9',
-          borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-          background: '#1a1a2e',
-          border: '1px solid var(--ink-06)',
-          boxShadow: 'var(--shadow-lg)',
-          marginTop: 'var(--space-5)',
-        }}
+        className="omakase-game"
       >
         {IS_TOUCH ? (
-          <div style={{
-            position: 'absolute', inset: 0, display: 'flex',
-            flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-            gap: 'var(--space-4)', padding: 'var(--space-6)', textAlign: 'center',
-            background: 'linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 100%)',
-          }}>
-            <span style={{ fontSize: '2.5rem' }}>🍣</span>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: 300, color: '#fff', lineHeight: 1.3, maxWidth: '24ch' }}>
+          <div className="omakase-touch-fallback">
+            <img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="" />
+            <p className="omakase-touch-fallback__title">
               The Omakase needs a keyboard for 2-player action
             </p>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.5)', maxWidth: '32ch', lineHeight: 1.6 }}>
+            <p className="omakase-touch-fallback__copy">
               Visit on desktop to play, or try it directly on itch.io
             </p>
-            <a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer" className="pill-link" style={{ color: '#fff', border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.08)', marginTop: 'var(--space-2)', textDecoration: 'none' }}>
+            <a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer" className="pill-link omakase-touch-fallback__link">
               Play on itch.io &rarr;
             </a>
           </div>
         ) : !loaded ? (
           <button
             onClick={() => setLoaded(true)}
-            style={{
-              position: 'absolute', inset: 0, width: '100%', height: '100%',
-              border: 'none', cursor: 'pointer',
-              background: 'linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #8B5E3C 150%)',
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center', gap: 'var(--space-3)',
-              transition: 'filter 0.3s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.15)' }}
-            onMouseLeave={e => { e.currentTarget.style.filter = '' }}
+            className="omakase-game-load"
           >
-            <div style={{
-              width: 64, height: 64, borderRadius: '50%',
-              background: 'rgba(255,255,255,0.12)', border: '2px solid rgba(255,255,255,0.25)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              backdropFilter: 'blur(8px)',
-            }}>
+            <div className="omakase-game-load__icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19" /></svg>
             </div>
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)' }}>
+            <span className="omakase-game-load__title">
               Click to load game
             </span>
-            <span style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.35)', marginTop: '-0.25rem' }}>
+            <span className="omakase-game-load__meta">
               Built with Unity &middot; 2-player local multiplayer
             </span>
           </button>
@@ -202,20 +149,9 @@ function GameEmbed() {
           <>
             {/* Loading spinner while Unity boots */}
             {!iframeReady && (
-              <div style={{
-                position: 'absolute', inset: 0, zIndex: 1,
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                gap: 12, background: '#1a1a2e',
-              }}>
-                <div style={{
-                  width: 32, height: 32, border: '2px solid rgba(255,255,255,0.1)',
-                  borderTopColor: 'rgba(255,255,255,0.5)', borderRadius: '50%',
-                  animation: 'omakase-spin 0.8s linear infinite',
-                }} />
-                <span style={{
-                  fontFamily: 'var(--mono)', fontSize: '16px', letterSpacing: '0.04em',
-                  textTransform: 'uppercase', color: 'rgba(255,255,255,0.76)',
-                }}>
+              <div className="omakase-game-loading" role="status">
+                <div className="omakase-game-loading__spinner" />
+                <span>
                   Loading Unity game&hellip;
                 </span>
               </div>
@@ -225,19 +161,14 @@ function GameEmbed() {
               allowFullScreen
               allow="autoplay; fullscreen"
               onLoad={() => setIframeReady(true)}
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              className="omakase-game__iframe"
               title="Play The Omakase"
             />
-            <div style={{ position: 'absolute', top: 8, right: 8, zIndex: 2, display: 'flex', gap: 4 }}>
+            <div className="omakase-game-tools">
               <button
                 onClick={toggleFullscreen}
                 aria-label={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
-                style={{
-                  width: 28, height: 28, borderRadius: 'var(--radius)',
-                  background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.15)',
-                  color: 'rgba(255,255,255,0.7)', cursor: 'pointer',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}
+                className="omakase-game-tools__button"
               >
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   {isFullscreen
@@ -252,15 +183,15 @@ function GameEmbed() {
 
       {/* Visual keyboard layout */}
       {!IS_TOUCH && (
-        <div style={{ marginTop: 'var(--space-6)' }}>
-          <h3 className="cs-section-subtitle" style={{ marginBottom: 'var(--space-3)' }}>Controls</h3>
+        <div className="omakase-game-guide">
+          <h3 className="cs-section-subtitle omakase-game-guide__heading">Controls</h3>
           <KeyboardDiagram />
         </div>
       )}
 
       {/* How to play — detailed guide below the game */}
-      <div style={{ marginTop: 'var(--space-6)' }}>
-        <h3 className="cs-section-subtitle" style={{ marginBottom: 'var(--space-4)' }}>How to Play</h3>
+      <div className="omakase-game-guide">
+        <h3 className="cs-section-subtitle omakase-game-guide__heading omakase-game-guide__heading--loose">How to Play</h3>
 
         <div className="cs-label-row">
           <span className="cs-label-row-key">Combos</span>
@@ -277,23 +208,10 @@ function GameEmbed() {
       </div>
 
       {!IS_TOUCH && (
-        <p style={{
-          fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)',
-          color: 'var(--ink-30)', letterSpacing: '0.06em',
-          textAlign: 'center', marginTop: 'var(--space-4)',
-        }}>
-          Game not loading? <a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-50)', textDecoration: 'underline' }}>Play directly on itch.io</a>
+        <p className="omakase-game-help">
+          Game not loading? <a href="https://vill4n3lle.itch.io/the-omakase" target="_blank" rel="noopener noreferrer">Play directly on itch.io</a>
         </p>
       )}
-
-      <style>{`
-        @keyframes omakase-spin {
-          to { transform: rotate(360deg); }
-        }
-        @media (max-width: 480px) {
-          .omakase-divider { display: none; }
-        }
-      `}</style>
     </CsSection>
   )
 }
@@ -335,7 +253,7 @@ export default function TheOmakasePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#8B5E3C' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--omakase" style={{ '--project-color': '#8B5E3C' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -365,13 +283,13 @@ export default function TheOmakasePage() {
         >
         {/* Video */}
         <section className="cs-slide reveal" id="cs-film">
-          <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+          <div className="omakase-film">
             <iframe
               src="https://player.vimeo.com/video/996020990?h=&badge=0&autopause=0&player_id=0&app_id=58479"
               frameBorder="0" loading="lazy"
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              className="omakase-film__iframe"
               title="The Omakase"
             />
           </div>
@@ -383,7 +301,7 @@ export default function TheOmakasePage() {
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid omakase-grid omakase-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-workshop.webp" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" decoding="async" /></div>
             </div>
@@ -393,10 +311,10 @@ export default function TheOmakasePage() {
         {/* Gameplay photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1.25fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid omakase-grid omakase-grid--feature">
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal" style={{ gridColumn: '1 / -1' }}><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal omakase-grid__wide"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -404,7 +322,7 @@ export default function TheOmakasePage() {
         {/* Players and exhibition */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid omakase-grid omakase-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/two-players.webp" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/team-photo.webp" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" decoding="async" /></div>
             </div>
@@ -422,13 +340,13 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <figure className="cs-img reveal" style={{ margin: 0 }}>
+            <figure className="cs-img reveal omakase-figure">
               <img src="/Assets/Projects/the-omakase/photos/chef-select-screen.webp" alt="Chef select screen — Chef Shiro versus Chef Kuro, each player's sushi likes, and a color-coded button legend for dropping sushi and changing belt direction" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The whole rulebook fits on one screen: pick your chef, match button colors to customers, go.</figcaption>
             </figure>
           </div>
           <div className="wrap">
-            <figure className="cs-img reveal" style={{ margin: 0 }}>
+            <figure className="cs-img reveal omakase-figure">
               <img src="/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp" alt="Over a player's shoulder in the dark: the sushi conveyor belt on screen above two clusters of glowing RGB buttons under their hands" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The mapping in action — customers on screen glow in the same colors as the buttons under your fingers.</figcaption>
             </figure>
@@ -446,11 +364,11 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid omakase-grid omakase-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/plywood-shell-drilled.webp" alt="Bare varnished plywood shell of the cabinet with two clusters of eight drilled button holes, before any hardware went in" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/marquee-sign-detail.webp" alt="Close-up of the marquee: THE OMAKASE. in a pixel typeface on birch plywood" loading="lazy" decoding="async" /></div>
             </div>
-            <p className="cs-img-caption" style={{ marginTop: '0.75rem' }}>Left: the shell after drilling — 8 button holes per player, no hardware yet. Right: the pixel-type marquee that ties the cabinet to the game&rsquo;s art.</p>
+            <p className="cs-img-caption omakase-grid-caption">Left: the shell after drilling — 8 button holes per player, no hardware yet. Right: the pixel-type marquee that ties the cabinet to the game&rsquo;s art.</p>
           </div>
         </section>
 
@@ -465,7 +383,7 @@ export default function TheOmakasePage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <figure className="cs-img reveal" style={{ margin: 0 }}>
+            <figure className="cs-img reveal omakase-figure">
               <img src="/Assets/Projects/the-omakase/photos/head-to-head-match.webp" alt="Two players seen from behind, mid-match at the cabinet — scores of $115 and $50 on the shared screen, buttons glowing under their hands" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">Mid-match: $115 to $50 with time left — exactly the momentum swings the 90-second rounds were tuned for.</figcaption>
             </figure>

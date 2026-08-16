@@ -45,7 +45,7 @@ export default function CanvasForCodersPage() {
           <CsBody>
             <p>Move your mouse across the canvas to attract particles. Each one follows a Perlin noise flow field &mdash; invisible currents that push and pull them into organic, ever-changing patterns. Switch color palettes to change the mood. Increase particle density for richer fields.</p>
           </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="project-content-block">
             <GenerativeCanvas />
           </div>
         </CsSection>

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { sentenceCaseProjectLabel } from '../../utils/projectPresentation';
 
 interface CsFeatureGridProps {
   features: { title: string; desc: string }[];
@@ -26,7 +27,7 @@ export default function CsFeatureGrid({ features, className }: CsFeatureGridProp
     >
       {features.map((f, index) => (
         <motion.div key={`${f.title || 'feature'}-${index}`} className="cs-feature-card" variants={item}>
-          <div className="cs-feature-card-title">{f.title}</div>
+          <div className="cs-feature-card-title">{sentenceCaseProjectLabel(f.title)}</div>
           <div className="cs-feature-card-desc">{f.desc}</div>
         </motion.div>
       ))}

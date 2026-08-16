@@ -43,7 +43,7 @@ export default function BlackHolePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#2E2E33' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--black-hole" style={{ '--project-color': '#2E2E33' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -66,8 +66,7 @@ export default function BlackHolePage() {
 
         <section className="cs-slide reveal" id="cs-film">
           <div className="wrap">
-            <video src="/Assets/Projects/black-hole-assets/time-dilation.mp4" autoPlay loop muted playsInline
-              style={{ width: '100%', borderRadius: 'var(--radius-lg)' }} />
+            <video className="black-hole-film" src="/Assets/Projects/black-hole-assets/time-dilation.mp4" autoPlay loop muted playsInline />
           </div>
         </section>
 
@@ -89,7 +88,7 @@ export default function BlackHolePage() {
             <span className="cs-label-row-key">Slider</span>
             <span className="cs-label-row-val">Drag to move the clock closer to or farther from the black hole &mdash; watch the second hand slow down</span>
           </div>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="black-hole-interactive">
             <TimeDilation />
           </div>
         </CsSection>
@@ -107,33 +106,18 @@ export default function BlackHolePage() {
             <span className="cs-label-row-key">Click</span>
             <span className="cs-label-row-val">Add a new mass (up to 3) &middot; Double-click to remove</span>
           </div>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="black-hole-interactive">
             {IS_MOBILE ? (
-              <div style={{
-                width: '100%', aspectRatio: '16 / 10',
-                borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-                position: 'relative', border: '1px solid rgba(255,255,255,0.06)',
-              }}>
-                <img src="/Assets/mockups/projects/black-hole_16x9.webp" alt="Black Hole interactive installation project overview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  background: 'linear-gradient(135deg, rgba(5,5,16,0.7), rgba(26,26,46,0.5))',
-                  display: 'flex', flexDirection: 'column',
-                  alignItems: 'center', justifyContent: 'center', gap: 'var(--space-2)',
-                  color: '#fff', textAlign: 'center', padding: 'var(--space-6)',
-                }}>
-                  <span style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: 300 }}>Interactive spacetime fabric</span>
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: 'var(--text-xs)', opacity: 0.6 }}>Available on desktop</span>
+              <div className="black-hole-fabric-fallback">
+                <img src="/Assets/mockups/projects/black-hole_16x9.webp" alt="Black Hole interactive installation project overview" loading="lazy" />
+                <div className="black-hole-fabric-fallback__copy">
+                  <span>Interactive spacetime fabric</span>
+                  <small>Available on desktop</small>
                 </div>
               </div>
             ) : (
               <Suspense fallback={
-                <div style={{
-                  width: '100%', aspectRatio: '16 / 10', borderRadius: 'var(--radius-lg)',
-                  background: '#050508', border: '1px solid rgba(255,255,255,0.06)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: 'rgba(255,255,255,0.2)', fontFamily: 'var(--mono)', fontSize: 'var(--text-2xs)',
-                }}>
+                <div className="black-hole-fabric-loading" role="status">
                   Loading spacetime fabric&#8230;
                 </div>
               }>
@@ -158,7 +142,7 @@ export default function BlackHolePage() {
             <span className="cs-label-row-key">Mass</span>
             <span className="cs-label-row-val">Increase mass to see stronger lensing effects</span>
           </div>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="black-hole-interactive">
             <GravLensing />
           </div>
         </CsSection>
@@ -170,7 +154,7 @@ export default function BlackHolePage() {
           <CsBody>
             <p>Binary black holes spiral closer, releasing energy as gravitational waves. The simulation shows three stages: <strong>Inspiral</strong> (orbiting closer), <strong>Merger</strong> (collision), and <strong>Ringdown</strong> (settling).</p>
           </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="black-hole-interactive">
             <BinaryMerger />
           </div>
         </CsSection>
@@ -180,7 +164,7 @@ export default function BlackHolePage() {
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="Exhibition" title="Horological Society of New York">
           <CsBody>
-            <p>The models were built for exhibition at the <a href="https://www.hsny.org/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Horological Society of New York</a>&rsquo;s museum. The pairing is intentional &mdash; black holes are fundamentally about the distortion of time, and the Horological Society is dedicated to the art and science of measuring it.</p>
+            <p>The models were built for exhibition at the <a className="cs-text-link" href="https://www.hsny.org/" target="_blank" rel="noopener noreferrer">Horological Society of New York</a>&rsquo;s museum. The pairing is intentional &mdash; black holes are fundamentally about the distortion of time, and the Horological Society is dedicated to the art and science of measuring it.</p>
           </CsBody>
         </CsSection>
 

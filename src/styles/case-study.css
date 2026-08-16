@@ -407,6 +407,7 @@
 }
 
 .proj-hero-img {
+  position: relative;
   width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1158,17 +1159,17 @@
 }
 
 [data-theme="light"] .proj-visual-brief__copy {
-  color: var(--ink);
+  color: rgba(246, 252, 250, 0.78);
 }
 
 [data-theme="light"] .proj-visual-brief__facts dt,
 [data-theme="light"] .proj-visual-timeline strong {
-  color: var(--ink);
+  color: rgba(246, 252, 250, 0.96);
 }
 
 [data-theme="light"] .proj-visual-brief__facts dd,
 [data-theme="light"] .proj-visual-timeline span {
-  color: var(--ink);
+  color: rgba(246, 252, 250, 0.72);
 }
 
 [data-theme="light"] .proj-visual-timeline li {
@@ -8323,6 +8324,10 @@
    Keeps individual stories intact while making every project page
    use the same typography, media frame, spacing, and component grammar.
    ═══════════════════════════════════════ */
+html:has(.project-main) {
+  position: relative;
+}
+
 .project-main {
   --case-shell-radius: var(--radius);
   --case-media-radius: var(--radius-lg);
@@ -9130,7 +9135,8 @@
 }
 
 .project-main--mentra-visual .cs-mentra-problem-copy {
-  max-width: 24ch;
+  width: 100%;
+  max-width: none;
   margin: 0;
   color: var(--mentra-editorial-accent);
   font-family: var(--sans);
@@ -9341,7 +9347,7 @@
 }
 
 .project-main--mentra-visual .cs-mentra-hypothesis p {
-  max-width: 30ch;
+  max-width: none;
   margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
   color: var(--ink);
   font-family: var(--serif);
@@ -9352,6 +9358,31 @@
 
 .project-main--mentra-visual .cs-mentra-hypothesis p:last-child {
   margin-bottom: 0;
+}
+
+/* The section grid owns the outer page margin. Let the narrative itself use
+   the complete reading column instead of stopping at the generic 62ch body
+   cap, so the argument reaches the same right edge as its media and diagrams. */
+.project-main--mentra-visual :is(
+  #cs-bet,
+  #cs-companion,
+  #cs-os,
+  #cs-store
+) .cs-section-content,
+.project-main--mentra-visual :is(
+  #cs-bet,
+  #cs-companion,
+  #cs-os,
+  #cs-store
+) .cs-body,
+.project-main--mentra-visual :is(
+  #cs-bet,
+  #cs-companion,
+  #cs-os,
+  #cs-store
+) .cs-body p {
+  width: 100%;
+  max-width: none;
 }
 
 @media (min-width: 901px) {

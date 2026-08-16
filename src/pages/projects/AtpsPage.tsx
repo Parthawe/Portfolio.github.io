@@ -24,7 +24,7 @@ export default function AtpsPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#7A6FF0' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--atps" style={{ '--project-color': '#7A6FF0' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -48,7 +48,7 @@ export default function AtpsPage() {
           <div className="wrap">
             <p className="cs-section-label">Distribution</p>
             <h2 className="cs-display">Listen from the best podcast platform</h2>
-            <div className="cs-tags" style={{ marginBottom: '2rem' }}>
+            <div className="cs-tags atps-platforms">
               <span className="cs-tag-item">Google Podcast</span>
               <span className="cs-tag-item">Podcast Addict</span>
               <span className="cs-tag-item">Spotify</span>
@@ -61,11 +61,11 @@ export default function AtpsPage() {
         {/* Overview */}
         <section className="cs-section reveal" id="cs-overview">
           <div className="wrap">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
-              <h2 className="cs-display" style={{ margin: 0 }}>ArtTown Podcast Series</h2>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontFamily: 'var(--display)', fontSize: '1.1rem', color: 'var(--ink-70)' }}>Podcast Host</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: '1rem', color: 'var(--ink-40)' }}>March 2020 &ndash; Present</div>
+            <div className="atps-overview-head">
+              <h2 className="cs-display">ArtTown Podcast Series</h2>
+              <div className="atps-overview-meta">
+                <strong>Podcast Host</strong>
+                <span>March 2020 &ndash; Present</span>
               </div>
             </div>
             <ProjectOverview
@@ -91,18 +91,18 @@ export default function AtpsPage() {
         <section className="cs-section reveal" id="cs-impact">
           <div className="wrap">
             <p className="cs-section-label">Impact</p>
-            <div className="cs-info-grid" style={{ gridTemplateColumns: 'repeat(3,1fr)', textAlign: 'center', margin: '2rem 0 0' }}>
-              <div className="cs-info-item" style={{ alignItems: 'center' }}>
-                <span className="cs-info-value" style={{ fontFamily: 'var(--display)', fontSize: 'clamp(3rem,7vw,5rem)', fontWeight: 400, letterSpacing: '-0.02em' }}>50k+</span>
-                <span className="cs-info-key" style={{ fontSize: '1.1rem', textTransform: 'none', letterSpacing: 0, fontFamily: 'var(--sans)' }}>Views</span>
+            <div className="cs-info-grid atps-impact-grid">
+              <div className="cs-info-item">
+                <span className="cs-info-value">50k+</span>
+                <span className="cs-info-key">Views</span>
               </div>
-              <div className="cs-info-item" style={{ alignItems: 'center' }}>
-                <span className="cs-info-value" style={{ fontFamily: 'var(--display)', fontSize: 'clamp(3rem,7vw,5rem)', fontWeight: 400, letterSpacing: '-0.02em' }}>40+</span>
-                <span className="cs-info-key" style={{ fontSize: '1.1rem', textTransform: 'none', letterSpacing: 0, fontFamily: 'var(--sans)' }}>Guests</span>
+              <div className="cs-info-item">
+                <span className="cs-info-value">40+</span>
+                <span className="cs-info-key">Guests</span>
               </div>
-              <div className="cs-info-item" style={{ alignItems: 'center' }}>
-                <span className="cs-info-value" style={{ fontFamily: 'var(--display)', fontSize: 'clamp(3rem,7vw,5rem)', fontWeight: 400, letterSpacing: '-0.02em' }}>18000</span>
-                <span className="cs-info-key" style={{ fontSize: '1.1rem', textTransform: 'none', letterSpacing: 0, fontFamily: 'var(--sans)' }}>Hours</span>
+              <div className="cs-info-item">
+                <span className="cs-info-value">18,000</span>
+                <span className="cs-info-key">Listening hours</span>
               </div>
             </div>
           </div>
@@ -111,14 +111,13 @@ export default function AtpsPage() {
         {/* Plan of Action */}
         <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
-            <h2 className="cs-display" style={{ textAlign: 'center' }}>Plan of action?</h2>
-            <div className="cs-steps" style={{ gridTemplateColumns: 'repeat(6,1fr)', marginTop: '3rem' }}>
+            <h2 className="cs-display atps-centered-heading">Plan of action?</h2>
+            <div className="cs-steps atps-process">
               <div className="cs-step">
                 <div className="cs-step-title">Problem</div>
                 <div className="cs-step-desc">Educating Young Minds</div>
               </div>
               <div className="cs-step">
-                <div className="cs-step-num">&#9670;</div>
                 <div className="cs-step-title">Discover</div>
                 <div className="cs-step-desc">Art &amp; Design Domain</div>
               </div>
@@ -127,7 +126,6 @@ export default function AtpsPage() {
                 <div className="cs-step-desc">Contact experts from domain</div>
               </div>
               <div className="cs-step">
-                <div className="cs-step-num">&#9670;</div>
                 <div className="cs-step-title">Develop</div>
                 <div className="cs-step-desc">Connection &amp; Preparation before shoot</div>
               </div>
@@ -146,57 +144,57 @@ export default function AtpsPage() {
         {/* Guest Connections */}
         <section className="cs-section reveal" id="cs-guests">
           <div className="wrap">
-            <h2 className="cs-display" style={{ textAlign: 'center' }}>Guest Connections</h2>
-            <CsBody style={{ maxWidth: '100%', textAlign: 'center', margin: '0 auto 2rem' }}>
+            <h2 className="cs-display atps-centered-heading">Guest Connections</h2>
+            <div className="atps-centered-copy"><CsBody>
               <p>Over 40 episodes, we connected with a diverse range of guests including product designers, architects, art directors, brand developers, glass sculptors, tattoo artists, art conservators, and more from around the world.</p>
-            </CsBody>
+            </CsBody></div>
           </div>
         </section>
 
         {/* How It Works */}
         <section className="cs-section reveal" id="cs-listener-flow">
           <div className="wrap">
-            <p className="cs-section-label" style={{ textAlign: 'center' }}>Listener Experience</p>
-            <h2 className="cs-section-title" style={{ textAlign: 'center' }}>How It Works</h2>
-            <div className="cs-steps" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
-              <div className="cs-step" style={{ textAlign: 'center' }}>
+            <p className="cs-section-label atps-centered-heading">Listener Experience</p>
+            <h2 className="cs-section-title atps-centered-heading">How It Works</h2>
+            <div className="cs-steps atps-listener-flow">
+              <div className="cs-step">
                 <div className="cs-step-num">01</div>
                 <div className="cs-step-title">Reveal</div>
                 <div className="cs-step-desc">Discover a new guest and episode topic</div>
               </div>
-              <div className="cs-step" style={{ textAlign: 'center' }}>
+              <div className="cs-step">
                 <div className="cs-step-num">02</div>
                 <div className="cs-step-title">Play</div>
                 <div className="cs-step-desc">Stream the episode on your preferred platform</div>
               </div>
-              <div className="cs-step" style={{ textAlign: 'center' }}>
+              <div className="cs-step">
                 <div className="cs-step-num">03</div>
                 <div className="cs-step-title">Enjoy</div>
                 <div className="cs-step-desc">Gain insights from industry experts</div>
               </div>
-              <div className="cs-step" style={{ textAlign: 'center' }}>
+              <div className="cs-step">
                 <div className="cs-step-num">04</div>
                 <div className="cs-step-title">Repeat</div>
                 <div className="cs-step-desc">Come back every Friday for a new episode</div>
               </div>
             </div>
-            <CsCallout style={{ textAlign: 'center', marginTop: '3rem', borderLeft: 'none', borderRadius: '12px', background: 'var(--bg-alt)' }}>
+            <div className="atps-callout"><CsCallout>
               <p><strong>Podcast Every Friday</strong></p>
-              <div className="cs-callout-metric-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem', marginTop: '1rem' }}>
+              <div className="cs-callout-metric-grid atps-callout-grid">
                 <div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--ink-40)', marginBottom: '0.3rem' }}>WHAT YOU GAIN?</div>
-                  <div style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.5rem,3vw,2rem)' }}>Art</div>
+                  <small>What you gain</small>
+                  <strong>Art</strong>
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--ink-40)', marginBottom: '0.3rem' }}>WHEN DOES IT AIR?</div>
-                  <div style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.5rem,3vw,2rem)' }}>Friday</div>
+                  <small>When it airs</small>
+                  <strong>Friday</strong>
                 </div>
                 <div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--ink-40)', marginBottom: '0.3rem' }}>ANY CHARGES?</div>
-                  <div style={{ fontFamily: 'var(--display)', fontSize: 'clamp(1.5rem,3vw,2rem)' }}>Free</div>
+                  <small>Cost</small>
+                  <strong>Free</strong>
                 </div>
               </div>
-            </CsCallout>
+            </CsCallout></div>
           </div>
         </section>
 
@@ -208,9 +206,9 @@ export default function AtpsPage() {
           <div className="wrap">
             <p className="cs-section-label">Episodes</p>
             <h2 className="cs-section-title">Notable Guests</h2>
-            <CsBody style={{ marginBottom: '1.5rem' }}>
+            <div className="atps-episodes-intro"><CsBody>
               <p>The series featured conversations spanning a wide breadth of creative disciplines:</p>
-            </CsBody>
+            </CsBody></div>
             <ul className="cs-list">
               <li>Srishti Bajaj &mdash; Product Designer</li>
               <li>Narendra Rahurikar &mdash; Art Director, Managing Director at Crime Art</li>
@@ -236,11 +234,11 @@ export default function AtpsPage() {
           <div className="wrap">
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What Hosting 40+ Conversations Taught Me</h2>
-            <CsBody style={{ maxWidth: '720px' }}>
+            <div className="atps-reflection-copy"><CsBody>
               <p>Running ATPS taught me that the best interviews happen when you stop performing expertise and start listening. The turning point was following a guest&rsquo;s unexpected tangent instead of forcing the script.</p>
               <p>The design skill I developed was editorial thinking&mdash;knowing what to cut, what to keep, and how to structure a 60-minute conversation into a compelling 30-minute episode. This is the same skill I now use in product design: understanding that what you leave out defines the experience as much as what you include.</p>
               <p>ATPS also gave me a network I could not have built any other way. Several professional collaborations&mdash;including introductions that led to real projects&mdash;started as podcast conversations.</p>
-            </CsBody>
+            </CsBody></div>
           </div>
         </section>
 

@@ -56,7 +56,7 @@ export default function CodeForBuildPage() {
             <span className="cs-label-row-key">Method</span>
             <span className="cs-label-row-val">Map code concepts to familiar building blocks, then pair each block with a live preview and 3D model of the page structure.</span>
           </div>
-          <div className="cs-label-row" style={{ borderBottom: 'none' }}>
+          <div className="cs-label-row project-label-row--open">
             <span className="cs-label-row-key">Result</span>
             <span className="cs-label-row-val">A visual learning prototype that makes layout concepts easier to inspect before reading code syntax.</span>
           </div>

@@ -55,7 +55,7 @@ export default function OfficeOfDiversityPage() {
             <span className="cs-label-row-key">Method</span>
             <span className="cs-label-row-val">Break the content into structured sections, timelines, visual summaries, and responsive pages that supported scanning.</span>
           </div>
-          <div className="cs-label-row" style={{ borderBottom: 'none' }}>
+          <div className="cs-label-row project-label-row--open">
             <span className="cs-label-row-key">Result</span>
             <span className="cs-label-row-val">An accessible web report that made IDBEA milestones and progress easier for the Tisch community to explore.</span>
           </div>

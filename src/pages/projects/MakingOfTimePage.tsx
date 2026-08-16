@@ -59,7 +59,7 @@ export default function MakingOfTimePage() {
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" alt="Custom mechanical watch: octagonal bezel, blue guilloche dial, steel bracelet" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/mockups/projects/making-of-time_16x9.webp" alt="Making of Time project overview featuring the physical watch studies" loading="lazy" /></div>
             </div>
@@ -71,7 +71,7 @@ export default function MakingOfTimePage() {
           <CsBody>
             <p>The same moment, measured three ways: shadow, escapement, and color field. The point is not accuracy, it is how each medium changes attention.</p>
           </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="project-content-block">
             <ClockTrio />
           </div>
         </CsSection>
@@ -95,7 +95,7 @@ export default function MakingOfTimePage() {
             <p>The sundial started with gnomon geometry: the shadow-casting angle had to match New York City&rsquo;s latitude for the hour lines to work.</p>
             <p>Built from wood and brass, it made time slow and spatial. You stand with it, read the shadow, and feel the day moving instead of checking a number.</p>
           </CsBody>
-          <figure className="cs-img reveal" style={{ maxWidth: '560px', margin: '2.5rem auto 0' }}>
+          <figure className="cs-img reveal project-media--compact">
             <img src="/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Sundial-inspired white watch with a raised gnomon on the dial" loading="lazy" decoding="async" />
             <figcaption className="cs-img-caption">The sundial idea carried onto the wrist: the white watch&rsquo;s dial reads by a raised gnomon instead of hands.</figcaption>
           </figure>
@@ -125,7 +125,7 @@ export default function MakingOfTimePage() {
         {/* Watch detail photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-angle.png" alt="Mechanical watch: blue guilloche dial, octagonal bezel, steel bracelet from side angle" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-top.png" alt="Mechanical watch from above: blue dial with applied hour markers" loading="lazy" /></div>
             </div>
@@ -136,7 +136,7 @@ export default function MakingOfTimePage() {
         <CsSection id="cs-digital" label="03 &mdash; Digital" title="Digital">
           <CsBody>
             <p>The digital phase turned time into a designed field: hue for hours, saturation for minutes, brightness for seconds.</p>
-            <p>Software gave the most freedom, but also the least grounding. That contrast led directly into <a href="/black-hole" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Black Hole</a>, where the question shifted from measuring time to bending it.</p>
+            <p>Software gave the most freedom, but also the least grounding. That contrast led directly into <a href="/black-hole" className="project-text-link">Black Hole</a>, where the question shifted from measuring time to bending it.</p>
           </CsBody>
         </CsSection>
 

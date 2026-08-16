@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 
 interface CsCalloutProps {
   children: ReactNode;
+  className?: string;
   style?: React.CSSProperties;
 }
 
-export default function CsCallout({ children, style }: CsCalloutProps) {
+export default function CsCallout({ children, className, style }: CsCalloutProps) {
   return (
     <motion.div
-      className="cs-callout"
+      className={`cs-callout${className ? ` ${className}` : ''}`}
       style={style}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

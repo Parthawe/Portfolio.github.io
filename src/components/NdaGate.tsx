@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { getProject } from '../data/projects'
 import { CONTACT_EMAIL } from '../config/site'
+import { sentenceCaseProjectLabel } from '../utils/projectPresentation'
 
 interface NdaGateProps {
   slug: string
@@ -253,7 +254,7 @@ export default function NdaGate({
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="nda-inline-preview" aria-label={`Preview of ${projectName}`}>
-        <span>{project?.tag ?? 'Protected case study'}</span>
+        <span>{project?.tag ? sentenceCaseProjectLabel(project.tag) : 'Protected case study'}</span>
         <h2>{projectName}: protected story</h2>
         <p>{project?.summaryProblem ?? project?.desc ?? 'The full process, decisions, and evidence are available to reviewers.'}</p>
         <p>{project?.summaryOutcome ?? 'Research artifacts, working decisions, and final proof continue after access.'}</p>
@@ -273,9 +274,10 @@ export default function NdaGate({
             aria-label="Unlock with reviewer code"
             onSubmit={handleCodeSubmit}
           >
-            <label className="nda-field">
+            <label className="nda-field" htmlFor={`nda-reviewer-code-${slug}`}>
               <span>Reviewer code</span>
               <input
+                id={`nda-reviewer-code-${slug}`}
                 type="password"
                 className="nda-input"
                 value={accessCode}
@@ -304,9 +306,10 @@ export default function NdaGate({
                 Share your work email and what you're reviewing so I can send the right level of detail.
               </p>
             </div>
-            <label className="nda-field">
+            <label className="nda-field" htmlFor={`nda-work-email-${slug}`}>
               <span>Work email</span>
               <input
+                id={`nda-work-email-${slug}`}
                 type="email"
                 className="nda-input"
                 value={email}
@@ -316,9 +319,10 @@ export default function NdaGate({
                 required
               />
             </label>
-            <label className="nda-field">
+            <label className="nda-field" htmlFor={`nda-review-context-${slug}`}>
               <span>What are you reviewing?</span>
               <textarea
+                id={`nda-review-context-${slug}`}
                 className="nda-input nda-textarea"
                 value={context}
                 onChange={e => setContext(e.target.value)}

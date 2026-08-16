@@ -73,7 +73,7 @@ export default function DrowningPage() {
           <CsBody>
             <p>Drag the slider to see the same set change state. The scenic design only works because structure, texture, and light are designed together.</p>
           </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="project-content-block">
             <LightingSlider
               beforeSrc={drowningImages.unlit}
               afterSrc={drowningImages.revealed}

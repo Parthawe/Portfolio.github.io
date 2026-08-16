@@ -61,10 +61,10 @@ export default function ThePointCdcPage() {
               <span className="cs-label-row-key">Role</span>
               <span className="cs-label-row-val">I handled research synthesis, information architecture, responsive page structure, visual direction, and prototype handoff.</span>
             </div>
-            <div className="cs-label-row" style={{ borderBottom: 'none' }}>
+            <div className="cs-label-row project-label-row--open">
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
               <span className="cs-label-row-val">
-                <span className="cs-tags" style={{ margin: 0 }}>
+                <span className="cs-tags project-tags--flush">
                   <span className="cs-tag-item">Figma</span>
                   <span className="cs-tag-item">User Research</span>
                   <span className="cs-tag-item">Website Design</span>
@@ -98,10 +98,10 @@ export default function ThePointCdcPage() {
         {/* Problem Statement */}
         <CsExpandPreview>
         <section className="cs-section reveal" id="cs-discover">
-          <div className="wrap" style={{ textAlign: 'center' }}>
+          <div className="wrap point-callout-wrap">
             <span className="cs-section-label">01 &mdash; Discover</span>
             <h2 className="cs-section-title">Problem Statement</h2>
-            <CsCallout style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto', textAlign: 'left' }}>
+            <CsCallout className="point-callout">
               <p>How can we redesign The Point CDC&rsquo;s website so residents can find programs, services, events, and WiFi information faster?</p>
             </CsCallout>
           </div>
@@ -186,7 +186,7 @@ export default function ThePointCdcPage() {
         </div>
 
         {/* Goals */}
-        <section className="cs-section reveal" style={{ paddingTop: 0 }} id="cs-define">
+        <section className="cs-section reveal project-section--flush" id="cs-define">
           <div className="wrap">
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">Goals</h2>
@@ -199,7 +199,7 @@ export default function ThePointCdcPage() {
         </section>
 
         {/* User Journey */}
-        <section className="cs-section reveal" style={{ paddingTop: 0 }}>
+        <section className="cs-section reveal project-section--flush">
           <div className="wrap">
             <span className="cs-section-label">Define</span>
             <h2 className="cs-section-title">User Journey</h2>
@@ -260,7 +260,7 @@ export default function ThePointCdcPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign explaining the new homepage hierarchy and navigation" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
@@ -289,7 +289,7 @@ export default function ThePointCdcPage() {
             <CsBody>
               <p>The final site gave programs, events, WiFi access, and community resources a clearer public structure that residents and staff could point people toward.</p>
             </CsBody>
-            <a href="https://thepoint.org" target="_blank" rel="noopener noreferrer" className="cs-thanks-btn" style={{ marginTop: '1.5rem' }}>
+            <a href="https://thepoint.org" target="_blank" rel="noopener noreferrer" className="cs-thanks-btn point-thanks-link">
               Visit thepoint.org
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </a>

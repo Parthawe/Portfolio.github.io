@@ -42,7 +42,7 @@ export default function ArcadeLabPage() {
         {/* Overview */}
         <CsSection id="cs-overview" label="Overview" title="10 Weeks, 4 Prototypes, 1 Final Game">
           <CsBody>
-            <p>The New Arcade at NYU ITP is a course about designing games that bring people together physically &mdash; not through screens, but through shared space, custom controllers, and face-to-face competition. Over 10 weeks, I built four rapid prototypes exploring different approaches to social play, each one informing the next, culminating in <a href="/the-omakase" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>The Omakase</a>.</p>
+            <p>The New Arcade at NYU ITP is a course about designing games that bring people together physically &mdash; not through screens, but through shared space, custom controllers, and face-to-face competition. Over 10 weeks, I built four rapid prototypes exploring different approaches to social play, each one informing the next, culminating in <a href="/the-omakase" className="project-text-link">The Omakase</a>.</p>
             <p>The constraint that defined every prototype: <strong>no standard controllers</strong>. Every game had to have a custom physical interface &mdash; something you couldn&rsquo;t just plug a gamepad into. This pushed the design process into unfamiliar territory where the interface IS the game.</p>
           </CsBody>
         </CsSection>

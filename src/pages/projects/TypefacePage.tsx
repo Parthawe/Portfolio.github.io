@@ -163,7 +163,7 @@ export default function TypefacePage() {
             <p className="tf-section-kicker">Origin</p>
             <h2>Named after a knife, not a font menu.</h2>
           </div>
-          <div className="tf-split-section" style={{ paddingTop: 0 }}>
+          <div className="tf-split-section tf-split-section--flush">
             <div className="tf-split-copy">
               <p>
                 Butler&rsquo;s Slice started with objects that had been cut with intent &mdash; the clean bevel of a
@@ -175,15 +175,15 @@ export default function TypefacePage() {
                 worth cutting into.
               </p>
             </div>
-            <figure style={{ margin: 0 }}>
+            <figure className="tf-origin-figure">
               <img
                 src={`${TYPEFACE_ASSET}/photos/inspiration-cut.jpg`}
                 alt="Original inspiration board: a chef's knife on a cutting board and a hand-carved wooden plate with fine parallel cuts"
                 loading="lazy"
                 decoding="async"
-                style={{ width: '100%', borderRadius: 'var(--radius-md, 12px)' }}
+                className="tf-origin-image"
               />
-              <figcaption style={{ marginTop: '0.6rem', fontSize: '1rem', opacity: 0.7 }}>
+              <figcaption className="tf-origin-caption">
                 The original inspiration board &mdash; elements that have been fine cut.
               </figcaption>
             </figure>
@@ -295,12 +295,12 @@ export default function TypefacePage() {
           <div className="tf-metric-grid">
             <article className="tf-metric">
               <span>Short texts</span>
-              <strong style={{ fontFamily: 'var(--tf-slice)', fontWeight: 700 }}>140pt</strong>
+              <strong className="tf-metric-value tf-metric-value--bold">140pt</strong>
               <p>Headlines, posters, covers &mdash; the cuts read as intent at display scale.</p>
             </article>
             <article className="tf-metric">
               <span>Long texts</span>
-              <strong style={{ fontFamily: 'var(--tf-slice)', fontWeight: 400 }}>45pt</strong>
+              <strong className="tf-metric-value tf-metric-value--regular">45pt</strong>
               <p>Pull quotes and ledes hold up; below that, hand the page to a workhorse text face.</p>
             </article>
             <article className="tf-metric">

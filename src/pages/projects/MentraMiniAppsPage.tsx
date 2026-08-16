@@ -251,7 +251,7 @@ export default function MentraMiniAppsPage() {
 
         {/* Reflection */}
         <CsSection id="cs-reflection" label="Reflection" title="What Building an App Store for Your Face Taught Me">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>The store is where the platform thesis proves itself. Developers need a reason to build, and users need a way to find value instantly.</p>
             <p>The key insight: voice-first discovery is not just a workaround for a small screen. For wearable computing, it may be the better app-store model.</p>
           </CsBody>

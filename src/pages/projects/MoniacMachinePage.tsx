@@ -70,7 +70,7 @@ export default function MoniacMachinePage() {
             <span className="cs-label-row-key">Controls</span>
             <span className="cs-label-row-val">7 economic levers with random shocks</span>
           </div>
-          <div style={{ marginTop: 'var(--space-5)' }}>
+          <div className="project-content-block--roomy">
             <MoniacSimulator />
           </div>
         </CsSection>
@@ -78,7 +78,7 @@ export default function MoniacMachinePage() {
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/hero-cabinet.png" alt="Moniac Machine arcade cabinet with iPad display and valve controllers" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/annotated-breakdown.png" alt="Annotated breakdown: iPad, arcade wood, valve controllers, Teensy 4.0, wire connections" loading="lazy" /></div>
             </div>
@@ -101,13 +101,13 @@ export default function MoniacMachinePage() {
         <CsExpandPreview>
         <CsSection id="cs-inspiration" label="01 &mdash; Inspiration" title="Inspiration">
           <CsBody>
-            <p>The original <a href="https://en.wikipedia.org/wiki/Phillips_Machine" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>MONIAC</a> (Monetary National Income Analogue Computer) was a hydraulic machine built in 1949 by economist <a href="https://en.wikipedia.org/wiki/William_Phillips_(economist)" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Bill Phillips</a>, using coloured water flowing through transparent tanks and pipes to model the workings of the UK national economy. This game carries that commitment to making the invisible visible into a digital interactive experience.</p>
+            <p>The original <a href="https://en.wikipedia.org/wiki/Phillips_Machine" target="_blank" rel="noopener noreferrer" className="project-text-link">MONIAC</a> (Monetary National Income Analogue Computer) was a hydraulic machine built in 1949 by economist <a href="https://en.wikipedia.org/wiki/William_Phillips_(economist)" target="_blank" rel="noopener noreferrer" className="project-text-link">Bill Phillips</a>, using coloured water flowing through transparent tanks and pipes to model the workings of the UK national economy. This game carries that commitment to making the invisible visible into a digital interactive experience.</p>
           </CsBody>
         </CsSection>
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '2fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--feature">
               <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/screen-closeup.png" alt="iPad screen showing economic flow diagram with tax rates and consumer consumption" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/original-moniac.png" alt="Original 1949 Phillips MONIAC hydraulic computer" loading="lazy" /></div>
             </div>
@@ -124,7 +124,7 @@ export default function MoniacMachinePage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/valve-detail.webp" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/hand-playing.webp" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
             </div>

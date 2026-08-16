@@ -66,7 +66,7 @@ export default function RevolvingStagePage() {
             <div className="cs-label-row">
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
               <span className="cs-label-row-val">
-                <span className="cs-tags" style={{ margin: 0 }}>
+                <span className="cs-tags project-tags--flush">
                   <span className="cs-tag-item">Mechanical Engineering</span>
                   <span className="cs-tag-item">Welding</span>
                   <span className="cs-tag-item">Carpentry</span>
@@ -94,7 +94,7 @@ export default function RevolvingStagePage() {
           <CsBody>
             <p>Drag to rotate the 15-foot platform. Four scene zones are painted on the stage &mdash; as it turns, different scenes face the audience. This is how the director used rotation as a narrative tool: one smooth spin = one scene transition, no blackout needed.</p>
           </CsBody>
-          <div style={{ marginTop: 'var(--space-4)' }}>
+          <div className="project-content-block">
             <StageRotation />
           </div>
         </CsSection>
@@ -107,7 +107,7 @@ export default function RevolvingStagePage() {
           </CsBody>
         </CsSection>
 
-        <figure className="cs-slide reveal" style={{ margin: 0 }}>
+        <figure className="cs-slide reveal project-figure--flush">
           <img src="/Assets/Projects/RevolvingStage/photos/full-assembly-exploded.png" alt="Exploded isometric view of the full assembly: wooden revolving stage, axle stack, caster wheels arranged in two circles, and wooden base" loading="lazy" decoding="async" />
           <figcaption className="cs-img-caption">The full stack, exploded: platform, axle, twin rings of caster wheels, and the 8 ft. wooden base.</figcaption>
         </figure>
@@ -166,7 +166,7 @@ export default function RevolvingStagePage() {
               { title: 'Cafe 2', desc: 'Cafe 2 was set as a foreground for Musicians to help give the inclusivity in the act.' },
             ]} />
 
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '2.5rem', alignItems: 'start' }}>
+            <div className="cs-img-grid revolving-stage-process-grid">
               <div className="cs-img reveal">
                 <img src="/Assets/Projects/RevolvingStage/photos/stage-vs-render.png" alt="The built shop-front set with two actors on stage next to its 3D design render with the same striped umbrella and shutter" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Built vs. designed: the set as the audience saw it, next to the render it was built from.</figcaption>
@@ -197,7 +197,7 @@ export default function RevolvingStagePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <p className="cs-section-label">Team</p>
-            <h2 className="cs-section-title" style={{ fontStyle: 'italic' }}>Credits</h2>
+            <h2 className="cs-section-title revolving-stage-credits-title">Credits</h2>
             <CsCredits credits={[
               { role: 'Director', name: 'Apoorva Joglikar' },
               { role: 'Art Director', name: 'Parth Pawar' },
@@ -210,7 +210,7 @@ export default function RevolvingStagePage() {
 
         {/* Reflections */}
         <CsSection id="cs-reflections" label="Reflections" title="What Building a Stage Taught Me About Design">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>The revolving stage taught me that design is a systems discipline. Every aesthetic choice also changed structure, motion, or electrical load.</p>
             <p>Parallax required precise material thicknesses, transitions required controlled rotation speeds, and lighting required a reliable power plan. One weak system could compromise the whole production.</p>
             <p>Leading 65+ people taught me that specification is a design skill. Exact dimensions, paint codes, and assembly sequence helped the team execute without constant correction.</p>

@@ -62,19 +62,19 @@ export default function TedxPage() {
           <div className="wrap">
             <p className="cs-section-label">02 &mdash; Brand Identity</p>
             <h2 className="cs-section-title">Visual System</h2>
-            <CsBody style={{ maxWidth: '720px' }}>
+            <CsBody className="cs-body--measure">
               <p>The identity had to follow TEDx rules while giving this edition its own presence. I built one system that carried from digital collateral to the physical stage.</p>
             </CsBody>
 
-            <div className="cs-adaptive-text-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '2rem', marginTop: '2.5rem' }}>
+            <div className="cs-adaptive-text-grid tedx-foundation-grid">
               <div>
-                <p className="cs-section-label" style={{ marginBottom: '0.5rem' }}>Color Palette</p>
+                <p className="cs-section-label tedx-foundation-label">Color Palette</p>
                 <CsBody>
                   <p>TEDx red stayed central. Deep navy and warm neutrals gave the event a cinematic tone that translated directly into stage lighting.</p>
                 </CsBody>
               </div>
               <div>
-                <p className="cs-section-label" style={{ marginBottom: '0.5rem' }}>Typography</p>
+                <p className="cs-section-label tedx-foundation-label">Typography</p>
                 <CsBody>
                   <p>Bold geometric headlines paired with clean body type, built to stay legible from phone screens to 12-foot backdrops.</p>
                 </CsBody>
@@ -85,7 +85,7 @@ export default function TedxPage() {
 
         {/* Stage Design */}
         <CsSection id="cs-stage" label="03 &mdash; Stage Design" title="Parallax Cityscape">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>The stage became a layered cityscape: box columns at different heights and depths, lit from behind so the skyline shifted as speakers moved.</p>
             <p>The recognizable skyline won over abstract forms because it read clearly from the back rows, framed speakers on camera, and made the rotating stage feel intentional.</p>
           </CsBody>
@@ -94,7 +94,7 @@ export default function TedxPage() {
         {/* Stage Design Gallery */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <figure className="cs-img-full" style={{ background: 'transparent' }}>
+            <figure className="cs-img-full project-media--transparent">
               <img src="/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="The finished stage in use: a host, a speaker, and a guitarist performing in front of the blue-lit column cityscape and red TEDxVITPune lettering" loading="lazy" decoding="async" />
             </figure>
           </div>
@@ -102,7 +102,7 @@ export default function TedxPage() {
 
         {/* Team Leadership */}
         <CsSection id="cs-team" label="04 &mdash; Team Leadership" title="Coordinating an 8-Person Stage Team">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>I was the sole stage designer inside an 8-person team, translating the concept into templates, dimensions, paint specs, and assembly guides the team could actually build from.</p>
             <p>The system let volunteers move quickly without waiting for approval, while I stayed close to the high-risk moments: structure tests, lighting programming, and the final 48-hour install.</p>
           </CsBody>
@@ -110,7 +110,7 @@ export default function TedxPage() {
 
         {/* Process */}
         <CsSection id="cs-process" label="05 &mdash; Process" title="Eight Weeks, Concept to Curtain">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p><strong>Weeks 1&ndash;2:</strong> lock concept, brand direction, and stage language.</p>
             <p><strong>Weeks 3&ndash;4:</strong> translate the stage into drawings, material tests, and a scale model for sightlines.</p>
             <p><strong>Weeks 5&ndash;7:</strong> build column clusters, test rotation, paint finishes, and program lighting scenes.</p>
@@ -121,7 +121,7 @@ export default function TedxPage() {
         {/* Process Gallery */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <figure className="cs-img-full" style={{ background: 'transparent' }}>
+            <figure className="cs-img-full project-media--transparent">
               <img src="/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind the scenes: blue and white columns under construction in a workshop, lighting tests on the assembled skyline, and a volunteer building the red TEDx letters" loading="lazy" decoding="async" />
             </figure>
           </div>
@@ -129,7 +129,7 @@ export default function TedxPage() {
 
         {/* Reflections */}
         <CsSection id="cs-reflections" label="06 &mdash; Reflections" title="What Leading This Taught Me">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>TEDxVITPune taught me that design systems are leadership tools. As the only stage designer on an 8-person team, clear guides helped everyone make aligned build decisions without slowing the work down.</p>
             <p>The stage worked because every visual choice also had to be structural, affordable, movable, and installable. That is the design lesson I still carry.</p>
           </CsBody>

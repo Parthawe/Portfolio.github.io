@@ -41,7 +41,7 @@ export default function DnaPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/boxes-closed.webp" alt="Two speculative pharmaceutical boxes: Live 50+ Years More and Embrace Death" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/boxes-open.png" alt="Open pharmaceutical boxes with inserts, cards, and pill packaging" loading="lazy" /></div>
             </div>
@@ -60,7 +60,7 @@ export default function DnaPage() {
             <span className="cs-label-row-key">Method</span>
             <span className="cs-label-row-val">Turn the question into packaging, dosage cards, warnings, and physical choice architecture.</span>
           </div>
-          <div className="cs-label-row" style={{ borderBottom: 'none' }}>
+          <div className="cs-label-row project-label-row--open">
             <span className="cs-label-row-key">Result</span>
             <span className="cs-label-row-val">A finished artifact set that made people negotiate with the scenario instead of simply agreeing or disagreeing with it.</span>
           </div>
@@ -72,7 +72,7 @@ export default function DnaPage() {
         >
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/dosage-card.webp" alt="Dosage and precautions card for the speculative pill" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/DNA/photos/pill-pack.webp" alt="Speculative pill blister pack labeled Unlock More Life" loading="lazy" /></div>
             </div>

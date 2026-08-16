@@ -61,7 +61,7 @@ export default function IbmPage() {
             <span className="cs-label-row-key">Method</span>
             <span className="cs-label-row-val">Use homomorphic encryption so selected genomic features could pass through analysis without being decrypted mid-pipeline.</span>
           </div>
-          <div className="cs-label-row" style={{ borderBottom: 'none' }}>
+          <div className="cs-label-row project-label-row--open">
             <span className="cs-label-row-key">Result</span>
             <span className="cs-label-row-val">A research pipeline that produced survival-cluster outputs while keeping sensitive data protected through the key computation step.</span>
           </div>

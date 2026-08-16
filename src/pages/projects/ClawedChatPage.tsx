@@ -170,7 +170,7 @@ export default function ClawedChatPage() {
           <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
-          <div className="cs-img reveal" style={{ marginTop: '2rem' }}><img src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
+          <div className="cs-img reveal clawed-media--spaced"><img src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
           <p className="cs-caption">Cloud Deploy vs Mac Companion, two deployment paths designed for different trust and control preferences</p>
         </CsSection>
 
@@ -238,20 +238,20 @@ export default function ClawedChatPage() {
           <CsBody>
             <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 30 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
           </CsBody>
-          <div className="cs-slide reveal" style={{ marginTop: 'var(--space-4)' }}>
-            <img src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" style={{ borderRadius: 'var(--radius-lg)', border: '1px solid var(--ink-06)', width: '100%' }} />
+          <div className="cs-slide reveal clawed-slide--spaced">
+            <img src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" className="project-media-frame" />
           </div>
         </CsSection>
 
         <CsSection id="cs-impact" label="07 &mdash; Impact" title="Early Signals &amp; Honest Assessment">
-          <CsBody style={{ marginBottom: '2rem' }}>
+          <CsBody className="cs-body--space-after">
             <p>Clawed shipped in Q1 2026 and is in early testing. I am keeping the claims precise: these are qualitative signals from 6 moderated sessions plus team observations from the 10-week build.</p>
           </CsBody>
           <CsBody>
             <h3 className="cs-section-subtitle">Design principles as team alignment tools</h3>
             <p>The five principles became the shared language with engineering: Safety First, Receipts for Everything, Glanceable, Progressive Disclosure, Keyboard Friendly. They turned scope debates into quick decisions.</p>
           </CsBody>
-          <CsBody style={{ marginTop: '1.5rem' }}>
+          <CsBody className="cs-body--space-before-sm">
             <h3 className="cs-section-subtitle">User testing observations (n=6)</h3>
             <p>5 of 6 participants started in Read Only mode and moved to Draft First within 10&ndash;15 minutes. 2 reached Assisted mode by the end. The trust model worked because users could increase autonomy gradually.</p>
             <p>4 of 6 participants also used receipts as a lightweight productivity log, reviewing what they had completed at the end of the session.</p>

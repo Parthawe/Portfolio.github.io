@@ -50,7 +50,7 @@ export default function VjSoftwarePage() {
         {/* Overview */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display" style={{ maxWidth: '22ch' }}>A parking flow that had to match how residents actually think about space.</h2>
+            <h2 className="cs-display vj-display-measure">A parking flow that had to match how residents actually think about space.</h2>
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
@@ -67,7 +67,7 @@ export default function VjSoftwarePage() {
             <div className="cs-label-row">
               <span className="cs-label-row-key">Tools &amp; Techniques</span>
               <span className="cs-label-row-val">
-                <span className="cs-tags" style={{ margin: 0 }}>
+                <span className="cs-tags project-tags--flush">
                   <span className="cs-tag-item">Figma</span>
                   <span className="cs-tag-item">User Research</span>
                   <span className="cs-tag-item">Identity and Website Design</span>
@@ -125,7 +125,7 @@ export default function VjSoftwarePage() {
               { key: 'Mr. Prakash Sharma', value: 'Male, 27 years old, works in IT. Flat tenant in a Gurugram society.' },
             ]} />
 
-            <div className="cs-two-col" style={{ marginTop: '2rem' }}>
+            <div className="cs-two-col vj-two-col--spaced">
               <div>
                 <CsCallout>
                   <p>&ldquo;I faced difficulty while choosing my parking spot.&rdquo;</p>
@@ -190,7 +190,7 @@ export default function VjSoftwarePage() {
               <p>The booking flow depends on the screens around it. The Legal &amp; Pay hub surfaces urgency before possession, while the parking landing screen explains why selecting early matters.</p>
               <p>After booking, both spots, owner details, and the legal document stay together so residents can recover the decision later.</p>
             </CsBody>
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', alignItems: 'start' }}>
+            <div className="cs-img-grid project-image-grid--three project-image-grid--top-aligned">
               <figure className="cs-img reveal">
                 <img src="/Assets/Projects/vj/photos/legal-pay.png" alt="Legal & Pay hub screen with a '03 days left' countdown banner urging residents to select their parking spot" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">The Legal &amp; Pay hub: parking sits next to society formation and home loan, with a countdown that makes the selection window impossible to miss.</figcaption>
@@ -334,7 +334,7 @@ export default function VjSoftwarePage() {
           <div className="wrap">
             <p className="cs-section-label">Reflections</p>
             <h2 className="cs-section-title">What I Learned</h2>
-            <CsBody style={{ maxWidth: '720px' }}>
+            <CsBody className="cs-body--measure">
               <p>This project sharpened a lesson that still shows up in my later work: when the user experiences a problem spatially, the product cannot reduce it to form fields and dropdowns. The map became the interface because that was how people were already reasoning about the choice.</p>
               <p>It also showed me that service software often fails by burying the one flow people actually care about. Existing society apps treated parking as a secondary settings page. Making it the hero experience changed the product from administrative software into something genuinely useful.</p>
             </CsBody>

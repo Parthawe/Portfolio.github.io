@@ -255,7 +255,7 @@ export default function RaahiPage() {
           <div className="wrap">
             <span className="cs-section-label">Features</span>
             <h2 className="cs-display">A Home Screen Built Around Familiar Routes</h2>
-            <CsBody style={{ marginBottom: '2rem' }}>
+            <CsBody className="cs-body--space-after">
               <p>The homepage centers saved addresses, preferred modes, commute insights, tickets, and day passes so repeat riders do not rebuild the same trip every time.</p>
             </CsBody>
             <div className="raahi-phone-row raahi-phone-row--trio">
@@ -333,7 +333,7 @@ export default function RaahiPage() {
           <div className="wrap">
             <span className="cs-section-label">Touchpoints</span>
             <h2 className="cs-section-title">Kiosk &amp; Welcome Experience</h2>
-            <CsBody style={{ marginBottom: '2rem' }}>
+            <CsBody className="cs-body--space-after">
               <p>The kiosk greets riders in English, Hindi, or Marathi and offers four simple paths: view the timetable, check a route, buy a ticket, or get a day pass. No app, no account -- the same service, standing at the stop.</p>
             </CsBody>
             <CsImage
@@ -357,7 +357,7 @@ export default function RaahiPage() {
               { title: 'Lower cognitive load', desc: 'Route planning, ticketing, and live guidance sit in one flow instead of scattered decisions.' },
               { title: 'Multilingual by design', desc: 'The naming, script study, and three-language kiosk make language part of the service design, not a late translation layer.' },
             ]} />
-            <CsStatGrid style={{ marginTop: '2.5rem' }} stats={[
+            <CsStatGrid className="cs-stat-grid--space-before" stats={[
               { label: 'Transport Modes Represented', value: '8' },
               { label: 'Languages Supported', value: '3' },
               { label: 'Primary Service Surfaces', value: '3' },
@@ -395,7 +395,7 @@ export default function RaahiPage() {
             <CsCredits credits={[
               { role: 'UI Designer & Researcher', name: 'Parth Pawar' },
               { role: 'UX Designer & Researcher', name: 'Sampada Inamdar' },
-            ]} style={{ marginTop: '3rem' }} />
+            ]} className="cs-stat-grid--space-before-lg" />
           </div>
         </section>
 

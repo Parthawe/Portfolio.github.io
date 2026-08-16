@@ -58,7 +58,7 @@ export default function SculpturePage() {
             <span className="cs-label-row-key">Method</span>
             <span className="cs-label-row-val">Anatomy studies, moodboards, welded armature experiments, plaster/clay build-up, and repeated correction by hand.</span>
           </div>
-          <div className="cs-label-row" style={{ borderBottom: 'none' }}>
+          <div className="cs-label-row project-label-row--open">
             <span className="cs-label-row-key">Result</span>
             <span className="cs-label-row-val">A finished figurative sculpture that won in the competition context and became a useful proof of physical making discipline.</span>
           </div>
@@ -70,7 +70,7 @@ export default function SculpturePage() {
         >
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img src="/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" loading="lazy" /></div>
               <div className="cs-img reveal"><img src="/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" loading="lazy" /></div>
             </div>

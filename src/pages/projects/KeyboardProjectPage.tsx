@@ -65,7 +65,7 @@ export default function KeyboardProjectPage() {
 
         <section className="cs-section reveal" id="cs-artifact">
           <div className="wrap">
-            <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal">
                 <img src="/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up of keyboard keys raised on small stems at different heights." loading="lazy" decoding="async" />
               </div>
@@ -81,7 +81,7 @@ export default function KeyboardProjectPage() {
           note="Concept, source data, process images, build details, and outcome."
         >
         <CsSection id="cs-concept" label="01 · Concept" title="A keyboard is already a landscape.">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>Most keyboards disappear the moment they work. Your fingers learn the surface, your eyes leave it, and the object becomes infrastructure. This project asks what happens when that familiar surface is made strange again.</p>
             <p>I used key height as the primary design material. Instead of treating the keyboard as a flat grid, I raised each key in proportion to how often it gets pressed, so the object could be read as a topography: rows, peaks, valleys, and interruptions.</p>
             <p>The goal was not to make a faster keyboard. It was to make input visible as a physical pattern, something you could inspect before touching and understand differently after touching.</p>
@@ -89,13 +89,13 @@ export default function KeyboardProjectPage() {
         </CsSection>
 
         <CsSection id="cs-data" label="02 · Data" title="The heights come from a real count.">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>The topography is not decorative. I wrote a Python script that read a full book manuscript and counted every key press needed to type it: 147,563 letters in total.</p>
             <p>The counts have a shape of their own. E leads with 17,333 presses, followed by T at 13,029 and A at 12,412, while Q appears only 65 times. That distribution became the height map for the object.</p>
             <p>I rebuilt the keyboard as a 3D model in Spline, extruding each key in proportion to its count, then printed the result. The sculpture is the book, read as pressure instead of prose.</p>
           </CsBody>
 
-          <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2rem', alignItems: 'start' }}>
+          <div className="cs-img-grid project-image-grid--two project-image-grid--spaced project-image-grid--top-aligned">
             <div className="cs-img reveal">
               <img src="/Assets/Projects/Keyboard/photos/letter-frequency-table.jpg" alt="Table listing key press counts for every letter from a to z, with e highest at 17,333." loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">Output of the counting script: press counts for every letter across the manuscript.</figcaption>
@@ -108,12 +108,12 @@ export default function KeyboardProjectPage() {
         </CsSection>
 
         <CsSection id="cs-process" label="03 · Process" title="From familiar object to fabricated system.">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>The build moved through disassembly, measurement, 3D printing, and reassembly, producing two keyboards: a fully printed model and a modified real one. Each step exposed the keyboard as a stack of constraints: key spacing, switch tolerance, finger clearance, material strength, and visual legibility.</p>
             <p>This project stands on its own as a physical study. It is about seeing an everyday interface as material, not software.</p>
           </CsBody>
 
-          <div className="cs-img-grid" style={{ gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '2rem' }}>
+          <div className="cs-img-grid project-image-grid--three project-image-grid--spaced">
             <div className="cs-img reveal">
               <img src="/Assets/Projects/Keyboard/photos/keyboard-angle.png" alt="Angled view of the raised-key keyboard object." loading="lazy" decoding="async" />
             </div>
@@ -127,7 +127,7 @@ export default function KeyboardProjectPage() {
         </CsSection>
 
         <CsSection id="cs-outcome" label="04 · Outcome" title="The keyboard became a readable object.">
-          <CsBody style={{ maxWidth: '720px' }}>
+          <CsBody className="cs-body--measure">
             <p>The finished project makes a small but important point: interfaces do not have to stay flat to be understandable. When form carries information, the body becomes part of the reading process.</p>
             <p>That lesson became a foundation for later work with fabrication, wearable systems, and BreakGen, where digital decisions needed to survive contact with physical reality.</p>
           </CsBody>

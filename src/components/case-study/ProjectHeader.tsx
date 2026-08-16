@@ -5,6 +5,7 @@ import FigmaSelect from '../FigmaSelect'
 import { useDeferredMount } from '../../hooks/useDeferredMount'
 import { getProject } from '../../data/projects'
 import { isLowPowerDevice } from '../../utils/performance'
+import { projectTitleLengthClass, sentenceCaseProjectLabel } from '../../utils/projectPresentation'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
@@ -71,7 +72,6 @@ export default function ProjectHeader({
   liveLabel = 'Visit Live Site',
   liveDownload,
   visualBriefMode = 'combined',
-  visualTitleMode,
 }: ProjectHeaderProps) {
   const location = useLocation()
   const heroRef = useRef<HTMLDivElement>(null)
@@ -174,9 +174,8 @@ export default function ProjectHeader({
 
   if (heroExperience !== undefined || resolvedVisualHeroImage) {
     const visualDeck = visualHeadline || visualSummary || subtitle
-    const resolvedVisualTitleMode = visualTitleMode ?? (
-      title.length + visualDeck.length > 90 ? 'stacked' : 'sentence'
-    )
+    const visualTitle = visualDeck ? `${title}: ${visualDeck}` : title
+    const titleLength = projectTitleLengthClass(visualTitle)
     const visualProblem = project?.summaryProblem ?? story?.challenge ?? subtitle
     const visualOutcome = project?.summaryOutcome ?? story?.result ?? null
     const visualRole = findInfoValue(info, ROLE_LABELS) ?? project?.summaryRole ?? null
@@ -196,20 +195,11 @@ export default function ProjectHeader({
       <div className={visualClasses}>
         <section className="proj-visual-hero hero-anim hero-anim-1" aria-label={`${title} project introduction`}>
           <div className="proj-visual-hero__copy">
-            <h1 className={`proj-visual-title proj-visual-title--${resolvedVisualTitleMode}`}>
-              {resolvedVisualTitleMode === 'stacked' ? (
-                <>
-                  <span className="proj-visual-title__name">{title}</span>
-                  <span className="proj-visual-title__deck">{visualDeck}</span>
-                </>
-              ) : (
-                <><span className="proj-visual-title__name">{title}:</span> {visualDeck}</>
-              )}
-            </h1>
+            <h1 className={`proj-visual-title proj-visual-title--${titleLength}`}>{visualTitle}</h1>
             <div className="proj-visual-actions">
               <div className="proj-visual-hero__tags" aria-label="Project disciplines">
                 {tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="proj-visual-tag">{tag}</span>
+                  <span key={tag} className="proj-visual-tag">{sentenceCaseProjectLabel(tag)}</span>
                 ))}
               </div>
               {liveUrl && (
@@ -220,7 +210,7 @@ export default function ProjectHeader({
                   download={liveDownload || undefined}
                   className="proj-visual-live figma-hover"
                 >
-                  {liveLabel}
+                  {sentenceCaseProjectLabel(liveLabel)}
                   {liveDownload ? (
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5v7M4 6l3 3 3-3M2 11.5h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   ) : (
@@ -278,7 +268,7 @@ export default function ProjectHeader({
                     {timelineMilestones.map((milestone) => (
                       <li key={`${milestone.period}-${milestone.label}`}>
                         <strong>{milestone.period}</strong>
-                        <span>{milestone.label}</span>
+                        <span>{sentenceCaseProjectLabel(milestone.label)}</span>
                       </li>
                     ))}
                   </ol>
@@ -313,11 +303,11 @@ export default function ProjectHeader({
           <div className="proj-tags">
             {tags.map((tag) => (
               <span key={tag} className="proj-tag">
-                {tag}
+                {sentenceCaseProjectLabel(tag)}
               </span>
             ))}
           </div>
-          <h1 className="proj-title hero-anim hero-anim-1">{title}</h1>
+          <h1 className={`proj-title proj-title--${projectTitleLengthClass(title)} hero-anim hero-anim-1`}>{title}</h1>
           <p className="proj-subtitle hero-anim hero-anim-2">{subtitle}</p>
           {liveUrl && (
             <a
@@ -327,7 +317,7 @@ export default function ProjectHeader({
               download={liveDownload || undefined}
               className="proj-live-link hero-anim hero-anim-4 figma-hover"
             >
-              {liveLabel}
+              {sentenceCaseProjectLabel(liveLabel)}
               {liveDownload ? (
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5v7M4 6l3 3 3-3M2 11.5h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               ) : (
@@ -370,7 +360,7 @@ export default function ProjectHeader({
         <div className="proj-info-row hero-anim hero-anim-3">
           {info.map((item) => (
             <div key={item.label} className="proj-info-item">
-              <span className="proj-info-label">{item.label}</span>
+              <span className="proj-info-label">{sentenceCaseProjectLabel(item.label)}</span>
               <span className="proj-info-val">{item.value}</span>
             </div>
           ))}

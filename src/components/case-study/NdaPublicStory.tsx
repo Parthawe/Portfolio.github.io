@@ -1,4 +1,5 @@
 import { getProject } from '../../data/projects'
+import { sentenceCaseProjectLabel } from '../../utils/projectPresentation'
 
 interface NdaPublicStoryProps {
   slug: string
@@ -48,7 +49,7 @@ export default function NdaPublicStory({ slug, headline, lede, visuals = [] }: N
           ) : (
             <div className="cs-nda-visual-board" role="img" aria-label={`${project.name} safe abstract interface preview`}>
               <div className="cs-nda-visual-topline">
-                <span>{project.tag || 'Case study'}</span>
+                <span>{project.tag ? sentenceCaseProjectLabel(project.tag) : 'Case study'}</span>
                 <span>Safe public preview</span>
               </div>
 
