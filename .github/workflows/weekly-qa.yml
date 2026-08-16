@@ -1,0 +1,51 @@
+name: Weekly Production QA
+
+on:
+  schedule:
+    - cron: '0 17 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+
+      - run: bun install --frozen-lockfile
+
+      - name: Verify the project build
+        run: |
+          bun run design:audit
+          bun run test:agent
+          bun run build
+
+      - name: Check every production route and bundle asset
+        id: production-qa
+        continue-on-error: true
+        env:
+          QA_REPORT_PATH: qa-report.md
+        run: node scripts/weekly-site-qa.mjs
+
+      - name: Publish the QA report
+        if: always()
+        run: cat qa-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-production-qa
+          path: qa-report.md
+          retention-days: 30
+
+      - name: Fail when production QA fails
+        if: steps.production-qa.outcome == 'failure'
+        run: exit 1
