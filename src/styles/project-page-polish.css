@@ -996,6 +996,10 @@
   backdrop-filter: none;
 }
 
+.project-main .cs-quick-summary {
+  scroll-margin-top: 7rem;
+}
+
 .project-main:not(.project-main--mentra-visual) .cs-quick-summary-card--outcome {
   margin-top: 0;
   padding: 1rem 0;

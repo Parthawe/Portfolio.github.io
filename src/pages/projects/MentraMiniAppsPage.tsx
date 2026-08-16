@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import ProjectQuickSummary, { type CaseStudyViewMode } from '../../components/case-study/ProjectQuickSummary'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
@@ -66,6 +68,48 @@ const miniAppExamples = [
 ]
 
 export default function MentraMiniAppsPage() {
+  const [viewMode, setViewMode] = useState<CaseStudyViewMode>('summary')
+  const sections = viewMode === 'summary'
+    ? [
+        { id: 'cs-summary', label: 'Quick read' },
+        { id: 'cs-vision', label: 'Overview' },
+      ]
+    : [
+        { id: 'cs-summary', label: 'Quick read' },
+        { id: 'cs-vision', label: 'Overview' },
+        { id: 'cs-constraint', label: 'Constraint' },
+        { id: 'cs-discovery', label: 'Discovery' },
+        { id: 'cs-app-mix', label: 'App Mix' },
+        { id: 'cs-developer', label: 'Developer' },
+        { id: 'cs-permissions', label: 'Permissions' },
+        { id: 'cs-impact', label: 'Impact' },
+        { id: 'cs-reflection', label: 'Reflection' },
+      ]
+
+  const handleViewModeChange = (nextMode: CaseStudyViewMode) => {
+    if (nextMode === viewMode) return
+    setViewMode(nextMode)
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const targetId = window.location.hash.replace('#', '')
+    if (!targetId) return
+
+    if (!['cs-summary', 'cs-vision'].includes(targetId)) {
+      setViewMode('full')
+    }
+
+    const timer = window.setTimeout(() => {
+      document.getElementById(targetId)?.scrollIntoView({ block: 'start' })
+    }, 250)
+
+    return () => window.clearTimeout(timer)
+  }, [])
+
   return (
     <>
       <Helmet>
@@ -96,6 +140,17 @@ export default function MentraMiniAppsPage() {
           ]}
           heroImage="/Assets/mockups/projects/mentra-miniapps_16x9.webp"
           heroAlt="Mentra MiniApp Store 16:9 project cover showing the smart glasses app ecosystem"
+        />
+
+        <ProjectQuickSummary
+          slug="mentra-miniapps"
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          variant="open"
+          label=""
+          title="Why smart glasses needed a real app system"
+          proofLimit={0}
+          showImage={false}
         />
 
         <section className="cs-section mentra-miniapps-hero-gallery reveal" aria-label="MiniApp system previews">
@@ -129,7 +184,12 @@ export default function MentraMiniAppsPage() {
         />
 
         {/* The Constraint */}
-        <CsExpandPreview>
+        <CsExpandPreview
+          expanded={viewMode === 'full'}
+          onExpand={() => setViewMode('full')}
+          cta="Reveal the MiniApp platform story"
+          note="Continue into the constraints, discovery model, developer system, and permissions work."
+        >
         <CsSection id="cs-constraint" label="01 &mdash; Constraint" title="640&times;400 Pixels. No Scrolling. No Tapping.">
           <CsBody>
             <p>The glasses display is 640&times;400, transparent, and peripheral. Users are moving, their hands are busy, and voice is the reliable input.</p>
@@ -261,15 +321,7 @@ export default function MentraMiniAppsPage() {
 
         </CsExpandPreview>
 
-        <BottomNav sections={[
-          { id: 'cs-constraint', label: 'Constraint' },
-          { id: 'cs-discovery', label: 'Discovery' },
-          { id: 'cs-app-mix', label: 'App Mix' },
-          { id: 'cs-developer', label: 'Developer' },
-          { id: 'cs-permissions', label: 'Permissions' },
-          { id: 'cs-impact', label: 'Impact' },
-          { id: 'cs-reflection', label: 'Reflection' },
-        ]} />
+        <BottomNav sections={sections} />
 
       </main>
 
