@@ -1843,11 +1843,17 @@ const sortByWorkPriority = (a: Project, b: Project) => {
   return (a.archiveOrder ?? 99) - (b.archiveOrder ?? 99)
 }
 
+export const isRoutableProject = (project: Project) =>
+  !project.hidden && project.access?.mode !== 'hidden'
+
 const isPubliclyVisibleProject = (project: Project) =>
-  !project.hidden &&
-  project.access?.mode !== 'hidden' &&
+  isRoutableProject(project) &&
   WORK_PRIORITY.has(project.slug) &&
   !WORK_HIDDEN_SLUGS.has(project.slug)
+
+/** Every public case study that should resolve by URL, including work omitted
+ * from the curated Home and Work listings. */
+export const routableProjects = projects.filter(isRoutableProject)
 
 export const visibleProjects = projects
   .filter(isPubliclyVisibleProject)

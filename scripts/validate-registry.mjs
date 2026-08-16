@@ -14,8 +14,11 @@ const root = resolve(__dirname, '..')
 
 const src = readFileSync(resolve(root, 'src/data/projects.ts'), 'utf-8')
 
-const validCategories = ['ux', 'ai', 'creative', 'install', 'brand', 'good']
+const validCategories = ['ux', 'research', 'ai', 'creative', 'install', 'brand', 'good']
 const validTiers = ['s', 'a', 'b', 'c', 'd']
+// Clawed remains S-tier proof but is intentionally omitted from the homepage
+// feature set while that surface stays frozen.
+const featuredExceptions = new Set(['clawed-chat'])
 
 let errors = 0
 let warnings = 0
@@ -58,7 +61,7 @@ for (const block of projectBlocks) {
   }
 
   // S-tier should be featured
-  if (tier === 's' && !isFeatured) {
+  if (tier === 's' && !isFeatured && !featuredExceptions.has(slug)) {
     console.warn(`⚠️  "${slug}" is S-tier but not featured`)
     warnings++
   }
@@ -72,7 +75,8 @@ for (const block of projectBlocks) {
       imgPath = imgPath.replace('${IMG}', '/Assets/images')
     }
     if (!imgPath.includes('${')) {
-      const absPath = resolve(root, imgPath.startsWith('/') ? imgPath.slice(1) : imgPath)
+      const publicPath = imgPath.startsWith('/') ? imgPath.slice(1) : imgPath
+      const absPath = resolve(root, 'public', publicPath)
       if (!existsSync(absPath)) {
         // Only warn for non-hidden projects — hidden ones may have assets not in working tree
         if (!isHidden) {

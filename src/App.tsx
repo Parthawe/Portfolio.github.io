@@ -4,7 +4,7 @@ import RootLayout from './components/RootLayout'
 import Nav from './components/Nav'
 import PixelLoaderVisual from './components/PixelLoaderVisual'
 import PointerCursorGlyph from './components/PointerCursorGlyph'
-import { visibleProjects } from './data/projects'
+import { routableProjects } from './data/projects'
 
 type ErrorBoundaryProps = { children: ReactNode; resetKey: string }
 
@@ -94,7 +94,7 @@ const MotionPage = lazy(() => import('./pages/MotionPage'))
 const PerplexityPage = lazy(() => import('./pages/PerplexityPage'))
 
 // Project page components — auto-generated from registry
-const projectPages = visibleProjects.map(p => ({
+const projectPages = routableProjects.map(p => ({
   slug: p.slug,
   Component: lazy(p.page),
 }))

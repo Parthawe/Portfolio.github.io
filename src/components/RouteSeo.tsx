@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { categories } from '../data/categories'
-import { getProject, isHiddenProject, visibleProjects, type Project } from '../data/projects'
+import { getProject, isHiddenProject, isRoutableProject, visibleProjects, type Project } from '../data/projects'
 import {
   SITE_NAME,
   SITE_ORIGIN,
@@ -280,7 +280,7 @@ function getRouteMeta(pathname: string): RouteMeta {
 
   const slug = pathname.replace(/^\//, '')
   const project = getProject(slug)
-  if (isHiddenProject(project)) {
+  if (!project || !isRoutableProject(project)) {
     return {
       title: 'Page not found · Parth Pawar',
       description: 'This page is not available in the public portfolio.',

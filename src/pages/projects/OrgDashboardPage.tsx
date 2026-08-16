@@ -16,6 +16,66 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
+function OrgDashboardArtifact() {
+  return (
+    <div
+      className="org-dashboard-artifact"
+      role="img"
+      aria-label="OrgDashboard interface showing connected sources, structured company knowledge, and a human approval queue"
+    >
+      <header className="org-dashboard-artifact__top">
+        <strong>OrgDashboard</strong>
+        <span>Organization context</span>
+        <span className="org-dashboard-artifact__command">Command / K</span>
+      </header>
+
+      <div className="org-dashboard-artifact__body">
+        <nav className="org-dashboard-artifact__nav" aria-label="Illustrative dashboard navigation">
+          <strong>Workspace</strong>
+          <span className="is-active">Overview</span>
+          <span>Knowledge base</span>
+          <span>Integrations</span>
+          <span>Action queue</span>
+        </nav>
+
+        <section className="org-dashboard-artifact__content">
+          <div className="org-dashboard-artifact__heading">
+            <div>
+              <span>Shared company brain</span>
+              <h3>Context every agent can use.</h3>
+            </div>
+            <span className="org-dashboard-artifact__status"><i /> Sources connected</span>
+          </div>
+
+          <div className="org-dashboard-artifact__columns">
+            <section className="org-dashboard-artifact__knowledge">
+              <header>
+                <strong>Knowledge structure</strong>
+                <span>Agent-readable</span>
+              </header>
+              <dl>
+                <div><dt>Projects</dt><dd>Owners, status, decisions</dd></div>
+                <div><dt>Team</dt><dd>Roles and working context</dd></div>
+                <div><dt>SOPs</dt><dd>Shared operating knowledge</dd></div>
+              </dl>
+            </section>
+
+            <section className="org-dashboard-artifact__actions">
+              <header>
+                <strong>Human approval</strong>
+                <span>External actions</span>
+              </header>
+              <p>Agents can build internal knowledge. Anything that writes outside the system pauses for review.</p>
+              <div><i /> Context and rationale attached</div>
+              <div><i /> Final action stays with a person</div>
+            </section>
+          </div>
+        </section>
+      </div>
+    </div>
+  )
+}
+
 export default function OrgDashboardPage() {
   return (
     <>
@@ -30,7 +90,7 @@ export default function OrgDashboardPage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#2D3748' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--org-dashboard" style={{ '--project-color': '#2D3748' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -46,8 +106,7 @@ export default function OrgDashboardPage() {
             { label: 'Stack', value: 'React, Tailwind, shadcn/ui' },
             { label: 'Year', value: '2026' },
           ]}
-          heroImage="/Assets/images/org-dashboard.webp"
-          heroAlt="OrgDashboard, SaaS platform giving AI agents organizational context"
+          visualHeroMedia={<OrgDashboardArtifact />}
         />
 
         <ProjectOverview
@@ -73,7 +132,7 @@ export default function OrgDashboardPage() {
             <p>&ldquo;The OrgDashboard CLI is not a standalone agent &mdash; it is an extension to any existing agent harness. When added as an MCP server to Claude Code, Zed, or Cursor, the agent gains organizational awareness without replacing any of the harness&rsquo;s existing tools.&rdquo;</p>
           </CsCallout>
           <div className="cs-slide reveal">
-            <img src="/Assets/images/org-dashboard.webp" alt="Dashboard overview" loading="lazy" className="project-media-frame project-media-frame--dark" />
+            <OrgDashboardArtifact />
           </div>
           <p className="cs-caption">Dashboard overview &mdash; the human-facing home screen showing connected integrations, knowledge base health, and pending agent actions</p>
         </CsSection>
