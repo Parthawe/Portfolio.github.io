@@ -11,7 +11,13 @@ function GamepadGlyph() {
   )
 }
 
-export default function PocketArcadeLauncher({ inlineDesktop = false }: { inlineDesktop?: boolean }) {
+export default function PocketArcadeLauncher({
+  inlineDesktop = false,
+  showIntro = true,
+}: {
+  inlineDesktop?: boolean
+  showIntro?: boolean
+}) {
   const [open, setOpen] = useState(false)
   const [showInline, setShowInline] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
@@ -34,10 +40,12 @@ export default function PocketArcadeLauncher({ inlineDesktop = false }: { inline
     <>
       {inlineDesktop && showInline && (
         <div className="ft-arcade-inline">
-          <div className="ft-arcade-intro">
-            <span>INTERMISSION / OPTIONAL</span>
-            <p>Five tiny games. Keyboard or buttons.</p>
-          </div>
+          {showIntro ? (
+            <div className="ft-arcade-intro">
+              <span>INTERMISSION / OPTIONAL</span>
+              <p>Five tiny games. Keyboard or buttons.</p>
+            </div>
+          ) : null}
           <Suspense fallback={<span className="ft-arcade-loading" role="status">Loading arcade...</span>}>
             <PocketArcade embedded />
           </Suspense>

@@ -294,7 +294,13 @@ function VisitorClock() {
   return <span className="ft-clock-you">{label}</span>
 }
 
-export default function FooterContent({ footerRef }: { footerRef: RefObject<HTMLElement | null> }) {
+export default function FooterContent({
+  footerRef,
+  showArcadeIntro = true,
+}: {
+  footerRef: RefObject<HTMLElement | null>
+  showArcadeIntro?: boolean
+}) {
   const [copied, setCopied] = useState(false)
   const email = CONTACT_EMAIL
   const firstRevealRef = useRef<HTMLDivElement>(null)
@@ -373,7 +379,7 @@ export default function FooterContent({ footerRef }: { footerRef: RefObject<HTML
             ))}
           </div>
           <div className="ft-link-group ft-arcade-shelf" id="footer-arcade">
-            <PocketArcadeLauncher inlineDesktop />
+            <PocketArcadeLauncher inlineDesktop showIntro={showArcadeIntro} />
           </div>
         </motion.div>
       </motion.div>

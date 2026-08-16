@@ -108,7 +108,7 @@ export default function SculpturePage() {
       </main>
 
       <NextProject slug="vishwaconclave" title="VishwaConclave" image="/Assets/Projects/VishwaConclave/1.jpg" />
-      <Footer />
+      <Footer showArcadeIntro={false} />
     </>
   )
 }
