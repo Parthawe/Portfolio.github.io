@@ -158,7 +158,7 @@ export default function RaahiPage() {
                 <img src={raahiAsset('Spectrum.png')} alt="Research spectrum mapping different rider attitudes and commute behaviours" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Rider spectrum used to separate convenience, confidence, and dependency needs.</figcaption>
               </div>
-              <div className="cs-img reveal">
+              <div className="cs-img reveal raahi-research-blueprint">
                 <img src={raahiAsset('service blueprints.png')} alt="Service blueprint diagram mapping app, kiosk, vehicle, and rider touchpoints across the commute" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Blueprint view of the commute as one connected service.</figcaption>
               </div>

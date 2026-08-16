@@ -10767,9 +10767,15 @@ html:has(.project-main) {
   max-width: 72rem;
   margin: clamp(1.5rem, 3vw, 2.4rem) auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1rem, 1.8vw, 1.4rem);
   align-items: start;
+}
+
+.project-main--raahi .raahi-research-blueprint {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 34rem);
 }
 
 .project-main--raahi .raahi-research-brief {
