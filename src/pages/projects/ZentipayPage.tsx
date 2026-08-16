@@ -172,6 +172,7 @@ export default function ZentipayPage() {
           slug="zentipay"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
+          proofPlacement="top"
         />
 
         {viewMode === 'full' ? (

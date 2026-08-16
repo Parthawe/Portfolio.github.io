@@ -12,6 +12,7 @@ interface ProjectQuickSummaryProps {
   title?: string
   proofLimit?: number
   proofHeading?: string
+  proofPlacement?: 'top' | 'bottom'
   showImage?: boolean
 }
 
@@ -25,6 +26,7 @@ export default function ProjectQuickSummary({
   title = 'Problem, role, outcome',
   proofLimit = 3,
   proofHeading,
+  proofPlacement = 'bottom',
   showImage = true,
 }: ProjectQuickSummaryProps) {
   const project = getProject(slug)
@@ -40,6 +42,20 @@ export default function ProjectQuickSummary({
 
   const isAccessLimited = isRequestAccessProject(project)
   const proofStats = project.summaryStats?.slice(0, proofLimit) ?? []
+  const proofBlock = proofStats.length ? (
+    <>
+      {proofHeading ? <h3 className="cs-quick-summary-proof-title">{proofHeading}</h3> : null}
+      <div className="cs-quick-summary-stats" aria-label="Key proof points">
+        {proofStats.map((stat) => (
+          <div key={stat.label} className="cs-quick-summary-stat">
+            <span className="cs-quick-summary-stat-value">{stat.value}</span>
+            <span className="cs-quick-summary-stat-label">{stat.label}</span>
+            {stat.note ? <span className="cs-quick-summary-stat-note">{stat.note}</span> : null}
+          </div>
+        ))}
+      </div>
+    </>
+  ) : null
 
   return (
     <section className="cs-quick-summary wrap reveal" id="cs-summary">
@@ -74,6 +90,8 @@ export default function ProjectQuickSummary({
           </div>
         </div>
 
+        {proofPlacement === 'top' ? proofBlock : null}
+
         <div className="cs-quick-summary-grid">
           <div className="cs-quick-summary-details">
             <article className="cs-quick-summary-card cs-quick-summary-card--problem">
@@ -102,20 +120,7 @@ export default function ProjectQuickSummary({
           ) : null}
         </div>
 
-        {proofStats.length ? (
-          <>
-            {proofHeading ? <h3 className="cs-quick-summary-proof-title">{proofHeading}</h3> : null}
-            <div className="cs-quick-summary-stats" aria-label="Key proof points">
-              {proofStats.map((stat) => (
-                <div key={stat.label} className="cs-quick-summary-stat">
-                  <span className="cs-quick-summary-stat-value">{stat.value}</span>
-                  <span className="cs-quick-summary-stat-label">{stat.label}</span>
-                  {stat.note ? <span className="cs-quick-summary-stat-note">{stat.note}</span> : null}
-                </div>
-              ))}
-            </div>
-          </>
-        ) : null}
+        {proofPlacement === 'bottom' ? proofBlock : null}
 
         {project.testimonial ? (
           <blockquote className="cs-quick-summary-quote">
