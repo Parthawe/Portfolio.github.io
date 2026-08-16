@@ -119,7 +119,7 @@ export default function ProjectQuickSummary({
 
         {project.testimonial ? (
           <blockquote className="cs-quick-summary-quote">
-            <p>{project.testimonial.quote}</p>
+            <p>“{project.testimonial.quote}”</p>
             <cite>{project.testimonial.cite}</cite>
           </blockquote>
         ) : null}
