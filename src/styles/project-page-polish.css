@@ -679,6 +679,71 @@
   max-width: 22ch;
 }
 
+/* VJ's hero is a tall process board, not a landscape cover. Keep the entire
+   authored image visible and let the following overview use an open editorial
+   measure tailored to this project. */
+.project-main--vj .project-header--project-vj-software .proj-visual-stage {
+  aspect-ratio: 1531 / 2059;
+}
+
+.project-main--vj .project-header--project-vj-software .proj-visual-hero__media img {
+  object-fit: contain;
+  transform: none !important;
+}
+
+.project-main--vj .vj-display-measure {
+  width: 100%;
+  max-width: none;
+}
+
+.project-main--vj .cs-label-row {
+  grid-template-columns: minmax(9rem, 0.22fr) minmax(0, 1fr);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.project-main--vj .cs-label-row:first-child {
+  border-top: 0;
+}
+
+.project-main--vj .cs-label-row-val {
+  width: 100%;
+  max-width: none;
+}
+
+@media (min-width: 1101px) {
+  .project-main.project-main--vj .proj-visual-brief {
+    grid-template-columns: minmax(0, 1.35fr) minmax(23rem, 0.65fr);
+    column-gap: clamp(3rem, 5vw, 5rem);
+  }
+
+  .project-main--vj .proj-visual-brief__copy {
+    grid-column: 1;
+    max-width: none;
+  }
+
+  .project-main--vj .proj-visual-brief__facts {
+    grid-column: 2;
+    grid-template-columns: minmax(11rem, 1fr) max-content;
+    column-gap: 2rem;
+    padding: 0;
+  }
+
+  .project-main--vj .proj-visual-brief__facts > .proj-visual-timeline {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-width: 7rem;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 760px) {
+  .project-main--vj .cs-label-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
+  }
+}
+
 .project-main .vj-two-col--spaced {
   margin-top: 2rem;
 }
