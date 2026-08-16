@@ -984,6 +984,27 @@
   box-shadow: none;
 }
 
+/* Quick summaries are one editorial section, not a stack of nested cards.
+   Keep every project on the same outer edge and give all three summary rows
+   the same padding, divider, and surface treatment. */
+.project-main .cs-quick-summary-shell {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.project-main:not(.project-main--mentra-visual) .cs-quick-summary-card--outcome {
+  margin-top: 0;
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--ink-08);
+  border-radius: 0;
+  background: transparent;
+}
+
 .project-main .cs-quick-summary-quote {
   max-width: 46rem;
   margin: clamp(3rem, 6vw, 5rem) auto 0;
