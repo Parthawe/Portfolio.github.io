@@ -154,6 +154,8 @@ export default function ZentipayPage() {
           backLink="/work"
           categorySlug="fintech"
           backLabel="Back to Work"
+          heroImage="/Assets/mockups/projects/zentipay_16x9.webp"
+          heroAlt="ZentiPay trust-first remittance product shown on a desktop display."
           tags={['Fintech', '0\u21921 Product', 'Design System', 'Cross-cultural UX']}
           title="ZentiPay"
           subtitle="A trust-first remittance product shaped around price clarity, progress, and confidence before money moved."
