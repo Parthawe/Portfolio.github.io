@@ -30,6 +30,7 @@ export default function CsExpandPreview({
   const isExpanded = expanded ?? internalExpanded
   const handleExpand = onExpand ?? (() => setInternalExpanded(true))
   const project = getProject(pathname.replace(/^\/+|\/+$/g, ''))
+  const continuation = project?.storyline
   const editorialPreview = preview ?? (
     <article className="cs-expand-preview-article-copy cs-expand-preview-article-copy--auto">
       <span className="cs-section-label">{project?.tag ?? 'Case study'}</span>
@@ -45,7 +46,15 @@ export default function CsExpandPreview({
 
   return (
     <div className="cs-expand-preview cs-expand-preview--closed cs-expand-preview--article">
-      <div className="cs-expand-preview-content">{editorialPreview}</div>
+      <div className="cs-expand-preview-content">
+        {editorialPreview}
+        <article className="cs-expand-preview-continuation" aria-hidden="true">
+          <h3>{project ? `${project.name}: decisions, iterations, and proof` : 'The decisions behind the work'}</h3>
+          <p>{continuation?.challenge ?? 'The full story starts with the constraint that made the work necessary and the decision that put the direction at risk.'}</p>
+          <p>{continuation?.approach ?? 'The full story continues through the working process, the decisions that shaped the direction, and the evidence behind the final result.'}</p>
+          <p>{continuation?.result ?? note}</p>
+        </article>
+      </div>
       <div className="cs-expand-preview-veil" aria-hidden="true" />
       <div className="cs-expand-preview-cta">
         <p className="cs-expand-preview-note">{note}</p>

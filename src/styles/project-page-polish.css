@@ -879,6 +879,113 @@
   padding-inline: 0;
 }
 
+/* The collapsed project gateway reads as the beginning of a real article.
+   Its premise uses the full project column, then authentic project copy
+   continues beneath a functional blur before the reveal control. */
+.project-main .cs-expand-preview--article {
+  height: clamp(36rem, 70vh, 42rem);
+}
+
+.project-main .cs-expand-preview--article .cs-expand-preview-content {
+  padding-block: clamp(2rem, 5vw, 4rem) 2rem;
+}
+
+.project-main .cs-expand-preview-article-copy {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+
+.project-main :is(
+  .cs-expand-preview-article-copy h2,
+  .cs-expand-preview-article-copy--auto h2,
+  .cs-expand-preview-article-copy > p,
+  .cs-expand-preview-article-copy--auto > p
+) {
+  width: 100%;
+  max-width: none;
+}
+
+.project-main .cs-expand-preview-continuation {
+  display: grid;
+  gap: 0.9rem;
+  width: 100%;
+  margin-top: clamp(2.75rem, 5vw, 4.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--ink-12);
+  filter: blur(3px);
+  opacity: 0.62;
+  transform: translateZ(0);
+}
+
+.project-main .cs-expand-preview-continuation h3 {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.project-main .cs-expand-preview-continuation p {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  color: var(--ink-70);
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.project-main .cs-expand-preview--article .cs-expand-preview-veil {
+  inset: auto 0 0;
+  height: 58%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 32%, transparent) 38%,
+    color-mix(in srgb, var(--bg) 86%, transparent) 72%,
+    var(--bg) 100%
+  );
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 34%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 34%);
+}
+
+.project-main .cs-expand-preview--article .cs-expand-preview-cta {
+  padding: 5.25rem 1.25rem 1.35rem;
+  border-top: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--bg) 76%, transparent) 48%,
+    var(--bg) 82%
+  );
+}
+
+@media (max-width: 760px) {
+  .project-main .cs-expand-preview--article {
+    height: 38rem;
+  }
+
+  .project-main .cs-expand-preview--article .cs-expand-preview-content {
+    padding: 1.5rem 0 2rem;
+  }
+
+  .project-main .cs-expand-preview-continuation {
+    margin-top: 2.25rem;
+    padding-top: 1.25rem;
+  }
+
+  .project-main .cs-expand-preview-continuation h3 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .project-main .cs-expand-preview--article .cs-expand-preview-cta {
+    padding: 4.5rem 1rem 1.25rem;
+  }
+}
+
 .project-main :is(h1, h2, h3, h4, h5, h6, strong, b) {
   font-weight: 500;
 }
