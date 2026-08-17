@@ -22,6 +22,8 @@ interface ProjectCardProps {
   coverShape?: 'portrait' | 'square' | 'wide'
   /** Force the wide 16:9 cover (for landscape card slots). */
   preferWide?: boolean
+  /** Keep the image supplied by the caller instead of substituting a registry cover. */
+  useProvidedImage?: boolean
   tilt?: boolean
   tiltIntensity?: number
   nda?: boolean
@@ -30,18 +32,19 @@ interface ProjectCardProps {
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText,
-  loading = 'lazy', featured = false, coverShape, preferWide = false, tilt = false, tiltIntensity = 4, nda = false,
+  loading = 'lazy', featured = false, coverShape, preferWide = false, useProvidedImage = false, tilt = false, tiltIntensity = 4, nda = false,
 }: ProjectCardProps) {
   const project = projects.find(p => p.slug === slug)
   // Wide covers are for featured/highlight slots. Work grid cards use either
   // square or portrait covers to avoid hiding important composition.
   const resolvedCoverShape = coverShape ?? ((featured || preferWide) ? 'wide' : 'portrait')
-  const resolvedImage =
-    (resolvedCoverShape === 'square' && project?.cardMockupSquare) ||
-    (resolvedCoverShape === 'wide' && project?.cover16x9) ||
-    project?.cardMockup ||
-    image
-  const resolvedAlt = project?.cardMockupAlt || name
+  const resolvedImage = useProvidedImage
+    ? image
+    : (resolvedCoverShape === 'square' && project?.cardMockupSquare) ||
+      (resolvedCoverShape === 'wide' && project?.cover16x9) ||
+      project?.cardMockup ||
+      image
+  const resolvedAlt = useProvidedImage ? name : project?.cardMockupAlt || name
   const requestAccess = isRequestAccessProject(project) || nda
   const safeTag = tag ? normalizeCopy(tag) : ''
   const safeYear = year ? normalizeCopy(year) : ''

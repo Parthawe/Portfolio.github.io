@@ -184,6 +184,7 @@ export default function CategoryPage() {
                     desc={featuredProject.desc}
                     loading="eager"
                     featured
+                    useProvidedImage={slug === 'ux-research' && featuredProject.slug === 'medimorpho'}
                     nda={featuredProject.nda}
                   />
                 </Reveal>
