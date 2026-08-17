@@ -123,7 +123,6 @@ export default function MentraPage() {
           label=""
           title="Why Mentra had to become a system"
           proofLimit={0}
-          showImage={false}
         />
 
         <CsExpandPreview

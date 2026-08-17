@@ -45,7 +45,6 @@ export default function EnigmaPage() {
           label="Watch first"
           title="Light as inference"
           lede="The film shows the main idea faster than text can: a handwritten letter becomes a visible cascade through 200 physical neurons."
-          meta={['Vimeo demo', '200 LEDs', 'EMNIST letters']}
         >
           <iframe
             src="https://player.vimeo.com/video/895893649?h=d78737dcdb&badge=0&autopause=0&player_id=0&app_id=58479"

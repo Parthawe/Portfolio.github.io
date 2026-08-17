@@ -31,12 +31,17 @@ export default function CsExpandPreview({
   const handleExpand = onExpand ?? (() => setInternalExpanded(true))
   const project = getProject(pathname.replace(/^\/+|\/+$/g, ''))
   const continuation = project?.storyline
+  const previewTitle = continuation?.result
+    ?? project?.summaryOutcome
+    ?? (project ? `${project.name}: the work behind the outcome` : 'The work behind the outcome')
+  const previewSummary = continuation?.approach
+    ?? project?.summaryProblem
+    ?? project?.desc
+    ?? 'A closer look at the problem, decisions, iterations, and evidence behind the final work.'
   const editorialPreview = preview ?? (
     <article className="cs-expand-preview-article-copy cs-expand-preview-article-copy--auto">
-      <span className="cs-section-label">{project?.tag ?? 'Case study'}</span>
-      <h2>{project ? `${project.name}: behind the outcome` : 'The work behind the outcome'}</h2>
-      <p>{project?.summaryProblem ?? project?.desc ?? 'A closer look at the problem, decisions, iterations, and evidence behind the final work.'}</p>
-      <p>{project?.summaryOutcome ?? note}</p>
+      <h2>{previewTitle}</h2>
+      <p>{previewSummary}</p>
     </article>
   )
 
@@ -59,7 +64,7 @@ export default function CsExpandPreview({
       <div className="cs-expand-preview-cta">
         <p className="cs-expand-preview-note">{note}</p>
         <button type="button" className="cs-expand-preview-btn figma-hover" aria-expanded="false" onClick={handleExpand}>
-          {cta ?? ctaLabel}
+          {cta ?? (project ? `Reveal the ${project.name} story` : ctaLabel)}
           <span className="cs-expand-preview-btn-arrow" aria-hidden="true">↓</span>
         </button>
       </div>

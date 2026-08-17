@@ -5,7 +5,11 @@ import FigmaSelect from '../FigmaSelect'
 import { useDeferredMount } from '../../hooks/useDeferredMount'
 import { getProject } from '../../data/projects'
 import { isLowPowerDevice } from '../../utils/performance'
-import { projectTitleLengthClass, sentenceCaseProjectLabel } from '../../utils/projectPresentation'
+import {
+  projectTimelineMilestones,
+  projectTitleLengthClass,
+  sentenceCaseProjectLabel,
+} from '../../utils/projectPresentation'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
@@ -181,7 +185,7 @@ export default function ProjectHeader({
     const visualRole = findInfoValue(info, ROLE_LABELS) ?? project?.summaryRole ?? null
     const visualTimeline = findInfoValue(info, TIMELINE_LABELS) ?? project?.summaryTimeline ?? null
     const visualContext = findInfoValue(info, CONTEXT_LABELS) ?? project?.summaryTeam ?? null
-    const timelineMilestones = project?.timelineMilestones ?? []
+    const timelineMilestones = projectTimelineMilestones(project)
     const visualClasses = [
       'wrap',
       'project-header',

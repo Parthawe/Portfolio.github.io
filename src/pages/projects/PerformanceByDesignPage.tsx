@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -36,6 +37,7 @@ export default function PerformanceByDesignPage() {
           ]}
         />
 
+        <CsExpandPreview>
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="The Design Nobody Sees">
           <CsBody>
             <p>Great performance design is invisible. When lighting, sound, staging, and audience flow work perfectly, nobody notices them &mdash; they just feel the experience. This course taught me to design those invisible systems: the 200ms lighting fade that marks a scene transition, the spatial audio that guides attention without words, the floor plan that ensures every audience member has a clear sightline.</p>
@@ -61,6 +63,8 @@ export default function PerformanceByDesignPage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-concept', label: 'Concept' },

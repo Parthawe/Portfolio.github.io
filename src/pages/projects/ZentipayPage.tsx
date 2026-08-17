@@ -4,6 +4,7 @@ import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
@@ -175,6 +176,11 @@ export default function ZentipayPage() {
           proofPlacement="top"
         />
 
+        <CsExpandPreview
+          expanded={viewMode === 'full'}
+          onExpand={() => handleViewModeChange('full')}
+          note="Continue into the trust system, transfer flows, and protected reviewer material."
+        >
         {viewMode === 'full' ? (
           <>
             <NdaPublicStory
@@ -213,6 +219,7 @@ export default function ZentipayPage() {
         <NdaGate slug="zentipay">
           <NdaReviewerGallery groups={ZENTIPAY_REVIEWER_VISUALS} />
         </NdaGate>
+        </CsExpandPreview>
 
         <BottomNav
           sections={sections}

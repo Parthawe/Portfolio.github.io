@@ -1119,6 +1119,11 @@ export const projects: Project[] = [
     summaryRole: 'Writer and reflective editor, using the essay to define the core question underneath the broader body of work.',
     summaryTeam: 'Independent written piece developed through critique and discussion at NYU ITP.',
     summaryTimeline: '2024',
+    storyline: {
+      challenge: 'The work crossed product design, physical computing, writing, and performance without an obvious shared frame.',
+      approach: 'I traced the recurring method across projects: choose a medium that makes an invisible system tangible through the body.',
+      result: 'The essay defined a coherent practice built around translation layers, constraint, and embodied understanding.',
+    },
     summaryOutcome: 'Distilled the portfolio into one consistent thesis: translating invisible systems into experiences people can understand through the body.',
   },
   {

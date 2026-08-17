@@ -57,7 +57,6 @@ export default function DrowningPage() {
           label="Watch first"
           title="A room losing air"
           lede="The film shows what the set does best: a greenhouse that feels beautiful, fragile, and slowly enclosing the performers."
-          meta={['Vimeo performance', 'Set design', 'Lighting states']}
         >
           <iframe
             src="https://player.vimeo.com/video/1026164956"

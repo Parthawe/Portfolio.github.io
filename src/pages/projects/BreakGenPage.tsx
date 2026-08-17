@@ -3,6 +3,7 @@ import Nav from '../../components/Nav'
 import CsThanks from '../../components/case-study/CsThanks'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
@@ -46,7 +47,6 @@ export default function BreakGenPage() {
           label="Watch first"
           title="Prompt to keyboard"
           lede="A short thesis film shows the complete promise: describe a keyboard, shape it in 3D, and move toward fabrication instead of another moodboard."
-          meta={['Vimeo thesis film', 'ITP Thesis', 'AI hardware']}
         >
           <iframe
             src="https://player.vimeo.com/video/1091963037?title=0&byline=0&portrait=0"
@@ -71,6 +71,7 @@ export default function BreakGenPage() {
           ]}
         />
 
+        <CsExpandPreview>
         <CsSection id="cs-problem" label="01 · Problem" title="Custom keyboards still need an engineering degree">
           <CsBody>
               <p>Custom mechanical keyboards are one of the most vibrant hardware subcultures online. But the technical barriers to creating one from scratch are enormous. PCB design requires EDA software expertise. Ergonomic layout planning demands spatial reasoning and engineering knowledge. Firmware configuration assumes programming fluency.</p>
@@ -137,6 +138,8 @@ export default function BreakGenPage() {
         </section>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav
           sections={[

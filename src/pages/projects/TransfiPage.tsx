@@ -4,6 +4,7 @@ import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import NdaPublicStory from '../../components/case-study/NdaPublicStory'
 import NdaProcess from '../../components/case-study/NdaProcess'
@@ -256,6 +257,11 @@ export default function TransfiPage() {
           onViewModeChange={handleViewModeChange}
         />
 
+        <CsExpandPreview
+          expanded={viewMode === 'full'}
+          onExpand={() => handleViewModeChange('full')}
+          note="Continue into the product decisions, payment flows, and protected reviewer material."
+        >
         {viewMode === 'full' ? (
           <>
             <NdaPublicStory
@@ -290,6 +296,7 @@ export default function TransfiPage() {
         <NdaGate slug="transfi-project">
           <TransfiReviewerStory />
         </NdaGate>
+        </CsExpandPreview>
 
 
         <BottomNav

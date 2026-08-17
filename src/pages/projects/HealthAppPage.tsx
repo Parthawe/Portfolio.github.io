@@ -111,7 +111,6 @@ export default function HealthAppPage() {
         </CsSection>
 
         <CsExpandPreview
-          expanded
           cta="Open the planning boards"
           note="Process moves, original boards, task surfaces, screen set, and calendar logic."
         >

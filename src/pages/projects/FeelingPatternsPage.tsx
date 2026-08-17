@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -36,6 +37,7 @@ export default function FeelingPatternsPage() {
           ]}
         />
 
+        <CsExpandPreview>
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="When Touch Becomes Language">
           <CsBody>
             <p>We communicate through screens with text, images, and video &mdash; but none of these channels carry touch. Feeling Patterns explores what happens when you design communication systems built entirely on tactile sensation: pressure, vibration, temperature, and texture.</p>
@@ -60,6 +62,8 @@ export default function FeelingPatternsPage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-concept', label: 'Concept' },

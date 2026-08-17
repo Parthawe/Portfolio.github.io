@@ -92,7 +92,6 @@ export default function JugalbandiPage() {
           title="Hear the network perform"
           lede="The fastest way into Jugalbandi is the performance: a neural network translated into plucked strings, air pipes, and percussion."
           actionLabel="Play performance"
-          meta={['Vimeo performance', 'Physical computing', 'Acoustic AI']}
         >
           <iframe
             src="https://player.vimeo.com/video/996020149?title=0&byline=0&portrait=0"

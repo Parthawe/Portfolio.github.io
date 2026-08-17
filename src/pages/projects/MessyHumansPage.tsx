@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -30,6 +31,7 @@ export default function MessyHumansPage() {
             { label: 'Methods', value: 'Contextual Inquiry, Diary Studies, Inclusive Audits' },
           ]}
         />
+        <CsExpandPreview>
         <CsSection id="cs-premise" label="01 &mdash; Premise" title="Personas Are Clean. People Are Not.">
           <CsBody>
             <p>Design education teaches you to create personas: &ldquo;Sarah, 28, marketing manager, uses an iPhone, has 2.3 apps for productivity.&rdquo; These personas are useful fictions. They are also dangerously clean. Real Sarah is exhausted from a newborn, scrolling at 2am with one hand, her screen brightness at minimum to not wake the baby, and she&rsquo;s trying to pay rent on an app that requires two-factor authentication.</p>
@@ -53,6 +55,8 @@ export default function MessyHumansPage() {
           </CsBody>
         </CsSection>
         <CsThanks />
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-premise', label: 'Premise' },
           { id: 'cs-research', label: 'Research' },

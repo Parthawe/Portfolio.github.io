@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -36,6 +37,7 @@ export default function EmbodiedWebPage() {
           ]}
         />
 
+        <CsExpandPreview>
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="The Browser as a Physical Space">
           <CsBody>
             <p>Most websites assume a mouse and keyboard. But modern browsers have access to the camera, microphone, accelerometer, gyroscope, GPS, and haptic motors. What happens when you design web experiences that use the body instead of the cursor?</p>
@@ -61,6 +63,8 @@ export default function EmbodiedWebPage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-concept', label: 'Concept' },

@@ -1683,8 +1683,8 @@
 
 .cs-quick-summary-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(240px, 0.62fr);
-  gap: clamp(0.9rem, 2vw, 1.25rem);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   align-items: start;
 }
 
@@ -1738,27 +1738,6 @@
   font-size: var(--text-sm);
   line-height: 1.65;
   color: var(--ink);
-}
-
-.cs-quick-summary-image {
-  margin: 0;
-  overflow: hidden;
-  border-radius: var(--radius);
-  border: 0;
-  background: transparent;
-  width: 100%;
-  height: clamp(15rem, 25vw, 21rem);
-  min-height: 0;
-  max-height: none;
-}
-
-.cs-quick-summary-image img {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
 }
 
 .cs-quick-summary-stats {
@@ -2231,12 +2210,10 @@
   grid-template-columns: minmax(14rem, 0.36fr) minmax(0, 0.64fr);
   gap: clamp(1.25rem, 3vw, 2.4rem);
   align-items: center;
-  padding: clamp(0.75rem, 1.8vw, 1.1rem);
-  border: 1px solid var(--ink-08);
-  border-radius: var(--case-shell-radius, var(--radius-lg));
-  background:
-    radial-gradient(circle at 12% 10%, color-mix(in srgb, var(--project-color, var(--ink)) 11%, transparent), transparent 36%),
-    color-mix(in srgb, var(--surface) 94%, transparent);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .cs-media-spotlight-grid--stacked {
@@ -2249,7 +2226,7 @@
   grid-template-columns: minmax(10rem, 0.36fr) minmax(0, 1fr);
   gap: 0.65rem clamp(1rem, 3vw, 2rem);
   align-items: end;
-  padding: clamp(0.65rem, 1.5vw, 1rem) clamp(0.7rem, 1.7vw, 1.15rem) 0;
+  padding: 0;
 }
 
 .cs-media-spotlight-grid--stacked .cs-media-spotlight-label {
@@ -2266,10 +2243,6 @@
   align-self: center;
 }
 
-.cs-media-spotlight-grid--stacked .cs-media-spotlight-meta {
-  grid-column: 2;
-}
-
 .cs-media-spotlight-grid--stacked .cs-media-spotlight-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -2281,17 +2254,17 @@
   align-content: center;
   gap: 0.85rem;
   min-width: 0;
-  padding: clamp(0.5rem, 1.4vw, 1rem);
+  padding: 0;
 }
 
 .cs-media-spotlight-label {
   width: fit-content;
   max-width: 100%;
-  font-family: var(--mono);
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--project-color, var(--ink-50));
 }
 
@@ -2313,29 +2286,6 @@
   color: var(--ink-70);
   font-size: clamp(0.98rem, 1.3vw, 1.08rem);
   line-height: 1.65;
-}
-
-.cs-media-spotlight-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.2rem;
-}
-
-.cs-media-spotlight-meta span {
-  display: inline-flex;
-  min-height: 2rem;
-  align-items: center;
-  padding: 0.34rem 0.62rem;
-  border: 1px solid var(--ink-08);
-  border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
-  font-family: var(--mono);
-  font-size: var(--text-2xs);
-  font-weight: 700;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--ink-50);
 }
 
 .cs-media-spotlight-frame {
@@ -2447,7 +2397,6 @@
   width: var(--cs-bnav-progress, 0%);
   background: var(--project-color, var(--ink));
   border-radius: var(--radius-pill) var(--radius-pill) 0 0;
-  transition: width 0.08s linear;
   pointer-events: none;
   z-index: 1;
 }
@@ -2593,7 +2542,6 @@
     height: var(--cs-bnav-progress, 0%);
     max-height: calc(100% - 1.5rem);
     border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
-    transition: height 0.08s linear;
   }
 
   .cs-bottom-nav--side .cs-bnav-link {
@@ -6331,12 +6279,12 @@
 
 /* Callout */
 .cs-callout {
-  border-left: 3px solid var(--project-color, var(--ink-15));
-  padding: 1.5rem 2rem;
+  border: 0;
+  padding: 0;
   margin: 2.5rem 0;
-  background: var(--bg-alt);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  box-shadow: var(--shadow-sm);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
   position: relative;
 }
 .cs-callout p {
@@ -7185,15 +7133,15 @@
 /* ── Pull Quote ── */
 .cs-pullquote {
   margin: 3rem 0;
-  padding: 2.5rem 0 2rem 2.5rem;
-  border-left: 3px solid var(--project-color, var(--ink));
+  padding: 2.5rem 0 2rem;
+  border: 0;
   position: relative;
 }
 .cs-pullquote::before {
   content: '\201C';
   position: absolute;
   top: -0.15em;
-  left: 2.5rem;
+  left: 0;
   font-family: var(--serif);
   font-size: clamp(4rem, 8vw, 6rem);
   font-weight: 300;
@@ -7417,7 +7365,6 @@
   background: var(--project-color, var(--ink));
   z-index: 201;
   pointer-events: none;
-  transition: width 0.05s linear;
 }
 
 /* ── Counter Animation ── */
@@ -8185,9 +8132,6 @@
   .cs-media-spotlight-grid--stacked .cs-media-spotlight-copy {
     grid-template-columns: 1fr;
   }
-  .cs-media-spotlight-grid--stacked .cs-media-spotlight-meta {
-    grid-column: auto;
-  }
   .cs-media-spotlight-grid--stacked .cs-media-spotlight-frame {
     min-height: clamp(16rem, 58vw, 30rem);
   }
@@ -8264,10 +8208,10 @@
     padding-top: 1rem;
   }
   .cs-media-spotlight-grid {
-    padding: 0.7rem;
+    padding: 0;
   }
   .cs-media-spotlight-copy {
-    padding: 0.55rem 0.55rem 0.25rem;
+    padding: 0;
   }
   .cs-media-spotlight-title {
     font-size: clamp(2rem, 10vw, 3rem);
@@ -10013,14 +9957,6 @@ html:has(.project-main) {
   }
 }
 
-/* The general media reset intentionally lets artwork breathe, but summary
-   thumbnails are bounded previews and must stay clipped to their frame. */
-.project-main figure.cs-quick-summary-image {
-  overflow: clip;
-  border-radius: 0.5rem;
-  contain: paint;
-}
-
 .project-main .cs-caption {
   max-width: 52ch;
   margin-top: 0.75rem;
@@ -10373,10 +10309,6 @@ html:has(.project-main) {
     padding-left: 0;
     border-left: 0;
     border-top: 1px solid var(--ink-08);
-  }
-
-  .project-main .cs-quick-summary-image {
-    max-height: 16rem;
   }
 
   .project-main .cs-expand-preview--closed {
@@ -11506,12 +11438,6 @@ html:has(.project-main) {
   color: rgba(252, 248, 240, 0.92);
 }
 
-.project-main--dumb-waiter .cs-media-spotlight-meta span {
-  border-color: rgba(214, 165, 111, 0.22);
-  background: rgba(252, 248, 240, 0.08);
-  color: rgba(252, 248, 240, 0.72);
-}
-
 .dumb-waiter-media-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -12009,7 +11935,6 @@ html:has(.project-main) {
   height: 2px;
   border-radius: 0 0 var(--radius-pill) var(--radius-pill);
   background: var(--project-color, #fff);
-  transition: width 0.08s linear;
 }
 
 .project-main .cs-bottom-nav--side .cs-bnav-link,
@@ -12660,4 +12585,68 @@ body.site-tinted .project-main--medimorpho .medimorpho-access:nth-child(even) {
     font-size: 0.62rem;
     letter-spacing: 0;
   }
+}
+
+/* ── Project divider distillation ────────────────────────────────────────
+   Project pages use spacing, surface changes, and type hierarchy to mark
+   narrative shifts. Keep rules only where they describe a real component
+   boundary: media, controls, forms, comparisons, and timeline connectors. */
+.project-main :is(
+  .proj-info-row,
+  .proj-fastread-list,
+  .proj-fastread-row,
+  .project-overview,
+  .cs-quick-summary-details,
+  .cs-quick-summary-card,
+  .cs-quick-summary-stats,
+  .cs-quick-summary-meta-strip,
+  .cs-expand-preview--article,
+  .cs-expand-preview--article .cs-expand-preview-cta,
+  .cs-section,
+  .cs-nda-story-proof,
+  .cs-nda-story-row,
+  .cs-stat-grid,
+  .cs-credits,
+  .cs-credit-item,
+  .cs-label-row,
+  .cs-steps,
+  .cs-step,
+  .next-project
+) {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.project-main .cs-section-head::after,
+.project-main .cs-thanks::before,
+.project-main .cs-caption::before,
+.project-main .cs-metric::after {
+  content: none;
+}
+
+.project-main .proj-fastread-list,
+.project-main .cs-quick-summary-details,
+.project-main .cs-steps,
+.project-main .cs-credits {
+  gap: clamp(0.65rem, 1.5vw, 1.1rem);
+}
+
+.project-main .cs-stat-grid {
+  gap: clamp(1rem, 2vw, 1.75rem);
+  padding-top: 0;
+}
+
+.project-main .cs-stat-card,
+.project-main .cs-stat-card + .cs-stat-card {
+  border-left: 0;
+}
+
+.project-main .cs-caption {
+  padding-left: 0;
+}
+
+/* Keep the faded article reveal readable without drawing a page-wide rule
+   above or below it. */
+.project-main .cs-expand-preview--article {
+  border: 0;
 }

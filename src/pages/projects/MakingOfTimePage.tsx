@@ -45,7 +45,6 @@ export default function MakingOfTimePage() {
           label="Watch first"
           title="Three clocks, one moment"
           lede="The film sets up the sequence: sundial, mechanical watch, and software clock as three different ways to feel time."
-          meta={['Vimeo film', 'Physical computing', 'Watchmaking']}
         >
           <iframe
             src="https://player.vimeo.com/video/1010457989?h=&badge=0&autopause=0&player_id=0&app_id=58479"

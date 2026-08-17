@@ -46,7 +46,6 @@ export default function MoniacMachinePage() {
           title="Economy as a cabinet"
           lede="The film shows the important part immediately: policy levers become physical controls, and the economy pushes back in real time."
           layout="stacked"
-          meta={['Vimeo demo', 'Arcade cabinet', 'Economic simulator']}
         >
           <iframe
             src="https://player.vimeo.com/video/996025152"

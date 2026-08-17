@@ -13,7 +13,6 @@ interface ProjectQuickSummaryProps {
   proofLimit?: number
   proofHeading?: string
   proofPlacement?: 'top' | 'bottom'
-  showImage?: boolean
 }
 
 export default function ProjectQuickSummary({
@@ -27,7 +26,6 @@ export default function ProjectQuickSummary({
   proofLimit = 3,
   proofHeading,
   proofPlacement = 'bottom',
-  showImage = true,
 }: ProjectQuickSummaryProps) {
   const project = getProject(slug)
 
@@ -108,16 +106,6 @@ export default function ProjectQuickSummary({
             </article>
           </div>
 
-          {showImage && project.summaryImage ? (
-            <figure className="cs-quick-summary-image">
-              <img
-                src={project.summaryImage}
-                alt={project.summaryImageAlt || `${project.name} summary artifact`}
-                loading="eager"
-                decoding="async"
-              />
-            </figure>
-          ) : null}
         </div>
 
         {proofPlacement === 'bottom' ? proofBlock : null}

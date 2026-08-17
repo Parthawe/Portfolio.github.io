@@ -68,7 +68,6 @@ export default function DumbWaiterPage() {
           title="A basement built like a threat"
           lede="The model treats Pinter's waiting room as a pressure chamber: a basement with beds, doors, weapons, a gramophone, and a dumb waiter that behaves like an unseen command system."
           actionLabel="Scenic model"
-          meta={['One-act play', 'Basement room', 'John Wick tone']}
         >
           <img
             src={dumbWaiterImages.wall}

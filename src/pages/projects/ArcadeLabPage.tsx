@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -40,6 +41,7 @@ export default function ArcadeLabPage() {
         />
 
         {/* Overview */}
+        <CsExpandPreview>
         <CsSection id="cs-overview" label="Overview" title="10 Weeks, 4 Prototypes, 1 Final Game">
           <CsBody>
             <p>The New Arcade at NYU ITP is a course about designing games that bring people together physically &mdash; not through screens, but through shared space, custom controllers, and face-to-face competition. Over 10 weeks, I built four rapid prototypes exploring different approaches to social play, each one informing the next, culminating in <a href="/the-omakase" className="project-text-link">The Omakase</a>.</p>
@@ -91,6 +93,8 @@ export default function ArcadeLabPage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

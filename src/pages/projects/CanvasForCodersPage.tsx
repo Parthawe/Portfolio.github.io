@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -41,6 +42,7 @@ export default function CanvasForCodersPage() {
         />
 
         {/* Interactive — first thing you see */}
+        <CsExpandPreview>
         <CsSection id="cs-interactive" label="Interactive" title="Play with the Flow">
           <CsBody>
             <p>Move your mouse across the canvas to attract particles. Each one follows a Perlin noise flow field &mdash; invisible currents that push and pull them into organic, ever-changing patterns. Switch color palettes to change the mood. Increase particle density for richer fields.</p>
@@ -81,6 +83,8 @@ export default function CanvasForCodersPage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-interactive', label: 'Interactive' },

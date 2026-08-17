@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -64,6 +65,7 @@ export default function OnCallLensPage() {
           ]}
         />
 
+        <CsExpandPreview>
         <CsSection id="cs-context" label="Context" title="On-Call Is Broken">
           <CsBody>
                 <p>Every on-call engineer knows the feeling: an alert arrives at the worst possible time, and the first minutes are spent rebuilding context. OnCall Lens asks what happens if triage, AI patching, and approval can start from a glance.</p>
@@ -178,6 +180,8 @@ export default function OnCallLensPage() {
         </CsSection>
 
         <CsThanks contactCta />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-vision', label: 'Vision & Role' },

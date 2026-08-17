@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -36,6 +37,7 @@ export default function StorytellingPage() {
           ]}
         />
 
+        <CsExpandPreview>
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="Every Product Tells a Story">
           <CsBody>
             <p>Storytelling at ITP is not a writing workshop. It&rsquo;s a course about narrative as a design material &mdash; how the sequence of information, the rhythm of interaction, and the structure of experience create meaning. Every product, installation, and interface tells a story. This course teaches you to design that story intentionally.</p>
@@ -60,6 +62,8 @@ export default function StorytellingPage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

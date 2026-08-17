@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsBody from '../../components/case-study/CsBody'
 import CsCallout from '../../components/case-study/CsCallout'
@@ -87,6 +88,7 @@ export default function AtpsPage() {
           </div>
         </section>
 
+        <CsExpandPreview>
         {/* Stats */}
         <section className="cs-section reveal" id="cs-impact">
           <div className="wrap">
@@ -241,6 +243,8 @@ export default function AtpsPage() {
             </CsBody></div>
           </div>
         </section>
+
+        </CsExpandPreview>
 
         <BottomNav
           sections={[

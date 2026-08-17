@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
@@ -123,6 +124,7 @@ export default function OrgDashboardPage() {
           ]}
         />
 
+        <CsExpandPreview>
         <CsSection id="cs-concept" label="Concept" title="Give Your AI Agents a Brain for Your Company">
           <CsBody>
             <p>The root cause is simple: there is no shared infrastructure layer between a company&rsquo;s data and its AI agents. Every agent session is a blank slate. Engineers waste cycles rediscovering information. Knowledge stays siloed. Without persistent context, agents can only handle simple, self-contained tasks &mdash; they cannot manage ongoing workflows or make decisions informed by cross-functional data.</p>
@@ -236,6 +238,8 @@ export default function OrgDashboardPage() {
           ]} />
           <CsThanks contactCta className="cs-thanks--separated" />
         </CsSection>
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-problem', label: 'The Problem' },

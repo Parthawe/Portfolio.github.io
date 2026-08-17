@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -30,6 +31,7 @@ export default function ProductionStudioPage() {
             { label: 'Team', value: '5 collaborators' },
           ]}
         />
+        <CsExpandPreview>
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="The Course About Making Things Happen">
           <CsBody>
             <p>ITP students are prolific makers. But most projects are solo. Production Studio is the course that teaches you to produce at scale: lead a team, manage a budget, negotiate with stakeholders, schedule fabrication time, and deliver a polished installation by a hard deadline (ITP Winter Show, December 2024).</p>
@@ -52,6 +54,8 @@ export default function ProductionStudioPage() {
           </CsBody>
         </CsSection>
         <CsThanks />
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },
           { id: 'cs-process', label: 'Process' },

@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -30,6 +31,7 @@ export default function IntroCompMediaPage() {
             { label: 'Tools', value: 'p5.js, JavaScript, HTML Canvas' },
           ]}
         />
+        <CsExpandPreview>
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="Code as Sketchbook">
           <CsBody>
             <p>ICM at ITP is the course that teaches designers to think computationally. Every week, a new prompt: loops, conditionals, functions, objects, arrays, pixels, sound, video. Every week, a new sketch. The constraint: express the concept visually, in p5.js, in one week.</p>
@@ -54,6 +56,8 @@ export default function IntroCompMediaPage() {
           </CsBody>
         </CsSection>
         <CsThanks />
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },
           { id: 'cs-sketches', label: 'Sketches' },

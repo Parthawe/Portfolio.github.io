@@ -46,7 +46,6 @@ export default function ShufflePage() {
           label="Watch first"
           title="Time as sliders"
           lede="The video shows the physical idea quickly: every choice changes the balance of student life, and the board makes those tradeoffs visible."
-          meta={['Vimeo demo', 'Arduino', 'Physical simulator']}
         >
           <iframe
             src="https://player.vimeo.com/video/897796834?h=853abf08b1&badge=0&autopause=0&player_id=0&app_id=58479"

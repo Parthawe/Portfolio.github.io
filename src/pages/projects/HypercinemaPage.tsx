@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -30,6 +31,7 @@ export default function HypercinemaPage() {
             { label: 'Tools', value: 'Insta360, Reaper, Unity, Depthkit, TouchDesigner' },
           ]}
         />
+        <CsExpandPreview>
         <CsSection id="cs-premise" label="01 &mdash; Premise" title="Cinema Without Borders">
           <CsBody>
             <p>Traditional cinema is a rectangle. Fixed frame, fixed duration, fixed sequence. Hypercinema asks: what happens when you remove those constraints? What is a film when the viewer chooses where to look? When sound comes from specific locations in space? When the narrative branches based on where you stand?</p>
@@ -51,6 +53,8 @@ export default function HypercinemaPage() {
           </CsBody>
         </CsSection>
         <CsThanks />
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-premise', label: 'Premise' },
           { id: 'cs-pieces', label: 'Pieces' },

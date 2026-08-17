@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsPullquote from '../../components/case-study/CsPullquote'
@@ -36,6 +37,7 @@ export default function OnBecomingPage() {
         />
 
         {/* The Question */}
+        <CsExpandPreview>
         <CsSection id="cs-question" label="01 &mdash; The Question" title="What Do You Make?">
           <CsBody>
             <p>I make neural-network sculptures, payment flows, arcade cabinets, story machines, and clocks that slow down near imaginary black holes. For a long time, that felt unfocused.</p>
@@ -82,6 +84,8 @@ export default function OnBecomingPage() {
         </CsSection>
 
         <CsThanks />
+
+        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-question', label: 'The Question' },

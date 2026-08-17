@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -30,6 +31,7 @@ export default function ApplicationsPage() {
             { label: 'Tools', value: 'React, Node.js, MongoDB, Figma, Vercel' },
           ]}
         />
+        <CsExpandPreview>
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="Ship It">
           <CsBody>
             <p>Applications at ITP is the course that bridges the gap between &ldquo;I have an idea&rdquo; and &ldquo;people are using it.&rdquo; Over 14 weeks, you conceive, design, build, and deploy a functional web application. No mockups. No prototypes. A real product with real users.</p>
@@ -50,6 +52,8 @@ export default function ApplicationsPage() {
           </CsBody>
         </CsSection>
         <CsThanks />
+        </CsExpandPreview>
+
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },
           { id: 'cs-projects', label: 'Projects' },

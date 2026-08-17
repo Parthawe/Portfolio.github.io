@@ -8,7 +8,6 @@ interface CsMediaSpotlightProps {
   lede: string
   actionLabel?: string
   layout?: 'split' | 'stacked'
-  meta?: string[]
   children: ReactNode
 }
 
@@ -19,7 +18,6 @@ export default function CsMediaSpotlight({
   lede,
   actionLabel = 'Open media',
   layout = 'split',
-  meta = [],
   children,
 }: CsMediaSpotlightProps) {
   return (
@@ -36,13 +34,6 @@ export default function CsMediaSpotlight({
           <span className="cs-media-spotlight-label">{label}</span>
           <h2 className="cs-media-spotlight-title">{title}</h2>
           <p>{lede}</p>
-          {meta.length ? (
-            <div className="cs-media-spotlight-meta" aria-label={`${title} proof points`}>
-              {meta.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
-          ) : null}
         </div>
         <div className="cs-media-spotlight-frame">
           {children}

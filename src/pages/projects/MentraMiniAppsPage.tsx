@@ -150,7 +150,6 @@ export default function MentraMiniAppsPage() {
           label=""
           title="Why smart glasses needed a real app system"
           proofLimit={0}
-          showImage={false}
         />
 
         <section className="cs-section mentra-miniapps-hero-gallery reveal" aria-label="MiniApp system previews">

@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
+import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import NextProject from '../../components/case-study/NextProject'
 import MediMorphoProtectedStory from './MediMorphoProtectedStory'
 
@@ -144,7 +145,11 @@ export default function MediMorphoPage() {
           </div>
         </section>
 
-        <MediMorphoProtectedStory />
+        <CsExpandPreview
+          note="Continue into the interview evidence, synthesis, service direction, and protected research detail."
+        >
+          <MediMorphoProtectedStory />
+        </CsExpandPreview>
       </main>
 
       <NextProject slug="raahi-project" title="Raahi" image="/Assets/mockups/projects/raahi-project_16x9.webp" />
