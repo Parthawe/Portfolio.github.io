@@ -186,7 +186,17 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
     }
   })
   .filter(Boolean)
-const routes = [...new Set([...sitemapRoutes, 'design-engineering', 'design-engineer', 'creative-tech'])]
+const routes = [...new Set([
+  ...sitemapRoutes,
+  'accessibility',
+  'book',
+  'graveyard',
+  'studio',
+  'mentra-website',
+  'design-engineering',
+  'design-engineer',
+  'creative-tech',
+])]
 
 let written = 0
 for (const route of routes) {
