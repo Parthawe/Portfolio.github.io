@@ -8,7 +8,7 @@ interface CsSectionProps {
   children: ReactNode;
 }
 
-export default function CsSection({ id, label, title, children }: CsSectionProps) {
+export default function CsSection({ id, title, children }: CsSectionProps) {
   return (
     <motion.section
       className="cs-section"
@@ -20,17 +20,6 @@ export default function CsSection({ id, label, title, children }: CsSectionProps
     >
       <div className="wrap cs-section-grid">
         <div className="cs-section-head">
-          {label ? (
-            <motion.span
-              className="cs-section-label"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              {label}
-            </motion.span>
-          ) : null}
           <motion.h2
             className="cs-section-title"
             initial={{ opacity: 0, y: 20 }}

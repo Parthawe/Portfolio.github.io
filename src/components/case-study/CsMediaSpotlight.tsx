@@ -28,10 +28,10 @@ export default function CsMediaSpotlight({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      aria-label={`${label}: ${title}`}
     >
       <div className={`wrap cs-media-spotlight-grid cs-media-spotlight-grid--${layout}`}>
         <div className="cs-media-spotlight-copy">
-          <span className="cs-media-spotlight-label">{label}</span>
           <h2 className="cs-media-spotlight-title">{title}</h2>
           <p>{lede}</p>
         </div>

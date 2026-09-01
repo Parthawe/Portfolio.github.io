@@ -7929,13 +7929,12 @@
 .cs-flow-line--horizontal::after {
   content: '';
   position: absolute;
-  right: -1px;
+  right: -2px;
   top: -3px;
-  width: 0;
-  height: 0;
-  border-left: 5px solid var(--ink-15);
-  border-top: 3.5px solid transparent;
-  border-bottom: 3.5px solid transparent;
+  width: 7px;
+  height: 7px;
+  background: var(--ink-15);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
 .cs-flow-line--vertical {
   width: 1px;
@@ -8423,7 +8422,7 @@ html:has(.project-main) {
 }
 
 .project-main .cs-section-label {
-  display: inline-flex;
+  display: none;
   width: fit-content;
   max-width: 100%;
   color: var(--project-color, var(--ink-40));
@@ -8531,6 +8530,12 @@ html:has(.project-main) {
   max-width: var(--case-copy);
 }
 
+.project-main .cs-section-content > :is(.cs-body, p),
+.project-main .cs-section-content > .cs-body > p,
+.project-main .cs-section-content > .cs-body > div > p {
+  max-width: none;
+}
+
 .project-main .cs-body,
 .project-main .cs-body p,
 .project-main .proj-desc,
@@ -8552,6 +8557,38 @@ html:has(.project-main) {
 .project-main .cs-body > p:first-child {
   font-size: var(--text-base);
   line-height: 1.72;
+}
+
+.project-main .cs-media-spotlight-grid {
+  align-items: end;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.project-main .cs-media-spotlight-copy {
+  align-self: end;
+  padding: 0;
+}
+
+.project-main .cs-media-spotlight-title {
+  max-width: min(12ch, 100%);
+  font-family: var(--sans);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.project-main .cs-media-spotlight-copy p {
+  max-width: 48ch;
+}
+
+.project-main .cs-media-spotlight-action {
+  min-height: 44px;
+  padding: 0.58rem 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .project-main .cs-body p:first-child::first-line,
@@ -9129,9 +9166,9 @@ html:has(.project-main) {
   display: grid;
   grid-template-rows: auto 1fr auto;
   align-items: center;
-  min-height: clamp(14rem, 22vw, 17rem);
-  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.1rem, 2vw, 1.75rem);
-  border-radius: clamp(1.25rem, 2vw, 1.75rem);
+  min-height: clamp(10rem, 16vw, 12.5rem);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border-radius: var(--radius-lg);
   background: #eff0f1;
   text-align: center;
 }
@@ -9140,7 +9177,7 @@ html:has(.project-main) {
   margin: 0;
   color: #575a5d;
   font-family: var(--sans);
-  font-size: clamp(1rem, 1.6vw, 1.45rem);
+  font-size: clamp(0.95rem, 1.2vw, 1.08rem);
   font-weight: 400;
   line-height: 1.35;
 }
@@ -9148,9 +9185,9 @@ html:has(.project-main) {
 .project-main--mentra-visual .cs-mentra-impact-grid strong {
   color: var(--mentra-editorial-accent);
   font-family: var(--sans);
-  font-size: clamp(3.25rem, 6vw, 6rem);
+  font-size: clamp(2.5rem, 4.25vw, 4.2rem);
   font-weight: 400;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
   line-height: 1;
 }
 
@@ -12649,4 +12686,62 @@ body.site-tinted .project-main--medimorpho .medimorpho-access:nth-child(even) {
    above or below it. */
 .project-main .cs-expand-preview--article {
   border: 0;
+}
+
+.project-main :is(
+  .cs-feature-grid,
+  .cs-info-grid,
+  .cs-steps,
+  .cs-label-row
+) {
+  border: 0;
+}
+
+.project-main :is(
+  .cs-feature-card,
+  .cs-info-card,
+  .cs-step,
+  .cs-label-row
+) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.project-main :is(
+  .cs-section-label,
+  .cs-media-spotlight-label,
+  .cs-media-spotlight-action,
+  .cs-expand-preview-btn,
+  .cs-tag-item,
+  .proj-tag,
+  .proj-visual-tag,
+  .proj-visual-live,
+  .cs-caption,
+  .cs-stat-label,
+  .cs-credit-role,
+  .cs-quick-summary-label,
+  .cs-quick-summary-stat-label,
+  .cs-bnav-link,
+  .cs-bnav-live,
+  .cs-mentra-web-block figcaption,
+  .cs-mentra-web-facts strong,
+  .cs-flow-title,
+  .cs-compare-table-title,
+  .cs-ct-col-head
+) {
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.project-main .cs-quick-summary-stat,
+.project-main .cs-quick-summary-stat + .cs-quick-summary-stat {
+  border: 0;
+}
+
+.project-main .cs-quick-summary-card,
+.project-main .cs-quick-summary-card--outcome {
+  border: 0 !important;
+  background: transparent;
 }
