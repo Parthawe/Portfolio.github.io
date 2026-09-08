@@ -53,6 +53,10 @@ try {
   await touchPage.goto(`${base}/work/`)
   await touchPage.getByRole('button', { name: 'Open menu', exact: true }).click()
   await touchPage.getByRole('button', { name: 'Close menu', exact: true }).click()
+  await expect(touchPage.locator('#mobile-navigation')).toHaveCount(0)
+  await expect(touchPage.locator('.page-loader')).toHaveCount(0)
+  await expect.poll(() => touchPage.evaluate(() => getComputedStyle(document.body).overflow)).not.toBe('hidden')
+  await touchPage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))
   const session = await touchPage.context().newCDPSession(touchPage)
   for (let gesture = 1; gesture <= 3; gesture++) {
     await session.send('Input.synthesizeScrollGesture', { x: 190, y: 650, yDistance: -400, gestureSourceType: 'touch' })
