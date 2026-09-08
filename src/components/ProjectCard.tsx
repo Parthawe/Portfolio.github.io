@@ -1,4 +1,6 @@
 import { memo, useCallback } from 'react'
+// Shared cards must not depend on a previous visit to the Work route.
+import '../styles/work-page.css'
 import { Link } from 'react-router-dom'
 import TiltCard from './TiltCard'
 import FigmaSelect from './FigmaSelect'

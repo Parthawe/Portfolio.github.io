@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test'
+import { checkHomepageCards } from './homepage-cards-qa.mjs'
 
 export async function checkMarquees(browser, base) {
   for (const width of [1187, 390]) {
@@ -32,6 +33,7 @@ export async function checkMarquees(browser, base) {
       await expect.poll(() => track.evaluate(element => getComputedStyle(element).transform)).not.toBe(before)
       if (process.env.QA_MARQUEE_SCREENSHOTS) await strip.screenshot({ path: `${process.env.QA_MARQUEE_SCREENSHOTS}/marquee-${width}-${theme}.png` })
       console.log(`PASS homepage marquee: ${width}px ${theme}, bounded logos, motion, seamless repeat geometry`)
+      await checkHomepageCards(page, width, theme)
       await page.close()
     }
   }
