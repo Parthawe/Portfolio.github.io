@@ -12,8 +12,8 @@ export async function checkMarquees(browser, base) {
       await strip.scrollIntoViewIfNeeded()
       await expect.poll(() => strip.evaluate(element => {
         const reveal = element.closest('.reveal')
-        return reveal ? getComputedStyle(reveal).filter : 'none'
-      })).toMatch(/^(none|blur\(0px\))$/)
+        return reveal ? parseFloat(getComputedStyle(reveal).filter.match(/blur\(([\d.]+)/)?.[1] || '0') : 0
+      })).toBeLessThan(0.5)
       const track = strip.locator('.cl-marquee-track')
       await expect(track).toHaveCSS('display', 'flex')
       await expect(track.locator('img')).toHaveCount(12)

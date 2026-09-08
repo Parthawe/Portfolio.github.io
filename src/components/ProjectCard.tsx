@@ -158,16 +158,18 @@ export default memo(function ProjectCard({
               />
             )
           ) : null}
-          <h2 className="pcard-name">{name}</h2>
         </div>
+        <h2 className="pcard-name">{name}</h2>
         {safeMarqueeText && (
-          <div className="pcard-marquee">
-            <div className="pcard-marquee-track pcard-summary-static">
-              <span>{safeDesc || safeMarqueeText}</span>
+          <div className="pcard-marquee" aria-hidden="true">
+            <div className="pcard-marquee-track">
+              <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
+              <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
             </div>
           </div>
         )}
         <span className="sr-only">
+          {safeDesc || safeMarqueeText}{' '}
           {requestAccess ? 'Public preview. Full case study available by request.' : 'View project.'}
         </span>
       </div>
