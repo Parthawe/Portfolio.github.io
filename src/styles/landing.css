@@ -845,79 +845,13 @@
   .lp-section-label { font-size: var(--text-xs); }
 }
 
-/* ── Clients marquee: infinite right-to-left logo strip ── */
-.cl-marquee-viewport {
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-}
+/* Shared client strip styles are loaded by ClientsMarquee. */
 
-.cl-marquee-track {
-  display: flex;
-  align-items: center;
-  gap: clamp(2.5rem, 6vw, 4.5rem);
-  width: max-content;
-  padding-right: clamp(2.5rem, 6vw, 4.5rem);
-  animation: cl-marquee-slide 28s linear infinite;
-}
-
-.cl-marquee:hover .cl-marquee-track {
-  animation-play-state: running;
-}
-
-.cl-marquee-track img {
-  height: clamp(1.7rem, 2.6vw, 2.5rem);
-  width: auto;
-  max-width: 11rem;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-[data-theme="dark"] .cl-marquee-track img {
-  filter: invert(1) hue-rotate(180deg);
-}
-
+/* The playbook strip below also uses this motion. */
 @keyframes cl-marquee-slide {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .cl-marquee-track {
-    animation: cl-marquee-slide 42s linear infinite;
-  }
-}
-
-@media (max-width: 900px) {
-  .cl-marquee-viewport {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .cl-marquee-track {
-    gap: 2.1rem;
-    padding-right: 2.1rem;
-    animation: cl-marquee-slide 24s linear infinite;
-  }
-}
-
-html.is-low-power-device .cl-marquee-viewport {
-  -webkit-mask-image: none;
-  mask-image: none;
-}
-
-html.is-low-power-device .cl-marquee-track {
-  animation: cl-marquee-slide 42s linear infinite !important;
-  transform: translateX(0);
-  will-change: transform;
-}
-
-/* Category pages set their own spacing; the marquee reuses .wr-clients
-   margins from the homepage block. */
-#main-content .cl-marquee {
-  margin-bottom: clamp(3.5rem, 7vw, 6rem);
-}
-
 .lp-impact-strip {
   margin: clamp(4rem, 8vw, 7rem) 0 clamp(4rem, 8vw, 7rem);
 }

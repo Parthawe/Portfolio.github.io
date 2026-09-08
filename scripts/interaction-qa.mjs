@@ -1,7 +1,9 @@
 import { chromium, expect } from '@playwright/test'
+import { checkMarquees } from './marquee-qa.mjs'
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:4175'
 const browser = await chromium.launch()
 try {
+  await checkMarquees(browser, base)
   for (const { mobile, reducedMotion } of [false, true].flatMap(mobile => ['reduce', 'no-preference'].map(reducedMotion => ({ mobile, reducedMotion })))) {
     const page = await browser.newPage({ viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 900 }, reducedMotion })
     await page.goto(`${base}/work/`)
