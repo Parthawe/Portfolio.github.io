@@ -282,7 +282,7 @@ export default function BinaryFlower() {
   return (
     <div className="abt-binary-flower" aria-label="Morphing generative binary object">
       {webGLAvailable ? (
-        <Canvas
+      <Canvas events={safeCanvasEvents}
           className="abt-binary-flower-canvas"
           camera={{ position: [0, 0, 5.15], fov: 43 }}
           dpr={performanceDegraded ? 1 : [1, 1.75]}
@@ -304,3 +304,4 @@ export default function BinaryFlower() {
     </div>
   )
 }
+import { safeCanvasEvents } from '../utils/canvasEvents';

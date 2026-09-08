@@ -2351,7 +2351,7 @@ export default function HeroScene({
   return (
     <>
       <div ref={containerRef} className={`hero-3d-canvas${expanded ? ' hero-3d-canvas--web' : ''}`}>
-        <Canvas
+      <Canvas events={safeCanvasEvents}
           onCreated={onReady}
           frameloop={visible ? 'always' : 'never'}
           dpr={[1, 2]}
@@ -2385,3 +2385,4 @@ export default function HeroScene({
     </>
   );
 }
+import { safeCanvasEvents } from '../utils/canvasEvents';

@@ -17,6 +17,7 @@ import {
   type ProjectCategory,
 } from '../data/projects'
 import { useMediaQuery } from '../hooks/useMediaQuery'
+import '../styles/work-page.css'
 
 const filters = CATEGORIES
 const WORK_FILTER_EVENT = 'folio:set-work-filter'
@@ -138,6 +139,25 @@ export default function WorkPage() {
   }, [viewMode])
 
   useEffect(() => {
+    if (viewMode !== 'editorial') return
+
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.page-work .pcard'))
+    if (!cards.length) return
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle('is-in-viewport', entry.isIntersecting)
+        })
+      },
+      { rootMargin: '180px 0px', threshold: 0 }
+    )
+
+    cards.forEach(card => observer.observe(card))
+    return () => observer.disconnect()
+  }, [activeFilter, viewMode])
+
+  useEffect(() => {
     let frameId = 0
 
     const syncFooterVisibility = () => {
@@ -175,7 +195,7 @@ export default function WorkPage() {
       if (!filterKey) return
 
       setActiveFilter(filterKey)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
     }
 
     window.addEventListener(WORK_FILTER_EVENT, handleFilter as EventListener)
@@ -296,7 +316,7 @@ export default function WorkPage() {
     setLibraryPreviewSlug(shelf?.projects[0]?.slug ?? null)
     const target = document.getElementById(`work-library-${shelfKey}`)
     if (!target) return
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' })
   }, [librarySections])
 
   const handleLibraryPreview = useCallback((shelfKey: string, projectSlug: string) => {

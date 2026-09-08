@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import { lockBodyScroll, unlockBodyScroll } from '../utils/bodyScrollLock';
+import '../styles/graveyard.css';
 
 interface PortfolioVersion {
   id: string;

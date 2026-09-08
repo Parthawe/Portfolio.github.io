@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { getProject } from '../data/projects'
 import { CONTACT_EMAIL } from '../config/site'
 import { sentenceCaseProjectLabel } from '../utils/projectPresentation'
+import '../styles/nda-gate.css'
 
 interface NdaGateProps {
   slug: string

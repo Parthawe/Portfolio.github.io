@@ -468,16 +468,18 @@ function VishwaCampaignBrief() {
 }
 
 function CampaignVideo({ src, poster, title, note, href, className = '' }: { src: string; poster?: string; title: string; note: string; href?: string; className?: string }) {
+  const [failed, setFailed] = useState(false)
   return (
     <figure className={`vishwa-video ${className}`.trim()}>
       <div>
-        <video controls playsInline poster={poster} preload="metadata" aria-label={title}>
-          <source src={src} type="video/mp4" />
+        <video controls playsInline poster={poster} preload="metadata" aria-label={title} onError={() => setFailed(true)}>
+          <source src={src} type="video/mp4" onError={() => setFailed(true)} />
         </video>
       </div>
       <figcaption>
         <span>{title}</span>
         <small>{note}</small>
+        {failed && <p role="status">The embedded video could not load. <a href={href || src} target="_blank" rel="noreferrer">Open video separately ↗</a></p>}
         {href && <a href={href} target="_blank" rel="noreferrer">View original post ↗</a>}
       </figcaption>
     </figure>

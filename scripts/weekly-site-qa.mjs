@@ -46,7 +46,7 @@ async function checkPage(url) {
     const response = await fetchWithRetry(url)
     const html = await response.text()
     const title = html.match(/<title>([^<]*)<\/title>/i)?.[1]?.trim() || ''
-    const canonical = html.match(/<link rel="canonical" href="([^"]+)"\s*\/>/i)?.[1] || ''
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"[^>]*\/>/i)?.[1] || ''
     const issues = []
 
     if (!response.ok) issues.push(`HTTP ${response.status}`)

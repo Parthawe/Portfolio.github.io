@@ -1253,7 +1253,19 @@
 }
 
 .vishwa-video figcaption small { text-align: right; }
-.vishwa-video figcaption a { grid-column: 1 / -1; width: fit-content; color: var(--project-color); }
+.vishwa-video figcaption a {
+  position: relative;
+  grid-column: 1 / -1;
+  width: fit-content;
+  color: var(--project-color);
+}
+.vishwa-video figcaption a::before {
+  content: "";
+  position: absolute;
+  inset: 50% -0.25rem auto;
+  min-height: 24px;
+  transform: translateY(-50%);
+}
 
 .motion-video-provenance {
   display: grid;
@@ -2034,4 +2046,7 @@
     height: min(110vw, 27rem);
     max-width: 90%;
   }
+}
+@media (max-width: 768px) {
+  .motion-hero-artifact .motion-hero-tool--timeline { right: 2%; }
 }

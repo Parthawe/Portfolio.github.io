@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { useBackToTop } from '../hooks/useBackToTop'
 import FigmaSelect from './FigmaSelect'
+import '../styles/hand-tracker.css'
 // @ts-ignore, no type declarations available
 import { HandLandmarker, FilesetResolver } from '@mediapipe/tasks-vision'
 

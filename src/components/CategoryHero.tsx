@@ -368,6 +368,7 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           </motion.div>
         ) : (
           <>
+            <h1 className="sr-only">{categoryName}</h1>
             <motion.span
               className="ch-eyebrow"
               initial={{ opacity: 0, y: 8, filter: 'blur(3px)' }}

@@ -437,7 +437,7 @@ export default function PlaybookTopicObject({ topic, title }: { topic: PlaybookO
   return (
     <div ref={ref} className="pb-object-stage" aria-hidden="true">
       {webglOk && mountScene && !performanceDegraded ? (
-        <Canvas
+      <Canvas events={safeCanvasEvents}
           camera={{ position: [0, 0, 3.5], fov: 34 }}
           dpr={[1, 1.75]}
           gl={{
@@ -462,3 +462,4 @@ export default function PlaybookTopicObject({ topic, title }: { topic: PlaybookO
     </div>
   )
 }
+import { safeCanvasEvents } from '../utils/canvasEvents';

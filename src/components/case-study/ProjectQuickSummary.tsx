@@ -39,11 +39,13 @@ export default function ProjectQuickSummary({
   }
 
   const isAccessLimited = isRequestAccessProject(project)
+  const isEditorialSynthesis = /synthesis/i.test(project.testimonial?.cite || '')
+  const QuoteContainer = isEditorialSynthesis ? 'aside' : 'blockquote'
   const proofStats = project.summaryStats?.slice(0, proofLimit) ?? []
   const proofBlock = proofStats.length ? (
     <>
       {proofHeading ? <h3 className="cs-quick-summary-proof-title">{proofHeading}</h3> : null}
-      <div className="cs-quick-summary-stats" aria-label="Key proof points">
+      <div className="cs-quick-summary-stats" aria-label="Project facts and outcomes">
         {proofStats.map((stat) => (
           <div key={stat.label} className="cs-quick-summary-stat">
             <span className="cs-quick-summary-stat-value">{stat.value}</span>
@@ -111,10 +113,10 @@ export default function ProjectQuickSummary({
         {proofPlacement === 'bottom' ? proofBlock : null}
 
         {project.testimonial ? (
-          <blockquote className="cs-quick-summary-quote">
-            <p>“{project.testimonial.quote}”</p>
-            <cite>{project.testimonial.cite}</cite>
-          </blockquote>
+          <QuoteContainer className="cs-quick-summary-quote" aria-label={isEditorialSynthesis ? 'Editorial synthesis' : undefined}>
+            <p>{isEditorialSynthesis ? project.testimonial.quote : `“${project.testimonial.quote}”`}</p>
+            <cite>{isEditorialSynthesis ? 'Editorial synthesis' : project.testimonial.cite}</cite>
+          </QuoteContainer>
         ) : null}
 
       </div>

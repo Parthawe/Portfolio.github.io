@@ -16,7 +16,7 @@ export function useBackToTop() {
   }, []);
 
   const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   }, []);
 
   return { visible, scrollToTop } as const;

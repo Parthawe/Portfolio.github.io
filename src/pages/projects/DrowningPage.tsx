@@ -1,3 +1,4 @@
+import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -58,7 +59,7 @@ export default function DrowningPage() {
           title="A room losing air"
           lede="The film shows what the set does best: a greenhouse that feels beautiful, fragile, and slowly enclosing the performers."
         >
-          <iframe
+          <ExternalVideo
             src="https://player.vimeo.com/video/1026164956"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen

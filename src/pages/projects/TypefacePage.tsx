@@ -9,6 +9,9 @@ import NextProject from '../../components/case-study/NextProject'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import GlyphPlayground from '../../components/GlyphPlayground'
 import GlyphEditor from '../../components/GlyphEditor'
+import '../../styles/typeface-page.css'
+import '../../styles/glyph-playground.css'
+import '../../styles/glyph-editor.css'
 
 const TYPEFACE_ASSET = '/Assets/Projects/Typeface'
 

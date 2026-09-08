@@ -1,5 +1,6 @@
 import type { CSSProperties, PointerEvent } from 'react'
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
+import '../styles/hero-artifacts.css'
 
 type ArtifactProps = {
   slug: string

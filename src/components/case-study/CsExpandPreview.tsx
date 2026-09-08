@@ -31,9 +31,7 @@ export default function CsExpandPreview({
   const handleExpand = onExpand ?? (() => setInternalExpanded(true))
   const project = getProject(pathname.replace(/^\/+|\/+$/g, ''))
   const continuation = project?.storyline
-  const previewTitle = continuation?.result
-    ?? project?.summaryOutcome
-    ?? (project ? `${project.name}: the work behind the outcome` : 'The work behind the outcome')
+  const previewTitle = project ? `${project.name}: the work behind the outcome` : 'The work behind the outcome'
   const previewSummary = continuation?.approach
     ?? project?.summaryProblem
     ?? project?.desc
@@ -41,7 +39,7 @@ export default function CsExpandPreview({
   const editorialPreview = preview ?? (
     <article className="cs-expand-preview-article-copy cs-expand-preview-article-copy--auto">
       <h2>{previewTitle}</h2>
-      <p>{previewSummary}</p>
+      {previewSummary !== project?.summaryProblem && previewSummary !== project?.summaryRole && previewSummary !== project?.summaryOutcome ? <p>{previewSummary}</p> : null}
     </article>
   )
 

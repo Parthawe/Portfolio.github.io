@@ -1,3 +1,4 @@
+import ExternalVideo from '../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
@@ -102,7 +103,7 @@ function EditingHeroFilm() {
         aria-hidden="true"
       />
       <span className="editing-hero-film__status" role="status">Loading project film</span>
-      <iframe
+      <ExternalVideo
         src={`https://player.vimeo.com/video/895893649?h=d78737dcdb&title=0&byline=0&portrait=0&dnt=1${playback}`}
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
@@ -120,7 +121,7 @@ function SelectedFilms() {
       {films.map((film) => (
         <figure className={`editing-film${film.featured ? ' is-featured' : ''}`} key={film.key}>
           <div className="editing-film__player">
-            <iframe
+            <ExternalVideo
               src={film.src}
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen

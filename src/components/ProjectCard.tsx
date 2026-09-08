@@ -29,6 +29,10 @@ interface ProjectCardProps {
   nda?: boolean
 }
 
+type IdleWindow = Window & {
+  requestIdleCallback?: (callback: IdleRequestCallback, options?: { timeout: number }) => number
+}
+
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText,
@@ -57,11 +61,22 @@ export default memo(function ProjectCard({
     if (visual) visual.classList.add('loaded')
     const card = img.closest('.pcard')
     if (!card) return
-    try {
-      const brightness = getImageBrightness(img)
-      if (brightness > 140) card.classList.add('pcard--light')
-    } catch {
-      // Expected for cross-origin images or tainted canvases — not actionable
+
+    const classifyBrightness = () => {
+      if (!card.isConnected) return
+      try {
+        const brightness = getImageBrightness(img)
+        if (brightness > 140) card.classList.add('pcard--light')
+      } catch {
+        // Expected for cross-origin images or tainted canvases — not actionable
+      }
+    }
+
+    const idleWindow = window as IdleWindow
+    if (typeof idleWindow.requestIdleCallback === 'function') {
+      idleWindow.requestIdleCallback(classifyBrightness, { timeout: 1200 })
+    } else {
+      window.setTimeout(classifyBrightness, 160)
     }
   }, [])
 
@@ -85,7 +100,6 @@ export default memo(function ProjectCard({
     <Link
       className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${hoverMediaSrc ? ' pcard--has-hover-media' : ''}${requestAccess ? ' pcard--request-access' : ''}`}
       to={`/${slug}`}
-      aria-label={requestAccess ? `View NDA public preview for ${name}. Full details by request.` : `View ${name} project`}
       onMouseEnter={handlePrefetch}
       onFocus={handlePrefetch}
     >
@@ -142,16 +156,18 @@ export default memo(function ProjectCard({
               />
             )
           ) : null}
+          <h2 className="pcard-name">{name}</h2>
         </div>
-        <h2 className="pcard-name">{name}</h2>
         {safeMarqueeText && (
           <div className="pcard-marquee">
-            <div className="pcard-marquee-track">
-              <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
-              <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
+            <div className="pcard-marquee-track pcard-summary-static">
+              <span>{safeDesc || safeMarqueeText}</span>
             </div>
           </div>
         )}
+        <span className="sr-only">
+          {requestAccess ? 'Public preview. Full case study available by request.' : 'View project.'}
+        </span>
       </div>
       <FigmaSelect />
     </Link>

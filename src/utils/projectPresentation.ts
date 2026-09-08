@@ -42,51 +42,7 @@ interface ProjectTimelineSource {
   }
 }
 
-const TIMELINE_COPY_LIMIT = 82
-
-function compactTimelineCopy(value: string) {
-  const normalized = value.trim().replace(/\s+/g, ' ')
-  if (normalized.length <= TIMELINE_COPY_LIMIT) return normalized
-
-  const sentence = normalized.split(/(?<=[.!?])\s+/)[0]
-  if (sentence.length <= TIMELINE_COPY_LIMIT) return sentence
-
-  const clause = normalized.split(/[,;:]/)[0]
-  if (clause.length >= 34 && clause.length <= TIMELINE_COPY_LIMIT) return clause
-
-  const words = normalized.split(' ')
-  let compact = ''
-  for (const word of words) {
-    const candidate = compact ? `${compact} ${word}` : word
-    if (candidate.length > TIMELINE_COPY_LIMIT - 1) break
-    compact = candidate
-  }
-
-  return `${compact.replace(/[.,;:]$/, '')}…`
-}
-
-/**
- * Keeps authored chronology when a project has it. Other projects receive a
- * compact process timeline built only from story copy already in the registry,
- * so the shared overview never invents dates or project claims.
- */
+/** Only authored chronology belongs in a timeline. Otherwise show the known duration. */
 export function projectTimelineMilestones(project?: ProjectTimelineSource) {
-  if (!project) return []
-  if (project.timelineMilestones?.length) return project.timelineMilestones
-  if (!project.storyline) return []
-
-  return [
-    {
-      period: project.summaryTimeline || 'Context',
-      label: compactTimelineCopy(project.storyline.challenge),
-    },
-    {
-      period: 'Design',
-      label: compactTimelineCopy(project.storyline.approach),
-    },
-    {
-      period: 'Outcome',
-      label: compactTimelineCopy(project.storyline.result),
-    },
-  ]
+  return project?.timelineMilestones ?? []
 }

@@ -27,6 +27,17 @@ jobs:
           bun run test:agent
           bun run build
 
+      - name: Install the QA browser
+        run: bunx playwright install --with-deps chromium
+
+      - name: Check every rendered route at desktop and mobile sizes
+        id: rendered-qa
+        continue-on-error: true
+        env:
+          QA_BASE_URL: https://designwhich.works
+          QA_RENDERED_REPORT_PATH: qa-rendered-report.md
+        run: bun run qa:rendered
+
       - name: Check every production route and bundle asset
         id: production-qa
         continue-on-error: true
@@ -34,18 +45,37 @@ jobs:
           QA_REPORT_PATH: qa-report.md
         run: node scripts/weekly-site-qa.mjs
 
+      - name: Verify production interactions
+        if: always()
+        env:
+          QA_BASE_URL: https://designwhich.works
+        run: node scripts/interaction-qa.mjs
+
+      - name: Measure production performance
+        if: always()
+        env:
+          QA_BASE_URL: https://designwhich.works
+          QA_PERFORMANCE_REPORT_PATH: performance-report.json
+        run: node scripts/performance-qa.mjs
+
       - name: Publish the QA report
         if: always()
-        run: cat qa-report.md >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          test -f qa-report.md && cat qa-report.md >> "$GITHUB_STEP_SUMMARY" || true
+          printf '\n' >> "$GITHUB_STEP_SUMMARY"
+          test -f qa-rendered-report.md && cat qa-rendered-report.md >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Upload the QA report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: weekly-production-qa
-          path: qa-report.md
+          path: |
+            qa-report.md
+            qa-rendered-report.md
+            performance-report.json
           retention-days: 30
 
       - name: Fail when production QA fails
-        if: steps.production-qa.outcome == 'failure'
+        if: steps.production-qa.outcome == 'failure' || steps.rendered-qa.outcome == 'failure'
         run: exit 1

@@ -111,31 +111,28 @@ export default function Lightbox() {
     }
   }, [state, close])
 
+  if (!state) return null
+
   return (
     <div
       ref={overlayRef}
-      className={`lightbox-overlay${state ? ' active' : ''}`}
+      className="lightbox-overlay active"
       onClick={close}
-      role={state ? 'dialog' : undefined}
-      aria-modal={state ? true : undefined}
-      aria-label={state ? 'Image preview' : undefined}
-      aria-hidden={!state}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image preview"
     >
       <button ref={closeRef} className="lightbox-close" type="button" onClick={close} aria-label="Close lightbox">
         <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
           <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       </button>
-      {state && (
-        <>
-          <img
-            src={state.src}
-            alt={state.alt}
-            onClick={(e) => e.stopPropagation()}
-          />
-          {state.alt && <p className="lightbox-caption">{state.alt}</p>}
-        </>
-      )}
+      <img
+        src={state.src}
+        alt={state.alt}
+        onClick={(e) => e.stopPropagation()}
+      />
+      {state.alt && <p className="lightbox-caption">{state.alt}</p>}
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import ExternalVideo from '../../components/ExternalVideo'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -36,7 +37,7 @@ export default function JugalbandiPage() {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
     if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
     }
   }
 
@@ -93,7 +94,7 @@ export default function JugalbandiPage() {
           lede="The fastest way into Jugalbandi is the performance: a neural network translated into plucked strings, air pipes, and percussion."
           actionLabel="Play performance"
         >
-          <iframe
+          <ExternalVideo
             src="https://player.vimeo.com/video/996020149?title=0&byline=0&portrait=0"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen

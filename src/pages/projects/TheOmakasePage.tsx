@@ -1,3 +1,4 @@
+import ExternalVideo from '../../components/ExternalVideo'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -156,7 +157,7 @@ function GameEmbed() {
                 </span>
               </div>
             )}
-            <iframe
+            <ExternalVideo
               src={GAME_URL}
               allowFullScreen
               allow="autoplay; fullscreen"
@@ -236,7 +237,7 @@ export default function TheOmakasePage() {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
     if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
     }
   }
 

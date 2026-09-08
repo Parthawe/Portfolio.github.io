@@ -719,6 +719,7 @@ body.has-footer-reveal main {
   color: color-mix(in srgb, var(--ink) 55%, transparent);
 }
 .ft-canvas-hint-btn {
+  position: relative;
   border: none;
   background: transparent;
   padding: 0;
@@ -727,6 +728,13 @@ body.has-footer-reveal main {
   font-size: 0.66rem;
   letter-spacing: 0.06em;
   color: var(--select-blue, #4a90e2);
+}
+.ft-canvas-hint-btn::before {
+  content: "";
+  position: absolute;
+  inset: 50% -0.25rem auto;
+  min-height: 24px;
+  transform: translateY(-50%);
 }
 .ft-canvas-hint-btn:hover { text-decoration: underline; }
 
@@ -961,6 +969,13 @@ body.has-footer-reveal main {
   color: var(--ink-50);
   text-decoration: none;
   padding: 0.15rem 0.1rem;
+}
+.ft-access-link::before {
+  content: "";
+  position: absolute;
+  inset: 50% -0.2rem auto;
+  min-height: 24px;
+  transform: translateY(-50%);
 }
 .ft-access-link:hover { color: var(--accent, #EDEDEC); }
 

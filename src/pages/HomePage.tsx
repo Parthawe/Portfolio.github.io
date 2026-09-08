@@ -17,6 +17,7 @@ import { featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
 import { isLowPowerDevice } from '../utils/performance';
 import ParthDoesSection from '../components/ParthDoesSection';
+import '../styles/homepage-wr.css';
 
 
 const HeroScene = lazy(() => import('../components/HeroScene'));

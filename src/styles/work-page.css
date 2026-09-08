@@ -1206,7 +1206,7 @@
   background: color-mix(in srgb, var(--overlay-dark) 88%, var(--select-blue) 12%);
 }
 
-/* Infinite scrolling subtitle strip at bottom */
+/* Project summaries stay readable without waiting for a marquee. */
 .pcard-marquee {
   position: absolute;
   bottom: 0;
@@ -1236,6 +1236,30 @@
 }
 .pcard:hover .pcard-marquee-track {
   animation-play-state: paused;
+}
+
+.pcard .pcard-marquee-track.pcard-summary-static {
+  animation: none;
+  transform: none;
+  will-change: auto;
+  white-space: normal;
+  padding-inline: 0.75rem;
+}
+.pcard .pcard-summary-static span {
+  flex-shrink: 1;
+  white-space: normal;
+  line-height: 1.45;
+}
+.pcard:has(.pcard-summary-static) .pcard-marquee {
+  position: relative;
+  min-height: 2rem;
+  background: var(--bg);
+}
+#main-content .pcard .pcard-summary-static span {
+  color: var(--ink);
+  font-size: 0.75rem;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 @keyframes pcard-scroll {
@@ -1987,6 +2011,10 @@ body.page-work-timeline .abt-paper .wrap {
   scroll-margin-top: calc(var(--nav-h) + 2rem);
 }
 
+.page-work :is(.work-library-shelf, .work-timeline-year) {
+  scroll-margin-top: calc(var(--nav-h) + 2rem);
+}
+
 .page-work .work-page-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -2095,6 +2123,16 @@ body.page-work-timeline .abt-paper .wrap {
 
 .page-work .pcard {
   transition-duration: var(--work-motion-base);
+  will-change: auto;
+}
+
+.page-work .pcard-marquee-track {
+  animation-play-state: paused;
+  will-change: auto;
+}
+
+.page-work .pcard.is-in-viewport .pcard-marquee-track {
+  animation-play-state: running;
 }
 
 .page-work .pcard-visual img,
@@ -2430,6 +2468,8 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 
   .page-work .work-group--archive {
     margin-top: 2.25rem;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 3000px;
   }
 
   .page-work .work-group--selected .pcard-masonry__column > *:nth-child(-n+6) .pcard-name,
@@ -2535,3 +2575,5 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
     transform: translateY(16px);
   }
 }
+/* Clip card artwork without creating a nested wheel-scroll container. */
+#main-content .pcard-inner { overflow: clip; }

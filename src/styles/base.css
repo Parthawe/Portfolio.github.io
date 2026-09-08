@@ -804,7 +804,16 @@ hr.divider {
   isolation: isolate;
   color: var(--ink);
   background: var(--bg);
+  animation: pageLoaderFailsafe 0.2s 0.36s forwards;
   transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s linear;
+}
+
+@keyframes pageLoaderFailsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .page-loader::before,
@@ -813,6 +822,7 @@ hr.divider {
 }
 
 .page-loader.loaded {
+  animation: none;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -935,6 +945,8 @@ hr.divider {
 
 @media (prefers-reduced-motion: reduce) {
   .page-loader {
+    animation-delay: 0.08s;
+    animation-duration: 0.12s;
     transition: opacity 0.12s ease, visibility 0.12s linear;
   }
 

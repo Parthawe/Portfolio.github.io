@@ -4,7 +4,7 @@ import RootLayout from './components/RootLayout'
 import Nav from './components/Nav'
 import PixelLoaderVisual from './components/PixelLoaderVisual'
 import PointerCursorGlyph from './components/PointerCursorGlyph'
-import { routableProjects } from './data/projects'
+import { projectRoutes } from './data/projectRoutes'
 
 type ErrorBoundaryProps = { children: ReactNode; resetKey: string }
 
@@ -89,12 +89,11 @@ const BookPage = lazy(() => import('./pages/BookPage'))
 const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 const StudioPage = lazy(() => import('./pages/StudioPage'))
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
-const HealthAppPage = lazy(() => import('./pages/projects/HealthAppPage'))
 const MotionPage = lazy(() => import('./pages/MotionPage'))
 const PerplexityPage = lazy(() => import('./pages/PerplexityPage'))
 
 // Project page components — auto-generated from registry
-const projectPages = routableProjects.map(p => ({
+const projectPages = projectRoutes.map(p => ({
   slug: p.slug,
   Component: lazy(p.page),
 }))
@@ -140,7 +139,6 @@ export default function App() {
           {projectPages.map(({ slug, Component }) => (
             <Route key={slug} path={`/${slug}`} element={<Component />} />
           ))}
-          <Route path="/healthapp" element={<HealthAppPage />} />
           <Route path="/mentra-website" element={<Navigate to="/mentra#cs-website" replace />} />
 
           {/* Misc pages */}

@@ -542,7 +542,7 @@ export default function SpacetimeFabricScene() {
         position: 'relative',
       }}
     >
-      <Canvas
+      <Canvas events={safeCanvasEvents}
         dpr={performanceDegraded ? 1 : [1, 1.5]}
         camera={{ position: [0, 4.4, 5.3], fov: 44 }}
         gl={{ antialias: true, alpha: false }}
@@ -594,3 +594,4 @@ export default function SpacetimeFabricScene() {
     </div>
   )
 }
+import { safeCanvasEvents } from '../utils/canvasEvents';

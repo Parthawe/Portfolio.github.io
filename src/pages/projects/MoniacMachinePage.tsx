@@ -1,3 +1,4 @@
+import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -47,7 +48,7 @@ export default function MoniacMachinePage() {
           lede="The film shows the important part immediately: policy levers become physical controls, and the economy pushes back in real time."
           layout="stacked"
         >
-          <iframe
+          <ExternalVideo
             src="https://player.vimeo.com/video/996025152"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen

@@ -7,6 +7,7 @@ import StudioMenuBar from '../components/studio/StudioMenuBar'
 import StudioProperties from '../components/studio/StudioProperties'
 import StudioStatusBar from '../components/studio/StudioStatusBar'
 import { useStudioHistory } from '../hooks/useStudioHistory'
+import '../styles/studio.css'
 
 export default function StudioPage() {
   const [activeTool, setActiveTool] = useState<ToolType>('select')
@@ -108,12 +109,12 @@ export default function StudioPage() {
     return (
       <div className="studio-mobile">
         <Helmet><title>Studio · Parth Pawar</title></Helmet>
-        <div className="studio-mobile-inner">
+        <main id="main-content" className="studio-mobile-inner">
           <h1>Design Studio</h1>
           <p>This interactive editor works best on a desktop screen.</p>
           <p>Grab a bigger screen for the full Illustrator-like experience.</p>
           <Link to="/work" className="studio-mobile-link">Browse work instead →</Link>
-        </div>
+        </main>
       </div>
     )
   }
@@ -125,11 +126,13 @@ export default function StudioPage() {
         <meta name="description" content="Interactive design studio — a fully functional canvas editor pre-loaded with portfolio content." />
       </Helmet>
 
+      <h1 className="sr-only">Design Studio</h1>
+
       {/* Menu Bar */}
       <StudioMenuBar canvasRef={canvasCompRef} onUndo={undo} onRedo={redo} />
 
       {/* Main area */}
-      <div className="studio-main">
+      <main id="main-content" className="studio-main">
         {/* Left toolbar */}
         <StudioToolbar activeTool={activeTool} onToolChange={setActiveTool} />
 
@@ -149,7 +152,7 @@ export default function StudioPage() {
           canvas={canvasCompRef.current?.canvas || null}
           selectedObject={selectedObject}
         />
-      </div>
+      </main>
 
       {/* Status Bar */}
       <StudioStatusBar

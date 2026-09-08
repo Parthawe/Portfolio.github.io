@@ -43,7 +43,7 @@ export default function ClawedChatPage() {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
     if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
     }
   }
 

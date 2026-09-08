@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "node scripts/sync-pdf-worker.mjs && vite",
     "design:audit": "node scripts/audit-design-system.mjs",
+    "qa:rendered": "node scripts/rendered-site-qa.mjs",
+    "qa:routes": "bun scripts/check-project-routes.ts",
     "test:agent": "bun scripts/check-parth-cursor-voice.ts",
-    "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && tsc -b && vite build && node scripts/create-route-entrypoints.mjs",
+    "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && bun scripts/check-project-routes.ts && tsc -b && vite build && node scripts/create-route-entrypoints.mjs",
     "preview": "node scripts/sync-pdf-worker.mjs && vite preview"
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "three": "^0.175.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "@tailwindcss/vite": "^4.1.0",
     "@types/node": "^25.6.0",
     "@types/react": "^19.1.0",

@@ -1048,12 +1048,12 @@ export default function SiteInteractionTools() {
     const target = firstElementForTarget(layer.target)
 
     if (!target) {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
       setInspect(null)
       return
     }
 
-    target.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start', inline: 'nearest' })
     // Pin the picked layer so its real geometry + styles stay in the panel
     // until the visitor hovers something else.
     setInspect({ ...describeElement(target, true), name: layer.label })

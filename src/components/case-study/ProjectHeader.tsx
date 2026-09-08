@@ -10,6 +10,8 @@ import {
   projectTitleLengthClass,
   sentenceCaseProjectLabel,
 } from '../../utils/projectPresentation'
+import '../../styles/case-study.css'
+import '../../styles/project-page-polish.css'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 

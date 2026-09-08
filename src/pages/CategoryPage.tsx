@@ -11,6 +11,10 @@ import FigmaFrameLabel from '../components/FigmaFrameLabel'
 import FigmaSelect from '../components/FigmaSelect'
 import ParthDoesSection from '../components/ParthDoesSection'
 import ResearchImpactSection from '../components/ResearchImpactSection'
+import '../styles/landing.css'
+import '../styles/ai-hero.css'
+import '../styles/crypto.css'
+import '../styles/fintech.css'
 import {
   getProject,
   isHiddenProject,
@@ -151,7 +155,7 @@ export default function CategoryPage() {
       </Helmet>
       <Nav />
 
-      <div id="main-content">
+      <main id="main-content">
         <div className="wrap">
           {/* Editorial hero — all categories */}
           <Suspense fallback={null}>
@@ -276,7 +280,7 @@ export default function CategoryPage() {
           )}
         </div>
 
-      </div>
+      </main>
 
       <Footer />
     </div>

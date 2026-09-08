@@ -358,7 +358,7 @@ export default function FooterContent({
           <div className="ft-access-row" aria-label="Quick requests">
             <a href={`mailto:${email}?subject=Portfolio%20case%20study%20access`} className="ft-access-link figma-hover">Request case study<FigmaSelect /></a>
             <span className="ft-access-dot" aria-hidden="true" />
-            <a href={`mailto:${email}?subject=Resume%20request`} className="ft-access-link figma-hover">Resume<FigmaSelect /></a>
+            <a href={`mailto:${email}?subject=Resume%20request`} className="ft-access-link figma-hover">Request résumé<FigmaSelect /></a>
             <span className="ft-access-dot" aria-hidden="true" />
             <a href={`mailto:${email}?subject=Project%20availability`} className="ft-access-link figma-hover">Availability<FigmaSelect /></a>
           </div>

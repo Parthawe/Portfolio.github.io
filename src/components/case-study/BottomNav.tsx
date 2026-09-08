@@ -164,7 +164,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       lenis.scrollTo(top, { duration: 1 })
       return
     }
-    window.scrollTo({ top, behavior: 'smooth' });
+    window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   };
 
   if (!availableSections.length && !hasExpandAction && !modeAction && !liveUrl) return null;

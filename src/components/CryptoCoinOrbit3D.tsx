@@ -17,6 +17,9 @@ import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded'
 import { useWebGLAvailable } from '../hooks/useWebGLAvailable'
 
 const FALLBACK_IMAGE = '/Assets/Projects/Crypto/crypto-coin-orbit-v2.webp'
+// Decorative coins do not need a pointer event layer. This also avoids connecting
+// listeners to a detached canvas when performance fallback replaces the scene.
+const decorativeEvents = () => ({ enabled: false, priority: 1 })
 
 type CoinVisual = {
   ticker: string
@@ -165,6 +168,7 @@ export default function CryptoCoinOrbit3D({ reducedMotion = false }: { reducedMo
   return (
     <div className="crypto-coin-orbit__canvas" aria-hidden="true">
       <Canvas
+        events={decorativeEvents}
         camera={{ position: [0, 0, 6.5], fov: 31 }}
         dpr={[1, 1.65]}
         frameloop={reducedMotion ? 'demand' : 'always'}

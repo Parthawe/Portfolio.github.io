@@ -44,13 +44,18 @@ export default function Nav() {
       isOpenRef.current = true;
       setMenuOpen(true);
       lastFocusedRef.current = document.activeElement;
-      overlayRef.current?.classList.add('open');
       toggleRef.current?.classList.add('open');
       lockBodyScroll('nav-menu');
-      const firstLink = overlayRef.current?.querySelector('a');
-      if (firstLink) firstLink.focus();
     }
   }, [closeMenu]);
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const frame = requestAnimationFrame(() => {
+      overlayRef.current?.querySelector<HTMLElement>('a')?.focus()
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [menuOpen])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -303,21 +308,22 @@ export default function Nav() {
         </div>
       </nav>
 
-      <div
-        className="mobile-overlay surface-glass surface-glass--strong"
-        ref={overlayRef}
-        id="mobile-navigation"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site navigation"
-        aria-hidden={!menuOpen}
-      >
-        <ul className="mobile-nav-links">
-          <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
-          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-          <li><a href={`mailto:${CONTACT_EMAIL}`} onClick={closeMenu}>Let's Talk</a></li>
-        </ul>
-      </div>
+      {menuOpen ? (
+        <div
+          className="mobile-overlay surface-glass surface-glass--strong open"
+          ref={overlayRef}
+          id="mobile-navigation"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+        >
+          <ul className="mobile-nav-links">
+            <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
+            <li><Link to="/about" onClick={closeMenu}>About</Link></li>
+            <li><a href={`mailto:${CONTACT_EMAIL}`} onClick={closeMenu}>Let's Talk</a></li>
+          </ul>
+        </div>
+      ) : null}
     </>
   );
 }

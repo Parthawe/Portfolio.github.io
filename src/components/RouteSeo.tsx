@@ -23,6 +23,11 @@ const CATEGORY_ALIASES: Record<string, string> = {
 }
 
 const MOTION_ROUTE_META: Record<string, { title: string; description: string; image: string }> = {
+  '/perplexity': {
+    title: 'Perplexity Creative Studio Motion Study · Parth Pawar',
+    description: 'An independent Creative Studio motion proposal for Perplexity Computer, Deep Research, and Comet.',
+    image: DEFAULT_IMAGE,
+  },
   '/motion': {
     title: 'Motion Design · Parth Pawar',
     description: 'Motion systems, campaign archives, editorial studies, and production plans grounded in real product and brand behavior.',
@@ -280,7 +285,7 @@ function getRouteMeta(pathname: string): RouteMeta {
 
   const slug = pathname.replace(/^\//, '')
   const project = getProject(slug)
-  if (!project || !isRoutableProject(project)) {
+  if (project && !isRoutableProject(project)) {
     return {
       title: 'Page not found · Parth Pawar',
       description: 'This page is not available in the public portfolio.',
@@ -381,7 +386,10 @@ function getRouteMeta(pathname: string): RouteMeta {
 
 export default function RouteSeo() {
   const location = useLocation()
-  const meta = getRouteMeta(location.pathname)
+  const pathname = location.pathname === '/'
+    ? '/'
+    : location.pathname.replace(/\/+$/, '')
+  const meta = getRouteMeta(pathname)
 
   return (
     <Helmet>

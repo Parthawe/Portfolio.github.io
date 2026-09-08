@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback, forwardRef } from 'react';
 import HTMLFlipBook from 'react-pageflip';
+import '../styles/book-viewer.css';
 
 const INITIAL_READY_PAGES = 6
 const RENDER_BATCH = 4

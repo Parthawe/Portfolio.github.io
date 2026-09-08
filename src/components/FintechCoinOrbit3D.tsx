@@ -147,7 +147,7 @@ export default function FintechCoinOrbit3D({ reducedMotion = false }: { reducedM
 
   return (
     <div className="fintech-coin-orbit__canvas" aria-hidden="true">
-      <Canvas
+      <Canvas events={safeCanvasEvents}
         camera={{ position: [0, 0, 6.5], fov: 31 }}
         dpr={[1, 1.65]}
         frameloop={reducedMotion ? 'demand' : 'always'}
@@ -169,3 +169,4 @@ export default function FintechCoinOrbit3D({ reducedMotion = false }: { reducedM
     </div>
   )
 }
+import { safeCanvasEvents } from '../utils/canvasEvents';

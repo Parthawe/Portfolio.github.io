@@ -1,3 +1,4 @@
+import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -46,7 +47,7 @@ export default function EnigmaPage() {
           title="Light as inference"
           lede="The film shows the main idea faster than text can: a handwritten letter becomes a visible cascade through 200 physical neurons."
         >
-          <iframe
+          <ExternalVideo
             src="https://player.vimeo.com/video/895893649?h=d78737dcdb&badge=0&autopause=0&player_id=0&app_id=58479"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen

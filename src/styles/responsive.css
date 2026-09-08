@@ -12,10 +12,11 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  body {
+  body:not(.page-studio) {
     min-height: 100%;
-    overflow-x: hidden;
-    overflow-y: visible;
+    /* The root already contains horizontal overflow. A second clipping body
+       can trap Chromium wheel/touch scrolling after an overlay closes. */
+    overflow: visible;
     overscroll-behavior-y: auto;
   }
 

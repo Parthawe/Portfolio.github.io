@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useRef, useState, lazy, Suspense } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, lazy, Suspense } from 'react';
+import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import PageLoader from './PageLoader';
 import Lightbox from './Lightbox';
 import CollaboratorCursor from './CollaboratorCursor';
-import RouteSeo from './RouteSeo';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
 import { useDeferredMount } from '../hooks/useDeferredMount';
@@ -11,12 +10,15 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { normalizeCopy } from '../utils/normalizeCopy';
 import { isLowPowerDevice, prefersCanvasChrome } from '../utils/performance';
 import { clearBodyScrollLocks } from '../utils/bodyScrollLock';
+import { settleAnchor } from '../utils/settleAnchor';
 
 const FigmaChrome = lazy(() => import('./FigmaChrome'));
 const FigmaGrid = lazy(() => import('./FigmaGrid'));
 const HandTracker = lazy(() => import('./HandTracker'));
 const SiteInteractionTools = lazy(() => import('./SiteInteractionTools'));
+const RouteSeo = lazy(() => import('./RouteSeo'));
 const CASE_MEDIA_SELECTOR = '.cs-img img, .cs-img-full img, .proj-hero-img img';
+const scrollPositions = new Map<string, number>();
 
 type IdleCapableWindow = Window & {
   requestIdleCallback?: (callback: IdleRequestCallback, options?: { timeout: number }) => number
@@ -58,8 +60,10 @@ function syncCaseStudyMediaState(img: HTMLImageElement) {
 
 export default function RootLayout() {
   const location = useLocation();
+  const navigationType = useNavigationType();
   const ioRef = useRef<IntersectionObserver | null>(null);
-  const [visible, setVisible] = useState(false);
+  const initialRouteRef = useRef(true);
+  const [visible, setVisible] = useState(true);
   const [siteToolsRequested, setSiteToolsRequested] = useState(false);
   const [siteToolsMounted, setSiteToolsMounted] = useState(false);
   const [canvasChromePreferred, setCanvasChromePreferred] = useState(() => prefersCanvasChrome());
@@ -138,6 +142,10 @@ export default function RootLayout() {
 
   // Fade-in on mount and route change (CSS-driven, replaces Framer Motion)
   useEffect(() => {
+    if (initialRouteRef.current) {
+      initialRouteRef.current = false;
+      return;
+    }
     setVisible(false);
     // Trigger reflow so the opacity:0 is painted before transitioning to 1
     requestAnimationFrame(() => {
@@ -145,16 +153,31 @@ export default function RootLayout() {
     });
   }, [location.pathname]);
 
-  // Scroll to top on route change (Lenis-aware)
-  useEffect(() => {
+  // Restore history positions; new routes start at their explicit anchor or top.
+  useLayoutEffect(() => {
     clearBodyScrollLocks();
-    const lenis = (window as unknown as Record<string, { scrollTo: (target: number, options?: { immediate?: boolean }) => void }>).__lenis;
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location.pathname]);
+    const previousRestoration = history.scrollRestoration;
+    history.scrollRestoration = 'manual';
+    const top = navigationType === 'POP' ? scrollPositions.get(location.key) ?? 0 : 0;
+    const restore = () => {
+      let anchorId = location.hash.slice(1);
+      try { anchorId = decodeURIComponent(anchorId); } catch { /* Treat malformed hashes as literal IDs. */ }
+      const anchor = anchorId ? document.getElementById(anchorId) : null;
+      if (anchor) anchor.scrollIntoView({ behavior: 'instant' });
+      else window.scrollTo({ top, behavior: 'instant' });
+    };
+    restore();
+    const frame = requestAnimationFrame(restore);
+    let anchorId = location.hash.slice(1);
+    try { anchorId = decodeURIComponent(anchorId); } catch { /* Literal hash. */ }
+    const stopAnchor = anchorId ? settleAnchor(anchorId) : undefined;
+    return () => {
+      stopAnchor?.();
+      scrollPositions.set(location.key, window.scrollY);
+      cancelAnimationFrame(frame);
+      history.scrollRestoration = previousRestoration;
+    };
+  }, [location.key, location.hash, navigationType]);
 
   useEffect(() => {
     document.body.classList.toggle('figma-chrome-enabled', enableFigmaChrome);
@@ -379,7 +402,9 @@ export default function RootLayout() {
 
   return (
     <>
-      <RouteSeo />
+      <Suspense fallback={null}>
+        <RouteSeo />
+      </Suspense>
       <div className="grain" aria-hidden="true"></div>
       <div className="dot-bg" aria-hidden="true"></div>
       {enableFigmaChrome && figmaChromeReady && (
@@ -392,7 +417,7 @@ export default function RootLayout() {
         id="site-zoom-stage"
         style={{
           opacity: visible ? 1 : 0,
-          transition: 'opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), width 0.52s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.52s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.52s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.52s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         <Outlet />

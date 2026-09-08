@@ -568,7 +568,7 @@ export default function CollaboratorCursor() {
     actionTimer.current = window.setTimeout(() => {
       parth.classList.remove('is-thinking')
       parkedRef.current = false
-      next.step.element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      next.step.element.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' })
       actionTimer.current = null
     }, 360)
   }
@@ -635,8 +635,8 @@ export default function CollaboratorCursor() {
 
       // Keep the idle collaborator in one calm, predictable place across the site.
       // It only leaves this resting position during an explicitly started tour.
-      const x = clamp(56, 32, Math.max(32, window.innerWidth - 116))
-      const y = clamp(window.innerHeight * 0.72, 124, window.innerHeight - 132)
+      const x = 8
+      const y = Math.max(124, window.innerHeight - 144)
       parth.dataset.side = 'right'
       parth.dataset.vertical = y > window.innerHeight - 285 ? 'above' : 'below'
       setPosition(parth, x, y, true)
@@ -741,7 +741,7 @@ export default function CollaboratorCursor() {
       clearParkTimer()
       clearTyping()
       parth.classList.remove('is-parked')
-      next.element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      next.element.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' })
       schedule()
     }
 

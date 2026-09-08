@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import FigmaSelect from '../components/FigmaSelect'
 import { CONTACT_EMAIL } from '../config/site'
 import { getProjectAccessLabel, visibleProjects } from '../data/projects'
+import '../styles/accessibility.css'
 
 const contents = [
   { href: '#intent', label: 'Intent' },

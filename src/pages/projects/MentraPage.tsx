@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
@@ -19,6 +19,7 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
 export default function MentraPage() {
+  const location = useLocation()
   const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
   const sections = viewMode === 'summary'
     ? [
@@ -41,25 +42,21 @@ export default function MentraPage() {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
     if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
     }
   }
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const targetId = window.location.hash.replace('#', '')
+    const targetId = location.hash.replace('#', '')
     if (!targetId) return
 
     if (targetId !== 'cs-summary') {
       setViewMode('full')
     }
 
-    const timer = window.setTimeout(() => {
-      document.getElementById(targetId)?.scrollIntoView({ block: 'start' })
-    }, 250)
-
-    return () => window.clearTimeout(timer)
-  }, [])
+    return settleAnchor(targetId)
+  }, [location.hash])
 
   return (
     <>
@@ -332,3 +329,4 @@ export default function MentraPage() {
     </>
   )
 }
+import { settleAnchor } from '../../utils/settleAnchor'

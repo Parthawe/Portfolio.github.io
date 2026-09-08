@@ -184,7 +184,7 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
         ...style,
       }}
     >
-      <Canvas
+      <Canvas events={safeCanvasEvents}
         camera={{ position: [0, 0, 3.5 * BLEED], fov: 35 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.1 }}
@@ -214,3 +214,4 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
 }
 
 export { CATEGORY_OBJECTS };
+import { safeCanvasEvents } from '../utils/canvasEvents';

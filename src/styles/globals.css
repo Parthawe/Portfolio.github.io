@@ -27,30 +27,22 @@
 @layer components {
   @import "./nav.css";
   @import "./hero.css";
-  @import "./homepage-wr.css";
-  @import "./work-page.css";
-  @import "./about.css";
-  @import "./accessibility.css";
-  @import "./case-study.css";
-  @import "./landing.css";
-  @import "./ai-hero.css";
   @import "./footer.css";
   @import "./cta.css";
 }
 
-@import "./hand-tracker.css";
-@import "./book-viewer.css";
-@import "./graveyard.css";
-@import "./agent.css";
-@import "./studio.css";
 @import "./interactions.css";
-@import "./glyph-playground.css";
-@import "./glyph-editor.css";
-@import "./typeface-page.css";
-@import "./nda-gate.css";
 @import "./display-type.css";
 @import "./responsive.css";
-@import "./crypto.css";
-@import "./fintech.css";
-@import "./hero-artifacts.css";
-@import "./project-page-polish.css";
+
+.external-video-fallback {
+  position: absolute;
+  inset: 0.5rem 0.5rem auto auto;
+  z-index: 5;
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.4rem;
+  background: var(--bg);
+  color: var(--ink);
+  font: 0.75rem/1.5 var(--sans);
+  text-decoration: underline;
+}

@@ -120,12 +120,17 @@ const routeSocialPreviews = new Map([
   }],
 ])
 const canonicalAliases = new Map([
+  ['mentra-website', 'mentra'],
   ['ux', 'ux-design'],
   ['ui', 'ux-design'],
   ['design-engineer', 'design-engineering'],
   ['creative-tech', 'design-engineering'],
   ['brand', 'brand-visual'],
   ['healthcare', 'design-for-good'],
+])
+
+const routePreloads = new Map([
+  ['work', '/Assets/mockups/projects/mentra_4x5.webp'],
 ])
 
 const titleCase = (route) => route
@@ -149,7 +154,7 @@ function withRouteMeta(html, route, { noindex = false } = {}) {
   const url = canonicalRoute ? `${siteOrigin}/${canonicalRoute}` : `${siteOrigin}/`
   let output = html
     .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
-    .replace(/<link rel="canonical" href="[^"]*"\s*\/>/, `<link rel="canonical" href="${url}" />`)
+    .replace(/<link rel="canonical" href="[^"]*"[^>]*\/>/, `<link rel="canonical" href="${url}" data-rh="true" />`)
   output = replaceMeta(output, 'name', 'description', description)
   output = replaceMeta(output, 'property', 'og:title', title)
   output = replaceMeta(output, 'property', 'og:description', description)
@@ -163,6 +168,10 @@ function withRouteMeta(html, route, { noindex = false } = {}) {
     output = replaceMeta(output, 'property', 'og:image:alt', socialPreview.alt)
     output = replaceMeta(output, 'name', 'twitter:image', imageUrl)
     output = replaceMeta(output, 'name', 'twitter:image:alt', socialPreview.alt)
+  }
+  const preload = routePreloads.get(canonicalRoute)
+  if (preload) {
+    output = output.replace('</head>', `    <link rel="preload" as="image" href="${preload}" fetchpriority="high" />\n  </head>`)
   }
   if (noindex) {
     output = output.replace('</head>', '    <meta name="robots" content="noindex, nofollow" />\n  </head>')
