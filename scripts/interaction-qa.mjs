@@ -59,7 +59,14 @@ try {
   await touchPage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))
   const session = await touchPage.context().newCDPSession(touchPage)
   for (let gesture = 1; gesture <= 3; gesture++) {
-    await session.send('Input.synthesizeScrollGesture', { x: 190, y: 650, yDistance: -400, gestureSourceType: 'touch' })
+    // Use an explicit touch sequence across platforms instead of relying on
+    // the browser's high-level synthetic scroll gesture generator.
+    await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 190, y: 650 }] })
+    for (let step = 1; step <= 20; step++) {
+      await session.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 190, y: 650 - step * 20 }] })
+      await touchPage.waitForTimeout(16)
+    }
+    await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
     await expect.poll(() => touchPage.evaluate(() => window.scrollY)).toBeGreaterThan(gesture * 350)
   }
   console.log('PASS Chromium touch emulation: three successive swipes after menu closure')
