@@ -11,7 +11,7 @@ export async function checkProjectCardMotion(browser, base, widths = [1187, 390]
       const track = card.locator('.pcard-marquee-track')
       await expect.poll(() => track.evaluate(element =>
         element.firstElementChild.offsetWidth / parseFloat(getComputedStyle(element).animationDuration)
-      )).toBeCloseTo(route === '/' ? 10 : 20, 1)
+      )).toBeCloseTo(route === '/' ? 2 : 20, 1)
       await expect(track).toHaveCSS('animation-iteration-count', 'infinite')
       await expect(track).toHaveCSS('animation-play-state', 'running')
       const before = await track.evaluate(element => getComputedStyle(element).transform)
@@ -28,7 +28,7 @@ export async function checkProjectCardMotion(browser, base, widths = [1187, 390]
       await expect(track).toHaveCSS('animation-play-state', 'paused')
       await page.emulateMedia({ reducedMotion: 'reduce' })
       await expect(track).toHaveCSS('animation-name', 'none')
-      console.log(`PASS card text loop: ${route} ${width}px, ${route === '/' ? 10 : 20}px/s seamless motion, hover/focus pause, reduced-motion support`)
+      console.log(`PASS card text loop: ${route} ${width}px, ${route === '/' ? 2 : 20}px/s seamless motion, hover/focus pause, reduced-motion support`)
       await page.close()
     }
   }
@@ -48,7 +48,7 @@ export async function checkHomepageCards(page, width, theme) {
     await expect(card.locator('.pcard-marquee-track > span')).toHaveCount(2)
     await expect.poll(() => card.locator('.pcard-marquee-track').evaluate(element =>
       element.firstElementChild.offsetWidth / parseFloat(getComputedStyle(element).animationDuration)
-    )).toBeCloseTo(10, 1)
+    )).toBeCloseTo(2, 1)
   }
   const dimensions = await grid.evaluate(element => ({
     locks: [...element.querySelectorAll('.pcard-tag-lock')].map(lock => lock.getBoundingClientRect().width),
