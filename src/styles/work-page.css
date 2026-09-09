@@ -1224,7 +1224,7 @@
   display: flex;
   width: max-content;
   white-space: nowrap;
-  animation: pcard-scroll 30s linear infinite;
+  animation: pcard-scroll var(--pcard-scroll-duration, 180s) linear infinite;
   will-change: transform;
 }
 .pcard-marquee-track span {
@@ -1235,7 +1235,8 @@
   color: var(--text-on-dark-50);
   flex-shrink: 0;
 }
-.pcard:hover .pcard-marquee-track {
+.pcard:hover .pcard-marquee-track,
+.pcard:focus-within .pcard-marquee-track {
   animation-play-state: paused;
 }
 
@@ -2112,7 +2113,8 @@ body.page-work-timeline .abt-paper .wrap {
   animation-play-state: running;
 }
 
-.page-work .pcard.is-in-viewport:hover .pcard-marquee-track {
+.page-work .pcard.is-in-viewport:hover .pcard-marquee-track,
+.page-work .pcard.is-in-viewport:focus-within .pcard-marquee-track {
   animation-play-state: paused;
 }
 
@@ -2513,6 +2515,9 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Route CSS must not animate the filter rail from its shared centered
+     position to the editorial gutter while the page is loading. */
+  .page-work .work-bottom-nav { transition: none; }
   .pcard .pcard-marquee-track { animation: none; }
   .page-work :is(
     .pcard-visual::before,

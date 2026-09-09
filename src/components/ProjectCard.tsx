@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useEffect, useRef } from 'react'
 // Shared cards must not depend on a previous visit to the Work route.
 import '../styles/work-page.css'
 import { Link } from 'react-router-dom'
@@ -19,6 +19,7 @@ interface ProjectCardProps {
   year?: string
   desc?: string
   marqueeText?: string
+  marqueeSpeed?: number
   loading?: 'eager' | 'lazy'
   featured?: boolean
   coverShape?: 'portrait' | 'square' | 'wide'
@@ -37,7 +38,7 @@ type IdleWindow = Window & {
 
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
-  tag, year, desc, marqueeText,
+  tag, year, desc, marqueeText, marqueeSpeed = 20,
   loading = 'lazy', featured = false, coverShape, preferWide = false, useProvidedImage = false, tilt = false, tiltIntensity = 4, nda = false,
 }: ProjectCardProps) {
   const project = projects.find(p => p.slug === slug)
@@ -56,6 +57,22 @@ export default memo(function ProjectCard({
   const safeYear = year ? normalizeCopy(year) : ''
   const safeDesc = desc ? normalizeCopy(desc) : ''
   const safeMarqueeText = marqueeText ? normalizeCopy(marqueeText) : safeDesc
+  const marqueeRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const track = marqueeRef.current
+    const copy = track?.firstElementChild
+    if (!track || !copy) return
+    // Keep reading speed independent of copy length, font, and breakpoint.
+    const measure = () => {
+      const distance = (copy as HTMLElement).offsetWidth
+      if (distance > 0) track.style.setProperty('--pcard-scroll-duration', `${distance / Math.max(1, marqueeSpeed)}s`)
+    }
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(copy)
+    return () => observer.disconnect()
+  }, [safeMarqueeText, marqueeSpeed])
 
   const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget
@@ -162,7 +179,7 @@ export default memo(function ProjectCard({
         <h2 className="pcard-name">{name}</h2>
         {safeMarqueeText && (
           <div className="pcard-marquee" aria-hidden="true">
-            <div className="pcard-marquee-track">
+            <div className="pcard-marquee-track" ref={marqueeRef}>
               <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
               <span>{safeMarqueeText}, {safeMarqueeText}, {safeMarqueeText}, </span>
             </div>

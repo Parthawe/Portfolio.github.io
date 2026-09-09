@@ -58,6 +58,12 @@ jobs:
           QA_PERFORMANCE_REPORT_PATH: performance-report.json
         run: node scripts/performance-qa.mjs
 
+      - name: Verify phone, tablet, landscape, and wide-screen layouts
+        if: always()
+        env:
+          QA_BASE_URL: https://designwhich.works
+        run: node scripts/responsive-marquee-qa.mjs
+
       - name: Publish the QA report
         if: always()
         run: |

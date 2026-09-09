@@ -1,8 +1,8 @@
 import { expect } from '@playwright/test'
 import { checkHomepageCards } from './homepage-cards-qa.mjs'
 
-export async function checkMarquees(browser, base) {
-  for (const width of [1187, 390]) {
+export async function checkMarquees(browser, base, widths = [1187, 390]) {
+  for (const width of widths) {
     for (const theme of ['light', 'dark']) {
       // Fresh context: visiting a category first used to hide the missing CSS.
       const page = await browser.newPage({ viewport: { width, height: 979 } })
@@ -34,6 +34,18 @@ export async function checkMarquees(browser, base) {
       if (process.env.QA_MARQUEE_SCREENSHOTS) await strip.screenshot({ path: `${process.env.QA_MARQUEE_SCREENSHOTS}/marquee-${width}-${theme}.png` })
       console.log(`PASS homepage marquee: ${width}px ${theme}, bounded logos, motion, seamless repeat geometry`)
       await checkHomepageCards(page, width, theme)
+      await page.emulateMedia({ reducedMotion: 'reduce' })
+      await expect(track).toHaveCSS('animation-name', 'none')
+      await expect(track.locator('img:visible')).toHaveCount(6)
+      expect(await track.evaluate(element => {
+        const box = element.getBoundingClientRect()
+        return [...element.querySelectorAll('img')].filter(image => image.getClientRects().length)
+          .every(image => {
+            const rect = image.getBoundingClientRect()
+            return rect.left >= box.left - 1 && rect.right <= box.right + 1
+          })
+      })).toBe(true)
+      console.log(`PASS reduced-motion logos: ${width}px ${theme}, stationary, all six visible`)
       await page.close()
     }
   }

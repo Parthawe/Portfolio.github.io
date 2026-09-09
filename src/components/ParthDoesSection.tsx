@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
+import '../styles/parth-does.css'
 import { Link } from 'react-router-dom'
 import FigmaFrameLabel from './FigmaFrameLabel'
 import { useDeferredMount } from '../hooks/useDeferredMount'

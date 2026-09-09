@@ -254,6 +254,7 @@ export default function HomePage() {
                             tag={project.tag}
                             year={project.year}
                             marqueeText={featuredInfo}
+                            marqueeSpeed={10}
                             loading={index < 2 ? 'eager' : 'lazy'}
                             featured
                             coverShape={getFlagshipCoverShape(project.slug)}

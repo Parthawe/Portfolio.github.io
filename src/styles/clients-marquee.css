@@ -51,12 +51,6 @@
   to { transform: translateX(-50%); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .cl-marquee-track {
-    animation: cl-marquee-slide 42s linear infinite;
-  }
-}
-
 @media (max-width: 900px) {
   .cl-marquee-viewport {
     -webkit-mask-image: none;
@@ -79,6 +73,25 @@ html.is-low-power-device .cl-marquee-track {
   animation: cl-marquee-slide 42s linear infinite !important;
   transform: translateX(0);
   will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cl-marquee-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .cl-marquee-track,
+  html.is-low-power-device .cl-marquee-track {
+    animation: none !important;
+    transform: none;
+    will-change: auto;
+    width: 100%;
+    padding-right: 0;
+    flex-wrap: wrap;
+  }
+
+  .cl-marquee-track img:nth-child(n + 7) { display: none; }
 }
 
 /* Category pages set their own spacing; the marquee reuses .wr-clients
