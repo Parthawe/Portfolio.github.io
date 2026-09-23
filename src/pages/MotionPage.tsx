@@ -15,6 +15,7 @@ import CsSteps from '../components/case-study/CsSteps'
 import NextProject from '../components/case-study/NextProject'
 import BottomNav from '../components/case-study/BottomNav'
 import EditingMotionCaseStudy from './EditingMotionCaseStudy'
+import { campaignCaptions } from '../data/campaignCaptions'
 import transfiMotion from '../../Assets/Projects/cover/Transfi.gif'
 import '../styles/motion.css'
 
@@ -469,16 +470,27 @@ function VishwaCampaignBrief() {
 
 function CampaignVideo({ src, poster, title, note, href, className = '' }: { src: string; poster?: string; title: string; note: string; href?: string; className?: string }) {
   const [failed, setFailed] = useState(false)
+  const captions = campaignCaptions[src.split('/').pop() || '']
+  // The inspected source contains one H.264 stream and no audio stream.
+  const silent = src.endsWith('/official-product-intro.mp4')
   return (
     <figure className={`vishwa-video ${className}`.trim()}>
       <div>
-        <video controls playsInline poster={poster} preload="metadata" aria-label={title} onError={() => setFailed(true)}>
+        <video controls playsInline muted={silent} poster={poster} preload="metadata" aria-label={title} data-caption-status={captions ? 'automatic' : undefined} onError={() => setFailed(true)}>
           <source src={src} type="video/mp4" onError={() => setFailed(true)} />
+          {captions && <track kind="captions" src={captions.src} srcLang="en" label="English (automatic)" default />}
         </video>
       </div>
       <figcaption>
         <span>{title}</span>
         <small>{note}</small>
+        {silent && <small>Silent clip · no audio track</small>}
+        {captions && <details className="campaign-transcript">
+          <summary>Read automatic captions</summary>
+          <p>These captions were generated from the source audio and may contain errors.</p>
+          <p>{captions.transcript}</p>
+          <a href={captions.src} download>Download captions</a>
+        </details>}
         {failed && <p role="status">The embedded video could not load. <a href={href || src} target="_blank" rel="noreferrer">Open video separately ↗</a></p>}
         {href && <a href={href} target="_blank" rel="noreferrer">View original post ↗</a>}
       </figcaption>

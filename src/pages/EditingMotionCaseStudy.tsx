@@ -1,7 +1,5 @@
 import ExternalVideo from '../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
-import { useState } from 'react'
-import { useReducedMotion } from 'framer-motion'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectHeader from '../components/case-study/ProjectHeader'
@@ -90,26 +88,13 @@ const anatomies = [
 ]
 
 function EditingHeroFilm() {
-  const reduceMotion = Boolean(useReducedMotion())
-  const [loaded, setLoaded] = useState(false)
-  const playback = reduceMotion ? '&autoplay=0' : '&autoplay=1&muted=1&loop=1&autopause=0'
-
   return (
-    <figure className={`editing-hero-film${loaded ? ' is-loaded' : ''}`}>
-      <img
-        className="editing-hero-film__poster"
-        src="/Assets/mockups/projects/enigma_16x9.webp"
-        alt=""
-        aria-hidden="true"
-      />
-      <span className="editing-hero-film__status" role="status">Loading project film</span>
+    <figure className="editing-hero-film is-loaded">
       <ExternalVideo
-        src={`https://player.vimeo.com/video/895893649?h=d78737dcdb&title=0&byline=0&portrait=0&dnt=1${playback}`}
+        src="https://player.vimeo.com/video/895893649?h=d78737dcdb&title=0&byline=0&portrait=0"
+        poster="/Assets/mockups/projects/enigma_16x9.webp"
         allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-        loading="eager"
-        title="Enigma project film — selected editorial practice"
-        onLoad={() => setLoaded(true)}
+        title="Enigma project film"
       />
     </figure>
   )

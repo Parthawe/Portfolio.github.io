@@ -1182,7 +1182,7 @@ export const projects: Project[] = [
     image: `${IMG}/comp-media.svg`,
     tag: 'CREATIVE CODING',
     year: '2023',
-    desc: 'Weekly p5.js sketches — generative portraits, data landscapes, interactive typography',
+    desc: 'Camera-pixel painting with 200 wandering particles, restored from the original p5.js coursework',
     category: 'creative',
     page: () => import('../pages/projects/IntroCompMediaPage'),
     archiveOrder: 38,

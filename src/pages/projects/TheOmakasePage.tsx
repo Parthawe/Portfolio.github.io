@@ -159,6 +159,7 @@ function GameEmbed() {
             )}
             <ExternalVideo
               src={GAME_URL}
+              fallbackLabel="Open game"
               allowFullScreen
               allow="autoplay; fullscreen"
               onLoad={() => setIframeReady(true)}
@@ -285,7 +286,7 @@ export default function TheOmakasePage() {
         {/* Video */}
         <section className="cs-slide reveal" id="cs-film">
           <div className="omakase-film">
-            <iframe
+            <ExternalVideo
               src="https://player.vimeo.com/video/996020990?h=&badge=0&autopause=0&player_id=0&app_id=58479"
               frameBorder="0" loading="lazy"
               allow="autoplay; fullscreen; picture-in-picture"
