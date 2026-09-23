@@ -28,3 +28,8 @@
 .ascii-hero-image__live table { border: 0; border-collapse: collapse; background: transparent; }
 .ascii-hero-image__live td { padding: 0; border: 0; font-weight: 600; }
 [data-theme="dark"] .ascii-hero-image__live { color: #dddcd3; }
+.ascii-hero-image__live { cursor: grab !important; touch-action: none; }
+.ascii-hero-image[data-dragging="true"] .ascii-hero-image__live { cursor: grabbing !important; }
+.ascii-hero-image__controls { position: absolute; z-index: 3; bottom: 0; left: 8%; right: 8%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--ink-70); font: 400 12px/1.4 var(--sans); }
+.ascii-hero-image__controls button { min-height: 44px; padding: 4px 10px; color: var(--ink); border: 1px solid var(--ink-15); border-radius: 6px; background: var(--bg); font: inherit; cursor: pointer; }
+.ascii-hero-image:focus-visible { outline: 2px solid var(--select-blue); outline-offset: 3px; }

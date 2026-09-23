@@ -1,18 +1,21 @@
-# ASCII study — private, awaiting approval
+# Private 3D ASCII study — awaiting approval
 
-Do not push this branch, publish these files, merge this experiment, or deploy it without explicit user approval.
+Do not push this branch, publish these files, merge the experiment, or deploy it without explicit user approval.
 
-Only the UX Design hero illustration is in scope. Other page objects must remain unchanged.
+Only the selected UX Design hero object is changed. The image is no longer the source of the ASCII representation: existing Three.js geometry supplies a real 3D surface.
 
-Local preview: http://127.0.0.1:4174/ux-design/
+## Local previews
 
-Uses the installed Three.js AsciiEffect addon from the official animated ASCII example: https://threejs.org/examples/webgl_effects_ascii.html
+- Torus knot: http://127.0.0.1:4174/ux-design/?model=knot
+- Utah teapot: http://127.0.0.1:4174/ux-design/?model=teapot
 
-The selected illustration is texture-mapped onto a gently deforming plane. Animated luminance changes the glyphs continuously, and the pointer influences rotation and light. Rendering pauses off-screen or in a hidden tab. Reduced motion holds the form and characters still.
+Both use Three.js AsciiEffect and OrbitControls. Drag to rotate, use arrow keys, or allow one automatic turn in approximately two minutes. Pause stops automatic rotation. Reduced-motion preferences disable automatic rotation. Rendering stops outside the viewport and in hidden tabs.
 
-References consulted (implementation is original):
-- https://blog.julianlimburg.zip/Rendering-ASCII.html
-- https://threejs.org/docs/pages/AsciiEffect.html
-- https://github.com/emilwidlund/ASCII
+## Sources
 
-The earlier ASCII change was reverted from the active project-fixes PR. Its historical commit remains public; these new variations have not been pushed.
+- Official ASCII example: https://threejs.org/examples/webgl_effects_ascii.html
+- Torus knot geometry: https://threejs.org/docs/pages/TorusKnotGeometry.html
+- Teapot example: https://threejs.org/examples/webgl_geometry_teapot.html
+- Three.js MIT license: https://threejs.org/license/
+
+The code imports installed Three.js addons and geometry; no external artwork or unlicensed source was copied. The old ASCII change was reverted from the active project-fixes PR. Its historical commit remains public; these new studies have not been pushed.

@@ -1,129 +1,125 @@
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { TeapotGeometry } from 'three/examples/jsm/geometries/TeapotGeometry.js'
 import '../styles/ascii-hero-image.css'
 
 type Props = { src: string; className: string }
 
-/** Private study using the official Three.js animated ASCII effect. */
+/** Local-only study: existing Three.js geometry rendered with its ASCII addon. */
 export default function AsciiHeroImage({ src, className }: Props) {
   const host = useRef<HTMLSpanElement>(null)
   const [ready, setReady] = useState(false)
+  const [paused, setPaused] = useState(false)
+  const pausedRef = useRef(false)
+  const model = new URLSearchParams(window.location.search).get('model') === 'teapot' ? 'teapot' : 'knot'
   useEffect(() => {
     const element = host.current
     if (!element) return
-    let disposed = false
     let frame = 0
-    let lastFrame = 0
-    let elapsed = 0
+    let previous = 0
     let visible = true
-    let loaded = false
+    let dirty = true
+    let dragging = false
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     let renderer: THREE.WebGLRenderer
     try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }) }
     catch { return }
     renderer.setClearColor(0xffffff, 0)
     renderer.setPixelRatio(1)
-    const effect = new AsciiEffect(renderer, ' .,:;i1tfLCG08@', { resolution: .28 })
+    const effect = new AsciiEffect(renderer, ' .,:;i1tfLCG08@', { resolution: .29 })
     effect.domElement.className = 'ascii-hero-image__live'
     effect.domElement.setAttribute('aria-hidden', 'true')
     element.appendChild(effect.domElement)
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(35, 1, .1, 10)
-    camera.position.z = 3.5
-    const pointer = new THREE.Vector2()
-    const targetPointer = new THREE.Vector2()
-    const uniforms = {
-      uTexture: { value: null as THREE.Texture | null },
-      uTime: { value: 0 },
-      uPointer: { value: pointer },
+    const sizeEffect = (width: number, height: number) => {
+      effect.setSize(width, height)
+      const table = effect.domElement.querySelector('table')
+      if (table) table.style.letterSpacing = `${-.2 / .29}px`
     }
-    const material = new THREE.ShaderMaterial({
-      transparent: true,
-      uniforms,
-      vertexShader: `
-        varying vec2 vUv;
-        uniform float uTime;
-        void main() {
-          vUv = uv;
-          vec3 p = position;
-          p.z += sin(p.x * 3.0 + uTime * .7) * cos(p.y * 2.5 - uTime * .5) * .045;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
-        }`,
-      fragmentShader: `
-        varying vec2 vUv;
-        uniform sampler2D uTexture;
-        uniform float uTime;
-        uniform vec2 uPointer;
-        void main() {
-          vec4 source = texture2D(uTexture, vUv);
-          if (source.a < .18) discard;
-          float luma = dot(source.rgb, vec3(.2126, .7152, .0722));
-          float wave = sin(vUv.x * 8.0 + vUv.y * 5.0 - uTime * 1.2) * .055;
-          float light = exp(-length(vUv - (uPointer * .5 + .5)) * 6.0) * .12;
-          float tone = clamp(pow(luma, 1.4) * .78 + wave - light, .04, .85);
-          gl_FragColor = vec4(vec3(tone), source.a);
-        }`,
-    })
-    const geometry = new THREE.PlaneGeometry(2.35, 2.35, 36, 36)
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(34, 1, .1, 20)
+    camera.position.set(0, .25, 5.8)
+    const geometry = model === 'teapot'
+      ? new TeapotGeometry(.64, 12)
+      : new THREE.TorusKnotGeometry(.78, .27, 192, 32, 2, 3)
+    geometry.center()
+    const material = new THREE.MeshStandardMaterial({ color: 0x8b8b8b, roughness: .6, metalness: .15, side: THREE.DoubleSide })
     const mesh = new THREE.Mesh(geometry, material)
+    mesh.rotation.set(.3, -.3, model === 'knot' ? -.3 : 0)
     scene.add(mesh)
-    const texture = new THREE.TextureLoader().load(src, image => {
-      if (disposed) { image.dispose(); return }
-      image.colorSpace = THREE.NoColorSpace
-      uniforms.uTexture.value = image
-      loaded = true
-    }, undefined, () => { if (!disposed) setReady(false) })
+    scene.add(new THREE.AmbientLight(0xffffff, .3))
+    const key = new THREE.DirectionalLight(0xffffff, 1.8)
+    key.position.set(-3, 4, 5)
+    scene.add(key)
+    const rim = new THREE.DirectionalLight(0xffffff, 1)
+    rim.position.set(4, -1, -3)
+    scene.add(rim)
+    const controls = new OrbitControls(camera, effect.domElement)
+    controls.enableZoom = false
+    controls.enablePan = false
+    controls.enableDamping = true
+    controls.dampingFactor = .075
+    controls.rotateSpeed = .65
+    controls.autoRotateSpeed = .5 // One turn in about two minutes.
+    controls.addEventListener('start', () => { dragging = true; element.dataset.dragging = 'true' })
+    controls.addEventListener('end', () => { dragging = false; delete element.dataset.dragging })
+    controls.addEventListener('change', () => { dirty = true })
     const resize = new ResizeObserver(() => {
       const width = element.clientWidth
       const height = element.clientHeight
       if (!width || !height) return
       camera.aspect = width / height
       camera.updateProjectionMatrix()
-      effect.setSize(width, height)
+      sizeEffect(width, height)
+      dirty = true
     })
     resize.observe(element)
-    effect.setSize(element.clientWidth || 320, element.clientHeight || 320)
-    const onPointer = (event: PointerEvent) => {
-      const rect = element.getBoundingClientRect()
-      targetPointer.set((event.clientX - rect.left) / rect.width * 2 - 1, -((event.clientY - rect.top) / rect.height * 2 - 1))
-    }
-    const reset = () => targetPointer.set(0, 0)
-    element.addEventListener('pointermove', onPointer)
-    element.addEventListener('pointerleave', reset)
+    sizeEffect(element.clientWidth || 320, element.clientHeight || 320)
     const observer = new IntersectionObserver(entries => { visible = entries[0]?.isIntersecting ?? false })
     observer.observe(element)
+    const onKey = (event: KeyboardEvent) => {
+      const axis = event.key === 'ArrowLeft' || event.key === 'ArrowRight' ? 'y' : 'x'
+      if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return
+      event.preventDefault()
+      mesh.rotation[axis] += ['ArrowLeft', 'ArrowUp'].includes(event.key) ? -.18 : .18
+      dirty = true
+    }
+    element.addEventListener('keydown', onKey)
     const tick = (time: number) => {
       frame = requestAnimationFrame(tick)
-      if (!visible || document.hidden || !loaded || time - lastFrame < 1000 / 24) return
-      elapsed += Math.min((time - lastFrame) / 1000, .06)
-      lastFrame = time
-      if (!reducedMotion.matches) {
-        uniforms.uTime.value = elapsed
-        pointer.lerp(targetPointer, .08)
-        mesh.rotation.y = Math.sin(elapsed * .4) * .065 + pointer.x * .11
-        mesh.rotation.x = Math.cos(elapsed * .35) * .035 - pointer.y * .07
-        mesh.position.y = Math.sin(elapsed * .7) * .022
-      }
+      if (!visible || document.hidden) { previous = time; return }
+      if (time - previous < 1000 / 24) return
+      const delta = Math.min((time - previous) / 1000, .08)
+      previous = time
+      controls.autoRotate = !reducedMotion.matches && !pausedRef.current && !dragging
+      controls.enableDamping = !pausedRef.current && !reducedMotion.matches
+      if (!pausedRef.current && !reducedMotion.matches) controls.update(delta)
+      if (!dirty && !controls.autoRotate) return
       effect.render(scene, camera)
+      dirty = false
       setReady(true)
     }
     frame = requestAnimationFrame(tick)
     return () => {
-      disposed = true
       cancelAnimationFrame(frame)
       resize.disconnect()
       observer.disconnect()
-      element.removeEventListener('pointermove', onPointer)
-      element.removeEventListener('pointerleave', reset)
-      texture.dispose()
+      controls.dispose()
+      element.removeEventListener('keydown', onKey)
       geometry.dispose()
       material.dispose()
       renderer.dispose()
       effect.domElement.remove()
     }
-  }, [src])
-  return <span ref={host} className={`${className} ascii-hero-image`} data-ascii-ready={ready} aria-hidden="true">
+  }, [model])
+  return <span ref={host} className={`${className} ascii-hero-image`} data-ascii-ready={ready} tabIndex={0}
+    role="group" aria-label={`Interactive ASCII ${model === 'knot' ? 'torus knot' : 'Utah teapot'}. Drag or use arrow keys to rotate.`}>
     <img src={src} alt="" draggable={false} fetchPriority="high" className="ascii-hero-image__fallback" />
+    {ready && <span className="ascii-hero-image__controls">
+      <span>Drag to rotate</span>
+      <button type="button" onClick={() => { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current) }}
+        aria-label={paused ? 'Resume automatic rotation' : 'Pause automatic rotation'}>{paused ? 'Play' : 'Pause'}</button>
+    </span>}
   </span>
 }
