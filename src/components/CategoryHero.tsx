@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState, type MouseEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import CryptoHeroCoins from './CryptoHeroCoins'
-import FintechHeroCoins from './FintechHeroCoins'
-import CategoryHeroArtifact from './CategoryHeroArtifact'
+import CategoryAsciiArtifact from './CategoryAsciiArtifact'
 
 const ease = [0.16, 1, 0.3, 1] as const
 const revealTransition = { duration: 0.58, ease }
@@ -399,13 +397,7 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
           transition={{ duration: 0.82, delay: 0.16, ease }}
         >
-          {slug === 'crypto' ? (
-            <CryptoHeroCoins />
-          ) : slug === 'fintech' ? (
-            <FintechHeroCoins />
-          ) : (
-            <CategoryHeroArtifact slug={heroSlug} />
-          )}
+          <CategoryAsciiArtifact slug={heroSlug} />
         </motion.div>
       )}
 

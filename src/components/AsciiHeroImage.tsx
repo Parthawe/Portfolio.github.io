@@ -2,18 +2,19 @@ import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { TeapotGeometry } from 'three/examples/jsm/geometries/TeapotGeometry.js'
+import { createAsciiModel, modelNames } from './asciiCategoryModels'
 import '../styles/ascii-hero-image.css'
 
-type Props = { src: string; className: string }
+type Props = { src?: string; className: string; model?: string; motionEnabled?: boolean }
 
 /** Local-only study: existing Three.js geometry rendered with its ASCII addon. */
-export default function AsciiHeroImage({ src, className }: Props) {
+export default function AsciiHeroImage({ src, className, model: defaultModel = 'knot', motionEnabled = true }: Props) {
   const host = useRef<HTMLSpanElement>(null)
   const [ready, setReady] = useState(false)
   const [paused, setPaused] = useState(false)
   const pausedRef = useRef(false)
-  const model = new URLSearchParams(window.location.search).get('model') === 'teapot' ? 'teapot' : 'knot'
+  const requestedModel = new URLSearchParams(window.location.search).get('model')
+  const model = requestedModel && modelNames[requestedModel] ? requestedModel : defaultModel
   useEffect(() => {
     const element = host.current
     if (!element) return
@@ -40,12 +41,8 @@ export default function AsciiHeroImage({ src, className }: Props) {
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(34, 1, .1, 20)
     camera.position.set(0, .25, 5.8)
-    const geometry = model === 'teapot'
-      ? new TeapotGeometry(.64, 12)
-      : new THREE.TorusKnotGeometry(.78, .27, 192, 32, 2, 3)
-    geometry.center()
     const material = new THREE.MeshStandardMaterial({ color: 0x8b8b8b, roughness: .6, metalness: .15, side: THREE.DoubleSide })
-    const mesh = new THREE.Mesh(geometry, material)
+    const mesh = createAsciiModel(model, material)
     mesh.rotation.set(.3, -.3, model === 'knot' ? -.3 : 0)
     scene.add(mesh)
     scene.add(new THREE.AmbientLight(0xffffff, .3))
@@ -92,7 +89,7 @@ export default function AsciiHeroImage({ src, className }: Props) {
       if (time - previous < 1000 / 24) return
       const delta = Math.min((time - previous) / 1000, .08)
       previous = time
-      controls.autoRotate = !reducedMotion.matches && !pausedRef.current && !dragging
+      controls.autoRotate = motionEnabled && !reducedMotion.matches && !pausedRef.current && !dragging
       controls.enableDamping = !pausedRef.current && !reducedMotion.matches
       if (!pausedRef.current && !reducedMotion.matches) controls.update(delta)
       if (!dirty && !controls.autoRotate) return
@@ -107,15 +104,15 @@ export default function AsciiHeroImage({ src, className }: Props) {
       observer.disconnect()
       controls.dispose()
       element.removeEventListener('keydown', onKey)
-      geometry.dispose()
+      mesh.traverse(object => { if (object instanceof THREE.Mesh) object.geometry.dispose() })
       material.dispose()
       renderer.dispose()
       effect.domElement.remove()
     }
-  }, [model])
+  }, [model, motionEnabled])
   return <span ref={host} className={`${className} ascii-hero-image`} data-ascii-ready={ready} tabIndex={0}
-    role="group" aria-label={`Interactive ASCII ${model === 'knot' ? 'torus knot' : 'Utah teapot'}. Drag or use arrow keys to rotate.`}>
-    <img src={src} alt="" draggable={false} fetchPriority="high" className="ascii-hero-image__fallback" />
+    role="group" aria-label={`Interactive ASCII ${modelNames[model]}. Drag or use arrow keys to rotate.`}>
+    {src ? <img src={src} alt="" draggable={false} fetchPriority="high" className="ascii-hero-image__fallback" /> : !ready && <span className="ascii-hero-image__unavailable">3D {modelNames[model]}</span>}
     {ready && <span className="ascii-hero-image__controls">
       <span>Drag to rotate</span>
       <button type="button" onClick={() => { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current) }}
