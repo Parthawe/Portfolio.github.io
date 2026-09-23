@@ -12,3 +12,19 @@
 .ascii-hero-image[data-ascii-ready="true"] > .ascii-hero-image__fallback { visibility: hidden; }
 .artifact-ux-research__render.ascii-hero-image,
 .hero-artifact--ux-research:hover .artifact-ux-research__render.ascii-hero-image { filter: none; }
+
+/* Keep the glyph grid on the pixel plane; perspective and glow soften type. */
+.category-hero-artifact:has(.ascii-hero-image),
+.hero-artifact--ux-research:has(.ascii-hero-image),
+.artifact-ux-research:has(.ascii-hero-image),
+.artifact-ux-research__render.ascii-hero-image {
+  transform: none !important;
+  animation: none;
+  filter: none;
+}
+.hero-artifact--ux-research:has(.ascii-hero-image)::before { display: none; }
+.ascii-hero-image__live { position: absolute; inset: 0; color: #222620; opacity: 0; overflow: hidden; }
+.ascii-hero-image[data-ascii-ready="true"] .ascii-hero-image__live { opacity: 1; }
+.ascii-hero-image__live table { border: 0; border-collapse: collapse; background: transparent; }
+.ascii-hero-image__live td { padding: 0; border: 0; font-weight: 600; }
+[data-theme="dark"] .ascii-hero-image__live { color: #dddcd3; }

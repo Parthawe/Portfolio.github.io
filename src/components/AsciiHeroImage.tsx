@@ -1,102 +1,129 @@
 import { useEffect, useRef, useState } from 'react'
+import * as THREE from 'three'
+import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js'
 import '../styles/ascii-hero-image.css'
 
 type Props = { src: string; className: string }
 
-/** Render the supplied illustration as a transparent field of ASCII glyphs. */
+/** Private study using the official Three.js animated ASCII effect. */
 export default function AsciiHeroImage({ src, className }: Props) {
   const host = useRef<HTMLSpanElement>(null)
-  const canvas = useRef<HTMLCanvasElement>(null)
   const [ready, setReady] = useState(false)
-
   useEffect(() => {
     const element = host.current
-    const output = canvas.current
-    if (!element || !output) return
+    if (!element) return
     let disposed = false
-    let scheduled = 0
-    const source = new Image()
-    const sample = document.createElement('canvas')
-    const sampler = sample.getContext('2d', { willReadFrequently: true })
-    const context = output.getContext('2d')
-    if (!sampler || !context) return
-    const ramp = ' .,:;+*oO#@'
-
-    const draw = () => {
-      if (disposed || !source.complete || !source.naturalWidth) return
+    let frame = 0
+    let lastFrame = 0
+    let elapsed = 0
+    let visible = true
+    let loaded = false
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let renderer: THREE.WebGLRenderer
+    try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }) }
+    catch { return }
+    renderer.setClearColor(0xffffff, 0)
+    renderer.setPixelRatio(1)
+    const effect = new AsciiEffect(renderer, ' .,:;i1tfLCG08@', { resolution: .28 })
+    effect.domElement.className = 'ascii-hero-image__live'
+    effect.domElement.setAttribute('aria-hidden', 'true')
+    element.appendChild(effect.domElement)
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(35, 1, .1, 10)
+    camera.position.z = 3.5
+    const pointer = new THREE.Vector2()
+    const targetPointer = new THREE.Vector2()
+    const uniforms = {
+      uTexture: { value: null as THREE.Texture | null },
+      uTime: { value: 0 },
+      uPointer: { value: pointer },
+    }
+    const material = new THREE.ShaderMaterial({
+      transparent: true,
+      uniforms,
+      vertexShader: `
+        varying vec2 vUv;
+        uniform float uTime;
+        void main() {
+          vUv = uv;
+          vec3 p = position;
+          p.z += sin(p.x * 3.0 + uTime * .7) * cos(p.y * 2.5 - uTime * .5) * .045;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+        }`,
+      fragmentShader: `
+        varying vec2 vUv;
+        uniform sampler2D uTexture;
+        uniform float uTime;
+        uniform vec2 uPointer;
+        void main() {
+          vec4 source = texture2D(uTexture, vUv);
+          if (source.a < .18) discard;
+          float luma = dot(source.rgb, vec3(.2126, .7152, .0722));
+          float wave = sin(vUv.x * 8.0 + vUv.y * 5.0 - uTime * 1.2) * .055;
+          float light = exp(-length(vUv - (uPointer * .5 + .5)) * 6.0) * .12;
+          float tone = clamp(pow(luma, 1.4) * .78 + wave - light, .04, .85);
+          gl_FragColor = vec4(vec3(tone), source.a);
+        }`,
+    })
+    const geometry = new THREE.PlaneGeometry(2.35, 2.35, 36, 36)
+    const mesh = new THREE.Mesh(geometry, material)
+    scene.add(mesh)
+    const texture = new THREE.TextureLoader().load(src, image => {
+      if (disposed) { image.dispose(); return }
+      image.colorSpace = THREE.NoColorSpace
+      uniforms.uTexture.value = image
+      loaded = true
+    }, undefined, () => { if (!disposed) setReady(false) })
+    const resize = new ResizeObserver(() => {
       const width = element.clientWidth
       const height = element.clientHeight
       if (!width || !height) return
-      const columns = Math.max(44, Math.min(96, Math.round(width / 5)))
-      const rows = Math.round(columns * height / width / 1.35)
-      sample.width = columns
-      sample.height = rows
-      sampler.drawImage(source, 0, 0, columns, rows)
-      const pixels = sampler.getImageData(0, 0, columns, rows).data
-      const dpr = Math.min(window.devicePixelRatio || 1, 3)
-      output.width = Math.round(width * dpr)
-      output.height = Math.round(height * dpr)
-      context.setTransform(dpr, 0, 0, dpr, 0, 0)
-      context.clearRect(0, 0, width, height)
-      const cellWidth = width / columns
-      const cellHeight = height / rows
-      context.font = `600 ${cellHeight * 1.03}px ui-monospace, "SFMono-Regular", Consolas, monospace`
-      context.textAlign = 'center'
-      context.textBaseline = 'middle'
-      const dark = document.documentElement.getAttribute('data-theme') === 'dark'
-      const luminance = (x: number, y: number) => {
-        const i = (Math.max(0, Math.min(rows - 1, y)) * columns + Math.max(0, Math.min(columns - 1, x))) * 4
-        return (pixels![i] * .2126 + pixels![i + 1] * .7152 + pixels![i + 2] * .0722) / 255
+      camera.aspect = width / height
+      camera.updateProjectionMatrix()
+      effect.setSize(width, height)
+    })
+    resize.observe(element)
+    effect.setSize(element.clientWidth || 320, element.clientHeight || 320)
+    const onPointer = (event: PointerEvent) => {
+      const rect = element.getBoundingClientRect()
+      targetPointer.set((event.clientX - rect.left) / rect.width * 2 - 1, -((event.clientY - rect.top) / rect.height * 2 - 1))
+    }
+    const reset = () => targetPointer.set(0, 0)
+    element.addEventListener('pointermove', onPointer)
+    element.addEventListener('pointerleave', reset)
+    const observer = new IntersectionObserver(entries => { visible = entries[0]?.isIntersecting ?? false })
+    observer.observe(element)
+    const tick = (time: number) => {
+      frame = requestAnimationFrame(tick)
+      if (!visible || document.hidden || !loaded || time - lastFrame < 1000 / 24) return
+      elapsed += Math.min((time - lastFrame) / 1000, .06)
+      lastFrame = time
+      if (!reducedMotion.matches) {
+        uniforms.uTime.value = elapsed
+        pointer.lerp(targetPointer, .08)
+        mesh.rotation.y = Math.sin(elapsed * .4) * .065 + pointer.x * .11
+        mesh.rotation.x = Math.cos(elapsed * .35) * .035 - pointer.y * .07
+        mesh.position.y = Math.sin(elapsed * .7) * .022
       }
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < columns; x++) {
-          const i = (y * columns + x) * 4
-          const alpha = pixels[i + 3] / 255
-          if (alpha < .2) continue
-          const lum = luminance(x, y)
-          const density = .3 + .7 * Math.pow(1 - lum, .7)
-          let glyph = ramp[Math.min(ramp.length - 1, Math.floor(density * (ramp.length - 1)))]
-          const dx = luminance(x + 1, y) - luminance(x - 1, y)
-          const dy = luminance(x, y + 1) - luminance(x, y - 1)
-          if (Math.hypot(dx, dy) > .3) {
-            glyph = Math.abs(dx) > Math.abs(dy) * 1.8 ? '|' : Math.abs(dy) > Math.abs(dx) * 1.8 ? '-' : dx * dy > 0 ? '/' : '\\'
-          }
-          const color = [pixels[i], pixels[i + 1], pixels[i + 2]].map(channel =>
-            Math.round(dark ? 125 + channel * .5 : Math.max(18, (channel + (channel - lum * 255) * .5) * .42))
-          )
-          context.fillStyle = `rgba(${color.join(',')},${Math.min(1, alpha * 1.25)})`
-          context.fillText(glyph, (x + .5) * cellWidth, (y + .5) * cellHeight)
-        }
-      }
+      effect.render(scene, camera)
       setReady(true)
     }
-    const schedule = () => {
-      cancelAnimationFrame(scheduled)
-      scheduled = requestAnimationFrame(draw)
-    }
-    source.onload = () => {
-      if (disposed) return
-      try {
-        draw()
-      } catch { setReady(false) }
-    }
-    source.onerror = () => { if (!disposed) setReady(false) }
-    setReady(false)
-    source.src = src
-    const resize = new ResizeObserver(schedule)
-    resize.observe(element)
-    const theme = new MutationObserver(schedule)
-    theme.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    frame = requestAnimationFrame(tick)
     return () => {
       disposed = true
-      cancelAnimationFrame(scheduled)
+      cancelAnimationFrame(frame)
       resize.disconnect()
-      theme.disconnect()
+      observer.disconnect()
+      element.removeEventListener('pointermove', onPointer)
+      element.removeEventListener('pointerleave', reset)
+      texture.dispose()
+      geometry.dispose()
+      material.dispose()
+      renderer.dispose()
+      effect.domElement.remove()
     }
   }, [src])
-
   return <span ref={host} className={`${className} ascii-hero-image`} data-ascii-ready={ready} aria-hidden="true">
     <img src={src} alt="" draggable={false} fetchPriority="high" className="ascii-hero-image__fallback" />
-    <canvas ref={canvas} className="ascii-hero-image__canvas" />
   </span>
 }
