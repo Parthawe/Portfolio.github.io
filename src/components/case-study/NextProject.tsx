@@ -17,7 +17,8 @@ export default function NextProject({ slug, title, image }: NextProjectProps) {
   const registryNext = currentIndex >= 0 && visibleProjects.length
     ? visibleProjects[(currentIndex + 1) % visibleProjects.length]
     : undefined
-  const project = registryNext ?? projects.find(pr => pr.slug === slug)
+  const chosenProject = projects.find(pr => pr.slug === slug && !pr.hidden && pr.slug !== currentSlug)
+  const project = chosenProject ?? registryNext
   const targetSlug = project?.slug ?? slug
   const hiddenTarget = Boolean(project?.hidden)
   const requestAccess = isRequestAccessProject(project)

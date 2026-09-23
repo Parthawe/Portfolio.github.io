@@ -153,18 +153,24 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
 
   // Smooth scroll click handler
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     e.preventDefault();
     setMenuOpen(false);
     const target = document.getElementById(id);
     if (!target) return;
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    setActiveSectionId(id);
+    window.history.replaceState(window.history.state, '', `#${encodeURIComponent(id)}`);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 56;
     const top = target.getBoundingClientRect().top + window.scrollY - navH - 24;
     const lenis = (window as unknown as Record<string, { scrollTo?: (target: number, options?: { duration?: number }) => void }>).__lenis
-    if (lenis?.scrollTo) {
+    if (lenis?.scrollTo && !reducedMotion) {
       lenis.scrollTo(top, { duration: 1 })
       return
     }
-    window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    window.scrollTo({ top, behavior: reducedMotion ? 'instant' : 'smooth' });
   };
 
   if (!availableSections.length && !hasExpandAction && !modeAction && !liveUrl) return null;
