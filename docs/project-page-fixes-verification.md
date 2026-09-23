@@ -20,3 +20,9 @@ Automatic captions and sound descriptions are labelled as such and still require
 Vimeo returned a connection-security restriction during testing. The local player removes that dependency for the seven sourced films; Vimeo links remain an alternative, whose availability depends on the viewer's connection. BreakGen is not a public route in the current route registry; its shared-player conversion was build-checked.
 
 The existing About-page h1 warning was preserved. No production deployment was performed for this change set.
+
+## Follow-up
+
+The painting demo now allows cancellation while camera permission is pending. A late stream is stopped immediately and never attached. Clearing the canvas removes every particle and leaves painting paused. Regression checks cover both cases.
+
+A dedicated pull-request workflow now builds the site and runs the design, voice, rendered-page, and project-interaction checks against a local preview before merge. It uploads the rendered report and preview log for review and does not deploy.

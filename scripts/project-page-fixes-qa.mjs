@@ -43,6 +43,28 @@ try {
   const paused = await pixels()
   await page.waitForTimeout(200)
   assert.equal(await pixels(), paused, 'Canvas stays still while paused')
+  await page.getByRole('button', { name: 'Clear canvas', exact: true }).click()
+  assert(await canvas.evaluate(el => {
+    const pixels = el.getContext('2d').getImageData(0, 0, el.width, el.height).data
+    return pixels.every((value, index) => value === (index % 4 === 3 ? 255 : 51))
+  }), 'Clear canvas removes all painted particles')
+  const cleared = await pixels()
+  await page.waitForTimeout(150)
+  assert.equal(await pixels(), cleared, 'Clearing leaves painting paused')
+  await page.evaluate(() => {
+    window.qaOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices)
+    navigator.mediaDevices.getUserMedia = () => new Promise(resolve => { window.qaResolveCamera = resolve })
+  })
+  await page.getByRole('button', { name: 'Use my camera', exact: true }).click()
+  await page.getByRole('button', { name: 'Cancel camera request', exact: true }).click()
+  await page.evaluate(async () => {
+    const delayedStream = await window.qaOriginalGetUserMedia({ video: true })
+    window.qaDelayedTrack = delayedStream.getVideoTracks()[0]
+    window.qaResolveCamera(delayedStream)
+    navigator.mediaDevices.getUserMedia = window.qaOriginalGetUserMedia
+  })
+  await page.waitForFunction(() => window.qaDelayedTrack.readyState === 'ended')
+  assert.equal(await demo.locator('video').evaluate(el => el.srcObject), null, 'Cancelled request never attaches a camera')
   await page.getByRole('button', { name: 'Use my camera', exact: true }).click()
   await page.getByRole('button', { name: 'Stop camera', exact: true }).waitFor()
   await page.evaluate(() => { window.qaCameraTrack = document.querySelector('.pixel-painting video').srcObject.getVideoTracks()[0] })

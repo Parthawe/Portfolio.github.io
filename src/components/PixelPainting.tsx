@@ -114,11 +114,12 @@ export default function PixelPainting() {
       <video ref={video} muted playsInline hidden />
       <div className="pixel-painting__controls">
         <button type="button" onClick={() => setRunning(value => !value)}>{running ? 'Pause painting' : 'Start painting'}</button>
-        <button type="button" onClick={() => { painter.current?.reset(); painter.current?.step() }}>Clear canvas</button>
-        <button type="button" disabled={cameraPending} onClick={() => {
+        <button type="button" onClick={() => { setRunning(false); painter.current?.reset() }}>Clear canvas</button>
+        <button type="button" onClick={() => {
+          if (cameraPending) { stopCamera(); setMessage('Camera request cancelled. Painting from the sample portrait.'); return }
           if (source === 'camera') { stopCamera(); setMessage('Camera stopped. Painting from the sample portrait.') }
           else void useCamera()
-        }}>{cameraPending ? 'Waiting for camera…' : source === 'camera' ? 'Stop camera' : 'Use my camera'}</button>
+        }}>{cameraPending ? 'Cancel camera request' : source === 'camera' ? 'Stop camera' : 'Use my camera'}</button>
         <label htmlFor="pixel-opacity">Paint opacity <output>{Math.round(opacity / 255 * 100)}%</output>
           <input id="pixel-opacity" type="range" min="1" max="255" value={opacity} onChange={event => {
             const value = Number(event.target.value); alpha.current = value; setOpacity(value)
