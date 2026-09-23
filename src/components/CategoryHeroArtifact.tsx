@@ -1,7 +1,6 @@
 import type { CSSProperties, PointerEvent } from 'react'
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
 import '../styles/hero-artifacts.css'
-import AsciiHeroImage from './AsciiHeroImage'
 
 type ArtifactProps = {
   slug: string
@@ -36,9 +35,12 @@ function UxArtifact() {
     >
       <div className="artifact-ux-research">
         <span className="artifact-ux-research__ground" />
-        <AsciiHeroImage
+        <img
           className="artifact-ux-research__render"
           src="/Assets/generated/ux-design-hero-transparent.png"
+          alt=""
+          draggable={false}
+          fetchPriority="high"
         />
         <span className="artifact-ux-research__sheen" />
       </div>
