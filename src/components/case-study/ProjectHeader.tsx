@@ -12,6 +12,7 @@ import {
 } from '../../utils/projectPresentation'
 import '../../styles/case-study.css'
 import '../../styles/project-page-polish.css'
+import '../../styles/project-reading.css'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
@@ -180,7 +181,7 @@ export default function ProjectHeader({
 
   if (heroExperience !== undefined || resolvedVisualHeroImage) {
     const visualDeck = visualHeadline || visualSummary || subtitle
-    const visualTitle = visualDeck ? `${title}: ${visualDeck}` : title
+    const visualTitle = title
     const titleLength = projectTitleLengthClass(visualTitle)
     const visualProblem = project?.summaryProblem ?? story?.challenge ?? subtitle
     const visualOutcome = project?.summaryOutcome ?? story?.result ?? null
@@ -199,9 +200,14 @@ export default function ProjectHeader({
 
     return (
       <div className={visualClasses}>
+        <nav className="proj-reading-links" aria-label="Project navigation">
+          <Link to={backLink}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>{backLabel}</Link>
+          <a href="#project-overview">Project overview<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>
+        </nav>
         <section className="proj-visual-hero hero-anim hero-anim-1" aria-label={`${title} project introduction`}>
           <div className="proj-visual-hero__copy">
             <h1 className={`proj-visual-title proj-visual-title--${titleLength}`}>{visualTitle}</h1>
+            {visualDeck && <p className="proj-reading-deck">{visualDeck}</p>}
             <div className="proj-visual-actions">
               <div className="proj-visual-hero__tags" aria-label="Project disciplines">
                 {tags.slice(0, 3).map((tag) => (
@@ -252,11 +258,12 @@ export default function ProjectHeader({
           </div>
         </section>
 
-        <section className={`proj-visual-brief proj-visual-brief--${visualBriefMode} hero-anim hero-anim-2`} aria-label={`${title} project overview`}>
+        <section id="project-overview" tabIndex={-1} className={`proj-visual-brief proj-visual-brief--${visualBriefMode} hero-anim hero-anim-2`} aria-label={`${title} project overview`}>
           {visualBriefMode === 'combined' ? (
-            <p className="proj-visual-brief__copy">
-              {visualProblem}{visualOutcome ? ` ${visualOutcome}` : ''}
-            </p>
+            <div className="proj-reading-summary">
+              <p className="proj-visual-brief__copy"><strong>Context</strong>{visualProblem}</p>
+              {visualOutcome && <p className="proj-visual-brief__copy"><strong>Outcome</strong>{visualOutcome}</p>}
+            </div>
           ) : (
             <>
               <p className="proj-visual-brief__copy">{visualProblem}</p>

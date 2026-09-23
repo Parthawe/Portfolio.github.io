@@ -26,3 +26,9 @@ The existing About-page h1 warning was preserved. No production deployment was p
 The painting demo now allows cancellation while camera permission is pending. A late stream is stopped immediately and never attached. Clearing the canvas removes every particle and leaves painting paused. Regression checks cover both cases.
 
 A dedicated pull-request workflow now builds the site and runs the design, voice, rendered-page, and project-interaction checks against a local preview before merge. It uploads the rendered report and preview log for review and does not deploy.
+
+## Project reading and layout refinement
+
+Project detail headers now separate the project name from its description, provide back and overview links, and use quieter discipline labels. Combined overviews separate context from outcome. The full-story gateway uses a compact readable prompt instead of repeated faded text. Opening it moves keyboard focus to the revealed content. Shared section headings render immediately.
+
+Verified desktop and mobile layouts for Computational Media, Mentra, Shuffle, and MediMorpho, including overview navigation, keyboard expansion, focus placement, and horizontal overflow. The production build, blocking design audit, and existing project interaction suite passed. The changes are confined to project components and project-scoped styles.
