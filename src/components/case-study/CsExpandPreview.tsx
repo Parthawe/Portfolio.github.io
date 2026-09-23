@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { Children, isValidElement, useEffect, useId, useRef, useState, type ReactNode } from 'react'
 
 interface CsExpandPreviewProps {
   expanded?: boolean
@@ -8,6 +8,13 @@ interface CsExpandPreviewProps {
   ctaLabel?: string
   note?: string
   preview?: React.ReactNode
+}
+
+function containsSection(children: ReactNode, id: string): boolean {
+  return Children.toArray(children).some(child => {
+    if (!isValidElement<{ id?: string; children?: ReactNode }>(child)) return false
+    return child.props.id === id || containsSection(child.props.children, id)
+  })
 }
 
 /** Keep the summary short; mount the full story when the reader opens it. */
@@ -25,11 +32,38 @@ export default function CsExpandPreview({
   const contentId = useId()
   const content = useRef<HTMLDivElement>(null)
   const requested = useRef(false)
+  const linkedSection = useRef<string | null>(null)
+
+  useEffect(() => {
+    const followSectionLink = () => {
+      let id: string
+      try { id = decodeURIComponent(window.location.hash.slice(1)) } catch { return }
+      if (!id || !containsSection(children, id)) return
+      if (isExpanded) {
+        const target = document.getElementById(id)
+        target?.setAttribute('tabindex', '-1')
+        target?.focus({ preventScroll: true })
+        target?.scrollIntoView({ block: 'start', behavior: 'instant' })
+      } else {
+        linkedSection.current = id
+        requested.current = true
+        if (onExpand) onExpand()
+        else setInternalExpanded(true)
+      }
+    }
+    // Initial deep links may point to content that has not been mounted yet.
+    if (!isExpanded) followSectionLink()
+    window.addEventListener('hashchange', followSectionLink)
+    return () => window.removeEventListener('hashchange', followSectionLink)
+  }, [children, isExpanded, onExpand])
 
   useEffect(() => {
     if (isExpanded && requested.current) {
-      content.current?.focus({ preventScroll: true })
-      content.current?.scrollIntoView({ block: 'start', behavior: 'instant' })
+      const target = (linkedSection.current && document.getElementById(linkedSection.current)) || content.current
+      target?.setAttribute('tabindex', '-1')
+      target?.focus({ preventScroll: true })
+      target?.scrollIntoView({ block: 'start', behavior: 'instant' })
+      linkedSection.current = null
       requested.current = false
     }
   }, [isExpanded])

@@ -32,3 +32,14 @@ A dedicated pull-request workflow now builds the site and runs the design, voice
 Project detail headers now separate the project name from its description, provide back and overview links, and use quieter discipline labels. Combined overviews separate context from outcome. The full-story gateway uses a compact readable prompt instead of repeated faded text. Opening it moves keyboard focus to the revealed content. Shared section headings render immediately.
 
 Verified desktop and mobile layouts for Computational Media, Mentra, Shuffle, and MediMorpho, including overview navigation, keyboard expansion, focus placement, and horizontal overflow. The production build, blocking design audit, and existing project interaction suite passed. The changes are confined to project components and project-scoped styles.
+
+## Final project-only pass
+
+- Chapter links now update the URL, move keyboard focus to the target, preserve modified-click browser behavior, and honor reduced motion even when smooth scrolling is available.
+- Links into collapsed stories open the matching section, including pages whose expansion state is controlled by the page.
+- Next-project links prefer the related project explicitly chosen by the page, with the public registry as fallback.
+- Removed duplicate horizontal margins from the Typeface playground and vector editor containers.
+
+All 49 routable projects were inspected at mobile width, opening full stories where available. No runtime errors were recorded. The only overflow finding was the expanded Typeface tools; the margin correction addresses that finding. Navigation and Typeface regression checks are included in the existing project QA suite.
+
+This pass changes project components, one project stylesheet, and their verification only. Home, Work, and About implementations are unchanged. Automatic captions still require the previously documented human listening review.
