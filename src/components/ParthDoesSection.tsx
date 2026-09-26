@@ -7,14 +7,12 @@ import { useInView } from '../hooks/useInView'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 import { isLowPowerDevice } from '../utils/performance'
 
-const CategoryObject3D = lazy(() => import('./CategoryObject3D'))
+const CategoryAsciiArtifact = lazy(() => import('./CategoryAsciiArtifact'))
 
 interface Skill {
   label: string
   objectSlug: string
   description: string
-  mockupSrc: string
-  mockupAlt: string
 }
 
 const skills: Skill[] = [
@@ -22,43 +20,31 @@ const skills: Skill[] = [
     label: 'UX Design',
     objectSlug: 'ux-design',
     description: 'I turn messy product flows into calm, learnable interfaces where every state explains what happens next.',
-    mockupSrc: '/Assets/mockups/projects/raahi-project_16x9.webp',
-    mockupAlt: 'Raahi transit product interface mockup',
   },
   {
     label: 'Product Design',
     objectSlug: 'ux-design',
     description: 'I shape early product systems from research, structure, and shipped screens, not just polished mockups.',
-    mockupSrc: '/Assets/mockups/projects/mentra_16x9.webp',
-    mockupAlt: 'Mentra wearable OS product mockup',
   },
   {
     label: 'Fintech',
     objectSlug: 'fintech',
     description: 'I design payment and crypto flows around confidence: visible risk, clear status, and reviewable decisions.',
-    mockupSrc: '/Assets/mockups/projects/zentipay_16x9.webp',
-    mockupAlt: 'ZentiPay fintech interface mockup',
   },
   {
     label: 'Design Engineering',
     objectSlug: 'design-engineering',
     description: 'I carry interface systems from Figma into responsive, accessible production code.',
-    mockupSrc: '/Assets/mockups/projects/mentra_16x9.webp',
-    mockupAlt: 'Mentra product interface mockup',
   },
   {
     label: 'Physical Computing',
     objectSlug: 'installations',
     description: 'I build responsive objects and installations that let people understand systems through touch and behavior.',
-    mockupSrc: '/Assets/mockups/projects/moniac-machine_16x9.webp',
-    mockupAlt: 'Moniac Machine physical computing mockup',
   },
   {
     label: 'Installations',
     objectSlug: 'installations',
     description: 'I compose space, hardware, and interaction into experiences that feel legible without needing instructions.',
-    mockupSrc: '/Assets/mockups/projects/drowning_16x9.webp',
-    mockupAlt: 'Drowning stage installation mockup',
   },
 ]
 
@@ -67,19 +53,19 @@ export default function ParthDoesSection() {
   const [sectionRef, sectionInView] = useInView<HTMLElement>(0.08, '160px 0px')
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const lowPowerDevice = isLowPowerDevice()
-  const mountObject = useDeferredMount(!prefersReducedMotion && sectionInView, {
+  const mountObject = useDeferredMount(sectionInView, {
     timeout: lowPowerDevice ? 2400 : 1600,
     delayMs: lowPowerDevice ? 360 : 120,
   })
   const activeSkill = skills[skillIndex]
 
   useEffect(() => {
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion || !sectionInView) return
     const id = window.setInterval(() => {
       setSkillIndex((current) => (current + 1) % skills.length)
     }, 3000)
     return () => window.clearInterval(id)
-  }, [prefersReducedMotion])
+  }, [prefersReducedMotion, sectionInView])
 
   return (
     <section className="wr-about-section" style={{ position: 'relative' }} ref={sectionRef}>
@@ -124,20 +110,13 @@ export default function ParthDoesSection() {
           </div>
 
           <div className="wr-about-img-col">
-            <div className="wr-about-object-wrap" aria-hidden="true">
-              <div className="wr-about-object-stage">
-                <div className="wr-about-object-shell" key={activeSkill.label}>
-                  {mountObject ? (
-                    <Suspense fallback={null}>
-                      <CategoryObject3D slug={activeSkill.objectSlug} size={250} className="wr-about-object-canvas" />
-                    </Suspense>
-                  ) : null}
-                </div>
-              </div>
+            <div className="wr-about-ascii-object">
+              {mountObject && (
+                <Suspense fallback={null}>
+                  <CategoryAsciiArtifact slug={activeSkill.objectSlug} />
+                </Suspense>
+              )}
             </div>
-            <figure className="wr-about-work-preview" key={`${activeSkill.label}-mockup`}>
-              <img src={activeSkill.mockupSrc} alt={activeSkill.mockupAlt} loading="lazy" />
-            </figure>
           </div>
         </div>
 
