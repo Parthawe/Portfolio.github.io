@@ -223,11 +223,11 @@ const softwareRows = [
 ]
 
 const codexStats = [
-  { value: '10.2B', label: 'Lifetime tokens' },
+  { value: '38.8B', label: 'Lifetime tokens' },
   { value: '1.5B', label: 'Peak tokens' },
-  { value: '7h 4m', label: 'Longest chat' },
-  { value: '30 days', label: 'Current streak' },
-  { value: '30 days', label: 'Longest streak' },
+  { value: '7h 5m', label: 'Longest chat' },
+  { value: '98 days', label: 'Current streak' },
+  { value: '98 days', label: 'Longest streak' },
 ]
 
 const codexMonths = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
@@ -376,7 +376,7 @@ function CodexProfile() {
             </div>
           </div>
           <div className="abt-codex-profile-heading">
-            <span>Agent practice</span>
+            <span>Agent practice · Updated <time dateTime="2026-09-26">September 26, 2026</time></span>
             <h2 id="abt-codex-title">Codex, tuned through use.</h2>
           </div>
         </div>
