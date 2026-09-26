@@ -3310,13 +3310,8 @@ body.nav-on-dark .site-figbar.surface-glass,
 .reading-cursor-layer {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: var(--z-cursor);
   pointer-events: none;
-}
-
-/* Keep collaborator labels above the inspector chrome. */
-body.site-tools-open .reading-cursor-layer {
-  z-index: 950;
 }
 
 .reading-cursor {
