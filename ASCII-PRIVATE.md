@@ -23,7 +23,7 @@ Only category landing-page hero objects are replaced. Home, Work, About, project
 
 Existing aliases share the same treatment, including /ux, /ui, /creative-tech, /design-engineering, /brand, and /brand-visual. The new /visual-brand alias redirects to /brand-visual.
 
-Three.js AsciiEffect and OrbitControls render actual geometry. Drag to rotate, use arrow keys, or allow one automatic turn in approximately two minutes. Pause stops automatic rotation. Reduced-motion preferences disable automatic rotation. The Motion page also respects its existing motion preference. Rendering stops outside the viewport and in hidden tabs.
+Three.js AsciiEffect and OrbitControls render actual geometry with category-specific surface colors. Drag to rotate, use arrow keys, or allow one automatic turn in approximately two minutes. There are no visible rotation controls. Space pauses or resumes automatic rotation when the object has keyboard focus. Reduced-motion preferences disable automatic rotation. The Motion page also respects its existing motion preference. Rendering stops outside the viewport and in hidden tabs.
 
 ## Sources
 

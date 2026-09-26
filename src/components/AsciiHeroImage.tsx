@@ -11,7 +11,6 @@ type Props = { src?: string; className: string; model?: string; motionEnabled?: 
 export default function AsciiHeroImage({ src, className, model: defaultModel = 'knot', motionEnabled = true }: Props) {
   const host = useRef<HTMLSpanElement>(null)
   const [ready, setReady] = useState(false)
-  const [paused, setPaused] = useState(false)
   const pausedRef = useRef(false)
   const requestedModel = new URLSearchParams(window.location.search).get('model')
   const model = requestedModel && modelNames[requestedModel] ? requestedModel : defaultModel
@@ -29,7 +28,7 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
     catch { return }
     renderer.setClearColor(0xffffff, 0)
     renderer.setPixelRatio(1)
-    const effect = new AsciiEffect(renderer, ' .,:;i1tfLCG08@', { resolution: .29 })
+    const effect = new AsciiEffect(renderer, ' .,:;i1tfLCG08@', { resolution: .29, color: true })
     effect.domElement.className = 'ascii-hero-image__live'
     effect.domElement.setAttribute('aria-hidden', 'true')
     element.appendChild(effect.domElement)
@@ -41,8 +40,39 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(34, 1, .1, 20)
     camera.position.set(0, .25, 5.8)
-    const material = new THREE.MeshStandardMaterial({ color: 0x8b8b8b, roughness: .6, metalness: .15, side: THREE.DoubleSide })
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: .45, metalness: .12, side: THREE.DoubleSide })
     const mesh = createAsciiModel(model, material)
+    const palettes: Record<string, string[]> = {
+      cube: ['#244bdb', '#7132d6', '#ed4678'],
+      orbit: ['#175ade', '#00a7a5', '#b34ae3'],
+      glasses: ['#2759e0', '#9443df', '#e24694'],
+      coin: ['#9c3bc9', '#ed7540', '#c89216'],
+      coins: ['#126bc0', '#16a690', '#b89126'],
+      rings: ['#dc366e', '#8a38d4', '#295bdd'],
+      lens: ['#166cbd', '#089d91', '#6c56d7'],
+      cross: ['#047f85', '#1ba675', '#3779d1'],
+      arch: ['#d35b31', '#c83b7c', '#6551ce'],
+      reel: ['#d44774', '#b53fc5', '#405ce1'],
+      teapot: ['#168b82', '#548f36', '#c9862b'],
+      knot: ['#2752d9', '#9441d2', '#e3478c'],
+    }
+    const palette = (palettes[model] || palettes.knot).map(value => new THREE.Color(value))
+    // Color lives on the surface, so the glyph colors turn with the geometry.
+    mesh.updateMatrixWorld(true)
+    const point = new THREE.Vector3()
+    mesh.traverse(object => {
+      if (!(object instanceof THREE.Mesh)) return
+      const positions = object.geometry.getAttribute('position')
+      const colors = new Float32Array(positions.count * 3)
+      for (let index = 0; index < positions.count; index++) {
+        point.fromBufferAttribute(positions, index).applyMatrix4(object.matrixWorld)
+        const t = THREE.MathUtils.clamp((point.x + point.y * .65 + point.z * .35 + 1.7) / 3.4, 0, 1) * 2
+        const stop = Math.min(1, Math.floor(t))
+        const color = palette[stop].clone().lerp(palette[stop + 1], t - stop)
+        color.toArray(colors, index * 3)
+      }
+      object.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+    })
     mesh.rotation.set(.3, -.3, model === 'knot' ? -.3 : 0)
     scene.add(mesh)
     scene.add(new THREE.AmbientLight(0xffffff, .3))
@@ -76,6 +106,11 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
     const observer = new IntersectionObserver(entries => { visible = entries[0]?.isIntersecting ?? false })
     observer.observe(element)
     const onKey = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        event.preventDefault()
+        pausedRef.current = !pausedRef.current
+        return
+      }
       const axis = event.key === 'ArrowLeft' || event.key === 'ArrowRight' ? 'y' : 'x'
       if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return
       event.preventDefault()
@@ -111,12 +146,8 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
     }
   }, [model, motionEnabled])
   return <span ref={host} className={`${className} ascii-hero-image`} data-ascii-ready={ready} tabIndex={0}
-    role="group" aria-label={`Interactive ASCII ${modelNames[model]}. Drag or use arrow keys to rotate.`}>
+    role="group" aria-label={`Interactive ASCII ${modelNames[model]}. Drag or use arrow keys to rotate. Press Space to pause or resume.`}>
     {src ? <img src={src} alt="" draggable={false} fetchPriority="high" className="ascii-hero-image__fallback" /> : !ready && <span className="ascii-hero-image__unavailable">3D {modelNames[model]}</span>}
-    {ready && <span className="ascii-hero-image__controls">
-      <span>Drag to rotate</span>
-      <button type="button" onClick={() => { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current) }}
-        aria-label={paused ? 'Resume automatic rotation' : 'Pause automatic rotation'}>{paused ? 'Play' : 'Pause'}</button>
-    </span>}
+
   </span>
 }
