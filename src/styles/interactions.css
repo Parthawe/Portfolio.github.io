@@ -4017,6 +4017,14 @@ body.nav-on-dark .reading-cursor__note {
   transform: translate(0.82rem, -1.68rem);
 }
 
+.reading-cursor--you[data-label-align="left"] .reading-cursor__identity {
+  transform: translate(calc(-100% - 1.6rem), 0.35rem);
+}
+
+.reading-cursor--you[data-label-align="left"][data-label-side="above"] .reading-cursor__identity {
+  transform: translate(calc(-100% - 1.6rem), -1.68rem);
+}
+
 .reading-cursor--you .reading-cursor__tag {
   color: #050505;
   background: #fff;
