@@ -3037,10 +3037,10 @@
   }
 
   .page-about .abt-vibe-head h2 {
-    font-family: var(--sans);
+    font-family: var(--display-heading);
     font-size: clamp(1.8rem, 9vw, 2.3rem);
-    font-weight: 700;
-    line-height: 1.02;
+    font-weight: 400;
+    line-height: 1.08;
   }
 
   .page-about .abt-vibe-head p {
@@ -3105,11 +3105,11 @@
 
 .abt-vibe-head h2 {
   margin: 0;
-  font-family: var(--sans);
-  font-size: clamp(3rem, 8vw, 5.8rem);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 0.92;
+  font-family: var(--display-heading);
+  font-size: clamp(2.75rem, 6vw, 4.75rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
   color: var(--ink);
 }
 
@@ -3353,7 +3353,7 @@
   .abt-vibe-head h2 {
     max-width: 100%;
     font-size: clamp(1.9rem, 10vw, 2.55rem);
-    line-height: 1;
+    line-height: 1.08;
   }
   .abt-vibe-head p {
     max-width: 24rem;
@@ -3432,10 +3432,10 @@
   }
 
   .page-about .abt-vibe-head h2 {
-    font-family: var(--sans);
+    font-family: var(--display-heading);
     font-size: clamp(1.72rem, 8.6vw, 2.18rem);
-    font-weight: 700;
-    line-height: 1.02;
+    font-weight: 400;
+    line-height: 1.08;
   }
 
   .page-about .abt-vibe-head p {
