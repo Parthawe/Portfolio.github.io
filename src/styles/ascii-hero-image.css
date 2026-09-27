@@ -13,7 +13,7 @@
 .artifact-ux-research__render.ascii-hero-image,
 .hero-artifact--ux-research:hover .artifact-ux-research__render.ascii-hero-image { filter: none; }
 
-/* Keep the glyph grid on the pixel plane; perspective and glow soften type. */
+/* Keep the glyph grid on the pixel plane so individual characters stay sharp. */
 .category-hero-artifact:has(.ascii-hero-image),
 .hero-artifact--ux-research:has(.ascii-hero-image),
 .artifact-ux-research:has(.ascii-hero-image),
@@ -24,7 +24,7 @@
 }
 .hero-artifact--ux-research:has(.ascii-hero-image)::before { display: none; }
 .ascii-hero-image__live { position: absolute; inset: 0; color: #222620; opacity: 0; overflow: hidden; }
-.ascii-hero-image[data-ascii-ready="true"] .ascii-hero-image__live { opacity: 1; }
+.ascii-hero-image[data-ascii-ready="true"] .ascii-hero-image__live { opacity: .94; }
 .ascii-hero-image__live table { border: 0; border-collapse: collapse; background: transparent; }
 .ascii-hero-image__live td { padding: 0; border: 0; font-weight: 600; }
 [data-theme="dark"] .ascii-hero-image__live { color: #dddcd3; }
@@ -36,3 +36,23 @@
 .category-ascii-artifact .ascii-hero-image__unavailable { display: grid; place-items: center; height: 100%; color: var(--ink-70); font: 400 1rem var(--sans); }
 .ch-3d--side:has(.category-ascii-artifact),
 .ch-3d--side:has(.category-ascii-artifact) * { pointer-events: auto !important; }
+
+/* A restrained halo follows the glyph colors, without blurring their edges. */
+.ascii-hero-image__live {
+  filter: brightness(1.08);
+  transition: opacity 180ms ease, filter 180ms ease;
+}
+.ascii-hero-image__live span {
+  text-shadow: 0 1px 2px currentColor;
+}
+[data-theme="dark"] .ascii-hero-image__live { filter: brightness(1.75); }
+.ascii-hero-image[data-ascii-ready="true"]:is(:hover, :focus-visible, [data-dragging="true"]) .ascii-hero-image__live {
+  opacity: 1;
+  filter: brightness(1.18);
+}
+[data-theme="dark"] .ascii-hero-image:is(:hover, :focus-visible, [data-dragging="true"]) .ascii-hero-image__live {
+  filter: brightness(2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ascii-hero-image__live { transition: none; }
+}

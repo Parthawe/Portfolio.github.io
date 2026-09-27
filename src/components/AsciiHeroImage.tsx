@@ -28,14 +28,15 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
     catch { return }
     renderer.setClearColor(0xffffff, 0)
     renderer.setPixelRatio(1)
-    const effect = new AsciiEffect(renderer, ' .,:;i1tfLCG08@', { resolution: .29, color: true })
+    const resolution = .42 // Finer glyphs, with the same object framing.
+    const effect = new AsciiEffect(renderer, ' .,:;i1tfLCG08@', { resolution, color: true, alpha: true })
     effect.domElement.className = 'ascii-hero-image__live'
     effect.domElement.setAttribute('aria-hidden', 'true')
     element.appendChild(effect.domElement)
     const sizeEffect = (width: number, height: number) => {
       effect.setSize(width, height)
       const table = effect.domElement.querySelector('table')
-      if (table) table.style.letterSpacing = `${-.2 / .29}px`
+      if (table) table.style.letterSpacing = `${-.2 / resolution}px`
     }
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(34, 1, .1, 20)
