@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect } from 'react'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
@@ -230,38 +230,11 @@ const codexStats = [
   { value: '98 days', label: 'Longest streak' },
 ]
 
-const codexMonths = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
 const codexPractice = [
   { title: 'Context first', text: 'Live repo. Real data. Current surface.' },
   { title: 'Tight loops', text: 'Build, inspect, correct, repeat.' },
   { title: 'Verify the finish', text: 'Tests, screenshots, deploy checks.' },
 ]
-
-type CodexActivityMode = 'Daily' | 'Weekly' | 'Cumulative'
-
-function codexActivityLevel(index: number, mode: CodexActivityMode) {
-  const week = Math.floor(index / 7)
-  const day = index % 7
-  const pulse = (week * 17 + day * 11 + week * day) % 13
-
-  // The current snapshot is quiet through March, begins to build in April,
-  // and shows sustained daily use from May through July.
-  if (week < 35) return 0
-
-  if (mode === 'Cumulative') {
-    if (week < 40) return pulse > 10 ? 1 : 0
-    return Math.min(4, 1 + Math.floor((week - 40) / 4) + (pulse > 9 ? 1 : 0))
-  }
-
-  if (mode === 'Weekly') {
-    if (week < 40) return pulse < 3 ? 1 : 0
-    return pulse < 2 ? 1 : pulse < 6 ? 2 : pulse < 10 ? 3 : 4
-  }
-
-  if (index >= 341) return pulse < 3 ? 3 : 4
-  if (week >= 40) return pulse < 3 ? 1 : pulse < 7 ? 2 : pulse < 10 ? 3 : 4
-  return pulse < 9 ? 0 : pulse < 11 ? 1 : 2
-}
 
 type SimpleBrandIcon = {
   title: string
@@ -361,9 +334,6 @@ function SoftwareChip({ tool }: { tool: string }) {
 }
 
 function CodexProfile() {
-  const [activityMode, setActivityMode] = useState<CodexActivityMode>('Daily')
-  const activity = Array.from({ length: 53 * 7 }, (_, index) => codexActivityLevel(index, activityMode))
-
   return (
     <section className="abt-codex reveal" aria-labelledby="abt-codex-title">
       <div className="abt-codex-profile">
@@ -389,36 +359,6 @@ function CodexProfile() {
             </div>
           ))}
         </dl>
-
-        <div className="abt-codex-activity">
-          <div className="abt-codex-activity-head">
-            <h3>Token activity</h3>
-            <div className="abt-codex-tabs" aria-label="Token activity view">
-              {(['Daily', 'Weekly', 'Cumulative'] as CodexActivityMode[]).map(mode => (
-                <button
-                  type="button"
-                  className={activityMode === mode ? 'is-active' : ''}
-                  aria-pressed={activityMode === mode}
-                  onClick={() => setActivityMode(mode)}
-                  key={mode}
-                >
-                  {mode}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="abt-codex-heatmap-scroll" tabIndex={0} aria-label={`${activityMode} Codex token activity from August to July`}>
-            <div className="abt-codex-heatmap">
-              {activity.map((level, index) => (
-                <span className={`is-level-${level}`} aria-hidden="true" key={`${activityMode}-${index}`} />
-              ))}
-            </div>
-            <div className="abt-codex-months" aria-hidden="true">
-              {codexMonths.map(month => <span key={month}>{month}</span>)}
-            </div>
-          </div>
-        </div>
 
         <div className="abt-codex-practice" aria-label="How Parth works with Codex">
           {codexPractice.map((item, index) => (

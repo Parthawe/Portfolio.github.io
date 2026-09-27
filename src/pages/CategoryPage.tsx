@@ -186,7 +186,7 @@ export default function CategoryPage() {
           </Suspense>
 
           {/* All projects, flagship first (full-width), then rest in masonry */}
-          <div id="lp-work">
+          <div id="lp-work" tabIndex={-1} role="region" aria-label="Project collection">
             {featuredProject ? (
               <>
                 <p className="lp-section-label">Flagship</p>
@@ -209,7 +209,7 @@ export default function CategoryPage() {
 
             {visibleMoreProjects.length > 0 && (
               <>
-                <p className="lp-section-label">Contemporary work</p>
+                <p className="lp-section-label">More projects</p>
                 <div className="pcard-masonry">
                   {visibleMoreProjects.map((project) => (
                     <Reveal key={project.slug}>

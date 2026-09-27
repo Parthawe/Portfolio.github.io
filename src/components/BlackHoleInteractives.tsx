@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useState, useCallback } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
@@ -15,7 +16,6 @@ export function TimeDilation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [distance, setDistance] = useState(0.8)
   const timeRef = useRef({ far: 0, near: 0 })
-  const rafRef = useRef(0)
   const lastT = useRef(0)
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function TimeDilation() {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
       const w = rect.width, h = rect.height
-      if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (w < 10 || h < 10) { return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr; canvas.height = h * dpr
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
@@ -211,10 +211,9 @@ export function TimeDilation() {
       ctx.stroke()
       ctx.setLineDash([])
 
-      rafRef.current = requestAnimationFrame(draw)
     }
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [distance])
 
   return (
@@ -268,7 +267,6 @@ export function GravLensing() {
   const massPos = useRef({ x: 0.5, y: 0.5 })
   const [massStrength, setMassStrength] = useState(60)
   const dragging = useRef(false)
-  const rafRef = useRef(0)
   const timeRef = useRef(0)
 
   const getPos = useCallback((e: React.PointerEvent) => {
@@ -287,7 +285,7 @@ export function GravLensing() {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
       const w = rect.width, h = rect.height
-      if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (w < 10 || h < 10) { return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr; canvas.height = h * dpr
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
@@ -444,10 +442,9 @@ export function GravLensing() {
       ctx.fillStyle = 'rgba(226,244,255,0.38)'
       ctx.fillText('DRAG THE HORIZON', 18, 42)
 
-      rafRef.current = requestAnimationFrame(draw)
     }
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [massStrength])
 
   return (
@@ -546,7 +543,6 @@ export function GravLensing() {
 
 export function BinaryMerger() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const rafRef = useRef(0)
   const tRef = useRef(0)
 
   const restart = useCallback(() => { tRef.current = 0 }, [])
@@ -560,7 +556,7 @@ export function BinaryMerger() {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
       const w = rect.width, h = rect.height
-      if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (w < 10 || h < 10) { return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr; canvas.height = h * dpr
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
@@ -674,10 +670,9 @@ export function BinaryMerger() {
         ctx.fillText(p.label, pcx, panelY + panelH - 10)
       }
 
-      rafRef.current = requestAnimationFrame(draw)
     }
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [])
 
   return (

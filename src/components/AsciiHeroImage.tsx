@@ -1,3 +1,4 @@
+import { createSceneActivity } from '../utils/sceneActivity'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect.js'
@@ -17,9 +18,7 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
   useEffect(() => {
     const element = host.current
     if (!element) return
-    let frame = 0
-    let previous = 0
-    let visible = true
+    let activity: ReturnType<typeof createSceneActivity> | undefined
     let dirty = true
     let dragging = false
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -84,11 +83,10 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
       camera.updateProjectionMatrix()
       sizeEffect(width, height)
       dirty = true
+      activity?.wake()
     })
     resize.observe(element)
     sizeEffect(element.clientWidth || 320, element.clientHeight || 320)
-    const observer = new IntersectionObserver(entries => { visible = entries[0]?.isIntersecting ?? false })
-    observer.observe(element)
     const onKey = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
         event.preventDefault()
@@ -102,12 +100,7 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
       dirty = true
     }
     element.addEventListener('keydown', onKey)
-    const tick = (time: number) => {
-      frame = requestAnimationFrame(tick)
-      if (!visible || document.hidden) { previous = time; return }
-      if (time - previous < 1000 / 24) return
-      const delta = Math.min((time - previous) / 1000, .08)
-      previous = time
+    activity = createSceneActivity(element, delta => {
       controls.autoRotate = motionEnabled && !reducedMotion.matches && !pausedRef.current && !dragging
       controls.enableDamping = !pausedRef.current && !reducedMotion.matches
       if (!pausedRef.current && !reducedMotion.matches) controls.update(delta)
@@ -115,12 +108,10 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
       effect.render(scene, camera)
       dirty = false
       setReady(true)
-    }
-    frame = requestAnimationFrame(tick)
+    })
     return () => {
-      cancelAnimationFrame(frame)
+      activity?.dispose()
       resize.disconnect()
-      observer.disconnect()
       controls.dispose()
       element.removeEventListener('keydown', onKey)
       mesh.traverse(object => { if (object instanceof THREE.Mesh) object.geometry.dispose() })

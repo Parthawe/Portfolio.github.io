@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState, type MouseEvent } from 'react'
+import { observeVisible } from '../utils/visibleActivity'
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import CategoryAsciiArtifact from './CategoryAsciiArtifact'
 
@@ -254,14 +255,17 @@ const CATEGORY_AUDIENCE: Record<string, readonly AudienceItem[]> = {
 
 function CategoryAudience({ items, accentColor, categoryName }: { items: readonly AudienceItem[]; accentColor: string; categoryName: string }) {
   const [index, setIndex] = useState(0)
+  const audienceRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (items.length < 2) return undefined
-    const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % items.length)
-    }, 5200)
-
-    return () => window.clearInterval(id)
+    if (!audienceRef.current) return
+    let timer = 0
+    const stop = observeVisible(audienceRef.current, visible => {
+      clearInterval(timer)
+      if (visible) timer = window.setInterval(() => setIndex(current => (current + 1) % items.length), 5200)
+    })
+    return () => { stop(); clearInterval(timer) }
   }, [items.length])
 
   const item = items[index] ?? items[0]
@@ -272,7 +276,7 @@ function CategoryAudience({ items, accentColor, categoryName }: { items: readonl
       : 'ch-audience-copy--standard'
 
   return (
-    <div className="ch-audience" aria-label={`${categoryName} audience note`}>
+    <div ref={audienceRef} className="ch-audience" aria-label={`${categoryName} audience note`}>
       <AnimatePresence mode="wait">
         <motion.article
           className="ch-audience-item"
@@ -316,7 +320,7 @@ interface CategoryHeroProps {
   projectCount: number
 }
 
-export default function CategoryHero({ slug, routeSlug, accentColor, title, titleAccent, has3D }: CategoryHeroProps) {
+export default function CategoryHero({ slug, routeSlug, accentColor, title, titleAccent, has3D, projectCount }: CategoryHeroProps) {
   const heroSlug = HERO_ROUTE_ALIASES[routeSlug ?? slug] ?? routeSlug ?? slug
   const isCrypto = heroSlug === 'crypto'
   const categoryName = CATEGORY_NAMES[heroSlug] || CATEGORY_NAMES[slug] || `${title} ${titleAccent}`.replace(/\s+/g, ' ').trim()
@@ -332,6 +336,7 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
     if (!target) return
     event.preventDefault()
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    target.focus({ preventScroll: true })
     target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' })
     window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#lp-work`)
   }
@@ -412,9 +417,9 @@ export default function CategoryHero({ slug, routeSlug, accentColor, title, titl
           className="ch-work-link figma-hover"
           style={{ color: accentColor }}
           onClick={handleWorkClick}
-          aria-label={`See ${categoryName} projects`}
+          aria-label={`See ${projectCount} ${categoryName} projects`}
         >
-          <span>{isCrypto ? 'View crypto work' : 'See work'}</span>
+          <span>{`See ${projectCount} ${projectCount === 1 ? 'project' : 'projects'}`}</span>
           <span aria-hidden="true">&darr;</span>
         </a>
         <dl className="ch-hero-stats" aria-label={`${categoryName} portfolio statistics`}>

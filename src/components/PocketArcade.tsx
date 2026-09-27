@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useThemeMode } from '../hooks/useThemeMode'
@@ -168,9 +169,8 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const consoleRef = useRef<HTMLElement>(null)
-  const frameRef = useRef(0)
+  const activityRef = useRef<ReturnType<typeof visibleAnimation> | null>(null)
   const lastRef = useRef(0)
-  const visibleRef = useRef(!embedded)
   const selectedRef = useRef(0)
   const modeRef = useRef<Mode>('menu')
   const gameRef = useRef<GameId>('snake')
@@ -272,20 +272,6 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
     }
   }, [embedded, onClose, press, release])
 
-  useEffect(() => {
-    if (!embedded) {
-      visibleRef.current = true
-      return
-    }
-    const consoleElement = consoleRef.current
-    if (!consoleElement) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { visibleRef.current = entry.isIntersecting },
-      { rootMargin: '180px' },
-    )
-    observer.observe(consoleElement)
-    return () => observer.disconnect()
-  }, [embedded])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -403,22 +389,18 @@ export default function PocketArcade({ onClose = () => {}, embedded = false }: {
       }
     }
 
-    const loop = (now: number) => {
-      if (!visibleRef.current) {
-        lastRef.current = now
-        frameRef.current = requestAnimationFrame(loop)
-        return
-      }
-      const dt = Math.min(0.034, (now - (lastRef.current || now)) / 1000)
+    const activity = visibleAnimation(consoleRef.current ?? canvas, now => {
+      const dt = Math.min(0.034, Math.max(0, (now - (lastRef.current || now)) / 1000))
       lastRef.current = now
       update(dt); draw()
-      frameRef.current = requestAnimationFrame(loop)
-    }
-    frameRef.current = requestAnimationFrame(loop)
-    const visibility = () => { lastRef.current = performance.now() }
-    document.addEventListener('visibilitychange', visibility)
-    return () => { cancelAnimationFrame(frameRef.current); document.removeEventListener('visibilitychange', visibility) }
+    }, () => modeRef.current === 'playing')
+    activityRef.current = activity
+    lastRef.current = 0
+    return () => { activity.dispose(); activityRef.current = null }
+
   }, [dark, endGame])
+
+  useEffect(() => { activityRef.current?.wake() }, [mode, selected])
 
   const console = (
       <section

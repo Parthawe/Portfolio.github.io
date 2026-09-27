@@ -8,6 +8,7 @@ interface CsExpandPreviewProps {
   ctaLabel?: string
   note?: string
   preview?: React.ReactNode
+  previewImage?: string
 }
 
 function containsSection(children: ReactNode, id: string): boolean {
@@ -26,6 +27,7 @@ export default function CsExpandPreview({
   ctaLabel = 'Read the full story',
   note = 'Explore the process, decisions, and details.',
   preview,
+  previewImage,
 }: CsExpandPreviewProps) {
   const [internalExpanded, setInternalExpanded] = useState(false)
   const isExpanded = expanded ?? internalExpanded
@@ -70,11 +72,12 @@ export default function CsExpandPreview({
 
   return (
     <div className="project-story">
-      {!isExpanded && <div className="cs-expand-preview project-story__prompt">
-        <div className="project-story__copy">
+      {!isExpanded && <div className={`cs-expand-preview project-story__prompt${previewImage ? ' project-story__prompt--image' : ''}`}>
+        {previewImage && <img className="project-story__preview-image" src={previewImage} alt="" aria-hidden="true" loading="lazy" />}
+        {!previewImage && <div className="project-story__copy">
           {preview ?? <h2>Explore the project</h2>}
           <p>{note}</p>
-        </div>
+        </div>}
         <button type="button" className="cs-expand-preview-btn" aria-expanded={false} aria-controls={contentId} onClick={() => {
           requested.current = true
           if (onExpand) onExpand()

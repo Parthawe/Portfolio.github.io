@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useCallback } from 'react'
 
 /**
@@ -22,7 +23,7 @@ interface Blob {
 export default function PortalReveal({ images, alt = '', className = '', fit = 'cover' }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const rafRef = useRef(0)
+  const activityRef = useRef<ReturnType<typeof visibleAnimation> | null>(null)
   const mouseRef = useRef({ x: -999, y: -999, inside: false })
   const blobsRef = useRef<Blob[]>([])
   const revealIndexRef = useRef(1) // start revealing image index 1
@@ -34,7 +35,7 @@ export default function PortalReveal({ images, alt = '', className = '', fit = '
     readyCount.current = 0
     loadedImgs.current = images.map(src => {
       const img = new Image()
-      img.onload = () => { readyCount.current++ }
+      img.onload = () => { readyCount.current++; activityRef.current?.wake() }
       img.src = src
       return img
     })
@@ -85,6 +86,7 @@ export default function PortalReveal({ images, alt = '', className = '', fit = '
       canvas.style.width = w + 'px'; canvas.style.height = h + 'px'
       mask.width = w; mask.height = h
       tmp.width = w; tmp.height = h
+      activityRef.current?.wake()
     }
     resize()
     window.addEventListener('resize', resize)
@@ -116,7 +118,7 @@ export default function PortalReveal({ images, alt = '', className = '', fit = '
 
     const loop = () => {
       if (readyCount.current < 2 || !loadedImgs.current[0] || !loadedImgs.current[1]) {
-        rafRef.current = requestAnimationFrame(loop); return
+        return
       }
 
       const mouse = mouseRef.current
@@ -184,12 +186,14 @@ export default function PortalReveal({ images, alt = '', className = '', fit = '
       drawImageFit(ctx, loadedImgs.current[0], w, h, fit)
       if (blobs.length > 0) ctx.drawImage(tmp, 0, 0)
 
-      rafRef.current = requestAnimationFrame(loop)
     }
 
-    rafRef.current = requestAnimationFrame(loop)
+    const activity = visibleAnimation(wrap, loop, () => readyCount.current >= 2 && (mouseRef.current.inside || blobsRef.current.length > 0))
+    activityRef.current = activity
     return () => {
-      cancelAnimationFrame(rafRef.current)
+      activity.dispose()
+      activityRef.current = null
+      document.body.classList.remove('spotlight-active')
       window.removeEventListener('resize', resize)
     }
   }, [images, fit])

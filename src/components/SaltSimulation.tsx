@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useState, useCallback } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
@@ -18,7 +19,6 @@ export default function SaltSimulation() {
   const [storyPos, setStoryPos] = useState(0)
   const grainsRef = useRef<Grain[]>([])
   const lastPosRef = useRef(0)
-  const rafRef = useRef(0)
 
   const spawnGrains = useCallback((count: number, w: number, h: number) => {
     const cx = w / 2
@@ -45,10 +45,10 @@ export default function SaltSimulation() {
     const draw = () => {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const parent = canvas.parentElement
-      if (!parent) { rafRef.current = requestAnimationFrame(draw); return }
+      if (!parent) { return }
       const rect = parent.getBoundingClientRect()
       const w = rect.width, h = rect.height
-      if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (w < 10 || h < 10) { return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr; canvas.height = h * dpr
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
@@ -227,11 +227,10 @@ export default function SaltSimulation() {
         ctx.fillText('The mill remembers every inch.', w / 2, h * 0.55)
       }
 
-      rafRef.current = requestAnimationFrame(draw)
     }
 
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [storyPos, spawnGrains])
 
   const reset = useCallback(() => {

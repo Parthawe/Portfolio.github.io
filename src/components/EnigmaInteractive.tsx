@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useState, useRef, useEffect, useCallback, useMemo, lazy, Suspense } from 'react'
 import { useInView } from '../hooks/useInView'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
@@ -182,7 +183,6 @@ export default function EnigmaInteractive() {
   const cascadeTimers = useRef<ReturnType<typeof setTimeout>[]>([])
   const currentAct = useRef<Float32Array | null>(null)
   const targetAct = useRef<Float32Array | null>(null)
-  const rafId = useRef(0)
   const hiddenInputRef = useRef<HTMLInputElement>(null)
   const cascadeLayer = useRef(-1) // which layer is currently firing (-1 = none)
 
@@ -267,11 +267,11 @@ export default function EnigmaInteractive() {
 
     const draw = () => {
       const parent = canvas.parentElement
-      if (!parent) { rafId.current = requestAnimationFrame(draw); return }
+      if (!parent) { return }
       const rect = parent.getBoundingClientRect()
       const dpr = Math.min(window.devicePixelRatio, 2)
       const w = rect.width, h = rect.height
-      if (w < 10 || h < 10) { rafId.current = requestAnimationFrame(draw); return }
+      if (w < 10 || h < 10) { return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr; canvas.height = h * dpr
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
@@ -282,8 +282,7 @@ export default function EnigmaInteractive() {
       ctx.fillRect(0, 0, w, h)
 
       if (!currentAct.current || !targetAct.current) {
-        rafId.current = requestAnimationFrame(draw)
-        return
+          return
       }
 
       const cur = currentAct.current
@@ -412,11 +411,10 @@ export default function EnigmaInteractive() {
       ctx.fillText('HIDDEN', LAYER_X[2] * w, h - 4)
       ctx.fillText('OUTPUT', LAYER_X[3] * w, h - 4)
 
-      rafId.current = requestAnimationFrame(draw)
     }
 
-    rafId.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafId.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [inView, nodes, connections, reduced, currentPixels])
 
   const handleMobileInput = useCallback(() => { hiddenInputRef.current?.focus() }, [])

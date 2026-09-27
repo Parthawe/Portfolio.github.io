@@ -1,3 +1,4 @@
+import { observeVisible } from '../utils/visibleActivity'
 import { memo, useCallback, useEffect, useRef } from 'react'
 // Shared cards must not depend on a previous visit to the Work route.
 import '../styles/work-page.css'
@@ -32,10 +33,6 @@ interface ProjectCardProps {
   nda?: boolean
 }
 
-type IdleWindow = Window & {
-  requestIdleCallback?: (callback: IdleRequestCallback, options?: { timeout: number }) => number
-}
-
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText, marqueeSpeed = 20,
@@ -58,6 +55,24 @@ export default memo(function ProjectCard({
   const safeDesc = desc ? normalizeCopy(desc) : ''
   const safeMarqueeText = marqueeText ? normalizeCopy(marqueeText) : safeDesc
   const marqueeRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    const card = video?.closest<HTMLElement>('.pcard')
+    if (!video || !card) return
+    let visible = false, disposed = false
+    const wanted = () => !disposed && visible && (card.matches(':hover') || card.contains(document.activeElement))
+    const sync = () => {
+      if (wanted()) void video.play().then(() => { if (!wanted()) video.pause() }).catch(() => {})
+      else video.pause()
+    }
+    const stop = observeVisible(card, value => { visible = value; sync() })
+    const events = ['pointerenter', 'pointerleave', 'focusin', 'focusout'] as const
+    const onIntent = () => queueMicrotask(sync)
+    events.forEach(event => card.addEventListener(event, onIntent))
+    return () => { disposed = true; stop(); events.forEach(event => card.removeEventListener(event, onIntent)); video.pause() }
+  }, [hoverMediaSrc, hoverMediaKind])
 
   useEffect(() => {
     const track = marqueeRef.current
@@ -81,21 +96,11 @@ export default memo(function ProjectCard({
     const card = img.closest('.pcard')
     if (!card) return
 
-    const classifyBrightness = () => {
-      if (!card.isConnected) return
-      try {
-        const brightness = getImageBrightness(img)
-        if (brightness > 140) card.classList.add('pcard--light')
-      } catch {
-        // Expected for cross-origin images or tainted canvases — not actionable
-      }
-    }
-
-    const idleWindow = window as IdleWindow
-    if (typeof idleWindow.requestIdleCallback === 'function') {
-      idleWindow.requestIdleCallback(classifyBrightness, { timeout: 1200 })
-    } else {
-      window.setTimeout(classifyBrightness, 160)
+    // Sample the tiny thumbnail before paint so pale covers never flash white text.
+    try {
+      card.classList.toggle('pcard--light', getImageBrightness(img) > 140)
+    } catch {
+      // Cross-origin covers cannot be sampled; retain the default treatment.
     }
   }, [])
 
@@ -151,12 +156,12 @@ export default memo(function ProjectCard({
           {hoverMediaSrc ? (
             hoverMediaKind === 'video' ? (
               <video
+                ref={videoRef}
                 className="pcard-hover-media"
                 muted
                 loop
                 playsInline
-                autoPlay
-                preload="metadata"
+                preload="none"
                 aria-hidden="true"
               >
                 <source src={hoverMediaSrc} />

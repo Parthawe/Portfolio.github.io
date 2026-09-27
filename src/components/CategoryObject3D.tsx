@@ -1,3 +1,4 @@
+import { observeVisible } from '../utils/visibleActivity';
 import { useState, useRef, useCallback, Suspense, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Environment, Float } from '@react-three/drei';
@@ -155,11 +156,18 @@ function SceneInner({ slug, dark, mouse }: { slug: string; dark: boolean; mouse:
 }
 
 export default function CategoryObject3D({ slug, dark: darkProp, size = 200, className, style }: Props) {
+  const host = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
   const themeDark = useThemeMode();
   const dark = darkProp ?? themeDark;
   const mouseRef = useRef({ x: 0, y: 0 });
   const webglOk = useWebGLAvailable();
   const performanceDegraded = usePerformanceDegraded();
+
+  useEffect(() => {
+    if (!host.current) return;
+    return observeVisible(host.current, setVisible);
+  }, [webglOk, performanceDegraded, slug]);
 
   if (!CATEGORY_OBJECTS[slug]) return null;
 
@@ -175,6 +183,7 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
 
   return (
     <div
+      ref={host}
       className={className}
       style={{
         position: 'relative',
@@ -185,6 +194,7 @@ export default function CategoryObject3D({ slug, dark: darkProp, size = 200, cla
       }}
     >
       <Canvas events={safeCanvasEvents}
+        frameloop={visible ? 'always' : 'never'}
         camera={{ position: [0, 0, 3.5 * BLEED], fov: 35 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.1 }}

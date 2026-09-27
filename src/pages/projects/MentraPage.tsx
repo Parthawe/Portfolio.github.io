@@ -125,14 +125,8 @@ export default function MentraPage() {
         <CsExpandPreview
           expanded={viewMode === 'full'}
           onExpand={() => setViewMode('full')}
-          cta="Reveal the Mentra product story"
-          note="Continue into the research, tested decisions, launch work, and shipped evidence."
-          preview={(
-            <article className="cs-expand-preview-article-copy cs-expand-preview-article-copy--auto cs-mentra-preview-copy">
-              <h2>A wearable becomes useful when every surface agrees.</h2>
-              <p>Mentra connected glasses, a phone app, MiniApps, permissions, and recovery. The problem was not adding more UI. It was giving every surface one legible operating model.</p>
-            </article>
-          )}
+          cta="Read the full case study"
+          previewImage="/Assets/mockups/projects/mentra_16x9.webp"
         >
         <CsSection id="cs-context" title="Problem">
           <p className="cs-mentra-problem-copy">

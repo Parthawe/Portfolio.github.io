@@ -588,7 +588,7 @@
   font-size: var(--text-xs);
   letter-spacing: var(--ls-widest);
   text-transform: uppercase;
-  color: var(--ink-40);
+  color: var(--ink-70);
   margin-bottom: var(--space-5);
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--ink-08);
@@ -1577,4 +1577,13 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 20px;
   }
+}
+
+#lp-work {
+  scroll-margin-top: calc(var(--nav-h, 72px) + 24px);
+}
+
+#lp-work:focus-visible {
+  outline: 2px solid var(--lp-accent, var(--ink));
+  outline-offset: 6px;
 }

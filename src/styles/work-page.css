@@ -2564,3 +2564,25 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 }
 /* Clip card artwork without creating a nested wheel-scroll container. */
 #main-content .pcard-inner { overflow: clip; }
+
+/* Readable metadata over both bright and dark project imagery. */
+.pcard :is(.pcard-tag, .pcard-year) {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.78);
+}
+.pcard.pcard--light :is(.pcard-tag, .pcard-year) {
+  color: #222;
+  background: rgba(255, 255, 255, 0.9);
+}
+.pcard .pcard-marquee {
+  background: rgba(0, 0, 0, 0.78);
+}
+.pcard .pcard-marquee-track span {
+  color: #fff;
+}
+.pcard.pcard--light .pcard-marquee {
+  background: rgba(255, 255, 255, 0.9);
+}
+.pcard.pcard--light .pcard-marquee-track span {
+  color: #222;
+}

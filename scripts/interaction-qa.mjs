@@ -45,7 +45,7 @@ try {
       window.scrollY - Number(sessionStorage.getItem('qa-history-scroll-y'))
     ))).toBeLessThan(100)
     await page.goto(`${base}/mentra/`)
-    await page.getByRole('button', { name: 'Reveal the Mentra product story', exact: true }).click()
+    await page.getByRole('button', { name: 'Read the full case study', exact: true }).click()
     await expect(page.locator('#cs-context')).toBeAttached()
     const preview = page.getByRole('button', { name: /Open image preview:/ }).first()
     await preview.click()

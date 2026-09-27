@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useState, useCallback } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
@@ -52,7 +53,6 @@ export default function GenerativeCanvas() {
   const [modeIdx, setModeIdx] = useState(0)
   const [palIdx, setPalIdx] = useState(0)
   const mouseRef = useRef({ x: -1, y: -1, active: false })
-  const rafRef = useRef(0)
   const stateRef = useRef<Record<string, unknown>>({})
 
   const pal = PALETTES[palIdx]
@@ -70,7 +70,7 @@ export default function GenerativeCanvas() {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
       const nw = rect.width, nh = rect.height
-      if (nw < 10 || nh < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (nw < 10 || nh < 10) { return }
       if (canvas.width !== nw * dpr || canvas.height !== nh * dpr) {
         canvas.width = nw * dpr; canvas.height = nh * dpr
         canvas.style.width = `${nw}px`; canvas.style.height = `${nh}px`
@@ -240,11 +240,10 @@ export default function GenerativeCanvas() {
         ctx.globalAlpha=1
       }
 
-      rafRef.current = requestAnimationFrame(draw)
     }
 
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [modeIdx, palIdx, pal])
 
   const handlePointer = useCallback((e: React.PointerEvent) => {

@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useState, useCallback } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
@@ -20,7 +21,6 @@ export default function StageRotation() {
   const [rotation, setRotation] = useState(0)
   const dragging = useRef(false)
   const lastAngle = useRef(0)
-  const rafRef = useRef(0)
   const velocity = useRef(0)
 
   const getAngle = useCallback((e: React.PointerEvent) => {
@@ -39,7 +39,7 @@ export default function StageRotation() {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
       const w = rect.width, h = rect.height
-      if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (w < 10 || h < 10) { return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr; canvas.height = h * dpr
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
@@ -152,11 +152,10 @@ export default function StageRotation() {
       ctx.fillStyle = ink + '0.25)'
       ctx.fillText(`Facing: ${facingScene.label}`, cx, 16)
 
-      rafRef.current = requestAnimationFrame(draw)
     }
 
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [rotation])
 
   return (

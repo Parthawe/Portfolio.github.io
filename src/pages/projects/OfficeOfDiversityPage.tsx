@@ -45,7 +45,7 @@ export default function OfficeOfDiversityPage() {
 
         <CsSection id="cs-glimpse" label="Glimpse" title="A Report That Needed To Be Read, Not Just Posted">
           <CsBody>
-            <p>The work here was practical: take the 2024 IDBEA report for NYU Tisch's Office of Diversity and shape it into a web experience people could scan, navigate, and return to. This page does not need a long process story; the value was in clean publishing, clear structure, responsive presentation, and accessible handling of institutional content.</p>
+            <p>I shaped the 2024 IDBEA report for NYU Tisch's Office of Diversity into a web experience people could scan, navigate, and return to. The work focused on clear structure, responsive presentation, and accessible handling of institutional content.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Problem</span>

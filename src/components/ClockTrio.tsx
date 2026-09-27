@@ -1,3 +1,4 @@
+import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
@@ -12,7 +13,6 @@ import { useRef, useEffect } from 'react'
 
 export default function ClockTrio() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const rafRef = useRef(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -22,10 +22,10 @@ export default function ClockTrio() {
     const draw = () => {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const parent = canvas.parentElement
-      if (!parent) { rafRef.current = requestAnimationFrame(draw); return }
+      if (!parent) { return }
       const rect = parent.getBoundingClientRect()
       const w = rect.width, h = rect.height
-      if (w < 10 || h < 10) { rafRef.current = requestAnimationFrame(draw); return }
+      if (w < 10 || h < 10) { return }
       if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
         canvas.width = w * dpr; canvas.height = h * dpr
         canvas.style.width = `${w}px`; canvas.style.height = `${h}px`
@@ -242,11 +242,10 @@ export default function ClockTrio() {
       ctx.fillStyle = ink + '0.2)'
       ctx.fillText(displayTime, w / 2, 20)
 
-      rafRef.current = requestAnimationFrame(draw)
     }
 
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    return () => activity.dispose()
   }, [])
 
   return (
