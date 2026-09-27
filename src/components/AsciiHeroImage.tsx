@@ -42,33 +42,16 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
     camera.position.set(0, .25, 5.8)
     const material = new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: .45, metalness: .12, side: THREE.DoubleSide })
     const mesh = createAsciiModel(model, material)
-    const palettes: Record<string, string[]> = {
-      cube: ['#244bdb', '#7132d6', '#ed4678'],
-      orbit: ['#175ade', '#00a7a5', '#b34ae3'],
-      glasses: ['#2759e0', '#9443df', '#e24694'],
-      coin: ['#9c3bc9', '#ed7540', '#c89216'],
-      coins: ['#126bc0', '#16a690', '#b89126'],
-      rings: ['#dc366e', '#8a38d4', '#295bdd'],
-      lens: ['#166cbd', '#089d91', '#6c56d7'],
-      cross: ['#047f85', '#1ba675', '#3779d1'],
-      arch: ['#d35b31', '#c83b7c', '#6551ce'],
-      reel: ['#d44774', '#b53fc5', '#405ce1'],
-      teapot: ['#168b82', '#548f36', '#c9862b'],
-      knot: ['#2752d9', '#9441d2', '#e3478c'],
-    }
-    const palette = (palettes[model] || palettes.knot).map(value => new THREE.Color(value))
-    // Color lives on the surface, so the glyph colors turn with the geometry.
-    mesh.updateMatrixWorld(true)
-    const point = new THREE.Vector3()
+    // One Fintech palette for every object. Each part has a solid base color;
+    // only the scene lighting changes its shade as the object rotates.
+    const palette = ['#126bc0', '#16a690', '#b89126'].map(value => new THREE.Color(value))
+    let partIndex = 0
     mesh.traverse(object => {
       if (!(object instanceof THREE.Mesh)) return
       const positions = object.geometry.getAttribute('position')
       const colors = new Float32Array(positions.count * 3)
+      const color = palette[partIndex++ % palette.length]
       for (let index = 0; index < positions.count; index++) {
-        point.fromBufferAttribute(positions, index).applyMatrix4(object.matrixWorld)
-        const t = THREE.MathUtils.clamp((point.x + point.y * .65 + point.z * .35 + 1.7) / 3.4, 0, 1) * 2
-        const stop = Math.min(1, Math.floor(t))
-        const color = palette[stop].clone().lerp(palette[stop + 1], t - stop)
         color.toArray(colors, index * 3)
       }
       object.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
