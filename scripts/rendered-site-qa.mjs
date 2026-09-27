@@ -57,6 +57,9 @@ async function inspectRoute(browser, route, viewport) {
     const staticHtml = await response?.text() || ''
     const staticCanonical = staticHtml.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/i)?.[1]
     await page.locator('#main-content').waitFor({ state: 'attached', timeout: 20_000 })
+    // Category headings arrive in a separate lazy-loaded hero chunk.
+    // About intentionally has no h1; retain its existing explicit exception.
+    if (route !== '/about') await page.locator('h1').first().waitFor({ state: 'attached', timeout: 20_000 })
     await page.waitForTimeout(500)
     await page.waitForFunction(() => !!document.querySelector('meta[name="robots"]'), undefined, { polling: 100, timeout: 30_000 })
 

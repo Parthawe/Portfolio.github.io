@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test'
+import { revealForMeasurement } from './visible-layout-qa.mjs'
 
 export async function checkProjectCardMotion(browser, base, widths = [1187, 390]) {
   for (const width of widths) {
@@ -6,7 +7,7 @@ export async function checkProjectCardMotion(browser, base, widths = [1187, 390]
       const page = await browser.newPage({ viewport: { width, height: 979 }, reducedMotion: 'no-preference' })
       await page.goto(`${base}${route}`)
       const card = page.locator('a.pcard').first()
-      await card.scrollIntoViewIfNeeded()
+      await revealForMeasurement(card)
       await page.mouse.move(0, 0)
       const track = card.locator('.pcard-marquee-track')
       await expect.poll(() => track.evaluate(element =>
@@ -40,6 +41,7 @@ export async function checkHomepageCards(page, width, theme) {
   await expect(cards).toHaveCount(4)
   await cards.first().scrollIntoViewIfNeeded()
   for (const card of await cards.all()) {
+    await revealForMeasurement(card)
     await expect(card).toHaveCSS('display', 'block')
     await expect(card.locator('.pcard-top-row')).toHaveCSS('position', 'absolute')
     await expect(card.locator('.pcard-name')).toHaveCSS('position', 'absolute')
