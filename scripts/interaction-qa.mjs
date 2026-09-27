@@ -1,4 +1,5 @@
 import { chromium, expect } from '@playwright/test'
+import { revealForMeasurement } from './visible-layout-qa.mjs'
 import { checkMarquees } from './marquee-qa.mjs'
 import { checkProjectCardMotion } from './homepage-cards-qa.mjs'
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:4175'
@@ -29,12 +30,20 @@ try {
     await page.mouse.wheel(0, 500)
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(900)
     await page.evaluate(() => window.scrollTo({ top: 350, behavior: 'instant' }))
-    const before = await page.evaluate(() => window.scrollY)
-    await page.locator('a.pcard[href="/mentra"]').click()
+    const projectLink = page.locator('a.pcard[href="/mentra"]')
+    await revealForMeasurement(projectLink)
+    // Playwright may scroll a card before clicking it. Capture the actual
+    // navigation position at the click, after that automatic scroll.
+    await projectLink.evaluate(element => element.addEventListener('click', () => {
+      sessionStorage.setItem('qa-history-scroll-y', String(window.scrollY))
+    }, { once: true, capture: true }))
+    await projectLink.click()
     await expect(page.locator('.proj-visual-hero h1')).toContainText('Mentra')
     await page.goBack()
     await expect(page.getByRole('heading', { name: 'Work', exact: true })).toBeVisible()
-    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(before - 100)
+    await expect.poll(() => page.evaluate(() => Math.abs(
+      window.scrollY - Number(sessionStorage.getItem('qa-history-scroll-y'))
+    ))).toBeLessThan(100)
     await page.goto(`${base}/mentra/`)
     await page.getByRole('button', { name: 'Reveal the Mentra product story', exact: true }).click()
     await expect(page.locator('#cs-context')).toBeAttached()
