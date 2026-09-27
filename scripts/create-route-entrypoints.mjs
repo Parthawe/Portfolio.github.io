@@ -126,6 +126,7 @@ const canonicalAliases = new Map([
   ['design-engineer', 'design-engineering'],
   ['creative-tech', 'design-engineering'],
   ['brand', 'brand-visual'],
+  ['visual-brand', 'brand-visual'],
   ['healthcare', 'design-for-good'],
 ])
 
@@ -197,6 +198,7 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
   .filter(Boolean)
 const routes = [...new Set([
   ...sitemapRoutes,
+  ...canonicalAliases.keys(),
   'accessibility',
   'book',
   'graveyard',
