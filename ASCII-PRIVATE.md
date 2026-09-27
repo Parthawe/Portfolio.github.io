@@ -1,8 +1,8 @@
-# Private 3D ASCII category heroes — awaiting approval
+# 3D ASCII category heroes — approved for publication
 
-Do not push this branch, publish these files, merge the experiment, or deploy it without explicit user approval.
+The user explicitly approved deployment and publication in this task. The earlier private-preview restriction is lifted for this reviewed release.
 
-Only category landing-page hero objects are replaced. Home, Work, About, project cards, and case studies keep their existing visuals.
+Category hero objects use the shared ASCII renderer. Subsequent approved changes replace the image in the shared “Parth Pawar does” section, refine About typography and statistics, fix pointer behavior, and stabilize category card layouts.
 
 ## Local previews
 
@@ -32,4 +32,4 @@ Three.js AsciiEffect and OrbitControls render actual geometry with a shared Fint
 - Teapot example: https://threejs.org/examples/webgl_geometry_teapot.html
 - Three.js MIT license: https://threejs.org/license/
 
-The code assembles installed Three.js primitives and imports its addons; no external artwork or unlicensed source was copied. The old ASCII change was reverted from the active project-fixes PR. Its historical commit remains public; these new studies have not been pushed.
+The code assembles installed Three.js primitives and imports its addons; no external artwork or unlicensed source was copied. The old ASCII change was reverted from the active project-fixes PR. Its historical commit remains public; the reviewed changes are now approved for release.
