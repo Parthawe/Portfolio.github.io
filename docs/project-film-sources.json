@@ -1,0 +1,44 @@
+{
+  "996020149": {
+    "slug": "jugalbandi",
+    "source": "Jugalbandi.mp4",
+    "sha256": "7b5c0e72cc79c9cf7f59b34337dc6accb799d6f6c9f774505769d8c4e00ee36d",
+    "bytes": 28896575
+  },
+  "895893649": {
+    "slug": "enigma",
+    "source": "Engima.mp4",
+    "sha256": "78b3b8ed6d8e71455645682f87f2453593770b0865c4424320abfc29f018c088",
+    "bytes": 5052062
+  },
+  "897796834": {
+    "slug": "shuffle",
+    "source": "Shuffle.mp4",
+    "sha256": "66cc4c2ead3dd6acd6bb5c9c3618732a5f69b669738218d15013f137b8f405f0",
+    "bytes": 4003863
+  },
+  "1026164956": {
+    "slug": "drowning",
+    "source": "Drowning.mp4",
+    "sha256": "c20224fad0f6dec9be4bf69be78af26831833c290b51aef792adce168bf6b9f8",
+    "bytes": 5788990
+  },
+  "1010457989": {
+    "slug": "making-of-time",
+    "source": "Video of making of time.mp4",
+    "sha256": "bf28caaf9983037d9ddcc861f3407c7f407f8cd010ef4b65de5e29ca4fbf3c52",
+    "bytes": 7558354
+  },
+  "996025152": {
+    "slug": "moniac-machine",
+    "source": "Moniac Final 1.mp4",
+    "sha256": "039aaa128bee0a878921e865e1d5c3818c2cfe6444f191edbc5cfc5c3a8cd44f",
+    "bytes": 4026092
+  },
+  "996020990": {
+    "slug": "the-omakase",
+    "source": "Omakase.mp4",
+    "sha256": "a9d27b44ded22722417bbdf358969edab6699d0a4a52781393b68df43e7227e8",
+    "bytes": 16804797
+  }
+}

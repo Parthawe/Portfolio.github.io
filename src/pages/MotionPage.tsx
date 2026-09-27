@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState, type CSSProperties, type PointerEvent } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Navigate, useLocation } from 'react-router-dom'
 import Nav from '../components/Nav'
+import CategoryAsciiArtifact from '../components/CategoryAsciiArtifact'
 import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
 import { Reveal } from '../components/Reveal'
@@ -15,6 +15,7 @@ import CsSteps from '../components/case-study/CsSteps'
 import NextProject from '../components/case-study/NextProject'
 import BottomNav from '../components/case-study/BottomNav'
 import EditingMotionCaseStudy from './EditingMotionCaseStudy'
+import { campaignCaptions } from '../data/campaignCaptions'
 import transfiMotion from '../../Assets/Projects/cover/Transfi.gif'
 import '../styles/motion.css'
 
@@ -469,16 +470,27 @@ function VishwaCampaignBrief() {
 
 function CampaignVideo({ src, poster, title, note, href, className = '' }: { src: string; poster?: string; title: string; note: string; href?: string; className?: string }) {
   const [failed, setFailed] = useState(false)
+  const captions = campaignCaptions[src.split('/').pop() || '']
+  // The inspected source contains one H.264 stream and no audio stream.
+  const silent = src.endsWith('/official-product-intro.mp4')
   return (
     <figure className={`vishwa-video ${className}`.trim()}>
       <div>
-        <video controls playsInline poster={poster} preload="metadata" aria-label={title} onError={() => setFailed(true)}>
+        <video controls playsInline muted={silent} poster={poster} preload="metadata" aria-label={title} data-caption-status={captions ? 'automatic' : undefined} onError={() => setFailed(true)}>
           <source src={src} type="video/mp4" onError={() => setFailed(true)} />
+          {captions && <track kind="captions" src={captions.src} srcLang="en" label="English (automatic)" default />}
         </video>
       </div>
       <figcaption>
         <span>{title}</span>
         <small>{note}</small>
+        {silent && <small>Silent clip · no audio track</small>}
+        {captions && <details className="campaign-transcript">
+          <summary>Read automatic captions</summary>
+          <p>These captions were generated from the source audio and may contain errors.</p>
+          <p>{captions.transcript}</p>
+          <a href={captions.src} download>Download captions</a>
+        </details>}
         {failed && <p role="status">The embedded video could not load. <a href={href || src} target="_blank" rel="noreferrer">Open video separately ↗</a></p>}
         {href && <a href={href} target="_blank" rel="noreferrer">View original post ↗</a>}
       </figcaption>
@@ -811,54 +823,7 @@ function TransfiMotionSystem() {
 }
 
 function MotionHeroArtifact({ motionOn }: { motionOn: boolean }) {
-  const rawRotateX = useMotionValue(0)
-  const rawRotateY = useMotionValue(0)
-  const rotateX = useSpring(rawRotateX, { stiffness: 175, damping: 19, mass: 0.7 })
-  const rotateY = useSpring(rawRotateY, { stiffness: 175, damping: 19, mass: 0.7 })
-
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (!motionOn) return
-    const bounds = event.currentTarget.getBoundingClientRect()
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5
-    rawRotateX.set(y * -10)
-    rawRotateY.set(x * 13)
-  }
-
-  const resetTilt = () => {
-    rawRotateX.set(0)
-    rawRotateY.set(0)
-  }
-
-  return (
-    <motion.div
-      className={`motion-hero-artifact${motionOn ? '' : ' is-paused'}`}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={resetTilt}
-      onPointerCancel={resetTilt}
-      animate={motionOn ? { y: [0, -5, 2, 0], rotateZ: [0, 0.7, -0.45, 0] } : undefined}
-      transition={{ duration: 9, ease: 'easeInOut', repeat: Infinity }}
-      style={{ rotateX, rotateY, transformPerspective: 760 }}
-      aria-hidden="true"
-    >
-      <span className="motion-hero-artifact__aura" />
-      <motion.img
-        className="motion-hero-artifact__palette"
-        src="/Assets/generated/motion-palette-v1.webp"
-        alt=""
-        draggable={false}
-        animate={motionOn ? { scale: [1, 1.025, 0.992, 1] } : undefined}
-        transition={{ duration: 7.2, ease: 'easeInOut', repeat: Infinity }}
-      />
-      <span className="motion-hero-tool motion-hero-tool--play"><i /></span>
-      <span className="motion-hero-tool motion-hero-tool--timeline"><i /><i /><i /></span>
-      <span className="motion-hero-tool motion-hero-tool--curve">
-        <svg viewBox="0 0 44 44"><path d="M8 31 C14 31 14 13 22 13 S30 31 36 13" /><circle cx="8" cy="31" r="2" /><circle cx="36" cy="13" r="2" /></svg>
-      </span>
-      <span className="motion-hero-tool motion-hero-tool--frame"><i /><i /><i /><i /></span>
-      <span className="motion-hero-artifact__timecode">00:12:24</span>
-    </motion.div>
-  )
+  return <div className="motion-hero-artifact"><CategoryAsciiArtifact slug="motion" motionEnabled={motionOn} /></div>
 }
 
 function MotionLanding({ motionOn }: { motionOn: boolean }) {

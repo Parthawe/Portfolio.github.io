@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
 
 interface CsSectionProps {
   id?: string;
@@ -10,30 +9,22 @@ interface CsSectionProps {
 
 export default function CsSection({ id, title, children }: CsSectionProps) {
   return (
-    <motion.section
+    <section
       className="cs-section"
       id={id}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
     >
       <div className="wrap cs-section-grid">
         <div className="cs-section-head">
-          <motion.h2
+          <h2
             className="cs-section-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
           >
             {title}
-          </motion.h2>
+          </h2>
         </div>
         <div className="cs-section-content">
           {children}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

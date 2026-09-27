@@ -304,3 +304,12 @@
   .wr-about-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
   .wr-about-bottom-right { flex-wrap: wrap; gap: 0.5rem; }
 }
+
+/* Shared animated object replaces the photo in the discipline carousel. */
+.wr-about-ascii-object {
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+}
+@media (max-width: 768px) {
+  .wr-about-ascii-object { width: min(100%, 250px); }
+}

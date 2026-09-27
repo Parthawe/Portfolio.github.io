@@ -558,6 +558,7 @@
 .typeface-page .glyph-editor > .wrap {
   width: 100%;
   max-width: none;
+  margin-inline: 0;
 }
 
 .typeface-page .gp-controls,

@@ -51,6 +51,12 @@ jobs:
           QA_BASE_URL: https://designwhich.works
         run: node scripts/interaction-qa.mjs
 
+      - name: Verify project media, captions, and camera controls
+        if: always()
+        env:
+          QA_BASE_URL: https://designwhich.works
+        run: bun run qa:project-pages
+
       - name: Measure production performance
         if: always()
         id: performance-qa

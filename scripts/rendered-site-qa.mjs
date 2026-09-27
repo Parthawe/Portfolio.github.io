@@ -4,7 +4,7 @@ import { chromium } from '@playwright/test'
 const baseUrl = (process.env.QA_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/, '')
 const sitemapPath = process.env.QA_SITEMAP_PATH || 'public/sitemap.xml'
 const reportPath = process.env.QA_RENDERED_REPORT_PATH || 'qa-rendered-report.md'
-const concurrency = Number(process.env.QA_RENDERED_CONCURRENCY || 2)
+const concurrency = Math.max(1, Math.min(8, Number(process.env.QA_RENDERED_CONCURRENCY) || 2))
 const extraRoutes = [
   '/accessibility',
   '/book',
@@ -23,7 +23,8 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) 
   const pathname = new URL(match[1]).pathname
   return pathname === '/' ? pathname : pathname.replace(/\/$/, '')
 })
-const routes = [...new Set([...sitemapRoutes, ...extraRoutes])]
+const selectedRoutes = process.env.QA_RENDERED_ROUTES?.split(',').map(route => route.trim()).filter(Boolean)
+const routes = [...new Set(selectedRoutes?.length ? selectedRoutes : [...sitemapRoutes, ...extraRoutes])]
 
 async function inspectRoute(browser, route, viewport) {
   const page = await browser.newPage({ viewport })
@@ -32,6 +33,7 @@ async function inspectRoute(browser, route, viewport) {
   const issues = []
   const warnings = []
   let status = 0
+  let timedOut = false
 
   page.on('console', (message) => {
     if (message.type() !== 'error') return
@@ -56,7 +58,7 @@ async function inspectRoute(browser, route, viewport) {
     const staticCanonical = staticHtml.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/i)?.[1]
     await page.locator('#main-content').waitFor({ state: 'attached', timeout: 20_000 })
     await page.waitForTimeout(500)
-    await page.waitForFunction(() => !!document.querySelector('meta[name="robots"]'))
+    await page.waitForFunction(() => !!document.querySelector('meta[name="robots"]'), undefined, { polling: 100, timeout: 30_000 })
 
     const result = await page.evaluate(() => {
       const isVisible = (element) => {
@@ -107,6 +109,8 @@ async function inspectRoute(browser, route, viewport) {
         audibleVideosWithoutCaptions: [...document.querySelectorAll('video')]
           .filter((video) => !video.muted && !video.querySelector('track[kind="captions"],track[kind="subtitles"]'))
           .map((video) => video.getAttribute('aria-label') || video.currentSrc || 'Unlabelled video'),
+        automaticCaptions: [...document.querySelectorAll('video[data-caption-status="automatic"]')]
+          .map(video => video.getAttribute('aria-label') || 'Video'),
         appError: /this frame stopped rendering|page not found|404/i.test(document.body.innerText || ''),
       }
     })
@@ -138,10 +142,14 @@ async function inspectRoute(browser, route, viewport) {
         .map(([key]) => key)
       if (missing.length) issues.push(`Project presentation missing: ${missing.join(', ')}`)
     }
+    if (result.automaticCaptions.length) {
+      warnings.push(`Automatic captions need editorial review: ${result.automaticCaptions.join(', ')}`)
+    }
     if (result.audibleVideosWithoutCaptions.length) {
       warnings.push(`Unmuted videos need audio/caption review: ${result.audibleVideosWithoutCaptions.join(', ')}`)
     }
   } catch (error) {
+    timedOut = error.name === 'TimeoutError'
     issues.push(error.message)
   } finally {
     if (consoleErrors.length) issues.push(`Console errors: ${consoleErrors.join(' | ')}`)
@@ -149,7 +157,7 @@ async function inspectRoute(browser, route, viewport) {
     await page.close()
   }
 
-  return { route, viewport: viewport.name, status, issues, warnings }
+  return { route, viewport: viewport.name, status, issues, warnings, retryable: timedOut && !consoleErrors.length && !pageErrors.length }
 }
 
 async function mapWithConcurrency(items, limit, mapper) {
@@ -175,6 +183,17 @@ const results = await mapWithConcurrency(
   concurrency,
   ({ route, viewport }) => inspectRoute(browser, route, viewport),
 )
+// Retry only timing failures, after concurrent work has finished. Runtime,
+// console, and structural failures remain blockers. Keep recovered timeouts visible.
+for (let index = 0; index < results.length; index += 1) {
+  if (!results[index].retryable) continue
+  const { route, viewport } = checks[index]
+  const retry = await inspectRoute(browser, route, viewport)
+  retry.warnings.unshift(retry.issues.length
+    ? 'Initial concurrent load timed out; isolated retry also failed.'
+    : 'Initial concurrent load timed out; isolated retry passed.')
+  results[index] = retry
+}
 await browser.close()
 
 const failures = results.filter((result) => result.issues.length)

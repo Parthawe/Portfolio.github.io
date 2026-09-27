@@ -3310,14 +3310,8 @@ body.nav-on-dark .site-figbar.surface-glass,
 .reading-cursor-layer {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: var(--z-cursor);
   pointer-events: none;
-}
-
-/* Figma mode hides the native pointer, so the collaborator cursor must remain
-   above the inspector chrome when the pointer enters the right-hand panel. */
-body.site-tools-open .reading-cursor-layer {
-  z-index: 950;
 }
 
 .reading-cursor {
@@ -4017,6 +4011,14 @@ body.nav-on-dark .reading-cursor__note {
   transform: translate(0.82rem, -1.68rem);
 }
 
+.reading-cursor--you[data-label-align="left"] .reading-cursor__identity {
+  transform: translate(calc(-100% - 1.6rem), 0.35rem);
+}
+
+.reading-cursor--you[data-label-align="left"][data-label-side="above"] .reading-cursor__identity {
+  transform: translate(calc(-100% - 1.6rem), -1.68rem);
+}
+
 .reading-cursor--you .reading-cursor__tag {
   color: #050505;
   background: #fff;
@@ -4025,16 +4027,10 @@ body.nav-on-dark .reading-cursor__note {
     0 0.18rem 0.44rem rgba(0, 0, 0, 0.28);
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (min-width: 769px) {
-  body.collaborator-cursor-active,
-  body.collaborator-cursor-active * {
-    cursor: none !important;
-  }
-
-  body.case-study-reading.collaborator-cursor-active,
-  body.case-study-reading.collaborator-cursor-active * {
-    cursor: revert !important;
-  }
+/* Let the OS render the actual pointer at native input speed. The optional
+   identity label may follow in the DOM without delaying the click target. */
+.reading-cursor--you > .reading-cursor__glyph {
+  visibility: hidden;
 }
 
 body.case-study-reading .reading-cursor-layer,

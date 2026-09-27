@@ -71,6 +71,7 @@ jobs:
         run: |
           node scripts/rendered-site-qa.mjs
           node scripts/interaction-qa.mjs
+          bun run qa:project-pages
           node scripts/responsive-marquee-qa.mjs
       - uses: actions/upload-artifact@v4
         if: always()

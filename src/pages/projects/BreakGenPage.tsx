@@ -1,3 +1,4 @@
+import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -48,7 +49,7 @@ export default function BreakGenPage() {
           title="Prompt to keyboard"
           lede="A short thesis film shows the complete promise: describe a keyboard, shape it in 3D, and move toward fabrication instead of another moodboard."
         >
-          <iframe
+          <ExternalVideo
             src="https://player.vimeo.com/video/1091963037?title=0&byline=0&portrait=0"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen

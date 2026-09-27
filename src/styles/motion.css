@@ -2050,3 +2050,8 @@
 @media (max-width: 768px) {
   .motion-hero-artifact .motion-hero-tool--timeline { right: 2%; }
 }
+
+.campaign-transcript { width: 100%; color: var(--ink); }
+.campaign-transcript summary { min-height: 44px; padding-block: 0.75rem; cursor: pointer; font-size: 0.9375rem; }
+.campaign-transcript p { max-width: 65ch; margin: 0 0 1rem; font-size: 1rem; line-height: 1.65; }
+.campaign-transcript summary:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }

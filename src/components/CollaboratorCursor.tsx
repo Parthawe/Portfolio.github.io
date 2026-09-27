@@ -976,10 +976,13 @@ export default function CollaboratorCursor() {
         }
       }
 
-      const youX = clamp(pointer.current.x - YOU_CURSOR_TIP_OFFSET.x, 0, window.innerWidth - 118)
-      const youY = clamp(pointer.current.y - YOU_CURSOR_TIP_OFFSET.y, 0, window.innerHeight - 42)
+      // Keep the glyph tip under the real pointer; only the label avoids edges.
+      const youX = pointer.current.x - YOU_CURSOR_TIP_OFFSET.x
+      const youY = pointer.current.y - YOU_CURSOR_TIP_OFFSET.y
+      const identityWidth = you.querySelector<HTMLElement>('.reading-cursor__identity')?.offsetWidth ?? 84
+      you.dataset.labelAlign = pointer.current.x + identityWidth + 36 > window.innerWidth ? 'left' : 'right'
       const hoveredRect = hoveredLabelTarget.current?.getBoundingClientRect()
-      const shouldLiftLabel = parth.classList.contains('is-nearby') || Boolean(
+      const shouldLiftLabel = pointer.current.y > window.innerHeight - 48 || parth.classList.contains('is-nearby') || Boolean(
         hoveredRect &&
           hoveredRect.width > 0 &&
           hoveredRect.height > 0 &&

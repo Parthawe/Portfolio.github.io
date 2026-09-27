@@ -1552,3 +1552,29 @@
   .research-impact__method-point i { display: none; }
   .research-impact__method-point b { font-size: 0.58rem; }
 }
+
+/* Category collections use fixed grid cells: viewport-based column balancing
+   made the capped content area narrower on large displays and fragmented cards. */
+#lp-work > .pcard-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+  column-count: auto;
+}
+#lp-work > .pcard-masonry > * {
+  min-width: 0;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  #lp-work > .pcard-masonry {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+@media (max-width: 540px) {
+  #lp-work > .pcard-masonry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}

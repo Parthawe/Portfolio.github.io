@@ -1,4 +1,6 @@
-import { lazy, Suspense } from 'react'
+import { Component, lazy, Suspense, type ReactNode } from 'react'
+import { useWebGLAvailable } from '../hooks/useWebGLAvailable'
+import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded'
 import { useLocation, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { categories } from '../data/categories'
@@ -87,7 +89,17 @@ function addVisibleProject(
   list.push(project)
 }
 
+// This navigation is optional: a failed icon must not leave an empty strip
+// or take down the project page. Keep failure recovery local to this section.
+class DisciplineObjectsBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false }
+  static getDerivedStateFromError() { return { failed: true } }
+  render() { return this.state.failed ? null : this.props.children }
+}
+
 export default function CategoryPage() {
+  const webglAvailable = useWebGLAvailable()
+  const performanceDegraded = usePerformanceDegraded()
   const { pathname } = useLocation()
   const rawSlug = pathname.split('/').filter(Boolean).pop() ?? ''
   const slug = CATEGORY_ALIASES[rawSlug] ?? rawSlug
@@ -253,30 +265,32 @@ export default function CategoryPage() {
             {slug === 'ux-research' ? <ResearchImpactSection /> : <ParthDoesSection />}
           </Reveal>
 
-          {slug !== 'ux-research' && (
-            <Reveal>
-              <section className="lp-category-disciplines" style={{ position: 'relative' }}>
-                <FigmaFrameLabel name="Disciplines" />
-                <div className="lp-category-disciplines-grid">
-                  {CATEGORY_ANNOTATION_LINKS.map((item, index) => (
-                    <Link
-                      key={item.slug}
-                      to={item.link}
-                      className={`lp-category-discipline figma-hover${item.slug === slug || (slug === 'ai' && item.slug === 'ai-wearables') ? ' is-active' : ''}`}
-                      style={{ transitionDelay: `${index * 0.04}s` }}
-                    >
-                      <span className="lp-category-discipline-object" aria-hidden="true">
-                        <Suspense fallback={null}>
-                          <CategoryObject3D slug={item.slug} size={76} />
-                        </Suspense>
-                      </span>
-                      <span className="lp-category-discipline-label">{item.label}</span>
-                      <FigmaSelect />
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            </Reveal>
+          {slug !== 'ux-research' && webglAvailable && !performanceDegraded && (
+            <DisciplineObjectsBoundary key={slug}>
+              <Suspense fallback={null}>
+                <Reveal>
+                  <section className="lp-category-disciplines" style={{ position: 'relative' }}>
+                    <FigmaFrameLabel name="Disciplines" />
+                    <div className="lp-category-disciplines-grid">
+                      {CATEGORY_ANNOTATION_LINKS.map((item, index) => (
+                        <Link
+                          key={item.slug}
+                          to={item.link}
+                          className={`lp-category-discipline figma-hover${item.slug === slug || (slug === 'ai' && item.slug === 'ai-wearables') ? ' is-active' : ''}`}
+                          style={{ transitionDelay: `${index * 0.04}s` }}
+                        >
+                          <span className="lp-category-discipline-object" aria-hidden="true">
+                            <CategoryObject3D slug={item.slug} size={76} />
+                          </span>
+                          <span className="lp-category-discipline-label">{item.label}</span>
+                          <FigmaSelect />
+                        </Link>
+                      ))}
+                    </div>
+                  </section>
+                </Reveal>
+              </Suspense>
+            </DisciplineObjectsBoundary>
           )}
         </div>
 

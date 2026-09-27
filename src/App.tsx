@@ -129,6 +129,7 @@ export default function App() {
           <Route path="/installations" element={<CategoryPage />} />
           <Route path="/brand" element={<CategoryPage />} />
           <Route path="/brand-visual" element={<CategoryPage />} />
+          <Route path="/visual-brand" element={<Navigate to="/brand-visual" replace />} />
           <Route path="/healthcare" element={<CategoryPage />} />
           <Route path="/fintech" element={<CategoryPage />} />
           <Route path="/design-for-good" element={<CategoryPage />} />
