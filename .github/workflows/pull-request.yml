@@ -41,6 +41,7 @@ jobs:
           bun run qa:project-pages
           bun run qa:rendered
           node scripts/responsive-marquee-qa.mjs
+          node scripts/interaction-qa.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
