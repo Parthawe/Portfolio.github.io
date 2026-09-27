@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test'
+import { revealForMeasurement } from './visible-layout-qa.mjs'
 import { checkHomepageCards } from './homepage-cards-qa.mjs'
 
 export async function checkMarquees(browser, base, widths = [1187, 390]) {
@@ -9,7 +10,7 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
       await page.addInitScript(theme => localStorage.setItem('theme', theme), theme)
       await page.goto(`${base}/`)
       const strip = page.locator('.cl-marquee')
-      await strip.scrollIntoViewIfNeeded()
+      await revealForMeasurement(strip.locator('.cl-marquee-track'))
       await expect.poll(() => strip.evaluate(element => {
         const reveal = element.closest('.reveal')
         return reveal ? parseFloat(getComputedStyle(reveal).filter.match(/blur\(([\d.]+)/)?.[1] || '0') : 0
