@@ -69,6 +69,7 @@ jobs:
           QA_BASE_URL: https://designwhich.works
           QA_RENDERED_REPORT_PATH: production-rendered.md
         run: |
+          node scripts/reveal-readiness-qa.mjs
           node scripts/rendered-site-qa.mjs
           node scripts/interaction-qa.mjs
           bun run qa:project-pages
@@ -77,4 +78,6 @@ jobs:
         if: always()
         with:
           name: production-verification
-          path: production-rendered.md
+          path: |
+            production-rendered.md
+            qa-diagnostics/

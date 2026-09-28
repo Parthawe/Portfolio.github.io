@@ -30,6 +30,9 @@ jobs:
       - name: Install the QA browser
         run: bunx playwright install --with-deps chromium
 
+      - name: Verify reveal readiness checks
+        run: node scripts/reveal-readiness-qa.mjs
+
       - name: Check every rendered route at desktop and mobile sizes
         id: rendered-qa
         continue-on-error: true
@@ -91,6 +94,7 @@ jobs:
             qa-report.md
             qa-rendered-report.md
             performance-report.json
+            qa-diagnostics/
           retention-days: 30
 
       - name: Fail when production QA fails

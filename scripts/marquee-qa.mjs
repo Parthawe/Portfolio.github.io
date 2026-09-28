@@ -1,5 +1,6 @@
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { expect } from '@playwright/test'
-import { revealForMeasurement } from './visible-layout-qa.mjs'
+import { revealForMeasurement, waitForReveal } from './visible-layout-qa.mjs'
 import { checkHomepageCards } from './homepage-cards-qa.mjs'
 
 export async function checkMarquees(browser, base, widths = [1187, 390]) {
@@ -11,10 +12,30 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
       await page.goto(`${base}/`)
       const strip = page.locator('.cl-marquee')
       await revealForMeasurement(strip.locator('.cl-marquee-track'))
-      await expect.poll(() => strip.evaluate(element => {
-        const reveal = element.closest('.reveal')
-        return reveal ? parseFloat(getComputedStyle(reveal).filter.match(/blur\(([\d.]+)/)?.[1] || '0') : 0
-      })).toBeLessThan(0.5)
+      try {
+        await waitForReveal(strip.locator('.cl-marquee-track'))
+      } catch (error) {
+        const directory = process.env.QA_DIAGNOSTICS_DIR || 'qa-diagnostics'
+        mkdirSync(directory, { recursive: true })
+        const prefix = `${directory}/marquee-${width}-${theme}`
+        const state = await strip.evaluate(element => {
+          const reveal = element.closest('.reveal') || element
+          const style = getComputedStyle(reveal)
+          return {
+            url: location.href, scrollY, visibility: document.visibilityState,
+            viewport: { width: innerWidth, height: innerHeight },
+            rect: element.getBoundingClientRect().toJSON(),
+            classes: reveal.className, rootClasses: document.documentElement.className,
+            filter: style.filter, opacity: style.opacity,
+            animations: reveal.getAnimations().map(animation => ({
+              state: animation.playState, time: animation.currentTime, pending: animation.pending,
+            })),
+          }
+        })
+        writeFileSync(`${prefix}.json`, JSON.stringify(state, null, 2))
+        await page.screenshot({ path: `${prefix}.png` })
+        throw error
+      }
       const track = strip.locator('.cl-marquee-track')
       await expect(track).toHaveCSS('display', 'flex')
       await expect(track.locator('img')).toHaveCount(12)
@@ -31,7 +52,15 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
       expect(geometry.repeatError).toBeLessThan(1)
       expect(geometry.iterations).toBe('infinite')
       const before = await track.evaluate(element => getComputedStyle(element).transform)
-      await expect.poll(() => track.evaluate(element => getComputedStyle(element).transform)).not.toBe(before)
+      await expect.poll(async () => {
+        // Deferred sections can move after the entrance check. Keep this sample
+        // on screen and let the compositor paint before reading its transform.
+        await track.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+        return track.evaluate(async element => {
+          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+          return getComputedStyle(element).transform
+        })
+      }).not.toBe(before)
       if (process.env.QA_MARQUEE_SCREENSHOTS) await strip.screenshot({ path: `${process.env.QA_MARQUEE_SCREENSHOTS}/marquee-${width}-${theme}.png` })
       console.log(`PASS homepage marquee: ${width}px ${theme}, bounded logos, motion, seamless repeat geometry`)
       await checkHomepageCards(page, width, theme)
