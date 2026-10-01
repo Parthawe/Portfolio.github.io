@@ -47,8 +47,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/salt-ground.webp" alt="Salt mill grinding salt onto the black platform as the story advances" loading="eager" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/overview.webp" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="eager" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-ground.webp" alt="Salt mill grinding salt onto the black platform as the story advances" loading="eager" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/overview.webp" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="eager" /></div>
             </div>
           </div>
         </section>
@@ -57,10 +57,7 @@ export default function SeaOfSaltPage() {
         <CsExpandPreview>
         <CsSection id="cs-folktale" label="01 &mdash; The Folktale" title="A Story Told Across Oceans">
           <CsBody>
-            <p>In the Norse folktale &ldquo;Why the Sea is Salt,&rdquo; a poor man receives a magical mill that grinds whatever its owner commands: gold, food, anything.</p>
-            <p>A greedy sea captain steals it and commands it to grind salt. The mill obeys. It grinds and grinds, but the captain does not know the words to make it stop.</p>
-            <p>The captain doesn&rsquo;t know the words to make it stop.</p>
-            <p>The salt piles higher. The ship sinks. And at the bottom of the ocean, the mill grinds still. That, the story says, is why the sea is salt.</p>
+            <p>In the folktale &ldquo;Why the Sea is Salt,&rdquo; a stolen magical mill keeps grinding salt because its new owner does not know how to stop it. The accumulating salt sinks his ship. The installation turns that consequence into a physical interaction.</p>
           </CsBody>
         </CsSection>
 
@@ -70,8 +67,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--feature">
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/detail-salt-slider.webp" alt="Close-up: ground salt scattered across the slider reading 'Why the Sea is Salt'" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/slider-closeup.webp" alt="Story slider: 'Start of the Story' to 'End of the Story'" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/detail-salt-slider.webp" alt="Close-up: ground salt scattered across the slider reading 'Why the Sea is Salt'" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/slider-closeup.webp" alt="Story slider: 'Start of the Story' to 'End of the Story'" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -100,9 +97,9 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/mill-front.webp" alt="White 3D-printed salt mill, wooden dowel handle" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/materials.webp" alt="Materials: sea salt jar, coarse salt bag, mill on platform" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/salt-overflow.webp" alt="Salt overflowing after many story tellings" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/mill-front.webp" alt="White 3D-printed salt mill, wooden dowel handle" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/materials.webp" alt="Materials: sea salt jar, coarse salt bag, mill on platform" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-overflow.webp" alt="Salt overflowing after many story tellings" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -121,8 +118,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/salt-pile.webp" alt="Salt accumulated around the mill base" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/salt-spread.webp" alt="Salt spread across the platform" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-pile.webp" alt="Salt accumulated around the mill base" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-spread.webp" alt="Salt spread across the platform" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -130,14 +127,14 @@ export default function SeaOfSaltPage() {
         {/* Final wide */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/sea-of-salt/photos/final-wide.webp" alt="Complete installation: salt scattered across the dark platform" loading="lazy" /></div>
+            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/final-wide.webp" alt="Complete installation: salt scattered across the dark platform" loading="lazy" /></div>
           </div>
         </section>
 
         {/* Reflection */}
         <CsSection id="cs-reflection" label="04 &mdash; Reflection" title="What the Salt Taught Us">
           <CsBody>
-            <p>The most surprising thing: people slid slowly. We expected visitors to rush to see what happened. Instead, they moved the slider inch by inch, watching salt fall, listening to the grinding, touching the crystals on the platform. The physical cost of advancing the narrative made people careful with the story in a way that text never does.</p>
+            <p>In informal observations, some visitors advanced the slider slowly while watching and listening to the mill. That suggested a useful relationship between pacing and material feedback; it was not a controlled comparison with reading text.</p>
             <p>The folktale explains something real through an enchanted mill. The installation uses the same move: an abstract idea about narrative consequences becomes the salt produced by reading.</p>
             <p>Both rely on the gap between the real and the impossible to create meaning.</p>
             <p>Several visitors asked if they could take salt home. Treating the story&rsquo;s residue as a souvenir meant the line between narrative and material had dissolved. That was the whole point.</p>

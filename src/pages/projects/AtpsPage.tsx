@@ -16,7 +16,7 @@ export default function AtpsPage() {
     <>
       <Helmet>
         <title>ATPS &middot; Parth Pawar</title>
-        <meta name="description" content="ArtTown Podcast Series (ATPS), a weekly podcast hosted by Parth Pawar, featuring 40+ conversations with art and design professionals worldwide. 50k+ views and 18,000 hours of playtime." />
+        <meta name="description" content="ArtTown Podcast Series (ATPS), a weekly podcast hosted by Parth Pawar, featuring 40+ conversations with art and design professionals worldwide. Conversations about creative practice and careers." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ATPS · Parth Pawar" />
         <meta property="og:description" content="ArtTown Podcast Series, 40+ conversations with art and design professionals. 50k+ views." />
@@ -28,6 +28,7 @@ export default function AtpsPage() {
       <main id="main-content" className="project-main project-main--atps" style={{ '--project-color': '#7A6FF0' } as React.CSSProperties}>
 
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="brand-visual"
           backLabel="Back to Work"
@@ -81,7 +82,7 @@ export default function AtpsPage() {
                 },
                 {
                   label: 'Achievement',
-                  content: 'We successfully hosted 40+ talks with 50k+ views & 18000 hours of playtime and inspired many young minds to pursue Art & Design field.',
+                  content: 'The series brought together 40+ conversations with people working across art and design. Audience figures below are historical self-reported totals, not current analytics.',
                 },
               ]}
             />
@@ -92,7 +93,8 @@ export default function AtpsPage() {
         {/* Stats */}
         <section className="cs-section reveal" id="cs-impact">
           <div className="wrap">
-            <p className="cs-section-label">Impact</p>
+            <p className="cs-section-label">Archive totals</p>
+            <p className="cs-caption">Historical self-reported figures. The reporting period and platform export are not included, so these should not be read as current reach or comparable performance metrics.</p>
             <div className="cs-info-grid atps-impact-grid">
               <div className="cs-info-item">
                 <span className="cs-info-value">50k+</span>

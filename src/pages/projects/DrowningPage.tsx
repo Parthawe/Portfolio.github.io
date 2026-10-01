@@ -71,6 +71,7 @@ export default function DrowningPage() {
         {/* Interactive, early proof */}
         <CsSection id="cs-lighting" label="Interactive" title="Light Transforms the Space">
           <CsBody>
+            <p className="cs-caption">Browser comparison of two stage images. The production film documents the actual lighting transition.</p>
             <p>Drag the slider to see the same set change state. The scenic design only works because structure, texture, and light are designed together.</p>
           </CsBody>
           <div className="project-content-block">
@@ -103,10 +104,10 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src={drowningImages.concept} alt="Drowning, concept" loading="lazy" />
+            <img data-project-preview src={drowningImages.concept} alt="Drowning, concept" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src={drowningImages.conceptDetail} alt="Drowning, concept detail" loading="lazy" />
+            <img data-project-preview src={drowningImages.conceptDetail} alt="Drowning, concept detail" loading="lazy" />
           </div>
         </section>
 
@@ -121,10 +122,10 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src={drowningImages.design} alt="Drowning, design" loading="lazy" />
+            <img data-project-preview src={drowningImages.design} alt="Drowning, design" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src={drowningImages.designDetail} alt="Drowning, design detail" loading="lazy" />
+            <img data-project-preview src={drowningImages.designDetail} alt="Drowning, design detail" loading="lazy" />
           </div>
         </section>
 
@@ -139,10 +140,10 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img src={drowningImages.production} alt="Drowning, production" loading="lazy" />
+            <img data-project-preview src={drowningImages.production} alt="Drowning, production" loading="lazy" />
           </div>
           <div className="wrap">
-            <img src={drowningImages.productionDetail} alt="Drowning, production detail" loading="lazy" />
+            <img data-project-preview src={drowningImages.productionDetail} alt="Drowning, production detail" loading="lazy" />
           </div>
         </section>
 

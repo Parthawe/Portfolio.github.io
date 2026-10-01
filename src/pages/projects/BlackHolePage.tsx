@@ -109,7 +109,7 @@ export default function BlackHolePage() {
           <div className="black-hole-interactive">
             {IS_MOBILE ? (
               <div className="black-hole-fabric-fallback">
-                <img src="/Assets/mockups/projects/black-hole_16x9.webp" alt="Black Hole interactive installation project overview" loading="lazy" />
+                <img data-project-preview src="/Assets/mockups/projects/black-hole_16x9.webp" alt="Black Hole interactive installation project overview" loading="lazy" />
                 <div className="black-hole-fabric-fallback__copy">
                   <span>Interactive spacetime fabric</span>
                   <small>Available on desktop</small>
@@ -152,7 +152,7 @@ export default function BlackHolePage() {
         {/* ═══ 05: BINARY MERGER ═══ */}
         <CsSection id="cs-mergers" label="05 &mdash; Phenomenon" title="When Giants Collide: Binary Black Hole Mergers">
           <CsBody>
-            <p>Binary black holes spiral closer, releasing energy as gravitational waves. The simulation shows three stages: <strong>Inspiral</strong> (orbiting closer), <strong>Merger</strong> (collision), and <strong>Ringdown</strong> (settling).</p>
+            <p>Binary black holes spiral closer, releasing energy as gravitational waves. This illustrative animation shows three stages; it is not a numerical relativity simulation: <strong>Inspiral</strong> (orbiting closer), <strong>Merger</strong> (collision), and <strong>Ringdown</strong> (settling).</p>
           </CsBody>
           <div className="black-hole-interactive">
             <BinaryMerger />

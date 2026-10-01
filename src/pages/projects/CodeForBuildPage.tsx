@@ -29,6 +29,7 @@ export default function CodeForBuildPage() {
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#2B6CB0' } as React.CSSProperties}>
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="ux-design"
           backLabel="Back to Work"
@@ -44,9 +45,9 @@ export default function CodeForBuildPage() {
           heroAlt="Code for Build hero with 3D block illustrations and mobile mockups"
         />
 
-        <CsSection id="cs-glimpse" label="Glimpse" title="Coding Lessons For A Phone-Only Learner">
+        <CsSection id="cs-glimpse" label="Glimpse" title="Learning to code on a phone">
           <CsBody>
-            <p>This project is best shown as a concept glimpse, not a heavy case study. The starting point was a student persona with curiosity for web development but limited desktop access. I explored how HTML and CSS concepts could be taught on a phone by turning structure into something visual: containers, padding, images, text, and buttons became stackable 3D blocks.</p>
+            <p>I explored how students with limited desktop access could learn HTML and CSS on a phone. Containers, padding, images, text, and buttons became stackable 3D blocks.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Problem</span>
@@ -69,9 +70,9 @@ export default function CodeForBuildPage() {
         <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
             <p className="cs-section-label">Process</p>
-            <h3 className="cs-section-title">From Learning Goals To Blocks</h3>
+            <h3 className="cs-section-title">From learning goals to blocks</h3>
             <div className="cfb-process-strip" aria-label="Code for Build process map">
-              <img src={`${CFB_PHOTOS}/process-map.png`} alt="Process map showing research, insights, goals, UX, visuals, prototyping, and improvements." loading="lazy" decoding="async" />
+              <img data-project-preview src={`${CFB_PHOTOS}/process-map.png`} alt="Process map showing research, insights, goals, UX, visuals, prototyping, and improvements." loading="lazy" decoding="async" />
             </div>
             <div className="cfb-evidence-grid">
               <CsImage
@@ -90,9 +91,10 @@ export default function CodeForBuildPage() {
           </div>
         </section>
 
-        <CsSection id="cs-result" label="Result" title="The Core Interaction">
+        <CsSection id="cs-result" label="Result" title="Connect code to its output">
           <CsBody>
-            <p>The useful part of the project is the metaphor. A page is treated like a small physical build: body as the base, containers as pieces, padding as spacing, and content as placed blocks. The learner can move between the rendered screen and the 3D explanation of what the screen is made from.</p>
+            <p className="cs-caption">Interaction prototype. Learning outcomes have not been established by a documented comparative study.</p>
+            <p>Learners switch between the rendered page and its 3D structure to see how each block changes the output.</p>
           </CsBody>
           <CsImage
             src={`${CFB_PHOTOS}/two-phones.png`}
@@ -106,7 +108,7 @@ export default function CodeForBuildPage() {
               caption="The same lesson can be read as output first or code first, depending on what the learner is trying to understand."
             />
             <div className="cfb-block-card">
-              <img src={`${CFB_PHOTOS}/block-kit.png`} alt="Color-coded 3D block kit for Code for Build." loading="lazy" decoding="async" />
+              <img data-project-preview src={`${CFB_PHOTOS}/block-kit.png`} alt="Color-coded 3D block kit for Code for Build." loading="lazy" decoding="async" />
               <div>
                 <h3>Block kit</h3>
                 <p>Body, container, padding, image, icon, text, and button blocks form the visual grammar of the prototype.</p>
@@ -123,8 +125,8 @@ export default function CodeForBuildPage() {
 
         <CsSection id="cs-learning" label="Learning" title="What I Learned">
           <div className="cfb-learning-visuals" aria-label="Code for Build block system examples">
-            <img src={`${CFB_PHOTOS}/body-block.png`} alt="Single isometric body block." loading="lazy" decoding="async" />
-            <img src={`${CFB_PHOTOS}/block-stack.png`} alt="Vertical stack of colored blocks." loading="lazy" decoding="async" />
+            <img data-project-preview src={`${CFB_PHOTOS}/body-block.png`} alt="Single isometric body block." loading="lazy" decoding="async" />
+            <img data-project-preview src={`${CFB_PHOTOS}/block-stack.png`} alt="Vertical stack of colored blocks." loading="lazy" decoding="async" />
           </div>
           <CsFeatureGrid
             className="cs-feature-grid--plain"

@@ -105,9 +105,6 @@ export default function ZentipayPage() {
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
   }
 
   return (
@@ -179,13 +176,15 @@ export default function ZentipayPage() {
         <CsExpandPreview
           expanded={viewMode === 'full'}
           onExpand={() => handleViewModeChange('full')}
-          note="Continue into the trust system, transfer flows, and protected reviewer material."
+          ctaLabel="Explore the public story"
+          note="Explore the transfer flows and trust system. Detailed reviewer material is available by request."
         >
         {viewMode === 'full' ? (
           <>
             <NdaPublicStory
               slug="zentipay"
-              headline="Trust before transfer."
+              headline="Transfer flows and trust system"
+              showSummary={false}
               lede="A focused preview of the trust system: price clarity, progress states, review moments, and reusable fintech components."
               visuals={ZENTIPAY_PUBLIC_VISUALS}
             />

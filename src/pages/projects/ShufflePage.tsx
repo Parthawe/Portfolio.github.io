@@ -64,8 +64,8 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -73,6 +73,7 @@ export default function ShufflePage() {
         {/* Interactive demo */}
         <CsSection id="cs-interactive" label="Interactive" title="Redistribute Your Time">
           <CsBody>
+            <p className="cs-caption">Browser interpretation of the coupled faders. The film shows the original motorized hardware.</p>
             <p>Drag a slider and watch the system rebalance. More class can improve finals, less sleep drains energy, and a heavier job steals time from everything else.</p>
           </CsBody>
           <div className="project-content-block--roomy">
@@ -84,9 +85,9 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -94,7 +95,7 @@ export default function ShufflePage() {
         {/* Slider detail */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
+            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
           </div>
         </section>
 
@@ -147,10 +148,10 @@ export default function ShufflePage() {
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal">
-                <img src="/Assets/Projects/Shuffle/photos/underside-motors.jpg" alt="Side view of the plywood wedge with the top panel lifted, exposing eight motorised fader assemblies and wiring on standoffs" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/Shuffle/photos/underside-motors.jpg" alt="Side view of the plywood wedge with the top panel lifted, exposing eight motorised fader assemblies and wiring on standoffs" loading="lazy" decoding="async" />
               </div>
               <div className="cs-img reveal">
-                <img src="/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg" alt="Inside the enclosure: Arduino and breadboard wired with jumper cables, next to a close-up of a motorised fader mounted under the panel" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg" alt="Inside the enclosure: Arduino and breadboard wired with jumper cables, next to a close-up of a motorised fader mounted under the panel" loading="lazy" decoding="async" />
               </div>
             </div>
             <p className="cs-caption project-caption--standalone">Under the hood: motorised faders on standoffs, and the Arduino-plus-breadboard brain that redistributes the week.</p>
@@ -160,7 +161,7 @@ export default function ShufflePage() {
         {/* Exhibition */}
         <CsSection id="cs-exhibition" label="03 &mdash; In Play" title="Watching People Negotiate a Week">
           <CsBody>
-            <p>On the ITP floor, the board needed no instructions. Sliders are an invitation&mdash;people instinctively reached for them, and the moment the other faders moved on their own, the rules were understood without a word.</p>
+            <p>During informal exhibition interactions, visitors reached for the faders and noticed the others moving in response. Those observations informed the presentation; no completion-rate or comprehension study is documented here.</p>
             <p>A quick interaction often became a longer conversation about priorities and burnout. Watching someone lower Sleep to raise Finals made the tradeoff immediately legible.</p>
             <p>Friends compared slider positions side by side, turning a tactile interface into the kind of reflective debate that forms and calendars rarely create.</p>
           </CsBody>

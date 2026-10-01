@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -23,6 +22,7 @@ export default function StorytellingPage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#8b5e3c' } as React.CSSProperties}>
 
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="creative-tech"
           backLabel="Back to Work"
@@ -37,17 +37,16 @@ export default function StorytellingPage() {
           ]}
         />
 
-        <CsExpandPreview>
         <CsSection id="cs-overview" label="01 &mdash; Overview" title="Every Product Tells a Story">
           <CsBody>
-            <p>Storytelling at ITP is not a writing workshop. It&rsquo;s a course about narrative as a design material &mdash; how the sequence of information, the rhythm of interaction, and the structure of experience create meaning. Every product, installation, and interface tells a story. This course teaches you to design that story intentionally.</p>
+            <p>This course treated narrative as a design material: the order of information, the timing of an interaction, and the consequence of a choice. These are course reflections rather than a documented before-and-after redesign.</p>
             <p>The premise: features rarely explain themselves. Sequence, pacing, and framing change how people understand a product. I used the course to study how a design story can move from context, to tension, to decision, to consequence without turning into marketing copy.</p>
           </CsBody>
         </CsSection>
 
         <CsSection id="cs-frameworks" label="02 &mdash; Frameworks" title="Narrative Structures in Design">
           <CsFeatureGrid features={[
-            { title: 'The Hero\'s Journey in Onboarding', desc: 'Joseph Campbell\u2019s monomyth maps neatly to product onboarding: the user starts in their ordinary world (the problem), crosses a threshold (signup), faces trials (learning the interface), and returns with the goal completed. ZentiPay\u2019s onboarding was redesigned using this framework \u2014 each step explicitly mirrors a narrative beat.' },
+            { title: 'The Hero\'s Journey in Onboarding', desc: 'A narrative arc can help organize an onboarding critique: what does someone need, what blocks them, and what changes when they complete a step? It is a framing exercise, not evidence that a specific sequence improves conversion.' },
             { title: 'Pacing as Information Architecture', desc: 'Film editors know that rhythm creates emotion \u2014 fast cuts for tension, long takes for contemplation. The same applies to interfaces: a dense dashboard feels urgent; generous whitespace feels premium. This portfolio\u2019s pacing \u2014 hero, pause, content, pause, interactive \u2014 is a deliberate narrative rhythm.' },
             { title: 'The Unreliable Narrator in Data Viz', desc: 'Every data visualization is a story told by a narrator (the designer) who chooses what to show and what to hide. The MONIAC simulator makes this explicit: the same economic data, presented through different levers, tells different stories. The user becomes the narrator.' },
             { title: 'Spatial Storytelling', desc: 'In physical installations, the story is the space. Visitors don\u2019t read left-to-right; they wander. The designer\u2019s job is to create a spatial narrative that works regardless of entry point. Black Hole\u2019s five phenomena work in any order because each is self-contained but connects to a larger theme.' },
@@ -56,14 +55,13 @@ export default function StorytellingPage() {
 
         <CsSection id="cs-application" label="03 &mdash; Application" title="Storytelling Across My Work">
           <CsBody>
-            <p>This course reframed every project I&rsquo;d already made. Enigma isn&rsquo;t a neural network sculpture &mdash; it&rsquo;s a story about making the invisible visible, told through cascading light. The Omakase isn&rsquo;t a game &mdash; it&rsquo;s a story about two people competing for the same resource (time), told through sushi. Shuffle isn&rsquo;t a slider interface &mdash; it&rsquo;s a story about the impossibility of balance, told through interdependent tradeoffs.</p>
-            <p>The most practical takeaway: <strong>every case study page in this portfolio was rewritten using narrative structure.</strong> Before this course, my project pages were lists of features. Now they&rsquo;re stories with a hook, rising tension, a turning point, and a resolution. The reader doesn&rsquo;t just learn what I built &mdash; they experience why it matters.</p>
+            <p>In <a href="/enigma" className="project-text-link">Enigma</a>, a drawn letter precedes a cascade of light. In <a href="/shuffle" className="project-text-link">Shuffle</a>, moving one fader changes the others. Both make the consequence of an action part of the explanation.</p>
+            <p>For a case study, I now ask whether the reader can connect a constraint to a decision and then inspect what was built. Original drafts or revision artifacts are needed to demonstrate that editorial process; they are not included here.</p>
           </CsBody>
         </CsSection>
 
         <CsThanks />
 
-        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },

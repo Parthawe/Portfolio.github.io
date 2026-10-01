@@ -107,7 +107,7 @@
   .project-main .project-story__prompt .cs-expand-preview-btn { align-self: flex-start; }
 }
 
-/* Image-led disclosure for Mentra; keep the story itself deferred until opened. */
+/* Image-led disclosure for projects; keep the story itself deferred until opened. */
 .project-main .project-story__prompt--image {
   display: grid;
   place-items: center;
@@ -142,3 +142,314 @@
 .project-main .project-story__prompt--image .cs-expand-preview-btn {
   align-self: center;
 }
+
+/* Project reading controls stay available to keyboard users. */
+.project-main .cs-bottom-nav.is-hidden { visibility: hidden; }
+.project-main .cs-bottom-nav:focus-within:not(.is-hidden):not(.is-before-hero) { opacity: 1; }
+.project-main :is(.cs-img img, [data-project-preview] img) { cursor: zoom-in; }
+.project-main [data-project-preview] img:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.project-image-preview .lightbox-close { min-width: 44px; min-height: 44px; }
+.project-image-preview { flex-direction: column; gap: 1rem; padding: 64px 20px 24px; }
+.project-image-preview > img { max-height: calc(100dvh - 240px); }
+.project-image-preview .lightbox-caption { position: static; transform: none; margin: 0; width: min(90vw, 65ch); max-height: 18dvh; overflow-y: auto; color: var(--text-on-dark); }
+.project-image-preview .lightbox-caption p { margin: 0 0 0.5rem; }
+.project-image-preview .lightbox-caption a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-underline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .project-image-preview, .project-image-preview img { transition: none; }
+}
+
+/* Reference-led project reading flow: one column, steady type, quiet guides. */
+.project-main {
+  --project-body-type: 1rem;
+  --project-section-type: clamp(1.5rem, 2.4vw, 2rem);
+  --case-section-space: clamp(2.5rem, 5vw, 4rem);
+  --project-reading-width: 1040px;
+  --project-reading-gutter: clamp(20px, 4vw, 48px);
+}
+.project-main:has(.project-header--visual), .project-main.project-main--mentra-visual {
+  background: var(--bg);
+}
+.project-main::before, .project-main:has(.project-header--visual)::before, [data-theme="dark"] .project-main::before {
+  inset: 0;
+  width: min(var(--project-reading-width), calc(100% - 2 * var(--project-reading-gutter)));
+  height: auto;
+  margin-inline: auto;
+  transform: none;
+  border-inline: 1px solid var(--ink-06);
+  border-radius: 0;
+  background: linear-gradient(to right, var(--ink-04) 1px, transparent 1px);
+  background-size: 25% 100%;
+  opacity: 1;
+  filter: none;
+}
+.project-main .wrap,
+.project-main:has(.project-header--visual) .project-header--visual.wrap,
+body.case-side-nav .project-main .project-header--visual.wrap,
+.project-main.project-main--mentra-visual :is(#cs-context, #cs-impact) .wrap {
+  width: min(var(--project-reading-width), calc(100% - 2 * var(--project-reading-gutter)));
+  max-width: var(--project-reading-width);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+.project-main .project-header--visual .proj-visual-title {
+  max-width: 24ch;
+  font-size: clamp(2.2rem, 4.3vw, 3.5rem);
+  color: var(--ink);
+}
+.project-main .proj-reading-links,
+.project-main .proj-reading-deck,
+.project-main .project-header--visual .proj-visual-tag { color: var(--ink); }
+.project-main .proj-reading-deck { font-size: 1.125rem; max-width: 62ch; margin-top: 0.875rem; }
+.project-main .project-header--visual .proj-visual-hero { gap: 1.75rem; padding-top: 1.25rem; }
+.project-main .project-header--visual .proj-visual-hero__copy { color: var(--ink); }
+.project-main .proj-visual-brief {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: 2rem;
+}
+.project-main .proj-reading-summary { max-width: 72ch; gap: 1rem; }
+.project-main .proj-visual-brief .proj-visual-brief__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0;
+}
+.project-main .proj-visual-brief .proj-visual-brief__facts > div {
+  grid-column: auto;
+  grid-row: auto;
+}
+[data-theme] .project-main .proj-visual-brief :is(dt, dd, p, span, strong),
+[data-theme] .project-main:has(.project-header--visual) .proj-visual-brief :is(dt, dd, p, span, strong) {
+  color: var(--ink);
+}
+.project-main .proj-visual-brief .proj-visual-brief__copy,
+.project-main .proj-visual-brief .proj-visual-brief__facts dd {
+  max-width: 72ch;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.project-main .proj-visual-brief dt { font-size: 0.8125rem; }
+.proj-timeline-details { margin-top: 0.5rem; }
+.proj-timeline-details summary { min-height: 44px; padding-block: 0.65rem; cursor: pointer; font-size: 0.875rem; text-decoration: underline; text-underline-offset: 3px; }
+.project-main .cs-section:nth-child(n),
+.project-main.project-main--mentra-visual :is(#cs-context, #cs-impact) {
+  background: transparent;
+  color: var(--ink);
+  padding-block: var(--case-section-space);
+}
+.project-main .cs-section .cs-section-grid,
+.project-main.project-main--mentra-visual :is(#cs-context, #cs-impact, #cs-challenges, #cs-os) .cs-section-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+.project-main .cs-section .cs-section-head,
+.project-main.project-main--mentra-visual :is(#cs-context, #cs-impact) .cs-section-head {
+  position: static;
+  padding: 0;
+  text-align: left;
+}
+.project-main .cs-section .cs-section-title,
+.project-main.project-main--mentra-visual :is(#cs-context, #cs-impact, #cs-challenges, #cs-os) .cs-section-title,
+.project-main .cs-quick-summary .cs-quick-summary-title {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--ink);
+  font: 500 var(--project-section-type)/1.25 var(--sans);
+  letter-spacing: -0.025em;
+  text-align: left;
+  text-wrap: pretty;
+}
+.project-main .cs-section-content { min-width: 0; }
+.project-main .cs-section-content > :is(.cs-body, .cs-body-lg, p) { max-width: 72ch; }
+.project-main :is(.cs-body, .cs-body-lg) > p,
+.project-main.project-main--mentra-visual #cs-context .cs-mentra-problem-copy {
+  max-width: 72ch;
+  margin: 0 0 1rem;
+  color: var(--ink-70);
+  font: 400 1rem/1.7 var(--sans);
+  letter-spacing: 0;
+  text-align: left;
+  text-wrap: pretty;
+}
+.project-main .cs-quick-summary { margin-block: 1rem 2.5rem; padding-block: 1rem; }
+.project-main .cs-quick-summary-top { margin-bottom: 1.25rem; }
+.project-main .cs-quick-summary-card { padding-block: 0.75rem; }
+.project-main .cs-quick-summary-card p { font-size: 1rem; line-height: 1.65; max-width: 72ch; }
+.project-main .cs-quick-summary-quote { margin: 2rem 0 0; text-align: left; }
+.project-main .cs-quick-summary-quote p { margin-inline: 0; font-size: 1.25rem; max-width: 52ch; }
+.project-main .cs-quick-summary-quote cite { font-size: 0.875rem; }
+.project-main .cs-section .cs-feature-grid { margin-top: 1.5rem; gap: 1.5rem; }
+.project-main .cs-feature-card-title { font-size: 1rem; line-height: 1.45; }
+.project-main .cs-feature-card-desc { font-size: 1rem; line-height: 1.65; }
+.project-main.project-main--mentra-visual .cs-mentra-hypothesis { margin-block: 1.5rem; padding-block: 1rem; }
+.project-main.project-main--mentra-visual .cs-mentra-hypothesis p { font-size: 1.125rem; line-height: 1.5; }
+.project-main.project-main--mentra-visual .cs-mentra-impact-grid { gap: 1.5rem; }
+.project-main.project-main--mentra-visual .cs-mentra-impact-grid article { min-height: 0; padding: 1rem 0; background: transparent; }
+.project-main.project-main--mentra-visual .cs-mentra-impact-grid strong { font-size: 2.25rem; }
+.project-main.project-main--mentra-visual .cs-mentra-impact-grid :is(p, span),
+.project-main.project-main--mentra-visual .cs-mentra-impact-note { color: var(--ink-70); font-size: 1rem; line-height: 1.65; }
+.project-main .project-story__prompt {
+  width: min(var(--project-reading-width), calc(100% - 2 * var(--project-reading-gutter)));
+  margin-block: 1.5rem 3rem;
+}
+.project-main .project-story__prompt--image { height: clamp(16rem, 30vw, 23rem); }
+@media (max-width: 640px) {
+  .project-main .proj-visual-brief .proj-visual-brief__facts { grid-template-columns: 1fr; gap: 1rem; }
+  .project-main .cs-feature-card { grid-template-columns: 1fr; gap: 0.5rem; }
+  .project-main .cs-quick-summary-top { align-items: start; gap: 1rem; }
+  .project-main .cs-quick-summary-toggle { flex-wrap: wrap; }
+  .project-main::before { background-size: 50% 100%; }
+}
+
+.project-main.project-main--mentra-visual {
+  --mentra-type-body: 1rem;
+  --mentra-type-heading: var(--project-section-type);
+  --mentra-type-display: clamp(2.2rem, 4.3vw, 3.5rem);
+}
+.project-main:has(.project-header--visual)::after { content: none; }
+[data-theme] .project-main:has(.project-header--visual) .project-header--visual :is(.proj-visual-title, .proj-visual-project-name, .proj-visual-live) {
+  color: var(--ink);
+  text-shadow: none;
+}
+.project-main .proj-visual-live { border-color: var(--ink-30); background: var(--ink-04); }
+.project-main .proj-visual-live:hover { background: var(--ink-08); }
+
+/* Public NDA previews use the same hierarchy as open project chapters. */
+.project-main .cs-section :is(.cs-nda-story-title, .cs-nda-process-title) {
+  max-width: 34ch;
+  margin: 0;
+  font: 500 var(--project-section-type)/1.25 var(--sans);
+  letter-spacing: -0.025em;
+}
+.project-main .cs-section :is(.cs-nda-story-lede, .cs-nda-process-intro, .cs-nda-story-row-copy, .cs-nda-process-why) {
+  max-width: 72ch;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.project-main .cs-nda-process-layout {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+.project-main .cs-nda-process-list { max-width: 72ch; }
+.project-main .cs-nda-process-move { font-size: 1.125rem; line-height: 1.4; }
+.project-main .cs-nda-process-visuals { min-width: 0; }
+.project-main .cs-nda-story-head { margin-bottom: 0; }
+.project-main .cs-nda-image-card figcaption {
+  position: static;
+  width: auto;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink-70);
+  font: 400 0.875rem/1.5 var(--sans);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.project-main .cs-nda-process-num { color: var(--ink-70); }
+
+/* Apply the reading rhythm to older and bespoke project chapters too. */
+.project-main .cs-nda-story-grid { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.project-main .cs-nda-image-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.project-main .cs-nda-image-card--hero { grid-column: 1 / -1; }
+.project-main .cs-nda-image-card img { width: 100%; height: auto; object-fit: contain; }
+.project-main :is(.cs-body, .cs-body-lg) :is(ul, ol) {
+  max-width: 72ch;
+  padding-left: 1.25rem;
+  font-size: var(--project-body-type);
+  line-height: 1.7;
+  color: var(--ink-70);
+}
+.project-main :is(.cs-body, .cs-body-lg) li + li { margin-top: 0.5rem; }
+.project-main :is(.cs-label-row-val, .cs-step-desc) { font-size: 1rem; line-height: 1.7; }
+.project-main :is(.cs-img-caption, .cs-nda-process-visual figcaption) {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-70);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.project-main .proj-visual-brief__facts dd { overflow-wrap: anywhere; }
+.project-main img[role="button"] { cursor: zoom-in; }
+.project-main img[role="button"]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.project-main :is(.cs-section-title, .cs-nda-story-title, .cs-quick-summary-title) { overflow-wrap: break-word; }
+@media (max-width: 640px) {
+  .project-main .cs-nda-image-gallery { grid-template-columns: minmax(0, 1fr); }
+  .project-main .cs-feature-card-desc { grid-column: 1; }
+  .project-main .cs-quick-summary-top { flex-direction: column; }
+}
+.project-main .cs-section .cs-display {
+  max-width: 36ch;
+  margin-block: 0 1.25rem;
+  font: 500 var(--project-section-type)/1.25 var(--sans);
+  letter-spacing: -0.025em;
+  text-align: left;
+  text-wrap: pretty;
+}
+.project-main .wrap > .project-overview.wrap { width: 100%; }
+.project-main .project-overview .proj-overview-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+.project-main .project-overview .proj-overview-card { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.project-main .project-overview .proj-overview-index { display: none; }
+.project-main .project-overview .proj-overview-label { font-size: 1rem; }
+.project-main .project-overview .proj-desc { max-width: 72ch; font-size: 1rem; line-height: 1.7; }
+
+/* Project typography: stable prose, quieter labels, and readable captions. */
+.project-main {
+  --project-label-type: 0.875rem;
+  --project-body-leading: 1.7;
+}
+.project-main :is(.cs-section-title, .cs-display, .cs-quick-summary-title, .cs-nda-story-title, .cs-nda-process-title) {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+.project-main :is(.cs-step-title, .cs-feature-card-title, .cs-info-card-title) {
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.project-main :is(.cs-callout p, .cs-step-desc, .cs-info-card-desc, .cs-label-row-val) {
+  max-width: 72ch;
+  font-size: var(--project-body-type);
+  line-height: var(--project-body-leading);
+  text-wrap: pretty;
+}
+.project-main :is(.cs-label-row-key, .cs-credit-role, .cs-stat-label, .cs-quick-summary-label, .cs-nda-story-row-label) {
+  font-family: var(--sans);
+  font-size: var(--project-label-type);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink-70);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.project-main :is(.cs-img-caption, .cs-caption, .cs-nda-image-card figcaption, .cs-nda-process-visual figcaption) {
+  font-family: var(--sans);
+  font-size: var(--project-label-type);
+  font-weight: 400;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.project-main .proj-reading-deck { text-wrap: pretty; line-height: 1.6; }
+.project-main .cs-body :is(a, strong, em) { font-size: inherit; }
+.project-main.project-main--raahi :is(.raahi-research-brief, .raahi-research-questions, .raahi-study-boundary) span,
+.project-main.project-main--raahi .raahi-decision-ledger__head {
+  font-family: var(--sans);
+  font-size: var(--project-label-type);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink-70);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.project-main.project-main--raahi :is(.raahi-research-brief, .raahi-research-questions, .raahi-study-boundary, .raahi-decision-ledger article) p {
+  font-size: var(--project-body-type);
+  line-height: var(--project-body-leading);
+  color: var(--ink-70);
+  text-wrap: pretty;
+}
+.project-main.project-main--raahi .raahi-decision-ledger article p:last-child { font-weight: 500; color: var(--ink); }

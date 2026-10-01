@@ -46,7 +46,7 @@ export default function MediMorphoPage() {
           visualTitleMode="stacked"
           visualHeroMedia={(
             <div className="medimorpho-hero-photo">
-              <img
+              <img data-project-preview
                 src={COVER}
                 alt="NYU Langone Health building signage for the healthcare UX research case study."
                 loading="eager"

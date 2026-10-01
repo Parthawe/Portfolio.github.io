@@ -52,7 +52,7 @@ export default function NdaProcess({
           </ol>
 
           {visuals.length ? (
-            <div className="cs-nda-process-visuals" aria-label="Process visuals">
+            <div className="cs-nda-process-visuals" data-project-preview aria-label="Process visuals">
               {visuals.map((visual) => (
                 <figure className="cs-nda-process-visual" key={visual.src}>
                   <img src={visual.src} alt={visual.alt} loading="lazy" decoding="async" />
@@ -67,7 +67,6 @@ export default function NdaProcess({
           <section className="cs-nda-impact" aria-labelledby="cs-nda-impact-title">
             <div className="cs-nda-impact-head">
               <h3 id="cs-nda-impact-title">Impact / result</h3>
-              <p>The useful shift, without adding a long report.</p>
             </div>
             <div className="cs-nda-process-shift" aria-label="What changed, described">
               <div className="cs-nda-process-shift-col">

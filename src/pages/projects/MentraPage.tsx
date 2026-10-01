@@ -27,7 +27,7 @@ export default function MentraPage() {
       ]
     : [
         { id: 'cs-summary', label: 'Quick read' },
-        { id: 'cs-context', label: 'Problem' },
+        { id: 'cs-context', label: 'Challenge' },
         { id: 'cs-bet', label: 'Hypotheses' },
         { id: 'cs-companion', label: 'First use' },
         { id: 'cs-os', label: 'Runtime' },
@@ -41,9 +41,6 @@ export default function MentraPage() {
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
   }
 
   useEffect(() => {
@@ -51,7 +48,7 @@ export default function MentraPage() {
     const targetId = location.hash.replace('#', '')
     if (!targetId) return
 
-    if (targetId !== 'cs-summary') {
+    if (targetId !== 'cs-summary' && targetId !== 'project-overview') {
       setViewMode('full')
     }
 
@@ -118,7 +115,7 @@ export default function MentraPage() {
           onViewModeChange={handleViewModeChange}
           variant="open"
           label=""
-          title="Why Mentra had to become a system"
+          title="Project overview"
           proofLimit={0}
         />
 
@@ -128,15 +125,15 @@ export default function MentraPage() {
           cta="Read the full case study"
           previewImage="/Assets/mockups/projects/mentra_16x9.webp"
         >
-        <CsSection id="cs-context" title="Problem">
+        <CsSection id="cs-context" title="Make first use and everyday control clear">
           <p className="cs-mentra-problem-copy">
-            After unboxing, people spent 9 minutes 40 seconds reaching first value. Even those who completed setup could not tell what was running, which sensors were active, or how to regain control. The hardware worked; the product system did not yet make confidence last.
+            The design challenge was to shorten setup and make active apps, sensor access, and recovery understandable across the glasses and companion app.
           </p>
         </CsSection>
 
         <CsSection id="cs-bet" title="Reduce decisions, then make every state legible">
           <CsBody>
-            <p>Research narrowed the work to two hypotheses. If people reached one useful interaction with fewer steps, more would complete onboarding and return. If every tap produced immediate, clear feedback, they would move with more confidence.</p>
+            <p>Research pointed to two priorities: reach a useful interaction sooner, and give clear feedback for every action.</p>
           </CsBody>
           <div className="cs-mentra-hypothesis">
             <span>01 / Activation</span>
@@ -155,7 +152,7 @@ export default function MentraPage() {
           />
         </CsSection>
 
-        <CsSection id="cs-companion" title="Prove value before setup fatigue wins">
+        <CsSection id="cs-companion" title="First use: pair, confirm, and try">
           <CsBody>
             <p>I mapped every path, state, and recovery step, then separated activation from education. The first-run flow kept only what a person needed to pair the glasses and complete one useful interaction.</p>
             <p>Progress stayed visible. Pairing always showed status and success. Optional help moved into a manual so learning could continue without blocking activation.</p>
@@ -175,7 +172,7 @@ export default function MentraPage() {
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-os" title="Put state and control in one predictable place">
+        <CsSection id="cs-os" title="Runtime: status and control together">
           <CsBody>
             <p>A visual cleanup improved first-week retention, but feedback showed that people still could not tell what was running. The issue was the operating model, not the polish.</p>
             <p>I prototyped ten directions and tested three: a persistent dock, a card switcher, and a bottom drawer. The drawer balanced recognition with low distraction and gave active and background MiniApps one home.</p>
@@ -210,7 +207,7 @@ export default function MentraPage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-store" title="Make the device worth returning to, and worth building for">
+        <CsSection id="cs-store" title="MiniApps: discover, start, switch, and stop">
           <CsBody>
             <p>Once first use and runtime control had a clear model, the same rules could extend to the ecosystem. MiniApps needed transparent permissions, predictable states, and discovery organized around intent rather than a tiny phone-style grid.</p>
             <p><Link to="/mentra-miniapps">The store has its own case study &rarr;</Link></p>
@@ -227,10 +224,10 @@ export default function MentraPage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-website" title="Sell the platform, not the gadget">
+        <CsSection id="cs-website" title="Launch: explain the platform">
           <div className="cs-mentra-web-block">
             <figure>
-              <img src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
               <figcaption>Live site flow: field use, integrations, and product proof.</figcaption>
             </figure>
             <div className="cs-mentra-web-copy">
@@ -254,7 +251,7 @@ export default function MentraPage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-impact" title="What difference did we make?">
+        <CsSection id="cs-impact" title="Results from product testing">
           <p className="cs-mentra-evidence-context">Directional results from separate product-testing rounds on an evolving product. Each comparison uses the same task definition within its own round; sample sizes and study dates are not included in this public case study.</p>
           <div className="cs-mentra-impact-grid" aria-label="Mentra product testing outcomes">
             <article>
@@ -273,10 +270,10 @@ export default function MentraPage() {
               <span>from 22% to 41%.</span>
             </article>
           </div>
-          <p className="cs-mentra-impact-note">The meaningful shift was not one isolated screen. A shared operating model improved activation, made state and recovery easier to understand, and carried the same language across the companion app, MentraOS, MiniApps, developer story, and launch website.</p>
+          <p className="cs-mentra-impact-note">The shared operating model connected activation, status, and recovery across the companion app, MentraOS, MiniApps, and launch website.</p>
         </CsSection>
 
-        <CsSection id="cs-learnings" title="What building for the face changed">
+        <CsSection id="cs-learnings" title="What I learned">
           <CsFeatureGrid features={[
             { title: 'Activation is not education', desc: 'First use should prove one useful moment. Deeper learning can remain available without blocking it.' },
             { title: 'Polish cannot repair a weak model', desc: 'The first visual cleanup helped, but runtime confidence improved only after state and control moved together.' },
@@ -285,7 +282,7 @@ export default function MentraPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-whats-next" title="The system is shipping. The learning continues.">
+        <CsSection id="cs-whats-next" title="Next steps">
           <CsBody>
             <p>The next work is to test the model at larger scale: tune notification intelligence, make the first external-developer experience clearer, and build accessibility patterns before the hardware surface expands.</p>
           </CsBody>

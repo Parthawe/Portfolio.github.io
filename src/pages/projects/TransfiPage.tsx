@@ -63,7 +63,7 @@ const TRANSFI_REVIEWER_SECTIONS = [
   {
     eyebrow: '02 / Payment journey',
     title: 'Turn crypto payment risk into readable steps.',
-    body: 'The flow artifacts map currency choice, wallet/payment method selection, confirmation, order status, and transaction outcomes as a sequence of reviewable moments.',
+    body: 'Read the screens as a sequence: choose currency, choose a wallet or payment method, review the order, then inspect its status and outcome. Separating review from status makes it clearer which decisions remain editable and which transaction has already been submitted. These artifacts show the designed flow, not a measured before-and-after conversion result.',
     images: [
       {
         label: 'Currency choice',
@@ -173,7 +173,7 @@ function TransfiReviewerStory() {
                 className={`transfi-reviewer-shot${image.tall ? ' transfi-reviewer-shot--tall' : ''}`}
                 key={image.src}
               >
-                <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                <img data-project-preview src={image.src} alt={image.alt} loading="lazy" decoding="async" />
                 <figcaption>{image.label}</figcaption>
               </figure>
             ))}
@@ -201,9 +201,6 @@ export default function TransfiPage() {
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
   }
 
   return (
@@ -253,6 +250,7 @@ export default function TransfiPage() {
 
         <ProjectQuickSummary
           slug="transfi-project"
+          title="Project overview"
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
         />
@@ -260,20 +258,22 @@ export default function TransfiPage() {
         <CsExpandPreview
           expanded={viewMode === 'full'}
           onExpand={() => handleViewModeChange('full')}
-          note="Continue into the product decisions, payment flows, and protected reviewer material."
+          ctaLabel="Explore the public story"
+          note="Product decisions and payment flows. Detailed reviewer material is available by request."
         >
         {viewMode === 'full' ? (
           <>
             <NdaPublicStory
               slug="transfi-project"
-              headline="Trust made operational."
-              lede="A public preview of the redesign shape: dashboards, widgets, and merchant-facing flows without exposing confidential constraints."
+              headline="Dashboard and payment flows"
+              showSummary={false}
+              lede="Public screens from the merchant dashboard and payment widget."
               visuals={TRANSFI_PUBLIC_VISUALS}
             />
 
             <NdaProcess
               title="How I approached it"
-              intro="Two moves shaped the redesign: make trust visible in the interface, then focus the work around the highest-risk payment moments."
+              intro="I focused on payment status, confirmation, and the steps most likely to confuse users."
               visuals={TRANSFI_PROCESS_VISUALS}
               decisions={[
                 {

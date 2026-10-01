@@ -69,7 +69,7 @@ export default function DumbWaiterPage() {
           lede="The model treats Pinter's waiting room as a pressure chamber: a basement with beds, doors, weapons, a gramophone, and a dumb waiter that behaves like an unseen command system."
           actionLabel="Scenic model"
         >
-          <img
+          <img data-project-preview
             src={dumbWaiterImages.wall}
             alt="Close scenic model view showing Ben and Gus staged near the stairs, bed, and dark wall."
             loading="lazy"
@@ -95,8 +95,8 @@ export default function DumbWaiterPage() {
               </CsBody>
             </div>
             <div className="wrap dumb-waiter-media-grid">
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.roomDepth} alt="Depth view through the basement scenic model with Ben and Gus in the room." loading="lazy" decoding="async" />
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.doorway} alt="Close view of a hitman figure framed in a narrow doorway." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.roomDepth} alt="Depth view through the basement scenic model with Ben and Gus in the room." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.doorway} alt="Close view of a hitman figure framed in a narrow doorway." loading="lazy" decoding="async" />
             </div>
           </section>
 
@@ -110,8 +110,8 @@ export default function DumbWaiterPage() {
               </CsBody>
             </div>
             <div className="wrap dumb-waiter-media-grid dumb-waiter-media-grid--wide">
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.overhead} alt="Overhead view of the scenic model showing stair, bed, gramophone, and wall placement." loading="lazy" decoding="async" />
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.staircaseWeapons} alt="Overhead detail of the staircase and weapons wall in the scenic model." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.overhead} alt="Overhead view of the scenic model showing stair, bed, gramophone, and wall placement." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.staircaseWeapons} alt="Overhead detail of the staircase and weapons wall in the scenic model." loading="lazy" decoding="async" />
             </div>
           </section>
 
@@ -125,11 +125,11 @@ export default function DumbWaiterPage() {
               </CsBody>
             </div>
             <div className="wrap dumb-waiter-media-grid">
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.weaponWall} alt="Close view of the weapons wall and dumb waiter opening." loading="lazy" decoding="async" />
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.bathMirror} alt="Bathroom and mirror detail seen through a narrow dark opening." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.weaponWall} alt="Close view of the weapons wall and dumb waiter opening." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.bathMirror} alt="Bathroom and mirror detail seen through a narrow dark opening." loading="lazy" decoding="async" />
             </div>
             <div className="wrap">
-              <img className="dumb-waiter-photo dumb-waiter-photo--panorama" src={dumbWaiterImages.props} alt="Flat lay of miniature props used in the Dumb Waiter scenic model." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo dumb-waiter-photo--panorama" src={dumbWaiterImages.props} alt="Flat lay of miniature props used in the Dumb Waiter scenic model." loading="lazy" decoding="async" />
             </div>
           </section>
 
@@ -143,8 +143,8 @@ export default function DumbWaiterPage() {
               </CsBody>
             </div>
             <div className="wrap dumb-waiter-media-grid dumb-waiter-media-grid--wide">
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.model} alt="Full scenic model with the assembled room and loose props in front." loading="lazy" decoding="async" />
-              <img className="dumb-waiter-photo" src={dumbWaiterImages.emptyRoom} alt="Empty-room view of the scenic model with stairs, rug, bed, and dark walls." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.model} alt="Full scenic model with the assembled room and loose props in front." loading="lazy" decoding="async" />
+              <img data-project-preview className="dumb-waiter-photo" src={dumbWaiterImages.emptyRoom} alt="Empty-room view of the scenic model with stairs, rug, bed, and dark walls." loading="lazy" decoding="async" />
             </div>
           </section>
 

@@ -125,9 +125,9 @@ export default function OrgDashboardPage() {
         />
 
         <CsExpandPreview>
-        <CsSection id="cs-concept" label="Concept" title="Give Your AI Agents a Brain for Your Company">
+        <CsSection id="cs-concept" label="Concept" title="Connect context to a reviewable action">
           <CsBody>
-            <p>The root cause is simple: there is no shared infrastructure layer between a company&rsquo;s data and its AI agents. Every agent session is a blank slate. Engineers waste cycles rediscovering information. Knowledge stays siloed. Without persistent context, agents can only handle simple, self-contained tasks &mdash; they cannot manage ongoing workflows or make decisions informed by cross-functional data.</p>
+            <p>The product addresses a specific workflow problem: agents repeatedly need context from connected company tools, while people need to inspect what an agent plans to change. My design work centers on those two paths: retrieving context and reviewing an action.</p>
             <p>OrgDashboard solves this by creating a persistent, shared knowledge layer. Companies connect their existing tools &mdash; Slack, Linear, QuickBooks, GitHub, PostHog, Google Workspace &mdash; and agents gain organizational awareness through a CLI and MCP server that plugs into any existing harness.</p>
           </CsBody>
           <CsCallout>
@@ -172,7 +172,7 @@ export default function OrgDashboardPage() {
             <p>The approval interface had to be fast enough that humans don&rsquo;t become bottlenecks, but informative enough that they can make confident decisions. Each pending action shows the full context: what the agent wants to do, why it proposed it, and what data it used to make the decision.</p>
           </CsBody>
           <CsCallout>
-            <p><strong>Design principle:</strong> The trust boundary lives at the point of external side effects. Internal knowledge building is always safe. External writes require human judgment. This distinction is baked into every surface &mdash; from the CLI&rsquo;s command structure to the dashboard&rsquo;s approval queue.</p>
+            <p><strong>Design boundary:</strong> external writes enter an approval queue. Internal knowledge writes still need access controls, provenance, and recovery; they are not inherently safe simply because they stay inside the system.</p>
           </CsCallout>
         </CsSection>
 
@@ -208,14 +208,14 @@ export default function OrgDashboardPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-results" label="Results" title="Measuring Success Honestly">
+        <CsSection id="cs-results" label="Results" title="What still needs validation">
           <CsBody>
             <p>OrgDashboard is an early-stage product, so traditional business metrics like revenue or DAU don&rsquo;t tell the full story yet. Instead, we focused on design quality indicators &mdash; signals that the product is solving the right problem in the right way.</p>
           </CsBody>
           <CsFeatureGrid features={[
-            { title: 'Task Completion Rate', desc: 'In moderated usability tests, 8 out of 10 engineers completed core workflows \u2014 connecting an integration, searching the KB, and approving an agent action \u2014 without guidance on their first session.' },
-            { title: 'Time to First Value', desc: 'From sign-up to a working agent query with real organizational context averaged under 6 minutes in internal testing. The onboarding flow was designed to get one integration connected and one KB entry created immediately.' },
-            { title: 'Approval Queue Speed', desc: 'The action approval interface was tested for decision confidence. Users reported feeling confident in approve/reject decisions within 5\u20138 seconds per action, validating that the context-first card design works.' },
+            { title: 'Task Completion Rate', desc: 'The core review tasks are connecting an integration, searching the knowledge base, and approving an action. A dated protocol and participant-level results are needed before reporting a reliable completion rate.' },
+            { title: 'Time to First Value', desc: 'The onboarding target is one connected integration and one useful query. Timing should include authentication, permissions, and any failed connection attempts; the page does not include the underlying timing records.' },
+            { title: 'Approval Queue Speed', desc: 'Evaluate whether reviewers understand the recipient, proposed change, and supporting context before approving. Speed alone cannot establish that a decision was correct or confident.' },
             { title: 'What We Haven\u2019t Measured Yet', desc: 'Long-term knowledge compounding, cross-team context reuse, and whether the shared brain model actually reduces repeated context-pasting at scale. These are the metrics that will matter most \u2014 and the ones that need real production usage to validate.' },
           ]} />
         </CsSection>

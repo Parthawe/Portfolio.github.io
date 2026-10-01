@@ -4,22 +4,26 @@ export function useReadingProgress(): number {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let frame = 0;
     const update = () => {
-      const docHeight = document.documentElement.scrollHeight;
-      const winHeight = window.innerHeight;
-      const scrollable = docHeight - winHeight;
-      if (scrollable <= 0) {
-        setProgress(0);
-        return;
-      }
-      const pct = Math.min(100, (window.scrollY / scrollable) * 100);
-      setProgress(pct);
+      frame = 0;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(scrollable > 0 ? Math.max(0, Math.min(100, window.scrollY / scrollable * 100)) : 0);
     };
-
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
     update();
-    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    // Expanded chapters and late-loading media change the reading length.
+    const observer = new ResizeObserver(schedule);
+    observer.observe(document.body);
     return () => {
-      window.removeEventListener('scroll', update);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      observer.disconnect();
+      cancelAnimationFrame(frame);
     };
   }, []);
 

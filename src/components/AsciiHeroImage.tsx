@@ -8,7 +8,7 @@ import '../styles/ascii-hero-image.css'
 
 type Props = { src?: string; className: string; model?: string; motionEnabled?: boolean }
 
-/** Local-only study: existing Three.js geometry rendered with its ASCII addon. */
+/** Shared interactive category sculpture rendered with the Three.js ASCII addon. */
 export default function AsciiHeroImage({ src, className, model: defaultModel = 'knot', motionEnabled = true }: Props) {
   const host = useRef<HTMLSpanElement>(null)
   const [ready, setReady] = useState(false)
@@ -42,20 +42,6 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
     camera.position.set(0, .25, 5.8)
     const material = new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: .45, metalness: .12, side: THREE.DoubleSide })
     const mesh = createAsciiModel(model, material)
-    // One Fintech palette for every object. Each part has a solid base color;
-    // only the scene lighting changes its shade as the object rotates.
-    const palette = ['#126bc0', '#16a690', '#b89126'].map(value => new THREE.Color(value))
-    let partIndex = 0
-    mesh.traverse(object => {
-      if (!(object instanceof THREE.Mesh)) return
-      const positions = object.geometry.getAttribute('position')
-      const colors = new Float32Array(positions.count * 3)
-      const color = palette[partIndex++ % palette.length]
-      for (let index = 0; index < positions.count; index++) {
-        color.toArray(colors, index * 3)
-      }
-      object.geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
-    })
     mesh.rotation.set(.3, -.3, model === 'knot' ? -.3 : 0)
     scene.add(mesh)
     scene.add(new THREE.AmbientLight(0xffffff, .3))

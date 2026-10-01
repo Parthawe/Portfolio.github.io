@@ -6,7 +6,7 @@ interface LightboxState {
   alt: string
 }
 
-const LIGHTBOX_TRIGGER_SELECTOR = '.cs-img-full img, .proj-hero-img img'
+const LIGHTBOX_TRIGGER_SELECTOR = '.project-main .cs-img-full img, .project-main .proj-hero-img img, .project-main .cs-img img, .project-main [data-project-preview] img, .project-main img[data-project-preview], .project-main .proj-visual-hero__media:not(.proj-visual-hero__media--interactive) > img'
 
 export default function Lightbox() {
   const [state, setState] = useState<LightboxState | null>(null)
@@ -24,16 +24,16 @@ export default function Lightbox() {
   }, [])
 
   const openFromImage = useCallback((img: HTMLImageElement) => {
-    prevFocusRef.current = document.activeElement
-    setState({ src: img.src, alt: img.alt || '' })
+    prevFocusRef.current = img
+    setState({ src: img.currentSrc || img.src, alt: img.alt || '' })
   }, [])
 
   // Listen for clicks on case study images
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (e.button !== 0) return // only left-click opens lightbox
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return // only left-click opens lightbox
       const img = (e.target as Element).closest(LIGHTBOX_TRIGGER_SELECTOR) as HTMLImageElement | null
-      if (!img) return
+      if (!img || img.closest('a, button') || img.getAttribute('aria-hidden') === 'true' || !img.alt) return
       e.preventDefault()
       openFromImage(img)
     }
@@ -45,7 +45,10 @@ export default function Lightbox() {
   // Make zoomable images keyboard reachable without changing the visual UI
   useEffect(() => {
     const decorate = (root: ParentNode) => {
-      root.querySelectorAll<HTMLImageElement>(LIGHTBOX_TRIGGER_SELECTOR).forEach(img => {
+      const images = [...root.querySelectorAll<HTMLImageElement>(LIGHTBOX_TRIGGER_SELECTOR)];
+      if (root instanceof HTMLImageElement && root.matches(LIGHTBOX_TRIGGER_SELECTOR)) images.push(root);
+      images.forEach(img => {
+        if (img.closest('a, button') || img.getAttribute('aria-hidden') === 'true' || !img.alt) return;
         img.tabIndex = 0
         img.setAttribute('role', 'button')
         img.setAttribute('aria-haspopup', 'dialog')
@@ -92,7 +95,7 @@ export default function Lightbox() {
 
       // Focus trap — keep Tab within the lightbox
       if (e.key === 'Tab' && overlayRef.current) {
-        const focusable = overlayRef.current.querySelectorAll<HTMLElement>('button, [tabindex]')
+        const focusable = overlayRef.current.querySelectorAll<HTMLElement>('button, a[href], [tabindex]')
         if (!focusable.length) return
         const first = focusable[0]
         const last = focusable[focusable.length - 1]
@@ -116,7 +119,7 @@ export default function Lightbox() {
   return (
     <div
       ref={overlayRef}
-      className="lightbox-overlay active"
+      className="lightbox-overlay active project-image-preview"
       onClick={close}
       role="dialog"
       aria-modal="true"
@@ -132,7 +135,10 @@ export default function Lightbox() {
         alt={state.alt}
         onClick={(e) => e.stopPropagation()}
       />
-      {state.alt && <p className="lightbox-caption">{state.alt}</p>}
+      <div className="lightbox-caption" onClick={e => e.stopPropagation()}>
+        {state.alt && <p>{state.alt}</p>}
+        <a href={state.src} target="_blank" rel="noopener noreferrer">Open full-size image (new tab)</a>
+      </div>
     </div>
   )
 }

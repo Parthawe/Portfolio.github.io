@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -20,6 +19,7 @@ export default function MessyHumansPage() {
       <Nav />
       <main id="main-content" className="project-main" style={{ '--project-color': '#059669' } as React.CSSProperties}>
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work" categorySlug="creative-tech" backLabel="Back to Work"
           tags={['Inclusive Design', 'Research', 'Accessibility', 'Ethics']}
           title="Designing for Messy Humans"
@@ -31,31 +31,29 @@ export default function MessyHumansPage() {
             { label: 'Methods', value: 'Contextual Inquiry, Diary Studies, Inclusive Audits' },
           ]}
         />
-        <CsExpandPreview>
         <CsSection id="cs-premise" label="01 &mdash; Premise" title="Personas Are Clean. People Are Not.">
           <CsBody>
-            <p>Design education teaches you to create personas: &ldquo;Sarah, 28, marketing manager, uses an iPhone, has 2.3 apps for productivity.&rdquo; These personas are useful fictions. They are also dangerously clean. Real Sarah is exhausted from a newborn, scrolling at 2am with one hand, her screen brightness at minimum to not wake the baby, and she&rsquo;s trying to pay rent on an app that requires two-factor authentication.</p>
+            <p>A persona rarely captures the moment someone uses a product: tired, distracted, using one hand, or switching languages. This course examined how those conditions change the decisions an interface needs to support.</p>
             <p>This course dismantles the clean persona and designs for the messy reality: situational disabilities, emotional extremes, cognitive overload, cultural assumptions, and the edge cases that mainstream design ignores.</p>
           </CsBody>
         </CsSection>
-        <CsSection id="cs-research" label="02 &mdash; Research" title="What We Found">
+        <CsSection id="cs-research" label="02 &mdash; Research" title="Questions to Carry into a Design Review">
           <CsFeatureGrid features={[
-            { title: 'Situational Disability Audit', desc: 'We audited 5 popular apps (Venmo, Uber, Duolingo, MyFitnessPal, Headspace) for situational disabilities: one-handed use, bright sunlight, noisy environments, emotional distress. Every app failed at least 3 of 5 scenarios. The most common failure: tiny touch targets that are unreachable with one thumb.' },
-            { title: 'Emotional State Mapping', desc: 'Diary study with 12 participants tracking emotional state when using digital products. Key finding: 40% of app usage happens during negative emotional states (boredom, anxiety, loneliness). Yet almost no apps adapt their interface for distressed users. A banking app showing a large negative balance to someone already anxious is actively harmful design.' },
-            { title: 'Cultural Assumption Inventory', desc: 'Catalogued 30+ Western cultural assumptions embedded in common UI patterns: left-to-right reading, English-first error messages, credit-card-shaped payment forms, name fields that don\'t support single names or non-Latin characters. For each assumption, we proposed an inclusive alternative.' },
-            { title: 'Edge Case Workshop', desc: 'Facilitated a workshop where designers role-played extreme users: a person with tremors trying to use a slider, a non-native English speaker reading error messages, a person in crisis calling a suicide hotline app. The exercise revealed that edge cases aren\'t edge — they\'re just cases that happen to people other than the designer.' },
+            { title: 'Situational Disability Audit', desc: 'Review interfaces under one-handed use, bright sunlight, noise, and distraction. Check whether primary actions remain reachable and feedback remains readable. These are audit prompts, not a published comparative scorecard.' },
+            { title: 'Emotional State Mapping', desc: 'Consider how anxiety, fatigue, and uncertainty change an interaction. For a payment flow, that means clear amounts, recoverable errors, and time to review before committing. The course notes do not establish a population-level usage statistic.' },
+            { title: 'Cultural Assumption Inventory', desc: 'Check name fields, reading direction, language switching, and payment conventions. A form should explain its requirements without assuming that every person shares the designer’s language or naming structure.' },
+            { title: 'Edge Case Workshop', desc: 'Use role-play to find questions for research, then test with people who have relevant lived experience. Simulating an impairment can expose an awkward control; it cannot substitute for accessibility research.' },
           ]} />
         </CsSection>
         <CsSection id="cs-impact" label="03 &mdash; Impact on My Practice" title="Messy Became Default">
           <CsBody>
             <p>This course permanently changed how I design. Specific changes:</p>
-            <p><strong>ZentiPay&rsquo;s multilingual onboarding</strong> — supporting Hindi, Spanish, Tagalog, and Arabic with RTL layouts wasn&rsquo;t an afterthought. It was a first-principles decision because the research showed that language switching is the #1 trust barrier for migrant workers.</p>
-            <p><strong>Mentra&rsquo;s large touch targets</strong> — smart glasses have tiny displays. But the real constraint is that users are often in motion, distracted, or wearing gloves. Every interaction was designed for the worst-case input scenario, not the best.</p>
-            <p><strong>This portfolio&rsquo;s accessibility</strong> — WCAG AA compliance, prefers-reduced-motion support, keyboard navigation, semantic HTML. Not because it&rsquo;s required, but because I now understand that accessibility is not an add-on. It&rsquo;s the floor.</p>
+            <p><strong>Payments:</strong> review language choice, fee clarity, and error recovery together. These became questions to bring into product work; this page does not establish their relative impact on trust.</p>
+            <p><strong>Wearables:</strong> consider the companion app, physical controls, and glasses display together. Feedback needs to remain understandable while attention moves between the device and the environment.</p>
+            <p><strong>Accessibility:</strong> check keyboard access, semantics, contrast, and reduced-motion behavior throughout implementation. These practices require ongoing testing and do not, by themselves, establish WCAG conformance.</p>
           </CsBody>
         </CsSection>
         <CsThanks />
-        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-premise', label: 'Premise' },

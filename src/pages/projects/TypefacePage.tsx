@@ -179,7 +179,7 @@ export default function TypefacePage() {
               </p>
             </div>
             <figure className="tf-origin-figure">
-              <img
+              <img data-project-preview
                 src={`${TYPEFACE_ASSET}/photos/inspiration-cut.jpg`}
                 alt="Original inspiration board: a chef's knife on a cutting board and a hand-carved wooden plate with fine parallel cuts"
                 loading="lazy"
@@ -194,7 +194,7 @@ export default function TypefacePage() {
         </section>
 
         <section className="tf-image-stage" aria-label="Typeface cover specimen">
-          <img src={`${TYPEFACE_ASSET}/photos/hero-title.jpg`} alt="Butler's Slice cover specimen" loading="lazy" />
+          <img data-project-preview src={`${TYPEFACE_ASSET}/photos/hero-title.jpg`} alt="Butler's Slice cover specimen" loading="lazy" />
         </section>
 
         <section className="tf-section tf-feature-section" id="tf-concept">
@@ -237,19 +237,19 @@ export default function TypefacePage() {
 
         <section className="tf-image-grid" aria-label="Typeface specimen images">
           <figure>
-            <img src={`${TYPEFACE_ASSET}/photos/slice-types.jpg`} alt="Slice construction examples across glyphs" loading="lazy" />
+            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/slice-types.jpg`} alt="Slice construction examples across glyphs" loading="lazy" />
             <figcaption>Slice construction</figcaption>
           </figure>
           <figure>
-            <img src={`${TYPEFACE_ASSET}/photos/weights-grid.jpg`} alt="Butler's Slice weights grid" loading="lazy" />
+            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/weights-grid.jpg`} alt="Butler's Slice weights grid" loading="lazy" />
             <figcaption>Weight comparison</figcaption>
           </figure>
           <figure>
-            <img src={`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`} alt="Close-up detail of a sliced glyph" loading="lazy" />
+            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`} alt="Close-up detail of a sliced glyph" loading="lazy" />
             <figcaption>Glyph detail</figcaption>
           </figure>
           <figure>
-            <img src={`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`} alt="Butler's Slice applied to packaging mockups" loading="lazy" />
+            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`} alt="Butler's Slice applied to packaging mockups" loading="lazy" />
             <figcaption>Application</figcaption>
           </figure>
         </section>
@@ -285,7 +285,7 @@ export default function TypefacePage() {
           <div className="tf-tool-intro">
             <p className="tf-section-kicker">Vector editor</p>
             <h2>Pull the points.</h2>
-            <p>The editor loads the font outline and lets you drag the real bezier points in the browser.</p>
+            <p>The editor loads the font outline and lets you drag the real bezier points in the browser. It demonstrates outline construction; it is not a record of the original optical corrections or a full font-quality test.</p>
           </div>
           <GlyphEditor />
         </section>

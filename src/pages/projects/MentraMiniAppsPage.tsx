@@ -91,9 +91,6 @@ export default function MentraMiniAppsPage() {
   const handleViewModeChange = (nextMode: CaseStudyViewMode) => {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
   }
 
   useEffect(() => {
@@ -136,6 +133,7 @@ export default function MentraMiniAppsPage() {
             { label: 'Platform', value: 'MentraOS + Companion App + Web Portal' },
             { label: 'Focus', value: 'Store, permissions, developer handoff' },
           ]}
+          showHeaderSummary={false}
           heroImage="/Assets/mockups/projects/mentra-miniapps_16x9.webp"
           heroAlt="Mentra MiniApp Store 16:9 project cover showing the smart glasses app ecosystem"
         />
@@ -146,14 +144,14 @@ export default function MentraMiniAppsPage() {
           onViewModeChange={handleViewModeChange}
           variant="open"
           label=""
-          title="Why smart glasses needed a real app system"
+          title="Project overview"
           proofLimit={0}
         />
 
         <section className="cs-section mentra-miniapps-hero-gallery reveal" aria-label="MiniApp system previews">
           <div className="wrap mentra-miniapps-hero-gallery__inner">
             <figure className="mentra-miniapps-hero-gallery__primary">
-              <img src={MINIAPP_ASSETS.notes} width="419" height="909" alt="Mentra Notes MiniApp running as part of the smart glasses ecosystem" loading="eager" decoding="async" />
+              <img data-project-preview src={MINIAPP_ASSETS.notes} width="419" height="909" alt="Mentra Notes MiniApp running as part of the smart glasses ecosystem" loading="eager" decoding="async" />
               <figcaption>
                 <span>Featured MiniApp</span>
                 Notes turns live speech into searchable memory, which made it the clearest example of why the store needed real app depth.
@@ -187,7 +185,7 @@ export default function MentraMiniAppsPage() {
           cta="Reveal the MiniApp platform story"
           note="Continue into the constraints, discovery model, developer system, and permissions work."
         >
-        <CsSection id="cs-constraint" label="01 &mdash; Constraint" title="640&times;400 Pixels. No Scrolling. No Tapping.">
+        <CsSection id="cs-constraint" label="01 &mdash; Constraint" title="Designing for a 640&times;400 display">
           <CsBody>
             <p>The glasses display is 640&times;400, transparent, and peripheral. Users are moving, their hands are busy, and voice is the reliable input.</p>
             <p>That killed conventional store patterns. No grids, no carousels, no browsing. Speak the need, see one result, decide in seconds.</p>
@@ -198,10 +196,10 @@ export default function MentraMiniAppsPage() {
         </CsSection>
 
         {/* Discovery */}
-        <CsSection id="cs-discovery" label="02 &mdash; Discovery" title="Intent-Based, Not Category-Based">
+        <CsSection id="cs-discovery" label="02 &mdash; Discovery" title="Discover apps by intent">
           <CsBody>
             <p>People do not browse apps on glasses. They need a capability in the moment: translate this, record this, identify this.</p>
-            <p>The store is organized by intent. Voice query and context surface the right tool without forcing a catalog experience onto a peripheral display.</p>
+            <p>The proposed path is: speak a need, inspect one app preview, review its permission cue, and confirm installation. Detailed comparison belongs in the phone companion. This study focuses on discovery and permissions; the parent Mentra study covers onboarding and runtime control.</p>
           </CsBody>
           <CsFeatureGrid features={[
             { title: 'Voice-First Install', desc: '"Hey Mentra, I need a translator." One preview, one confirmation, no browsing loop.' },
@@ -211,7 +209,7 @@ export default function MentraMiniAppsPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-app-mix" label="03 &mdash; App Mix" title="It Had To Support More Than One Kind of App">
+        <CsSection id="cs-app-mix" label="03 &mdash; App Mix" title="Support different kinds of apps">
           <CsBody>
             <p>The store had to support very different jobs: live captions, translation, notes, Mentra AI, calling, language helpers, and ambient utilities.</p>
             <p>The design challenge was giving each app type the right behavior without making the platform feel inconsistent.</p>
@@ -236,7 +234,7 @@ export default function MentraMiniAppsPage() {
             <div className="mentra-miniapps-system__grid">
               {miniAppExamples.map((app) => (
                 <figure className="mentra-miniapps-card reveal" key={app.title}>
-                  <img src={app.src} width={app.width} height={app.height} alt={app.alt} loading="lazy" decoding="async" />
+                  <img data-project-preview src={app.src} width={app.width} height={app.height} alt={app.alt} loading="lazy" decoding="async" />
                   <figcaption>
                     <span>{app.label}</span>
                     <strong>{app.title}</strong>
@@ -284,11 +282,11 @@ export default function MentraMiniAppsPage() {
           <div className="wrap">
             <div className="mentra-miniapps-os__grid">
               <figure className="mentra-miniapps-os__shot">
-                <img src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS currently running MiniApps" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS currently running MiniApps" loading="lazy" decoding="async" />
                 <figcaption>Running apps made the platform legible without forcing a phone-style app switcher.</figcaption>
               </figure>
               <figure className="mentra-miniapps-os__shot">
-                <img src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen with active app" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen with active app" loading="lazy" decoding="async" />
                 <figcaption>The home surface had to show breadth while still feeling glanceable.</figcaption>
               </figure>
             </div>
@@ -307,7 +305,7 @@ export default function MentraMiniAppsPage() {
         </CsSection>
 
         {/* Reflection */}
-        <CsSection id="cs-reflection" label="Reflection" title="What Building an App Store for Your Face Taught Me">
+        <CsSection id="cs-reflection" label="Reflection" title="What I learned">
           <CsBody className="cs-body--measure">
             <p>The store is where the platform thesis proves itself. Developers need a reason to build, and users need a way to find value instantly.</p>
             <p>The key insight: voice-first discovery is not just a workaround for a small screen. For wearable computing, it may be the better app-store model.</p>

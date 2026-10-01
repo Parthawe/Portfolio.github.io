@@ -1,9 +1,9 @@
 import { getProject } from '../../data/projects'
-import { sentenceCaseProjectLabel } from '../../utils/projectPresentation'
 
 interface NdaPublicStoryProps {
   slug: string
   headline: string
+  showSummary?: boolean
   lede?: string
   visuals?: Array<{
     src: string
@@ -12,7 +12,7 @@ interface NdaPublicStoryProps {
   }>
 }
 
-export default function NdaPublicStory({ slug, headline, lede, visuals = [] }: NdaPublicStoryProps) {
+export default function NdaPublicStory({ slug, headline, lede, visuals = [], showSummary = true }: NdaPublicStoryProps) {
   const project = getProject(slug)
 
   if (!project) return null
@@ -21,7 +21,13 @@ export default function NdaPublicStory({ slug, headline, lede, visuals = [] }: N
   const approach = project.storyline?.approach || project.summaryRole || 'I shaped the product story, flow, and interface direction around the core user risk.'
   const result = project.storyline?.result || project.summaryOutcome || project.desc
   const stats = project.summaryStats?.slice(0, 4) || []
-  const primaryVisual = visuals[0]
+  const publicVisuals = visuals.length ? visuals : (
+    project.access?.publicPreviewImage ? [{
+      src: project.access.publicPreviewImage,
+      alt: project.access.publicPreviewAlt || `${project.name} public preview`,
+      label: 'Public project preview',
+    }] : []
+  )
   const storyRows = [
     { label: 'Problem', copy: challenge },
     { label: 'Method', copy: approach },
@@ -39,92 +45,27 @@ export default function NdaPublicStory({ slug, headline, lede, visuals = [] }: N
         </header>
 
         <div className="cs-nda-story-body">
-          {primaryVisual ? (
-            <div className="cs-nda-image-gallery" aria-label={`${project.name} public visual preview`}>
-              <figure className="cs-nda-image-card cs-nda-image-card--hero">
-                <img src={primaryVisual.src} alt={primaryVisual.alt} loading="eager" decoding="async" />
-                <figcaption>{primaryVisual.label}</figcaption>
-              </figure>
-            </div>
-          ) : (
-            <div className="cs-nda-visual-board" role="img" aria-label={`${project.name} safe abstract interface preview`}>
-              <div className="cs-nda-visual-topline">
-                <span>{project.tag ? sentenceCaseProjectLabel(project.tag) : 'Case study'}</span>
-                <span>Safe public preview</span>
-              </div>
-
-              <div className="cs-nda-visual-stage">
-                <div className="cs-nda-phone-shell">
-                  <div className="cs-nda-phone-bar">
-                    <span />
-                    <span />
-                  </div>
-                  <div className="cs-nda-phone-hero">
-                    <small>Primary flow</small>
-                    <strong>{project.name}</strong>
-                  </div>
-                  <div className="cs-nda-progress-card">
-                    <span>Signal clarity</span>
-                    <i />
-                  </div>
-                  <div className="cs-nda-line-stack">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <div className="cs-nda-action-row">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div>
-
-                <div className="cs-nda-system-stack">
-                  <div className="cs-nda-system-card cs-nda-system-card--accent">
-                    <span>System state</span>
-                    <strong>Before commitment</strong>
-                  </div>
-                  <div className="cs-nda-mini-grid">
-                    <span />
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <div className="cs-nda-route-lines">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div>
-              </div>
-
-              <div className="cs-nda-shot-strip" aria-hidden="true">
-                <span>
-                  <i />
-                  Entry
-                </span>
-                <span>
-                  <i />
-                  Working state
-                </span>
-                <span>
-                  <i />
-                  Review moment
-                </span>
-              </div>
+          {publicVisuals.length > 0 && (
+            <div className="cs-nda-image-gallery" data-project-preview aria-label={`${project.name} public visual preview`}>
+              {publicVisuals.map((visual, index) => (
+                <figure key={visual.src} className={`cs-nda-image-card${index === 0 ? ' cs-nda-image-card--hero' : ''}`}>
+                  <img src={visual.src} alt={visual.alt} loading="lazy" decoding="async" />
+                  <figcaption>{visual.label}</figcaption>
+                </figure>
+              ))}
             </div>
           )}
 
-          <div className="cs-nda-story-proof" aria-label={`${project.name} safe public summary`}>
+          {showSummary && <div className="cs-nda-story-proof" aria-label={`${project.name} safe public summary`}>
             {storyRows.map((row) => (
               <div className="cs-nda-story-row" key={row.label}>
                 <span className="cs-nda-story-row-label">{row.label}</span>
                 <span className="cs-nda-story-row-copy">{row.copy}</span>
               </div>
             ))}
-          </div>
+          </div>}
 
-          {stats.length ? (
+          {showSummary && stats.length ? (
             <div className="cs-nda-proof-strip" aria-label={`${project.name} public project facts`}>
               {stats.map((stat) => (
                 <div className="cs-nda-proof-pill" key={`${stat.label}-${stat.value}`}>

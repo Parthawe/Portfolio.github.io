@@ -82,7 +82,7 @@ export default function HealthAppPage() {
         <CsSection
           id="cs-healthapp-model"
           label="01 · Product model"
-          title="The schedule adapts before the person burns out."
+          title="Propose a lighter plan, explain the change."
         >
           <p className="cs-body-lg">
             Most wellness apps report what already happened, while task managers keep asking for more. Health App connects the two: lightweight signals change the load, order, and timing of the day before the plan becomes unrealistic.
@@ -108,6 +108,7 @@ export default function HealthAppPage() {
               },
             ]}
           />
+          <p className="cs-caption">Concept logic: a low-recovery signal suggests a lighter plan, explains the proposed changes, and lets the person decide. This is a planning concept, not a validated health intervention or evidence of burnout prevention.</p>
         </CsSection>
 
         <CsExpandPreview

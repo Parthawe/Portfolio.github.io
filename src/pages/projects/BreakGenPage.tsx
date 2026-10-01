@@ -94,14 +94,14 @@ export default function BreakGenPage() {
 
           <div className="cs-img-grid project-image-grid--two project-image-grid--spaced">
             <div className="cs-img reveal">
-              <img
+              <img data-project-preview
                 src="/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
                 alt="BreakGen public launch page."
                 loading="lazy"
               />
             </div>
             <div className="cs-img reveal">
-              <img
+              <img data-project-preview
                 src="/Assets/Projects/Keyboard/photos/breakgen-demo-live.png"
                 alt="BreakGen interactive demo workspace."
                 loading="lazy"

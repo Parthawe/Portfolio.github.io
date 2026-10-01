@@ -69,6 +69,7 @@ export default function RaahiPage() {
       <main id="main-content" className="project-main project-main--raahi" style={{ '--project-color': '#3C5DDB' } as React.CSSProperties}>
 
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="design-for-good"
           backLabel="Back to Work"
@@ -84,14 +85,14 @@ export default function RaahiPage() {
         />
 
         {/* Hero slide */}
-        <div className="cs-slide reveal"><img src={raahiAsset('Frame 427318652.png')} alt="Raahi overview render showing the app, bus, and service touchpoints on a blue transit map" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('Frame 427318652.png')} alt="Raahi overview render showing the app, bus, and service touchpoints on a blue transit map" loading="lazy" decoding="async" /></div>
 
         {/* Summary section with label-rows */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-label-row">
               <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">The central research question was not “What should a transit app contain?” It was “Where does a rider lose confidence across the full trip?” Raahi used that frame to connect route planning, ticketing, stop information, transfer guidance, kiosks, and in-vehicle displays.</span>
+              <span className="cs-label-row-val">We studied where riders lose confidence across a trip, then connected route planning, ticketing, stop information, transfer guidance, kiosks, and in-vehicle displays.</span>
             </div>
 
             <div className="cs-label-row">
@@ -103,27 +104,15 @@ export default function RaahiPage() {
         </section>
 
         <CsExpandPreview
-          cta="Reveal the full Raahi story"
+          cta="Read the full story"
           note="Continue into the field research, service blueprint, interface system, and final proof."
-          preview={(
-            <article className="cs-expand-preview-article-copy raahi-article-preview">
-              <span className="cs-section-label">In-depth service research</span>
-              <h2 className="cs-display">The commute—not the app—was the object of research.</h2>
-              <p>We mapped what riders needed, where information broke, and which touchpoints had to work together for the service to feel dependable.</p>
-              <p>The synthesis moved the concept away from a standalone trip planner and toward continuity across mobile, kiosk, stop, and vehicle.</p>
-              <div className="cs-tags" aria-hidden="true">
-                <span className="cs-tag-item">Data Analysis</span>
-                <span className="cs-tag-item">Qualitative</span>
-                <span className="cs-tag-item">Service Blueprint</span>
-              </div>
-            </article>
-          )}
+          previewImage={raahiAsset('Frame 427318652.png')}
         >
         {/* Research */}
         <section className="cs-section reveal" id="cs-research">
           <div className="wrap">
             <span className="cs-section-label">01 · Study framing</span>
-            <h2 className="cs-display">The object of research was the commute—not the app.</h2>
+            <h2 className="cs-display">Research across the full commute</h2>
             <CsBody>
               <p>A route can be technically available and still feel unusable when the rider cannot confidently interpret the stop, transfer, ticket, or next vehicle. We studied the surrounding service to identify where continuity mattered most.</p>
             </CsBody>
@@ -151,15 +140,15 @@ export default function RaahiPage() {
             </div>
             <div className="raahi-research-grid">
               <div className="cs-img reveal">
-                <img src={raahiAsset('Mind Map.png')} alt="Raahi research mind map connecting public transport pain points, rider needs, and service opportunities" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('Mind Map.png')} alt="Raahi research mind map connecting public transport pain points, rider needs, and service opportunities" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Early mind map to frame the public-transport problem space.</figcaption>
               </div>
               <div className="cs-img reveal">
-                <img src={raahiAsset('Spectrum.png')} alt="Research spectrum mapping different rider attitudes and commute behaviours" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('Spectrum.png')} alt="Research spectrum mapping different rider attitudes and commute behaviours" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Rider spectrum used to separate convenience, confidence, and dependency needs.</figcaption>
               </div>
               <div className="cs-img reveal raahi-research-blueprint">
-                <img src={raahiAsset('service blueprints.png')} alt="Service blueprint diagram mapping app, kiosk, vehicle, and rider touchpoints across the commute" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('service blueprints.png')} alt="Service blueprint diagram mapping app, kiosk, vehicle, and rider touchpoints across the commute" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Blueprint view of the commute as one connected service.</figcaption>
               </div>
             </div>
@@ -171,18 +160,18 @@ export default function RaahiPage() {
             />
             <div className="raahi-ia-stack">
               <div className="cs-img reveal">
-                <img src={raahiAsset('information architecture.png')} alt="Information architecture diagram for the Raahi mobile app" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('information architecture.png')} alt="Information architecture diagram for the Raahi mobile app" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Mobile information architecture before screen design.</figcaption>
               </div>
               <div className="cs-img reveal raahi-ia-kiosk">
-                <img src={raahiAsset('information architecture_kiosk.png')} alt="Information architecture diagram for the Raahi kiosk experience" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('information architecture_kiosk.png')} alt="Information architecture diagram for the Raahi kiosk experience" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Kiosk information architecture for stop-level use.</figcaption>
               </div>
             </div>
 
             <div className="raahi-decision-section">
               <span className="cs-section-label">02 · Evidence to decision</span>
-              <h2 className="cs-display">The synthesis changed the service architecture.</h2>
+              <h2 className="cs-display">From research to service architecture</h2>
               <p>The artifacts became useful when they changed what we designed. Each row below makes that reasoning explicit.</p>
               <div className="raahi-decision-ledger" aria-label="Raahi evidence, implication, and service decision">
                 <div className="raahi-decision-ledger__head" aria-hidden="true"><span>Signal</span><span>Implication</span><span>Service response</span></div>
@@ -201,8 +190,8 @@ export default function RaahiPage() {
 
         {/* Image slides */}
         
-        <div className="cs-slide reveal"><img src={raahiAsset('brand personality.png')} alt="Brand mood board exploring approachable, casual, navigator, and spontaneous personality directions" loading="lazy" decoding="async" /></div>
-        <div className="cs-slide reveal"><img src={raahiAsset('brand personality-1.png')} alt="Condensed Raahi brand personality board showing the chosen approachable navigation direction" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('brand personality.png')} alt="Brand mood board exploring approachable, casual, navigator, and spontaneous personality directions" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('brand personality-1.png')} alt="Condensed Raahi brand personality board showing the chosen approachable navigation direction" loading="lazy" decoding="async" /></div>
         
 
         {/* Design System */}
@@ -237,40 +226,40 @@ export default function RaahiPage() {
             />
             <div className="cs-img-pair">
               <div className="cs-img reveal">
-                <img src={raahiAsset('WhatsApp Image 2022-09-19 at 10.54.png')} alt="Raahi pencil sketches exploring transit shapes and dot-connection logo forms" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('WhatsApp Image 2022-09-19 at 10.54.png')} alt="Raahi pencil sketches exploring transit shapes and dot-connection logo forms" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Transit-shape and dot-connection sketches behind the mark.</figcaption>
               </div>
               <div className="cs-img reveal">
-                <img src={raahiAsset('WhatsApp Image 2022-09-20 at 18.28.png')} alt="Raahi pencil sketches studying Devanagari wordmark forms" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('WhatsApp Image 2022-09-20 at 18.28.png')} alt="Raahi pencil sketches studying Devanagari wordmark forms" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Wordmark studies before the identity became digital.</figcaption>
               </div>
             </div>
           </div>
         </section>
 
-        <div className="cs-slide reveal"><img src={raahiAsset('Frame 427318657.png')} alt="Raahi system overview showing app screens and transit touchpoints arranged as one service journey" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('Frame 427318657.png')} alt="Raahi system overview showing app screens and transit touchpoints arranged as one service journey" loading="lazy" decoding="async" /></div>
 
         {/* Features */}
         <section className="cs-section reveal" id="cs-features">
           <div className="wrap">
             <span className="cs-section-label">Features</span>
-            <h2 className="cs-display">A Home Screen Built Around Familiar Routes</h2>
+            <h2 className="cs-display">A home screen built around familiar routes</h2>
             <CsBody className="cs-body--space-after">
               <p>The homepage centers saved addresses, preferred modes, commute insights, tickets, and day passes so repeat riders do not rebuild the same trip every time.</p>
             </CsBody>
             <div className="raahi-phone-row raahi-phone-row--trio">
-              <div className="cs-img reveal"><img src={raahiAsset('homepage.png')} alt="Raahi home screen showing saved addresses, transport modes, and recent commute context" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('added addresses.png')} alt="Raahi saved-address flow showing home and work locations" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('added addresses-1.png')} alt="Raahi address confirmation screen for a saved commute location" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('homepage.png')} alt="Raahi home screen showing saved addresses, transport modes, and recent commute context" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('added addresses.png')} alt="Raahi saved-address flow showing home and work locations" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('added addresses-1.png')} alt="Raahi address confirmation screen for a saved commute location" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Personalisation Without Extra Work</h2>
+            <h2 className="cs-display">Personalisation without extra work</h2>
             <CsBody>
-              <p>Public transit loses people when every trip feels like a fresh puzzle. Saved places, preferred modes, and commute preferences make the app feel closer to how riders already talk about getting around.</p>
+              <p>Saved places and preferred modes reduce repeated trip setup. The screens below show how those preferences enter the concept.</p>
             </CsBody>
             <CsImage
               className="raahi-wide-flow"
@@ -283,14 +272,14 @@ export default function RaahiPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Digital Payments, Insights &amp; Incentives</h2>
+            <h2 className="cs-display">Digital payments, insights, and incentives</h2>
             <div className="raahi-phone-row raahi-phone-row--pair">
               <div className="cs-img reveal">
-                <img src={raahiAsset('insights-1.png')} alt="Insights screen showing frequently visited places on a commute map" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('insights-1.png')} alt="Insights screen showing frequently visited places on a commute map" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">The service remembers real rider patterns, not just abstract route data.</figcaption>
               </div>
               <div className="cs-img reveal">
-                <img src={raahiAsset('insights.png')} alt="Insights dashboard — commute trends, carbon footprint reduction by mode, and frequently visited places" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('insights.png')} alt="Insights dashboard — commute trends, carbon footprint reduction by mode, and frequently visited places" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Insights show carbon emissions saved, and a free day pass past a spending threshold rewards riders for choosing public transport.</figcaption>
               </div>
             </div>
@@ -299,30 +288,30 @@ export default function RaahiPage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Live Guidance Across the Commute</h2>
+            <h2 className="cs-display">Live guidance across the commute</h2>
             <CsBody>
               <p>The route flow shows what to take, where to change, how long each leg takes, and what is happening next, so the rider can trust the journey while it is unfolding.</p>
             </CsBody>
             <div className="raahi-phone-row raahi-phone-row--trio">
-              <div className="cs-img reveal"><img src={raahiAsset('route list.png')} alt="Route list comparing commute options and public transit modes" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('route details.png')} alt="Detailed route screen showing multimodal commute steps and transit timing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('bus in transit.png')} alt="Bus in-transit screen showing live journey guidance" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('route list.png')} alt="Route list comparing commute options and public transit modes" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('route details.png')} alt="Detailed route screen showing multimodal commute steps and transit timing" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('bus in transit.png')} alt="Bus in-transit screen showing live journey guidance" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Kiosk and In-Vehicle Guidance</h2>
+            <h2 className="cs-display">Kiosk and in-vehicle guidance</h2>
             <CsBody>
               <p>Kiosks bring route, ticket, and timetable support to the stop. In-vehicle displays keep riders oriented once they are already moving.</p>
             </CsBody>
             <div className="raahi-touchpoint-pair">
               <div className="cs-img reveal">
-                <img src={raahiAsset('Frame 427318655.png')} alt="Raahi public transit touchpoint mockup showing physical and digital service surfaces" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('Frame 427318655.png')} alt="Raahi public transit touchpoint mockup showing physical and digital service surfaces" loading="lazy" decoding="async" />
               </div>
               <div className="cs-img reveal">
-                <img src={raahiAsset('Frame 427318656.png')} alt="Raahi service touchpoint mockup for transit guidance and rider information" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('Frame 427318656.png')} alt="Raahi service touchpoint mockup for transit guidance and rider information" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -334,7 +323,7 @@ export default function RaahiPage() {
             <span className="cs-section-label">Touchpoints</span>
             <h2 className="cs-section-title">Kiosk &amp; Welcome Experience</h2>
             <CsBody className="cs-body--space-after">
-              <p>The kiosk greets riders in English, Hindi, or Marathi and offers four simple paths: view the timetable, check a route, buy a ticket, or get a day pass. No app, no account -- the same service, standing at the stop.</p>
+              <p>At the kiosk, riders choose English, Hindi, or Marathi, then a timetable, route, ticket, or day pass. The concept offers this path without an account.</p>
             </CsBody>
             <CsImage
               src={raahiAsset('Frame 2547.png')}
@@ -342,8 +331,8 @@ export default function RaahiPage() {
               caption="The kiosk applies one color pair per transport mode, keeping route changes readable across ticketing, maps, and welcome states."
             />
             <div className="raahi-kiosk-row">
-              <div className="cs-img reveal"><img src={raahiAsset('welcome.png')} alt="Kiosk welcome screen with key transit actions and language choices" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src={raahiAsset('kiosk home.png')} alt="Kiosk ticket and route screen with transit options and map context" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('welcome.png')} alt="Kiosk welcome screen with key transit actions and language choices" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('kiosk home.png')} alt="Kiosk ticket and route screen with transit options and map context" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>

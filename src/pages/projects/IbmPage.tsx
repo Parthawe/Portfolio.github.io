@@ -9,7 +9,6 @@ import CsStatGrid from '../../components/case-study/CsStatGrid'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
-import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 
@@ -45,7 +44,7 @@ export default function IbmPage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="eager" />
+            <img data-project-preview src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="eager" />
           </div>
         </section>
 
@@ -66,20 +65,15 @@ export default function IbmPage() {
             <span className="cs-label-row-val">A research pipeline that produced survival-cluster outputs while keeping sensitive data protected through the key computation step.</span>
           </div>
         </CsSection>
-
-        <CsExpandPreview
-          cta="Open the research proof"
-          note="System diagrams, prognosis output, learning notes, credits, and thanks."
-        >
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="ibm-diagram-stack" aria-label="Encrypted cancer prognosis system diagrams">
               <figure className="ibm-diagram-card reveal">
-                <img src="/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" />
                 <figcaption>System flow: encrypted genomic features moving through preprocessing, prognosis, clustering, and recommendation steps.</figcaption>
               </figure>
               <figure className="ibm-diagram-card reveal">
-                <img src="/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" />
                 <figcaption>Homomorphic encryption model: computation stays useful without exposing the raw patient data.</figcaption>
               </figure>
             </div>
@@ -88,7 +82,7 @@ export default function IbmPage() {
 
         <CsSection id="cs-result" label="Result" title="What Came Out">
           <CsBody>
-            <p>The output was not a consumer interface. It was evidence that the encrypted workflow could still produce interpretable prognosis groups. The Kaplan-Meier cluster plot became the clearest artifact because it showed the final clinical-style interpretation rather than only the encryption mechanics.</p>
+            <p>The output was a research workflow and a prognosis-group visualization. The Kaplan-Meier plot shows how the resulting groups were presented. It does not, on its own, establish clinical accuracy, generalizability, or readiness for patient care.</p>
           </CsBody>
           <CsImage
             src="/Assets/Projects/CancerPrognosis/photos/km-clusters-dark.jpg"
@@ -121,7 +115,6 @@ export default function IbmPage() {
         </section>
 
         <CsThanks />
-        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

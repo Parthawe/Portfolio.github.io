@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -20,6 +19,7 @@ export default function HypercinemaPage() {
       <Nav />
       <main id="main-content" className="project-main" style={{ '--project-color': '#6366f1' } as React.CSSProperties}>
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work" categorySlug="creative-tech" backLabel="Back to Work"
           tags={['Immersive Media', '360° Video', 'Spatial Audio', 'Interactive']}
           title="Hypercinema"
@@ -31,9 +31,9 @@ export default function HypercinemaPage() {
             { label: 'Tools', value: 'Insta360, Reaper, Unity, Depthkit, TouchDesigner' },
           ]}
         />
-        <CsExpandPreview>
         <CsSection id="cs-premise" label="01 &mdash; Premise" title="Cinema Without Borders">
           <CsBody>
+            <p className="cs-caption">Course film and sound notes. Original playable recordings are not included in this archive.</p>
             <p>Traditional cinema is a rectangle. Fixed frame, fixed duration, fixed sequence. Hypercinema asks: what happens when you remove those constraints? What is a film when the viewer chooses where to look? When sound comes from specific locations in space? When the narrative branches based on where you stand?</p>
             <p>Over one semester, we produced three immersive pieces — each one dismantling a different cinematic convention and rebuilding it for spatial, interactive, or non-linear formats.</p>
           </CsBody>
@@ -48,12 +48,11 @@ export default function HypercinemaPage() {
         <CsSection id="cs-craft" label="03 &mdash; Craft" title="What Immersive Media Demands">
           <CsBody>
             <p><strong>You can&rsquo;t control attention.</strong> In a rectangle, the director decides what you see through framing. In 360°, the viewer looks wherever they want. You learn to guide attention through sound, light, and movement instead of cuts. This skill transferred directly to installation design — Enigma, Black Hole, and Sea of Salt all use the same principle: create a focal point without a frame.</p>
-            <p><strong>Sound is the real medium.</strong> In every immersive format we tested, spatial audio was more powerful than spatial video. People habituate to visual environments quickly but remain sensitive to audio placement indefinitely. A voice coming from behind you will make you turn around every single time, even after 10 minutes. This insight shaped how I think about all sensory design.</p>
+            <p><strong>Sound can guide attention.</strong> Directional audio offers a cue when the viewer controls the frame. Its effect depends on the mix, listening setup, and audience; these experiments do not establish that audio consistently outperforms video.</p>
             <p><strong>Non-linearity requires more structure, not less.</strong> A branching narrative doesn&rsquo;t mean &ldquo;anything goes.&rdquo; Each path needs its own arc, and the overall experience needs to be satisfying regardless of which path the viewer takes. More freedom for the audience = more work for the designer.</p>
           </CsBody>
         </CsSection>
         <CsThanks />
-        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-premise', label: 'Premise' },

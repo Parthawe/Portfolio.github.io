@@ -36,9 +36,6 @@ export default function JugalbandiPage() {
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
   }
 
   return (
@@ -116,8 +113,8 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -177,9 +174,9 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -212,8 +209,8 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -239,7 +236,7 @@ export default function JugalbandiPage() {
         {/* Flute photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
+            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
           </div>
         </section>
 
@@ -262,7 +259,7 @@ export default function JugalbandiPage() {
         {/* Rainstick photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
+            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
           </div>
         </section>
 
@@ -285,7 +282,7 @@ export default function JugalbandiPage() {
             <CsBody className="cs-body--measure">
               <p>The hardest part was the translation layer. A model output has no musical meaning until a designer decides how it should become breath, timing, pitch, and vibration.</p>
               <p>The physical instruments forced restraint. Air pressure, servo latency, string tension, and resonance shaped the composition more than the software did.</p>
-              <p>People stayed with the work because they could hear the computation, see the mechanisms move, and feel the machine as an instrument. Embodiment changed comprehension.</p>
+              <p>The exhibition brought the sound and its mechanism into the same view. Whether that improved understanding would require a separate audience study; the photographs and film document the performance itself.</p>
             </CsBody>
           </div>
         </section>

@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
@@ -42,7 +41,7 @@ export default function SculpturePage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img src="/Assets/Projects/Sculpture/1.jpg" alt="Figurative sculpture under dramatic low-key lighting" loading="eager" />
+            <img data-project-preview src="/Assets/Projects/Sculpture/1.jpg" alt="Figurative sculpture under dramatic low-key lighting" loading="eager" />
           </div>
         </section>
 
@@ -63,16 +62,11 @@ export default function SculpturePage() {
             <span className="cs-label-row-val">A finished figurative sculpture that won in the competition context and became a useful proof of physical making discipline.</span>
           </div>
         </CsSection>
-
-        <CsExpandPreview
-          cta="Open the making notes"
-          note="Reference boards, process images, impact points, learning notes, and final sculpture documentation."
-        >
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -98,7 +92,6 @@ export default function SculpturePage() {
 
         <CsThanks />
 
-        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

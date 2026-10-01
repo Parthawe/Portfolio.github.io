@@ -127,19 +127,19 @@ export default function ExecutiveLensPage() {
           </CsBody>
           <div className="cs-site-crop-grid cs-site-crop-grid--executivelens">
             <figure>
-              <img src="/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
               <figcaption>Hero and product proof</figcaption>
             </figure>
             <figure>
-              <img src="/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
               <figcaption>Audio to insight workflow</figcaption>
             </figure>
             <figure>
-              <img src="/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
               <figcaption>Capability grid</figcaption>
             </figure>
             <figure>
-              <img src="/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
               <figcaption>Integrations and conversion</figcaption>
             </figure>
           </div>
@@ -157,7 +157,7 @@ export default function ExecutiveLensPage() {
 
         <CsSection id="cs-impact" label="Impact" title="Early Beta Signal">
           <CsBody className="cs-body--space-after">
-            <p>In closed beta, the strongest signal was behavior: executives began treating the dashboard as a morning brief for decisions, owners, and follow-through instead of another analytics surface.</p>
+            <p>The intended workflow is a morning brief: review a decision, check its transcript reference, identify the owner, and follow up. Beta observations are qualitative; this page does not include a dated sample or measured adoption result.</p>
           </CsBody>
           <CsPullquote
             quote="I stopped treating it like a transcript tool. It tells me what actually changed, not just what someone said."

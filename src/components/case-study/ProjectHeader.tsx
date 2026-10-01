@@ -42,8 +42,8 @@ interface ProjectHeaderProps {
 }
 
 const TIMELINE_LABELS = ['timeline', 'duration', 'year']
-const ROLE_LABELS = ['role', 'my role', 'creator', 'artist', 'host', 'director']
-const CONTEXT_LABELS = ['team', 'collaborator', 'company', 'client', 'organization', 'context', 'platform']
+const ROLE_LABELS = ['role', 'my role', 'my contribution', 'creator', 'artist', 'host', 'director']
+const CONTEXT_LABELS = ['team / context', 'team', 'collaborator', 'company', 'client', 'organization', 'context', 'platform']
 
 function findInfoValue(
   info: ProjectHeaderProps['info'],
@@ -188,6 +188,12 @@ export default function ProjectHeader({
     const visualRole = findInfoValue(info, ROLE_LABELS) ?? project?.summaryRole ?? null
     const visualTimeline = findInfoValue(info, TIMELINE_LABELS) ?? project?.summaryTimeline ?? null
     const visualContext = findInfoValue(info, CONTEXT_LABELS) ?? project?.summaryTeam ?? null
+    const primaryInfo = new Set(
+      [ROLE_LABELS, CONTEXT_LABELS, TIMELINE_LABELS].map(labels =>
+        info.find(item => labels.includes(item.label.trim().toLowerCase())),
+      ),
+    )
+    const additionalInfo = info.filter(item => !primaryInfo.has(item))
     const timelineMilestones = projectTimelineMilestones(project)
     const visualClasses = [
       'wrap',
@@ -259,7 +265,7 @@ export default function ProjectHeader({
         </section>
 
         <section id="project-overview" tabIndex={-1} className={`proj-visual-brief proj-visual-brief--${visualBriefMode} hero-anim hero-anim-2`} aria-label={`${title} project overview`}>
-          {visualBriefMode === 'combined' ? (
+          {showHeaderSummary && (visualBriefMode === 'combined' ? (
             <div className="proj-reading-summary">
               <p className="proj-visual-brief__copy"><strong>Context</strong>{visualProblem}</p>
               {visualOutcome && <p className="proj-visual-brief__copy"><strong>Outcome</strong>{visualOutcome}</p>}
@@ -269,14 +275,17 @@ export default function ProjectHeader({
               <p className="proj-visual-brief__copy">{visualProblem}</p>
               {visualOutcome ? <p className="proj-visual-brief__copy">{visualOutcome}</p> : null}
             </>
-          )}
+          ))}
           <dl className="proj-visual-brief__facts">
             {visualRole ? <div><dt>Role</dt><dd>{visualRole}</dd></div> : null}
-            {visualContext ? <div><dt>Team / context</dt><dd>{visualContext}</dd></div> : null}
+            {visualContext ? <div><dt>{info.find(item => CONTEXT_LABELS.includes(item.label.trim().toLowerCase()))?.label || 'Team / context'}</dt><dd>{visualContext}</dd></div> : null}
             {timelineMilestones.length ? (
               <div className="proj-visual-timeline">
                 <dt>Timeline</dt>
                 <dd>
+                  {visualTimeline}
+                  <details className="proj-timeline-details">
+                    <summary>Project milestones</summary>
                   <ol>
                     {timelineMilestones.map((milestone) => (
                       <li key={`${milestone.period}-${milestone.label}`}>
@@ -285,9 +294,13 @@ export default function ProjectHeader({
                       </li>
                     ))}
                   </ol>
+                  </details>
                 </dd>
               </div>
             ) : visualTimeline ? <div className="proj-visual-timeline"><dt>Timeline</dt><dd>{visualTimeline}</dd></div> : null}
+            {additionalInfo.map(item => (
+              <div key={item.label}><dt>{sentenceCaseProjectLabel(item.label)}</dt><dd>{item.value}</dd></div>
+            ))}
           </dl>
         </section>
       </div>

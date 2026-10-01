@@ -67,10 +67,10 @@ export default function KeyboardProjectPage() {
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal">
-                <img src="/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up of keyboard keys raised on small stems at different heights." loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/Keyboard/photos/keys-closeup.webp" alt="Close-up of keyboard keys raised on small stems at different heights." loading="lazy" decoding="async" />
               </div>
               <div className="cs-img reveal">
-                <img src="/Assets/Projects/Keyboard/photos/data-sculpture.png" alt="3D printed data sculpture made from repeated key-like columns." loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/Keyboard/photos/data-sculpture.png" alt="3D printed data sculpture made from repeated key-like columns." loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -97,11 +97,11 @@ export default function KeyboardProjectPage() {
 
           <div className="cs-img-grid project-image-grid--two project-image-grid--spaced project-image-grid--top-aligned">
             <div className="cs-img reveal">
-              <img src="/Assets/Projects/Keyboard/photos/letter-frequency-table.jpg" alt="Table listing key press counts for every letter from a to z, with e highest at 17,333." loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/Keyboard/photos/letter-frequency-table.jpg" alt="Table listing key press counts for every letter from a to z, with e highest at 17,333." loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">Output of the counting script: press counts for every letter across the manuscript.</figcaption>
             </div>
             <div className="cs-img reveal">
-              <img src="/Assets/Projects/Keyboard/photos/spline-data-model.jpg" alt="Orange 3D render of the keyboard modeled in Spline, each key extruded to a different height." loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/Keyboard/photos/spline-data-model.jpg" alt="Orange 3D render of the keyboard modeled in Spline, each key extruded to a different height." loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The Spline model that turned the counts into geometry before printing.</figcaption>
             </div>
           </div>
@@ -115,13 +115,13 @@ export default function KeyboardProjectPage() {
 
           <div className="cs-img-grid project-image-grid--three project-image-grid--spaced">
             <div className="cs-img reveal">
-              <img src="/Assets/Projects/Keyboard/photos/keyboard-angle.png" alt="Angled view of the raised-key keyboard object." loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/Keyboard/photos/keyboard-angle.png" alt="Angled view of the raised-key keyboard object." loading="lazy" decoding="async" />
             </div>
             <div className="cs-img reveal">
-              <img src="/Assets/Projects/Keyboard/photos/process-grid.png" alt="Grid of 3D printing process photos and prototype stages." loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/Keyboard/photos/process-grid.png" alt="Grid of 3D printing process photos and prototype stages." loading="lazy" decoding="async" />
             </div>
             <div className="cs-img reveal">
-              <img src="/Assets/Projects/Keyboard/photos/fabrication-process.png" alt="Keyboard fabrication process with disassembled parts, keycaps, and layout material." loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/Keyboard/photos/fabrication-process.png" alt="Keyboard fabrication process with disassembled parts, keycaps, and layout material." loading="lazy" decoding="async" />
             </div>
           </div>
         </CsSection>

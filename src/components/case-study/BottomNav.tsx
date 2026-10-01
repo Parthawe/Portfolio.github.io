@@ -13,7 +13,6 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const navRef = useRef<HTMLElement>(null);
   const progress = useReadingProgress();
   const hideTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const isScrolling = useRef(false);
   const [availableSections, setAvailableSections] = useState(sections);
   const [hasExpandAction, setHasExpandAction] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState(sections[0]?.id ?? '');
@@ -25,13 +24,22 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   useEffect(() => {
     const updateAvailableSections = () => {
       const mounted = sections.filter((section) => document.getElementById(section.id));
-      setAvailableSections(mounted);
+      setAvailableSections(current => current.length === mounted.length &&
+        current.every((section, index) => section.id === mounted[index].id && section.label === mounted[index].label)
+        ? current : mounted);
       setHasExpandAction(Boolean(document.querySelector('.cs-expand-preview-btn')));
     };
 
     updateAvailableSections();
     const root = document.getElementById('main-content') || document.body;
-    const observer = new MutationObserver(updateAvailableSections);
+    const observer = new MutationObserver(mutations => {
+      // Canvas/ASCII updates do not change the chapter list.
+      const relevant = mutations.some(mutation => [...mutation.addedNodes, ...mutation.removedNodes].some(node =>
+        node instanceof Element && (node.matches('[id], .cs-expand-preview-btn') ||
+          node.querySelector('[id], .cs-expand-preview-btn'))
+      ));
+      if (relevant) updateAvailableSections();
+    });
     observer.observe(root, { childList: true, subtree: true });
 
     return () => observer.disconnect();
@@ -62,10 +70,8 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
     const nav = navRef.current;
     if (!nav) return;
     nav.classList.remove('is-idle');
-    isScrolling.current = true;
     clearTimeout(hideTimer.current);
     hideTimer.current = setTimeout(() => {
-      isScrolling.current = false;
       nav.classList.add('is-idle');
     }, 2500);
   }, []);
@@ -181,7 +187,6 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       className={`cs-bottom-nav cs-bottom-nav--${placement} surface-glass`}
       id="cs-bottom-nav"
       aria-label="Case study sections"
-      aria-orientation="horizontal"
       style={{ '--cs-bnav-progress': `${progress}%` } as React.CSSProperties}
       onMouseEnter={() => {
         clearTimeout(hideTimer.current);

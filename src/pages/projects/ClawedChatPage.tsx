@@ -42,9 +42,6 @@ export default function ClawedChatPage() {
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
   }
 
   return (
@@ -135,7 +132,7 @@ export default function ClawedChatPage() {
           />
         </CsSection>
 
-        <CsSection id="cs-research" label="02 &mdash; Research" title="What Users Actually Need from an AI Assistant">
+        <CsSection id="cs-research" label="02 &mdash; Research" title="What users needed">
           <CsBody>
             <p>I audited Siri, Alexa, Google Assistant, Copilot, Rabbit R1, Humane Pin, and ChatGPT around three questions: what they promise, where they fail, and how people recover when they fail. The pattern was clear: users hit a trust ceiling, then shrink the assistant back to safe tasks.</p>
           </CsBody>
@@ -150,7 +147,7 @@ export default function ClawedChatPage() {
           </CsCallout>
         </CsSection>
 
-        <CsSection id="cs-challenges" label="03 &mdash; Design Challenges" title="Four Problems That Shaped Every Decision">
+        <CsSection id="cs-challenges" label="03 &mdash; Design Challenges" title="Four design constraints">
           <CsBody>
             <p>Clawed spans a web hub, glasses experience, command bar, approvals, and receipts. The design challenge was making all of that feel fast and safe across desk, phone, and walking contexts.</p>
           </CsBody>
@@ -162,19 +159,19 @@ export default function ClawedChatPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-webhub" label="04 &mdash; Web Hub" title="The Brain You Come Back To">
+        <CsSection id="cs-webhub" label="04 &mdash; Web Hub" title="The web hub">
           <CsBody>
             <p>The glasses handle the moments. The web hub handles the thinking. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure. The command bar (&#8984;K) is always one keystroke away.</p>
             <p>The pattern that runs through all of them is approval and receipts. Every incoming item arrives pre-analyzed as a card with three options &mdash; approve the AI&rsquo;s draft, edit before sending, or dismiss &mdash; and every action, however it was approved, generates a receipt you can audit later.</p>
           </CsBody>
-          <div className="cs-img reveal"><img src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
+          <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
-          <div className="cs-img reveal clawed-media--spaced"><img src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
+          <div className="cs-img reveal clawed-media--spaced"><img data-project-preview src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
           <p className="cs-caption">Cloud Deploy vs Mac Companion, two deployment paths designed for different trust and control preferences</p>
         </CsSection>
 
-        <CsSection id="cs-glasses" label="05 &mdash; Glasses Experience" title="Intelligence at the Edge of Your Vision">
+        <CsSection id="cs-glasses" label="05 &mdash; Glasses Experience" title="The glasses experience">
           <CsBody>
             <p>The glasses are not a second screen. They are a first responder: instant answer, one-line summary, one-tap approval. I designed a simulator so the team could test cards at peripheral-vision scale.</p>
           </CsBody>
@@ -239,11 +236,11 @@ export default function ClawedChatPage() {
             <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 30 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
           </CsBody>
           <div className="cs-slide reveal clawed-slide--spaced">
-            <img src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" className="project-media-frame" />
+            <img data-project-preview src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" className="project-media-frame" />
           </div>
         </CsSection>
 
-        <CsSection id="cs-impact" label="07 &mdash; Impact" title="Early Signals &amp; Honest Assessment">
+        <CsSection id="cs-impact" label="07 &mdash; Impact" title="Early results and limitations">
           <CsBody className="cs-body--space-after">
             <p>Clawed shipped in Q1 2026 and is in early testing. I am keeping the claims precise: these are qualitative signals from 6 moderated sessions plus team observations from the 10-week build.</p>
           </CsBody>
@@ -267,7 +264,7 @@ export default function ClawedChatPage() {
           </details>
         </CsSection>
 
-        <CsSection id="cs-learnings" label="08 &mdash; Key Learnings" title="What Designing a Safety-First AI Taught Me">
+        <CsSection id="cs-learnings" label="08 &mdash; Key Learnings" title="What I learned">
           <CsFeatureGrid features={[
             { title: 'Constraints compress quality', desc: 'The 3-second ask, 5-second result, 1-tap approval rule made every screen choose one job.' },
             { title: 'Trust is a design material', desc: 'Receipts, safety modes, and approvals are not add-ons. They are how the product earns permission.' },
@@ -276,7 +273,7 @@ export default function ClawedChatPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-whats-next" label="09 &mdash; What&rsquo;s Next" title="Where Clawed Goes From Here">
+        <CsSection id="cs-whats-next" label="09 &mdash; What&rsquo;s Next" title="Next steps">
           <CsBody>
             <p>Clawed shipped as a fully functional product, but it is the foundation &mdash; not the ceiling. The next phase focuses on three areas informed by early user testing signals.</p>
           </CsBody>

@@ -1,5 +1,8 @@
 import { Children, isValidElement, useEffect, useId, useRef, useState, type ReactNode } from 'react'
 
+import { useLocation } from 'react-router-dom'
+import { getProject } from '../../data/projects'
+
 interface CsExpandPreviewProps {
   expanded?: boolean
   onExpand?: () => void
@@ -29,6 +32,15 @@ export default function CsExpandPreview({
   preview,
   previewImage,
 }: CsExpandPreviewProps) {
+  const { pathname } = useLocation()
+  const project = getProject(pathname.split('/').filter(Boolean).pop() ?? '')
+  // Use only already-public registry imagery; never mount deferred story media here.
+  const resolvedPreviewImage = previewImage || (!preview ? (
+    project?.access?.publicPreviewImage || project?.summaryImage ||
+    project?.cover16x9 || project?.cardMockup || project?.image
+  ) : undefined)
+  const [failedPreview, setFailedPreview] = useState<string | null>(null)
+  const showImage = Boolean(resolvedPreviewImage && failedPreview !== resolvedPreviewImage)
   const [internalExpanded, setInternalExpanded] = useState(false)
   const isExpanded = expanded ?? internalExpanded
   const contentId = useId()
@@ -72,9 +84,9 @@ export default function CsExpandPreview({
 
   return (
     <div className="project-story">
-      {!isExpanded && <div className={`cs-expand-preview project-story__prompt${previewImage ? ' project-story__prompt--image' : ''}`}>
-        {previewImage && <img className="project-story__preview-image" src={previewImage} alt="" aria-hidden="true" loading="lazy" />}
-        {!previewImage && <div className="project-story__copy">
+      {!isExpanded && <div className={`cs-expand-preview project-story__prompt${showImage ? ' project-story__prompt--image' : ''}`}>
+        {showImage && <img className="project-story__preview-image" src={resolvedPreviewImage} alt="" aria-hidden="true" loading="lazy" decoding="async" onError={() => setFailedPreview(resolvedPreviewImage ?? null)} />}
+        {!showImage && <div className="project-story__copy">
           {preview ?? <h2>Explore the project</h2>}
           <p>{note}</p>
         </div>}

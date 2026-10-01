@@ -5,7 +5,6 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
-import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -43,49 +42,32 @@ export default function OfficeOfDiversityPage() {
           heroAlt="Tisch IDBEA report shown across desktop and mobile responsive views"
         />
 
-        <CsSection id="cs-glimpse" label="Glimpse" title="A Report That Needed To Be Read, Not Just Posted">
+        <CsSection id="cs-glimpse" label="Approach" title="From a dense report to a navigable website">
           <CsBody>
-            <p>I shaped the 2024 IDBEA report for NYU Tisch's Office of Diversity into a web experience people could scan, navigate, and return to. The work focused on clear structure, responsive presentation, and accessible handling of institutional content.</p>
+            <p>I changed the reading order from dense institutional material to four entry points: context, milestones, data, and accessibility. The planning boards below show how those groups were formed; the report screens show the resulting hierarchy on the page.</p>
           </CsBody>
-          <div className="cs-label-row">
-            <span className="cs-label-row-key">Problem</span>
-            <span className="cs-label-row-val">A dense institutional report needed to become easier to read across desktop and mobile without flattening the data.</span>
-          </div>
-          <div className="cs-label-row">
-            <span className="cs-label-row-key">Method</span>
-            <span className="cs-label-row-val">Break the content into structured sections, timelines, visual summaries, and responsive pages that supported scanning.</span>
-          </div>
-          <div className="cs-label-row project-label-row--open">
-            <span className="cs-label-row-key">Result</span>
-            <span className="cs-label-row-val">An accessible web report that made IDBEA milestones and progress easier for the Tisch community to explore.</span>
-          </div>
         </CsSection>
-
-        <CsExpandPreview
-          ctaLabel="Open the report proof"
-          note="Workshop artifacts, report slices, impact points, and learning notes."
-        >
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="ofd-process-stack">
+            <div className="ofd-process-stack" data-project-preview>
               <figure className="ofd-wide-shot">
-                <img src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Whiteboard and sticky-note research wall used to organize report themes and content priorities" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Whiteboard and sticky-note research wall used to organize report themes and content priorities" loading="lazy" decoding="async" />
                 <figcaption>First pass: sort the institutional material into themes, page groups, and reader questions.</figcaption>
               </figure>
               <figure className="ofd-wide-shot">
-                <img src="/Assets/Projects/office-of-diversity/photos/scope-timeline.png" alt="Scope timeline showing understanding scope, design concept, data visualization, engagement, collaboration, and accessibility compliance" loading="lazy" decoding="async" />
+                <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/scope-timeline.png" alt="Scope timeline showing understanding scope, design concept, data visualization, engagement, collaboration, and accessibility compliance" loading="lazy" decoding="async" />
                 <figcaption>Scope map: translate themes into milestones, data moments, collaboration loops, and accessibility checks.</figcaption>
               </figure>
               <div className="ofd-workshop-grid">
                 <figure>
-                  <img src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community workshop table with participants browsing printed report material" loading="lazy" decoding="async" />
+                  <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community workshop table with participants browsing printed report material" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding printed Office of Diversity report material during a workshop" loading="lazy" decoding="async" />
+                  <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding printed Office of Diversity report material during a workshop" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="Participants reviewing printed report materials during an Office of Diversity workshop" loading="lazy" decoding="async" />
+                  <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="Participants reviewing printed report materials during an Office of Diversity workshop" loading="lazy" decoding="async" />
                 </figure>
               </div>
               <p className="cs-caption">The report had to work both as a web artifact and as something people could discuss in a room.</p>
@@ -93,31 +75,31 @@ export default function OfficeOfDiversityPage() {
           </div>
         </section>
 
-        <CsSection id="cs-report" label="Report" title="The Web Report, Shown In Readable Sections">
+        <CsSection id="cs-report" label="Report" title="The report, section by section">
           <CsBody>
-            <p>Instead of shrinking the full page into one unreadable strip, the report is shown here as a sequence. Each slice keeps the top-to-bottom flow while making the actual hierarchy, timeline, data blocks, and accessibility structure legible.</p>
+            <p>The report moves from context to milestones, data, and accessibility. Open each image to inspect the layout at full size.</p>
           </CsBody>
-          <div className="ofd-report-slices">
+          <div className="ofd-report-slices" data-project-preview>
             <figure>
-              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png" alt="Top section of the IDBEA web report with title, introductory content, and opening report structure" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png" alt="Top section of the IDBEA web report with title, introductory content, and opening report structure" loading="lazy" decoding="async" />
               <figcaption>01 / Opening structure</figcaption>
             </figure>
             <figure>
-              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png" alt="Middle section of the IDBEA web report showing timeline and milestone content" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png" alt="Middle section of the IDBEA web report showing timeline and milestone content" loading="lazy" decoding="async" />
               <figcaption>02 / Timeline and milestones</figcaption>
             </figure>
             <figure>
-              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png" alt="Middle section of the IDBEA web report showing data visualization and progress sections" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png" alt="Middle section of the IDBEA web report showing data visualization and progress sections" loading="lazy" decoding="async" />
               <figcaption>03 / Data and visual summaries</figcaption>
             </figure>
             <figure>
-              <img src="/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png" alt="Lower section of the IDBEA web report showing accessibility, collaboration, and closing content" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png" alt="Lower section of the IDBEA web report showing accessibility, collaboration, and closing content" loading="lazy" decoding="async" />
               <figcaption>04 / Accessibility and closing content</figcaption>
             </figure>
           </div>
         </CsSection>
 
-        <CsSection id="cs-impact" label="Impact" title="What The Work Improved">
+        <CsSection id="cs-impact" label="Impact" title="What improved">
           <CsFeatureGrid features={[
             { title: 'Readable structure', desc: 'The report moved from one dense artifact into clear sections that could be scanned and revisited.' },
             { title: 'Accessible presentation', desc: 'The web version prioritized responsive layouts, readable text, alt text, and accessible chart context.' },
@@ -125,9 +107,9 @@ export default function OfficeOfDiversityPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-learning" label="Learning" title="What I Learned">
+        <CsSection id="cs-learning" label="Learning" title="What I learned">
           <CsBody>
-            <p>This project taught me that data visualization is not decoration. For institutional work, clarity is the design. The main responsibility was to preserve trust: make the information navigable, avoid over-styling sensitive content, and let the reader understand progress without needing someone to explain the report beside them.</p>
+            <p>I learned to make institutional data easier to navigate without losing its context. Readers should be able to understand the report without someone explaining it beside them.</p>
           </CsBody>
           <CsImage
             src="/Assets/Projects/office-of-diversity/4.webp"
@@ -137,7 +119,6 @@ export default function OfficeOfDiversityPage() {
         </CsSection>
 
         <CsThanks contactCta />
-        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

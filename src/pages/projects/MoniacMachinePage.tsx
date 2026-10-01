@@ -60,6 +60,7 @@ export default function MoniacMachinePage() {
         {/* Interactive simulator */}
         <CsSection id="cs-interactive" label="Interactive" title="Run the Economy">
           <CsBody>
+            <p className="cs-caption">Browser adaptation of the cabinet game, using simplified rules. This is not an economic forecast or a reconstruction of the historic hydraulic machine.</p>
             <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. The goal is simple: keep growth, employment, inflation, and debt in tension for 60 seconds.</p>
           </CsBody>
           <div className="cs-label-row">
@@ -79,8 +80,8 @@ export default function MoniacMachinePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/hero-cabinet.png" alt="Moniac Machine arcade cabinet with iPad display and valve controllers" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/annotated-breakdown.png" alt="Annotated breakdown: iPad, arcade wood, valve controllers, Teensy 4.0, wire connections" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/hero-cabinet.png" alt="Moniac Machine arcade cabinet with iPad display and valve controllers" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/annotated-breakdown.png" alt="Annotated breakdown: iPad, arcade wood, valve controllers, Teensy 4.0, wire connections" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -108,8 +109,8 @@ export default function MoniacMachinePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--feature">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/screen-closeup.png" alt="iPad screen showing economic flow diagram with tax rates and consumer consumption" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/original-moniac.png" alt="Original 1949 Phillips MONIAC hydraulic computer" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/screen-closeup.png" alt="iPad screen showing economic flow diagram with tax rates and consumer consumption" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/original-moniac.png" alt="Original 1949 Phillips MONIAC hydraulic computer" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -125,8 +126,8 @@ export default function MoniacMachinePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/valve-detail.webp" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/hand-playing.webp" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/valve-detail.webp" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/hand-playing.webp" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -142,7 +143,7 @@ export default function MoniacMachinePage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/Moniac/photos/gameplay-wide.png" alt="Moniac Machine being played at exhibition, wide shot showing the full arcade setup" loading="lazy" /></div>
+            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/gameplay-wide.png" alt="Moniac Machine being played at exhibition, wide shot showing the full arcade setup" loading="lazy" /></div>
           </div>
         </section>
 

@@ -117,7 +117,7 @@ export default function CueTvPage() {
             <div className="cuetv-refresh-grid">
               {CUETV_PUBLIC_VISUALS.map((visual) => (
                 <figure className={`cuetv-refresh-card cuetv-refresh-card--${visual.variant}`} key={visual.src}>
-                  <img src={visual.src} alt={visual.alt} loading="lazy" decoding="async" />
+                  <img data-project-preview src={visual.src} alt={visual.alt} loading="lazy" decoding="async" />
                   <figcaption>{visual.label}</figcaption>
                 </figure>
               ))}

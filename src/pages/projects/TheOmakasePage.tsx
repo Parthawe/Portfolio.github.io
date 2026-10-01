@@ -110,6 +110,7 @@ function GameEmbed() {
   return (
     <CsSection id="cs-play" label="Play" title="Try The Omakase">
       <CsBody>
+        <p className="cs-caption">Keyboard version of the game. The physical cabinet and its controls are documented in the film and photographs below.</p>
         <p>Two players, one keyboard, 90 seconds. Race to serve sushi orders faster than your opponent. Each button maps to an ingredient &mdash; press the right sequence to complete orders.</p>
       </CsBody>
 
@@ -120,7 +121,7 @@ function GameEmbed() {
       >
         {IS_TOUCH ? (
           <div className="omakase-touch-fallback">
-            <img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="" />
+            <img data-project-preview src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="" />
             <p className="omakase-touch-fallback__title">
               The Omakase needs a keyboard for 2-player action
             </p>
@@ -237,9 +238,6 @@ export default function TheOmakasePage() {
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
     if (nextMode === viewMode) return
     setViewMode(nextMode)
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
-    }
   }
 
   return (
@@ -304,8 +302,8 @@ export default function TheOmakasePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid omakase-grid omakase-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/cabinet-workshop.webp" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/cabinet-front.webp" alt="The Omakase arcade cabinet: plywood body, monitor, RGB button controllers" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/cabinet-workshop.webp" alt="The Omakase cabinet in the ITP workshop during build" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -314,9 +312,9 @@ export default function TheOmakasePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid omakase-grid omakase-grid--feature">
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal omakase-grid__wide"><img src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp" alt="Close-up: two players' hands on glowing RGB arcade buttons" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/game-screen-sushi.webp" alt="Game screen showing sushi conveyor belt and RGB-matched ingredients" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal omakase-grid__wide"><img data-project-preview src="/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp" alt="RGB buttons glowing in the dark, colorful arcade atmosphere" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -325,8 +323,8 @@ export default function TheOmakasePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid omakase-grid omakase-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/two-players.webp" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/team-photo.webp" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/two-players.webp" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/team-photo.webp" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -343,13 +341,13 @@ export default function TheOmakasePage() {
           </div>
           <div className="wrap">
             <figure className="cs-img reveal omakase-figure">
-              <img src="/Assets/Projects/the-omakase/photos/chef-select-screen.webp" alt="Chef select screen — Chef Shiro versus Chef Kuro, each player's sushi likes, and a color-coded button legend for dropping sushi and changing belt direction" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/the-omakase/photos/chef-select-screen.webp" alt="Chef select screen — Chef Shiro versus Chef Kuro, each player's sushi likes, and a color-coded button legend for dropping sushi and changing belt direction" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The whole rulebook fits on one screen: pick your chef, match button colors to customers, go.</figcaption>
             </figure>
           </div>
           <div className="wrap">
             <figure className="cs-img reveal omakase-figure">
-              <img src="/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp" alt="Over a player's shoulder in the dark: the sushi conveyor belt on screen above two clusters of glowing RGB buttons under their hands" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp" alt="Over a player's shoulder in the dark: the sushi conveyor belt on screen above two clusters of glowing RGB buttons under their hands" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The mapping in action — customers on screen glow in the same colors as the buttons under your fingers.</figcaption>
             </figure>
           </div>
@@ -367,8 +365,8 @@ export default function TheOmakasePage() {
           </div>
           <div className="wrap">
             <div className="cs-img-grid omakase-grid omakase-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/plywood-shell-drilled.webp" alt="Bare varnished plywood shell of the cabinet with two clusters of eight drilled button holes, before any hardware went in" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/the-omakase/photos/marquee-sign-detail.webp" alt="Close-up of the marquee: THE OMAKASE. in a pixel typeface on birch plywood" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/plywood-shell-drilled.webp" alt="Bare varnished plywood shell of the cabinet with two clusters of eight drilled button holes, before any hardware went in" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/the-omakase/photos/marquee-sign-detail.webp" alt="Close-up of the marquee: THE OMAKASE. in a pixel typeface on birch plywood" loading="lazy" decoding="async" /></div>
             </div>
             <p className="cs-img-caption omakase-grid-caption">Left: the shell after drilling — 8 button holes per player, no hardware yet. Right: the pixel-type marquee that ties the cabinet to the game&rsquo;s art.</p>
           </div>
@@ -386,7 +384,7 @@ export default function TheOmakasePage() {
           </div>
           <div className="wrap">
             <figure className="cs-img reveal omakase-figure">
-              <img src="/Assets/Projects/the-omakase/photos/head-to-head-match.webp" alt="Two players seen from behind, mid-match at the cabinet — scores of $115 and $50 on the shared screen, buttons glowing under their hands" loading="lazy" decoding="async" />
+              <img data-project-preview src="/Assets/Projects/the-omakase/photos/head-to-head-match.webp" alt="Two players seen from behind, mid-match at the cabinet — scores of $115 and $50 on the shared screen, buttons glowing under their hands" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">Mid-match: $115 to $50 with time left — exactly the momentum swings the 90-second rounds were tuned for.</figcaption>
             </figure>
           </div>

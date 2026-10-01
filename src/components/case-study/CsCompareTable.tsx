@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface CsCompareTableProps {
   columns: string[];
@@ -12,29 +12,30 @@ const row = {
 };
 
 export default function CsCompareTable({ columns, rows, title }: CsCompareTableProps) {
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
       className="cs-compare-table-wrap"
-      initial="hidden"
+      initial={reduceMotion ? false : "hidden"}
       whileInView="show"
       viewport={{ once: true, margin: '-40px' }}
       variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05 } } }}
     >
       {title && <p className="cs-compare-table-title">{title}</p>}
       <div className="cs-compare-table-scroll">
-        <table className="cs-compare-table">
+        <table className="cs-compare-table" aria-label={title || "Project comparison"}>
           <thead>
             <tr>
-              <th className="cs-ct-feature-col" />
+              <th scope="col" className="cs-ct-feature-col"><span className="sr-only">Feature</span></th>
               {columns.map(col => (
-                <th key={col} className="cs-ct-col-head">{col}</th>
+                <th scope="col" key={col} className="cs-ct-col-head">{col}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((r) => (
-              <motion.tr key={r.feature} variants={row}>
-                <td className="cs-ct-feature">{r.feature}</td>
+              <motion.tr key={r.feature} variants={reduceMotion ? undefined : row}>
+                <th scope="row" className="cs-ct-feature">{r.feature}</th>
                 {r.values.map((v, i) => (
                   <td key={i} className="cs-ct-cell" data-label={columns[i]}>
                     {typeof v === 'boolean' ? (

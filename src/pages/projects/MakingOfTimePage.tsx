@@ -60,8 +60,8 @@ export default function MakingOfTimePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" alt="Custom mechanical watch: octagonal bezel, blue guilloche dial, steel bracelet" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/mockups/projects/making-of-time_16x9.webp" alt="Making of Time project overview featuring the physical watch studies" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/making-of-time/photos/blue-dial-hero.webp" alt="Custom mechanical watch: octagonal bezel, blue guilloche dial, steel bracelet" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/mockups/projects/making-of-time_16x9.webp" alt="Making of Time project overview featuring the physical watch studies" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -96,7 +96,7 @@ export default function MakingOfTimePage() {
             <p>Built from wood and brass, it made time slow and spatial. You stand with it, read the shadow, and feel the day moving instead of checking a number.</p>
           </CsBody>
           <figure className="cs-img reveal project-media--compact">
-            <img src="/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Sundial-inspired white watch with a raised gnomon on the dial" loading="lazy" decoding="async" />
+            <img data-project-preview src="/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Sundial-inspired white watch with a raised gnomon on the dial" loading="lazy" decoding="async" />
             <figcaption className="cs-img-caption">The sundial idea carried onto the wrist: the white watch&rsquo;s dial reads by a raised gnomon instead of hands.</figcaption>
           </figure>
         </CsSection>
@@ -107,7 +107,7 @@ export default function MakingOfTimePage() {
         {/* Tools + components */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/tools-layout.webp" alt="Watchmaking tools: calipers, tweezers, pliers, screwdrivers, locking pliers, and a mechanical watch" loading="lazy" /></div>
+            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/making-of-time/photos/tools-layout.webp" alt="Watchmaking tools: calipers, tweezers, pliers, screwdrivers, locking pliers, and a mechanical watch" loading="lazy" /></div>
           </div>
         </section>
 
@@ -126,8 +126,8 @@ export default function MakingOfTimePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-angle.png" alt="Mechanical watch: blue guilloche dial, octagonal bezel, steel bracelet from side angle" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/blue-dial-top.png" alt="Mechanical watch from above: blue dial with applied hour markers" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/making-of-time/photos/blue-dial-angle.png" alt="Mechanical watch: blue guilloche dial, octagonal bezel, steel bracelet from side angle" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/making-of-time/photos/blue-dial-top.png" alt="Mechanical watch from above: blue dial with applied hour markers" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -146,7 +146,7 @@ export default function MakingOfTimePage() {
         {/* Components photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img src="/Assets/Projects/making-of-time/photos/watch-components.png" alt="Watch assembly: movement, dial, hands, and bracelet components" loading="lazy" /></div>
+            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/making-of-time/photos/watch-components.png" alt="Watch assembly: movement, dial, hands, and bracelet components" loading="lazy" /></div>
           </div>
         </section>
 

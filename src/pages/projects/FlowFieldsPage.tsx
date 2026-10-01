@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import CsExpandPreview from "../../components/case-study/CsExpandPreview"
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -22,6 +21,7 @@ export default function FlowFieldsPage() {
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#4f8cff' } as React.CSSProperties}>
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="creative-tech"
           backLabel="Back to Work"
@@ -35,10 +35,9 @@ export default function FlowFieldsPage() {
             { label: 'Tools', value: 'p5.js, JavaScript, noise fields' },
           ]}
           heroImage="/Assets/images/flow-fields.svg"
-          heroAlt="Abstract flow-field pattern made from dense moving particles."
+          heroAlt="Static illustration of a flow-field pattern."
         />
 
-        <CsExpandPreview>
         <CsSection id="cs-glimpse" label="01 &mdash; Glimpse" title="Make the Field Legible">
           <CsBody>
             <p>The problem was simple: a flow field is mathematically interesting, but invisible until something moves through it. I wanted the viewer to feel the shape of that hidden system without needing an explanation of vectors, noise, or simulation.</p>
@@ -65,13 +64,12 @@ export default function FlowFieldsPage() {
 
         <CsSection id="cs-impact" label="03 &mdash; Impact" title="Why It Stays in the Portfolio">
           <CsBody>
-            <p>This is a small project, so it should stay small. Its value is not a big case study; it shows a useful habit: turning an abstract system into something readable through motion, feedback, and restraint.</p>
+            <p>The image above is a static illustration. The original running sketch is not included in this archive. For an available code study with restored source and interaction, see <a href="/comp-media" className="project-text-link">Computational Media</a>.</p>
           </CsBody>
         </CsSection>
 
         <CsThanks />
 
-        </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },

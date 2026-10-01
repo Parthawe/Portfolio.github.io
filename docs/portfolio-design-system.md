@@ -14,6 +14,10 @@ The visual language is:
 - Dense but readable product proof, not marketing filler.
 - Project-specific color only as a quiet accent, never a full page reset.
 
+## Recurring visual references
+
+For 3D, ASCII, motion, and interactive project presentation, consult [the ThreeUI reference](references/threeui.md). It records reviewed examples, placement priorities, access requirements, and the performance rules for this portfolio.
+
 ## Source Of Truth
 
 Use these files as the system spine:
@@ -236,3 +240,18 @@ The system audit currently identifies these as the highest leverage cleanup area
 5. Keep category and work pages fed by `src/data/projects.ts`, not duplicated project lists.
 6. Run `npm run design:audit` before committing UI changes.
 7. Run `npm run build` and screenshot QA after larger visual passes.
+
+
+## Project reading flow (2026-10-01)
+
+The user's approved direction uses https://mitalkamani.design/pmfdiscovery as a reading-layout reference. Keep a steady top-to-bottom sequence: concise introduction, actual project media, one overview, challenge, decisions with evidence, results, and learning. Preserve each project's factual material and access restrictions.
+
+- Shared sections place headings above content, not in a narrow side column.
+- The reading frame is at most 1040px, with responsive gutters and faint vertical guide lines. Text has a separate readable measure; images may fill the frame.
+- Body text is 16px; section headings range from 24px to 32px. Avoid oversized paragraph statements and abrupt background changes between chapters.
+- Keep project metadata compact. Show detailed timeline milestones through an optional disclosure.
+- Respect `showHeaderSummary={false}` when a separate quick summary follows; do not repeat the same context and outcome twice.
+- Retain the user's blurred public-image disclosure before deferred story content. Never expose protected material in that preview.
+- Maintain chapter links, keyboard image previews, reduced motion, and media cleanup.
+
+Implementation: `src/styles/project-reading.css` and shared case-study components. Do not apply these project rules to Home, About, Work, or category pages.

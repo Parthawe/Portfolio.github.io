@@ -22,7 +22,7 @@ export default function ProjectQuickSummary({
   fullCaseStudyEnabled = true,
   variant = 'card',
   label = 'Quick read',
-  title = 'Problem, role, outcome',
+  title = 'Project overview',
   proofLimit = 3,
   proofHeading,
   proofPlacement = 'bottom',

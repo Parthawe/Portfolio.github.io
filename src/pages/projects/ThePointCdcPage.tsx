@@ -89,7 +89,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img src="/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
+                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
               </div>
             </div>
           </div>
@@ -170,7 +170,7 @@ export default function ThePointCdcPage() {
             <span className="cs-section-label">Discover</span>
             <h2 className="cs-section-title">Visual Improvements</h2>
             <CsBody>
-              <p>An audit of the existing site revealed several areas for improvement:</p>
+              <p>The navigation decision was to surface free WiFi, programs, and events as recognizable destinations. The comparison below shows the old structure and the areas targeted for change; the later screens show grouped navigation and program cards.</p>
             </CsBody>
             <ul className="cs-list">
               <li><strong>Simplify Navigation:</strong> Reduce menu clutter by grouping items under broader categories.</li>
@@ -182,7 +182,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide cs-slide--point-visual reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
+          <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
         {/* Goals */}
@@ -205,11 +205,11 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title">User Journey</h2>
             <div className="point-board-stack point-board-stack--journey" aria-label="User journey map and information architecture flow diagram">
               <figure className="point-board-panel point-board-panel--goals">
-                <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="Goal mapping for accessibility, key programs, and community engagement" loading="lazy" />
+                <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="Goal mapping for accessibility, key programs, and community engagement" loading="lazy" />
                 <figcaption>Goals translated into site priorities.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--journey">
-                <img src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
+                <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
                 <figcaption>User journey and information architecture, enlarged for reading.</figcaption>
               </figure>
             </div>
@@ -218,7 +218,7 @@ export default function ThePointCdcPage() {
 
         {/* Wireframe slide */}
         <div className="cs-slide cs-slide--point-wireframe reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
+          <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
         </div>
 
         {/* Visual Style */}
@@ -233,7 +233,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide cs-slide--point-style reveal">
-          <img src="/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}
@@ -243,15 +243,15 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
             <div className="point-board-stack point-board-stack--redesign" aria-label="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme">
               <figure className="point-board-panel point-board-panel--redesign-top">
-                <img src="/Assets/Projects/ThePointCDC/photos/homepage-hero.png" alt="Redesigned homepage hero with grouped navigation and clear community entry points" loading="lazy" />
+                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/homepage-hero.png" alt="Redesigned homepage hero with grouped navigation and clear community entry points" loading="lazy" />
                 <figcaption>Grouped navigation and clearer entry points.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-mid">
-                <img src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="Angled overview of the redesigned program, team, partnership, and resource pages" loading="lazy" />
+                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="Angled overview of the redesigned program, team, partnership, and resource pages" loading="lazy" />
                 <figcaption>Programs surfaced as scan-friendly cards.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-bottom">
-                <img src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive desktop and mobile views of The Point CDC website" loading="lazy" />
+                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive desktop and mobile views of The Point CDC website" loading="lazy" />
                 <figcaption>Mobile and footer structure made easier to follow.</figcaption>
               </figure>
             </div>
@@ -261,8 +261,8 @@ export default function ThePointCdcPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign explaining the new homepage hierarchy and navigation" loading="lazy" /></div>
-              <div className="cs-img reveal"><img src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign explaining the new homepage hierarchy and navigation" loading="lazy" /></div>
+              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
           </div>
         </section>
