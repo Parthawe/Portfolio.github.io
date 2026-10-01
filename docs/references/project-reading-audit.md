@@ -122,3 +122,7 @@ The browser connection recovered for this pass, superseding the previous mobile-
 - Temporary viewport override reset; no deployment or push performed.
 
 Remaining editorial/source gaps listed above still apply. This QA does not validate research claims, third-party uptime, every possible viewport, or certify accessibility conformance.
+
+### Production verification follow-up
+
+Release b2f88e7 passed build/deploy and the full rendered-route checks, but interaction QA found that the static hero media wrapper inherited `pointer-events: none`, blocking mouse clicks on the newly enabled image-preview trigger. Keyboard-only lightbox coverage had missed this. Added a project-scoped pointer override for static hero images decorated as buttons. Reproduced the production sequence locally (expand Mentra, mouse-click its hero image, close the dialog) successfully. The build passes; the follow-up deployment reruns the existing production checks without weakening them.

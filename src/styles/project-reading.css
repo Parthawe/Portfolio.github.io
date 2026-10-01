@@ -453,3 +453,10 @@ body.case-side-nav .project-main .project-header--visual.wrap,
   text-wrap: pretty;
 }
 .project-main.project-main--raahi .raahi-decision-ledger article p:last-child { font-weight: 500; color: var(--ink); }
+
+/* Static hero artwork is also a lightbox trigger; override the decorative
+   media wrapper's inherited pointer-events without changing custom players. */
+.project-main .proj-visual-hero__media:not(.proj-visual-hero__media--interactive) > img[role="button"] {
+  pointer-events: auto;
+  cursor: zoom-in;
+}
