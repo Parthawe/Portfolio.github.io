@@ -17,6 +17,37 @@ function luminance(rgb) {
   return channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722
 }
 try {
+  // Metadata must remain readable before a visitor chooses a theme, too.
+  await page.setViewportSize({ width: 412, height: 915 })
+  for (const scheme of ['light', 'dark']) {
+    await page.emulateMedia({ colorScheme: scheme })
+    for (const route of ['/mentra/', '/raahi-project/', '/typeface/', '/revolving-stage/']) {
+      await go(route)
+      for (const theme of [null, 'light', 'dark']) {
+        await page.evaluate(theme => {
+          if (theme) document.documentElement.setAttribute('data-theme', theme)
+          else document.documentElement.removeAttribute('data-theme')
+        }, theme)
+        const rows = await page.locator('.proj-visual-brief__facts dd').evaluateAll(elements => elements.map(el => {
+          const style = getComputedStyle(el)
+          let background = 'rgb(255, 255, 255)'
+          for (let ancestor = el; ancestor; ancestor = ancestor.parentElement) {
+            const color = getComputedStyle(ancestor).backgroundColor
+            if (color.startsWith('rgb(')) { background = color; break }
+          }
+          return { text: el.textContent, color: style.color, background }
+        }))
+        assert(rows.length, `${route}: metadata exists`)
+        for (const row of rows) {
+          const a = luminance(row.color), b = luminance(row.background)
+          assert((Math.max(a, b) + .05) / (Math.min(a, b) + .05) >= 4.5,
+            `${route} ${scheme}/${theme ?? 'system'}: metadata contrast: ${row.text}`)
+        }
+      }
+    }
+  }
+  await page.emulateMedia({ colorScheme: 'light' })
+  await page.setViewportSize({ width: 390, height: 844 })
   for (const route of ['/mentra/', '/medimorpho/', '/shuffle/']) {
     await go(route)
     for (const theme of ['light', 'dark']) {

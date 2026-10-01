@@ -126,3 +126,7 @@ Remaining editorial/source gaps listed above still apply. This QA does not valid
 ### Production verification follow-up
 
 Release b2f88e7 passed build/deploy and the full rendered-route checks, but interaction QA found that the static hero media wrapper inherited `pointer-events: none`, blocking mouse clicks on the newly enabled image-preview trigger. Keyboard-only lightbox coverage had missed this. Added a project-scoped pointer override for static hero images decorated as buttons. Reproduced the production sequence locally (expand Mentra, mouse-click its hero image, close the dialog) successfully. The build passes; the follow-up deployment reruns the existing production checks without weakening them.
+
+### Mobile metadata contrast correction
+
+The 412px Mentra report exposed an obsolete mobile-only light-text override in project-page-polish.css. It assumed the visual brief still sat on a dark gradient. Removed that override, made the shared readable-text rules apply without an explicit data-theme attribute, and removed Revolving Stage's legacy local ink palette so its text follows the current reading surface. At 412px, all 49 project metadata headers were checked in explicit light and dark modes: each uses the expected opaque theme ink. Added 4.5:1 metadata regression assertions at 412px for Mentra, Raahi, Typeface and Revolving Stage under explicit and system themes. Production build passes.

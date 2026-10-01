@@ -220,8 +220,8 @@ body.case-side-nav .project-main .project-header--visual.wrap,
   grid-column: auto;
   grid-row: auto;
 }
-[data-theme] .project-main .proj-visual-brief :is(dt, dd, p, span, strong),
-[data-theme] .project-main:has(.project-header--visual) .proj-visual-brief :is(dt, dd, p, span, strong) {
+:root .project-main .proj-visual-brief :is(dt, dd, p, span, strong),
+:root .project-main:has(.project-header--visual) .proj-visual-brief :is(dt, dd, p, span, strong) {
   color: var(--ink);
 }
 .project-main .proj-visual-brief .proj-visual-brief__copy,
@@ -310,7 +310,7 @@ body.case-side-nav .project-main .project-header--visual.wrap,
   --mentra-type-display: clamp(2.2rem, 4.3vw, 3.5rem);
 }
 .project-main:has(.project-header--visual)::after { content: none; }
-[data-theme] .project-main:has(.project-header--visual) .project-header--visual :is(.proj-visual-title, .proj-visual-project-name, .proj-visual-live) {
+:root .project-main:has(.project-header--visual) .project-header--visual :is(.proj-visual-title, .proj-visual-project-name, .proj-visual-live) {
   color: var(--ink);
   text-shadow: none;
 }

@@ -8665,22 +8665,6 @@ html:has(.project-main) {
 
 .project-main--revolving-stage {
   --case-rule: rgba(238, 244, 248, 0.14);
-  --ink: #edf4f8;
-  --ink-80: rgba(237, 244, 248, 0.8);
-  --ink-70: rgba(237, 244, 248, 0.7);
-  --ink-60: rgba(237, 244, 248, 0.6);
-  --ink-50: rgba(237, 244, 248, 0.5);
-  --ink-40: rgba(237, 244, 248, 0.42);
-  --ink-35: rgba(237, 244, 248, 0.36);
-  --ink-20: rgba(237, 244, 248, 0.2);
-  --ink-15: rgba(237, 244, 248, 0.15);
-  --ink-12: rgba(237, 244, 248, 0.12);
-  --ink-10: rgba(237, 244, 248, 0.1);
-  --ink-08: rgba(237, 244, 248, 0.08);
-  --ink-06: rgba(237, 244, 248, 0.06);
-  --ink-04: rgba(237, 244, 248, 0.04);
-  --surface: rgba(21, 30, 40, 0.72);
-  --surface-raised: rgba(30, 42, 54, 0.76);
   --stage-wood: #B08A62;
   --stage-wood-soft: rgba(176, 138, 98, 0.18);
   color: var(--ink);

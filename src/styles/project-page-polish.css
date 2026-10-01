@@ -1287,19 +1287,6 @@
   color: color-mix(in srgb, var(--ink) 74%, transparent);
 }
 
-/* On compact screens the visual brief sits inside the dark project gradient.
-   Keep its copy light until the following quick-summary surface takes over. */
-@media (max-width: 768px) {
-  [data-theme="light"] .project-main:has(.project-header--visual) .proj-visual-brief,
-  [data-theme="light"] .project-main:has(.project-header--visual) .proj-visual-brief :is(dt, dd, p, span, strong) {
-    color: rgba(246, 252, 250, 0.96);
-  }
-
-  [data-theme="light"] .project-main:has(.project-header--visual) .proj-visual-brief :is(dd, p, .proj-visual-timeline span) {
-    color: rgba(246, 252, 250, 0.76);
-  }
-}
-
 [data-theme="dark"] .project-main .proj-visual-brief,
 [data-theme="dark"] .project-main .proj-visual-brief :is(dt, dd, p, span, strong) {
   color: #ededec;
