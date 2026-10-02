@@ -12,7 +12,6 @@ import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsCredits from '../../components/case-study/CsCredits'
-import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -99,7 +98,7 @@ export default function OrgDashboardPage() {
           backLabel="Back to Work"
           tags={['SaaS', 'AI', 'Product Design', 'B2B']}
           title="OrgDashboard"
-          subtitle="Designing the SaaS platform that gives AI agents organizational context &mdash; a shared brain for every agent in your company"
+          subtitle="An organizational context platform connecting people, knowledge, and reviewable AI-agent actions."
           info={[
             { label: 'Role', value: 'Designer' },
             { label: 'Type', value: 'SaaS \u00b7 Developer Tools' },
@@ -115,11 +114,11 @@ export default function OrgDashboardPage() {
           sections={[
             {
               label: 'The Problem',
-              content: 'AI agents today are powerful but amnesiac. Every session starts from zero. Engineers paste context into prompts, maintain private files of API keys, and manually explain their company to Claude over and over. What one person\u2019s agent learns never benefits anyone else on the team. Ten engineers means ten separate, incomplete mental models of the company.',
+              content: 'The design brief addresses repeated context assembly: finding project status, operating procedures, and team knowledge before an agent can propose useful work.',
             },
             {
               label: 'The Solution',
-              content: 'OrgDashboard is the infrastructure layer between a company\u2019s data and its AI agents. Connect your tools, and every agent in your organization immediately gains access to a shared brain \u2014 SOPs, project status, team structure, KPIs, and institutional knowledge that compounds over time.',
+              content: 'A shared knowledge layer pairs structured retrieval for agents with a dashboard where people inspect sources and review proposed external actions.',
             },
           ]}
         />
@@ -136,12 +135,12 @@ export default function OrgDashboardPage() {
           <div className="cs-slide reveal">
             <OrgDashboardArtifact />
           </div>
-          <p className="cs-caption">Dashboard overview &mdash; the human-facing home screen showing connected integrations, knowledge base health, and pending agent actions</p>
+          <p className="cs-caption">Illustrative dashboard reconstruction. The left navigation separates sources, knowledge, and the action queue; the main area distinguishes context from actions awaiting review.</p>
         </CsSection>
 
-        <CsSection id="cs-two-users" label="The Design Challenge" title="One Platform, Two Fundamentally Different Users">
+        <CsSection id="cs-two-users" label="The Design Challenge" title="People and agents need different views">
           <CsBody>
-            <p>The core design challenge was unprecedented: design a single platform that serves two users simultaneously &mdash; AI agents and humans &mdash; with completely different interaction models, needs, and capabilities. Agents operate through structured APIs and CLIs. Humans need visual dashboards and approval interfaces. Both need to read and write to the same knowledge base without stepping on each other.</p>
+            <p>Agents retrieve structured context through a CLI or API. People need to inspect that same context and decide whether a proposed action should proceed. The two interfaces therefore share names, relationships, and permission boundaries.</p>
           </CsBody>
           <CsPullquote
             quote="If an agent can find it through org kb search, a human should be able to find it through the same logical path in the UI. One data model, two interaction paradigms."
@@ -151,32 +150,21 @@ export default function OrgDashboardPage() {
             { title: 'AI Agents', desc: 'Operate through CLI commands and MCP tools. Need structured data retrieval, granular KB edits, and a clear action proposal system. Interact programmatically \u2014 every surface must be machine-parseable.' },
             { title: 'Humans', desc: 'Manage, monitor, and approve through the web dashboard. Need visual knowledge exploration, connection management, action queues, and synthesized views of what agents are doing across the org.' },
             { title: 'Shared Knowledge Base', desc: 'Both users read from and write to the same persistent store. The design had to ensure agents could build knowledge incrementally while humans could browse, verify, and correct it visually.' },
-            { title: 'Trust Boundary', desc: 'Not all agent actions are safe to auto-approve. The action system needed clear tiers: KB writes are free, but external actions (Slack messages, ticket creation, purchases) require human approval.' },
+            { title: 'Trust Boundary', desc: 'Not all agent actions are safe to auto-approve. The action system needed clear tiers: External actions require review. Internal knowledge edits still need scoped access, provenance, and a recovery path.' },
           ]} />
         </CsSection>
 
-        <CsSection id="cs-decisions" label="Design Decisions" title="Three Bets That Shaped the Product">
-          <h3 className="cs-section-subtitle">1. Grayscale-First Visual Language</h3>
-          <CsBody>
-            <p>For a developer-facing SaaS product, visual noise is the enemy. I designed a grayscale-first color system where the only source of color comes from the warm <code>#fafafa</code> background and intentional status indicators. No decorative color, no branded gradients. The palette uses <code>rgba()</code> opacity values for consistent tonal relationships &mdash; inspired by Linear, Vercel, and Stripe&rsquo;s design sensibilities.</p>
-            <p>This restraint serves a purpose: when color does appear (a red destructive badge, a green active status), it carries real meaning. Developers notice it because the rest of the interface is deliberately quiet.</p>
-          </CsBody>
-          <h3 className="cs-section-subtitle">2. Agent-First Information Architecture</h3>
-          <CsBody>
-            <p>Most dashboards are designed for humans and then retrofitted with APIs. I inverted this. The information architecture was designed for agent consumption first &mdash; structured, queryable, composable &mdash; and the human dashboard was built as a visual projection of that same data model.</p>
-            <p>The knowledge base uses an agentic retrieval model, not pure RAG. Agents browse by type or tag, follow relationships, and explore iteratively. The web dashboard&rsquo;s knowledge explorer mirrors this exact navigation model &mdash; if an agent can find something via <code>org kb search</code>, a human can find it through the same logical path in the UI.</p>
-          </CsBody>
-          <h3 className="cs-section-subtitle">3. Progressive Trust Through Action Tiers</h3>
-          <CsBody>
-            <p>The action system was the most critical trust design. Reading data is free &mdash; agents should never hesitate to gather context. Writing to the knowledge base is auto-approved &mdash; agents can build shared knowledge without interrupting a human for every note. But external actions &mdash; sending emails, posting to Slack, creating tickets, making purchases &mdash; enter an approval queue.</p>
-            <p>The approval interface had to be fast enough that humans don&rsquo;t become bottlenecks, but informative enough that they can make confident decisions. Each pending action shows the full context: what the agent wants to do, why it proposed it, and what data it used to make the decision.</p>
-          </CsBody>
-          <CsCallout>
-            <p><strong>Design boundary:</strong> external writes enter an approval queue. Internal knowledge writes still need access controls, provenance, and recovery; they are not inherently safe simply because they stay inside the system.</p>
-          </CsCallout>
+        <CsSection id="cs-decisions" label="Design Decisions" title="Three product decisions">
+          <h3 className="cs-section-subtitle">1. Keep retrieval paths consistent</h3>
+          <CsBody><p>Projects, team context, and operating procedures use the same structure in the knowledge explorer and agent tools. This lets a reviewer trace a retrieved item without learning a second naming system.</p></CsBody>
+          <h3 className="cs-section-subtitle">2. Separate context from authorization</h3>
+          <CsBody><p>The overview places the knowledge structure beside the approval queue. Finding information does not grant permission to send a message or change an external system.</p></CsBody>
+          <h3 className="cs-section-subtitle">3. Review the proposed change</h3>
+          <CsBody><p>A review needs the proposed action, destination, supporting source, and rationale. The design calls for a person to inspect those details before an external write proceeds.</p></CsBody>
+          <CsCallout><p><strong>Open evaluation:</strong> test whether a reviewer can identify a wrong destination or stale source. Approval speed alone would not establish that the review interface is safe or understandable.</p></CsCallout>
         </CsSection>
 
-        <CsSection id="cs-system" label="Design System" title="Built for Developer Trust">
+        <CsSection id="cs-system" label="Design System" title="Inspect the system behind each action">
           <CsBody className="cs-body--space-after">
             <p>The design system was built from scratch for a developer-facing SaaS product. Three font families, each with a distinct purpose. A grayscale-first color system. Components that prioritize clarity over personality.</p>
           </CsBody>
@@ -188,15 +176,10 @@ export default function OrgDashboardPage() {
             { key: 'Foreground', value: '#1c2024' },
             { key: 'Framework', value: 'Tailwind + shadcn/ui' },
           ]} />
-          <CsFeatureGrid features={[
-            { title: 'Minimal, Refined Components', desc: 'Cards with no default shadow. Badges that are pill-shaped and subtle, never bold. Destructive actions use outlined/tinted treatment \u2014 not solid red buttons. Every component earns trust through restraint.' },
-            { title: 'Opacity-Based Color Scale', desc: 'Instead of named gray tokens, the system uses rgba(0,0,0,X) at consistent opacity stops. This creates natural tonal relationships and ensures every text shade has a clear purpose \u2014 from labels at 0.35 to body text at 0.55.' },
-            { title: 'Quiet Confidence', desc: 'No box shadows by default. Hover states add micro-shadows. Transitions at 0.15s \u2014 never bouncy or elastic. The interface feels precise, not playful. Developers trust tools that behave predictably.' },
-            { title: 'Anti-Patterns', desc: 'Explicitly documented what we don\u2019t do: no dark code blocks, no solid destructive buttons, no heavy box shadows, no saturated status colors, no font-weight 700 except specific emphasis. Taste is as much about what you exclude.' },
-          ]} />
+          <CsBody><p>Typography separates headings, reading text, and commands. Status treatment is reserved for information a reviewer needs to act on, such as a disconnected source or pending request.</p></CsBody>
         </CsSection>
 
-        <CsSection id="cs-surfaces" label="Product Surfaces" title="Four Surfaces, One Coherent Experience">
+        <CsSection id="cs-surfaces" label="Product Surfaces" title="Four surfaces in the workflow">
           <CsBody className="cs-body--space-after">
             <p>OrgDashboard lives across four distinct surfaces. Each was designed for its specific context while sharing a unified data model and design language.</p>
           </CsBody>
@@ -221,12 +204,7 @@ export default function OrgDashboardPage() {
         </CsSection>
 
         <CsSection id="cs-reflections" label="Reflections" title="What Designing for Agents Taught Me">
-          <CsNumList items={[
-            <><strong>Agents are a user, not a feature.</strong> Designing for agents requires the same empathy and rigor as designing for humans. They have workflows, frustrations, and failure modes. The CLI&rsquo;s command structure went through as many iterations as any UI component.</>,
-            <><strong>Trust is earned through transparency.</strong> The action approval system works because agents explain their reasoning. Every pending action includes context &mdash; not just what, but why. Humans approve faster when they understand the agent&rsquo;s decision-making.</>,
-            <><strong>Grayscale is not boring &mdash; it&rsquo;s confident.</strong> Stripping away decorative color forced every design decision to earn its place through typography, spacing, and hierarchy alone. When the fundamentals are strong, you don&rsquo;t need color as a crutch.</>,
-            <><strong>Design the data model, then the interface.</strong> Starting with the agent&rsquo;s data needs and working backward to the human dashboard produced a more coherent product than the reverse would have. The UI is a projection of the API &mdash; and that alignment shows.</>,
-          ]} />
+          <CsBody><p>Sharing a data model makes an agent result easier for a person to inspect. The harder design question is what the reviewer needs before authorizing a change: the source, destination, proposed effect, and a way to recover.</p><p>A recorded task and a review study would be the next evidence to add. The current interface demonstrates the proposed organization of those decisions.</p></CsBody>
         </CsSection>
 
         <CsSection label="Credits" title="Team">

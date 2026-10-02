@@ -39,7 +39,7 @@ export default function RevolvingStagePage() {
           backLabel="Back to Work"
           tags={['Fabrication', 'Engineering', 'Art Direction']}
           title={'Designing Revolving Stage\nFor Theatre Play'}
-          subtitle="Engineering a 15 ft. rotating platform supporting 250+ kgs for scene changes without blackout"
+          subtitle="A 15 ft. rotating stage designed around a 250 kg load target and scene changes without blackout."
           info={[
             { label: 'Client', value: 'Firodia Karandak' },
             { label: 'Scope of Work', value: 'Design, Production, Engineering' },
@@ -93,7 +93,7 @@ export default function RevolvingStagePage() {
         <CsExpandPreview>
         <CsSection id="cs-rotate" label="Interactive" title="Spin the Stage">
           <CsBody>
-            <p>Drag to rotate the 15-foot platform. Four scene zones are painted on the stage &mdash; as it turns, different scenes face the audience. This is how the director used rotation as a narrative tool: one smooth spin = one scene transition, no blackout needed.</p>
+            <p>Explore a simplified browser model of the rotating platform. Turning it shows how different scene zones can face the audience. The original construction drawings and performance photographs below document the built stage; this model does not simulate its loads or certify its mechanics.</p>
           </CsBody>
           <div className="project-content-block">
             <StageRotation />

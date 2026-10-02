@@ -28,7 +28,7 @@ export default function EmbodiedWebPage() {
           backLabel="Back to Work"
           tags={['Creative Coding', 'Web Experiments', 'Body as Input']}
           title="Embodied Web"
-          subtitle="Browser experiments that use the body as input &mdash; webcam, motion sensors, and spatial audio beyond the mouse"
+          subtitle="Course experiments mapping breath, gesture, and phone movement to browser interactions."
           info={[
             { label: 'Context', value: 'Experiments on the Embodied Web, NYU ITP' },
             { label: 'Year', value: '2023' },
@@ -37,25 +37,39 @@ export default function EmbodiedWebPage() {
           ]}
         />
 
-        <CsSection id="cs-concept" label="01 &mdash; Concept" title="The Browser as a Physical Space">
+        <CsSection id="cs-concept" label="01 &mdash; Concept" title="Body input in the browser">
           <CsBody>
-            <p className="cs-caption">Course experiment notes. The original running sketches are not included on this page.</p>
-            <p>Most websites assume a mouse and keyboard. But modern browsers have access to the camera, microphone, accelerometer, gyroscope, GPS, and haptic motors. What happens when you design web experiences that use the body instead of the cursor?</p>
-            <p>This course explored that question through a series of rapid experiments &mdash; each one using a different body-based input to create interactions that feel physical, spatial, and intimate in ways that traditional web design cannot.</p>
+            <p>These course studies mapped physical input to a visible or audible response. The recurring question was whether a person could understand that response through the action itself.</p>
+            <p>The descriptions below are experiment notes. Original running sketches are not included in this archive.</p>
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-experiments" label="02 &mdash; Experiments" title="Five Body-Based Web Pieces">
+        <CsSection id="cs-experiments" label="02 &mdash; Experiments" title="Five input experiments">
           <CsFeatureGrid features={[
-            { title: 'Breathing Canvas', desc: 'Microphone input detects breathing rhythm. The canvas expands and contracts in sync, creating a meditative loop. Inhale: colors warm and spread. Exhale: colors cool and contract. After 2 minutes, the accumulated patterns form a unique visual fingerprint of your breathing.' },
-            { title: 'Pose Typography', desc: 'Webcam pose detection (ml5.js PoseNet) maps body landmarks to letterforms. Stand with arms up: you become an "A". Arms out: "T". Crouch: "C". The screen fills with the letters your body makes — a live alphabet written in gesture.' },
-            { title: 'Tilt Landscape', desc: 'Phone accelerometer drives a procedural landscape. Tilt left: mountains rise on the left. Tilt forward: zoom into the terrain. The landscape is generated from Perlin noise, but your body controls the camera. Designed for mobile — desktop users see a "pick up your phone" prompt.' },
-            { title: 'Proximity Choir', desc: 'A multi-device audio experiment using Web Audio and WebSocket messages to coordinate notes. Relative position was a proposed input; network timing alone does not provide reliable physical distance between phones.' },
-            { title: 'Shadow Puppet Theatre', desc: 'Webcam silhouette extraction creates a shadow on screen that interacts with falling particles. The design question is whether the feedback makes catching and moving particles understandable without instructions.' },
-          ]} />
+  {
+    "title": "Breathing canvas",
+    "desc": "Microphone input drives an expanding and contracting canvas. The study connects the rhythm of breathing to the pace of the image."
+  },
+  {
+    "title": "Pose typography",
+    "desc": "Webcam body landmarks map to letterforms: raised arms suggest an A, outstretched arms a T. The design question is how clearly a pose produces a recognizable letter."
+  },
+  {
+    "title": "Tilt landscape",
+    "desc": "Phone motion controls a procedural landscape. Tilt maps to terrain and camera movement, making feedback and calibration central to the interaction."
+  },
+  {
+    "title": "Proximity choir",
+    "desc": "Web Audio and WebSocket messages coordinate sound across devices. Relative physical position remained a proposed input; network timing does not reliably measure distance."
+  },
+  {
+    "title": "Shadow puppet theatre",
+    "desc": "A webcam silhouette interacts with falling particles. The feedback needs to explain how to catch and move them."
+  }
+]} />
         </CsSection>
 
-        <CsSection id="cs-reflection" label="03 &mdash; Reflection" title="What the Body Knows">
+        <CsSection id="cs-reflection" label="03 &mdash; Reflection" title="Feedback, calibration, and access">
           <CsBody>
             <p>The biggest insight: body-based interfaces can reduce explanation when they start from familiar actions. Breathing, tilting, waving, and standing already have meaning before the screen responds. The design work is in making the response predictable enough that the body understands the loop.</p>
             <p>Body input introduces calibration, precision, privacy, and access constraints. A finished version needs clear permission states and an alternative for anyone who cannot or does not want to use a camera, microphone, or movement input.</p>

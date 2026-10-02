@@ -37,12 +37,13 @@ export default function AiVoicePage() {
       <main id="main-content" className="project-main project-main--ai-voice" style={{ '--project-color': '#3F82D8' } as React.CSSProperties}>
 
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="ai"
           backLabel="Back to Work"
           tags={['Product Design', 'AI', 'Voice UX', 'Enterprise']}
           title="AI Voice Selection For Enterprise"
-          subtitle="Reframed enterprise voice selection around tone, context, and emotional fit instead of static demo lists."
+          subtitle="An enterprise voice-selection flow for comparing tone, testing scenarios, and explaining a choice."
           info={[
             { label: 'Client', value: 'Undisclosed (NDA)' },
             { label: 'Scope', value: 'Product Design' },
@@ -53,13 +54,14 @@ export default function AiVoicePage() {
           heroTone="ai"
           visualHeroImage={AI_VOICE_PUBLIC_PREVIEW}
           visualHeroAlt="Voice Matching enterprise interface cover with three suggested voice personas."
-          visualSummary="Reframed enterprise voice selection around tone, context, and emotional fit instead of static demo lists."
+          visualSummary="An enterprise voice-selection flow for comparing tone, testing scenarios, and explaining a choice."
         />
 
         <NdaPublicStory
           slug="ai-voice"
+          showVisuals={false}
           headline="Voice choice as product judgment."
-          lede="The core shift: choosing an AI voice is not a dropdown problem, it is a confidence problem."
+          lede="Reviewers need to hear a voice in context and explain why it fits the brand."
           visuals={AI_VOICE_PUBLIC_VISUALS}
         />
 
@@ -94,7 +96,7 @@ export default function AiVoicePage() {
           }}
         />
 
-        <CsSection id="cs-ai-voice-research" label="Research" title="The gap was guidance, not generation">
+        <CsSection id="cs-ai-voice-research" label="Research" title="What the market audit changed">
           <div className="ai-voice-section-copy">
             <p>
               The audit showed three different failure modes: developer-first entry points, no public self-serve
@@ -107,7 +109,7 @@ export default function AiVoicePage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-ai-voice-journey" label="Journey" title="The enterprise manager needed a defensible choice">
+        <CsSection id="cs-ai-voice-journey" label="Journey" title="Explain the choice to a team">
           <div className="ai-voice-section-copy">
             <p>
               The journey map made the risk visible: the user starts curious, becomes unsure during exploration,
@@ -120,7 +122,7 @@ export default function AiVoicePage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-ai-voice-system" label="System" title="Voice DNA made the choice inspectable">
+        <CsSection id="cs-ai-voice-system" label="System" title="Compare persona, transcript, and parameters">
           <div className="ai-voice-section-copy">
             <p>Voice DNA translated subjective preferences into visible signals such as tone, speed, pitch, accent, and scenario fit.</p>
             <p>The interface kept persona, transcript, and adjustable parameters together so reviewers could explain a choice instead of simply trusting a sample.</p>

@@ -511,7 +511,7 @@ export const projects: Project[] = [
     slug: 'medimorpho',
     name: 'NYU Langone',
     image: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
-    cardMockupAlt: 'Healthcare UX research cover showing multilingual care moving from evidence to a shared decision.',
+    cardMockupAlt: 'NYU Langone Health signage on the glass facade of its hospital building.',
     tag: 'HEALTHCARE UX',
     year: '2024',
     desc: 'Healthcare UX research into clearer multilingual care, communication, and follow-through',
@@ -1768,9 +1768,9 @@ for (const project of projects) {
 
 const medimorphoProject = projects.find(project => project.slug === 'medimorpho')
 if (medimorphoProject) {
-  medimorphoProject.cardMockup = '/Assets/Projects/MediMorpho/medimorpho-4x5.svg'
-  medimorphoProject.cardMockupSquare = '/Assets/Projects/MediMorpho/research/cover-illustration.webp'
-  medimorphoProject.cover16x9 = '/Assets/Projects/MediMorpho/medimorpho-16x9.svg'
+  medimorphoProject.cardMockup = medimorphoProject.image
+  medimorphoProject.cardMockupSquare = medimorphoProject.image
+  medimorphoProject.cover16x9 = medimorphoProject.image
 }
 
 /* ──────────────────────────────────────────────────────────────────────

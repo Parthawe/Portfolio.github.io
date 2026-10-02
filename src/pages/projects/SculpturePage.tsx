@@ -30,8 +30,11 @@ export default function SculpturePage() {
           categorySlug="installations"
           backLabel="Back to Work"
           tags={['Sculpture', 'Art', 'Competition']}
+          heroImage="/Assets/Projects/Sculpture/1.jpg"
+          heroAlt="Finished figurative sculpture under low-key lighting"
+          showHeaderSummary={false}
           title="Sculpture"
-          subtitle="A small glimpse of learning figurative sculpture under competition pressure"
+          subtitle="Figurative sculpture for Firodia Karandak, from anatomy studies and armatures to a finished piece."
           info={[
             { label: 'Context', value: 'Firodia Karandak' },
             { label: 'Role', value: 'Sculptor' },
@@ -39,15 +42,10 @@ export default function SculpturePage() {
           ]}
         />
 
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img data-project-preview src="/Assets/Projects/Sculpture/1.jpg" alt="Figurative sculpture under dramatic low-key lighting" loading="eager" />
-          </div>
-        </section>
 
-        <CsSection id="cs-glimpse" label="Glimpse" title="From Zero Skill To A Finished Figure">
+        <CsSection id="cs-glimpse" label="Glimpse" title="Learning form through making">
           <CsBody>
-            <p>This is not a full design case study. It is a short record of a physical practice project: I entered the sculpture category at Firodia Karandak with almost no formal sculpture experience, studied anatomy, built armatures, failed through early forms, and finished a competition piece through repeated late-night practice.</p>
+            <p>I entered the sculpture category at Firodia Karandak with little formal experience. Anatomy studies, welded armatures, and repeated corrections led to a finished figurative piece.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Problem</span>
@@ -62,16 +60,16 @@ export default function SculpturePage() {
             <span className="cs-label-row-val">A finished figurative sculpture that won in the competition context and became a useful proof of physical making discipline.</span>
           </div>
         </CsSection>
-        <section className="cs-section reveal">
+        <section id="cs-sculpture-process" className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" loading="lazy" /></div>
+              <CsImage src="/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" caption="Anatomy and classical references informed the figure’s proportions and pose." />
+              <CsImage src="/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" caption="Early forms and armature construction show the support beneath the surface." />
             </div>
           </div>
         </section>
 
-        <CsSection id="cs-impact" label="Impact" title="What It Proved">
+        <CsSection id="cs-impact" label="Impact" title="Structure before surface detail">
           <CsFeatureGrid features={[
             { title: 'Physical patience', desc: 'The project forced slower decisions because material work does not have an easy undo button.' },
             { title: 'Structural thinking', desc: 'The sculpture only worked once the armature, weight, posture, and surface detail supported the same pose.' },
@@ -79,14 +77,14 @@ export default function SculpturePage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-learning" label="Learning" title="What I Took From It">
+        <CsSection id="cs-learning" label="Learning" title="The finished figure">
           <CsBody>
             <p>The biggest lesson was that craft exposes unclear thinking immediately. If the pose is wrong, the material tells you. If the structure is weak, the form fails. That made this project useful beyond sculpture: it trained me to respect constraints early, prototype with my hands, and keep working through the awkward middle instead of polishing a weak idea.</p>
           </CsBody>
           <CsImage
             src="/Assets/Projects/Sculpture/5.jpg"
             alt="Final figurative sculpture shown under dramatic lighting"
-            caption="Final sculpture documentation - the useful record here is the leap from beginner practice to a public finished piece."
+            caption="Finished figure: compare the posture and surface with the earlier armature and studies."
           />
         </CsSection>
 

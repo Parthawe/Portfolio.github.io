@@ -1,3 +1,4 @@
+import GenerativeCanvas from '../../components/GenerativeCanvas'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -27,7 +28,7 @@ export default function FlowFieldsPage() {
           backLabel="Back to Work"
           tags={['Generative Art', 'p5.js', 'Perlin Noise']}
           title="Flow Fields"
-          subtitle="A compact generative-art study about turning invisible vector fields into visible motion"
+          subtitle="A generative-art study of how particle speed, trails, and density reveal a noise field."
           info={[
             { label: 'Context', value: 'Creative coding study' },
             { label: 'Year', value: '2024' },
@@ -38,33 +39,38 @@ export default function FlowFieldsPage() {
           heroAlt="Static illustration of a flow-field pattern."
         />
 
-        <CsSection id="cs-glimpse" label="01 &mdash; Glimpse" title="Make the Field Legible">
+        <CsSection id="cs-glimpse" label="01 &mdash; Glimpse" title="Making a hidden field visible">
           <CsBody>
-            <p>The problem was simple: a flow field is mathematically interesting, but invisible until something moves through it. I wanted the viewer to feel the shape of that hidden system without needing an explanation of vectors, noise, or simulation.</p>
-            <p>The method was to release thousands of particles into a Perlin-noise field, then tune speed, opacity, reset behavior, and color so the system revealed currents instead of becoming visual static.</p>
+            <p>A noise field becomes visible through the particles moving across it. I tuned velocity, trail opacity, and particle resets to make currents readable without filling the canvas with visual noise.</p>
+            <p>The cover is a static illustration. The original running sketch is not included in this archive.</p>
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-learnings" label="02 &mdash; Learning" title="What I Learned">
-          <CsFeatureGrid features={[
-            {
-              title: 'Rules shape the feeling',
-              desc: 'Small changes to velocity, trail length, and particle lifetime changed the emotional tone of the piece more than color did.',
-            },
-            {
-              title: 'Constraint beats decoration',
-              desc: 'The sketch worked best when I removed extra styling and let the motion expose the structure of the field.',
-            },
-            {
-              title: 'Systems need pacing',
-              desc: 'A generative piece still needs rhythm. Reset timing and density control kept the image alive without becoming chaotic.',
-            },
-          ]} />
+        <CsSection id="cs-flow-demo" label="02 &mdash; Demonstration" title="Watch the paths accumulate">
+          <CsBody><p>This portfolio demonstration uses the existing noise-field canvas implementation. It illustrates the technique; it is not a recovered copy of the original 2024 sketch.</p><p>Start the animation, let the trails develop, then pause to inspect their direction. Move a pointer through the field to compare its undisturbed paths with local attraction.</p></CsBody>
+          <GenerativeCanvas flowOnly />
         </CsSection>
 
-        <CsSection id="cs-impact" label="03 &mdash; Impact" title="Why It Stays in the Portfolio">
+        <CsSection id="cs-learnings" label="03 &mdash; Learning" title="Three visual controls">
+          <CsFeatureGrid features={[
+  {
+    "title": "Velocity",
+    "desc": "Particle speed changes how quickly the field becomes visible and how sharply its paths turn."
+  },
+  {
+    "title": "Trails",
+    "desc": "Opacity and trail length control how much history remains on the canvas. Longer trails reveal currents but can obscure new movement."
+  },
+  {
+    "title": "Reset behavior",
+    "desc": "Particle lifetime and resets regulate density. They determine when the image clears enough for a new pattern to emerge."
+  }
+]} />
+        </CsSection>
+
+        <CsSection id="cs-impact" label="04 &mdash; Related study" title="Available material">
           <CsBody>
-            <p>The image above is a static illustration. The original running sketch is not included in this archive. For an available code study with restored source and interaction, see <a href="/comp-media" className="project-text-link">Computational Media</a>.</p>
+            <p>For an available interactive study with restored source, try <a href="/comp-media" className="project-text-link">Computational Media</a>. It uses camera pixels and wandering particles.</p>
           </CsBody>
         </CsSection>
 
@@ -73,6 +79,7 @@ export default function FlowFieldsPage() {
 
         <BottomNav sections={[
           { id: 'cs-glimpse', label: 'Glimpse' },
+          { id: 'cs-flow-demo', label: 'Try the field' },
           { id: 'cs-learnings', label: 'Learning' },
           { id: 'cs-impact', label: 'Impact' },
         ]} />

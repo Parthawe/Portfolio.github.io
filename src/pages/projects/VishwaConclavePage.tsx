@@ -5,6 +5,7 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
+import CsImage from '../../components/case-study/CsImage'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -30,24 +31,20 @@ export default function VishwaConclavePage() {
           categorySlug="brand-visual"
           backLabel="Back to Work"
           tags={['Brand', 'Creative Direction', 'Web Design']}
+          showHeaderSummary={false}
+          heroImage="/Assets/Projects/VishwaConclave/1.jpg"
+          heroAlt="VishwaConclave identity and event posters across 2019–2021"
           title="VishwaConclave"
-          subtitle="From junior designer to creative director &mdash; building the visual identity for a multidisciplinary student-led conference over three years"
+          subtitle="Three years of conference identity and event work, from junior designer to creative director."
           info={[
             { label: 'Duration', value: 'Dec 2019 – May 2021' },
-            { label: 'Role', value: 'Creative Director' },
+            { label: 'Role', value: 'Junior designer → Creative director' },
             { label: 'Organization', value: 'Vishwakarma Institute of Technology, Pune' },
           ]}
         />
 
-        {/* Hero image */}
-        <section className="cs-slide cs-slide--top-half reveal">
-          <div className="wrap">
-            <img data-project-preview src="/Assets/Projects/VishwaConclave/1.jpg" alt="VishwaConclave brand identity overview showing event posters across three years" loading="eager" />
-          </div>
-        </section>
-
         {/* Overview */}
-        <CsSection id="cs-overview" label="Overview" title="Strategy Before Style">
+        <CsSection id="cs-overview" label="Overview" title="From individual assets to creative direction">
           <CsBody>
             <p>VishwaConclave is a multidisciplinary student-led conference organized by students at Vishwakarma Institute of Technology, Pune. The event brings speakers from different fields into conversation with the student community, so the design system had to make each theme feel distinct while still belonging to one larger platform.</p>
             <p>I joined as a Junior Designer in 2019. Across three years and five events, I grew into Creative Director for marketing, social, aesthetics, design, and web.</p>
@@ -59,32 +56,26 @@ export default function VishwaConclavePage() {
           cta="Open the campaign archive"
           note="Event timeline, identity systems, campaign assets, scope, growth notes, and final sign-off."
         >
-        {/* Events timeline */}
-        <CsSection id="cs-events" label="01 &mdash; Events" title="Five Events, Three Years">
+        <CsSection id="cs-events" label="Events" title="Selected events, 2019–2021">
           <CsBody>
-            <p><strong>Event 00 &mdash; VishwaConclave Revisit (2019)</strong><br />The inaugural event set the tone. &ldquo;The greatest victory is not winning against people, but winning against self.&rdquo; The event was endorsed by Maharashtra&rsquo;s Chief Minister, and the gratifying success of VishwaConclave 2019 laid the groundwork for a larger vision.</p>
-            <p><strong>Event 01 &mdash; Narrative (2019)</strong><br />A series of podcasts with real people whose inspirational stories help start conversations that give perspectives surpassing the prevailing notions. Featured speakers included Simon Taufel (cricket umpire), alongside bodyguards, martial arts trainers, businesswomen, and decision makers.</p>
-            <p><strong>Event 04 &mdash; Crafting The Decade (2020)</strong><br />The 2020s as a decade of transformation, redistributed power, reimagined consumption, and enhanced technology. Featured speakers Mrinal Kulkarni and Rakesh Godhwani. The event pivoted to a virtual format post-Covid and turned out to be a successful digital-first conference.</p>
-            <p><strong>Event 05 &mdash; Accelerate The Paradigm Shift (2021)</strong><br />The most ambitious event &mdash; full creative direction including domain design, video production, website development, social media campaigns, speaker identity systems, Amazon Prime sponsorship campaigns, merchandise design, and a musical experience. Featured Padmashree Uddhab Bharali among other speakers.</p>
+            <h3>2019 · Revisit and Narrative</h3>
+            <p>The inaugural conference and the Narrative conversation series needed speaker cards, podcast artwork, and social campaigns. These boards show the early event identities.</p>
           </CsBody>
+          <CsImage src="/Assets/Projects/VishwaConclave/2.jpg" alt="Narrative and Revisit speaker cards, podcast artwork, and social campaigns" caption="2019: speaker and conversation formats within the event identity." />
+          <CsBody>
+            <h3>2020 · Crafting the Decade</h3>
+            <p>The conference moved to a virtual format. The design work extended across speaker campaigns and recruitment material for eight team departments.</p>
+          </CsBody>
+          <CsImage src="/Assets/Projects/VishwaConclave/4.jpg" alt="Crafting the Decade speaker campaigns and recruitment structure" caption="2020: event communication and team recruitment within one system." />
+          <CsBody>
+            <h3>2021 · Accelerate the Paradigm Shift</h3>
+            <p>My scope expanded to creative direction across the website, speaker campaigns, sponsorship collateral, merchandise, video, and musical experience.</p>
+          </CsBody>
+          <CsImage src="/Assets/Projects/VishwaConclave/5.webp" alt="Accelerate the Paradigm Shift campaigns, website, speaker material, and merchandise" caption="2021: the identity extends across digital communication and physical event material." />
         </CsSection>
 
-        {/* Narrative & Revisit images */}
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img data-project-preview src="/Assets/Projects/VishwaConclave/2.jpg" alt="VishwaConclave Narrative and Revisit events — speaker cards, podcast series, and social media campaigns" loading="lazy" />
-          </div>
-        </section>
-
-        {/* Crafting the Decade */}
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img data-project-preview src="/Assets/Projects/VishwaConclave/4.jpg" alt="VishwaConclave Crafting The Decade — speaker campaigns, recruiting team structure across 8 departments" loading="lazy" />
-          </div>
-        </section>
-
         {/* Scope */}
-        <CsSection id="cs-scope" label="02 &mdash; Scope" title="What Creative Direction Looked Like">
+        <CsSection id="cs-scope" label="02 &mdash; Scope" title="The scope of creative direction">
           <CsBody>
             <p>By the final event, creative direction meant owning every touchpoint the audience encountered. The scope included:</p>
             <ul className="cs-list">
@@ -99,13 +90,6 @@ export default function VishwaConclavePage() {
             <p>Building a team recruitment system was an unexpected design challenge. Each of the eight departments needed its own visual identity within the larger VishwaConclave brand &mdash; distinct enough to attract the right people, cohesive enough to feel like one organization.</p>
           </CsBody>
         </CsSection>
-
-        {/* Paradigm Shift */}
-        <section className="cs-slide reveal">
-          <div className="wrap">
-            <img data-project-preview src="/Assets/Projects/VishwaConclave/5.webp" alt="VishwaConclave Accelerate The Paradigm Shift — campaigns, website, speakers, merch, and musical experience" loading="lazy" />
-          </div>
-        </section>
 
         {/* Growth */}
         <CsSection id="cs-growth" label="03 &mdash; Growth" title="Junior Designer to Creative Director">

@@ -17,6 +17,22 @@ function luminance(rgb) {
   return channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722
 }
 try {
+  // A public evidence link must open its deferred chapter and transfer focus.
+  for (const [route, id] of [
+    ['/mentra/', 'cs-companion'],
+    ['/transfi-project/', 'cs-public-story'],
+    ['/zentipay/', 'cs-public-story'],
+    ['/cuetv/', 'cs-cuetv-catalogue'],
+    ['/feeling-patterns/', 'cs-prototypes'],
+  ]) {
+    await go(route)
+    await page.locator('.page-loader').waitFor({ state: 'hidden' })
+    await page.locator('.proj-reading-evidence').click()
+    await page.locator(`#${id}`).waitFor({ state: 'visible' })
+    assert.equal(await page.evaluate(() => document.activeElement?.id), id, `${route}: focus reaches chapter`)
+    assert.equal(new URL(page.url()).hash, `#${id}`, `${route}: link is shareable`)
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${route}: no mobile overflow`)
+  }
   // Metadata must remain readable before a visitor chooses a theme, too.
   await page.setViewportSize({ width: 412, height: 915 })
   for (const scheme of ['light', 'dark']) {

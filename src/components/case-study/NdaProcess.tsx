@@ -66,7 +66,7 @@ export default function NdaProcess({
         {shift ? (
           <section className="cs-nda-impact" aria-labelledby="cs-nda-impact-title">
             <div className="cs-nda-impact-head">
-              <h3 id="cs-nda-impact-title">Impact / result</h3>
+              <h3 id="cs-nda-impact-title">Design change</h3>
             </div>
             <div className="cs-nda-process-shift" aria-label="What changed, described">
               <div className="cs-nda-process-shift-col">
@@ -77,7 +77,7 @@ export default function NdaProcess({
                 →
               </div>
               <div className="cs-nda-process-shift-col cs-nda-process-shift-col--after">
-                <span>Result</span>
+                <span>Designed direction</span>
                 <p>{shift.after}</p>
               </div>
             </div>

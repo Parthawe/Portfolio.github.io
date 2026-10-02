@@ -39,7 +39,7 @@ export default function MediMorphoPage() {
           categorySlug="design-for-good"
           tags={['Healthcare UX', 'Service Design', '20 Interviews', 'Public Synthesis']}
           title="NYU Langone"
-          subtitle="A 20-interview team study traced where meaning breaks before, during, and after care—and reframed translation from a feature into a continuity-of-care problem."
+          subtitle="A 20-interview team study of language and communication across the healthcare journey."
           heroImage={COVER}
           heroAlt="NYU Langone Health building signage for the healthcare UX research case study."
           showHeaderSummary={false}

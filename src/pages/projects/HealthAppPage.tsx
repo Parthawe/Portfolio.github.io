@@ -26,17 +26,17 @@ const HEALTH_APP_BOARD_IMAGES = [
   {
     src: '/Assets/Projects/HealthApp/optimized/01-planning.webp',
     alt: 'Health App planning board with task and schedule interface explorations.',
-    label: 'Planning model',
+    label: 'Planning inputs: the task and schedule explorations establish what a planning suggestion needs to account for.',
   },
   {
     src: '/Assets/Projects/HealthApp/optimized/02-flow.webp',
     alt: 'Health App flow board showing how wellness context affects scheduling decisions.',
-    label: 'Flow logic',
+    label: 'Scheduling flow: follow how context enters the proposed planning sequence.',
   },
   {
     src: '/Assets/Projects/HealthApp/optimized/04-insights.webp',
     alt: 'Health App insight board connecting health signals to daily planning.',
-    label: 'Health signals',
+    label: 'Explanation: the insight board connects an input to a possible planning change. These are concept screens, not validated health recommendations.',
   },
 ]
 
@@ -57,12 +57,13 @@ export default function HealthAppPage() {
       <main id="main-content" className="project-main project-main--healthapp" style={{ '--project-color': '#4285F4' } as React.CSSProperties}>
 
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="ux-design"
           backLabel="Back to Work"
           tags={['UX Design', 'Mobile App', 'Health']}
           title="Health App"
-          subtitle="A planning concept where health signals shape the schedule instead of living in a separate wellness dashboard."
+          subtitle="A planning concept that explains how health signals could change a daily schedule."
           heroImage={HEALTH_APP_COVER}
           heroAlt="Health App 16:9 cover showing the planning concept and interface direction."
           info={[
@@ -142,7 +143,7 @@ export default function HealthAppPage() {
             <div className="cs-nda-process-head">
               <h2 className="cs-nda-process-title">Original boards</h2>
               <p className="cs-nda-process-intro">
-                The strongest parts of the older case page are the boards themselves. I kept them large so the flow, planning logic, and calendar decisions are readable.
+                Read the boards in sequence: planning inputs, scheduling flow, and the explanation for a proposed change. The later screens show the task and calendar surfaces where someone would inspect and adjust that proposal.
               </p>
             </div>
             <div className="cs-healthapp-board-list">
@@ -171,7 +172,7 @@ export default function HealthAppPage() {
                 className="cs-img-full--healthapp-board"
                 src="/Assets/Projects/HealthApp/optimized/09-calendar.webp"
                 alt="Health App calendar and schedule planning board."
-                caption="Schedule adjustment logic"
+                caption="Calendar: the schedule needs to remain inspectable and editable after a proposed change."
               />
             </div>
           </div>

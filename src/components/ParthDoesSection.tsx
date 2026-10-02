@@ -106,7 +106,7 @@ export default function ParthDoesSection() {
             </div>
             <p className="wr-about-desc">{activeSkill.description}</p>
             <Link to="/about" className="wr-about-readmore">read more.</Link>
-            <span className="wr-about-site" aria-hidden="true">PARTHPAWAR.COM</span>
+            <span className="wr-about-site" aria-hidden="true">DESIGNWHICH.WORKS</span>
           </div>
 
           <div className="wr-about-img-col">
@@ -120,7 +120,7 @@ export default function ParthDoesSection() {
           </div>
         </div>
 
-        <div className="wr-about-vert" aria-hidden="true">PARTHPAWARWORKS</div>
+        <div className="wr-about-vert" aria-hidden="true">DESIGNWHICH.WORKS</div>
         <div className="wr-about-bottom">
           <div className="wr-about-bottom-left">
             <span className="wr-about-dot-circle" />

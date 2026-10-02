@@ -28,7 +28,7 @@ export default function FeelingPatternsPage() {
           backLabel="Back to Work"
           tags={['Wearable Tech', 'Haptics', 'Textile Design', 'Emotion']}
           title="Feeling Patterns"
-          subtitle="Wearable textile interfaces that explore emotion through tactile patterns &mdash; touch as a language beyond screens"
+          subtitle="Three wearable-textile studies exploring pulse, vibration, and pressure as communication."
           info={[
             { label: 'Context', value: 'Feeling Patterns, NYU ITP' },
             { label: 'Year', value: '2023' },
@@ -37,27 +37,34 @@ export default function FeelingPatternsPage() {
           ]}
         />
 
-        <CsSection id="cs-concept" label="01 &mdash; Concept" title="When Touch Becomes Language">
+        <CsSection id="cs-concept" label="01 &mdash; Concept" title="Exploring touch as a signal">
           <CsBody>
-            <p className="cs-caption">Course exploration. Original prototype recordings and recognition-test records are not included in this archive.</p>
-            <p>We communicate through screens with text, images, and video &mdash; but none of these channels carry touch. Feeling Patterns explores what happens when you design communication systems built entirely on tactile sensation: pressure, vibration, temperature, and texture.</p>
-            <p>The course challenged us to create wearable interfaces where the body is both the display and the input device. Instead of reading a notification on a screen, you feel it as a pattern on your skin. Instead of typing a message, you press a fabric and the pressure translates into meaning on someone else&rsquo;s body.</p>
+            <p>The body acts as both input and output: a pulse sensor captures rhythm, a fabric pad captures pressure, and vibration motors return a tactile pattern. The three studies explore different ways to connect those signals.</p>
+            <p>Original recordings and recognition-test records are not included in this course archive.</p>
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-prototypes" label="02 &mdash; Prototypes" title="Three Tactile Experiments">
+        <CsSection id="cs-prototypes" label="02 &mdash; Prototypes" title="Three tactile studies">
           <CsFeatureGrid features={[
-            { title: 'Heartbeat Sleeve', desc: 'A knitted sleeve connects a pulse sensor to vibration motors, translating a heartbeat into a rhythm on the wrist. The experiment explores whether another person’s pulse can become a useful tactile signal.' },
-            { title: 'Mood Vest', desc: 'A neoprene vest uses vibration zones to explore a small vocabulary of patterns: a slow wave, rapid pulses, and localized feedback. Emotional labels were design intentions; recognition and comfort would need testing across different wearers.' },
-            { title: 'Pressure Letters', desc: 'A fabric pad maps pressure in different zones to patterns on a receiving pad. The constraint is deliberate: the sender composes a simple tactile sequence instead of a text message.' },
-          ]} />
+  {
+    "title": "Heartbeat sleeve",
+    "desc": "A pulse sensor drives vibration motors in a knitted sleeve, translating a heartbeat into a rhythm on the wrist."
+  },
+  {
+    "title": "Mood vest",
+    "desc": "A neoprene vest explores slow waves, rapid pulses, and localized vibration. Emotional labels describe the intended vocabulary; their interpretation has not been validated across wearers."
+  },
+  {
+    "title": "Pressure letters",
+    "desc": "Pressure on one fabric pad maps to patterns on another. The sender composes a tactile sequence through the position and strength of a press."
+  }
+]} />
         </CsSection>
 
-        <CsSection id="cs-insights" label="03 &mdash; Insights" title="What Touch Teaches">
+        <CsSection id="cs-insights" label="03 &mdash; Insights" title="Recognition, comfort, and context">
           <CsBody>
-            <p>A tactile pattern can carry rhythm and urgency, but its meaning is not universal. Placement, sensitivity, context, and prior experience affect how someone reads it. These explorations did not establish a validated emotional vocabulary.</p>
-            <p>The next design question is how many patterns a wearer can distinguish comfortably, and whether those distinctions hold while moving or distracted. That requires a documented recognition study, not just distinct motor sequences.</p>
-            <p>The work gave me a reference for subtle wearable feedback at <a href="/mentra" className="project-text-link">Mentra</a>: when to use touch alongside the glasses display, and when a signal needs a clearer explanation.</p>
+            <p>A pattern can communicate rhythm or urgency without carrying the same meaning for every wearer. Placement, sensitivity, movement, and familiarity all affect interpretation.</p>
+            <p>The next study would test how many patterns people can distinguish comfortably, including while moving or distracted. This work informed my questions about subtle feedback at <a href="/mentra" className="project-text-link">Mentra</a>.</p>
           </CsBody>
         </CsSection>
 

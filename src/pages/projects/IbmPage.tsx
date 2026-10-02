@@ -33,7 +33,7 @@ export default function IbmPage() {
           backLabel="Back to Work"
           tags={['Research', 'Healthcare AI', 'Encryption']}
           title="IBM Cancer Prognosis"
-          subtitle="A research glimpse into computing on sensitive genomic data without exposing the patient record"
+          subtitle="A research exploration of computation on encrypted genomic data."
           info={[
             { label: 'Client', value: 'IBM' },
             { label: 'Role', value: 'Research & Engineering' },
@@ -50,7 +50,7 @@ export default function IbmPage() {
 
         <CsSection id="cs-glimpse" label="Glimpse" title="Encrypted Data, Useful Prognosis">
           <CsBody>
-            <p>This project is a research glimpse, not a polished product case study. During an IBM internship, our team explored whether cancer prognosis workflows could compute on genomic data while keeping the raw patient record encrypted. The useful story is the system constraint: privacy should not disappear the moment analysis begins.</p>
+            <p>During an IBM internship, our team explored computation on encrypted genomic data. The diagrams below document the research workflow; the output plot shows how the resulting groups were presented.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Problem</span>
@@ -80,26 +80,27 @@ export default function IbmPage() {
           </div>
         </section>
 
-        <CsSection id="cs-result" label="Result" title="What Came Out">
+        <CsSection id="cs-result" label="Result" title="Research output and evaluation limits">
           <CsBody>
             <p>The output was a research workflow and a prognosis-group visualization. The Kaplan-Meier plot shows how the resulting groups were presented. It does not, on its own, establish clinical accuracy, generalizability, or readiness for patient care.</p>
           </CsBody>
           <CsImage
             src="/Assets/Projects/CancerPrognosis/photos/km-clusters-dark.jpg"
             alt="Kaplan-Meier survival cluster plot for seven prognosis groups"
-            caption="Kaplan-Meier clusters - the useful output of the pipeline, showing survival probability across seven groups."
+            caption="Research output: Kaplan-Meier curves for seven groups. The plot is an artifact of the study, not evidence of clinical readiness."
           />
           <CsStatGrid stats={[
-            { label: 'Encrypted client runtime', value: '42s' },
-            { label: 'Encrypted server runtime', value: '28s' },
+            { label: 'Reported client runtime', value: '42s' },
+            { label: 'Reported server runtime', value: '28s' },
           ]} />
+          <CsBody><p>These are the runtimes recorded in the project material. Hardware, workload, and repeat-run details are not included here, so they should not be read as a reproducible benchmark.</p></CsBody>
         </CsSection>
 
         <CsSection id="cs-learning" label="Learning" title="What I Learned">
           <CsFeatureGrid features={[
             { title: 'Privacy is a system property', desc: 'It is not enough to encrypt data in storage. The risky moment is often the computation itself.' },
             { title: 'Trust needs diagrams', desc: 'For complex technical work, the system flow is part of the UX because it helps reviewers understand where risk enters and exits.' },
-            { title: 'Research can still tell a small story', desc: 'The project does not need a fake product narrative. The story is the constraint, the method, and the interpretable output.' },
+            { title: 'Keep evaluation limits visible', desc: 'A pipeline output, a runtime, and clinical validity answer different questions. Each needs its own supporting evaluation.' },
           ]} />
         </CsSection>
 

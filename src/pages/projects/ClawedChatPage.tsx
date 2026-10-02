@@ -79,7 +79,7 @@ export default function ClawedChatPage() {
           backLabel="Back to Work"
           tags={['AI Assistant', 'Smart Glasses', 'Product Design', 'Full-stack Design']}
           title="Clawed"
-          subtitle="A trust-first AI assistant for web and smart glasses, built around approvals, receipts, and controlled autonomy"
+          subtitle="An AI assistant for web and smart glasses with approvals, action receipts, and limits on autonomy."
           info={[
             { label: 'Role', value: 'Product Designer (sole designer + 3 engineers)' },
             { label: 'Timeline', value: 'Jan \u2013 Mar 2026 (~10 weeks)' },

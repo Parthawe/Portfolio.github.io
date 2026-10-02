@@ -34,7 +34,7 @@ export default function SeaOfSaltPage() {
           backLabel="Back to Work"
           tags={['Installation', 'Physical Computing', 'Storytelling', 'Fabrication']}
           title="Why the Sea is Salt"
-          subtitle="A physical storytelling machine that grinds real salt as you advance through a Norse folktale &mdash; the story has physical consequences"
+          subtitle="A storytelling machine that grinds real salt as visitors advance a Norse folktale."
           info={[
             { label: 'Collaborator', value: 'Audrey Oh' },
             { label: 'Context', value: 'Bio Art, NYU ITP' },

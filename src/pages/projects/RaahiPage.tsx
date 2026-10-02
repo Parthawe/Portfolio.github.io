@@ -75,7 +75,7 @@ export default function RaahiPage() {
           backLabel="Back to Work"
           tags={['UX', 'Research', 'Service Design', 'Mobile']}
           title="Raahi"
-          subtitle="A research-led service study reframed Pune transit as one continuous rider journey across planning, waiting, boarding, transferring, and arrival."
+          subtitle="A Pune transit service study connecting trip planning, waiting, boarding, transfers, and arrival."
           info={[
             { label: 'Decision at risk', value: 'Where should one service connect fragmented transit touchpoints?' },
             { label: 'My contribution', value: 'Research, service synthesis, brand, and UI system' },

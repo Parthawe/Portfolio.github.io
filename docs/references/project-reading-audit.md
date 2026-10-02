@@ -130,3 +130,8 @@ Release b2f88e7 passed build/deploy and the full rendered-route checks, but inte
 ### Mobile metadata contrast correction
 
 The 412px Mentra report exposed an obsolete mobile-only light-text override in project-page-polish.css. It assumed the visual brief still sat on a dark gradient. Removed that override, made the shared readable-text rules apply without an explicit data-theme attribute, and removed Revolving Stage's legacy local ink palette so its text follows the current reading surface. At 412px, all 49 project metadata headers were checked in explicit light and dark modes: each uses the expected opaque theme ink. Added 4.5:1 metadata regression assertions at 412px for Mentra, Raahi, Typeface and Revolving Stage under explicit and system themes. Production build passes.
+
+
+## Quality pass, 2026-10-01
+
+See [the project quality plan](project-quality-plan.md) for the rubric, route-by-route working scores, implemented changes, QA coverage, and remaining evidence requirements. This subsequent pass is local. It does not mark all projects complete or change the live release.

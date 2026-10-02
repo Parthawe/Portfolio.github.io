@@ -174,6 +174,7 @@ export default function ZentipayPage() {
         />
 
         <CsExpandPreview
+          sectionIds={['cs-public-story', 'cs-process']}
           expanded={viewMode === 'full'}
           onExpand={() => handleViewModeChange('full')}
           ctaLabel="Explore the public story"

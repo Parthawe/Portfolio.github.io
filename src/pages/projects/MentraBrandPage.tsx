@@ -105,7 +105,7 @@ export default function MentraBrandPage() {
         {/* ================================================================
             02 — COLOR & TYPE
             ================================================================ */}
-        <CsSection id="cs-color" label="02 &mdash; Color &amp; Type" title="One Green. No Negotiation.">
+        <CsSection id="cs-color" label="02 &mdash; Color &amp; Type" title="A consistent green across surfaces">
           <CsBody>
             <p>Most smart glasses brands default to blue. Mentra needed instant recognition, so the system uses one green, three neutrals, and strict rules for creators using assets without supervision.</p>
           </CsBody>
@@ -185,7 +185,7 @@ export default function MentraBrandPage() {
         </section>
 
         {/* Brand in the wild — YouTubers unboxing the packaging I designed */}
-        <CsSection id="cs-wild" label="In the Wild" title="The Packaging, Unboxed by Strangers">
+        <CsSection id="cs-wild" label="In the Wild" title="The packaging in public unboxings">
           <CsBody>
             <p>The real test was seeing strangers hold the box on camera. In the thumbnails, the pattern reads, the name is clear, and the case feels premium beside the packaging.</p>
           </CsBody>
@@ -213,7 +213,7 @@ export default function MentraBrandPage() {
         {/* ================================================================
             04 — INSTRUCTION BOOKLET
             ================================================================ */}
-        <CsSection id="cs-manual" label="04 &mdash; Instruction Booklet" title="No Welcome Message. Just the QR Code.">
+        <CsSection id="cs-manual" label="04 &mdash; Instruction Booklet" title="A QR-led setup guide">
           <CsBody>
             <p>The booklet starts with the only thing a new owner needs first: a QR code to pair and go.</p>
             <p>The rest explains buttons, charging, and fit with custom line art that prints cleanly at 65mm and translates better than photography.</p>
@@ -337,7 +337,7 @@ export default function MentraBrandPage() {
         {/* ================================================================
             07 — RENDERS (on dark background for drama)
             ================================================================ */}
-        <CsSection id="cs-renders" label="07 &mdash; Product Renders" title="Replacing Photography Entirely">
+        <CsSection id="cs-renders" label="07 &mdash; Product Renders" title="Renders for launch and product detail">
           <CsBody>
             <p>I directed three render families that became the visual source for packaging, social, press, and the marketing site. Renders gave us consistent product imagery before every physical variant was ready.</p>
           </CsBody>

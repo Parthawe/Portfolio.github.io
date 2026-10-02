@@ -28,7 +28,7 @@ export default function OnBecomingPage() {
           backLabel="Back to Work"
           tags={['Writing', 'Reflection', 'Artistic Voice']}
           title="On Becoming"
-          subtitle="Finding the thread that connects neural network sculptures, salt-grinding story machines, and fintech payment flows into a single practice"
+          subtitle="A reflection on the design questions connecting my software, installations, and physical systems."
           info={[
             { label: 'Context', value: 'On Becoming, NYU ITP' },
             { label: 'Year', value: '2024' },

@@ -38,7 +38,7 @@ export default function ExecutiveLensPage() {
           backLabel="Back to Work"
           tags={['AI', 'SaaS', 'Product Design', 'Data Visualization']}
           title="ExecutiveLens"
-          subtitle="Meeting intelligence that turns conversation into tracked decisions, follow-through, and executive signal"
+          subtitle="Meeting intelligence that connects conversations to decisions, owners, and follow-up."
           info={[
             { label: 'Role', value: 'Design lead' },
             { label: 'Timeline', value: '2025\u201326' },
@@ -64,7 +64,7 @@ export default function ExecutiveLensPage() {
           ]}
         />
 
-        <CsSection id="cs-context" label="Context" title="The Executive Information Overload Problem">
+        <CsSection id="cs-context" label="Context" title="From meeting notes to follow-up">
           <CsBody>
             <p>Important decisions were scattered across calls, docs, dashboards, and memory. The product needed to connect conversation to consequence: what changed, why it mattered, and who needed to act.</p>
           </CsBody>
@@ -77,7 +77,7 @@ export default function ExecutiveLensPage() {
           cta="Open the full product system"
           note="Meeting replay, decision extraction, dashboard structure, site proof, beta signal, and design reflections."
         >
-        <CsSection id="cs-challenges" label="Design Challenges" title="Four Problems That Needed Solving">
+        <CsSection id="cs-challenges" label="Design Challenges" title="Four gaps in the meeting workflow">
           <CsBody>
             <p>Every screen had to answer fast: what changed, why does it matter, and what needs attention next?</p>
           </CsBody>
@@ -90,16 +90,16 @@ export default function ExecutiveLensPage() {
         </CsSection>
 
         {/* Interactive — meeting replay */}
-        <CsSection id="cs-demo" label="Interactive" title="Watch AI Process a Meeting">
+        <CsSection id="cs-demo" label="Interactive" title="Explore the meeting demo">
           <CsBody>
-            <p>Press play to see the core interaction: live transcript in, cited decisions and action items out.</p>
+            <p>Explore a prepared example of the review flow. Play the sample transcript or show it immediately, then follow each summary citation back to its source.</p>
           </CsBody>
           <div className="project-content-block">
             <MeetingTimeline />
           </div>
         </CsSection>
 
-        <CsSection id="cs-meeting" label="Meeting Assistant" title="Your AI Co-Pilot in Every Conversation">
+        <CsSection id="cs-meeting" label="Meeting Assistant" title="Capture decisions during the meeting">
           <CsBody>
             <p>The assistant joins calls, identifies speakers, and separates signal from transcript noise. Decisions, owners, deadlines, and open questions become persistent cards instead of buried notes.</p>
           </CsBody>
@@ -111,7 +111,7 @@ export default function ExecutiveLensPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-dashboard" label="Executive Dashboard" title="A Briefing System, Not a Chart Wall">
+        <CsSection id="cs-dashboard" label="Executive Dashboard" title="Decisions and owners in one briefing">
           <CsBody>
             <p>The dashboard is a briefing, not a chart wall. It shows what changed, what needs attention, and which meeting created the shift.</p>
           </CsBody>
@@ -145,7 +145,7 @@ export default function ExecutiveLensPage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-insights" label="Insight Engine" title="Insights With Evidence Attached">
+        <CsSection id="cs-insights" label="Insight Engine" title="Keep evidence beside the summary">
           <CsBody>
             <p>The insight cards connect patterns across meetings and time. Each card explains what changed, why it matters, what to do, and where the evidence came from.</p>
           </CsBody>
@@ -155,7 +155,7 @@ export default function ExecutiveLensPage() {
           </CsBody>
         </CsSection>
 
-        <CsSection id="cs-impact" label="Impact" title="Early Beta Signal">
+        <CsSection id="cs-impact" label="Impact" title="Beta observations and limits">
           <CsBody className="cs-body--space-after">
             <p>The intended workflow is a morning brief: review a decision, check its transcript reference, identify the owner, and follow up. Beta observations are qualitative; this page does not include a dated sample or measured adoption result.</p>
           </CsBody>

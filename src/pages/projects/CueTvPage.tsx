@@ -16,37 +16,37 @@ const CUETV_PUBLIC_VISUALS = [
   {
     src: `${CUETV_REFRESH}/mobile-discovery.png`,
     alt: 'CueTV mobile discovery flow for browsing specialist performing-arts programming.',
-    label: 'Mobile discovery',
+    label: 'Discovery: browse specialist programming on a phone.',
     variant: 'tall',
   },
   {
     src: `${CUETV_REFRESH}/platforms.png`,
     alt: 'CueTV platform system shown across television, laptop, tablet, and phone.',
-    label: 'Cross-platform playback',
+    label: 'Playback: the catalogue across TV, laptop, tablet, and phone.',
     variant: 'wide',
   },
   {
     src: `${CUETV_REFRESH}/poster-cascade.png`,
     alt: 'Layered CueTV programming posters demonstrating catalogue art direction.',
-    label: 'Catalogue system',
+    label: 'Catalogue: consistent poster treatment across performances.',
     variant: 'poster',
   },
   {
     src: `${CUETV_REFRESH}/gifting-banner.png`,
     alt: 'CueTV gifting campaign banner designed as a return and acquisition moment.',
-    label: 'Gifting campaign',
+    label: 'Return visits: a gifting campaign gives the catalogue another entry point.',
     variant: 'banner',
   },
   {
     src: `${CUETV_REFRESH}/audience-map.png`,
     alt: 'CueTV audience map connecting specialist viewer needs with discovery paths.',
-    label: 'Audience map',
+    label: 'Audience: connect specialist viewer needs to discovery paths.',
     variant: 'board',
   },
   {
     src: `${CUETV_REFRESH}/funnel-stages.png`,
     alt: 'CueTV audience funnel from awareness through return viewing.',
-    label: 'Return-visit funnel',
+    label: 'Journey: awareness, discovery, and return viewing.',
     variant: 'strip',
   },
 ]
@@ -68,12 +68,13 @@ export default function CueTvPage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#C8102E' } as React.CSSProperties}>
 
         <ProjectHeader
+          showHeaderSummary={false}
           backLink="/work"
           categorySlug="ux-design"
           backLabel="Back to Work"
           tags={['UX', 'Brand', 'Product']}
           title="CueTV"
-          subtitle="Reframed a niche performing-arts streaming product around discovery, playback, and return visits."
+          subtitle="Discovery, playback, and return journeys for a performing-arts streaming catalogue."
           info={[
             { label: 'Client', value: 'Operabase' },
             { label: 'Scope', value: 'Research, UX, Growth System' },
@@ -89,7 +90,7 @@ export default function CueTvPage() {
         <NdaPublicStory
           slug="cuetv"
           headline="Streaming for a specific audience."
-          lede="The product story is simple: discovery and growth had to work together for a niche cultural catalogue."
+          lede="Discovery, playback, and campaigns needed to serve the same specialist audience."
           visuals={[
             {
               src: `${CUETV_REFRESH}/campaign-collage.png`,
@@ -108,7 +109,7 @@ export default function CueTvPage() {
           cta="Open the catalogue system"
           note="Visual system, process moves, audience logic, funnel stages, and growth architecture."
         >
-        <section className="cs-section cuetv-refresh reveal" aria-labelledby="cuetv-refresh-title">
+        <section id="cs-cuetv-catalogue" className="cs-section cuetv-refresh reveal" aria-labelledby="cuetv-refresh-title">
           <div className="wrap">
             <div className="cuetv-refresh-head">
               <span className="cs-section-label">Visual system</span>

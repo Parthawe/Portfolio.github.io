@@ -4,6 +4,7 @@ interface NdaPublicStoryProps {
   slug: string
   headline: string
   showSummary?: boolean
+  showVisuals?: boolean
   lede?: string
   visuals?: Array<{
     src: string
@@ -12,7 +13,7 @@ interface NdaPublicStoryProps {
   }>
 }
 
-export default function NdaPublicStory({ slug, headline, lede, visuals = [], showSummary = true }: NdaPublicStoryProps) {
+export default function NdaPublicStory({ slug, headline, lede, visuals = [], showSummary = true, showVisuals = true }: NdaPublicStoryProps) {
   const project = getProject(slug)
 
   if (!project) return null
@@ -45,7 +46,7 @@ export default function NdaPublicStory({ slug, headline, lede, visuals = [], sho
         </header>
 
         <div className="cs-nda-story-body">
-          {publicVisuals.length > 0 && (
+          {showVisuals && publicVisuals.length > 0 && (
             <div className="cs-nda-image-gallery" data-project-preview aria-label={`${project.name} public visual preview`}>
               {publicVisuals.map((visual, index) => (
                 <figure key={visual.src} className={`cs-nda-image-card${index === 0 ? ' cs-nda-image-card--hero' : ''}`}>
@@ -71,6 +72,7 @@ export default function NdaPublicStory({ slug, headline, lede, visuals = [], sho
                 <div className="cs-nda-proof-pill" key={`${stat.label}-${stat.value}`}>
                   <span>{stat.label}</span>
                   <strong>{stat.value}</strong>
+                  {stat.note && <p className="cs-caption">{stat.note}</p>}
                 </div>
               ))}
             </div>

@@ -35,7 +35,7 @@ export default function CodeForBuildPage() {
           backLabel="Back to Work"
           tags={['UX', 'Education', '3D']}
           title={'Learn Coding\nBy Building Blocks'}
-          subtitle="A mobile-first coding education concept built around visual blocks, not long lessons"
+          subtitle="A mobile coding concept that connects visual blocks to their output."
           info={[
             { label: 'Context', value: 'Self initiated' },
             { label: 'Role', value: 'Interaction Designer' },

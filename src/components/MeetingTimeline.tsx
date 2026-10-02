@@ -1,12 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-
-/* ═══════════════════════════════════════════════════════════
-   Meeting Timeline — ExecutiveLens AI meeting summary.
-
-   Simulates how ExecutiveLens processes a meeting:
-   live transcript → AI extraction → structured summary.
-   Plays through a sample meeting in accelerated time.
-   ═══════════════════════════════════════════════════════════ */
+import { useState, useEffect, useRef, useId } from 'react'
+import { observeVisible } from '../utils/visibleActivity'
 
 const TRANSCRIPT = [
   { time: 0, speaker: 'Sarah', text: 'Let\'s start with the Q3 metrics. Revenue is up 12% but churn increased.' },
@@ -19,158 +12,82 @@ const TRANSCRIPT = [
   { time: 20, speaker: 'Sarah', text: 'Perfect. Let\'s reconvene next Tuesday. Meeting adjourned.' },
 ]
 
-const AI_SUMMARY = {
-  decisions: ['Double down on enterprise growth while fixing SMB retention in parallel'],
-  actions: [
-    { owner: 'Priya', task: 'Launch SMB retention campaign', deadline: 'Oct 15' },
-    { owner: 'Mike', task: 'Pull SMB cohort analysis data', deadline: 'This Friday' },
-  ],
-  keyMetrics: ['Revenue +12% YoY', 'Enterprise +18%', 'SMB churn increasing'],
-  nextMeeting: 'Next Tuesday',
-}
-
 export default function MeetingTimeline() {
+  const root = useRef<HTMLDivElement>(null)
+  const lines = useRef<(HTMLLIElement | null)[]>([])
+  const id = useId()
   const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
-  const [showSummary, setShowSummary] = useState(false)
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [source, setSource] = useState<number | null>(null)
+  const complete = progress >= 20
 
-  const totalDuration = 24
+  useEffect(() => {
+    if (!root.current) return
+    return observeVisible(root.current, visible => { if (!visible) setPlaying(false) })
+  }, [])
 
   useEffect(() => {
     if (!playing) return
-    intervalRef.current = setInterval(() => {
-      setProgress(p => {
-        if (p >= totalDuration) {
-          setPlaying(false)
-          setShowSummary(true)
-          return totalDuration
-        }
-        return p + 0.1
-      })
-    }, 100)
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+    const timer = window.setInterval(() => setProgress(value => Math.min(20, value + 1)), 1000)
+    return () => window.clearInterval(timer)
   }, [playing])
 
-  const reset = () => { setProgress(0); setShowSummary(false); setPlaying(false) }
-  const visibleLines = TRANSCRIPT.filter(l => l.time <= progress)
+  useEffect(() => { if (complete) setPlaying(false) }, [complete])
+  useEffect(() => {
+    if (source === null) return
+    lines.current[source]?.focus({ preventScroll: true })
+    lines.current[source]?.scrollIntoView({ block: 'nearest', behavior: 'instant' })
+  }, [source])
 
+  const cite = (index: number) => {
+    setSource(index)
+    // Repeated citation clicks should also restore focus.
+    lines.current[index]?.focus({ preventScroll: true })
+    lines.current[index]?.scrollIntoView({ block: 'nearest', behavior: 'instant' })
+  }
   return (
-    <div style={{
-      width: '100%', borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-      border: '1px solid var(--ink-06)', background: 'var(--ink-03)',
-    }}>
-      {/* Header */}
-      <div style={{
-        padding: '10px 16px', borderBottom: '1px solid var(--ink-04)',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12,
-      }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-          ExecutiveLens &middot; Meeting Replay
-        </span>
-        <div style={{ display: 'flex', gap: 6 }}>
-          {!playing && progress === 0 && (
-            <button onClick={() => setPlaying(true)} style={{
-              padding: '8px 12px', borderRadius: 'var(--radius-pill)',
-              border: '1px solid rgba(59,130,246,0.2)', background: 'rgba(59,130,246,0.06)',
-              color: '#3b82f6', fontFamily: 'var(--mono)', fontSize: 16,
-              cursor: 'pointer', letterSpacing: '0.04em', textTransform: 'uppercase',
-            }}>▶ Play Meeting</button>
-          )}
-          {(playing || progress > 0) && (
-            <button onClick={reset} style={{
-              padding: '8px 10px', borderRadius: 'var(--radius-pill)',
-              border: '1px solid var(--ink-06)', background: 'var(--ink-03)',
-              color: 'var(--ink-60)', fontFamily: 'var(--mono)', fontSize: 16,
-              cursor: 'pointer', letterSpacing: '0.04em', textTransform: 'uppercase',
-            }}>Reset</button>
-          )}
+    <div className="project-meeting-demo" ref={root}>
+      <header>
+        <h3>Meeting replay</h3>
+        <p>Illustrative transcript and prepared summary. This demonstration does not record audio or run live AI.</p>
+        <div className="project-demo-controls">
+          {!complete && <button type="button" onClick={() => setPlaying(value => !value)}>{playing ? 'Pause replay' : progress ? 'Resume replay' : 'Play replay'}</button>}
+          {!complete && <button type="button" onClick={() => { setProgress(20); setPlaying(false) }}>Show complete meeting</button>}
+          <button type="button" onClick={() => { setProgress(0); setPlaying(false); setSource(null) }}>Reset replay</button>
         </div>
+        <p role="status">{complete ? 'Replay complete. Select a source to check the summary.' : `${playing ? 'Playing' : 'Paused'} · ${progress} of 20 seconds`}</p>
+      </header>
+      <div className="project-meeting-demo__columns">
+        <section aria-labelledby={`${id}-transcript`}>
+          <h4 id={`${id}-transcript`}>Sample transcript</h4>
+          <ol className="project-meeting-demo__transcript">
+            {TRANSCRIPT.map((line, index) => line.time <= progress && (
+              <li key={line.time} ref={element => { lines.current[index] = element }} tabIndex={-1} data-source={source === index || undefined}>
+                <span>{String(line.time).padStart(2, '0')}s · {line.speaker}</span>
+                <p>{line.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section aria-labelledby={`${id}-summary`}>
+          <h4 id={`${id}-summary`}>Prepared summary</h4>
+          {!complete ? <p>Play the replay or show the complete meeting to inspect the decisions and their sources.</p> : <>
+            <h5>Agreed action</h5>
+            <p>Launch the SMB retention campaign by October 15. Priya owns the campaign.</p>
+            <button type="button" onClick={() => cite(4)}>Check proposed date · 12s</button>{' '}
+            <button type="button" onClick={() => cite(5)}>Check approval and owner · 15s</button>
+            <h5>Follow-up</h5>
+            <p>Mike will provide SMB cohort data by Friday.</p>
+            <button type="button" onClick={() => cite(6)}>Check commitment · 18s</button>
+            <h5>Still unresolved</h5>
+            <p>The group does not settle whether to prioritize enterprise growth. A summary should preserve that uncertainty.</p>
+            <button type="button" onClick={() => cite(2)}>Check open question · 6s</button>
+            <h5>Next meeting</h5>
+            <p>Next Tuesday. The sample has no calendar date, so relative dates remain as spoken.</p>
+            <button type="button" onClick={() => cite(7)}>Check next meeting · 20s</button>
+          </>}
+        </section>
       </div>
-
-      {/* Progress bar */}
-      <div style={{ height: 2, background: 'var(--ink-06)' }}>
-        <div style={{
-          height: '100%', width: `${(progress / totalDuration) * 100}%`,
-          background: '#60a5fa', transition: 'width 0.1s linear',
-        }} />
-      </div>
-
-      <div className="meeting-timeline-body" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', minHeight: 260 }}>
-        {/* Transcript (left) */}
-        <div style={{
-          minWidth: 0, padding: '16px',
-          borderRight: '1px solid var(--ink-04)',
-          maxHeight: 280, overflowY: 'auto',
-        }}>
-          <div style={{
-            fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)',
-            textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8,
-          }}>Live Transcript</div>
-          {visibleLines.length === 0 && (
-            <div style={{ fontFamily: 'var(--sans)', fontSize: 16, color: 'var(--ink-50)', fontStyle: 'italic' }}>
-              Press play to start the meeting...
-            </div>
-          )}
-          {visibleLines.map((line, i) => (
-            <div key={i} style={{
-              marginBottom: 8, opacity: i === visibleLines.length - 1 ? 1 : 0.6,
-              animation: i === visibleLines.length - 1 ? 'fadeSlideIn 0.3s ease' : 'none',
-            }}>
-              <span style={{
-                fontFamily: 'var(--mono)', fontSize: 16, fontWeight: 600,
-                color: line.speaker === 'Sarah' ? '#60a5fa' : line.speaker === 'Mike' ? '#f59e0b' : '#22c55e',
-              }}>{line.speaker}</span>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: 16, color: 'var(--ink-70)', margin: '4px 0 0', lineHeight: 1.5 }}>
-                {line.text}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* AI Summary (right) */}
-        <div style={{
-          minWidth: 0, padding: '16px',
-          opacity: showSummary ? 1 : 0.42,
-          transition: 'opacity 0.5s',
-        }}>
-          <div style={{
-            fontFamily: 'var(--mono)', fontSize: 16, color: showSummary ? '#3b82f6' : 'var(--ink-40)',
-            textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8,
-            transition: 'color 0.3s',
-          }}>
-            {showSummary ? '✓ AI Summary Generated' : 'AI Summary (after meeting)'}
-          </div>
-
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Decisions</div>
-          {AI_SUMMARY.decisions.map((d, i) => (
-            <p key={i} style={{ fontFamily: 'var(--sans)', fontSize: 16, color: 'var(--ink-70)', margin: '0 0 12px', lineHeight: 1.5 }}>• {d}</p>
-          ))}
-
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', marginBottom: 4, marginTop: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Action Items</div>
-          {AI_SUMMARY.actions.map((a, i) => (
-            <div key={i} style={{ marginBottom: 10, fontSize: 16, color: 'var(--ink-70)', fontFamily: 'var(--sans)', lineHeight: 1.5 }}>
-              <strong style={{ color: 'var(--ink)' }}>{a.owner}</strong>: {a.task} <span style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)' }}>by {a.deadline}</span>
-            </div>
-          ))}
-
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 16, color: 'var(--ink-50)', marginTop: 12, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Next: {AI_SUMMARY.nextMeeting}</div>
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes fadeSlideIn {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @media (max-width: 640px) {
-          .meeting-timeline-body { grid-template-columns: minmax(0, 1fr) !important; }
-          .meeting-timeline-body > :first-child {
-            border-right: 0 !important;
-            border-bottom: 1px solid var(--ink-04);
-          }
-        }
-      `}</style>
     </div>
   )
 }

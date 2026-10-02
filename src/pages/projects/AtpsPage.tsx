@@ -34,7 +34,7 @@ export default function AtpsPage() {
           backLabel="Back to Work"
           tags={['Podcast', 'Content', 'Art & Design']}
           title="ArtTown Podcast Series"
-          subtitle="Unravelling hidden talents and inspiring young minds through conversations with art and design professionals worldwide"
+          subtitle="Conversations with art and design professionals about their work, practice, and careers."
           info={[
             { label: 'Year', value: '2020 \u2013 Present' },
             { label: 'Role', value: 'Podcast Host' },
@@ -43,13 +43,14 @@ export default function AtpsPage() {
         />
 
         {/* Hero image */}
-        <CsImage src="/Assets/Projects/ATPS/Desktop/1.jpg" alt="ArtTown Podcast Series hero, microphone with a grid of episode artwork and 50k+ listeners" />
+        <CsImage src="/Assets/Projects/ATPS/Desktop/1.jpg" alt="Original ArtTown Podcast Series artwork with microphone and episode covers" caption="Original series artwork. Audience totals shown in archived graphics are historical, not current analytics." />
 
         {/* Distribution */}
         <section className="cs-section reveal" id="cs-distribution">
           <div className="wrap">
             <p className="cs-section-label">Distribution</p>
-            <h2 className="cs-display">Listen from the best podcast platform</h2>
+            <h2 className="cs-display">Original distribution</h2>
+            <p className="cs-caption">Platforms listed in the original project record. Episode links and current availability still need verification.</p>
             <div className="cs-tags atps-platforms">
               <span className="cs-tag-item">Google Podcast</span>
               <span className="cs-tag-item">Podcast Addict</span>
@@ -74,14 +75,14 @@ export default function AtpsPage() {
               sections={[
                 {
                   label: 'Summary',
-                  content: "As an enthusiast of the performing arts and design, I was honored to host a podcast that would provide insights into this creative world. ATPS's vision is to unravel the artist's hidden talents, and stories that can truly inspire people and promote intellectual discussions on art in order to widen people's perspectives. We had a weekly release that promised a fun, entertaining, and worth-a-while listening experience.",
+                  content: 'I hosted conversations with art and design professionals about their practices and career paths. The original series followed a weekly release schedule.',
                 },
                 {
-                  label: 'Interest',
+                  label: 'Audience',
                   content: 'I started the Podcast series with the vision of helping young people understand and learn about multiple career opportunities in the Art and Design world by interviewing Industry experts all over the world.',
                 },
                 {
-                  label: 'Achievement',
+                  label: 'Archive',
                   content: 'The series brought together 40+ conversations with people working across art and design. Audience figures below are historical self-reported totals, not current analytics.',
                 },
               ]}
@@ -115,7 +116,7 @@ export default function AtpsPage() {
         {/* Plan of Action */}
         <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
-            <h2 className="cs-display atps-centered-heading">Plan of action?</h2>
+            <h2 className="cs-display atps-centered-heading">Preparing and producing each conversation</h2>
             <div className="cs-steps atps-process">
               <div className="cs-step">
                 <div className="cs-step-title">Problem</div>
@@ -179,18 +180,18 @@ export default function AtpsPage() {
               <div className="cs-step">
                 <div className="cs-step-num">04</div>
                 <div className="cs-step-title">Repeat</div>
-                <div className="cs-step-desc">Come back every Friday for a new episode</div>
+                <div className="cs-step-desc">The original release schedule was weekly</div>
               </div>
             </div>
             <div className="atps-callout"><CsCallout>
-              <p><strong>Podcast Every Friday</strong></p>
+              <p><strong>Original release format</strong></p>
               <div className="cs-callout-metric-grid atps-callout-grid">
                 <div>
                   <small>What you gain</small>
                   <strong>Art</strong>
                 </div>
                 <div>
-                  <small>When it airs</small>
+                  <small>Release day</small>
                   <strong>Friday</strong>
                 </div>
                 <div>
@@ -203,7 +204,7 @@ export default function AtpsPage() {
         </section>
 
         {/* Episode grid */}
-        <CsImage src="/Assets/Projects/ATPS/Desktop/5.webp" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" />
+        <CsImage src="/Assets/Projects/ATPS/Desktop/5.webp" alt="Full episode grid of the ArtTown Podcast Series with guest thumbnails and descriptions" caption="Archived episode artwork. This image documents the series; it is not a playable episode directory." />
 
         {/* Notable Guests */}
         <section className="cs-section reveal" id="cs-episodes">

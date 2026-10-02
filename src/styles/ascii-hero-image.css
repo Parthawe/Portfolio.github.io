@@ -37,18 +37,19 @@
 .ch-3d--side:has(.category-ascii-artifact),
 .ch-3d--side:has(.category-ascii-artifact) * { pointer-events: auto !important; }
 
-/* A restrained halo follows the glyph colors, without blurring their edges. */
+/* Dark ink in light mode; retain the luminous glyphs on dark surfaces. */
 .ascii-hero-image__live {
-  filter: brightness(1.08);
+  filter: brightness(.6);
   transition: opacity 180ms ease, filter 180ms ease;
 }
 .ascii-hero-image__live span {
-  text-shadow: 0 1px 2px currentColor;
+  text-shadow: none;
 }
 [data-theme="dark"] .ascii-hero-image__live { filter: brightness(1.75); }
+[data-theme="dark"] .ascii-hero-image__live span { text-shadow: 0 1px 2px currentColor; }
 .ascii-hero-image[data-ascii-ready="true"]:is(:hover, :focus-visible, [data-dragging="true"]) .ascii-hero-image__live {
   opacity: 1;
-  filter: brightness(1.18);
+  filter: brightness(.68);
 }
 [data-theme="dark"] .ascii-hero-image:is(:hover, :focus-visible, [data-dragging="true"]) .ascii-hero-image__live {
   filter: brightness(2);

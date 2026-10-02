@@ -4033,8 +4033,7 @@ body.nav-on-dark .reading-cursor__note {
   visibility: hidden;
 }
 
-body.case-study-reading .reading-cursor-layer,
-body.case-study-reading .bt-toolbar-btn--hand {
+body.case-study-reading .reading-cursor-layer {
   opacity: 0;
   pointer-events: none;
 }

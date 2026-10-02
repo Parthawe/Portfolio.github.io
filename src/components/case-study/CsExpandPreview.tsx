@@ -11,6 +11,8 @@ interface CsExpandPreviewProps {
   ctaLabel?: string
   note?: string
   preview?: React.ReactNode
+  /** Public sections rendered by child components rather than direct JSX. */
+  sectionIds?: string[]
   previewImage?: string
 }
 
@@ -31,6 +33,7 @@ export default function CsExpandPreview({
   note = 'Explore the process, decisions, and details.',
   preview,
   previewImage,
+  sectionIds,
 }: CsExpandPreviewProps) {
   const { pathname } = useLocation()
   const project = getProject(pathname.split('/').filter(Boolean).pop() ?? '')
@@ -52,7 +55,7 @@ export default function CsExpandPreview({
     const followSectionLink = () => {
       let id: string
       try { id = decodeURIComponent(window.location.hash.slice(1)) } catch { return }
-      if (!id || !containsSection(children, id)) return
+      if (!id || !(containsSection(children, id) || sectionIds?.includes(id))) return
       if (isExpanded) {
         const target = document.getElementById(id)
         target?.setAttribute('tabindex', '-1')
@@ -69,7 +72,7 @@ export default function CsExpandPreview({
     if (!isExpanded) followSectionLink()
     window.addEventListener('hashchange', followSectionLink)
     return () => window.removeEventListener('hashchange', followSectionLink)
-  }, [children, isExpanded, onExpand])
+  }, [children, isExpanded, onExpand, sectionIds])
 
   useEffect(() => {
     if (isExpanded && requested.current) {

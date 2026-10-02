@@ -23,7 +23,7 @@ export default function MessyHumansPage() {
           backLink="/work" categorySlug="creative-tech" backLabel="Back to Work"
           tags={['Inclusive Design', 'Research', 'Accessibility', 'Ethics']}
           title="Designing for Messy Humans"
-          subtitle="Inclusive design research &mdash; edge cases, emotional states, and the humans that personas always miss"
+          subtitle="Course research notes on distraction, anxiety, language, and access in everyday interfaces."
           info={[
             { label: 'Context', value: 'Designing for Messy Humans, NYU ITP' },
             { label: 'Year', value: '2023' },
@@ -31,26 +31,37 @@ export default function MessyHumansPage() {
             { label: 'Methods', value: 'Contextual Inquiry, Diary Studies, Inclusive Audits' },
           ]}
         />
-        <CsSection id="cs-premise" label="01 &mdash; Premise" title="Personas Are Clean. People Are Not.">
+        <CsSection id="cs-premise" label="01 &mdash; Premise" title="Designing for the moment of use">
           <CsBody>
-            <p>A persona rarely captures the moment someone uses a product: tired, distracted, using one hand, or switching languages. This course examined how those conditions change the decisions an interface needs to support.</p>
-            <p>This course dismantles the clean persona and designs for the messy reality: situational disabilities, emotional extremes, cognitive overload, cultural assumptions, and the edge cases that mainstream design ignores.</p>
+            <p>Someone may use a product while tired, anxious, distracted, using one hand, or switching languages. These course notes turn those conditions into questions for an interface review.</p>
+            <p>This page records review prompts and reflections, rather than a comparative usability study or accessibility certification.</p>
           </CsBody>
         </CsSection>
-        <CsSection id="cs-research" label="02 &mdash; Research" title="Questions to Carry into a Design Review">
+        <CsSection id="cs-research" label="02 &mdash; Research" title="Four questions for a design review">
           <CsFeatureGrid features={[
-            { title: 'Situational Disability Audit', desc: 'Review interfaces under one-handed use, bright sunlight, noise, and distraction. Check whether primary actions remain reachable and feedback remains readable. These are audit prompts, not a published comparative scorecard.' },
-            { title: 'Emotional State Mapping', desc: 'Consider how anxiety, fatigue, and uncertainty change an interaction. For a payment flow, that means clear amounts, recoverable errors, and time to review before committing. The course notes do not establish a population-level usage statistic.' },
-            { title: 'Cultural Assumption Inventory', desc: 'Check name fields, reading direction, language switching, and payment conventions. A form should explain its requirements without assuming that every person shares the designer’s language or naming structure.' },
-            { title: 'Edge Case Workshop', desc: 'Use role-play to find questions for research, then test with people who have relevant lived experience. Simulating an impairment can expose an awkward control; it cannot substitute for accessibility research.' },
-          ]} />
+  {
+    "title": "Can the primary action still be reached?",
+    "desc": "Review one-handed use, bright sunlight, noise, and distraction. Check reach, readable feedback, and alternatives to a single input mode."
+  },
+  {
+    "title": "Can someone review and recover?",
+    "desc": "For an anxious payment interaction, keep amounts and fees clear, allow a review before committing, and make errors recoverable."
+  },
+  {
+    "title": "Whose conventions does the form assume?",
+    "desc": "Check name fields, reading direction, language switching, and payment conventions. Explain requirements without assuming a single naming or language structure."
+  },
+  {
+    "title": "Who needs to take part in the research?",
+    "desc": "Use role-play to identify questions, then involve people with relevant lived experience. Simulating an impairment cannot replace accessibility research."
+  }
+]} />
         </CsSection>
-        <CsSection id="cs-impact" label="03 &mdash; Impact on My Practice" title="Messy Became Default">
+        <CsSection id="cs-impact" label="03 &mdash; Impact on My Practice" title="Applying the questions">
           <CsBody>
-            <p>This course permanently changed how I design. Specific changes:</p>
-            <p><strong>Payments:</strong> review language choice, fee clarity, and error recovery together. These became questions to bring into product work; this page does not establish their relative impact on trust.</p>
-            <p><strong>Wearables:</strong> consider the companion app, physical controls, and glasses display together. Feedback needs to remain understandable while attention moves between the device and the environment.</p>
-            <p><strong>Accessibility:</strong> check keyboard access, semantics, contrast, and reduced-motion behavior throughout implementation. These practices require ongoing testing and do not, by themselves, establish WCAG conformance.</p>
+            <p><strong>Payments:</strong> review language, fees, and recovery together.</p>
+            <p><strong>Wearables:</strong> check whether feedback remains understandable as attention moves between the companion app, physical controls, glasses, and surroundings.</p>
+            <p><strong>Implementation:</strong> test keyboard access, semantics, contrast, and reduced motion throughout the build.</p>
           </CsBody>
         </CsSection>
         <CsThanks />

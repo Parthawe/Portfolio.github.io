@@ -1,9 +1,10 @@
-import { lazy, Suspense, useRef, type ReactNode } from 'react'
+import { lazy, Suspense, useRef, type ReactNode, type MouseEvent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import FigmaSelect from '../FigmaSelect'
 import { useDeferredMount } from '../../hooks/useDeferredMount'
 import { getProject } from '../../data/projects'
+import { projectReadingPaths } from '../../data/projectReadingPaths'
 import { isLowPowerDevice } from '../../utils/performance'
 import {
   projectTimelineMilestones,
@@ -53,6 +54,22 @@ function findInfoValue(
   return match?.value
 }
 
+/** Open a public chapter and move focus after deferred content mounts. */
+function followProjectSection(event: MouseEvent<HTMLAnchorElement>, id: string) {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+  event.preventDefault()
+  event.stopPropagation()
+  const hash = `#${encodeURIComponent(id)}`
+  if (window.location.hash !== hash) window.location.hash = hash
+  else window.dispatchEvent(new HashChangeEvent('hashchange'))
+  const target = document.getElementById(id)
+  if (target) {
+    target.setAttribute('tabindex', '-1')
+    target.focus({ preventScroll: true })
+    target.scrollIntoView({ block: 'start', behavior: 'instant' })
+  }
+}
+
 function slugClass(value?: string) {
   return value ? value.replace(/[^a-z0-9-]/gi, '-').toLowerCase() : ''
 }
@@ -87,6 +104,7 @@ export default function ProjectHeader({
   const showCategoryOrnament = useDeferredMount(canShowOrnament, { timeout: 1500, delayMs: 120 })
   const ornamentSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 96 : 140
   const currentSlug = location.pathname.split('/').filter(Boolean).pop() ?? ''
+  const readingPath = projectReadingPaths[currentSlug]
   const project = getProject(currentSlug)
   const story = project?.storyline
   const resolvedHeroImage =
@@ -172,6 +190,7 @@ export default function ProjectHeader({
               <div key={stat.label} className="proj-fastread-stat">
                 <strong>{stat.value}</strong>
                 <span>{stat.label}</span>
+                {stat.note && <p className="cs-caption">{stat.note}</p>}
               </div>
             ))}
           </div>
@@ -208,7 +227,10 @@ export default function ProjectHeader({
       <div className={visualClasses}>
         <nav className="proj-reading-links" aria-label="Project navigation">
           <Link to={backLink}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>{backLabel}</Link>
-          <a href="#project-overview">Project overview<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>
+          <div className="proj-reading-destinations">
+            <a href="#project-overview">{readingPath ? 'Overview' : 'Project overview'}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>
+            {readingPath && <a href={`#${readingPath.id}`} onClick={event => followProjectSection(event, readingPath.id)} className="proj-reading-evidence">{readingPath.label}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>}
+          </div>
         </nav>
         <section className="proj-visual-hero hero-anim hero-anim-1" aria-label={`${title} project introduction`}>
           <div className="proj-visual-hero__copy">
@@ -376,6 +398,7 @@ export default function ProjectHeader({
                   <div key={stat.label} className="proj-hero-stat">
                     <strong>{stat.value}</strong>
                     <span>{stat.label}</span>
+                    {stat.note && <p className="cs-caption">{stat.note}</p>}
                   </div>
                 ))}
               </div>

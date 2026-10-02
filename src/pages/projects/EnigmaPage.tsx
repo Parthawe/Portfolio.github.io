@@ -57,7 +57,7 @@ export default function EnigmaPage() {
         </CsMediaSpotlight>
 
         {/* Interactive */}
-        <CsSection id="cs-interactive" label="Interactive" title="See the Network Think">
+        <CsSection id="cs-interactive" label="Interactive" title="Explore a browser model of the sculpture">
           <CsBody>
             <p>Draw a letter or press any key A to Z. This browser illustration uses generated activation patterns to explain the layers. It does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
           </CsBody>

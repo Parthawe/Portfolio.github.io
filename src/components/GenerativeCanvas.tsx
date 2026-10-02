@@ -48,7 +48,11 @@ const PALETTES = [
   { name: 'Mono', bg: '#000000', colors: ['#fff','#d4d4d8','#a1a1aa','#71717a','#52525b'], accent: '#a1a1aa' },
 ]
 
-export default function GenerativeCanvas() {
+export default function GenerativeCanvas({ flowOnly = false }: { flowOnly?: boolean }) {
+  const [playing, setPlaying] = useState(false)
+  const playingRef = useRef(false)
+  const activityRef = useRef<ReturnType<typeof visibleAnimation> | null>(null)
+  const [generation, setGeneration] = useState(0)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [modeIdx, setModeIdx] = useState(0)
   const [palIdx, setPalIdx] = useState(0)
@@ -57,7 +61,11 @@ export default function GenerativeCanvas() {
 
   const pal = PALETTES[palIdx]
 
-  const resetState = useCallback(() => { stateRef.current = {} }, [])
+  const resetState = useCallback(() => { setGeneration(value => value + 1) }, [])
+  useEffect(() => {
+    playingRef.current = playing
+    activityRef.current?.wake()
+  }, [playing])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -65,17 +73,19 @@ export default function GenerativeCanvas() {
     const ctx = canvas.getContext('2d')!
     let w = 0, h = 0, t = 0
     stateRef.current = {}
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     const draw = () => {
       const dpr = Math.min(window.devicePixelRatio, 2)
       const rect = canvas.parentElement!.getBoundingClientRect()
       const nw = rect.width, nh = rect.height
       if (nw < 10 || nh < 10) { return }
-      if (canvas.width !== nw * dpr || canvas.height !== nh * dpr) {
-        canvas.width = nw * dpr; canvas.height = nh * dpr
+      if (canvas.width !== Math.round(nw * dpr) || canvas.height !== Math.round(nh * dpr)) {
+        canvas.width = Math.round(nw * dpr); canvas.height = Math.round(nh * dpr)
         canvas.style.width = `${nw}px`; canvas.style.height = `${nh}px`
         w = nw; h = nh; stateRef.current = {}
       }
+      w = nw; h = nh
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       t += 0.016
       const m = mouseRef.current
@@ -96,7 +106,7 @@ export default function GenerativeCanvas() {
           if (m.active) { const dx=m.x-p.x,dy=m.y-p.y,d=Math.sqrt(dx*dx+dy*dy); if(d<250&&d>5){const f=3/(d*0.08+1);p.vx+=dx/d*f;p.vy+=dy/d*f} }
           p.vx*=0.96;p.vy*=0.96;const s=Math.sqrt(p.vx*p.vx+p.vy*p.vy);if(s>4){p.vx*=4/s;p.vy*=4/s}
           const ox=p.x,oy=p.y;p.x+=p.vx;p.y+=p.vy;p.life++
-          if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0
+          if(p.x<0 || p.x>w || p.y<0 || p.y>h) { p.x=(p.x+w)%w; p.y=(p.y+h)%h; continue }
           if(p.life>p.ml){p.x=Math.random()*w;p.y=Math.random()*h;p.vx=0;p.vy=0;p.life=0;p.c=colors[Math.floor(Math.random()*colors.length)]}
           const al=Math.min(1,p.life/30)*Math.min(1,(p.ml-p.life)/40)
           ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(p.x,p.y);ctx.strokeStyle=p.c;ctx.globalAlpha=al*0.6;ctx.lineWidth=0.5+s*0.3;ctx.stroke()
@@ -242,9 +252,18 @@ export default function GenerativeCanvas() {
 
     }
 
-    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
-    return () => activity.dispose()
-  }, [modeIdx, palIdx, pal])
+    let lastWidth = 0, lastHeight = 0
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, () => {
+      const bounds = canvas.parentElement!.getBoundingClientRect()
+      const changed = bounds.width !== lastWidth || bounds.height !== lastHeight
+      if (changed) {
+        lastWidth = bounds.width; lastHeight = bounds.height
+        for (let frame = 0; frame < 24; frame++) draw()
+      } else if (playingRef.current) draw()
+    }, () => playingRef.current)
+    activityRef.current = activity
+    return () => { activity.dispose(); activityRef.current = null }
+  }, [modeIdx, palIdx, pal, generation])
 
   const handlePointer = useCallback((e: React.PointerEvent) => {
     const rect = canvasRef.current?.parentElement?.getBoundingClientRect()
@@ -253,90 +272,22 @@ export default function GenerativeCanvas() {
   }, [])
 
   return (
-    <div style={{ position: 'relative' }}>
-      <div
-        style={{
-          width: '100%', aspectRatio: '16 / 10',
-          maxHeight: 'min(34rem, 68vh)',
-          borderRadius: 'var(--radius-lg)', overflow: 'hidden',
-          border: '1px solid rgba(255,255,255,0.04)',
-          cursor: 'crosshair', touchAction: 'none', position: 'relative',
-          contain: 'layout paint size',
-        }}
-        onPointerMove={handlePointer}
-        onPointerDown={handlePointer}
-        onPointerLeave={() => { mouseRef.current.active = false }}
-      >
-        <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
-
-        {/* Mode selector — top center */}
-        <div style={{
-          position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)',
-          display: 'flex', gap: 2,
-          padding: '3px',
-          borderRadius: 'var(--radius-pill)',
-          background: 'rgba(0,0,0,0.45)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255,255,255,0.05)',
-        }}>
-          {MODES.map((mode, i) => (
-            <button key={mode.name} onClick={() => { setModeIdx(i); resetState() }} style={{
-              padding: '4px 10px', borderRadius: 12,
-              border: 'none',
-              background: i === modeIdx ? 'rgba(255,255,255,0.1)' : 'transparent',
-              color: i === modeIdx ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.2)',
-              fontFamily: 'var(--mono)', fontSize: '7px',
-              letterSpacing: '0.04em', textTransform: 'uppercase',
-              cursor: 'pointer', transition: 'all 0.2s',
-              display: 'flex', alignItems: 'center', gap: 4,
-            }}>
-              <span style={{ fontSize: '9px' }}>{mode.icon}</span>
-              {mode.name}
-            </button>
-          ))}
-        </div>
-
-        {/* Bottom controls */}
-        <div style={{
-          position: 'absolute', bottom: 12, left: '50%', transform: 'translateX(-50%)',
-          display: 'flex', alignItems: 'center', gap: 5,
-          padding: '5px 8px',
-          borderRadius: 'var(--radius-pill)',
-          background: 'rgba(0,0,0,0.45)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255,255,255,0.05)',
-        }}>
-          {PALETTES.map((p, i) => (
-            <button key={p.name} onClick={() => { setPalIdx(i); resetState() }} title={p.name} style={{
-              width: 14, height: 14, borderRadius: '50%', padding: 0,
-              border: i === palIdx ? `2px solid ${p.accent}` : '1.5px solid rgba(255,255,255,0.08)',
-              background: p.colors[1], cursor: 'pointer',
-              boxShadow: i === palIdx ? `0 0 6px ${p.accent}40` : 'none',
-              transition: 'all 0.2s',
-            }} />
-          ))}
-          <div style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.06)' }} />
-          <button onClick={resetState} style={{
-            padding: '2px 8px', borderRadius: 10,
-            border: '1px solid rgba(255,255,255,0.06)',
-            background: 'rgba(255,255,255,0.03)',
-            color: 'rgba(255,255,255,0.25)',
-            fontFamily: 'var(--mono)', fontSize: '6px',
-            letterSpacing: '0.06em', textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}>Clear</button>
-        </div>
-
-        {/* Hint */}
-        <div style={{
-          position: 'absolute', bottom: 12, left: 14,
-          fontFamily: 'var(--mono)', fontSize: '6px',
-          color: 'rgba(255,255,255,0.08)',
-          letterSpacing: '0.06em', textTransform: 'uppercase',
-        }}>
-          Move cursor to interact
-        </div>
+    <div className="project-generative-demo">
+      <div className="project-demo-controls">
+        <button type="button" onClick={() => setPlaying(value => !value)}>{playing ? 'Pause animation' : 'Play animation'}</button>
+        <button type="button" onClick={resetState}>New pattern</button>
       </div>
+      {!flowOnly && <div className="project-demo-controls" role="group" aria-label="Visual mode">
+        {MODES.map((mode, index) => <button type="button" key={mode.name} aria-pressed={index === modeIdx} onClick={() => setModeIdx(index)}>{mode.name}</button>)}
+      </div>}
+      <div style={{ width: '100%', aspectRatio: '16 / 10', maxHeight: 'min(34rem, 68vh)', overflow: 'hidden', background: pal.bg, touchAction: 'pan-y', position: 'relative', contain: 'layout paint size' }}
+        onPointerMove={handlePointer} onPointerDown={handlePointer} onPointerLeave={() => { mouseRef.current.active = false }}>
+        <canvas ref={canvasRef} role="img" aria-label={`${pal.name} ${MODES[modeIdx].name.toLowerCase()} pattern`} style={{ display: 'block', width: '100%', height: '100%' }} />
+      </div>
+      <div className="project-demo-controls" role="group" aria-label="Color palette">
+        {PALETTES.map((palette, index) => <button type="button" key={palette.name} aria-pressed={index === palIdx} onClick={() => setPalIdx(index)}>{palette.name}</button>)}
+      </div>
+      <p>{playing ? 'Playing; motion pauses when this canvas is offscreen.' : 'Paused. Play to watch particle trails develop.'} While playing, move a pointer across the canvas to bend the field.</p>
     </div>
   )
 }

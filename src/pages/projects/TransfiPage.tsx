@@ -237,7 +237,7 @@ export default function TransfiPage() {
           backLabel="Back to Work"
           tags={['Fintech', 'UX', 'Web3', 'Brand']}
           title="TransFi"
-          subtitle="Made crypto payment infrastructure easier for merchant teams to understand, onboard, and trust."
+          subtitle="Merchant onboarding and payment flows for crypto payment infrastructure."
           info={[
             { label: 'Company', value: 'TransFi' },
             { label: 'Scope', value: 'Product Design, Brand, Systems' },
@@ -256,6 +256,7 @@ export default function TransfiPage() {
         />
 
         <CsExpandPreview
+          sectionIds={['cs-public-story', 'cs-process']}
           expanded={viewMode === 'full'}
           onExpand={() => handleViewModeChange('full')}
           ctaLabel="Explore the public story"

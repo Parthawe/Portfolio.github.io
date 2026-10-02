@@ -32,7 +32,7 @@ export default function UvLightPage() {
           backLabel="Back to Work"
           tags={['Installation', 'Experience Design', 'Art']}
           title="UV Light Experience"
-          subtitle="A blacklight installation about hidden information, staged so the audience had to discover the message before they could name it"
+          subtitle="A blacklight installation that reveals hidden messages as visitors move through the space."
           info={[
             { label: 'Client', value: 'NYU \u2013 ITP' },
             { label: 'Scope of Work', value: 'Experience Design' },

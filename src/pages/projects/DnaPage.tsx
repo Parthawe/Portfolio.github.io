@@ -31,7 +31,7 @@ export default function DnaPage() {
           backLabel="Back to Work"
           tags={['Speculative Design', 'Bioart']}
           title="Would You Take a Pill to Live Forever?"
-          subtitle="A speculative artifact that makes immortality feel like a product choice"
+          subtitle="A speculative artifact that presents immortality as a product choice."
           info={[
             { label: 'Context', value: 'NYU ITP' },
             { label: 'Role', value: 'Creator' },
@@ -48,9 +48,9 @@ export default function DnaPage() {
           </div>
         </section>
 
-        <CsSection id="cs-glimpse" label="Glimpse" title="A Thought Experiment You Have To Hold">
+        <CsSection id="cs-glimpse" label="Glimpse" title="Putting the choice in someone’s hands">
           <CsBody>
-            <p>This is a compact speculative design project. Instead of writing about the ethics of anti-aging, I built two believable pharmaceutical artifacts: one promising extended life, the other asking the participant to accept mortality. The value is in the moment of hesitation created by the object.</p>
+            <p>This is a compact speculative design project. Instead of writing about the ethics of anti-aging, I built two believable pharmaceutical artifacts: one promising extended life, the other asking the participant to accept mortality. The intended pause is the choice between those two offers.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Problem</span>
@@ -62,7 +62,7 @@ export default function DnaPage() {
           </div>
           <div className="cs-label-row project-label-row--open">
             <span className="cs-label-row-key">Result</span>
-            <span className="cs-label-row-val">A finished artifact set that made people negotiate with the scenario instead of simply agreeing or disagreeing with it.</span>
+            <span className="cs-label-row-val">A finished set of fictional packaging and inserts presenting two opposing choices. Audience response is not documented as a study here.</span>
           </div>
         </CsSection>
 
@@ -79,15 +79,15 @@ export default function DnaPage() {
           </div>
         </section>
 
-        <CsSection id="cs-impact" label="Impact" title="Why The Artifact Worked">
+        <CsSection id="cs-impact" label="Impact" title="The intended provocation">
           <CsFeatureGrid features={[
-            { title: 'The fiction felt close', desc: 'The pharmaceutical format made the future feel near enough to take seriously.' },
+            { title: 'A familiar format', desc: 'Pharmaceutical packaging gives the fictional offer a recognizable form.' },
             { title: 'The choice was visible', desc: 'Two boxes turned a broad ethics prompt into a direct decision between extension and acceptance.' },
-            { title: 'The detail carried the argument', desc: 'Warnings, dosage language, and print finish did more work than a long explanation could.' },
+            { title: 'Details to question', desc: 'Warnings and dosage language invite inspection of what the fictional product asks someone to accept.' },
           ]} />
         </CsSection>
 
-        <CsSection id="cs-learning" label="Learning" title="What I Learned">
+        <CsSection id="cs-learning" label="Learning" title="What the object makes discussable">
           <CsBody>
             <p>Speculative design needs enough realism to make the audience uneasy. If the artifact feels unfinished, people treat the scenario like fiction. When the details feel familiar, they start asking what they would actually do. That was the main lesson: the object carries the argument before the text does.</p>
           </CsBody>

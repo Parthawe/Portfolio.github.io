@@ -22,12 +22,12 @@ const siteScreens = [
   {
     src: `${BALLAH_SITE}/ballah-product-window.png`,
     alt: 'Ballah Code product window showing an architect agent completing a validation task.',
-    caption: 'Product proof: agent work, files, status, terminal, and metrics in one flow.',
+    caption: 'Product window from the launch site: compare the agent status with the files and terminal output. These are the surfaces a developer needs to inspect before accepting work.',
   },
   {
     src: `${BALLAH_SITE}/ballah-problem.png`,
     alt: 'Ballah Code problem section explaining one branch, one chat, one thing at a time.',
-    caption: 'Problem framing: AI coding tools lose context when work gets parallel.',
+    caption: 'Launch-site problem framing: keeping separate tasks and their context organized.',
   },
   {
     src: `${BALLAH_SITE}/ballah-delegation.png`,
@@ -47,7 +47,7 @@ const siteScreens = [
   {
     src: `${BALLAH_SITE}/ballah-comparison.png`,
     alt: 'Ballah Code comparison table against Cursor and Windsurf.',
-    caption: 'Positioning: not another chat wrapper.',
+    caption: 'Archived launch-site comparison. This records the positioning at the time; it is not a current independent comparison of competing products.',
   },
   {
     src: `${BALLAH_SITE}/ballah-tools.png`,
@@ -87,7 +87,7 @@ export default function BallahCodePage() {
           backLabel="Back to Work"
           tags={['Dev Tools', 'AI']}
           title="Ballah Code"
-          subtitle="AI-native desktop IDE where the AI works as a senior engineer &mdash; not a chatbot"
+          subtitle="A desktop coding environment that keeps AI assistance, project context, and developer controls together."
           info={[
             { label: 'Role', value: 'Product Designer' },
             { label: 'Creator', value: 'Isaiah Ballah' },
@@ -99,7 +99,7 @@ export default function BallahCodePage() {
         />
 
         {/* 01, Overview */}
-        <CsSection id="cs-overview" label="01 &mdash; Overview" title="A Development Environment That Treats AI as a Senior Engineer">
+        <CsSection id="cs-overview" label="01 &mdash; Overview" title="AI assistance inside the coding workflow">
           <CsBody>
             <p>Ballah Code is a native desktop development environment that treats AI as a senior engineering partner, not a disposable chatbot. The product centers context, explicit tools, reviewable actions, and decision records so developers stay in control.</p>
           </CsBody>
@@ -116,9 +116,9 @@ export default function BallahCodePage() {
         >
 
         {/* 02, The Problem */}
-        <CsSection id="cs-problem" label="02 &mdash; The Problem" title="Context Is Disposable and AI Is Replaceable">
+        <CsSection id="cs-problem" label="02 &mdash; The Problem" title="Keeping context across a task">
           <CsBody>
-            <p>Existing AI coding tools treat context as disposable and AI as replaceable. Every conversation starts from zero. There&rsquo;s no persistent memory of why decisions were made, no living documents that evolve with the codebase, and no structured delegation between architect-level thinking and implementation-level execution.</p>
+            <p>The brief focuses on continuity across a coding task: keeping workspace history, inspecting tool activity, and returning to the reason behind a change. Persistent documents and structured delegation form the next product layer.</p>
           </CsBody>
           <div className="cs-img-grid ballah-wide-grid reveal">
             {[siteScreens[2], siteScreens[6]].map((screen) => (
@@ -131,9 +131,9 @@ export default function BallahCodePage() {
         </CsSection>
 
         {/* 03, Design Decisions */}
-        <CsSection id="cs-decisions" label="03 &mdash; Design Decisions" title="A Layout That Keeps the Developer in Flow">
+        <CsSection id="cs-decisions" label="03 &mdash; Design Decisions" title="Editor, assistant, and terminal together">
           <CsBody>
-            <p>The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. Every interaction is designed to keep the developer in flow state while giving the AI full context.</p>
+            <p>The UI centers on a multi-workspace, multi-chat layout &mdash; file explorer with git awareness on the left, chat tabs in the center, and an integrated terminal at the bottom. The arrangement keeps files and command output within reach of the conversation, so a developer can inspect the work without leaving the workspace.</p>
           </CsBody>
           <div className="cs-slide ballah-wide-shot reveal">
             <img data-project-preview src={siteScreens[1].src} alt={siteScreens[1].alt} loading="lazy" decoding="async" style={shotStyle} />
@@ -142,7 +142,7 @@ export default function BallahCodePage() {
         </CsSection>
 
         {/* 04, Technical Architecture */}
-        <CsSection id="cs-architecture" label="04 &mdash; Technical Architecture" title="Native Performance, Minimal Footprint">
+        <CsSection id="cs-architecture" label="04 &mdash; Technical Architecture" title="Desktop architecture">
           <CsBody>
             <p>Under the hood is a Bun backend for AI calls, file operations, and tools, connected to a React frontend in a native WebKit webview via typed RPC.</p>
             <p>The product model supports tool-based AI actions, streaming responses, long-context workflows, workspace switching, and an inspectable handoff between human and agent work.</p>
@@ -150,7 +150,7 @@ export default function BallahCodePage() {
         </CsSection>
 
         {/* 05, Key Features */}
-        <CsSection id="cs-features" label="05 &mdash; Key Features" title="Built for Real Engineering Workflows">
+        <CsSection id="cs-features" label="05 &mdash; Key Features" title="The implemented workflow">
           <CsFeatureGrid features={[
             { title: 'Multi-Workspace, Multi-Chat', desc: 'Persistent history across workspaces and chat sessions. Switch between projects without losing context or conversation state.' },
             { title: 'Integrated Terminal', desc: 'PTY session management with full terminal emulation. The AI can execute commands, and you can see everything it does in real time.' },
@@ -167,7 +167,7 @@ export default function BallahCodePage() {
         </CsSection>
 
         {/* 06, Results & Status */}
-        <CsSection id="cs-results" label="06 &mdash; Results &amp; Status" title="Functional Core, Ambitious Roadmap">
+        <CsSection id="cs-results" label="06 &mdash; Results &amp; Status" title="Current build and remaining work">
           <CsBody>
             <p>The core desktop experience is functional: multi-workspace UI, terminal integration, streaming agent loop, tool execution, settings persistence, and an evaluation harness. Living documents, architect/worker delegation, and a decision ledger remain the next product layer.</p>
           </CsBody>

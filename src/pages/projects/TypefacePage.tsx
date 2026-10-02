@@ -82,7 +82,7 @@ export default function TypefacePage() {
             backLabel="Back to Work"
             tags={['Type Design', 'Editorial Display', 'Interactive Specimen']}
             title="Butler’s Slice"
-            subtitle="A display serif cut for editorial scale, built as a usable family rather than a one-off lettering experiment."
+            subtitle="An editorial display family built around diagonal cuts in the Butler serif."
             info={[
               { label: 'Role', value: 'Type designer and developer' },
               { label: 'Team / context', value: 'Independent type design project' },
@@ -92,7 +92,7 @@ export default function TypefacePage() {
             heroAlt="Butler’s Slice cover specimen"
             heroExperience="visual"
             heroTone="typeface"
-            visualSummary="A display serif cut for editorial scale, built as a complete 400-plus glyph family."
+            visualSummary="An editorial display family built around diagonal cuts in the Butler serif."
             visualTitleMode="stacked"
             liveUrl={`${TYPEFACE_ASSET}/butlers-slice.zip`}
             liveLabel="Download family"

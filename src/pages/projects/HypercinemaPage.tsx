@@ -23,7 +23,7 @@ export default function HypercinemaPage() {
           backLink="/work" categorySlug="creative-tech" backLabel="Back to Work"
           tags={['Immersive Media', '360° Video', 'Spatial Audio', 'Interactive']}
           title="Hypercinema"
-          subtitle="Expanding cinema beyond the rectangle &mdash; 360&deg; video, spatial sound, and interactive documentary experiments"
+          subtitle="Three course studies in viewer-directed film, spatial sound, and multi-screen projection."
           info={[
             { label: 'Context', value: 'Hypercinema, NYU ITP' },
             { label: 'Year', value: '2023' },
@@ -31,25 +31,33 @@ export default function HypercinemaPage() {
             { label: 'Tools', value: 'Insta360, Reaper, Unity, Depthkit, TouchDesigner' },
           ]}
         />
-        <CsSection id="cs-premise" label="01 &mdash; Premise" title="Cinema Without Borders">
+        <CsSection id="cs-premise" label="01 &mdash; Premise" title="Letting the viewer choose where to look">
           <CsBody>
-            <p className="cs-caption">Course film and sound notes. Original playable recordings are not included in this archive.</p>
-            <p>Traditional cinema is a rectangle. Fixed frame, fixed duration, fixed sequence. Hypercinema asks: what happens when you remove those constraints? What is a film when the viewer chooses where to look? When sound comes from specific locations in space? When the narrative branches based on where you stand?</p>
-            <p>Over one semester, we produced three immersive pieces — each one dismantling a different cinematic convention and rebuilding it for spatial, interactive, or non-linear formats.</p>
+            <p>These three course studies changed who controls the frame. One lets the viewer look around a scene, one uses directional sound along a route, and one divides an event across simultaneous projections.</p>
+            <p>Original playable film and sound recordings are not included in this archive.</p>
           </CsBody>
         </CsSection>
-        <CsSection id="cs-pieces" label="02 &mdash; Pieces" title="Three Experiments in Expanded Cinema">
+        <CsSection id="cs-pieces" label="02 &mdash; Pieces" title="Three film and sound studies">
           <CsFeatureGrid features={[
-            { title: 'Displaced: 360° Documentary', desc: 'A 360° video portrait of three NYU international students navigating homesickness. Shot with Insta360 X3 in their dorm rooms, kitchens, and subway commutes. The viewer is placed inside each person\'s daily life — the intimacy of 360° (you\'re IN the room, not watching through a window) makes the emotional distance of displacement viscerally felt. 8 minutes.' },
-            { title: 'Echoes: Spatial Sound Walk', desc: 'An audio walk through Washington Square Park using binaural spatial audio. Listeners wear headphones and follow a route — at each location, layered audio (recorded interviews, ambient sound, historical narration) plays from specific directions in 3D space. Turn left and you hear a 1920s jazz recording panning across your left ear. Turn right: a construction worker describing the park in 2023. Time collapses into space.' },
-            { title: 'Branch: Interactive Projection', desc: 'A multi-screen projection installation where three projectors show three simultaneous perspectives of the same event — a dinner party falling apart. Viewers choose which screen to watch. There is no "correct" view — each perspective reveals different information, and the truth of what happened depends entirely on whose eyes you watch through. A meditation on point-of-view as editorial choice.' },
-          ]} />
+  {
+    "title": "Displaced · 360° documentary",
+    "desc": "An eight-minute portrait of three NYU international students, filmed in dorm rooms, kitchens, and commutes. The viewer chooses where to look within each scene."
+  },
+  {
+    "title": "Echoes · spatial sound walk",
+    "desc": "A Washington Square Park route combines interviews, ambient recordings, and historical narration in binaural audio. Direction becomes a cue for where to direct attention."
+  },
+  {
+    "title": "Branch · interactive projection",
+    "desc": "Three screens show different perspectives of a dinner party. Choosing a screen changes which information a viewer receives about the same event."
+  }
+]} />
         </CsSection>
-        <CsSection id="cs-craft" label="03 &mdash; Craft" title="What Immersive Media Demands">
+        <CsSection id="cs-craft" label="03 &mdash; Craft" title="Guiding attention across space">
           <CsBody>
-            <p><strong>You can&rsquo;t control attention.</strong> In a rectangle, the director decides what you see through framing. In 360°, the viewer looks wherever they want. You learn to guide attention through sound, light, and movement instead of cuts. This skill transferred directly to installation design — Enigma, Black Hole, and Sea of Salt all use the same principle: create a focal point without a frame.</p>
-            <p><strong>Sound can guide attention.</strong> Directional audio offers a cue when the viewer controls the frame. Its effect depends on the mix, listening setup, and audience; these experiments do not establish that audio consistently outperforms video.</p>
-            <p><strong>Non-linearity requires more structure, not less.</strong> A branching narrative doesn&rsquo;t mean &ldquo;anything goes.&rdquo; Each path needs its own arc, and the overall experience needs to be satisfying regardless of which path the viewer takes. More freedom for the audience = more work for the designer.</p>
+            <p><strong>Give attention a cue.</strong> When the viewer controls the frame, sound, light, and movement need to make the next point of interest discoverable.</p>
+            <p><strong>Make each route coherent.</strong> A viewer may enter late or follow only one perspective. Each path needs enough context to stand on its own.</p>
+            <p>Related spatial work with available documentation: <a href="/black-hole" className="project-text-link">Black Hole</a> and <a href="/sea-of-salt" className="project-text-link">Sea of Salt</a>.</p>
           </CsBody>
         </CsSection>
         <CsThanks />
