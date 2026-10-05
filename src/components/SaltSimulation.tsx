@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useState, useCallback } from 'react'
 
@@ -257,7 +258,7 @@ export default function SaltSimulation() {
           <strong>{Math.round(storyPos)}%</strong>
         </div>
         <label className="salt-sim__label" htmlFor="salt-story-range">Start</label>
-        <input
+        <PortfolioSlider
           id="salt-story-range"
           className="salt-sim__range"
           type="range" min={0} max={100} value={storyPos}

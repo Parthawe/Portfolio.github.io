@@ -634,6 +634,8 @@ body.case-side-nav .project-main .project-header--visual.wrap,
   width: 100%; max-width: 100%; margin-inline: 0; padding-inline: 0; transform: none;
 }
 #main-content.project-main > .cs-pullquote,
+#main-content.project-main > .cs-credits,
+#main-content.project-main .project-story__content > .cs-credits,
 #main-content.project-main .project-story__content > .cs-pullquote,
 #main-content.project-main.typeface-page > :is(.tf-section, .tf-specimen-section, .tf-image-stage, .tf-split-section, .tf-image-grid) {
   width: var(--project-frame); max-width: var(--project-reading-width); margin-inline: auto; box-sizing: border-box;

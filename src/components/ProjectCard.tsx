@@ -122,6 +122,7 @@ export default memo(function ProjectCard({
 
   const card = (
     <Link
+      data-cover-shape={resolvedCoverShape}
       className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${hoverMediaSrc ? ' pcard--has-hover-media' : ''}${requestAccess ? ' pcard--request-access' : ''}`}
       to={`/${slug}`}
       onMouseEnter={handlePrefetch}

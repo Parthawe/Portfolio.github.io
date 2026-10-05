@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -75,9 +76,9 @@ export default function GlyphPlayground() {
 
           <div className="gp-control-group">
             <label className="gp-label">Size &middot; {fontSize}px</label>
-            <input
+            <PortfolioSlider
               type="range"
-              className="gp-slider"
+              className="gp-slider" aria-label="Glyph size"
               min={24}
               max={200}
               value={fontSize}

@@ -1291,12 +1291,12 @@
 }
 
 /* ── Varied card heights on the Work page, matching the homepage archive rhythm ── */
-.page-work .pcard-masonry > *:nth-child(6n+1) .pcard-visual { aspect-ratio: 3 / 4; }
-.page-work .pcard-masonry > *:nth-child(6n+2) .pcard-visual { aspect-ratio: 1 / 1; }
-.page-work .pcard-masonry > *:nth-child(6n+3) .pcard-visual { aspect-ratio: 4 / 5; }
-.page-work .pcard-masonry > *:nth-child(6n+4) .pcard-visual { aspect-ratio: 5 / 4; }
-.page-work .pcard-masonry > *:nth-child(6n+5) .pcard-visual { aspect-ratio: 3 / 4; }
-.page-work .pcard-masonry > *:nth-child(6n+6) .pcard-visual { aspect-ratio: 1 / 1; }
+.page-work .pcard-masonry > .pcard:nth-child(6n+1) .pcard-visual { aspect-ratio: 3 / 4; }
+.page-work .pcard-masonry > .pcard:nth-child(6n+2) .pcard-visual { aspect-ratio: 1 / 1; }
+.page-work .pcard-masonry > .pcard:nth-child(6n+3) .pcard-visual { aspect-ratio: 4 / 5; }
+.page-work .pcard-masonry > .pcard:nth-child(6n+4) .pcard-visual { aspect-ratio: 5 / 4; }
+.page-work .pcard-masonry > .pcard:nth-child(6n+5) .pcard-visual { aspect-ratio: 3 / 4; }
+.page-work .pcard-masonry > .pcard:nth-child(6n+6) .pcard-visual { aspect-ratio: 1 / 1; }
 
 /* ── Category landing pages need the same intrinsic ratios: .pcard-visual has
    no height of its own, so without these every card collapses to nothing ── */
@@ -2586,3 +2586,6 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 .pcard.pcard--light .pcard-marquee-track span {
   color: #222;
 }
+
+/* Archive shapes stay attached to cards as columns rebalance. */
+.page-work .work-group--archive .pcard[data-cover-shape="square"] .pcard-visual { aspect-ratio: 1 / 1; }

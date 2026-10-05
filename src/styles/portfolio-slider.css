@@ -1,0 +1,43 @@
+input.portfolio-slider[type="range"] {
+  --slider-accent: #087df1;
+  --slider-rail: rgba(120, 120, 128, .24);
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+  cursor: pointer;
+  accent-color: var(--slider-accent);
+}
+[data-theme="dark"] input.portfolio-slider[type="range"] { --slider-accent: #409cff; --slider-rail: rgba(160, 160, 168, .35); }
+input.portfolio-slider[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--slider-accent) 0 var(--slider-progress), var(--slider-rail) var(--slider-progress) 100%);
+  box-shadow: none;
+}
+input.portfolio-slider[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  margin-top: -10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, .08);
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .22);
+  transform: none;
+  cursor: grab;
+}
+input.portfolio-slider[type="range"]::-moz-range-track { height: 6px; border: 0; border-radius: 999px; background: var(--slider-rail); }
+input.portfolio-slider[type="range"]::-moz-range-progress { height: 6px; border-radius: 999px; background: var(--slider-accent); }
+input.portfolio-slider[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0,0,0,.08); background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.22); cursor: grab; }
+input.portfolio-slider[type="range"]:focus-visible { outline: 2px solid var(--slider-accent); outline-offset: 3px; border-radius: 6px; }
+input.portfolio-slider[type="range"]:active::-webkit-slider-thumb { cursor: grabbing; transform: none; }
+input.portfolio-slider[type="range"]:disabled { opacity: .4; cursor: not-allowed; }
+.studio-statusbar:has(.portfolio-slider) { min-height: 48px; height: auto; }
+
+@media (max-width: 600px) {
+  .black-hole-distance-controls { display: grid !important; grid-template-columns: 1fr 1fr; gap: 0 12px !important; }
+  .black-hole-distance-controls > span:last-child { grid-column: 2; grid-row: 1; text-align: right; }
+  .black-hole-distance-controls > .portfolio-slider { grid-column: 1 / -1; grid-row: 2; width: 100% !important; }
+}

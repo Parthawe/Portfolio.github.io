@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { useState, useCallback, useRef, useEffect } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
@@ -95,7 +96,7 @@ function Tank({ value, label, color, onChange, running }: {
         </div>
       </div>
       {/* Slider */}
-      <input type="range" min={0} max={100} value={fillPct}
+      <PortfolioSlider type="range" min={0} max={100} value={fillPct}
         onChange={e => onChange(Number(e.target.value))}
         disabled={!running}
         aria-label={`${label}: ${fillPct}%`}

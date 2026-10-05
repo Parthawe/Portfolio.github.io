@@ -215,10 +215,22 @@ export default function WorkPage() {
     () => distributeProjects(editorialSelectedProjects, selectedColumnCount),
     [editorialSelectedProjects, selectedColumnCount]
   )
-  const archiveMasonryColumns = useMemo(
-    () => distributeProjects(archiveProjects, archiveColumnCount),
-    [archiveProjects, archiveColumnCount]
-  )
+  // Stable card shapes, placed into the shortest column instead of round-robin.
+  const archiveShapes = useMemo(() => new Map(archiveProjects.map((project, index) =>
+    [project.slug, index % 3 === 1 ? 'square' as const : 'portrait' as const]
+  )), [archiveProjects])
+  const archiveMasonryColumns = useMemo(() => {
+    const columns: Project[][] = Array.from({ length: archiveColumnCount }, () => [])
+    const heights = columns.map(() => 0)
+    for (const project of archiveProjects) {
+      const shortest = heights.indexOf(Math.min(...heights))
+      columns[shortest].push(project)
+      heights[shortest] += (archiveShapes.get(project.slug) === 'square' ? 1 : 1.25) + .08
+    }
+    return columns.map((column, index) => ({ column, height: heights[index] }))
+      .sort((a, b) => a.height - b.height)
+      .map(({ column }) => column)
+  }, [archiveProjects, archiveColumnCount, archiveShapes])
   const allWorkProjects = [
     ...featuredProjects,
     ...selectedWorkProjects.filter(project => !project.featured),
@@ -515,7 +527,7 @@ export default function WorkPage() {
                     <div className="pcard-masonry">
                       {archiveMasonryColumns.map((column, columnIndex) => (
                         <div className="pcard-masonry__column" key={`archive-column-${columnIndex}`}>
-                          {column.map(renderCard)}
+                          {column.map(project => <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} tilt={false} coverShape={archiveShapes.get(project.slug)} />)}
                         </div>
                       ))}
                     </div>

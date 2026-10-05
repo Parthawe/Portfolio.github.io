@@ -35,14 +35,14 @@
   color: color-mix(in srgb, var(--nda-accent) 62%, var(--ink));
 }
 
-.nda-inline-preview h2 {
-  max-width: 15ch;
+.project-main .nda-inline-preview h2 {
+  max-width: 34ch;
   margin: 0.7rem 0 1rem;
   font-family: var(--sans);
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 550;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  font-size: var(--project-section-type, clamp(1.5rem, 2.5vw, 2rem));
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
   color: var(--ink);
   text-wrap: balance;
 }

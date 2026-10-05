@@ -17,6 +17,7 @@ import CsCompareTable from '../../components/case-study/CsCompareTable'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import '../../styles/mentra-deck.css'
 
 export default function MentraPage() {
   const location = useLocation()
@@ -177,9 +178,15 @@ export default function MentraPage() {
             <p>A visual cleanup improved first-week retention, but feedback showed that people still could not tell what was running. The issue was the operating model, not the polish.</p>
             <p>I prototyped ten directions and tested three: a persistent dock, a card switcher, and a bottom drawer. The drawer balanced recognition with low distraction and gave active and background MiniApps one home.</p>
           </CsBody>
-          <div className="cs-mentra-media-row cs-mentra-media-row--phones">
-            <CsImage src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen, glasses status widget, app grid with Flash, Notes, Streamer, Camera, and running apps indicator" />
-            <CsImage src="/Assets/images/mentra/os-all-apps.png" alt="MentraOS all apps drawer, searchable app grid with Gallery, Appstore, Settings, Recorder, and Mentra AI" />
+          <div className="cs-mentra-media-row mentra-deck-comparison">
+            <CsImage src="/Assets/images/mentra/deck/home-before.png" aspectRatio="313 / 712" alt="Earlier AugmentOS home screen with a large device panel and separate active and inactive app lists" caption="Before: device setup and separate app lists dominate the home screen." />
+            <CsImage src="/Assets/images/mentra/deck/home-after.png" aspectRatio="342 / 725" alt="Redesigned Mentra home screen with a compact device panel, MiniApp grid, and bottom runtime control" caption="Redesigned: compact device status, a clear app grid, and runtime control at the bottom." />
+          </div>
+          <h3 className="cs-section-subtitle">Three of the ten explorations</h3>
+          <div className="cs-mentra-media-row mentra-deck-explorations" role="region" aria-label="Runtime design explorations" tabIndex={0}>
+            <CsImage src="/Assets/images/mentra/deck/active-strip.png" aspectRatio="394 / 852" alt="Early prototype with running MiniApps in a persistent horizontal strip" caption="Active app strip" />
+            <CsImage src="/Assets/images/mentra/deck/bottom-drawer.png" aspectRatio="394 / 852" alt="Early bottom-drawer direction showing the MiniApp launcher in its closed state" caption="Bottom drawer, closed state" />
+            <CsImage src="/Assets/images/mentra/deck/status-cards.png" aspectRatio="394 / 852" alt="Early status-card direction showing three active apps and a camera recording card" caption="App status cards" />
           </div>
           <h3 className="cs-section-subtitle">Visible when needed, quiet when not</h3>
           <CsBody>
@@ -201,10 +208,7 @@ export default function MentraPage() {
               { feature: 'User can reassign', values: [true, true, true] },
             ]}
           />
-          <div className="cs-mentra-media-row cs-mentra-media-row--phones">
-            <CsImage src="/Assets/images/mentra/os-notes.png" alt="Mentra Notes app, note editor with formatting toolbar, AI summarization button, and quick actions" />
-            <CsImage src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS running apps view, multitasking interface showing stacked app cards with Teleprompter active" />
-          </div>
+
         </CsSection>
 
         <CsSection id="cs-store" title="MiniApps: discover, start, switch, and stop">
@@ -220,7 +224,7 @@ export default function MentraPage() {
           ]} />
           <div className="cs-mentra-media-row cs-mentra-media-row--phones">
             <CsImage src="/Assets/images/mentra/appstore-translation.webp" alt="Mentra Live Translation MiniApp listing and configuration flow" />
-            <CsImage src="/Assets/Projects/mentra-miniapps/figma/meet-home.png" alt="Mentra MiniApp interface for a live meeting assistant" />
+            <CsImage src="/Assets/images/mentra/deck/miniapps-handheld.png" aspectRatio="808 / 1045" alt="Handheld Mentra companion app showing the MiniApp family and a bottom indicator for three running apps" caption="The MiniApp family shares one launcher and a visible running-app count." />
           </div>
         </CsSection>
 

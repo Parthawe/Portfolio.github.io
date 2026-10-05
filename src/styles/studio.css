@@ -21,7 +21,7 @@
   position: fixed;
   inset: 0;
   display: grid;
-  grid-template-rows: 32px 1fr 28px;
+  grid-template-rows: 32px 1fr 48px;
   background: var(--st-bg);
   color: var(--st-text);
   font-family: var(--sans);

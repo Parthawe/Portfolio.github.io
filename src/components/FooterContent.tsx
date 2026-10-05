@@ -1,3 +1,4 @@
+import { getVisitorLocation } from '../utils/visitorLocation'
 import { useState, useEffect, useRef, type RefObject, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, useInView, type MotionValue } from 'framer-motion'
@@ -259,7 +260,6 @@ function LiveClock() {
         new Date().toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
-          timeZone: 'America/Los_Angeles',
         }),
       )
     tick()
@@ -275,28 +275,9 @@ function LiveClock() {
   return <span className="ft-clock">{time}</span>
 }
 
-/* The visitor's own time next to mine — a small "I reply across time zones" gesture. */
-function VisitorClock() {
-  const [label, setLabel] = useState('')
-  useEffect(() => {
-    try {
-      const now = new Date()
-      const sfHour = Number(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', hour12: false }))
-      const localHour = now.getHours()
-      if (sfHour === localHour) return // same zone — nothing interesting to say
-      const time = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
-      setLabel(`${time} where you are`)
-    } catch {
-      // Clock stays SF-only when the environment can't resolve zones.
-    }
-  }, [])
-  if (!label) return null
-  return <span className="ft-clock-you">{label}</span>
-}
-
 export default function FooterContent({
   footerRef,
-  showArcadeIntro = true,
+  showArcadeIntro = false,
 }: {
   footerRef: RefObject<HTMLElement | null>
   showArcadeIntro?: boolean
@@ -339,7 +320,6 @@ export default function FooterContent({
       {/* Band 1 — one composition: the ask on the left, the map on the right */}
       <motion.div className="ft-top" style={a(ctaY, ctaOpacity)} ref={firstRevealRef}>
         <div className="ft-top-cta">
-          <span className="ft-paper-label">Available for product, systems, and interaction work</span>
           <h2 className="ft-headline-sm">
             Let's work <em>together</em>
           </h2>
@@ -388,9 +368,8 @@ export default function FooterContent({
       <FooterCanvas
         meta={
           <>
-            <span>San Francisco, CA</span>
-            <span><LiveClock /> PT</span>
-            <VisitorClock />
+            <span>{getVisitorLocation().label}</span>
+            <span><LiveClock /> {getVisitorLocation().clockLabel}</span>
           </>
         }
       />

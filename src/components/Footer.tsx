@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import FooterContent from './FooterContent'
 
-export default function Footer({ showArcadeIntro = true }: { showArcadeIntro?: boolean }) {
+export default function Footer({ showArcadeIntro = false }: { showArcadeIntro?: boolean }) {
   const footerRef = useRef<HTMLElement>(null)
 
   return (

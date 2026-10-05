@@ -37,7 +37,7 @@ export default function SeaOfSaltPage() {
           subtitle="A storytelling machine that grinds real salt as visitors advance a Norse folktale."
           info={[
             { label: 'Collaborator', value: 'Audrey Oh' },
-            { label: 'Context', value: 'Bio Art, NYU ITP' },
+            { label: 'Context', value: 'Storytelling, NYU ITP' },
                 { label: 'Year', value: '2025' },
             { label: 'Tools', value: 'Arduino, Servo Motor, 3D Printing, Laser Cutting' },
           ]}
@@ -145,7 +145,7 @@ export default function SeaOfSaltPage() {
         <CsCredits credits={[
           { role: 'Creator & Fabricator', name: 'Parth Pawar' },
           { role: 'Collaborator', name: 'Audrey Oh' },
-          { role: 'Course', name: 'Bio Art, NYU ITP' },
+          { role: 'Course', name: 'Storytelling, NYU ITP' },
         ]} />
 
         <CsThanks />

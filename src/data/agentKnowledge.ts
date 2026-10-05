@@ -1,3 +1,4 @@
+import { getVisitorLocation } from '../utils/visitorLocation'
 import { categories } from './categories'
 import { CATEGORY_LABELS, visibleProjects as projects, type ProjectCategory } from './projects'
 
@@ -440,7 +441,7 @@ const deepMap: Record<string, ProjectDeep> = {
     insight: 'Physical cost makes people careful with a story. Visitors slid slowly, inch by inch, in a way text never produces.',
     process: 'Took ATU 565, the Norse tale of the mill that can\'t stop grinding, and built its tragedy into hardware: a slider mapped to a servo-driven salt mill, slow at the start, relentless at the end.',
     whyItMatters: 'It collapses the line between narrative and material. The story\'s consequence (the mill never stops) becomes the room\'s reality (the salt keeps accumulating).',
-    duration: 'Bio Art course, NYU ITP, 2025',
+    duration: 'Storytelling course, NYU ITP, 2025',
     team: 'Parth (creator and fabricator) + collaborator Audrey Oh',
     platforms: 'Physical installation: Arduino, servo motor, 3D printing, laser cutting',
     opinion: 'The best detail is the surface: black lacquered MDF chosen so every grain of salt reads as evidence. That\'s exhibition design thinking, not just physical computing.',
@@ -536,7 +537,7 @@ for (const project of projects) {
 /* ── Bio ───────────────────────────────────────────────── */
 
 const bio = {
-  name: 'Parth Pawar', title: 'Design Engineer', location: 'San Francisco',
+  name: 'Parth Pawar', title: 'Design Engineer', location: 'United States',
   current: 'Head of UI/UX at Mentra, designing the entire platform for AI smart glasses.',
   status: 'Open to product design in AI, dev tools, fintech, 0→1.',
   email: 'parthpawar@nyu.edu',
@@ -1234,7 +1235,7 @@ const rules: Rule[] = [
 
   // Location
   { patterns: [/(?:where.*(?:based|located|live)|location|city|remote|sf|san francisco|new york|india)/i],
-    handler: () => `San Francisco. Open to SF-based roles, hybrid, or remote for the right team.\n\n${bio.status}`
+    handler: () => `${getVisitorLocation().label}. Open to hybrid or remote roles for the right team.\n\n${bio.status}`
   },
 
   // Availability

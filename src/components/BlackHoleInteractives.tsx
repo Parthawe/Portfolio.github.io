@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useState, useCallback } from 'react'
 
@@ -227,19 +228,19 @@ export function TimeDilation() {
       }}>
         <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
       </div>
-      <div style={{
+      <div className="black-hole-distance-controls" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', gap: 12,
         padding: '10px 0',
       }}>
         <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'rgba(248,113,113,0.9)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Event horizon
         </span>
-        <input type="range" min={5} max={100} value={distance * 100}
+        <PortfolioSlider type="range" min={5} max={100} value={distance * 100}
           onChange={e => setDistance(Number(e.target.value) / 100)}
           aria-label="Distance from black hole"
           style={{ width: 'min(180px, 100%)', flex: '1 1 10rem', accentColor: '#999' }}
         />
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'rgba(255,255,255,0.72)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+        <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Far away
         </span>
       </div>
@@ -493,7 +494,7 @@ export function GravLensing() {
           textTransform: 'uppercase',
           letterSpacing: '0.08em',
         }}>Mass</span>
-        <input type="range" min={15} max={100} value={massStrength}
+        <PortfolioSlider type="range" min={15} max={100} value={massStrength}
           onChange={e => setMassStrength(Number(e.target.value))}
           aria-label="Black hole mass" className="black-hole-mass-slider" style={{ width: '100%', accentColor: '#7dd3fc' }} />
         <span style={{

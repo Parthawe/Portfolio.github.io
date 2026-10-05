@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { useState } from 'react'
 
 /* ═══════════════════════════════════════════════════════════
@@ -65,7 +66,7 @@ export default function LightingSlider({ beforeSrc, afterSrc, beforeLabel = 'Sta
         <span style={{ fontFamily: 'var(--mono)', fontSize: '16px', color: 'var(--ink-70)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           Dark
         </span>
-        <input
+        <PortfolioSlider
           type="range" min={0} max={100} value={value * 100}
           onChange={e => setValue(Number(e.target.value) / 100)}
           aria-label="Lighting intensity"

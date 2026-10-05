@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { useThemeMode } from '../hooks/useThemeMode'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
@@ -393,7 +394,7 @@ function RelationHint({ source, dark }: { source: Key; dark: boolean }) {
 
 // ── Slider Panel (4 sliders) ──
 
-function SliderPanel({ labels, values, onChange, amber, glowColor, dark, transition, side, flashing, flashKeys }: {
+function SliderPanel({ labels, values, onChange, amber, glowColor, dark, side, flashing, flashKeys }: {
   labels: Key[]
   values: Record<Key, number>
   onChange: (key: Key, val: number) => void
@@ -436,34 +437,8 @@ function SliderPanel({ labels, values, onChange, amber, glowColor, dark, transit
                 </div>
               </div>
 
-              {/* Track with glow */}
               <div style={{ position: 'relative' }}>
-                {/* LED glow bar */}
-                <div style={{
-                  position: 'absolute',
-                  left: 0, bottom: '-3px',
-                  width: `${v}%`,
-                  height: '8px',
-                  background: glowColor,
-                  opacity: 0.15 + v * 0.005,
-                  filter: `blur(${4 + v * 0.06}px)`,
-                  borderRadius: '4px',
-                  transition,
-                  pointerEvents: 'none',
-                }} />
-                {/* Filled portion */}
-                <div style={{
-                  position: 'absolute',
-                  left: 0, top: '50%', transform: 'translateY(-50%)',
-                  width: `${v}%`,
-                  height: '4px',
-                  background: `linear-gradient(90deg, ${glowColor}66, ${glowColor})`,
-                  borderRadius: '2px',
-                  transition,
-                  pointerEvents: 'none',
-                  zIndex: 0,
-                }} />
-                <input
+                <PortfolioSlider
                   type="range"
                   min={0} max={100}
                   value={Math.round(v)}

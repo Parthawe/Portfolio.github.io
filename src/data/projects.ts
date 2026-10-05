@@ -1000,14 +1000,14 @@ export const projects: Project[] = [
     tier: 'b',
     summaryProblem: 'Stories usually stay mental. I wanted a folktale where moving through the narrative would leave a visible physical cost in the room.',
     summaryRole: 'Co-created and fabricated the storytelling machine, interaction logic, salt mechanism, and exhibition behavior.',
-    summaryTeam: 'Collaboration with Audrey Oh through Bio Art at NYU ITP.',
+    summaryTeam: 'Collaboration with Audrey Oh through Storytelling at NYU ITP.',
     summaryTimeline: '2024',
     summaryOutcome: 'Built a machine that literally grinds salt as the story advances, turning narrative consequence into residue visitors can see and touch.',
     summaryStats: [
       { label: 'Narrative device', value: '1 slider' },
       { label: 'Physical output', value: 'Real salt' },
       { label: 'Core medium', value: 'Story + machine' },
-      { label: 'Setting', value: 'Bio Art' },
+      { label: 'Setting', value: 'Storytelling' },
     ],
     storyline: {
       challenge: 'Folktales are often consumed passively, which makes their material richness disappear.',

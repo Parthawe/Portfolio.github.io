@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { useEffect, useRef, useState } from 'react'
 import '../styles/pixel-painting.css'
 
@@ -121,7 +122,7 @@ export default function PixelPainting() {
           else void useCamera()
         }}>{cameraPending ? 'Cancel camera request' : source === 'camera' ? 'Stop camera' : 'Use my camera'}</button>
         <label htmlFor="pixel-opacity">Paint opacity <output>{Math.round(opacity / 255 * 100)}%</output>
-          <input id="pixel-opacity" type="range" min="1" max="255" value={opacity} onChange={event => {
+          <PortfolioSlider id="pixel-opacity" type="range" min="1" max="255" value={opacity} onChange={event => {
             const value = Number(event.target.value); alpha.current = value; setOpacity(value)
             if (!running) painter.current?.step()
           }} />

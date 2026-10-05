@@ -1,3 +1,4 @@
+import PortfolioSlider from '../PortfolioSlider'
 import type { ToolType } from './StudioCanvas'
 
 interface Props {
@@ -32,9 +33,9 @@ export default function StudioStatusBar({ activeTool, zoom, coords, onZoomChange
       </div>
       <div className="studio-status-right">
         <button className="studio-status-btn" onClick={() => onZoomChange(Math.max(zoom / 1.25, 0.25))} type="button" title="Zoom out">−</button>
-        <input
+        <PortfolioSlider
           type="range"
-          className="studio-status-slider"
+          className="studio-status-slider" aria-label="Canvas zoom"
           min={25} max={400} value={pct}
           onChange={e => onZoomChange(+e.target.value / 100)}
         />

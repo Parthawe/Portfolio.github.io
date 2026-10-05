@@ -1,3 +1,4 @@
+import { getVisitorLocation } from '../utils/visitorLocation'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import '../styles/parth-does.css'
 import { Link } from 'react-router-dom'
@@ -129,8 +130,7 @@ export default function ParthDoesSection() {
           <div className="wr-about-bottom-right">
             <span className="wr-about-dot-sq" />
             <span className="wr-about-meta-label">CURRENTLY BASED IN</span>
-            <span className="wr-about-meta-val">SAN FRANCISCO, CA</span>
-            <span className="wr-about-meta-coord">37.7749&deg; N, 122.4194&deg; W</span>
+            <span className="wr-about-meta-val">{getVisitorLocation().label.toUpperCase()}</span>
           </div>
         </div>
       </div>
