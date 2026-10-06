@@ -5,7 +5,10 @@ import { expect } from '@playwright/test'
 export async function waitForMotion(track, viewport, timeout = 5_000) {
   await expect.poll(async () => {
     // Scroll the bounded viewport, not a max-content track wider than the page.
-    await viewport.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+    await viewport.evaluate(element => {
+      const rect = element.getBoundingClientRect()
+      if (rect.top < 0 || rect.bottom > innerHeight) element.scrollIntoView({ block: 'center', behavior: 'instant' })
+    })
     return track.evaluate(async element => {
       const before = getComputedStyle(element).transform
       // Headless software rendering can delay rAF callbacks for seconds even

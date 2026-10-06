@@ -10,6 +10,9 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
       const page = await browser.newPage({ viewport: { width, height: 979 } })
       await page.addInitScript(theme => localStorage.setItem('theme', theme), theme)
       await page.goto(`${base}/`)
+      // The independent motion deadline starts after the hero has initialized
+      // or selected its fallback, not during software WebGL bootstrap.
+      await expect(page.locator('.wr-hero')).toHaveClass(/is-scene-ready|wr-hero--no-scene/, { timeout: 15_000 })
       const strip = page.locator('.cl-marquee')
       await revealForMeasurement(strip.locator('.cl-marquee-track'))
       const track = strip.locator('.cl-marquee-track')
@@ -30,7 +33,11 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
         expect(geometry.repeatError).toBeLessThan(1)
         expect(geometry.iterations).toBe('infinite')
         await waitForMotion(track, strip.locator('.cl-marquee-viewport'))
-        await page.evaluate(() => document.documentElement.classList.add('is-low-power-device', 'is-runtime-performance-degraded'))
+        await page.evaluate(() => {
+          document.documentElement.classList.add('is-low-power-device', 'is-runtime-performance-degraded')
+          window.dispatchEvent(new CustomEvent('portfolio:performance-mode', { detail: { degraded: true, reason: 'runtime' } }))
+        })
+        await expect(page.locator('.wr-hero-3d canvas')).toHaveCount(0)
         await waitForMotion(track, strip.locator('.cl-marquee-viewport'))
       } catch (error) {
         const directory = process.env.QA_DIAGNOSTICS_DIR || 'qa-diagnostics'
