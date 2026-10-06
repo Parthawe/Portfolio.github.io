@@ -61,12 +61,34 @@ export default function ParthDoesSection() {
   const activeSkill = skills[skillIndex]
 
   useEffect(() => {
-    if (prefersReducedMotion || !sectionInView) return
-    const id = window.setInterval(() => {
-      setSkillIndex((current) => (current + 1) % skills.length)
-    }, 3000)
-    return () => window.clearInterval(id)
-  }, [prefersReducedMotion, sectionInView])
+    const section = sectionRef.current
+    if (prefersReducedMotion || !sectionInView || !section) return
+    let timer = 0
+    let lastActivity = 0
+    const advance = () => {
+      timer = 0
+      if (document.hidden || performance.now() - lastActivity > 3500) return
+      setSkillIndex(current => (current + 1) % skills.length)
+      timer = window.setTimeout(advance, 3000)
+    }
+    const wake = () => {
+      if (document.hidden) return
+      lastActivity = performance.now()
+      if (!timer) timer = window.setTimeout(advance, 3000)
+    }
+    const pause = () => { window.clearTimeout(timer); timer = 0 }
+    const onVisibility = () => { if (document.hidden) pause() }
+    const events = ['pointermove', 'pointerdown', 'focusin', 'keydown'] as const
+    events.forEach(event => section.addEventListener(event, wake, { passive: true }))
+    section.addEventListener('pointerleave', pause)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      pause()
+      events.forEach(event => section.removeEventListener(event, wake))
+      section.removeEventListener('pointerleave', pause)
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [prefersReducedMotion, sectionInView, sectionRef])
 
   return (
     <section className="wr-about-section" style={{ position: 'relative' }} ref={sectionRef}>

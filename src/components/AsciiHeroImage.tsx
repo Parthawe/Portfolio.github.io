@@ -94,7 +94,7 @@ export default function AsciiHeroImage({ src, className, model: defaultModel = '
       effect.render(scene, camera)
       dirty = false
       setReady(true)
-    })
+    }, { introMs: 1200, idleMs: 800, fps: 18, interactionFps: 30, wakeOnWheel: false })
     return () => {
       activity?.dispose()
       resize.disconnect()
