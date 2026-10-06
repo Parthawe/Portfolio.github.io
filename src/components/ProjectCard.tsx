@@ -79,11 +79,13 @@ export default memo(function ProjectCard({
     const copy = track?.firstElementChild
     if (!track || !copy) return
     // Keep reading speed independent of copy length, font, and breakpoint.
-    const measure = () => {
-      const distance = (copy as HTMLElement).offsetWidth
+    const measure = (entries: ResizeObserverEntry[]) => {
+      // Observer measurements are already batched by layout. Reading offsetWidth
+      // here (and during every card's mount) forces deferred sections to render.
+      const entry = entries[0]
+      const distance = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width
       if (distance > 0) track.style.setProperty('--pcard-scroll-duration', `${distance / Math.max(1, marqueeSpeed)}s`)
     }
-    measure()
     const observer = new ResizeObserver(measure)
     observer.observe(copy)
     return () => observer.disconnect()

@@ -1,10 +1,11 @@
 import { execFileSync } from 'node:child_process'
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
-import { tmpdir } from 'node:os'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:4175'
-const directory = mkdtempSync(join(tmpdir(), 'portfolio-lighthouse-'))
+// Keep raw metrics in the uploaded diagnostics, not an ephemeral runner /tmp.
+const directory = join(process.env.QA_DIAGNOSTICS_DIR || 'qa-diagnostics', 'lighthouse')
+mkdirSync(directory, { recursive: true })
 const runs = []
 for (let run = 1; run <= 3; run++) {
   const file = join(directory, `work-${run}.json`)

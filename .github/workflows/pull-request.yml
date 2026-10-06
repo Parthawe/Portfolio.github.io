@@ -29,6 +29,7 @@ jobs:
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_RENDERED_REPORT_PATH: pr-rendered.md
+          QA_PERFORMANCE_REPORT_PATH: pr-performance.json
         run: |
           bun run preview --host 127.0.0.1 --port 4173 > /tmp/preview.log 2>&1 &
           preview_pid=$!
@@ -38,14 +39,21 @@ jobs:
             sleep 1
           done
           curl --fail --silent "$QA_BASE_URL" > /dev/null
-          bun run qa:project-pages
-          bun run qa:rendered
-          node scripts/responsive-marquee-qa.mjs
-          node scripts/interaction-qa.mjs
+          status=0
+          node scripts/reveal-readiness-qa.mjs || status=1
+          node scripts/performance-qa.mjs || status=1
+          node scripts/responsive-marquee-qa.mjs || status=1
+          node scripts/work-loading-qa.mjs || status=1
+          bun run qa:project-pages || status=1
+          bun run qa:rendered || status=1
+          node scripts/interaction-qa.mjs || status=1
+          exit "$status"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: pull-request-verification
           path: |
             pr-rendered.md
+            pr-performance.json
             /tmp/preview.log
+            qa-diagnostics/

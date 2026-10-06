@@ -299,8 +299,10 @@ export default function WorkPage() {
   const libraryPreviewMedia = libraryPreviewProject?.previewMedia?.library
   const libraryPreviewImage = libraryPreviewMedia?.src || libraryPreviewProject?.cover16x9 || libraryPreviewProject?.summaryImage || libraryPreviewProject?.image || ''
   const libraryPreviewAlt = libraryPreviewMedia?.alt || libraryPreviewProject?.summaryImageAlt || libraryPreviewProject?.name || ''
-  const renderCard = useCallback((project: Project) => (
-    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} tilt={false} />
+  // Loading priority belongs to this layout, not the registry's homepage order.
+  // Only the first card in each visible column competes for initial bandwidth.
+  const renderCard = useCallback((project: Project, index: number) => (
+    <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={index === 0 ? 'eager' : 'lazy'} nda={project.nda} tilt={false} />
   ), [])
 
   const handleFilterChange = useCallback((filterKey: 'all' | ProjectCategory) => {
@@ -527,7 +529,7 @@ export default function WorkPage() {
                     <div className="pcard-masonry">
                       {archiveMasonryColumns.map((column, columnIndex) => (
                         <div className="pcard-masonry__column" key={`archive-column-${columnIndex}`}>
-                          {column.map(project => <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading={project.loading} nda={project.nda} tilt={false} coverShape={archiveShapes.get(project.slug)} />)}
+                          {column.map(project => <ProjectCardComponent key={project.slug} slug={project.slug} name={project.name} image={project.image} tag={project.tag} year={project.year} desc={project.desc} loading="lazy" nda={project.nda} tilt={false} coverShape={archiveShapes.get(project.slug)} />)}
                         </div>
                       ))}
                     </div>

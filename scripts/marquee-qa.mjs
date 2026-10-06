@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { expect } from '@playwright/test'
-import { revealForMeasurement, waitForReveal } from './visible-layout-qa.mjs'
+import { revealForMeasurement, waitForReveal, waitForMotion } from './visible-layout-qa.mjs'
 import { checkHomepageCards } from './homepage-cards-qa.mjs'
 
 export async function checkMarquees(browser, base, widths = [1187, 390]) {
@@ -10,10 +10,35 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
       const page = await browser.newPage({ viewport: { width, height: 979 } })
       await page.addInitScript(theme => localStorage.setItem('theme', theme), theme)
       await page.goto(`${base}/`)
+      // The independent motion deadline starts after the hero has initialized
+      // or selected its fallback, not during software WebGL bootstrap.
+      await expect(page.locator('.wr-hero')).toHaveClass(/is-scene-ready|wr-hero--no-scene/, { timeout: 15_000 })
       const strip = page.locator('.cl-marquee')
       await revealForMeasurement(strip.locator('.cl-marquee-track'))
+      const track = strip.locator('.cl-marquee-track')
       try {
         await waitForReveal(strip.locator('.cl-marquee-track'))
+        await expect(track).toHaveCSS('display', 'flex')
+        await expect(track.locator('img')).toHaveCount(12)
+        const geometry = await track.evaluate(element => {
+          const images = [...element.querySelectorAll('img')]
+          return {
+            maxHeight: Math.max(...images.map(image => image.getBoundingClientRect().height)),
+            repeatError: Math.abs(images[6].getBoundingClientRect().x - images[0].getBoundingClientRect().x - element.getBoundingClientRect().width / 2),
+            iterations: getComputedStyle(element).animationIterationCount,
+          }
+        })
+        expect(geometry.maxHeight).toBeGreaterThan(20)
+        expect(geometry.maxHeight).toBeLessThanOrEqual(40)
+        expect(geometry.repeatError).toBeLessThan(1)
+        expect(geometry.iterations).toBe('infinite')
+        await waitForMotion(track, strip.locator('.cl-marquee-viewport'))
+        await page.evaluate(() => {
+          document.documentElement.classList.add('is-low-power-device', 'is-runtime-performance-degraded')
+          window.dispatchEvent(new CustomEvent('portfolio:performance-mode', { detail: { degraded: true, reason: 'runtime' } }))
+        })
+        await expect(page.locator('.wr-hero-3d canvas')).toHaveCount(0)
+        await waitForMotion(track, strip.locator('.cl-marquee-viewport'))
       } catch (error) {
         const directory = process.env.QA_DIAGNOSTICS_DIR || 'qa-diagnostics'
         mkdirSync(directory, { recursive: true })
@@ -27,6 +52,11 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
             rect: element.getBoundingClientRect().toJSON(),
             classes: reveal.className, rootClasses: document.documentElement.className,
             filter: style.filter, opacity: style.opacity,
+            trackTransform: getComputedStyle(element.querySelector('.cl-marquee-track')).transform,
+            motionSample: JSON.parse(element.querySelector('.cl-marquee-track').dataset.qaMotionSample || 'null'),
+            trackAnimations: element.querySelector('.cl-marquee-track').getAnimations().map(animation => ({
+              state: animation.playState, time: animation.currentTime, pending: animation.pending,
+            })),
             animations: reveal.getAnimations().map(animation => ({
               state: animation.playState, time: animation.currentTime, pending: animation.pending,
             })),
@@ -36,31 +66,6 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
         await page.screenshot({ path: `${prefix}.png` })
         throw error
       }
-      const track = strip.locator('.cl-marquee-track')
-      await expect(track).toHaveCSS('display', 'flex')
-      await expect(track.locator('img')).toHaveCount(12)
-      const geometry = await track.evaluate(element => {
-        const images = [...element.querySelectorAll('img')]
-        return {
-          maxHeight: Math.max(...images.map(image => image.getBoundingClientRect().height)),
-          repeatError: Math.abs(images[6].getBoundingClientRect().x - images[0].getBoundingClientRect().x - element.getBoundingClientRect().width / 2),
-          iterations: getComputedStyle(element).animationIterationCount,
-        }
-      })
-      expect(geometry.maxHeight).toBeGreaterThan(20)
-      expect(geometry.maxHeight).toBeLessThanOrEqual(40)
-      expect(geometry.repeatError).toBeLessThan(1)
-      expect(geometry.iterations).toBe('infinite')
-      const before = await track.evaluate(element => getComputedStyle(element).transform)
-      await expect.poll(async () => {
-        // Deferred sections can move after the entrance check. Keep this sample
-        // on screen and let the compositor paint before reading its transform.
-        await track.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
-        return track.evaluate(async element => {
-          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
-          return getComputedStyle(element).transform
-        })
-      }).not.toBe(before)
       if (process.env.QA_MARQUEE_SCREENSHOTS) await strip.screenshot({ path: `${process.env.QA_MARQUEE_SCREENSHOTS}/marquee-${width}-${theme}.png` })
       console.log(`PASS homepage marquee: ${width}px ${theme}, bounded logos, motion, seamless repeat geometry`)
       await checkHomepageCards(page, width, theme)
