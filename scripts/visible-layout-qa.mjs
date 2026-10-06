@@ -7,12 +7,10 @@ export async function waitForMotion(track, viewport, timeout = 5_000) {
     // Scroll the bounded viewport, not a max-content track wider than the page.
     await viewport.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
     return track.evaluate(async element => {
-      const frame = () => new Promise(resolve => requestAnimationFrame(resolve))
-      await frame()
-      await frame()
       const before = getComputedStyle(element).transform
-      await frame()
-      await frame()
+      // Headless software rendering can delay rAF callbacks for seconds even
+      // while CSS motion advances. Measure elapsed motion, not frame delivery.
+      await new Promise(resolve => setTimeout(resolve, 100))
       const rect = element.getBoundingClientRect()
       const sample = {
         visible: element.checkVisibility({ contentVisibilityAuto: true, visibilityProperty: true }),
@@ -22,7 +20,7 @@ export async function waitForMotion(track, viewport, timeout = 5_000) {
       element.dataset.qaMotionSample = JSON.stringify(sample)
       return sample.visible && sample.inViewport && sample.after !== sample.before
     })
-  }, { timeout, message: 'Visible marquee must advance between painted frames' }).toBe(true)
+  }, { timeout, message: 'Visible marquee must advance during the sampling interval' }).toBe(true)
 }
 
 /** Measure only rendered content. Auto-contained sections can shift the scroll

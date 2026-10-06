@@ -28,11 +28,13 @@ try {
     @keyframes slide { to { transform: translateX(-1500px) } }
   </style><div id="spacer" style="height:1000px"></div><div id="viewport"><div id="track">Logos</div></div>`)
   await page.evaluate(() => {
+    // Reproduce headless frame starvation without stopping CSS animations.
+    window.requestAnimationFrame = callback => setTimeout(() => callback(performance.now()), 2000)
     setTimeout(() => { document.querySelector('#spacer').style.height = '1600px' }, 10)
   })
   await waitForMotion(page.locator('#track'), page.locator('#viewport'))
   expect(await page.evaluate(() => scrollX)).toBe(0)
-  console.log('PASS oversized marquee advances after layout shift without horizontal scrolling')
+  console.log('PASS marquee advances despite delayed rAF and layout shift, without horizontal scrolling')
   await page.addStyleTag({ content: '#track { animation-play-state: paused }' })
   await expect(waitForMotion(page.locator('#track'), page.locator('#viewport'), 750)).rejects.toThrow()
   console.log('PASS paused marquee still fails')
