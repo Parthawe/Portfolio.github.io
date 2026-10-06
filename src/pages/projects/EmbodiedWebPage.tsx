@@ -1,10 +1,11 @@
+import RelatedProjectEvidence from '../../components/case-study/RelatedProjectEvidence'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -45,28 +46,7 @@ export default function EmbodiedWebPage() {
         </CsSection>
 
         <CsSection id="cs-experiments" label="02 &mdash; Experiments" title="Five input experiments">
-          <CsFeatureGrid features={[
-  {
-    "title": "Breathing canvas",
-    "desc": "Microphone input drives an expanding and contracting canvas. The study connects the rhythm of breathing to the pace of the image."
-  },
-  {
-    "title": "Pose typography",
-    "desc": "Webcam body landmarks map to letterforms: raised arms suggest an A, outstretched arms a T. The design question is how clearly a pose produces a recognizable letter."
-  },
-  {
-    "title": "Tilt landscape",
-    "desc": "Phone motion controls a procedural landscape. Tilt maps to terrain and camera movement, making feedback and calibration central to the interaction."
-  },
-  {
-    "title": "Proximity choir",
-    "desc": "Web Audio and WebSocket messages coordinate sound across devices. Relative physical position remained a proposed input; network timing does not reliably measure distance."
-  },
-  {
-    "title": "Shadow puppet theatre",
-    "desc": "A webcam silhouette interacts with falling particles. The feedback needs to explain how to catch and move them."
-  }
-]} />
+          <StudyExplorer project="embodied-web" />
         </CsSection>
 
         <CsSection id="cs-reflection" label="03 &mdash; Reflection" title="Feedback, calibration, and access">
@@ -76,6 +56,7 @@ export default function EmbodiedWebPage() {
           </CsBody>
         </CsSection>
 
+        <RelatedProjectEvidence slug="embodied-web" />
         <CsThanks />
 
 

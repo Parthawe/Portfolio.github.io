@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -52,22 +53,22 @@ export default function OfficeOfDiversityPage() {
           <div className="wrap">
             <div className="ofd-process-stack" data-project-preview>
               <figure className="ofd-wide-shot">
-                <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Whiteboard and sticky-note research wall used to organize report themes and content priorities" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/research-wall.webp")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Whiteboard and sticky-note research wall used to organize report themes and content priorities" loading="lazy" decoding="async" />
                 <figcaption>First pass: sort the institutional material into themes, page groups, and reader questions.</figcaption>
               </figure>
               <figure className="ofd-wide-shot">
-                <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/scope-timeline.png" alt="Scope timeline showing understanding scope, design concept, data visualization, engagement, collaboration, and accessibility compliance" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/scope-timeline.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/scope-timeline.png" alt="Scope timeline showing understanding scope, design concept, data visualization, engagement, collaboration, and accessibility compliance" loading="lazy" decoding="async" />
                 <figcaption>Scope map: translate themes into milestones, data moments, collaboration loops, and accessibility checks.</figcaption>
               </figure>
               <div className="ofd-workshop-grid">
                 <figure>
-                  <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community workshop table with participants browsing printed report material" loading="lazy" decoding="async" />
+                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-1.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community workshop table with participants browsing printed report material" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding printed Office of Diversity report material during a workshop" loading="lazy" decoding="async" />
+                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-2.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding printed Office of Diversity report material during a workshop" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="Participants reviewing printed report materials during an Office of Diversity workshop" loading="lazy" decoding="async" />
+                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-3.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="Participants reviewing printed report materials during an Office of Diversity workshop" loading="lazy" decoding="async" />
                 </figure>
               </div>
               <p className="cs-caption">The report had to work both as a web artifact and as something people could discuss in a room.</p>
@@ -81,19 +82,19 @@ export default function OfficeOfDiversityPage() {
           </CsBody>
           <div className="ofd-report-slices" data-project-preview>
             <figure>
-              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png" alt="Top section of the IDBEA web report with title, introductory content, and opening report structure" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png" alt="Top section of the IDBEA web report with title, introductory content, and opening report structure" loading="lazy" decoding="async" />
               <figcaption>01 / Opening structure</figcaption>
             </figure>
             <figure>
-              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png" alt="Middle section of the IDBEA web report showing timeline and milestone content" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png" alt="Middle section of the IDBEA web report showing timeline and milestone content" loading="lazy" decoding="async" />
               <figcaption>02 / Timeline and milestones</figcaption>
             </figure>
             <figure>
-              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png" alt="Middle section of the IDBEA web report showing data visualization and progress sections" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png" alt="Middle section of the IDBEA web report showing data visualization and progress sections" loading="lazy" decoding="async" />
               <figcaption>03 / Data and visual summaries</figcaption>
             </figure>
             <figure>
-              <img data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png" alt="Lower section of the IDBEA web report showing accessibility, collaboration, and closing content" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png" alt="Lower section of the IDBEA web report showing accessibility, collaboration, and closing content" loading="lazy" decoding="async" />
               <figcaption>04 / Accessibility and closing content</figcaption>
             </figure>
           </div>

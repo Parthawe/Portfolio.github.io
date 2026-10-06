@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -179,7 +180,7 @@ export default function TypefacePage() {
               </p>
             </div>
             <figure className="tf-origin-figure">
-              <img data-project-preview
+              <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/inspiration-cut.jpg`)} data-project-preview
                 src={`${TYPEFACE_ASSET}/photos/inspiration-cut.jpg`}
                 alt="Original inspiration board: a chef's knife on a cutting board and a hand-carved wooden plate with fine parallel cuts"
                 loading="lazy"
@@ -194,7 +195,7 @@ export default function TypefacePage() {
         </section>
 
         <section className="tf-image-stage" aria-label="Typeface cover specimen">
-          <img data-project-preview src={`${TYPEFACE_ASSET}/photos/hero-title.jpg`} alt="Butler's Slice cover specimen" loading="lazy" />
+          <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/hero-title.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/hero-title.jpg`} alt="Butler's Slice cover specimen" loading="lazy" />
         </section>
 
         <section className="tf-section tf-feature-section" id="tf-concept">
@@ -237,19 +238,19 @@ export default function TypefacePage() {
 
         <section className="tf-image-grid" aria-label="Typeface specimen images">
           <figure>
-            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/slice-types.jpg`} alt="Slice construction examples across glyphs" loading="lazy" />
+            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/slice-types.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/slice-types.jpg`} alt="Slice construction examples across glyphs" loading="lazy" />
             <figcaption>Slice construction</figcaption>
           </figure>
           <figure>
-            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/weights-grid.jpg`} alt="Butler's Slice weights grid" loading="lazy" />
+            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/weights-grid.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/weights-grid.jpg`} alt="Butler's Slice weights grid" loading="lazy" />
             <figcaption>Weight comparison</figcaption>
           </figure>
           <figure>
-            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`} alt="Close-up detail of a sliced glyph" loading="lazy" />
+            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`} alt="Close-up detail of a sliced glyph" loading="lazy" />
             <figcaption>Glyph detail</figcaption>
           </figure>
           <figure>
-            <img data-project-preview src={`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`} alt="Butler's Slice applied to packaging mockups" loading="lazy" />
+            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`} alt="Butler's Slice applied to packaging mockups" loading="lazy" />
             <figcaption>Application</figcaption>
           </figure>
         </section>

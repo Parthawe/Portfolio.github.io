@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -64,8 +65,8 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Shuffle/photos/product-front.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/product-front.jpg" alt="Shuffle: plywood slider board with labeled life-balance sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Shuffle/photos/slider-labels.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/slider-labels.jpg" alt="Close-up: Class, Finals, Sleep, Food, Social Life, Energy slider labels" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -85,9 +86,9 @@ export default function ShufflePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Shuffle/photos/hand-sliding.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/hand-sliding.jpg" alt="Hand adjusting the Food slider on the board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Shuffle/photos/hand-motion.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/hand-motion.jpg" alt="Motion blur: player rapidly adjusting sliders" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Shuffle/photos/product-angle.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/product-angle.jpg" alt="Shuffle board from above showing all 8 labeled sliders and USB cable" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -95,7 +96,7 @@ export default function ShufflePage() {
         {/* Slider detail */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Shuffle/photos/slider-detail.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/slider-detail.jpg" alt="Detail: Social Life and Job sliders with plus/minus indicators" loading="lazy" /></div>
           </div>
         </section>
 
@@ -148,10 +149,10 @@ export default function ShufflePage() {
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal">
-                <img data-project-preview src="/Assets/Projects/Shuffle/photos/underside-motors.jpg" alt="Side view of the plywood wedge with the top panel lifted, exposing eight motorised fader assemblies and wiring on standoffs" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/Shuffle/photos/underside-motors.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/underside-motors.jpg" alt="Side view of the plywood wedge with the top panel lifted, exposing eight motorised fader assemblies and wiring on standoffs" loading="lazy" decoding="async" />
               </div>
               <div className="cs-img reveal">
-                <img data-project-preview src="/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg" alt="Inside the enclosure: Arduino and breadboard wired with jumper cables, next to a close-up of a motorised fader mounted under the panel" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg")} data-project-preview src="/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg" alt="Inside the enclosure: Arduino and breadboard wired with jumper cables, next to a close-up of a motorised fader mounted under the panel" loading="lazy" decoding="async" />
               </div>
             </div>
             <p className="cs-caption project-caption--standalone">Under the hood: motorised faders on standoffs, and the Arduino-plus-breadboard brain that redistributes the week.</p>

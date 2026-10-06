@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -251,11 +252,11 @@ export default function MentraMiniAppsPage() {
           <div className="wrap">
             <div className="mentra-miniapps-os__grid">
               <figure className="mentra-miniapps-os__shot">
-                <img data-project-preview src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS currently running MiniApps" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/images/mentra/os-running-apps.png")} data-project-preview src="/Assets/images/mentra/os-running-apps.png" alt="MentraOS currently running MiniApps" loading="lazy" decoding="async" />
                 <figcaption>Running apps made the platform legible without forcing a phone-style app switcher.</figcaption>
               </figure>
               <figure className="mentra-miniapps-os__shot">
-                <img data-project-preview src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen with active app" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/images/mentra/os-home.png")} data-project-preview src="/Assets/images/mentra/os-home.png" alt="MentraOS home screen with active app" loading="lazy" decoding="async" />
                 <figcaption>The home surface had to show breadth while still feeling glanceable.</figcaption>
               </figure>
             </div>

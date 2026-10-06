@@ -1,10 +1,11 @@
+import RelatedProjectEvidence from '../../components/case-study/RelatedProjectEvidence'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -45,24 +46,7 @@ export default function StorytellingPage() {
         </CsSection>
 
         <CsSection id="cs-frameworks" label="02 &mdash; Frameworks" title="Four ways to structure an experience">
-          <CsFeatureGrid features={[
-  {
-    "title": "Sequence",
-    "desc": "For onboarding, identify what someone needs, what blocks them, and what completing a step changes."
-  },
-  {
-    "title": "Pacing",
-    "desc": "Place explanation where a decision needs it. Dense and quiet sections should follow the demands of the material."
-  },
-  {
-    "title": "Point of view",
-    "desc": "A chart selects what to include, compare, and emphasize. Make those choices inspectable alongside the information."
-  },
-  {
-    "title": "Spatial entry",
-    "desc": "An installation may be encountered in any order. Each part needs a clear entry point and a connection to the larger work."
-  }
-]} />
+          <StudyExplorer project="storytelling" />
         </CsSection>
 
         <CsSection id="cs-application" label="03 &mdash; Application" title="Examples from my work">
@@ -72,6 +56,7 @@ export default function StorytellingPage() {
           </CsBody>
         </CsSection>
 
+        <RelatedProjectEvidence slug="storytelling" />
         <CsThanks />
 
 

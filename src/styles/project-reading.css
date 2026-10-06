@@ -648,3 +648,73 @@ body.case-side-nav .project-main .project-header--visual.wrap,
 #main-content.project-main > .nda-inline {
   width: var(--project-frame); max-width: var(--project-reading-width); margin-inline: auto; box-sizing: border-box;
 }
+
+/* Evidence notes sit with the overview; their detail stays optional. */
+.project-main .project-record {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  padding-block: 18px;
+  border-block: 1px solid var(--ink-15);
+  color: var(--ink-70);
+  font: 400 14px/1.6 var(--sans);
+}
+.project-main .project-record > span { color: var(--ink); }
+.project-main .project-record details { flex: 1; min-width: min(240px, 100%); }
+.project-main .project-record summary { cursor: pointer; min-height: 44px; display: list-item; list-style-position: inside; }
+.project-main .project-record p { max-width: 72ch; margin: 0 0 8px; }
+.project-main .project-record summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.project-main .study-explorer { margin-block: 24px; color: var(--ink); }
+.project-main .study-explorer__intro { max-width: 65ch; margin-bottom: 20px; }
+.project-main .study-explorer__choices { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.project-main .study-explorer__choices button {
+  font: 400 15px/1.4 var(--sans);
+  padding: 12px 16px;
+  min-height: 44px;
+  border: 1px solid var(--ink-30);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+}
+.project-main .study-explorer__choices button[aria-pressed="true"] { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+.project-main .study-explorer__choices button:hover { border-color: var(--ink); }
+.project-main .study-explorer__choices button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.project-main .study-explorer__reading { padding-block: 24px; border-block: 1px solid var(--ink-15); }
+.project-main .study-explorer__reading h3 { margin: 0 0 24px; font: 400 24px/1.3 var(--sans); }
+.project-main .study-explorer__flow { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 0; margin: 0; }
+.project-main .study-explorer__flow li { min-width: 0; border-top: 2px solid var(--ink-30); padding-top: 12px; }
+.project-main .study-explorer__flow span { color: var(--ink-70); font-size: 14px; }
+.project-main .study-explorer__flow p { margin: 8px 0 0; }
+.project-main .study-explorer__question { margin-top: 28px; max-width: 72ch; }
+.project-main .study-explorer__question strong { font-weight: 500; }
+.project-main .study-explorer__question p { margin: 6px 0 0; }
+.project-main .study-explorer__note { max-width: 72ch; color: var(--ink-70); font-size: 14px; margin-top: 14px; }
+.project-main .proj-generated-caption { margin: 12px 0 0; max-width: 72ch; color: var(--ink-70); font: 400 14px/1.6 var(--sans); }
+@media (max-width: 640px) {
+  .project-main .study-explorer__flow { grid-template-columns: 1fr; gap: 20px; }
+  .project-main .study-explorer__choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-main .study-explorer__choices button { text-align: left; }
+  .project-main .project-record { display: block; }
+  .project-main .project-record details { margin-top: 8px; }
+}
+
+/* Project content is readable immediately; only the intentional story preview blurs. */
+.project-main .project-header .hero-anim {
+  animation: none;
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+.project-main .project-evidence-links { width: var(--project-frame); max-width: var(--project-reading-width); margin: 48px auto; }
+.project-main .project-evidence-links h2 { font: 400 24px/1.3 var(--sans); margin-bottom: 24px; }
+.project-main .project-evidence-links > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.project-main .project-evidence-links a { display: grid; grid-template-columns: 112px minmax(0, 1fr); align-items: center; gap: 20px; padding-block: 20px; border-block: 1px solid var(--ink-15); color: var(--ink); text-decoration: none; }
+.project-main .project-evidence-links img { width: 112px; height: 84px; object-fit: cover; border-radius: 8px; }
+.project-main .project-evidence-links strong { display: block; font: 400 20px/1.3 var(--sans); margin-bottom: 8px; }
+.project-main .project-evidence-links a span span { color: var(--ink-70); font: 400 14px/1.6 var(--sans); }
+.project-main .project-evidence-links a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.project-main .project-evidence-links a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+@media(max-width: 640px) { .project-main .project-evidence-links > div { grid-template-columns: 1fr; } }

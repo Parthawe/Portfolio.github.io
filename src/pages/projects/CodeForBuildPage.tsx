@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -72,7 +73,7 @@ export default function CodeForBuildPage() {
             <p className="cs-section-label">Process</p>
             <h3 className="cs-section-title">From learning goals to blocks</h3>
             <div className="cfb-process-strip" aria-label="Code for Build process map">
-              <img data-project-preview src={`${CFB_PHOTOS}/process-map.png`} alt="Process map showing research, insights, goals, UX, visuals, prototyping, and improvements." loading="lazy" decoding="async" />
+              <img {...projectImageProps(`${CFB_PHOTOS}/process-map.png`)} data-project-preview src={`${CFB_PHOTOS}/process-map.png`} alt="Process map showing research, insights, goals, UX, visuals, prototyping, and improvements." loading="lazy" decoding="async" />
             </div>
             <div className="cfb-evidence-grid">
               <CsImage
@@ -108,7 +109,7 @@ export default function CodeForBuildPage() {
               caption="The same lesson can be read as output first or code first, depending on what the learner is trying to understand."
             />
             <div className="cfb-block-card">
-              <img data-project-preview src={`${CFB_PHOTOS}/block-kit.png`} alt="Color-coded 3D block kit for Code for Build." loading="lazy" decoding="async" />
+              <img {...projectImageProps(`${CFB_PHOTOS}/block-kit.png`)} data-project-preview src={`${CFB_PHOTOS}/block-kit.png`} alt="Color-coded 3D block kit for Code for Build." loading="lazy" decoding="async" />
               <div>
                 <h3>Block kit</h3>
                 <p>Body, container, padding, image, icon, text, and button blocks form the visual grammar of the prototype.</p>
@@ -125,8 +126,8 @@ export default function CodeForBuildPage() {
 
         <CsSection id="cs-learning" label="Learning" title="What I Learned">
           <div className="cfb-learning-visuals" aria-label="Code for Build block system examples">
-            <img data-project-preview src={`${CFB_PHOTOS}/body-block.png`} alt="Single isometric body block." loading="lazy" decoding="async" />
-            <img data-project-preview src={`${CFB_PHOTOS}/block-stack.png`} alt="Vertical stack of colored blocks." loading="lazy" decoding="async" />
+            <img {...projectImageProps(`${CFB_PHOTOS}/body-block.png`)} data-project-preview src={`${CFB_PHOTOS}/body-block.png`} alt="Single isometric body block." loading="lazy" decoding="async" />
+            <img {...projectImageProps(`${CFB_PHOTOS}/block-stack.png`)} data-project-preview src={`${CFB_PHOTOS}/block-stack.png`} alt="Vertical stack of colored blocks." loading="lazy" decoding="async" />
           </div>
           <CsFeatureGrid
             className="cs-feature-grid--plain"

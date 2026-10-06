@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { lazy, Suspense, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -66,7 +67,7 @@ export default function BlackHolePage() {
 
         <section className="cs-slide reveal" id="cs-film">
           <div className="wrap">
-            <video className="black-hole-film" src="/Assets/Projects/black-hole-assets/time-dilation.mp4" autoPlay loop muted playsInline />
+            <video className="black-hole-film" src="/Assets/Projects/black-hole-assets/time-dilation.mp4" poster="/Assets/Projects/black-hole-assets/time-trap.jpg" controls preload="none" muted playsInline aria-label="Time dilation physical model demonstration" />
           </div>
         </section>
 
@@ -109,7 +110,7 @@ export default function BlackHolePage() {
           <div className="black-hole-interactive">
             {IS_MOBILE ? (
               <div className="black-hole-fabric-fallback">
-                <img data-project-preview src="/Assets/mockups/projects/black-hole_16x9.webp" alt="Black Hole interactive installation project overview" loading="lazy" />
+                <img {...projectImageProps("/Assets/mockups/projects/black-hole_16x9.webp")} data-project-preview src="/Assets/mockups/projects/black-hole_16x9.webp" alt="Black Hole interactive installation project overview" loading="lazy" />
                 <div className="black-hole-fabric-fallback__copy">
                   <span>Interactive spacetime fabric</span>
                   <small>Available on desktop</small>
@@ -132,7 +133,7 @@ export default function BlackHolePage() {
         {/* ═══ 03 & 04: GRAVITATIONAL LENSING + WORMHOLE ═══ */}
         <CsSection id="cs-lensing" label="03 &amp; 04 &mdash; Phenomena" title="Gravity&rsquo;s Grip on Light &amp; Wormholes">
           <CsBody>
-            <p>A black hole bends light itself. Gravitational lensing creates distorted, magnified, and duplicated images of distant stars. The faint ring of light around a black hole &mdash; the Einstein ring &mdash; is where photons orbit the mass.</p>
+            <p>Gravity bends the path of light, distorting or multiplying the image of a distant source. When the source, lens, and observer align, that image can form an Einstein ring. The ring is a lensed image of the background source. <a className="cs-text-link" href="https://www.esa.int/ESA_Multimedia/Images/2025/02/Einstein_ring_explained" target="_blank" rel="noopener noreferrer">See ESA’s explanation of the alignment</a>.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Drag</span>

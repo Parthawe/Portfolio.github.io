@@ -1,3 +1,4 @@
+import RelatedProjectEvidence from '../../components/case-study/RelatedProjectEvidence'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -104,6 +105,7 @@ export default function ArcadeLabPage() {
           </CsBody>
         </CsSection>
 
+        <RelatedProjectEvidence slug="arcade-lab" />
         <CsThanks />
 
         </CsExpandPreview>

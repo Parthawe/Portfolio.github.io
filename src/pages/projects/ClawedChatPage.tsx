@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -164,10 +165,10 @@ export default function ClawedChatPage() {
             <p>The glasses handle the moments. The web hub handles the thinking. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure. The command bar (&#8984;K) is always one keystroke away.</p>
             <p>The pattern that runs through all of them is approval and receipts. Every incoming item arrives pre-analyzed as a card with three options &mdash; approve the AI&rsquo;s draft, edit before sending, or dismiss &mdash; and every action, however it was approved, generates a receipt you can audit later.</p>
           </CsBody>
-          <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
+          <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Clawed.chat/docs-page.webp")} data-project-preview src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
-          <div className="cs-img reveal clawed-media--spaced"><img data-project-preview src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
+          <div className="cs-img reveal clawed-media--spaced"><img {...projectImageProps("/Assets/Projects/Clawed.chat/deploy-options.webp")} data-project-preview src="/Assets/Projects/Clawed.chat/deploy-options.webp" alt="Deploy your way: Cloud Deploy vs Mac Companion, your hardware or ours" loading="lazy" /></div>
           <p className="cs-caption">Cloud Deploy vs Mac Companion, two deployment paths designed for different trust and control preferences</p>
         </CsSection>
 
@@ -236,7 +237,7 @@ export default function ClawedChatPage() {
             <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 30 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
           </CsBody>
           <div className="cs-slide reveal clawed-slide--spaced">
-            <img data-project-preview src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" className="project-media-frame" />
+            <img {...projectImageProps("/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp")} data-project-preview src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" className="project-media-frame" />
           </div>
         </CsSection>
 

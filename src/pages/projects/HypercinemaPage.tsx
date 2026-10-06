@@ -1,10 +1,11 @@
+import RelatedProjectEvidence from '../../components/case-study/RelatedProjectEvidence'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -19,6 +20,9 @@ export default function HypercinemaPage() {
       <Nav />
       <main id="main-content" className="project-main" style={{ '--project-color': '#6366f1' } as React.CSSProperties}>
         <ProjectHeader
+          heroImage="/Assets/project-illustrations/hypercinema-viewpoints.webp"
+          heroAlt="Illustrative paper triptych with orange circular forms seen across different planes"
+          heroCaption="AI-generated illustration of multiple viewpoints. The original films and projection installation are not pictured."
           showHeaderSummary={false}
           backLink="/work" categorySlug="creative-tech" backLabel="Back to Work"
           tags={['Immersive Media', '360° Video', 'Spatial Audio', 'Interactive']}
@@ -38,20 +42,7 @@ export default function HypercinemaPage() {
           </CsBody>
         </CsSection>
         <CsSection id="cs-pieces" label="02 &mdash; Pieces" title="Three film and sound studies">
-          <CsFeatureGrid features={[
-  {
-    "title": "Displaced · 360° documentary",
-    "desc": "An eight-minute portrait of three NYU international students, filmed in dorm rooms, kitchens, and commutes. The viewer chooses where to look within each scene."
-  },
-  {
-    "title": "Echoes · spatial sound walk",
-    "desc": "A Washington Square Park route combines interviews, ambient recordings, and historical narration in binaural audio. Direction becomes a cue for where to direct attention."
-  },
-  {
-    "title": "Branch · interactive projection",
-    "desc": "Three screens show different perspectives of a dinner party. Choosing a screen changes which information a viewer receives about the same event."
-  }
-]} />
+          <StudyExplorer project="hypercinema" />
         </CsSection>
         <CsSection id="cs-craft" label="03 &mdash; Craft" title="Guiding attention across space">
           <CsBody>
@@ -60,6 +51,7 @@ export default function HypercinemaPage() {
             <p>Related spatial work with available documentation: <a href="/black-hole" className="project-text-link">Black Hole</a> and <a href="/sea-of-salt" className="project-text-link">Sea of Salt</a>.</p>
           </CsBody>
         </CsSection>
+        <RelatedProjectEvidence slug="hypercinema" />
         <CsThanks />
 
         <BottomNav sections={[

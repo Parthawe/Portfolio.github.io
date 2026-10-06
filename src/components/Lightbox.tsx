@@ -25,7 +25,7 @@ export default function Lightbox() {
 
   const openFromImage = useCallback((img: HTMLImageElement) => {
     prevFocusRef.current = img
-    setState({ src: img.currentSrc || img.src, alt: img.alt || '' })
+    setState({ src: img.dataset.originalSrc || img.currentSrc || img.src, alt: img.alt || '' })
   }, [])
 
   // Listen for clicks on case study images

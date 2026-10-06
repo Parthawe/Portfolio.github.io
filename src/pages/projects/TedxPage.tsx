@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -95,7 +96,7 @@ export default function TedxPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <figure className="cs-img-full project-media--transparent">
-              <img data-project-preview src="/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="The finished stage in use: a host, a speaker, and a guitarist performing in front of the blue-lit column cityscape and red TEDxVITPune lettering" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/Projects/Tedxvitpune/Desktop/1.jpg")} data-project-preview src="/Assets/Projects/Tedxvitpune/Desktop/1.jpg" alt="The finished stage in use: a host, a speaker, and a guitarist performing in front of the blue-lit column cityscape and red TEDxVITPune lettering" loading="lazy" decoding="async" />
             </figure>
           </div>
         </section>
@@ -122,7 +123,7 @@ export default function TedxPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <figure className="cs-img-full project-media--transparent">
-              <img data-project-preview src="/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind the scenes: blue and white columns under construction in a workshop, lighting tests on the assembled skyline, and a volunteer building the red TEDx letters" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/Projects/Tedxvitpune/Desktop/4.jpg")} data-project-preview src="/Assets/Projects/Tedxvitpune/Desktop/4.jpg" alt="Behind the scenes: blue and white columns under construction in a workshop, lighting tests on the assembled skyline, and a volunteer building the red TEDx letters" loading="lazy" decoding="async" />
             </figure>
           </div>
         </section>

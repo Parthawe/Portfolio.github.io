@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -38,24 +38,7 @@ export default function ProductionStudioPage() {
           </CsBody>
         </CsSection>
         <CsSection id="cs-process" label="02 &mdash; Process" title="From brief to exhibition setup">
-          <CsFeatureGrid features={[
-  {
-    "title": "Concept · weeks 1–3",
-    "desc": "Agree on the interaction, scope, and ownership before hardware and software work separate."
-  },
-  {
-    "title": "Prototype · weeks 4–7",
-    "desc": "Check sensor output, enclosure dimensions, and installation requirements while fabrication and software proceed in parallel."
-  },
-  {
-    "title": "Integrate · weeks 8–11",
-    "desc": "Bring the parts together around a shared data format, physical fit, and calibration. Resolve dependencies before adding features."
-  },
-  {
-    "title": "Prepare the show · weeks 12–14",
-    "desc": "Prepare signage, testing, setup instructions, and documentation. Visitor counts and uptime were not recorded in the available material."
-  }
-]} />
+          <StudyExplorer project="production-studio" />
         </CsSection>
         <CsSection id="cs-lessons" label="03 &mdash; Lessons" title="Scope and handoff">
           <CsBody>

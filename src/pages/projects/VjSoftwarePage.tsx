@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -152,7 +153,7 @@ export default function VjSoftwarePage() {
               <p>I reviewed resident-service apps like MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety to see how they handled parking, complaints, vehicle records, payments, visitor logs, and society communication.</p>
             </CsBody>
             <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--competitive-single">
-              <img data-project-preview src="/Assets/Projects/vj/Desktop/4.webp" alt="Competitive analysis matrix comparing resident service apps" loading="lazy" />
+              <img {...projectImageProps("/Assets/Projects/vj/Desktop/4.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/4.webp" alt="Competitive analysis matrix comparing resident service apps" loading="lazy" />
               <figcaption className="cs-img-caption">Competitive analysis: where existing resident apps supported parking, complaints, payments, and visitor flows.</figcaption>
             </figure>
 
@@ -178,7 +179,7 @@ export default function VjSoftwarePage() {
                 </CsBody>
               </div>
             </div>
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--methods"><img data-project-preview src="/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--methods"><img {...projectImageProps("/Assets/Projects/vj/Desktop/5.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
           </div>
         </section>
 
@@ -193,15 +194,15 @@ export default function VjSoftwarePage() {
             </CsBody>
             <div className="cs-img-grid project-image-grid--three project-image-grid--top-aligned">
               <figure className="cs-img reveal">
-                <img data-project-preview src="/Assets/Projects/vj/photos/legal-pay.png" alt="Legal & Pay hub screen with a '03 days left' countdown banner urging residents to select their parking spot" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/vj/photos/legal-pay.png")} data-project-preview src="/Assets/Projects/vj/photos/legal-pay.png" alt="Legal & Pay hub screen with a '03 days left' countdown banner urging residents to select their parking spot" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">The Legal &amp; Pay hub: parking sits next to society formation and home loan, with a countdown that makes the selection window impossible to miss.</figcaption>
               </figure>
               <figure className="cs-img reveal">
-                <img data-project-preview src="/Assets/Projects/vj/photos/car-parking.png" alt="Vehicle parking landing screen showing total, available, and booked spot counts, the priority window explanation, and parking FAQs" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/vj/photos/car-parking.png")} data-project-preview src="/Assets/Projects/vj/photos/car-parking.png" alt="Vehicle parking landing screen showing total, available, and booked spot counts, the priority window explanation, and parking FAQs" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">The landing screen explains the priority window in plain language, so the pressure to choose feels like information rather than a dark pattern.</figcaption>
               </figure>
               <figure className="cs-img reveal">
-                <img data-project-preview src="/Assets/Projects/vj/photos/post-possession.png" alt="Post-booking screen listing the confirmed four-wheeler and two-wheeler spots with owner details, spot dimensions, and a downloadable legal document" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/vj/photos/post-possession.png")} data-project-preview src="/Assets/Projects/vj/photos/post-possession.png" alt="Post-booking screen listing the confirmed four-wheeler and two-wheeler spots with owner details, spot dimensions, and a downloadable legal document" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">After booking: both spots, their dimensions, and the emailed legal copy live on one screen instead of in an office file.</figcaption>
               </figure>
             </div>
@@ -241,11 +242,11 @@ export default function VjSoftwarePage() {
             </CsBody>
             <div className="vj-board-stack vj-board-stack--journey">
               <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--journey">
-                <img data-project-preview src="/Assets/Projects/vj/Desktop/7.webp" alt="User journey map for parking spot booking, RFID, and complaints" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/vj/Desktop/7.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/7.webp" alt="User journey map for parking spot booking, RFID, and complaints" loading="lazy" />
                 <figcaption className="cs-img-caption">Journey map: booking, RFID, vehicle details, rentals, and complaint branches.</figcaption>
               </figure>
               <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--features">
-                <img data-project-preview src="/Assets/Projects/vj/Desktop/7.webp" alt="Feature set derived from the VJ parking journey" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/vj/Desktop/7.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/7.webp" alt="Feature set derived from the VJ parking journey" loading="lazy" />
                 <figcaption className="cs-img-caption">Feature set: the system areas that came out of the journey map.</figcaption>
               </figure>
             </div>
@@ -261,7 +262,7 @@ export default function VjSoftwarePage() {
               <p>Wireframes tested how a resident moves from the society map to a specific spot without losing location context during pricing and payment.</p>
             </CsBody>
             <figure className="cs-img-full">
-              <img data-project-preview src="/Assets/Projects/vj/photos/user-flows.png" alt="Eleven hand-sketched paper wireframes covering the flow from the Legal & Pay landing page through slot selection on the map, price filters, RC document upload, and the payment page" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/Projects/vj/photos/user-flows.png")} data-project-preview src="/Assets/Projects/vj/photos/user-flows.png" alt="Eleven hand-sketched paper wireframes covering the flow from the Legal & Pay landing page through slot selection on the map, price filters, RC document upload, and the payment page" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The flow started on paper: eleven sketched screens working out how the map, filters, and booking steps hand off to each other before anything went into Figma.</figcaption>
             </figure>
 
@@ -269,7 +270,7 @@ export default function VjSoftwarePage() {
             <CsBody>
               <p>The final screens keep the selected spot visible through booking and confirmation.</p>
             </CsBody>
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--hifi"><img data-project-preview src="/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--hifi"><img {...projectImageProps("/Assets/Projects/vj/Desktop/8.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
           </div>
         </section>
 
@@ -289,7 +290,7 @@ export default function VjSoftwarePage() {
               ))}
             </div>
 
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--style"><img data-project-preview src="/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--style"><img {...projectImageProps("/Assets/Projects/vj/Desktop/9.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
           </div>
         </section>
 
@@ -314,7 +315,7 @@ export default function VjSoftwarePage() {
               <p>After selecting a spot, users proceed through the booking process, choose a payment method, receive confirmation of their payment, and get a detailed summary of their parking reservation.</p>
             </CsBody>
 
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--final"><img data-project-preview src="/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
+            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--final"><img {...projectImageProps("/Assets/Projects/vj/Desktop/10.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
           </div>
         </section>
 

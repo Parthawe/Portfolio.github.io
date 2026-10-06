@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -94,14 +95,14 @@ export default function BreakGenPage() {
 
           <div className="cs-img-grid project-image-grid--two project-image-grid--spaced">
             <div className="cs-img reveal">
-              <img data-project-preview
+              <img {...projectImageProps("/Assets/Projects/Keyboard/photos/breakgen-launch-live.png")} data-project-preview
                 src="/Assets/Projects/Keyboard/photos/breakgen-launch-live.png"
                 alt="BreakGen public launch page."
                 loading="lazy"
               />
             </div>
             <div className="cs-img reveal">
-              <img data-project-preview
+              <img {...projectImageProps("/Assets/Projects/Keyboard/photos/breakgen-demo-live.png")} data-project-preview
                 src="/Assets/Projects/Keyboard/photos/breakgen-demo-live.png"
                 alt="BreakGen interactive demo workspace."
                 loading="lazy"

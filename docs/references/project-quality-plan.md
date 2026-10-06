@@ -1,134 +1,147 @@
-# Project quality plan and working review
+# Project quality plan
 
-2026-10-01. Project detail pages only. This pass is local and has not been deployed.
+Updated 5 October 2026. Status: active, local implementation only.
 
-## What 9/10 means
+## Objective and boundaries
 
-A visitor can understand the project, identify Parth's contribution, follow a consequential design decision, and inspect the resulting work. Reading and interaction must hold up on a phone as well as a desktop. A polished page with no original work to inspect does not meet this standard.
+Bring each of the 49 project detail pages to a defensible 9/10 presentation and case-study standard. Keep the established typography, reading rails, intentional blurred story previews, and idle/offscreen safeguards. Homepage, About, Work, category layouts, and global navigation redesign are outside this plan.
 
-Scores are editorial judgments, not test results. Each category contributes up to two points:
+Publishing requires Parth's confirmation after reviewing the local result. AI imagery must use ChatGPT image generation, serve a specific explanatory purpose, and be labeled when illustrative. Never present generated images as original prototypes, shipped screens, exhibition documentation, or research evidence.
 
-- Clarity: a specific problem, role, and project status.
-- Evidence: relevant original artifacts; observations distinguished from intentions and validated results.
-- Structure: a concise opening, decisions beside evidence, useful onward navigation.
-- Presentation: readable type, legible media, steady layout and theme contrast.
-- Usability: accessible actions, mobile fit, working public chapter links, recoverable media states.
+## Current position
 
-Ten requires unusually complete evidence and interaction verification. A successful build or a layout smoke test cannot establish that score.
+Shared repairs are implemented locally: responsive media, image dimensions, original-resolution lightboxes, offscreen film pausing, public record disclosures, eight course comparisons, seven related-work sections, and two labeled editorial illustrations. See [repair log](project-quality-repair.md).
 
-## Plan and implementation
+The existing scores below are the pre-repair baseline. They are not updated scores. The initial mobile check covered introductions, not every expanded section. The next pass must cover complete reading paths.
 
-1. Use the existing editorial design and public project material. Keep changes out of Home, About, Work, category pages, and the project-list registry.
-2. Give all 49 routed projects a direct opening link to their most useful available chapter. Use honest labels: films, demos, design decisions, or course notes.
-3. Remove repeated introductions and generic claims. Keep short studies short; retain detailed evidence in substantial case studies.
-4. Place explanations beside source images. Preserve the blurred-image story disclosure and private access boundaries.
-5. Make reading content visible immediately. Do not blur or hide paragraphs, steps, facts, or images while waiting for scroll entrances.
-6. Check each public destination and layout on mobile and desktop. Verify the narrow, tablet, and wide layouts most exposed to the shared changes.
-7. Record material gaps separately. Do not invent recordings, research, analytics, or retrospective design decisions to increase a score.
+## Scoring and completion rule
 
-Implemented: all seven steps through the available-material boundary. The original-material request remains unanswered; the goal of every project reaching 9/10 is not complete.
+Score each dimension from 0 to 2, citing a visible section or artifact:
 
-## Working scores and remaining work
+1. Orientation: purpose, ownership, context, scope, and project status are immediately clear.
+2. Evidence: original work can be inspected; sources, permissions, and reconstruction labels are accurate.
+3. Reasoning: a concrete constraint connects to a choice and its consequence. Include alternatives only when documented.
+4. Evaluation: supported results or an honest account of what was evaluated, what remains uncertain, and the next test.
+5. Reading and interaction: coherent hierarchy, readable typography, aligned media, usable controls, accessible states, and responsive behavior.
 
-The five columns follow the rubric above. These assess the current page as a public portfolio artifact, not the commercial or academic success of the underlying project. Shared reading/navigation checks cover all routes; bespoke demos have not all received new end-to-end functional tests in this pass.
+A 9 requires a total of at least 9 and no unresolved blocking defect. Missing historical results must not be replaced with invented outcomes. Essays and course archives must be assessed within their stated scope; do not relabel them solely to inflate a score. A well-presented archive can remain below 9 if it cannot demonstrate the work.
 
-| Project | Clarity | Evidence | Structure | Presentation | Usability | Total | Remaining condition for a stronger page |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| Mentra | 2 | 1.5 | 2 | 2 | 1.5 | 9 | Attach dated test protocol, sample sizes, and metric definitions. |
-| Mentra MiniApps | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Annotate a complete discovery → permission → installation sequence with the specific design changes. |
-| TransFi | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Approved before/after decision evidence and research context; public preview stays within its boundary. |
-| ZentiPay | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Document what was tested versus proposed in the verification and transfer flows. |
-| Clawed | 2 | 1.5 | 2 | 2 | 1.5 | 9 | Add dated research notes and an end-to-end approved-action recording. |
-| ExecutiveLens | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Source the beta observations and show one meeting's trace from statement to owner and follow-up. |
-| Org Dashboard | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Record a task from connected context through reviewed action; validate the proposed trust model. |
-| CueTV | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Original annotated flow showing which research finding changed discovery or playback. |
-| Health App | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Document a test of the planning logic. Keep the concept status explicit. |
-| NYU Langone | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Approved, de-identified trace from an interview theme to a specific service decision. |
-| IBM | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Document the evaluation protocol and individual contribution without implying clinical validation. |
-| Ballah Code | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Record one real coding task, including error recovery and the developer's review. |
-| AI Voice | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Approved audio comparison and matching interface states; the repeated cover has been removed. |
-| Raahi | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Source-backed validation of one complete rider journey; keep service hypotheses distinct from impact. |
-| The Point CDC | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Original before/after navigation and the research behind a specific program-finding task. |
-| Office of Diversity | 2 | 1.5 | 2 | 2 | 1.5 | 9 | Add approved evidence of how readers used the report, if available. |
-| Jugalbandi | 2 | 2 | 2 | 1.5 | 1.5 | 9 | More explicit mapping from musical input to model output and acoustic mechanism. |
-| VJ Software | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Annotate one spatial booking decision and its source observation. |
-| Enigma | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Preserve the distinction between the recorded sculpture and synthetic browser study. |
-| Shuffle | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Add observation context if making stronger claims about audience behavior. |
-| Making of Time | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Show an actual mechanical iteration and explain the change. |
-| Sea of Salt | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Keep audience anecdotes qualified; add documented observation context if available. |
-| Flow Fields | 2 | 0.5 | 2 | 1 | 1.5 | 7 | Original running sketch or recording. The current cover is explicitly illustrative. |
-| Embodied Web | 2 | 0.5 | 2 | 1 | 1.5 | 7 | Original sketches/recordings showing input, feedback, permissions, and calibration. |
-| Feeling Patterns | 2 | 0.5 | 2 | 1 | 1.5 | 7 | Original textile photos, circuit/process record, and a recording of tactile output. |
-| Performance by Design | 2 | 0.5 | 2 | 1 | 1.5 | 7 | Cue sheets, diagrams, and original performance recordings. |
-| On Becoming | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Original reflection/revision material; retain its identity as an essay rather than a product case study. |
-| Storytelling | 2 | 1 | 2 | 1.5 | 1.5 | 8 | A source draft and revision demonstrating a concrete narrative decision. |
-| DNA | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Document discussion responses if claiming an observed effect beyond the artifact's intended provocation. |
-| Computational Media | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Preserve restored-source attribution and the explicit camera/painting controls. |
-| Hypercinema | 2 | 0.5 | 2 | 1 | 1.5 | 7 | Original film/audio outputs and a view of the multi-screen installation. |
-| Applications | 2 | 0.5 | 2 | 1 | 1.5 | 7 | Original code, screenshots, or working builds with truthful deployment status. |
-| Messy Humans | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Actual anonymized research notes or an audit artifact. Prompts alone do not demonstrate a completed study. |
-| Production Studio | 2 | 0.5 | 2 | 1 | 1.5 | 7 | Name the installation and supply setup/show records and documented team responsibilities. |
-| Arcade Lab | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Original recordings of the early prototypes and their documented design changes. |
-| Black Hole | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Keep scientific illustration distinct from a validated physics simulation. |
-| UV Light | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Annotate the visitor route and the actual transition between visible and UV states. |
-| The Omakase | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Preserve browser-adaptation labeling and original cabinet film. |
-| Revolving Stage | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Engineering evaluation records; the load figure is a design target, not a safety certification. |
-| MONIAC Machine | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Explain the game's model assumptions beside original interaction evidence. |
-| Dumb Waiter | 2 | 2 | 2 | 1.5 | 1.5 | 9 | An approved annotated sightline/set plan would strengthen the spatial rationale. |
-| Drowning | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Retain the distinction between the stage documentation and browser lighting study. |
-| Sculpture | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Identify a dated revision in the process board; verify the competition award details. |
-| Mentra Brand | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Curate original revision pairs if available; avoid confusing broad output with measured brand impact. |
-| TEDx | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Pair a stage plan with a documented change and clarify individual/team ownership. |
-| Code for Build | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Test the teaching metaphor and document where learners misunderstand it. |
-| Typeface | 2 | 2 | 2 | 1.5 | 1.5 | 9 | Original optical corrections would strengthen process evidence beyond the specimen and editor. |
-| ArtTown Podcast | 2 | 1 | 2 | 1.5 | 1.5 | 8 | Verified episode links and dated platform analytics. Historical artwork/totals are labeled. |
-| VishwaConclave | 2 | 1.5 | 2 | 1.5 | 1.5 | 8.5 | Identify personal versus team contributions on the event boards and a documented revision. |
+## Execution order
 
-## Verification record
+### 1. Recover and map available evidence
 
-- Production build passed; route manifest matches 49 projects and generates 81 static entrypoints.
-- Design-system audit passed blocking checks. Existing large-CSS/refactor warnings remain.
-- Impeccable detector returned no findings for the changed project components, pages, and reading stylesheet.
-- Browser sweep: all 49 routes at 390px/light and 1440px/dark. Each opening evidence link reached a visible chapter and transferred focus; each route had one main heading and no horizontal page overflow. Desktop sweep found no duplicate mounted section IDs.
-- Six representative routes additionally passed at 320px, 768px, and 2560px: Mentra, TransFi, CueTV, Typeface, VishwaConclave, and ArtTown.
-- Mentra image preview: Enter opened the dialog; Escape closed it and restored focus to the image.
-- Mentra at 412px/light: all metadata uses readable 16px dark ink; the story preview retains its 8px blur.
-- Shared paragraph entrances no longer blur text on chapter arrival. Original interactive artwork and the story-preview effect are unchanged.
-- Added CI regression cases for opening/focusing public chapters on Mentra, TransFi, ZentiPay, CueTV, and Feeling Patterns. This new CI block has not run on GitHub yet; its interactions were exercised locally through the browser.
-- These checks do not verify private reviewer material, every demo's full behavior, every external link, or the factual provenance of every legacy claim.
+- Inventory existing assets, captions, source notes, project files, and relevant history before requesting more material.
+- Map each useful artifact to the decision it supports. Flag unused originals and duplicates.
+- Keep protected case studies protected. Use only approved public artifacts in previews.
+- Produce a short missing-material checklist per project. Continue independent layout and writing work while waiting for material.
 
-## Required material
+### 2. Improve the strongest cases first
 
-The next evidence pass needs originals for the seven 7/10 studies: Flow Fields, Embodied Web, Feeling Patterns, Performance by Design, Hypercinema, Applications, and Production Studio. Research-heavy 8–8.5 pages need approved source notes, before/after artifacts, or dated evaluation records listed above. Keep these requests specific; no generic placeholder imagery, generated testimonials, or reconstructed work presented as original evidence.
+Start with Mentra Brand, Jugalbandi, Omakase, Mentra, Shuffle, and Raahi. These have enough substance to establish the standard without inventing content.
 
-## Second local pass — 2026-10-01
+For each: clarify ownership; place the strongest original artifact early; trace the most important supported decision; cut repeated premises; put limitations beside the claims they qualify. Reuse the shared frame, but let the work determine the sequence.
 
-Publication requires Parth's explicit approval of the finished changes. AI-generated explanatory artwork is permitted where useful, with detailed art direction and clear provenance. It must not stand in for original screenshots, project photography, research, or measured results. No generated images were needed for this pass.
+### 3. Repair product and service case studies
 
-Implemented:
-- ExecutiveLens: replaced the misleading sample summary with a source-linked, prepared example. The unresolved enterprise question remains unresolved. Added play/pause, reset, skip-to-complete, keyboard-focusable transcript citations, and offscreen/tab-hidden pausing.
-- Flow Fields: surfaced the existing repository canvas as a clearly labeled portfolio demonstration, separate from the original 2024 sketch. Added explicit play/pause, readable palette controls, and new-pattern generation. Fixed wraparound streaks, stale palette pixels, and zero-dimension resets. Offscreen animation scheduling remains paused.
-- MiniApps: separated glasses and phone responsibilities, reduced repeated setup, added an ordered discovery path and captions beside original screens. Removed the repeated Notes image. The 15-minute figure is labeled an onboarding target.
-- OrgDashboard: reduced general claims and repeated design rhetoric; explained retrieval, authorization, and review. Labeled the dashboard as an illustrative reconstruction.
-- Health App: described what each original board demonstrates and how to follow the scheduling proposal. Kept concept status explicit.
-- Ballah Code: narrowed the problem statement, explained what to inspect in the product window, and labeled the archived competitive positioning.
-- IBM: qualified reported runtimes and the output plot; removed editorial filler.
-- Revolving Stage: distinguished the simplified interactive model from original construction and performance documentation.
+Work through MiniApps, TransFi, ZentiPay, Clawed, ExecutiveLens, OrgDashboard, CueTV, Health App, NYU Langone, IBM, Ballah Code, AI Voice, The Point, Office of Diversity, VJ Parivar, and Code for Build.
 
-Verification:
-- Fresh production build passed with 49 project routes / 81 static route entrypoints.
-- Design audit passed blocking checks; existing refactor warnings remain. Impeccable detection returned no findings for the demo and principal page changes. Git diff whitespace check passed.
-- Eight changed routes passed desktop chapter navigation with no horizontal overflow: ExecutiveLens, Flow Fields, MiniApps, OrgDashboard, Health App, IBM, Ballah Code, Revolving Stage.
-- Flow Fields, MiniApps, OrgDashboard, and Health App passed 390px chapter navigation with no overflow. MiniApps captions render at 16px with dark ink in light mode.
-- ExecutiveLens at 390px: single-column layout, no horizontal overflow, source button transfers keyboard focus to the matching transcript line. Show-complete, reset, play, and scroll-away pause verified.
-- Flow Fields: play/pause labels, palette selection, and regenerated pattern verified visually. Pixel-level idle measurement was not available through the browser read interface.
+Prioritize inspectable task flows, individual contribution, meaningful state changes, and clear evaluation boundaries. Show an existing screen or flow next to the explanation it supports. Reduce feature inventories. Do not expose gated material or create fictional usability findings.
 
-Scores remain provisional. These changes improve the reading and interaction quality; they do not manufacture missing original research or recordings. The all-projects 9/10 goal remains open.
+### 4. Strengthen physical, visual, and research projects
 
-## Guide-line alignment repair — 2026-10-01
+Work through Enigma, Making of Time, Sea of Salt, Immortality Pill, Computational Media, Black Hole, UV Light, Revolving Stage, MONIAC, Dumb Waiter, Drowning, Sculpture, TEDx, Butler's Slice, and VishwaConclave.
 
-User reported TransFi text, process cards, media, and comparison drifting outside the guide lines. Root causes were legacy per-project viewport widths/negative offsets, double gutters, a separate process-list width cap, and forced media aspect ratios.
+Use original process media to explain fabrication, material, spatial, or technical choices. Credit collaborators precisely. Check factual and quantitative claims against source notes. Prefer annotated original imagery or code-based diagrams over decorative AI imagery.
 
-`project-reading.css` now applies the same frame to reading wrappers and media, removes nested gutters, resets the audited legacy gallery escapes, and aligns standalone quotes, access sections, and Typeface's bespoke sections. Paragraphs retain readable line lengths; images retain their contents and natural proportions. Project pages only; local, not published.
+### 5. Resolve thin archives
 
-Verification: 49-route desktop and 390px sweeps identified the exceptions; targeted repairs followed. Nine affected routes then passed 320/768/2560 checks for outer-guide containment and horizontal overflow (TransFi, ZentiPay, CueTV, IBM, Ballah Code, Point CDC, VJ Software, Typeface, Mentra). The TransFi process wrapper, list, figures, and comparison were measured at the same outer edges. Build and design audit run after the repairs. Screenshots and detailed local measurements saved in `/tmp/project-frame-qa.json` and `/tmp/transfi-aligned-frame.png`.
+Work through Flow Fields, Embodied Web, Feeling Patterns, Performance by Design, On Becoming, Storytelling, Hypercinema, Applications, Messy Humans, Production Studio, Arcade Lab, and ArtTown.
+
+Search existing assets first. Recover films, drafts, sketches, builds, cue sheets, episodes, or notes where available. Make each page's actual scope explicit. Keep new explanatory comparisons distinct from historical work. If original evidence is absent, record the limitation and the exact material needed; do not manufacture a complete case study.
+
+### 6. Review visuals individually
+
+- Use original project media wherever it can explain the work.
+- Generate an image only for a defined missing explanatory view.
+- Review composition, relevance, artifacts, mobile crop, and whether it misleadingly resembles historical evidence.
+- Save the exact prompt and provenance; add a visible caption when illustrative.
+- Retain existing responsive image and lightbox behavior. No blanket cover-image replacement.
+
+### 7. Full-page QA and re-score
+
+Review every route at phone and desktop widths, including the expanded story and footer transition. Check both themes on shared components and on pages with custom surfaces. Sample tablet widths wherever layout changes.
+
+Required checks: text contrast; long headings; rail alignment; image loading and captions; no horizontal overflow or clipped text; chapter navigation; keyboard/focus behavior; lightboxes; media controls; protected-state messaging; reduced motion; offscreen/hidden-tab behavior; broken local assets and links.
+
+Use build and design checks as technical gates. Record manual findings separately. Compare against the baseline and re-score each page with evidence. Do not describe the introduction sweep as complete-page QA.
+
+### 8. Local approval, then publication
+
+Provide local preview links, representative desktop/mobile screenshots, the updated 49-page scorecard, remaining evidence requests, and a concise change summary. Ask for publication approval only when there is a concrete reviewed release to approve. After approval, deploy and verify production routes and the deployment workflow.
+
+## Working tracker
+
+Every row starts pending full re-review. Some shared fixes already address parts of the baseline weakness; verify them before closing the row.
+
+| Project | Baseline /10 | Specific review target | Next score / status |
+|---|---:|---|---|
+| Mentra `/mentra` | 8.4 | Outcome percentages omit sample sizes and dates; cannot assess reliability | Pending full review |
+| MiniApps `/mentra-miniapps` | 7.9 | Proposed discovery/permission path lacks an observed end-to-end installation test | Pending full review |
+| TransFi `/transfi-project` | 7.2 | Public process remains broad; important detailed evidence sits behind access gate | Pending full review |
+| ZentiPay `/zentipay` | 7.3 | “Trust” framing needs a concrete test or failed alternative; public story does not establish user confidence | Pending full review |
+| Clawed `/clawed-chat` | 8.1 | Long feature-heavy narrative; sweeping competitor/trust assertions exceed the provided research record | Pending full review |
+| ExecutiveLens `/executivelens` | 7.6 | Mostly intended behavior; dated research sample and evidence of real follow-up use missing | Pending full review |
+| OrgDashboard `/org-dashboard` | 6.8 | Main dashboard is an illustrative reconstruction; metrics section lists future evaluation rather than findings | Pending full review |
+| CueTV `/cuetv` | 7.3 | Does not trace one audience finding through a rejected option to a validated design decision | Pending full review |
+| Health App `/healthapp` | 6.7 | Health-to-schedule recommendation logic is unvalidated; no demonstrated handling of wrong recommendations | Pending full review |
+| NYU Langone `/medimorpho` | 7.6 | Public material cannot fully connect individual research evidence to the chosen service intervention | Pending full review |
+| IBM `/ibm` | 6.9 | Individual engineering contribution and reproducible runtime conditions remain underspecified | Pending full review |
+| Ballah Code `/ballah-code` | 6.9 | Reads more like product documentation than a design case: little decision comparison or user evidence | Pending full review |
+| AI Voice `/ai-voice` | 6.4 | Public treatment is mainly explanation; little inspectable scenario comparison or demonstrated audio evaluation | Pending full review |
+| Raahi `/raahi-project` | 8.1 | No documented usability evaluation or operational feasibility for the integrated service | Pending full review |
+| The Point CDC `/the-point-cdc` | 7.8 | Generic reflections dilute decisions; “75% phone-only” needs an attached source/method | Pending full review |
+| Office of Diversity `/office-of-diversity` | 7.5 | Accessibility and reader-clarity claims lack test results or a specific before/after reading task | Pending full review |
+| Jugalbandi `/jugalbandi` | 8.6 | Model-to-music mapping needs one detailed example; visitor understanding is intentionally untested | Pending full review |
+| VJ Parivar `/vj-software` | 7.8 | Research provenance and final evaluation thin; scope includes edge cases without proof of their resolution | Pending full review |
+| Enigma `/enigma` | 8.0 | Visitor comprehension and sub-second performance claims lack documented measurement | Pending full review |
+| Shuffle `/shuffle` | 8.2 | Explain the actual redistribution rules and a revision prompted by observed play | Pending full review |
+| Making of Time `/making-of-time` | 7.5 | Short process account; teardown/reassembly and software choices need more inspectable intermediate evidence | Pending full review |
+| Why the Sea is Salt `/sea-of-salt` | 8.0 | Missing a documented prototype failure or revision; reflections occasionally overinterpret informal reactions | Pending full review |
+| Flow Fields `/flow-fields` | 5.7 | Original sketch absent; replacement demonstration cannot establish the original project's execution | Pending full review |
+| Embodied Web `/embodied-web` | 4.8 | Experiment notes without original running sketches; insufficient proof for a standalone case study | Pending full review |
+| Feeling Patterns `/feeling-patterns` | 5.0 | No original recordings or recognition-test records; hard to inspect the resulting experience | Pending full review |
+| Performance by Design `/performance-by-design` | 4.6 | Original cue sheets and recordings absent; primarily a course reflection | Pending full review |
+| On Becoming `/on-becoming` | 6.2 | Works better as an essay; repeated abstract “translation” claims replace project evidence | Pending full review |
+| Storytelling `/storytelling` | 4.7 | No drafts/revisions; reflections on other projects rather than an inspectable project of its own | Pending full review |
+| Immortality Pill `/dna-speculative` | 7.1 | Little iteration or evidence of how people understood/responded to the choice | Pending full review |
+| Computational Media `/comp-media` | 7.6 | Good small study, but limited account of experiments and why final particle parameters won | Pending full review |
+| Hypercinema `/hypercinema` | 4.7 | Original playable films and sound absent; cannot experience the work being described | Pending full review |
+| Applications `/applications` | 4.5 | No working builds or original usage records; central requirements explicitly unresolved | Pending full review |
+| Designing for Messy Humans `/messy-humans` | 4.9 | Method names suggest substantive research, but page supplies prompts/reflections rather than study artifacts | Pending full review |
+| Production Studio `/production-studio` | 4.0 | Named installation, show documentation, and operational logs all missing | Pending full review |
+| Arcade Lab `/arcade-lab` | 5.5 | No recordings of the four prototypes; stronger as Omakase process material | Pending full review |
+| Black Hole `/black-hole` | 7.6 | Scientific copy incorrectly equates an Einstein ring with photon orbit; learning goal lacks audience evaluation | Pending full review |
+| UV Light `/uv-light` | 7.5 | Needs an explicit comparison of tested reveal sequences and clearer participant/privacy handling | Pending full review |
+| The Omakase `/the-omakase` | 8.5 | “200+ played” and tutorial-free comprehension claims lack counting/observation detail | Pending full review |
+| Revolving Stage `/revolving-stage` | 8.0 | Load target is responsibly qualified, but rotation/timing/team-size claims need provenance; copy is uneven | Pending full review |
+| MONIAC `/moniac-machine` | 7.0 | Strong claims that a few rounds teach concepts normally taking weeks lack a study record | Pending full review |
+| The Dumb Waiter `/dumb-waiter-set-design` | 7.9 | Repeats control/threat interpretation; missing alternate scheme or sightline comparison | Pending full review |
+| Drowning `/drowning` | 8.1 | More fabrication/technical documentation needed to substantiate the full-size production account | Pending full review |
+| Sculpture `/sculpture` | 7.2 | Broad multiyear timeline and generic reflection; needs one particular correction in anatomy/armature | Pending full review |
+| Mentra Brand `/mentra-brand` | 8.8 | Long inventory could foreground the seven packaging iterations and why specific revisions mattered | Pending full review |
+| TEDx `/tedx` | 8.0 | Audience size and timeline need attribution; include a rejected stage option with camera/sightline evidence | Pending full review |
+| Code for Build `/code-for-build` | 7.3 | No learning evaluation; needs one example of where the metaphor misled learners and was corrected | Pending full review |
+| Butler’s Slice `/typeface` | 8.0 | Optical correction, spacing, kerning, and reading-size tests are not documented | Pending full review |
+| ArtTown Podcast `/atps` | 5.6 | No verified current episode links/playback; archival reach claims lack date/platform records | Pending full review |
+| VishwaConclave `/vishwaconclave` | 7.5 | Three-year account versus Dec 2019–May 2021 metadata needs clarification; little evidence of team decision-making | Pending full review |
+
+## Immediate next work
+
+1. Inventory original Mentra Brand revision images and compare them against the current packaging narrative.
+2. Improve its decision sequence using documented material; preserve the newly added variant comparison.
+3. Review the complete page on phone and desktop, then score it with supporting evidence.
+4. Repeat for Jugalbandi and Omakase before broadening the next batch.
+
+## Materials requested from Parth
+
+Original films, sketches, builds, cue sheets, research notes, or test records for Production Studio, Applications, Hypercinema, Embodied Web, Feeling Patterns, and Performance by Design. For quantitative claims elsewhere, supply dates, sample sizes, definitions, or source records where available. Lack of a reply does not authorize inventing evidence or publishing.

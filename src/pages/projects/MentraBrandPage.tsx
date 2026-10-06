@@ -1,3 +1,5 @@
+import { projectImageProps } from '../../utils/projectImage'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -82,10 +84,10 @@ export default function MentraBrandPage() {
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
               <div className="cs-img reveal mentra-brand-logo-stage mentra-brand-logo-stage--light">
-                <img data-project-preview className="mentra-brand-logo-stage__mark" src={`${P}/logo.svg`} alt="Mentra logomark on white" loading="lazy" />
+                <img {...projectImageProps(`${P}/logo.svg`)} data-project-preview className="mentra-brand-logo-stage__mark" src={`${P}/logo.svg`} alt="Mentra logomark on white" loading="lazy" />
               </div>
               <div className="cs-img reveal mentra-brand-logo-stage mentra-brand-logo-stage--dark">
-                <img data-project-preview className="mentra-brand-logo-stage__badge" src={`${P}/powered-by-badge.png`} alt="Powered by Mentra badge on dark background" loading="lazy" />
+                <img {...projectImageProps(`${P}/powered-by-badge.png`)} data-project-preview className="mentra-brand-logo-stage__badge" src={`${P}/powered-by-badge.png`} alt="Powered by Mentra badge on dark background" loading="lazy" />
               </div>
             </div>
           </div>
@@ -95,9 +97,9 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/logo-3d-green.webp`} alt="3D logo: glossy green on white — the primary brand mark rendered as physical object" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/logo-3d-black.webp`} alt="3D logo: glossy black on dark — premium variant for dark contexts" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/logo-3d-iridescent.webp`} alt="3D logo: iridescent blue crystal — exploration for special editions and events" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/logo-3d-green.webp`)} data-project-preview src={`${P}/logo-3d-green.webp`} alt="3D logo: glossy green on white — the primary brand mark rendered as physical object" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/logo-3d-black.webp`)} data-project-preview src={`${P}/logo-3d-black.webp`} alt="3D logo: glossy black on dark — premium variant for dark contexts" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/logo-3d-iridescent.webp`)} data-project-preview src={`${P}/logo-3d-iridescent.webp`} alt="3D logo: iridescent blue crystal — exploration for special editions and events" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -155,23 +157,14 @@ export default function MentraBrandPage() {
           </CsBody>
         </CsSection>
 
-        {/* Both packaging variants */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/packaging-box-black.png`} alt="Black frame packaging: die-cut layout with product renders, brand pattern, QR quickstart, Powered by MentraOS on flap" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/packaging-box-clear-1.webp`} alt="Clear frame packaging: transparent frame renders, same structural layout, different product photography" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Bottom label — the manufacturing precision shot */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label mentra-brand-media-label">Bottom Label &mdash; Factory Spec</p>
-            <div className="cs-img reveal"><img data-project-preview src={`${P}/packaging-box-clear-2.webp`} alt="Bottom label production spec: FCC ID, CE marking, Prop 65 warning, barcode, model number — red measurement annotations for factory" loading="lazy" /></div>
-          </div>
-        </section>
+        <CsSection title="One structure, two variants">
+          <CsBody><p>Seven packaging iterations accommodated regulatory text and the second frame variant. Compare the shared layout, the product-specific imagery, and the factory label that had to fit a fixed production area.</p></CsBody>
+          <CsScreenExplorer label="Compare Mentra packaging artifacts" screens={[
+            { title: 'Black frame', label: 'Shared structure and setup', src: `${P}/packaging-box-black.png`, alt: 'Black-frame packaging dieline with product image, quickstart QR panel, and flap branding', caption: 'The dieline carries product identification, the brand pattern, and the setup route in one structure. Inspect the QR panel and the position of the product render.' },
+            { title: 'Clear frame', label: 'A second product variant', src: `${P}/packaging-box-clear-1.webp`, alt: 'Clear-frame packaging dieline using the same structure with transparent-frame imagery', caption: 'The clear-frame box keeps the structural layout while changing the product imagery. The two variants need to be distinguishable without rebuilding the packaging system.' },
+            { title: 'Factory label', label: '90.24 × 23.95 mm', src: `${P}/packaging-box-clear-2.webp`, alt: 'Annotated factory label with dimensions, barcode, model identification, and regulatory text', caption: 'The fixed label area holds model identification, barcode, and regulatory text. Outlined vectors and bleed/crop marks remove font dependencies from the factory handoff.' },
+          ]} />
+        </CsSection>
 
         <section className="cs-section">
           <div className="wrap">
@@ -194,8 +187,8 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/yt-unboxing-1.webp`} alt="YouTube thumbnail: creator holding Mentra Live box and charging case — UNBOXING MENTRA LIVE" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/yt-unboxing-2.webp`} alt="YouTube thumbnail: creator revealing glasses from box — SMART GLASSES REVEALED" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/yt-unboxing-1.webp`)} data-project-preview src={`${P}/yt-unboxing-1.webp`} alt="YouTube thumbnail: creator holding Mentra Live box and charging case — UNBOXING MENTRA LIVE" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/yt-unboxing-2.webp`)} data-project-preview src={`${P}/yt-unboxing-2.webp`} alt="YouTube thumbnail: creator revealing glasses from box — SMART GLASSES REVEALED" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -203,7 +196,7 @@ export default function MentraBrandPage() {
         {/* Text bubble — messaging UI design for marketing */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img data-project-preview src={`${P}/text-bubble-1.webp`} alt="Mentra marketing asset: lifestyle photo with text bubble UI overlay showing real-time voice transcription — brand language in product context" loading="lazy" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps(`${P}/text-bubble-1.webp`)} data-project-preview src={`${P}/text-bubble-1.webp`} alt="Mentra marketing asset: lifestyle photo with text bubble UI overlay showing real-time voice transcription — brand language in product context" loading="lazy" /></div>
           </div>
         </section>
 
@@ -224,13 +217,13 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--compact">
-              <div className="cs-img reveal mentra-brand-booklet-page"><img data-project-preview src={`${P}/booklet-page-1.webp`} alt="Page 1: QR code and Mentra logo — scan to download app" loading="lazy" /></div>
-              <div className="cs-img reveal mentra-brand-booklet-page"><img data-project-preview src={`${P}/booklet-page-2.webp`} alt="Page 2: Line-art illustration of glasses with intro text" loading="lazy" /></div>
-              <div className="cs-img reveal mentra-brand-booklet-page"><img data-project-preview src={`${P}/booklet-page-3.webp`} alt="Page 3: Hardware at a glance — 9 labeled components" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img {...projectImageProps(`${P}/booklet-page-1.webp`)} data-project-preview src={`${P}/booklet-page-1.webp`} alt="Page 1: QR code and Mentra logo — scan to download app" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img {...projectImageProps(`${P}/booklet-page-2.webp`)} data-project-preview src={`${P}/booklet-page-2.webp`} alt="Page 2: Line-art illustration of glasses with intro text" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img {...projectImageProps(`${P}/booklet-page-3.webp`)} data-project-preview src={`${P}/booklet-page-3.webp`} alt="Page 3: Hardware at a glance — 9 labeled components" loading="lazy" /></div>
             </div>
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two mentra-brand-grid--compact mentra-brand-grid--follow">
-              <div className="cs-img reveal mentra-brand-booklet-page"><img data-project-preview src={`${P}/booklet-page-5.webp`} alt="Page 5: Turn on/off — hand holding glasses at power button" loading="lazy" /></div>
-              <div className="cs-img reveal mentra-brand-booklet-page"><img data-project-preview src={`${P}/booklet-page-9.webp`} alt="Page 9: Charging case — glasses clicking into place" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img {...projectImageProps(`${P}/booklet-page-5.webp`)} data-project-preview src={`${P}/booklet-page-5.webp`} alt="Page 5: Turn on/off — hand holding glasses at power button" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-booklet-page"><img {...projectImageProps(`${P}/booklet-page-9.webp`)} data-project-preview src={`${P}/booklet-page-9.webp`} alt="Page 9: Charging case — glasses clicking into place" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -266,14 +259,14 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/editorial-portrait-1.webp`} alt="Isarelov shoot: model looking right, minimal studio, black frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/editorial-portrait-2.webp`} alt="Isarelov shoot: front-facing, Mentra Live as everyday eyewear" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/editorial-portrait-3.webp`} alt="Isarelov shoot: button-up shirt, professional context" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/editorial-portrait-1.webp`)} data-project-preview src={`${P}/editorial-portrait-1.webp`} alt="Isarelov shoot: model looking right, minimal studio, black frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/editorial-portrait-2.webp`)} data-project-preview src={`${P}/editorial-portrait-2.webp`} alt="Isarelov shoot: front-facing, Mentra Live as everyday eyewear" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/editorial-portrait-3.webp`)} data-project-preview src={`${P}/editorial-portrait-3.webp`} alt="Isarelov shoot: button-up shirt, professional context" loading="lazy" /></div>
             </div>
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--follow">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/studio-shot-1.webp`} alt="Studio shoot: dark urban setting, cinematic lighting" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/studio-shot-2.webp`} alt="Studio shoot: product in low-light context" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/studio-shot-3.webp`} alt="Studio shoot: lifestyle, technology in daily use" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/studio-shot-1.webp`)} data-project-preview src={`${P}/studio-shot-1.webp`} alt="Studio shoot: dark urban setting, cinematic lighting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/studio-shot-2.webp`)} data-project-preview src={`${P}/studio-shot-2.webp`} alt="Studio shoot: product in low-light context" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/studio-shot-3.webp`)} data-project-preview src={`${P}/studio-shot-3.webp`} alt="Studio shoot: lifestyle, technology in daily use" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -282,10 +275,10 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--four mentra-brand-grid--compact">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/product-hand-front.webp`} alt="Hardware in hand: front view, matte finish visible" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/product-hand-angle.webp`} alt="Hardware in hand: angle, camera module visible" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/product-folded.webp`} alt="Folded glasses from above, hinge detail" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/product-flat.webp`} alt="Glasses flat on white surface, symmetry and proportion" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/product-hand-front.webp`)} data-project-preview src={`${P}/product-hand-front.webp`} alt="Hardware in hand: front view, matte finish visible" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/product-hand-angle.webp`)} data-project-preview src={`${P}/product-hand-angle.webp`} alt="Hardware in hand: angle, camera module visible" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/product-folded.webp`)} data-project-preview src={`${P}/product-folded.webp`} alt="Folded glasses from above, hinge detail" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/product-flat.webp`)} data-project-preview src={`${P}/product-flat.webp`} alt="Glasses flat on white surface, symmetry and proportion" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -302,13 +295,13 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/cover-twitter-green.png`} alt="Twitter/X cover: green variant" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/cover-linkedin-light.png`} alt="LinkedIn cover: light variant" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/cover-twitter-green.png`)} data-project-preview src={`${P}/cover-twitter-green.png`} alt="Twitter/X cover: green variant" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/cover-linkedin-light.png`)} data-project-preview src={`${P}/cover-linkedin-light.png`} alt="LinkedIn cover: light variant" loading="lazy" /></div>
             </div>
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--follow">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/cover-youtube-light.webp`} alt="YouTube banner" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/cover-github-light.webp`} alt="GitHub social preview" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/cover-reddit-light.webp`} alt="Reddit banner" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/cover-youtube-light.webp`)} data-project-preview src={`${P}/cover-youtube-light.webp`} alt="YouTube banner" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/cover-github-light.webp`)} data-project-preview src={`${P}/cover-github-light.webp`} alt="GitHub social preview" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/cover-reddit-light.webp`)} data-project-preview src={`${P}/cover-reddit-light.webp`} alt="Reddit banner" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -326,10 +319,10 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--four mentra-brand-grid--compact">
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/ad-stream.webp`} alt="Stream Your World — birthday through lens" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/ad-hear.webp`} alt="Hear Your Audio, The World — jogging" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/ad-3.webp`} alt="Shipping Soon — teaser on green" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={`${P}/ad-4.webp`} alt="Focus — autofocus UI on portrait" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/ad-stream.webp`)} data-project-preview src={`${P}/ad-stream.webp`} alt="Stream Your World — birthday through lens" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/ad-hear.webp`)} data-project-preview src={`${P}/ad-hear.webp`} alt="Hear Your Audio, The World — jogging" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/ad-3.webp`)} data-project-preview src={`${P}/ad-3.webp`} alt="Shipping Soon — teaser on green" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps(`${P}/ad-4.webp`)} data-project-preview src={`${P}/ad-4.webp`} alt="Focus — autofocus UI on portrait" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -347,12 +340,12 @@ export default function MentraBrandPage() {
         <section className="cs-section reveal mentra-brand-render-stage">
           <div className="wrap">
             <div className="cs-img reveal mentra-brand-render">
-              <img data-project-preview className="mentra-brand-render__hero" src={`${P}/render-black-camera.webp`} alt="Black frame: camera module macro, Mentra logo on temple" loading="lazy" />
+              <img {...projectImageProps(`${P}/render-black-camera.webp`)} data-project-preview className="mentra-brand-render__hero" src={`${P}/render-black-camera.webp`} alt="Black frame: camera module macro, Mentra logo on temple" loading="lazy" />
             </div>
             <div className="cs-img-grid mentra-brand-grid mentra-brand-grid--three mentra-brand-grid--follow">
-              <div className="cs-img reveal mentra-brand-render"><img data-project-preview src={`${P}/render-hinge-detail.webp`} alt="Hinge detail: power button, USB-C" loading="lazy" /></div>
-              <div className="cs-img reveal mentra-brand-render"><img data-project-preview src={`${P}/render-black-temple.webp`} alt="Temple depth-of-field" loading="lazy" /></div>
-              <div className="cs-img reveal mentra-brand-render"><img data-project-preview src={`${P}/render-black-front.webp`} alt="Front view, dark background" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-render"><img {...projectImageProps(`${P}/render-hinge-detail.webp`)} data-project-preview src={`${P}/render-hinge-detail.webp`} alt="Hinge detail: power button, USB-C" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-render"><img {...projectImageProps(`${P}/render-black-temple.webp`)} data-project-preview src={`${P}/render-black-temple.webp`} alt="Temple depth-of-field" loading="lazy" /></div>
+              <div className="cs-img reveal mentra-brand-render"><img {...projectImageProps(`${P}/render-black-front.webp`)} data-project-preview src={`${P}/render-black-front.webp`} alt="Front view, dark background" loading="lazy" /></div>
             </div>
           </div>
         </section>
