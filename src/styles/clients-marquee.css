@@ -71,8 +71,6 @@ html.is-low-power-device .cl-marquee-viewport {
 
 html.is-low-power-device .cl-marquee-track {
   animation: cl-marquee-slide 42s linear infinite !important;
-  transform: translateX(0);
-  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {

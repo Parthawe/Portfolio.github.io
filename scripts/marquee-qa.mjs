@@ -30,6 +30,8 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
         expect(geometry.repeatError).toBeLessThan(1)
         expect(geometry.iterations).toBe('infinite')
         await waitForMotion(track, strip.locator('.cl-marquee-viewport'))
+        await page.evaluate(() => document.documentElement.classList.add('is-low-power-device', 'is-runtime-performance-degraded'))
+        await waitForMotion(track, strip.locator('.cl-marquee-viewport'))
       } catch (error) {
         const directory = process.env.QA_DIAGNOSTICS_DIR || 'qa-diagnostics'
         mkdirSync(directory, { recursive: true })
@@ -44,6 +46,7 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
             classes: reveal.className, rootClasses: document.documentElement.className,
             filter: style.filter, opacity: style.opacity,
             trackTransform: getComputedStyle(element.querySelector('.cl-marquee-track')).transform,
+            motionSample: JSON.parse(element.querySelector('.cl-marquee-track').dataset.qaMotionSample || 'null'),
             trackAnimations: element.querySelector('.cl-marquee-track').getAnimations().map(animation => ({
               state: animation.playState, time: animation.currentTime, pending: animation.pending,
             })),

@@ -14,9 +14,13 @@ export async function waitForMotion(track, viewport, timeout = 5_000) {
       await frame()
       await frame()
       const rect = element.getBoundingClientRect()
-      return element.checkVisibility({ contentVisibilityAuto: true, visibilityProperty: true })
-        && rect.top < innerHeight && rect.bottom > 0
-        && getComputedStyle(element).transform !== before
+      const sample = {
+        visible: element.checkVisibility({ contentVisibilityAuto: true, visibilityProperty: true }),
+        inViewport: rect.top < innerHeight && rect.bottom > 0,
+        before, after: getComputedStyle(element).transform,
+      }
+      element.dataset.qaMotionSample = JSON.stringify(sample)
+      return sample.visible && sample.inViewport && sample.after !== sample.before
     })
   }, { timeout, message: 'Visible marquee must advance between painted frames' }).toBe(true)
 }

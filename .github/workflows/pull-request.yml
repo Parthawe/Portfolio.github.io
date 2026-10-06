@@ -39,12 +39,15 @@ jobs:
             sleep 1
           done
           curl --fail --silent "$QA_BASE_URL" > /dev/null
-          bun run qa:project-pages
-          bun run qa:rendered
-          node scripts/responsive-marquee-qa.mjs
-          node scripts/work-loading-qa.mjs
-          node scripts/interaction-qa.mjs
-          node scripts/performance-qa.mjs
+          status=0
+          node scripts/reveal-readiness-qa.mjs || status=1
+          bun run qa:project-pages || status=1
+          bun run qa:rendered || status=1
+          node scripts/responsive-marquee-qa.mjs || status=1
+          node scripts/work-loading-qa.mjs || status=1
+          node scripts/interaction-qa.mjs || status=1
+          node scripts/performance-qa.mjs || status=1
+          exit "$status"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
