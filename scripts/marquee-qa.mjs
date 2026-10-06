@@ -8,6 +8,8 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
     for (const theme of ['light', 'dark']) {
       // Fresh context: visiting a category first used to hide the missing CSS.
       const page = await browser.newPage({ viewport: { width, height: 979 } })
+      page.setDefaultTimeout(20_000)
+      page.setDefaultNavigationTimeout(30_000)
       await page.addInitScript(theme => localStorage.setItem('theme', theme), theme)
       await page.goto(`${base}/`)
       const strip = page.locator('.cl-marquee')

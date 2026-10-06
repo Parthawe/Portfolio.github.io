@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { chromium } from '@playwright/test'
+import { canRetryTemporaryHttp } from './qa-network-policy.mjs'
 
 const baseUrl = (process.env.QA_BASE_URL || 'http://127.0.0.1:4173').replace(/\/$/, '')
 const sitemapPath = process.env.QA_SITEMAP_PATH || 'public/sitemap.xml'
@@ -30,6 +31,7 @@ async function inspectRoute(browser, route, viewport) {
   const page = await browser.newPage({ viewport })
   const consoleErrors = []
   const pageErrors = []
+  const httpErrors = []
   const issues = []
   const warnings = []
   let status = 0
@@ -42,7 +44,12 @@ async function inspectRoute(browser, route, viewport) {
       warnings.push(`Third-party console error: ${new URL(location).hostname}`)
       return
     }
-    consoleErrors.push(message.text())
+    consoleErrors.push({ text: message.text(), url: location })
+  })
+  page.on('response', response => {
+    if (response.status() >= 400 && new URL(response.url()).origin === new URL(baseUrl).origin) {
+      httpErrors.push({ status: response.status(), url: response.url() })
+    }
   })
   page.on('pageerror', (error) => pageErrors.push(error.message))
 
@@ -155,12 +162,18 @@ async function inspectRoute(browser, route, viewport) {
     timedOut = error.name === 'TimeoutError'
     issues.push(error.message)
   } finally {
-    if (consoleErrors.length) issues.push(`Console errors: ${consoleErrors.join(' | ')}`)
+    if (consoleErrors.length) issues.push(`Console errors: ${consoleErrors.map(error => `${error.text()} [${error.url || 'URL unavailable'}]`).join(' | ')}`)
+    if (httpErrors.length) issues.push(`HTTP resources: ${httpErrors.map(error => `${error.status} ${error.url}`).join(' | ')}`)
     if (pageErrors.length) issues.push(`Page errors: ${pageErrors.join(' | ')}`)
     await page.close()
   }
 
-  return { route, viewport: viewport.name, status, issues, warnings, retryable: timedOut && !consoleErrors.length && !pageErrors.length }
+  const temporaryHttp = canRetryTemporaryHttp({ httpErrors, consoleErrors, pageErrors, issues, timedOut })
+  return {
+    route, viewport: viewport.name, status, issues, warnings,
+    retryable: temporaryHttp || (timedOut && !httpErrors.length && !consoleErrors.length && !pageErrors.length),
+    retryReason: temporaryHttp ? 'Temporary HTTP resource failure' : 'Concurrent load timeout',
+  }
 }
 
 async function mapWithConcurrency(items, limit, mapper) {
@@ -186,15 +199,14 @@ const results = await mapWithConcurrency(
   concurrency,
   ({ route, viewport }) => inspectRoute(browser, route, viewport),
 )
-// Retry only timing failures, after concurrent work has finished. Runtime,
-// console, and structural failures remain blockers. Keep recovered timeouts visible.
+// Retry a timing failure or confirmed temporary HTTP error once in isolation.
+// All checks run again; persistent errors and unrelated defects remain blockers.
 for (let index = 0; index < results.length; index += 1) {
   if (!results[index].retryable) continue
   const { route, viewport } = checks[index]
+  const initial = results[index]
   const retry = await inspectRoute(browser, route, viewport)
-  retry.warnings.unshift(retry.issues.length
-    ? 'Initial concurrent load timed out; isolated retry also failed.'
-    : 'Initial concurrent load timed out; isolated retry passed.')
+  retry.warnings.unshift(`${initial.retryReason}; isolated retry ${retry.issues.length ? 'also failed' : 'passed'}. Initial issues: ${initial.issues.join('; ')}`)
   results[index] = retry
 }
 await browser.close()

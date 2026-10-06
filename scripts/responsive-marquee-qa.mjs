@@ -10,6 +10,8 @@ try {
   for (const [width, height] of sizes) {
     for (const route of ['/', '/work/', '/ux-research/', '/mentra/', '/transfi-project/', '/vj-software/']) {
       const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' })
+      page.setDefaultTimeout(20_000)
+      page.setDefaultNavigationTimeout(30_000)
       await page.goto(`${base}${route}`)
       await expect(page.locator('main')).toBeVisible({ timeout: 20_000 })
       await page.evaluate(() => document.fonts.ready)

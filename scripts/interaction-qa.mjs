@@ -9,6 +9,8 @@ try {
   await checkProjectCardMotion(browser, base)
   for (const { mobile, reducedMotion } of [false, true].flatMap(mobile => ['reduce', 'no-preference'].map(reducedMotion => ({ mobile, reducedMotion })))) {
     const page = await browser.newPage({ viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 900 }, reducedMotion })
+    page.setDefaultTimeout(20_000)
+    page.setDefaultNavigationTimeout(30_000)
     await page.goto(`${base}/work/`)
     await expect(page.getByRole('heading', { name: 'Work', exact: true })).toBeVisible()
     if (mobile) {
@@ -63,6 +65,8 @@ try {
     await page.close()
   }
   const touchPage = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true })
+  touchPage.setDefaultTimeout(20_000)
+  touchPage.setDefaultNavigationTimeout(30_000)
   await touchPage.goto(`${base}/work/`)
   await touchPage.getByRole('button', { name: 'Open menu', exact: true }).click()
   await touchPage.getByRole('button', { name: 'Close menu', exact: true }).click()

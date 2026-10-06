@@ -64,16 +64,27 @@ jobs:
           bun-version: 1.3.10
       - run: bun install --frozen-lockfile
       - run: bunx playwright install --with-deps chromium
-      - name: Verify rendered production and interactions
+      - name: Test network failure classification
+        run: node --test scripts/qa-network-policy.test.mjs
+      - name: Verify reveal readiness
+        run: node scripts/reveal-readiness-qa.mjs
+      - name: Verify rendered production routes
         env:
           QA_BASE_URL: https://designwhich.works
           QA_RENDERED_REPORT_PATH: production-rendered.md
-        run: |
-          node scripts/reveal-readiness-qa.mjs
-          node scripts/rendered-site-qa.mjs
-          node scripts/interaction-qa.mjs
-          bun run qa:project-pages
-          node scripts/responsive-marquee-qa.mjs
+        run: node scripts/rendered-site-qa.mjs
+      - name: Verify navigation and interactions
+        env:
+          QA_BASE_URL: https://designwhich.works
+        run: node scripts/interaction-qa.mjs
+      - name: Verify project media and controls
+        env:
+          QA_BASE_URL: https://designwhich.works
+        run: bun run qa:project-pages
+      - name: Verify responsive layouts
+        env:
+          QA_BASE_URL: https://designwhich.works
+        run: node scripts/responsive-marquee-qa.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
