@@ -1,10 +1,36 @@
-import { mkdirSync } from 'node:fs'
+import { mkdirSync, readFileSync } from 'node:fs'
 import { chromium, expect } from '@playwright/test'
 import { revealForMeasurement, waitForReveal } from './visible-layout-qa.mjs'
 
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:4175'
 const browser = await chromium.launch()
 try {
+  const source = readFileSync(new URL('../src/data/cardCoverBrightness.ts', import.meta.url), 'utf8')
+  const brightness = JSON.parse(source.match(/= (\{[\s\S]*\})/)[1])
+  expect(Object.keys(brightness).length).toBeGreaterThan(0)
+  const contrastPage = await browser.newPage()
+  await contrastPage.goto(`${base}/work/`)
+  const mismatches = await contrastPage.evaluate(async brightness => {
+    const mismatches = []
+    for (const [path, known] of Object.entries(brightness)) {
+      const image = new Image()
+      image.src = path
+      await image.decode()
+      const canvas = document.createElement('canvas')
+      canvas.width = canvas.height = 64
+      const context = canvas.getContext('2d', { willReadFrequently: true })
+      context.drawImage(image, 0, 0, 64, 64)
+      const pixels = context.getImageData(0, 0, 64, 64).data
+      let total = 0
+      for (let i = 0; i < pixels.length; i += 4) total += pixels[i] * .299 + pixels[i + 1] * .587 + pixels[i + 2] * .114
+      const actual = total / 4096
+      if ((actual > 140) !== (known > 140)) mismatches.push({ path, known, actual })
+    }
+    return mismatches
+  }, brightness)
+  expect(mismatches, 'Cached cover luminance must preserve the actual image contrast').toEqual([])
+  console.log(`PASS static cover contrast: ${Object.keys(brightness).length} images match measured text treatment`)
+  await contrastPage.close()
   for (const width of [390, 1024, 1440]) {
     for (const theme of ['light', 'dark']) {
       const page = await browser.newPage({ viewport: { width, height: 979 } })
