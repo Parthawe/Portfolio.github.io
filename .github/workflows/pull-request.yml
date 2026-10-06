@@ -29,6 +29,7 @@ jobs:
         env:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_RENDERED_REPORT_PATH: pr-rendered.md
+          QA_PERFORMANCE_REPORT_PATH: pr-performance.json
         run: |
           bun run preview --host 127.0.0.1 --port 4173 > /tmp/preview.log 2>&1 &
           preview_pid=$!
@@ -41,11 +42,15 @@ jobs:
           bun run qa:project-pages
           bun run qa:rendered
           node scripts/responsive-marquee-qa.mjs
+          node scripts/work-loading-qa.mjs
           node scripts/interaction-qa.mjs
+          node scripts/performance-qa.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: pull-request-verification
           path: |
             pr-rendered.md
+            pr-performance.json
             /tmp/preview.log
+            qa-diagnostics/

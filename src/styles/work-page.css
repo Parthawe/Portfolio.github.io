@@ -833,17 +833,21 @@
   page-break-inside: avoid;
 }
 
-.page-work .pcard-masonry > * {
-  animation: workCardIn 620ms var(--work-ease) both;
+/* Animate bounded cards as they approach the viewport. Blurring an entire
+   masonry column rasterizes thousands of offscreen pixels during first paint. */
+.page-work .pcard-masonry__column > .pcard {
+  animation: workCardIn 620ms var(--work-ease) backwards;
+  animation-play-state: paused;
   transform-origin: 50% 72%;
 }
 
-.page-work .pcard-masonry > *:nth-child(2) { animation-delay: 45ms; }
-.page-work .pcard-masonry > *:nth-child(3) { animation-delay: 90ms; }
-.page-work .pcard-masonry > *:nth-child(4) { animation-delay: 135ms; }
-.page-work .pcard-masonry > *:nth-child(5) { animation-delay: 180ms; }
-.page-work .pcard-masonry > *:nth-child(6) { animation-delay: 225ms; }
-.page-work .pcard-masonry > *:nth-child(n+7) { animation-delay: 260ms; }
+.page-work .pcard-masonry__column > .pcard.is-in-viewport {
+  animation-play-state: running;
+}
+
+.page-work .pcard-masonry__column:nth-child(2) > .pcard { animation-delay: 45ms; }
+.page-work .pcard-masonry__column:nth-child(3) > .pcard { animation-delay: 90ms; }
+.page-work .pcard-masonry__column:nth-child(4) > .pcard { animation-delay: 135ms; }
 
 @keyframes workCardIn {
   from {
@@ -2523,6 +2527,7 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
     .pcard-visual::before,
     .pcard-marquee-track,
     .pcard-masonry > *,
+    .pcard-masonry__column > .pcard,
     .work-library-preview__frame img
   ) {
     animation: none;

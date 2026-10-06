@@ -1,5 +1,26 @@
 import { expect } from '@playwright/test'
 
+/** Sample motion within one visible interval. A transform captured before
+ * deferred layout settles can equal a later suspended offscreen sample. */
+export async function waitForMotion(track, viewport, timeout = 5_000) {
+  await expect.poll(async () => {
+    // Scroll the bounded viewport, not a max-content track wider than the page.
+    await viewport.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
+    return track.evaluate(async element => {
+      const frame = () => new Promise(resolve => requestAnimationFrame(resolve))
+      await frame()
+      await frame()
+      const before = getComputedStyle(element).transform
+      await frame()
+      await frame()
+      const rect = element.getBoundingClientRect()
+      return element.checkVisibility({ contentVisibilityAuto: true, visibilityProperty: true })
+        && rect.top < innerHeight && rect.bottom > 0
+        && getComputedStyle(element).transform !== before
+    })
+  }, { timeout, message: 'Visible marquee must advance between painted frames' }).toBe(true)
+}
+
 /** Measure only rendered content. Auto-contained sections can shift the scroll
  * position when their estimated height is replaced with their actual height. */
 export async function revealForMeasurement(locator) {
