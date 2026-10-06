@@ -3,7 +3,9 @@ export function getImageBrightness(img: HTMLImageElement): number {
   const size = 64;
   canvas.width = size;
   canvas.height = size;
-  const ctx = canvas.getContext('2d');
+  // This canvas exists only for CPU pixel sampling. A GPU-backed context makes
+  // every cover load wait for a synchronous readback, especially on software GL.
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) return 0;
   ctx.drawImage(img, 0, 0, size, size);
   const data = ctx.getImageData(0, 0, size, size).data;

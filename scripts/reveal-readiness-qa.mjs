@@ -36,6 +36,9 @@ try {
   expect(await page.evaluate(() => scrollX)).toBe(0)
   console.log('PASS marquee advances despite delayed rAF and layout shift, without horizontal scrolling')
   await page.addStyleTag({ content: '#track { animation-play-state: paused }' })
+  await expect.poll(() => page.locator('#track').evaluate(element =>
+    element.getAnimations().every(animation => animation.playState === 'paused' && !animation.pending)
+  )).toBe(true)
   await expect(waitForMotion(page.locator('#track'), page.locator('#viewport'), 750)).rejects.toThrow()
   console.log('PASS paused marquee still fails')
 } finally {
