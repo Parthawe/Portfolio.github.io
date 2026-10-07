@@ -38,6 +38,7 @@ jobs:
             sleep 1
           done
           curl --fail --silent "$QA_BASE_URL" > /dev/null
+          bun run qa:home-loading
           bun run qa:physical-worlds
           bun run qa:project-pages
           bun run qa:rendered
@@ -51,3 +52,4 @@ jobs:
             pr-rendered.md
             /tmp/preview.log
             /tmp/portfolio-physical-worlds-qa
+            /tmp/portfolio-home-loading-qa
