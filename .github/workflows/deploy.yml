@@ -56,7 +56,7 @@ jobs:
   verify-production:
     needs: deploy
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -77,6 +77,11 @@ jobs:
         env:
           QA_BASE_URL: https://designwhich.works
         run: node scripts/interaction-qa.mjs
+      - name: Verify physical project rooms
+        env:
+          QA_BASE_URL: https://designwhich.works
+          QA_OUTPUT_DIR: qa-diagnostics/physical-worlds
+        run: bun run qa:physical-worlds
       - name: Verify project media and controls
         env:
           QA_BASE_URL: https://designwhich.works

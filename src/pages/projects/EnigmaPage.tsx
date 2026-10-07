@@ -1,3 +1,5 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
+import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
@@ -60,14 +62,14 @@ export default function EnigmaPage() {
         {/* Interactive */}
         <CsSection id="cs-interactive" label="Interactive" title="Explore a browser model of the sculpture">
           <CsBody>
-            <p>Draw a letter or press any key A to Z. This browser illustration uses generated activation patterns to explain the layers. It does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
+            <p>Choose a letter to see an illustrative activation move through the sculpture in its gallery. Open the original browser experiment below to draw a letter. It does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Network</span>
-            <span className="cs-label-row-val">28 input &rarr; 12 hidden &rarr; 8 hidden &rarr; 26 output (A&ndash;Z)</span>
+            <span className="cs-label-row-val">200 physical lights · illustrative browser activations</span>
           </div>
           <div className="project-content-block--roomy">
-            <EnigmaInteractive />
+            <PhysicalWorld project="enigma" /><OriginalExperiment><EnigmaInteractive /></OriginalExperiment>
           </div>
         </CsSection>
 

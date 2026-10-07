@@ -490,6 +490,7 @@ export default function WorkPage() {
             <header className="work-page-header">
               <div className="work-page-intro">
                 <h1 className="work-page-title">Work</h1>
+              <Link className="work-room-link" to="/physical-worlds">Explore the project rooms</Link>
                 <p className="work-page-intro-copy">
                   Selected product, systems, and interaction work for product design and design engineering roles.
                 </p>

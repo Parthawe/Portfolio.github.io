@@ -1,5 +1,6 @@
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
+import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -36,6 +37,7 @@ export default function ShufflePage() {
           backLabel="Back to Work"
           tags={['Creative Technology', 'Physical Computing', 'Installation']}
           title="Shuffle"
+          heroFraming="image"
           subtitle="A motorized-fader board where every student-life priority has a cost"
           info={[
                 { label: 'Year', value: '2023' },
@@ -79,6 +81,7 @@ export default function ShufflePage() {
           </CsBody>
           <div className="project-content-block--roomy">
             <ShuffleInteractive />
+            <p><Link to="/shuffle/simulation">Open the 3D simulation</Link></p>
           </div>
         </CsSection>
 

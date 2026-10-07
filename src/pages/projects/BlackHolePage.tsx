@@ -1,3 +1,4 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import { projectImageProps } from '../../utils/projectImage'
 import { lazy, Suspense, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -80,6 +81,8 @@ export default function BlackHolePage() {
         </CsSection>
 
         {/* ═══ 01: TIME DILATION ═══ */}
+        <CsSection id="cs-world" label="Interactive room" title="Explore the physical studies"><PhysicalWorld project="black-hole" /></CsSection>
+
         <CsExpandPreview>
         <CsSection id="cs-time-trap" label="01 &mdash; Phenomenon" title="The Black Hole&rsquo;s Time Trap">
           <CsBody>
@@ -180,6 +183,7 @@ export default function BlackHolePage() {
         </CsExpandPreview>
 
         <BottomNav sections={[
+          { id: 'cs-world', label: 'Room' },
           { id: 'cs-film', label: 'Film' },
           { id: 'cs-challenge', label: 'Overview' },
           { id: 'cs-time-trap', label: 'Time Dilation' },
