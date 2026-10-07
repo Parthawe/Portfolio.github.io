@@ -105,7 +105,7 @@ export default function RoomScene(props: Props) {
       box(.8,.52,.035,black,tablet);const display=label('A',.72,.43,tablet,0,0,.023,'#ffffff','#080908')
       for(let i=0;i<26;i++){const node=sphere(.028,white,root,1.12,2.7-(i%2)*.13,(Math.floor(i/2)-6)*.125);node.visible=false;pick(node,0,i)}
       let previous=-1,age=0
-      updates.push((values,_time,delta)=>{if(values[0]!==previous){previous=values[0];age=0;const texture=(display.material as T.MeshBasicMaterial).map as T.CanvasTexture;const canvas=texture.image as HTMLCanvasElement;const ctx=canvas.getContext('2d')!;ctx.fillStyle='#080908';ctx.fillRect(0,0,1024,256);ctx.fillStyle='#ffffff';ctx.font='100px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String.fromCharCode(65+values[0]),512,128);texture.needsUpdate=true}age+=delta
+      updates.push((values,_time,delta)=>{if(values[0]!==previous){previous=values[0];age=0;const texture=(display.material as T.MeshBasicMaterial).map as T.CanvasTexture;const canvas=texture.image as HTMLCanvasElement;const ctx=canvas.getContext('2d')!;ctx.fillStyle='#080908';ctx.fillRect(0,0,1024,256);ctx.fillStyle='#ffffff';ctx.font='100px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String.fromCharCode(65+values[0]),512,128);texture.needsUpdate=true}age=latest.current.reduced?1:age+delta
         let k=0;layers.forEach((count,layer)=>{for(let i=0;i<count;i++){const on=age>layer*.16&&((i*17+values[0]*7+layer*13)%23<6||layer===3&&i===values[0]);nodes.setColorAt(k++,new T.Color(on?'#fff8d8':'#575b56'))}});if(nodes.instanceColor)nodes.instanceColor.needsUpdate=true
       })
       label('ENIGMA · 200 NEURONS',2,.18,root,0,.57,.89)
