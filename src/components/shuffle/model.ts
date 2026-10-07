@@ -69,4 +69,3 @@ export function propagate(
   }
   return next
 }
-
