@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
-import { chromium } from '@playwright/test'
+import { chromium, expect } from '@playwright/test'
 
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:5197'
 const slugs = [...readFileSync(new URL('../src/data/projectRoutes.ts', import.meta.url), 'utf8').matchAll(/slug: '([^']+)'/g)].map(match => match[1])
@@ -22,6 +22,7 @@ try {
         await page.goto(`${base}${route}`, { waitUntil: 'domcontentloaded' })
         await page.locator('canvas').waitFor()
         await page.waitForTimeout(200)
+        await expect(page.locator(slug === 'shuffle' ? '[data-shuffle-theme]' : '[data-world-theme]')).toHaveAttribute(slug === 'shuffle' ? 'data-shuffle-theme' : 'data-world-theme', profile.theme)
         assert.equal(await page.getByText('3D is unavailable.', { exact: false }).count(), 0, 'scene should render')
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'room has no horizontal overflow')
         if (slug !== 'shuffle') {

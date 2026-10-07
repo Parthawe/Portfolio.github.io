@@ -61,3 +61,7 @@
 .shuffle-simulation-page h1 { font-size: clamp(2rem,4vw,3rem); margin: 0; }
 .shuffle-simulation-page > header a { color: inherit; text-underline-offset: 4px; }
 .shuffle-views { flex-wrap: wrap; }
+
+.shuffle-simulation-page > header > div { margin-right: auto; }
+.shuffle-room-nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-top: 1.25rem; }
+.shuffle-room-nav a { color: inherit; text-underline-offset: 4px; padding-block: .5rem; }

@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
+import ThemeToggle from '../components/ThemeToggle'
 import ShuffleInteractive from '../components/ShuffleInteractive'
 
 export default function ShuffleSimulationPage() {
@@ -9,8 +10,10 @@ export default function ShuffleSimulationPage() {
       <header>
         <div><h1>Shuffle</h1><p>A physical study of student life at ITP.</p></div>
         <Link to="/shuffle">Back to the project</Link>
+        <ThemeToggle />
       </header>
       <ShuffleInteractive />
+      <nav className="shuffle-room-nav" aria-label="Other project rooms"><Link to="/physical-worlds">All rooms</Link><Link to="/enigma/world">Next room: Enigma →</Link></nav>
     </main>
   )
 }
