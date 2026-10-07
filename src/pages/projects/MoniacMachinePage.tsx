@@ -1,3 +1,5 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
+import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
@@ -62,18 +64,18 @@ export default function MoniacMachinePage() {
         <CsSection id="cs-interactive" label="Interactive" title="Run the Economy">
           <CsBody>
             <p className="cs-caption">Browser adaptation of the cabinet game, using simplified rules. This is not an economic forecast or a reconstruction of the historic hydraulic machine.</p>
-            <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. The goal is simple: keep growth, employment, inflation, and debt in tension for 60 seconds.</p>
+            <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. The room lets you explore the physical cabinet. Open the original browser experiment below to try balancing growth, employment, inflation, and debt for 60 seconds.</p>
           </CsBody>
           <div className="cs-label-row">
-            <span className="cs-label-row-key">Goal</span>
+            <span className="cs-label-row-key">Original game goal</span>
             <span className="cs-label-row-val">Balance growth against stability for 60 seconds</span>
           </div>
           <div className="cs-label-row">
-            <span className="cs-label-row-key">Controls</span>
+            <span className="cs-label-row-key">Original game controls</span>
             <span className="cs-label-row-val">7 economic levers with random shocks</span>
           </div>
           <div className="project-content-block--roomy">
-            <MoniacSimulator />
+            <PhysicalWorld project="moniac-machine" /><OriginalExperiment><MoniacSimulator /></OriginalExperiment>
           </div>
         </CsSection>
 

@@ -197,6 +197,8 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
   })
   .filter(Boolean)
 const routes = [...new Set([
+  'physical-worlds', 'shuffle/simulation',
+  ...[...readFileSync(join(root,'src/data/projectRoutes.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/world`),
   ...sitemapRoutes,
   ...canonicalAliases.keys(),
   'accessibility',

@@ -1,3 +1,4 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -91,6 +92,8 @@ export default function RevolvingStagePage() {
 
         {/* Mechanical Design */}
         {/* Interactive — stage rotation */}
+        <CsSection id="cs-world" label="Interactive room" title="Explore the stage in a theatre"><PhysicalWorld project="revolving-stage" /></CsSection>
+
         <CsExpandPreview>
         <CsSection id="cs-rotate" label="Interactive" title="Spin the Stage">
           <CsBody>
@@ -224,6 +227,7 @@ export default function RevolvingStagePage() {
         </CsExpandPreview>
 
         <BottomNav sections={[
+          { id: 'cs-world', label: 'Room' },
           { id: 'cs-rotate', label: 'Interactive' },
           { id: 'cs-engineering', label: 'Engineering' },
           { id: 'cs-design', label: 'Design' },

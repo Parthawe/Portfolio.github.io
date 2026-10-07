@@ -1,3 +1,4 @@
+import { worlds } from '../physical-worlds/catalog'
 import ProjectRecord from './ProjectRecord'
 import { useProjectMediaPause } from '../../hooks/useProjectMediaPause'
 import { projectImageProps } from '../../utils/projectImage'
@@ -33,6 +34,7 @@ interface ProjectHeaderProps {
   liveUrl?: string
   categorySlug?: string
   showHeaderSummary?: boolean
+  heroFraming?: 'panel' | 'image'
   heroExperience?: 'visual'
   heroTone?: string
   visualHeadline?: string
@@ -91,6 +93,7 @@ export default function ProjectHeader({
   liveUrl,
   categorySlug,
   showHeaderSummary = true,
+  heroFraming = 'panel',
   heroExperience,
   heroTone,
   visualHeadline,
@@ -224,6 +227,7 @@ export default function ProjectHeader({
       'wrap',
       'project-header',
       'project-header--visual',
+      heroFraming === 'image' ? 'project-header--image' : '',
       heroTone ? `project-header--${slugClass(heroTone)}` : '',
       project?.category ? `project-header--cat-${project.category}` : '',
       currentSlug ? `project-header--project-${slugClass(currentSlug)}` : '',
@@ -269,11 +273,11 @@ export default function ProjectHeader({
           </div>
 
           <div className="proj-visual-stage">
-            <div className="proj-visual-hero__chrome" aria-hidden="true">
+            {heroFraming === 'panel' && <div className="proj-visual-hero__chrome" aria-hidden="true">
               <span />
               <span />
               <span />
-            </div>
+            </div>}
 
             {(visualHeroMedia || resolvedVisualHeroImage) && (
               <div className={`proj-visual-hero__media${visualHeroMedia ? ' proj-visual-hero__media--interactive' : ''}`} ref={heroRef}>
@@ -285,7 +289,7 @@ export default function ProjectHeader({
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
-                    style={heroMotionStyle}
+                    style={heroFraming === 'image' ? undefined : heroMotionStyle}
                   />
                 )}
               </div>
@@ -332,6 +336,7 @@ export default function ProjectHeader({
               <div key={item.label}><dt>{sentenceCaseProjectLabel(item.label)}</dt><dd>{item.value}</dd></div>
             ))}
           </dl>
+          {(worlds[currentSlug] || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={currentSlug === 'shuffle' ? '/shuffle/simulation' : `/${currentSlug}/world`}>Explore this project in a room</Link></div>}
           <ProjectRecord slug={currentSlug} />
         </section>
       </div>
@@ -395,7 +400,7 @@ export default function ProjectHeader({
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
-                style={heroMotionStyle}
+                style={heroFraming === 'image' ? undefined : heroMotionStyle}
               />
             </div>
             <div className="proj-hero-caption">
@@ -427,6 +432,7 @@ export default function ProjectHeader({
       </section>
 
       {renderStoryAndSummary(4)}
+      {(worlds[currentSlug] || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={currentSlug === 'shuffle' ? '/shuffle/simulation' : `/${currentSlug}/world`}>Explore this project in a room</Link></div>}
       <ProjectRecord slug={currentSlug} />
     </div>
   )

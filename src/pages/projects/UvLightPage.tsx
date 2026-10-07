@@ -1,3 +1,5 @@
+import CsSection from '../../components/case-study/CsSection'
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -57,6 +59,8 @@ export default function UvLightPage() {
             </CsBody>
           </div>
         </section>
+
+        <CsSection id="cs-world" label="Interactive room" title="Reveal the room"><PhysicalWorld project="uv-light" /></CsSection>
 
         <CsExpandPreview
           ctaLabel="Open the full installation story"
@@ -219,6 +223,7 @@ export default function UvLightPage() {
         </CsExpandPreview>
 
         <BottomNav sections={[
+          { id: 'cs-world', label: 'Room' },
           { id: 'cs-background', label: 'Background' },
           { id: 'cs-discovery', label: 'Discovery' },
           { id: 'cs-exploration', label: 'Exploration' },
