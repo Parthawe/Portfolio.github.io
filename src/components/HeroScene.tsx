@@ -1,3 +1,4 @@
+import { HERO_ENVIRONMENT_URL } from '../data/heroAssets';
 import { createSceneActivity } from '../utils/sceneActivity';
 import { useRef, useMemo, useEffect, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
@@ -2213,7 +2214,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
       <pointLight intensity={dark ? 0.6 : 0.4} color={dark ? '#aabbee' : '#bbccdd'} distance={12} position={[4, -1, -2]} />
 
       {/* Environment reflections — city preset gives complex glass reflections */}
-      <Environment files="/Assets/hdri/potsdamer_platz_1k.hdr" environmentIntensity={dark ? 1.0 : 1.2} />
+      <Environment files={HERO_ENVIRONMENT_URL} environmentIntensity={dark ? 1.0 : 1.2} />
 
       {/* Endless grid backdrop — only bites once the web opens (uFade = intro). */}
       <InfiniteGrid introRef={introRef} panRef={pan} dark={dark} />
@@ -2280,15 +2281,22 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
 export { TrussStructure, PetalRose, MorphingScreens, StackedPlates, LensAssembly, GlassCrystal };
 export { useHoverLerp, useVirtualTime, mix };
 
-function SceneActivity({ expanded, dark }: { expanded: boolean; dark: boolean }) {
+function SceneActivity({ expanded, dark, onReady }: { expanded: boolean; dark: boolean; onReady?: () => void }) {
   const { gl, advance, size } = useThree();
   const activity = useRef<ReturnType<typeof createSceneActivity> | null>(null);
   const elapsed = useRef(0);
+  const reportedReady = useRef(false);
+  const readyCallback = useRef(onReady);
+  readyCallback.current = onReady;
   useEffect(() => {
     const element = gl.domElement.closest<HTMLElement>('.wr-hero-3d') ?? gl.domElement;
     activity.current = createSceneActivity(element, delta => {
       elapsed.current += delta;
       advance(elapsed.current);
+      if (!reportedReady.current) {
+        reportedReady.current = true;
+        readyCallback.current?.();
+      }
     }, { introMs: 1800, idleMs: 1200, interactionFps: 30, wakeOnWheel: expanded });
     return () => { activity.current?.dispose(); activity.current = null; };
   }, [gl, advance, expanded]);
@@ -2361,14 +2369,13 @@ export default function HeroScene({
     <>
       <div ref={containerRef} className={`hero-3d-canvas${expanded ? ' hero-3d-canvas--web' : ''}`}>
       <Canvas events={safeCanvasEvents}
-          onCreated={onReady}
           frameloop="never"
           dpr={[1, 2]}
           gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.4 }}
           camera={{ fov: 40, near: 0.1, far: 100, position: [0, 0.3, 7.5] }}
           style={{ background: 'transparent' }}
         >
-          <SceneActivity expanded={expanded} dark={dark} />
+          <SceneActivity expanded={expanded} dark={dark} onReady={onReady} />
           <SceneContent reduced={reduced} isMobile={isMobile} dark={dark} expanded={expanded} />
         </Canvas>
       </div>

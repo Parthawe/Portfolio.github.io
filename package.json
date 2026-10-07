@@ -12,7 +12,8 @@
     "test:agent": "bun scripts/check-parth-cursor-voice.ts",
     "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && bun scripts/check-project-routes.ts && tsc -b && vite build && node scripts/create-route-entrypoints.mjs",
     "preview": "node scripts/sync-pdf-worker.mjs && vite preview",
-    "qa:physical-worlds": "node scripts/physical-worlds-qa.mjs"
+    "qa:physical-worlds": "node scripts/physical-worlds-qa.mjs",
+    "qa:home-loading": "node scripts/home-runtime-budget-qa.mjs && node scripts/home-loading-qa.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.33",
