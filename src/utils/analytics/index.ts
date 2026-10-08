@@ -1,4 +1,4 @@
-import { eligibleHost, eventNames, publicPage, safeReferrer, type AnalyticsEvent } from './policy'
+import { eligibleHost, eventNames, publicPage, safeReferrer, safeCampaign, type AnalyticsEvent } from './policy'
 
 const id = import.meta.env.VITE_GA4_MEASUREMENT_ID || ''
 const preferenceKey = 'portfolio-analytics-consent-v1'
@@ -90,6 +90,7 @@ function start() {
   command('js', new Date())
   command('config', id, {
     send_page_view: false,
+    ...safeCampaign(location.search || ''),
     allow_google_signals: false,
     allow_ad_personalization_signals: false,
     page_location: `https://designwhich.works${publicPage(location.pathname).path}`,

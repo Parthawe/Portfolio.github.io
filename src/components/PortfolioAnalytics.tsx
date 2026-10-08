@@ -95,6 +95,12 @@ export default function PortfolioAnalytics() {
         trackEvent('live_project_click')
       }
     }
+    const interaction = (event: Event) => {
+      if (!event.isTrusted || !(event.target instanceof Element)) return
+      if (event instanceof KeyboardEvent && !['Enter', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+      if (event.target.closest('.shuffle-object, .physical-world')) trackEvent('demo_start')
+      else if (event.target.closest('.hero-3d-canvas, .ascii-hero-image')) trackEvent('scene_interaction')
+    }
     const playback = (event: Event) => {
       if (event.target instanceof HTMLVideoElement && !event.target.autoplay) trackEvent(event.type === 'ended' ? 'media_complete' : 'media_play')
     }
@@ -111,6 +117,8 @@ export default function PortfolioAnalytics() {
     window.addEventListener('portfolio:analytics-preferences', preferences)
     window.addEventListener('error', error, true)
     document.addEventListener('click', click)
+    document.addEventListener('pointerdown', interaction, { passive: true })
+    document.addEventListener('keydown', interaction)
     document.addEventListener('play', playback, true)
     document.addEventListener('ended', playback, true)
     window.addEventListener('scroll', scroll, { passive: true })
@@ -118,6 +126,8 @@ export default function PortfolioAnalytics() {
       window.removeEventListener('portfolio:analytics-preferences', preferences)
       window.removeEventListener('error', error, true)
       document.removeEventListener('click', click)
+      document.removeEventListener('pointerdown', interaction)
+      document.removeEventListener('keydown', interaction)
       document.removeEventListener('play', playback, true)
       document.removeEventListener('ended', playback, true)
       window.removeEventListener('scroll', scroll)

@@ -1,6 +1,6 @@
 # Portfolio analytics and weekly report
 
-Status: GA4 selected. Consent-gated integration implemented locally; activation and weekly email scheduling pending the Measurement ID, property access, and recipient address. No production collection or report delivery is active yet.
+Status: GA4 is active on production as of October 8, 2026. A consented test pageview returned HTTP 204 and appeared as one active user in GA4 Realtime. Weekly email scheduling is pending the recipient address.
 Site: https://designwhich.works
 Report timezone: America/New_York
 Default reporting window: previous Monday 00:00 through Sunday 23:59, compared with the preceding week.
@@ -90,7 +90,7 @@ For the first report, state that no comparable prior week exists. For an unavail
 
 ## GA4 implementation and activation (October 7, 2026)
 
-Implemented locally:
+Implemented and deployed:
 - Basic consent: Google script loads only after Allow analytics; No thanks sends nothing.
 - Footer preferences permit withdrawal; withdrawal disables collection, clears GA cookies and reloads to unload the runtime.
 - Production hostname allowlist; localhost, automated browsers, and owner exclusion are blocked.
@@ -99,9 +99,9 @@ Implemented locally:
 - Events deduplicate within a page visit. No form contents, titles, query parameters, hashes, destination URLs, or protected content are included in these custom payloads.
 - Reading depth is geometric scroll progress, not proof of reading. Video events currently count once per route visit, not per individual video.
 
-Also implemented locally: LCP/INP/CLS through the official web-vitals package after consent; grouped first-party script/asset failures; public section exposure; visible-tab seconds with no interval timer. Protected sections are excluded.
+Also implemented and deployed: LCP/INP/CLS through the official web-vitals package after consent; grouped first-party script/asset failures; public section exposure; visible-tab seconds with no interval timer. Protected sections are excluded.
 
-Not yet implemented: active-reading-time measurement, demo/scene events, campaign attribution, and a custom narrative report. GA4's standard engagement time differs from active reading. Native scheduled reports provide metric tables/PDFs; they do not automatically produce three editorial recommendations.
+Active-reading-time inference and custom narrative reports are not implemented. Demo/scene first interactions and allowlisted campaign attribution are implemented in the October 8 follow-up. GA4's standard engagement time differs from active reading. Native scheduled reports provide metric tables/PDFs; they do not automatically produce three editorial recommendations.
 
 Activation checklist:
 1. Create/select a GA4 property with America/New_York reporting timezone. Create a web stream for https://designwhich.works and obtain its G- Measurement ID.
@@ -115,7 +115,7 @@ Activation checklist:
 
 Owner QA exclusion: set localStorage key portfolio-analytics-exclude to 1 on the production origin before opting in, then reload. Exclusion only affects that browser profile.
 
-Counts cover consenting, unblocked browsers and are estimates. The integration deliberately removes query strings, including UTMs; campaign attribution is not currently available. Do not describe consent-limited counts as all visitors.
+Counts cover consenting, unblocked browsers and are estimates. The integration removes raw query strings. Approved UTM values are sent as separate campaign fields; all other values are discarded. Do not describe consent-limited counts as all visitors.
 
 Sources checked:
 - https://developers.google.com/analytics/devguides/collection/ga4/views
@@ -125,3 +125,33 @@ Sources checked:
 ## Local verification, October 7
 
 Five analytics unit tests pass: consent and host exclusions, pageview/interaction deduplication, payload redaction, withdrawal, and diagnostic/section/time payload limits. The consent notice was checked at 390px with its disclosure expanded; both choice callbacks and keyboard activation worked. The temporary UI harness was removed. These checks do not verify receipt in GA4, which remains unconfigured.
+
+## Active configuration — October 8, 2026
+
+- Account: Design Which Works (190204330).
+- Property: Design which works (262899954); reporting timezone America/New_York.
+- Web stream: Design Which Works (2330610841), Measurement ID G-P9ETXVRDMZ.
+- GitHub public variables: VITE_GA4_MEASUREMENT_ID and VITE_GA4_READY=1.
+- Enhanced Measurement off; Google Signals off; ads personalization disallowed in all 307 regions.
+- Key events: contact_click, resume_click, access_request_click. Once per session; no default monetary value.
+- Event dimensions: page_type, project_slug, section_id, percent_scrolled, error_code, metric_name.
+- Custom metric: visible_seconds (seconds), displayed as Visible tab time.
+- Saved exploration: Portfolio browsing → project → contact (users). Closed, indirectly followed steps page_view → project_open → contact_click with device-category breakdown. This is a user-based exploration across the selected date range, NOT a same-session conversion rate. Direct project landings can bypass project_open; use separate landing-page reports rather than interpreting this as every visitor's journey.
+- Consent verification: no Google script before selection; script HTTP 200 and pageview collection HTTP 204 after consent; one test user observed in Realtime. This test visit is QA traffic, not an organic visitor.
+- Corrected CSP with explicit Analytics domains. Existing navigation QA starts with a declined consent preference so the notice does not cover test controls.
+- Email report: draft prepared for weekly traffic acquisition, proposed first Monday October 12; recipient still required. No schedule saved or delivery verified.
+
+### Campaign vocabulary
+
+Use only these values, case-insensitive:
+- utm_source: linkedin, github, instagram, google, newsletter, email.
+- utm_medium: social, email, referral, organic, cpc, paid_social.
+- utm_campaign: portfolio, job-search, outreach, launch.
+
+Example: https://designwhich.works/?utm_source=linkedin&utm_medium=social&utm_campaign=portfolio
+
+Names, email addresses, tracking codes and arbitrary campaign text are rejected. Do not add personal identifiers to campaign URLs.
+
+### Interaction coverage
+
+First trusted pointer-down or activation/arrow key within the homepage scene or ASCII illustration emits scene_interaction. The rebuilt Shuffle and physical-project rooms emit demo_start. Each counts at most once per route visit, without pointer positions, key values, or animation-frame tracking. These events record starting interaction, not completing a demo; legacy games/demos outside these wrappers are not included.

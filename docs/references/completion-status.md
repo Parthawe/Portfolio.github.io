@@ -24,10 +24,10 @@ The route sweep checks geometry and loaded images. It does not certify all inter
 
 | Item | Dependency / next step |
 | --- | --- |
-| GA4 activation | Measurement ID and property access; verify Enhanced Measurement is disabled, then verify real received events. |
+| GA4 activation | Active October 8; consented pageview verified by HTTP 204 and GA4 Realtime. |
 | Weekly email | Recipient address and GA4 property permissions; configure reports and verify actual delivery. No schedule exists yet. |
-| Funnel reports | Build session-scoped funnels in GA4 once events arrive; verify which output supports scheduled email. |
-| Additional analytics | Demo/scene interactions, approved campaign attribution and custom narrative recommendations remain unimplemented. |
+| Funnel reports | User-based browsing → project → contact exploration saved. Same-session analysis and scheduled funnel delivery remain open. |
+| Additional analytics | Demo/scene first interactions and approved campaign attribution implemented October 8. Custom narrative recommendations remain open. |
 | Every project at 9/10 | Individual re-scoring remains open; original evaluation/iteration evidence is missing for several projects. See project-quality-repair.md. |
 | ThreeUI MCP | Account/OAuth access remains unavailable. Saved UI-library guidance can be used without it. |
 | Publish follow-up | Publication authorized October 7. Deployment verification pending. |

@@ -26,5 +26,21 @@ export function eligibleHost(hostname: string, production: boolean, id: string) 
   return production && ['designwhich.works', 'www.designwhich.works'].includes(hostname) && /^G-[A-Z0-9]+$/.test(id)
 }
 
-export const eventNames = ['project_open', 'contact_click', 'resume_click', 'access_request_click', 'live_project_click', 'story_open', 'reading_depth', 'media_play', 'media_complete'] as const
+export const eventNames = ['project_open', 'contact_click', 'resume_click', 'access_request_click', 'live_project_click', 'story_open', 'reading_depth', 'media_play', 'media_complete', 'scene_interaction', 'demo_start'] as const
 export type AnalyticsEvent = typeof eventNames[number]
+
+/** Campaign labels are a published vocabulary, never arbitrary query contents. */
+export function safeCampaign(search: string) {
+  const query = new URLSearchParams(search)
+  const allowed = {
+    source: ['linkedin', 'github', 'instagram', 'google', 'newsletter', 'email'],
+    medium: ['social', 'email', 'referral', 'organic', 'cpc', 'paid_social'],
+    name: ['portfolio', 'job-search', 'outreach', 'launch'],
+  }
+  const result: Record<string, string> = {}
+  for (const [field, values] of Object.entries(allowed)) {
+    const value = query.get(field === 'name' ? 'utm_campaign' : `utm_${field}`)?.toLowerCase()
+    if (value && values.includes(value)) result[`campaign_${field}`] = value
+  }
+  return result
+}

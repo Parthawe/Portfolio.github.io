@@ -19,7 +19,7 @@ function harness({ host = 'designwhich.works', consent, exclude = false } = {}) 
   const scripts = []
   const location = { hostname: host, pathname: '/', reload() {} }
   const window = {}
-  const context = vm.createContext({ window, location, URL, navigator: { webdriver: false },
+  const context = vm.createContext({ window, location, URL, URLSearchParams, navigator: { webdriver: false },
     localStorage: { getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value) },
     document: { referrer: 'https://example.com/private?email=secret', cookie: '',
       createElement: () => ({}), head: { appendChild: script => scripts.push(script) } },
@@ -100,4 +100,19 @@ test('physical project rooms keep their public route', () => {
   const event = h.events().find(e => e[1] === 'page_view')
   assert.equal(event[2].page_type, 'demo')
   assert.equal(event[2].page_location, 'https://designwhich.works/mentra/world')
+})
+
+test('only recognized campaign labels are sent; arbitrary query data stays private', () => {
+  const h = harness({ consent: 'granted' })
+  h.location.search = '?utm_source=linkedin&utm_medium=social&utm_campaign=person@example.com&code=secret'
+  h.api.trackPage('/')
+  const config = h.events().find(e => e[0] === 'config')[2]
+  assert.equal(config.campaign_source, 'linkedin')
+  assert.equal(config.campaign_medium, 'social')
+  assert.equal(config.campaign_name, undefined)
+  assert.ok(!JSON.stringify(h.events()).includes('person@'))
+  assert.ok(!JSON.stringify(h.events()).includes('secret'))
+  h.api.trackEvent('demo_start')
+  h.api.trackEvent('demo_start')
+  assert.equal(h.events().filter(e => e[1] === 'demo_start').length, 1)
 })
