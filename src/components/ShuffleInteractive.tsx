@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { lazy, Suspense, useCallback, useRef, useState } from 'react'
 import { useThemeMode } from '../hooks/useThemeMode'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
@@ -59,7 +60,7 @@ export default function ShuffleInteractive() {
         <div className="shuffle-controls-grid">
           {KEYS.map(key => <label key={key}>
             <span>{key.toLowerCase()}<output>{Math.round(values[key])}</output></span>
-            <input aria-label={key} type="range" min="0" max="100" step="1" value={Math.round(values[key])} onChange={event => change(key, Number(event.target.value))} />
+            <PortfolioSlider aria-label={key} type="range" min="0" max="100" step="1" value={Math.round(values[key])} onChange={event => change(key, Number(event.target.value))} />
           </label>)}
         </div>
       </details>

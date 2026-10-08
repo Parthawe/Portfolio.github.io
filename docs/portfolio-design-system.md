@@ -255,3 +255,9 @@ The user's approved direction uses https://mitalkamani.design/pmfdiscovery as a 
 - Maintain chapter links, keyboard image previews, reduced motion, and media cleanup.
 
 Implementation: `src/styles/project-reading.css` and shared case-study components. Do not apply these project rules to Home, About, Work, or category pages.
+
+## Shared range sliders
+
+All authored range inputs use `src/components/PortfolioSlider.tsx` and `src/styles/portfolio-slider.css`, including physical worlds, Shuffle, the original experiments, prototypes, typography, painting, lighting and studio zoom. The user requested an iOS-inspired glass treatment. The reference is Apple’s [Adopting Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/adopting-liquid-glass): a familiar slider whose knob changes material during interaction. This web treatment uses a translucent capsule, local highlights, a small pressed expansion and a blue value fill; it does not reproduce Apple’s native refraction engine.
+
+Keep the input native so keyboard increments, min/max/step, labels, disabled state and touch dragging remain intact. The hit area is 44 pixels high. Controlled and uncontrolled values update the fill; light/dark variants use the same dimensions. Reduced motion disables transitions and expansion. Reduced transparency makes the thumb opaque, and forced colors restore the browser’s range appearance. Glass styling is confined to the thumb, with no added canvas, dependency or animation loop. Run `npm run qa:glass-sliders` for source coverage and representative route checks in Chromium desktop/mobile and mobile WebKit.

@@ -1,3 +1,4 @@
+import PortfolioSlider from '../PortfolioSlider'
 import { lazy, Suspense, useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useThemeMode } from '../../hooks/useThemeMode'
@@ -51,7 +52,7 @@ export default function PhysicalWorld({ project }: { project: WorldKey }) {
     </div>}
     <div className="physical-world-controls">
       {spec.controls.map((label, i) => <label key={label}><span>{label}<output>{label === 'Letter' ? String.fromCharCode(65 + values[i]) : label === 'Exhibit' ? ['Time trap', 'Spacetime fabric', 'Binary motion'][values[i]] : label === 'Study' ? ['Finished figure', 'Process study', 'Anatomy study'][values[i]] : label === 'Hour' ? `${(values[i] * 12 / 100).toFixed(1)} h` : `${Math.round(values[i])}${label === 'Stage rotation' ? '°' : '%'}`}</output></span>
-      {['Letter', 'Exhibit', 'Study'].includes(label) ? <select aria-label={label} value={values[i]} onChange={event => change(i, Number(event.target.value))}>{(label === 'Letter' ? 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('') : label === 'Exhibit' ? ['Time trap', 'Spacetime fabric', 'Binary motion'] : ['Finished figure', 'Process study', 'Anatomy study']).map((text, index) => <option key={text} value={index}>{text}</option>)}</select> : <input type="range" aria-label={label} min="0" max={label === 'Stage rotation' ? 360 : 100} value={values[i]} onChange={event => change(i, Number(event.target.value))} />}</label>)}
+      {['Letter', 'Exhibit', 'Study'].includes(label) ? <select aria-label={label} value={values[i]} onChange={event => change(i, Number(event.target.value))}>{(label === 'Letter' ? 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('') : label === 'Exhibit' ? ['Time trap', 'Spacetime fabric', 'Binary motion'] : ['Finished figure', 'Process study', 'Anatomy study']).map((text, index) => <option key={text} value={index}>{text}</option>)}</select> : <PortfolioSlider type="range" aria-label={label} min="0" max={label === 'Stage rotation' ? 360 : 100} value={values[i]} onChange={event => change(i, Number(event.target.value))} />}</label>)}
       {project === 'jugalbandi' && <div className="physical-world-sound"><label><input type="checkbox" checked={sound} onChange={event => setSound(event.target.checked)} /> Enable synthesized sound</label>{['Pluck', 'Blow', 'Tilt'].map((label, i) => <button key={label} onClick={() => play(i)}>{label}</button>)}</div>}
     </div>
     <footer><p>{spec.note}</p><Link to={`/${project}/world`}>Open the room</Link></footer>
