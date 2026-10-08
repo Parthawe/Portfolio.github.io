@@ -1,3 +1,4 @@
+import { digitalExperience, experienceHref, experienceLabel } from '../../data/projectExperiences'
 import { worlds } from '../physical-worlds/catalog'
 import ProjectRecord from './ProjectRecord'
 import { useProjectMediaPause } from '../../hooks/useProjectMediaPause'
@@ -336,7 +337,7 @@ export default function ProjectHeader({
               <div key={item.label}><dt>{sentenceCaseProjectLabel(item.label)}</dt><dd>{item.value}</dd></div>
             ))}
           </dl>
-          {(worlds[currentSlug] || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={currentSlug === 'shuffle' ? '/shuffle/simulation' : `/${currentSlug}/world`}>Explore this project in a room</Link></div>}
+          {(worlds[currentSlug] || digitalExperience(currentSlug) || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
           <ProjectRecord slug={currentSlug} />
         </section>
       </div>
@@ -432,7 +433,7 @@ export default function ProjectHeader({
       </section>
 
       {renderStoryAndSummary(4)}
-      {(worlds[currentSlug] || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={currentSlug === 'shuffle' ? '/shuffle/simulation' : `/${currentSlug}/world`}>Explore this project in a room</Link></div>}
+      {(worlds[currentSlug] || digitalExperience(currentSlug) || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
       <ProjectRecord slug={currentSlug} />
     </div>
   )

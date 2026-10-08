@@ -11,15 +11,17 @@ import { processDrawing, classifyDrawing, classifyStrokePath, prewarmTemplates, 
 interface Props {
   onRecognize: (letter: string, confidence: number) => void
   size?: number
+  appearance?: 'default' | 'world'
 }
 
-export default function DrawingPad({ onRecognize, size = 200 }: Props) {
+export default function DrawingPad({ onRecognize, size = 200, appearance = 'default' }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const drawing = useRef(false)
   const lastPos = useRef({ x: 0, y: 0 })
   const classifyTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const hasStrokes = useRef(false)
   const strokePoints = useRef<StrokePoint[]>([])
+  const [hasInk, setHasInk] = useState(false)
   const [lastLetter, setLastLetter] = useState('')
   const [lastConf, setLastConf] = useState(0)
 
@@ -65,12 +67,13 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
       setLastConf(confidence)
       onRecognize(letter, confidence)
     }
-  }, [onRecognize])
+  }, [onRecognize, size])
 
   const onPointerDown = useCallback((e: React.PointerEvent) => {
     e.preventDefault()
     drawing.current = true
     hasStrokes.current = true
+    setHasInk(true)
     const pos = getPos(e)
     lastPos.current = pos
     strokePoints.current = [pos]
@@ -103,9 +106,10 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
   }, [getPos])
 
   const onPointerUp = useCallback((e: React.PointerEvent) => {
+    if (!drawing.current) return
     drawing.current = false
     // Release pointer capture
-    canvasRef.current?.releasePointerCapture(e.pointerId)
+    if (canvasRef.current?.hasPointerCapture(e.pointerId)) canvasRef.current.releasePointerCapture(e.pointerId)
     // Classify after brief pause (user might still be drawing multi-stroke letters)
     clearTimeout(classifyTimer.current)
     classifyTimer.current = setTimeout(classify, 600)
@@ -119,6 +123,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     ctx.clearRect(0, 0, size, size)
     hasStrokes.current = false
+    setHasInk(false)
     strokePoints.current = []
     setLastLetter('')
     setLastConf(0)
@@ -145,6 +150,7 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
       }}>
         <canvas
           ref={canvasRef}
+          aria-label="Draw a capital letter"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -157,12 +163,12 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
         />
 
         {/* Placeholder text */}
-        {!hasStrokes.current && !lastLetter && (
+        {!hasInk && !lastLetter && (
           <div style={{
             position: 'absolute', inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             pointerEvents: 'none',
-            color: 'rgba(255,255,255,0.12)',
+            color: appearance === 'world' ? '#b8bbb8' : 'rgba(255,255,255,0.12)',
             fontFamily: 'var(--mono)', fontSize: '16px',
             letterSpacing: '0.08em', textTransform: 'uppercase',
           }}>
@@ -190,9 +196,9 @@ export default function DrawingPad({ onRecognize, size = 200 }: Props) {
         aria-label="Clear drawing pad"
         style={{
           padding: '4px 12px', borderRadius: 'var(--radius-pill)',
-          border: '1px solid rgba(255,255,255,0.08)',
+          border: appearance === 'world' ? '1px solid var(--world-rule)' : '1px solid rgba(255,255,255,0.08)',
           background: 'rgba(255,255,255,0.03)',
-          color: 'rgba(255,255,255,0.3)',
+          color: appearance === 'world' ? 'var(--world-ink)' : 'rgba(255,255,255,0.3)',
           fontFamily: 'var(--mono)', fontSize: '16px',
           letterSpacing: '0.08em', textTransform: 'uppercase',
           cursor: 'pointer',

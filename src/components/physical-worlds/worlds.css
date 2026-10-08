@@ -42,3 +42,16 @@
 .physical-world button:disabled { opacity: .45; cursor: default; }
 .physical-world-loading { flex-wrap: wrap; align-content: center; gap: .4rem; }
 .physical-world-loading a { color: var(--world-ink); }
+
+.enigma-letter-input { padding: 1rem 1.25rem; border-top: 1px solid var(--world-rule); }
+.enigma-input-row > label { display: flex; align-items: center; gap: 1rem; font-size: .85rem; }
+.enigma-letter-input input { width: 4rem; padding: .5rem; border: 1px solid var(--world-rule); border-radius: 4px; background: var(--world-bg); color: var(--world-ink); font: inherit; font-size: 1.3rem; text-align: center; }
+.enigma-letter-input > [role="group"] { display: grid; grid-template-columns: repeat(13, minmax(0,1fr)); gap: .2rem; margin-top: .75rem; }
+.enigma-letter-input button { min-height: 44px; padding: .4rem .2rem; border-color: var(--world-rule); }
+.enigma-letter-input p { margin: .75rem 0 0; color: var(--world-muted); font-size: .75rem; }
+@media (max-width: 680px) { .enigma-letter-input > [role="group"] { grid-template-columns: repeat(6,minmax(0,1fr)); } }
+
+.enigma-input-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.enigma-input-row > label { flex-wrap: wrap; }
+
+@media (max-width: 380px) { .enigma-letter-input > [role="group"] { grid-template-columns: repeat(5,minmax(0,1fr)); } }

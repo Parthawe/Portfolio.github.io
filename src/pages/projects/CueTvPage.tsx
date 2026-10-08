@@ -106,6 +106,7 @@ export default function CueTvPage() {
         />
 
         <CsExpandPreview
+          sectionIds={['case-study-access-cuetv']}
           cta="Open the catalogue system"
           note="Visual system, process moves, audience logic, funnel stages, and growth architecture."
         >

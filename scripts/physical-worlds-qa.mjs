@@ -4,6 +4,8 @@ import { chromium, expect } from '@playwright/test'
 
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:5197'
 const slugs = [...readFileSync(new URL('../src/data/projectRoutes.ts', import.meta.url), 'utf8').matchAll(/slug: '([^']+)'/g)].map(match => match[1])
+const digital = new Map([...readFileSync(new URL('../src/data/projectExperiences.ts', import.meta.url), 'utf8').matchAll(/slug: '([^']+)', mode: '([^']+)'[^\n]*?(?:href: '([^']+)')?[^\n]*$/gm)].map(match => { const href = match[0].match(/href: '([^']+)'/); return [match[1], href?.[1] || `/${match[1]}/prototype`] }))
+const physical = slugs.filter(slug => !digital.has(slug))
 const out = process.env.QA_OUTPUT_DIR || '/tmp/portfolio-physical-worlds-qa'
 mkdirSync(out, { recursive: true })
 const browser = await chromium.launch({ headless: true })
@@ -16,11 +18,11 @@ try {
     page.setDefaultNavigationTimeout(30000)
     page.on('pageerror', error => errors.push({ profile: profile.name, url: page.url(), error: error.message }))
     await page.addInitScript(theme => { localStorage.setItem('theme', theme) }, profile.theme)
-    for (const slug of slugs) {
+    for (const slug of physical) {
       try {
         const route = slug === 'shuffle' ? '/shuffle/simulation' : `/${slug}/world`
         await page.goto(`${base}${route}`, { waitUntil: 'domcontentloaded' })
-        await page.locator('canvas').waitFor()
+        await page.locator(slug === 'shuffle' ? '.shuffle-stage canvas' : '.physical-world-stage canvas').waitFor()
         await page.waitForTimeout(200)
         await expect(page.locator(slug === 'shuffle' ? '[data-shuffle-theme]' : '[data-world-theme]')).toHaveAttribute(slug === 'shuffle' ? 'data-shuffle-theme' : 'data-world-theme', profile.theme)
         assert.equal(await page.getByText('3D is unavailable.', { exact: false }).count(), 0, 'scene should render')
@@ -46,17 +48,17 @@ try {
         assert.equal(await page.locator('.app-error').count(), 0, 'case study renders')
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'case study has no horizontal overflow')
         const href = await page.locator('.project-room-link a').first().getAttribute('href')
-        assert.equal(href, slug === 'shuffle' ? '/shuffle/simulation' : `/${slug}/world`, 'case links to its own room')
+        assert.equal(href, digital.get(slug) || (slug === 'shuffle' ? '/shuffle/simulation' : `/${slug}/world`), 'case links to its own experience')
         results.push({ profile: profile.name, slug, caseStudy: 'pass' })
       } catch (error) { results.push({ profile: profile.name, slug, caseStudy: 'fail', error: error.message }) }
     }
     await page.goto(`${base}/physical-worlds`, { waitUntil: 'domcontentloaded' })
     await page.locator('.physical-world-index a').first().waitFor()
-    assert.equal(await page.locator('.physical-world-index a').count(), slugs.length, 'every public project has a room entry')
+    assert.equal(await page.locator('.physical-world-index a').count(), slugs.length, 'every public project has an experience entry')
     await page.goto(`${base}/work`, { waitUntil: 'domcontentloaded' })
-    await page.getByRole('link', { name: 'Explore the project rooms' }).waitFor()
+    await page.getByRole('link', { name: 'Explore project experiences' }).waitFor()
     await context.close()
-    console.log(`${profile.name}: checked ${slugs.length} rooms and ${slugs.length} case studies`)
+    console.log(`${profile.name}: checked ${physical.length} rooms and ${slugs.length} case studies`)
   }
   const recovery = await browser.newPage()
   await recovery.addInitScript(() => {
@@ -67,13 +69,13 @@ try {
       return original.call(this, type, ...args)
     }
   })
-  await recovery.goto(`${base}/mentra/world`, { waitUntil: 'domcontentloaded' })
+  await recovery.goto(`${base}/enigma/world`, { waitUntil: 'domcontentloaded' })
   await recovery.getByRole('link', { name: 'View the project photographs' }).waitFor()
   assert(await recovery.getByRole('button', { name: 'Object', exact: true }).isDisabled(), 'failed scene disables camera controls')
   assert.equal(await recovery.locator('.physical-world-hint').count(), 0, 'failed scene hides drag instructions')
   await recovery.evaluate(() => { window.__denyRoomWebGL = false })
   await recovery.getByRole('button', { name: 'Reset', exact: true }).click()
-  await recovery.locator('canvas').waitFor()
+  await recovery.locator('.physical-world-stage canvas').waitFor()
   assert.equal(await recovery.getByText('3D is unavailable.', { exact: false }).count(), 0, 'reset retries rendering')
   await recovery.close()
   results.push({ rendererRecovery: 'pass' })

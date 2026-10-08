@@ -106,6 +106,22 @@ export function applyPerformanceModeClass() {
   else clearPerformanceMode()
 }
 
+let sceneStartupUntil = 0
+let sceneStartupEndedAt = 0
+
+/** Exclude bounded, one-time asset decoding and shader compilation from
+ * sustained runtime pressure. The existing device and emergency guards apply. */
+export function beginSceneStartup(maxDurationMs = 15_000) {
+  const until = performance.now() + maxDurationMs
+  sceneStartupUntil = until
+  return (settleMs = 0) => {
+    if (sceneStartupUntil !== until) return
+    const now = performance.now()
+    sceneStartupUntil = settleMs ? Math.min(until, now + settleMs) : 0
+    sceneStartupEndedAt = settleMs ? sceneStartupUntil : now
+  }
+}
+
 export function startRuntimePerformanceMonitor() {
   if (typeof window === 'undefined' || isPerformanceDegraded()) return () => undefined
 
@@ -127,6 +143,7 @@ export function startRuntimePerformanceMonitor() {
     PerformanceObserver.supportedEntryTypes?.includes('longtask')
     ? new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
+          if (performance.now() < sceneStartupUntil || entry.startTime < sceneStartupEndedAt) continue
           longTaskCount += 1
           longTaskBlockedMs += entry.duration
         }
@@ -153,7 +170,7 @@ export function startRuntimePerformanceMonitor() {
   const sample = (now: number) => {
     if (stopped) return
 
-    if (document.visibilityState !== 'visible') {
+    if (document.visibilityState !== 'visible' || now < sceneStartupUntil) {
       previousFrame = now
       resetWindow(now)
       frameId = requestAnimationFrame(sample)

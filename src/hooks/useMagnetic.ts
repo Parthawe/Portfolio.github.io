@@ -13,17 +13,10 @@ export function useMagnetic(enabled = true) {
     const elements = new Set<HTMLElement>();
     let rafId: number;
 
-    const scan = () => {
-      // Remove stale elements no longer in the DOM
-      elements.forEach((el) => {
-        if (!el.isConnected) elements.delete(el);
-      });
-      document.querySelectorAll<HTMLElement>('.magnetic').forEach((el) => {
-        if (!elements.has(el)) {
-          elements.add(el);
-          el.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        }
-      });
+    const register = (el: HTMLElement) => {
+      if (elements.has(el)) return;
+      elements.add(el);
+      el.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
     };
 
     // Quick bounding-box test before expensive per-element rects
@@ -34,12 +27,15 @@ export function useMagnetic(enabled = true) {
       rafId = requestAnimationFrame(() => {
         const mx = e.clientX;
         const my = e.clientY;
+        const bounds: [HTMLElement, DOMRect][] = [];
         elements.forEach((el) => {
           if (!el.isConnected) {
             elements.delete(el);
             return;
           }
-          const rect = el.getBoundingClientRect();
+          bounds.push([el, el.getBoundingClientRect()]);
+        });
+        bounds.forEach(([el, rect]) => {
           // Skip elements clearly out of range (cheap check before sqrt)
           if (
             mx < rect.left - QUICK_MARGIN || mx > rect.right + QUICK_MARGIN ||
@@ -64,8 +60,19 @@ export function useMagnetic(enabled = true) {
       });
     };
 
-    scan();
-    const mo = new MutationObserver(scan);
+    document.querySelectorAll<HTMLElement>('.magnetic').forEach(register);
+    const mo = new MutationObserver(records => {
+      let removedElements = false;
+      for (const record of records) {
+        record.addedNodes.forEach(node => {
+          if (!(node instanceof HTMLElement)) return;
+          if (node.matches('.magnetic')) register(node);
+          node.querySelectorAll<HTMLElement>('.magnetic').forEach(register);
+        });
+        if ([...record.removedNodes].some(node => node instanceof HTMLElement)) removedElements = true;
+      }
+      if (removedElements) elements.forEach(el => { if (!el.isConnected) elements.delete(el); });
+    });
     mo.observe(document.body, { childList: true, subtree: true });
     document.addEventListener('mousemove', onMouseMove, { passive: true });
 
