@@ -21,7 +21,8 @@
     "qa:hero-efficiency": "node scripts/morphing-pixels-qa.mjs && node scripts/magnetic-efficiency-qa.mjs && node scripts/shader-preparation-qa.mjs",
     "qa:on-demand": "node scripts/on-demand-features-qa.mjs",
     "perf:cost": "node scripts/performance-cost-report.mjs",
-    "qa:revolving-stage": "node scripts/revolving-stage-model-qa.mjs && node scripts/revolving-stage-world-qa.mjs"
+    "qa:revolving-stage": "node scripts/revolving-stage-model-qa.mjs && node scripts/revolving-stage-world-qa.mjs",
+    "qa:moniac": "node scripts/moniac-model-qa.mjs && node scripts/moniac-world-qa.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.33",

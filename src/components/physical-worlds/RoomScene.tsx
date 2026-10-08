@@ -5,8 +5,9 @@ import { createSceneActivity } from '../../utils/sceneActivity'
 import { worlds, type WorldKey } from './catalog'
 import { buildJugalbandi } from './JugalbandiModel'
 import { buildRevolvingStage } from './RevolvingStageModel'
+import { buildMoniac } from './MoniacModel'
 
-type Props = { project: WorldKey; values: number[]; dark: boolean; reduced: boolean; cameraView: number; focus: number; revision: number; resetVersion: number; onChange: (index: number, value: number) => void; onFail: () => void }
+type Props = { project: WorldKey; values: number[]; dark: boolean; reduced: boolean; cameraView: number; focus: number; revision: number; resetVersion: number; onReset: () => void; onChange: (index: number, value: number) => void; onFail: () => void }
 type Update = (values: number[], time: number, delta: number) => void
 const V = (x: number, y: number, z: number) => new T.Vector3(x, y, z)
 
@@ -93,8 +94,6 @@ export default function RoomScene(props: Props) {
     for(let i=0;i<100;i++){woodContext.strokeStyle=`rgba(115,78,38,${.025+(i%7)*.009})`;woodContext.beginPath();for(let y=0;y<=512;y+=16){const x=i*2.6+Math.sin(y*.015+i)*1.5;y?woodContext.lineTo(x,y):woodContext.moveTo(x,y)}woodContext.stroke()}
     const woodTexture=new T.CanvasTexture(woodCanvas); woodTexture.colorSpace=T.SRGBColorSpace; textures.add(woodTexture)
     const plywood=mat('#f0dbc0');plywood.map=woodTexture
-    const screw=(p:T.Object3D,x:number,y:number,z:number)=>{const head=cylinder(.025,.009,silver,p,x,y,z);head.rotation.x=Math.PI/2;box(.025,.004,.003,black,p,x,y,z+.007)}
-    const cable=(points:T.Vector3[],color:string,p:T.Object3D=root,radius=.006)=>mesh(new T.TubeGeometry(new T.CatmullRomCurve3(points),24,radius,5,false),mat(color),p)
 
     if (props.project === 'enigma') {
       table(3.4,3.2)
@@ -153,53 +152,39 @@ export default function RoomScene(props: Props) {
       updates.push((values,time)=>{highest=Math.max(highest,values[0]);grains.count=Math.round(highest*9);cap.position.x=(values[0]/100-.5)*1.3;crank.rotation.y=values[0]/100*Math.PI*8
         for(let i=0;i<grains.count;i++){const angle=i*2.39996,radius=.22+Math.sqrt(i/900)*.8;dummy.position.set(Math.cos(angle)*radius,.845+Math.max(0,.18-radius*.15)+.015*Math.sin(i),-.25+Math.sin(angle)*radius);dummy.rotation.set(i,i*1.2,time*0);dummy.updateMatrix();grains.setMatrixAt(i,dummy.matrix)}grains.instanceMatrix.needsUpdate=true})
     }
-    if (props.project === 'moniac-machine') {
-      table(2.9,2.7)
-      const cabinet=new T.Group();cabinet.position.set(0,.80,0);root.add(cabinet)
-      box(1.82,.065,1.82,plywood,cabinet,0,.04,0)
-      // Triangular cheeks follow the photograph's tilted tablet and low valve deck.
-      const cheek=new T.Shape();cheek.moveTo(-.88,.08);cheek.lineTo(.55,.08);cheek.lineTo(-.50,1.82);cheek.lineTo(-.88,1.82);cheek.closePath()
-      for(const x of [-.89,.86]){const side=mesh(new T.ExtrudeGeometry(cheek,{depth:.035,bevelEnabled:true,bevelSegments:1,bevelSize:.002,bevelThickness:.002}),plywood,cabinet,x,0,0);side.rotation.y=-Math.PI/2}
-      const displayGroup=new T.Group();displayGroup.position.set(0,1.12,-.46);displayGroup.rotation.x=-.24;cabinet.add(displayGroup)
-      box(1.82,1.73,.065,plywood,displayGroup)
-      box(1.25,1.47,.046,black,displayGroup,0,.015,.058)
-      const screenCanvas=document.createElement('canvas');screenCanvas.width=600;screenCanvas.height=800
+    const moniac=props.project==='moniac-machine'?buildMoniac({root,plywood,black,silver,white,mat,mesh,box,cylinder,rod,pick}):null
+    if(moniac){
+      controls.minDistance=2
+      pick(moniac.reset,-1)
+      const screenCanvas=document.createElement('canvas');screenCanvas.width=768;screenCanvas.height=1024
       const texture=new T.CanvasTexture(screenCanvas);texture.colorSpace=T.SRGBColorSpace;textures.add(texture)
       const screenMaterial=new T.MeshBasicMaterial({map:texture});materials.add(screenMaterial)
-      mesh(new T.PlaneGeometry(1.16,1.36),screenMaterial,displayGroup,0,.015,.083)
-      for(const x of [-.79,.79])for(const y of [-.69,.69])screw(displayGroup,x,y,.04)
-      // Clear cover exposes the PVC elbows, shafts and wiring underneath.
-      const glass=new T.MeshStandardMaterial({color:'#d7e0da',transparent:true,opacity:.16,roughness:.16,depthWrite:false});materials.add(glass)
-      box(1.46,.018,1.18,glass,cabinet,0,.22,.25)
-      for(const x of [-.80,.80])box(.14,.19,1.36,plywood,cabinet,x,.16,.24)
-      box(1.82,.17,.14,plywood,cabinet,0,.13,.87)
-      const valves:T.Group[]=[],names=['TAX','SPEND','RATE','INVEST','CONSUME','IMPORT','EXPORT']
-      for(let i=0;i<7;i++){
-        const x=i<3?-.50+i*.5:i<5?-.30+(i-3)*.60:-.30+(i-5)*.60,z=i<3?-.17:i<5?.22:.62
-        cylinder(.067,.14,white,cabinet,x,.12,z);const elbow=cylinder(.066,.18,white,cabinet,x,.10,z+.08);elbow.rotation.x=Math.PI/2
-        cylinder(.024,.16,silver,cabinet,x,.24,z)
-        const valve=new T.Group();valve.position.set(x,.34,z);cabinet.add(valve);pick(valve,i)
-        const wheel=mesh(new T.TorusGeometry(.12,.021,8,32),white,valve);wheel.rotation.x=-Math.PI/2;pick(wheel,i)
-        cylinder(.041,.035,white,valve)
-        for(let spoke=0;spoke<6;spoke++){const a=spoke*Math.PI/3;rod(V(0,0,0),V(Math.cos(a)*.12,0,Math.sin(a)*.12),.012,white,valve);sphere(.028,white,valve,Math.cos(a)*.12,0,Math.sin(a)*.12)}
-        const tag=label(names[i],.30,.07,cabinet,x,.235,z+.16,'#35362f','#d8c29d');tag.rotation.x=-Math.PI/2
-        cable([V(x,.07,z),V(x+.12,.09,z+.12),V(.62,.07,-.45)],i%2?'#963e2c':'#303934',cabinet,.005)
-        valves.push(valve)
-      }
-      const start=box(.15,.025,.15,white,cabinet,-.63,.25,.65);cylinder(.045,.018,white,cabinet,-.63,.275,.65);start.userData.decorative=true
-      cable([V(0,.40,-.29),V(0,.30,-.20),V(.05,.09,-.43)],'#282a27',cabinet,.012)
+      mesh(new T.PlaneGeometry(1.24,1.50),screenMaterial,moniac.display,0,.015,.086)
       let previous=''
       updates.push(values=>{
-        valves.forEach((valve,i)=>valve.rotation.y=values[i]/100*Math.PI*2)
+        moniac.update(values)
         const signature=values.join(',');if(signature===previous)return;previous=signature
-        const ctx=screenCanvas.getContext('2d')!;ctx.fillStyle='#10191e';ctx.fillRect(0,0,600,800)
-        ctx.fillStyle='#eceade';ctx.font='28px Arial';ctx.fillText('MONIAC',35,48);ctx.font='18px Arial';ctx.fillText('POLICY FLOW · STUDY',35,78)
-        ctx.strokeStyle='#39a6d0';ctx.lineWidth=14;ctx.beginPath();ctx.moveTo(80,680);ctx.lineTo(45,680);ctx.lineTo(45,115);ctx.lineTo(295,115);ctx.lineTo(295,690);ctx.stroke()
-        for(let i=0;i<7;i++){const right=i>=4,x=right?355:115,y=150+(right?i-4:i)*130,w=160,h=80
-          ctx.fillStyle='#203641';ctx.fillRect(x,y,w,h);ctx.fillStyle='#368db0';ctx.fillRect(x,y+h*(1-values[i]/100),w,h*values[i]/100)
-          ctx.strokeStyle='#91b9c8';ctx.lineWidth=1;ctx.strokeRect(x,y,w,h);ctx.fillStyle='#f2efe5';ctx.font='17px Arial';ctx.fillText(names[i],x,y-9);ctx.font='24px Arial';ctx.fillText(`${values[i]}%`,x+12,y+49)
-          ctx.strokeStyle='#39a6d0';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(right?295:x+w,y+40);ctx.lineTo(right?x:295,y+40);ctx.stroke()
+        const ctx=screenCanvas.getContext('2d')!
+        ctx.fillStyle='#11151a';ctx.fillRect(0,0,768,1024)
+        ctx.fillStyle='#e6e8e7';ctx.font='30px Arial';ctx.fillText('MONIAC',42,52);ctx.font='18px Arial';ctx.fillText('POLICY STUDY',42,80)
+        // Isometric tanks and the blue outer return channel follow the tablet artwork.
+        ctx.strokeStyle='#174866';ctx.lineWidth=28;ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(150,895);ctx.lineTo(78,820);ctx.lineTo(78,170);ctx.lineTo(236,97);ctx.lineTo(400,172);ctx.lineTo(400,868);ctx.lineTo(276,951);ctx.lineTo(150,895);ctx.stroke()
+        ctx.strokeStyle='#46b1d5';ctx.lineWidth=17;ctx.stroke()
+        const names=['TAX','SPENDING','INTEREST','INVESTMENT','CONSUMPTION','IMPORTS','EXPORTS']
+        const tank=(index:number,x:number,y:number,w:number,h:number)=>{
+          const dx=26,dy=-19,level=h*values[index]/100
+          ctx.fillStyle='#29313a';ctx.strokeStyle='#828e98';ctx.lineWidth=1.5
+          ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+dx,y+dy);ctx.lineTo(x+w+dx,y+dy);ctx.lineTo(x+w,y);ctx.closePath();ctx.fill();ctx.stroke()
+          ctx.fillStyle='#202b35';ctx.beginPath();ctx.moveTo(x+w,y);ctx.lineTo(x+w+dx,y+dy);ctx.lineTo(x+w+dx,y+h+dy);ctx.lineTo(x+w,y+h);ctx.closePath();ctx.fill();ctx.stroke()
+          ctx.fillStyle='#242c35';ctx.fillRect(x,y,w,h);ctx.strokeRect(x,y,w,h)
+          ctx.fillStyle='#239bc7';ctx.fillRect(x,y+h-level,w,level)
+          ctx.fillStyle='#45bce3';ctx.beginPath();ctx.moveTo(x,y+h-level);ctx.lineTo(x+dx,y+h-level+dy);ctx.lineTo(x+w+dx,y+h-level+dy);ctx.lineTo(x+w,y+h-level);ctx.closePath();ctx.fill()
+          ctx.strokeStyle='#9ea9b1';ctx.strokeRect(x,y,w,h)
+          ctx.fillStyle='#ecf0ee';ctx.font='22px Arial';ctx.fillText(names[index],x-5,y-36);ctx.font='28px Arial';ctx.fillText(`${Math.round(values[index])}%`,x+12,y+h-22)
+          ctx.strokeStyle='#45b0d3';ctx.lineWidth=10;ctx.beginPath();ctx.moveTo(index<2?x+w:400,y+h-10);ctx.lineTo(index<2?400:x,y+h-10);ctx.stroke()
         }
+        tank(0,173,231,117,177);tank(1,173,495,117,167);tank(4,497,243,150,163);tank(3,462,511,160,91);tank(5,493,696,130,96);tank(6,450,852,160,85)
+        ctx.fillStyle='#dadfdc';ctx.font='20px Arial';ctx.fillText(`INTEREST ${Math.round(values[2])}%`,445,72)
         texture.needsUpdate=true
       })
     }
@@ -317,6 +302,18 @@ export default function RoomScene(props: Props) {
       if(state.revision!==lastRevision){
         lastRevision=state.revision;cameraMoving=true
         target.set(0,1.1,0);destination.copy(cameras[state.cameraView])
+        if(moniac&&state.cameraView!==2){
+          target.set(0,1.05,0)
+          const direction=(state.cameraView===1?V(.06,.48,1):V(.43,.38,1)).normalize()
+          const vertical=T.MathUtils.degToRad(camera.fov/2),horizontal=Math.atan(Math.tan(vertical)*camera.aspect)
+          const right=V(0,1,0).cross(direction).normalize(),up=direction.clone().cross(right).normalize()
+          let distance=1
+          for(const x of[-1,1])for(const y of[0,2.25])for(const z of[-1,1]){
+            const point=V(x,y,z).sub(target),depth=point.dot(direction)
+            distance=Math.max(distance,Math.abs(point.dot(right))/Math.tan(horizontal)+depth,Math.abs(point.dot(up))/Math.tan(vertical)+depth)
+          }
+          destination.copy(target).add(direction.multiplyScalar(1.13*distance))
+        }
         if(revolvingStage){
           const mechanism=state.values[1]>15
           target.set(0,mechanism?.55:1.55,0)
@@ -354,12 +351,12 @@ export default function RoomScene(props: Props) {
     activity=createSceneActivity(host,render,{idleMs:2200,introMs:2200,fps:24,interactionFps:60});wake.current=()=>activity?.wake()
     controls.addEventListener('change',()=>activity?.wake())
     controls.addEventListener('start',()=>{cameraMoving=false})
-    const resize=()=>{const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;camera.fov=w<600?50:40;camera.updateProjectionMatrix();renderer.setSize(w,h);if(jugalbandi||revolvingStage)lastRevision=-1;activity?.wake()}
+    const resize=()=>{const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;camera.fov=w<600?50:40;camera.updateProjectionMatrix();renderer.setSize(w,h);if(jugalbandi||revolvingStage||moniac)lastRevision=-1;activity?.wake()}
     const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(host);resize()
     const ray=new T.Raycaster(),pointer=new T.Vector2();let drag:{index:number;startX:number;startValue:number;pointerId:number;crank?:boolean;angle?:number;turn?:number}|null=null
     const crankPlane=new T.Plane(V(0,1,0),-1.33),crankPoint=new T.Vector3()
     const crankAngle=(event:PointerEvent)=>{const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);return ray.ray.intersectPlane(crankPlane,crankPoint)?Math.atan2(crankPoint.z+.25,crankPoint.x):null}
-    const down=(event:PointerEvent)=>{if(event.button!==0||drag)return;const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(pickables,true).find(hit=>{let object:T.Object3D|null=hit.object;while(object){if(!object.visible)return false;object=object.parent}return true});if(!hit)return;let picked:T.Object3D=hit.object;while(picked.userData.control===undefined&&picked.parent)picked=picked.parent;const index=picked.userData.control as number,value=picked.userData.value as number|undefined;if(value!==undefined){latest.current.onChange(index,value);event.stopImmediatePropagation();return}const crank=hit.object.userData.dragKind==='crank';drag={index,startX:event.clientX,startValue:latest.current.values[index],pointerId:event.pointerId,crank,angle:crank?(crankAngle(event)??0):undefined,turn:0};controls.enabled=false;renderer.domElement.setPointerCapture(event.pointerId);event.stopImmediatePropagation()}
+    const down=(event:PointerEvent)=>{if(event.button!==0||drag)return;const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(pickables,true).find(hit=>{let object:T.Object3D|null=hit.object;while(object){if(!object.visible)return false;object=object.parent}return true});if(!hit)return;if(hit.object.userData.reset){latest.current.onReset();event.stopImmediatePropagation();return}let picked:T.Object3D=hit.object;while(picked.userData.control===undefined&&picked.parent)picked=picked.parent;const index=picked.userData.control as number,value=picked.userData.value as number|undefined;if(value!==undefined){latest.current.onChange(index,value);event.stopImmediatePropagation();return}const crank=hit.object.userData.dragKind==='crank';drag={index,startX:event.clientX,startValue:latest.current.values[index],pointerId:event.pointerId,crank,angle:crank?(crankAngle(event)??0):undefined,turn:0};controls.enabled=false;renderer.domElement.setPointerCapture(event.pointerId);event.stopImmediatePropagation()}
     const move=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;if(drag.crank){const angle=crankAngle(event);if(angle===null)return;let delta=angle-drag.angle!;if(delta>Math.PI)delta-=Math.PI*2;if(delta<-Math.PI)delta+=Math.PI*2;drag.angle=angle;drag.turn!-=delta;latest.current.onChange(drag.index,Math.max(0,Math.min(100,drag.startValue+drag.turn!/(Math.PI*8)*100)));return}const max=props.project==='revolving-stage'&&drag.index===0?360:100;latest.current.onChange(drag.index,Math.max(0,Math.min(max,drag.startValue+(event.clientX-drag.startX)/host.clientWidth*max*2)))}
     const up=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;drag=null;controls.enabled=true;if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId)}
     renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',up);renderer.domElement.addEventListener('lostpointercapture',up)

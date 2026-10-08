@@ -81,7 +81,7 @@ try {
           await drag(page, context, points, profile.touch)
           assert(Number(await page.getByRole('slider', { name: 'Story progress' }).inputValue()) > 15, 'turning the mill changes progress')
         } else {
-          const start = point(-.5, 1.14, -.17)
+          const start = point(-.5, .44, -.04)
           await drag(page, context, [start, { x: start.x + 80, y: start.y }], profile.touch)
           assert(Number(await page.getByRole('slider', { name: 'Tax', exact: true }).inputValue()) > 30, 'turning a valve changes its value')
         }
