@@ -1,12 +1,6 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
-import { processDrawing, classifyDrawing, classifyStrokePath, prewarmTemplates, type StrokePoint } from '../utils/letterRecognizer'
-
-/* ═══════════════════════════════════════════════════════════
-   DrawingPad — canvas where users draw letters.
-
-   Mirrors the Enigma installation's tablet input.
-   Smooth freehand drawing → auto-classify after brief pause.
-   ═══════════════════════════════════════════════════════════ */
+import { processDrawing, classifyDrawing, prewarmTemplates, type LetterMatch } from '../utils/letterRecognizer'
+import './drawing-pad.css'
 
 interface Props {
   onRecognize: (letter: string, confidence: number) => void
@@ -16,196 +10,128 @@ interface Props {
 
 export default function DrawingPad({ onRecognize, size = 200, appearance = 'default' }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const drawing = useRef(false)
-  const lastPos = useRef({ x: 0, y: 0 })
-  const classifyTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
-  const hasStrokes = useRef(false)
-  const strokePoints = useRef<StrokePoint[]>([])
+  const pointer = useRef<number | null>(null)
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const distance = useRef(0)
+  const lastPoint = useRef({ x: 0, y: 0 })
+  const callback = useRef(onRecognize)
+  callback.current = onRecognize
   const [hasInk, setHasInk] = useState(false)
-  const [lastLetter, setLastLetter] = useState('')
-  const [lastConf, setLastConf] = useState(0)
+  const [result, setResult] = useState('')
+  const [candidates, setCandidates] = useState<LetterMatch[]>([])
+  const [message, setMessage] = useState('Draw one capital letter. Clear before the next letter.')
 
-  // Pre-warm letter templates on mount (during idle time)
   useEffect(() => { prewarmTemplates() }, [])
-
-  // Init canvas
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const dpr = Math.min(window.devicePixelRatio, 2)
     canvas.width = size * dpr
     canvas.height = size * dpr
-    canvas.style.width = `${size}px`
-    canvas.style.height = `${size}px`
     const ctx = canvas.getContext('2d')!
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    ctx.lineCap = 'round'
-    ctx.lineJoin = 'round'
-    ctx.lineWidth = Math.max(6, size * 0.04)
+    ctx.lineCap = ctx.lineJoin = 'round'
+    ctx.lineWidth = Math.max(4, size * 0.025)
     ctx.strokeStyle = '#fff'
   }, [size])
 
-  const getPos = useCallback((e: React.PointerEvent) => {
-    const rect = canvasRef.current!.getBoundingClientRect()
-    return { x: e.clientX - rect.left, y: e.clientY - rect.top }
+  const choose = useCallback((letter: string) => {
+    clearTimeout(timer.current)
+    setResult(letter)
+    setMessage(`Selected ${letter}. Clear before drawing another letter.`)
+    callback.current(letter, 1)
   }, [])
 
-  const classify = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas || !hasStrokes.current) return
-    const grid = processDrawing(canvas)
-
-    // Check if there's actually ink
-    let sum = 0
-    for (let i = 0; i < grid.length; i++) sum += grid[i]
-    if (sum < 0.01) return
-
-    const strokeMatch = classifyStrokePath(strokePoints.current, size)
-    const { letter, confidence } = strokeMatch || classifyDrawing(grid)
-    if (letter && confidence > 0.2) {
-      setLastLetter(letter)
-      setLastConf(confidence)
-      onRecognize(letter, confidence)
+  const recognize = useCallback(() => {
+    clearTimeout(timer.current)
+    if (pointer.current !== null || !canvasRef.current) return
+    if (distance.current < size * 0.2) {
+      setMessage('Add more strokes to form a capital letter.')
+      return
     }
-  }, [onRecognize, size])
-
-  const onPointerDown = useCallback((e: React.PointerEvent) => {
-    e.preventDefault()
-    drawing.current = true
-    hasStrokes.current = true
-    setHasInk(true)
-    const pos = getPos(e)
-    lastPos.current = pos
-    strokePoints.current = [pos]
-
-    const ctx = canvasRef.current?.getContext('2d')
-    if (ctx) {
-      ctx.beginPath()
-      ctx.moveTo(pos.x, pos.y)
+    const match = classifyDrawing(processDrawing(canvasRef.current))
+    setCandidates(match.candidates)
+    if (match.letter && match.confidence > 0.2) {
+      setResult(match.letter)
+      setMessage(`Read as ${match.letter}. Choose another match if needed.`)
+      callback.current(match.letter, match.confidence)
+    } else {
+      setResult('')
+      setMessage('Uncertain. Choose a match below or add more strokes.')
     }
-
-    // Cancel pending classify — user is still drawing
-    clearTimeout(classifyTimer.current)
-
-    // Capture pointer for drag outside canvas
-    canvasRef.current?.setPointerCapture(e.pointerId)
-  }, [getPos])
-
-  const onPointerMove = useCallback((e: React.PointerEvent) => {
-    if (!drawing.current) return
-    const pos = getPos(e)
-    strokePoints.current.push(pos)
-    const ctx = canvasRef.current?.getContext('2d')
-    if (ctx) {
-      ctx.lineTo(pos.x, pos.y)
-      ctx.stroke()
-      ctx.beginPath()
-      ctx.moveTo(pos.x, pos.y)
-    }
-    lastPos.current = pos
-  }, [getPos])
-
-  const onPointerUp = useCallback((e: React.PointerEvent) => {
-    if (!drawing.current) return
-    drawing.current = false
-    // Release pointer capture
-    if (canvasRef.current?.hasPointerCapture(e.pointerId)) canvasRef.current.releasePointerCapture(e.pointerId)
-    // Classify after brief pause (user might still be drawing multi-stroke letters)
-    clearTimeout(classifyTimer.current)
-    classifyTimer.current = setTimeout(classify, 600)
-  }, [classify])
-
-  const clear = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const dpr = Math.min(window.devicePixelRatio, 2)
-    const ctx = canvas.getContext('2d')!
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    ctx.clearRect(0, 0, size, size)
-    hasStrokes.current = false
-    setHasInk(false)
-    strokePoints.current = []
-    setLastLetter('')
-    setLastConf(0)
-    clearTimeout(classifyTimer.current)
   }, [size])
 
-  // Cleanup
-  useEffect(() => {
-    return () => clearTimeout(classifyTimer.current)
-  }, [])
+  const position = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    return { x: (e.clientX - rect.left) * size / rect.width, y: (e.clientY - rect.top) * size / rect.height }
+  }
+  const drawPoint = (point: { x: number; y: number }) => {
+    const ctx = canvasRef.current!.getContext('2d')!
+    distance.current += Math.hypot(point.x - lastPoint.current.x, point.y - lastPoint.current.y)
+    ctx.lineTo(point.x, point.y)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(point.x, point.y)
+    lastPoint.current = point
+  }
+  const clear = () => {
+    clearTimeout(timer.current)
+    const canvas = canvasRef.current!
+    if (pointer.current !== null && canvas.hasPointerCapture(pointer.current)) canvas.releasePointerCapture(pointer.current)
+    pointer.current = null
+    canvas.getContext('2d')!.clearRect(0, 0, size, size)
+    distance.current = 0
+    setHasInk(false)
+    setResult('')
+    setCandidates([])
+    setMessage('Draw one capital letter. Clear before the next letter.')
+  }
+  useEffect(() => () => clearTimeout(timer.current), [])
 
-  return (
-    <div style={{
-      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px',
-    }}>
-      {/* Canvas */}
-      <div style={{
-        position: 'relative',
-        width: size, height: size,
-        borderRadius: 'var(--radius-md)',
-        overflow: 'hidden',
-        border: '1px solid rgba(100, 100, 180, 0.2)',
-        background: '#0a0a0f',
-      }}>
-        <canvas
-          ref={canvasRef}
-          aria-label="Draw a capital letter"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerLeave={onPointerUp}
-          style={{
-            display: 'block',
-            cursor: 'crosshair',
-            touchAction: 'none',
-          }}
-        />
-
-        {/* Placeholder text */}
-        {!hasInk && !lastLetter && (
-          <div style={{
-            position: 'absolute', inset: 0,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            pointerEvents: 'none',
-            color: appearance === 'world' ? '#b8bbb8' : 'rgba(255,255,255,0.12)',
-            fontFamily: 'var(--mono)', fontSize: '16px',
-            letterSpacing: '0.08em', textTransform: 'uppercase',
-          }}>
-            Draw a letter
-          </div>
-        )}
-
-        {/* Recognized letter overlay */}
-        {lastLetter && (
-          <div style={{
-            position: 'absolute', top: 6, right: 8,
-            fontFamily: 'var(--serif)', fontSize: '1.4rem', fontWeight: 300,
-            color: '#fff', opacity: 0.6 + lastConf * 0.4,
-            textShadow: `0 0 8px rgba(100, 200, 255, ${lastConf * 0.5})`,
-            lineHeight: 1, pointerEvents: 'none',
-          }}>
-            {lastLetter}
-          </div>
-        )}
-      </div>
-
-      {/* Clear button */}
-      <button
-        onClick={clear}
-        aria-label="Clear drawing pad"
-        style={{
-          padding: '4px 12px', borderRadius: 'var(--radius-pill)',
-          border: appearance === 'world' ? '1px solid var(--world-rule)' : '1px solid rgba(255,255,255,0.08)',
-          background: 'rgba(255,255,255,0.03)',
-          color: appearance === 'world' ? 'var(--world-ink)' : 'rgba(255,255,255,0.3)',
-          fontFamily: 'var(--mono)', fontSize: '16px',
-          letterSpacing: '0.08em', textTransform: 'uppercase',
-          cursor: 'pointer',
+  return <div className="drawing-pad" data-appearance={appearance} style={{ width: size, maxWidth: '100%' }}>
+    <div className="drawing-pad-surface" style={{ aspectRatio: '1' }}>
+      <canvas ref={canvasRef} aria-label="Draw a capital letter"
+        onPointerDown={e => {
+          if (pointer.current !== null || e.button !== 0) return
+          e.preventDefault()
+          clearTimeout(timer.current)
+          pointer.current = e.pointerId
+          e.currentTarget.setPointerCapture(e.pointerId)
+          lastPoint.current = position(e)
+          const ctx = e.currentTarget.getContext('2d')!
+          ctx.beginPath()
+          ctx.moveTo(lastPoint.current.x, lastPoint.current.y)
+          setHasInk(true)
+          setResult('')
+          setCandidates([])
+          setMessage('Finish the letter, then pause or press Recognize.')
         }}
-      >
-        Clear
-      </button>
+        onPointerMove={e => { if (pointer.current === e.pointerId) { e.preventDefault(); drawPoint(position(e)) } }}
+        onPointerUp={e => {
+          if (pointer.current !== e.pointerId) return
+          drawPoint(position(e))
+          pointer.current = null
+          if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+          timer.current = setTimeout(recognize, 1000)
+        }}
+        onPointerCancel={e => {
+          if (pointer.current !== e.pointerId) return
+          pointer.current = null
+          clearTimeout(timer.current)
+          setMessage('Drawing interrupted. Continue or press Recognize.')
+        }}
+        onLostPointerCapture={e => { if (pointer.current === e.pointerId) { pointer.current = null; clearTimeout(timer.current) } }}
+      />
+      {!hasInk && <span className="drawing-pad-placeholder">Draw a letter</span>}
+      {result && <span className="drawing-pad-result">{result}</span>}
     </div>
-  )
+    <div className="drawing-pad-actions">
+      <button type="button" onClick={recognize} disabled={!hasInk}>Recognize</button>
+      <button type="button" onClick={clear} aria-label="Clear drawing pad">Clear</button>
+    </div>
+    <p className="drawing-pad-message" role="status">{message}</p>
+    {candidates.length > 0 && <div className="drawing-pad-matches" role="group" aria-label="Letter matches">
+      {candidates.map(({ letter }) => <button key={letter} type="button" aria-label={`Use ${letter}`} aria-pressed={result === letter} onClick={() => choose(letter)}>{letter}</button>)}
+    </div>}
+  </div>
 }

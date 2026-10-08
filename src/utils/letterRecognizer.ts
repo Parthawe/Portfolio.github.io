@@ -4,11 +4,11 @@
    Pipeline:
    1. User draws on a canvas
    2. Drawing is normalized to 28×28 grayscale grid
-   3. Compared against reference templates using cosine similarity
+   3. Compared against consistently normalized references using ink distance and overlap
    4. Templates are rendered from multiple fonts at startup
 
    No external ML model needed — pure canvas + math.
-   Accuracy is good for clearly drawn capitals (A–Z).
+   Uncertain matches require confirmation; reference matching is not a trained model.
    ═══════════════════════════════════════════════════════════ */
 
 const SIZE = 28
@@ -17,20 +17,7 @@ const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 type LetterTemplate = {
   letter: string
   data: Float32Array
-  weight: number
-}
-
-type InkFeatures = {
-  aspect: number
-  topRatio: number
-  midRatio: number
-  bottomRatio: number
-  leftRatio: number
-  centerRatio: number
-  rightRatio: number
-  leftStem: number
-  holes: number
-  bboxArea: number
+  distance: Float32Array
 }
 
 export type StrokePoint = {
@@ -71,11 +58,8 @@ function buildTemplates(): LetterTemplate[] {
       ctx.textBaseline = 'middle'
       ctx.fillText(letter, SIZE / 2, SIZE / 2 + 1)
 
-      const data = extractGrid(ctx)
-      // Templates stay sharp — blur only applied to user drawings for tolerance
-      normalize(data)
-
-      result.push({ letter, data, weight: 0.9 })
+      const data = processDrawing(canvas)
+      result.push({ letter, data, distance: distanceField(data) })
 
       ctx.clearRect(0, 0, SIZE, SIZE)
       ctx.strokeStyle = '#fff'
@@ -87,13 +71,12 @@ function buildTemplates(): LetterTemplate[] {
       ctx.textBaseline = 'middle'
       ctx.strokeText(letter, SIZE / 2, SIZE / 2 + 1)
 
-      const outline = blur3x3(extractGrid(ctx), SIZE)
-      normalize(outline)
-      result.push({ letter, data: outline, weight: 1.08 })
+      const outline = processDrawing(canvas)
+      result.push({ letter, data: outline, distance: distanceField(outline) })
     }
 
     for (const data of buildStrokeTemplates(letter)) {
-      result.push({ letter, data, weight: 1.22 })
+      result.push({ letter, data, distance: distanceField(data) })
     }
   }
 
@@ -113,7 +96,7 @@ function buildStrokeTemplates(letter: string): Float32Array[] {
     canvas.height = SIZE
     const ctx = canvas.getContext('2d')!
     ctx.strokeStyle = '#fff'
-    ctx.lineWidth = 3.1
+    ctx.lineWidth = 2.2
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
 
@@ -124,10 +107,28 @@ function buildStrokeTemplates(letter: string): Float32Array[] {
     drawStrokeLetter(ctx, letter)
     ctx.restore()
 
-    const data = blur3x3(extractGrid(ctx), SIZE)
-    normalize(data)
-    return data
-  })
+    return processDrawing(canvas)
+  }).concat(buildHandwrittenVariants(letter))
+}
+
+function buildHandwrittenVariants(letter: string): Float32Array[] {
+  if (!'JOS'.includes(letter)) return []
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = 100
+  const ctx = canvas.getContext('2d')!
+  ctx.strokeStyle = '#fff'
+  ctx.lineWidth = 5
+  ctx.lineCap = ctx.lineJoin = 'round'
+  ctx.beginPath()
+  if (letter === 'O') ctx.ellipse(50, 50, 35, 42, 0, 0, Math.PI * 2)
+  if (letter === 'J') { ctx.moveTo(75, 8); ctx.lineTo(75, 70); ctx.bezierCurveTo(75, 100, 35, 102, 22, 78) }
+  if (letter === 'S') {
+    ctx.moveTo(83, 18)
+    ctx.bezierCurveTo(35, -8, 4, 36, 47, 49)
+    ctx.bezierCurveTo(97, 62, 79, 110, 15, 82)
+  }
+  ctx.stroke()
+  return [processDrawing(canvas)]
 }
 
 function p(x: number, y: number) {
@@ -268,185 +269,6 @@ function cosineSim(a: Float32Array, b: Float32Array): number {
   return dot
 }
 
-function extractInkFeatures(grid: Float32Array): InkFeatures {
-  let max = 0
-  for (let i = 0; i < grid.length; i++) max = Math.max(max, grid[i])
-
-  const threshold = max * 0.28
-  const ink = new Uint8Array(grid.length)
-  let minX = SIZE, minY = SIZE, maxX = -1, maxY = -1, total = 0
-  const rows = new Float32Array(SIZE)
-  const cols = new Float32Array(SIZE)
-
-  for (let y = 0; y < SIZE; y++) {
-    for (let x = 0; x < SIZE; x++) {
-      const i = y * SIZE + x
-      const value = grid[i]
-      if (value > threshold) {
-        ink[i] = 1
-        minX = Math.min(minX, x)
-        maxX = Math.max(maxX, x)
-        minY = Math.min(minY, y)
-        maxY = Math.max(maxY, y)
-      }
-      rows[y] += value
-      cols[x] += value
-      total += value
-    }
-  }
-
-  if (!total || maxX < minX || maxY < minY) {
-    return {
-      aspect: 1,
-      topRatio: 0,
-      midRatio: 0,
-      bottomRatio: 0,
-      leftRatio: 0,
-      centerRatio: 0,
-      rightRatio: 0,
-      leftStem: 0,
-      holes: 0,
-      bboxArea: 0,
-    }
-  }
-
-  const bboxW = maxX - minX + 1
-  const bboxH = maxY - minY + 1
-  const topEnd = minY + Math.floor(bboxH * 0.33)
-  const midEnd = minY + Math.floor(bboxH * 0.66)
-  const leftEnd = minX + Math.floor(bboxW * 0.33)
-  const centerEnd = minX + Math.floor(bboxW * 0.66)
-
-  let top = 0, mid = 0, bottom = 0
-  for (let y = minY; y <= maxY; y++) {
-    if (y <= topEnd) top += rows[y]
-    else if (y <= midEnd) mid += rows[y]
-    else bottom += rows[y]
-  }
-
-  let left = 0, center = 0, right = 0
-  for (let x = minX; x <= maxX; x++) {
-    if (x <= leftEnd) left += cols[x]
-    else if (x <= centerEnd) center += cols[x]
-    else right += cols[x]
-  }
-
-  let stemRows = 0
-  let stemColumnCoverage = 0
-  const stemWidth = Math.max(2, Math.round(bboxW * 0.18))
-  for (let y = minY; y <= maxY; y++) {
-    let rowHit = false
-    for (let x = minX; x < Math.min(minX + stemWidth, SIZE); x++) {
-      if (ink[y * SIZE + x]) rowHit = true
-    }
-    if (rowHit) stemRows++
-  }
-
-  for (let x = minX; x < Math.min(minX + stemWidth, SIZE); x++) {
-    let columnHits = 0
-    for (let y = minY; y <= maxY; y++) {
-      if (ink[y * SIZE + x]) columnHits++
-    }
-    stemColumnCoverage = Math.max(stemColumnCoverage, columnHits / Math.max(1, bboxH))
-  }
-
-  const holes = countHoles(ink, minX, minY, maxX, maxY)
-
-  return {
-    aspect: bboxW / Math.max(1, bboxH),
-    topRatio: top / total,
-    midRatio: mid / total,
-    bottomRatio: bottom / total,
-    leftRatio: left / total,
-    centerRatio: center / total,
-    rightRatio: right / total,
-    leftStem: Math.max(stemColumnCoverage, stemRows / Math.max(1, bboxH) * 0.35),
-    holes,
-    bboxArea: (bboxW * bboxH) / (SIZE * SIZE),
-  }
-}
-
-function countHoles(ink: Uint8Array, minX: number, minY: number, maxX: number, maxY: number): number {
-  const visited = new Uint8Array(ink.length)
-  let holes = 0
-
-  for (let y = minY; y <= maxY; y++) {
-    for (let x = minX; x <= maxX; x++) {
-      const start = y * SIZE + x
-      if (ink[start] || visited[start]) continue
-
-      let touchesEdge = false
-      const stack = [start]
-      visited[start] = 1
-
-      while (stack.length) {
-        const current = stack.pop()!
-        const cy = Math.floor(current / SIZE)
-        const cx = current % SIZE
-        if (cx === minX || cx === maxX || cy === minY || cy === maxY) touchesEdge = true
-
-        const neighbors = [
-          current - SIZE,
-          current + SIZE,
-          current - 1,
-          current + 1,
-        ]
-
-        for (const next of neighbors) {
-          const ny = Math.floor(next / SIZE)
-          const nx = next % SIZE
-          if (nx < minX || nx > maxX || ny < minY || ny > maxY) continue
-          if (ink[next] || visited[next]) continue
-          visited[next] = 1
-          stack.push(next)
-        }
-      }
-
-      if (!touchesEdge) holes++
-    }
-  }
-
-  return holes
-}
-
-function shapeBonus(letter: string, features: InkFeatures): number {
-  const { aspect, topRatio, midRatio, bottomRatio, leftRatio, rightRatio, leftStem, holes } = features
-  let bonus = 0
-
-  if ('BDEFHIKLPR'.includes(letter) && leftStem > 0.48) bonus += 0.08
-  if ('OVDQRBP'.includes(letter) && holes > 0) bonus += 0.06
-  if ('WVMY'.includes(letter) && holes > 0) bonus -= 0.14
-  if ('WVMY'.includes(letter) && leftStem > 0.5) bonus -= 0.12
-
-  if (letter === 'B') {
-    if (holes === 0 && leftStem < 0.45) bonus -= 0.28
-    if (leftStem > 0.58) bonus += 0.12
-    if (holes > 0) bonus += 0.11
-    if (midRatio > 0.24) bonus += 0.04
-    if (rightRatio > 0.2 && topRatio > 0.18 && bottomRatio > 0.18) bonus += 0.06
-    if (bottomRatio > topRatio * 1.55) bonus -= 0.08
-  }
-
-  if (letter === 'W') {
-    if (holes === 0 && leftStem < 0.42 && aspect > 0.55 && bottomRatio > 0.28) bonus += 0.35
-    if (bottomRatio > topRatio * 1.25 && leftStem < 0.38 && holes === 0) bonus += 0.1
-    if (leftRatio > 0.44) bonus -= 0.06
-  }
-
-  if (letter === 'P' && leftStem > 0.58 && topRatio > bottomRatio * 1.25) bonus += 0.08
-  if (letter === 'R' && leftStem > 0.5 && bottomRatio > 0.24 && holes > 0) bonus += 0.06
-  if (letter === 'I' && aspect < 0.42) bonus += 0.08
-  if (letter === 'L' && leftStem > 0.55 && bottomRatio > topRatio * 1.2) bonus += 0.07
-  if (letter === 'T' && topRatio > 0.38) bonus += 0.07
-  if (letter === 'M' && topRatio > bottomRatio && aspect > 0.65) bonus += 0.05
-
-  if (letter === 'S' && holes > 0) bonus -= 0.1
-  if ('IJLT'.includes(letter) && holes > 0) bonus -= 0.1
-  if (letter === 'O' && holes > 0 && leftStem < 0.5) bonus += 0.07
-
-  return bonus
-}
-
 /**
  * Process a drawing canvas into a normalized 28×28 grid.
  * Crops to bounding box, centers, and scales.
@@ -480,7 +302,10 @@ export function processDrawing(sourceCanvas: HTMLCanvasElement): Float32Array {
   const cropW = maxX - minX + 1
   const cropH = maxY - minY + 1
   const maxDim = Math.max(cropW, cropH)
-  const scale = (SIZE - pad * 2) / maxDim
+  const scaleY = (SIZE - pad * 2) / cropH
+  // Keep a single narrow stem narrow (I), while allowing ordinary letters
+  // to be written taller or wider than the reference font.
+  const scaleX = cropW / cropH < 0.22 ? (SIZE - pad * 2) / maxDim : (SIZE - pad * 2) / cropW
 
   const destCanvas = document.createElement('canvas')
   destCanvas.width = SIZE
@@ -488,13 +313,13 @@ export function processDrawing(sourceCanvas: HTMLCanvasElement): Float32Array {
   const destCtx = destCanvas.getContext('2d')!
 
   // Center the drawing
-  const offX = pad + ((SIZE - pad * 2) - cropW * scale) / 2
-  const offY = pad + ((SIZE - pad * 2) - cropH * scale) / 2
+  const offX = pad + ((SIZE - pad * 2) - cropW * scaleX) / 2
+  const offY = pad + ((SIZE - pad * 2) - cropH * scaleY) / 2
 
   destCtx.drawImage(
     sourceCanvas,
     minX, minY, cropW, cropH,
-    offX, offY, cropW * scale, cropH * scale,
+    offX, offY, cropW * scaleX, cropH * scaleY,
   )
 
   const grid = extractGrid(destCtx)
@@ -523,131 +348,45 @@ export function prewarmTemplates(): void {
   }
 }
 
-function samplePath(points: StrokePoint[], count: number): StrokePoint[] {
-  if (points.length <= count) return points
+export type LetterMatch = { letter: string; score: number }
 
-  const distances = [0]
-  let total = 0
-  for (let i = 1; i < points.length; i++) {
-    total += Math.hypot(points[i].x - points[i - 1].x, points[i].y - points[i - 1].y)
-    distances.push(total)
-  }
-
-  if (total === 0) return [points[0]]
-
-  const sampled: StrokePoint[] = []
-  for (let i = 0; i < count; i++) {
-    const target = (total * i) / (count - 1)
-    let idx = 1
-    while (idx < distances.length && distances[idx] < target) idx++
-    const prev = Math.max(0, idx - 1)
-    const next = Math.min(points.length - 1, idx)
-    const span = distances[next] - distances[prev] || 1
-    const t = (target - distances[prev]) / span
-    sampled.push({
-      x: points[prev].x + (points[next].x - points[prev].x) * t,
-      y: points[prev].y + (points[next].y - points[prev].y) * t,
-    })
-  }
-
-  return sampled
+// Symmetric ink distance tolerates small shifts and differences in stroke width.
+function distanceField(grid: Float32Array): Float32Array {
+  const peak = Math.max(...grid)
+  const ink: number[] = []
+  grid.forEach((value, index) => { if (value > peak * 0.35) ink.push(index) })
+  return Float32Array.from(grid, (_, index) => {
+    let nearest = SIZE * SIZE
+    const x = index % SIZE, y = Math.floor(index / SIZE)
+    for (const point of ink) nearest = Math.min(nearest, (x - point % SIZE) ** 2 + (y - Math.floor(point / SIZE)) ** 2)
+    return nearest
+  })
 }
 
-/**
- * Geometry-first recognition for stroke letters that raster templates often
- * confuse. It only returns when the gesture is very clear; all other drawings
- * fall back to template matching.
- */
-export function classifyStrokePath(points: StrokePoint[], size: number): { letter: string; confidence: number } | null {
-  if (points.length < 4 || size <= 0) return null
-
-  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
-  for (const point of points) {
-    minX = Math.min(minX, point.x)
-    maxX = Math.max(maxX, point.x)
-    minY = Math.min(minY, point.y)
-    maxY = Math.max(maxY, point.y)
-  }
-
-  const width = maxX - minX
-  const height = maxY - minY
-  if (width < size * 0.18 || height < size * 0.18) return null
-
-  const normalized = points.map((point) => ({
-    x: (point.x - minX) / Math.max(1, width),
-    y: (point.y - minY) / Math.max(1, height),
-  }))
-
-  const sampled = samplePath(normalized, 9)
-  const first = sampled[0]
-  const last = sampled[sampled.length - 1]
-  const xTravel = last.x - first.x
-  let monotonicSteps = 0
-  for (let i = 1; i < sampled.length; i++) {
-    if (sampled[i].x >= sampled[i - 1].x - 0.08) monotonicSteps++
-  }
-
-  const mostlyLeftToRight = xTravel > 0.55 && monotonicSteps >= sampled.length - 2
-  const topStart = first.y < 0.28
-  const topEnd = last.y < 0.32
-  const bottomReach = Math.max(...sampled.map((point) => point.y))
-  const middleLift = Math.min(...sampled.slice(2, -2).map((point) => point.y))
-
-  if (
-    mostlyLeftToRight &&
-    topStart &&
-    topEnd &&
-    bottomReach > 0.78 &&
-    middleLift < 0.5 &&
-    width / height > 0.72
-  ) {
-    return { letter: 'W', confidence: 0.9 }
-  }
-
-  if (
-    mostlyLeftToRight &&
-    topStart &&
-    topEnd &&
-    bottomReach > 0.82 &&
-    width / height < 0.72
-  ) {
-    return { letter: 'V', confidence: 0.84 }
-  }
-
-  return null
+function inkSimilarity(ink: Float32Array, distance: Float32Array): number {
+  const peak = Math.max(...ink)
+  let total = 0, count = 0
+  ink.forEach((value, index) => {
+    if (value > peak * 0.35) { total += Math.exp(-distance[index] / 4); count++ }
+  })
+  return count ? total / count : 0
 }
 
-export function classifyDrawing(grid: Float32Array): { letter: string; confidence: number } {
+export function classifyDrawing(grid: Float32Array): { letter: string; confidence: number; candidates: LetterMatch[] } {
+  if (!grid.some(value => value > 0)) return { letter: '', confidence: 0, candidates: [] }
   if (!templates) templates = buildTemplates()
-
-  let bestLetter = ''
-  let bestScore = -1
-
-  // Score each letter (max across all font variants)
+  const distance = distanceField(grid)
   const letterScores = new Map<string, number>()
-
-  for (const tmpl of templates) {
-    const sim = cosineSim(grid, tmpl.data) * tmpl.weight
-    const prev = letterScores.get(tmpl.letter) || -1
-    if (sim > prev) letterScores.set(tmpl.letter, sim)
+  for (const template of templates) {
+    const shape = (inkSimilarity(grid, template.distance) + inkSimilarity(template.data, distance)) / 2
+    const score = cosineSim(grid, template.data) * 0.55 + shape * 0.45
+    letterScores.set(template.letter, Math.max(letterScores.get(template.letter) ?? 0, score))
   }
-
-  const features = extractInkFeatures(grid)
-  for (const letter of LETTERS) {
-    const current = letterScores.get(letter) || -1
-    letterScores.set(letter, current + shapeBonus(letter, features))
-  }
-
-  for (const [letter, score] of letterScores) {
-    if (score > bestScore) {
-      bestScore = score
-      bestLetter = letter
-    }
-  }
-
-  // Map raw cosine similarity to a 0–1 confidence
-  // Typical good match: 0.5–0.8, poor match: < 0.3
-  const confidence = Math.max(0, Math.min(1, (bestScore - 0.15) / 0.55))
-
-  return { letter: bestLetter, confidence }
+  const candidates = [...letterScores].map(([letter, score]) => ({ letter, score })).sort((a, b) => b.score - a.score).slice(0, 3)
+  const [best, runnerUp] = candidates
+  const margin = best.score - runnerUp.score
+  // This is a template score, not a calibrated model probability. Ambiguous
+  // shapes require confirmation rather than silently changing the exhibit.
+  const confidence = best.score >= 0.62 && margin >= 0.025 ? Math.min(1, (best.score - 0.5) * 2) : 0.15
+  return { letter: best.letter, confidence, candidates }
 }

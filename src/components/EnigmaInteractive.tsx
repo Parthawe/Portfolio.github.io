@@ -499,16 +499,16 @@ export default function EnigmaInteractive() {
             margin: '0 0 12px', maxWidth: '50ch', marginLeft: 'auto', marginRight: 'auto',
           }}>
             Draw a letter on the pad below, or press any key A–Z on your keyboard.
-            The network will recognize it and light up — watch the activation cascade through the layers.
+            Review the handwriting match below. Selecting a letter lights up its activation through the layers.
           </p>
 
           {/* Drawing pad + recognized letter */}
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            gap: 'clamp(16px, 4vw, 32px)',
+            gap: 'clamp(16px, 4vw, 32px)', flexWrap: 'wrap',
           }}>
             <Suspense fallback={null}>
-              <DrawingPad onRecognize={handleDrawRecognize} size={Math.min(180, Math.round(typeof window !== 'undefined' ? window.innerWidth * 0.25 : 150))} />
+              <DrawingPad onRecognize={handleDrawRecognize} size={180} />
             </Suspense>
 
             {/* Result + controls */}

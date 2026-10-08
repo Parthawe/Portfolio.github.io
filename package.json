@@ -16,6 +16,7 @@
     "qa:home-loading": "node scripts/home-runtime-budget-qa.mjs && node scripts/home-loading-qa.mjs",
     "qa:project-prototypes": "node scripts/project-prototypes-qa.mjs",
     "qa:project-objects": "node scripts/project-objects-qa.mjs",
+    "qa:enigma-handwriting": "node scripts/enigma-handwriting-qa.mjs",
     "qa:hero-efficiency": "node scripts/morphing-pixels-qa.mjs && node scripts/magnetic-efficiency-qa.mjs && node scripts/shader-preparation-qa.mjs",
     "qa:on-demand": "node scripts/on-demand-features-qa.mjs",
     "perf:cost": "node scripts/performance-cost-report.mjs"

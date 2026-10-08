@@ -28,3 +28,11 @@ Mentra links its original onboarding Figma prototype and includes the existing w
 Run `npm run qa:project-prototypes` to check complete flows, disabled states, reset, themes, mobile overflow, and legacy redirects. Figma content remains subject to the original file’s access settings; the external link and walkthrough provide a fallback.
 
 The prototype verification also checks actual generated-page iframe content and updates. The local security policy permits same-origin previews and the Figma embed origins. Figma frame rendering uses a deterministic response in QA to verify the host policy; live file access is not verified by that fixture.
+
+## Enigma handwriting repair
+
+The drawing pad now uses the same crop, centering and normalization for reference letters and handwritten input, with narrow stems preserved and ordinary letters allowed to vary in width and height. Matching combines ink overlap with symmetric ink distance. The previous weighted B/W shape bonuses and last-stroke V/W override are removed. Reference variants include common handwritten J, O and S forms. This remains local reference matching, not a trained handwriting model or a calibrated probability estimate.
+
+Pointer capture retains multi-stroke input and continues strokes outside the canvas. Coordinates account for CSS resizing. Recognition runs after a one-second pause or through the Recognize button; ambiguous matches require confirmation. Three alternative matches let visitors correct the result. Clear and Reset cancel pending recognition, and cancelled pointers cannot produce a delayed result. Both the world viewer and the case-study experiment use the repaired pad; the case-study pad now keeps a usable 180px size and wraps on narrow screens.
+
+`npm run qa:enigma-handwriting` tests 26 independently authored letter paths in three position/proportion/stroke-width variants, blank input, mouse/touch multi-stroke drawing, automatic recognition, alternative selection, CSS resizing, pending-clear cancellation, pointer cancellation and reset. All 78 recognition variants produce the correct first match; this fixture result does not establish general handwriting accuracy. The earlier matcher missed 12 of the first 26 fixtures and assigned each incorrect guess full confidence. Browser screenshots are written to `/tmp/portfolio-enigma-handwriting-qa`.
