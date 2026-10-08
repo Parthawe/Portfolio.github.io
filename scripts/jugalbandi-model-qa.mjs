@@ -4,7 +4,9 @@ import {createRequire} from 'node:module'
 import ts from 'typescript'
 const require=createRequire(import.meta.url),T=require('three')
 const code=ts.transpileModule(readFileSync('src/components/physical-worlds/JugalbandiModel.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText
-const exports={};new Function('exports','require',code)(exports,require)
+const helperCode=ts.transpileModule(readFileSync('src/components/physical-worlds/batchStaticParts.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText
+const helper={};new Function('exports','require',helperCode)(helper,require)
+const exports={};new Function('exports','require',code)(exports,name=>name==='./batchStaticParts'?helper:require(name))
 const root=new T.Group(),pickables=[];let created=0
 const mat=color=>new T.MeshStandardMaterial({color})
 const mesh=(geometry,material,parent=root,x=0,y=0,z=0)=>{created++;const m=new T.Mesh(geometry,material);m.position.set(x,y,z);parent.add(m);return m}

@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { createSceneActivity } from '../../utils/sceneActivity'
 import { worlds, type WorldKey } from './catalog'
 import { buildJugalbandi } from './JugalbandiModel'
+import { buildRevolvingStage } from './RevolvingStageModel'
 
 type Props = { project: WorldKey; values: number[]; dark: boolean; reduced: boolean; cameraView: number; focus: number; revision: number; resetVersion: number; onChange: (index: number, value: number) => void; onFail: () => void }
 type Update = (values: number[], time: number, delta: number) => void
@@ -68,7 +69,7 @@ export default function RoomScene(props: Props) {
     }
     const roomMaterial = mat('#d9d3c6'), floorMaterial = mat('#b3ae9f'), wall2 = mat('#bfc4b7')
     box(9,.06,8,floorMaterial,scene,0,-.06,0)
-    const openFloor = ['enigma','jugalbandi','moniac-machine','sea-of-salt','black-hole'].includes(props.project)
+    const openFloor = ['enigma','jugalbandi','moniac-machine','sea-of-salt','black-hole','revolving-stage'].includes(props.project)
     if (!openFloor) {
       box(9,4.8,.09,roomMaterial,scene,0,2.3,-3.1)
       box(.09,4.8,8,wall2,scene,-4.4,2.3,.85)
@@ -202,24 +203,15 @@ export default function RoomScene(props: Props) {
         texture.needsUpdate=true
       })
     }
-    if (props.project === 'revolving-stage') {
-      box(5,.16,4,black,root,0,.10,0)
-      const stage=new T.Group();stage.position.y=.48;root.add(stage)
-      const platform=cylinder(1.65,.12,timber,stage);pick(platform,0)
-      const walls:T.Mesh[]=[]
-      walls.push(box(3.1,1.45,.05,mat('#a88c65'),stage,0,.77,0));walls.push(box(.05,1.45,1.45,timber,stage,0,.77,-.72))
-      for(const x of [-1.15,-.4,.4,1.15]){box(.45,.53,.025,black,stage,x,1.0,.04);box(.39,.46,.02,mat('#809193'),stage,x,1.0,.057)}
-      box(.42,.33,.35,mat('#ba7346'),stage,.65,.23,.72)
-      cylinder(.015,.85,silver,stage,1.1,.53,.7)
-      const umbrella=mesh(new T.ConeGeometry(.43,.23,8),mat('#963d31'),stage,1.1,1.04,.7);umbrella.rotation.y=.15
-      for(let i=0;i<12;i++){const angle=i/12*Math.PI*2;const wheel=cylinder(.11,.08,black,root,Math.cos(angle)*1.15,.30,Math.sin(angle)*1.15);wheel.rotation.z=Math.PI/2;box(.18,.04,.14,silver,root,Math.cos(angle)*1.15,.20,Math.sin(angle)*1.15)}
-      cylinder(.12,.40,silver,root,0,.26,0)
-      // Auditorium seating remains outside the rotating platform.
-      for(let row=0;row<3;row++)for(let seat=0;seat<8;seat++){const x=(seat-3.5)*.48,z=2.2+row*.55;box(.34,.25,.32,mat('#573c36'),root,x,.18,z);box(.34,.35,.06,mat('#573c36'),root,x,.42,z+.14)}
-      for(const x of [-2.5,2.5])box(.12,3.2,2.2,mat('#4a3030'),root,x,1.6,-.5)
-      const transparentPlatform = new T.MeshStandardMaterial({color:'#bb9564',transparent:true,opacity:.35}); materials.add(transparentPlatform)
-      updates.push(values=>{stage.rotation.y=-values[0]*Math.PI/180;walls.forEach(w=>w.visible=values[1]<50);platform.material=values[1]>=50?transparentPlatform:timber})
+    const revolvingStage=props.project==='revolving-stage'?buildRevolvingStage({root,plywood,black,silver,white,mat,mesh,box,cylinder,pick}):null
+    if(revolvingStage){
+      updates.push(values=>revolvingStage.update(values))
+      const texture=new T.TextureLoader().load('/Assets/Projects/RevolvingStage/Mobile/3.jpg',()=>activity?.wake())
+      texture.colorSpace=T.SRGBColorSpace;texture.repeat.set(210/585,135/1338);texture.offset.set(328/585,(1338-720)/1338);textures.add(texture)
+      const gardenMaterial=mat('#ffffff');gardenMaterial.map=texture;revolvingStage.garden.material=gardenMaterial
+      controls.maxDistance=22
     }
+
     if (props.project === 'black-hole') {
       const exhibits=[new T.Group(),new T.Group(),new T.Group()];exhibits.forEach(e=>root.add(e))
       const pedestal=box(3.4,.70,1.9,clay,root,0,.35,0);pedestal.receiveShadow=true
@@ -315,15 +307,29 @@ export default function RoomScene(props: Props) {
     }
 
     const target = controls.target.clone(), destination = camera.position.clone()
-    let lastDark:boolean|undefined, lastRevision=-1, cameraMoving=false, elapsed=0, disposed=false
+    let lastDark:boolean|undefined, lastMechanism=false, lastRevision=-1, cameraMoving=false, elapsed=0, disposed=false
     const render=(delta:number)=>{
       if(disposed)return
       elapsed+=delta
       const state=latest.current
+      if(revolvingStage&&(state.values[1]>15)!==lastMechanism){lastMechanism=state.values[1]>15;lastRevision=-1}
       if(state.dark!==lastDark){lastDark=state.dark;scene.background=new T.Color(state.dark?'#161b17':'#d5d2c8');roomMaterial.color.set(state.dark?'#343d35':'#d9d3c6');wall2.color.set(state.dark?'#29332c':'#bfc4b7');floorMaterial.color.set(state.dark?'#272d26':'#b3ae9f');hemisphere.intensity=state.dark?.85:2;key.intensity=state.dark?2:3}
       if(state.revision!==lastRevision){
         lastRevision=state.revision;cameraMoving=true
         target.set(0,1.1,0);destination.copy(cameras[state.cameraView])
+        if(revolvingStage){
+          const mechanism=state.values[1]>15
+          target.set(0,mechanism?.55:1.55,0)
+          const direction=(state.cameraView===2?V(0,1,.001):state.cameraView===1?V(.08,.20,1):V(.46,.32,1)).normalize()
+          const vertical=T.MathUtils.degToRad(camera.fov/2),horizontal=Math.atan(Math.tan(vertical)*camera.aspect)
+          const right=V(0,1,0).cross(direction).normalize(),up=direction.clone().cross(right).normalize()
+          let distance=1
+          for(const x of[-2.6,2.6])for(const y of[0,mechanism?1.3:3.3])for(const z of[-2.6,2.6]){
+            const point=V(x,y,z).sub(target),depth=point.dot(direction)
+            distance=Math.max(distance,Math.abs(point.dot(right))/Math.tan(horizontal)+depth,Math.abs(point.dot(up))/Math.tan(vertical)+depth)
+          }
+          destination.copy(target).add(direction.multiplyScalar(distance*1.08))
+        }
         if(jugalbandi){
           jugalbandi.instruments.forEach((instrument,i)=>instrument.visible=state.focus===0||state.focus===i+1)
           root.updateMatrixWorld(true)
@@ -348,13 +354,13 @@ export default function RoomScene(props: Props) {
     activity=createSceneActivity(host,render,{idleMs:2200,introMs:2200,fps:24,interactionFps:60});wake.current=()=>activity?.wake()
     controls.addEventListener('change',()=>activity?.wake())
     controls.addEventListener('start',()=>{cameraMoving=false})
-    const resize=()=>{const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;camera.fov=w<600?50:40;camera.updateProjectionMatrix();renderer.setSize(w,h);if(jugalbandi)lastRevision=-1;activity?.wake()}
+    const resize=()=>{const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;camera.fov=w<600?50:40;camera.updateProjectionMatrix();renderer.setSize(w,h);if(jugalbandi||revolvingStage)lastRevision=-1;activity?.wake()}
     const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(host);resize()
     const ray=new T.Raycaster(),pointer=new T.Vector2();let drag:{index:number;startX:number;startValue:number;pointerId:number;crank?:boolean;angle?:number;turn?:number}|null=null
     const crankPlane=new T.Plane(V(0,1,0),-1.33),crankPoint=new T.Vector3()
     const crankAngle=(event:PointerEvent)=>{const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);return ray.ray.intersectPlane(crankPlane,crankPoint)?Math.atan2(crankPoint.z+.25,crankPoint.x):null}
     const down=(event:PointerEvent)=>{if(event.button!==0||drag)return;const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(pickables,true).find(hit=>{let object:T.Object3D|null=hit.object;while(object){if(!object.visible)return false;object=object.parent}return true});if(!hit)return;let picked:T.Object3D=hit.object;while(picked.userData.control===undefined&&picked.parent)picked=picked.parent;const index=picked.userData.control as number,value=picked.userData.value as number|undefined;if(value!==undefined){latest.current.onChange(index,value);event.stopImmediatePropagation();return}const crank=hit.object.userData.dragKind==='crank';drag={index,startX:event.clientX,startValue:latest.current.values[index],pointerId:event.pointerId,crank,angle:crank?(crankAngle(event)??0):undefined,turn:0};controls.enabled=false;renderer.domElement.setPointerCapture(event.pointerId);event.stopImmediatePropagation()}
-    const move=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;if(drag.crank){const angle=crankAngle(event);if(angle===null)return;let delta=angle-drag.angle!;if(delta>Math.PI)delta-=Math.PI*2;if(delta<-Math.PI)delta+=Math.PI*2;drag.angle=angle;drag.turn!-=delta;latest.current.onChange(drag.index,Math.max(0,Math.min(100,drag.startValue+drag.turn!/(Math.PI*8)*100)));return}const max=props.project==='revolving-stage'?360:100;latest.current.onChange(drag.index,Math.max(0,Math.min(max,drag.startValue+(event.clientX-drag.startX)/host.clientWidth*max*2)))}
+    const move=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;if(drag.crank){const angle=crankAngle(event);if(angle===null)return;let delta=angle-drag.angle!;if(delta>Math.PI)delta-=Math.PI*2;if(delta<-Math.PI)delta+=Math.PI*2;drag.angle=angle;drag.turn!-=delta;latest.current.onChange(drag.index,Math.max(0,Math.min(100,drag.startValue+drag.turn!/(Math.PI*8)*100)));return}const max=props.project==='revolving-stage'&&drag.index===0?360:100;latest.current.onChange(drag.index,Math.max(0,Math.min(max,drag.startValue+(event.clientX-drag.startX)/host.clientWidth*max*2)))}
     const up=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;drag=null;controls.enabled=true;if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId)}
     renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',up);renderer.domElement.addEventListener('lostpointercapture',up)
     const lost=(event:Event)=>{event.preventDefault();latest.current.onFail()};renderer.domElement.addEventListener('webglcontextlost',lost)
