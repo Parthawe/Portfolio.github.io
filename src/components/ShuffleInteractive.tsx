@@ -37,12 +37,12 @@ export default function ShuffleInteractive() {
     <div className="shuffle-object" data-shuffle-theme={dark ? 'dark' : 'light'}>
       <div className="shuffle-toolbar">
         <p>Explore the board</p>
-        <div className="shuffle-views" role="group" aria-label="Board view">
+        <div className="shuffle-views glass-segments" role="group" aria-label="Board view">
           {(['Studio', 'Overhead', 'Construction', 'Room'] as const).map(item => (
             <button key={item} aria-pressed={view === item} onClick={() => { setView(item); setViewRevision(value => value + 1) }}>{item}</button>
           ))}
         </div>
-        <button className="shuffle-reset" onClick={reset}>Reset</button>
+        <button className="shuffle-reset glass-action" onClick={reset}>Reset</button>
       </div>
       <div className="shuffle-stage">
         {failed ? <div className="shuffle-loading" role="status"><p>3D is unavailable in this browser.</p><p>Use the slider controls below to explore the simulation.</p></div> :

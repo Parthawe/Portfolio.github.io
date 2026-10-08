@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App'
 import './styles/globals.css'
+import './styles/ios-controls.css'
 import {
   applyPerformanceModeClass,
   startRuntimePerformanceMonitor,

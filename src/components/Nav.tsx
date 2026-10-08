@@ -6,13 +6,11 @@ import FigmaSelect from './FigmaSelect';
 import AmbientAudio from './AmbientAudio';
 import { CONTACT_EMAIL } from '../config/site';
 import { setCanvasChromePreference } from '../utils/performance';
-import { lockBodyScroll, unlockBodyScroll } from '../utils/bodyScrollLock';
+import CompactSheet from './CompactSheet';
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const lastFocusedRef = useRef<Element | null>(null);
   const { pathname, search } = useLocation();
 
   useNavScroll(navRef);
@@ -25,16 +23,9 @@ export default function Nav() {
   const [easterToolsOpen, setEasterToolsOpen] = useState(false);
 
   const closeMenu = useCallback(() => {
-    const wasOpen = isOpenRef.current;
     isOpenRef.current = false;
     setMenuOpen(false);
-    overlayRef.current?.classList.remove('open');
     toggleRef.current?.classList.remove('open');
-    unlockBodyScroll('nav-menu');
-    if (wasOpen && lastFocusedRef.current instanceof HTMLElement) {
-      lastFocusedRef.current.focus();
-      lastFocusedRef.current = null;
-    }
   }, []);
 
   const toggleMenu = useCallback(() => {
@@ -43,47 +34,13 @@ export default function Nav() {
     } else {
       isOpenRef.current = true;
       setMenuOpen(true);
-      lastFocusedRef.current = document.activeElement;
       toggleRef.current?.classList.add('open');
-      lockBodyScroll('nav-menu');
     }
   }, [closeMenu]);
 
   useEffect(() => {
-    if (!menuOpen) return
-    const frame = requestAnimationFrame(() => {
-      overlayRef.current?.querySelector<HTMLElement>('a')?.focus()
-    })
-    return () => cancelAnimationFrame(frame)
-  }, [menuOpen])
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpenRef.current) {
-        closeMenu();
-        return;
-      }
-      if (e.key === 'Tab' && isOpenRef.current && overlayRef.current) {
-        const focusable = overlayRef.current.querySelectorAll<HTMLElement>('a, button');
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    document.addEventListener('keydown', handleKeyDown);
     window.addEventListener('pageshow', closeMenu);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('pageshow', closeMenu);
-      unlockBodyScroll('nav-menu');
-    };
+    return () => window.removeEventListener('pageshow', closeMenu);
   }, [closeMenu]);
 
   useEffect(() => {
@@ -200,7 +157,7 @@ export default function Nav() {
             <Link to="/" className="nav-logo figma-hover" aria-label="Parth Pawar, home">Parth<FigmaSelect /></Link>
             <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
             {isWorkPage && (
-              <div className="nav-work-views" aria-label="Work page views">
+              <div className="nav-work-views glass-segments" aria-label="Work page views">
                 {workViewLinks.map((view) => (
                   <Link
                     key={view.key}
@@ -309,20 +266,13 @@ export default function Nav() {
       </nav>
 
       {menuOpen ? (
-        <div
-          className="mobile-overlay surface-glass surface-glass--strong open"
-          ref={overlayRef}
-          id="mobile-navigation"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Site navigation"
-        >
+        <CompactSheet title="Site navigation" id="mobile-navigation" onClose={closeMenu} returnFocus={toggleRef.current}>
           <ul className="mobile-nav-links">
             <li><Link to="/work" onClick={closeMenu}>Work</Link></li>
             <li><Link to="/about" onClick={closeMenu}>About</Link></li>
             <li><a href={`mailto:${CONTACT_EMAIL}`} onClick={closeMenu}>Let's Talk</a></li>
           </ul>
-        </div>
+        </CompactSheet>
       ) : null}
     </>
   );
