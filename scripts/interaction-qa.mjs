@@ -9,6 +9,7 @@ try {
   await checkProjectCardMotion(browser, base)
   for (const { mobile, reducedMotion } of [false, true].flatMap(mobile => ['reduce', 'no-preference'].map(reducedMotion => ({ mobile, reducedMotion })))) {
     const page = await browser.newPage({ viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 900 }, reducedMotion })
+    await page.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
     page.setDefaultTimeout(20_000)
     page.setDefaultNavigationTimeout(30_000)
     await page.goto(`${base}/work/`)
@@ -65,6 +66,7 @@ try {
     await page.close()
   }
   const touchPage = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true })
+  await touchPage.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
   touchPage.setDefaultTimeout(20_000)
   touchPage.setDefaultNavigationTimeout(30_000)
   await touchPage.goto(`${base}/work/`)

@@ -5,6 +5,7 @@ const base = process.env.QA_BASE_URL || 'http://127.0.0.1:4173'
 const browser = await chromium.launch({ headless: true, args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] })
 const context = await browser.newContext({ viewport: { width: 390, height: 844 }, permissions: ['camera'], reducedMotion: 'reduce' })
 const page = await context.newPage()
+await page.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
 page.setDefaultTimeout(20_000)
 page.setDefaultNavigationTimeout(30_000)
 const errors = []

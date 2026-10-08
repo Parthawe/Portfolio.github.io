@@ -29,6 +29,7 @@ const routes = [...new Set(selectedRoutes?.length ? selectedRoutes : [...sitemap
 
 async function inspectRoute(browser, route, viewport) {
   const page = await browser.newPage({ viewport })
+  await page.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
   const consoleErrors = []
   const pageErrors = []
   const httpErrors = []

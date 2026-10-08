@@ -12,6 +12,7 @@ try {
   for (const profile of [{ name: 'desktop', width: 1185, height: 969, theme: 'light' }, { name: 'mobile', width: 375, height: 812, theme: 'dark' }]) {
     const context = await browser.newContext({ viewport: { width: profile.width, height: profile.height }, reducedMotion: 'reduce' })
     const page = await context.newPage()
+    await page.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
     page.setDefaultTimeout(15000)
     page.setDefaultNavigationTimeout(30000)
     page.on('pageerror', error => errors.push({ profile: profile.name, url: page.url(), error: error.message }))
@@ -59,6 +60,7 @@ try {
     console.log(`${profile.name}: checked ${slugs.length} rooms and ${slugs.length} case studies`)
   }
   const recovery = await browser.newPage()
+  await recovery.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
   await recovery.addInitScript(() => {
     window.__denyRoomWebGL = true
     const original = HTMLCanvasElement.prototype.getContext
