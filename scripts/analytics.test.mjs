@@ -93,3 +93,11 @@ test('withdrawal immediately blocks custom events and sets Google disable flag',
   assert.ok(!JSON.stringify(events).includes('secret'))
   assert.ok(!JSON.stringify(events).includes('person@'))
 })
+
+test('physical project rooms keep their public route', () => {
+  const h = harness({ consent: 'granted' })
+  h.api.trackPage('/mentra/world')
+  const event = h.events().find(e => e[1] === 'page_view')
+  assert.equal(event[2].page_type, 'demo')
+  assert.equal(event[2].page_location, 'https://designwhich.works/mentra/world')
+})
