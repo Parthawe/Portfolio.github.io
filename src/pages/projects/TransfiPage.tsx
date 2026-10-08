@@ -256,7 +256,7 @@ export default function TransfiPage() {
         />
 
         <CsExpandPreview
-          sectionIds={['cs-public-story', 'cs-process']}
+          sectionIds={['cs-public-story', 'cs-process', 'case-study-access-transfi-project']}
           expanded={viewMode === 'full'}
           onExpand={() => handleViewModeChange('full')}
           ctaLabel="Explore the public story"

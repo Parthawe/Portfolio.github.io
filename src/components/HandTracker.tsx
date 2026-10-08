@@ -2,8 +2,8 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import { useBackToTop } from '../hooks/useBackToTop'
 import FigmaSelect from './FigmaSelect'
 import '../styles/hand-tracker.css'
-// @ts-ignore, no type declarations available
-import { HandLandmarker, FilesetResolver } from '@mediapipe/tasks-vision'
+// @ts-expect-error MediaPipe's export map does not resolve its declarations.
+import type { HandLandmarker } from '@mediapipe/tasks-vision'
 
 /* ── Landmark indices ── */
 const THUMB_TIP = 4
@@ -171,6 +171,8 @@ export default function HandTracker() {
   // ── Init MediaPipe ──
   const init = useCallback(async () => {
     if (handLandmarkerRef.current) return handLandmarkerRef.current
+    // @ts-expect-error MediaPipe's export map does not resolve its declarations.
+    const { HandLandmarker, FilesetResolver } = await import('@mediapipe/tasks-vision')
     const vision = await FilesetResolver.forVisionTasks(
       'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.33/wasm'
     )

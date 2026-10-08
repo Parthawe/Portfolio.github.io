@@ -106,6 +106,7 @@ function Loading() {
   )
 }
 
+const ProjectPrototypePage = lazy(() => import('./pages/ProjectPrototypePage'))
 const PhysicalWorldPage = lazy(() => import('./pages/PhysicalWorldPage'))
 const ShuffleSimulationPage = lazy(() => import('./pages/ShuffleSimulationPage'))
 
@@ -114,6 +115,8 @@ export default function App() {
     <ErrorBoundary>
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route path="/project-experiences" element={<PhysicalWorldPage />} />
+        <Route path="/:project/prototype" element={<ProjectPrototypePage />} />
         <Route path="/physical-worlds" element={<PhysicalWorldPage />} />
         <Route path="/:project/world" element={<PhysicalWorldPage />} />
         <Route path="/shuffle/simulation" element={<ShuffleSimulationPage />} />

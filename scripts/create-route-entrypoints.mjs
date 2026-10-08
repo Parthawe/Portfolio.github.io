@@ -130,6 +130,18 @@ const canonicalAliases = new Map([
   ['healthcare', 'design-for-good'],
 ])
 
+canonicalAliases.set('physical-worlds', 'project-experiences')
+routeLabels.set('project-experiences', 'Project experiences')
+routeDescriptions.set('project-experiences', 'Interactive product prototypes and physical project experiences by Parth Pawar.')
+for (const match of readFileSync(join(root, 'src/data/projectExperiences.ts'), 'utf8').matchAll(/slug: '([^']+)', mode: '([^']+)', description: '([^']+)'(?:, href: '([^']+)')?/g)) {
+  const [, slug, mode, description, href] = match
+  const target = mode === 'prototype' ? `${slug}/prototype` : href.replace(/^\//, '').split('#')[0]
+  canonicalAliases.set(`${slug}/world`, target)
+  if (mode !== 'prototype') canonicalAliases.set(`${slug}/prototype`, target)
+  routeLabels.set(`${slug}/prototype`, `${routeLabels.get(slug) || slug.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} prototype`)
+  routeDescriptions.set(`${slug}/prototype`, `${description}. Explore the project’s interactive prototype and documented workflow.`)
+}
+
 const routePreloads = new Map([
   ['work', '/Assets/mockups/projects/mentra_4x5.webp'],
 ])
@@ -197,7 +209,8 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
   })
   .filter(Boolean)
 const routes = [...new Set([
-  'physical-worlds', 'shuffle/simulation',
+  'physical-worlds', 'project-experiences', 'shuffle/simulation',
+  ...[...readFileSync(join(root,'src/data/projectExperiences.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/prototype`),
   ...[...readFileSync(join(root,'src/data/projectRoutes.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/world`),
   ...sitemapRoutes,
   ...canonicalAliases.keys(),

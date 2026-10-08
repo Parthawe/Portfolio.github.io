@@ -5,6 +5,7 @@ import { usePrefersReduced } from '../../hooks/usePrefersReduced'
 import { worlds, type WorldKey } from './catalog'
 import './worlds.css'
 const RoomScene = lazy(() => import('./RoomScene'))
+const DrawingPad = lazy(() => import('../DrawingPad'))
 
 export default function PhysicalWorld({ project }: { project: WorldKey }) {
   const spec = worlds[project]
@@ -37,8 +38,13 @@ export default function PhysicalWorld({ project }: { project: WorldKey }) {
     <header><p>{spec.setting}</p><div role="group" aria-label="Camera view">{['Room', 'Object', 'Overhead'].map((label, i) => <button key={label} disabled={failed} aria-pressed={camera === i} onClick={() => { setCamera(i); setRevision(n => n + 1) }}>{label}</button>)}<button onClick={() => { setFailed(false); setValues([...spec.initial]); setResetVersion(n => n + 1); setCamera(0); setRevision(n => n + 1) }}>Reset</button></div></header>
     <div className="physical-world-stage">
       {failed ? <div className="physical-world-loading" role="status">3D is unavailable. <Link to={`/${project}`}>View the project photographs</Link>.</div> : <Suspense fallback={<div className="physical-world-loading" role="status">Loading the room…</div>}><RoomScene project={project} values={values} dark={dark} reduced={reduced} cameraView={camera} revision={revision} resetVersion={resetVersion} onChange={change} onFail={() => setFailed(true)} /></Suspense>}
-      {!failed && <p className="physical-world-hint">Drag to look around. Scroll or pinch to move closer.</p>}
+      {!failed && <p className="physical-world-hint">{project === 'sea-of-salt' ? 'Drag the mill lid or wooden handle to turn it. Drag the floor to look around.' : project === 'moniac-machine' ? 'Drag a white valve to adjust it. Drag the floor to look around.' : 'Drag to look around. Scroll or pinch to move closer.'}</p>}
     </div>
+    {project === 'enigma' && <div className="enigma-letter-input">
+      <div className="enigma-input-row"><Suspense fallback={<p>Loading the drawing pad…</p>}><DrawingPad key={resetVersion} appearance="world" size={180} onRecognize={(letter, confidence)=>{if(confidence>.2)change(0,letter.charCodeAt(0)-65)}} /></Suspense><label htmlFor={`enigma-type-${resetVersion}`}>Type a letter<input id={`enigma-type-${resetVersion}`} aria-label="Type a letter" type="text" value={String.fromCharCode(65+values[0])} autoComplete="off" spellCheck={false} onFocus={event => event.currentTarget.select()} onChange={event => { const letters=event.target.value.toUpperCase().replace(/[^A-Z]/g,'');if(letters)change(0,letters.charCodeAt(letters.length-1)-65) }} /></label></div>
+      <div role="group" aria-label="Alphabet">{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((letter,index)=><button key={letter} aria-pressed={values[0]===index} onClick={()=>change(0,index)}>{letter}</button>)}</div>
+      <p>Draw a capital letter, type, or choose A–Z. Handwriting uses the browser’s template matcher; the lights show an illustrative activation.</p>
+    </div>}
     <div className="physical-world-controls">
       {spec.controls.map((label, i) => <label key={label}><span>{label}<output>{label === 'Letter' ? String.fromCharCode(65 + values[i]) : label === 'Exhibit' ? ['Time trap', 'Spacetime fabric', 'Binary motion'][values[i]] : label === 'Study' ? ['Finished figure', 'Process study', 'Anatomy study'][values[i]] : label === 'Hour' ? `${(values[i] * 12 / 100).toFixed(1)} h` : `${Math.round(values[i])}${label === 'Stage rotation' ? '°' : '%'}`}</output></span>
       {['Letter', 'Exhibit', 'Study'].includes(label) ? <select aria-label={label} value={values[i]} onChange={event => change(i, Number(event.target.value))}>{(label === 'Letter' ? 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('') : label === 'Exhibit' ? ['Time trap', 'Spacetime fabric', 'Binary motion'] : ['Finished figure', 'Process study', 'Anatomy study']).map((text, index) => <option key={text} value={index}>{text}</option>)}</select> : <input type="range" aria-label={label} min="0" max={label === 'Stage rotation' ? 360 : 100} value={values[i]} onChange={event => change(i, Number(event.target.value))} />}</label>)}

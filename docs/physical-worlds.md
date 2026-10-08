@@ -11,3 +11,20 @@ These models are interpretations from project documentation, not measured scans 
 Scenes use `createSceneActivity` to pause while idle, offscreen or in a hidden tab. Reduced motion disables ongoing object motion. Cleanup disposes geometry, materials, textures, observers, controls and audio. WebGL failure leaves the controls and project links available.
 
 Run `QA_BASE_URL=http://127.0.0.1:5199 npm run qa:physical-worlds` against a production preview (`npm run preview -- --host 127.0.0.1 --port 5199`) to check every room and case-study entry on desktop and mobile, including keyboard controls, reset, camera controls, navigation links, and overflow. Reports and representative screenshots are written to `/tmp/portfolio-physical-worlds-qa`. Existing project behavior is checked separately by `npm run qa:project-pages`.
+
+## Object feedback pass
+
+Enigma, Jugalbandi, Sea of Salt, Moniac and Black Hole use open floors. Enigma has labeled output neurons, a pickable alphabet in front of the tablet, text input and the existing template-based handwriting pad. Reset also clears the pad. Jugalbandi includes the yellow Hexa-18, an oval harp soundboard within its rectangular frame, servo rails, the automated flute and rainsticks. Moniac follows the tilted portrait tablet and clear valve deck; its on-screen policy flow updates when a valve changes. Sea of Salt supports circular dragging on the lid or handle, with the slider retained for keyboard input. Black Hole keeps the clocks symmetric and the fabric/mass clear of the pedestal throughout its range.
+
+Run `npm run qa:project-objects` against the production preview to check these five scenes in desktop light and mobile dark modes. The check draws a Z with mouse/touch input, types and selects letters, turns the mill and a valve directly, resets the input and records every Black Hole study at maximum separation. Screenshots go to `/tmp/portfolio-project-objects-qa`.
+
+
+Digital project experiences
+
+UI/UX projects now open prototypes instead of 3D screen exhibits. `/project-experiences` lists digital and physical work; `/physical-worlds` remains a compatible index. Former digital `/world` URLs redirect to the appropriate prototype, public access gate, or documented case study. The physical catalog excludes these projects.
+
+Mentra links its original onboarding Figma prototype and includes the existing walkthrough recording. ExecutiveLens reuses its source-linked meeting replay. MiniApps, Clawed, OrgDashboard, Health App, Ballah Code, VJ Software, Code for Build, and Raahi offer explicitly labeled browser adaptations of documented workflows with session-local sample data. They do not call live agents, send messages, book spaces, or provide transport or health recommendations. Original public design screens accompany MiniApps and VJ. Restricted work retains existing access controls; research-only work links to its documentation.
+
+Run `npm run qa:project-prototypes` to check complete flows, disabled states, reset, themes, mobile overflow, and legacy redirects. Figma content remains subject to the original file’s access settings; the external link and walkthrough provide a fallback.
+
+The prototype verification also checks actual generated-page iframe content and updates. The local security policy permits same-origin previews and the Figma embed origins. Figma frame rendering uses a deterministic response in QA to verify the host policy; live file access is not verified by that fixture.

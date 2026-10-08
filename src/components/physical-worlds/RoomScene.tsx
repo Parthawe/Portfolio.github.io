@@ -21,7 +21,11 @@ export default function RoomScene(props: Props) {
     host.appendChild(renderer.domElement)
     const scene = new T.Scene(), root = new T.Group(); scene.add(root)
     const camera = new T.PerspectiveCamera(40, 1, .05, 60)
-    const cameras = [V(5.4, 3.8, 6.5), V(3.4, 2.8, 4.8), V(.05, 8, .1)]
+    const cameras = [V(5.4, 3.8, 6.5), V(3.4, 2.8, 4.8), V(0, 8, .001)]
+    if (props.project === 'enigma') { cameras[0].set(3.6,3.2,5.4); cameras[1].set(1.8,2.8,4.5) }
+    if (props.project === 'moniac-machine') { cameras[0].set(3.0,3.4,4.7); cameras[1].set(1.7,3.0,4.2) }
+    if (props.project === 'black-hole') { cameras[0].set(4.0,3.0,5.5); cameras[1].set(2.7,2.4,4.2) }
+    if (props.project === 'sea-of-salt') { cameras[0].set(3.3,3.2,4.8); cameras[1].set(2.1,2.6,3.8) }
     if (worlds[props.project]?.kind === 'set') cameras[1].set(4.5,3.5,6)
     camera.position.copy(cameras[0])
     const controls = new OrbitControls(camera, renderer.domElement); controls.target.set(0, 1.1, 0)
@@ -40,9 +44,9 @@ export default function RoomScene(props: Props) {
       const object = cylinder(radius, a.distanceTo(b), m, p); object.position.copy(a).add(b).multiplyScalar(.5); object.quaternion.setFromUnitVectors(V(0,1,0), b.clone().sub(a).normalize()); return object
     }
     const label = (text: string, w: number, h: number, p: T.Object3D = root, x = 0, y = 0, z = 0, color = '#deded4', bg = '#20241e') => {
-      const c = document.createElement('canvas'); c.width = 1024; c.height = 256
+      const c = document.createElement('canvas'); c.width = text.length === 1 ? 256 : 1024; c.height = 256
       const ctx = c.getContext('2d')!; ctx.fillStyle = bg; ctx.fillRect(0,0,1024,256)
-      ctx.fillStyle = color; ctx.font = '40px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text,512,128)
+      ctx.fillStyle = color; ctx.font = text.length === 1 ? '180px Arial' : '40px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text,c.width/2,128)
       const texture = new T.CanvasTexture(c); texture.colorSpace = T.SRGBColorSpace; textures.add(texture)
       const material = new T.MeshBasicMaterial({ map: texture }); materials.add(material)
       return mesh(new T.PlaneGeometry(w,h), material, p,x,y,z)
@@ -63,10 +67,13 @@ export default function RoomScene(props: Props) {
     }
     const roomMaterial = mat('#d9d3c6'), floorMaterial = mat('#b3ae9f'), wall2 = mat('#bfc4b7')
     box(9,.06,8,floorMaterial,scene,0,-.06,0)
-    box(9,4.8,.09,roomMaterial,scene,0,2.3,-3.1)
-    box(.09,4.8,8,wall2,scene,-4.4,2.3,.85)
+    const openFloor = ['enigma','jugalbandi','moniac-machine','sea-of-salt','black-hole'].includes(props.project)
+    if (!openFloor) {
+      box(9,4.8,.09,roomMaterial,scene,0,2.3,-3.1)
+      box(.09,4.8,8,wall2,scene,-4.4,2.3,.85)
+      box(9,.08,.035,timber,scene,0,.05,-3.02)
+    }
     for(let i=0;i<12;i++) box(9,.002,.012,mat('#a8a395'),scene,0,-.025,-3.8+i*.65)
-    box(9,.08,.035,timber,scene,0,.05,-3.02)
     const hemisphere = new T.HemisphereLight('#fff9ec','#4e5146',2);scene.add(hemisphere)
     const key = new T.DirectionalLight('#fff1d9',3);key.position.set(-3,7,4);key.castShadow=true;key.shadow.mapSize.set(1024,1024)
     key.shadow.camera.left=-5;key.shadow.camera.right=5;key.shadow.camera.top=5;key.shadow.camera.bottom=-5;key.shadow.normalBias=.025;scene.add(key)
@@ -79,61 +86,107 @@ export default function RoomScene(props: Props) {
     const pick = (object: T.Object3D, control: number, value?: number) => { object.userData.control=control;object.userData.value=value;pickables.push(object) }
     const updates: Update[] = []
 
+    const woodCanvas = document.createElement('canvas'); woodCanvas.width=256; woodCanvas.height=512
+    const woodContext=woodCanvas.getContext('2d')!; woodContext.fillStyle='#d8b984';woodContext.fillRect(0,0,256,512)
+    for(let i=0;i<100;i++){woodContext.strokeStyle=`rgba(115,78,38,${.025+(i%7)*.009})`;woodContext.beginPath();for(let y=0;y<=512;y+=16){const x=i*2.6+Math.sin(y*.015+i)*1.5;y?woodContext.lineTo(x,y):woodContext.moveTo(x,y)}woodContext.stroke()}
+    const woodTexture=new T.CanvasTexture(woodCanvas); woodTexture.colorSpace=T.SRGBColorSpace; textures.add(woodTexture)
+    const plywood=mat('#f0dbc0');plywood.map=woodTexture
+    const screw=(p:T.Object3D,x:number,y:number,z:number)=>{const head=cylinder(.025,.009,silver,p,x,y,z);head.rotation.x=Math.PI/2;box(.025,.004,.003,black,p,x,y,z+.007)}
+    const cable=(points:T.Vector3[],color:string,p:T.Object3D=root,radius=.006)=>mesh(new T.TubeGeometry(new T.CatmullRomCurve3(points),24,radius,5,false),mat(color),p)
+
     if (props.project === 'enigma') {
-      table(3.4,1.7)
+      table(3.4,3.2)
       const layers=[64,64,46,26], points:T.Vector3[][]=[]
-      const nodes = new T.InstancedMesh(new T.SphereGeometry(.047,12,8),new T.MeshStandardMaterial({color:'#ffffff',roughness:.48,emissive:'#e5dfce',emissiveIntensity:.18}),200)
+      const nodes=new T.InstancedMesh(new T.SphereGeometry(.053,14,10),new T.MeshStandardMaterial({color:'#ffffff',roughness:.48,emissive:'#e5dfce',emissiveIntensity:.18}),200)
       materials.add(nodes.material as T.Material);nodes.castShadow=true;root.add(nodes)
       const dummy=new T.Object3D();let offset=0
       layers.forEach((count,layer)=>{
-        const x=-1.12+layer*.73, top=1.75+layer*.3, cols=layer===3?13:8, rows=Math.ceil(count/cols)
+        const z=.6-layer*.56, top=1.86+layer*.28, rows=layer===3?3:6, cols=Math.ceil(count/rows)
         points[layer]=[]
         for(let i=0;i<count;i++){
-          const point=V(x,top-(i%rows)*.13,(Math.floor(i/rows)-(cols-1)/2)*.125)
+          const row=layer===3?(i<9?0:i<17?1:2):Math.floor(i/cols)
+          const col=layer===3?(row===0?i:row===1?i-9:i-17):i%cols
+          const rowCols=layer===3?(row===1?8:9):cols
+          const point=V((col-(rowCols-1)/2)*.19,top-row*.17,z)
           points[layer].push(point);dummy.position.copy(point);dummy.updateMatrix();nodes.setMatrixAt(offset++,dummy.matrix)
+          if(layer===3){const letter=label(String.fromCharCode(65+i),.13,.09,root,point.x,point.y+.095,z+.057,'#eceade','#242621');pick(letter,0,i);const target=sphere(.071,black,root,point.x,point.y,z);target.visible=false;pick(target,0,i)}
         }
-        for(const z of [-.58,.58]) box(.025,top-.79,.025,black,root,x,(top+.79)/2,z)
-        rod(V(x,top+.10,-.58),V(x,top+.10,.58),.012,black)
+        for(const x of [-1.08,1.08])box(.025,top-.79,.025,black,root,x,(top+.79)/2,z)
+        rod(V(-1.08,top+.17,z),V(1.08,top+.17,z),.012,black)
+        rod(V(-1.08,.81,z),V(1.08,.81,z),.012,black)
       })
       const wirePoints:number[]=[]
       for(let layer=0;layer<3;layer++)for(let i=0;i<points[layer].length;i++)for(let branch=0;branch<2;branch++){
         const a=points[layer][i],b=points[layer+1][(i*7+branch*13)%points[layer+1].length];wirePoints.push(a.x,a.y,a.z,b.x,b.y,b.z)
       }
       const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(wirePoints,3))
-      const wireMaterial=new T.LineBasicMaterial({color:'#b6b5aa',transparent:true,opacity:.45});materials.add(wireMaterial);root.add(new T.LineSegments(geometry,wireMaterial))
-      const tablet=new T.Group();tablet.position.set(0,.85,1.0);tablet.rotation.x=-.5;root.add(tablet)
-      box(.8,.52,.035,black,tablet);const display=label('A',.72,.43,tablet,0,0,.023,'#ffffff','#080908')
-      for(let i=0;i<26;i++){const node=sphere(.028,white,root,1.12,2.7-(i%2)*.13,(Math.floor(i/2)-6)*.125);node.visible=false;pick(node,0,i)}
+      const wireMaterial=new T.LineBasicMaterial({color:'#b6b5aa',transparent:true,opacity:.35});materials.add(wireMaterial);root.add(new T.LineSegments(geometry,wireMaterial))
+      const tablet=new T.Group();tablet.position.set(0,.86,1.12);tablet.rotation.x=-Math.PI*.34;root.add(tablet)
+      box(.90,.60,.035,black,tablet);const display=label('A',.81,.50,tablet,0,0,.023,'#ffffff','#080908')
+      // Alphabet keys sit in front of the tablet and can also be picked directly.
+      for(let i=0;i<26;i++){const row=i<13?0:1,x=(i%13-6)*.13,z=1.35+row*.13;box(.115,.024,.105,black,root,x,.825,z);const key=label(String.fromCharCode(65+i),.10,.085,root,x,.84,z,'#eceade','#242621');key.rotation.x=-Math.PI/2;pick(key,0,i)}
       let previous=-1,age=0
-      updates.push((values,_time,delta)=>{if(values[0]!==previous){previous=values[0];age=0;const texture=(display.material as T.MeshBasicMaterial).map as T.CanvasTexture;const canvas=texture.image as HTMLCanvasElement;const ctx=canvas.getContext('2d')!;ctx.fillStyle='#080908';ctx.fillRect(0,0,1024,256);ctx.fillStyle='#ffffff';ctx.font='100px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String.fromCharCode(65+values[0]),512,128);texture.needsUpdate=true}age=latest.current.reduced?1:age+delta
-        let k=0;layers.forEach((count,layer)=>{for(let i=0;i<count;i++){const on=age>layer*.16&&((i*17+values[0]*7+layer*13)%23<6||layer===3&&i===values[0]);nodes.setColorAt(k++,new T.Color(on?'#fff8d8':'#575b56'))}});if(nodes.instanceColor)nodes.instanceColor.needsUpdate=true
+      updates.push((values,_time,delta)=>{if(values[0]!==previous){previous=values[0];age=0;const texture=(display.material as T.MeshBasicMaterial).map as T.CanvasTexture;const canvas=texture.image as HTMLCanvasElement;const ctx=canvas.getContext('2d')!;ctx.fillStyle='#080908';ctx.fillRect(0,0,1024,256);ctx.fillStyle='#ffffff';ctx.font='180px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String.fromCharCode(65+values[0]),canvas.width/2,128);texture.needsUpdate=true}age=latest.current.reduced?1:age+delta
+        let k=0;layers.forEach((count,layer)=>{for(let i=0;i<count;i++){const on=age>layer*.16&&(layer===3?i===values[0]:(i*17+values[0]*7+layer*13)%23<6);nodes.setColorAt(k++,new T.Color(on?'#fff8d8':'#575b56'))}});if(nodes.instanceColor)nodes.instanceColor.needsUpdate=true
       })
-      label('ENIGMA · 200 NEURONS',2,.18,root,0,.57,.89)
     }
     if (props.project === 'jugalbandi') {
-      table(4.2,2)
-      const harp=new T.Group();harp.position.set(-1.15,.80,0);root.add(harp)
-      rod(V(-.43,0,0),V(.43,0,0),.04,timber,harp);rod(V(-.43,0,0),V(-.43,1.6,0),.04,timber,harp);rod(V(-.43,1.6,0),V(.43,0,0),.04,timber,harp)
-      const strings:T.Mesh[]=[]
-      for(let i=0;i<8;i++){const x=-.33+i*.086;const string=rod(V(x,.08,0),V(x,1.40-i*.145,0),.004,silver,harp);pick(string,0);strings.push(string);box(.06,.04,.08,black,harp,x,.08,0)}
-      const flute=new T.Group();flute.position.set(.35,.9,.38);root.add(flute)
-      const bamboo=cylinder(.05,1.25,timber,flute);bamboo.rotation.z=Math.PI/2
-      for(let i=0;i<6;i++){sphere(.025,black,flute,-.42+i*.16,.045,.015);box(.1,.08,.10,black,flute,-.42+i*.16,.12,0)}pick(bamboo,1)
-      const rain=new T.Group();rain.position.set(1.4,.79,-.30);root.add(rain)
-      for(const x of [-.35,.35])box(.06,1.55,.06,timber,rain,x,.78,0)
-      box(.76,.06,.06,timber,rain,0,1.55,0)
+      const ochre=mat('#d4ae43'), mahogany=mat('#a95025'), servoBlue=mat('#254e97',.4), copper=mat('#bca370',.4,.6)
+      // The documented harp has an oval soundboard inside a rectangular frame,
+      // diagonal plucking rail, exposed blue servos and a wired controller.
+      const harp=new T.Group();harp.position.set(-1.60,.12,-.45);root.add(harp)
+      for(const x of [-.79,.79])box(.07,2.55,.14,plywood,harp,x,1.28,0)
+      for(const y of [.04,2.52])box(1.65,.07,.14,plywood,harp,0,y,0)
+      const soundboard=cylinder(.72,.11,mahogany,harp,0,1.24,0);soundboard.rotation.x=Math.PI/2;soundboard.scale.z=1.35
+      const hole=cylinder(.16,.012,black,harp,0,1.10,.063);hole.rotation.x=Math.PI/2
+      const strings:T.Mesh[]=[],plectrums:T.Group[]=[]
+      for(let i=0;i<15;i++){
+        const x=-.57+i*.081,top=1.93-Math.pow(x/.72,2)*.24,bottom=.54+Math.pow(x/.72,2)*.18
+        strings.push(rod(V(x,bottom,.08),V(x,top,.08),.003,copper,harp));screw(harp,x,top,.085)
+      }
+      rod(V(-.84,2.18,.18),V(.95,.70,.18),.045,plywood,harp);rod(V(-.84,.65,.18),V(.95,.70,.18),.045,plywood,harp)
+      for(let i=0;i<10;i++){
+        const x=-.47+(i%5)*.22,y=i<5?1.88-(i%5)*.18:.70
+        box(.12,.095,.085,servoBlue,harp,x,y,.22)
+        const pivot=new T.Group();pivot.position.set(x,y,.27);harp.add(pivot);box(.035,.17,.012,black,pivot,0,-.07,0);plectrums.push(pivot);pick(pivot.children[0],0)
+        cable([V(x,y,.25),V(x-.08,y+.15,.30),V(-.72,1.1,.31)],i%2?'#ba582b':'#c39b36',harp,.004)
+      }
+      box(.11,.46,.04,mat('#315c52'),harp,-.73,1.12,.22)
+      for(const x of [-.8,.8])box(.25,.08,.75,black,harp,x,0,.03)
+      // Hexa-18 is the yellow faceted human instrument, not a conventional harp.
+      const hexa=new T.Group();hexa.position.set(.12,0,.70);root.add(hexa)
+      const topRadius=.42,bottomRadius=.78,baseY=.50,topY=1.47
+      for(let i=0;i<4;i++){
+        const angle=i*Math.PI/2,face=new T.Group();face.rotation.y=angle;hexa.add(face)
+        const panelGeometry=new T.BufferGeometry();panelGeometry.setAttribute('position',new T.Float32BufferAttribute([-bottomRadius,baseY,bottomRadius,bottomRadius,baseY,bottomRadius,topRadius,topY,topRadius,-bottomRadius,baseY,bottomRadius,topRadius,topY,topRadius,-topRadius,topY,topRadius],3));panelGeometry.computeVertexNormals()
+        mesh(panelGeometry,ochre,face)
+        rod(V(-bottomRadius,baseY,bottomRadius),V(-topRadius,topY,topRadius),.018,ochre,face);rod(V(bottomRadius,baseY,bottomRadius),V(topRadius,topY,topRadius),.018,ochre,face)
+        for(let j=0;j<8;j++){const yy=.7+Math.floor(j/2)*.17,xx=(j%2?1:-1)*.18;const sensor=cylinder(.039,.024,black,face,xx,yy,bottomRadius-(yy-baseY)*.37+.022);sensor.rotation.x=Math.PI/2;pick(sensor,0);const rim=mesh(new T.TorusGeometry(.043,.006,6,18),silver,face,xx,yy,bottomRadius-(yy-baseY)*.37+.04);rim.rotation.x=.36}
+        rod(V(-.78,.5,.78),V(-.32,.04,.32),.045,ochre,face);rod(V(.78,.5,.78),V(.32,.04,.32),.045,ochre,face)
+      }
+      box(.84,.025,.84,ochre,hexa,0,topY,0)
+      for(let i=0;i<8;i++){const height=.13+(7-i)*.105,x=(i%2-.5)*.20,z=(Math.floor(i/2)-1.5)*.17;const pipe=cylinder(.035,height,plywood,hexa,x,topY+height/2,z);pick(pipe,1);cylinder(.022,.005,black,hexa,x,topY+height+.003,z)}
+      const flute=new T.Group();flute.position.set(1.9,.83,-.45);root.add(flute)
+      box(1.8,.08,.64,plywood,flute)
+      for(const x of [-.72,.72])for(const z of [-.24,.24])box(.055,.8,.055,black,flute,x,-.44,z)
+      const bamboo=cylinder(.052,1.45,plywood,flute,0,.12,0);bamboo.rotation.z=Math.PI/2;pick(bamboo,1)
+      for(let i=0;i<6;i++){const x=-.50+i*.19;sphere(.025,black,flute,x,.16,.025);box(.09,.075,.08,servoBlue,flute,x,.23,-.16);rod(V(x,.23,-.14),V(x,.19,.02),.009,white,flute)}
+      for(const x of [-.68,-.58,.57,.68]){const band=cylinder(.054,.035,black,flute,x,.12,0);band.rotation.z=Math.PI/2}
+      cable([V(-.68,.13,0),V(-.95,.18,.30),V(-.95,.1,-.34),V(.70,.10,-.34)],'#ddd7c4',flute,.018)
+      box(.22,.04,.26,mat('#315c52'),flute,.72,.08,-.16)
       const rainsticks:T.Group[]=[]
-      for(const x of [-.35,.35]){const pivot=new T.Group();pivot.position.set(x,.85,0);rain.add(pivot);const stick=cylinder(.045,.8,timber,pivot);pick(stick,2);cylinder(.047,.07,white,pivot,0,.40,0);cylinder(.047,.07,white,pivot,0,-.4,0);rainsticks.push(pivot)}
-      label('PLUCK',.55,.14,root,-1.15,.58,1.02);label('BREATH',.55,.14,root,.25,.58,1.02);label('RAIN',.55,.14,root,1.4,.58,1.02)
-      updates.push((values,time)=>{strings.forEach((s,i)=>{s.position.z=Math.sin(time*35+i)*.015*(values[0]/100)});rainsticks.forEach((r,i)=>r.rotation.z=(values[2]/100-.5)*1.6*(i?-1:1));flute.position.y=.9+Math.sin(time*5)*.01*values[1]/100})
+      for(let i=0;i<2;i++){const r=new T.Group();r.position.set(1.5+i*.65,.83,.85);root.add(r);box(.4,.06,.40,plywood,r,0,-.80,0);box(.05,.80,.05,plywood,r,0,-.40,0);const pivot=new T.Group();r.add(pivot);rainsticks.push(pivot);const stick=cylinder(.052,.75,plywood,pivot);pick(stick,2);for(const y of [-.36,.36])cylinder(.055,.04,mahogany,pivot,0,y,0);box(.11,.09,.08,servoBlue,r,0,0,-.09)}
+      updates.push((values,time)=>{strings.forEach((s,i)=>s.position.z=.08+Math.sin(time*35+i)*.006*values[0]/100);plectrums.forEach((p,i)=>p.rotation.z=Math.sin(time*9+i)*.18*values[0]/100);rainsticks.forEach((r,i)=>r.rotation.z=(values[2]/100-.5)*1.7*(i?-1:1));hexa.rotation.y=(values[1]/100-.3)*.20})
     }
     if (props.project === 'sea-of-salt') {
       table(3.2,2.2);box(3.2,.035,2.2,black,root,0,.81,0)
-      cylinder(.42,.40,white,root,0,1.08,-.25)
-      const crank=new T.Group();crank.position.set(0,1.32,-.25);root.add(crank)
+      const shell=mesh(new T.CylinderGeometry(.42,.42,.40,48,1,true),white,root,0,1.08,-.25);(shell.material as T.MeshStandardMaterial).side=T.DoubleSide
+      cylinder(.42,.035,white,root,0,.90,-.25)
+      const crank=new T.Group();crank.position.set(0,1.27,-.25);root.add(crank)
       const annulus=new T.Shape();annulus.absarc(0,0,.42,0,Math.PI*2,false);const hole=new T.Path();hole.absarc(0,0,.13,0,Math.PI*2,true);annulus.holes.push(hole)
-      const top=mesh(new T.ExtrudeGeometry(annulus,{depth:.06,bevelEnabled:false}),white,crank);top.rotation.x=-Math.PI/2
-      cylinder(.045,.2,timber,crank,.28,.1,0)
+      const top=mesh(new T.ExtrudeGeometry(annulus,{depth:.06,bevelEnabled:true,bevelSegments:1,bevelSize:.002,bevelThickness:.002}),white,crank);top.rotation.x=-Math.PI/2
+      const handle=cylinder(.045,.2,plywood,crank,.28,.1,0)
+      pick(top,0);pick(handle,0);pick(shell,0);top.userData.dragKind='crank';handle.userData.dragKind='crank';shell.userData.dragKind='crank'
       box(1.6,.045,.28,black,root,0,.855,.72);box(1.3,.015,.035,silver,root,0,.89,.72)
       const cap=box(.12,.06,.11,white,root,-.65,.92,.72);pick(cap,0)
       label('WHY THE SEA IS SALT',2.0,.20,root,0,.58,1.12)
@@ -142,22 +195,54 @@ export default function RoomScene(props: Props) {
         for(let i=0;i<grains.count;i++){const angle=i*2.39996,radius=.22+Math.sqrt(i/900)*.8;dummy.position.set(Math.cos(angle)*radius,.845+Math.max(0,.18-radius*.15)+.015*Math.sin(i),-.25+Math.sin(angle)*radius);dummy.rotation.set(i,i*1.2,time*0);dummy.updateMatrix();grains.setMatrixAt(i,dummy.matrix)}grains.instanceMatrix.needsUpdate=true})
     }
     if (props.project === 'moniac-machine') {
-      table(2.8,2.1)
-      const cabinet=new T.Group();cabinet.position.y=.81;root.add(cabinet)
-      box(1.5,.10,1.55,timber,cabinet,0,.05,0)
-      for(const x of [-.76,.76])box(.045,1.60,.10,timber,cabinet,x,.83,-.65)
-      box(1.56,1.6,.055,timber,cabinet,0,.85,-.70)
-      box(1.12,1.35,.045,black,cabinet,0,.94,-.65)
-      const screen=new T.Group();screen.position.set(0,.95,-.61);cabinet.add(screen)
-      const bars:T.Mesh[]=[]
-      for(let i=0;i<7;i++){bars.push(box(.075,.3,.01,mat('#5695a7'),screen,-.38+i*.125,-.2,.02));label(['TAX','SPEND','RATE','INV','CONS','IMP','EXP'][i],.12,.045,screen,-.38+i*.125,-.55,.03)}
-      label('MONIAC',.85,.12,cabinet,0,1.54,-.61)
-      const valves:T.Group[]=[]
-      for(let i=0;i<7;i++){const valve=new T.Group();valve.position.set(-.48+(i%3)*.48,.21, .35-Math.floor(i/3)*.30);cabinet.add(valve)
-        cylinder(.07,.12,white,valve,0,-.04,0);const wheel=mesh(new T.TorusGeometry(.11,.014,8,24),white,valve);wheel.rotation.x=-Math.PI/2;pick(wheel,i)
-        for(let spoke=0;spoke<5;spoke++)rod(V(0,0,0),V(Math.cos(spoke*Math.PI*2/5)*.11,0,Math.sin(spoke*Math.PI*2/5)*.11),.009,white,valve)
-        valves.push(valve)}
-      updates.push(values=>{bars.forEach((bar,i)=>{const h=.05+values[i]/100*.75;bar.scale.y=h/.3;bar.position.y=-.48+h/2});valves.forEach((valve,i)=>valve.rotation.y=values[i]/100*Math.PI*2)})
+      table(2.9,2.7)
+      const cabinet=new T.Group();cabinet.position.set(0,.80,0);root.add(cabinet)
+      box(1.82,.065,1.82,plywood,cabinet,0,.04,0)
+      // Triangular cheeks follow the photograph's tilted tablet and low valve deck.
+      const cheek=new T.Shape();cheek.moveTo(-.88,.08);cheek.lineTo(.55,.08);cheek.lineTo(-.50,1.82);cheek.lineTo(-.88,1.82);cheek.closePath()
+      for(const x of [-.89,.86]){const side=mesh(new T.ExtrudeGeometry(cheek,{depth:.035,bevelEnabled:true,bevelSegments:1,bevelSize:.002,bevelThickness:.002}),plywood,cabinet,x,0,0);side.rotation.y=-Math.PI/2}
+      const displayGroup=new T.Group();displayGroup.position.set(0,1.12,-.46);displayGroup.rotation.x=-.24;cabinet.add(displayGroup)
+      box(1.82,1.73,.065,plywood,displayGroup)
+      box(1.25,1.47,.046,black,displayGroup,0,.015,.058)
+      const screenCanvas=document.createElement('canvas');screenCanvas.width=600;screenCanvas.height=800
+      const texture=new T.CanvasTexture(screenCanvas);texture.colorSpace=T.SRGBColorSpace;textures.add(texture)
+      const screenMaterial=new T.MeshBasicMaterial({map:texture});materials.add(screenMaterial)
+      mesh(new T.PlaneGeometry(1.16,1.36),screenMaterial,displayGroup,0,.015,.083)
+      for(const x of [-.79,.79])for(const y of [-.69,.69])screw(displayGroup,x,y,.04)
+      // Clear cover exposes the PVC elbows, shafts and wiring underneath.
+      const glass=new T.MeshStandardMaterial({color:'#d7e0da',transparent:true,opacity:.16,roughness:.16,depthWrite:false});materials.add(glass)
+      box(1.46,.018,1.18,glass,cabinet,0,.22,.25)
+      for(const x of [-.80,.80])box(.14,.19,1.36,plywood,cabinet,x,.16,.24)
+      box(1.82,.17,.14,plywood,cabinet,0,.13,.87)
+      const valves:T.Group[]=[],names=['TAX','SPEND','RATE','INVEST','CONSUME','IMPORT','EXPORT']
+      for(let i=0;i<7;i++){
+        const x=i<3?-.50+i*.5:i<5?-.30+(i-3)*.60:-.30+(i-5)*.60,z=i<3?-.17:i<5?.22:.62
+        cylinder(.067,.14,white,cabinet,x,.12,z);const elbow=cylinder(.066,.18,white,cabinet,x,.10,z+.08);elbow.rotation.x=Math.PI/2
+        cylinder(.024,.16,silver,cabinet,x,.24,z)
+        const valve=new T.Group();valve.position.set(x,.34,z);cabinet.add(valve);pick(valve,i)
+        const wheel=mesh(new T.TorusGeometry(.12,.021,8,32),white,valve);wheel.rotation.x=-Math.PI/2;pick(wheel,i)
+        cylinder(.041,.035,white,valve)
+        for(let spoke=0;spoke<6;spoke++){const a=spoke*Math.PI/3;rod(V(0,0,0),V(Math.cos(a)*.12,0,Math.sin(a)*.12),.012,white,valve);sphere(.028,white,valve,Math.cos(a)*.12,0,Math.sin(a)*.12)}
+        const tag=label(names[i],.30,.07,cabinet,x,.235,z+.16,'#35362f','#d8c29d');tag.rotation.x=-Math.PI/2
+        cable([V(x,.07,z),V(x+.12,.09,z+.12),V(.62,.07,-.45)],i%2?'#963e2c':'#303934',cabinet,.005)
+        valves.push(valve)
+      }
+      const start=box(.15,.025,.15,white,cabinet,-.63,.25,.65);cylinder(.045,.018,white,cabinet,-.63,.275,.65);start.userData.decorative=true
+      cable([V(0,.40,-.29),V(0,.30,-.20),V(.05,.09,-.43)],'#282a27',cabinet,.012)
+      let previous=''
+      updates.push(values=>{
+        valves.forEach((valve,i)=>valve.rotation.y=values[i]/100*Math.PI*2)
+        const signature=values.join(',');if(signature===previous)return;previous=signature
+        const ctx=screenCanvas.getContext('2d')!;ctx.fillStyle='#10191e';ctx.fillRect(0,0,600,800)
+        ctx.fillStyle='#eceade';ctx.font='28px Arial';ctx.fillText('MONIAC',35,48);ctx.font='18px Arial';ctx.fillText('POLICY FLOW · STUDY',35,78)
+        ctx.strokeStyle='#39a6d0';ctx.lineWidth=14;ctx.beginPath();ctx.moveTo(80,680);ctx.lineTo(45,680);ctx.lineTo(45,115);ctx.lineTo(295,115);ctx.lineTo(295,690);ctx.stroke()
+        for(let i=0;i<7;i++){const right=i>=4,x=right?355:115,y=150+(right?i-4:i)*130,w=160,h=80
+          ctx.fillStyle='#203641';ctx.fillRect(x,y,w,h);ctx.fillStyle='#368db0';ctx.fillRect(x,y+h*(1-values[i]/100),w,h*values[i]/100)
+          ctx.strokeStyle='#91b9c8';ctx.lineWidth=1;ctx.strokeRect(x,y,w,h);ctx.fillStyle='#f2efe5';ctx.font='17px Arial';ctx.fillText(names[i],x,y-9);ctx.font='24px Arial';ctx.fillText(`${values[i]}%`,x+12,y+49)
+          ctx.strokeStyle='#39a6d0';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(right?295:x+w,y+40);ctx.lineTo(right?x:295,y+40);ctx.stroke()
+        }
+        texture.needsUpdate=true
+      })
     }
     if (props.project === 'revolving-stage') {
       box(5,.16,4,black,root,0,.10,0)
@@ -180,21 +265,21 @@ export default function RoomScene(props: Props) {
     if (props.project === 'black-hole') {
       const exhibits=[new T.Group(),new T.Group(),new T.Group()];exhibits.forEach(e=>root.add(e))
       const pedestal=box(3.4,.70,1.9,clay,root,0,.35,0);pedestal.receiveShadow=true
-      cylinder(1.05,.18,black,exhibits[0],0,.85,0)
+      cylinder(.87,.14,black,exhibits[0],0,.77,0)
       cylinder(.018,.62,black,exhibits[0],0,1.2,0);sphere(.15,black,exhibits[0],0,1.53,0)
-      const clocks:T.Group[]=[],hands:T.Mesh[]=[]
-      for(let i=0;i<2;i++){const c=new T.Group();c.position.set(i? .7:-.7,1.02,.40);exhibits[0].add(c);const face=cylinder(.16,.04,white,c);face.rotation.x=Math.PI/2;const rim=mesh(new T.TorusGeometry(.17,.014,8,32),silver,c,0,0,.03);rim.rotation.x=0
+      const clocks:T.Group[]=[],hands:T.Group[]=[]
+      for(let i=0;i<2;i++){const c=new T.Group();c.position.set(i? .7:-.7,1.28,.35);exhibits[0].add(c);const face=cylinder(.16,.04,white,c);face.rotation.x=Math.PI/2;const rim=mesh(new T.TorusGeometry(.17,.014,8,32),silver,c,0,0,.03);rim.rotation.x=0
         for(let tick=0;tick<12;tick++){const a=tick/12*Math.PI*2;box(.012,.025,.007,black,c,Math.sin(a)*.13,Math.cos(a)*.13,.027)}
-        const hand=box(.008,.12,.006,black,c,0,.03,.04);hands.push(hand);clocks.push(c)}
+        const hand=new T.Group();c.add(hand);box(.009,.12,.006,black,hand,0,.05,.04);sphere(.014,black,c,0,0,.045);hands.push(hand);clocks.push(c);cylinder(.018,.28,silver,c,0,-.29,0);box(.28,.025,.20,black,c,0,-.43,0)}
       const fabric=new T.PlaneGeometry(2.3,1.5,35,25);fabric.rotateX(-Math.PI/2)
-      const fabricMesh=mesh(fabric,new T.MeshStandardMaterial({color:'#657c73',wireframe:true}),exhibits[1],0,1.1,0);materials.add(fabricMesh.material)
+      const fabricMesh=mesh(fabric,new T.MeshStandardMaterial({color:'#657c73',wireframe:true}),exhibits[1],0,1.25,0);materials.add(fabricMesh.material)
       const mass=sphere(.16,black,exhibits[1],0,.92,0);pick(mass,1)
-      for(const x of [-1.15,1.15])for(const z of [-.75,.75])box(.04,.45,.04,black,exhibits[1],x,.93,z)
+      for(const x of [-1.15,1.15])for(const z of [-.75,.75])box(.04,.55,.04,black,exhibits[1],x,.975,z)
       const pair=[sphere(.18,black,exhibits[2]),sphere(.18,black,exhibits[2])]
-      cylinder(.9,.05,white,exhibits[2],0,.76,0)
+      cylinder(.9,.05,white,exhibits[2],0,.725,0)
       label('BLACK HOLE · PHYSICAL STUDIES',2.8,.18,root,0,.43,.965)
-      updates.push((values,time)=>{exhibits.forEach((e,i)=>e.visible=values[0]===i);clocks[1].position.x=.15+values[1]/100*.65;hands[0].rotation.z=-time;hands[1].rotation.z=-time*Math.sqrt(.05+.95*values[1]/100)
-        const pos=fabric.attributes.position;for(let i=0;i<pos.count;i++){const radius=Math.hypot(pos.getX(i),pos.getZ(i));pos.setY(i,-(.12+values[1]/100*.35)*Math.exp(-radius*radius*3))}pos.needsUpdate=true
+      updates.push((values,time)=>{exhibits.forEach((e,i)=>e.visible=values[0]===i);const separation=.35+values[1]/100*.45;clocks[0].position.x=-separation;clocks[1].position.x=separation;hands[0].rotation.z=-time;hands[1].rotation.z=-time*Math.sqrt(.05+.95*values[1]/100)
+        const pos=fabric.attributes.position;for(let i=0;i<pos.count;i++){const radius=Math.hypot(pos.getX(i),pos.getZ(i));pos.setY(i,-(.12+values[1]/100*.35)*Math.exp(-radius*radius*3))}pos.needsUpdate=true;mass.position.y=1.25-(.12+values[1]/100*.35)+.16
         pair.forEach((s,i)=>{const a=time+i*Math.PI,r=.22+values[1]/100*.55;s.position.set(Math.cos(a)*r,.98,Math.sin(a)*r)})})
     }
     if (props.project === 'uv-light') {
@@ -286,13 +371,15 @@ export default function RoomScene(props: Props) {
     controls.addEventListener('start',()=>{cameraMoving=false})
     const resize=()=>{const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;camera.fov=w<600?50:40;camera.updateProjectionMatrix();renderer.setSize(w,h);activity?.wake()}
     const resizeObserver=new ResizeObserver(resize);resizeObserver.observe(host);resize()
-    const ray=new T.Raycaster(),pointer=new T.Vector2();let drag:{index:number;startX:number;startValue:number;pointerId:number}|null=null
-    const down=(event:PointerEvent)=>{if(event.button!==0||drag)return;const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(pickables,true)[0];if(!hit)return;const index=hit.object.userData.control as number,value=hit.object.userData.value as number|undefined;if(value!==undefined){latest.current.onChange(index,value);event.stopImmediatePropagation();return}drag={index,startX:event.clientX,startValue:latest.current.values[index],pointerId:event.pointerId};controls.enabled=false;renderer.domElement.setPointerCapture(event.pointerId);event.stopImmediatePropagation()}
-    const move=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;const max=props.project==='revolving-stage'?360:100;latest.current.onChange(drag.index,Math.max(0,Math.min(max,drag.startValue+(event.clientX-drag.startX)/host.clientWidth*max*2)))}
+    const ray=new T.Raycaster(),pointer=new T.Vector2();let drag:{index:number;startX:number;startValue:number;pointerId:number;crank?:boolean;angle?:number;turn?:number}|null=null
+    const crankPlane=new T.Plane(V(0,1,0),-1.33),crankPoint=new T.Vector3()
+    const crankAngle=(event:PointerEvent)=>{const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);return ray.ray.intersectPlane(crankPlane,crankPoint)?Math.atan2(crankPoint.z+.25,crankPoint.x):null}
+    const down=(event:PointerEvent)=>{if(event.button!==0||drag)return;const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(pickables,true)[0];if(!hit)return;let picked:T.Object3D=hit.object;while(picked.userData.control===undefined&&picked.parent)picked=picked.parent;const index=picked.userData.control as number,value=picked.userData.value as number|undefined;if(value!==undefined){latest.current.onChange(index,value);event.stopImmediatePropagation();return}const crank=hit.object.userData.dragKind==='crank';drag={index,startX:event.clientX,startValue:latest.current.values[index],pointerId:event.pointerId,crank,angle:crank?(crankAngle(event)??0):undefined,turn:0};controls.enabled=false;renderer.domElement.setPointerCapture(event.pointerId);event.stopImmediatePropagation()}
+    const move=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;if(drag.crank){const angle=crankAngle(event);if(angle===null)return;let delta=angle-drag.angle!;if(delta>Math.PI)delta-=Math.PI*2;if(delta<-Math.PI)delta+=Math.PI*2;drag.angle=angle;drag.turn!-=delta;latest.current.onChange(drag.index,Math.max(0,Math.min(100,drag.startValue+drag.turn!/(Math.PI*8)*100)));return}const max=props.project==='revolving-stage'?360:100;latest.current.onChange(drag.index,Math.max(0,Math.min(max,drag.startValue+(event.clientX-drag.startX)/host.clientWidth*max*2)))}
     const up=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;drag=null;controls.enabled=true;if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId)}
-    renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',up)
+    renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',up);renderer.domElement.addEventListener('lostpointercapture',up)
     const lost=(event:Event)=>{event.preventDefault();latest.current.onFail()};renderer.domElement.addEventListener('webglcontextlost',lost)
-    return()=>{disposed=true;wake.current=null;activity?.dispose();resizeObserver.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',down,true);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',up);renderer.domElement.removeEventListener('webglcontextlost',lost)
+    return()=>{disposed=true;wake.current=null;activity?.dispose();resizeObserver.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',down,true);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',up);renderer.domElement.removeEventListener('lostpointercapture',up);renderer.domElement.removeEventListener('webglcontextlost',lost)
       const geometries=new Set<T.BufferGeometry>();scene.traverse(object=>{if(object instanceof T.Mesh||object instanceof T.LineSegments){geometries.add(object.geometry);const ms=Array.isArray(object.material)?object.material:[object.material];ms.forEach(m=>materials.add(m))}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());renderer.dispose();renderer.domElement.remove()}
   },[props.project,props.resetVersion])
   useEffect(()=>{wake.current?.()},[props.values,props.dark,props.revision,props.reduced])

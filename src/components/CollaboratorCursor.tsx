@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getProjectNarrative } from '../data/agentKnowledge'
-import { createChatHistory, sendMessage } from '../services/agentAI'
+import type { ChatHistory } from '../services/agentAI'
 import { getCursorThinkingLine } from '../services/parthCursorVoice'
 import PointerCursorGlyph from './PointerCursorGlyph'
 
@@ -321,7 +321,7 @@ export default function CollaboratorCursor() {
   const lastAmbientAtRef = useRef(0)
   const conversationOpenRef = useRef(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const historyRef = useRef(createChatHistory(normalizedPathname))
+  const historyRef = useRef<ChatHistory | null>(null)
   const requestIdRef = useRef(0)
   const tourStepsRef = useRef<ResolvedStep[]>([])
   const tourActiveRef = useRef(false)
@@ -463,14 +463,18 @@ export default function CollaboratorCursor() {
     setReply('')
     setAsking(true)
     setThinkingLine(getCursorThinkingLine(trimmed, normalizedPathname))
-    historyRef.current.route = normalizedPathname
     const requestId = ++requestIdRef.current
 
     try {
+      const { createChatHistory, sendMessage } = await import('../services/agentAI')
+      if (requestId !== requestIdRef.current) return
+      const history = historyRef.current ?? createChatHistory(normalizedPathname)
+      history.route = normalizedPathname
+      historyRef.current = history
       const currentTourStep = tourStepsRef.current[tourIndexRef.current]
       const answer = await sendMessage(
         contextualQuestion(normalizedPathname, trimmed),
-        historyRef.current,
+        history,
         undefined,
         {
           surface: 'cursor',
@@ -500,7 +504,7 @@ export default function CollaboratorCursor() {
   }
 
   useEffect(() => {
-    historyRef.current = createChatHistory(normalizedPathname)
+    historyRef.current = null
     requestIdRef.current += 1
     conversationOpenRef.current = false
     setConversationOpen(false)

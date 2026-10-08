@@ -2,7 +2,6 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, lazy, Suspen
 import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import PageLoader from './PageLoader';
 import Lightbox from './Lightbox';
-import CollaboratorCursor from './CollaboratorCursor';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
 import { useDeferredMount } from '../hooks/useDeferredMount';
@@ -12,6 +11,7 @@ import { isLowPowerDevice, prefersCanvasChrome } from '../utils/performance';
 import { clearBodyScrollLocks } from '../utils/bodyScrollLock';
 import { settleAnchor } from '../utils/settleAnchor';
 
+const CollaboratorCursor = lazy(() => import('./CollaboratorCursor'));
 const FigmaChrome = lazy(() => import('./FigmaChrome'));
 const FigmaGrid = lazy(() => import('./FigmaGrid'));
 const HandTracker = lazy(() => import('./HandTracker'));
@@ -423,7 +423,7 @@ export default function RootLayout() {
         <Outlet />
       </div>
       <Lightbox />
-      {enableFinePointerEffects && desktopCanvas && !coarsePointer && <CollaboratorCursor />}
+      {enableFinePointerEffects && desktopCanvas && !coarsePointer && <Suspense fallback={null}><CollaboratorCursor /></Suspense>}
       {/* AmbientAudio moved to Nav */}
       {enableFigmaChrome && figmaChromeReady && (
         <Suspense fallback={null}>

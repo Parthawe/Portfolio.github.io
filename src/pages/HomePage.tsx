@@ -12,15 +12,17 @@ import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useInView } from '../hooks/useInView';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded';
-import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
+import { canUseWebGL, useWebGLAvailable } from '../hooks/useWebGLAvailable';
 import { featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
-import { isLowPowerDevice } from '../utils/performance';
+import { beginSceneStartup, isLowPowerDevice } from '../utils/performance';
 import ParthDoesSection from '../components/ParthDoesSection';
 import '../styles/homepage-wr.css';
+import { HERO_ENVIRONMENT_URL } from '../data/heroAssets';
 
 
-const HeroScene = lazy(() => import('../components/HeroScene'));
+const loadHeroScene = () => import('../components/HeroScene');
+const HeroScene = lazy(loadHeroScene);
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
 
 const disciplines = [
@@ -82,6 +84,7 @@ export default function HomePage() {
   const [heroWebOpen, setHeroWebOpen] = useState(false);
   const [heroSceneReady, setHeroSceneReady] = useState(false);
   const [heroSceneTimedOut, setHeroSceneTimedOut] = useState(false);
+  const endSceneStartup = useRef<((settleMs?: number) => void) | null>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
   const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
@@ -113,6 +116,25 @@ export default function HomePage() {
     slug === 'mentra' || slug === 'jugalbandi' ? 'portrait' : 'square';
 
 
+  // Fetch the visible hero while its existing idle mount waits. Loading the
+  // module does not create a renderer; constrained devices keep their fallback.
+  useEffect(() => {
+    if (heroSceneUnavailable || !canUseWebGL()) return;
+    let cancelled = false;
+    const finishStartup = beginSceneStartup();
+    endSceneStartup.current = finishStartup;
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'fetch';
+    preload.href = HERO_ENVIRONMENT_URL;
+    preload.crossOrigin = 'anonymous';
+    document.head.append(preload);
+    void loadHeroScene().catch(() => {
+      if (!cancelled) setHeroSceneTimedOut(true);
+    });
+    return () => { cancelled = true; preload.remove(); finishStartup(); };
+  }, [heroSceneUnavailable]);
+
   useEffect(() => {
     if (prefersReducedMotion) return;
     const id = window.setInterval(() => {
@@ -128,7 +150,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!mountHeroScene || heroSceneReady || heroSceneUnavailable) return;
-    const timeoutId = window.setTimeout(() => setHeroSceneTimedOut(true), 6000);
+    const timeoutId = window.setTimeout(() => setHeroSceneTimedOut(true), 15000);
     return () => window.clearTimeout(timeoutId);
   }, [heroSceneReady, heroSceneUnavailable, mountHeroScene]);
 
@@ -189,6 +211,8 @@ export default function HomePage() {
                 onNavigate={navigate}
                 onExpandedChange={setHeroWebOpen}
                 onReady={() => {
+                  // Keep the existing 2.2s warmup after the first real frame.
+                  endSceneStartup.current?.(2200);
                   setHeroSceneReady(true);
                   setHeroSceneTimedOut(false);
                 }}
@@ -255,7 +279,8 @@ export default function HomePage() {
                             year={project.year}
                             marqueeText={featuredInfo}
                             marqueeSpeed={2}
-                            loading={index < 2 ? 'eager' : 'lazy'}
+                            loading="lazy"
+                            deferUntilNearView
                             featured
                             coverShape={getFlagshipCoverShape(project.slug)}
                             nda={project.nda}
@@ -370,7 +395,7 @@ export default function HomePage() {
                           style={{ transitionDelay: `${delay}s` }}
                           data-archive-index={originalIndex}
                         >
-                          <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
+                          <ProjectCard deferUntilNearView slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
                         </div>
                       );
                     })}

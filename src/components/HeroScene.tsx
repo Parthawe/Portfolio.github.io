@@ -1,5 +1,8 @@
+import { addInstanceEmissive, updateMorphingPixels } from '../utils/morphingPixelInstances';
+import { prepareSceneShaders } from '../utils/prepareSceneShaders';
+import { HERO_ENVIRONMENT_URL } from '../data/heroAssets';
 import { createSceneActivity } from '../utils/sceneActivity';
-import { useRef, useMemo, useEffect, useState, useCallback } from 'react';
+import { useRef, useMemo, useEffect, useLayoutEffect, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Text, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -694,7 +697,8 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
   const coreRef = useRef<THREE.Mesh>(null!);
   const crossRef = useRef<THREE.Group>(null!);
   const nodeRefs = useRef<THREE.Mesh[]>([]);
-  const pixelRefs = useRef<THREE.Mesh[]>([]);
+  const pixelsRef = useRef<THREE.InstancedMesh>(null!);
+  const pixelScratch = useMemo(() => new THREE.Object3D(), []);
 
   // Build cubes that fill 3 disc shapes — each cube has a "solid" position (forming the disc)
   // and a "scattered" position (exploded outward like the flower reference)
@@ -743,6 +747,26 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
     return data;
   }, [dark]);
 
+  const pixelGeometry = useMemo(() => {
+    const geometry = new THREE.BoxGeometry(0.038, 0.015, 0.038);
+    geometry.setAttribute('instanceEmissive', new THREE.InstancedBufferAttribute(new Float32Array(pixelData.length), 1).setUsage(THREE.DynamicDrawUsage));
+    return geometry;
+  }, [pixelData.length]);
+  useLayoutEffect(() => {
+    const mesh = pixelsRef.current;
+    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    let radius = 0;
+    pixelData.forEach((pixel, index) => {
+      mesh.setColorAt(index, new THREE.Color(pixel.color));
+      radius = Math.max(radius, Math.hypot(...pixel.solidPos), Math.hypot(...pixel.scatterPos));
+    });
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    // Cover both ends of every trajectory, breathing, and the largest spun cube.
+    mesh.boundingSphere = new THREE.Sphere(new THREE.Vector3(), radius + 0.008 + Math.hypot(0.038, 0.015, 0.038) * 0.65);
+    updateMorphingPixels(mesh, pixelData, ht.current, vt.current, dark, pixelScratch);
+  }, [pixelData, dark, pixelScratch, ht, vt]);
+  useEffect(() => () => pixelGeometry.dispose(), [pixelGeometry]);
+
   useFrame(() => {
     if (!ref.current) return;
     const v = vt.current;
@@ -751,41 +775,7 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
     ref.current.rotation.x = Math.sin(v * 0.035) * 0.06;
     ref.current.rotation.z = Math.cos(v * 0.03) * 0.03;
 
-    // Pixel cubes: solid disc → scattered cloud
-    pixelRefs.current.forEach((mesh, i) => {
-      if (!mesh) return;
-      const pd = pixelData[i];
-
-      // Stagger: center cubes move first, edge cubes follow — ease-out for organic feel
-      const raw = Math.min(1, Math.max(0, h * 2.5 - pd.delay * 0.8));
-      const eased = 1 - Math.pow(1 - raw, 3); // ease-out cubic
-
-      // Position: lerp solid → scatter
-      mesh.position.set(
-        mix(pd.solidPos[0], pd.scatterPos[0], eased),
-        mix(pd.solidPos[1], pd.scatterPos[1], eased),
-        mix(pd.solidPos[2], pd.scatterPos[2], eased),
-      );
-
-      // At rest: subtle breathing wave across the disc surface
-      if (h < 0.1) {
-        const wave = Math.sin(v * 1.5 + pd.solidPos[0] * 8 + pd.solidPos[2] * 8) * 0.008;
-        mesh.position.y += wave;
-      }
-
-      // Rotation: none at rest, each cube spins uniquely when scattered
-      const spinSpeed = seededRand(i * 7) * 0.3 + 0.1;
-      mesh.rotation.x = eased * v * spinSpeed;
-      mesh.rotation.z = eased * v * spinSpeed * 0.7;
-
-      // Scale: cubes grow slightly when scattering, shrink back when reforming
-      const scaleBoost = 1 + eased * 0.3;
-      mesh.scale.setScalar(scaleBoost);
-
-      // Iridescent glow when scattered
-      const mat = mesh.material as THREE.MeshPhysicalMaterial;
-      mat.emissiveIntensity = eased * (dark ? 0.6 : 0.35);
-    });
+    updateMorphingPixels(pixelsRef.current, pixelData, h, v, dark, pixelScratch);
 
     // Ring expands and spins faster on hover
     if (ringRef.current) {
@@ -829,30 +819,25 @@ function MorphingScreens({ dark, hovered }: { dark: boolean; hovered: boolean })
     <Float speed={0.6} floatIntensity={0.4} rotationIntensity={0.12}>
       <group ref={ref}>
         {/* The discs ARE made of cubes — iridescent metallic */}
-        {pixelData.map((pd, i) => (
-          <mesh
-            key={`px${i}`}
-            ref={(el) => { if (el) pixelRefs.current[i] = el; }}
-            position={pd.solidPos}
-          >
-            <boxGeometry args={[0.038, 0.015, 0.038]} />
-            <meshPhysicalMaterial
-              color={pd.color}
-              metalness={1}
-              roughness={0.05}
-              clearcoat={1}
-              clearcoatRoughness={0.02}
-              envMapIntensity={dark ? 4 : 5}
-              reflectivity={1}
-              specularIntensity={2}
-              specularColor={dark ? '#aa88ff' : '#8866ee'}
-              iridescence={1}
-              iridescenceIOR={1.8}
-              emissive={dark ? '#3344aa' : '#2233aa'}
-              emissiveIntensity={0}
-            />
-          </mesh>
-        ))}
+        <instancedMesh ref={pixelsRef} args={[pixelGeometry, undefined, pixelData.length]}>
+          <meshPhysicalMaterial
+            color="#ffffff"
+            metalness={1}
+            roughness={0.05}
+            clearcoat={1}
+            clearcoatRoughness={0.02}
+            envMapIntensity={dark ? 4 : 5}
+            reflectivity={1}
+            specularIntensity={2}
+            specularColor={dark ? '#aa88ff' : '#8866ee'}
+            iridescence={1}
+            iridescenceIOR={1.8}
+            emissive={dark ? '#3344aa' : '#2233aa'}
+            emissiveIntensity={1}
+            onBeforeCompile={addInstanceEmissive}
+            customProgramCacheKey={() => 'morphing-pixels-emissive-v1'}
+          />
+        </instancedMesh>
         {/* Cross bars — iridescent */}
         <group ref={crossRef}>
           <mesh><cylinderGeometry args={[0.012, 0.012, 0.55, 8]} /><meshPhysicalMaterial color={dark ? '#5060b0' : '#4050a0'} {...iriChrome} /></mesh>
@@ -2213,7 +2198,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
       <pointLight intensity={dark ? 0.6 : 0.4} color={dark ? '#aabbee' : '#bbccdd'} distance={12} position={[4, -1, -2]} />
 
       {/* Environment reflections — city preset gives complex glass reflections */}
-      <Environment files="/Assets/hdri/potsdamer_platz_1k.hdr" environmentIntensity={dark ? 1.0 : 1.2} />
+      <Environment files={HERO_ENVIRONMENT_URL} environmentIntensity={dark ? 1.0 : 1.2} />
 
       {/* Endless grid backdrop — only bites once the web opens (uFade = intro). */}
       <InfiniteGrid introRef={introRef} panRef={pan} dark={dark} />
@@ -2280,18 +2265,32 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
 export { TrussStructure, PetalRose, MorphingScreens, StackedPlates, LensAssembly, GlassCrystal };
 export { useHoverLerp, useVirtualTime, mix };
 
-function SceneActivity({ expanded, dark }: { expanded: boolean; dark: boolean }) {
-  const { gl, advance, size } = useThree();
+function SceneActivity({ expanded, dark, onReady }: { expanded: boolean; dark: boolean; onReady?: () => void }) {
+  const { gl, scene, camera, advance, size } = useThree();
   const activity = useRef<ReturnType<typeof createSceneActivity> | null>(null);
   const elapsed = useRef(0);
+  const reportedReady = useRef(false);
+  const shadersPrepared = useRef(false);
+  const readyCallback = useRef(onReady);
+  readyCallback.current = onReady;
   useEffect(() => {
     const element = gl.domElement.closest<HTMLElement>('.wr-hero-3d') ?? gl.domElement;
-    activity.current = createSceneActivity(element, delta => {
-      elapsed.current += delta;
-      advance(elapsed.current);
-    }, { introMs: 1800, idleMs: 1200, interactionFps: 30, wakeOnWheel: expanded });
-    return () => { activity.current?.dispose(); activity.current = null; };
-  }, [gl, advance, expanded]);
+    const start = () => {
+      shadersPrepared.current = true;
+      activity.current = createSceneActivity(element, delta => {
+        elapsed.current += delta;
+        advance(elapsed.current);
+        if (!reportedReady.current) {
+          reportedReady.current = true;
+          readyCallback.current?.();
+        }
+      }, { introMs: 1800, idleMs: 1200, interactionFps: 30, wakeOnWheel: expanded });
+    };
+    let cancelPreparation = () => {};
+    if (shadersPrepared.current) start();
+    else cancelPreparation = prepareSceneShaders(gl, scene, camera, start);
+    return () => { cancelPreparation(); activity.current?.dispose(); activity.current = null; };
+  }, [gl, scene, camera, advance, expanded]);
   useEffect(() => { activity.current?.wake(); }, [expanded, dark, size.width, size.height]);
   return null;
 }
@@ -2361,14 +2360,13 @@ export default function HeroScene({
     <>
       <div ref={containerRef} className={`hero-3d-canvas${expanded ? ' hero-3d-canvas--web' : ''}`}>
       <Canvas events={safeCanvasEvents}
-          onCreated={onReady}
           frameloop="never"
           dpr={[1, 2]}
           gl={{ alpha: true, antialias: true, powerPreference: 'high-performance', toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.4 }}
           camera={{ fov: 40, near: 0.1, far: 100, position: [0, 0.3, 7.5] }}
           style={{ background: 'transparent' }}
         >
-          <SceneActivity expanded={expanded} dark={dark} />
+          <SceneActivity expanded={expanded} dark={dark} onReady={onReady} />
           <SceneContent reduced={reduced} isMobile={isMobile} dark={dark} expanded={expanded} />
         </Canvas>
       </div>

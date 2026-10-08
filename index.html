@@ -15,11 +15,12 @@
       CSP notes: jsdelivr + wasm-unsafe-eval + blob workers are for the
       MediaPipe hand tracker; storage.googleapis.com hosts its model files.
       supabase.co is comments, api.elevenlabs.io is optional agent TTS,
-      player.vimeo.com is case-study embeds, img-src https: covers the
-      TransFi/Cargo external image CDNs. frame-ancestors is not enforceable
+      player.vimeo.com is case-study embeds; Figma hosts the original prototype.
+      Same-origin frames allow sandboxed generated-page previews. img-src
+      https: covers the TransFi/Cargo external image CDNs. frame-ancestors is not enforceable
       via <meta>, so it is intentionally absent.
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' blob: https://cdn.jsdelivr.net 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://api.fontshare.com; font-src 'self' data: https://api.fontshare.com https://cdn.fontshare.com; img-src 'self' data: blob: https:; media-src 'self' blob:; frame-src https://player.vimeo.com; connect-src 'self' https://*.supabase.co https://api.elevenlabs.io https://cdn.jsdelivr.net https://storage.googleapis.com https://api.fontshare.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' blob: https://cdn.jsdelivr.net 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://api.fontshare.com; font-src 'self' data: https://api.fontshare.com https://cdn.fontshare.com; img-src 'self' data: blob: https:; media-src 'self' blob:; frame-src 'self' https://player.vimeo.com https://www.figma.com https://embed.figma.com; connect-src 'self' https://*.supabase.co https://api.elevenlabs.io https://cdn.jsdelivr.net https://storage.googleapis.com https://api.fontshare.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
     <meta name="description" content="Parth Pawar — Product Designer crafting trusted systems across AI wearables, fintech, civic tools, creative technology, and physical interaction." />
@@ -40,6 +41,7 @@
     <meta name="twitter:image:alt" content="Parth Pawar, Product Designer for trusted systems." />
     <link rel="canonical" href="https://designwhich.works/" data-rh="true" />
     <link rel="preload" href="/Assets/fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/Assets/fonts/nikolas.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/Assets/favicon.svg" />
     <link rel="icon" type="image/x-icon" sizes="any" href="/Assets/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Assets/apple-touch-icon.png" />
