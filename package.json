@@ -11,7 +11,8 @@
     "qa:routes": "bun scripts/check-project-routes.ts",
     "test:agent": "bun scripts/check-parth-cursor-voice.ts",
     "build": "node scripts/sync-pdf-worker.mjs && node scripts/freshen-sitemap.mjs && bun scripts/check-project-routes.ts && tsc -b && vite build && node scripts/create-route-entrypoints.mjs",
-    "preview": "node scripts/sync-pdf-worker.mjs && vite preview"
+    "preview": "node scripts/sync-pdf-worker.mjs && vite preview",
+    "test:analytics": "node --test scripts/analytics.test.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.33",
@@ -28,7 +29,8 @@
     "react-pageflip": "^2.0.3",
     "react-router-dom": "^7.6.0",
     "simple-icons": "^16.25.0",
-    "three": "^0.175.0"
+    "three": "^0.175.0",
+    "web-vitals": "^6.2.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",

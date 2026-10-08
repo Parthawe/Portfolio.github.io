@@ -274,6 +274,13 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
+        <CsSection title="Listen for three different mechanisms">
+          <CsBody>
+            <p>In the performance film, compare the attack of a plucked string with the sustained air of the flute and the uneven decay of the rainsticks. Those physical differences explain why the instruments cannot share one timing rule.</p>
+            <p>The flute prototype makes the constraint visible: the air pump supplies breath, while adjustable Lego finger mechanisms position the servos over the tone holes. The documented challenge was airflow alignment; electronic actuation alone did not guarantee a stable note.</p>
+          </CsBody>
+        </CsSection>
+
         {/* Tools & Process */}
         <section className="cs-section reveal" id="cs-process">
           <div className="wrap">

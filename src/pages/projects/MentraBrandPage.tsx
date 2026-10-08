@@ -8,7 +8,6 @@ import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsImage from '../../components/case-study/CsImage'
 import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsCredits from '../../components/case-study/CsCredits'
@@ -73,6 +72,34 @@ export default function MentraBrandPage() {
             01 — LOGO
             ================================================================ */}
         <CsExpandPreview>
+        {/* ================================================================
+            03 — PACKAGING (the centerpiece)
+            ================================================================ */}
+        <CsSection id="cs-packaging" label="03 &mdash; Packaging" title="Unboxing Is the First Interaction">
+          <CsBody>
+            <p>The box is the first interaction. It needed to feel premium next to better-funded hardware brands without pretending to be them.</p>
+            <p>The brand pattern is embossed into white stock. The product name is spaced uppercase for clarity, and &ldquo;Designed on Earth&rdquo; nods to the open-source community behind MentraOS.</p>
+          </CsBody>
+        </CsSection>
+
+        <CsSection title="One structure, two variants">
+          <CsBody><p>The packaging work went through seven iterations. The three artifacts below show the shared box structure, the second frame variant, and the production label. They document the final constraints rather than a complete revision history.</p></CsBody>
+          <CsScreenExplorer format="landscape" label="Compare Mentra packaging artifacts" screens={[
+            { title: 'Black frame', label: 'Shared structure and setup', src: `${P}/packaging-box-black.png`, alt: 'Black-frame packaging dieline with product image, quickstart QR panel, and flap branding', caption: 'The dieline carries product identification, the brand pattern, and the setup route in one structure. Inspect the QR panel and the position of the product render.' },
+            { title: 'Clear frame', label: 'A second product variant', src: `${P}/packaging-box-clear-1.webp`, alt: 'Clear-frame packaging dieline using the same structure with transparent-frame imagery', caption: 'The clear-frame box keeps the structural layout while changing the product imagery. The two variants need to be distinguishable without rebuilding the packaging system.' },
+            { title: 'Factory label', label: '90.24 × 23.95 mm', src: `${P}/packaging-box-clear-2.webp`, alt: 'Annotated factory label with dimensions, barcode, model identification, and regulatory text', caption: 'The fixed label area holds model identification, barcode, and regulatory text. Outlined vectors and bleed/crop marks remove font dependencies from the factory handoff.' },
+          ]} />
+        </CsSection>
+
+        <CsSection title="What changed between surfaces">
+          <CsBody>
+            <p><strong>Product identification.</strong> Black and clear frames share the structural die-cut. The product render changes with the SKU so a person can identify the variant before opening the box.</p>
+            <p><strong>Production information.</strong> Model identification, barcode, and regulatory text fit a separate 90.24 × 23.95 mm label. Keeping those details together preserves room for the product image and setup panel.</p>
+            <p><strong>Fabrication.</strong> The charging-case mark needs 0.3 mm outlined strokes for the factory handoff. The 150 × 150 mm microfiber cloth uses a heat-pressed mark. Each output needs its own production artwork even when the visible identity stays the same.</p>
+          </CsBody>
+        </CsSection>
+
+
         <CsSection id="cs-logo" label="01 &mdash; Logo" title="Three Elements, One Mark">
           <CsBody>
             <p>The mark had to survive two extremes: 5mm engraving on a glasses temple and large trade-show graphics. Three angled elements form an &ldquo;M&rdquo; that stays legible across engraving, embossing, heat press, and screen print.</p>
@@ -109,7 +136,7 @@ export default function MentraBrandPage() {
             ================================================================ */}
         <CsSection id="cs-color" label="02 &mdash; Color &amp; Type" title="A consistent green across surfaces">
           <CsBody>
-            <p>Most smart glasses brands default to blue. Mentra needed instant recognition, so the system uses one green, three neutrals, and strict rules for creators using assets without supervision.</p>
+            <p>The system uses one green and three neutrals across packaging, product renders, and creator assets. Keeping that palette small makes the different surfaces recognizable as part of the same product.</p>
           </CsBody>
           {/* Swatches */}
           <div className="cs-brand-swatches mentra-brand-swatches" role="list" aria-label="Mentra brand colors">
@@ -147,40 +174,10 @@ export default function MentraBrandPage() {
 
         <CsImage src={`${P}/brand-pattern.png`} alt="Mentra brand pattern: repeating parallelogram texture from logo geometry, used as subtle emboss on packaging" />
 
-        {/* ================================================================
-            03 — PACKAGING (the centerpiece)
-            ================================================================ */}
-        <CsSection id="cs-packaging" label="03 &mdash; Packaging" title="Unboxing Is the First Interaction">
-          <CsBody>
-            <p>The box is the first interaction. It needed to feel premium next to better-funded hardware brands without pretending to be them.</p>
-            <p>The brand pattern is embossed into white stock. The product name is spaced uppercase for clarity, and &ldquo;Designed on Earth&rdquo; nods to the open-source community behind MentraOS.</p>
-          </CsBody>
-        </CsSection>
-
-        <CsSection title="One structure, two variants">
-          <CsBody><p>Seven packaging iterations accommodated regulatory text and the second frame variant. Compare the shared layout, the product-specific imagery, and the factory label that had to fit a fixed production area.</p></CsBody>
-          <CsScreenExplorer label="Compare Mentra packaging artifacts" screens={[
-            { title: 'Black frame', label: 'Shared structure and setup', src: `${P}/packaging-box-black.png`, alt: 'Black-frame packaging dieline with product image, quickstart QR panel, and flap branding', caption: 'The dieline carries product identification, the brand pattern, and the setup route in one structure. Inspect the QR panel and the position of the product render.' },
-            { title: 'Clear frame', label: 'A second product variant', src: `${P}/packaging-box-clear-1.webp`, alt: 'Clear-frame packaging dieline using the same structure with transparent-frame imagery', caption: 'The clear-frame box keeps the structural layout while changing the product imagery. The two variants need to be distinguishable without rebuilding the packaging system.' },
-            { title: 'Factory label', label: '90.24 × 23.95 mm', src: `${P}/packaging-box-clear-2.webp`, alt: 'Annotated factory label with dimensions, barcode, model identification, and regulatory text', caption: 'The fixed label area holds model identification, barcode, and regulatory text. Outlined vectors and bleed/crop marks remove font dependencies from the factory handoff.' },
-          ]} />
-        </CsSection>
-
-        <section className="cs-section">
-          <div className="wrap">
-            <CsFeatureGrid features={[
-              { title: 'Box (2 SKUs)', desc: 'Clear and black frame variants. Same structural die-cut, different product renders. Seven iterations driven by regulatory text additions and a second frame variant (Cali 65).' },
-              { title: 'Bottom Label', desc: '90.24 x 23.95mm. FCC ID, CE, Prop 65, model number, barcode. Designed with factory bleed/crop marks and sent as outlined vector — no font dependencies.' },
-              { title: 'Charging Case', desc: 'Logomark engraved on exterior lid. Vector strokes converted from fill to 0.3mm outlines for CNC compatibility at factory.' },
-              { title: 'Lens Cloth', desc: '150 x 150mm black microfiber. Heat-pressed logo in Pantone Black 6 UP — subtle enough to look premium, visible enough to reinforce the brand.' },
-            ]} />
-          </div>
-        </section>
-
         {/* Brand in the wild — YouTubers unboxing the packaging I designed */}
         <CsSection id="cs-wild" label="In the Wild" title="The packaging in public unboxings">
           <CsBody>
-            <p>The real test was seeing strangers hold the box on camera. In the thumbnails, the pattern reads, the name is clear, and the case feels premium beside the packaging.</p>
+            <p>These public unboxing thumbnails show the packaging and charging case in use. They document the shipped objects; they do not establish how reliably new owners completed setup.</p>
           </CsBody>
         </CsSection>
 
@@ -373,11 +370,10 @@ export default function MentraBrandPage() {
             REFLECTION
             ================================================================ */}
         <CsSection id="cs-reflection" label="Reflection" title="What Hardware Brand Taught Me">
-          <CsFeatureGrid features={[
-            { title: 'Constraint is the teacher', desc: 'Every medium has a constraint that shapes the work. Screen print can\u2019t do gradients. Laser engraving needs outlined strokes. Embossing needs depth. These aren\u2019t limitations — they\u2019re the brief.' },
-            { title: 'Systems survive, artifacts don\u2019t', desc: 'The creator guide matters more than any single ad. A system that 200 people can use independently is worth more than one perfect execution only I can reproduce.' },
-            { title: 'Physical feedback is slow and expensive', desc: 'Software A/B tests in hours. A packaging revision takes 6 weeks and costs a factory run. You learn to prototype on paper, argue in vector, and ship with conviction.' },
-          ]} />
+          <CsBody>
+            <p>The hardest consistency work happened in production files: a mark that works on screen still needs separate treatment for engraving, embossing, and heat press. The dielines, label, and booklet make those differences inspectable.</p>
+            <p>The packaging reached public unboxings. A measured account of first-use success would need observations of people identifying their variant, finding the QR code, pairing the glasses, and returning them to the charging case. Those results are not included here.</p>
+          </CsBody>
         </CsSection>
 
         <CsSection label="Credits" title="Team">
@@ -395,9 +391,9 @@ export default function MentraBrandPage() {
 
         <BottomNav sections={[
           { id: 'cs-overview', label: 'Overview' },
+          { id: 'cs-packaging', label: 'Packaging' },
           { id: 'cs-logo', label: 'Logo' },
           { id: 'cs-color', label: 'Color & Type' },
-          { id: 'cs-packaging', label: 'Packaging' },
           { id: 'cs-wild', label: 'In the Wild' },
           { id: 'cs-manual', label: 'Booklet' },
           { id: 'cs-photography', label: 'Photography' },

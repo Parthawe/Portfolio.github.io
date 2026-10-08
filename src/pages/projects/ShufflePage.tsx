@@ -75,11 +75,18 @@ export default function ShufflePage() {
         <CsSection id="cs-interactive" label="Interactive" title="Redistribute Your Time">
           <CsBody>
             <p className="cs-caption">Browser interpretation of the coupled faders. The film shows the original motorized hardware.</p>
-            <p>Drag a slider and watch the system rebalance. More class can improve finals, less sleep drains energy, and a heavier job steals time from everything else.</p>
+            <p>Drag a slider to explore the relationships in this browser model. The weights are illustrative design choices, not measured relationships between student habits and outcomes.</p>
           </CsBody>
           <div className="project-content-block--roomy">
             <ShuffleInteractive />
           </div>
+        </CsSection>
+
+        <CsSection title="What one slider changes">
+          <CsBody>
+            <p>In the browser model, raising Job by 10 points adds 4 to Food and subtracts 2.5 from Sleep, 2 each from Social Life and Hobby, and 1.5 from Class. Each change travels one connection; it does not trigger a chain reaction through the whole board.</p>
+            <p>Values stop at 0 and 100. Their sum is not fixed: this model demonstrates coupled controls, not a literal allocation of 168 weekly hours. The original installation is documented in the film and build photographs.</p>
+          </CsBody>
         </CsSection>
 
         {/* Interaction photos */}

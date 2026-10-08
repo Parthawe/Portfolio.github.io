@@ -299,6 +299,30 @@ export default function TheOmakasePage() {
         {/* Play the game */}
         <GameEmbed />
 
+        {/* Gameplay */}
+        <section className="cs-section reveal" id="cs-gameplay">
+          <div className="wrap">
+            <p className="cs-section-label">01 &mdash; Gameplay</p>
+            <h3 className="cs-section-title">Gameplay</h3>
+            <CsBody>
+              <p>Each player gets eight color-changing ingredient buttons. Matching the controls to the colors on screen was intended to make the first action discoverable through looking and pressing. The photographs below show that mapping; they are not a timed onboarding test.</p>
+              <p>Two players stand shoulder to shoulder and race through 90-second sushi orders. That puts the shared screen, both sets of hands, and the score in the same view for players and spectators.</p>
+            </CsBody>
+          </div>
+          <div className="wrap">
+            <figure className="cs-img reveal omakase-figure">
+              <img {...projectImageProps("/Assets/Projects/the-omakase/photos/chef-select-screen.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/chef-select-screen.webp" alt="Chef select screen — Chef Shiro versus Chef Kuro, each player's sushi likes, and a color-coded button legend for dropping sushi and changing belt direction" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption">The whole rulebook fits on one screen: pick your chef, match button colors to customers, go.</figcaption>
+            </figure>
+          </div>
+          <div className="wrap">
+            <figure className="cs-img reveal omakase-figure">
+              <img {...projectImageProps("/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp" alt="Over a player's shoulder in the dark: the sushi conveyor belt on screen above two clusters of glowing RGB buttons under their hands" loading="lazy" decoding="async" />
+              <figcaption className="cs-img-caption">The mapping in action — customers on screen glow in the same colors as the buttons under your fingers.</figcaption>
+            </figure>
+          </div>
+        </section>
+
         {/* Hero photos */}
         <section className="cs-section reveal">
           <div className="wrap">
@@ -327,30 +351,6 @@ export default function TheOmakasePage() {
               <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/the-omakase/photos/two-players.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/two-players.webp" alt="Two players competing at the arcade cabinet at exhibition" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/the-omakase/photos/team-photo.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/team-photo.webp" alt="Team photo in front of The Omakase cabinet at exhibition" loading="lazy" decoding="async" /></div>
             </div>
-          </div>
-        </section>
-
-        {/* Gameplay */}
-        <section className="cs-section reveal" id="cs-gameplay">
-          <div className="wrap">
-            <p className="cs-section-label">01 &mdash; Gameplay</p>
-            <h3 className="cs-section-title">Gameplay</h3>
-            <CsBody>
-              <p>The cabinet had to teach the game without a tutorial. Each player gets eight color-changing ingredient buttons, and the screen uses the same colors so the mapping is learned by looking and pressing.</p>
-              <p>The best design move was making it competitive. Two players stand shoulder to shoulder, race through 90-second sushi orders, and create a small crowd just by playing.</p>
-            </CsBody>
-          </div>
-          <div className="wrap">
-            <figure className="cs-img reveal omakase-figure">
-              <img {...projectImageProps("/Assets/Projects/the-omakase/photos/chef-select-screen.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/chef-select-screen.webp" alt="Chef select screen — Chef Shiro versus Chef Kuro, each player's sushi likes, and a color-coded button legend for dropping sushi and changing belt direction" loading="lazy" decoding="async" />
-              <figcaption className="cs-img-caption">The whole rulebook fits on one screen: pick your chef, match button colors to customers, go.</figcaption>
-            </figure>
-          </div>
-          <div className="wrap">
-            <figure className="cs-img reveal omakase-figure">
-              <img {...projectImageProps("/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp" alt="Over a player's shoulder in the dark: the sushi conveyor belt on screen above two clusters of glowing RGB buttons under their hands" loading="lazy" decoding="async" />
-              <figcaption className="cs-img-caption">The mapping in action — customers on screen glow in the same colors as the buttons under your fingers.</figcaption>
-            </figure>
           </div>
         </section>
 
@@ -397,9 +397,9 @@ export default function TheOmakasePage() {
             <p className="cs-section-label">04 &mdash; Reflections</p>
             <h3 className="cs-section-title">Reflections</h3>
             <CsBody>
-              <p><strong>Physical feedback changes everything.</strong> The RGB buttons cut onboarding from explanation to instinct. People understood the game because the controls lit up with meaning.</p>
+              <p><strong>Physical feedback changes everything.</strong> The RGB buttons connect the physical controls to the colors on screen. The exhibition photographs show people playing, but do not measure how quickly someone learned the mapping without help.</p>
               <p><strong>Design for spectators too.</strong> The cabinet made waiting part of the experience: people watched hands, scores, mistakes, and celebrations before stepping up.</p>
-              <p><strong>Constraints made it sharper.</strong> 90-second rounds, eight buttons per player, and a transportable cabinet forced the game to stay simple, learnable, and public-ready.</p>
+              <p><strong>Constraints made it sharper.</strong> 90-second rounds, eight buttons per player, and a transportable cabinet kept the build focused. A future playtest should separate first-round mistakes from later performance to check how well that simplicity translates into learning.</p>
             </CsBody>
           </div>
         </section>

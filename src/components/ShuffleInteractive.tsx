@@ -6,7 +6,7 @@ import { usePrefersReduced } from '../hooks/usePrefersReduced'
 /* ═══════════════════════════════════════════════════════════
    Shuffle Interactive — interdependent slider system.
 
-   8 sliders with real causal relationships:
+   8 sliders with authored illustrative relationships:
    - Some are positively correlated (sleep → energy)
    - Some are inversely correlated (class ↑ → social life ↓)
    - Some are one-way, some bidirectional
@@ -53,7 +53,7 @@ for (const [src, tgt, w] of RELATIONS) {
   ADJ.get(src)!.push({ target: tgt, weight: w })
 }
 
-// Realistic starting profile: a stressed student who goes to class
+// Illustrative starting profile: a student who goes to class
 // and works part-time, but is running low on sleep and hobbies.
 // Immediately shows the system is interconnected.
 const INITIAL: Record<Key, number> = {
@@ -93,6 +93,7 @@ export default function ShuffleInteractive() {
   const reduced = usePrefersReduced()
   const [values, setValues] = useState(initValues)
   const prevVal = useRef<Record<Key, number>>(initValues())
+  const renderedValues = useRef<Record<Key, number>>(initValues())
   const flashTimers = useRef<Map<Key, ReturnType<typeof setTimeout>>>(new Map())
   // Counter per key to force re-trigger of flash animation via React key
   const [flashKeys, setFlashKeys] = useState<Record<Key, number>>(
@@ -109,20 +110,20 @@ export default function ShuffleInteractive() {
     animFrame.current = 0 // mark as consumed before running
 
     let needsMore = false
-    setValues(current => {
-      const target = targetValues.current
-      const next = { ...current }
-      for (const k of KEYS) {
-        const diff = target[k] - current[k]
-        if (Math.abs(diff) > 0.3) {
-          next[k] = current[k] + diff * (reduced ? 1 : 0.18)
-          needsMore = true
-        } else {
-          next[k] = target[k]
-        }
+    const current = renderedValues.current
+    const target = targetValues.current
+    const next = { ...current }
+    for (const k of KEYS) {
+      const diff = target[k] - current[k]
+      if (!reduced && Math.abs(diff) > 0.3) {
+        next[k] = current[k] + diff * 0.18
+        needsMore = true
+      } else {
+        next[k] = target[k]
       }
-      return next
-    })
+    }
+    renderedValues.current = next
+    setValues(next)
 
     // Schedule next frame only if there's still work to do
     if (needsMore) {
@@ -145,7 +146,8 @@ export default function ShuffleInteractive() {
 
     // Directly set the dragged slider
     targetValues.current[key] = newVal
-    setValues(v => ({ ...v, [key]: newVal }))
+    renderedValues.current = { ...renderedValues.current, [key]: newVal }
+    setValues(renderedValues.current)
 
     // Propagate to connected sliders
     const propagated = propagate(targetValues.current, key, delta)
@@ -187,6 +189,7 @@ export default function ShuffleInteractive() {
     const fresh = initValues()
     targetValues.current = fresh
     prevVal.current = fresh
+    renderedValues.current = fresh
     setValues(fresh)
     setFlashing(new Set())
     animating.current = false
