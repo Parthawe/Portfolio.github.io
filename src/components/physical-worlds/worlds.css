@@ -55,3 +55,6 @@
 .enigma-input-row > label { flex-wrap: wrap; }
 
 @media (max-width: 380px) { .enigma-letter-input > [role="group"] { grid-template-columns: repeat(5,minmax(0,1fr)); } }
+
+.jugalbandi-instruments { display: flex; flex-wrap: wrap; gap: .25rem; padding: 0 1rem .75rem; }
+.jugalbandi-instruments button { border-color: var(--world-rule); min-height: 44px; }
