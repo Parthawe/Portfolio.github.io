@@ -1,3 +1,4 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { useState } from 'react'
@@ -22,11 +23,13 @@ export default function JugalbandiPage() {
     ? [
         { id: 'cs-summary', label: 'TL;DR' },
         { id: 'cs-film', label: 'Film' },
+        { id: 'cs-world', label: 'Room' },
         { id: 'cs-overview', label: 'Overview' },
       ]
     : [
         { id: 'cs-summary', label: 'TL;DR' },
         { id: 'cs-film', label: 'Film' },
+        { id: 'cs-world', label: 'Room' },
         { id: 'cs-overview', label: 'Overview' },
         { id: 'cs-background', label: 'Background' },
         { id: 'cs-instrument', label: 'The Instrument' },
@@ -130,6 +133,8 @@ export default function JugalbandiPage() {
             <p>One voice is the performer. The other is a model translated into plucked strings, air-driven pipes, and resonant percussion. Exhibited at the ITP Spring Show and Maker Faire Coney Island, the installation made computation audible as timing, pressure, and mechanical behavior.</p>
           </CsBody>
         </CsSection>
+
+        <CsSection id="cs-world" label="Interactive room" title="Play the acoustic workshop"><PhysicalWorld project="jugalbandi" /></CsSection>
 
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
         {/* Background */}

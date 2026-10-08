@@ -1,3 +1,4 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -55,6 +56,8 @@ export default function SeaOfSaltPage() {
         </section>
 
         {/* The Folktale */}
+        <CsSection id="cs-world" label="Interactive room" title="Explore the story mill"><PhysicalWorld project="sea-of-salt" /></CsSection>
+
         <CsExpandPreview>
         <CsSection id="cs-folktale" label="01 &mdash; The Folktale" title="A Story Told Across Oceans">
           <CsBody>
@@ -154,6 +157,7 @@ export default function SeaOfSaltPage() {
         </CsExpandPreview>
 
         <BottomNav sections={[
+          { id: 'cs-world', label: 'Room' },
           { id: 'cs-folktale', label: 'The Folktale' },
           { id: 'cs-installation', label: 'Installation' },
           { id: 'cs-system', label: 'How It Works' },

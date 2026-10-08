@@ -5,7 +5,7 @@
 - Mentra Brand: packaging decisions moved earlier, wide-image explorer sized for landscape art, unsupported claims narrowed, missing revision history stated.
 - Omakase: gameplay explanation precedes the gallery; intended mappings are separated from unrecorded test outcomes.
 - Jugalbandi: film listening guide connects the three mechanisms to their physical timing constraints.
-- Shuffle: fixed an animation-loop race; documented the actual authored one-hop weights, limits, and non-fixed total.
+- Shuffle: the older animation-loop fix is superseded by the newly merged 3D implementation, which uses synchronous state refs; documented the actual authored one-hop weights, limits, and non-fixed total.
 - GA4 integration: consent before loading Google, public-route payload filtering, pageviews, project/contact/resume/access/live-site clicks, story expansion, scroll depth, native-video events, visible-tab seconds, public-section exposure, grouped technical failures, and LCP/INP/CLS.
 - Analytics tests added to the deployment build gate. Measurement plan and deployment status corrected.
 
@@ -30,7 +30,7 @@ The route sweep checks geometry and loaded images. It does not certify all inter
 | Additional analytics | Demo/scene interactions, approved campaign attribution and custom narrative recommendations remain unimplemented. |
 | Every project at 9/10 | Individual re-scoring remains open; original evaluation/iteration evidence is missing for several projects. See project-quality-repair.md. |
 | ThreeUI MCP | Account/OAuth access remains unavailable. Saved UI-library guidance can be used without it. |
-| Publish follow-up | Local changes are ready for review; user requested confirmation before publication. |
+| Publish follow-up | Publication authorized October 7. Deployment verification pending. |
 
 ## Expanded public-route technical coverage
 
@@ -85,3 +85,7 @@ The route sweep checks geometry and loaded images. It does not certify all inter
 | /typeface | Checked | Checked |
 | /atps | Checked | Checked |
 | /vishwaconclave | Checked | Checked |
+
+## Release integration
+
+Merged remote main 8af3f65, preserving the new physical-room experiences and rebuilt Shuffle scene. Kept both analytics and physical-world QA scripts. Re-running build and analytics checks on the combined tree before deployment.

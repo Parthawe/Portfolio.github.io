@@ -1,465 +1,69 @@
-import PortfolioSlider from './PortfolioSlider'
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { lazy, Suspense, useCallback, useRef, useState } from 'react'
 import { useThemeMode } from '../hooks/useThemeMode'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
+import { initValues, KEYS, propagate, type Key } from './shuffle/model'
+import './shuffle/shuffle.css'
 
-/* ═══════════════════════════════════════════════════════════
-   Shuffle Interactive — interdependent slider system.
-
-   8 sliders with authored illustrative relationships:
-   - Some are positively correlated (sleep → energy)
-   - Some are inversely correlated (class ↑ → social life ↓)
-   - Some are one-way, some bidirectional
-   - Drag one slider and watch others respond.
-
-   Mirrors the physical installation's core question:
-   "You can't do everything — where do you compromise?"
-   ═══════════════════════════════════════════════════════════ */
-
-const KEYS = ['CLASS', 'SLEEP', 'SOCIAL LIFE', 'JOB', 'FINALS', 'FOOD', 'ENERGY', 'HOBBY'] as const
-type Key = typeof KEYS[number]
-const LEFT: Key[] = ['CLASS', 'SLEEP', 'SOCIAL LIFE', 'JOB']
-const RIGHT: Key[] = ['FINALS', 'FOOD', 'ENERGY', 'HOBBY']
-
-const RELATIONS: [Key, Key, number][] = [
-  ['CLASS', 'FINALS',      0.35],
-  ['CLASS', 'SOCIAL LIFE', -0.25],
-  ['CLASS', 'HOBBY',       -0.20],
-  ['CLASS', 'SLEEP',       -0.15],
-  ['SLEEP', 'ENERGY',       0.55],
-  ['SLEEP', 'FINALS',       0.20],
-  ['SOCIAL LIFE', 'SLEEP',  -0.20],
-  ['SOCIAL LIFE', 'ENERGY', -0.15],
-  ['SOCIAL LIFE', 'HOBBY',   0.10],
-  ['JOB', 'FOOD',            0.40],
-  ['JOB', 'SLEEP',          -0.25],
-  ['JOB', 'SOCIAL LIFE',    -0.20],
-  ['JOB', 'HOBBY',          -0.20],
-  ['JOB', 'CLASS',          -0.15],
-  ['FINALS', 'SOCIAL LIFE', -0.30],
-  ['FINALS', 'HOBBY',       -0.25],
-  ['FINALS', 'SLEEP',       -0.25],
-  ['ENERGY', 'HOBBY',        0.30],
-  ['ENERGY', 'SOCIAL LIFE',  0.15],
-  ['ENERGY', 'FINALS',       0.15],
-  ['FOOD', 'ENERGY',         0.25],
-  ['FOOD', 'SLEEP',          0.10],
-]
-
-// Build adjacency map for quick lookup
-const ADJ = new Map<Key, { target: Key; weight: number }[]>()
-for (const [src, tgt, w] of RELATIONS) {
-  if (!ADJ.has(src)) ADJ.set(src, [])
-  ADJ.get(src)!.push({ target: tgt, weight: w })
-}
-
-// Illustrative starting profile: a student who goes to class
-// and works part-time, but is running low on sleep and hobbies.
-// Immediately shows the system is interconnected.
-const INITIAL: Record<Key, number> = {
-  'CLASS':       72,
-  'SLEEP':       35,
-  'SOCIAL LIFE': 42,
-  'JOB':         58,
-  'FINALS':      62,
-  'FOOD':        38,
-  'ENERGY':      28,
-  'HOBBY':       22,
-}
-
-function initValues(): Record<Key, number> {
-  return { ...INITIAL }
-}
-
-// Propagate a change through the relationship graph (1 hop, no recursion)
-function propagate(
-  values: Record<Key, number>,
-  changed: Key,
-  delta: number,
-): Record<Key, number> {
-  const next = { ...values }
-  const edges = ADJ.get(changed)
-  if (!edges) return next
-
-  for (const { target, weight } of edges) {
-    const push = delta * weight
-    next[target] = Math.max(0, Math.min(100, next[target] + push))
-  }
-  return next
-}
+const ShuffleScene = lazy(() => import('./shuffle/ShuffleScene'))
+export type ShuffleView = 'Studio' | 'Overhead' | 'Construction' | 'Room'
 
 export default function ShuffleInteractive() {
-  const dark = useThemeMode()
-  const reduced = usePrefersReduced()
   const [values, setValues] = useState(initValues)
-  const prevVal = useRef<Record<Key, number>>(initValues())
-  const renderedValues = useRef<Record<Key, number>>(initValues())
-  const flashTimers = useRef<Map<Key, ReturnType<typeof setTimeout>>>(new Map())
-  // Counter per key to force re-trigger of flash animation via React key
-  const [flashKeys, setFlashKeys] = useState<Record<Key, number>>(
-    () => Object.fromEntries(KEYS.map(k => [k, 0])) as Record<Key, number>
-  )
-  const [flashing, setFlashing] = useState<Set<Key>>(new Set())
-
-  // Animated interpolation toward target values
-  const targetValues = useRef<Record<Key, number>>(initValues())
-  const animFrame = useRef(0)
-  const animating = useRef(false)
-
-  const animateToTarget = useCallback(() => {
-    animFrame.current = 0 // mark as consumed before running
-
-    let needsMore = false
-    const current = renderedValues.current
-    const target = targetValues.current
-    const next = { ...current }
-    for (const k of KEYS) {
-      const diff = target[k] - current[k]
-      if (!reduced && Math.abs(diff) > 0.3) {
-        next[k] = current[k] + diff * 0.18
-        needsMore = true
-      } else {
-        next[k] = target[k]
-      }
-    }
-    renderedValues.current = next
+  const current = useRef(values)
+  const [view, setView] = useState<ShuffleView>('Studio')
+  const [viewRevision, setViewRevision] = useState(0)
+  const [active, setActive] = useState<Key | null>(null)
+  const [failed, setFailed] = useState(false)
+  const reduced = usePrefersReduced()
+  const dark = useThemeMode()
+  const change = useCallback((key: Key, value: number) => {
+    const bounded = Math.max(0, Math.min(100, value))
+    const next = propagate(current.current, key, bounded - current.current[key])
+    next[key] = bounded
+    current.current = next
     setValues(next)
-
-    // Schedule next frame only if there's still work to do
-    if (needsMore) {
-      animFrame.current = requestAnimationFrame(animateToTarget)
-    } else {
-      animating.current = false
-    }
-  }, [reduced])
-
-  useEffect(() => {
-    return () => {
-      if (animFrame.current) cancelAnimationFrame(animFrame.current)
-      for (const t of flashTimers.current.values()) clearTimeout(t)
-    }
+    setActive(key)
   }, [])
-
-  const handleChange = useCallback((key: Key, newVal: number) => {
-    const delta = newVal - prevVal.current[key]
-    prevVal.current[key] = newVal
-
-    // Directly set the dragged slider
-    targetValues.current[key] = newVal
-    renderedValues.current = { ...renderedValues.current, [key]: newVal }
-    setValues(renderedValues.current)
-
-    // Propagate to connected sliders
-    const propagated = propagate(targetValues.current, key, delta)
-    targetValues.current = { ...propagated, [key]: newVal }
-    prevVal.current = { ...propagated, [key]: newVal }
-
-    // Flash affected sliders (bump key counter to re-trigger animation)
-    const edges = ADJ.get(key)
-    if (edges && Math.abs(delta) > 1) {
-      const affected = new Set(edges.map(e => e.target))
-      setFlashing(prev => new Set([...prev, ...affected]))
-      setFlashKeys(prev => {
-        const next = { ...prev }
-        for (const t of affected) next[t] = (prev[t] || 0) + 1
-        return next
-      })
-
-      for (const t of affected) {
-        const existing = flashTimers.current.get(t)
-        if (existing) clearTimeout(existing)
-        flashTimers.current.set(t, setTimeout(() => {
-          setFlashing(prev => {
-            const next = new Set(prev)
-            next.delete(t)
-            return next
-          })
-        }, 400))
-      }
-    }
-
-    // Start animation if not already running
-    if (!animating.current) {
-      animating.current = true
-      animFrame.current = requestAnimationFrame(animateToTarget)
-    }
-  }, [animateToTarget])
-
-  const resetAll = useCallback(() => {
-    const fresh = initValues()
-    targetValues.current = fresh
-    prevVal.current = fresh
-    renderedValues.current = fresh
-    setValues(fresh)
-    setFlashing(new Set())
-    animating.current = false
-    if (animFrame.current) { cancelAnimationFrame(animFrame.current); animFrame.current = 0 }
-  }, [])
-
-  const bg = dark
-    ? 'linear-gradient(145deg, #3a2d1e, #2a2015)'
-    : 'linear-gradient(145deg, #e8dcc8, #d8c8a8)'
-
-  const amber = dark ? '#C49A5C' : '#9B7530'
-  const rail = dark ? '#222' : '#1a1a1a'
-  const glowColor = '#D4A017'
-  const thumbColor = dark ? '#e8e4dc' : '#f0ece5'
-  const transitionProp = reduced ? 'none' : 'width 0.15s, opacity 0.15s, box-shadow 0.15s'
-
+  const reset = () => {
+    const next = initValues()
+    current.current = next
+    setValues(next)
+    setActive(null)
+    setView('Studio')
+    setViewRevision(value => value + 1)
+  }
   return (
-    <div style={{
-      width: '100%',
-      borderRadius: 'var(--radius-lg)',
-      overflow: 'hidden',
-      border: '1px solid var(--ink-06)',
-      boxShadow: 'var(--shadow-lg)',
-      background: bg,
-      fontFamily: 'var(--mono)',
-    }}>
-      {/* Two panels side by side */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 0,
-      }} className="shuffle-grid-2col">
-        <SliderPanel
-          labels={LEFT}
-          values={values} onChange={handleChange}
-          amber={amber} rail={rail} glowColor={glowColor} thumbColor={thumbColor}
-          dark={dark} transition={transitionProp}
-          side="left"
-          flashing={flashing} flashKeys={flashKeys}
-        />
-        <SliderPanel
-          labels={RIGHT}
-          values={values} onChange={handleChange}
-          amber={amber} rail={rail} glowColor={glowColor} thumbColor={thumbColor}
-          dark={dark} transition={transitionProp}
-          side="right"
-          flashing={flashing} flashKeys={flashKeys}
-        />
+    <div className="shuffle-object" data-shuffle-theme={dark ? 'dark' : 'light'}>
+      <div className="shuffle-toolbar">
+        <p>Explore the board</p>
+        <div className="shuffle-views" role="group" aria-label="Board view">
+          {(['Studio', 'Overhead', 'Construction', 'Room'] as const).map(item => (
+            <button key={item} aria-pressed={view === item} onClick={() => { setView(item); setViewRevision(value => value + 1) }}>{item}</button>
+          ))}
+        </div>
+        <button className="shuffle-reset" onClick={reset}>Reset</button>
       </div>
-
-      {/* Summary bar */}
-      <div className="shuffle-summary" style={{
-        padding: '1rem 5rem 1rem 1.25rem',
-        borderTop: `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}`,
-        background: dark ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.03)',
-        display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-        gap: '6px', minHeight: '88px', position: 'relative',
-      }}>
-        {KEYS.map(k => {
-          const v = values[k]
-          return (
-            <div className="shuffle-summary-item" key={k} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', flex: 1, maxWidth: '48px' }}>
-              <div style={{
-                width: '100%', maxWidth: '20px',
-                height: `${8 + v * 0.28}px`,
-                background: `linear-gradient(to top, ${glowColor}, ${glowColor}88)`,
-                borderRadius: '2px 2px 0 0',
-                opacity: 0.3 + v * 0.007,
-                transition: transitionProp,
-                boxShadow: v > 50 ? `0 0 ${v * 0.12}px ${glowColor}44` : 'none',
-              }} />
-              <span style={{
-                fontSize: '16px', letterSpacing: '0.02em',
-                color: dark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.68)',
-                textTransform: 'uppercase', whiteSpace: 'nowrap',
-              }}>
-                {k.slice(0, 3)}
-              </span>
-            </div>
-          )
-        })}
-
-        {/* Reset button */}
-        <button
-          className="shuffle-reset"
-          onClick={resetAll}
-          style={{
-            position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
-            padding: '4px 10px', borderRadius: 'var(--radius-pill)',
-            border: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-            background: 'transparent',
-            color: dark ? 'rgba(255,255,255,0.76)' : 'rgba(0,0,0,0.72)',
-            fontFamily: 'var(--mono)', fontSize: '16px',
-            letterSpacing: '0.04em', textTransform: 'uppercase',
-            cursor: 'pointer',
-          }}
-        >
-          Reset
-        </button>
+      <div className="shuffle-stage">
+        {failed ? <div className="shuffle-loading" role="status"><p>3D is unavailable in this browser.</p><p>Use the slider controls below to explore the simulation.</p></div> :
+          <Suspense fallback={<div className="shuffle-loading" role="status"><span className="shuffle-loading-board" />Loading the 3D board…</div>}>
+            <ShuffleScene values={values} view={view} viewRevision={viewRevision} reduced={reduced} dark={dark} onChange={change} onFail={() => setFailed(true)} />
+          </Suspense>}
+        <div className="shuffle-stage-note" aria-hidden="true">{view === 'Construction' ? 'Motorized faders · plywood · metal standoffs' : 'Drag a white cap to change the balance'}</div>
       </div>
-
-      {/* CSS for range inputs */}
-      <style>{`
-        .shuffle-range {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 100%;
-          height: 4px;
-          background: ${rail};
-          border-radius: 2px;
-          outline: none;
-          cursor: grab;
-          position: relative;
-          z-index: 1;
-        }
-        .shuffle-range:active { cursor: grabbing; }
-        .shuffle-range::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          width: 20px;
-          height: 14px;
-          background: ${thumbColor};
-          border-radius: 3px;
-          border: none;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-          cursor: grab;
-        }
-        .shuffle-range:active::-webkit-slider-thumb { cursor: grabbing; transform: scale(1.1); }
-        .shuffle-range::-moz-range-thumb {
-          width: 20px;
-          height: 14px;
-          background: ${thumbColor};
-          border-radius: 3px;
-          border: none;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-          cursor: grab;
-        }
-        .shuffle-range::-moz-range-track {
-          height: 4px;
-          background: ${rail};
-          border-radius: 2px;
-        }
-        .shuffle-range:focus-visible {
-          outline: 2px solid ${amber};
-          outline-offset: 4px;
-          border-radius: 2px;
-        }
-        .shuffle-flash {
-          animation: shuffle-pulse 0.4s ease-out;
-        }
-        @keyframes shuffle-pulse {
-          0% { box-shadow: 0 0 0 0 ${glowColor}55; }
-          50% { box-shadow: 0 0 12px 2px ${glowColor}44; }
-          100% { box-shadow: 0 0 0 0 ${glowColor}00; }
-        }
-        @media (max-width: 640px) {
-          .shuffle-grid-2col { grid-template-columns: 1fr !important; }
-          .shuffle-summary {
-            display: grid !important;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            align-items: end !important;
-            gap: 0.8rem 0.35rem !important;
-            min-height: 0 !important;
-            padding: 1rem !important;
-          }
-          .shuffle-summary-item {
-            min-width: 0;
-            max-width: none !important;
-          }
-          .shuffle-reset {
-            position: static !important;
-            grid-column: 1 / -1;
-            justify-self: start;
-            transform: none !important;
-            margin-top: 0.25rem;
-          }
-        }
-      `}</style>
-    </div>
-  )
-}
-
-// ── Relation indicator (small arrows showing what affects what) ──
-
-function RelationHint({ source, dark }: { source: Key; dark: boolean }) {
-  const edges = ADJ.get(source)
-  if (!edges || edges.length === 0) return null
-
-  return (
-    <div style={{
-      display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '3px',
-    }}>
-      {edges.slice(0, 3).map(({ target, weight }) => (
-        <span key={target} style={{
-          fontSize: '16px',
-          letterSpacing: '0.03em',
-          color: dark ? 'rgba(255,255,255,0.58)' : 'rgba(0,0,0,0.55)',
-          display: 'inline-flex', alignItems: 'center', gap: '2px',
-        }}>
-          {weight > 0 ? '↗' : '↘'} {target.slice(0, 3)}
-        </span>
-      ))}
-    </div>
-  )
-}
-
-// ── Slider Panel (4 sliders) ──
-
-function SliderPanel({ labels, values, onChange, amber, glowColor, dark, side, flashing, flashKeys }: {
-  labels: Key[]
-  values: Record<Key, number>
-  onChange: (key: Key, val: number) => void
-  amber: string; rail: string; glowColor: string; thumbColor: string
-  dark: boolean; transition: string; side: 'left' | 'right'
-  flashing: Set<Key>; flashKeys: Record<Key, number>
-}) {
-  return (
-    <div style={{
-      padding: 'clamp(1rem, 3vw, 1.5rem)',
-      display: 'flex', flexDirection: 'column', gap: 'clamp(1rem, 2.5vw, 1.4rem)',
-      borderRight: side === 'left' ? `1px solid ${dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}` : 'none',
-    }}>
-      {labels.map(label => {
-        const v = values[label]
-        const isFlashing = flashing.has(label)
-        // Use flashKeys counter as React key to force remount → re-trigger animation
-        const flashKey = flashKeys[label] || 0
-        return (
-          <div key={label}>
-            {/* Wrap in a span with changing key to re-trigger CSS animation */}
-            <div key={`${label}-${flashKey}`} className={isFlashing ? 'shuffle-flash' : ''}>
-              {/* Label */}
-              <div style={{
-                display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
-                marginBottom: '6px',
-              }}>
-                <span style={{
-                  fontSize: '16px',
-                  letterSpacing: '0.04em', textTransform: 'uppercase',
-                  color: isFlashing ? glowColor : amber,
-                  fontWeight: 500,
-                  transition: 'color 0.3s',
-                }}>
-                  {label}
-                </span>
-                <div style={{ display: 'flex', gap: '0.5rem', fontSize: '16px', color: amber, opacity: 0.72 }}>
-                  <span>−</span>
-                  <span>+</span>
-                </div>
-              </div>
-
-              <div style={{ position: 'relative' }}>
-                <PortfolioSlider
-                  type="range"
-                  min={0} max={100}
-                  value={Math.round(v)}
-                  onChange={e => onChange(label, Number(e.target.value))}
-                  className="shuffle-range"
-                  aria-label={`${label} time allocation`}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-valuenow={Math.round(v)}
-                />
-              </div>
-
-              {/* Relation hints */}
-              <RelationHint source={label} dark={dark} />
-            </div>
-          </div>
-        )
-      })}
+      <div className="shuffle-instructions">
+        <p>Drag a cap to adjust it. Drag the board to rotate. Pinch or scroll to zoom.</p>
+        <p className="shuffle-readout" role="status" aria-live="polite">{active ? `${active.toLowerCase()} · ${Math.round(values[active])} / 100` : 'Eight sliders. Connected choices.'}</p>
+      </div>
+      <details className="shuffle-controls" open={failed || undefined}>
+        <summary>Slider controls <span>Keyboard and touch</span></summary>
+        <div className="shuffle-controls-grid">
+          {KEYS.map(key => <label key={key}>
+            <span>{key.toLowerCase()}<output>{Math.round(values[key])}</output></span>
+            <input aria-label={key} type="range" min="0" max="100" step="1" value={Math.round(values[key])} onChange={event => change(key, Number(event.target.value))} />
+          </label>)}
+        </div>
+      </details>
+      <p className="shuffle-disclosure">A 3D reconstruction from the project photographs. Relationships use the portfolio’s digital simulation; they are not verified against the original firmware.</p>
     </div>
   )
 }

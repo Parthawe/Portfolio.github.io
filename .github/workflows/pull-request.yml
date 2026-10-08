@@ -14,7 +14,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -38,6 +38,7 @@ jobs:
             sleep 1
           done
           curl --fail --silent "$QA_BASE_URL" > /dev/null
+          bun run qa:physical-worlds
           bun run qa:project-pages
           bun run qa:rendered
           node scripts/responsive-marquee-qa.mjs
@@ -49,3 +50,4 @@ jobs:
           path: |
             pr-rendered.md
             /tmp/preview.log
+            /tmp/portfolio-physical-worlds-qa

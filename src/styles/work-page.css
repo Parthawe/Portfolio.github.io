@@ -2589,3 +2589,5 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 
 /* Archive shapes stay attached to cards as columns rebalance. */
 .page-work .work-group--archive .pcard[data-cover-shape="square"] .pcard-visual { aspect-ratio: 1 / 1; }
+
+.page-work .work-room-link { display: inline-block; margin: .5rem 0 1rem; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
