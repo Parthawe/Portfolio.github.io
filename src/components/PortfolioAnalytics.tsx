@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { analyticsConfigured, analyticsConsent, setAnalyticsConsent, trackDiagnostic, trackEvent, trackPage, trackSection, trackVisibleTime } from '../utils/analytics'
+import { analyticsConfigured, analyticsEnabled, analyticsOwnerExcluded, setAnalyticsConsent, trackDiagnostic, trackEvent, trackPage, trackSection, trackVisibleTime } from '../utils/analytics'
 import { publicPage } from '../utils/analytics/policy'
 import '../styles/analytics.css'
 
 export default function PortfolioAnalytics() {
   const { pathname } = useLocation()
-  const [open, setOpen] = useState(() => analyticsConfigured() && analyticsConsent() === null)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => { trackPage(pathname) }, [pathname])
   useEffect(() => {
-    if (!analyticsConfigured() || analyticsConsent() !== 'granted') return
+    if (!analyticsEnabled()) return
     let since = document.visibilityState === 'visible' ? performance.now() : null
     const flush = () => {
       if (since !== null) trackVisibleTime(pathname, performance.now() - since)
@@ -105,7 +105,7 @@ export default function PortfolioAnalytics() {
       if (event.target instanceof HTMLVideoElement && !event.target.autoplay) trackEvent(event.type === 'ended' ? 'media_complete' : 'media_play')
     }
     const scroll = () => {
-      if (analyticsConsent() !== 'granted' || document.visibilityState !== 'visible') return
+      if (!analyticsEnabled() || document.visibilityState !== 'visible') return
       const main = document.querySelector('main')
       if (!main || main.scrollHeight <= innerHeight) return
       const rect = main.getBoundingClientRect()
@@ -144,16 +144,17 @@ export default function PortfolioAnalytics() {
 
 export function AnalyticsConsentNotice({ onChoose }: { onChoose: (choice: 'granted' | 'denied') => void }) {
   return <section className="analytics-consent" aria-labelledby="analytics-heading">
-    <h2 id="analytics-heading">Help improve this portfolio</h2>
-    <p>Allow Google Analytics to measure visits, pages viewed, and interactions? It uses cookies. Your choice won’t affect access to the site.</p>
+    <h2 id="analytics-heading">Analytics preferences</h2>
+    <p>This site automatically uses Google Analytics cookies to measure visits and interactions. You can turn analytics off for this browser. Your choice won’t affect access to the site.</p>
+    <p role="status">{analyticsOwnerExcluded() ? 'Owner browser excluded. ' : ''}Analytics is {analyticsEnabled() ? 'on' : 'off'} for this browser.</p>
     <details>
       <summary>What gets measured</summary>
       <p>Public pages, referring websites, device and browser information, project opens, reading depth, video plays, contact or résumé clicks, page performance, and grouped technical failures. This integration does not send form entries, chat messages, reviewer codes, error messages, or full link URLs. Advertising features are disabled.</p>
       <p>Google processes the analytics data. Read <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer">how Google uses data from partner sites</a>. You can change your choice through “Analytics preferences” in the footer.</p>
     </details>
     <div className="analytics-consent__actions">
-      <button type="button" onClick={() => onChoose('denied')}>No thanks</button>
-      <button type="button" onClick={() => onChoose('granted')}>Allow analytics</button>
+      <button type="button" onClick={() => onChoose('denied')}>Turn off analytics</button>
+      <button type="button" disabled={analyticsOwnerExcluded()} onClick={() => onChoose('granted')}>Enable analytics</button>
     </div>
   </section>
 }

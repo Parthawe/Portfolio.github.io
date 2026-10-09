@@ -88,7 +88,7 @@ For the first report, state that no comparable prior week exists. For an unavail
 - Schedule reporting only once authorized access and the delivery destination work. Historical visitor analytics cannot be reconstructed from this new tracker.
 
 
-## GA4 implementation and activation (October 7, 2026)
+## Historical GA4 implementation and activation (October 7, 2026)
 
 Implemented and deployed:
 - Basic consent: Google script loads only after Allow analytics; No thanks sends nothing.
@@ -115,7 +115,7 @@ Activation checklist:
 
 Owner QA exclusion: set localStorage key portfolio-analytics-exclude to 1 on the production origin before opting in, then reload. Exclusion only affects that browser profile.
 
-Counts cover consenting, unblocked browsers and are estimates. The integration removes raw query strings. Approved UTM values are sent as separate campaign fields; all other values are discarded. Do not describe consent-limited counts as all visitors.
+Counts cover enabled, unblocked browsers and are estimates. The integration removes raw query strings. Approved UTM values are sent as separate campaign fields; all other values are discarded. Opt-outs, owner exclusion, and tracking prevention reduce coverage.
 
 Sources checked:
 - https://developers.google.com/analytics/devguides/collection/ga4/views
@@ -155,3 +155,22 @@ Names, email addresses, tracking codes and arbitrary campaign text are rejected.
 ### Interaction coverage
 
 First trusted pointer-down or activation/arrow key within the homepage scene or ASCII illustration emits scene_interaction. The rebuilt Shuffle and physical-project rooms emit demo_start. Each counts at most once per route visit, without pointer positions, key values, or animation-frame tracking. These events record starting interaction, not completing a demo; legacy games/demos outside these wrappers are not included.
+
+## Automatic collection update, October 8, 2026
+
+At the owner’s request, new visitors now start analytics on arrival without an initial permission notice. Existing explicit opt-outs remain off. Footer Analytics preferences exposes the current status and enable/disable controls, with Google’s data-use link. Automatic activation does not write a recorded consent choice. Advertising storage and personalization remain disabled.
+
+The owner’s Codex in-app browser has portfolio-analytics-exclude=1 on the production origin. This persists only in that browser profile until site storage is cleared; other profiles and devices must opt out separately. Localhost and automated-browser exclusions remain.
+
+Added project_view on every public project route transition, including direct landings. Unlike project_open, which measures navigation clicks, this measures visits to the project itself. The saved user-based funnel now uses page_view → project_view → contact_click with a device-category breakdown. No historical backfill is possible.
+
+### How to turn the reports into decisions
+
+- Acquisition: compare sessions by source/medium and landing page. Include counts alongside rates; check campaign labels before attributing changes to outreach.
+- Project reach: project_view by project_slug includes direct arrivals. Compare project visitors with public section exposure and story expansion; scroll depth alone is not reading.
+- Intent: report contact_click, resume_click, and access_request_click separately. A click is intent, not proof an email was sent or a lead arrived.
+- Drop-off: use ordered funnels and label user-based versus session-based calculations. Do not subtract independent event totals. Treat live-project exits as potentially successful.
+- Friction: compare mobile and desktop at the same steps, then check grouped errors and LCP/INP/CLS before proposing design changes.
+- Weekly summary: show absolute counts, the prior complete week, and percentage-point changes in rates. State when samples are too small or data is unavailable. End with at most three actions tied to observed evidence.
+
+Weekly email remains unscheduled until the owner supplies the destination address. Native scheduled PDFs do not generate written recommendations; a narrative reporting pipeline is not yet connected.

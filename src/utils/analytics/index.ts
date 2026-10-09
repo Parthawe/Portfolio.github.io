@@ -18,12 +18,12 @@ export function analyticsConfigured() {
 }
 
 export function trackVisibleTime(pathname: string, milliseconds: number) {
-  if (!allowed() || milliseconds < 1000 || !Number.isFinite(milliseconds)) return
+  if (!analyticsEnabled() || milliseconds < 1000 || !Number.isFinite(milliseconds)) return
   command('event', 'visible_time', { page_path: publicPage(pathname).path, visible_seconds: Math.round(milliseconds / 1000) })
 }
 
 export function trackSection(id: string) {
-  if (!allowed() || !/^cs-[a-z0-9-]{1,60}$/.test(id)) return
+  if (!analyticsEnabled() || !/^cs-[a-z0-9-]{1,60}$/.test(id)) return
   trackPage(location.pathname)
   const key = `section:${id}`
   if (seen.has(key)) return
@@ -40,16 +40,16 @@ export function analyticsConsent() {
   return consent
 }
 
-function excluded() {
+export function analyticsOwnerExcluded() {
   try { return localStorage.getItem('portfolio-analytics-exclude') === '1' } catch { return false }
 }
 
-function allowed() {
-  return analyticsConfigured() && analyticsConsent() === 'granted' && !excluded() && !navigator.webdriver
+export function analyticsEnabled() {
+  return analyticsConfigured() && analyticsConsent() !== 'denied' && !analyticsOwnerExcluded() && !navigator.webdriver
 }
 
 export function trackDiagnostic(name: 'client_error' | 'web_vital', fields: { error_code?: 'script_error' | 'asset_error'; metric_name?: 'LCP' | 'INP' | 'CLS'; value?: number; metric_id?: string; page_path?: string }) {
-  if (!allowed()) return
+  if (!analyticsEnabled()) return
   if (name === 'client_error' && (fields.error_code === 'script_error' || fields.error_code === 'asset_error')) {
     const key = `error:${fields.error_code}`
     if (seen.has(key)) return
@@ -65,7 +65,7 @@ export function setAnalyticsConsent(value: 'granted' | 'denied') {
   try { localStorage.setItem(preferenceKey, value) } catch { /* Tab-only choice. */ }
   if (value === 'denied') {
     ;(window as unknown as AnalyticsWindow)[`ga-disable-${id}`] = true
-    // Remove this site's GA cookies when withdrawing consent.
+    // Remove this site's GA cookies when opting out.
     for (const cookie of document.cookie.split(';')) {
       const name = cookie.trim().split('=')[0]
       if (name === '_ga' || name.startsWith('_ga_')) {
@@ -83,7 +83,7 @@ export function setAnalyticsConsent(value: 'granted' | 'denied') {
 }
 
 function start() {
-  if (started || !allowed()) return
+  if (started || !analyticsEnabled()) return
   started = true
   command('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' })
   command('consent', 'update', { analytics_storage: 'granted' })
@@ -103,7 +103,7 @@ function start() {
   script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`
   document.head.appendChild(script)
   const landingPath = publicPage(location.pathname).path
-  // Load observers only after consent. Metrics describe the document lifecycle,
+  // Load observers only when analytics is enabled. Metrics describe the document lifecycle,
   // not each React route, so retain the landing path when a callback arrives later.
   void import('web-vitals').then(({ onCLS, onINP, onLCP }) => {
     const send = (metric: { name: string; value: number; id: string }) => {
@@ -116,7 +116,7 @@ function start() {
 }
 
 export function trackPage(pathname: string) {
-  if (!allowed()) return
+  if (!analyticsEnabled()) return
   const page = publicPage(pathname)
   if (lastPath === page.path) return
   start()
@@ -126,10 +126,13 @@ export function trackPage(pathname: string) {
   const fields = { page_location: `https://designwhich.works${page.path}`, page_title: page.path, page_referrer: referrer, page_type: page.type }
   command('set', fields)
   command('event', 'page_view', fields)
+  if (page.type === 'project') {
+    command('event', 'project_view', { page_path: page.path, project_slug: page.path.slice(1), page_type: page.type })
+  }
 }
 
 export function trackEvent(name: AnalyticsEvent, targetPath?: string, depth?: 25 | 50 | 75 | 100) {
-  if (!allowed() || !eventNames.includes(name)) return
+  if (!analyticsEnabled() || !eventNames.includes(name)) return
   trackPage(location.pathname)
   const page = publicPage(location.pathname)
   const target = targetPath ? publicPage(targetPath) : undefined

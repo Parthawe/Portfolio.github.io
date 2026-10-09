@@ -6,7 +6,7 @@
 - Omakase: gameplay explanation precedes the gallery; intended mappings are separated from unrecorded test outcomes.
 - Jugalbandi: film listening guide connects the three mechanisms to their physical timing constraints.
 - Shuffle: the older animation-loop fix is superseded by the newly merged 3D implementation, which uses synchronous state refs; documented the actual authored one-hop weights, limits, and non-fixed total.
-- GA4 integration: consent before loading Google, public-route payload filtering, pageviews, project/contact/resume/access/live-site clicks, story expansion, scroll depth, native-video events, visible-tab seconds, public-section exposure, grouped technical failures, and LCP/INP/CLS.
+- GA4 integration: automatic collection with persistent opt-out and owner-browser exclusion, public-route payload filtering, pageviews, project/contact/resume/access/live-site clicks, story expansion, scroll depth, native-video events, visible-tab seconds, public-section exposure, grouped technical failures, and LCP/INP/CLS.
 - Analytics tests added to the deployment build gate. Measurement plan and deployment status corrected.
 
 ## Verification

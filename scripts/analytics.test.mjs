@@ -13,13 +13,13 @@ const result = await build({
   } }],
 })
 const source = result.outputFiles[0].text
-function harness({ host = 'designwhich.works', consent, exclude = false } = {}) {
+function harness({ host = 'designwhich.works', consent, exclude = false, automated = false } = {}) {
   const storage = new Map(consent ? [['portfolio-analytics-consent-v1', consent]] : [])
   if (exclude) storage.set('portfolio-analytics-exclude', '1')
   const scripts = []
   const location = { hostname: host, pathname: '/', reload() {} }
   const window = {}
-  const context = vm.createContext({ window, location, URL, URLSearchParams, navigator: { webdriver: false },
+  const context = vm.createContext({ window, location, URL, URLSearchParams, navigator: { webdriver: automated },
     localStorage: { getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value) },
     document: { referrer: 'https://example.com/private?email=secret', cookie: '',
       createElement: () => ({}), head: { appendChild: script => scripts.push(script) } },
@@ -28,8 +28,8 @@ function harness({ host = 'designwhich.works', consent, exclude = false } = {}) 
   return { api: context.analytics, scripts, location, window, events: () => (window.dataLayer || []).map(args => Array.from(args)) }
 }
 
-test('no Google script or events before consent, on localhost, or for owner exclusion', () => {
-  for (const options of [{}, { consent: 'denied' }, { host: 'localhost', consent: 'granted' }, { consent: 'granted', exclude: true }]) {
+test('no Google script or events after opt-out, on localhost, for automation, or owner exclusion', () => {
+  for (const options of [{ automated: true }, { exclude: true }, { consent: 'denied' }, { host: 'localhost', consent: 'granted' }, { consent: 'granted', exclude: true }]) {
     const h = harness(options)
     h.api.trackPage('/')
     h.api.trackEvent('contact_click')
@@ -115,4 +115,25 @@ test('only recognized campaign labels are sent; arbitrary query data stays priva
   h.api.trackEvent('demo_start')
   h.api.trackEvent('demo_start')
   assert.equal(h.events().filter(e => e[1] === 'demo_start').length, 1)
+})
+
+ test('new visitors start automatically without recording a consent choice', () => {
+  const h = harness()
+  h.api.trackPage('/')
+  assert.equal(h.scripts.length, 1)
+  assert.equal(h.events().filter(e => e[1] === 'page_view').length, 1)
+  assert.equal(h.api.analyticsConsent(), null)
+})
+
+ test('direct project landings and SPA returns count project views without duplicates', () => {
+  const h = harness()
+  h.location.pathname = '/mentra'
+  h.api.trackPage('/mentra')
+  h.api.trackPage('/mentra')
+  h.api.trackPage('/work')
+  h.api.trackPage('/mentra')
+  h.api.trackPage('/mentra/world')
+  const views = h.events().filter(e => e[1] === 'project_view')
+  assert.equal(views.length, 2)
+  assert.equal(views[0][2].project_slug, 'mentra')
 })
