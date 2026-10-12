@@ -106,8 +106,17 @@ function getTimelineSectionSummary(projects: Project[], leadProject: Project) {
 }
 
 export default function WorkPage() {
-  const [searchParams] = useSearchParams()
-  const [activeFilter, setActiveFilter] = useState('all')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const requestedFilter = searchParams.get('filter')
+  const activeFilter = filters.some(filter => filter.key === requestedFilter) ? requestedFilter! : 'all'
+  const setActiveFilter = useCallback((filter: string) => {
+    setSearchParams(current => {
+      const next = new URLSearchParams(current)
+      if (filter === 'all') next.delete('filter')
+      else next.set('filter', filter)
+      return next
+    })
+  }, [setSearchParams])
   const [footerVisible, setFooterVisible] = useState(false)
   const [libraryPreviewSlug, setLibraryPreviewSlug] = useState<string | null>(null)
   const bottomNavRef = useRef<HTMLElement>(null)
@@ -120,6 +129,11 @@ export default function WorkPage() {
       : currentViewParam === 'timeline'
         ? 'timeline'
         : 'editorial'
+  const viewHref = (view: string) => {
+    const params = new URLSearchParams(searchParams)
+    if (view === 'editorial') params.delete('view'); else params.set('view', view)
+    return `/work${params.toString() ? `?${params}` : ''}`
+  }
   const [activeLibraryShelf, setActiveLibraryShelf] = useState('start-here')
   const [activeTimelineYear, setActiveTimelineYear] = useState(TIMELINE_PRESENT_KEY)
 
@@ -200,7 +214,7 @@ export default function WorkPage() {
 
     window.addEventListener(WORK_FILTER_EVENT, handleFilter as EventListener)
     return () => window.removeEventListener(WORK_FILTER_EVENT, handleFilter as EventListener)
-  }, [])
+  }, [setActiveFilter])
 
   const isAll = activeFilter === 'all'
   const editorialSelectedProjects = isAll
@@ -305,7 +319,7 @@ export default function WorkPage() {
 
   const handleFilterChange = useCallback((filterKey: 'all' | ProjectCategory) => {
     setActiveFilter(filterKey)
-  }, [])
+  }, [setActiveFilter])
 
   const renderFilterButtons = () => filters.map(f => (
     <button
@@ -490,6 +504,9 @@ export default function WorkPage() {
             <header className="work-page-header">
               <div className="work-page-intro">
                 <h1 className="work-page-title">Work</h1>
+                <nav className="work-mobile-views glass-segments" aria-label="Work page views">
+                  {([['editorial', 'Editorial'], ['library', 'Index'], ['timeline', 'Arc']] as const).map(([view, label]) => <Link key={view} to={viewHref(view)} aria-current={viewMode === view ? 'page' : undefined}>{label}</Link>)}
+                </nav>
               <Link className="work-room-link" to="/project-experiences">Explore project experiences</Link>
                 <p className="work-page-intro-copy">
                   Selected product, systems, and interaction work for product design and design engineering roles.

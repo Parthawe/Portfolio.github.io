@@ -268,3 +268,12 @@ Keep the input native so keyboard increments, min/max/step, labels, disabled sta
 Use `ios-controls.css` for the Work header view selector, project camera and instrument selectors, Shuffle views, and prototype tabs. Keep selected states in native `aria-pressed` or `aria-current`, retain visible keyboard focus, and use 44px touch targets. Glass stays on controls; project imagery, typography, and content layouts retain their authored styles. Low-power mode disables backdrop blur. Reduced motion disables transitions; reduced transparency and forced colors provide opaque alternatives.
 
 `CompactSheet.tsx` provides mobile site navigation and case-study chapters. It portals above the page, makes the background inert, locks scroll, traps keyboard focus, supports Close/Escape/backdrop dismissal, and restores focus and prior inert state. Desktop chapters remain a popover. The chapter dock stays at the bottom left and recedes without disappearing while the reader pauses. Run `node scripts/ios-controls-qa.mjs` against the production preview for Chromium desktop/mobile and mobile WebKit in both themes.
+
+
+## Experience recovery
+
+Work categories use the `filter` query parameter, validated against the registry categories. Work view links preserve that selection. Mobile offers the same Editorial, Index and Arc choices in the page header, with a scrollable category row in Editorial.
+
+Optional 3D content uses `ExperienceBoundary` so failed imports or lighting assets leave project content usable. Show original public evidence while physical objects prepare, with retry, reload and photograph links on failure. The homepage reports preparation and offers reload after failure. These states do not imply a percentage or successful prototype access. Mentra’s embed always offers a return to its recording and restores keyboard focus.
+
+Physical-object resets can restore the previous slider values, camera selection and instrument focus. This undo does not restore a drawing or an arbitrary orbit pose. A subsequent settings change invalidates the reset snapshot. Compact sheets accept a downward drag from their handle, alongside Close, Escape and backdrop dismissal. Run `npm run qa:experience-recovery` for filter history, embed recovery, reset undo, swipe dismissal and blocked-asset checks.

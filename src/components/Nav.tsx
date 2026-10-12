@@ -131,10 +131,15 @@ export default function Nav() {
       : requestedWorkView === 'timeline'
         ? 'timeline'
         : 'editorial';
+  const workLink = (view?: string) => {
+    const params = new URLSearchParams(search);
+    if (view) params.set('view', view); else params.delete('view');
+    return `/work${params.toString() ? `?${params}` : ''}`;
+  };
   const workViewLinks = [
-    { key: 'editorial', label: 'Editorial', to: '/work' },
-    { key: 'library', label: 'Index', to: '/work?view=library' },
-    { key: 'timeline', label: 'Arc', to: '/work?view=timeline' },
+    { key: 'editorial', label: 'Editorial', to: workLink() },
+    { key: 'library', label: 'Index', to: workLink('library') },
+    { key: 'timeline', label: 'Arc', to: workLink('timeline') },
   ];
 
   const handleSkipToContent = useCallback((event: React.MouseEvent<HTMLAnchorElement>) => {

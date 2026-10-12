@@ -15,6 +15,11 @@ const objectWorlds = {
 export type WorldSpec = { title: string; setting: string; note: string; controls: readonly string[]; initial: readonly number[]; kind?: 'screen' | 'gallery' | 'cabinet' | 'watch' | 'set'; image?: string; category?: string }
 export type WorldKey = string
 export const worlds: Record<WorldKey, WorldSpec> = { ...objectWorlds }
+for (const slug of Object.keys(objectWorlds)) {
+  const evidence = projects.find(item => item.slug === slug)
+  if (evidence) worlds[slug].image = evidence.access?.publicPreviewImage || evidence.image
+}
+
 for (const route of projectRoutes) {
   if (route.slug === 'shuffle' || worlds[route.slug] || digitalExperience(route.slug)) continue
   const project = projects.find(item => item.slug === route.slug)

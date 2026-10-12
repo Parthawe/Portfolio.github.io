@@ -1,3 +1,4 @@
+import ExperienceBoundary from '../components/ExperienceBoundary';
 import { useState, useEffect, lazy, Suspense, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -206,7 +207,7 @@ export default function HomePage() {
 
         <div className="wr-hero-3d">
           {mountHeroScene ? (
-            <Suspense fallback={null}>
+            <ExperienceBoundary onError={() => setHeroSceneTimedOut(true)}><Suspense fallback={null}>
               <HeroScene
                 onNavigate={navigate}
                 onExpandedChange={setHeroWebOpen}
@@ -217,10 +218,13 @@ export default function HomePage() {
                   setHeroSceneTimedOut(false);
                 }}
               />
-            </Suspense>
+            </Suspense></ExperienceBoundary>
           ) : null}
         </div>
 
+        {(!heroSceneReady && !heroSceneUnavailable || heroSceneTimedOut) && <div className="hero-scene-status" role="status">
+          {heroSceneTimedOut ? <>The interactive scene could not load. <button type="button" onClick={() => window.location.reload()}>Reload scene</button></> : 'Preparing the interactive scene…'}
+        </div>}
         <div className="wr-hero-copy">
           <h1 className="wr-hero-title wr-hero-stage wr-hero-stage--title">Designing product systems people trust.</h1>
           <p className="wr-hero-dek wr-hero-stage wr-hero-stage--dek">

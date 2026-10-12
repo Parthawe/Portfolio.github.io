@@ -24,7 +24,8 @@
     "qa:revolving-stage": "node scripts/revolving-stage-model-qa.mjs && node scripts/revolving-stage-world-qa.mjs",
     "qa:moniac": "node scripts/moniac-model-qa.mjs && node scripts/moniac-world-qa.mjs",
     "qa:glass-sliders": "node scripts/glass-sliders-qa.mjs",
-    "qa:ios-controls": "node scripts/ios-controls-qa.mjs"
+    "qa:ios-controls": "node scripts/ios-controls-qa.mjs",
+    "qa:experience-recovery": "node scripts/experience-recovery-qa.mjs && node scripts/experience-failures-qa.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.33",

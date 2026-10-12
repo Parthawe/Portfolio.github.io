@@ -8,6 +8,7 @@ const output = process.env.QA_OUTPUT_DIR || '/tmp/portfolio-project-objects-qa'
 mkdirSync(output, { recursive: true })
 const browser = await chromium.launch()
 const errors = []
+let checks = 0
 
 async function drag(page, context, points, touch) {
   if (touch) {
@@ -28,12 +29,12 @@ try {
   for (const profile of [
     { name: 'desktop', width: 1185, height: 969, theme: 'light', touch: false },
     { name: 'mobile', width: 375, height: 812, theme: 'dark', touch: true },
-  ]) {
+  ].filter(profile => !process.env.QA_OBJECT_PROFILE || profile.name === process.env.QA_OBJECT_PROFILE)) {
     const context = await browser.newContext({ viewport: { width: profile.width, height: profile.height }, hasTouch: profile.touch, reducedMotion: 'reduce' })
     const page = await context.newPage()
     page.on('pageerror', error => errors.push(error.message))
     await page.addInitScript(theme => localStorage.setItem('theme', theme), profile.theme)
-    for (const slug of ['enigma', 'jugalbandi', 'sea-of-salt', 'moniac-machine', 'black-hole']) {
+    for (const slug of ['enigma', 'jugalbandi', 'sea-of-salt', 'moniac-machine', 'black-hole'].filter(slug => !process.env.QA_OBJECT_ROUTES || process.env.QA_OBJECT_ROUTES.split(',').includes(slug))) {
       await page.goto(`${base}/${slug}/world`, { waitUntil: 'domcontentloaded' })
       await page.locator('.physical-world-stage canvas').waitFor()
       await expect(page.locator('[data-world-theme]')).toHaveAttribute('data-world-theme', profile.theme)
@@ -94,11 +95,13 @@ try {
           await page.locator('.physical-world-stage').screenshot({ path: `${output}/${profile.name}-black-${exhibit.replaceAll(' ', '-')}.png` })
         }
       }
-      await page.locator('.physical-world').screenshot({ path: `${output}/${profile.name}-${slug}.png` })
+      await page.screenshot({ fullPage: true, path: `${output}/${profile.name}-${slug}.png` })
+      checks++
       console.log(`${profile.name}: ${slug} passed`)
     }
     await context.close()
   }
+  assert(checks > 0, 'No physical-object checks matched the requested filters')
   assert.equal(errors.length, 0, JSON.stringify(errors))
 } finally {
   await browser.close()

@@ -8,6 +8,7 @@ export default function CompactSheet({ title, id, onClose, returnFocus, children
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const lockId = useId()
+  const swipeStart = useRef<number | null>(null)
   useEffect(() => {
     const surface = ref.current!
     const previousFocus = returnFocus ?? document.activeElement
@@ -37,7 +38,11 @@ export default function CompactSheet({ title, id, onClose, returnFocus, children
     if (event.target === event.currentTarget) onClose()
   }}>
     <section className="compact-sheet" id={id} role="dialog" aria-modal="true" aria-labelledby={`${id}-title`}>
-      <div className="compact-sheet-handle" aria-hidden="true" />
+      <div className="compact-sheet-grab" aria-hidden="true"
+        onPointerDown={event => { if (event.button !== 0) return; swipeStart.current = event.clientY; event.currentTarget.setPointerCapture(event.pointerId) }}
+        onPointerUp={event => { const start = swipeStart.current; swipeStart.current = null; if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId); if (start !== null && event.clientY - start > 55) onClose() }}
+        onPointerCancel={() => { swipeStart.current = null }}
+      ><div className="compact-sheet-handle" /></div>
       <header><h2 id={`${id}-title`}>{title}</h2><button type="button" className="glass-action" aria-label={`Close ${title.toLowerCase()}`} onClick={onClose}>Close</button></header>
       <div className="compact-sheet-content">{children}</div>
     </section>

@@ -1,3 +1,5 @@
+import { projectImageProps } from '../../utils/projectImage'
+import ExperienceBoundary from '../ExperienceBoundary'
 import PortfolioSlider from '../PortfolioSlider'
 import { lazy, Suspense, useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -17,14 +19,17 @@ export default function PhysicalWorld({ project }: { project: WorldKey }) {
   const [resetVersion, setResetVersion] = useState(0)
   const [failed, setFailed] = useState(false)
   const [sound, setSound] = useState(false)
+  const [beforeReset, setBeforeReset] = useState<{ values: number[]; camera: number; focus: number } | null>(null)
+  const resetButton = useRef<HTMLButtonElement>(null)
+  const [statusMessage, setStatusMessage] = useState('')
   const [resetNotice, setResetNotice] = useState(false)
   const noticeTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
   useEffect(() => () => clearTimeout(noticeTimer.current), [])
   const audio = useRef<AudioContext | null>(null)
   useEffect(() => () => { void audio.current?.close() }, [])
   const dark = useThemeMode(), reduced = usePrefersReduced()
-  const change = (index: number, value: number) => setValues(old => old.map((item, i) => i === index ? value : item))
-  const reset = () => { clearTimeout(noticeTimer.current); setResetNotice(true); noticeTimer.current = setTimeout(() => setResetNotice(false), 4000); setFailed(false); setValues([...spec.initial]); setResetVersion(n => n + 1); setCamera(0); setFocus(0); setRevision(n => n + 1) }
+  const change = (index: number, value: number) => { setStatusMessage(''); setBeforeReset(null); setValues(old => old.map((item, i) => i === index ? value : item)) }
+  const reset = () => { setStatusMessage('Settings reset'); setBeforeReset({ values: [...values], camera, focus }); clearTimeout(noticeTimer.current); setResetNotice(true); noticeTimer.current = setTimeout(() => setResetNotice(false), 4000); setFailed(false); setValues([...spec.initial]); setResetVersion(n => n + 1); setCamera(0); setFocus(0); setRevision(n => n + 1) }
   const play = (index: number) => {
     change(index, (values[index] + 25) % 101)
     if (!sound) return
@@ -41,11 +46,11 @@ export default function PhysicalWorld({ project }: { project: WorldKey }) {
     oscillator.onended = () => { oscillator.disconnect(); gain.disconnect() }
   }
   return <div className="physical-world" data-world-theme={dark ? 'dark' : 'light'}>
-    <header><p>{spec.setting}</p><div className="physical-world-actions"><div className="glass-segments" role="group" aria-label="Camera view">{['Room', 'Object', 'Overhead'].map((label, i) => <button key={label} disabled={failed} aria-pressed={camera === i} onClick={() => { setCamera(i); if(project==='jugalbandi'&&i===0)setFocus(0); setRevision(n => n + 1) }}>{label}</button>)}</div><button className="glass-action" aria-label="Reset" onClick={reset}>{resetNotice ? 'Reset done' : 'Reset'}</button><span className="sr-only" role="status">{resetNotice ? 'Settings reset' : ''}</span></div></header>
-    {project === 'jugalbandi' && <div className="jugalbandi-instruments glass-segments" role="group" aria-label="Inspect an instrument">{['Ensemble', 'Hexa-18', 'Harp', 'Flute', 'Rainsticks'].map((label,index)=><button key={label} aria-pressed={focus===index} onClick={()=>{setFocus(index);setCamera(index?1:0);setRevision(n=>n+1)}}>{label}</button>)}</div>}
+    <header><p>{spec.setting}</p><div className="physical-world-actions"><div className="glass-segments" role="group" aria-label="Camera view">{['Room', 'Object', 'Overhead'].map((label, i) => <button key={label} disabled={failed} aria-pressed={camera === i} onClick={() => { setStatusMessage(''); setBeforeReset(null); setCamera(i); if(project==='jugalbandi'&&i===0)setFocus(0); setRevision(n => n + 1) }}>{label}</button>)}</div><button className="glass-action" ref={resetButton} aria-label="Reset" onClick={reset}>{resetNotice ? 'Reset done' : 'Reset'}</button>{beforeReset && <button className="glass-action undo-reset" onClick={() => { setValues(beforeReset.values); setCamera(beforeReset.camera); setFocus(beforeReset.focus); setBeforeReset(null); setResetNotice(false); setStatusMessage('Previous settings restored'); resetButton.current?.focus({ preventScroll: true }); setRevision(n => n + 1) }}>Undo reset</button>}<span className="sr-only" role="status">{statusMessage}</span></div></header>
+    {project === 'jugalbandi' && <div className="jugalbandi-instruments glass-segments" role="group" aria-label="Inspect an instrument">{['Ensemble', 'Hexa-18', 'Harp', 'Flute', 'Rainsticks'].map((label,index)=><button key={label} aria-pressed={focus===index} onClick={()=>{setBeforeReset(null);setFocus(index);setCamera(index?1:0);setRevision(n=>n+1)}}>{label}</button>)}</div>}
     {project==='revolving-stage' && <div className="jugalbandi-instruments glass-segments" role="group" aria-label="Stage scenes">{[['Building',0],['Corner',90],['Garden',180]].map(([label,angle])=><button key={label} aria-pressed={values[0]===angle} onClick={()=>{change(0,Number(angle));change(1,0)}}>{label}</button>)}</div>}
     <div className="physical-world-stage">
-      {failed ? <div className="physical-world-loading" role="status">3D is unavailable. <Link to={`/${project}`}>View the project photographs</Link>.</div> : <Suspense fallback={<div className="physical-world-loading" role="status">Loading the room…</div>}><RoomScene project={project} values={values} dark={dark} reduced={reduced} cameraView={camera} focus={focus} revision={revision} resetVersion={resetVersion} onReset={reset} onChange={change} onFail={() => setFailed(true)} /></Suspense>}
+      {failed ? <div className="physical-world-loading" role="status">3D is unavailable. <button onClick={reset}>Try again</button> <button onClick={() => window.location.reload()}>Reload experience</button> <Link to={`/${project}`}>View the project photographs</Link>.</div> : <ExperienceBoundary onError={() => setFailed(true)}><Suspense fallback={<div className="physical-world-loading object-loading-preview" role="status">{spec.image && <img src={spec.image} {...projectImageProps(spec.image)} sizes="(max-width: 640px) 75vw, 440px" decoding="async" alt="" />}<span>Preparing the interactive object…</span></div>}><RoomScene project={project} values={values} dark={dark} reduced={reduced} cameraView={camera} focus={focus} revision={revision} resetVersion={resetVersion} onReset={reset} onChange={change} onFail={() => setFailed(true)} /></Suspense></ExperienceBoundary>}
       {!failed && <p className="physical-world-hint">{project === 'revolving-stage' ? 'Drag the wooden deck to turn the set. Show the mechanism to inspect the base and casters.' : project === 'jugalbandi' ? 'Choose an instrument for a close view. Drag strings, pipes or rainsticks to play.' : project === 'sea-of-salt' ? 'Drag the mill lid or wooden handle to turn it. Drag the floor to look around.' : project === 'moniac-machine' ? 'Drag a white valve to adjust it. Drag the floor to look around.' : 'Drag to look around. Scroll or pinch to move closer.'}</p>}
     </div>
     {project === 'enigma' && <div className="enigma-letter-input">

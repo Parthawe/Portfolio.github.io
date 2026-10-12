@@ -1,5 +1,5 @@
 import PortfolioSlider from '../PortfolioSlider'
-import { useState, type ReactNode } from 'react'
+import { useState, useEffect, useRef, type ReactNode } from 'react'
 import MeetingTimeline from '../MeetingTimeline'
 import { mentraOnboardingPrototype } from '../../data/projectExperiences'
 
@@ -7,9 +7,15 @@ function Shell({ name, children, actions }: { name: string; children: ReactNode;
   return <div className="prototype-app"><header><strong>{name}</strong>{actions}</header>{children}</div>
 }
 function Mentra() {
-  const [open, setOpen] = useState(false), [loaded, setLoaded] = useState(false)
+  const recordingButton = useRef<HTMLButtonElement>(null)
+  const [open, setOpen] = useState(false), [loaded, setLoaded] = useState(false), [slow, setSlow] = useState(false)
+  useEffect(() => {
+    if (!open || loaded) return
+    const timer = setTimeout(() => setSlow(true), 10000)
+    return () => clearTimeout(timer)
+  }, [open, loaded])
   return <Shell name="Mentra · onboarding" actions={<a href={mentraOnboardingPrototype} target="_blank" rel="noopener noreferrer">Open in Figma ↗</a>}>
-    {open ? <div className="prototype-embed"><p role="status">{loaded ? 'Use the prototype below. If Figma requires access, open it in a new tab.' : 'Loading Figma…'}</p><iframe title="Original Mentra onboarding Figma prototype" src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(mentraOnboardingPrototype)}`} onLoad={() => setLoaded(true)} allowFullScreen /></div> : <div className="prototype-original"><video controls preload="metadata" poster="/Assets/Projects/mentra-brand/motion/mentra-onboarding-prototype-poster.jpg" aria-label="Recorded original Mentra onboarding prototype"><source src="/Assets/Projects/mentra-brand/motion/mentra-onboarding-prototype.mp4" type="video/mp4" /></video><button className="prototype-primary" onClick={() => setOpen(true)}>Load interactive Figma prototype</button><p>Original onboarding flow. The recording is available while the Figma prototype is closed.</p></div>}
+    {open ? <div className="prototype-embed"><p role="status">{loaded ? 'Figma opened. If access is required, use the recording or open Figma in a new tab.' : slow ? 'Figma is taking longer to open. You can return to the recording.' : 'Opening Figma…'}</p><button onClick={() => { setOpen(false); setLoaded(false); setSlow(false); requestAnimationFrame(() => recordingButton.current?.focus({ preventScroll: true })) }}>Back to recording</button><iframe title="Original Mentra onboarding Figma prototype" src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(mentraOnboardingPrototype)}`} onLoad={() => setLoaded(true)} allowFullScreen /></div> : <div className="prototype-original"><video controls preload="metadata" poster="/Assets/Projects/mentra-brand/motion/mentra-onboarding-prototype-poster.jpg" aria-label="Recorded original Mentra onboarding prototype"><source src="/Assets/Projects/mentra-brand/motion/mentra-onboarding-prototype.mp4" type="video/mp4" /></video><button className="prototype-primary" ref={recordingButton} onClick={() => setOpen(true)}>Load interactive Figma prototype</button><p>Original onboarding flow. The recording is available while the Figma prototype is closed.</p></div>}
   </Shell>
 }
 function MiniApps() {
