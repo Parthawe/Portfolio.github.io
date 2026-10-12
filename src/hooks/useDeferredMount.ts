@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 interface DeferredMountOptions {
   timeout?: number
   delayMs?: number
+  afterPaint?: boolean
 }
 
 type IdleCapableWindow = Window & {
@@ -12,7 +13,7 @@ type IdleCapableWindow = Window & {
 
 export function useDeferredMount(
   enabled = true,
-  { timeout = 1500, delayMs = 0 }: DeferredMountOptions = {},
+  { timeout = 1500, delayMs = 0, afterPaint = false }: DeferredMountOptions = {},
 ) {
   const [mounted, setMounted] = useState(false)
 
@@ -22,6 +23,14 @@ export function useDeferredMount(
       return
     }
     if (mounted) return
+
+    if (afterPaint) {
+      let secondFrame = 0
+      const firstFrame = requestAnimationFrame(() => {
+        secondFrame = requestAnimationFrame(() => setMounted(true))
+      })
+      return () => { cancelAnimationFrame(firstFrame); cancelAnimationFrame(secondFrame) }
+    }
 
     let cancelled = false
     let delayId: number | null = null
@@ -57,7 +66,7 @@ export function useDeferredMount(
         idleWindow.cancelIdleCallback?.(idleId)
       }
     }
-  }, [delayMs, enabled, mounted, timeout])
+  }, [afterPaint, delayMs, enabled, mounted, timeout])
 
   return mounted
 }

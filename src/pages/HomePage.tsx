@@ -19,7 +19,7 @@ import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
 import { beginSceneStartup, isLowPowerDevice } from '../utils/performance';
 import ParthDoesSection from '../components/ParthDoesSection';
 import '../styles/homepage-wr.css';
-import { HERO_ENVIRONMENT_URL } from '../data/heroAssets';
+import { preloadHeroEnvironmentAsset } from '../utils/preloadHeroEnvironment';
 
 
 const loadHeroScene = () => import('../components/HeroScene');
@@ -97,7 +97,16 @@ export default function HomePage() {
   const lowPowerDevice = isLowPowerDevice();
   const allowDecorative3D = !prefersReducedMotion;
   const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || heroSceneTimedOut;
+  const [readerMoved, setReaderMoved] = useState(() => typeof window !== 'undefined' && window.scrollY > 40);
+  useEffect(() => {
+    if (readerMoved) return;
+    const onScroll = () => { if (window.scrollY > 40) setReaderMoved(true); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [readerMoved]);
+  const cardPreloadMargin = heroSceneReady || heroSceneUnavailable || readerMoved ? '600px 0px' : '0px';
   const mountHeroScene = useDeferredMount(!heroSceneUnavailable, {
+    afterPaint: !coarsePointer && !lowPowerDevice,
     timeout: coarsePointer ? 900 : lowPowerDevice ? 1100 : 1200,
     delayMs: coarsePointer ? 220 : lowPowerDevice ? 400 : 350,
   });
@@ -124,16 +133,11 @@ export default function HomePage() {
     let cancelled = false;
     const finishStartup = beginSceneStartup();
     endSceneStartup.current = finishStartup;
-    const preload = document.createElement('link');
-    preload.rel = 'preload';
-    preload.as = 'fetch';
-    preload.href = HERO_ENVIRONMENT_URL;
-    preload.crossOrigin = 'anonymous';
-    document.head.append(preload);
+    const preload = preloadHeroEnvironmentAsset();
     void loadHeroScene().catch(() => {
       if (!cancelled) setHeroSceneTimedOut(true);
     });
-    return () => { cancelled = true; preload.remove(); finishStartup(); };
+    return () => { cancelled = true; preload?.remove(); finishStartup(); };
   }, [heroSceneUnavailable]);
 
   useEffect(() => {
@@ -285,6 +289,7 @@ export default function HomePage() {
                             marqueeSpeed={2}
                             loading="lazy"
                             deferUntilNearView
+                            preloadMargin={cardPreloadMargin}
                             featured
                             coverShape={getFlagshipCoverShape(project.slug)}
                             nda={project.nda}
@@ -399,7 +404,7 @@ export default function HomePage() {
                           style={{ transitionDelay: `${delay}s` }}
                           data-archive-index={originalIndex}
                         >
-                          <ProjectCard deferUntilNearView slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
+                          <ProjectCard deferUntilNearView preloadMargin={cardPreloadMargin} slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
                         </div>
                       );
                     })}

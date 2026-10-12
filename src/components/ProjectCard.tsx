@@ -24,6 +24,7 @@ interface ProjectCardProps {
   loading?: 'eager' | 'lazy'
   /** Keep offscreen homepage media out of the hero’s request queue. */
   deferUntilNearView?: boolean
+  preloadMargin?: string
   featured?: boolean
   coverShape?: 'portrait' | 'square' | 'wide'
   /** Force the wide 16:9 cover (for landscape card slots). */
@@ -38,7 +39,7 @@ interface ProjectCardProps {
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText, marqueeSpeed = 20,
-  loading = 'lazy', deferUntilNearView = false, featured = false, coverShape, preferWide = false, useProvidedImage = false, tilt = false, tiltIntensity = 4, nda = false,
+  loading = 'lazy', deferUntilNearView = false, preloadMargin = '600px 0px', featured = false, coverShape, preferWide = false, useProvidedImage = false, tilt = false, tiltIntensity = 4, nda = false,
 }: ProjectCardProps) {
   const cardRef = useRef<HTMLAnchorElement>(null)
   const [mediaReady, setMediaReady] = useState(!deferUntilNearView)
@@ -48,10 +49,10 @@ export default memo(function ProjectCard({
     if (!card || typeof IntersectionObserver === 'undefined') { setMediaReady(true); return }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) { setMediaReady(true); observer.disconnect() }
-    }, { rootMargin: '600px 0px' })
+    }, { rootMargin: preloadMargin })
     observer.observe(card)
     return () => observer.disconnect()
-  }, [deferUntilNearView, mediaReady])
+  }, [deferUntilNearView, mediaReady, preloadMargin])
   const project = projects.find(p => p.slug === slug)
   // Wide covers are for featured/highlight slots. Work grid cards use either
   // square or portrait covers to avoid hiding important composition.

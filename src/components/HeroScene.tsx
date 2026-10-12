@@ -2178,7 +2178,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
     groupRef.current.scale.setScalar(mix(sceneScale, expandedSceneScale, intro));
   });
 
-  const positions = nodes.map(n => n.position);
+  const positions = useMemo(() => nodes.map(n => n.position), [nodes]);
 
   return (
     <>
