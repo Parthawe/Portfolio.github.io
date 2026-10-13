@@ -98,7 +98,7 @@ export default function PortfolioAnalytics() {
     const interaction = (event: Event) => {
       if (!event.isTrusted || !(event.target instanceof Element)) return
       if (event instanceof KeyboardEvent && !['Enter', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
-      if (event.target.closest('.shuffle-object, .physical-world')) trackEvent('demo_start')
+      if (event.target.closest('.shuffle-object, .physical-world, .prototype-page [data-prototype], .prototype-intro button')) trackEvent('demo_start')
       else if (event.target.closest('.hero-3d-canvas, .ascii-hero-image')) trackEvent('scene_interaction')
     }
     const playback = (event: Event) => {

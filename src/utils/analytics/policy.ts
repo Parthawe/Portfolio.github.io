@@ -7,7 +7,9 @@ const pages = new Set(['/', '/about', '/accessibility', '/playbook', '/book', '/
 /** Never send unknown paths, query strings, hashes, or submitted values. */
 export function publicPage(raw: string) {
   const path = raw.split(/[?#]/)[0].replace(/\/+$/, '') || '/'
-  if ((path.endsWith('/world') && projects.has(path.slice(0, -6))) || path === '/shuffle/simulation') return { path, type: 'demo' }
+  if ((path.endsWith('/world') && projects.has(path.slice(0, -6))) ||
+      (path.endsWith('/prototype') && projects.has(path.slice(0, -10))) ||
+      path === '/shuffle/simulation') return { path, type: 'demo' }
   if (projects.has(path)) return { path, type: 'project' }
   if (collections.has(path)) return { path, type: 'collection' }
   if (pages.has(path)) return { path, type: path === '/' ? 'home' : 'page' }
