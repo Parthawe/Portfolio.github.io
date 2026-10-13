@@ -47,6 +47,7 @@ jobs:
           done
           curl --fail --silent "$QA_BASE_URL" > /dev/null
           status=0
+          bun run qa:home-loading || status=1
           node scripts/reveal-readiness-qa.mjs || status=1
           node scripts/performance-qa.mjs || status=1
           bun run qa:physical-worlds || status=1
@@ -66,3 +67,4 @@ jobs:
             /tmp/preview.log
             qa-diagnostics/
             /tmp/portfolio-physical-worlds-qa
+            /tmp/portfolio-home-loading-qa
