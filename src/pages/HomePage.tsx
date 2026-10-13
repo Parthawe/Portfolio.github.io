@@ -1,3 +1,4 @@
+import ExperienceBoundary from '../components/ExperienceBoundary';
 import { useState, useEffect, lazy, Suspense, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -12,15 +13,17 @@ import { useDeferredMount } from '../hooks/useDeferredMount';
 import { useInView } from '../hooks/useInView';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { usePerformanceDegraded } from '../hooks/usePerformanceDegraded';
-import { useWebGLAvailable } from '../hooks/useWebGLAvailable';
+import { canUseWebGL, useWebGLAvailable } from '../hooks/useWebGLAvailable';
 import { featuredProjects, homepageSelectedProjects } from '../data/projects';
 import { DEFAULT_OG_IMAGE, SITE_ORIGIN, SITE_URL } from '../config/site';
-import { isLowPowerDevice } from '../utils/performance';
+import { beginSceneStartup, isLowPowerDevice } from '../utils/performance';
 import ParthDoesSection from '../components/ParthDoesSection';
 import '../styles/homepage-wr.css';
+import { preloadHeroEnvironmentAsset } from '../utils/preloadHeroEnvironment';
 
 
-const HeroScene = lazy(() => import('../components/HeroScene'));
+const loadHeroScene = () => import('../components/HeroScene');
+const HeroScene = lazy(loadHeroScene);
 const CategoryObject3D = lazy(() => import('../components/CategoryObject3D'));
 
 const disciplines = [
@@ -82,6 +85,7 @@ export default function HomePage() {
   const [heroWebOpen, setHeroWebOpen] = useState(false);
   const [heroSceneReady, setHeroSceneReady] = useState(false);
   const [heroSceneTimedOut, setHeroSceneTimedOut] = useState(false);
+  const endSceneStartup = useRef<((settleMs?: number) => void) | null>(null);
   const heroRef = useRef<HTMLElement>(null);
   const [disciplinesRef, disciplinesInView] = useInView<HTMLElement>(0.05, '180px 0px');
   const coarsePointer = useMediaQuery('(hover: none), (pointer: coarse)');
@@ -92,8 +96,18 @@ export default function HomePage() {
   const webglAvailable = useWebGLAvailable();
   const lowPowerDevice = isLowPowerDevice();
   const allowDecorative3D = !prefersReducedMotion;
-  const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || heroSceneTimedOut;
+  // Resolve capability before the deferred mount can race the hook's first effect.
+  const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || !canUseWebGL() || heroSceneTimedOut;
+  const [readerMoved, setReaderMoved] = useState(() => typeof window !== 'undefined' && window.scrollY > 40);
+  useEffect(() => {
+    if (readerMoved) return;
+    const onScroll = () => { if (window.scrollY > 40) setReaderMoved(true); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [readerMoved]);
+  const cardPreloadMargin = heroSceneReady || heroSceneUnavailable || readerMoved ? '600px 0px' : '0px';
   const mountHeroScene = useDeferredMount(!heroSceneUnavailable, {
+    afterPaint: !coarsePointer && !lowPowerDevice,
     timeout: coarsePointer ? 900 : lowPowerDevice ? 1100 : 1200,
     delayMs: coarsePointer ? 220 : lowPowerDevice ? 400 : 350,
   });
@@ -113,6 +127,20 @@ export default function HomePage() {
     slug === 'mentra' || slug === 'jugalbandi' ? 'portrait' : 'square';
 
 
+  // Fetch the visible hero while its existing idle mount waits. Loading the
+  // module does not create a renderer; constrained devices keep their fallback.
+  useEffect(() => {
+    if (heroSceneUnavailable || !canUseWebGL()) return;
+    let cancelled = false;
+    const finishStartup = beginSceneStartup();
+    endSceneStartup.current = finishStartup;
+    const preload = preloadHeroEnvironmentAsset();
+    void loadHeroScene().catch(() => {
+      if (!cancelled) setHeroSceneTimedOut(true);
+    });
+    return () => { cancelled = true; preload?.remove(); finishStartup(); };
+  }, [heroSceneUnavailable]);
+
   useEffect(() => {
     if (prefersReducedMotion) return;
     const id = window.setInterval(() => {
@@ -128,7 +156,7 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!mountHeroScene || heroSceneReady || heroSceneUnavailable) return;
-    const timeoutId = window.setTimeout(() => setHeroSceneTimedOut(true), 6000);
+    const timeoutId = window.setTimeout(() => setHeroSceneTimedOut(true), 15000);
     return () => window.clearTimeout(timeoutId);
   }, [heroSceneReady, heroSceneUnavailable, mountHeroScene]);
 
@@ -184,19 +212,24 @@ export default function HomePage() {
 
         <div className="wr-hero-3d">
           {mountHeroScene ? (
-            <Suspense fallback={null}>
+            <ExperienceBoundary onError={() => setHeroSceneTimedOut(true)}><Suspense fallback={null}>
               <HeroScene
                 onNavigate={navigate}
                 onExpandedChange={setHeroWebOpen}
                 onReady={() => {
+                  // Keep the existing 2.2s warmup after the first real frame.
+                  endSceneStartup.current?.(2200);
                   setHeroSceneReady(true);
                   setHeroSceneTimedOut(false);
                 }}
               />
-            </Suspense>
+            </Suspense></ExperienceBoundary>
           ) : null}
         </div>
 
+        {(!heroSceneReady && !heroSceneUnavailable || heroSceneTimedOut) && <div className="hero-scene-status" role="status">
+          {heroSceneTimedOut ? <>The interactive scene could not load. <button type="button" onClick={() => window.location.reload()}>Reload scene</button></> : 'Preparing the interactive scene…'}
+        </div>}
         <div className="wr-hero-copy">
           <h1 className="wr-hero-title wr-hero-stage wr-hero-stage--title">Designing product systems people trust.</h1>
           <p className="wr-hero-dek wr-hero-stage wr-hero-stage--dek">
@@ -255,7 +288,9 @@ export default function HomePage() {
                             year={project.year}
                             marqueeText={featuredInfo}
                             marqueeSpeed={2}
-                            loading={index < 2 ? 'eager' : 'lazy'}
+                            loading="lazy"
+                            deferUntilNearView
+                            preloadMargin={cardPreloadMargin}
                             featured
                             coverShape={getFlagshipCoverShape(project.slug)}
                             nda={project.nda}
@@ -370,7 +405,7 @@ export default function HomePage() {
                           style={{ transitionDelay: `${delay}s` }}
                           data-archive-index={originalIndex}
                         >
-                          <ProjectCard slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
+                          <ProjectCard deferUntilNearView preloadMargin={cardPreloadMargin} slug={p.slug} name={p.name} image={p.image} tag={p.tag} year={p.year} desc={p.desc} nda={p.nda} />
                         </div>
                       );
                     })}

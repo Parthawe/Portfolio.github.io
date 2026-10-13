@@ -255,3 +255,39 @@ The user's approved direction uses https://mitalkamani.design/pmfdiscovery as a 
 - Maintain chapter links, keyboard image previews, reduced motion, and media cleanup.
 
 Implementation: `src/styles/project-reading.css` and shared case-study components. Do not apply these project rules to Home, About, Work, or category pages.
+
+## Shared range sliders
+
+All authored range inputs use `src/components/PortfolioSlider.tsx` and `src/styles/portfolio-slider.css`, including physical worlds, Shuffle, the original experiments, prototypes, typography, painting, lighting and studio zoom. The user requested an iOS-inspired glass treatment. The reference is Apple’s [Adopting Liquid Glass](https://developer.apple.com/documentation/technologyoverviews/adopting-liquid-glass): a familiar slider whose knob changes material during interaction. This web treatment uses a translucent capsule, local highlights, a small pressed expansion and a blue value fill; it does not reproduce Apple’s native refraction engine.
+
+Keep the input native so keyboard increments, min/max/step, labels, disabled state and touch dragging remain intact. The hit area is 44 pixels high. Controlled and uncontrolled values update the fill; light/dark variants use the same dimensions. Reduced motion disables transitions and expansion. Reduced transparency makes the thumb opaque, and forced colors restore the browser’s range appearance. Glass styling is confined to the thumb, with no added canvas, dependency or animation loop. Run `npm run qa:glass-sliders` for source coverage and representative route checks in Chromium desktop/mobile and mobile WebKit.
+
+
+## Compact controls and sheets
+
+Use `ios-controls.css` for the Work header view selector, project camera and instrument selectors, Shuffle views, and prototype tabs. Keep selected states in native `aria-pressed` or `aria-current`, retain visible keyboard focus, and use 44px touch targets. Glass stays on controls; project imagery, typography, and content layouts retain their authored styles. Low-power mode disables backdrop blur. Reduced motion disables transitions; reduced transparency and forced colors provide opaque alternatives.
+
+`CompactSheet.tsx` provides mobile site navigation and case-study chapters. It portals above the page, makes the background inert, locks scroll, traps keyboard focus, supports Close/Escape/backdrop dismissal, and restores focus and prior inert state. Desktop chapters remain a popover. The chapter dock stays at the bottom left and recedes without disappearing while the reader pauses. Run `node scripts/ios-controls-qa.mjs` against the production preview for Chromium desktop/mobile and mobile WebKit in both themes.
+
+
+## Experience recovery
+
+Work categories use the `filter` query parameter, validated against the registry categories. Work view links preserve that selection. Mobile offers the same Editorial, Index and Arc choices in the page header, with a scrollable category row in Editorial.
+
+Optional 3D content uses `ExperienceBoundary` so failed imports or lighting assets leave project content usable. Show original public evidence while physical objects prepare, with retry, reload and photograph links on failure. The homepage reports preparation and offers reload after failure. These states do not imply a percentage or successful prototype access. Mentra’s embed always offers a return to its recording and restores keyboard focus.
+
+Physical-object resets can restore the previous slider values, camera selection and instrument focus. This undo does not restore a drawing or an arbitrary orbit pose. A subsequent settings change invalidates the reset snapshot. Compact sheets accept a downward drag from their handle, alongside Close, Escape and backdrop dismissal. Run `npm run qa:experience-recovery` for filter history, embed recovery, reset undo, swipe dismissal and blocked-asset checks.
+
+## Desktop hero loading
+
+Start the desktop lighting fetch from the small, asynchronous `hero-lighting-preload.js` while application modules load. Keep its guards aligned with `performance.ts`: homepage only, eligible hardware, no data saving, no reduced motion, no forced fallback and available WebGL. Reuse its capability probe and preload link when React starts. Warm the hero module and mount eligible desktop scenes after paint rather than waiting for idle plus an additional delay. Other deferred experiences keep their existing idle scheduling. Preserve the camera, materials, geometry, resolution and render settings.
+
+While the hero prepares, load visible project images but hold the homepage's speculative 600px image margin. Restore that margin when the hero becomes ready, falls back, or the reader scrolls. A slow lighting download must not delay media for someone who starts reading. Memoize the hero's connecting-thread positions so hovering does not recreate unchanged geometry.
+
+Run `npm run qa:hero-loading`, `npm run qa:home-loading` and `npm run qa:hero-efficiency` against a production preview. `npm run perf:hero` records cold HTTP-cache startup at 1440×1000, 5Mbps, 80ms latency and 4× CPU throttling. Set `QA_BASE_URL` for the candidate, `QA_COMPARE_URL` for a baseline, and `QA_OUTPUT_DIR` for the report. Run comparisons serially to avoid competition between browsers.
+
+The October 12 comparison against c55d55c used three alternating baseline/candidate pairs. Median scene readiness changed from 5705.1ms to 5270.5ms (7.6% faster). Baseline samples were 5805.6, 5663.8 and 5705.1ms; candidate samples were 5193.5, 5270.5 and 7406.4ms. One candidate load was slower, and its mean was worse; these local samples do not establish field percentiles or a gain on every load. Median first contentful paint stayed near 0.79 seconds. Lighting transfer and GPU preparation remain costs under the unchanged-visual requirement. Deterministic first-frame comparisons found zero differing pixels in both themes, covering 566,226 pixels per theme.
+
+The lighting follow-up stores the original RGBE channels as lossless row deltas in a gzip file. `npm run assets:hero-lighting` regenerates it from the retained HDR. The file is 965,763 bytes versus the source's 1,540,678 bytes; compare actual encoded transfer sizes when measuring a server that also compresses the original. `decodeHeroEnvironment.ts` uses an exponent lookup to produce the exact same 2,097,152 half-float values as RGBELoader, including alpha. Texture dimensions, filtering, orientation and color space remain unchanged; PMREM is still generated by the same renderer. The loader accepts both raw gzip and automatically decoded HTTP responses. Unsupported decompression, missing or malformed packed data fall back to the original HDR. If both fail, keep the existing page and recovery controls usable. The `qa:hero-loading` command covers exact texture values, guard exclusions, both delivery formats, original-HDR recovery and early scrolling.
+
+Three alternating pairs against 06d34a6 measured median readiness at 5887.4ms before and 5159.5ms after (12.4% faster). Candidate samples were 5048.6, 6601.7 and 5159.5ms; the second pair was slower. Median FCP changed from 888ms to 904ms. Median lighting arrival changed from 3892.8ms to 3254.9ms; encoded transfer changed from 1,158,106 to 965,763 bytes (16.6% fewer bytes on this preview server). Both first-frame themes again had zero differing pixels. Raw samples and conditions are in `docs/performance/hero-lighting-2026-10-12.json`. Compare within this batch rather than combining timings from different sessions. No field or guaranteed per-load speed claim is established.

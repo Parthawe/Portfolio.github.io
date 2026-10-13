@@ -102,6 +102,21 @@ test('physical project rooms keep their public route', () => {
   assert.equal(event[2].page_location, 'https://designwhich.works/mentra/world')
 })
 
+test('public prototypes are demos and unknown prototype paths stay excluded', () => {
+  for (const [route, expectedPath, type] of [
+    ['/mentra/prototype?token=secret', '/mentra/prototype', 'demo'],
+    ['/project-experiences', '/project-experiences', 'page'],
+    ['/not-real/prototype', '/404', 'not_found'],
+  ]) {
+    const h = harness({ consent: 'granted' })
+    h.api.trackPage(route)
+    const event = h.events().find(e => e[1] === 'page_view')
+    assert.equal(event[2].page_type, type)
+    assert.equal(event[2].page_location, `https://designwhich.works${expectedPath}`)
+    assert.ok(!JSON.stringify(h.events()).includes('secret'))
+  }
+})
+
 test('only recognized campaign labels are sent; arbitrary query data stays private', () => {
   const h = harness({ consent: 'granted' })
   h.location.search = '?utm_source=linkedin&utm_medium=social&utm_campaign=person@example.com&code=secret'

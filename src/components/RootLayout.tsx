@@ -2,7 +2,6 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, lazy, Suspen
 import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import PageLoader from './PageLoader';
 import Lightbox from './Lightbox';
-import CollaboratorCursor from './CollaboratorCursor';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { useKeyboardNav } from '../hooks/useKeyboardNav';
 import { useDeferredMount } from '../hooks/useDeferredMount';
@@ -12,6 +11,7 @@ import { isLowPowerDevice, prefersCanvasChrome } from '../utils/performance';
 import { clearBodyScrollLocks } from '../utils/bodyScrollLock';
 import { settleAnchor } from '../utils/settleAnchor';
 
+const CollaboratorCursor = lazy(() => import('./CollaboratorCursor'));
 const FigmaChrome = lazy(() => import('./FigmaChrome'));
 const FigmaGrid = lazy(() => import('./FigmaGrid'));
 const HandTracker = lazy(() => import('./HandTracker'));
@@ -159,7 +159,11 @@ export default function RootLayout() {
     const previousRestoration = history.scrollRestoration;
     history.scrollRestoration = 'manual';
     const top = navigationType === 'POP' ? scrollPositions.get(location.key) ?? 0 : 0;
+    // The fresh HTML shell has no scrollable route content yet. Its initial
+    // zero-position restore would force layout twice as the lazy route mounts.
+    const initialTop = initialRouteRef.current && top === 0 && !location.hash;
     const restore = () => {
+      if (initialTop) return;
       let anchorId = location.hash.slice(1);
       try { anchorId = decodeURIComponent(anchorId); } catch { /* Treat malformed hashes as literal IDs. */ }
       const anchor = anchorId ? document.getElementById(anchorId) : null;
@@ -423,7 +427,7 @@ export default function RootLayout() {
         <Outlet />
       </div>
       <Lightbox />
-      {enableFinePointerEffects && desktopCanvas && !coarsePointer && <CollaboratorCursor />}
+      {enableFinePointerEffects && desktopCanvas && !coarsePointer && <Suspense fallback={null}><CollaboratorCursor /></Suspense>}
       {/* AmbientAudio moved to Nav */}
       {enableFigmaChrome && figmaChromeReady && (
         <Suspense fallback={null}>

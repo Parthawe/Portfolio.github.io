@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useReadingProgress } from '../../hooks/useReadingProgress';
 import FigmaSelect from '../FigmaSelect';
+import CompactSheet from '../CompactSheet';
 
 interface BottomNavProps {
   sections: { id: string; label: string }[];
@@ -17,6 +18,14 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   const [hasExpandAction, setHasExpandAction] = useState(false);
   const [activeSectionId, setActiveSectionId] = useState(sections[0]?.id ?? '');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [compact, setCompact] = useState(() => window.matchMedia('(max-width: 680px)').matches);
+  const closeChapters = useCallback(() => setMenuOpen(false), []);
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 680px)');
+    const sync = () => setCompact(media.matches);
+    media.addEventListener('change', sync);
+    return () => media.removeEventListener('change', sync);
+  }, []);
   const usesChapterMenu = availableSections.length > 3;
   const directSections = usesChapterMenu ? [] : availableSections;
   const activeSection = availableSections.find((section) => section.id === activeSectionId) ?? availableSections[0];
@@ -46,7 +55,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
   }, [sections]);
 
   useEffect(() => {
-    if (!menuOpen) return;
+    if (!menuOpen || compact) return;
 
     const closeOnOutsideClick = (event: PointerEvent) => {
       if (navRef.current?.contains(event.target as Node)) return;
@@ -64,7 +73,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       document.removeEventListener('pointerdown', closeOnOutsideClick);
       document.removeEventListener('keydown', closeOnEscape);
     };
-  }, [menuOpen]);
+  }, [menuOpen, compact]);
 
   const showNav = useCallback(() => {
     const nav = navRef.current;
@@ -165,7 +174,9 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
     const target = document.getElementById(id);
     if (!target) return;
     target.setAttribute('tabindex', '-1');
-    target.focus({ preventScroll: true });
+    // The sheet must remove background inertness before focusing the chapter.
+    if (compact && menuOpen) requestAnimationFrame(() => target.focus({ preventScroll: true }));
+    else target.focus({ preventScroll: true });
     setActiveSectionId(id);
     window.history.replaceState(window.history.state, '', `#${encodeURIComponent(id)}`);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -227,6 +238,25 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
             </svg>
             <FigmaSelect />
           </button>
+          {compact ? menuOpen && (
+            <CompactSheet title="Case study chapters" id="cs-bnav-chapter-menu" onClose={closeChapters} returnFocus={navRef.current?.querySelector<HTMLButtonElement>('.cs-bnav-chapters')}>
+            <div className="cs-bnav-menu-list">
+              {availableSections.map((section, index) => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className={`cs-bnav-menu-link${section.id === activeSectionId ? ' active' : ''}`}
+                  aria-current={section.id === activeSectionId ? 'location' : undefined}
+                  tabIndex={menuOpen ? 0 : -1}
+                  onClick={(event) => handleClick(event, section.id)}
+                >
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {section.label}
+                </a>
+              ))}
+            </div>
+            </CompactSheet>
+          ) : (
           <div
             id="cs-bnav-chapter-menu"
             className={`cs-bnav-menu${menuOpen ? ' is-open' : ''}`}
@@ -252,6 +282,7 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
               ))}
             </div>
           </div>
+          )}
         </div>
       ) : null}
 

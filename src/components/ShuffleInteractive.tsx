@@ -1,3 +1,4 @@
+import PortfolioSlider from './PortfolioSlider'
 import { lazy, Suspense, useCallback, useRef, useState } from 'react'
 import { useThemeMode } from '../hooks/useThemeMode'
 import { usePrefersReduced } from '../hooks/usePrefersReduced'
@@ -36,12 +37,12 @@ export default function ShuffleInteractive() {
     <div className="shuffle-object" data-shuffle-theme={dark ? 'dark' : 'light'}>
       <div className="shuffle-toolbar">
         <p>Explore the board</p>
-        <div className="shuffle-views" role="group" aria-label="Board view">
+        <div className="shuffle-views glass-segments" role="group" aria-label="Board view">
           {(['Studio', 'Overhead', 'Construction', 'Room'] as const).map(item => (
             <button key={item} aria-pressed={view === item} onClick={() => { setView(item); setViewRevision(value => value + 1) }}>{item}</button>
           ))}
         </div>
-        <button className="shuffle-reset" onClick={reset}>Reset</button>
+        <button className="shuffle-reset glass-action" onClick={reset}>Reset</button>
       </div>
       <div className="shuffle-stage">
         {failed ? <div className="shuffle-loading" role="status"><p>3D is unavailable in this browser.</p><p>Use the slider controls below to explore the simulation.</p></div> :
@@ -59,7 +60,7 @@ export default function ShuffleInteractive() {
         <div className="shuffle-controls-grid">
           {KEYS.map(key => <label key={key}>
             <span>{key.toLowerCase()}<output>{Math.round(values[key])}</output></span>
-            <input aria-label={key} type="range" min="0" max="100" step="1" value={Math.round(values[key])} onChange={event => change(key, Number(event.target.value))} />
+            <PortfolioSlider aria-label={key} type="range" min="0" max="100" step="1" value={Math.round(values[key])} onChange={event => change(key, Number(event.target.value))} />
           </label>)}
         </div>
       </details>

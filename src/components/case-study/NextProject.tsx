@@ -33,7 +33,7 @@ export default function NextProject({ slug, title, image }: NextProjectProps) {
       : undefined
   const resolvedDesc = hiddenTarget ? 'Continue with visible projects instead of a hidden archive entry.' : project?.desc
   const prefetch = useCallback(() => {
-    if (!hiddenTarget && project?.page) project.page()
+    if (!hiddenTarget && project?.page) void project.page().catch(() => { /* Optional prefetch; navigation owns recovery. */ })
   }, [hiddenTarget, project])
 
   return (

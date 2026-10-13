@@ -76,7 +76,9 @@ jobs:
         if: always()
         env:
           QA_BASE_URL: https://designwhich.works
-        run: node scripts/responsive-marquee-qa.mjs
+        run: |
+          node scripts/responsive-marquee-qa.mjs
+          node scripts/work-loading-qa.mjs
 
       - name: Publish the QA report
         if: always()

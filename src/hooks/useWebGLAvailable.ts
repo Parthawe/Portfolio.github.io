@@ -7,9 +7,11 @@ import { useState, useEffect } from 'react'
  */
 let cached: boolean | null = null
 
-function detect(): boolean {
+export function canUseWebGL(): boolean {
   if (cached !== null) return cached
   if (typeof window === 'undefined') return true
+  const earlyProbe = (window as Window & { __portfolioWebGLAvailable?: boolean }).__portfolioWebGLAvailable
+  if (typeof earlyProbe === 'boolean') { cached = earlyProbe; return cached }
   try {
     const canvas = document.createElement('canvas')
     const gl =
@@ -17,6 +19,11 @@ function detect(): boolean {
       canvas.getContext('webgl') ||
       canvas.getContext('experimental-webgl')
     cached = !!gl
+    // This canvas only probes capability. Release it before the real scene
+    // claims a context, particularly on browsers with a small GPU-context limit.
+    if (gl) {
+      try { (gl as WebGLRenderingContext).getExtension('WEBGL_lose_context')?.loseContext() } catch { /* Capability is already known. */ }
+    }
   } catch {
     cached = false
   }
@@ -28,7 +35,7 @@ export function useWebGLAvailable() {
   // then correct on mount if WebGL is genuinely unavailable.
   const [available, setAvailable] = useState(true)
   useEffect(() => {
-    setAvailable(detect())
+    setAvailable(canUseWebGL())
   }, [])
   return available
 }

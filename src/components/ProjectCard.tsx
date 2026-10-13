@@ -1,5 +1,5 @@
 import { observeVisible } from '../utils/visibleActivity'
-import { memo, useCallback, useEffect, useRef } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 // Shared cards must not depend on a previous visit to the Work route.
 import '../styles/work-page.css'
 import { Link } from 'react-router-dom'
@@ -22,6 +22,9 @@ interface ProjectCardProps {
   marqueeText?: string
   marqueeSpeed?: number
   loading?: 'eager' | 'lazy'
+  /** Keep offscreen homepage media out of the hero’s request queue. */
+  deferUntilNearView?: boolean
+  preloadMargin?: string
   featured?: boolean
   coverShape?: 'portrait' | 'square' | 'wide'
   /** Force the wide 16:9 cover (for landscape card slots). */
@@ -36,8 +39,20 @@ interface ProjectCardProps {
 export default memo(function ProjectCard({
   slug, name, image, hoverMediaSrc, hoverMediaKind = 'image',
   tag, year, desc, marqueeText, marqueeSpeed = 20,
-  loading = 'lazy', featured = false, coverShape, preferWide = false, useProvidedImage = false, tilt = false, tiltIntensity = 4, nda = false,
+  loading = 'lazy', deferUntilNearView = false, preloadMargin = '600px 0px', featured = false, coverShape, preferWide = false, useProvidedImage = false, tilt = false, tiltIntensity = 4, nda = false,
 }: ProjectCardProps) {
+  const cardRef = useRef<HTMLAnchorElement>(null)
+  const [mediaReady, setMediaReady] = useState(!deferUntilNearView)
+  useEffect(() => {
+    if (!deferUntilNearView || mediaReady) return
+    const card = cardRef.current
+    if (!card || typeof IntersectionObserver === 'undefined') { setMediaReady(true); return }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setMediaReady(true); observer.disconnect() }
+    }, { rootMargin: preloadMargin })
+    observer.observe(card)
+    return () => observer.disconnect()
+  }, [deferUntilNearView, mediaReady, preloadMargin])
   const project = projects.find(p => p.slug === slug)
   // Wide covers are for featured/highlight slots. Work grid cards use either
   // square or portrait covers to avoid hiding important composition.
@@ -56,6 +71,10 @@ export default memo(function ProjectCard({
   const safeMarqueeText = marqueeText ? normalizeCopy(marqueeText) : safeDesc
   const marqueeRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (deferUntilNearView && mediaReady) videoRef.current?.load()
+  }, [deferUntilNearView, mediaReady])
 
   useEffect(() => {
     const video = videoRef.current
@@ -79,11 +98,13 @@ export default memo(function ProjectCard({
     const copy = track?.firstElementChild
     if (!track || !copy) return
     // Keep reading speed independent of copy length, font, and breakpoint.
-    const measure = () => {
-      const distance = (copy as HTMLElement).offsetWidth
+    const measure = (entries: ResizeObserverEntry[]) => {
+      // Observer measurements are already batched by layout. Reading offsetWidth
+      // here (and during every card's mount) forces deferred sections to render.
+      const entry = entries[0]
+      const distance = entry.borderBoxSize?.[0]?.inlineSize ?? entry.contentRect.width
       if (distance > 0) track.style.setProperty('--pcard-scroll-duration', `${distance / Math.max(1, marqueeSpeed)}s`)
     }
-    measure()
     const observer = new ResizeObserver(measure)
     observer.observe(copy)
     return () => observer.disconnect()
@@ -122,6 +143,7 @@ export default memo(function ProjectCard({
 
   const card = (
     <Link
+      ref={cardRef}
       data-cover-shape={resolvedCoverShape}
       className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${hoverMediaSrc ? ' pcard--has-hover-media' : ''}${requestAccess ? ' pcard--request-access' : ''}`}
       to={`/${slug}`}
@@ -146,7 +168,7 @@ export default memo(function ProjectCard({
         </div>
         <div className="pcard-visual">
           <img
-            src={resolvedImage}
+            src={mediaReady ? resolvedImage : undefined}
             alt={resolvedAlt}
             loading={loading}
             decoding="async"
@@ -165,12 +187,12 @@ export default memo(function ProjectCard({
                 preload="none"
                 aria-hidden="true"
               >
-                <source src={hoverMediaSrc} />
+                <source src={mediaReady ? hoverMediaSrc : undefined} />
               </video>
             ) : (
               <img
                 className="pcard-hover-media"
-                src={hoverMediaSrc}
+                src={mediaReady ? hoverMediaSrc : undefined}
                 alt=""
                 loading={loading}
                 decoding="async"
