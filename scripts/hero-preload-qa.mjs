@@ -5,7 +5,7 @@ import ts from 'typescript'
 const code=ts.transpileModule(readFileSync('src/utils/preloadHeroEnvironment.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText
 async function check({path='/',degraded=false,reduced=false,webgl=true}={}){
  const links=[];let imports=0
- const api={};vm.runInNewContext(code,{exports:api,window:{location:{pathname:path}},document:{querySelector:()=>links[0]||null,createElement:()=>({dataset:{}}),head:{append:node=>links.push(node)}},require:name=>name.includes('heroAssets')?{HERO_ENVIRONMENT_URL:'/same-lighting.hdr'}:name.includes('useWebGLAvailable')?{canUseWebGL:()=>webgl}:name.includes('performance')?{isPerformanceDegraded:()=>degraded,prefersReducedMotion:()=>reduced}:(imports++,{})})
+ const api={};vm.runInNewContext(code,{exports:api,window:{location:{pathname:path}},document:{querySelector:()=>links[0]||null,createElement:()=>({dataset:{}}),head:{append:node=>links.push(node)}},require:name=>name.includes('heroAssets')?{getHeroEnvironmentURL:()=>'/same-lighting.hdr'}:name.includes('useWebGLAvailable')?{canUseWebGL:()=>webgl}:name.includes('performance')?{isPerformanceDegraded:()=>degraded,prefersReducedMotion:()=>reduced}:(imports++,{})})
  api.preloadHeroEnvironmentAsset();api.preloadHeroEnvironmentAsset();await Promise.resolve();await Promise.resolve()
  return {links,imports}
 }

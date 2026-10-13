@@ -21,6 +21,11 @@ jobs:
         with:
           bun-version: 1.3.10
       - run: bun install --frozen-lockfile
+      - name: Check lossless hero lighting and preload guards
+        run: |
+          node scripts/hero-environment-qa.mjs
+          node scripts/hero-early-preload-qa.mjs
+          node scripts/hero-preload-qa.mjs
       - run: bunx playwright install --with-deps chromium
       - run: bun run build
       - run: bun run design:audit

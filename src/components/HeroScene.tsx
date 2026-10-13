@@ -1,9 +1,10 @@
 import { addInstanceEmissive, updateMorphingPixels } from '../utils/morphingPixelInstances';
 import { prepareSceneShaders } from '../utils/prepareSceneShaders';
-import { HERO_ENVIRONMENT_URL } from '../data/heroAssets';
+import { getHeroEnvironmentURL } from '../data/heroAssets';
+import { HeroEnvironmentLoader } from '../utils/HeroEnvironmentLoader';
 import { createSceneActivity } from '../utils/sceneActivity';
 import { useRef, useMemo, useEffect, useLayoutEffect, useState, useCallback } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
 import { Float, Text, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { useThemeMode } from '../hooks/useThemeMode';
@@ -2198,7 +2199,7 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
       <pointLight intensity={dark ? 0.6 : 0.4} color={dark ? '#aabbee' : '#bbccdd'} distance={12} position={[4, -1, -2]} />
 
       {/* Environment reflections — city preset gives complex glass reflections */}
-      <Environment files={HERO_ENVIRONMENT_URL} environmentIntensity={dark ? 1.0 : 1.2} />
+      <HeroEnvironment dark={dark} />
 
       {/* Endless grid backdrop — only bites once the web opens (uFade = intro). */}
       <InfiniteGrid introRef={introRef} panRef={pan} dark={dark} />
@@ -2264,6 +2265,12 @@ function SceneContent({ reduced, isMobile, dark, expanded }: { reduced: boolean;
 /* ─── Named exports for reuse on category/project pages ─── */
 export { TrussStructure, PetalRose, MorphingScreens, StackedPlates, LensAssembly, GlassCrystal };
 export { useHoverLerp, useVirtualTime, mix };
+
+function HeroEnvironment({ dark }: { dark: boolean }) {
+  const texture = useLoader(HeroEnvironmentLoader, getHeroEnvironmentURL());
+  useEffect(() => () => texture.dispose(), [texture]);
+  return <Environment map={texture} environmentIntensity={dark ? 1.0 : 1.2} />;
+}
 
 function SceneActivity({ expanded, dark, onReady }: { expanded: boolean; dark: boolean; onReady?: () => void }) {
   const { gl, scene, camera, advance, size } = useThree();

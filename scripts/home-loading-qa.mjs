@@ -33,7 +33,7 @@ try {
  await page.addInitScript(()=>{window.__draws=0;for(const proto of [WebGLRenderingContext.prototype,WebGL2RenderingContext.prototype])for(const key of ['drawElements','drawArrays']){const orig=proto[key];proto[key]=function(...args){if(this.canvas.closest('#hero'))window.__draws++;return orig.apply(this,args)}}})
  await page.goto(base,{waitUntil:'domcontentloaded'});await expect(page.locator('#hero')).toHaveClass(/is-scene-ready/,{timeout:20000})
  assert(await page.evaluate(()=>window.__draws>0),'ready follows an actual rendered frame')
- assert.equal(requests.filter(url=>url.endsWith('/potsdamer_platz_1k.hdr')).length,1,'preloaded reflection map is reused, not fetched twice')
+ assert.equal(requests.filter(url=>/\/potsdamer_platz_1k\.(hdr|rgbe.gz)$/.test(url)).length,1,'preloaded reflection map is reused, not fetched twice')
  await page.waitForTimeout(3000);assert.equal(await page.locator('.wr-hero--no-scene').count(),0,'healthy startup retains the 3D hero');const start=await page.evaluate(()=>window.__draws);await page.waitForTimeout(600);assert.equal(await page.evaluate(()=>window.__draws),start,'hero stops drawing while idle')
  await page.getByRole('button',{name:'Explore the skills and projects web',exact:true}).click();await expect(page.getByRole('button',{name:'Close the web and return to the hero',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'Explore the skills and projects web',exact:true})).toBeVisible()
  await page.locator('#works').scrollIntoViewIfNeeded();await page.waitForTimeout(700);const offscreen=await page.evaluate(()=>window.__draws);await page.waitForTimeout(500);assert.equal(await page.evaluate(()=>window.__draws),offscreen,'offscreen scene remains paused')

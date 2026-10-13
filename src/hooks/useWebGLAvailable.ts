@@ -10,6 +10,8 @@ let cached: boolean | null = null
 export function canUseWebGL(): boolean {
   if (cached !== null) return cached
   if (typeof window === 'undefined') return true
+  const earlyProbe = (window as Window & { __portfolioWebGLAvailable?: boolean }).__portfolioWebGLAvailable
+  if (typeof earlyProbe === 'boolean') { cached = earlyProbe; return cached }
   try {
     const canvas = document.createElement('canvas')
     const gl =

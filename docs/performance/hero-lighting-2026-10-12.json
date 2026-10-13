@@ -1,0 +1,139 @@
+{
+  "baselineCommit": "06d34a647dcfa27dd793fb311cf41e4beed2c5a4",
+  "candidate": "Lossless lighting encoding and guarded HTML preload",
+  "conditions": {
+    "viewport": [
+      1440,
+      1000
+    ],
+    "downloadMbps": 5,
+    "latencyMs": 80,
+    "cpuThrottle": 4,
+    "cache": "cold HTTP cache",
+    "ordering": "three alternating before/after pairs, one browser at a time"
+  },
+  "samples": [
+    {
+      "variant": "before",
+      "pair": 1,
+      "sceneReadyMs": 5692.4,
+      "firstContentfulPaintMs": 984,
+      "lighting": {
+        "url": "/Assets/hdri/potsdamer_platz_1k.hdr",
+        "start": 824.1999999880791,
+        "end": 3942.5999999940395,
+        "bytes": 1158106
+      },
+      "pageErrors": []
+    },
+    {
+      "variant": "after",
+      "pair": 1,
+      "sceneReadyMs": 5048.6,
+      "firstContentfulPaintMs": 876,
+      "lighting": {
+        "url": "/Assets/hdri/potsdamer_platz_1k.rgbe.gz",
+        "start": 407.80000001192093,
+        "end": 3240.800000011921,
+        "bytes": 965763
+      },
+      "pageErrors": []
+    },
+    {
+      "variant": "before",
+      "pair": 2,
+      "sceneReadyMs": 5887.4,
+      "firstContentfulPaintMs": 824,
+      "lighting": {
+        "url": "/Assets/hdri/potsdamer_platz_1k.hdr",
+        "start": 702.9000000059605,
+        "end": 3864.800000011921,
+        "bytes": 1158106
+      },
+      "pageErrors": []
+    },
+    {
+      "variant": "after",
+      "pair": 2,
+      "sceneReadyMs": 6601.7,
+      "firstContentfulPaintMs": 908,
+      "lighting": {
+        "url": "/Assets/hdri/potsdamer_platz_1k.rgbe.gz",
+        "start": 424.80000001192093,
+        "end": 3255.0999999940395,
+        "bytes": 965763
+      },
+      "pageErrors": []
+    },
+    {
+      "variant": "before",
+      "pair": 3,
+      "sceneReadyMs": 5888.6,
+      "firstContentfulPaintMs": 888,
+      "lighting": {
+        "url": "/Assets/hdri/potsdamer_platz_1k.hdr",
+        "start": 738.9000000059605,
+        "end": 3892.800000011921,
+        "bytes": 1158106
+      },
+      "pageErrors": []
+    },
+    {
+      "variant": "after",
+      "pair": 3,
+      "sceneReadyMs": 5159.5,
+      "firstContentfulPaintMs": 904,
+      "lighting": {
+        "url": "/Assets/hdri/potsdamer_platz_1k.rgbe.gz",
+        "start": 432.7999999821186,
+        "end": 3254.9000000059605,
+        "bytes": 965763
+      },
+      "pageErrors": []
+    }
+  ],
+  "limits": "Local Chromium samples; one candidate run was slower. These results do not establish field percentiles or improvement on every device/load.",
+  "medians": {
+    "before": {
+      "sceneReadyMs": 5887.4,
+      "firstContentfulPaintMs": 888
+    },
+    "after": {
+      "sceneReadyMs": 5159.5,
+      "firstContentfulPaintMs": 904
+    }
+  },
+  "medianReadyImprovementPercent": 12.4,
+  "visualProof": [
+    {
+      "theme": "light",
+      "size": [
+        747,
+        758
+      ],
+      "differentPixels": 0,
+      "totalPixels": 566226,
+      "meanDifference": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "theme": "dark",
+      "size": [
+        747,
+        758
+      ],
+      "differentPixels": 0,
+      "totalPixels": 566226,
+      "meanDifference": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

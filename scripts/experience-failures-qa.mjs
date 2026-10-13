@@ -6,7 +6,7 @@ const base=process.env.QA_BASE_URL||'http://127.0.0.1:5199', browser=await chrom
 try{
  const context=await browser.newContext({viewport:{width:1185,height:969},reducedMotion:'no-preference'})
  const page=await context.newPage()
- await page.route('**/Assets/hdri/*.hdr',r=>r.abort())
+ await page.route('**/Assets/hdri/*',r=>r.abort())
  await page.goto(base,{waitUntil:'domcontentloaded'})
  await expect(page.getByRole('heading',{name:'Designing product systems people trust.',exact:true})).toBeVisible()
  await expect(page.getByRole('button',{name:'Reload scene',exact:true})).toBeVisible({timeout:25000})
