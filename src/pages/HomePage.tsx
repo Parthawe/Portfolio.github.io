@@ -96,7 +96,8 @@ export default function HomePage() {
   const webglAvailable = useWebGLAvailable();
   const lowPowerDevice = isLowPowerDevice();
   const allowDecorative3D = !prefersReducedMotion;
-  const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || heroSceneTimedOut;
+  // Resolve capability before the deferred mount can race the hook's first effect.
+  const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || !canUseWebGL() || heroSceneTimedOut;
   const [readerMoved, setReaderMoved] = useState(() => typeof window !== 'undefined' && window.scrollY > 40);
   useEffect(() => {
     if (readerMoved) return;
