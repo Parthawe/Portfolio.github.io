@@ -1,3 +1,6 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
+import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
+import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -61,18 +64,18 @@ export default function MoniacMachinePage() {
         <CsSection id="cs-interactive" label="Interactive" title="Run the Economy">
           <CsBody>
             <p className="cs-caption">Browser adaptation of the cabinet game, using simplified rules. This is not an economic forecast or a reconstruction of the historic hydraulic machine.</p>
-            <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. The goal is simple: keep growth, employment, inflation, and debt in tension for 60 seconds.</p>
+            <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. The room lets you explore the physical cabinet. Open the original browser experiment below to try balancing growth, employment, inflation, and debt for 60 seconds.</p>
           </CsBody>
           <div className="cs-label-row">
-            <span className="cs-label-row-key">Goal</span>
+            <span className="cs-label-row-key">Original game goal</span>
             <span className="cs-label-row-val">Balance growth against stability for 60 seconds</span>
           </div>
           <div className="cs-label-row">
-            <span className="cs-label-row-key">Controls</span>
+            <span className="cs-label-row-key">Original game controls</span>
             <span className="cs-label-row-val">7 economic levers with random shocks</span>
           </div>
           <div className="project-content-block--roomy">
-            <MoniacSimulator />
+            <PhysicalWorld project="moniac-machine" /><OriginalExperiment><MoniacSimulator /></OriginalExperiment>
           </div>
         </CsSection>
 
@@ -80,8 +83,8 @@ export default function MoniacMachinePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/hero-cabinet.png" alt="Moniac Machine arcade cabinet with iPad display and valve controllers" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/annotated-breakdown.png" alt="Annotated breakdown: iPad, arcade wood, valve controllers, Teensy 4.0, wire connections" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/hero-cabinet.png")} data-project-preview src="/Assets/Projects/Moniac/photos/hero-cabinet.png" alt="Moniac Machine arcade cabinet with iPad display and valve controllers" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/annotated-breakdown.png")} data-project-preview src="/Assets/Projects/Moniac/photos/annotated-breakdown.png" alt="Annotated breakdown: iPad, arcade wood, valve controllers, Teensy 4.0, wire connections" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -109,8 +112,8 @@ export default function MoniacMachinePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--feature">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/screen-closeup.png" alt="iPad screen showing economic flow diagram with tax rates and consumer consumption" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/original-moniac.png" alt="Original 1949 Phillips MONIAC hydraulic computer" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/screen-closeup.png")} data-project-preview src="/Assets/Projects/Moniac/photos/screen-closeup.png" alt="iPad screen showing economic flow diagram with tax rates and consumer consumption" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/original-moniac.png")} data-project-preview src="/Assets/Projects/Moniac/photos/original-moniac.png" alt="Original 1949 Phillips MONIAC hydraulic computer" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -126,8 +129,8 @@ export default function MoniacMachinePage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/valve-detail.webp" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/hand-playing.webp" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/valve-detail.webp")} data-project-preview src="/Assets/Projects/Moniac/photos/valve-detail.webp" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/hand-playing.webp")} data-project-preview src="/Assets/Projects/Moniac/photos/hand-playing.webp" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -135,7 +138,7 @@ export default function MoniacMachinePage() {
         {/* Result */}
         <CsSection id="cs-result" label="03 &mdash; Result" title="Result">
           <CsBody>
-            <p>The game creates a practical understanding of macroeconomic feedback loops that textbooks struggle to convey. Playtesters consistently reported that after just a few rounds, they could predict how a change in interest rates would ripple through employment and inflation &mdash; a conceptual leap that often takes weeks to develop in a classroom setting.</p>
+            <p>The game lets players change a policy and inspect the feedback in a simplified model. Informal playtesting prompted discussion about employment and inflation, but no comparative learning study was recorded. A useful next test would ask players to predict a change before playing, explain what happened afterward, and distinguish the game’s assumptions from real economic behavior.</p>
             <p>Economics students said the game made policy tradeoffs feel practical. Watching a balanced economy collapse after one tax change carried more weight than reading the same relationship in a diagram.</p>
             <p>Visitors played alone or in teams to maintain the healthiest economy over a fixed number of rounds. Competition added urgency, and repeat players returned to test different strategies.</p>
           </CsBody>
@@ -143,7 +146,7 @@ export default function MoniacMachinePage() {
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Moniac/photos/gameplay-wide.png" alt="Moniac Machine being played at exhibition, wide shot showing the full arcade setup" loading="lazy" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/gameplay-wide.png")} data-project-preview src="/Assets/Projects/Moniac/photos/gameplay-wide.png" alt="Moniac Machine being played at exhibition, wide shot showing the full arcade setup" loading="lazy" /></div>
           </div>
         </section>
 

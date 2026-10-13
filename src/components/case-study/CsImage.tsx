@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { projectImageProps } from '../../utils/projectImage';
 
 interface CsImageProps {
   src?: string;
@@ -28,6 +29,7 @@ export default function CsImage({ src, alt, caption, aspectRatio, placeholder, c
         </div>
       ) : (
         <img
+          {...projectImageProps(src)}
           src={src}
           alt={alt || ''}
           loading="lazy"

@@ -1,5 +1,14 @@
 /** A scene owns no animation callbacks once idle, offscreen, or in a hidden tab. */
-export function createSceneActivity(element: HTMLElement, render: (delta: number) => void) {
+type SceneActivityOptions = {
+  idleMs?: number
+  introMs?: number
+  fps?: number
+  interactionFps?: number
+  wakeOnWheel?: boolean
+}
+
+export function createSceneActivity(element: HTMLElement, render: (delta: number) => void, options: SceneActivityOptions = {}) {
+  const { idleMs = 10_000, introMs = idleMs, fps = 24, interactionFps = 60, wakeOnWheel = true } = options
   const motion = matchMedia('(prefers-reduced-motion: reduce)')
   let visible = false
   let disposed = false
@@ -19,7 +28,7 @@ export function createSceneActivity(element: HTMLElement, render: (delta: number
   const schedule = () => {
     if (disposed || !visible || document.hidden || timeout || frame) return
     if (!pending && (motion.matches || performance.now() >= activeUntil)) { previous = 0; return }
-    const interval = performance.now() < interactiveUntil ? 1000 / 60 : 1000 / 24
+    const interval = performance.now() < interactiveUntil ? 1000 / interactionFps : 1000 / fps
     timeout = window.setTimeout(() => {
       timeout = 0
       frame = requestAnimationFrame(tick)
@@ -37,19 +46,20 @@ export function createSceneActivity(element: HTMLElement, render: (delta: number
     render(delta * (motion.matches ? 1 : easing))
     schedule()
   }
-  const wake = () => {
-    activeUntil = performance.now() + 10_000
+  const wakeFor = (duration: number) => {
+    activeUntil = performance.now() + duration
     pending = true
     schedule()
   }
-  const interact = () => { interactiveUntil = performance.now() + 250; wake() }
+  const wake = () => wakeFor(introMs)
+  const interact = () => { interactiveUntil = performance.now() + 250; wakeFor(idleMs) }
   const visibility = () => { if (document.hidden) cancel(); else wake() }
   const observer = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting
     if (visible) wake(); else cancel()
   })
   observer.observe(element)
-  const events = ['pointerenter', 'pointerleave', 'pointermove', 'pointerdown', 'pointerup', 'focusin', 'keydown', 'wheel'] as const
+  const events = ['pointerenter', 'pointerleave', 'pointermove', 'pointerdown', 'pointerup', 'focusin', 'keydown', ...(wakeOnWheel ? ['wheel'] : [])]
   events.forEach(event => element.addEventListener(event, interact, { passive: true }))
   document.addEventListener('visibilitychange', visibility)
   motion.addEventListener('change', wake)

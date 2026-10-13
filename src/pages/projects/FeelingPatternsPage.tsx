@@ -1,10 +1,11 @@
+import RelatedProjectEvidence from '../../components/case-study/RelatedProjectEvidence'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -22,6 +23,9 @@ export default function FeelingPatternsPage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#9c6b8a' } as React.CSSProperties}>
 
         <ProjectHeader
+          heroImage="/Assets/project-illustrations/feeling-patterns-materials.webp"
+          heroAlt="Illustration of neoprene, a vibration disc, knitted fabric, conductive thread, and a pressure pad"
+          heroCaption="AI-generated material illustration, prepared for this page. It is not a photograph of the original prototypes."
           showHeaderSummary={false}
           backLink="/work"
           categorySlug="creative-tech"
@@ -45,20 +49,7 @@ export default function FeelingPatternsPage() {
         </CsSection>
 
         <CsSection id="cs-prototypes" label="02 &mdash; Prototypes" title="Three tactile studies">
-          <CsFeatureGrid features={[
-  {
-    "title": "Heartbeat sleeve",
-    "desc": "A pulse sensor drives vibration motors in a knitted sleeve, translating a heartbeat into a rhythm on the wrist."
-  },
-  {
-    "title": "Mood vest",
-    "desc": "A neoprene vest explores slow waves, rapid pulses, and localized vibration. Emotional labels describe the intended vocabulary; their interpretation has not been validated across wearers."
-  },
-  {
-    "title": "Pressure letters",
-    "desc": "Pressure on one fabric pad maps to patterns on another. The sender composes a tactile sequence through the position and strength of a press."
-  }
-]} />
+          <StudyExplorer project="feeling-patterns" />
         </CsSection>
 
         <CsSection id="cs-insights" label="03 &mdash; Insights" title="Recognition, comfort, and context">
@@ -68,6 +59,7 @@ export default function FeelingPatternsPage() {
           </CsBody>
         </CsSection>
 
+        <RelatedProjectEvidence slug="feeling-patterns" />
         <CsThanks />
 
 

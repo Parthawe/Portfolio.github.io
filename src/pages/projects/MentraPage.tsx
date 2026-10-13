@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useLocation } from 'react-router-dom'
@@ -231,7 +232,7 @@ export default function MentraPage() {
         <CsSection id="cs-website" title="Launch: explain the platform">
           <div className="cs-mentra-web-block">
             <figure>
-              <img data-project-preview src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/images/mentra/site-crops/mentra-site-platform.png")} data-project-preview src="/Assets/images/mentra/site-crops/mentra-site-platform.png" alt="Mentra website sections showing integrations and field capture workflows" loading="lazy" decoding="async" />
               <figcaption>Live site flow: field use, integrations, and product proof.</figcaption>
             </figure>
             <div className="cs-mentra-web-copy">

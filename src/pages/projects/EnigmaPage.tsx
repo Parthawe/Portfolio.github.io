@@ -1,3 +1,6 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
+import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
+import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -59,14 +62,14 @@ export default function EnigmaPage() {
         {/* Interactive */}
         <CsSection id="cs-interactive" label="Interactive" title="Explore a browser model of the sculpture">
           <CsBody>
-            <p>Draw a letter or press any key A to Z. This browser illustration uses generated activation patterns to explain the layers. It does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
+            <p>Choose a letter to see an illustrative activation move through the sculpture in its gallery. Open the original browser experiment below to draw a letter. It does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Network</span>
-            <span className="cs-label-row-val">28 input &rarr; 12 hidden &rarr; 8 hidden &rarr; 26 output (A&ndash;Z)</span>
+            <span className="cs-label-row-val">200 physical lights · illustrative browser activations</span>
           </div>
           <div className="project-content-block--roomy">
-            <EnigmaInteractive />
+            <PhysicalWorld project="enigma" /><OriginalExperiment><EnigmaInteractive /></OriginalExperiment>
           </div>
         </CsSection>
 
@@ -78,8 +81,8 @@ export default function EnigmaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Enigma/photos/person-viewing.webp" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/person-viewing.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/person-viewing.webp" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/full-sculpture-c.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -88,9 +91,9 @@ export default function EnigmaPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Enigma/photos/alphabet-layer.webp" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Enigma/photos/wire-detail.webp" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Enigma/photos/neuron-closeup.webp" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/alphabet-layer.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/alphabet-layer.webp" alt="Alphabet output layer: A through Z labeled neurons glowing" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/wire-detail.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/wire-detail.webp" alt="Wire connections between neuron layers, silver wires crossing" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/neuron-closeup.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/neuron-closeup.webp" alt="Close-up: ping pong ball neurons with bokeh wire connections" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -98,7 +101,7 @@ export default function EnigmaPage() {
         {/* Wide shot */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Enigma/photos/full-sculpture-wide.webp" alt="Enigma sculpture wide shot: full neural network with alphabet output layer visible" loading="lazy" decoding="async" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/full-sculpture-wide.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/full-sculpture-wide.webp" alt="Enigma sculpture wide shot: full neural network with alphabet output layer visible" loading="lazy" decoding="async" /></div>
           </div>
         </section>
 
@@ -133,7 +136,7 @@ export default function EnigmaPage() {
           </CsBody>
 
           <figure className="cs-img reveal project-media--narrow">
-            <img data-project-preview src="/Assets/Projects/Enigma/photos/tablet-input.jpg" alt="A visitor's hand mid-stroke on the tablet, which prompts: Please draw one Alphabet" loading="lazy" decoding="async" />
+            <img {...projectImageProps("/Assets/Projects/Enigma/photos/tablet-input.jpg")} data-project-preview src="/Assets/Projects/Enigma/photos/tablet-input.jpg" alt="A visitor's hand mid-stroke on the tablet, which prompts: Please draw one Alphabet" loading="lazy" decoding="async" />
             <figcaption className="cs-img-caption">Where every interaction started: the tablet prompt read &ldquo;Please draw one Alphabet,&rdquo; giving visitors a starting point for the sculpture’s letter-recognition interaction.</figcaption>
           </figure>
         </CsSection>

@@ -1,3 +1,5 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -47,13 +49,15 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-ground.webp" alt="Salt mill grinding salt onto the black platform as the story advances" loading="eager" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/overview.webp" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="eager" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/salt-ground.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-ground.webp" alt="Salt mill grinding salt onto the black platform as the story advances" loading="eager" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/overview.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/overview.webp" alt="Why the Sea is Salt: white cylindrical mill on black platform with story slider" loading="eager" /></div>
             </div>
           </div>
         </section>
 
         {/* The Folktale */}
+        <CsSection id="cs-world" label="Interactive room" title="Explore the story mill"><PhysicalWorld project="sea-of-salt" /></CsSection>
+
         <CsExpandPreview>
         <CsSection id="cs-folktale" label="01 &mdash; The Folktale" title="A Story Told Across Oceans">
           <CsBody>
@@ -67,8 +71,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--feature">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/detail-salt-slider.webp" alt="Close-up: ground salt scattered across the slider reading 'Why the Sea is Salt'" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/slider-closeup.webp" alt="Story slider: 'Start of the Story' to 'End of the Story'" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/detail-salt-slider.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/detail-salt-slider.webp" alt="Close-up: ground salt scattered across the slider reading 'Why the Sea is Salt'" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/slider-closeup.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/slider-closeup.webp" alt="Story slider: 'Start of the Story' to 'End of the Story'" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -97,9 +101,9 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/mill-front.webp" alt="White 3D-printed salt mill, wooden dowel handle" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/materials.webp" alt="Materials: sea salt jar, coarse salt bag, mill on platform" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-overflow.webp" alt="Salt overflowing after many story tellings" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/mill-front.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/mill-front.webp" alt="White 3D-printed salt mill, wooden dowel handle" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/materials.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/materials.webp" alt="Materials: sea salt jar, coarse salt bag, mill on platform" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/salt-overflow.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-overflow.webp" alt="Salt overflowing after many story tellings" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -118,8 +122,8 @@ export default function SeaOfSaltPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-pile.webp" alt="Salt accumulated around the mill base" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-spread.webp" alt="Salt spread across the platform" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/salt-pile.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-pile.webp" alt="Salt accumulated around the mill base" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/salt-spread.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/salt-spread.webp" alt="Salt spread across the platform" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -127,7 +131,7 @@ export default function SeaOfSaltPage() {
         {/* Final wide */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/sea-of-salt/photos/final-wide.webp" alt="Complete installation: salt scattered across the dark platform" loading="lazy" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/sea-of-salt/photos/final-wide.webp")} data-project-preview src="/Assets/Projects/sea-of-salt/photos/final-wide.webp" alt="Complete installation: salt scattered across the dark platform" loading="lazy" /></div>
           </div>
         </section>
 
@@ -153,6 +157,7 @@ export default function SeaOfSaltPage() {
         </CsExpandPreview>
 
         <BottomNav sections={[
+          { id: 'cs-world', label: 'Room' },
           { id: 'cs-folktale', label: 'The Folktale' },
           { id: 'cs-installation', label: 'Installation' },
           { id: 'cs-system', label: 'How It Works' },

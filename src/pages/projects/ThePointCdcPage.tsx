@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -89,7 +90,7 @@ export default function ThePointCdcPage() {
                 </CsBody>
               </div>
               <div className="cs-img">
-                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/ThePointCDC/photos/community-photo.webp")} data-project-preview src="/Assets/Projects/ThePointCDC/photos/community-photo.webp" alt="The Point CDC community members at work in Hunts Point" loading="lazy" />
               </div>
             </div>
           </div>
@@ -182,7 +183,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide cs-slide--point-visual reveal">
-          <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
+          <img {...projectImageProps("/Assets/Projects/ThePointCDC/Desktop/slice-5.webp")} data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-5.webp" alt="Before and after visual comparison of the old website with annotated improvement areas" loading="lazy" />
         </div>
 
         {/* Goals */}
@@ -205,11 +206,11 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title">User Journey</h2>
             <div className="point-board-stack point-board-stack--journey" aria-label="User journey map and information architecture flow diagram">
               <figure className="point-board-panel point-board-panel--goals">
-                <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="Goal mapping for accessibility, key programs, and community engagement" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/ThePointCDC/Desktop/slice-6.webp")} data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="Goal mapping for accessibility, key programs, and community engagement" loading="lazy" />
                 <figcaption>Goals translated into site priorities.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--journey">
-                <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/ThePointCDC/Desktop/slice-6.webp")} data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-6.webp" alt="User journey map and information architecture flow diagram" loading="lazy" />
                 <figcaption>User journey and information architecture, enlarged for reading.</figcaption>
               </figure>
             </div>
@@ -218,7 +219,7 @@ export default function ThePointCdcPage() {
 
         {/* Wireframe slide */}
         <div className="cs-slide cs-slide--point-wireframe reveal">
-          <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
+          <img {...projectImageProps("/Assets/Projects/ThePointCDC/Desktop/slice-7.png")} data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
         </div>
 
         {/* Visual Style */}
@@ -233,7 +234,7 @@ export default function ThePointCdcPage() {
         </section>
 
         <div className="cs-slide cs-slide--point-style reveal">
-          <img data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
+          <img {...projectImageProps("/Assets/Projects/ThePointCDC/Desktop/slice-8.webp")} data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-8.webp" alt="Design system components, typography, buttons, colors, tags, icons, sections, and menu" loading="lazy" />
         </div>
 
         {/* Visuals & Prototyping */}
@@ -243,15 +244,15 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
             <div className="point-board-stack point-board-stack--redesign" aria-label="Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme">
               <figure className="point-board-panel point-board-panel--redesign-top">
-                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/homepage-hero.png" alt="Redesigned homepage hero with grouped navigation and clear community entry points" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/ThePointCDC/photos/homepage-hero.png")} data-project-preview src="/Assets/Projects/ThePointCDC/photos/homepage-hero.png" alt="Redesigned homepage hero with grouped navigation and clear community entry points" loading="lazy" />
                 <figcaption>Grouped navigation and clearer entry points.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-mid">
-                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="Angled overview of the redesigned program, team, partnership, and resource pages" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp")} data-project-preview src="/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp" alt="Angled overview of the redesigned program, team, partnership, and resource pages" loading="lazy" />
                 <figcaption>Programs surfaced as scan-friendly cards.</figcaption>
               </figure>
               <figure className="point-board-panel point-board-panel--redesign-bottom">
-                <img data-project-preview src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive desktop and mobile views of The Point CDC website" loading="lazy" />
+                <img {...projectImageProps("/Assets/Projects/ThePointCDC/photos/responsive-preview.png")} data-project-preview src="/Assets/Projects/ThePointCDC/photos/responsive-preview.png" alt="Responsive desktop and mobile views of The Point CDC website" loading="lazy" />
                 <figcaption>Mobile and footer structure made easier to follow.</figcaption>
               </figure>
             </div>
@@ -261,8 +262,8 @@ export default function ThePointCdcPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign explaining the new homepage hierarchy and navigation" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp")} data-project-preview src="/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp" alt="Annotated redesign explaining the new homepage hierarchy and navigation" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/ThePointCDC/photos/community-photo-2.png")} data-project-preview src="/Assets/Projects/ThePointCDC/photos/community-photo-2.png" alt="Community engagement at The Point CDC" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -274,7 +275,7 @@ export default function ThePointCdcPage() {
             <h2 className="cs-section-title cs-section-title--wide">What Community-Centered Design Taught Me</h2>
             <CsNumList items={[
               <><strong>Deep listening beats designer instincts.</strong> Designing for a community you are not part of requires listening, not assumptions. Every interview and site visit reminded me that my instincts about what residents needed were often wrong until I sat down and actually heard their stories.</>,
-              <><strong>Mobile-first is a lived reality, not a buzzword.</strong> When 75% of your users literally only have phone access, it reframes every layout decision, every interaction pattern, and every content hierarchy choice. This project made mobile-first thinking a non-negotiable part of my design process.</>,
+              <><strong>Mobile-first is a lived reality, not a buzzword.</strong> Phone-only access shaped the layout, interactions, and content hierarchy. The public record does not include a method or source for a precise share of phone-only users. This project made mobile-first thinking a non-negotiable part of my design process.</>,
               <><strong>Balance institutional messaging with genuine utility.</strong> The tension between what a non-profit organization wants to communicate and what community members actually need to find was one of the hardest design challenges. Prioritizing user tasks over organizational messaging led to a site that served both goals more effectively.</>,
               <><strong>Accessibility raises the bar for everyone.</strong> Designing for accessibility forced better design decisions overall &mdash; clearer typography, simpler navigation, and stronger visual hierarchy benefited every single user, not just those with specific needs.</>,
             ]} />

@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -127,19 +128,19 @@ export default function ExecutiveLensPage() {
           </CsBody>
           <div className="cs-site-crop-grid cs-site-crop-grid--executivelens">
             <figure>
-              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-hero.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
               <figcaption>Hero and product proof</figcaption>
             </figure>
             <figure>
-              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-workflow.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
               <figcaption>Audio to insight workflow</figcaption>
             </figure>
             <figure>
-              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
               <figcaption>Capability grid</figcaption>
             </figure>
             <figure>
-              <img data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
+              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-integrations.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
               <figcaption>Integrations and conversion</figcaption>
             </figure>
           </div>

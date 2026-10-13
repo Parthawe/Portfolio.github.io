@@ -2,6 +2,7 @@ import { Children, isValidElement, useEffect, useId, useRef, useState, type Reac
 
 import { useLocation } from 'react-router-dom'
 import { getProject } from '../../data/projects'
+import { trackEvent } from '../../utils/analytics'
 
 interface CsExpandPreviewProps {
   expanded?: boolean
@@ -76,6 +77,7 @@ export default function CsExpandPreview({
 
   useEffect(() => {
     if (isExpanded && requested.current) {
+      trackEvent('story_open', pathname)
       const target = (linkedSection.current && document.getElementById(linkedSection.current)) || content.current
       target?.setAttribute('tabindex', '-1')
       target?.focus({ preventScroll: true })

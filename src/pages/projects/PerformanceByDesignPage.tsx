@@ -1,10 +1,11 @@
+import RelatedProjectEvidence from '../../components/case-study/RelatedProjectEvidence'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -45,20 +46,7 @@ export default function PerformanceByDesignPage() {
         </CsSection>
 
         <CsSection id="cs-work" label="02 &mdash; Work" title="Three performance studies">
-          <CsFeatureGrid features={[
-  {
-    "title": "Light as narrator",
-    "desc": "DMX-controlled LEDs suggest scenes through brightness, color, and timing. The study asks what a cue can communicate without dialogue."
-  },
-  {
-    "title": "Audience as performer",
-    "desc": "Rooms combine visual, auditory, tactile, and olfactory cues. The pacing question is how to signal a transition while allowing visitors to move at different speeds."
-  },
-  {
-    "title": "Reactive stage",
-    "desc": "Pressure sensors trigger lighting and sound as performers move. Movement changes become inputs to a shared body, light, and sound feedback loop."
-  }
-]} />
+          <StudyExplorer project="performance-by-design" />
         </CsSection>
 
         <CsSection id="cs-reflection" label="03 &mdash; Reflection" title="Timing and feedback">
@@ -69,6 +57,7 @@ export default function PerformanceByDesignPage() {
           </CsBody>
         </CsSection>
 
+        <RelatedProjectEvidence slug="performance-by-design" />
         <CsThanks />
 
 

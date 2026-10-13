@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -38,16 +38,7 @@ export default function ApplicationsPage() {
           </CsBody>
         </CsSection>
         <CsSection id="cs-projects" label="02 &mdash; Projects" title="Two application concepts">
-          <CsFeatureGrid features={[
-  {
-    "title": "Collective Memory",
-    "desc": "A shared story with one sentence per contribution. The notes describe React, Socket.IO, and MongoDB; concurrent edits and moderation are the key product constraints."
-  },
-  {
-    "title": "Mood Map",
-    "desc": "A campus-map concept for sharing mood through colored pins, using Mapbox GL. Location precision, consent, and retention need definition before a public deployment."
-  }
-]} />
+          <StudyExplorer project="applications" />
         </CsSection>
         <CsSection id="cs-lessons" label="03 &mdash; Lessons" title="Requirements beyond the interface">
           <CsBody>

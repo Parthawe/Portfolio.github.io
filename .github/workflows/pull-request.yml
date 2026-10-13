@@ -14,7 +14,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -25,6 +25,8 @@ jobs:
       - run: bun run build
       - run: bun run design:audit
       - run: bun run test:agent
+      - run: bun run test:analytics
+      - run: node --test scripts/qa-network-policy.test.mjs
       - name: Check rendered pages and project interactions
         env:
           QA_BASE_URL: http://127.0.0.1:4173
@@ -42,6 +44,7 @@ jobs:
           status=0
           node scripts/reveal-readiness-qa.mjs || status=1
           node scripts/performance-qa.mjs || status=1
+          bun run qa:physical-worlds || status=1
           node scripts/responsive-marquee-qa.mjs || status=1
           node scripts/work-loading-qa.mjs || status=1
           bun run qa:project-pages || status=1
@@ -57,3 +60,4 @@ jobs:
             pr-performance.json
             /tmp/preview.log
             qa-diagnostics/
+            /tmp/portfolio-physical-worlds-qa

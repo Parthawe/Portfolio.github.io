@@ -1,3 +1,7 @@
+import { worlds } from '../physical-worlds/catalog'
+import ProjectRecord from './ProjectRecord'
+import { useProjectMediaPause } from '../../hooks/useProjectMediaPause'
+import { projectImageProps } from '../../utils/projectImage'
 import { lazy, Suspense, useRef, type ReactNode, type MouseEvent } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
@@ -25,10 +29,12 @@ interface ProjectHeaderProps {
   subtitle: string
   info: { label: string; value: string }[]
   heroImage?: string
+  heroCaption?: string
   heroAlt?: string
   liveUrl?: string
   categorySlug?: string
   showHeaderSummary?: boolean
+  heroFraming?: 'panel' | 'image'
   heroExperience?: 'visual'
   heroTone?: string
   visualHeadline?: string
@@ -83,9 +89,11 @@ export default function ProjectHeader({
   info,
   heroImage,
   heroAlt,
+  heroCaption,
   liveUrl,
   categorySlug,
   showHeaderSummary = true,
+  heroFraming = 'panel',
   heroExperience,
   heroTone,
   visualHeadline,
@@ -104,6 +112,7 @@ export default function ProjectHeader({
   const showCategoryOrnament = useDeferredMount(canShowOrnament, { timeout: 1500, delayMs: 120 })
   const ornamentSize = typeof window !== 'undefined' && window.innerWidth < 768 ? 96 : 140
   const currentSlug = location.pathname.split('/').filter(Boolean).pop() ?? ''
+  useProjectMediaPause(currentSlug)
   const readingPath = projectReadingPaths[currentSlug]
   const project = getProject(currentSlug)
   const story = project?.storyline
@@ -218,6 +227,7 @@ export default function ProjectHeader({
       'wrap',
       'project-header',
       'project-header--visual',
+      heroFraming === 'image' ? 'project-header--image' : '',
       heroTone ? `project-header--${slugClass(heroTone)}` : '',
       project?.category ? `project-header--cat-${project.category}` : '',
       currentSlug ? `project-header--project-${slugClass(currentSlug)}` : '',
@@ -263,27 +273,29 @@ export default function ProjectHeader({
           </div>
 
           <div className="proj-visual-stage">
-            <div className="proj-visual-hero__chrome" aria-hidden="true">
+            {heroFraming === 'panel' && <div className="proj-visual-hero__chrome" aria-hidden="true">
               <span />
               <span />
               <span />
-            </div>
+            </div>}
 
             {(visualHeroMedia || resolvedVisualHeroImage) && (
               <div className={`proj-visual-hero__media${visualHeroMedia ? ' proj-visual-hero__media--interactive' : ''}`} ref={heroRef}>
                 {visualHeroMedia || (
                   <motion.img
+                    {...projectImageProps(resolvedVisualHeroImage)}
                     src={resolvedVisualHeroImage}
                     alt={resolvedVisualHeroAlt}
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
-                    style={heroMotionStyle}
+                    style={heroFraming === 'image' ? undefined : heroMotionStyle}
                   />
                 )}
               </div>
             )}
           </div>
+          {heroCaption && <p className="proj-generated-caption">{heroCaption}</p>}
         </section>
 
         <section id="project-overview" tabIndex={-1} className={`proj-visual-brief proj-visual-brief--${visualBriefMode} hero-anim hero-anim-2`} aria-label={`${title} project overview`}>
@@ -324,6 +336,8 @@ export default function ProjectHeader({
               <div key={item.label}><dt>{sentenceCaseProjectLabel(item.label)}</dt><dd>{item.value}</dd></div>
             ))}
           </dl>
+          {(worlds[currentSlug] || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={currentSlug === 'shuffle' ? '/shuffle/simulation' : `/${currentSlug}/world`}>Explore this project in a room</Link></div>}
+          <ProjectRecord slug={currentSlug} />
         </section>
       </div>
     )
@@ -380,12 +394,13 @@ export default function ProjectHeader({
           <div className="proj-hero-panel hero-anim hero-anim-3">
             <div className="proj-hero-img" ref={heroRef}>
               <motion.img
+                {...projectImageProps(resolvedHeroImage)}
                 src={resolvedHeroImage}
                 alt={resolvedHeroAlt}
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
-                style={heroMotionStyle}
+                style={heroFraming === 'image' ? undefined : heroMotionStyle}
               />
             </div>
             <div className="proj-hero-caption">
@@ -417,6 +432,8 @@ export default function ProjectHeader({
       </section>
 
       {renderStoryAndSummary(4)}
+      {(worlds[currentSlug] || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={currentSlug === 'shuffle' ? '/shuffle/simulation' : `/${currentSlug}/world`}>Explore this project in a room</Link></div>}
+      <ProjectRecord slug={currentSlug} />
     </div>
   )
 }

@@ -5,6 +5,8 @@ export async function checkProjectCardMotion(browser, base, widths = [1187, 390]
   for (const width of widths) {
     for (const route of ['/', '/work/', '/ux-research/']) {
       const page = await browser.newPage({ viewport: { width, height: 979 }, reducedMotion: 'no-preference' })
+      page.setDefaultTimeout(20_000)
+      page.setDefaultNavigationTimeout(30_000)
       await page.goto(`${base}${route}`)
       const card = page.locator('a.pcard').first()
       await revealForMeasurement(card)

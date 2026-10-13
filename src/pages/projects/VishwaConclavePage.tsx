@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -35,7 +36,7 @@ export default function VishwaConclavePage() {
           heroImage="/Assets/Projects/VishwaConclave/1.jpg"
           heroAlt="VishwaConclave identity and event posters across 2019–2021"
           title="VishwaConclave"
-          subtitle="Three years of conference identity and event work, from junior designer to creative director."
+          subtitle="Conference identity and event work across the 2019–2021 editions, from junior designer to creative director."
           info={[
             { label: 'Duration', value: 'Dec 2019 – May 2021' },
             { label: 'Role', value: 'Junior designer → Creative director' },
@@ -102,7 +103,7 @@ export default function VishwaConclavePage() {
         {/* Signing off */}
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img data-project-preview src="/Assets/Projects/VishwaConclave/6.jpg" alt="Creative Director signing off — Parth Pawar in VishwaConclave merchandise" loading="lazy" />
+            <img {...projectImageProps("/Assets/Projects/VishwaConclave/6.jpg")} data-project-preview src="/Assets/Projects/VishwaConclave/6.jpg" alt="Creative Director signing off — Parth Pawar in VishwaConclave merchandise" loading="lazy" />
           </div>
         </section>
 

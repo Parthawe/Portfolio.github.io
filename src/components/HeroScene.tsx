@@ -2289,9 +2289,9 @@ function SceneActivity({ expanded, dark }: { expanded: boolean; dark: boolean })
     activity.current = createSceneActivity(element, delta => {
       elapsed.current += delta;
       advance(elapsed.current);
-    });
+    }, { introMs: 1800, idleMs: 1200, interactionFps: 30, wakeOnWheel: expanded });
     return () => { activity.current?.dispose(); activity.current = null; };
-  }, [gl, advance]);
+  }, [gl, advance, expanded]);
   useEffect(() => { activity.current?.wake(); }, [expanded, dark, size.width, size.height]);
   return null;
 }

@@ -106,11 +106,17 @@ function Loading() {
   )
 }
 
+const PhysicalWorldPage = lazy(() => import('./pages/PhysicalWorldPage'))
+const ShuffleSimulationPage = lazy(() => import('./pages/ShuffleSimulationPage'))
+
 export default function App() {
   return (
     <ErrorBoundary>
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route path="/physical-worlds" element={<PhysicalWorldPage />} />
+        <Route path="/:project/world" element={<PhysicalWorldPage />} />
+        <Route path="/shuffle/simulation" element={<ShuffleSimulationPage />} />
         <Route element={<RootLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />

@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import StudyExplorer from '../../components/case-study/StudyExplorer'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -38,24 +38,7 @@ export default function MessyHumansPage() {
           </CsBody>
         </CsSection>
         <CsSection id="cs-research" label="02 &mdash; Research" title="Four questions for a design review">
-          <CsFeatureGrid features={[
-  {
-    "title": "Can the primary action still be reached?",
-    "desc": "Review one-handed use, bright sunlight, noise, and distraction. Check reach, readable feedback, and alternatives to a single input mode."
-  },
-  {
-    "title": "Can someone review and recover?",
-    "desc": "For an anxious payment interaction, keep amounts and fees clear, allow a review before committing, and make errors recoverable."
-  },
-  {
-    "title": "Whose conventions does the form assume?",
-    "desc": "Check name fields, reading direction, language switching, and payment conventions. Explain requirements without assuming a single naming or language structure."
-  },
-  {
-    "title": "Who needs to take part in the research?",
-    "desc": "Use role-play to identify questions, then involve people with relevant lived experience. Simulating an impairment cannot replace accessibility research."
-  }
-]} />
+          <StudyExplorer project="messy-humans" />
         </CsSection>
         <CsSection id="cs-impact" label="03 &mdash; Impact on My Practice" title="Applying the questions">
           <CsBody>

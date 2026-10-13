@@ -1,3 +1,4 @@
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -44,7 +45,7 @@ export default function IbmPage() {
 
         <section className="cs-slide reveal">
           <div className="wrap">
-            <img data-project-preview src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="eager" />
+            <img {...projectImageProps("/Assets/Projects/CancerPrognosis/photos/hero-illustration.png")} data-project-preview src="/Assets/Projects/CancerPrognosis/photos/hero-illustration.png" alt="Illustration of people walking toward a glowing open door" loading="eager" />
           </div>
         </section>
 
@@ -69,11 +70,11 @@ export default function IbmPage() {
           <div className="wrap">
             <div className="ibm-diagram-stack" aria-label="Encrypted cancer prognosis system diagrams">
               <figure className="ibm-diagram-card reveal">
-                <img data-project-preview src="/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/ibm/4.jpg")} data-project-preview src="/Assets/Projects/ibm/4.jpg" alt="Encrypted cancer prognosis system flow diagram" loading="lazy" decoding="async" />
                 <figcaption>System flow: encrypted genomic features moving through preprocessing, prognosis, clustering, and recommendation steps.</figcaption>
               </figure>
               <figure className="ibm-diagram-card reveal">
-                <img data-project-preview src="/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" />
+                <img {...projectImageProps("/Assets/Projects/ibm/5.jpg")} data-project-preview src="/Assets/Projects/ibm/5.jpg" alt="Homomorphic encryption model diagram for prognosis workflow" loading="lazy" decoding="async" />
                 <figcaption>Homomorphic encryption model: computation stays useful without exposing the raw patient data.</figcaption>
               </figure>
             </div>

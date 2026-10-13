@@ -1,3 +1,5 @@
+import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
+import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -21,11 +23,13 @@ export default function JugalbandiPage() {
     ? [
         { id: 'cs-summary', label: 'TL;DR' },
         { id: 'cs-film', label: 'Film' },
+        { id: 'cs-world', label: 'Room' },
         { id: 'cs-overview', label: 'Overview' },
       ]
     : [
         { id: 'cs-summary', label: 'TL;DR' },
         { id: 'cs-film', label: 'Film' },
+        { id: 'cs-world', label: 'Room' },
         { id: 'cs-overview', label: 'Overview' },
         { id: 'cs-background', label: 'Background' },
         { id: 'cs-instrument', label: 'The Instrument' },
@@ -113,8 +117,8 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/755.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -129,6 +133,8 @@ export default function JugalbandiPage() {
             <p>One voice is the performer. The other is a model translated into plucked strings, air-driven pipes, and resonant percussion. Exhibited at the ITP Spring Show and Maker Faire Coney Island, the installation made computation audible as timing, pressure, and mechanical behavior.</p>
           </CsBody>
         </CsSection>
+
+        <CsSection id="cs-world" label="Interactive room" title="Play the acoustic workshop"><PhysicalWorld project="jugalbandi" /></CsSection>
 
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
         {/* Background */}
@@ -174,9 +180,9 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -205,12 +211,22 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
+        <CsSection title="Follow the string layer">
+          <CsBody><p>The harp makes one part of the mapping concrete: a model-driven sequence becomes a servo movement, and the servo plucks a tuned string. Keeping the strings within the selected raga constrains the machine’s musical output.</p></CsBody>
+          <ol className="study-explorer__flow">
+            <li><span>Sequence</span><p>The melodic layer supplies a plucking pattern.</p></li>
+            <li><span>Mechanism</span><p>The Arduino and servos turn the pattern into physical plucks.</p></li>
+            <li><span>Sound</span><p>Tuned strings produce the acoustic response heard in the performance.</p></li>
+          </ol>
+          <p className="study-explorer__note">A reading diagram of the documented mechanism. Exact model outputs and synchronized actuator logs are not included.</p>
+        </CsSection>
+
         {/* Harp + Flute photos */}
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/756.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
             </div>
           </div>
         </section>
@@ -236,7 +252,7 @@ export default function JugalbandiPage() {
         {/* Flute photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/757.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
           </div>
         </section>
 
@@ -259,9 +275,16 @@ export default function JugalbandiPage() {
         {/* Rainstick photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img data-project-preview src="/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/758.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
           </div>
         </section>
+
+        <CsSection title="Listen for three different mechanisms">
+          <CsBody>
+            <p>In the performance film, compare the attack of a plucked string with the sustained air of the flute and the uneven decay of the rainsticks. Those physical differences explain why the instruments cannot share one timing rule.</p>
+            <p>The flute prototype makes the constraint visible: the air pump supplies breath, while adjustable Lego finger mechanisms position the servos over the tone holes. The documented challenge was airflow alignment; electronic actuation alone did not guarantee a stable note.</p>
+          </CsBody>
+        </CsSection>
 
         {/* Tools & Process */}
         <section className="cs-section reveal" id="cs-process">
