@@ -17,8 +17,9 @@ try {
     if (mobile) {
       await page.getByRole('button', { name: 'Open menu', exact: true }).click()
       await expect(page.getByRole('dialog', { name: 'Site navigation' })).toBeVisible()
-      await page.getByRole('button', { name: 'Close menu', exact: true }).click()
+      await page.getByRole('dialog', { name: 'Site navigation' }).getByRole('button', { name: 'Close site navigation', exact: true }).click()
       await expect(page.locator('#mobile-navigation')).toHaveCount(0)
+      await expect(page.getByRole('button', { name: 'Open menu', exact: true })).toBeFocused()
     } else {
       await page.getByRole('button', { name: 'UX Research', exact: true }).click()
       await expect(page.getByRole('button', { name: 'UX Research', exact: true })).toHaveAttribute('aria-pressed', 'true')
@@ -71,8 +72,9 @@ try {
   touchPage.setDefaultNavigationTimeout(30_000)
   await touchPage.goto(`${base}/work/`)
   await touchPage.getByRole('button', { name: 'Open menu', exact: true }).click()
-  await touchPage.getByRole('button', { name: 'Close menu', exact: true }).click()
+  await touchPage.getByRole('dialog', { name: 'Site navigation' }).getByRole('button', { name: 'Close site navigation', exact: true }).click()
   await expect(touchPage.locator('#mobile-navigation')).toHaveCount(0)
+  await expect(touchPage.getByRole('button', { name: 'Open menu', exact: true })).toBeFocused()
   await expect(touchPage.locator('.page-loader')).toHaveCount(0)
   await expect.poll(() => touchPage.evaluate(() => getComputedStyle(document.body).overflow)).not.toBe('hidden')
   await touchPage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))))
