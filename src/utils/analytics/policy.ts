@@ -2,7 +2,7 @@ import { projectRoutes } from '../../data/projectRoutes'
 
 const projects = new Set(projectRoutes.map(project => `/${project.slug}`))
 const collections = new Set(['work', 'ai', 'ux-design', 'ux-research', 'design-engineering', 'design-engineer', 'installations', 'brand', 'brand-visual', 'healthcare', 'fintech', 'design-for-good', 'crypto', 'ai-wearables'].map(path => `/${path}`))
-const pages = new Set(['/', '/about', '/accessibility', '/playbook', '/book', '/graveyard', '/studio', '/motion', '/perplexity', '/physical-worlds'])
+const pages = new Set(['/', '/about', '/accessibility', '/playbook', '/book', '/graveyard', '/studio', '/motion', '/perplexity', '/physical-worlds', '/project-experiences'])
 
 /** Never send unknown paths, query strings, hashes, or submitted values. */
 export function publicPage(raw: string) {

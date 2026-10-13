@@ -105,6 +105,7 @@ test('physical project rooms keep their public route', () => {
 test('public prototypes are demos and unknown prototype paths stay excluded', () => {
   for (const [route, expectedPath, type] of [
     ['/mentra/prototype?token=secret', '/mentra/prototype', 'demo'],
+    ['/project-experiences', '/project-experiences', 'page'],
     ['/not-real/prototype', '/404', 'not_found'],
   ]) {
     const h = harness({ consent: 'granted' })
