@@ -28,7 +28,8 @@
     "qa:moniac": "node scripts/moniac-model-qa.mjs && node scripts/moniac-world-qa.mjs",
     "qa:glass-sliders": "node scripts/glass-sliders-qa.mjs",
     "qa:ios-controls": "node scripts/ios-controls-qa.mjs",
-    "qa:experience-recovery": "node scripts/experience-recovery-qa.mjs && node scripts/experience-failures-qa.mjs"
+    "qa:experience-recovery": "node scripts/experience-recovery-qa.mjs && node scripts/experience-failures-qa.mjs",
+    "test:analytics": "node --test scripts/analytics.test.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.33",
@@ -45,7 +46,8 @@
     "react-pageflip": "^2.0.3",
     "react-router-dom": "^7.6.0",
     "simple-icons": "^16.25.0",
-    "three": "^0.175.0"
+    "three": "^0.175.0",
+    "web-vitals": "^6.2.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",

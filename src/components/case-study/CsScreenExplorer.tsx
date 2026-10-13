@@ -4,7 +4,7 @@ import { useId, useState } from 'react'
 type Screen = { title: string; label: string; caption: string; src: string; alt: string; width?: number; height?: number }
 
 /** Original implementation; interaction reference: Skiper's expandable cards. */
-export default function CsScreenExplorer({ screens, label = 'Choose a MiniApp screen' }: { screens: Screen[]; label?: string }) {
+export default function CsScreenExplorer({ screens, label = 'Choose a MiniApp screen', format = 'portrait' }: { screens: Screen[]; label?: string; format?: 'portrait' | 'landscape' }) {
   const id = useId()
   const [selected, setSelected] = useState(0)
   const [failed, setFailed] = useState<string | null>(null)
@@ -12,7 +12,7 @@ export default function CsScreenExplorer({ screens, label = 'Choose a MiniApp sc
   const screen = screens[selected]
   if (!screen) return null
   return (
-    <div className="cs-screen-explorer">
+    <div className={`cs-screen-explorer cs-screen-explorer--${format}`}>
       <div className="cs-screen-explorer__choices" role="group" aria-label={label}>
         {screens.map((item, index) => (
           <button type="button" key={item.src} aria-pressed={selected === index} aria-controls={`${id}-preview`} onClick={() => setSelected(index)}>
@@ -31,7 +31,7 @@ export default function CsScreenExplorer({ screens, label = 'Choose a MiniApp sc
         </div>
         <figcaption>
           <div aria-live="polite" aria-atomic="true"><strong>{screen.title}</strong><p>{screen.caption}</p></div>
-          <a href={screen.src} target="_blank" rel="noopener noreferrer">Open original screen <span className="sr-only">in a new tab</span><span aria-hidden="true"> ↗</span></a>
+          <a href={screen.src} target="_blank" rel="noopener noreferrer">Open original image <span className="sr-only">in a new tab</span><span aria-hidden="true"> ↗</span></a>
         </figcaption>
       </figure>
     </div>

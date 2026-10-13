@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import FooterContent from './FooterContent'
+import { AnalyticsPreferences } from './PortfolioAnalytics'
 
 export default function Footer({ showArcadeIntro = false }: { showArcadeIntro?: boolean }) {
   const footerRef = useRef<HTMLElement>(null)
@@ -7,6 +8,7 @@ export default function Footer({ showArcadeIntro = false }: { showArcadeIntro?: 
   return (
     <footer className="footer" ref={footerRef}>
       <FooterContent footerRef={footerRef} showArcadeIntro={showArcadeIntro} />
+      <AnalyticsPreferences />
     </footer>
   )
 }

@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App'
 import { preloadHeroEnvironmentAsset } from './utils/preloadHeroEnvironment'
+import PortfolioAnalytics from './components/PortfolioAnalytics'
 import './styles/globals.css'
 import './styles/ios-controls.css'
 import {
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
     <HelmetProvider>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <App />
+        <PortfolioAnalytics />
       </BrowserRouter>
     </HelmetProvider>
   </StrictMode>,

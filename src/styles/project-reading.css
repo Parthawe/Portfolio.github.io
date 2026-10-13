@@ -718,3 +718,8 @@ body.case-side-nav .project-main .project-header--visual.wrap,
 .project-main .project-evidence-links a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
 .project-main .project-evidence-links a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 @media(max-width: 640px) { .project-main .project-evidence-links > div { grid-template-columns: 1fr; } }
+
+/* Wide packaging artifacts keep their proportions instead of using a phone frame. */
+.project-main .cs-screen-explorer--landscape .cs-screen-explorer__image { height: auto; aspect-ratio: 4 / 3; }
+.project-main .cs-screen-explorer { scroll-margin-top: 100px; }
+.project-main .cs-screen-explorer figcaption a { font-weight: 400; }

@@ -1,6 +1,6 @@
 # Project quality plan
 
-Updated 5 October 2026. Status: active, local implementation only.
+Updated 7 October 2026. Status: active. Shared October 5 repairs were deployed in ff6a5e3; October 7 follow-up changes remain local.
 
 ## Objective and boundaries
 
@@ -10,9 +10,9 @@ Publishing requires Parth's confirmation after reviewing the local result. AI im
 
 ## Current position
 
-Shared repairs are implemented locally: responsive media, image dimensions, original-resolution lightboxes, offscreen film pausing, public record disclosures, eight course comparisons, seven related-work sections, and two labeled editorial illustrations. See [repair log](project-quality-repair.md).
+Shared repairs were deployed in ff6a5e3: responsive media, image dimensions, original-resolution lightboxes, offscreen film pausing, public record disclosures, eight course comparisons, seven related-work sections, and two labeled editorial illustrations. See [repair log](project-quality-repair.md).
 
-The existing scores below are the pre-repair baseline. They are not updated scores. The initial mobile check covered introductions, not every expanded section. The next pass must cover complete reading paths.
+The existing scores below are the pre-repair baseline. They are not updated scores. The October 7 technical sweep covered expanded public reading paths on all 49 routes at 390px and 1280px. This is not an individual visual/content score or a review of gated material. See completion-status.md for results and dependencies.
 
 ## Scoring and completion rule
 

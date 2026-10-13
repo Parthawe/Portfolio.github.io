@@ -1,6 +1,6 @@
 # Portfolio analytics and weekly report
 
-Status: proposed measurement contract. No tracker or report delivery is active yet.
+Status: GA4 is active on production as of October 8, 2026. A consented test pageview returned HTTP 204 and appeared as one active user in GA4 Realtime. Weekly email scheduling is pending the recipient address.
 Site: https://designwhich.works
 Report timezone: America/New_York
 Default reporting window: previous Monday 00:00 through Sunday 23:59, compared with the preceding week.
@@ -20,7 +20,7 @@ Default reporting window: previous Monday 00:00 through Sunday 23:59, compared w
 | Audience | Visits, estimated unique visitors, pageviews, views per visit | Visitors are estimates, not an exact count of people. Exclude localhost, staging, and owner QA. |
 | Acquisition | Referrer, source/medium/campaign, landing page | Direct/unknown may include private sharing and stripped referrers. Do not infer recruiter identities. |
 | Content | Top pages, landing pages, exit pages, project opens | Separate collection browsing from project detail views. |
-| Reading | Visible active time, case-study sections reached, full story opened | Scroll depth alone is not proof of reading. Pause active time in hidden tabs. |
+| Reading | Visible tab time, case-study sections reached, full story opened | Scroll depth alone is not proof of reading. Pause visible time in hidden tabs; it does not measure attention. |
 | Intent | Contact click, résumé download click, NDA access-request click, live-project click | Clicks are intent signals, not proof of delivery, download completion, or hiring outcomes. |
 | Interaction | First interaction with 3D/ASCII, video play/completion, demo start | Measure once per page visit or playback. Never send mouse movements or animation frames. |
 | Friction | 404s, first-party asset failures, grouped JS error codes | Exclude sensitive stack traces, query strings, submitted text, and secrets. |
@@ -49,7 +49,7 @@ Only allowlisted event names and properties. Page paths are normalized, query-fr
 | page_not_found | Site's actual not-found UI rendered | page_type |
 | client_error | Allowlisted first-party failure category | page_path, error_code |
 
-The provider owns pageviews. Do not combine provider automatic SPA pageviews with a second manual pageview emitter. React rerenders and Strict Mode must not create duplicate events. Click collection uses event delegation, not an observer or timer per card. Deduplication is scoped to a route visit, so legitimate return visits remain measurable.
+The React integration owns pageviews. Disable ALL Enhanced Measurement in the GA4 web stream before enabling VITE_GA4_READY, and keep send_page_view false. Do not combine automatic SPA pageviews with the manual emitter. React rerenders and Strict Mode must not create duplicate events. Click collection uses event delegation, not an observer or timer per card. Deduplication is scoped to a route visit, so legitimate return visits remain measurable.
 
 ## Funnels
 
@@ -86,3 +86,91 @@ For the first report, state that no comparable prior week exists. For an unavail
 - Test direct loads, SPA navigation, Back/Forward, case-study expansion, and event deduplication with mocked analytics requests before enabling production collection.
 - Verify received events in the provider dashboard and create the corresponding goals/funnels.
 - Schedule reporting only once authorized access and the delivery destination work. Historical visitor analytics cannot be reconstructed from this new tracker.
+
+
+## Historical GA4 implementation and activation (October 7, 2026)
+
+Implemented and deployed:
+- Basic consent: Google script loads only after Allow analytics; No thanks sends nothing.
+- Footer preferences permit withdrawal; withdrawal disables collection, clears GA cookies and reloads to unload the runtime.
+- Production hostname allowlist; localhost, automated browsers, and owner exclusion are blocked.
+- Manual page views with normalized public paths, page type, and origin-only external referrer. Unknown paths aggregate under /404.
+- Project opens, contact clicks, tagged résumé requests, tagged access requests, bottom-nav live-project clicks, story expansion, reading depth and user-played native video events.
+- Events deduplicate within a page visit. No form contents, titles, query parameters, hashes, destination URLs, or protected content are included in these custom payloads.
+- Reading depth is geometric scroll progress, not proof of reading. Video events currently count once per route visit, not per individual video.
+
+Also implemented and deployed: LCP/INP/CLS through the official web-vitals package after consent; grouped first-party script/asset failures; public section exposure; visible-tab seconds with no interval timer. Protected sections are excluded.
+
+Active-reading-time inference and custom narrative reports are not implemented. Demo/scene first interactions and allowlisted campaign attribution are implemented in the October 8 follow-up. GA4's standard engagement time differs from active reading. Native scheduled reports provide metric tables/PDFs; they do not automatically produce three editorial recommendations.
+
+Activation checklist:
+1. Create/select a GA4 property with America/New_York reporting timezone. Create a web stream for https://designwhich.works and obtain its G- Measurement ID.
+2. Disable ALL Enhanced Measurement in that stream before enabling this integration. This prevents duplicate history pageviews and automatic forms, search, or outbound-link payloads. Leave Google Signals and advertising features off.
+3. Set GitHub repository variables VITE_GA4_MEASUREMENT_ID and VITE_GA4_READY=1 after verifying the property configuration. The ID is public; never place reporting credentials in a VITE_ variable.
+4. Review the rendered consent disclosure on mobile and desktop. Deploy only after the pending configuration is verified.
+5. Verify initial load, route changes, Back/Forward, consent rejection/withdrawal, and key events in GA4 Realtime/DebugView. Unit tests are not proof of received production events.
+6. Register page_type, project_slug, and percent_scrolled as event-scoped custom dimensions if required for reporting. Mark contact_click, resume_click, and access_request_click as key events.
+7. Add the report recipient as a property user. As property administrator, use Reports → Share this report → Schedule Email. Set weekly, previous-week range, PDF or CSV, and a descriptive name. Check the recipient and first delivery date before saving. Native schedules expire after at most 12 months and need renewal.
+8. Configure acquisition, landing-page, pages, device, and key-event reports. Build session-scoped funnel exploration separately; verify whether the chosen report surface can email the desired funnel output before claiming drop-off delivery is complete.
+
+Owner QA exclusion: set localStorage key portfolio-analytics-exclude to 1 on the production origin before opting in, then reload. Exclusion only affects that browser profile.
+
+Counts cover enabled, unblocked browsers and are estimates. The integration removes raw query strings. Approved UTM values are sent as separate campaign fields; all other values are discarded. Opt-outs, owner exclusion, and tracking prevention reduce coverage.
+
+Sources checked:
+- https://developers.google.com/analytics/devguides/collection/ga4/views
+- https://developers.google.com/tag-platform/security/concepts/consent-mode
+- https://support.google.com/analytics/answer/13722168
+
+## Local verification, October 7
+
+Five analytics unit tests pass: consent and host exclusions, pageview/interaction deduplication, payload redaction, withdrawal, and diagnostic/section/time payload limits. The consent notice was checked at 390px with its disclosure expanded; both choice callbacks and keyboard activation worked. The temporary UI harness was removed. These checks do not verify receipt in GA4, which remains unconfigured.
+
+## Active configuration — October 8, 2026
+
+- Account: Design Which Works (190204330).
+- Property: Design which works (262899954); reporting timezone America/New_York.
+- Web stream: Design Which Works (2330610841), Measurement ID G-P9ETXVRDMZ.
+- GitHub public variables: VITE_GA4_MEASUREMENT_ID and VITE_GA4_READY=1.
+- Enhanced Measurement off; Google Signals off; ads personalization disallowed in all 307 regions.
+- Key events: contact_click, resume_click, access_request_click. Once per session; no default monetary value.
+- Event dimensions: page_type, project_slug, section_id, percent_scrolled, error_code, metric_name.
+- Custom metric: visible_seconds (seconds), displayed as Visible tab time.
+- Saved exploration: Portfolio browsing → project → contact (users). Closed, indirectly followed steps page_view → project_open → contact_click with device-category breakdown. This is a user-based exploration across the selected date range, NOT a same-session conversion rate. Direct project landings can bypass project_open; use separate landing-page reports rather than interpreting this as every visitor's journey.
+- Consent verification: no Google script before selection; script HTTP 200 and pageview collection HTTP 204 after consent; one test user observed in Realtime. This test visit is QA traffic, not an organic visitor.
+- Corrected CSP with explicit Analytics domains. Existing navigation QA starts with a declined consent preference so the notice does not cover test controls.
+- Email report: draft prepared for weekly traffic acquisition, proposed first Monday October 12; recipient still required. No schedule saved or delivery verified.
+
+### Campaign vocabulary
+
+Use only these values, case-insensitive:
+- utm_source: linkedin, github, instagram, google, newsletter, email.
+- utm_medium: social, email, referral, organic, cpc, paid_social.
+- utm_campaign: portfolio, job-search, outreach, launch.
+
+Example: https://designwhich.works/?utm_source=linkedin&utm_medium=social&utm_campaign=portfolio
+
+Names, email addresses, tracking codes and arbitrary campaign text are rejected. Do not add personal identifiers to campaign URLs.
+
+### Interaction coverage
+
+First trusted pointer-down or activation/arrow key within the homepage scene or ASCII illustration emits scene_interaction. The rebuilt Shuffle and physical-project rooms emit demo_start. Each counts at most once per route visit, without pointer positions, key values, or animation-frame tracking. These events record starting interaction, not completing a demo; legacy games/demos outside these wrappers are not included.
+
+## Automatic collection update, October 8, 2026
+
+At the owner’s request, new visitors now start analytics on arrival without an initial permission notice. Existing explicit opt-outs remain off. Footer Analytics preferences exposes the current status and enable/disable controls, with Google’s data-use link. Automatic activation does not write a recorded consent choice. Advertising storage and personalization remain disabled.
+
+The owner’s Codex in-app browser has portfolio-analytics-exclude=1 on the production origin. This persists only in that browser profile until site storage is cleared; other profiles and devices must opt out separately. Localhost and automated-browser exclusions remain.
+
+Added project_view on every public project route transition, including direct landings. Unlike project_open, which measures navigation clicks, this measures visits to the project itself. The saved user-based funnel now uses page_view → project_view → contact_click with a device-category breakdown. No historical backfill is possible.
+
+### How to turn the reports into decisions
+
+- Acquisition: compare sessions by source/medium and landing page. Include counts alongside rates; check campaign labels before attributing changes to outreach.
+- Project reach: project_view by project_slug includes direct arrivals. Compare project visitors with public section exposure and story expansion; scroll depth alone is not reading.
+- Intent: report contact_click, resume_click, and access_request_click separately. A click is intent, not proof an email was sent or a lead arrived.
+- Drop-off: use ordered funnels and label user-based versus session-based calculations. Do not subtract independent event totals. Treat live-project exits as potentially successful.
+- Friction: compare mobile and desktop at the same steps, then check grouped errors and LCP/INP/CLS before proposing design changes.
+- Weekly summary: show absolute counts, the prior complete week, and percentage-point changes in rates. State when samples are too small or data is unavailable. End with at most three actions tied to observed evidence.
+
+Weekly email remains unscheduled until the owner supplies the destination address. Native scheduled PDFs do not generate written recommendations; a narrative reporting pipeline is not yet connected.

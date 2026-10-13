@@ -29,6 +29,7 @@ const routes = [...new Set(selectedRoutes?.length ? selectedRoutes : [...sitemap
 
 async function inspectRoute(browser, route, viewport) {
   const page = await browser.newPage({ viewport })
+  await page.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
   const consoleErrors = []
   const pageErrors = []
   const httpErrors = []
@@ -162,7 +163,7 @@ async function inspectRoute(browser, route, viewport) {
     timedOut = error.name === 'TimeoutError'
     issues.push(error.message)
   } finally {
-    if (consoleErrors.length) issues.push(`Console errors: ${consoleErrors.map(error => `${error.text()} [${error.url || 'URL unavailable'}]`).join(' | ')}`)
+    if (consoleErrors.length) issues.push(`Console errors: ${consoleErrors.map(error => `${error.text} [${error.url || 'URL unavailable'}]`).join(' | ')}`)
     if (httpErrors.length) issues.push(`HTTP resources: ${httpErrors.map(error => `${error.status} ${error.url}`).join(' | ')}`)
     if (pageErrors.length) issues.push(`Page errors: ${pageErrors.join(' | ')}`)
     await page.close()

@@ -159,7 +159,11 @@ export default function RootLayout() {
     const previousRestoration = history.scrollRestoration;
     history.scrollRestoration = 'manual';
     const top = navigationType === 'POP' ? scrollPositions.get(location.key) ?? 0 : 0;
+    // The fresh HTML shell has no scrollable route content yet. Its initial
+    // zero-position restore would force layout twice as the lazy route mounts.
+    const initialTop = initialRouteRef.current && top === 0 && !location.hash;
     const restore = () => {
+      if (initialTop) return;
       let anchorId = location.hash.slice(1);
       try { anchorId = decodeURIComponent(anchorId); } catch { /* Treat malformed hashes as literal IDs. */ }
       const anchor = anchorId ? document.getElementById(anchorId) : null;

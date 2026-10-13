@@ -2,7 +2,7 @@
 
 ## Scope
 
-All 49 project detail pages. Homepage, About, Work, navigation design, and category layouts are outside this pass. Local review only; publishing requires the user's confirmation.
+All 49 project detail pages. Homepage, About, Work, navigation design, and category layouts are outside this pass. The shared repairs below were deployed in ff6a5e3. October 7 follow-up work is local and requires the user's confirmation before publishing.
 
 The preceding assessment averaged 7/10. This implementation does not assign every page a 9. Original research, dated measurements, failed alternatives, and missing course artifacts cannot be created retrospectively with generated imagery.
 
@@ -23,7 +23,7 @@ The preceding assessment averaged 7/10. This implementation does not assign ever
 - Mentra: sample sizes, study dates, definitions, and source notes for each comparison.
 - Jugalbandi: one trace from model output to physical musical response.
 - Omakase: documented control iteration and observation/counting notes.
-- Mentra Brand: explain the key packaging revisions using the seven existing iterations.
+- Mentra Brand: recover the missing packaging revision artifacts; three available images do not document all seven reported iterations.
 - Raahi, VJ, Health App, Code for Build: actual usability findings or clearly scoped next-study records.
 - TransFi, ZentiPay, CueTV, AI Voice: approved public decision examples, while preserving protected material.
 - IBM: individual contribution and reproducible research setup.
