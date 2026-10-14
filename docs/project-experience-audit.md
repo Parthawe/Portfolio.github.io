@@ -53,6 +53,7 @@ Reviewed October 13, 2026 against main 15c346a. Shuffle is the only user-approve
 | typeface | tool | draft | Type, inspect, reshape and export real glyphs | Supplied OTF/WOFF2 files and Glyphs sources; new SVG workshop awaiting user review |
 | atps | media | draft | Find and listen to verified conversations | Apple Podcasts show 1524982835 and Anchor RSS located; 45 audio enclosures verified; native browser playback and seeking tested |
 | vishwaconclave | case-study | reference | Explore event identity across editions | Flattened campaign boards and motion-2021 films; editable identity components and rules not recovered |
+| glassly | case-study | reference | Explore the wearable platform website and original miniapp demo | Original website source, six-scene phone/glasses demonstration and September 2026 brand guidelines; added October 14, 2026 as the 50th catalog project |
 
 ## Asset and tool findings
 

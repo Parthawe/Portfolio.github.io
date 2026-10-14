@@ -1,0 +1,757 @@
+{
+  "source": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE",
+  "exported": "2026-10-14",
+  "encoding": "Original-size WebP is lossless; all 75 images pass exact decoded pixel comparison with source renders. Smaller responsive copies use Lanczos downsampling.",
+  "slides": [
+    {
+      "id": "0:33",
+      "project": "mentra",
+      "name": "13",
+      "chapter": "cs-context",
+      "src": "/Assets/case-study-slides/mentra/slide-0-33.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "f2cced7df03e70d041b2b858d735b49be6a98d554018eb5698702daf9624eaaf",
+      "webpBytes": 431604
+    },
+    {
+      "id": "6:27163",
+      "project": "mentra",
+      "name": "14",
+      "chapter": "cs-context",
+      "src": "/Assets/case-study-slides/mentra/slide-6-27163.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "5de449eaf96d7f0b9e1f5c1494b00366f8188146207db55565110fe816cdebb4",
+      "webpBytes": 352820
+    },
+    {
+      "id": "6:27424",
+      "project": "mentra",
+      "name": "16",
+      "chapter": "cs-context",
+      "src": "/Assets/case-study-slides/mentra/slide-6-27424.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "e29050982e90a24f4a2d1849cd3c01a3d2767bf13cb1de763673f19acbc14a1b",
+      "webpBytes": 60742
+    },
+    {
+      "id": "6:27349",
+      "project": "mentra",
+      "name": "18",
+      "chapter": "cs-context",
+      "src": "/Assets/case-study-slides/mentra/slide-6-27349.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "0c82f44208cec2c91c1bdc2b9be1a575da7221ee4667a5ea591a5fa68c215fe4",
+      "webpBytes": 100608
+    },
+    {
+      "id": "6:28307",
+      "project": "mentra",
+      "name": "20",
+      "chapter": "cs-context",
+      "src": "/Assets/case-study-slides/mentra/slide-6-28307.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "c93014cfc26ba85f612d311b5a4a09656fd60e4e11d4cbbaf8534d353997aeb4",
+      "webpBytes": 77040
+    },
+    {
+      "id": "327:8202",
+      "project": "mentra",
+      "name": "27",
+      "chapter": "cs-bet",
+      "src": "/Assets/case-study-slides/mentra/slide-327-8202.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "93dd483b8d3da3d8bef868b500620fc4cab6e47acbb3eb1737c93cbdf1a4f1b5",
+      "webpBytes": 13626
+    },
+    {
+      "id": "0:47",
+      "project": "mentra",
+      "name": "28",
+      "chapter": "cs-bet",
+      "src": "/Assets/case-study-slides/mentra/slide-0-47.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "1bcca93664093d2d947d8ec7bead3304fd9fecbe5122566c0012a588f8309e46",
+      "webpBytes": 28930
+    },
+    {
+      "id": "0:46",
+      "project": "mentra",
+      "name": "29",
+      "chapter": "cs-bet",
+      "src": "/Assets/case-study-slides/mentra/slide-0-46.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "0f3e93201769ca240be965e18917353e7713c3f7798cb6055f898d7216cbe7bc",
+      "webpBytes": 46284
+    },
+    {
+      "id": "61:2290",
+      "project": "mentra",
+      "name": "34",
+      "chapter": "cs-bet",
+      "src": "/Assets/case-study-slides/mentra/slide-61-2290.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "75d7fc1118199db6657f1b3b949915f5d98c28acd336f1da78510e555c24c34d",
+      "webpBytes": 138420
+    },
+    {
+      "id": "61:2298",
+      "project": "mentra",
+      "name": "39",
+      "chapter": "cs-bet",
+      "src": "/Assets/case-study-slides/mentra/slide-61-2298.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "7ae448e0b60d8d964830cd3c1fc214dfa956aa44ef239cc48635e0393db6c757",
+      "webpBytes": 132136
+    },
+    {
+      "id": "125:18909",
+      "project": "mentra",
+      "name": "44",
+      "chapter": "cs-bet",
+      "src": "/Assets/case-study-slides/mentra/slide-125-18909.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "99cc0e8f3aa2520146ee5279ddfcc102d298b0b89a1e9821b90577226a702dd1",
+      "webpBytes": 93884
+    },
+    {
+      "id": "24:33183",
+      "project": "mentra",
+      "name": "46",
+      "chapter": "cs-bet",
+      "src": "/Assets/case-study-slides/mentra/slide-24-33183.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "4175cc468e9654b8caba06ebe2a368e7a2c45937f9bc939ffdd86fcf358ad4d0",
+      "webpBytes": 17852
+    },
+    {
+      "id": "97:5038",
+      "project": "mentra",
+      "name": "50",
+      "chapter": "cs-companion",
+      "src": "/Assets/case-study-slides/mentra/slide-97-5038.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "a8510535d918c47f8f1a50e605d8e1fd6bacbd43648553b119dbf41d42590559",
+      "webpBytes": 117490
+    },
+    {
+      "id": "77:2532",
+      "project": "mentra",
+      "name": "51",
+      "chapter": "cs-companion",
+      "src": "/Assets/case-study-slides/mentra/slide-77-2532.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "1f9c98fad3ee19c23f55038a4959be71fe01eef5e9dc0407065c6d782123c539",
+      "webpBytes": 222234
+    },
+    {
+      "id": "77:2539",
+      "project": "mentra",
+      "name": "52",
+      "chapter": "cs-companion",
+      "src": "/Assets/case-study-slides/mentra/slide-77-2539.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "c09115fbbc2b9e95a7fdc60cd670ffebabd0c55df6a265c3da5b2225e614f198",
+      "webpBytes": 822062
+    },
+    {
+      "id": "77:2546",
+      "project": "mentra",
+      "name": "53",
+      "chapter": "cs-companion",
+      "src": "/Assets/case-study-slides/mentra/slide-77-2546.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "59898a746a45c29ce57226730fc93612897a862029b0fa846dcf7331ee039c55",
+      "webpBytes": 70430
+    },
+    {
+      "id": "6:28341",
+      "project": "mentra",
+      "name": "58",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-6-28341.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "023cf58c6008f62e1b3615297eb0202f876f573f4d09f67da2e49bc146215812",
+      "webpBytes": 170554
+    },
+    {
+      "id": "0:54",
+      "project": "mentra",
+      "name": "59",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-0-54.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "aa5f25bd73f516fe2241caeb2841cb4a28af85a3ca02b9edc49a57109e11c973",
+      "webpBytes": 141778
+    },
+    {
+      "id": "399:7892",
+      "project": "mentra",
+      "name": "62",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-399-7892.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "ca30f527b2d94abcbf133eba7b426a1b3636dc05ac65c00651bf1fe26461dd30",
+      "webpBytes": 10362
+    },
+    {
+      "id": "404:7920",
+      "project": "mentra",
+      "name": "65",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-404-7920.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "8ee74d3f4e07865c30c9658e61b9cc4de7ccd8d61a9bd67e70d1af65267154d1",
+      "webpBytes": 67894
+    },
+    {
+      "id": "404:7930",
+      "project": "mentra",
+      "name": "68",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-404-7930.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "43d4d8eaad64a3b6c279fab9808ce63ddfa539f67ed8a82061f265f0cb6f9141",
+      "webpBytes": 83568
+    },
+    {
+      "id": "0:59",
+      "project": "mentra",
+      "name": "70",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-0-59.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "f0fb2541bf7fb73a918ba32aa2994245d9e5d6acb56d3e8d43878b7c1ef76f98",
+      "webpBytes": 299854
+    },
+    {
+      "id": "0:60",
+      "project": "mentra",
+      "name": "71",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-0-60.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "eecbc4a47c83461d479472f5c760af0e4ae769380f2a6a5440296df5bf945563",
+      "webpBytes": 192408
+    },
+    {
+      "id": "0:64",
+      "project": "mentra",
+      "name": "72",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-0-64.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "6e07d71f05792281ce78f6ee1fb500f9c8ee9aa99fd7b71d1cd62cf348f253cd",
+      "webpBytes": 123086
+    },
+    {
+      "id": "0:65",
+      "project": "mentra",
+      "name": "-",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-0-65.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "c2708b0155fd1404163c263b1496cc489508d846bd3011c278de8ab8700af08b",
+      "webpBytes": 17524
+    },
+    {
+      "id": "0:66",
+      "project": "mentra",
+      "name": "-",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-0-66.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "edff3dc8b0d64d509914bb0547182498e3103f9cbcdf7985a4550e7cd28c6af9",
+      "webpBytes": 87660
+    },
+    {
+      "id": "0:68",
+      "project": "mentra",
+      "name": "-",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-0-68.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "948eebd7799a0868821b17e8fa4186920ebe93e5da43025c41f9e3d82cc35508",
+      "webpBytes": 64898
+    },
+    {
+      "id": "500:3981",
+      "project": "mentra",
+      "name": "-",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-500-3981.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "fa273469491dca61d138313c3e6e7533250b00e0cac19a9a3473a17014e87e1b",
+      "webpBytes": 21528
+    },
+    {
+      "id": "500:3980",
+      "project": "mentra",
+      "name": "-",
+      "chapter": "cs-os",
+      "src": "/Assets/case-study-slides/mentra/slide-500-3980.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "a1cfa4ff131d963f67f606187077ebea41cb77c3563c4602b5e45f0de0a856ca",
+      "webpBytes": 23876
+    },
+    {
+      "id": "97:3874",
+      "project": "mentra",
+      "name": "81",
+      "chapter": "cs-store",
+      "src": "/Assets/case-study-slides/mentra/slide-97-3874.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "67dba712c4762691e1de40b094bdee4707e5e07216366f5789e61af47373545f",
+      "webpBytes": 212136
+    },
+    {
+      "id": "517:6085",
+      "project": "mentra",
+      "name": "82",
+      "chapter": "cs-store",
+      "src": "/Assets/case-study-slides/mentra/slide-517-6085.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "b3e1ada3bac650d1d840ee5d8cd4d4da039b6853a37d1e96e4c84d5b778feb4b",
+      "webpBytes": 375912
+    },
+    {
+      "id": "346:8591",
+      "project": "mentra",
+      "name": "85",
+      "chapter": "cs-store",
+      "src": "/Assets/case-study-slides/mentra/slide-346-8591.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "a4f05eb62d82d34970c3246486d97b734c490522ea132018234ad03a6e2105cc",
+      "webpBytes": 237960
+    },
+    {
+      "id": "528:21712",
+      "project": "mentra",
+      "name": "88",
+      "chapter": "cs-store",
+      "src": "/Assets/case-study-slides/mentra/slide-528-21712.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "7882874ee4d4e8178f274c8a88f42ad13bfecdc59b772f57085ba5946d0cbc02",
+      "webpBytes": 313742
+    },
+    {
+      "id": "107:8931",
+      "project": "mentra",
+      "name": "89",
+      "chapter": "cs-store",
+      "src": "/Assets/case-study-slides/mentra/slide-107-8931.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "2f596e259d96007bf4e883c90ee7852ccce6f517b1382e39b888c84f65ce7b5e",
+      "webpBytes": 329008
+    },
+    {
+      "id": "107:8823",
+      "project": "mentra",
+      "name": "92",
+      "chapter": "cs-enterprise",
+      "src": "/Assets/case-study-slides/mentra/slide-107-8823.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "68b1befa249da451084d9731ef8dac3b41dd99d261ff1ccd28fd2c428935d7ee",
+      "webpBytes": 14890
+    },
+    {
+      "id": "107:8861",
+      "project": "mentra",
+      "name": "95",
+      "chapter": "cs-enterprise",
+      "src": "/Assets/case-study-slides/mentra/slide-107-8861.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "9a85ed717dbd3aeb59636c433b839db69391a3f8fa21ac7b9404b51f768a72a3",
+      "webpBytes": 16898
+    },
+    {
+      "id": "101:8350",
+      "project": "mentra",
+      "name": "96",
+      "chapter": "cs-enterprise",
+      "src": "/Assets/case-study-slides/mentra/slide-101-8350.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "063a2512380f0ef71cc36faf7ece682b85e5f9bd8b758ce6f8729ff0e47a9eb3",
+      "webpBytes": 45612
+    },
+    {
+      "id": "0:75",
+      "project": "mentra",
+      "name": "99",
+      "chapter": "cs-website",
+      "src": "/Assets/case-study-slides/mentra/slide-0-75.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "21564c450a82cc70f41f3708c855d9a968d157bcf3027724a4896f8f77af1987",
+      "webpBytes": 116848
+    },
+    {
+      "id": "517:7317",
+      "project": "mentra",
+      "name": "103",
+      "chapter": "cs-website",
+      "src": "/Assets/case-study-slides/mentra/slide-517-7317.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "475695bea9d6b5e856968ed876c728999b55812decc3a6f5cc72ff9c62ae1a2e",
+      "webpBytes": 326340
+    },
+    {
+      "id": "329:8363",
+      "project": "mentra",
+      "name": "78",
+      "chapter": "cs-impact",
+      "src": "/Assets/case-study-slides/mentra/slide-329-8363.webp",
+      "exportMethod": "Figma PDF, page 78",
+      "sourceSha256": "840d57f81f6f8572571311e2854bbd84de761ec9dcc7a2c98eaafc275711abf9",
+      "webpBytes": 14260
+    },
+    {
+      "id": "500:3979",
+      "project": "mentra",
+      "name": "-",
+      "chapter": "cs-impact",
+      "src": "/Assets/case-study-slides/mentra/slide-500-3979.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "b54c81539fbb7b74fecf47ec6a3c725f97b7e4584cb9a26f70e249dc25499042",
+      "webpBytes": 103730
+    },
+    {
+      "id": "107:8889",
+      "project": "mentra",
+      "name": "104",
+      "chapter": "cs-learnings",
+      "src": "/Assets/case-study-slides/mentra/slide-107-8889.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "ba8ea2459952e4a92910c2e5c1552c5536cd02a8a18ac670442fb15d9f01a62c",
+      "webpBytes": 14378
+    },
+    {
+      "id": "6:6779",
+      "project": "transfi",
+      "name": "108",
+      "chapter": "cs-transfi-scope",
+      "src": "/Assets/case-study-slides/transfi/slide-6-6779.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "a73a4ac547bdbf63e2be86faf80f4195007fdcfd9c543af7e15b29dbe1b39303",
+      "webpBytes": 95390
+    },
+    {
+      "id": "6:7690",
+      "project": "transfi",
+      "name": "109",
+      "chapter": "cs-transfi-scope",
+      "src": "/Assets/case-study-slides/transfi/slide-6-7690.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "3709754d004660498314d83f2042e010560bb5f3a5af374243de93fc114104ac",
+      "webpBytes": 142714
+    },
+    {
+      "id": "6:7848",
+      "project": "transfi",
+      "name": "113",
+      "chapter": "cs-transfi-scope",
+      "src": "/Assets/case-study-slides/transfi/slide-6-7848.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "71a30f42d7bcfd6ef599bb21d9548542bc8dbf01685386d918275b3ab5fc6808",
+      "webpBytes": 233198
+    },
+    {
+      "id": "6:7991",
+      "project": "transfi",
+      "name": "123",
+      "chapter": "cs-transfi-scope",
+      "src": "/Assets/case-study-slides/transfi/slide-6-7991.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "65af8ff2b6935c422c0fe2248f9898cc0ab0a1b7b9c174a9b740904abe9a4b09",
+      "webpBytes": 12382
+    },
+    {
+      "id": "6:8008",
+      "project": "transfi",
+      "name": "124",
+      "chapter": "cs-transfi-scope",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8008.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "af29d1c248bfe18bfda6f061bf4575d3dd343e4c2ab284711ffd41c99f80d777",
+      "webpBytes": 143204
+    },
+    {
+      "id": "6:8657",
+      "project": "transfi",
+      "name": "133",
+      "chapter": "cs-transfi-research",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8657.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "04413271880e3227fb6b9c05f361485649ab1d39b12a7327aceefdbca3327bcf",
+      "webpBytes": 323970
+    },
+    {
+      "id": "6:8680",
+      "project": "transfi",
+      "name": "134",
+      "chapter": "cs-transfi-research",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8680.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "aa777cc22e77f75f81e2653d4dd95ca3d26be615f495d219e1697acc7f6f2525",
+      "webpBytes": 43740
+    },
+    {
+      "id": "6:8687",
+      "project": "transfi",
+      "name": "135",
+      "chapter": "cs-transfi-research",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8687.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "380ca1a85e05c57f0b31b41eb5ff11c17901974abad97f9a5d50efc93af9293c",
+      "webpBytes": 27766
+    },
+    {
+      "id": "6:8812",
+      "project": "transfi",
+      "name": "145",
+      "chapter": "cs-transfi-research",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8812.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "71fca7de79a97167ad61e64425b6ae81d03e5a012652613e36ba4e49f20ebabc",
+      "webpBytes": 129438
+    },
+    {
+      "id": "6:8843",
+      "project": "transfi",
+      "name": "146",
+      "chapter": "cs-transfi-research",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8843.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "c643e6b8e1661bd5e8a5aad8824c9939958d98e5e6c590451b4a6fce546febfa",
+      "webpBytes": 38734
+    },
+    {
+      "id": "6:8921",
+      "project": "transfi",
+      "name": "147",
+      "chapter": "cs-transfi-research",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8921.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "80349c21ffbaa97296f4cff9de5649be902ad6465bf347d7e0d85d35609605f7",
+      "webpBytes": 25844
+    },
+    {
+      "id": "6:8963",
+      "project": "transfi",
+      "name": "149",
+      "chapter": "cs-transfi-research",
+      "src": "/Assets/case-study-slides/transfi/slide-6-8963.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "65a47a4073ea6d895bf8c3e88fc8ac64f5dfc9e8cdadc08464d61ad2eef5136a",
+      "webpBytes": 13280
+    },
+    {
+      "id": "6:9052",
+      "project": "transfi",
+      "name": "157",
+      "chapter": "cs-transfi-design",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9052.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "dfac213e507783b3ead8337c5f492f7ae92245baa60b415e67ebe21661b20853",
+      "webpBytes": 93702
+    },
+    {
+      "id": "6:9184",
+      "project": "transfi",
+      "name": "162",
+      "chapter": "cs-transfi-design",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9184.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "cb4ab18abc186799bbf5c0bb92d0b5067dcc10b3eeae7da725f416d2690f36bb",
+      "webpBytes": 234660
+    },
+    {
+      "id": "6:9401",
+      "project": "transfi",
+      "name": "165",
+      "chapter": "cs-transfi-design",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9401.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "9d94529bca9e76d544ea4520483e7987e04ba8533b7e61430f3b35728c8501d4",
+      "webpBytes": 276962
+    },
+    {
+      "id": "6:9614",
+      "project": "transfi",
+      "name": "-",
+      "chapter": "cs-transfi-design",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9614.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "81c7f784b56b0f1341784ac9a8ef9408ad8b0e7da5fb1cae80933df115f4fac1",
+      "webpBytes": 54864
+    },
+    {
+      "id": "6:9825",
+      "project": "transfi",
+      "name": "168",
+      "chapter": "cs-transfi-testing",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9825.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "59dc28a81002b8e7cb6f064cf01fe35a17fd6aaa0cb03736b9d4ad27c55f91ac",
+      "webpBytes": 22480
+    },
+    {
+      "id": "6:9891",
+      "project": "transfi",
+      "name": "170",
+      "chapter": "cs-transfi-testing",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9891.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "00313417bf760bcb9294d280aec6b24867432008ef419f596e86bac58776ffed",
+      "webpBytes": 18058
+    },
+    {
+      "id": "6:9943",
+      "project": "transfi",
+      "name": "173",
+      "chapter": "cs-transfi-testing",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9943.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "50d2d5a4797027c473901244422437986ccd7e63b55b54ac29464847431ad711",
+      "webpBytes": 13524
+    },
+    {
+      "id": "6:9979",
+      "project": "transfi",
+      "name": "176",
+      "chapter": "cs-transfi-testing",
+      "src": "/Assets/case-study-slides/transfi/slide-6-9979.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "ff36ce99a9e29c7b8bfd6b347f07e6979bdc104a123866555c9a4641d251db86",
+      "webpBytes": 9004
+    },
+    {
+      "id": "6:11905",
+      "project": "transfi",
+      "name": "178",
+      "chapter": "cs-transfi-testing",
+      "src": "/Assets/case-study-slides/transfi/slide-6-11905.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "a81906923afe0b76ae244d6fcd4b1bf819dd7395799deab610ba074fcf9a7b07",
+      "webpBytes": 8106
+    },
+    {
+      "id": "6:11913",
+      "project": "transfi",
+      "name": "179",
+      "chapter": "cs-transfi-testing",
+      "src": "/Assets/case-study-slides/transfi/slide-6-11913.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "f797746161c151bccc7b17f33f88362d7c83f157e7241670a41ad6bc89c87ad9",
+      "webpBytes": 6994
+    },
+    {
+      "id": "225:3961",
+      "project": "transfi",
+      "name": "182",
+      "chapter": "cs-transfi-testing",
+      "src": "/Assets/case-study-slides/transfi/slide-225-3961.webp",
+      "exportMethod": "Figma node PNG export",
+      "sourceSha256": "721d91a4f6a167169238ddae608b082158cb8121acc84ea913bcb973f9888a95",
+      "webpBytes": 23160
+    },
+    {
+      "id": "6:12622",
+      "project": "transfi",
+      "name": "183",
+      "chapter": "cs-transfi-results",
+      "src": "/Assets/case-study-slides/transfi/slide-6-12622.webp",
+      "exportMethod": "Figma PDF, page 183",
+      "sourceSha256": "d512a3c9f8dec6e53cd484cd11bb0015a091a7836a5fb432a97da86953c4235f",
+      "webpBytes": 17784
+    },
+    {
+      "id": "6:12655",
+      "project": "transfi",
+      "name": "184",
+      "chapter": "cs-transfi-results",
+      "src": "/Assets/case-study-slides/transfi/slide-6-12655.webp",
+      "exportMethod": "Figma PDF, page 184",
+      "sourceSha256": "9b35a1c26bc1bf2909d351daf3dc9e6701f128df17faa9b5a61c58eacd85900c",
+      "webpBytes": 13804
+    },
+    {
+      "id": "6:12676",
+      "project": "transfi",
+      "name": "186",
+      "chapter": "cs-transfi-system",
+      "src": "/Assets/case-study-slides/transfi/slide-6-12676.webp",
+      "exportMethod": "Figma PDF, page 186",
+      "sourceSha256": "48953434aaef4c86bb7b90ede020493cd8aceab7ac343d66984d2a099338b4d5",
+      "webpBytes": 104976
+    },
+    {
+      "id": "393:6180",
+      "project": "transfi",
+      "name": "187",
+      "chapter": "cs-transfi-system",
+      "src": "/Assets/case-study-slides/transfi/slide-393-6180.webp",
+      "exportMethod": "Figma PDF, page 187",
+      "sourceSha256": "9d134a0ef990aade1e5a1f1cd41c9edf375960b98b7902b99e9546d04a92151a",
+      "webpBytes": 33740
+    },
+    {
+      "id": "6:13035",
+      "project": "transfi",
+      "name": "189",
+      "chapter": "cs-transfi-system",
+      "src": "/Assets/case-study-slides/transfi/slide-6-13035.webp",
+      "exportMethod": "Figma PDF, page 189",
+      "sourceSha256": "77560c1b2a505cd97a051335118299b9766fc14022e687b0ac7890fa43d03dfb",
+      "webpBytes": 109914
+    },
+    {
+      "id": "6:13065",
+      "project": "transfi",
+      "name": "193",
+      "chapter": "cs-transfi-partners",
+      "src": "/Assets/case-study-slides/transfi/slide-6-13065.webp",
+      "exportMethod": "Figma PDF, page 193",
+      "sourceSha256": "69ee7df5dc89c4c25c56f9e6309f449c705e8f64858c0df6e08b2664181d874a",
+      "webpBytes": 9742
+    },
+    {
+      "id": "6:15241",
+      "project": "transfi",
+      "name": "194",
+      "chapter": "cs-transfi-partners",
+      "src": "/Assets/case-study-slides/transfi/slide-6-15241.webp",
+      "exportMethod": "Figma PDF, page 194",
+      "sourceSha256": "d45c0d9e8197831e7be3748a667e7e86180ba9aecf2a8aaec169e6e50cda08b7",
+      "webpBytes": 43336
+    },
+    {
+      "id": "6:15679",
+      "project": "transfi",
+      "name": "198",
+      "chapter": "cs-transfi-partners",
+      "src": "/Assets/case-study-slides/transfi/slide-6-15679.webp",
+      "exportMethod": "Figma PDF, page 198",
+      "sourceSha256": "54a8b3464b8f937d00a4bb024a4876d915ad2cf96f31d63a08d97e5a52bb3a8e",
+      "webpBytes": 9346
+    },
+    {
+      "id": "329:8419",
+      "project": "mentra",
+      "name": "54",
+      "chapter": "cs-impact",
+      "src": "/Assets/case-study-slides/mentra/slide-329-8419.webp",
+      "exportMethod": "Figma PDF, page 54",
+      "sourceSha256": "00687e62d68be3db3f35fb1e4072c26b5227edb5af83a5b08ddb3b0d62aa7137",
+      "webpBytes": 13894
+    },
+    {
+      "id": "329:8449",
+      "project": "mentra",
+      "name": "55",
+      "chapter": "cs-impact",
+      "src": "/Assets/case-study-slides/mentra/slide-329-8449.webp",
+      "exportMethod": "Figma PDF, page 55",
+      "sourceSha256": "039469cba387d07792aa4f4cc069553a4b1f19bf9dd7f158cf9c9ed616ba78f3",
+      "webpBytes": 8440
+    }
+  ]
+}
