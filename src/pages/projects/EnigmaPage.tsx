@@ -1,4 +1,3 @@
-import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
@@ -60,16 +59,16 @@ export default function EnigmaPage() {
         </CsMediaSpotlight>
 
         {/* Interactive */}
-        <CsSection id="cs-interactive" label="Interactive" title="Explore a browser model of the sculpture">
+        <CsSection id="cs-interactive" label="Interactive" title="Try the original letter experiment">
           <CsBody>
-            <p>Choose a letter to see an illustrative activation move through the sculpture in its gallery. Open the original browser experiment below to draw a letter. It does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
+            <p>Open the original browser experiment below to draw a letter. This browser adaptation does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Network</span>
-            <span className="cs-label-row-val">200 physical lights · illustrative browser activations</span>
+            <span className="cs-label-row-val">200 physical lights in the documented sculpture</span>
           </div>
           <div className="project-content-block--roomy">
-            <PhysicalWorld project="enigma" /><OriginalExperiment><EnigmaInteractive /></OriginalExperiment>
+            <OriginalExperiment><EnigmaInteractive /></OriginalExperiment>
           </div>
         </CsSection>
 

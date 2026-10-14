@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
+  readonly VITE_EXPERIENCE_PREVIEWS_ENABLED?: string
   readonly VITE_ELEVENLABS_API_KEY?: string
   readonly VITE_ELEVENLABS_VOICE_ID?: string
   readonly VITE_EDGE_AI_ENABLED?: string
@@ -35,17 +36,24 @@ declare module 'opentype.js' {
   export interface Path {
     commands: PathCommand[]
     getBoundingBox(): BoundingBox
+    toPathData(decimalPlaces?: number): string
   }
 
   export interface Glyph {
+    index: number
+    advanceWidth?: number
     getPath(x: number, y: number, fontSize: number): Path
   }
 
   export interface Font {
+    unitsPerEm: number
+    getKerningValue(left: Glyph, right: Glyph): number
     charToGlyph(char: string): Glyph
   }
 
   const opentype: {
+    parse(data: ArrayBuffer): Font
+    Path: new () => Path
     load(url: string, callback: (err: Error | null, font: Font | null) => void): void
   }
 

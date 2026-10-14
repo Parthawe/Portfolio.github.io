@@ -13,6 +13,9 @@ concurrency:
 
 jobs:
   verify:
+    env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

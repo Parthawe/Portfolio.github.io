@@ -1,5 +1,4 @@
-import { digitalExperience, experienceHref, experienceLabel } from '../../data/projectExperiences'
-import { worlds } from '../physical-worlds/catalog'
+import { projectExperience, experienceHref, experienceLabel } from '../../data/projectExperiences'
 import ProjectRecord from './ProjectRecord'
 import { useProjectMediaPause } from '../../hooks/useProjectMediaPause'
 import { projectImageProps } from '../../utils/projectImage'
@@ -337,7 +336,7 @@ export default function ProjectHeader({
               <div key={item.label}><dt>{sentenceCaseProjectLabel(item.label)}</dt><dd>{item.value}</dd></div>
             ))}
           </dl>
-          {(worlds[currentSlug] || digitalExperience(currentSlug) || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
+          {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
           <ProjectRecord slug={currentSlug} />
         </section>
       </div>
@@ -433,7 +432,7 @@ export default function ProjectHeader({
       </section>
 
       {renderStoryAndSummary(4)}
-      {(worlds[currentSlug] || digitalExperience(currentSlug) || currentSlug === 'shuffle') && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
+      {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
       <ProjectRecord slug={currentSlug} />
     </div>
   )

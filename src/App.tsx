@@ -1,3 +1,4 @@
+import { experiencePreviewsEnabled } from './utils/experiencePreview'
 import { lazy, Suspense, Component, type ReactNode } from 'react'
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
 import RootLayout from './components/RootLayout'
@@ -106,7 +107,8 @@ function Loading() {
   )
 }
 
-const ProjectPrototypePage = lazy(() => import('./pages/ProjectPrototypePage'))
+const ExperiencePreviewPage = experiencePreviewsEnabled ? lazy(() => import('./pages/ExperiencePreviewPage')) : null
+const TypefaceWorkshopPage=lazy(()=>import('./pages/TypefaceWorkshopPage'))
 const PhysicalWorldPage = lazy(() => import('./pages/PhysicalWorldPage'))
 const ShuffleSimulationPage = lazy(() => import('./pages/ShuffleSimulationPage'))
 
@@ -115,8 +117,11 @@ export default function App() {
     <ErrorBoundary>
     <Suspense fallback={<Loading />}>
       <Routes>
+        {ExperiencePreviewPage && <Route path="/experience-preview" element={<ExperiencePreviewPage />} />}
+        {ExperiencePreviewPage && <Route path="/experience-preview/:project" element={<ExperiencePreviewPage />} />}
+        <Route path="/typeface/workshop" element={<TypefaceWorkshopPage/>}/>
         <Route path="/project-experiences" element={<PhysicalWorldPage />} />
-        <Route path="/:project/prototype" element={<ProjectPrototypePage />} />
+        <Route path="/:project/prototype" element={<PhysicalWorldPage />} />
         <Route path="/physical-worlds" element={<PhysicalWorldPage />} />
         <Route path="/:project/world" element={<PhysicalWorldPage />} />
         <Route path="/shuffle/simulation" element={<ShuffleSimulationPage />} />

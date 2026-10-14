@@ -1,3 +1,4 @@
+import { readExperienceRegistry } from './project-experience-registry.mjs'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -131,15 +132,14 @@ const canonicalAliases = new Map([
 ])
 
 canonicalAliases.set('physical-worlds', 'project-experiences')
+canonicalAliases.set('typeface/workshop', readExperienceRegistry().find(item=>item.slug==='typeface')?.status==='approved'?'typeface/workshop':'typeface')
 routeLabels.set('project-experiences', 'Project experiences')
 routeDescriptions.set('project-experiences', 'Interactive product prototypes and physical project experiences by Parth Pawar.')
-for (const match of readFileSync(join(root, 'src/data/projectExperiences.ts'), 'utf8').matchAll(/slug: '([^']+)', mode: '([^']+)', description: '([^']+)'(?:, href: '([^']+)')?/g)) {
-  const [, slug, mode, description, href] = match
-  const target = mode === 'prototype' ? `${slug}/prototype` : href.replace(/^\//, '').split('#')[0]
-  canonicalAliases.set(`${slug}/world`, target)
-  if (mode !== 'prototype') canonicalAliases.set(`${slug}/prototype`, target)
-  routeLabels.set(`${slug}/prototype`, `${routeLabels.get(slug) || slug.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} prototype`)
-  routeDescriptions.set(`${slug}/prototype`, `${description}. Explore the project’s interactive prototype and documented workflow.`)
+for (const item of readExperienceRegistry()) {
+  const target = item.status === 'approved' ? item.href.replace(/^\//, '') : item.slug
+  canonicalAliases.set(`${item.slug}/world`, target)
+  canonicalAliases.set(`${item.slug}/prototype`, target)
+  // Withdrawn URLs carry the case-study metadata, never promises of a playable room.
 }
 
 const routePreloads = new Map([
@@ -209,7 +209,8 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
   })
   .filter(Boolean)
 const routes = [...new Set([
-  'physical-worlds', 'project-experiences', 'shuffle/simulation',
+  'physical-worlds', 'project-experiences', 'shuffle/simulation', 'typeface/workshop',
+  ...(process.env.VITE_EXPERIENCE_PREVIEWS_ENABLED==='1'?['experience-preview',...readExperienceRegistry().filter(item=>item.status==='draft').map(item=>`experience-preview/${item.slug}`)]:[]),
   ...[...readFileSync(join(root,'src/data/projectExperiences.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/prototype`),
   ...[...readFileSync(join(root,'src/data/projectRoutes.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/world`),
   ...sitemapRoutes,
@@ -229,7 +230,7 @@ for (const route of routes) {
   if (route.includes('..')) continue
   const routeDir = join(distDir, route)
   mkdirSync(routeDir, { recursive: true })
-  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route))
+  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route, {noindex:route.startsWith('experience-preview')}))
   written += 1
 }
 
