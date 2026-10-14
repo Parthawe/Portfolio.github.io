@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { canRetryTemporaryHttp } from './qa-network-policy.mjs'
+import { canRetryTemporaryHttp, navigateWithTemporaryRetry } from './qa-network-policy.mjs'
 
 const url = 'https://example.test/bundle/page.js'
 const sample = {
@@ -24,4 +24,18 @@ test('requires the browser error to match the observed failed request', () => {
   assert.equal(canRetryTemporaryHttp({ ...sample, consoleErrors: [{ text: 'Failed to load resource:', url: '' }] }), false)
   assert.equal(canRetryTemporaryHttp({ ...sample, consoleErrors: [{ text: 'Unexpected application error', url }] }), false)
   assert.equal(canRetryTemporaryHttp({ ...sample, httpErrors: [] }), false)
+})
+
+test('retries a temporary document once and returns the final response', async () => {
+  let visits = 0, waits = 0
+  const page = { goto: async () => { const status = ++visits === 1 ? 503 : 200; return {status: () => status} }, waitForTimeout: async () => { waits++ } }
+  const response = await navigateWithTemporaryRetry(page, url)
+  assert.equal(response.status(), 200)
+  assert.equal(waits, 1)
+})
+test('does not retry a permanent document failure or a thrown navigation error', async () => {
+  let visits = 0
+  const response = await navigateWithTemporaryRetry({goto: async () => {visits++; return {status: () => 404} }}, url)
+  assert.equal(response.status(),404); assert.equal(visits,1)
+  await assert.rejects(navigateWithTemporaryRetry({goto: async () => { throw new Error('navigation failure') }}, url), /navigation failure/)
 })

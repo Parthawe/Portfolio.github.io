@@ -10,7 +10,6 @@ import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
-import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsCredits from '../../components/case-study/CsCredits'
 import CsCompareTable from '../../components/case-study/CsCompareTable'
@@ -111,7 +110,7 @@ export default function ClawedChatPage() {
           <CsBeforeAfter
             title="The Trust Gap"
             before={{
-              label: 'Existing Assistants',
+              label: 'Risks considered',
               items: [
                 'Acts autonomously without confirmation',
                 'No record of what was done or why',
@@ -121,9 +120,9 @@ export default function ClawedChatPage() {
               ],
             }}
             after={{
-              label: 'Clawed',
+              label: 'Design targets',
               items: [
-                'Always asks before acting on your behalf',
+                'Ask before external actions',
                 'Immutable receipt for every action taken',
                 'Staging area catches mistakes before they ship',
                 'Context-aware safety modes (driving vs. desk)',
@@ -144,7 +143,7 @@ export default function ClawedChatPage() {
             { title: 'Approval Fatigue', desc: 'Approvals only work when they are faster than doing the task manually.' },
           ]} />
           <CsCallout>
-            <p>The core insight: people do not just want a smarter AI. They want an AI they can verify. The operating rule became: <strong>ask in 3 seconds, return in 5, approve in 1 tap, always leave a receipt.</strong></p>
+            <p>The interaction targets were: <strong>ask in 3 seconds, return in 5, approve in 1 tap, always leave a receipt.</strong> These are design targets, not measured latency results.</p>
           </CsCallout>
         </CsSection>
 
@@ -160,11 +159,8 @@ export default function ClawedChatPage() {
           ]} />
         </CsSection>
 
-        <CsSection id="cs-webhub" label="04 &mdash; Web Hub" title="The web hub">
-          <CsBody>
-            <p>The glasses handle the moments. The web hub handles the thinking. I designed eight core pages &mdash; Dashboard, Inbox, Ask, Approvals, Timeline, Connections, Devices, and Settings &mdash; each built around the same principle: show the most important thing first, hide everything else behind progressive disclosure. The command bar (&#8984;K) is always one keystroke away.</p>
-            <p>The pattern that runs through all of them is approval and receipts. Every incoming item arrives pre-analyzed as a card with three options &mdash; approve the AI&rsquo;s draft, edit before sending, or dismiss &mdash; and every action, however it was approved, generates a receipt you can audit later.</p>
-          </CsBody>
+        <CsSection id="cs-webhub" label="04 &mdash; Web Hub" title="Deployment and documentation">
+          <CsBody><p>The original documentation gives users three setup paths: Cloud VM Deploy, Mac Companion App, and Self-Hosted. Smart-glasses pairing, voice commands, and audio responses have their own navigation group.</p><p>The deployment comparison puts hosting ownership before setup: a managed cloud environment or the user’s own Mac. The captured documentation labels search as coming soon, so browsing the sections is the available path in this version.</p></CsBody>
           <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Clawed.chat/docs-page.webp")} data-project-preview src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
@@ -191,7 +187,7 @@ export default function ClawedChatPage() {
 
         <CsSection id="cs-safety" label="06 &mdash; Safety Architecture" title="Three Tiers of Trust">
           <CsBody>
-            <p>Not every context deserves the same AI autonomy. Clawed uses three safety modes so users can move from reading, to drafting, to assisted action without losing control.</p>
+            <p>Not every context deserves the same AI autonomy. The interaction proposal defines three safety modes so users can move from reading, to drafting, to assisted action without losing control.</p>
           </CsBody>
           <CsCompareTable
             title="Safety Mode Comparison"
@@ -225,10 +221,7 @@ export default function ClawedChatPage() {
               { label: 'Receipt Generated', desc: 'Immutable record created' },
             ]}
           />
-          <CsPullquote
-            quote="It is like a volume knob for how much I trust the AI right now. Driving home? Turn it down to Read Only. At my desk with coffee? Crank it to Assisted. I have never felt that kind of control with any other assistant."
-            cite="Stakeholder feedback during internal review"
-          />
+
         </CsSection>
 
         {/* Website */}
@@ -241,28 +234,8 @@ export default function ClawedChatPage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-impact" label="07 &mdash; Impact" title="Early results and limitations">
-          <CsBody className="cs-body--space-after">
-            <p>Clawed shipped in Q1 2026 and is in early testing. I am keeping the claims precise: these are qualitative signals from 6 moderated sessions plus team observations from the 10-week build.</p>
-          </CsBody>
-          <CsBody>
-            <h3 className="cs-section-subtitle">Design principles as team alignment tools</h3>
-            <p>The five principles became the shared language with engineering: Safety First, Receipts for Everything, Glanceable, Progressive Disclosure, Keyboard Friendly. They turned scope debates into quick decisions.</p>
-          </CsBody>
-          <CsBody className="cs-body--space-before-sm">
-            <h3 className="cs-section-subtitle">User testing observations (n=6)</h3>
-            <p>5 of 6 participants started in Read Only mode and moved to Draft First within 10&ndash;15 minutes. 2 reached Assisted mode by the end. The trust model worked because users could increase autonomy gradually.</p>
-            <p>4 of 6 participants also used receipts as a lightweight productivity log, reviewing what they had completed at the end of the session.</p>
-          </CsBody>
-          <details className="cs-details">
-            <summary className="cs-details-summary">What I would measure at scale</summary>
-            <div className="cs-details-content">
-              <p><strong>Safety mode graduation:</strong> do users voluntarily move from Read Only to Draft First to Assisted?</p>
-              <p><strong>Revert rate:</strong> how often do users undo or override an AI action?</p>
-              <p><strong>Receipt review:</strong> do receipts become audit only, or also a reflection habit?</p>
-              <p><strong>Time-to-approval:</strong> do users approve faster as trust increases?</p>
-            </div>
-          </details>
+        <CsSection id="cs-impact" label="07 · Evidence" title="What the archive demonstrates">
+          <CsBody><p>The original site and documentation show cloud deployment, a Mac companion, and smart-glasses setup. They document the product presentation and onboarding paths.</p><p>The approval modes and receipt flow described here are design proposals. A recorded product task and dated session notes are needed to establish how they performed; no participant counts or completion rates are reported here.</p></CsBody>
         </CsSection>
 
         <CsSection id="cs-learnings" label="08 &mdash; Key Learnings" title="What I learned">
@@ -276,7 +249,7 @@ export default function ClawedChatPage() {
 
         <CsSection id="cs-whats-next" label="09 &mdash; What&rsquo;s Next" title="Next steps">
           <CsBody>
-            <p>Clawed shipped as a fully functional product, but it is the foundation &mdash; not the ceiling. The next phase focuses on three areas informed by early user testing signals.</p>
+            <p>Further work would need to verify the proposal against the running product: authorization, recoverability, and handoff between phone, glasses, and desktop.</p>
           </CsBody>
           <CsSteps steps={[
             { num: '1', title: 'Workflow Automation', desc: 'Let users chain multiple actions into repeatable workflows: "Every Monday, summarize my unread emails, draft replies to urgent ones, and archive newsletters." The receipt system already supports multi-step audit trails.' },

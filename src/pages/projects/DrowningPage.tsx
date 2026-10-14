@@ -10,7 +10,7 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-import LightingSlider from '../../components/LightingSlider'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
 
 const DROWNING_PHOTOS = '/Assets/Projects/Drowning/photos'
 const drowningImages = {
@@ -71,16 +71,14 @@ export default function DrowningPage() {
         {/* Interactive, early proof */}
         <CsSection id="cs-lighting" label="Interactive" title="Light Transforms the Space">
           <CsBody>
-            <p className="cs-caption">Browser comparison of two stage images. The production film documents the actual lighting transition.</p>
-            <p>Drag the slider to see the same set change state. The scenic design only works because structure, texture, and light are designed together.</p>
+            <p>Compare the original model photograph with the scene boards. These are different views of the scenic study, rather than two frames of one lighting transition.</p>
           </CsBody>
           <div className="project-content-block">
-            <LightingSlider
-              beforeSrc={drowningImages.unlit}
-              afterSrc={drowningImages.revealed}
-              beforeLabel="Unlit stage"
-              afterLabel="Greenhouse revealed"
-            />
+            <CsScreenExplorer format="landscape" label="Choose a Drowning scenic study" screens={[
+              { title: 'The greenhouse model', label: 'Structure and planting', src: drowningImages.revealed, alt: 'Front view of the greenhouse scenic model with two figures', caption: 'The roof frame, dense planting, open doorway, and bare ground establish the enclosure.' },
+              { title: 'Stephen enters', label: 'Scene 2 board', src: drowningImages.concept, alt: 'Scene 2 presentation board: Stephen enters while Pea is seated', caption: 'The original board describes stillness, dim light, and Stephen’s presence at the edge of the scene.' },
+              { title: 'Pea’s breakdown', label: 'Scene 3 board', src: drowningImages.designDetail, alt: 'Scene 3 presentation board with a warm-lit model and shadow studies', caption: 'The board proposes deeper shadows and water-like reflections. It records a lighting intention, not a completed full-scale effect.' },
+            ]} />
           </div>
         </CsSection>
 
@@ -88,7 +86,7 @@ export default function DrowningPage() {
         <CsSection label="Overview" title="Abandoned Greenhouse">
           <CsBody>
             <p>Drowning needed a black-box set that felt sheltering and suffocating at the same time. The abandoned greenhouse gave the production that contradiction: cracked transparency, overgrown life, and a room that seemed to close in as the play progressed.</p>
-            <p>The build had to fit a 28&prime; by 22&prime; theater, strike in under four hours, and work without a fly system. Every panel, plant, and light angle had to carry both atmosphere and logistics.</p>
+            <p>The surviving documentation is a scenic model, scene boards, and a film. The model lets the arrangement of figures, vegetation, and architectural frames be studied together.</p>
           </CsBody>
         </CsSection>
 
@@ -104,10 +102,10 @@ export default function DrowningPage() {
             </CsBody>
           </div>
           <div className="wrap">
-            <img data-project-preview src={drowningImages.concept} alt="Drowning, concept" loading="lazy" />
+            <img data-project-preview src={drowningImages.concept} alt="Scene 2 board: Stephen enters, with notes on stillness and dim light" loading="lazy" />
           </div>
           <div className="wrap">
-            <img data-project-preview src={drowningImages.conceptDetail} alt="Drowning, concept detail" loading="lazy" />
+            <img data-project-preview src={drowningImages.conceptDetail} alt="Scene 2 board: Rae and Stephen discussing Pea, with notes on isolation" loading="lazy" />
           </div>
         </section>
 
@@ -117,15 +115,15 @@ export default function DrowningPage() {
             <p className="cs-section-label">02 &mdash; Design</p>
             <h3 className="cs-section-title">Design</h3>
             <CsBody>
-              <p>The stage was built as layers: debris and vegetation in front, glass and steel through the middle, and a lit scrim behind. That gave the lighting designer depth without needing a fly system.</p>
-              <p>The structure used steel pipe, reclaimed window frames, frosted acrylic, and live plants. The practical goal was simple: strong enough for actors, modular enough to strike quickly, atmospheric from every seat.</p>
+              <p>The model is arranged in layers: vegetation in front, a greenhouse frame through the middle, and a gridded wall behind. Doorways and gaps keep the figures visible within that enclosure.</p>
+              <p>The scene boards use light and shadow to change the emphasis within the same model. They show how a character can become isolated without replacing the architecture.</p>
             </CsBody>
           </div>
           <div className="wrap">
-            <img data-project-preview src={drowningImages.design} alt="Drowning, design" loading="lazy" />
+            <img data-project-preview src={drowningImages.design} alt="Scene 3 board: Pea’s emotional breakdown, with a close spotlight" loading="lazy" />
           </div>
           <div className="wrap">
-            <img data-project-preview src={drowningImages.designDetail} alt="Drowning, design detail" loading="lazy" />
+            <img data-project-preview src={drowningImages.designDetail} alt="Scene 3 board: deeper shadows and proposed water-like reflections" loading="lazy" />
           </div>
         </section>
 
@@ -135,24 +133,24 @@ export default function DrowningPage() {
             <p className="cs-section-label">03 &mdash; Production</p>
             <h3 className="cs-section-title">Production</h3>
             <CsBody>
-              <p>The build moved from concept to opening in seven weeks, including three weeks of construction and one week of tech. The lighting and set teams tuned the greenhouse together so every surface could catch, fracture, or hide light.</p>
-              <p>The quiet work was safety: stable frames, softened edges, hidden handholds, and low-light navigation. The set had to feel unstable without ever being unsafe.</p>
+              <p>The final model brings the frame, foliage, furniture, and figures into one composition. The annotated view below identifies the final arrangement of the characters.</p>
+              <p>These photographs document the scale model. They do not establish a full-scale construction schedule, material specification, or safety certification.</p>
             </CsBody>
           </div>
           <div className="wrap">
-            <img data-project-preview src={drowningImages.production} alt="Drowning, production" loading="lazy" />
+            <img data-project-preview src={drowningImages.production} alt="Completed greenhouse scenic model viewed from the front" loading="lazy" />
           </div>
           <div className="wrap">
-            <img data-project-preview src={drowningImages.productionDetail} alt="Drowning, production detail" loading="lazy" />
+            <img data-project-preview src={drowningImages.productionDetail} alt="Annotated model photograph identifying character positions at the end of the play" loading="lazy" />
           </div>
         </section>
 
         {/* Reflections */}
         <CsSection label="04, Reflections" title="Designing for Physical Space">
           <CsBody>
-            <p><strong>Materials push back.</strong> Salvaged frames, steel pipe, and live plants forced the design to hold intent while accepting imperfection.</p>
-            <p><strong>Scale changes the idea.</strong> The model looked balanced, but the full-size canopy created the compression the play needed.</p>
-            <p><strong>Constraints clarified the work.</strong> Budget, strike time, and transport pushed the set toward a modular system that looked more honest than a polished custom build.</p>
+            <p><strong>Texture carries the atmosphere.</strong> Dense foliage and exposed framing make the same enclosure feel both occupied and abandoned.</p>
+            <p><strong>Light changes the focus.</strong> The scene boards test where the audience looks as the relationship between the characters changes.</p>
+            <p><strong>The next step is a full-scale test.</strong> Sightlines, performer movement, and the proposed water-like reflections would need to be checked in the performance space.</p>
           </CsBody>
         </CsSection>
 

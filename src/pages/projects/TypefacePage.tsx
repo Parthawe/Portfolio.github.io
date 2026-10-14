@@ -39,7 +39,7 @@ const featureCards = [
   {
     label: '02',
     title: 'A cut through the form',
-    body: 'Diagonal slices are applied as a repeatable gesture, with restraint where readability needs to win.',
+    body: 'The original specimen groups cuts into angle, vertical, and linear slices, with different treatments for different letter shapes.',
   },
   {
     label: '03',
@@ -246,12 +246,12 @@ export default function TypefacePage() {
             <figcaption>Weight comparison</figcaption>
           </figure>
           <figure>
-            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`} alt="Close-up detail of a sliced glyph" loading="lazy" />
-            <figcaption>Glyph detail</figcaption>
+            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/glyph-detail.jpg`} alt="Original specimen showing short and long text settings and numerals" loading="lazy" />
+            <figcaption>Text settings and numerals</figcaption>
           </figure>
           <figure>
-            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`} alt="Butler's Slice applied to packaging mockups" loading="lazy" />
-            <figcaption>Application</figcaption>
+            <img {...projectImageProps(`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`)} data-project-preview src={`${TYPEFACE_ASSET}/photos/specimen-usage.jpg`} alt="Butler's Slice alphabet and headline specimen" loading="lazy" />
+            <figcaption>Alphabet and headlines</figcaption>
           </figure>
         </section>
 
@@ -277,7 +277,7 @@ export default function TypefacePage() {
           <div className="tf-tool-intro">
             <p className="tf-section-kicker">Playground</p>
             <h2>Type into the specimen.</h2>
-            <p>Switch weight, size, and source font. Click a glyph to inspect the character at display scale.</p>
+            <p>Switch weight and size. Click a glyph to inspect the character at display scale.</p>
           </div>
           <GlyphPlayground />
         </section>

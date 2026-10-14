@@ -64,7 +64,8 @@ export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
   const setQuery=(value:string)=>update('q',value)
   const reset=()=>setParams({}, {replace:true,preventScrollReset:true})
   const matches=(slug:string,id:string)=>id==='all'||filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.presentation||'')
-  const visible=slugs.filter(slug=>matches(slug,filter)&&`${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]}`.toLowerCase().includes(query.trim().toLowerCase()))
+  const words=query.trim().toLowerCase().split(/\s+/).filter(Boolean)
+  const visible=slugs.filter(slug=>{const text=`${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]}`.toLowerCase();return matches(slug,filter)&&words.every(word=>text.includes(word))})
   return <main className="experience-review" id="main-content">
     <Helmet><title>Try the work · Project previews</title><meta name="robots" content="noindex,nofollow"/><meta name="googlebot" content="noindex,nofollow"/></Helmet>
     <nav className="experience-review-top" aria-label="Preview navigation"><Link to="/">Parth</Link><Link to="/work">Work</Link><span aria-current="page">Experiences</span><ThemeToggle /></nav>

@@ -23,6 +23,9 @@ export default function PerformanceByDesignPage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#b8860b' } as React.CSSProperties}>
 
         <ProjectHeader
+          heroImage="/Assets/Projects/Drowning/photos/WhatsApp Image 2024-10-10 at 11.54.18.webp"
+          heroAlt="The greenhouse scale model from the related Drowning scenic-design project"
+          heroCaption="Related work: the Drowning scenic model. Original recordings of these course studies are not included."
           showHeaderSummary={false}
           backLink="/work"
           categorySlug="creative-tech"

@@ -19,6 +19,8 @@ export default function ProductionStudioPage() {
       <Nav />
       <main id="main-content" className="project-main" style={{ '--project-color': '#7c3aed' } as React.CSSProperties}>
         <ProjectHeader
+          heroAlt="The Time Trap model from the separate Black Hole project"
+          heroCaption="Related fabrication work: Black Hole. This image does not document the unnamed course installation described below."
           showHeaderSummary={false}
           backLink="/work" categorySlug="creative-tech" backLabel="Back to Work"
           tags={['Project Management', 'Team Leadership', 'Exhibition']}

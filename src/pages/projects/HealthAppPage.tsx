@@ -25,18 +25,18 @@ const HEALTH_APP_PUBLIC_VISUALS = [
 const HEALTH_APP_BOARD_IMAGES = [
   {
     src: '/Assets/Projects/HealthApp/optimized/01-planning.webp',
-    alt: 'Health App planning board with task and schedule interface explorations.',
-    label: 'Planning inputs: the task and schedule explorations establish what a planning suggestion needs to account for.',
+    alt: 'Original project introduction titled Reimagining Google Tasks App, with scope, role, and health-related design goals.',
+    label: 'Project brief: a concept redesign of Google Tasks that brings health and planning into the same study.',
   },
   {
     src: '/Assets/Projects/HealthApp/optimized/02-flow.webp',
-    alt: 'Health App flow board showing how wellness context affects scheduling decisions.',
-    label: 'Scheduling flow: follow how context enters the proposed planning sequence.',
+    alt: 'Baseline Google Tasks overview showing its ecosystem and existing task-list screens.',
+    label: 'Existing product: Google Tasks and its ecosystem, used as the starting point for the redesign.',
   },
   {
     src: '/Assets/Projects/HealthApp/optimized/04-insights.webp',
-    alt: 'Health App insight board connecting health signals to daily planning.',
-    label: 'Explanation: the insight board connects an input to a possible planning change. These are concept screens, not validated health recommendations.',
+    alt: 'Problem-framing board describing the proposed connection between task management and wellbeing.',
+    label: 'Design brief: the board states the proposed problem and goal. Its health and economic claims are reproduced as historical project material, not validated findings.',
   },
 ]
 
@@ -63,7 +63,7 @@ export default function HealthAppPage() {
           backLabel="Back to Work"
           tags={['UX Design', 'Mobile App', 'Health']}
           title="Health App"
-          subtitle="A planning concept that explains how health signals could change a daily schedule."
+          subtitle="A concept redesign of Google Tasks exploring wellbeing, personalization, and daily planning."
           heroImage={HEALTH_APP_COVER}
           heroAlt="Health App 16:9 cover showing the planning concept and interface direction."
           info={[
@@ -143,7 +143,7 @@ export default function HealthAppPage() {
             <div className="cs-nda-process-head">
               <h2 className="cs-nda-process-title">Original boards</h2>
               <p className="cs-nda-process-intro">
-                Read the boards in sequence: planning inputs, scheduling flow, and the explanation for a proposed change. The later screens show the task and calendar surfaces where someone would inspect and adjust that proposal.
+                The archive includes the project brief, existing Google Tasks references, problem framing, and proposed screens. Captions distinguish the existing product from the redesign.
               </p>
             </div>
             <div className="cs-healthapp-board-list">
@@ -159,14 +159,14 @@ export default function HealthAppPage() {
               <CsImage
                 className="cs-img-full--healthapp-board"
                 src="/Assets/Projects/HealthApp/optimized/03-tasks.webp"
-                alt="Health App task planning screens and interaction states."
-                caption="Task and calendar surfaces"
+                alt="Existing Google Tasks interfaces inside Gmail, Workspace, and Calendar."
+                caption="Baseline integration references: Gmail, Workspace, and Calendar, before the proposed redesign."
               />
               <CsImage
                 className="cs-img-full--healthapp-board"
                 src="/Assets/Projects/HealthApp/optimized/07-screen-set.webp"
-                alt="Health App screen set showing multiple mobile product states."
-                caption="Screen set and product states"
+                alt="Low-fidelity sketches and proposed mobile screens for personalization and task scheduling."
+                caption="Proposed design: low-fidelity sketches, personalization, and task scheduling."
               />
               <CsImage
                 className="cs-img-full--healthapp-board"

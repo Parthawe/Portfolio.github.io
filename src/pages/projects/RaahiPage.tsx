@@ -144,7 +144,7 @@ export default function RaahiPage() {
                 <figcaption className="cs-img-caption">Early mind map to frame the public-transport problem space.</figcaption>
               </div>
               <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('Spectrum.png')} alt="Research spectrum mapping different rider attitudes and commute behaviours" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('Spectrum.png')} alt="Brand personality spectrum positioning Raahi between casual and professional, modern and traditional, accessible and exclusive" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Rider spectrum used to separate convenience, confidence, and dependency needs.</figcaption>
               </div>
               <div className="cs-img reveal raahi-research-blueprint">

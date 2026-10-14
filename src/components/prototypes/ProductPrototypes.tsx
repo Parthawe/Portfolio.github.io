@@ -1,9 +1,9 @@
-const MentraSourcePrototype = lazy(() => import('./MentraSourcePrototype'))
 import PortfolioSlider from '../PortfolioSlider'
 import { lazy, Suspense, useState, useEffect, useRef, useId, Fragment, type ReactNode } from 'react'
 import ValidationExercise from './ValidationExercise'
 import MeetingTimeline from '../MeetingTimeline'
 import { mentraOnboardingPrototype } from '../../data/projectExperiences'
+const MentraSourcePrototype = lazy(() => import('./MentraSourcePrototype'))
 
 function useStepFocus(step: string | number) {
   const ref = useRef<HTMLHeadingElement>(null), first = useRef(true)

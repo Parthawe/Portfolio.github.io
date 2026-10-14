@@ -75,3 +75,55 @@ jobs:
             qa-diagnostics/
             /tmp/portfolio-physical-worlds-qa
             /tmp/portfolio-home-loading-qa
+
+  verify-experiences:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_BASE_URL: http://127.0.0.1:4174
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium webkit
+      - name: Check mechanism geometry and behavior
+        run: |
+          node scripts/build-stage-anatomy.mjs --audit
+          node scripts/build-stage-details.mjs --audit
+          bun scripts/jugalbandi-anatomy-model-qa.mjs
+      - run: bun run build
+      - name: Verify curated experiences and original-source interactions
+        run: |
+          bun run preview --host 127.0.0.1 --port 4174 > /tmp/experience-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent "$QA_BASE_URL" > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent "$QA_BASE_URL" > /dev/null
+          node scripts/experience-directory-qa.mjs
+          node scripts/experience-directory-return-qa.mjs
+          node scripts/stage-anatomy-qa.mjs
+          node scripts/mentra-source-qa.mjs
+          node scripts/jugalbandi-anatomy-qa.mjs
+          node scripts/anatomy-scroll-qa.mjs
+          node scripts/project-prototypes-qa.mjs
+          node scripts/case-study-interactions-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: experience-verification
+          path: |
+            /tmp/experience-preview.log
+            /tmp/experience-directory-qa/
+            /tmp/stage-anatomy-qa/
+            /tmp/mentra-source-qa/
+            /tmp/jugalbandi-anatomy-qa/
+            /tmp/anatomy-scroll-qa/
+            /tmp/portfolio-prototypes-qa/
+            /tmp/case-study-interactions/
