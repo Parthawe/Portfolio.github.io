@@ -17,7 +17,7 @@ const v = (x: number, y: number, z: number) => new T.Vector3(x, y, z)
 export function buildJugalbandi(ctx: Context) {
   const {root,plywood,black,silver,white,mat,mesh,box,cylinder,rod,pick}=ctx
   const ochre=mat('#d8aa34',.65), mahogany=mat('#b95c25',.48), blue=mat('#164b97',.35), copper=mat('#ae9568',.32,.6)
-  ochre.map=plywood.map;mahogany.map=plywood.map
+  mahogany.map=plywood.map;blue.roughness=.28
   const red=mat('#b72d26'), green=mat('#277156'), cream=mat('#ded4b6'), darkWood=mat('#654022')
   const wireMaterials=new Map<string,T.MeshStandardMaterial>()
   const cable=(points:T.Vector3[],color:string,parent:T.Object3D=root,radius=.006)=>{
@@ -56,7 +56,7 @@ export function buildJugalbandi(ctx: Context) {
     const panel=new T.Group();panel.position.set(0,baseY,bottom);panel.rotation.x=inclination;face.add(panel)
     const shape=new T.Shape();shape.moveTo(-bottom,0);shape.lineTo(bottom,0);shape.lineTo(top,slant);shape.lineTo(-top,slant);shape.closePath()
     if(faceIndex<2)for(let row=0;row<4;row++)for(let side=0;side<2;side++){
-      const x=(side?1:-1)*.16,y=.18+row*.175
+      const x=(side?1:-1)*.21,y=.16+row*.18+(side?.085:0)
       const hole=new T.Path();hole.absarc(x,y,.043,0,Math.PI*2,true);shape.holes.push(hole)
       const rim=mesh(new T.TorusGeometry(.038,.006,6,18),silver,panel,x,y,.027)
       const recess=mesh(new T.CircleGeometry(.032,18),black,panel,x,y,.009);sensorMeshes.push(recess);pick(recess,0);pick(rim,0)
@@ -78,33 +78,32 @@ export function buildJugalbandi(ctx: Context) {
     cylinder(.025,.004,black,hexa,x,topY+h-.026,z)
   }
 
-  // The acoustic harp has an open oval body, rather than a filled disc.
-  const harp=group('Mechanized harp',-1.88,0,-.08)
+  // The photographed harp has a solid oval soundboard with one circular sound hole.
+  const harp=group('Mechanized harp',-1.88,0,-.08);harp.scale.y=.82
   for(const x of[-.79,.79])box(.065,2.53,.14,plywood,harp,x,1.31,0)
   for(const y of[.075,2.56])box(1.64,.065,.14,plywood,harp,0,y,0)
   for(const x of[-.73,.73])box(.028,2.40,.11,black,harp,x,1.31,-.005)
   for(const y of[.13,2.50])box(1.48,.028,.11,black,harp,0,y,-.005)
   for(const x of[-.77,.77])box(.23,.075,.72,black,harp,x,.035,0)
   const oval=new T.Shape();oval.absellipse(0,0,.50,.81,0,Math.PI*2,false,0)
-  const opening=new T.Path();opening.absellipse(0,.31,.36,.32,0,Math.PI*2,true,0);oval.holes.push(opening)
   const soundhole=new T.Path();soundhole.absarc(0,-.26,.125,0,Math.PI*2,true);oval.holes.push(soundhole)
   const body=mesh(new T.ExtrudeGeometry(oval,{depth:.075,bevelEnabled:true,bevelThickness:.006,bevelSize:.006,bevelSegments:1,curveSegments:32}),mahogany,harp,0,1.28,.025)
-  body.name='Open oval harp body'
+  body.name='Oval soundboard with circular sound hole'
   const strings:T.Mesh[]=[],arms:T.Group[]=[]
   for(let i=0;i<18;i++){
     const x=-.43+i*.86/17,arc=Math.sqrt(1-(x/.50)**2)
     const bottomY=1.28-.76*arc,topY=1.28+.76*arc
-    const string=rod(v(x,bottomY,.115),v(x,topY,.115),.0016,copper,harp);strings.push(string);pick(string,0)
-    for(const yy of[bottomY,topY])bolt(harp,x,yy,.108)
+    const string=rod(v(x,bottomY,.115),v(x,topY,.115),.0016,copper.clone(),harp);string.userData.stringIndex=i;strings.push(string);pick(string,0)
+    const pin=cylinder(.012,.055,silver,harp,x,topY,.12);pin.rotation.x=Math.PI/2;rod(v(x,topY,.14),v(x+.022,topY,.14),.007,silver,harp);const eyelet=mesh(new T.TorusGeometry(.010,.003,5,12),copper,harp,x,bottomY,.108);eyelet.name='String anchor eyelet'
   }
   const hitMaterial=mat('#ffffff');hitMaterial.transparent=true;hitMaterial.opacity=0;hitMaterial.depthWrite=false;hitMaterial.colorWrite=false
   const stringBank=box(.89,1.38,.018,hitMaterial,harp,0,1.28,.14)
-  stringBank.name='String bank pointer target';stringBank.castShadow=stringBank.receiveShadow=false;pick(stringBank,0)
+  stringBank.name='String bank pointer target';stringBank.userData.stringBank=true;stringBank.castShadow=stringBank.receiveShadow=false;pick(stringBank,0)
   // Wide, flat wooden rails, aligned exactly with their endpoints.
   const rail=(a:T.Vector3,b:T.Vector3)=>{const rail=box(.065,a.distanceTo(b),.09,plywood,harp);rail.position.copy(a).add(b).multiplyScalar(.5);rail.quaternion.setFromUnitVectors(v(0,1,0),b.clone().sub(a).normalize())}
-  rail(v(-.84,2.18,.18),v(.98,.73,.18));rail(v(-.84,.66,.18),v(.98,.73,.18))
+  rail(v(-.84,2.10,.18),v(.98,.80,.18));rail(v(-.84,.66,.18),v(.98,.73,.18))
   for(let i=0;i<5;i++){
-    const x=-.38+i*.18,y=1.94-i*.15
+    const x=-.38+i*.18,y=1.65-i*.13
     arms.push(servo(harp,x,y,.23,-.48));arms.push(servo(harp,x,.68,.23,Math.PI))
     for(let wire=0;wire<3;wire++){
       const color=['#b33d27','#c5a332','#3b423e'][wire]
@@ -169,7 +168,7 @@ export function buildJugalbandi(ctx: Context) {
   const update=(values:number[],time:number,delta:number)=>{
     if(values[0]!==lastPluck){lastPluck=values[0];age=0}else age+=delta
     const amplitude=Math.exp(-age*3)*values[0]/100
-    strings.forEach((string,i)=>string.position.z=.115+(time?Math.sin(time*38+i)*.006*amplitude:0))
+    strings.forEach((string,i)=>{const selected=i===(values[3]??0);(string.material as T.MeshStandardMaterial).color.set(selected?'#f4d46c':'#ae9568');string.position.z=.115+(time&&selected?Math.sin(time*38+i)*.014*amplitude:0)})
     arms.forEach((arm,i)=>arm.rotation.z=time?Math.sin(age*18+i)*.28*amplitude:0)
     fingers.forEach((finger,i)=>finger.rotation.x=(values[1]/100)*.65*(i%2?-1:1))
     sticks.forEach((stick,i)=>stick.rotation.z=(values[2]/100-.5)*1.7*(i%2?-1:1))

@@ -295,23 +295,23 @@ export default function RaahiPage() {
             <div className="raahi-phone-row raahi-phone-row--trio">
               <div className="cs-img reveal"><img data-project-preview src={raahiAsset('route list.png')} alt="Route list comparing commute options and public transit modes" loading="lazy" decoding="async" /></div>
               <div className="cs-img reveal"><img data-project-preview src={raahiAsset('route details.png')} alt="Detailed route screen showing multimodal commute steps and transit timing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('bus in transit.png')} alt="Bus in-transit screen showing live journey guidance" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('bus in transit.png')} alt="Raahi mobile trip ticket with a QR code and save-to-gallery action" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
 
         <section className="cs-section reveal">
           <div className="wrap">
-            <h2 className="cs-display">Kiosk and in-vehicle guidance</h2>
+            <h2 className="cs-display">Mobile journey guidance and identity</h2>
             <CsBody>
-              <p>Kiosks bring route, ticket, and timetable support to the stop. In-vehicle displays keep riders oriented once they are already moving.</p>
+              <p>The mobile journey screens share a visual identity with the wider transport service. These references show the app interface and the identity symbols.</p>
             </CsBody>
             <div className="raahi-touchpoint-pair">
               <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('Frame 427318655.png')} alt="Raahi public transit touchpoint mockup showing physical and digital service surfaces" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('Frame 427318655.png')} alt="Raahi mobile journey-planning and trip-detail interface mockup" loading="lazy" decoding="async" />
               </div>
               <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('Frame 427318656.png')} alt="Raahi service touchpoint mockup for transit guidance and rider information" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('Frame 427318656.png')} alt="Raahi identity symbols and transport-mode color palette" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -321,7 +321,7 @@ export default function RaahiPage() {
         <section className="cs-section reveal" id="cs-touchpoints">
           <div className="wrap">
             <span className="cs-section-label">Touchpoints</span>
-            <h2 className="cs-section-title">Kiosk &amp; Welcome Experience</h2>
+            <h2 className="cs-section-title">Kiosk, welcome and in-vehicle displays</h2>
             <CsBody className="cs-body--space-after">
               <p>At the kiosk, riders choose English, Hindi, or Marathi, then a timetable, route, ticket, or day pass. The concept offers this path without an account.</p>
             </CsBody>
@@ -331,8 +331,8 @@ export default function RaahiPage() {
               caption="The kiosk applies one color pair per transport mode, keeping route changes readable across ticketing, maps, and welcome states."
             />
             <div className="raahi-kiosk-row">
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('welcome.png')} alt="Kiosk welcome screen with key transit actions and language choices" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('kiosk home.png')} alt="Kiosk ticket and route screen with transit options and map context" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('welcome.png')} alt="Raahi mobile welcome screen with sign-up and sign-in actions" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('kiosk home.png')} alt="Raahi in-vehicle display showing the next stop and arrival times" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>

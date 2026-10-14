@@ -1,4 +1,5 @@
 import PortfolioSlider from './PortfolioSlider'
+import { createSceneActivity } from '../utils/sceneActivity'
 import { visibleAnimation } from '../utils/visibleActivity'
 import { useRef, useEffect, useState, useCallback } from 'react'
 
@@ -263,7 +264,7 @@ function seededStars(count: number) {
 }
 const STARS = seededStars(300)
 
-export function GravLensing() {
+export function GravLensing({interactiveOnly=false}:{interactiveOnly?:boolean}={}) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const massPos = useRef({ x: 0.5, y: 0.5 })
   const [massStrength, setMassStrength] = useState(60)
@@ -444,9 +445,9 @@ export function GravLensing() {
       ctx.fillText('DRAG THE HORIZON', 18, 42)
 
     }
-    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
+    const activity = interactiveOnly ? createSceneActivity(canvas.parentElement ?? canvas,()=>draw(),{idleMs:1500,introMs:1500}) : visibleAnimation(canvas.parentElement ?? canvas, draw)
     return () => activity.dispose()
-  }, [massStrength])
+  }, [massStrength,interactiveOnly])
 
   return (
     <div style={{
@@ -465,11 +466,16 @@ export function GravLensing() {
         cursor: dragging.current ? 'grabbing' : 'grab', touchAction: 'none',
         contain: 'layout paint size',
       }}
+        tabIndex={interactiveOnly ? 0 : undefined}
+        role={interactiveOnly ? 'group' : undefined}
+        aria-label={interactiveOnly ? 'Lens position. Use arrow keys to move; Home centers the lens.' : undefined}
+        onKeyDown={e => { if (!interactiveOnly) return; const moves: Record<string,[number,number]> = {ArrowLeft:[-.03,0],ArrowRight:[.03,0],ArrowUp:[0,-.03],ArrowDown:[0,.03]}; if(e.key==='Home'){e.preventDefault();massPos.current={x:.5,y:.5}}else if(moves[e.key]){e.preventDefault();const [x,y]=moves[e.key];massPos.current={x:Math.max(.05,Math.min(.95,massPos.current.x+x)),y:Math.max(.05,Math.min(.95,massPos.current.y+y))}} }}
+        onPointerCancel={() => { dragging.current = false }}
         onPointerDown={e => { dragging.current = true; massPos.current = getPos(e); (e.target as HTMLElement).setPointerCapture(e.pointerId) }}
         onPointerMove={e => { if (dragging.current) massPos.current = getPos(e) }}
         onPointerUp={e => { dragging.current = false; (e.target as HTMLElement).releasePointerCapture(e.pointerId) }}
       >
-        <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', pointerEvents: 'none' }} />
+        <canvas ref={canvasRef} role={interactiveOnly ? 'img' : undefined} aria-label={interactiveOnly ? 'Original illustrative gravitational lensing demonstration: a movable lens distorts the star field.' : undefined} style={{ display: 'block', width: '100%', height: '100%', pointerEvents: 'none' }} />
       </div>
       <div style={{
         position: 'absolute',
@@ -504,7 +510,7 @@ export function GravLensing() {
           fontVariantNumeric: 'tabular-nums',
         }}>{massStrength}%</span>
       </div>
-      <style>{`
+      {!interactiveOnly&&<style>{`
         .black-hole-mass-slider {
           appearance: none;
           -webkit-appearance: none;
@@ -532,7 +538,7 @@ export function GravLensing() {
           box-shadow: 0 0 0 4px rgba(125,211,252,0.2), 0 0 22px rgba(125,211,252,0.55);
           cursor: pointer;
         }
-      `}</style>
+      `}</style>}
     </div>
   )
 }

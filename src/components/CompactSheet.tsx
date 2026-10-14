@@ -8,6 +8,7 @@ export default function CompactSheet({ title, id, onClose, returnFocus, children
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const lockId = useId()
+  const closeRef=useRef(onClose);closeRef.current=onClose
   const swipeStart = useRef<number | null>(null)
   useEffect(() => {
     const surface = ref.current!
@@ -19,9 +20,12 @@ export default function CompactSheet({ title, id, onClose, returnFocus, children
     lockBodyScroll(lockId)
     surface.querySelector<HTMLElement>('a, button')?.focus()
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') { event.preventDefault(); onClose(); return }
+      if (event.key === 'Escape') { event.preventDefault(); closeRef.current(); return }
       if (event.key !== 'Tab') return
-      const controls = [...surface.querySelectorAll<HTMLElement>('a[href], button:not(:disabled), input:not(:disabled), [tabindex="0"]')]
+      const closedDetails = [...surface.querySelectorAll<HTMLDetailsElement>('details:not([open])')]
+      const controls = [...surface.querySelectorAll<HTMLElement>('a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), summary, [tabindex="0"]')].filter(node =>
+        node.getClientRects().length > 0 && !node.hidden && getComputedStyle(node).visibility === 'visible' &&
+        !closedDetails.some(details => details.contains(node) && details.querySelector(':scope > summary') !== node))
       const first = controls[0], last = controls[controls.length - 1]
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
@@ -33,7 +37,7 @@ export default function CompactSheet({ title, id, onClose, returnFocus, children
       unlockBodyScroll(lockId)
       if (previousFocus instanceof HTMLElement && previousFocus.isConnected) previousFocus.focus({ preventScroll: true })
     }
-  }, [lockId, onClose, returnFocus])
+  }, [lockId, returnFocus])
   return createPortal(<div className="compact-sheet-backdrop" ref={ref} onClick={event => {
     if (event.target === event.currentTarget) onClose()
   }}>

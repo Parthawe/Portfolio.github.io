@@ -1,0 +1,37 @@
+.moniac-game { --moniac-bg:var(--surface); --moniac-ink:var(--ink); --moniac-muted:var(--ink-60); --moniac-rule:var(--ink-20); --moniac-accent:#075d93; --moniac-fill:#67bfed; --moniac-danger:#a63832; color:var(--moniac-ink); border-color:var(--moniac-rule)!important; }
+[data-theme=dark] .moniac-game { --moniac-danger:#f2a199; --moniac-accent:#8ed2f3; }
+.moniac-policy { padding:20px; border-top:1px solid var(--moniac-rule); }
+.moniac-policy select { display:block; margin-top:8px; padding:12px; background:var(--moniac-bg); color:var(--moniac-ink); border:1px solid var(--moniac-rule); min-height:44px; font:inherit; width:min(100%,320px); }
+.moniac-policy-detail { margin-block:24px 8px; padding-top:20px; border-top:1px solid var(--moniac-rule); }
+
+.moniac-policy-detail p { max-width:65ch; font:16px/1.65 var(--sans); }
+
+.moniac-policy summary { min-height:44px; cursor:pointer; }
+.moniac-game :is(button,input,select,summary):focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+.moniac-game .moniac-slider { min-height:44px!important; outline:revert!important; }
+@media(max-width:540px) { .moniac-policy-detail { align-items:flex-start; flex-wrap:wrap; gap:16px; } .moniac-policy-detail > div:first-child { flex-basis:100%!important; } }
+@media(prefers-reduced-motion:reduce) { .moniac-game *, .moniac-game *::before, .moniac-game *::after { animation:none!important; transition:none!important; } }
+.moniac-experiment-controls { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+.moniac-experiment-controls button { min-height:44px; padding:10px 14px; background:var(--moniac-bg); color:var(--moniac-ink); border:1px solid var(--moniac-rule); }
+.moniac-step-results { width:100%; border-collapse:collapse; margin-block:16px; font-variant-numeric:tabular-nums; font-size:14px; }
+.moniac-step-results :is(th,td) { text-align:start; padding:10px 6px; border-bottom:1px solid var(--moniac-rule); }
+.moniac-step-results caption { text-align:start; padding-block:12px; font:14px/1.6 var(--sans); }
+
+.moniac-game .moniac-session-controls:empty { display:none; }
+.moniac-console-header { border-bottom:1px solid var(--moniac-rule)!important; min-height:82px; }
+.moniac-policy-bank { --moniac-accent:#cceeff; --moniac-fill:#47ade0; --moniac-rule:#627f91; --moniac-muted:#c0dbe9; display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:10px; padding:28px 16px 18px; background:#142732; color:#edf7fc; margin-top:24px; border-radius:8px; }
+.moniac-policy-bank .moniac-tank { min-width:0!important; padding:10px 4px; }
+.moniac-policy-bank .moniac-tank-vessel { height:136px!important; width:94px!important; max-width:100%!important; background:#253e4c!important; border-radius:4px!important; }
+.moniac-policy-bank .moniac-tank-vessel > div:first-child { opacity:.66; }
+.moniac-policy-bank .moniac-tank-vessel > div:last-child { color:#ffffff!important; font-size:24px!important; gap:3px; }
+.moniac-policy-bank .moniac-tank-vessel small { font:12px var(--sans); }
+.moniac-game .moniac-tank-label { border:0; background:transparent; color:#dcebf4; font:14px/1.4 var(--sans); min-height:44px; padding:8px 4px; cursor:pointer; }
+.moniac-game .moniac-tank-label[aria-pressed=true] { color:#fff; text-decoration:underline; text-underline-offset:6px; text-decoration-color:#91d8fc; }
+.moniac-policy-bank .is-inspected .moniac-tank-vessel { border-color:#bde9ff!important; }
+.moniac-policy-bank .moniac-slider { max-width:94px!important; width:100%!important; }
+.moniac-policy-bank :is(button,input):focus-visible { outline-color:#cceeff; }
+.moniac-gauge-caption { font:14px/1.65 var(--sans); color:var(--moniac-muted); margin:12px 0; }
+.moniac-policy-detail h3 { font:600 20px/1.4 var(--sans); margin:0 0 8px; }
+.moniac-experiment-controls button:hover { background:var(--ink-06); }
+@media(max-width:800px){.moniac-policy-bank { grid-template-columns:repeat(4,minmax(0,1fr)); }}
+@media(max-width:540px){.moniac-policy-bank { grid-template-columns:repeat(2,minmax(0,1fr)); padding:16px 12px; }.moniac-policy-bank .moniac-tank-vessel { height:112px!important; }.moniac-policy-bank .moniac-tank:last-child { grid-column:1/-1; }.moniac-policy { padding:16px; }.moniac-console-header { padding:16px!important; }}

@@ -1,0 +1,11 @@
+import { experiencePreviewsEnabled } from '../utils/experiencePreview'
+import './DraftReviewNav.css'
+import {Link} from 'react-router-dom'
+import {projects} from '../data/projects'
+export const draftReviewOrder=['typeface','atps','enigma','jugalbandi','moniac-machine','revolving-stage','sea-of-salt','black-hole','mentra','mentra-miniapps','clawed-chat','executivelens','org-dashboard','healthapp','vj-software','code-for-build','ballah-code','raahi-project']
+export default function DraftReviewNav({project}:{project:string}){
+ const index=draftReviewOrder.indexOf(project)
+ if(!experiencePreviewsEnabled||index<0)return null
+ const name=(slug:string)=>projects.find(item=>item.slug===slug)?.name??slug
+ return <nav className="draft-review-nav" aria-label="Draft review sequence"><span>Draft {index+1} of {draftReviewOrder.length} · awaiting your review</span><div>{index>0&&<Link to={`/experience-preview/${draftReviewOrder[index-1]}`}>Previous · {name(draftReviewOrder[index-1])}</Link>}<Link to="/experience-preview">All drafts</Link>{index<draftReviewOrder.length-1&&<Link to={`/experience-preview/${draftReviewOrder[index+1]}`}>Next · {name(draftReviewOrder[index+1])}</Link>}</div></nav>
+}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useId } from 'react'
+import PortfolioSlider from './PortfolioSlider'
 import { observeVisible } from '../utils/visibleActivity'
 
 const TRANSCRIPT = [
@@ -16,6 +17,7 @@ export default function MeetingTimeline() {
   const root = useRef<HTMLDivElement>(null)
   const lines = useRef<(HTMLLIElement | null)[]>([])
   const id = useId()
+  const excerpt = useRef<HTMLDivElement>(null)
   const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [source, setSource] = useState<number | null>(null)
@@ -35,15 +37,16 @@ export default function MeetingTimeline() {
   useEffect(() => { if (complete) setPlaying(false) }, [complete])
   useEffect(() => {
     if (source === null) return
-    lines.current[source]?.focus({ preventScroll: true })
-    lines.current[source]?.scrollIntoView({ block: 'nearest', behavior: 'instant' })
+    const target=window.matchMedia('(max-width:680px)').matches?excerpt.current:lines.current[source]
+    target?.focus({ preventScroll:true })
+    target?.scrollIntoView({block:'nearest',behavior:'instant'})
   }, [source])
 
   const cite = (index: number) => {
     setSource(index)
     // Repeated citation clicks should also restore focus.
-    lines.current[index]?.focus({ preventScroll: true })
-    lines.current[index]?.scrollIntoView({ block: 'nearest', behavior: 'instant' })
+    const target=window.matchMedia('(max-width:680px)').matches?excerpt.current:lines.current[index]
+    target?.focus({preventScroll:true});target?.scrollIntoView({block:'nearest',behavior:'instant'})
   }
   return (
     <div className="project-meeting-demo" ref={root}>
@@ -55,7 +58,7 @@ export default function MeetingTimeline() {
           {!complete && <button type="button" onClick={() => { setProgress(20); setPlaying(false) }}>Show complete meeting</button>}
           <button type="button" onClick={() => { setProgress(0); setPlaying(false); setSource(null) }}>Reset replay</button>
         </div>
-        <p role="status">{complete ? 'Replay complete. Select a source to check the summary.' : `${playing ? 'Playing' : 'Paused'} · ${progress} of 20 seconds`}</p>
+        <label htmlFor={`${id}-seek`}>Meeting position · {progress}s</label><PortfolioSlider id={`${id}-seek`} aria-label="Meeting position" min={0} max={20} value={progress} onChange={event=>{setPlaying(false);setSource(null);setProgress(Number(event.target.value))}}/><p role="status">{complete ? 'Replay complete. Select a source to check the summary.' : `${playing ? 'Playing' : 'Paused'} · ${progress} of 20 seconds`}</p>
       </header>
       <div className="project-meeting-demo__columns">
         <section aria-labelledby={`${id}-transcript`}>
@@ -71,6 +74,7 @@ export default function MeetingTimeline() {
         </section>
         <section aria-labelledby={`${id}-summary`}>
           <h4 id={`${id}-summary`}>Prepared summary</h4>
+          {source!==null&&<div className="project-meeting-source-excerpt" tabIndex={-1} ref={excerpt}><strong>Source · {TRANSCRIPT[source].time}s · {TRANSCRIPT[source].speaker}</strong><p>{TRANSCRIPT[source].text}</p></div>}
           {!complete ? <p>Play the replay or show the complete meeting to inspect the decisions and their sources.</p> : <>
             <h5>Agreed action</h5>
             <p>Launch the SMB retention campaign by October 15. Priya owns the campaign.</p>

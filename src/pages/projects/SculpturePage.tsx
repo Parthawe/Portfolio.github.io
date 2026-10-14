@@ -1,4 +1,3 @@
-import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -42,9 +41,6 @@ export default function SculpturePage() {
             { label: 'Duration', value: 'Dec 2019 - Mar 2022' },
           ]}
         />
-
-
-        <CsSection id="cs-world" label="Interactive room" title="View the sculpture studies"><PhysicalWorld project="sculpture" /></CsSection>
 
         <CsSection id="cs-glimpse" label="Glimpse" title="Learning form through making">
           <CsBody>
@@ -95,7 +91,6 @@ export default function SculpturePage() {
 
 
         <BottomNav sections={[
-          { id: 'cs-world', label: 'Room' },
           { id: 'cs-glimpse', label: 'Glimpse' },
           { id: 'cs-impact', label: 'Impact' },
           { id: 'cs-learning', label: 'Learning' },

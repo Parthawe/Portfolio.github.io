@@ -115,7 +115,7 @@ function getHomeSchema() {
 
 function getRouteMeta(pathname: string): RouteMeta {
   const url = pathname === '/' ? SITE_URL : `${SITE_URL}${pathname}`
-  const robots = NOINDEX_ROUTES.has(pathname) ? 'noindex, nofollow' : 'index, follow'
+  const robots = (NOINDEX_ROUTES.has(pathname) || pathname.startsWith('/experience-preview')) ? 'noindex, nofollow' : 'index, follow'
 
   if (pathname === '/') {
     return {
