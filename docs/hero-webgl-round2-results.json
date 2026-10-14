@@ -1,0 +1,125 @@
+{
+  "browser": "151.0.7922.34",
+  "results": [
+    {
+      "run": 0,
+      "variant": "before",
+      "interaction": {
+        "mainThreadTaskMs": 1583.8210000000004,
+        "scriptMs": 746.113,
+        "draws": 26730
+      },
+      "readyMs": 1573.1000000014901,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 0,
+      "variant": "after",
+      "interaction": {
+        "mainThreadTaskMs": 725.187,
+        "scriptMs": 370.32400000000007,
+        "draws": 25080
+      },
+      "readyMs": 1672.7000000029802,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 1,
+      "variant": "after",
+      "interaction": {
+        "mainThreadTaskMs": 848.022,
+        "scriptMs": 431.4629999999999,
+        "draws": 26400
+      },
+      "readyMs": 1376.0999999940395,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 1,
+      "variant": "before",
+      "interaction": {
+        "mainThreadTaskMs": 696.798,
+        "scriptMs": 358.29299999999995,
+        "draws": 25410
+      },
+      "readyMs": 1465.7000000029802,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 2,
+      "variant": "before",
+      "interaction": {
+        "mainThreadTaskMs": 668.2220000000001,
+        "scriptMs": 344.621,
+        "draws": 25080
+      },
+      "readyMs": 1370,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 2,
+      "variant": "after",
+      "interaction": {
+        "mainThreadTaskMs": 1162.1800000000003,
+        "scriptMs": 548.592,
+        "draws": 27390
+      },
+      "readyMs": 1396.1999999955297,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 3,
+      "variant": "after",
+      "interaction": {
+        "mainThreadTaskMs": 1143.877,
+        "scriptMs": 546.4340000000001,
+        "draws": 25080
+      },
+      "readyMs": 1431.3999999985099,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 3,
+      "variant": "before",
+      "interaction": {
+        "mainThreadTaskMs": 1561.4460000000001,
+        "scriptMs": 803.7909999999999,
+        "draws": 26730
+      },
+      "readyMs": 2009.8999999985099,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    }
+  ]
+}

@@ -102,14 +102,11 @@ interface ThreadInfo {
   material: THREE.ShaderMaterial;
   speed: number;
   phase: number;
+  glowCenter: number;
+  fade: number;
 }
 
-function ConstellationLines({ positions, dark, fadeRef }: { positions: [number, number, number][]; dark: boolean; fadeRef?: React.RefObject<number> }) {
-  const groupRef = useRef<THREE.Group>(null!);
-
-  const threadData = useMemo(() => {
-    const result: ThreadInfo[] = [];
-    const appearance = dark
+function collapsedThreadAppearance(dark: boolean) { return dark
       ? {
           color: new THREE.Color('#f0f4ff'),
           baseAlpha: 0.04,
@@ -123,7 +120,36 @@ function ConstellationLines({ positions, dark, fadeRef }: { positions: [number, 
           glowAlpha: 0.64,
           tintLift: 0.2,
           whiteMixMax: 0.58,
-        };
+        }; }
+
+function createThreadMaterial(appearance: ReturnType<typeof collapsedThreadAppearance>) {
+  return new THREE.ShaderMaterial({
+          vertexShader: threadVertexShader,
+          fragmentShader: threadFragmentShader,
+          uniforms: {
+            uGlowCenter: { value: 0 },
+            uGlowWidth: { value: GLOW_WIDTH },
+            uColor: { value: appearance.color },
+            uBaseAlpha: { value: appearance.baseAlpha },
+            uGlowAlpha: { value: appearance.glowAlpha },
+            uTintLift: { value: appearance.tintLift },
+            uWhiteMixMax: { value: appearance.whiteMixMax },
+            uFade: { value: 1 },
+          },
+          transparent: true,
+          depthWrite: false,
+          side: THREE.DoubleSide,
+        });
+}
+
+function ConstellationLines({ positions, dark, fadeRef }: { positions: [number, number, number][]; dark: boolean; fadeRef?: React.RefObject<number> }) {
+  const groupRef = useRef<THREE.Group>(null!);
+
+  const shareMaterial = useThree(state => state.gl instanceof THREE.WebGLRenderer);
+  const threadData = useMemo(() => {
+    const result: ThreadInfo[] = [];
+    const appearance = collapsedThreadAppearance(dark);
+    const sharedMaterial = shareMaterial ? createThreadMaterial(appearance) : null;
 
     // Build connection pairs, nearest 2 neighbors per node (no full mesh)
     const vecs = positions.map(p => new THREE.Vector3(...p));
@@ -182,35 +208,39 @@ function ConstellationLines({ positions, dark, fadeRef }: { positions: [number, 
           progressArr[v] = ring / TUBE_SEGMENTS;
         }
         tubeGeo.setAttribute('curveProgress', new THREE.BufferAttribute(progressArr, 1));
+        // These custom shaders read only position and curveProgress. Three
+        // uploads every geometry attribute, even attributes absent in the shader.
+        tubeGeo.deleteAttribute('normal');
+        tubeGeo.deleteAttribute('uv');
 
-        const material = new THREE.ShaderMaterial({
-          vertexShader: threadVertexShader,
-          fragmentShader: threadFragmentShader,
-          uniforms: {
-            uGlowCenter: { value: 0 },
-            uGlowWidth: { value: GLOW_WIDTH },
-            uColor: { value: appearance.color },
-            uBaseAlpha: { value: appearance.baseAlpha },
-            uGlowAlpha: { value: appearance.glowAlpha },
-            uTintLift: { value: appearance.tintLift },
-            uWhiteMixMax: { value: appearance.whiteMixMax },
-            uFade: { value: 1 },
-          },
-          transparent: true,
-          depthWrite: false,
-          side: THREE.DoubleSide,
-        });
+        const material = sharedMaterial ?? createThreadMaterial(appearance);
 
         result.push({
           tubeGeo,
           material,
+          glowCenter: 0,
+          fade: 1,
           speed: 0.03 + r1 * 0.12 + r3 * 0.06, // wider speed range for organic feel
           phase: r2 * 6.28 + t * 1.2 + pairIdx * 0.7, // more phase spread
         });
       }
     }
     return result;
-  }, [positions, dark]);
+  }, [positions, shareMaterial]);
+  useLayoutEffect(() => {
+    const appearance = collapsedThreadAppearance(dark);
+    for (const material of new Set(threadData.map(thread => thread.material))) {
+      for (const [key, value] of Object.entries(appearance)) {
+        const uniform = material.uniforms[`u${key[0].toUpperCase()}${key.slice(1)}`];
+        if (value instanceof THREE.Color) uniform.value.copy(value);
+        else uniform.value = value;
+      }
+    }
+  }, [dark, threadData]);
+  useEffect(() => () => {
+    threadData.forEach(thread => thread.tubeGeo.dispose());
+    new Set(threadData.map(thread => thread.material)).forEach(material => material.dispose());
+  }, [threadData]);
 
   // Animate: move the glow window along each thread
   useFrame(({ clock }) => {
@@ -224,8 +254,12 @@ function ConstellationLines({ positions, dark, fadeRef }: { positions: [number, 
       // Glow center travels 0→1→0 (ping pong)
       const raw = (time * thread.speed + thread.phase) % 2;
       const center = raw < 1 ? raw : 2 - raw;
-      thread.material.uniforms.uGlowCenter.value = center;
-      thread.material.uniforms.uFade.value = fade;
+      thread.glowCenter = center;
+      thread.fade = fade;
+      if (!shareMaterial) {
+        thread.material.uniforms.uGlowCenter.value = center;
+        thread.material.uniforms.uFade.value = fade;
+      }
     }
   });
 
@@ -235,7 +269,13 @@ function ConstellationLines({ positions, dark, fadeRef }: { positions: [number, 
   return (
     <group ref={groupRef}>
       {threadData.map((td, i) => (
-        <mesh key={i} geometry={td.tubeGeo} material={td.material} raycast={noRaycast} />
+        <mesh key={i} matrixAutoUpdate={false} geometry={td.tubeGeo} material={td.material} onBeforeRender={shareMaterial ? () => {
+          // Share renderer/material state, not geometry: independent meshes
+          // retain their original transparent depth sorting and glow values.
+          td.material.uniforms.uGlowCenter.value = td.glowCenter;
+          td.material.uniforms.uFade.value = td.fade;
+          td.material.uniformsNeedUpdate = true;
+        } : undefined} raycast={noRaycast} />
       ))}
     </group>
   );
@@ -1327,6 +1367,10 @@ function ParticleDust({ count, reduced, dark }: { count: number; reduced: boolea
 // strands here since the neighbour-mesh has many more edges.
 const WEB_STRANDS_PER_EDGE = 3;
 
+function expandedThreadAppearance(dark: boolean) { return dark
+      ? { color: new THREE.Color('#dce6ff'), baseAlpha: 0.16, glowAlpha: 0.92, tintLift: 0.5, whiteMixMax: 0.85 }
+      : { color: new THREE.Color('#7d8da0'), baseAlpha: 0.24, glowAlpha: 0.8, tintLift: 0.2, whiteMixMax: 0.58 }; }
+
 function WebEdges({
   edges,
   nodeById,
@@ -1341,9 +1385,7 @@ function WebEdges({
   dark: boolean;
 }) {
   const built = useMemo(() => {
-    const appearance = dark
-      ? { color: new THREE.Color('#dce6ff'), baseAlpha: 0.16, glowAlpha: 0.92, tintLift: 0.5, whiteMixMax: 0.85 }
-      : { color: new THREE.Color('#7d8da0'), baseAlpha: 0.24, glowAlpha: 0.8, tintLift: 0.2, whiteMixMax: 0.58 };
+    const appearance = expandedThreadAppearance(dark);
 
     interface Strand {
       tubeGeo: THREE.TubeGeometry;
@@ -1352,6 +1394,7 @@ function WebEdges({
       edgeKey: string;
       speed: number;
       phase: number;
+      mesh?: THREE.Mesh | null;
       segMid: THREE.Vector3; // local midpoint, for the screen-edge fade
     }
     const strands: Strand[] = [];
@@ -1382,6 +1425,10 @@ function WebEdges({
         const vertsPerRing = 4;
         for (let v = 0; v < count; v++) progressArr[v] = Math.floor(v / vertsPerRing) / 48;
         tubeGeo.setAttribute('curveProgress', new THREE.BufferAttribute(progressArr, 1));
+        // These custom shaders read only position and curveProgress. Three
+        // uploads every geometry attribute, even attributes absent in the shader.
+        tubeGeo.deleteAttribute('normal');
+        tubeGeo.deleteAttribute('uv');
 
         const material = new THREE.ShaderMaterial({
           vertexShader: threadVertexShader,
@@ -1412,7 +1459,18 @@ function WebEdges({
       }
     });
     return strands;
-  }, [edges, nodeById, dark]);
+  }, [edges, nodeById]);
+  useLayoutEffect(() => {
+    const appearance = expandedThreadAppearance(dark);
+    for (const thread of built) {
+      for (const [key, value] of Object.entries(appearance)) {
+        const uniform = thread.material.uniforms[`u${key[0].toUpperCase()}${key.slice(1)}`];
+        if (value instanceof THREE.Color) uniform.value.copy(value);
+        else uniform.value = value;
+      }
+    }
+  }, [dark, built]);
+  useEffect(() => () => { for (const thread of built) { thread.tubeGeo.dispose(); thread.material.dispose(); } }, [built]);
 
   const { camera } = useThree();
   const groupRef = useRef<THREE.Group>(null!);
@@ -1436,6 +1494,8 @@ function WebEdges({
         edgeFade = f * f * (3 - 2 * f);
       }
       e.material.uniforms.uFade.value = intro * focus * edgeFade;
+      // Zero fade already discards every fragment; omit the draw entirely.
+      if (e.mesh) e.mesh.visible = e.material.uniforms.uFade.value !== 0;
     }
   });
 
@@ -1443,7 +1503,7 @@ function WebEdges({
   return (
     <group ref={groupRef}>
       {built.map((e) => (
-        <mesh key={e.key} geometry={e.tubeGeo} material={e.material} raycast={noRaycast} />
+        <mesh key={e.key} ref={mesh => { e.mesh = mesh; }} matrixAutoUpdate={false} geometry={e.tubeGeo} material={e.material} raycast={noRaycast} />
       ))}
     </group>
   );
@@ -1945,6 +2005,7 @@ function InfiniteGrid({ introRef, panRef, dark }: {
   panRef: React.RefObject<{ x: number; y: number }>;
   dark: boolean;
 }) {
+  const meshRef = useRef<THREE.Mesh>(null!);
   const uniforms = useMemo(() => ({
     uPan: { value: new THREE.Vector2() },
     uFade: { value: 0 },
@@ -1953,11 +2014,14 @@ function InfiniteGrid({ introRef, panRef, dark }: {
   }), [dark]);
   useFrame(() => {
     uniforms.uFade.value = introRef.current ?? 0;
+    // The collapsed grid discards every pixel. Avoid running a full-screen
+    // derivative shader until its existing fade can actually contribute.
+    if (meshRef.current) meshRef.current.visible = uniforms.uFade.value !== 0;
     const p = panRef.current;
     if (p) uniforms.uPan.value.set(-p.x, -p.y);
   });
   return (
-    <mesh position={[0, 0, -3.5]} renderOrder={-10} frustumCulled={false}>
+    <mesh ref={meshRef} position={[0, 0, -3.5]} renderOrder={-10} frustumCulled={false}>
       <planeGeometry args={[150, 110]} />
       <shaderMaterial vertexShader={gridVertexShader} fragmentShader={gridFragmentShader} uniforms={uniforms} transparent depthWrite={false} />
     </mesh>
