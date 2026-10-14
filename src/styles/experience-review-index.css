@@ -42,3 +42,10 @@
 @media(max-width:640px){.experience-review { padding:22px 20px 48px; }.experience-review-top { gap:18px; margin-bottom:40px; }.experience-review-grid { grid-template-columns:1fr; gap:32px; }.experience-review-status { font-size:11px; }.experience-review-filters { gap:3px; }.experience-review-filters button { padding-inline:10px; }.experience-review > header > p { font-size:16px; }}
 
 @media(max-width:640px){.experience-review-top { margin-bottom:28px; }.experience-review > header { gap:16px; margin-bottom:26px; }.experience-review > header > p { font-size:15px; line-height:1.6; }.experience-review > header br { display:none; }}
+.experience-review-item { min-width:0; display:flex; flex-direction:column; }
+.experience-review-item .experience-review-card { flex:1; }
+.experience-review-related { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px 20px; padding-top:8px; }
+.experience-review-related a { display:inline-flex; align-items:center; min-height:44px; color:var(--ink-70); font-size:13px; text-decoration:none; }
+.experience-review-related a:hover { color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
+.experience-review-status { align-items:center; flex-wrap:wrap; }
+.experience-review-status .experience-review-clear { margin-left:auto; font-size:12px; }

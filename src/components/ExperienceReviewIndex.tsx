@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams, useLocation } from 'react-router-dom'
 import { projects } from '../data/projects'
 import { projectExperience } from '../data/projectExperiences'
 import { projectImageProps } from '../utils/projectImage'
@@ -32,6 +32,7 @@ const formatLabels: Record<string, string> = { physical: 'Physical model', proto
 const actions: Record<string,string> = { typeface:'Shape a letter',atps:'Find a conversation',enigma:'Write with light',jugalbandi:'Play a mechanism','moniac-machine':'Run the economy','revolving-stage':'Take it apart','sea-of-salt':'Turn the mill','black-hole':'Explore the studies',mentra:'Try onboarding','mentra-miniapps':'Launch a MiniApp','clawed-chat':'Review an action',executivelens:'Trace a decision','org-dashboard':'Explore the workspace',healthapp:'Rebalance a day','vj-software':'Choose a parking bay','code-for-build':'Build a page','ballah-code':'Try a code change','raahi-project':'Plan a journey' }
 const filters = [{id:'all',label:'All experiences',formats:[]},{id:'objects',label:'Physical objects',formats:['physical']},{id:'interfaces',label:'Interfaces',formats:['prototype']},{id:'tools',label:'Tools & games',formats:['tool','experiment']},{id:'listen',label:'Listen',formats:['media']}]
 function ExperienceCard({ slug, index }: { slug: string; index: number }) {
+  const location = useLocation()
   const project = projects.find(item => item.slug === slug)
   const experience = projectExperience(slug)
   const [fallback, setFallback] = useState(false)
@@ -40,7 +41,7 @@ function ExperienceCard({ slug, index }: { slug: string; index: number }) {
   if (!project || !experience) return null
   const preview = previews[slug]
   const src = fallback ? project.image : project.cardMockupSquare || project.cover16x9 || project.cardMockup || preview?.image || project.image
-  return <Link className="experience-review-card" to={`/experience-preview/${slug}`} aria-labelledby={`review-title-${slug}`} aria-describedby={`review-action-${slug}`}>
+  return <article className="experience-review-item"><Link className="experience-review-card" state={{draftSearch:location.search}} to={`/experience-preview/${slug}`} aria-labelledby={`review-title-${slug}`} aria-describedby={`review-action-${slug}`}>
     <div className={`experience-review-image${loaded ? ' is-loaded' : ''}`}>
       {failed ? <span>Project preview unavailable</span> : <img src={src} {...projectImageProps(src)} sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1050px) calc((100vw - 72px) / 2), 430px" alt={`${project.name} project preview`} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" onLoad={() => setLoaded(true)} onError={() => { if (!fallback && src !== project.image) { setFallback(true); setLoaded(false) } else { setFailed(true); setLoaded(true) } }} />}
       <span className="experience-review-action" id={`review-action-${slug}`}>{actions[slug] || 'Open experience'} <span aria-hidden="true">↗</span></span>
@@ -51,11 +52,17 @@ function ExperienceCard({ slug, index }: { slug: string; index: number }) {
       <p>{preview?.description ?? experience.label}</p>
       <div className="experience-review-card-footer"><small>{preview?.note ?? 'Awaiting review'}</small></div>
     </div>
-  </Link>
+  </Link><div className="experience-review-related"><Link to={`/${slug}`} aria-label={`Read ${project.name} case study`}>Case study ↗</Link>{['jugalbandi','revolving-stage'].includes(slug)&&<Link to={`/${slug}#${slug==='jugalbandi'?'cs-harp-story':'cs-stage-story'}`} aria-label={`How ${project.name} works`}>How it works ↗</Link>}</div></article>
 }
 
 export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
-  const [filter,setFilter]=useState('all'),[query,setQuery]=useState('')
+  const [params,setParams]=useSearchParams()
+  const filter=filters.some(f=>f.id===params.get('kind'))?params.get('kind')!:'all'
+  const query=params.get('q')||''
+  const update=(key:string,value:string)=>setParams(previous=>{const next=new URLSearchParams(previous);if(value&&value!=='all')next.set(key,value);else next.delete(key);return next},{replace:true,preventScrollReset:true})
+  const setFilter=(value:string)=>update('kind',value)
+  const setQuery=(value:string)=>update('q',value)
+  const reset=()=>setParams({}, {replace:true,preventScrollReset:true})
   const matches=(slug:string,id:string)=>id==='all'||filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.format||'')
   const visible=slugs.filter(slug=>matches(slug,filter)&&`${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]}`.toLowerCase().includes(query.trim().toLowerCase()))
   return <main className="experience-review" id="main-content">
@@ -63,8 +70,8 @@ export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
     <nav className="experience-review-top" aria-label="Preview navigation"><Link to="/">Parth</Link><Link to="/work">Work</Link><span aria-current="page">Experiences</span><ThemeToggle /></nav>
     <header><div><p className="experience-review-eyebrow">The interactive collection</p><h1>Try the work.</h1></div><p>Shape a letter. Play an instrument. Test a workflow.<br/>Explore the projects through something you can do.</p></header>
     <div className="experience-review-toolbar"><div className="experience-review-filters" role="group" aria-label="Filter experiences">{filters.map(f=><button key={f.id} aria-pressed={filter===f.id} onClick={()=>setFilter(f.id)}>{f.label}<span>{slugs.filter(slug=>matches(slug,f.id)).length}</span></button>)}</div><label className="experience-review-search"><span>Find an experience</span><input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search projects" /></label></div>
-    <div className="experience-review-status"><p role="status">{visible.length} of {slugs.length} experiences</p><p>Draft collection · awaiting review</p></div>
-    {visible.length?<nav className="experience-review-grid" aria-label="Project experience drafts">{visible.map((slug,index)=><ExperienceCard key={slug} slug={slug} index={index}/>)}</nav>:<section className="experience-review-empty"><h2>No matching experiences</h2><p>Try another project name or explore the full collection.</p><button onClick={()=>{setQuery('');setFilter('all')}}>Show all experiences</button></section>}
+    <div className="experience-review-status"><p role="status">{visible.length} of {slugs.length} experiences</p><p>Draft collection · awaiting review</p>{(query||filter!=='all')&&<button className="experience-review-clear" onClick={reset}>Clear filters</button>}</div>
+    {visible.length?<nav className="experience-review-grid" aria-label="Project experience drafts">{visible.map((slug,index)=><ExperienceCard key={slug} slug={slug} index={index}/>)}</nav>:<section className="experience-review-empty"><h2>No matching experiences</h2><p>Try another project name or explore the full collection.</p><button onClick={reset}>Show all experiences</button></section>}
     <footer className="experience-review-end"><p>Looking for the process behind a project?</p><Link to="/work">Read the case studies ↗</Link><small>These previews are works in progress. Original case studies remain available.</small></footer>
   </main>
 }

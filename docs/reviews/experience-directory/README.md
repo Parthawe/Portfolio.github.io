@@ -7,3 +7,11 @@ The directory includes format filters with counts, search, a recoverable empty s
 Validation: production build and TypeScript; all eighteen cover images and unique route destinations; Chromium desktop, Chromium touch and WebKit mobile in both themes; filter counts, search, clearing empty results, Enter-to-open navigation, no horizontal overflow, and missing-image recovery. Run `node scripts/experience-directory-qa.mjs` against port 5211 or set QA_BASE_URL.
 
 No project experience, Work page, homepage, or deployment settings were changed.
+
+## Browsing follow-up
+
+Filter/search state now lives in the collection URL. Draft links carry that context through previous/next navigation and every All drafts link. URLs are reconstructed only from the collection's kind/q parameters; no arbitrary return destination is accepted. Unknown filters fall back to the full collection.
+
+Every card has a separate original case-study link, avoiding nested interactive elements. Jugalbandi and Revolving Stage also link directly to their preview-gated scroll explanations. The collection keeps an explicit Clear filters action.
+
+The production build, six existing directory profiles, and an additional Chromium/WebKit return-path suite passed. The latter covers reloads, filtered returns, next-draft context, clearing, case-study links, mechanism deep links and invalid filters. Run `scripts/experience-directory-return-qa.mjs` for these checks.
