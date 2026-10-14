@@ -20,6 +20,7 @@ const defaultDescription = 'Portfolio of Parth Pawar, a Product Designer craftin
 const routeLabels = new Map([
   ['work', 'Work'],
   ['about', 'About'],
+  ['notes', 'Notes'],
   ['accessibility', 'Accessibility'],
   ['ux-design', 'UX Design'],
   ['ux-research', 'UX Research'],
@@ -64,6 +65,7 @@ const routeLabels = new Map([
   ['dna-speculative', 'DNA Speculative Design'],
 ])
 const routeDescriptions = new Map([
+  ['notes', 'Visitor notes and feedback on Parth Pawar’s portfolio. Leave a hello or share a thought.'],
   ['work', 'Selected work by Parth Pawar across AI wearables, fintech, UX design, creative technology, installations, and brand systems.'],
   ['about', 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra.'],
   ['accessibility', 'Accessibility notes and commitments for the portfolio of Parth Pawar.'],
@@ -121,6 +123,7 @@ const routeSocialPreviews = new Map([
   }],
 ])
 const canonicalAliases = new Map([
+  ['guestbook', 'notes'],
   ['mentra-website', 'mentra'],
   ['ux', 'ux-design'],
   ['ui', 'ux-design'],
@@ -216,6 +219,7 @@ const routes = [...new Set([
   ...sitemapRoutes,
   ...canonicalAliases.keys(),
   'accessibility',
+  'notes',
   'book',
   'graveyard',
   'studio',
