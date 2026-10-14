@@ -11,6 +11,7 @@ try {
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message))
   for(const slug of['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole']){
    await page.goto(`${base}/experience-preview/${slug}`)
+   if(slug==='revolving-stage')await page.getByRole('button',{name:'Explore rotation',exact:true}).click()
    if(slug==='jugalbandi'){
     await expect(page.locator('.ja-stage svg')).toBeVisible();await expect(page.locator('.ja')).toHaveAttribute('data-theme',theme)
     await page.getByRole('button',{name:'Pluck selected string',exact:true}).click();await expect(page.locator('.ja-status')).toContainText('completed one pluck')

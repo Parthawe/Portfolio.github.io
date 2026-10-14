@@ -14,6 +14,7 @@ try{
   }
  })
  await page.goto(`${base}/experience-preview/${slug}`)
+   if(slug==='revolving-stage')await page.getByRole('button',{name:'Explore rotation',exact:true}).click()
  if(slug==='jugalbandi'){
   await page.locator('.ja-stage svg').waitFor();assert.equal(await page.locator('.ja canvas').count(),0)
   const readyMs=await page.evaluate(()=>performance.now());await page.waitForTimeout(800)
