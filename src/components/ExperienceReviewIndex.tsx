@@ -16,7 +16,7 @@ const previews: Record<string, { description: string; image?: string; note?: str
   'revolving-stage': { description: 'Take apart the platform, inspect its axle and caster rings, then explore rotation.', image: '/Assets/Projects/RevolvingStage/photos/isometric-stage.png', note: 'Drawing-based reconstruction' },
   'sea-of-salt': { description: 'Turn the mill by hand to advance the folktale and accumulate salt. Reverse the story or reset it.', image: '/Assets/Projects/sea-of-salt/photos/mill-front.webp', note: 'Direct mouse and touch control' },
   'black-hole': { description: 'Explore clocks, spacetime fabric, binary motion and the original light-lensing experiment.', image: '/Assets/Projects/black-hole-assets/time-trap.jpg', note: 'Qualitative demonstrations' },
-  mentra: { description: 'Watch the original glasses onboarding walkthrough or open its interactive Figma prototype.', note: 'Original recording and Figma' },
+  mentra: { description: 'Pair demo glasses using a source-based MentraOS flow, recover from errors, or compare the original design.', note: 'Source-based flow · simulated Bluetooth' },
   'mentra-miniapps': { description: 'Review Notes permissions, save a note and choose what appears on the glasses. Inspect other app designs.', image: '/Assets/images/mentra/os-all-apps.png', note: 'Notes task · other screens are archives' },
   'clawed-chat': { description: 'Edit a proposed reply, choose a safety mode, approve locally and inspect the exact action receipt.', image: '/Assets/images/clawed.webp', note: 'Sample inbox · no messages sent' },
   executivelens: { description: 'Seek through a prepared meeting and trace summary claims back to their transcript evidence.', note: 'Prepared meeting transcript' },
@@ -27,10 +27,10 @@ const previews: Record<string, { description: string; image?: string; note?: str
   'ballah-code': { description: 'Test a button’s behavior or signup validation, inspect a proposed code change and apply it locally.', image: '/Assets/Projects/BallahCode/site/ballah-product-window.png', note: 'Prepared coding exercises' },
   'raahi-project': { description: 'Plan a sample transit journey across the app, stop, vehicle and transfer, including a missed vehicle.', image: '/Assets/Projects/Raahi/photos/Frame%20427318655.png', note: 'Prepared journey · no live transit data' },
 }
-const formatLabels: Record<string, string> = { physical: 'Physical model', prototype: 'Working prototype', tool: 'Interactive tool', experiment: 'Strategy experiment', media: 'Listening archive' }
+const formatLabels: Record<string, string> = { '3d': 'Interactive 3D', anatomy: 'Anatomy mechanism', prototype: 'Working prototype', tool: 'Interactive tool', 'original-experiment': 'Original experiment / tool', media: 'Listening archive' }
 
 const actions: Record<string,string> = { typeface:'Shape a letter',atps:'Find a conversation',enigma:'Write with light',jugalbandi:'Play a mechanism','moniac-machine':'Run the economy','revolving-stage':'Take it apart','sea-of-salt':'Turn the mill','black-hole':'Explore the studies',mentra:'Try onboarding','mentra-miniapps':'Launch a MiniApp','clawed-chat':'Review an action',executivelens:'Trace a decision','org-dashboard':'Explore the workspace',healthapp:'Rebalance a day','vj-software':'Choose a parking bay','code-for-build':'Build a page','ballah-code':'Try a code change','raahi-project':'Plan a journey' }
-const filters = [{id:'all',label:'All experiences',formats:[]},{id:'objects',label:'Physical objects',formats:['physical']},{id:'interfaces',label:'Interfaces',formats:['prototype']},{id:'tools',label:'Tools & games',formats:['tool','experiment']},{id:'listen',label:'Listen',formats:['media']}]
+const filters = [{id:'all',label:'All experiences',formats:[]},{id:'objects',label:'3D objects',formats:['3d']},{id:'anatomy',label:'Anatomy',formats:['anatomy']},{id:'interfaces',label:'Interfaces',formats:['prototype']},{id:'tools',label:'Tools & games',formats:['original-experiment']},{id:'listen',label:'Listen',formats:['media']}]
 function ExperienceCard({ slug, index }: { slug: string; index: number }) {
   const location = useLocation()
   const project = projects.find(item => item.slug === slug)
@@ -47,7 +47,7 @@ function ExperienceCard({ slug, index }: { slug: string; index: number }) {
       <span className="experience-review-action" id={`review-action-${slug}`}>{actions[slug] || 'Open experience'} <span aria-hidden="true">↗</span></span>
     </div>
     <div className="experience-review-copy">
-      <div className="experience-review-meta"><span>{formatLabels[experience.format] ?? 'Project experience'}</span><span>{String(index+1).padStart(2,'0')}</span></div>
+      <div className="experience-review-meta"><span>{formatLabels[experience.presentation] ?? 'Project experience'}</span><span>{String(index+1).padStart(2,'0')}</span></div>
       <h2 id={`review-title-${slug}`}>{project.name}</h2>
       <p>{preview?.description ?? experience.label}</p>
       <div className="experience-review-card-footer"><small>{preview?.note ?? 'Awaiting review'}</small></div>
@@ -63,7 +63,7 @@ export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
   const setFilter=(value:string)=>update('kind',value)
   const setQuery=(value:string)=>update('q',value)
   const reset=()=>setParams({}, {replace:true,preventScrollReset:true})
-  const matches=(slug:string,id:string)=>id==='all'||filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.format||'')
+  const matches=(slug:string,id:string)=>id==='all'||filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.presentation||'')
   const visible=slugs.filter(slug=>matches(slug,filter)&&`${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]}`.toLowerCase().includes(query.trim().toLowerCase()))
   return <main className="experience-review" id="main-content">
     <Helmet><title>Try the work · Project previews</title><meta name="robots" content="noindex,nofollow"/><meta name="googlebot" content="noindex,nofollow"/></Helmet>

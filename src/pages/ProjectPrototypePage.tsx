@@ -19,7 +19,7 @@ export default function ProjectPrototypePage({ preview = false }: { preview?: bo
   if (!experience) return <Navigate to="/404" replace />
   if (experience.mode !== 'prototype') return <Navigate to={digitalHref(experience)} replace />
   const name = projects.find(item => item.slug === project)?.name ?? project
-  const note = project === 'mentra' ? 'Original onboarding prototype, with a recorded walkthrough and Figma access.' : project === 'executivelens' ? 'Existing interactive meeting demo. Prepared transcript and summary; citations reveal their source.' : 'Browser adaptation of the documented workflow. Sample data; changes stay in this session.'
+  const note = project === 'mentra' ? 'Source-based pairing adaptation with simulated Bluetooth. Original recording and Figma remain available for comparison.' : project === 'executivelens' ? 'Existing interactive meeting demo. Prepared transcript and summary; citations reveal their source.' : 'Browser adaptation of the documented workflow. Sample data; changes stay in this session.'
   return <main className="prototype-page" id="main-content">
     <Helmet><title>{name} prototype · Parth Pawar</title>{preview&&<meta name="robots" content="noindex,nofollow"/>}</Helmet>
     <header className="prototype-page-header"><div><h1>{name}</h1><p>{preview ? 'Draft preview · awaiting review' : 'Interactive prototype'}</p></div>{preview&&<Link to={directory.href}>All drafts</Link>}<Link to={`/${project}`}>Back to the project</Link><ThemeToggle /></header>

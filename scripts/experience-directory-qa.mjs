@@ -9,10 +9,11 @@ const browser=await engine.launch();try{for(const theme of ['light','dark']){
  for(const img of await cards.locator('img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true)}
  assert.equal(new Set(await cards.evaluateAll(a=>a.map(x=>x.getAttribute('href')))).size,18)
  await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:`${out}/${name}-${theme}.png`})
- await p.getByRole('button',{name:/Physical objects/}).click();await expect(cards).toHaveCount(5)
+ await p.getByRole('button',{name:/3D objects/}).click();await expect(cards).toHaveCount(3)
+ await p.getByRole('button',{name:/Anatomy/}).click();await expect(cards).toHaveCount(2)
  await p.getByRole('button',{name:/Interfaces/}).click();await expect(cards).toHaveCount(10)
  await p.getByRole('button',{name:/Listen/}).click();await expect(cards).toHaveCount(1)
- await p.getByRole('button',{name:/All experiences/}).click();await p.getByRole('searchbox').fill('take apart');await expect(cards).toHaveCount(1)
+ await p.getByRole('button',{name:/All experiences/}).click();await expect(cards).toHaveCount(18);await p.getByRole('searchbox').fill('take apart');await expect(cards).toHaveCount(1)
  await p.getByRole('searchbox').fill('no-such-project');await expect(p.getByRole('heading',{name:'No matching experiences'})).toBeVisible()
  await p.getByRole('button',{name:'Show all experiences'}).click();await expect(cards).toHaveCount(18)
  await p.getByRole('searchbox').fill('Butler');await cards.first().focus();await p.keyboard.press('Enter');await expect(p).toHaveURL(/experience-preview\/typeface/);await expect(p.locator('[data-glyph-outline]')).toBeVisible({timeout:20000})

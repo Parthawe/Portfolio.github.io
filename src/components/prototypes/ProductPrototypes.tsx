@@ -1,5 +1,6 @@
+const MentraSourcePrototype = lazy(() => import('./MentraSourcePrototype'))
 import PortfolioSlider from '../PortfolioSlider'
-import { useState, useEffect, useRef, useId, Fragment, type ReactNode } from 'react'
+import { lazy, Suspense, useState, useEffect, useRef, useId, Fragment, type ReactNode } from 'react'
 import ValidationExercise from './ValidationExercise'
 import MeetingTimeline from '../MeetingTimeline'
 import { mentraOnboardingPrototype } from '../../data/projectExperiences'
@@ -13,6 +14,10 @@ function Shell({ name, children, actions }: { name: string; children: ReactNode;
   return <div className="prototype-app"><header><strong>{name}</strong>{actions}</header>{children}</div>
 }
 function Mentra() {
+  const [view,setView]=useState('source')
+  return <><div className="mentra-source-views" role="group" aria-label="Mentra experience view"><button aria-pressed={view==='source'} onClick={()=>setView('source')}>Source-based pairing</button><button aria-pressed={view==='original'} onClick={()=>setView('original')}>Original design</button></div>{view==='source'?<Suspense fallback={<p role="status">Loading pairing prototype…</p>}><MentraSourcePrototype/></Suspense>:<MentraOriginal/>}</>
+}
+function MentraOriginal() {
   const recordingButton = useRef<HTMLButtonElement>(null),backButton=useRef<HTMLButtonElement>(null),video=useRef<HTMLVideoElement>(null)
   const [videoFailed,setVideoFailed]=useState(false)
   const [open, setOpen] = useState(false), [loaded, setLoaded] = useState(false), [slow, setSlow] = useState(false)
