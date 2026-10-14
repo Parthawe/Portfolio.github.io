@@ -117,10 +117,11 @@ export default function Nav() {
   const normalizedPathname = pathname === '/' ? pathname : pathname.replace(/\/+$/, '');
   const isHome = normalizedPathname === '/';
   const isAbout = normalizedPathname === '/about';
+  const isNotes = normalizedPathname === '/notes' || normalizedPathname === '/guestbook';
   const isWriting = normalizedPathname === '/writing' || normalizedPathname.startsWith('/writing/');
   const isWork = normalizedPathname === '/work' || normalizedPathname.startsWith('/work/');
   // Project and category pages also count as "work"
-  const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !['studio', 'book', 'graveyard'].some(r => normalizedPathname === `/${r}`));
+  const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !isNotes && !['studio', 'book', 'graveyard'].some(r => normalizedPathname === `/${r}`));
 
   // On the Work page itself, the Work tab expands to show its three views.
   const isWorkPage = normalizedPathname === '/work';

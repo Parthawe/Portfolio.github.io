@@ -82,6 +82,7 @@ function ErrorBoundary({ children }: { children: ReactNode }) {
 const HomePage = lazy(() => import('./pages/HomePage'))
 const WorkPage = lazy(() => import('./pages/WorkPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const NotesPage = lazy(() => import('./pages/NotesPage'))
 const AccessibilityPage = lazy(() => import('./pages/AccessibilityPage'))
 const CategoryPage = lazy(() => import('./pages/CategoryPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
@@ -124,6 +125,8 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/notes" element={<NotesPage />} />
+          <Route path="/guestbook" element={<Navigate to="/notes" replace />} />
           <Route path="/accessibility" element={<AccessibilityPage />} />
 
           {/* Category landing pages */}

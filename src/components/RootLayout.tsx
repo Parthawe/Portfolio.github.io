@@ -249,6 +249,7 @@ export default function RootLayout() {
           const parent = node.parentElement
           if (!parent) return NodeFilter.FILTER_REJECT
           if (['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT
+          if (parent.closest('[data-preserve-copy]')) return NodeFilter.FILTER_REJECT
           return /[—–]/.test(node.nodeValue || '') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP
         },
       })

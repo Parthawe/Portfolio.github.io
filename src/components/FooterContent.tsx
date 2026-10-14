@@ -1,16 +1,10 @@
 import { getVisitorLocation } from '../utils/visitorLocation'
-import { useState, useEffect, useRef, type RefObject, type FormEvent } from 'react'
+import { useState, useEffect, useRef, type RefObject } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, useInView, type MotionValue } from 'framer-motion'
 import FigmaSelect from './FigmaSelect'
 import { CONTACT_EMAIL } from '../config/site'
-import { createPortfolioComment, listPortfolioComments, type PortfolioComment } from '../lib/commentStore'
-import PointerCursorGlyph from './PointerCursorGlyph'
 import PocketArcadeLauncher from './PocketArcadeLauncher'
-
-/** All footer notes share one wall regardless of which page they were left on. */
-const GUESTBOOK_ROUTE = '/guestbook'
-const NOTE_LIMIT = 240
 
 const footerGroups = [
   {
@@ -35,217 +29,24 @@ const footerGroups = [
   },
 ]
 
-/* Figma-style comment pin: circle with one squared corner */
-function CommentPinGlyph({ size = 18 }: { size?: number }) {
+function FooterEnd({ meta }: { meta: React.ReactNode }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 2a10 10 0 1 1-10 10V4a2 2 0 0 1 2-2h8z" fill="currentColor" />
-    </svg>
-  )
-}
-
-function clampPercent(v: number) {
-  return Math.min(96, Math.max(4, v))
-}
-
-function FooterCanvas({ meta }: { meta?: React.ReactNode }) {
-  const zoneRef = useRef<HTMLDivElement>(null)
-  const youRef = useRef<HTMLDivElement>(null)
-  const posRef = useRef({ x: 0, y: 0 })
-  const smoothPos = useRef({ x: 0, y: 0 })
-  const rafRef = useRef(0)
-  const [tracking, setTracking] = useState(false)
-
-  // Guestbook pins live directly on the canvas
-  const [notes, setNotes] = useState<PortfolioComment[]>([])
-  const [draft, setDraft] = useState<{ x: number; y: number } | null>(null)
-  const [body, setBody] = useState('')
-  const [saving, setSaving] = useState(false)
-  const [error, setError] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    let alive = true
-    listPortfolioComments(GUESTBOOK_ROUTE)
-      .then(list => { if (alive) setNotes(list.slice(-12)) })
-      .catch(() => { /* canvas stays pin-free when comments are unreachable */ })
-    return () => { alive = false }
-  }, [])
-
-  useEffect(() => {
-    if (draft) inputRef.current?.focus()
-  }, [draft])
-
-  useEffect(() => {
-    if (!tracking) return
-    const tick = () => {
-      smoothPos.current.x += (posRef.current.x - smoothPos.current.x) * 0.16
-      smoothPos.current.y += (posRef.current.y - smoothPos.current.y) * 0.16
-      const el = youRef.current
-      if (el) el.style.transform = `translate(${smoothPos.current.x}px, ${smoothPos.current.y}px)`
-      rafRef.current = requestAnimationFrame(tick)
-    }
-    rafRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [tracking])
-
-  const canTrack = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  const openDraftAt = (xPercent: number, yPercent: number) => {
-    setDraft({ x: clampPercent(xPercent), y: clampPercent(yPercent) })
-    setBody('')
-    setError('')
-  }
-
-  const closeDraft = () => {
-    setDraft(null)
-    setBody('')
-    setError('')
-  }
-
-  const handleZoneClick = (e: React.MouseEvent) => {
-    // Only empty canvas starts a note — pins, links, and the open draft handle their own clicks.
-    if ((e.target as HTMLElement).closest('.ft-pin, .ft-pin-draft, .ft-scrap-ghost')) return
-    const r = zoneRef.current?.getBoundingClientRect()
-    if (!r) return
-    openDraftAt(((e.clientX - r.left) / r.width) * 100, ((e.clientY - r.top) / r.height) * 100)
-  }
-
-  const submit = async (e: FormEvent) => {
-    e.preventDefault()
-    const text = body.trim()
-    if (!text || saving || !draft) return
-    setSaving(true)
-    setError('')
-    try {
-      const saved = await createPortfolioComment({
-        route: GUESTBOOK_ROUTE,
-        xPercent: draft.x,
-        yPercent: draft.y,
-        selector: 'footer-guestbook',
-        authorName: 'Visitor',
-        authorEmail: null,
-        body: text,
-      })
-      setNotes(current => [...current, saved].slice(-12))
-      closeDraft()
-    } catch {
-      setError('Could not pin this — try again in a bit.')
-    } finally {
-      setSaving(false)
-    }
-  }
-
-  return (
-    <div className="ft-canvas" aria-label="End of the portfolio frame">
-      <div className="ft-canvas-edge">
-        <span className="ft-canvas-framelabel" aria-hidden="true">portfolio.fig — end of frame</span>
-        <span className="ft-canvas-hint">
-          Notes left on the canvas — click anywhere to pin yours.
-          <button
-            type="button"
-            className="ft-canvas-hint-btn"
-            data-parth-comment-target
-            onClick={() => openDraftAt(50, 46)}
-          >
-            + leave a note
-          </button>
+    <div className="ft-end">
+      <Link to="/notes" className="ft-notes-link">
+        <span className="ft-notes-copy">
+          <span className="ft-notes-title">Notes</span>
+          <span className="ft-notes-description">Leave a note or read what others wrote.</span>
         </span>
-        {meta && <span className="ft-canvas-meta">{meta}</span>}
-      </div>
-
-      <div
-        className={`ft-canvas-zone ${tracking ? 'is-commenting' : ''}`}
-        ref={zoneRef}
-        onClick={handleZoneClick}
-        onMouseEnter={(e) => {
-          if (!canTrack()) return
-          const r = zoneRef.current!.getBoundingClientRect()
-          posRef.current = { x: e.clientX - r.left, y: e.clientY - r.top }
-          smoothPos.current = { ...posRef.current }
-          setTracking(true)
-        }}
-        onMouseMove={(e) => {
-          const r = zoneRef.current?.getBoundingClientRect()
-          if (r) posRef.current = { x: e.clientX - r.left, y: e.clientY - r.top }
-        }}
-        onMouseLeave={() => setTracking(false)}
-      >
-        {/* stray pen path, unclosed */}
-        <svg className="ft-scrap-path" viewBox="0 0 220 70" fill="none" aria-hidden="true">
-          <path d="M8 58 C 48 8, 96 66, 138 26 S 204 20, 214 44" stroke="currentColor" strokeWidth="1.2" strokeDasharray="none" />
-          <circle cx="8" cy="58" r="2.4" fill="currentColor" />
-          <circle cx="214" cy="44" r="2.4" fill="var(--select-blue, #4a90e2)" stroke="#fff" strokeWidth="1" />
-        </svg>
-
-        {/* a scrawl left on the canvas */}
-        <span className="ft-scrap-scrawl" aria-hidden="true">thanks for scrolling all the way. — p.</span>
-
-        {/* ghost of a deleted frame → graveyard */}
-        <Link to="/graveyard" className="ft-scrap-ghost figma-hover" onClick={(e) => e.stopPropagation()}>
-          <span className="ft-scrap-ghost-name">old-portfolio-v3</span>
-          <span className="ft-scrap-ghost-hint">deleted frames live in the graveyard &rarr;</span>
-          <FigmaSelect />
-        </Link>
-
-        {/* visitor notes pinned to the canvas */}
-        {notes.map((note, index) => (
-          <button
-            key={note.id}
-            type="button"
-            className={`ft-pin ${note.status === 'pending' ? 'ft-pin--pending' : ''}`}
-            style={{ left: `${clampPercent(note.xPercent)}%`, top: `${clampPercent(note.yPercent)}%` }}
-            aria-label={`Note from ${note.authorName}: ${note.body}`}
-          >
-            {index + 1}
-            <span className="ft-pin-bubble" role="tooltip">
-              <span className="ft-pin-body">{note.body}</span>
-              <span className="ft-pin-meta">
-                — {note.authorName}
-                {note.status === 'pending' && <em>pending review</em>}
-              </span>
-            </span>
-          </button>
-        ))}
-
-        {/* draft note: appears exactly where the visitor clicked */}
-        {draft && (
-          <form
-            className="ft-pin-draft"
-            style={{ left: `${draft.x}%`, top: `${draft.y}%` }}
-            onSubmit={submit}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span className="ft-pin-draft-glyph"><CommentPinGlyph /></span>
-            <div className="ft-pin-draft-box">
-              <input
-                ref={inputRef}
-                type="text"
-                value={body}
-                maxLength={NOTE_LIMIT}
-                placeholder="Leave a note…"
-                aria-label="Your note"
-                onChange={e => setBody(e.target.value)}
-                onKeyDown={e => { if (e.key === 'Escape') closeDraft() }}
-              />
-              <button type="submit" disabled={saving || !body.trim()} aria-label="Pin note">
-                {saving ? '…' : '↵'}
-              </button>
-              <button type="button" onClick={closeDraft} aria-label="Cancel note">✕</button>
-            </div>
-            {error && <p className="ft-pin-error" role="alert">{error}</p>}
-          </form>
-        )}
-
-        {/* the visitor's cursor, now in comment mode */}
-        <div className={`ft-cursor ft-cursor--you ${tracking && !draft ? 'is-live' : ''}`} ref={youRef} aria-hidden="true">
-          <PointerCursorGlyph className="ft-cursor__glyph" size={22} />
-          <span className="ft-cursor-tag">leave a note</span>
-        </div>
-
+        <span className="ft-notes-action">
+          <span>Open notes</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" strokeWidth="1.25" />
+          </svg>
+        </span>
+      </Link>
+      <div className="ft-end-meta">
+        <Link to="/graveyard">Past portfolios</Link>
+        {meta}
       </div>
     </div>
   )
@@ -364,8 +165,8 @@ export default function FooterContent({
         </motion.div>
       </motion.div>
 
-      {/* Band 2 — the canvas runs out; location + time live on the frame edge */}
-      <FooterCanvas
+      {/* Notes and the portfolio's closing metadata. */}
+      <FooterEnd
         meta={
           <>
             <span>{getVisitorLocation().label}</span>
