@@ -8,8 +8,8 @@ const parts = [
   { id: 'casters', name: 'Caster assemblies', text: 'Two circular arrangements of wheels support the underside of the platform. Each wheel follows the direction of the circular track.' },
   { id: 'base', name: 'Fixed base', text: 'The 8 × 8 ft wooden base carries the axle and caster assemblies. It stays in place while the upper platform rotates.' },
 ]
-export default function StageAnatomy() {
- const id=useId(),[separation,setSeparation]=useState(100),[selected,setSelected]=useState('all')
+export default function StageAnatomy({initialPart='all',initialSeparation=100}:{initialPart?:string;initialSeparation?:number}={}) {
+ const id=useId(),[separation,setSeparation]=useState(initialSeparation),[selected,setSelected]=useState(initialPart)
  const svgRef=useRef<SVGSVGElement>(null)
  const [viewBox,setViewBox]=useState(`0 0 ${art.width} ${art.height}`)
  useLayoutEffect(()=>{

@@ -1,3 +1,4 @@
+import {lazy, Suspense} from 'react'
 import { experiencePreviewsEnabled } from '../../utils/experiencePreview'
 import DeferredStory from '../../components/anatomy-stories/DeferredStory'
 import { projectImageProps } from '../../utils/projectImage'
@@ -14,6 +15,8 @@ import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import StageRotation from '../../components/StageRotation'
+
+const StageWorkshop = lazy(() => import('../../components/case-study/StageWorkshop'))
 
 export default function RevolvingStagePage() {
   return (
@@ -95,12 +98,12 @@ export default function RevolvingStagePage() {
         {/* Interactive — stage rotation */}
 
         <CsExpandPreview>
-        <CsSection id="cs-rotate" label="Interactive" title="Spin the Stage">
+        <CsSection id="cs-rotate" label="Interactive" title={experiencePreviewsEnabled ? "Explore the Stage" : "Spin the Stage"}>
           <CsBody>
-            <p>Explore a simplified browser model of the rotating platform. Turning it shows how different scene zones can face the audience. The original construction drawings and performance photographs below document the built stage; this model does not simulate its loads or certify its mechanics.</p>
+            <p>{experiencePreviewsEnabled ? "Follow the stage anatomy from its base to performance and disassembly." : "Explore a simplified browser model of the rotating platform."} Turning it shows how different scene zones can face the audience. The original construction drawings and performance photographs below document the built stage; this model does not simulate its loads or certify its mechanics.</p>
           </CsBody>
           <div className="project-content-block">
-            <StageRotation />
+            {experiencePreviewsEnabled ? <Suspense fallback={<p role="status">Loading stage anatomy…</p>}><StageWorkshop /></Suspense> : <StageRotation />}
           </div>
         </CsSection>
 
