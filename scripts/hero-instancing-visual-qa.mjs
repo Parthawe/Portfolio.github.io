@@ -1,10 +1,20 @@
 import { chromium, expect } from '@playwright/test'
-import {mkdirSync,writeFileSync}from'node:fs'
+import {mkdirSync,writeFileSync,readFileSync}from'node:fs'
 import assert from 'node:assert/strict'
 const out=process.env.QA_OUTPUT_DIR||'/tmp/portfolio-round3-visual';mkdirSync(out,{recursive:true})
 const browser=await chromium.launch();const results=[]
 try {for(const theme of ['light','dark']) for(const [name,base] of [['before',process.env.QA_BASELINE_URL||'http://127.0.0.1:5204'],['after',process.env.QA_BASE_URL||'http://127.0.0.1:5199']]) {
  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[]
+
+ if (process.env.QA_HERO_TIME !== undefined) {
+  const time=Number(process.env.QA_HERO_TIME);assert(Number.isFinite(time));
+  await page.route('**/bundle/HeroScene-*.js',async route=>{
+   const response=await route.fetch();const source=await response.text();
+   const pattern=/[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*\.getElapsedTime\(\)/g;
+   assert(pattern.test(source),'hero clock calls must be present');pattern.lastIndex=0;
+   await route.fulfill({status:response.status(),contentType:'application/javascript',body:source.replace(pattern,String(time))});
+  });
+ }
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())})
  await page.addInitScript(theme=>{
   localStorage.setItem('theme',theme);Math.random=()=>.5
@@ -26,3 +36,5 @@ try {for(const theme of ['light','dark']) for(const [name,base] of [['before',pr
  assert(captured.draws>0);assert.equal(errors.length,0,errors.join('\n'))
  results.push({theme,name,draws:captured.draws,errors});console.log(JSON.stringify(results.at(-1)));await page.close()
 }}finally{await browser.close();writeFileSync(`${out}/report.json`,JSON.stringify(results,null,2))}
+
+if(process.env.QA_REQUIRE_IDENTICAL === "1") for(const theme of ["light","dark"]) assert.deepEqual(readFileSync(`${out}/models-${theme}-after.png`),readFileSync(`${out}/models-${theme}-before.png`),`${theme}: frozen hero pixels must match`);
