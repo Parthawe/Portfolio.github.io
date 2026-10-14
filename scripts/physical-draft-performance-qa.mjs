@@ -13,7 +13,14 @@ try{
    prototype[name]=function(...args){window.__reviewDraws++;window.__reviewFirstDraw ||= performance.now();return original.apply(this,args)}
   }
  })
- await page.goto(`${base}/experience-preview/${slug}`);await page.locator('.physical-world-stage canvas').waitFor()
+ await page.goto(`${base}/experience-preview/${slug}`)
+ if(slug==='jugalbandi'){
+  await page.locator('.ja-stage svg').waitFor();assert.equal(await page.locator('.ja canvas').count(),0)
+  const readyMs=await page.evaluate(()=>performance.now());await page.waitForTimeout(800)
+  assert.equal(await page.evaluate(()=>window.__reviewDraws),0,'SVG mechanism needs no WebGL draws')
+  results.push({slug,readyMs,drawsWhileIdle:0,renderer:'SVG'});await page.close();continue
+ }
+ await page.locator('.physical-world-stage canvas').waitFor()
  await page.waitForFunction(()=>window.__reviewFirstDraw>0)
  await page.waitForTimeout(8000)
  const before=await page.evaluate(()=>window.__reviewDraws);await page.waitForTimeout(800);const after=await page.evaluate(()=>window.__reviewDraws)

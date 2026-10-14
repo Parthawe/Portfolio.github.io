@@ -14,6 +14,7 @@ const ProjectPrototypePage = lazy(() => import('./ProjectPrototypePage'))
 const PhysicalWorld = lazy(() => import('../components/physical-worlds/PhysicalWorld'))
 const ArtTownArchive = lazy(() => import('../components/ArtTownArchive'))
 const MoniacSimulator = lazy(() => import('../components/MoniacSimulator'))
+const JugalbandiAnatomy = lazy(() => import('../components/jugalbandi-anatomy/JugalbandiAnatomy'))
 const GlyphEditor = lazy(() => import('../components/GlyphEditor'))
 
 export default function ExperiencePreviewPage() {
@@ -27,7 +28,7 @@ export default function ExperiencePreviewPage() {
   if (project !== 'typeface') return <main className="physical-world-page" id="main-content">
     <Helmet><title>{project} · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet>
     <header><div><p>Draft preview · awaiting review</p><h1>{({enigma:'Enigma',jugalbandi:'Jugalbandi','moniac-machine':'Moniac Machine','revolving-stage':'Revolving Stage','sea-of-salt':'Why the Sea is Salt','black-hole':'Black Hole'} as Record<string,string>)[project]}</h1></div><Link to="/experience-preview">All drafts</Link><Link to={`/${project}`}>Read the case study</Link><ThemeToggle /></header>
-    <details className="world-evidence"><summary>Compare with original photographs and drawings</summary>{(project==='jugalbandi'?[
+    {project!=='jugalbandi'&&<details className="world-evidence"><summary>Compare with original photographs and drawings</summary>{(project==='jugalbandi'?[
       ['/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp','Hexa-18 sensors and wind pipes'],
       ['/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp','Mechanized harp and servos'],
       ['/Assets/Projects/Jugalbandi/Photos/757.png','Flute actuator and air supply'],
@@ -37,8 +38,8 @@ export default function ExperiencePreviewPage() {
       ['/Assets/Projects/black-hole-assets/fabric-of-universe.jpg','Spacetime fabric'],
       ['/Assets/Projects/black-hole-assets/binary-mergers.jpg','Binary studies: inspiral, merger and ringdown'],
       ['/Assets/Projects/black-hole-assets/gravitational-lensing.jpg','Original paired lensing and wormhole artifact']
-    ]:[[({'enigma':'/Assets/Projects/Enigma/photos/full-sculpture-wide.webp','moniac-machine':'/Assets/Projects/Moniac/photos/hero-cabinet.png','revolving-stage':'/Assets/Projects/RevolvingStage/photos/isometric-stage.png','sea-of-salt':'/Assets/Projects/sea-of-salt/photos/mill-front.webp'} as Record<string,string>)[project],'Original photograph or construction drawing']]).map(([src,caption])=><figure key={src}><img loading="lazy" src={src} alt={caption}/><figcaption>{caption}</figcaption></figure>)}</details>
-    <Suspense fallback={<p role="status">Preparing the project experiment…</p>}>{project === 'moniac-machine' ? <><p>Play the documented economic strategy experiment. This browser adaptation uses simplified rules; the cabinet’s six photographed valves have no verified policy assignments.</p><MoniacSimulator /></> : <PhysicalWorld project={project} />}</Suspense><DraftReviewNav project={project}/>
+    ]:[[({'enigma':'/Assets/Projects/Enigma/photos/full-sculpture-wide.webp','moniac-machine':'/Assets/Projects/Moniac/photos/hero-cabinet.png','revolving-stage':'/Assets/Projects/RevolvingStage/photos/isometric-stage.png','sea-of-salt':'/Assets/Projects/sea-of-salt/photos/mill-front.webp'} as Record<string,string>)[project],'Original photograph or construction drawing']]).map(([src,caption])=><figure key={src}><img loading="lazy" src={src} alt={caption}/><figcaption>{caption}</figcaption></figure>)}</details>}
+    <Suspense fallback={<p role="status">Preparing the project experiment…</p>}>{project === 'jugalbandi' ? <JugalbandiAnatomy /> : project === 'moniac-machine' ? <><p>Play the documented economic strategy experiment. This browser adaptation uses simplified rules; the cabinet’s six photographed valves have no verified policy assignments.</p><MoniacSimulator /></> : <PhysicalWorld project={project} />}</Suspense><DraftReviewNav project={project}/>
   </main>
   return <main className="type-workshop typeface-page" id="main-content">
     <Helmet><title>Butler’s Slice workshop · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet>
