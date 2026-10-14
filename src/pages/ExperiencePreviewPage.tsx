@@ -23,9 +23,9 @@ export default function ExperiencePreviewPage() {
   if (experiencePreviewsEnabled && projectExperience(project)?.format === 'prototype') return <Suspense fallback={<p role="status">Preparing the workflow prototype…</p>}><ProjectPrototypePage preview /></Suspense>
   const physical = ['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(project)
   if (!experiencePreviewsEnabled || (!physical && !['typeface','moniac-machine','atps'].includes(project))) return <Navigate to={projectExperience(project) ? `/${project}` : '/404'} replace />
-  if (project === 'atps') return <main className="physical-world-page" id="main-content"><Helmet><title>ArtTown · Local review</title><meta name="robots" content="noindex,nofollow" /></Helmet><header><div><p>Draft preview · awaiting review</p><h1>ArtTown conversations</h1></div><Link to="/experience-preview">All drafts</Link><Link to="/atps">Read the case study</Link><ThemeToggle /></header><Suspense fallback={<p role="status">Preparing the original episode archive…</p>}><ArtTownArchive /></Suspense><DraftReviewNav project={project}/></main>
+  if (project === 'atps') return <main className="physical-world-page" id="main-content"><Helmet><title>ArtTown · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet><header><div><p>Draft preview · awaiting review</p><h1>ArtTown conversations</h1></div><Link to="/experience-preview">All drafts</Link><Link to="/atps">Read the case study</Link><ThemeToggle /></header><Suspense fallback={<p role="status">Preparing the original episode archive…</p>}><ArtTownArchive /></Suspense><DraftReviewNav project={project}/></main>
   if (project !== 'typeface') return <main className="physical-world-page" id="main-content">
-    <Helmet><title>{project} · Local review</title><meta name="robots" content="noindex,nofollow" /></Helmet>
+    <Helmet><title>{project} · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet>
     <header><div><p>Draft preview · awaiting review</p><h1>{({enigma:'Enigma',jugalbandi:'Jugalbandi','moniac-machine':'Moniac Machine','revolving-stage':'Revolving Stage','sea-of-salt':'Why the Sea is Salt','black-hole':'Black Hole'} as Record<string,string>)[project]}</h1></div><Link to="/experience-preview">All drafts</Link><Link to={`/${project}`}>Read the case study</Link><ThemeToggle /></header>
     <details className="world-evidence"><summary>Compare with original photographs and drawings</summary>{(project==='jugalbandi'?[
       ['/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp','Hexa-18 sensors and wind pipes'],
@@ -41,7 +41,7 @@ export default function ExperiencePreviewPage() {
     <Suspense fallback={<p role="status">Preparing the project experiment…</p>}>{project === 'moniac-machine' ? <><p>Play the documented economic strategy experiment. This browser adaptation uses simplified rules; the cabinet’s six photographed valves have no verified policy assignments.</p><MoniacSimulator /></> : <PhysicalWorld project={project} />}</Suspense><DraftReviewNav project={project}/>
   </main>
   return <main className="type-workshop typeface-page" id="main-content">
-    <Helmet><title>Butler’s Slice workshop · Local review</title><meta name="robots" content="noindex,nofollow" /></Helmet>
+    <Helmet><title>Butler’s Slice workshop · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet>
     <header className="tw-header"><div><h1>Butler’s Slice</h1><p className="tw-kicker">Draft preview · awaiting review</p><p>Type a specimen. Inspect the cut. Reshape a letter.</p></div><Link to="/experience-preview">All drafts</Link><Link to="/typeface">Read the case study</Link><ThemeToggle /></header>
     <Suspense fallback={<p role="status">Preparing the type workshop…</p>}><GlyphEditor workshop /></Suspense>
     <DraftReviewNav project={project}/><footer className="tw-footer">Original font outlines. Edits stay in this session and are included in SVG exports; they do not modify the downloadable font family.</footer>

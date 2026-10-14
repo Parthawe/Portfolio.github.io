@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
@@ -52,6 +53,7 @@ function ExperienceCard({ slug, index }: { slug: string; index: number }) {
 
 export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
   return <main className="physical-world-page experience-review" id="main-content">
+    <Helmet><title>Project draft previews · Parth Pawar</title><meta name="robots" content="noindex,nofollow"/><meta name="googlebot" content="noindex,nofollow"/></Helmet>
     <header><div><h1>Explore the project drafts</h1><p>{slugs.length} experiences to try: physical models, working prototypes, tools and original recordings. Each card explains what you can do.</p></div><Link to="/work">Back to Work</Link><ThemeToggle /></header>
     <p className="experience-review-status">These experiences are draft previews awaiting review. Original project case studies remain available alongside them.</p>
     <nav className="experience-review-grid" aria-label="Project experience drafts">{slugs.map((slug, index) => <ExperienceCard key={slug} slug={slug} index={index} />)}</nav>
