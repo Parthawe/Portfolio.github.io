@@ -190,7 +190,7 @@ function withRouteMeta(html, route, { noindex = false } = {}) {
     output = output.replace('</head>', `    <link rel="preload" as="image" href="${preload}" fetchpriority="high" />\n  </head>`)
   }
   if (noindex) {
-    output = output.replace('</head>', '    <meta name="robots" content="noindex, nofollow" />\n  </head>')
+    output = output.replace('</head>', '    <meta name="robots" content="noindex,nofollow" data-rh="true" />\n  </head>')
   }
   return output
 }
