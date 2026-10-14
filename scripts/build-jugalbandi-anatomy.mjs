@@ -46,3 +46,6 @@ for(const x of [-56,56])slab(x,-5,0,9,15,259,'ja-timber');for(const z of [0,19,1
 for(const [i,[x,z]] of [[-64,245],[72,245],[-64,119],[72,119]].entries()){slab(x-5,0,z-7,10,12,14,'ja-servo');round([x,12,z],[0,1,0],3,4);const from=parts.length;round([x,17,z-33],[0,0,1],5,66,'ja-timber');for(const zz of [-33,27])round([x,17,z+zz],[0,0,1],5.6,6,'ja-cap');round([x,17,z-4],[0,0,1],5.8,8,'ja-band');live.push({id:`stick-${i}`,svg:parts.splice(from).join(''),pivot:at([x,17,z])});points.push(at([x,17,z]));screw(x,16,z)}
 finish('rain');
 writeFileSync('src/components/jugalbandi-anatomy/art.json',JSON.stringify(scenes));console.log(Object.entries(scenes).map(([name,s])=>`${name}: ${s.parts} parts`).join('\n'))
+
+// The case-study story needs only the harp, not all three instruments.
+writeFileSync('src/components/anatomy-stories/harp-art.json',JSON.stringify(scenes.harp));

@@ -1,3 +1,5 @@
+import { experiencePreviewsEnabled } from '../../utils/experiencePreview'
+import DeferredStory from '../../components/anatomy-stories/DeferredStory'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -101,6 +103,8 @@ export default function RevolvingStagePage() {
             <StageRotation />
           </div>
         </CsSection>
+
+        {experiencePreviewsEnabled && <section id="cs-stage-story" className="wrap" style={{scrollMarginTop:100}}><DeferredStory project="stage" /></section>}
 
         <CsSection id="cs-engineering" label="Engineering" title="Mechanical Design">
           <CsBody>

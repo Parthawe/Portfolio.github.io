@@ -12,7 +12,7 @@ The build-time Anatomy kit is MIT licensed; its source and notice are in `script
 
 ## Where to use it next
 
-- **Enigma:** explain the progression from typed letter to sampled input and physical lights. Keep reliable text entry. Clearly distinguish a demonstrative mapping from trained recognition; do not invent inference or restore unvalidated drawing recognition.
+- **Enigma:** leave the current light-network experience unchanged, per the latest user direction. The catalog-wide follow-up is recorded in `anatomy-scroll-plan.md`.
 - **Moniac:** expose the browser experiment's actual control-to-outcome rules. Its simplified equations can support a causal inspection view. The photographed six-valve cabinet has no recovered policy mapping, so a hydraulic reconstruction would presently imply unsupported behavior.
 - **Sea of Salt:** the mill is a useful mechanism candidate once its motion and story sequence are checked against the original recording. Direct crank manipulation should drive the documented action.
 - **UI/UX and branding projects:** use task prototypes and original work. An isometric object adds value only when it explains a real interaction or mechanism.

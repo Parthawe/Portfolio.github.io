@@ -1,0 +1,1353 @@
+[
+  {
+    "slug": "mentra",
+    "source": "src/pages/projects/MentraPage.tsx",
+    "evidence": "Original Figma onboarding and recording; browser embedding requires usability review",
+    "decision": "Keep task prototype",
+    "reason": "Complete glasses onboarding. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "Mentra",
+      "Designing the OS, companion app, MiniApp Store, and launch site for AI smart glasses",
+      "Project overview",
+      "TransFi"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/mentra.webp",
+      "/Assets/images/mentra/render-camera-detail.webp",
+      "/Assets/mockups/projects/mentra_16x9.webp",
+      "/Assets/mockups/projects/transfi-project_16x9.webp"
+    ]
+  },
+  {
+    "slug": "mentra-miniapps",
+    "source": "src/pages/projects/MentraMiniAppsPage.tsx",
+    "evidence": "Documented discovery and permissions; existing browser adaptation uses sample data",
+    "decision": "Keep task prototype",
+    "reason": "Discover and launch a glasses app. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "Mentra MiniApp Store",
+      "App discovery, installation, and permissions for a voice-first smart-glasses platform.",
+      "Project overview",
+      "MiniApp system previews",
+      "Two surfaces",
+      "A quick choice on glasses; detail on the phone",
+      "01 &mdash; Constraint",
+      "Designing for a 640&times;400 display",
+      "02 &mdash; Discovery",
+      "Discover apps by intent",
+      "03 &mdash; App Mix",
+      "Support different kinds of apps",
+      "Mentra MiniApp examples",
+      "04 &mdash; Developer Platform",
+      "A short path to the first MiniApp",
+      "05 &mdash; Permissions",
+      "Make sensor access inspectable",
+      "06 &mdash; Scope",
+      "What the system covers",
+      "Next questions",
+      "Test the transitions between apps",
+      "ZentiPay"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/mentra-miniapps/figma/notes.png?v=figma-miniapps-2",
+      "/Assets/Projects/mentra-miniapps/figma/conversations.png?v=figma-miniapps-2",
+      "/Assets/Projects/mentra-miniapps/figma/live-transcript.png?v=figma-miniapps-2",
+      "/Assets/Projects/mentra-miniapps/figma/meet-home.png?v=figma-miniapps-2",
+      "/Assets/Projects/mentra-miniapps/figma/guidance.png?v=figma-miniapps-2",
+      "/Assets/mockups/projects/mentra-miniapps_16x9.webp",
+      "/Assets/images/mentra/os-running-apps.png",
+      "/Assets/images/mentra/os-home.png",
+      "/Assets/mockups/projects/zentipay_16x9.webp"
+    ]
+  },
+  {
+    "slug": "transfi-project",
+    "source": "src/pages/projects/TransfiPage.tsx",
+    "evidence": "NDA preview and existing access gate; no private workflow in a standalone prototype",
+    "decision": "Keep protected case study",
+    "reason": "Preserve original screens and reviewer access. No public mechanical reconstruction of protected flows.",
+    "sectionHeadings": [
+      "TransFi",
+      "Merchant onboarding and payment flows for crypto payment infrastructure.",
+      "Project overview",
+      "Clawed"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/transfi-project_16x9.webp",
+      "/Assets/mockups/projects/clawed-chat_1x1.webp"
+    ]
+  },
+  {
+    "slug": "zentipay",
+    "source": "src/pages/projects/ZentipayPage.tsx",
+    "evidence": "NDA preview and reviewer gate; protected transfer screens remain behind access",
+    "decision": "Keep protected case study",
+    "reason": "Preserve original screens and reviewer access. No public mechanical reconstruction of protected flows.",
+    "sectionHeadings": [
+      "ZentiPay",
+      "A trust-first remittance product shaped around price clarity, progress, and confidence before money moved.",
+      "How I approached it",
+      "ExecutiveLens"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/ZentiPay/reviewer",
+      "/Assets/Projects/ZentiPay/public",
+      "/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp",
+      "/Assets/mockups/projects/zentipay_16x9.webp",
+      "/Assets/images/executivelens.webp"
+    ]
+  },
+  {
+    "slug": "clawed-chat",
+    "source": "src/pages/projects/ClawedChatPage.tsx",
+    "evidence": "Documented action safety and receipts; existing prototype uses sample data",
+    "decision": "Keep task prototype",
+    "reason": "Approve an assistant action and inspect its receipt. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "Clawed",
+      "An AI assistant for web and smart glasses with approvals, action receipts, and limits on autonomy.",
+      "01 &mdash; Context",
+      "Why AI Assistants Fail",
+      "The Trust Gap",
+      "02 &mdash; Research",
+      "What users needed",
+      "03 &mdash; Design Challenges",
+      "Four design constraints",
+      "04 &mdash; Web Hub",
+      "The web hub",
+      "05 &mdash; Glasses Experience",
+      "The glasses experience",
+      "06 &mdash; Safety Architecture",
+      "Three Tiers of Trust",
+      "Safety Mode Comparison",
+      "Approval Workflow",
+      "Live Product",
+      "clawed.chat",
+      "07 &mdash; Impact",
+      "Early results and limitations",
+      "08 &mdash; Key Learnings",
+      "What I learned",
+      "09 &mdash; What&rsquo;s Next",
+      "Next steps",
+      "Credits",
+      "Team",
+      "Raahi"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/clawed-chat_1x1.webp",
+      "/Assets/Projects/Clawed.chat/landing-hero.webp",
+      "/Assets/Projects/Clawed.chat/docs-page.webp",
+      "/Assets/Projects/Clawed.chat/deploy-options.webp",
+      "/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp",
+      "/Assets/images/raahi.jpg"
+    ]
+  },
+  {
+    "slug": "executivelens",
+    "source": "src/pages/projects/ExecutiveLensPage.tsx",
+    "evidence": "Existing MeetingTimeline and prepared transcript; preserve embedded demonstration",
+    "decision": "Keep task prototype",
+    "reason": "Inspect a meeting summary citation. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "ExecutiveLens",
+      "Meeting intelligence that connects conversations to decisions, owners, and follow-up.",
+      "Context",
+      "From meeting notes to follow-up",
+      "Design Challenges",
+      "Four gaps in the meeting workflow",
+      "Interactive",
+      "Explore the meeting demo",
+      "Meeting Assistant",
+      "Capture decisions during the meeting",
+      "Executive Dashboard",
+      "Decisions and owners in one briefing",
+      "Live Product",
+      "executivelens.ai, The Product Site",
+      "Insight Engine",
+      "Keep evidence beside the summary",
+      "Impact",
+      "Beta observations and limits",
+      "Reflections",
+      "What Designing for Executives Taught Me",
+      "Ballah Code"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/executivelens.webp",
+      "/Assets/mockups/projects/executivelens_16x9.webp",
+      "/Assets/images/executivelens/site-crops/executivelens-site-hero.png",
+      "/Assets/images/executivelens/site-crops/executivelens-site-workflow.png",
+      "/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png",
+      "/Assets/images/executivelens/site-crops/executivelens-site-integrations.png",
+      "/Assets/mockups/projects/ballah-code_16x9.webp"
+    ]
+  },
+  {
+    "slug": "org-dashboard",
+    "source": "src/pages/projects/OrgDashboardPage.tsx",
+    "evidence": "Case-study context and knowledge workflow; existing adaptation requires task review",
+    "decision": "Keep task prototype",
+    "reason": "Review organizational context and approve an action. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "OrgDashboard interface showing connected sources, structured company knowledge, and a human approval queue",
+      "Illustrative dashboard navigation",
+      "OrgDashboard",
+      "An organizational context platform connecting people, knowledge, and reviewable AI-agent actions.",
+      "Concept",
+      "Connect context to a reviewable action",
+      "The Design Challenge",
+      "People and agents need different views",
+      "Design Decisions",
+      "Three product decisions",
+      "Design System",
+      "Inspect the system behind each action",
+      "Product Surfaces",
+      "Four surfaces in the workflow",
+      "Results",
+      "What still needs validation",
+      "Reflections",
+      "What Designing for Agents Taught Me",
+      "Credits",
+      "Team",
+      "Raahi"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/org-dashboard.webp",
+      "/Assets/images/raahi.jpg"
+    ]
+  },
+  {
+    "slug": "cuetv",
+    "source": "src/pages/projects/CueTvPage.tsx",
+    "evidence": "NDA public preview; retain existing access gate",
+    "decision": "Keep protected case study",
+    "reason": "Preserve original screens and reviewer access. No public mechanical reconstruction of protected flows.",
+    "sectionHeadings": [
+      "CueTV",
+      "Discovery, playback, and return journeys for a performing-arts streaming catalogue.",
+      "ExecutiveLens"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/cuetv_16x9.webp",
+      "/Assets/Projects/cuetv-public/refresh",
+      "/Assets/images/executivelens.webp"
+    ]
+  },
+  {
+    "slug": "healthapp",
+    "source": "src/pages/projects/HealthAppPage.tsx",
+    "evidence": "Documented sleep, food and planning concept; sample-data adaptation requires review",
+    "decision": "Keep task prototype",
+    "reason": "Rebalance tasks around daily capacity. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "Health App",
+      "A planning concept that explains how health signals could change a daily schedule.",
+      "01 · Product model",
+      "Propose a lighter plan, explain the change.",
+      "IBM Cancer Prognosis"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/healthapp_16x9.webp",
+      "/Assets/Projects/HealthApp/optimized/cover-original.webp",
+      "/Assets/Projects/HealthApp/optimized/01-planning.webp",
+      "/Assets/Projects/HealthApp/optimized/02-flow.webp",
+      "/Assets/Projects/HealthApp/optimized/04-insights.webp",
+      "/Assets/Projects/HealthApp/optimized/03-tasks.webp",
+      "/Assets/Projects/HealthApp/optimized/07-screen-set.webp",
+      "/Assets/Projects/HealthApp/optimized/09-calendar.webp",
+      "/Assets/Projects/ibm/1.webp"
+    ]
+  },
+  {
+    "slug": "medimorpho",
+    "source": "src/pages/projects/MediMorphoPage.tsx",
+    "evidence": "Protected research story and 20-interview context; no invented patient simulation",
+    "decision": "Keep research journey",
+    "reason": "Preserve interview evidence and access controls; do not turn a healthcare workflow into a decorative machine.",
+    "sectionHeadings": [
+      "NYU Langone",
+      "A 20-interview team study of language and communication across the healthcare journey.",
+      "Project research proof points",
+      "Three stages of the healthcare communication journey",
+      "Public research evidence",
+      "How research evidence became product direction",
+      "Raahi"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp",
+      "/Assets/mockups/projects/raahi-project_16x9.webp"
+    ]
+  },
+  {
+    "slug": "ibm",
+    "source": "src/pages/projects/IbmPage.tsx",
+    "evidence": "Research glimpse; no released runnable encryption implementation",
+    "decision": "Keep research diagrams",
+    "reason": "Encrypted computation is documented by diagrams and plots; a physical analogy must not imply a released or clinically validated implementation.",
+    "sectionHeadings": [
+      "IBM Cancer Prognosis",
+      "A research exploration of computation on encrypted genomic data.",
+      "Glimpse",
+      "Encrypted Data, Useful Prognosis",
+      "Encrypted cancer prognosis system diagrams",
+      "Result",
+      "Research output and evaluation limits",
+      "Learning",
+      "What I Learned",
+      "The Point CDC"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/CancerPrognosis/photos/hero-illustration.png",
+      "/Assets/Projects/ibm/4.jpg",
+      "/Assets/Projects/ibm/5.jpg",
+      "/Assets/Projects/CancerPrognosis/photos/km-clusters-dark.jpg",
+      "/Assets/mockups/projects/the-point-cdc_16x9.webp"
+    ]
+  },
+  {
+    "slug": "ballah-code",
+    "source": "src/pages/projects/BallahCodePage.tsx",
+    "evidence": "Documented IDE workflow; existing prototype is a browser adaptation",
+    "decision": "Keep task prototype",
+    "reason": "Review a proposed component change. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "Ballah Code",
+      "A desktop coding environment that keeps AI assistance, project context, and developer controls together.",
+      "01 &mdash; Overview",
+      "AI assistance inside the coding workflow",
+      "02 &mdash; The Problem",
+      "Keeping context across a task",
+      "03 &mdash; Design Decisions",
+      "Editor, assistant, and terminal together",
+      "04 &mdash; Technical Architecture",
+      "Desktop architecture",
+      "05 &mdash; Key Features",
+      "The implemented workflow",
+      "06 &mdash; Results &amp; Status",
+      "Current build and remaining work",
+      "VJ Parivar"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/BallahCode/site",
+      "/Assets/images/ballah-code.webp",
+      "/Assets/mockups/projects/ballah-code_16x9.webp",
+      "/Assets/mockups/projects/vj-software_16x9.webp"
+    ]
+  },
+  {
+    "slug": "ai-voice",
+    "source": "src/pages/projects/AiVoicePage.tsx",
+    "evidence": "NDA preview and existing access gate; no synthetic substitute for protected voice samples",
+    "decision": "Keep protected case study",
+    "reason": "Preserve original screens and reviewer access. No public mechanical reconstruction of protected flows.",
+    "sectionHeadings": [
+      "AI Voice Selection For Enterprise",
+      "An enterprise voice-selection flow for comparing tone, testing scenarios, and explaining a choice.",
+      "From demo list to decision system",
+      "Research",
+      "What the market audit changed",
+      "Journey",
+      "Explain the choice to a team",
+      "System",
+      "Compare persona, transcript, and parameters",
+      "Ballah Code"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/ai-voice_16x9.webp",
+      "/Assets/images/nda-cover.svg",
+      "/Assets/images/ballah-code.webp"
+    ]
+  },
+  {
+    "slug": "raahi-project",
+    "source": "src/pages/projects/RaahiPage.tsx",
+    "evidence": "Research and mobile/kiosk/in-vehicle evidence; current journey uses sample data",
+    "decision": "Keep task prototype",
+    "reason": "Plan a journey across transit touchpoints. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "Raahi",
+      "A Pune transit service study connecting trip planning, waiting, boarding, transfers, and arrival.",
+      "Raahi evidence, implication, and service decision",
+      "Reflections",
+      "What This Project Taught Me",
+      "MiniApps in OS"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/Raahi/photos",
+      "/Assets/images/raahi.jpg",
+      "/Assets/mockups/projects/mentra-miniapps_16x9.webp"
+    ]
+  },
+  {
+    "slug": "the-point-cdc",
+    "source": "src/pages/projects/ThePointCdcPage.tsx",
+    "evidence": "Original website link and case study; no standalone room needed",
+    "decision": "Keep source-led case study",
+    "reason": "Original website link and case study; no standalone room needed. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "The Point CDC",
+      "A community website organized around programs, services, WiFi access, and events",
+      "User journey map and information architecture flow diagram",
+      "Annotated redesign showing grouped navigation, responsive layout, improved readability, and cohesive color scheme",
+      "Office of Diversity"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/the-point-cdc_16x9.webp",
+      "/Assets/Projects/ThePointCDC/photos/homepage-hero.png",
+      "/Assets/Projects/ThePointCDC/photos/community-photo.webp",
+      "/Assets/Projects/ThePointCDC/Desktop/slice-5.webp",
+      "/Assets/Projects/ThePointCDC/Desktop/slice-6.webp",
+      "/Assets/Projects/ThePointCDC/Desktop/slice-7.png",
+      "/Assets/Projects/ThePointCDC/Desktop/slice-8.webp",
+      "/Assets/Projects/ThePointCDC/photos/all-pages-mockup.webp",
+      "/Assets/Projects/ThePointCDC/photos/responsive-preview.png",
+      "/Assets/Projects/ThePointCDC/photos/annotated-redesign.webp",
+      "/Assets/Projects/ThePointCDC/photos/community-photo-2.png",
+      "/Assets/mockups/projects/office-of-diversity_16x9.webp"
+    ]
+  },
+  {
+    "slug": "office-of-diversity",
+    "source": "src/pages/projects/OfficeOfDiversityPage.tsx",
+    "evidence": "Public report evidence; no room or invented report content",
+    "decision": "Keep source-led case study",
+    "reason": "Public report evidence; no room or invented report content. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Office of Diversity Report",
+      "A compact report-publishing project for NYU Tisch's IDBEA work",
+      "Approach",
+      "From a dense report to a navigable website",
+      "Report",
+      "The report, section by section",
+      "Impact",
+      "What improved",
+      "Learning",
+      "What I learned",
+      "Jugalbandi"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/office-of-diversity_16x9.webp",
+      "/Assets/Projects/office-of-diversity/photos/responsive-preview.png",
+      "/Assets/Projects/office-of-diversity/photos/research-wall.webp",
+      "/Assets/Projects/office-of-diversity/photos/scope-timeline.png",
+      "/Assets/Projects/office-of-diversity/photos/community-workshop-1.png",
+      "/Assets/Projects/office-of-diversity/photos/community-workshop-2.png",
+      "/Assets/Projects/office-of-diversity/photos/community-workshop-3.png",
+      "/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png",
+      "/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png",
+      "/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png",
+      "/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png",
+      "/Assets/Projects/office-of-diversity/4.webp",
+      "/Assets/mockups/projects/jugalbandi_16x9.webp"
+    ]
+  },
+  {
+    "slug": "jugalbandi",
+    "source": "src/pages/projects/JugalbandiPage.tsx",
+    "evidence": "Installation photographs and film; current synthetic sound and model need fidelity review",
+    "decision": "Implement",
+    "reason": "Scroll through a single servo pluck: sequence, string loading, release, rest. Reuse the photo-based harp drawing; no scroll audio or claimed model inference.",
+    "sectionHeadings": [
+      "Jugalbandi",
+      "A playable duet between human improvisation and a neural network expressed through acoustic machines",
+      "Watch first",
+      "Hear the network perform",
+      "Jugalbandi Performance",
+      "Overview",
+      "A duet in Hindi",
+      "Follow the string layer",
+      "Listen for three different mechanisms",
+      "Enigma"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/jugalbandi_16x9.webp",
+      "/Assets/Projects/Jugalbandi/Photos/755.png",
+      "/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp",
+      "/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png",
+      "/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png",
+      "/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png",
+      "/Assets/Projects/Jugalbandi/Photos/756.png",
+      "/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp",
+      "/Assets/Projects/Jugalbandi/Photos/757.png",
+      "/Assets/Projects/Jugalbandi/Photos/758.png",
+      "/Assets/mockups/projects/enigma_16x9.webp"
+    ]
+  },
+  {
+    "slug": "vj-software",
+    "source": "src/pages/projects/VjSoftwarePage.tsx",
+    "evidence": "Parking research and UI evidence; existing prototype uses sample data",
+    "decision": "Keep task prototype",
+    "reason": "Select a parking space and review a booking. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "VJ Parivar",
+      "Reframing residential parking as a spatial decision, not a back-office form flow",
+      "Office of Diversity"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/vj.jpg",
+      "/Assets/Projects/vj/photos/all-screens-ui.png",
+      "/Assets/Projects/vj/Desktop/4.webp",
+      "/Assets/Projects/vj/Desktop/5.webp",
+      "/Assets/Projects/vj/photos/legal-pay.png",
+      "/Assets/Projects/vj/photos/car-parking.png",
+      "/Assets/Projects/vj/photos/post-possession.png",
+      "/Assets/Projects/vj/Desktop/7.webp",
+      "/Assets/Projects/vj/photos/user-flows.png",
+      "/Assets/Projects/vj/Desktop/8.webp",
+      "/Assets/Projects/vj/Desktop/9.webp",
+      "/Assets/Projects/vj/Desktop/10.webp",
+      "/Assets/mockups/projects/office-of-diversity_16x9.webp"
+    ]
+  },
+  {
+    "slug": "enigma",
+    "source": "src/pages/projects/EnigmaPage.tsx",
+    "evidence": "200-neuron sculpture photographs, film and original EnigmaInteractive; handwritten matcher is unapproved",
+    "decision": "Leave untouched",
+    "reason": "The user prefers the existing light-network experience. Keep typed-letter interaction.",
+    "sectionHeadings": [
+      "Enigma",
+      "A 200-neuron light sculpture that makes a neural network visible",
+      "Watch first",
+      "Light as inference",
+      "Enigma",
+      "Interactive",
+      "Try the original letter experiment",
+      "01 &mdash; Concept",
+      "200 Neurons of Light",
+      "02 &mdash; Technology",
+      "From Model to Light",
+      "03 &mdash; Exhibition",
+      "ITP Winter Show 2023",
+      "Shuffle"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/enigma.jpg",
+      "/Assets/Projects/Enigma/photos/person-viewing.webp",
+      "/Assets/Projects/Enigma/photos/full-sculpture-c.webp",
+      "/Assets/Projects/Enigma/photos/alphabet-layer.webp",
+      "/Assets/Projects/Enigma/photos/wire-detail.webp",
+      "/Assets/Projects/Enigma/photos/neuron-closeup.webp",
+      "/Assets/Projects/Enigma/photos/full-sculpture-wide.webp",
+      "/Assets/Projects/Enigma/photos/tablet-input.jpg",
+      "/Assets/mockups/projects/shuffle_16x9.webp"
+    ]
+  },
+  {
+    "slug": "shuffle",
+    "source": "src/pages/projects/ShufflePage.tsx",
+    "evidence": "User-approved motorized-fader reconstruction and existing ShuffleInteractive",
+    "decision": "Leave untouched",
+    "reason": "Approved reference; no new illustration or scroll behavior.",
+    "sectionHeadings": [
+      "Shuffle",
+      "A motorized-fader board where every student-life priority has a cost",
+      "Watch first",
+      "Time as sliders",
+      "Shuffle",
+      "Interactive",
+      "Redistribute Your Time",
+      "What one slider changes",
+      "01 &mdash; Concept",
+      "Physical Redistribution of Time",
+      "02 &mdash; Process",
+      "Hardware &amp; Fabrication",
+      "03 &mdash; In Play",
+      "Watching People Negotiate a Week",
+      "The Omakase"
+    ],
+    "originalAssetReferences": [
+      "/Assets/mockups/projects/shuffle_16x9.webp",
+      "/Assets/Projects/Shuffle/photos/product-front.jpg",
+      "/Assets/Projects/Shuffle/photos/slider-labels.jpg",
+      "/Assets/Projects/Shuffle/photos/hand-sliding.jpg",
+      "/Assets/Projects/Shuffle/photos/hand-motion.jpg",
+      "/Assets/Projects/Shuffle/photos/product-angle.jpg",
+      "/Assets/Projects/Shuffle/photos/slider-detail.jpg",
+      "/Assets/Projects/Shuffle/photos/idea-demonstration.jpg",
+      "/Assets/Projects/Shuffle/photos/g80-inspiration.jpg",
+      "/Assets/Projects/Shuffle/photos/underside-motors.jpg",
+      "/Assets/Projects/Shuffle/photos/electronics-breadboard.jpg",
+      "/Assets/images/the-omakase.jpg"
+    ]
+  },
+  {
+    "slug": "making-of-time",
+    "source": "src/pages/projects/MakingOfTimePage.tsx",
+    "evidence": "Original film and embedded ClockTrio; preserve the experiment rather than a photograph on a bench",
+    "decision": "Keep the clocks",
+    "reason": "The existing shadow/mechanical/digital comparison is the relevant interaction. Recovered escapement drawings would be needed for an accurate cutaway.",
+    "sectionHeadings": [
+      "Making of Time",
+      "A study of time through shadow, mechanical rhythm, and software",
+      "Watch first",
+      "Three clocks, one moment",
+      "Making of Time",
+      "Interactive",
+      "Three Ways to Read This Moment",
+      "01 &mdash; Sundial",
+      "Sundial",
+      "02 &mdash; Mechanical",
+      "Mechanical",
+      "03 &mdash; Digital",
+      "Digital",
+      "Black Hole"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/making-of-time/photos/blue-dial-hero.webp",
+      "/Assets/mockups/projects/making-of-time_16x9.webp",
+      "/Assets/Projects/making-of-time/photos/white-watch.webp",
+      "/Assets/Projects/making-of-time/photos/tools-layout.webp",
+      "/Assets/Projects/making-of-time/photos/blue-dial-angle.png",
+      "/Assets/Projects/making-of-time/photos/blue-dial-top.png",
+      "/Assets/Projects/making-of-time/photos/watch-components.png",
+      "/Assets/images/black-hole.jpg"
+    ]
+  },
+  {
+    "slug": "sea-of-salt",
+    "source": "src/pages/projects/SeaOfSaltPage.tsx",
+    "evidence": "Original mill photographs, story and embedded SaltSimulation; direct rotation requires review",
+    "decision": "Keep direct interaction",
+    "reason": "The crank and story slider already convey consequence. An internal cutaway needs verified internals and movement evidence first.",
+    "sectionHeadings": [
+      "Why the Sea is Salt",
+      "A storytelling machine that grinds real salt as visitors advance a Norse folktale.",
+      "01 &mdash; The Folktale",
+      "A Story Told Across Oceans",
+      "02 &mdash; The Installation",
+      "What Happens When Stories Have Consequences",
+      "Interactive",
+      "Grind the Story",
+      "03 &mdash; How It Works",
+      "The Machine Behind the Story",
+      "04 &mdash; Reflection",
+      "What the Salt Taught Us",
+      "Making of Time"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/sea-of-salt/photos/salt-ground.webp",
+      "/Assets/Projects/sea-of-salt/photos/overview.webp",
+      "/Assets/Projects/sea-of-salt/photos/detail-salt-slider.webp",
+      "/Assets/Projects/sea-of-salt/photos/slider-closeup.webp",
+      "/Assets/Projects/sea-of-salt/photos/mill-front.webp",
+      "/Assets/Projects/sea-of-salt/photos/materials.webp",
+      "/Assets/Projects/sea-of-salt/photos/salt-overflow.webp",
+      "/Assets/Projects/sea-of-salt/photos/salt-pile.webp",
+      "/Assets/Projects/sea-of-salt/photos/salt-spread.webp",
+      "/Assets/Projects/sea-of-salt/photos/final-wide.webp",
+      "/Assets/images/making-of-time.jpg"
+    ]
+  },
+  {
+    "slug": "flow-fields",
+    "source": "src/pages/projects/FlowFieldsPage.tsx",
+    "evidence": "Existing GenerativeCanvas with Perlin-noise particle behavior; retain embedded experiment",
+    "decision": "Keep original experiment",
+    "reason": "Explain particle direction and accumulation through the working field, not an invented machine.",
+    "sectionHeadings": [
+      "Flow Fields",
+      "A generative-art study of how particle speed, trails, and density reveal a noise field.",
+      "01 &mdash; Glimpse",
+      "Making a hidden field visible",
+      "02 &mdash; Demonstration",
+      "Watch the paths accumulate",
+      "03 &mdash; Learning",
+      "Three visual controls",
+      "04 &mdash; Related study",
+      "Available material",
+      "Embodied Web"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/flow-fields.svg",
+      "/Assets/images/embodied-web.svg"
+    ]
+  },
+  {
+    "slug": "embodied-web",
+    "source": "src/pages/projects/EmbodiedWebPage.tsx",
+    "evidence": "StudyExplorer and related project evidence; no released standalone pose-controlled experience verified",
+    "decision": "Keep source-led case study",
+    "reason": "StudyExplorer and related project evidence; no released standalone pose-controlled experience verified. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Embodied Web",
+      "Course experiments mapping breath, gesture, and phone movement to browser interactions.",
+      "01 &mdash; Concept",
+      "Body input in the browser",
+      "02 &mdash; Experiments",
+      "Five input experiments",
+      "03 &mdash; Reflection",
+      "Feedback, calibration, and access",
+      "Flow Fields"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/flow-fields.svg"
+    ]
+  },
+  {
+    "slug": "feeling-patterns",
+    "source": "src/pages/projects/FeelingPatternsPage.tsx",
+    "evidence": "Textile study and related evidence; no verified haptic hardware simulation",
+    "decision": "Keep source-led case study",
+    "reason": "Textile study and related evidence; no verified haptic hardware simulation. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Feeling Patterns",
+      "Three wearable-textile studies exploring pulse, vibration, and pressure as communication.",
+      "01 &mdash; Concept",
+      "Exploring touch as a signal",
+      "02 &mdash; Prototypes",
+      "Three tactile studies",
+      "03 &mdash; Insights",
+      "Recognition, comfort, and context",
+      "Shuffle"
+    ],
+    "originalAssetReferences": [
+      "/Assets/project-illustrations/feeling-patterns-materials.webp",
+      "/Assets/images/shuffle.jpg"
+    ]
+  },
+  {
+    "slug": "performance-by-design",
+    "source": "src/pages/projects/PerformanceByDesignPage.tsx",
+    "evidence": "StudyExplorer and related evidence; avoid invented cue or audience behavior",
+    "decision": "Keep source-led case study",
+    "reason": "StudyExplorer and related evidence; avoid invented cue or audience behavior. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Performance by Design",
+      "Course studies in lighting cues, spatial choreography, and audience attention.",
+      "01 &mdash; Concept",
+      "Directing attention in a room",
+      "02 &mdash; Work",
+      "Three performance studies",
+      "03 &mdash; Reflection",
+      "Timing and feedback",
+      "Drowning"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/drowning.jpg"
+    ]
+  },
+  {
+    "slug": "on-becoming",
+    "source": "src/pages/projects/OnBecomingPage.tsx",
+    "evidence": "Reflective writing and related work; no standalone simulation warranted",
+    "decision": "Keep essay",
+    "reason": "The work is a reflection, not an assembly.",
+    "sectionHeadings": [
+      "On Becoming",
+      "A reflection on the design questions connecting my software, installations, and physical systems.",
+      "01 &mdash; The Question",
+      "What Do You Make?",
+      "02 &mdash; The Thread",
+      "Making the Invisible Tangible",
+      "03 &mdash; The Method",
+      "Medium as Meaning",
+      "04 &mdash; The Tension",
+      "Rigor vs. Imagination",
+      "05 &mdash; The Name",
+      "What Do I Call This?",
+      "Enigma"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/enigma.jpg"
+    ]
+  },
+  {
+    "slug": "storytelling",
+    "source": "src/pages/projects/StorytellingPage.tsx",
+    "evidence": "StudyExplorer and related evidence; no separate runnable narrative verified",
+    "decision": "Keep source-led case study",
+    "reason": "StudyExplorer and related evidence; no separate runnable narrative verified. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Storytelling",
+      "Course reflections on sequence, pacing, and the consequences of an interaction.",
+      "01 &mdash; Overview",
+      "Ordering information and consequence",
+      "02 &mdash; Frameworks",
+      "Four ways to structure an experience",
+      "03 &mdash; Application",
+      "Examples from my work",
+      "On Becoming"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/on-becoming.svg"
+    ]
+  },
+  {
+    "slug": "dna-speculative",
+    "source": "src/pages/projects/DnaPage.tsx",
+    "evidence": "Public speculative-design glimpse; no unsupported biology model",
+    "decision": "Keep speculative artifact",
+    "reason": "No verified biological mechanism supports an explanatory machine.",
+    "sectionHeadings": [
+      "Would You Take a Pill to Live Forever?",
+      "A speculative artifact that presents immortality as a product choice.",
+      "Glimpse",
+      "Putting the choice in someone’s hands",
+      "Impact",
+      "The intended provocation",
+      "Learning",
+      "What the object makes discussable",
+      "UV Light"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/DNA/photos/boxes-closed.webp",
+      "/Assets/Projects/DNA/photos/boxes-open.png",
+      "/Assets/Projects/DNA/photos/dosage-card.webp",
+      "/Assets/Projects/DNA/photos/pill-pack.webp",
+      "/Assets/Projects/DNA/photos/card-final-message.webp",
+      "/Assets/images/uv-light.jpg"
+    ]
+  },
+  {
+    "slug": "comp-media",
+    "source": "src/pages/projects/IntroCompMediaPage.tsx",
+    "evidence": "Existing PixelPainting restoration and original p5.js source; retain embedded experiment",
+    "decision": "Keep original experiment",
+    "reason": "Camera sampling and particle marks are best explained inside the actual restored sketch.",
+    "sectionHeadings": [
+      "Computational Media",
+      "Painting with camera pixels, wandering particles, and translucent marks",
+      "Experiment",
+      "Paint with pixels",
+      "Source",
+      "From the original sketch",
+      "Mechanism",
+      "Three rules make the image",
+      "Flow Fields"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/comp-media/source/paintingpixels.js.txt",
+      "/Assets/Projects/comp-media/source/particle.js.txt",
+      "/Assets/Projects/comp-media/source/index.html.txt",
+      "/Assets/images/flow-fields.svg"
+    ]
+  },
+  {
+    "slug": "hypercinema",
+    "source": "src/pages/projects/HypercinemaPage.tsx",
+    "evidence": "StudyExplorer and related evidence; no verified navigable 360 asset in the standalone room",
+    "decision": "Keep source-led case study",
+    "reason": "StudyExplorer and related evidence; no verified navigable 360 asset in the standalone room. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Hypercinema",
+      "Three course studies in viewer-directed film, spatial sound, and multi-screen projection.",
+      "01 &mdash; Premise",
+      "Letting the viewer choose where to look",
+      "02 &mdash; Pieces",
+      "Three film and sound studies",
+      "03 &mdash; Craft",
+      "Guiding attention across space",
+      "UV Light"
+    ],
+    "originalAssetReferences": [
+      "/Assets/project-illustrations/hypercinema-viewpoints.webp",
+      "/Assets/images/uv-light.jpg"
+    ]
+  },
+  {
+    "slug": "applications",
+    "source": "src/pages/projects/ApplicationsPage.tsx",
+    "evidence": "StudyExplorer evidence; no project-specific standalone implementation verified",
+    "decision": "Keep source-led case study",
+    "reason": "StudyExplorer evidence; no project-specific standalone implementation verified. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Applications",
+      "Two course explorations connecting interface design, shared data, and deployment.",
+      "01 &mdash; Overview",
+      "Interface, data, and deployment",
+      "02 &mdash; Projects",
+      "Two application concepts",
+      "03 &mdash; Lessons",
+      "Requirements beyond the interface",
+      "Embodied Web"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/embodied-web.svg"
+    ]
+  },
+  {
+    "slug": "messy-humans",
+    "source": "src/pages/projects/MessyHumansPage.tsx",
+    "evidence": "Research and StudyExplorer; no invented personas or task outcomes",
+    "decision": "Keep source-led case study",
+    "reason": "Research and StudyExplorer; no invented personas or task outcomes. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Designing for Messy Humans",
+      "Course research notes on distraction, anxiety, language, and access in everyday interfaces.",
+      "01 &mdash; Premise",
+      "Designing for the moment of use",
+      "02 &mdash; Research",
+      "Four questions for a design review",
+      "03 &mdash; Impact on My Practice",
+      "Applying the questions",
+      "Raahi"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/raahi.jpg"
+    ]
+  },
+  {
+    "slug": "production-studio",
+    "source": "src/pages/projects/ProductionStudioPage.tsx",
+    "evidence": "Production evidence and StudyExplorer; generic room does not demonstrate production work",
+    "decision": "Keep source-led case study",
+    "reason": "Production evidence and StudyExplorer; generic room does not demonstrate production work. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Production Studio",
+      "Course notes on coordinating scope, fabrication, software, and exhibition setup.",
+      "01 &mdash; Overview",
+      "Coordinating a shared build",
+      "02 &mdash; Process",
+      "From brief to exhibition setup",
+      "03 &mdash; Lessons",
+      "Scope and handoff",
+      "Black Hole"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/black-hole.jpg"
+    ]
+  },
+  {
+    "slug": "arcade-lab",
+    "source": "src/pages/projects/ArcadeLabPage.tsx",
+    "evidence": "Related evidence and Omakase project; no separate arcade-lab game verified",
+    "decision": "Keep source-led case study",
+    "reason": "Related evidence and Omakase project; no separate arcade-lab game verified. No source-supported mechanical scroll sequence identified in this audit.",
+    "sectionHeadings": [
+      "Arcade Lab",
+      "Four physical-controller prototypes that informed The Omakase arcade cabinet.",
+      "Overview",
+      "Four prototypes over ten weeks",
+      "01 &mdash; Prototypes",
+      "The controller shaped each game",
+      "02 &mdash; Insights",
+      "Decisions carried into The Omakase",
+      "03 &mdash; The Journey",
+      "From prototypes to the cabinet",
+      "The Omakase"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/the-omakase.jpg"
+    ]
+  },
+  {
+    "slug": "black-hole",
+    "source": "src/pages/projects/BlackHolePage.tsx",
+    "evidence": "Exhibit photographs and mechanisms; alignment and separate study behavior require review",
+    "decision": "Keep separate studies",
+    "reason": "Preserve the distinct demonstrations; a new assembly could incorrectly imply a mechanical model of the physics.",
+    "sectionHeadings": [
+      "Black Hole",
+      "Five physical models that make black hole phenomena legible through form, mechanism, and interaction",
+      "Time dilation physical model demonstration",
+      "The Challenge",
+      "Making the Invisible Tangible",
+      "01 &mdash; Phenomenon",
+      "The Black Hole&rsquo;s Time Trap",
+      "02 &mdash; Phenomenon",
+      "The Invisible Fabric of the Universe",
+      "03 &amp; 04 &mdash; Phenomena",
+      "Gravity&rsquo;s Grip on Light &amp; Wormholes",
+      "05 &mdash; Phenomenon",
+      "When Giants Collide: Binary Black Hole Mergers",
+      "Exhibition",
+      "Horological Society of New York",
+      "Making of Time"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/black-hole.jpg",
+      "/Assets/Projects/black-hole-assets/time-trap.jpg",
+      "/Assets/Projects/black-hole-assets/time-dilation.mp4",
+      "/Assets/mockups/projects/black-hole_16x9.webp",
+      "/Assets/Projects/black-hole-assets/fabric-of-universe.jpg",
+      "/Assets/Projects/black-hole-assets/gravitational-lensing.jpg",
+      "/Assets/Projects/black-hole-assets/binary-mergers.jpg",
+      "/Assets/images/making-of-time.jpg"
+    ]
+  },
+  {
+    "slug": "uv-light",
+    "source": "src/pages/projects/UvLightPage.tsx",
+    "evidence": "Original installation photographs; retain the case study without a photographic room",
+    "decision": "Keep original evidence",
+    "reason": "The reveal depends on photographed UV marks; no speculative room or reconstruction.",
+    "sectionHeadings": [
+      "UV Light Experience",
+      "A blacklight installation that reveals hidden messages as visitors move through the space.",
+      "Revolving Stage"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/uv-light.jpg",
+      "/Assets/Projects/UVLight/photos/image-5.png",
+      "/Assets/Projects/UVLight/photos/1000051727.webp",
+      "/Assets/Projects/UVLight/photos/1000051740.png",
+      "/Assets/Projects/UVLight/photos/1000051772.png",
+      "/Assets/Projects/UVLight/photos/screenshot-2023-12-21-at-3.51-1.png",
+      "/Assets/Projects/UVLight/photos/image-4.png",
+      "/Assets/Projects/UVLight/photos/letter---1.png",
+      "/Assets/Projects/UVLight/photos/image-1.png",
+      "/Assets/Projects/UVLight/photos/image-2.png",
+      "/Assets/Projects/UVLight/photos/screenshot-2023-12-26-at-1.08-1.png",
+      "/Assets/Projects/UVLight/photos/image-8-1.png",
+      "/Assets/Projects/UVLight/photos/screenshot-2023-12-26-at-1.10-1.png",
+      "/Assets/Projects/UVLight/photos/image-6.png",
+      "/Assets/Projects/UVLight/photos/image-7.png",
+      "/Assets/Projects/UVLight/photos/image-8.png",
+      "/Assets/Projects/UVLight/photos/image-7-1.png",
+      "/Assets/Projects/UVLight/photos/image-3.png",
+      "/Assets/images/revolving-stage.webp"
+    ]
+  },
+  {
+    "slug": "the-omakase",
+    "source": "src/pages/projects/TheOmakasePage.tsx",
+    "evidence": "Original itch.io playable and cabinet film; keep embedded game and document controller differences",
+    "decision": "Keep playable game",
+    "reason": "Buttons, ingredient mapping and the cabinet film already explain the interaction. Do not replace a playable task with a cabinet assembly.",
+    "sectionHeadings": [
+      "Player 1 (Left)",
+      "Player 2 (Right)",
+      "Play",
+      "Try The Omakase",
+      "Play The Omakase",
+      "The Omakase",
+      "A two-player sushi arcade cabinet where the hardware, pacing, and social pressure are the game",
+      "The Omakase",
+      "IBM Cancer Prognosis"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/the-omakase/photos/game-screen-sushi.webp",
+      "/Assets/mockups/projects/the-omakase_16x9.webp",
+      "/Assets/Projects/the-omakase/photos/chef-select-screen.webp",
+      "/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp",
+      "/Assets/Projects/the-omakase/photos/cabinet-front.webp",
+      "/Assets/Projects/the-omakase/photos/cabinet-workshop.webp",
+      "/Assets/Projects/the-omakase/photos/rgb-buttons-hands.webp",
+      "/Assets/Projects/the-omakase/photos/rgb-buttons-dark.webp",
+      "/Assets/Projects/the-omakase/photos/two-players.webp",
+      "/Assets/Projects/the-omakase/photos/team-photo.webp",
+      "/Assets/Projects/the-omakase/photos/plywood-shell-drilled.webp",
+      "/Assets/Projects/the-omakase/photos/marquee-sign-detail.webp",
+      "/Assets/Projects/the-omakase/photos/head-to-head-match.webp",
+      "/Assets/Projects/ibm/1.webp"
+    ]
+  },
+  {
+    "slug": "revolving-stage",
+    "source": "src/pages/projects/RevolvingStagePage.tsx",
+    "evidence": "Stage drawings, photographs and embedded StageRotation; geometry requires fidelity review",
+    "decision": "Implement",
+    "reason": "Build the load-support story from fixed base through caster rings and central axle to deck. Reuse the audited assembly; preserve the rotation demo.",
+    "sectionHeadings": [
+      "A 15 ft. rotating stage designed around a 250 kg load target and scene changes without blackout.",
+      "Interactive",
+      "Spin the Stage",
+      "Engineering",
+      "Mechanical Design",
+      "Result",
+      "Reflections",
+      "What Building a Stage Taught Me About Design",
+      "The Omakase"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/revolving-stage.webp",
+      "/Assets/mockups/projects/revolving-stage_16x9.webp",
+      "/Assets/Projects/RevolvingStage/photos/isometric-stage.png",
+      "/Assets/Projects/RevolvingStage/photos/full-assembly-exploded.png",
+      "/Assets/Projects/RevolvingStage/photos/axle-exploded.png",
+      "/Assets/Projects/RevolvingStage/photos/caster-engineering.webp",
+      "/Assets/Projects/RevolvingStage/photos/stage-rotation.png",
+      "/Assets/Projects/RevolvingStage/photos/stage-vs-render.png",
+      "/Assets/Projects/RevolvingStage/Mobile/3.jpg",
+      "/Assets/Projects/RevolvingStage/photos/performance-collage.webp",
+      "/Assets/images/the-omakase.jpg"
+    ]
+  },
+  {
+    "slug": "moniac-machine",
+    "source": "src/pages/projects/MoniacMachinePage.tsx",
+    "evidence": "Original MoniacSimulator and cabinet film; remove invented valve mappings in a replacement",
+    "decision": "Defer Anatomy",
+    "reason": "Keep the economic game. Explain its simplified equations if needed; six cabinet valves have no verified policy assignments.",
+    "sectionHeadings": [
+      "Moniac Machine",
+      "Economic strategy game inspired by the legendary 1949 Phillips hydraulic computer",
+      "Watch first",
+      "Economy as a cabinet",
+      "Moniac Machine",
+      "Interactive",
+      "Run the Economy",
+      "01 &mdash; Inspiration",
+      "Inspiration",
+      "02 &mdash; Mechanics",
+      "Mechanics",
+      "03 &mdash; Result",
+      "Result",
+      "Black Hole"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/moniac-machine.jpg",
+      "/Assets/Projects/Moniac/photos/hero-cabinet.png",
+      "/Assets/Projects/Moniac/photos/annotated-breakdown.png",
+      "/Assets/Projects/Moniac/photos/screen-closeup.png",
+      "/Assets/Projects/Moniac/photos/original-moniac.png",
+      "/Assets/Projects/Moniac/photos/valve-detail.webp",
+      "/Assets/Projects/Moniac/photos/hand-playing.webp",
+      "/Assets/Projects/Moniac/photos/gameplay-wide.png",
+      "/Assets/images/black-hole.jpg"
+    ]
+  },
+  {
+    "slug": "dumb-waiter-set-design",
+    "source": "src/pages/projects/DumbWaiterPage.tsx",
+    "evidence": "Scenic-model photographs; no measured interactive reconstruction verified",
+    "decision": "Keep scenic evidence",
+    "reason": "The spatial concept matters; no measured model is recovered for an accurate assembly.",
+    "sectionHeadings": [
+      "Set Design for Pinter's The Dumb Waiter",
+      "A John Wick-inflected basement model for two hitmen waiting under an unseen system.",
+      "Set first",
+      "A basement built like a threat",
+      "Overview",
+      "Waiting as Violence",
+      "05, Reflections",
+      "Designing the Offstage",
+      "Drowning"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/dumb-waiter/photos",
+      "/Assets/Projects/dumb-waiter/photos/set-wide.jpg",
+      "/Assets/images/drowning.jpg"
+    ]
+  },
+  {
+    "slug": "drowning",
+    "source": "src/pages/projects/DrowningPage.tsx",
+    "evidence": "Original film and embedded LightingSlider; preserve original demonstration",
+    "decision": "Keep lighting study",
+    "reason": "Light changes explain this set. Preserve the film and existing lighting slider.",
+    "sectionHeadings": [
+      "Drowning",
+      "Scenic design for stage production inspired by abandoned greenhouse aesthetics",
+      "Watch first",
+      "A room losing air",
+      "Drowning",
+      "Interactive",
+      "Light Transforms the Space",
+      "Overview",
+      "Abandoned Greenhouse",
+      "04, Reflections",
+      "Designing for Physical Space",
+      "TEDx VIT Pune"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/Drowning/photos",
+      "/Assets/images/drowning.jpg",
+      "/Assets/images/tedx.jpg"
+    ]
+  },
+  {
+    "slug": "sculpture",
+    "source": "src/pages/projects/SculpturePage.tsx",
+    "evidence": "Photographic evidence only; no scan or faithful reconstructed geometry",
+    "decision": "Keep process photographs",
+    "reason": "Armature-to-surface sequence could use original photos. An invented digital anatomy would misrepresent the sculpture.",
+    "sectionHeadings": [
+      "Sculpture",
+      "Figurative sculpture for Firodia Karandak, from anatomy studies and armatures to a finished piece.",
+      "Glimpse",
+      "Learning form through making",
+      "Impact",
+      "Structure before surface detail",
+      "Learning",
+      "The finished figure",
+      "VishwaConclave"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/Sculpture/1.jpg",
+      "/Assets/Projects/Sculpture/3.jpg",
+      "/Assets/Projects/Sculpture/4.jpg",
+      "/Assets/Projects/Sculpture/5.jpg",
+      "/Assets/Projects/VishwaConclave/1.jpg"
+    ]
+  },
+  {
+    "slug": "mentra-brand",
+    "source": "src/pages/projects/MentraBrandPage.tsx",
+    "evidence": "Brand assets and renders; no documented editable identity rules verified",
+    "decision": "Keep brand assets",
+    "reason": "Packaging and identity evidence take priority; no verified dielines or editable assembly rules.",
+    "sectionHeadings": [
+      "Mentra Brand & Packaging",
+      "Designing the retail, launch, and packaging system that helps new hardware earn trust before first use",
+      "03 &mdash; Packaging",
+      "Unboxing Is the First Interaction",
+      "One structure, two variants",
+      "Compare Mentra packaging artifacts",
+      "What changed between surfaces",
+      "01 &mdash; Logo",
+      "Three Elements, One Mark",
+      "02 &mdash; Color &amp; Type",
+      "A consistent green across surfaces",
+      "Mentra brand colors",
+      "In the Wild",
+      "The packaging in public unboxings",
+      "04 &mdash; Instruction Booklet",
+      "A QR-led setup guide",
+      "05 &mdash; Photography",
+      "Two Shoots, Two Stories",
+      "06 &mdash; Social &amp; Advertising",
+      "24 Templates. One System.",
+      "07 &mdash; Product Renders",
+      "Renders for launch and product detail",
+      "08 &mdash; Physical Details",
+      "5mm Temple. 4 Revision Rounds.",
+      "Reflection",
+      "What Hardware Brand Taught Me",
+      "Credits",
+      "Team",
+      "TEDxVITPune"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/mentra-brand/photos",
+      "/Assets/images/tedx.jpg"
+    ]
+  },
+  {
+    "slug": "tedx",
+    "source": "src/pages/projects/TedxPage.tsx",
+    "evidence": "Original stage design and build evidence; defer 3D until dimensions and interaction are supported",
+    "decision": "Defer geometry",
+    "reason": "Parallax cityscape is a promising layered-view study, but exact layer spacing and cue sequence are not verified. Preserve build photos.",
+    "sectionHeadings": [
+      "TEDx VIT Pune",
+      "Sole stage designer on an 8-person team, designing, fabricating, and lighting a rotating parallax cityscape stage for 800+ attendees",
+      "03 &mdash; Stage Design",
+      "Parallax Cityscape",
+      "04 &mdash; Team Leadership",
+      "Coordinating an 8-Person Stage Team",
+      "05 &mdash; Process",
+      "Eight Weeks, Concept to Curtain",
+      "06 &mdash; Reflections",
+      "What Leading This Taught Me",
+      "Code for Build"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/tedx.jpg",
+      "/Assets/Projects/Tedxvitpune/Desktop/5.jpg",
+      "/Assets/Projects/Tedxvitpune/Desktop/1.jpg",
+      "/Assets/Projects/Tedxvitpune/Desktop/4.jpg",
+      "/Assets/images/code-for-build.jpg"
+    ]
+  },
+  {
+    "slug": "code-for-build",
+    "source": "src/pages/projects/CodeForBuildPage.tsx",
+    "evidence": "Documented educational concept; existing browser adaptation needs learning-task review",
+    "decision": "Keep task prototype",
+    "reason": "Arrange blocks and inspect corresponding code. Use real interface states and documented transitions; an isometric assembly is unnecessary.",
+    "sectionHeadings": [
+      "A mobile coding concept that connects visual blocks to their output.",
+      "Glimpse",
+      "Learning to code on a phone",
+      "Code for Build process map",
+      "Result",
+      "Connect code to its output",
+      "Learning",
+      "What I Learned",
+      "Code for Build block system examples",
+      "Butler's Slice"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/CodeforBuild/photos",
+      "/Assets/images/code-for-build.jpg",
+      "/Assets/images/typeface.webp"
+    ]
+  },
+  {
+    "slug": "typeface",
+    "source": "src/pages/projects/TypefacePage.tsx",
+    "evidence": "Supplied OTF/WOFF2 files and Glyphs sources; new SVG workshop awaiting user review",
+    "decision": "Leave untouched",
+    "reason": "Real font manipulation already explains the work. A mechanical illustration would add no useful action.",
+    "sectionHeadings": [
+      "Butler’s Slice",
+      "An editorial display family built around diagonal cuts in the Butler serif.",
+      "Interactive type specimen",
+      "Live type specimen",
+      "Typeface cover specimen",
+      "Typeface specimen images",
+      "Mentra Brand & Packaging"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/Typeface",
+      "/Assets/Projects/Typeface/photos/hero-title.jpg",
+      "/Assets/Projects/mentra-brand/photos/render-both-frames.webp"
+    ]
+  },
+  {
+    "slug": "atps",
+    "source": "src/pages/projects/AtpsPage.tsx",
+    "evidence": "Apple Podcasts show 1524982835 and Anchor RSS located; 45 episode enclosures verified with HTTP 206; native listening archive awaiting review",
+    "decision": "Keep listening archive",
+    "reason": "Guest discovery and real recordings are the project experience.",
+    "sectionHeadings": [
+      "ArtTown Podcast Series",
+      "Conversations with art and design professionals about their work, practice, and careers.",
+      "Mentra"
+    ],
+    "originalAssetReferences": [
+      "/Assets/images/atps.webp",
+      "/Assets/Projects/ATPS/Desktop/1.jpg",
+      "/Assets/Projects/ATPS/Desktop/5.webp",
+      "/Assets/images/mentra.webp"
+    ]
+  },
+  {
+    "slug": "vishwaconclave",
+    "source": "src/pages/projects/VishwaConclavePage.tsx",
+    "evidence": "Flattened campaign boards and motion-2021 films; editable identity components and rules not recovered",
+    "decision": "Keep campaign editions",
+    "reason": "Use real campaign/motion assets; flattened boards do not support an editable mechanical workbench.",
+    "sectionHeadings": [
+      "VishwaConclave",
+      "Conference identity and event work across the 2019–2021 editions, from junior designer to creative director.",
+      "Overview",
+      "From individual assets to creative direction",
+      "Events",
+      "Selected events, 2019–2021",
+      "02 &mdash; Scope",
+      "The scope of creative direction",
+      "03 &mdash; Growth",
+      "Junior Designer to Creative Director",
+      "Mentra"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/VishwaConclave/1.jpg",
+      "/Assets/Projects/VishwaConclave/2.jpg",
+      "/Assets/Projects/VishwaConclave/4.jpg",
+      "/Assets/Projects/VishwaConclave/5.webp",
+      "/Assets/Projects/VishwaConclave/6.jpg",
+      "/Assets/mockups/projects/mentra_16x9.webp"
+    ]
+  },
+  {
+    "slug": "glassly",
+    "source": "src/pages/projects/GlasslyPage.tsx",
+    "evidence": "Original Glassly site source, synchronized phone/glasses HeroDemo and September 2026 brand guidelines; embedded demonstration uses labelled illustrative content",
+    "decision": "Keep original demo",
+    "reason": "The synchronized phone/glasses demo explains the product better than invented glasses internals.",
+    "sectionHeadings": [
+      "Glassly",
+      "Making a wearable miniapp platform understandable before someone puts on the glasses.",
+      "Project overview",
+      "Mentra"
+    ],
+    "originalAssetReferences": [
+      "/Assets/Projects/Glassly",
+      "/Assets/Projects/Glassly/cover.webp",
+      "/Assets/mockups/projects/mentra_16x9.webp"
+    ]
+  }
+]

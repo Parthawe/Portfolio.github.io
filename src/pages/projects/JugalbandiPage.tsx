@@ -1,3 +1,5 @@
+import { experiencePreviewsEnabled } from '../../utils/experiencePreview'
+import DeferredStory from '../../components/anatomy-stories/DeferredStory'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { useState } from 'react'
@@ -205,6 +207,8 @@ export default function JugalbandiPage() {
             </div>
           </div>
         </section>
+
+        {experiencePreviewsEnabled && <section id="cs-harp-story" className="wrap" style={{scrollMarginTop:100}}><DeferredStory project="harp" /></section>}
 
         <CsSection title="Follow the string layer">
           <CsBody><p>The harp makes one part of the mapping concrete: a model-driven sequence becomes a servo movement, and the servo plucks a tuned string. Keeping the strings within the selected raga constrains the machine’s musical output.</p></CsBody>

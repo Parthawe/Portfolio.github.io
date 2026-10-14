@@ -1,0 +1,77 @@
+{
+  "results": [
+    {
+      "slug": "revolving-stage",
+      "name": "desktop",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "slug": "jugalbandi",
+      "name": "desktop",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "slug": "revolving-stage",
+      "name": "desktop",
+      "theme": "dark",
+      "status": "passed"
+    },
+    {
+      "slug": "jugalbandi",
+      "name": "desktop",
+      "theme": "dark",
+      "status": "passed"
+    },
+    {
+      "slug": "revolving-stage",
+      "name": "touch",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "slug": "jugalbandi",
+      "name": "touch",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "slug": "revolving-stage",
+      "name": "touch",
+      "theme": "dark",
+      "status": "passed"
+    },
+    {
+      "slug": "jugalbandi",
+      "name": "touch",
+      "theme": "dark",
+      "status": "passed"
+    },
+    {
+      "slug": "revolving-stage",
+      "name": "webkit",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "slug": "jugalbandi",
+      "name": "webkit",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "slug": "revolving-stage",
+      "name": "webkit",
+      "theme": "dark",
+      "status": "passed"
+    },
+    {
+      "slug": "jugalbandi",
+      "name": "webkit",
+      "theme": "dark",
+      "status": "passed"
+    }
+  ],
+  "errors": []
+}
