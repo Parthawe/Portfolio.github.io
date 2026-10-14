@@ -11,6 +11,15 @@ try {
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message))
   for(const slug of['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole']){
    await page.goto(`${base}/experience-preview/${slug}`)
+   if(slug==='revolving-stage'){
+    await page.getByRole('navigation',{name:'Stage anatomy chapters'}).getByRole('button',{name:/Rotation$/}).click();await page.getByRole('slider').fill('90');await expect(page.locator('.stage-detail output')).toContainText('90°');assert.equal(await page.locator('canvas').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));results.push({slug,width,theme,status:'pass'});continue
+   }
+   if(slug==='jugalbandi'){
+    await expect(page.locator('.ja-stage svg')).toBeVisible();await expect(page.locator('.ja')).toHaveAttribute('data-theme',theme)
+    await page.getByRole('button',{name:'Pluck selected string',exact:true}).click();await expect(page.locator('.ja-status')).toContainText('completed one pluck')
+    await page.getByRole('button',{name:'Reset',exact:true}).click();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
+    await page.screenshot({path:`${out}/${slug}-${width}-${theme}.png`,fullPage:true});results.push({slug,width,theme,status:'pass'});continue
+   }
    await expect(page.locator('.physical-world-stage canvas')).toBeVisible({timeout:30000})
    await expect(page.locator('.physical-world').first()).toHaveAttribute('data-world-theme',theme)
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'draft fits viewport')
@@ -21,17 +30,6 @@ try {
     await page.getByLabel('Type a letter',{exact:true}).fill('z')
     await expect(page.getByLabel('Type a letter',{exact:true})).toHaveValue('Z')
     assert.equal(await page.locator('.enigma-input-row canvas').count(),0,'unvalidated drawing is withheld')
-   }
-   if(slug==='jugalbandi'){
-    if(width===390)await page.getByRole('button',{name:'Close project controls'}).click();await page.getByRole('combobox',{name:'Inspect an instrument'}).selectOption('2');if(width===390)await page.getByRole('button',{name:'Project controls',exact:true}).click()
-    await page.getByRole('checkbox',{name:'Enable synthesized sound'}).check()
-    await page.getByRole('button',{name:'Pluck string',exact:true}).click()
-    await expect(page.getByRole('slider',{name:'String actuation',exact:true})).not.toHaveValue('75')
-   }
-   if(slug==='revolving-stage'){
-    if(width===390)await page.getByRole('button',{name:'Close project controls'}).click();await page.getByRole('button',{name:'Garden',exact:true}).click();if(width===390)await page.getByRole('button',{name:'Project controls',exact:true}).click()
-    await expect(page.getByRole('slider',{name:'Stage rotation',exact:true})).toHaveValue('180')
-    await page.getByRole('button',{name:'Cutaway',exact:true}).click()
    }
    if(slug==='sea-of-salt')await expect(page.locator('.world-story strong')).toHaveText('The command breaks loose')
    if(slug==='black-hole'){

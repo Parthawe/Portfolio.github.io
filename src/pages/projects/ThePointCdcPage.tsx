@@ -217,11 +217,6 @@ export default function ThePointCdcPage() {
           </div>
         </section>
 
-        {/* Wireframe slide */}
-        <div className="cs-slide cs-slide--point-wireframe reveal">
-          <img {...projectImageProps("/Assets/Projects/ThePointCDC/Desktop/slice-7.png")} data-project-preview src="/Assets/Projects/ThePointCDC/Desktop/slice-7.png" alt="Low-fidelity wireframes for the redesigned website" loading="lazy" />
-        </div>
-
         {/* Visual Style */}
         <section className="cs-section reveal" id="cs-develop">
           <div className="wrap">

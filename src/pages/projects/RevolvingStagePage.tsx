@@ -1,3 +1,6 @@
+import {lazy, Suspense} from 'react'
+import { experiencePreviewsEnabled } from '../../utils/experiencePreview'
+import DeferredStory from '../../components/anatomy-stories/DeferredStory'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -11,7 +14,10 @@ import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import ExperienceBoundary from '../../components/ExperienceBoundary'
 import StageRotation from '../../components/StageRotation'
+
+const StageWorkshop = lazy(() => import('../../components/case-study/StageWorkshop'))
 
 export default function RevolvingStagePage() {
   return (
@@ -93,20 +99,22 @@ export default function RevolvingStagePage() {
         {/* Interactive — stage rotation */}
 
         <CsExpandPreview>
-        <CsSection id="cs-rotate" label="Interactive" title="Spin the Stage">
+        <CsSection id="cs-rotate" label="Interactive" title={experiencePreviewsEnabled ? "Explore the Stage" : "Spin the Stage"}>
           <CsBody>
-            <p>Explore a simplified browser model of the rotating platform. Turning it shows how different scene zones can face the audience. The original construction drawings and performance photographs below document the built stage; this model does not simulate its loads or certify its mechanics.</p>
+            <p>{experiencePreviewsEnabled ? "Follow the stage anatomy from its base to performance and disassembly." : "Explore a simplified browser model of the rotating platform."} Turning it shows how different scene zones can face the audience. The original construction drawings and performance photographs below document the built stage; this model does not simulate its loads or certify its mechanics.</p>
           </CsBody>
           <div className="project-content-block">
-            <StageRotation />
+            {experiencePreviewsEnabled ? <ExperienceBoundary fallback={<p role="status">The interactive anatomy could not load. The original construction drawings and photographs remain below. <button type="button" onClick={()=>location.reload()}>Reload stage anatomy</button></p>}><Suspense fallback={<p role="status">Loading stage anatomy…</p>}><StageWorkshop /></Suspense></ExperienceBoundary> : <StageRotation />}
           </div>
         </CsSection>
+
+        {experiencePreviewsEnabled && <section id="cs-stage-story" className="wrap" style={{scrollMarginTop:100}}><DeferredStory project="stage" /></section>}
 
         <CsSection id="cs-engineering" label="Engineering" title="Mechanical Design">
           <CsBody>
             <p>The stage assembly consists of four main components: the wooden revolving stage (15 ft. expansion), a central axle, a caster wheel bearing assembly arranged in a circular pattern, and an 8 ft. &times; 8 ft. wooden base. The entire structure is designed for disassembly and transport.</p>
             <p>The design requirement was at least 250 kg of actors, furniture, and set dressing, with rotation quiet enough for live dialogue. This is a design load; an independent load-test record is not included here.</p>
-            <p>The wooden base distributed the load across the venue floor. Modular joints kept assembly to one day, required minimal tools, and let every component fit through standard doorways.</p>
+            <p>The base, axle, wheels, and upper platform are shown separately in the construction drawing, making the assembly order visible.</p>
           </CsBody>
         </CsSection>
 
@@ -151,7 +159,7 @@ export default function RevolvingStagePage() {
         </section>
 
         <div className="cs-slide reveal">
-          <img {...projectImageProps("/Assets/Projects/RevolvingStage/photos/caster-engineering.webp")} data-project-preview src="/Assets/Projects/RevolvingStage/photos/caster-engineering.webp" alt="Caster wheel detail and circular bearing assembly arrangement on the base, 8 ft. diameter layout" loading="lazy" decoding="async" />
+          <img {...projectImageProps("/Assets/Projects/RevolvingStage/photos/caster-engineering.webp")} data-project-preview src="/Assets/Projects/RevolvingStage/photos/caster-engineering.webp" alt="Caster wheel detail showing the wheel, mounting plate, and swivel bearing" loading="lazy" decoding="async" />
         </div>
 
         <div className="cs-slide reveal">
@@ -186,9 +194,9 @@ export default function RevolvingStagePage() {
         <CsSection id="cs-result" label="Result" title={'In \u2013 Action'}>
           <CsBody>
             <p>The revolving stage in live performance &mdash; capturing scene transitions, actor interactions, and the dynamic set changes during the theatrical play at Firodia Karandak.</p>
-            <p>The stage completed more than a dozen rotations across seven scene changes, each in under fifteen seconds.</p>
-            <p>A concealed push bar, cue lights, and silent caster wheels let the backstage crew move the set without revealing the mechanism to the audience.</p>
-            <p>The strongest moment was a 135-degree rotation during live dialogue. The set changed around the actors without blackout, proving the mechanism could carry theatrical ambition on a college budget.</p>
+            <p>The performance photographs show the built set alongside its design render. The rotation diagrams document how the platform changes orientation between scenes.</p>
+            <p>The archive does not include timed scene-change measurements or an independent noise or load-test record.</p>
+            <p>The intended effect was a scene change without blackout, with the mechanism concealed beneath the set.</p>
           </CsBody>
         </CsSection>
 

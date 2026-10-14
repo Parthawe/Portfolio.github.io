@@ -1,3 +1,5 @@
+import { experiencePreviewsEnabled } from '../../utils/experiencePreview'
+import DeferredStory from '../../components/anatomy-stories/DeferredStory'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { useState } from 'react'
@@ -114,7 +116,7 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/755.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/755.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18 yellow enclosure with wind, string, and percussion regions annotated" loading="lazy" /></div>
               <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
             </div>
           </div>
@@ -159,14 +161,14 @@ export default function JugalbandiPage() {
             <p className="cs-section-label">02 &mdash; The Instrument</p>
             <h2 className="cs-display">Hexa-18</h2>
             <CsBody>
-              <p>Hexa-18 combines wind, string, and percussion into one hexagonal instrument. The geometry gives the sculpture its structure and echoes the node-and-edge diagrams used to describe neural networks.</p>
-              <p>Each tier carries a sound family. When the model activates different layers, the object shifts from breath to pluck to texture, turning inference into a physical score.</p>
+              <p>Hexa-18 groups the wind, string, and percussion regions in one yellow object. The photographs show four sloped upper panels, pipes above, and an open tapered lower frame.</p>
+              <p>The annotated photograph identifies the three sound families. The separate harp, flute, and rainstick photographs below show the mechanisms that turn control signals into acoustic movement.</p>
             </CsBody>
             <CsFeatureGrid features={[
-              { title: 'Wind', desc: 'Air-driven pipes of varying heights produce different tonal frequencies, controlled by solenoid valves.' },
-              { title: 'String', desc: 'Servo-actuated plucking mechanisms produce melodic sequences through algorithmically composed patterns.' },
-              { title: 'Percussion', desc: 'Speaker cones and vibration motors embedded in hexagonal faces create rhythmic, percussive textures.' },
-              { title: 'Sculpture', desc: 'The hexagonal form is both a visual art piece and a functional instrument \u2014 each face serves a purpose.' },
+              { title: 'Wind', desc: 'Bamboo pipes of different heights project from the top face. The original annotated photograph identifies this as the wind region.' },
+              { title: 'String', desc: 'Paired circular sensors appear on the sloped yellow face labelled string instrument. The separate mechanized harp provides the visible plucking assembly.' },
+              { title: 'Percussion', desc: 'The source annotation points to the open lower frame. The later rainstick assembly shows a separate approach to producing percussive texture.' },
+              { title: 'Construction', desc: 'The yellow enclosure separates the sensor faces, pipe openings, and open frame. Its proportions can be compared directly with the original photographs.' },
             ]} />
           </div>
         </section>
@@ -175,8 +177,8 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow sloped surface with paired circular sensors" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Arduino Mega and wiring mounted to the wooden mechanized harp frame" loading="lazy" /></div>
               <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
             </div>
           </div>
@@ -205,6 +207,8 @@ export default function JugalbandiPage() {
             </div>
           </div>
         </section>
+
+        {experiencePreviewsEnabled && <section id="cs-harp-story" className="wrap" style={{scrollMarginTop:100}}><DeferredStory project="harp" /></section>}
 
         <CsSection title="Follow the string layer">
           <CsBody><p>The harp makes one part of the mapping concrete: a model-driven sequence becomes a servo movement, and the servo plucks a tuned string. Keeping the strings within the selected raga constrains the machine’s musical output.</p></CsBody>

@@ -25,10 +25,13 @@ export default function CsImage({ src, alt, caption, aspectRatio, placeholder, c
         <div className="cs-image-unavailable" role="status" style={aspectRatio ? { aspectRatio } : undefined}>
           <p>This image couldn’t load.</p>
           {alt && <p>{alt}</p>}
+          <button type="button" onClick={() => setFailedSource(null)}>Retry image</button>
           <a href={src} target="_blank" rel="noopener noreferrer">Open the original image</a>
         </div>
       ) : (
         <img
+          data-project-preview
+          data-original-src={src}
           {...projectImageProps(src)}
           src={src}
           alt={alt || ''}

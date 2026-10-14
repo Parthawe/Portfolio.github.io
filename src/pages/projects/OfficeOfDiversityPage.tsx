@@ -62,16 +62,16 @@ export default function OfficeOfDiversityPage() {
               </figure>
               <div className="ofd-workshop-grid">
                 <figure>
-                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-1.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community workshop table with participants browsing printed report material" loading="lazy" decoding="async" />
+                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-1.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community event table with people browsing books and printed materials" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-2.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding printed Office of Diversity report material during a workshop" loading="lazy" decoding="async" />
+                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-2.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding a book at an event table" loading="lazy" decoding="async" />
                 </figure>
                 <figure>
-                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-3.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="Participants reviewing printed report materials during an Office of Diversity workshop" loading="lazy" decoding="async" />
+                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-3.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="People browsing and packing books at a community event" loading="lazy" decoding="async" />
                 </figure>
               </div>
-              <p className="cs-caption">The report had to work both as a web artifact and as something people could discuss in a room.</p>
+              <p className="cs-caption">Community photographs included in the project archive. These images provide context for the report; they do not document a usability test of the website.</p>
             </div>
           </div>
         </section>

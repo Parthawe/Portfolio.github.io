@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "name": "desktop",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "name": "desktop",
+      "theme": "dark",
+      "status": "passed"
+    },
+    {
+      "name": "mobile",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "name": "mobile",
+      "theme": "dark",
+      "status": "passed"
+    },
+    {
+      "name": "webkit",
+      "theme": "light",
+      "status": "passed"
+    },
+    {
+      "name": "webkit",
+      "theme": "dark",
+      "status": "passed"
+    }
+  ],
+  "errors": []
+}

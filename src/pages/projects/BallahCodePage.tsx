@@ -32,7 +32,7 @@ const siteScreens = [
   {
     src: `${BALLAH_SITE}/ballah-delegation.png`,
     alt: 'Ballah Code section explaining delegation with a workspace card.',
-    caption: 'Core value: delegation that keeps running while the developer moves on.',
+    caption: 'The original launch page presents a separate workspace for delegated tasks.',
   },
   {
     src: `${BALLAH_SITE}/ballah-flow.png`,
@@ -62,7 +62,6 @@ const shotStyle: React.CSSProperties = {
   width: '100%',
   height: 'auto',
   display: 'block',
-  boxShadow: '0 24px 80px rgba(0,0,0,0.26)',
 }
 
 export default function BallahCodePage() {

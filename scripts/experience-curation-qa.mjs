@@ -1,3 +1,4 @@
+import { navigateWithTemporaryRetry } from './qa-network-policy.mjs'
 import assert from 'node:assert/strict'
 import { mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync } from 'node:fs'
 import { chromium, webkit, expect } from '@playwright/test'
@@ -20,7 +21,7 @@ try {
   await page.addInitScript(() => localStorage.setItem('portfolio-analytics-consent-v1', 'denied'))
   for (const item of registry) {
     for (const suffix of ['world', 'prototype']) {
-      await page.goto(`${base}/${item.slug}/${suffix}`, { waitUntil: 'domcontentloaded' })
+      await navigateWithTemporaryRetry(page, `${base}/${item.slug}/${suffix}`, { waitUntil: 'domcontentloaded' })
       await expect(page).toHaveURL(`${base}${item.status === 'approved' ? item.href : `/${item.slug}`}`)
       if (item.status !== 'approved') {
         await expect(page.locator('#main-content')).toBeVisible()
@@ -31,13 +32,13 @@ try {
     results.push({ slug: item.slug, redirects: 'pass' })
     if (results.length % 10 === 0) console.log(`${results.length} project redirects checked`)
   }
-  await page.goto(`${base}/typeface/workshop`);await expect(page).toHaveURL(`${base}/typeface`)
-  await page.goto(`${base}/project-experiences`)
+  await navigateWithTemporaryRetry(page, `${base}/typeface/workshop`);await expect(page).toHaveURL(`${base}/typeface`)
+  await navigateWithTemporaryRetry(page, `${base}/project-experiences`)
   await expect(page.locator('.physical-world-index a')).toHaveCount(1)
   await expect(page.locator('.physical-world-index a')).toHaveAttribute('href', '/shuffle/simulation')
-  await page.goto(`${base}/experience-preview/typeface`)
-  if(publishedPreviews){await expect(page.locator('[data-glyph-outline]')).toBeVisible();await page.goto(`${base}/experience-preview`);await expect(page.locator('.experience-review-card')).toHaveCount(18);await expect(page.locator('meta[name=robots]')).toHaveAttribute('content',/noindex/)}else await expect(page.locator('.type-workshop')).toHaveCount(0)
-  await page.goto(`${base}/shuffle/simulation`)
+  await navigateWithTemporaryRetry(page, `${base}/experience-preview/typeface`)
+  if(publishedPreviews){await expect(page.locator('[data-glyph-outline]')).toBeVisible();await navigateWithTemporaryRetry(page, `${base}/experience-preview`);await expect(page.locator('.experience-review-card')).toHaveCount(18);await expect(page.locator('meta[name=robots]')).toHaveAttribute('content',/noindex/)}else await expect(page.locator('.type-workshop')).toHaveCount(0)
+  await navigateWithTemporaryRetry(page, `${base}/shuffle/simulation`)
   await expect(page.locator('.shuffle-stage canvas')).toBeVisible()
   await expect(page.locator('.shuffle-room-nav a')).toHaveCount(1)
   await page.close()
@@ -49,7 +50,7 @@ try {
       await context.addInitScript(theme => { localStorage.setItem('theme', theme); localStorage.setItem('portfolio-analytics-consent-v1', 'denied') }, theme)
       const page = await context.newPage()
       page.on('pageerror', error => errors.push(`${name}/${theme}: ${error.message}`))
-      await page.goto(`${dev}/experience-preview/typeface`)
+      await navigateWithTemporaryRetry(page, `${dev}/experience-preview/typeface`)
       await expect(page.locator('[data-glyph-outline]')).toBeVisible()
       const initialMetrics = await page.evaluate(() => ({ readyMs: performance.now(), resourceBytes: performance.getEntriesByType('resource').reduce((sum, r) => sum + r.transferSize, 0), canvases: document.querySelectorAll('canvas').length }))
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'no horizontal page overflow')

@@ -1,0 +1,11 @@
+line ends: 0 of 0 ends on 0 lines float
+shot /tmp/stage-base-lines.png
+eval: undefined
+line ends: 0 of 0 ends on 0 lines float
+shot /tmp/stage-axle-lines.png
+shot /tmp/stage-axle-4x.png · readout ""
+eval: undefined
+shot /tmp/stage-caster-4x.png · readout ""
+line ends: 0 of 0 ends on 0 lines float
+shot /tmp/stage-caster-lines.png
+console: clean

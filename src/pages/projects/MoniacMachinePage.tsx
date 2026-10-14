@@ -138,8 +138,8 @@ export default function MoniacMachinePage() {
         <CsSection id="cs-result" label="03 &mdash; Result" title="Result">
           <CsBody>
             <p>The game lets players change a policy and inspect the feedback in a simplified model. Informal playtesting prompted discussion about employment and inflation, but no comparative learning study was recorded. A useful next test would ask players to predict a change before playing, explain what happened afterward, and distinguish the game’s assumptions from real economic behavior.</p>
-            <p>Economics students said the game made policy tradeoffs feel practical. Watching a balanced economy collapse after one tax change carried more weight than reading the same relationship in a diagram.</p>
-            <p>Visitors played alone or in teams to maintain the healthiest economy over a fixed number of rounds. Competition added urgency, and repeat players returned to test different strategies.</p>
+            <p>The physical cabinet and the browser game are different representations. The cabinet photographs do not establish a one-to-one mapping between every physical valve and the game’s seven policy controls.</p>
+            <p>In the browser experiment, the task is to keep the indicators balanced for 60 seconds. The model is a simplified teaching exercise; its responses should not be read as economic forecasts.</p>
           </CsBody>
         </CsSection>
 

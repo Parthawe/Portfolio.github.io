@@ -60,8 +60,8 @@ const ZENTIPAY_PUBLIC_VISUALS = [
   },
   {
     src: zentipayPublicAsset('Dashboard Desktop-6.png'),
-    alt: 'ZentiPay Proof of Integrity screen showing identity verification and trust score.',
-    label: 'Trust architecture',
+    alt: 'ZentiPay dashboard showing balance, incoming and outgoing totals, recent transactions, and quick transfer.',
+    label: 'Account overview',
   },
   {
     src: zentipayPublicAsset('Transaction History.png'),
@@ -78,13 +78,13 @@ const ZENTIPAY_PUBLIC_VISUALS = [
 const ZENTIPAY_PROCESS_VISUALS = [
   {
     src: zentipayPublicAsset('Send Crypto-1.png'),
-    alt: 'ZentiPay review step showing send amount, wallet, and final confirmation details.',
-    label: 'Review before transfer',
+    alt: 'ZentiPay completed-transfer invoice with recipient, transaction ID, date, fees, net total, and download action.',
+    label: 'Receipt after transfer',
   },
   {
     src: zentipayPublicAsset('Dashboard Desktop-6.png'),
-    alt: 'ZentiPay integrity dashboard with verification tasks and trust score.',
-    label: 'Trust system',
+    alt: 'ZentiPay account dashboard with quick transfer, spending history, and recent transactions.',
+    label: 'Account activity',
   },
 ]
 
@@ -115,7 +115,7 @@ export default function ZentipayPage() {
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ZentiPay · Parth Pawar" />
         <meta property="og:description" content="Trust-first fintech super app for cross-border transfer flows." />
-        <meta property="og:image" content="https://designwhich.works/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp" />
+        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/zentipay_16x9.webp" />
       </Helmet>
 
       <Nav />
@@ -192,20 +192,20 @@ export default function ZentipayPage() {
 
             <NdaProcess
               title="How I approached it"
-              intro="I reduced the work to three product moves: clarify the price, make risk reviewable, and reuse the trust language across the system."
+              intro="The original screens show three connected tasks: prepare a transfer, inspect the completed invoice, and return to account activity."
               visuals={ZENTIPAY_PROCESS_VISUALS}
               decisions={[
                 {
-                  move: 'Make the transfer understandable before money moves.',
-                  why: 'Show amount, conversion, fees, and destination early.',
+                  move: 'Keep the recipient and amount beside the send action.',
+                  why: 'The transfer screen shows the recipient, selected token, converted amount, balance, and invoice option.',
                 },
                 {
-                  move: 'Turn risky actions into review moments.',
-                  why: 'Give users a clear pause before irreversible steps.',
+                  move: 'Give a completed transfer a durable receipt.',
+                  why: 'The invoice separates recipient details from the fee breakdown and provides a transaction ID and download action.',
                 },
                 {
-                  move: 'Create reusable trust patterns.',
-                  why: 'Use the same status, confirmation, and proof language across flows.',
+                  move: 'Put recent activity next to account totals.',
+                  why: 'The dashboard combines balances, recent transactions, and a quick-transfer entry point.',
                 },
               ]}
               shift={{

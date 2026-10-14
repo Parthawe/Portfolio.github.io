@@ -12,7 +12,6 @@ import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
-import CsCallout from '../../components/case-study/CsCallout'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -28,17 +27,17 @@ const MINIAPP_ASSETS = {
 const miniAppExamples = [
   {
     title: 'Notes',
-    caption: 'Long-running capture needs a clear transcription state. The featured Notes screen above shows this part of the system.',
-    label: 'Capture + memory',
+    caption: 'Notes separates All, Favorites, Manual, and AI Generated entries. Each item keeps its source conversation or date beside the summary.',
+    label: 'Mentra Notes · saved notes',
     src: MINIAPP_ASSETS.notes,
     width: 419,
     height: 909,
-    alt: 'Mentra Notes MiniApp with daily notes and transcription state',
+    alt: 'Mentra Notes saved notes with category filters, favorites, source conversations, and an add-note button',
   },
   {
     title: 'Conversations',
-    caption: 'Conversation history gives captured speech a place to be found again.',
-    label: 'Live transcript history',
+    caption: 'Conversations groups sessions by date and distinguishes a live session from completed recordings. Duration and participant names help identify an earlier conversation.',
+    label: 'Mentra Notes · conversations',
     src: MINIAPP_ASSETS.conversations,
     width: 419,
     height: 909,
@@ -46,30 +45,30 @@ const miniAppExamples = [
   },
   {
     title: 'Live Transcript',
-    caption: 'Immediate speech-to-text prioritizes the current words over browsing history.',
-    label: 'Real-time overlay',
+    caption: 'The phone transcript separates speakers with names, timestamps, and numbered markers. A live badge, elapsed time, Pause, and Stop keep recording state visible.',
+    label: 'Mentra Notes · active recording',
     src: MINIAPP_ASSETS.transcript,
     width: 420,
     height: 911,
     alt: 'Mentra Live Transcript MiniApp showing speech converted to readable text',
   },
   {
-    title: 'Meet',
-    caption: 'A dedicated entry point makes joining a call a distinct task.',
+    title: 'Mentra Call',
+    caption: 'The original screen offers Join Call with a Microsoft Teams link and Start Call for a new meeting. Mentra Live connection status appears directly below those actions.',
     label: 'Calling + presence',
     src: MINIAPP_ASSETS.meet,
     width: 390,
     height: 844,
-    alt: 'Mentra Meet MiniApp home screen for joining calls',
+    alt: 'Mentra Call screen with Microsoft Teams join and start actions and Mentra Live connection status',
   },
   {
     title: 'Guidance',
-    caption: 'A route instruction needs to remain readable during another activity.',
-    label: 'Contextual routing',
+    caption: 'The destination picker combines search, saved Home and Work locations, Add place, and recent destinations. The supplied screen shows destination selection before a route starts.',
+    label: 'Guidance · choose a destination',
     src: MINIAPP_ASSETS.guidance,
     width: 363,
     height: 783,
-    alt: 'Mentra Guidance MiniApp with route instruction screen',
+    alt: 'Guidance destination picker with search, saved places, map controls, and recent destinations',
   },
 ]
 
@@ -159,7 +158,7 @@ export default function MentraMiniAppsPage() {
               <img data-project-preview src={MINIAPP_ASSETS.notes} width="419" height="909" alt="Mentra Notes MiniApp running as part of the smart glasses ecosystem" loading="eager" decoding="async" />
               <figcaption>
                 <span>Featured MiniApp</span>
-                Notes turns live speech into searchable memory, which made it the clearest example of why the store needed real app depth.
+                The Notes screen keeps saved summaries, their source conversations, and manual entries in one list. The expanded story follows the related conversation and recording screens.
               </figcaption>
             </figure>
           </div>
@@ -176,47 +175,27 @@ export default function MentraMiniAppsPage() {
           cta="Reveal the MiniApp platform story"
           note="Continue into the constraints, discovery model, developer system, and permissions work."
         >
-        <CsSection id="cs-constraint" label="01 &mdash; Constraint" title="Designing for a 640&times;400 display">
+        <CsSection id="cs-constraint" label="01 &mdash; Constraint" title="Separate phone tasks from glasses output">
           <CsBody>
-            <p>The glasses display is 640&times;400, transparent, and peripheral. Users are moving, their hands are busy, and voice is the reliable input.</p>
-            <p>The on-glasses proposal limits each choice to one preview. Detailed browsing moves to the companion phone app, where users can stop and compare.</p>
+            <p>The original exports below are phone interfaces. They provide room to browse saved notes, inspect a transcript, join a call, and choose a destination.</p>
+            <p>The companion design puts longer reading and setup on the phone. These screens document that part of the experience; they do not show the optical appearance or readability of a glasses display.</p>
           </CsBody>
-          <CsCallout>
-            <p>&ldquo;An app store on your face sounds absurd until you use it. Then every other pair of smart glasses feels like a flip phone.&rdquo; &mdash; Early beta tester</p>
-          </CsCallout>
+
         </CsSection>
 
         {/* Discovery */}
-        <CsSection id="cs-discovery" label="02 &mdash; Discovery" title="Discover apps by intent">
-          <CsBody>
-            <p>The starting point is a task: translate this, record this, or identify this.</p>
-            <p>The proposed path is: speak a need, inspect one app preview, review its permission cue, and confirm installation. Detailed comparison belongs in the phone companion. This study focuses on discovery and permissions; the parent Mentra study covers onboarding and runtime control.</p>
-          </CsBody>
-          <CsSteps steps={[
-            { num: '1', title: 'State the need', desc: 'A spoken request starts discovery without opening a catalogue.' },
-            { num: '2', title: 'Inspect one preview', desc: 'Show the app name, a short purpose, and the capability it needs.' },
-            { num: '3', title: 'Review access', desc: 'Make sensor access part of the installation decision.' },
-            { num: '4', title: 'Confirm or compare', desc: 'Install from the preview, or use the phone for a more detailed comparison.' },
-          ]} />
+        <CsSection id="cs-discovery" label="02 · Mentra Notes" title="From a conversation to a saved note">
+          <CsBody><p>Conversations, Live Transcript, and Notes belong to the same app. The conversation list identifies a session; the transcript exposes its speakers and recording controls; the notes list keeps summaries linked to their source.</p><p>Select each original screen to inspect the transition. The sample conversations are part of the supplied design.</p></CsBody>
         </CsSection>
+        <section className="cs-section mentra-miniapps-system reveal" aria-label="Original Mentra Notes screens">
+          <div className="wrap"><CsScreenExplorer screens={[miniAppExamples[1], miniAppExamples[2], miniAppExamples[0]]} label="Choose a Mentra Notes view" /></div>
+        </section>
 
-        <CsSection id="cs-app-mix" label="03 &mdash; App Mix" title="Support different kinds of apps">
-          <CsBody>
-            <p>The store had to support very different jobs: live captions, translation, notes, Mentra AI, calling, language helpers, and ambient utilities.</p>
-            <p>The design challenge was giving each app type the right behavior without making the platform feel inconsistent.</p>
-          </CsBody>
+        <CsSection id="cs-app-mix" label="03 · Other MiniApps" title="Different tasks need different starting points">
+          <CsBody><p>Mentra Call starts with joining or creating a Teams meeting and checking the connected glasses. Guidance starts with selecting a destination. Each screen gives its primary task more space than shared platform controls.</p></CsBody>
         </CsSection>
-
-        <section className="cs-section mentra-miniapps-system reveal" aria-label="Mentra MiniApp examples">
-          <div className="wrap">
-            <div className="mentra-miniapps-system__head">
-              <span className="cs-kicker">Figma exports</span>
-              <h2>Multiple MiniApps, one OS language.</h2>
-              <p>Original Figma exports show how capture, conversation history, calling, and guidance fit within the same app system. Choose a screen to inspect its details and the design concern behind it.</p>
-            </div>
-            <CsScreenExplorer screens={miniAppExamples.filter(app => app.title !== 'Notes')} />
-            <p className="cs-caption">The ecosystem had to make room for immediate overlays like Live Transcript, longer-running utilities like Notes, communication surfaces like Meet, and contextual utilities like Guidance.</p>
-          </div>
+        <section className="cs-section mentra-miniapps-system reveal" aria-label="Original Call and Guidance screens">
+          <div className="wrap"><CsScreenExplorer screens={miniAppExamples.slice(3)} label="Choose Call or Guidance" /></div>
         </section>
 
         {/* Developer Platform */}
@@ -225,24 +204,24 @@ export default function MentraMiniAppsPage() {
             <p>The store only works if developers can build for it. The portal had to make the first MiniApp feel fast, clear, and safe to submit.</p>
           </CsBody>
           <CsSteps steps={[
-            { num: '1', title: 'Upload', desc: 'Drag and drop your MiniApp package. The system validates format, size, and compatibility automatically.' },
+            { num: '1', title: 'Submit', desc: 'Proposed submission step: provide the app and check compatibility before review.' },
             { num: '2', title: 'Metadata', desc: 'Name, description, icon, and a plain-language permissions declaration.' },
             { num: '3', title: 'Review', desc: 'Quality and safety checks before an app reaches the store.' },
           ]} />
           <CsBody>
-            <p>The documentation uses a 15-minute first-app target, followed by progressive layers for advanced features. That is an onboarding goal, not a measured completion-time result.</p>
+            <p>This submission sequence describes the platform proposal. The exported screens on this page document the user-facing MiniApps; a developer-portal recording is needed to demonstrate submission behavior.</p>
           </CsBody>
         </CsSection>
 
         {/* Permission Model */}
         <CsSection id="cs-permissions" label="05 &mdash; Permissions" title="Make sensor access inspectable">
           <CsBody>
-            <p>Camera glasses need a higher trust bar. Every MiniApp declares what sensors it uses and why before install.</p>
+            <p>Camera glasses need a higher trust bar. The permission proposal asks each MiniApp to declare the sensors it needs before installation.</p>
           </CsBody>
           <CsFeatureGrid features={[
             { title: 'Sensor Declaration', desc: 'Camera, microphone, GPS, display access, each declared individually with a plain-language explanation of why.' },
             { title: 'Runtime Indicators', desc: 'The permission design calls for a visible camera-use indicator so active capture can be recognized.' },
-            { title: 'Revocable Permissions', desc: 'The companion app provides a place to revoke access. Each app needs a defined state when a required permission is unavailable.' },
+            { title: 'Revocable Permissions', desc: 'The proposed companion controls provide a place to revoke access. Each app needs a defined state when a required permission is unavailable.' },
             { title: 'Privacy Report', desc: 'A readable summary of what each MiniApp accessed, adapted for wearable context.' },
           ]} />
         </CsSection>
@@ -264,7 +243,7 @@ export default function MentraMiniAppsPage() {
         </section>
 
         <CsSection id="cs-impact" label="06 &mdash; Scope" title="What the system covers">
-          <CsBody><p>The work connects discovery, installation, sensor permissions, developer submission, and several app types. The screens document that design scope; they do not establish adoption or retention results.</p></CsBody>
+          <CsBody><p>Five original exports document three views within Mentra Notes, the Mentra Call entry screen, and the Guidance destination picker. Discovery, submission, and permission handling are described as design proposals. These assets do not establish adoption, retention, or task-completion results.</p></CsBody>
         </CsSection>
         <CsSection id="cs-reflection" label="Next questions" title="Test the transitions between apps">
           <CsBody><p>The next evaluation should follow a first installation through permission approval, active use, and revocation. Can someone tell which app is listening, recover from a denied permission, and return to the task without reaching for the phone?</p><p>Those transitions are the test of whether the shared patterns work beyond an individual screen.</p></CsBody>

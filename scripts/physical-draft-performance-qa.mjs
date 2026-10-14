@@ -2,7 +2,7 @@ import {chromium} from '@playwright/test'
 import assert from 'node:assert/strict'
 import {mkdirSync,writeFileSync} from 'node:fs'
 const out=process.env.QA_OUTPUT_DIR || '/tmp/portfolio-physical-draft-review';mkdirSync(out,{recursive:true})
-const base=process.env.QA_DEV_URL || 'http://127.0.0.1:5201',browser=await chromium.launch(),results=[]
+const base=process.env.QA_BASE_URL || process.env.QA_DEV_URL || 'http://127.0.0.1:5201',browser=await chromium.launch(),results=[]
 try{
  for(const slug of['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole']){
  const page=await browser.newPage({viewport:{width:1440,height:1000}})
@@ -13,7 +13,14 @@ try{
    prototype[name]=function(...args){window.__reviewDraws++;window.__reviewFirstDraw ||= performance.now();return original.apply(this,args)}
   }
  })
- await page.goto(`${base}/experience-preview/${slug}`);await page.locator('.physical-world-stage canvas').waitFor()
+ await page.goto(`${base}/experience-preview/${slug}`)
+ if(['jugalbandi','revolving-stage'].includes(slug)){
+  await page.locator(slug==='jugalbandi'?'.ja-stage svg':'.stage-anatomy svg').waitFor();assert.equal(await page.locator('canvas').count(),0)
+  const readyMs=await page.evaluate(()=>performance.now());await page.waitForTimeout(800)
+  assert.equal(await page.evaluate(()=>window.__reviewDraws),0,'SVG mechanism needs no WebGL draws')
+  results.push({slug,readyMs,drawsWhileIdle:0,renderer:'SVG'});await page.close();continue
+ }
+ await page.locator('.physical-world-stage canvas').waitFor()
  await page.waitForFunction(()=>window.__reviewFirstDraw>0)
  await page.waitForTimeout(8000)
  const before=await page.evaluate(()=>window.__reviewDraws);await page.waitForTimeout(800);const after=await page.evaluate(()=>window.__reviewDraws)

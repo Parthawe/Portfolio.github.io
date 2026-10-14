@@ -304,7 +304,7 @@ export const projects: Project[] = [
   {
     slug: 'zentipay',
     name: 'ZentiPay',
-    image: '/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
+    image: '/Assets/mockups/projects/zentipay_16x9.webp',
     tag: 'FINTECH',
     year: '2025',
     desc: 'Built a trust-first fintech super-app from scratch',

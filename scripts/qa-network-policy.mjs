@@ -10,3 +10,14 @@ export function canRetryTemporaryHttp({ httpErrors, consoleErrors, pageErrors, i
   return issues.every(issue => /^Console errors:|^HTTP (502|503|504)\b|^HTTP resources:/.test(issue)
     || (timedOut && /timeout/i.test(issue)))
 }
+
+/** A Pages outage can return HTML with a temporary status before React boots.
+ * Retry that document once; permanent HTTP errors and browser errors still fail.
+ */
+export async function navigateWithTemporaryRetry(page, url, options) {
+  const response = await page.goto(url, options)
+  if (!response || !temporaryStatuses.has(response.status())) return response
+  console.warn(`Temporary document HTTP ${response.status()} at ${url}; retrying once.`)
+  await page.waitForTimeout(1000)
+  return page.goto(url, options)
+}

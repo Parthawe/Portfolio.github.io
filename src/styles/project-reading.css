@@ -723,3 +723,12 @@ body.case-side-nav .project-main .project-header--visual.wrap,
 .project-main .cs-screen-explorer--landscape .cs-screen-explorer__image { height: auto; aspect-ratio: 4 / 3; }
 .project-main .cs-screen-explorer { scroll-margin-top: 100px; }
 .project-main .cs-screen-explorer figcaption a { font-weight: 400; }
+
+/* Original phone screens need enough height for their UI text to remain legible. */
+.project-main--mentra-miniapps .cs-screen-explorer__image { height: min(820px, 85svh); padding: 0; border: 0; background: transparent; }
+.project-main--mentra-miniapps .cs-screen-explorer__choices { position: sticky; top: 112px; }
+.cs-screen-explorer__image button { min-height: 44px; padding: 10px 16px; }
+@media (max-width: 768px) {
+  .project-main--mentra-miniapps .cs-screen-explorer__choices { position: static; }
+  .project-main--mentra-miniapps .cs-screen-explorer__image { height: auto; aspect-ratio: 419 / 909; max-height: none; }
+}

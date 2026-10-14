@@ -1,0 +1,25 @@
+{
+  "environment": "Local production preview, headless Chromium, 1440×1000; fresh context per run; no network/CPU throttling. Not a field performance measurement or comparison.",
+  "moduleBytes": 724993,
+  "gzipBytes": 102501,
+  "runs": [
+    {
+      "readyMs": 450.79999999701977,
+      "mutations": 0,
+      "paths": 1419,
+      "canvas": 0
+    },
+    {
+      "readyMs": 858.1999999880791,
+      "mutations": 0,
+      "paths": 1419,
+      "canvas": 0
+    },
+    {
+      "readyMs": 862.2000000029802,
+      "mutations": 0,
+      "paths": 1419,
+      "canvas": 0
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams, useLocation } from 'react-router-dom'
 import { projects } from '../data/projects'
 import { projectExperience } from '../data/projectExperiences'
 import { projectImageProps } from '../utils/projectImage'
@@ -13,10 +13,10 @@ const previews: Record<string, { description: string; image?: string; note?: str
   enigma: { description: 'Type a letter and follow its shape through a 200-light sculpture. Inspect each layer up close.', image: '/Assets/Projects/Enigma/photos/full-sculpture-wide.webp', note: 'Typed input · drawing withheld' },
   jugalbandi: { description: 'Explore the instrument ensemble, pluck a harp string, operate the flute and tilt the rainsticks.', image: '/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp', note: 'Browser-synthesized sound' },
   'moniac-machine': { description: 'Change seven economic policies, inspect one model step, or try a timed balancing game.', note: 'Simplified browser rules' },
-  'revolving-stage': { description: 'Rotate the scenery and lift the deck to inspect its fixed base, bearing and sixteen casters.', image: '/Assets/Projects/RevolvingStage/photos/isometric-stage.png', note: 'Drawing-based reconstruction' },
+  'revolving-stage': { description: 'Follow the stage from its base through casters, axle, platform, rotation, scenery and disassembly.', image: '/Assets/Projects/RevolvingStage/photos/isometric-stage.png', note: 'Drawing-based reconstruction' },
   'sea-of-salt': { description: 'Turn the mill by hand to advance the folktale and accumulate salt. Reverse the story or reset it.', image: '/Assets/Projects/sea-of-salt/photos/mill-front.webp', note: 'Direct mouse and touch control' },
   'black-hole': { description: 'Explore clocks, spacetime fabric, binary motion and the original light-lensing experiment.', image: '/Assets/Projects/black-hole-assets/time-trap.jpg', note: 'Qualitative demonstrations' },
-  mentra: { description: 'Watch the original glasses onboarding walkthrough or open its interactive Figma prototype.', note: 'Original recording and Figma' },
+  mentra: { description: 'Pair demo glasses using a source-based MentraOS flow, recover from errors, or compare the original design.', note: 'Source-based flow · simulated Bluetooth' },
   'mentra-miniapps': { description: 'Review Notes permissions, save a note and choose what appears on the glasses. Inspect other app designs.', image: '/Assets/images/mentra/os-all-apps.png', note: 'Notes task · other screens are archives' },
   'clawed-chat': { description: 'Edit a proposed reply, choose a safety mode, approve locally and inspect the exact action receipt.', image: '/Assets/images/clawed.webp', note: 'Sample inbox · no messages sent' },
   executivelens: { description: 'Seek through a prepared meeting and trace summary claims back to their transcript evidence.', note: 'Prepared meeting transcript' },
@@ -27,9 +27,12 @@ const previews: Record<string, { description: string; image?: string; note?: str
   'ballah-code': { description: 'Test a button’s behavior or signup validation, inspect a proposed code change and apply it locally.', image: '/Assets/Projects/BallahCode/site/ballah-product-window.png', note: 'Prepared coding exercises' },
   'raahi-project': { description: 'Plan a sample transit journey across the app, stop, vehicle and transfer, including a missed vehicle.', image: '/Assets/Projects/Raahi/photos/Frame%20427318655.png', note: 'Prepared journey · no live transit data' },
 }
-const formatLabels: Record<string, string> = { physical: 'Physical model', prototype: 'Working prototype', tool: 'Interactive tool', experiment: 'Strategy experiment', media: 'Listening archive' }
+const formatLabels: Record<string, string> = { '3d': 'Interactive 3D', anatomy: 'Anatomy mechanism', prototype: 'Working prototype', tool: 'Interactive tool', 'original-experiment': 'Original experiment / tool', media: 'Listening archive' }
 
+const actions: Record<string,string> = { typeface:'Shape a letter',atps:'Find a conversation',enigma:'Write with light',jugalbandi:'Play a mechanism','moniac-machine':'Run the economy','revolving-stage':'Take it apart','sea-of-salt':'Turn the mill','black-hole':'Explore the studies',mentra:'Try onboarding','mentra-miniapps':'Launch a MiniApp','clawed-chat':'Review an action',executivelens:'Trace a decision','org-dashboard':'Explore the workspace',healthapp:'Rebalance a day','vj-software':'Choose a parking bay','code-for-build':'Build a page','ballah-code':'Try a code change','raahi-project':'Plan a journey' }
+const filters = [{id:'all',label:'All experiences',formats:[]},{id:'objects',label:'3D objects',formats:['3d']},{id:'anatomy',label:'Anatomy',formats:['anatomy']},{id:'interfaces',label:'Interfaces',formats:['prototype']},{id:'tools',label:'Tools & games',formats:['original-experiment']},{id:'listen',label:'Listen',formats:['media']}]
 function ExperienceCard({ slug, index }: { slug: string; index: number }) {
+  const location = useLocation()
   const project = projects.find(item => item.slug === slug)
   const experience = projectExperience(slug)
   const [fallback, setFallback] = useState(false)
@@ -37,25 +40,39 @@ function ExperienceCard({ slug, index }: { slug: string; index: number }) {
   const [loaded, setLoaded] = useState(false)
   if (!project || !experience) return null
   const preview = previews[slug]
-  const src = fallback ? project.image : preview?.image ?? project.image
-  return <Link className="experience-review-card" to={`/experience-preview/${slug}`} aria-labelledby={`review-title-${slug}`}>
+  const src = fallback ? project.image : project.cardMockupSquare || project.cover16x9 || project.cardMockup || preview?.image || project.image
+  return <article className="experience-review-item"><Link className="experience-review-card" state={{draftSearch:location.search}} to={`/experience-preview/${slug}`} aria-labelledby={`review-title-${slug}`} aria-describedby={`review-action-${slug}`}>
     <div className={`experience-review-image${loaded ? ' is-loaded' : ''}`}>
-      {failed ? <span>Project preview unavailable</span> : <img src={src} {...projectImageProps(src)} sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1280px) calc((100vw - 64px) / 2), 608px" alt={`${project.name} project preview`} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" onLoad={() => setLoaded(true)} onError={() => { if (!fallback && src !== project.image) { setFallback(true); setLoaded(false) } else { setFailed(true); setLoaded(true) } }} />}
+      {failed ? <span>Project preview unavailable</span> : <img src={src} {...projectImageProps(src)} sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1050px) calc((100vw - 72px) / 2), 430px" alt={`${project.name} project preview`} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" onLoad={() => setLoaded(true)} onError={() => { if (!fallback && src !== project.image) { setFallback(true); setLoaded(false) } else { setFailed(true); setLoaded(true) } }} />}
+      <span className="experience-review-action" id={`review-action-${slug}`}>{actions[slug] || 'Open experience'} <span aria-hidden="true">↗</span></span>
     </div>
     <div className="experience-review-copy">
-      <div className="experience-review-meta"><span>{formatLabels[experience.format] ?? 'Project experience'}</span><span>Draft</span></div>
+      <div className="experience-review-meta"><span>{formatLabels[experience.presentation] ?? 'Project experience'}</span><span>{String(index+1).padStart(2,'0')}</span></div>
       <h2 id={`review-title-${slug}`}>{project.name}</h2>
       <p>{preview?.description ?? experience.label}</p>
-      <div className="experience-review-card-footer"><small>{preview?.note ?? 'Awaiting review'}</small><span>Open draft <span aria-hidden="true">→</span></span></div>
+      <div className="experience-review-card-footer"><small>{preview?.note ?? 'Awaiting review'}</small></div>
     </div>
-  </Link>
+  </Link><div className="experience-review-related"><Link to={`/${slug}`} aria-label={`Read ${project.name} case study`}>Case study ↗</Link>{['jugalbandi','revolving-stage'].includes(slug)&&<Link to={`/${slug}#${slug==='jugalbandi'?'cs-harp-story':'cs-stage-story'}`} aria-label={`How ${project.name} works`}>How it works ↗</Link>}</div></article>
 }
 
 export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
-  return <main className="physical-world-page experience-review" id="main-content">
-    <Helmet><title>Project draft previews · Parth Pawar</title><meta name="robots" content="noindex,nofollow"/><meta name="googlebot" content="noindex,nofollow"/></Helmet>
-    <header><div><h1>Explore the project drafts</h1><p>{slugs.length} experiences to try: physical models, working prototypes, tools and original recordings. Each card explains what you can do.</p></div><Link to="/work">Back to Work</Link><ThemeToggle /></header>
-    <p className="experience-review-status">These experiences are draft previews awaiting review. Original project case studies remain available alongside them.</p>
-    <nav className="experience-review-grid" aria-label="Project experience drafts">{slugs.map((slug, index) => <ExperienceCard key={slug} slug={slug} index={index} />)}</nav>
+  const [params,setParams]=useSearchParams()
+  const filter=filters.some(f=>f.id===params.get('kind'))?params.get('kind')!:'all'
+  const query=params.get('q')||''
+  const update=(key:string,value:string)=>setParams(previous=>{const next=new URLSearchParams(previous);if(value&&value!=='all')next.set(key,value);else next.delete(key);return next},{replace:true,preventScrollReset:true})
+  const setFilter=(value:string)=>update('kind',value)
+  const setQuery=(value:string)=>update('q',value)
+  const reset=()=>setParams({}, {replace:true,preventScrollReset:true})
+  const matches=(slug:string,id:string)=>id==='all'||filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.presentation||'')
+  const words=query.trim().toLowerCase().split(/\s+/).filter(Boolean)
+  const visible=slugs.filter(slug=>{const text=`${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]}`.toLowerCase();return matches(slug,filter)&&words.every(word=>text.includes(word))})
+  return <main className="experience-review" id="main-content">
+    <Helmet><title>Try the work · Project previews</title><meta name="robots" content="noindex,nofollow"/><meta name="googlebot" content="noindex,nofollow"/></Helmet>
+    <nav className="experience-review-top" aria-label="Preview navigation"><Link to="/">Parth</Link><Link to="/work">Work</Link><span aria-current="page">Experiences</span><ThemeToggle /></nav>
+    <header><div><p className="experience-review-eyebrow">The interactive collection</p><h1>Try the work.</h1></div><p>Shape a letter. Play an instrument. Test a workflow.<br/>Explore the projects through something you can do.</p></header>
+    <div className="experience-review-toolbar"><div className="experience-review-filters" role="group" aria-label="Filter experiences">{filters.map(f=><button key={f.id} aria-pressed={filter===f.id} onClick={()=>setFilter(f.id)}>{f.label}<span>{slugs.filter(slug=>matches(slug,f.id)).length}</span></button>)}</div><label className="experience-review-search"><span>Find an experience</span><input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search projects" /></label></div>
+    <div className="experience-review-status"><p role="status">{visible.length} of {slugs.length} experiences</p><p>Draft collection · awaiting review</p>{(query||filter!=='all')&&<button className="experience-review-clear" onClick={reset}>Clear filters</button>}</div>
+    {visible.length?<nav className="experience-review-grid" aria-label="Project experience drafts">{visible.map((slug,index)=><ExperienceCard key={slug} slug={slug} index={index}/>)}</nav>:<section className="experience-review-empty"><h2>No matching experiences</h2><p>Try another project name or explore the full collection.</p><button onClick={reset}>Show all experiences</button></section>}
+    <footer className="experience-review-end"><p>Looking for the process behind a project?</p><Link to="/work">Read the case studies ↗</Link><small>These previews are works in progress. Original case studies remain available.</small></footer>
   </main>
 }

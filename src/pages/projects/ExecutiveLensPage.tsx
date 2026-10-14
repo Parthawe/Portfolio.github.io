@@ -8,7 +8,6 @@ import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
-import CsPullquote from '../../components/case-study/CsPullquote'
 import CsCallout from '../../components/case-study/CsCallout'
 import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
@@ -126,24 +125,10 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>The site follows the product: clear hierarchy, real screens, and a problem-to-solution narrative without AI buzzword clutter.</p>
           </CsBody>
-          <div className="cs-site-crop-grid cs-site-crop-grid--executivelens">
-            <figure>
-              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-hero.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-hero.png" alt="ExecutiveLens.ai site hero with product screenshot and executive meeting intelligence positioning" loading="lazy" decoding="async" />
-              <figcaption>Hero and product proof</figcaption>
-            </figure>
-            <figure>
-              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-workflow.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-workflow.png" alt="ExecutiveLens.ai workflow section showing audio input becoming meetings, insights, and decisions" loading="lazy" decoding="async" />
-              <figcaption>Audio to insight workflow</figcaption>
-            </figure>
-            <figure>
-              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png" alt="ExecutiveLens.ai capabilities section showing executive assistant features and decision tracking" loading="lazy" decoding="async" />
-              <figcaption>Capability grid</figcaption>
-            </figure>
-            <figure>
-              <img {...projectImageProps("/Assets/images/executivelens/site-crops/executivelens-site-integrations.png")} data-project-preview src="/Assets/images/executivelens/site-crops/executivelens-site-integrations.png" alt="ExecutiveLens.ai site sections showing time savings, integrations, and closing call to action" loading="lazy" decoding="async" />
-              <figcaption>Integrations and conversion</figcaption>
-            </figure>
+          <div className="cs-slide reveal">
+            <img {...projectImageProps("/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp")} data-project-preview src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" alt="Original Executive Lens website: glasses and action board, capture workflow, capability cards, integrations, and closing demo action" loading="lazy" decoding="async" />
           </div>
+          <p className="cs-caption">Original website capture, March 25, 2026. The page presents the glasses-assisted workflow and product capabilities. Marketing claims in the capture are not independent performance measurements.</p>
         </CsSection>
 
         <CsSection id="cs-insights" label="Insight Engine" title="Keep evidence beside the summary">
@@ -160,10 +145,7 @@ export default function ExecutiveLensPage() {
           <CsBody className="cs-body--space-after">
             <p>The intended workflow is a morning brief: review a decision, check its transcript reference, identify the owner, and follow up. Beta observations are qualitative; this page does not include a dated sample or measured adoption result.</p>
           </CsBody>
-          <CsPullquote
-            quote="I stopped treating it like a transcript tool. It tells me what actually changed, not just what someone said."
-            cite="&mdash; Beta participant"
-          />
+
         </CsSection>
 
         <CsSection id="cs-reflections" label="Reflections" title="What Designing for Executives Taught Me">
@@ -171,7 +153,7 @@ export default function ExecutiveLensPage() {
             <><strong>Busy people do not forgive bad hierarchy.</strong> Every screen had to answer the first question in seconds: what changed, why does it matter, and who owns it?</>,
             <><strong>Trust in AI is earned in citations, not confidence scores.</strong> A summary is only useful when the user can inspect the transcript moment behind it.</>,
             <><strong>Data visualization is about answering questions.</strong> Each chart had to make risk, ownership, or change easier to understand, otherwise it was decoration.</>,
-            <><strong>The best AI products feel like memory, not magic.</strong> The product worked when executives described it as something that remembered the business for them.</>,
+            <><strong>The best AI products feel like memory, not magic.</strong> A useful review task is tracing a decision to its source, then finding the person responsible for the next action.</>,
           ]} />
         </CsSection>
 
