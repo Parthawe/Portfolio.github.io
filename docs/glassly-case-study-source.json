@@ -1,0 +1,15 @@
+{
+  "sourceRepository": "/Users/parth/Documents/ChatGPT/glassly-site",
+  "revisionDate": "2026-10-14",
+  "files": {
+    "DESIGN.md": "45726403b8caaf1fc58255a176e7644ae8d18e7b0d55d27498ed3e59158c9ba8",
+    "src/site/README.md": "2cfbbf4c2f176291b7de05d17a951d40a344f2ff7bbd5c551c6a7895deb3bf29",
+    "src/site/HeroDemo.jsx": "9239a1d22d1cc27684d76cc7318d23395bfe6a2c22a3cee1a03cc6b37f453958",
+    "src/site/hero-demo.css": "de5ad32d7784dc928fa054fd9b83dc4364ddc05fdcc0ae0206eae1b8556bb570",
+    "src/site/landing.css": "60f72b1700488686c26eaa6d70964a9f8edf62d4087c071e1bc94a96c6330b4f",
+    "src/site/base.css": "c43e69b9a641d16ea87209ec7fda668ce33ad217bb98d16bb3847c4e6da2250b"
+  },
+  "adaptation": "HeroDemo asset URLs use the portfolio prefix. Original behavior and styles are preserved in an isolated iframe with readiness and size reporting.",
+  "brandGuidelinesSha256": "db9fd36bad829124306ceab265377afbf7a62971e722019a7c4fb3bc4b01f722",
+  "hardwareImageAttribution": "Even Realities G2; image copied from the original Glassly website asset library."
+}

@@ -16,6 +16,8 @@ jobs:
     env:
       VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
       QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      # Test-only reviewer code (qa-original-slides); never used by deploy.yml.
+      VITE_NDA_ACCESS_SHA256: '9022e2445b567f5928a3bb03742867cb8bba427ac1dbe0b25c2dd2e5e008b990'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -50,6 +52,8 @@ jobs:
           done
           curl --fail --silent "$QA_BASE_URL" > /dev/null
           status=0
+          QA_OUTPUT_DIR=qa-diagnostics/case-study-slides node scripts/case-study-slides-qa.mjs || status=1
+          QA_OUTPUT_DIR=qa-diagnostics/glassly node scripts/glassly-case-study-qa.mjs || status=1
           bun run qa:home-loading || status=1
           node scripts/reveal-readiness-qa.mjs || status=1
           node scripts/performance-qa.mjs || status=1

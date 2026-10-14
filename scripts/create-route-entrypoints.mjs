@@ -41,6 +41,7 @@ const routeLabels = new Map([
   ['healthapp', 'Health App Concept'],
   ['medimorpho', 'NYU Langone'],
   ['mentra-miniapps', 'Mentra MiniApps'],
+  ['glassly', 'Glassly'],
   ['transfi-project', 'TransFi'],
   ['clawed-chat', 'Clawed'],
   ['executivelens', 'ExecutiveLens'],
@@ -65,6 +66,7 @@ const routeLabels = new Map([
   ['dna-speculative', 'DNA Speculative Design'],
 ])
 const routeDescriptions = new Map([
+  ['glassly', 'Glassly: product storytelling, brand guidelines and the original synchronized phone-and-glasses website demo by Parth Pawar.'],
   ['notes', 'Visitor notes and feedback on Parth Pawar’s portfolio. Leave a hello or share a thought.'],
   ['work', 'Selected work by Parth Pawar across AI wearables, fintech, UX design, creative technology, installations, and brand systems.'],
   ['about', 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra.'],
@@ -97,6 +99,12 @@ const routeDescriptions = new Map([
   ['page-not-found', 'The requested page is not available in the public portfolio.'],
 ])
 const routeSocialPreviews = new Map([
+  ['glassly', {
+    image: '/Assets/Projects/Glassly/cover.webp',
+    alt: 'Glassly identity with attributed Even Realities G2 partner hardware.',
+    width: 1200,
+    height: 900,
+  }],
   ['medimorpho', {
     image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
     alt: 'NYU Langone Health building, the setting for an independent multilingual healthcare concept by Parth Pawar.',
@@ -182,6 +190,8 @@ function withRouteMeta(html, route, { noindex = false } = {}) {
     const imageUrl = `${siteOrigin}${socialPreview.image}`
     output = replaceMeta(output, 'property', 'og:image', imageUrl)
     output = replaceMeta(output, 'property', 'og:image:alt', socialPreview.alt)
+    if (socialPreview.width) output = replaceMeta(output, 'property', 'og:image:width', String(socialPreview.width))
+    if (socialPreview.height) output = replaceMeta(output, 'property', 'og:image:height', String(socialPreview.height))
     output = replaceMeta(output, 'name', 'twitter:image', imageUrl)
     output = replaceMeta(output, 'name', 'twitter:image:alt', socialPreview.alt)
   }
