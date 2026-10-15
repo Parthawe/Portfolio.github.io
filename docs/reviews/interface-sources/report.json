@@ -1,0 +1,50 @@
+[
+  {
+    "browser": "chromium",
+    "width": 1440,
+    "liveCount": 4,
+    "originalFigmaCount": 2,
+    "reconstructedFigmaCount": 6,
+    "themes": true,
+    "filtersAndReturns": true,
+    "frameLifecycle": "controlled test; not public access proof",
+    "lazyBrowserStudy": true,
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "width": 390,
+    "liveCount": 4,
+    "originalFigmaCount": 2,
+    "reconstructedFigmaCount": 6,
+    "themes": true,
+    "filtersAndReturns": true,
+    "frameLifecycle": "controlled test; not public access proof",
+    "lazyBrowserStudy": true,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "width": 1440,
+    "liveCount": 4,
+    "originalFigmaCount": 2,
+    "reconstructedFigmaCount": 6,
+    "themes": true,
+    "filtersAndReturns": true,
+    "frameLifecycle": "controlled test; not public access proof",
+    "lazyBrowserStudy": true,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "width": 390,
+    "liveCount": 4,
+    "originalFigmaCount": 2,
+    "reconstructedFigmaCount": 6,
+    "themes": true,
+    "filtersAndReturns": true,
+    "frameLifecycle": "controlled test; not public access proof",
+    "lazyBrowserStudy": true,
+    "errors": []
+  }
+]

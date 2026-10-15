@@ -17,6 +17,7 @@ await page.route('https://www.figma.com/embed?*',route=>route.fulfill({contentTy
 page.on('pageerror',e=>errors.push(e.message))
 for(const slug of slugs) {
  await page.goto(`${base}/experience-preview/${slug}`,{waitUntil:'domcontentloaded'})
+ await page.locator('.original-interface-study > summary').click()
  const app=page.locator('[data-prototype]')
  await expect(app).toHaveAttribute('data-prototype-theme',profile.theme)
  assert.equal(await app.locator('canvas').count(),0)

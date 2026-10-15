@@ -57,3 +57,7 @@
 .experience-review-collections a[aria-current="page"] { color:var(--ink); border-bottom-color:currentColor; }
 .experience-review-card-footer { display:flex; flex-wrap:wrap; gap:8px 18px; }
 @media(max-width:640px) { .experience-review { padding-top:108px; }.experience-review-collections { margin-bottom:20px; } }
+.experience-interface-kinds { display:flex; flex-wrap:wrap; gap:8px; padding-top:18px; }
+.experience-interface-kinds button { font-size:13px; }
+.experience-interface-kinds button[aria-pressed=true] { border-color:var(--ink); background:var(--ink-06); }
+.experience-interface-kinds span { margin-left:10px; color:var(--ink-60); font-size:11px; }
