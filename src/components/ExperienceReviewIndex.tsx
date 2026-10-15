@@ -10,7 +10,7 @@ import '../styles/experience-review-index.css'
 const previews: Record<string, { description: string; image?: string; note?: string }> = {
   typeface: { description: 'Type with three real font weights, reshape a glyph’s curves, and export an SVG specimen.', note: 'Type workshop' },
   atps: { description: 'Find a conversation by guest or topic, then listen, seek and change playback speed.', image: '/Assets/Projects/ATPS/Desktop/1.jpg', note: 'Original recordings · historical artwork' },
-  enigma: { description: 'Type a letter and follow its shape through a 200-light sculpture. Inspect each layer up close.', image: '/Assets/Projects/Enigma/photos/full-sculpture-wide.webp', note: 'Typed input · drawing withheld' },
+  enigma: { description: 'Draw on the tablet or type a letter, then follow the input through a 200-light sculpture.', image: '/Assets/Projects/Enigma/photos/full-sculpture-wide.webp', note: 'Mouse and touch drawing · typed input' },
   jugalbandi: { description: 'Explore the instrument ensemble, pluck a harp string, operate the flute and tilt the rainsticks.', image: '/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp', note: 'Browser-synthesized sound' },
   'moniac-machine': { description: 'Change seven economic policies, inspect one model step, or try a timed balancing game.', note: 'Simplified browser rules' },
   'revolving-stage': { description: 'Follow the stage from its base through casters, axle, platform, rotation, scenery and disassembly.', image: '/Assets/Projects/RevolvingStage/photos/isometric-stage.png', note: 'Drawing-based reconstruction' },

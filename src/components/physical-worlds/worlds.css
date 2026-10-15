@@ -95,3 +95,12 @@
 .enigma-letter-keys button { border-color:var(--world-rule); font-size:16px; min-width:0; }
 .world-stage-plan svg { width:190px; height:190px; }
 @media(max-width:680px){.enigma-letter-keys { grid-template-columns:repeat(7,minmax(0,1fr)); padding:12px; gap:4px; }.enigma-letter-keys button { padding:8px 0; }.world-stage-plan svg { width:200px; height:200px; }}
+
+/* Enigma uses the sculpture's monochrome palette. */
+.physical-world[data-project="enigma"] { --world-bg:#f4f4f4; --world-ink:#222; --world-muted:#606060; --world-rule:#bcbcbc; --world-selected:#dedede; --world-accent:#333; }
+.physical-world[data-project="enigma"][data-world-theme="dark"] { --world-bg:#1e1e1e; --world-ink:#f2f2f2; --world-muted:#bdbdbd; --world-rule:#555; --world-selected:#3b3b3b; --world-accent:#eee; }
+.physical-world[data-project="enigma"] .physical-world-hint { background:#262626; color:#eee; }
+.physical-world[data-project="enigma"] .world-primary button { min-height:44px; padding:8px 14px; border:1px solid var(--world-rule); border-radius:6px; background:var(--world-bg); color:var(--world-ink); }
+.physical-world[data-project="enigma"] .world-primary button[aria-pressed="true"] { background:var(--world-selected); }
+.physical-world[data-project="enigma"] .world-primary button:disabled { opacity:.45; }
+.physical-world[data-project="enigma"] canvas { touch-action:none; }

@@ -7,7 +7,7 @@ import { worlds, type WorldKey } from './catalog'
 import { buildJugalbandi } from './JugalbandiModel'
 import { buildRevolvingStage } from './RevolvingStageModel'
 
-type Props = { project: WorldKey; values: number[]; dark: boolean; reduced: boolean; cameraView: number; focus: number; revision: number; resetVersion: number; onReset: () => void; onChange: (index: number, value: number) => void; onFail: () => void }
+type Props = { project: WorldKey; values: number[]; dark: boolean; reduced: boolean; cameraView: number; focus: number; revision: number; resetVersion: number; enigma?: { mode: 'type' | 'draw'; clear: number; label: number | null }; onInk?: (strokes: number) => void; onReset: () => void; onChange: (index: number, value: number) => void; onFail: () => void }
 type Update = (values: number[], time: number, delta: number) => void
 const V = (x: number, y: number, z: number) => new T.Vector3(x, y, z)
 
@@ -74,6 +74,14 @@ export default function RoomScene(props: Props) {
     const pickables: T.Object3D[] = []
     const pick = (object: T.Object3D, control: number, value?: number) => { object.userData.control=control;object.userData.value=value;pickables.push(object) }
     const updates: Update[] = []
+    let inkSurface: T.Mesh | undefined, inkCanvas: HTMLCanvasElement | undefined
+    let inkVersion=0, inkStrokes=0, inkPointer:number|null=null, inkLast:T.Vector2|null=null, inkSnapshot:ImageData|null=null
+    let inkMode='type', inkClear=-1
+    const inkContext=()=>inkCanvas!.getContext('2d')!
+    const clearInk=()=>{const ctx=inkContext();ctx.fillStyle='#000';ctx.fillRect(0,0,512,326);inkStrokes=0;inkVersion++}
+    const inkPoint=(uv:T.Vector2)=>new T.Vector2(uv.x*512,(1-uv.y)*326)
+    const paintInk=(uv:T.Vector2)=>{const point=inkPoint(uv),ctx=inkContext();ctx.strokeStyle='#fff';ctx.fillStyle='#fff';ctx.lineWidth=16;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();if(inkLast){ctx.moveTo(inkLast.x,inkLast.y);ctx.lineTo(point.x,point.y);ctx.stroke()}else{ctx.arc(point.x,point.y,8,0,Math.PI*2);ctx.fill()}inkLast=point;inkVersion++;activity?.wake()}
+
 
     const woodCanvas = document.createElement('canvas'); woodCanvas.width=256; woodCanvas.height=512
     const woodContext=woodCanvas.getContext('2d')!; woodContext.fillStyle='#f3eadb';woodContext.fillRect(0,0,256,512)
@@ -82,7 +90,7 @@ export default function RoomScene(props: Props) {
     const plywood=mat('#f0dbc0');plywood.map=woodTexture
 
     if (props.project === 'enigma') {
-      table(3.4,3.2);black.color.set('#3e4449'); (root.children[0] as T.Mesh).material=black
+      table(3.4,3.2);black.color.set('#333333');white.color.set('#e5e5e5');hemisphere.color.set('#ffffff');hemisphere.groundColor.set('#404040');key.color.set('#ffffff');fill.color.set('#ffffff'); (root.children[0] as T.Mesh).material=black
       const layers=[64,64,46,26], points:T.Vector3[][]=[]
       const nodes=new T.InstancedMesh(new T.SphereGeometry(.053,14,10),new T.MeshStandardMaterial({color:'#ffffff',roughness:.6,emissive:'#ffffff',emissiveIntensity:1.8}),200)
       materials.add(nodes.material as T.Material);(nodes.material as T.MeshStandardMaterial).onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\n#ifdef USE_COLOR\ntotalEmissiveRadiance *= clamp((vColor - vec3(0.1)) / 0.9, vec3(0.0), vec3(1.0));\n#endif')};nodes.castShadow=true;root.add(nodes)
@@ -96,7 +104,7 @@ export default function RoomScene(props: Props) {
           const rowCols=layer===3?(row===1?8:9):cols
           const point=V((col-(rowCols-1)/2)*.19,top-row*.17,z)
           points[layer].push(point);dummy.position.copy(point);dummy.updateMatrix();nodes.setMatrixAt(offset++,dummy.matrix)
-          if(layer===3){const letter=label(String.fromCharCode(65+i),.13,.09,root,point.x,point.y+.095,z+.057,'#dedee2','transparent');pick(letter,0,i);const target=sphere(.071,black,root,point.x,point.y,z);target.visible=false;pick(target,0,i)}
+          if(layer===3){const letter=label(String.fromCharCode(65+i),.13,.09,root,point.x,point.y+.095,z+.057,'#dedede','transparent');pick(letter,0,i);const target=sphere(.071,black,root,point.x,point.y,z);target.visible=false;pick(target,0,i)}
         }
         for(const x of [-1.08,1.08])box(.025,top-.79,.025,black,root,x,(top+.79)/2,z)
         rod(V(-1.08,top+.17,z),V(1.08,top+.17,z),.012,black)
@@ -107,32 +115,49 @@ export default function RoomScene(props: Props) {
         const a=points[layer][i],b=points[layer+1][(i*7+branch*13)%points[layer+1].length];wirePoints.push(a.x,a.y,a.z,b.x,b.y,b.z)
       }
       const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(wirePoints,3))
-      const wireMaterial=new T.LineBasicMaterial({color:'#b6b5aa',transparent:true,opacity:.35});materials.add(wireMaterial);root.add(new T.LineSegments(geometry,wireMaterial))
+      const wireMaterial=new T.LineBasicMaterial({color:'#b6b6b6',transparent:true,opacity:.35});materials.add(wireMaterial);root.add(new T.LineSegments(geometry,wireMaterial))
       const tablet=new T.Group();tablet.position.set(0,.86,1.12);tablet.rotation.x=-Math.PI*.34;root.add(tablet)
-      box(.90,.60,.035,black,tablet);box(.83,.53,.006,white,tablet,0,0,.023);const display=label('A',.66,.42,tablet,0,0,.03,'#ffffff','#080908')
-      let previous=-1,age=0
+      box(.90,.60,.035,black,tablet);box(.83,.53,.006,white,tablet,0,0,.023)
+      inkCanvas=document.createElement('canvas');inkCanvas.width=512;inkCanvas.height=326
+      clearInk()
+      const inkTexture=new T.CanvasTexture(inkCanvas);inkTexture.colorSpace=T.SRGBColorSpace;textures.add(inkTexture)
+      const inkMaterial=new T.MeshBasicMaterial({map:inkTexture});materials.add(inkMaterial)
+      const display=mesh(new T.PlaneGeometry(.66,.42),inkMaterial,tablet,0,0,.03);inkSurface=display
+      let previous=-1,previousInk=-1,age=0
       let signals:number[][]=[]
-      const inputCanvas=document.createElement('canvas');inputCanvas.width=8;inputCanvas.height=8
       updates.push((values,_time,delta)=>{
-        if(values[0]!==previous){
-          previous=values[0];age=0
-          const letter=String.fromCharCode(65+values[0])
-          const context=inputCanvas.getContext('2d')!;context.fillStyle='#000';context.fillRect(0,0,8,8);context.fillStyle='#fff';context.font='bold 8px Arial';context.textAlign='center';context.textBaseline='middle';context.fillText(letter,4,4)
-          const pixels=context.getImageData(0,0,8,8).data;signals=[Array.from({length:64},(_,i)=>pixels[i*4]/255)]
+        const input=latest.current.enigma
+        const nextMode=input?.mode??'type'
+        if(input&&input.clear!==inkClear){inkClear=input.clear;if(nextMode==='draw')clearInk()}
+        if(nextMode==='type'&&(inkMode!=='type'||values[0]!==previous||previousInk<0)){
+          const ctx=inkContext();clearInk();ctx.fillStyle='#fff';ctx.font='bold 270px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String.fromCharCode(65+values[0]),256,174);inkVersion++
+        }
+        inkMode=nextMode;previous=values[0]
+        if(inkVersion!==previousInk){
+          previousInk=inkVersion;age=0;inkTexture.needsUpdate=true
+          // Area coverage preserves thin strokes that point-sampling an 8 × 8 image misses.
+          const pixels=inkContext().getImageData(0,0,512,326).data,coverage=new Float64Array(64),counts=new Uint16Array(64)
+          for(let y=0;y<326;y++)for(let x=0;x<512;x++){const cell=Math.floor(y*8/326)*8+Math.floor(x/64);coverage[cell]+=pixels[(y*512+x)*4]/255;counts[cell]++}
+          signals=[Array.from(coverage,(sum,i)=>Math.min(1,sum/counts[i]*5))]
+          renderer.domElement.dataset.enigmaInput=JSON.stringify(signals[0].map(n=>Math.round(n*255)))
           for(let layer=1;layer<3;layer++)signals[layer]=points[layer].map(point=>{
             let sum=0,weights=0
             points[layer-1].forEach((other,i)=>{const weight=Math.exp(-Math.pow(point.x-other.x,2)*4-Math.pow(point.y-other.y+.36,2)*4);sum+=signals[layer-1][i]*weight;weights+=weight})
             return sum/Math.max(.001,weights)
           })
-          const texture=(display.material as T.MeshBasicMaterial).map as T.CanvasTexture;const canvas=texture.image as HTMLCanvasElement;const ctx=canvas.getContext('2d')!;ctx.fillStyle='#080908';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#ffffff';ctx.font='180px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(letter,canvas.width/2,canvas.height/2);texture.needsUpdate=true
+
         }
         age=latest.current.reduced?1:age+delta
         let k=0
         layers.forEach((count,layer)=>{for(let i=0;i<count;i++){
-          const strength=age>layer*.16?(layer===3?(i===values[0]?1:0):signals[layer]?.[i]??0):0
-          nodes.setColorAt(k++,new T.Color('#4e5357').lerp(new T.Color('#ffffff'),strength))
+          const strength=age>layer*.16?(layer===3?(i===(inkMode==='draw'?latest.current.enigma?.label:values[0])?1:0):signals[layer]?.[i]??0):0
+          nodes.setColorAt(k++,new T.Color('#515151').lerp(new T.Color('#ffffff'),strength))
         }})
         if(nodes.instanceColor)nodes.instanceColor.needsUpdate=true
+        renderer.domElement.dataset.enigmaOutput=String(inkMode==='draw'?(latest.current.enigma?.label??''):values[0])
+        renderer.domElement.dataset.enigmaStrokes=String(inkStrokes)
+        display.updateWorldMatrix(true,false)
+        renderer.domElement.dataset.enigmaTablet=JSON.stringify([[-.33,.21],[.33,.21],[.33,-.21],[-.33,-.21]].map(([x,y])=>{const point=display.localToWorld(V(x,y,0)).project(camera);return [(point.x+1)/2,(1-point.y)/2]}))
       })
     }
     const jugalbandi = props.project === 'jugalbandi' ? buildJugalbandi({root,plywood,black,silver,white,mat,mesh,box,cylinder,rod,pick}) : null
@@ -221,12 +246,12 @@ export default function RoomScene(props: Props) {
     const target = controls.target.clone(), destination = camera.position.clone()
     let lastDark:boolean|undefined, lastMechanism=false, lastRevision=-1, cameraMoving=false, elapsed=0, studyTime=0, disposed=false
     const render=(delta:number)=>{
-      if(disposed)return
+      if(disposed||renderer.getContext().isContextLost())return
       elapsed+=delta
       if(latest.current.values[3]&&!latest.current.reduced)studyTime+=delta
       const state=latest.current
       if(revolvingStage&&(state.values[1]>15)!==lastMechanism){lastMechanism=state.values[1]>15;lastRevision=-1}
-      if(state.dark!==lastDark){lastDark=state.dark;const lights=props.project==='enigma';scene.background=new T.Color(lights?'#111419':state.dark?'#171a1b':'#efede9');roomMaterial.color.set(state.dark?'#343d35':'#d9d3c6');wall2.color.set(state.dark?'#29332c':'#bfc4b7');floorMaterial.color.set(lights?'#14181d':state.dark?(props.project==='black-hole'?'#40464b':'#272a2b'):'#e1ded8');hemisphere.intensity=lights?.55:state.dark?1.1:1.8;key.intensity=lights?1.3:state.dark?2.4:3;fill.intensity=lights?.55:props.project==='black-hole'&&state.dark?2.6:1;scene.fog=new T.Fog(scene.background as T.Color,8,30)}
+      if(state.dark!==lastDark){lastDark=state.dark;const lights=props.project==='enigma';scene.background=new T.Color(lights?'#111111':state.dark?'#171a1b':'#efede9');roomMaterial.color.set(state.dark?'#343d35':'#d9d3c6');wall2.color.set(state.dark?'#29332c':'#bfc4b7');floorMaterial.color.set(lights?'#181818':state.dark?(props.project==='black-hole'?'#40464b':'#272a2b'):'#e1ded8');hemisphere.intensity=lights?.55:state.dark?1.1:1.8;key.intensity=lights?1.3:state.dark?2.4:3;fill.intensity=lights?.55:props.project==='black-hole'&&state.dark?2.6:1;scene.fog=new T.Fog(scene.background as T.Color,8,30)}
       if(state.revision!==lastRevision){
         lastRevision=state.revision;cameraMoving=true
         target.set(0,props.project==='enigma'?1.65:props.project==='black-hole'?.8:1.1,0);destination.copy(cameras[state.cameraView])
@@ -242,7 +267,7 @@ export default function RoomScene(props: Props) {
           controls.minDistance=.6;destination.copy(target).add(direction.multiplyScalar(distance*1.12))
         }
         if(props.project==='enigma'){
-          controls.minDistance=state.focus>0?.8:3.4
+          controls.minDistance=state.focus===4?.35:state.focus>0?.8:3.4;controls.enabled=state.focus!==4&&inkPointer===null
           const bounds=new T.Box3().setFromObject(root);bounds.getCenter(target)
           const direction=(state.cameraView===2?V(0,1,.001):state.cameraView===1?V(.2,.18,1):V(.5,.28,1)).normalize()
           const vertical=T.MathUtils.degToRad(camera.fov/2),horizontal=Math.atan(Math.tan(vertical)*camera.aspect)
@@ -250,13 +275,20 @@ export default function RoomScene(props: Props) {
           let distance=1
           for(const x of[bounds.min.x,bounds.max.x])for(const y of[bounds.min.y,bounds.max.y])for(const z of[bounds.min.z,bounds.max.z]){const point=V(x,y,z).sub(target),depth=point.dot(direction);distance=Math.max(distance,Math.abs(point.dot(right))/Math.tan(horizontal)+depth,Math.abs(point.dot(up))/Math.tan(vertical)+depth)}
           destination.copy(target).add(direction.multiplyScalar(distance*1.12))
-          if(state.focus>0){
+          if(state.focus>0&&state.focus<4){
             const layer=state.focus===1?0:state.focus===2?1:3,z=.6-layer*.56,top=2.14+layer*.36
             target.set(0,state.focus===3?top-.17:top-.60,z)
             const direction=V(1,.30,1).normalize(),halfWidth=1.15,halfHeight=state.focus===3?.6:1.05
             const distance=Math.max(halfWidth/Math.tan(horizontal),halfHeight/Math.tan(vertical))
             destination.copy(target).add(direction.multiplyScalar(distance*1.12))
           }
+        }
+        if(props.project==='enigma'&&state.focus===4&&inkSurface){
+          inkSurface.updateWorldMatrix(true,false);inkSurface.getWorldPosition(target)
+          const direction=inkSurface.getWorldDirection(new T.Vector3())
+          const halfFov=T.MathUtils.degToRad(camera.fov/2)
+          const distance=Math.max(.48/(Math.tan(halfFov)*camera.aspect),.34/Math.tan(halfFov))
+          destination.copy(target).add(direction.multiplyScalar(distance))
         }
         if(revolvingStage){
           const mechanism=state.values[1]>15
@@ -300,15 +332,22 @@ export default function RoomScene(props: Props) {
     const ray=new T.Raycaster(),pointer=new T.Vector2();let drag:{index:number;startX:number;startY:number;axis?:string;startValue:number;pointerId:number;crank?:boolean;rotary?:boolean;angle?:number;turn?:number}|null=null
     const crankPlane=new T.Plane(V(0,1,0),-1.33),crankPoint=new T.Vector3()
     const crankAngle=(event:PointerEvent)=>{crankPlane.constant=props.project==='revolving-stage'?-(.32+latest.current.values[1]/100*.9):-1.33;const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);return ray.ray.intersectPlane(crankPlane,crankPoint)?Math.atan2(crankPoint.z+(props.project==='sea-of-salt'?.25:0),crankPoint.x):null}
-    const down=(event:PointerEvent)=>{if(event.button!==0||drag)return;const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(pickables,true).find(hit=>{let object:T.Object3D|null=hit.object;while(object){if(!object.visible)return false;object=object.parent}return true});if(!hit)return;if(hit.object.userData.reset){latest.current.onReset();event.stopImmediatePropagation();return}let picked:T.Object3D=hit.object;while(picked.userData.control===undefined&&picked.parent)picked=picked.parent;const index=picked.userData.control as number,value=picked.userData.value as number|undefined;if(value!==undefined){latest.current.onChange(index,value);event.stopImmediatePropagation();return}if(props.project==='jugalbandi'){const selected=picked.userData.stringIndex??(picked.userData.stringBank?Math.max(0,Math.min(17,Math.round((picked.parent!.worldToLocal(hit.point.clone()).x+.43)/.86*17))):undefined);if(selected!==undefined)latest.current.onChange(3,selected)};const startValue=props.project==='jugalbandi'?(latest.current.values[index]+20)%101:latest.current.values[index];if(props.project==='jugalbandi')latest.current.onChange(index,startValue);const crank=hit.object.userData.dragKind==='crank',rotary=props.project==='revolving-stage'&&index===0;drag={index,startX:event.clientX,startY:event.clientY,axis:picked.userData.dragAxis,startValue,pointerId:event.pointerId,crank,rotary,angle:(crank||rotary)?(crankAngle(event)??0):undefined,turn:0};controls.enabled=false;renderer.domElement.setPointerCapture(event.pointerId);event.stopImmediatePropagation()}
-    const move=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;if(drag.crank||drag.rotary){const angle=crankAngle(event);if(angle===null)return;let delta=angle-drag.angle!;if(delta>Math.PI)delta-=Math.PI*2;if(delta<-Math.PI)delta+=Math.PI*2;drag.angle=angle;drag.turn!-=delta;if(drag.rotary){latest.current.onChange(drag.index,((drag.startValue+drag.turn!*180/Math.PI)%360+360)%360);return}latest.current.onChange(drag.index,Math.max(0,Math.min(100,drag.startValue+drag.turn!/(Math.PI*8)*100)));return}const max=props.project==='revolving-stage'&&drag.index===0?360:100;latest.current.onChange(drag.index,Math.max(0,Math.min(max,drag.startValue+(drag.axis==='y'?(event.clientY-drag.startY)/host.clientHeight:(event.clientX-drag.startX)/host.clientWidth)*max*2)))}
-    const up=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;drag=null;controls.enabled=true;if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId)}
-    renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',up);renderer.domElement.addEventListener('lostpointercapture',up)
-    const lost=(event:Event)=>{event.preventDefault();latest.current.onFail()};renderer.domElement.addEventListener('webglcontextlost',lost)
-    return()=>{disposed=true;wake.current=null;activity?.dispose();resizeObserver.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',down,true);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',up);renderer.domElement.removeEventListener('lostpointercapture',up);renderer.domElement.removeEventListener('webglcontextlost',lost)
+    const tabletHit=(event:PointerEvent)=>{if(!inkSurface)return null;const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);return ray.intersectObject(inkSurface)[0]?.uv??null}
+    const finishInk=(event:PointerEvent)=>{if(inkPointer!==event.pointerId)return false;const cancelled=event.type!=='pointerup';if(cancelled&&inkSnapshot){inkContext().putImageData(inkSnapshot,0,0);inkVersion++}else inkStrokes++;inkPointer=null;inkLast=null;inkSnapshot=null;latest.current.onInk?.(inkStrokes);controls.enabled=!(props.project==='enigma'&&latest.current.focus===4);if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId);activity?.wake();return true}
+    const down=(event:PointerEvent)=>{if(inkPointer!==null){event.stopImmediatePropagation();return}if(event.button!==0||drag)return;
+      const uv=tabletHit(event)
+      if(uv){const input=latest.current.enigma;if(input&&input.clear!==inkClear){inkClear=input.clear;if(input.mode==='draw')clearInk()}if(inkMode!=='draw'){clearInk();inkMode='draw'}inkSnapshot=inkContext().getImageData(0,0,512,326);inkPointer=event.pointerId;inkLast=null;controls.enabled=false;cameraMoving=false;latest.current.onInk?.(inkStrokes);paintInk(uv);renderer.domElement.setPointerCapture(event.pointerId);event.preventDefault();event.stopImmediatePropagation();return}
+      const r=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-r.left)/r.width*2-1,-(event.clientY-r.top)/r.height*2+1);ray.setFromCamera(pointer,camera);const hit=ray.intersectObjects(pickables,true).find(hit=>{let object:T.Object3D|null=hit.object;while(object){if(!object.visible)return false;object=object.parent}return true});if(!hit)return;if(hit.object.userData.reset){latest.current.onReset();event.stopImmediatePropagation();return}let picked:T.Object3D=hit.object;while(picked.userData.control===undefined&&picked.parent)picked=picked.parent;const index=picked.userData.control as number,value=picked.userData.value as number|undefined;if(value!==undefined){latest.current.onChange(index,value);event.stopImmediatePropagation();return}if(props.project==='jugalbandi'){const selected=picked.userData.stringIndex??(picked.userData.stringBank?Math.max(0,Math.min(17,Math.round((picked.parent!.worldToLocal(hit.point.clone()).x+.43)/.86*17))):undefined);if(selected!==undefined)latest.current.onChange(3,selected)};const startValue=props.project==='jugalbandi'?(latest.current.values[index]+20)%101:latest.current.values[index];if(props.project==='jugalbandi')latest.current.onChange(index,startValue);const crank=hit.object.userData.dragKind==='crank',rotary=props.project==='revolving-stage'&&index===0;drag={index,startX:event.clientX,startY:event.clientY,axis:picked.userData.dragAxis,startValue,pointerId:event.pointerId,crank,rotary,angle:(crank||rotary)?(crankAngle(event)??0):undefined,turn:0};controls.enabled=false;renderer.domElement.setPointerCapture(event.pointerId);event.stopImmediatePropagation()}
+    const move=(event:PointerEvent)=>{if(inkPointer!==null){if(inkPointer===event.pointerId){for(const sample of (event.getCoalescedEvents?.().length?event.getCoalescedEvents():[event])){const uv=tabletHit(sample);if(uv)paintInk(uv);else inkLast=null}}event.preventDefault();event.stopImmediatePropagation();return}if(!drag||drag.pointerId!==event.pointerId)return;if(drag.crank||drag.rotary){const angle=crankAngle(event);if(angle===null)return;let delta=angle-drag.angle!;if(delta>Math.PI)delta-=Math.PI*2;if(delta<-Math.PI)delta+=Math.PI*2;drag.angle=angle;drag.turn!-=delta;if(drag.rotary){latest.current.onChange(drag.index,((drag.startValue+drag.turn!*180/Math.PI)%360+360)%360);return}latest.current.onChange(drag.index,Math.max(0,Math.min(100,drag.startValue+drag.turn!/(Math.PI*8)*100)));return}const max=props.project==='revolving-stage'&&drag.index===0?360:100;latest.current.onChange(drag.index,Math.max(0,Math.min(max,drag.startValue+(drag.axis==='y'?(event.clientY-drag.startY)/host.clientHeight:(event.clientX-drag.startX)/host.clientWidth)*max*2)))}
+    const up=(event:PointerEvent)=>{if(finishInk(event)){event.stopImmediatePropagation();return;}if(!drag||drag.pointerId!==event.pointerId)return;drag=null;controls.enabled=!(props.project==='enigma'&&latest.current.focus===4);if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId)}
+    const blur=()=>{if(inkPointer!==null)finishInk(new PointerEvent('pointercancel',{pointerId:inkPointer}))}
+    window.addEventListener('blur',blur)
+    renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up,true);renderer.domElement.addEventListener('pointercancel',up,true);renderer.domElement.addEventListener('lostpointercapture',up,true)
+    const lost=(event:Event)=>{event.preventDefault();activity?.dispose();latest.current.onFail()};renderer.domElement.addEventListener('webglcontextlost',lost)
+    return()=>{disposed=true;window.removeEventListener('blur',blur);wake.current=null;activity?.dispose();resizeObserver.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',down,true);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up,true);renderer.domElement.removeEventListener('pointercancel',up,true);renderer.domElement.removeEventListener('lostpointercapture',up,true);renderer.domElement.removeEventListener('webglcontextlost',lost)
       const geometries=new Set<T.BufferGeometry>();scene.traverse(object=>{if(object instanceof T.Mesh||object instanceof T.LineSegments){geometries.add(object.geometry);const ms=Array.isArray(object.material)?object.material:[object.material];ms.forEach(m=>materials.add(m))}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());renderer.dispose();renderer.domElement.remove()}
   },[props.project,props.resetVersion])
-  useEffect(()=>{wake.current?.()},[props.values,props.dark,props.revision,props.reduced])
+  useEffect(()=>{wake.current?.()},[props.values,props.dark,props.revision,props.reduced,props.enigma])
   useEffect(()=>{
     if(props.project!=='black-hole'||!props.values[3]||props.reduced||!hostRef.current)return
     let timer:number|undefined

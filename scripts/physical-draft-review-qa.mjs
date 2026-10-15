@@ -29,7 +29,7 @@ try {
    if(slug==='enigma'){
     await page.getByLabel('Type a letter',{exact:true}).fill('z')
     await expect(page.getByLabel('Type a letter',{exact:true})).toHaveValue('Z')
-    assert.equal(await page.locator('.enigma-input-row canvas').count(),0,'unvalidated drawing is withheld')
+    assert.equal(await page.locator('.enigma-input-row canvas').count(),0,'drawing stays on the sculpture tablet')
    }
    if(slug==='sea-of-salt')await expect(page.locator('.world-story strong')).toHaveText('The command breaks loose')
    if(slug==='black-hole'){
