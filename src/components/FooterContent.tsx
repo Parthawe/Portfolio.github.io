@@ -47,7 +47,7 @@ function FooterEnd({ meta }: { meta: React.ReactNode }) {
         </span>
       </Link>
       <div className="ft-end-meta">
-        <Link to="/graveyard">Past portfolios</Link>
+        <Link className="glass-action" to="/graveyard">Past portfolios</Link>
         {meta}
       </div>
     </div>

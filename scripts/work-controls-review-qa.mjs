@@ -1,0 +1,16 @@
+import {chromium,webkit,expect} from '@playwright/test'
+import assert from 'node:assert/strict'
+import {mkdirSync,writeFileSync} from 'node:fs'
+const out='/tmp/work-controls-review';mkdirSync(out,{recursive:true});const results=[]
+for(const [engine,name,width] of [[chromium,'desktop',1440],[chromium,'mobile',390],[webkit,'safari-mobile',390]]){
+ const b=await engine.launch();try{for(const theme of ['light','dark']){
+ const p=await b.newPage({viewport:{width,height:1000},hasTouch:width===390,reducedMotion:'reduce'}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.addInitScript(t=>localStorage.setItem('theme',t),theme)
+ for(const view of ['','?view=library','?view=timeline']){
+ await p.goto('http://127.0.0.1:5211/work'+view);await expect(p.locator('.loader-orientation')).toBeHidden({timeout:20000});const c=p.locator('.work-room-link');await expect(c).toBeVisible();await expect(p.locator('.page-loader')).toHaveCount(0,{timeout:20000});assert.equal(await c.evaluate(e=>getComputedStyle(e).textDecorationLine),'none');const title=await p.locator('.work-page-title').boundingBox(),copy=await p.locator('.work-page-intro-copy').boundingBox();if(width>900)assert(copy.x>title.x+title.width);else assert(copy.y>title.y);assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ if(!view)await p.screenshot({path:`${out}/work-${name}-${theme}.png`})
+ }
+ await p.locator('.work-room-link').click();await expect(p).toHaveURL(/experience-preview/);await expect(p.getByRole('heading',{level:1,name:'Project experiences',exact:true})).toBeVisible();await expect(p.getByText('The interactive collection',{exact:true})).toHaveCount(0);assert.equal(await p.locator('.experience-review-collections a[aria-current]').evaluate(e=>getComputedStyle(e).textDecorationLine),'none');for(const img of await p.locator('.experience-review-image img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(e=>e.complete&&e.naturalWidth>0)).toBe(true)}await p.evaluate(()=>scrollTo(0,0));await p.screenshot({path:`${out}/experiences-${name}-${theme}.png`});
+ await p.goto('http://127.0.0.1:5211/mentra-miniapps');const action=p.locator('.proj-reading-evidence');await expect(action).toBeVisible();assert.equal(await action.evaluate(e=>getComputedStyle(e).textDecorationLine),'none');await action.focus();await p.keyboard.press('Enter');assert(await p.evaluate(()=>!!location.hash));assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await p.screenshot({path:`${out}/case-study-${name}-${theme}.png`});for(const [route,selector] of [['/experience-preview/typeface','.tw-header .glass-action'],['/notes','.notes-footer .glass-action']]){await p.goto('http://127.0.0.1:5211'+route);await expect(p.locator(selector).first()).toBeVisible();assert.equal(await p.locator(selector).first().evaluate(e=>getComputedStyle(e).textDecorationLine),'none')}assert.deepEqual(errors,[]);results.push({name,theme,workViews:3,result:'pass'});await p.close()
+ }}finally{await b.close()}
+}
+writeFileSync(out+'/results.json',JSON.stringify(results,null,2));console.log('Passed six browser/theme profiles: three Work views, header layout, shared controls, experience navigation, case-study keyboard action and overflow.')

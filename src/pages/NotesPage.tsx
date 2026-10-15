@@ -120,7 +120,7 @@ export default function NotesPage() {
           {localPreview && (
             <div className="notes-preview-tools">
               <span>{showSamples ? 'Sample notes for layout preview.' : 'Samples hidden.'} Your own notes stay in this browser.</span>
-              <button type="button" aria-pressed={showSamples} onClick={() => setShowSamples(value => !value)}>
+              <button className="glass-action" type="button" aria-pressed={showSamples} onClick={() => setShowSamples(value => !value)}>
                 {showSamples ? 'Hide sample notes' : 'Show sample notes'}
               </button>
             </div>
@@ -195,9 +195,9 @@ export default function NotesPage() {
           ) : null}
 
           <footer className="notes-footer">
-            <Link to="/">Back to the portfolio</Link>
-            <a href={`mailto:${CONTACT_EMAIL}`}>Email Parth</a>
-            <Link to="/accessibility">Accessibility</Link>
+            <Link className="glass-action" to="/">Back to the portfolio</Link>
+            <a className="glass-action" href={`mailto:${CONTACT_EMAIL}`}>Email Parth</a>
+            <Link className="glass-action" to="/accessibility">Accessibility</Link>
           </footer>
           <AnalyticsPreferences />
         </div>

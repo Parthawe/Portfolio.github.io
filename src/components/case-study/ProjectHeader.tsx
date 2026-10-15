@@ -236,10 +236,10 @@ export default function ProjectHeader({
     return (
       <div className={visualClasses}>
         <nav className="proj-reading-links" aria-label="Project navigation">
-          <Link to={backLink}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>{backLabel}</Link>
+          <Link className="glass-action" to={backLink}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>{backLabel}</Link>
           <div className="proj-reading-destinations">
-            <a href="#project-overview">{readingPath ? 'Overview' : 'Project overview'}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>
-            {readingPath && <a href={`#${readingPath.id}`} onClick={event => followProjectSection(event, readingPath.id)} className="proj-reading-evidence">{readingPath.label}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>}
+            <a className="glass-action" href="#project-overview">{readingPath ? 'Overview' : 'Project overview'}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>
+            {readingPath && <a href={`#${readingPath.id}`} onClick={event => followProjectSection(event, readingPath.id)} className="proj-reading-evidence glass-action">{readingPath.label}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 14 7 7 7-7M12 3v18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>}
           </div>
         </nav>
         <section className="proj-visual-hero hero-anim hero-anim-1" aria-label={`${title} project introduction`}>
@@ -336,7 +336,7 @@ export default function ProjectHeader({
               <div key={item.label}><dt>{sentenceCaseProjectLabel(item.label)}</dt><dd>{item.value}</dd></div>
             ))}
           </dl>
-          {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
+          {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link className="glass-action" to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
           <ProjectRecord slug={currentSlug} />
         </section>
       </div>
@@ -432,7 +432,7 @@ export default function ProjectHeader({
       </section>
 
       {renderStoryAndSummary(4)}
-      {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
+      {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link className="glass-action" to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
       <ProjectRecord slug={currentSlug} />
     </div>
   )

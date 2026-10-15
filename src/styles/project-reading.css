@@ -16,7 +16,7 @@
   font: 500 0.9375rem/1.4 var(--sans);
   text-decoration: none;
 }
-.project-main .proj-reading-links a:hover { text-decoration: underline; text-underline-offset: 0.3em; }
+
 .project-main .project-header--visual .proj-visual-hero { gap: 2rem; padding-top: 0; }
 .project-main .project-header--visual .proj-visual-title {
   max-width: 23ch;
@@ -474,11 +474,7 @@ body.case-side-nav .project-main .project-header--visual.wrap,
   align-items: center;
   gap: 0.25rem 1.5rem;
 }
-.project-main .proj-reading-evidence {
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-  text-decoration-color: var(--ink-30);
-}
+
 .project-main .cs-feature-card :is(h3, p) { margin: 0; }
 .project-main .cs-image-unavailable {
   display: grid;
@@ -573,7 +569,7 @@ body.case-side-nav .project-main .project-header--visual.wrap,
 .project-main .cs-screen-explorer figcaption { padding-top: 20px; min-height: 150px; font-size: 16px; line-height: 1.6; color: var(--ink); }
 .project-main .cs-screen-explorer figcaption strong { font-weight: 500; font-size: 20px; }
 .project-main .cs-screen-explorer figcaption p { margin: 8px 0 12px; }
-.project-main .cs-screen-explorer figcaption a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; display: inline-flex; align-items: center; min-height: 44px; }
+.project-main .cs-screen-explorer figcaption a { color: var(--ink); }
 .project-main .cs-screen-explorer button:focus-visible, .project-main .cs-screen-explorer a:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 @media (max-width: 640px) {
   .project-main .cs-screen-explorer { grid-template-columns: minmax(0, 1fr); gap: 20px; }

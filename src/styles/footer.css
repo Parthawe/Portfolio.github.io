@@ -724,12 +724,12 @@ body.has-footer-reveal main {
 .ft-notes-title { font: 400 clamp(1.75rem, 3vw, 2.25rem)/1.2 var(--serif); }
 .ft-notes-description { color: var(--ink-50); font: 400 var(--text-sm)/1.6 var(--sans); }
 .ft-notes-action { display: inline-flex; align-items: center; gap: 0.75rem; flex-shrink: 0; font: 500 var(--text-sm)/1.4 var(--sans); }
-.ft-notes-action > span { text-decoration: underline; text-underline-offset: 4px; }
+.ft-notes-action > span { text-decoration: none; }
 .ft-notes-action svg { flex-shrink: 0; }
 .ft-notes-link:hover, .ft-notes-link:focus-visible { background: var(--ink-04); }
 .ft-notes-link:focus-visible { outline: 2px solid var(--select-blue); outline-offset: 4px; }
 .ft-end-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; padding-top: 1rem; border-top: 1px solid var(--ink-08); color: var(--ink-50); font-size: var(--text-xs); }
-.ft-end-meta a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-decoration: underline; text-underline-offset: 3px; margin-right: auto; }
+.ft-end-meta a { margin-right: auto; }
 @media (max-width: 540px) {
   .ft-notes-link { gap: 1rem; }
   .ft-notes-description { max-width: 22ch; }

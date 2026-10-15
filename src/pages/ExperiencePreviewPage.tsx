@@ -48,7 +48,7 @@ export default function ExperiencePreviewPage() {
   </main>
   return <main className="type-workshop typeface-page" id="main-content">
     <Helmet><title>Butler’s Slice workshop · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet>
-    <header className="tw-header"><div><h1>Butler’s Slice</h1><p className="tw-kicker">Draft preview · awaiting review</p><p>Type a specimen. Inspect the cut. Reshape a letter.</p></div><Link to={directory.href}>All experiences</Link><Link to="/typeface">Read the case study</Link><ThemeToggle /></header>
+    <header className="tw-header"><div><h1>Butler’s Slice</h1><p className="tw-kicker">Draft preview · awaiting review</p><p>Type a specimen. Inspect the cut. Reshape a letter.</p></div><Link className="glass-action" to={directory.href}>All experiences</Link><Link className="glass-action" to="/typeface">Read the case study</Link><ThemeToggle /></header>
     <Suspense fallback={<p role="status">Preparing the type workshop…</p>}><GlyphEditor workshop /></Suspense>
     <DraftReviewNav project={project}/><footer className="tw-footer">Original font outlines. Edits stay in this session and are included in SVG exports; they do not modify the downloadable font family.</footer>
   </main>

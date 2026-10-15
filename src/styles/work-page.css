@@ -2605,4 +2605,13 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 /* Archive shapes stay attached to cards as columns rebalance. */
 .page-work .work-group--archive .pcard[data-cover-shape="square"] .pcard-visual { aspect-ratio: 1 / 1; }
 
-.page-work .work-room-link { display: inline-block; margin: .5rem 0 1rem; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+/* Work title/actions and editorial description share the desktop header. */
+.page-work .work-page-header { grid-template-columns: minmax(0, 1fr) minmax(0, 44ch); column-gap: clamp(32px, 6vw, 96px); }
+.page-work .work-page-intro { max-width: none; justify-items: start; }
+.page-work .work-page-intro-copy { margin: 0; padding-bottom: .5rem; }
+.page-work .work-page-header > .work-filter-inline { grid-column: 1 / -1; }
+.page-work .work-room-link { margin: .5rem 0 0; color: var(--ink); }
+@media (max-width: 900px) {
+  .page-work .work-page-header { grid-template-columns: minmax(0, 1fr); }
+  .page-work .work-page-intro-copy { max-width: 52ch; padding-bottom: 0; }
+}

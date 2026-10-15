@@ -618,7 +618,7 @@
   text-align: center;
 }
 
-.project-main .project-closing-link a {
+.project-main .project-closing-link a:not(.glass-action) {
   color: var(--ink);
   font-family: var(--sans);
   font-size: var(--text-sm);
