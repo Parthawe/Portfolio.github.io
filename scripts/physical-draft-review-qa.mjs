@@ -15,6 +15,7 @@ try {
     await page.getByRole('navigation',{name:'Stage anatomy chapters'}).getByRole('button',{name:/Rotation$/}).click();await page.getByRole('slider').fill('90');await expect(page.locator('.stage-detail output')).toContainText('90°');assert.equal(await page.locator('canvas').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));results.push({slug,width,theme,status:'pass'});continue
    }
    if(slug==='jugalbandi'){
+    await page.getByText('Inspect individual instruments and original evidence',{exact:true}).click()
     await expect(page.locator('.ja-stage svg')).toBeVisible();await expect(page.locator('.ja')).toHaveAttribute('data-theme',theme)
     await page.getByRole('button',{name:'Pluck selected string',exact:true}).click();await expect(page.locator('.ja-status')).toContainText('completed one pluck')
     await page.getByRole('button',{name:'Reset',exact:true}).click();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))

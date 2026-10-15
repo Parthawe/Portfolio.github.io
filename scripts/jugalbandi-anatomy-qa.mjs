@@ -10,7 +10,7 @@ for(const [engine,name,width] of [[chromium,'desktop',1440],[chromium,'touch',39
  await context.addInitScript(theme=>localStorage.setItem('theme',theme),theme)
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message))
  await page.addInitScript(()=>{window.__soundStarts=0;for(const proto of [AudioBufferSourceNode.prototype,OscillatorNode.prototype]){const original=proto.start;proto.start=function(...args){window.__soundStarts++;return original.apply(this,args)}}})
- await page.goto(`${base}/experience-preview/jugalbandi`);await page.locator('.ja').waitFor();await page.evaluate(()=>document.fonts.ready)
+ await page.goto(`${base}/experience-preview/jugalbandi`);await page.getByText('Inspect individual instruments and original evidence',{exact:true}).click();await page.locator('.ja').waitFor();await page.evaluate(()=>document.fonts.ready)
  await page.locator('.ja-workbench').scrollIntoViewIfNeeded();await expect(page.locator('.ja-stage svg')).toBeVisible()
  assert.equal(await page.locator('.ja canvas').count(),0)
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))

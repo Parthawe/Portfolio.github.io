@@ -8,7 +8,7 @@ for(const [engine,width] of [[chromium,1440],[chromium,390],[webkit,390]]){
  try{for(const theme of ['light','dark']){
  const context=await browser.newContext({viewport:{width,height:1000},hasTouch:width===390,reducedMotion:'reduce',recordVideo:engine===chromium&&width===1440&&theme==='dark'?{dir:out}:undefined})
  await context.addInitScript(theme=>{localStorage.setItem('theme',theme);localStorage.setItem('portfolio-analytics-consent-v1','denied');window.__soundStarts=0;window.__bufferStarts=0;const bufferStart=AudioBufferSourceNode.prototype.start;AudioBufferSourceNode.prototype.start=function(...args){window.__bufferStarts++;return bufferStart.apply(this,args)};const start=OscillatorNode.prototype.start;OscillatorNode.prototype.start=function(...args){window.__soundStarts++;return start.apply(this,args)}},theme)
- const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(`${base}/experience-preview/jugalbandi`);await expect(page.locator('.ja-tabs button')).toHaveCount(4)
+ const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(`${base}/experience-preview/jugalbandi`);await page.getByText('Inspect individual instruments and original evidence',{exact:true}).click();await expect(page.locator('.ja-tabs button')).toHaveCount(4)
  await page.getByRole('button',{name:/Rainsticks/}).click()
  await expect(page.locator('[data-moving^="stick-"]')).toHaveCount(8);await expect(page.locator('#ja-stick option')).toHaveCount(8)
  for(let i=0;i<8;i++){

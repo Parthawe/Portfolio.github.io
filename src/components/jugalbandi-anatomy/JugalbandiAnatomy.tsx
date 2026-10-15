@@ -4,6 +4,7 @@ import PortfolioSlider from '../PortfolioSlider'
 import art from './art.json'
 import { clamp, instruments, names, planeRotation, pluckAt, flutePitchStep, midiForSensor, HEXA_SENSOR_COUNT, hexaSections, rainMountNames, type HexaVoice, type Instrument } from './model'
 import { MechanismAudio } from './audio'
+import JugalbandiDuet from './JugalbandiDuet'
 import './anatomy-ink.css'
 import './jugalbandi.css'
 // Preserve ref-driven moving groups while control state and readouts change.
@@ -15,7 +16,11 @@ const descriptions = {
   rain: 'Eight rainsticks sit at the corners of two stacked cubes. Choose a mount and turn its tube.',
   hexa: 'Three Indian instruments: flute at the top, tanpura on the sides and tabla inside. Choose a section’s sound, then try the shared 18-input demo bank.',
 }
-export default function JugalbandiAnatomy() {
+export default function JugalbandiAnatomy(){
+  const [inspect,setInspect]=useState(false)
+  return <>{!inspect&&<JugalbandiDuet/>}<details className="jugal-inspection" onToggle={event=>setInspect(event.currentTarget.open)}><summary>{inspect?'Return to the duet':'Inspect individual instruments and original evidence'}</summary>{inspect&&<MechanismWorkshop/>}</details></>
+}
+function MechanismWorkshop() {
   const [instrument, setInstrument] = useState<Instrument>('harp'), [selected, setSelected] = useState(0)
   const [holes, setHoles] = useState([false, false, false, false, false, false]), [tilt, setTilt] = useState(0)
   const [velocity,setVelocity]=useState(96)
