@@ -8,6 +8,7 @@ import ThemeToggle from './ThemeToggle'
 import '../styles/experience-review-index.css'
 
 const previews: Record<string, { description: string; image?: string; note?: string }> = {
+  'the-omakase': { description: 'Play the original two-player sushi arcade game inside a cabinet inspired by the physical build.', image: '/Assets/Projects/the-omakase/photos/cabinet-front.webp', note: 'Original Unity game · two players · keyboard' },
   typeface: { description: 'Type with three real font weights, reshape a glyph’s curves, and export an SVG specimen.', note: 'Type workshop' },
   atps: { description: 'Find a conversation by guest or topic, then listen, seek and change playback speed.', image: '/Assets/Projects/ATPS/Desktop/1.jpg', note: 'Original recordings · historical artwork' },
   enigma: { description: 'Draw on the tablet or type a letter, then follow the input through a 200-light sculpture.', image: '/Assets/Projects/Enigma/photos/full-sculpture-wide.webp', note: 'Mouse and touch drawing · typed input' },
@@ -29,8 +30,8 @@ const previews: Record<string, { description: string; image?: string; note?: str
 }
 const formatLabels: Record<string, string> = { '3d': 'Interactive 3D', anatomy: 'Anatomy mechanism', prototype: 'Working prototype', tool: 'Interactive tool', 'original-experiment': 'Original experiment / tool', media: 'Listening archive' }
 
-const actions: Record<string,string> = { typeface:'Shape a letter',atps:'Find a conversation',enigma:'Write with light',jugalbandi:'Play a mechanism','moniac-machine':'Run the economy','revolving-stage':'Take it apart','sea-of-salt':'Turn the mill','black-hole':'Explore the studies',mentra:'Try onboarding','mentra-miniapps':'Launch a MiniApp','clawed-chat':'Review an action',executivelens:'Trace a decision','org-dashboard':'Explore the workspace',healthapp:'Rebalance a day','vj-software':'Choose a parking bay','code-for-build':'Build a page','ballah-code':'Try a code change','raahi-project':'Plan a journey' }
-const filters = [{id:'all',label:'All experiences',formats:[]},{id:'objects',label:'3D objects',formats:['3d']},{id:'anatomy',label:'Anatomy',formats:['anatomy']},{id:'interfaces',label:'Interfaces',formats:['prototype']},{id:'tools',label:'Tools & games',formats:['original-experiment']},{id:'listen',label:'Listen',formats:['media']}]
+const actions: Record<string,string> = { 'the-omakase':'Step up to the arcade',typeface:'Shape a letter',atps:'Find a conversation',enigma:'Write with light',jugalbandi:'Play a mechanism','moniac-machine':'Run the economy','revolving-stage':'Take it apart','sea-of-salt':'Turn the mill','black-hole':'Explore the studies',mentra:'Try onboarding','mentra-miniapps':'Launch a MiniApp','clawed-chat':'Review an action',executivelens:'Trace a decision','org-dashboard':'Explore the workspace',healthapp:'Rebalance a day','vj-software':'Choose a parking bay','code-for-build':'Build a page','ballah-code':'Try a code change','raahi-project':'Plan a journey' }
+const filters = [{id:'all',label:'All experiences',formats:[]},{id:'objects',label:'3D objects',formats:['3d']},{id:'anatomy',label:'Anatomy',formats:['anatomy']},{id:'interfaces',label:'Interfaces',formats:['prototype']},{id:'tools',label:'Tools & games',formats:['original-experiment']},{id:'games',label:'Games',formats:[]},{id:'listen',label:'Listen',formats:['media']}]
 function ExperienceCard({ slug, index }: { slug: string; index: number }) {
   const location = useLocation()
   const project = projects.find(item => item.slug === slug)
@@ -47,7 +48,7 @@ function ExperienceCard({ slug, index }: { slug: string; index: number }) {
       <span className="experience-review-action" id={`review-action-${slug}`}>{actions[slug] || 'Open experience'} <span aria-hidden="true">↗</span></span>
     </div>
     <div className="experience-review-copy">
-      <div className="experience-review-meta"><span>{formatLabels[experience.presentation] ?? 'Project experience'}</span><span>{String(index+1).padStart(2,'0')}</span></div>
+      <div className="experience-review-meta"><span>{experience.collection==='game'?'Playable game':(formatLabels[experience.presentation] ?? 'Project experience')}</span><span>{String(index+1).padStart(2,'0')}</span></div>
       <h2 id={`review-title-${slug}`}>{project.name}</h2>
       <p>{preview?.description ?? experience.label}</p>
       <div className="experience-review-card-footer"><small>{preview?.note ?? 'Awaiting review'}</small></div>
@@ -63,9 +64,9 @@ export default function ExperienceReviewIndex({ slugs }: { slugs: string[] }) {
   const setFilter=(value:string)=>update('kind',value)
   const setQuery=(value:string)=>update('q',value)
   const reset=()=>setParams({}, {replace:true,preventScrollReset:true})
-  const matches=(slug:string,id:string)=>id==='all'||filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.presentation||'')
+  const matches=(slug:string,id:string)=>id==='all'||(id==='games'?projectExperience(slug)?.collection==='game':filters.find(f=>f.id===id)!.formats.includes(projectExperience(slug)?.presentation||''))
   const words=query.trim().toLowerCase().split(/\s+/).filter(Boolean)
-  const visible=slugs.filter(slug=>{const text=`${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]}`.toLowerCase();return matches(slug,filter)&&words.every(word=>text.includes(word))})
+  const visible=slugs.filter(slug=>{const text=`${slug==='the-omakase'?'omakasi omakase arcade game sushi':''} ${projects.find(p=>p.slug===slug)?.name} ${previews[slug]?.description} ${actions[slug]}`.toLowerCase();return matches(slug,filter)&&words.every(word=>text.includes(word))})
   return <main className="experience-review" id="main-content">
     <Helmet><title>Try the work · Project previews</title><meta name="robots" content="noindex,nofollow"/><meta name="googlebot" content="noindex,nofollow"/></Helmet>
     <nav className="experience-review-top" aria-label="Preview navigation"><Link to="/">Parth</Link><Link to="/work">Work</Link><span aria-current="page">Experiences</span><ThemeToggle /></nav>

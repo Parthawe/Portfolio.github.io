@@ -17,6 +17,7 @@ const ArtTownArchive = lazy(() => import('../components/ArtTownArchive'))
 const MoniacSimulator = lazy(() => import('../components/MoniacSimulator'))
 const JugalbandiAnatomy = lazy(() => import('../components/jugalbandi-anatomy/JugalbandiAnatomy'))
 const StageWorkshop = lazy(() => import('../components/case-study/StageWorkshop'))
+const OmakaseArcade = lazy(() => import('../components/omakase/OmakaseArcade'))
 const GlyphEditor = lazy(() => import('../components/GlyphEditor'))
 
 export default function ExperiencePreviewPage() {
@@ -26,7 +27,8 @@ export default function ExperiencePreviewPage() {
   if (experiencePreviewsEnabled && !project) return <ExperienceReviewIndex slugs={previewProjects} />
   if (experiencePreviewsEnabled && projectExperience(project)?.format === 'prototype') return <Suspense fallback={<p role="status">Preparing the workflow prototype…</p>}><ProjectPrototypePage preview /></Suspense>
   const physical = ['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(project)
-  if (!experiencePreviewsEnabled || (!physical && !['typeface','moniac-machine','atps'].includes(project))) return <Navigate to={projectExperience(project) ? `/${project}` : '/404'} replace />
+  if (!experiencePreviewsEnabled || (!physical && !['typeface','moniac-machine','atps','the-omakase'].includes(project))) return <Navigate to={projectExperience(project) ? `/${project}` : '/404'} replace />
+  if (project === 'the-omakase') return <main className="physical-world-page" id="main-content"><Helmet><title>The Omakase arcade · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet><header><div><p>Draft preview · awaiting review</p><h1>The Omakase</h1></div><Link to={directory.href}>All drafts</Link><Link to="/the-omakase">Read the case study</Link><ThemeToggle /></header><Suspense fallback={<p role="status">Preparing the arcade…</p>}><OmakaseArcade /></Suspense><DraftReviewNav project={project}/></main>
   if (project === 'atps') return <main className="physical-world-page" id="main-content"><Helmet><title>ArtTown · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet><header><div><p>Draft preview · awaiting review</p><h1>ArtTown conversations</h1></div><Link to={directory.href}>All drafts</Link><Link to="/atps">Read the case study</Link><ThemeToggle /></header><Suspense fallback={<p role="status">Preparing the original episode archive…</p>}><ArtTownArchive /></Suspense><DraftReviewNav project={project}/></main>
   if (project !== 'typeface') return <main className="physical-world-page" id="main-content">
     <Helmet><title>{project} · Draft preview</title><meta name="robots" content="noindex,nofollow" /></Helmet>

@@ -3,7 +3,7 @@ import { experiencePreviewsEnabled } from '../utils/experiencePreview'
 import './DraftReviewNav.css'
 import {Link} from 'react-router-dom'
 import {projects} from '../data/projects'
-export const draftReviewOrder=['typeface','atps','enigma','jugalbandi','moniac-machine','revolving-stage','sea-of-salt','black-hole','mentra','mentra-miniapps','clawed-chat','executivelens','org-dashboard','healthapp','vj-software','code-for-build','ballah-code','raahi-project']
+export const draftReviewOrder=['typeface','atps','enigma','jugalbandi','moniac-machine','the-omakase','revolving-stage','sea-of-salt','black-hole','mentra','mentra-miniapps','clawed-chat','executivelens','org-dashboard','healthapp','vj-software','code-for-build','ballah-code','raahi-project']
 export default function DraftReviewNav({project}:{project:string}){
  const directory=useDraftReturn()
  const index=draftReviewOrder.indexOf(project)
