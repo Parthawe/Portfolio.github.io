@@ -2,7 +2,7 @@ import { memo, useEffect, useRef, useState } from 'react'
 import { useThemeMode } from '../../hooks/useThemeMode'
 import PortfolioSlider from '../PortfolioSlider'
 import art from './art.json'
-import { clamp, instruments, names, planeRotation, pluckAt, flutePitchStep, midiForSensor, HEXA_SENSOR_COUNT, rainMountNames, type Instrument } from './model'
+import { clamp, instruments, names, planeRotation, pluckAt, flutePitchStep, midiForSensor, HEXA_SENSOR_COUNT, hexaSections, rainMountNames, type HexaVoice, type Instrument } from './model'
 import { MechanismAudio } from './audio'
 import './anatomy-ink.css'
 import './jugalbandi.css'
@@ -13,12 +13,14 @@ const descriptions = {
   harp: 'Choose a servo. Its pick loads a string, releases it, and returns to rest.',
   flute: 'Close the tone holes, then send air through the flute. Fingers alone make no sound.',
   rain: 'Eight rainsticks sit at the corners of two stacked cubes. Choose a mount and turn its tube.',
-  hexa: 'Explore the 18 sensor inputs of Hexa-18, the MIDI instrument. Trigger a channel to see its note and hear a synthesized tone.',
+  hexa: 'Three Indian instruments: flute at the top, tanpura on the sides and tabla inside. Choose a section’s sound, then try the shared 18-input demo bank.',
 }
 export default function JugalbandiAnatomy() {
   const [instrument, setInstrument] = useState<Instrument>('harp'), [selected, setSelected] = useState(0)
   const [holes, setHoles] = useState([false, false, false, false, false, false]), [tilt, setTilt] = useState(0)
   const [velocity,setVelocity]=useState(96)
+  const [hexaVoice,setHexaVoice]=useState<HexaVoice>('flute')
+  const hexaSection=hexaSections.find(section=>section.id===hexaVoice)!
   const [zoom, setZoom] = useState(false)
   const [sound, setSound] = useState(false), [status, setStatus] = useState('Choose a servo to pluck a string.'), [error, setError] = useState(''), [filmError, setFilmError] = useState(false)
   const actualTilt = useRef(0)
@@ -34,7 +36,7 @@ export default function JugalbandiAnatomy() {
     stage.current?.removeAttribute('data-midi-active')
     if (readout.current) readout.current.textContent = 'At rest'
   }
-  const reset = () => { stop(); resetArt(); actualTilt.current=0; setZoom(false);setVelocity(96); setHoles([false,false,false,false,false,false]); setTilt(0); setSelected(0); setSound(false); audioOn.current=false; setStatus('Reset. All mechanisms at rest; sound off.'); setError(''); video.current?.pause() }
+  const reset = () => { stop(); resetArt(); actualTilt.current=0; setZoom(false);setHexaVoice('flute');setVelocity(96); setHoles([false,false,false,false,false,false]); setTilt(0); setSelected(0); setSound(false); audioOn.current=false; setStatus('Reset. All mechanisms at rest; sound off.'); setError(''); video.current?.pause() }
   useEffect(() => {
     const node = stage.current!
     const observer = new IntersectionObserver(entries => {
@@ -108,13 +110,13 @@ export default function JugalbandiAnatomy() {
   function triggerSensor(index:number) {
     resetArt();setSelected(index)
     const event=midiForSensor(index,velocity)
-    setStatus(`Input ${event.sensor+1} sends demo MIDI note ${event.note}, velocity ${event.velocity}, on channel ${event.channel}.`)
+    setStatus(`${hexaSection.name} · ${hexaSection.location.toLowerCase()}: input ${event.sensor+1} sends demo MIDI note ${event.note}, velocity ${event.velocity}, on channel ${event.channel}.`)
     let played=false
     animate(.6,()=>{
       stage.current?.setAttribute('data-midi-active',String(index))
-      if(readout.current)readout.current.textContent=`Input ${index+1} · note ${event.note} · velocity ${event.velocity}`
-      if(!played){if(audioOn.current)controller.current.play('hexa',index,velocity);played=true}
-    },()=>{stage.current?.removeAttribute('data-midi-active');setStatus(`Input ${index+1}: demo note ${event.note} released.`)})
+      if(readout.current)readout.current.textContent=`${hexaSection.name} · input ${index+1} · note ${event.note} · velocity ${event.velocity}`
+      if(!played){if(audioOn.current)controller.current.play('hexa',index,velocity,hexaVoice);played=true}
+    },()=>{stage.current?.removeAttribute('data-midi-active');setStatus(`${hexaSection.name} · input ${index+1}: demo note ${event.note} released.`)})
   }
   const operate = (i: number) => { if(instrument==='hexa'){triggerSensor(i);return;} if(instrument==='harp')pluck(i);else if(instrument==='flute')toggleHole(i);else {stop();resetArt();actualTilt.current=0;setSelected(i);setTilt(0);setStatus(`Rainstick ${i+1} selected. Turn it with the angle control.`)} }
   async function toggleSound() {
@@ -137,14 +139,14 @@ export default function JugalbandiAnatomy() {
         <figcaption className="ja-caption"><span>{instrument==='hexa'?'Choose one of the 18 inputs':'Tap a mechanism or use the controls'}</span><output ref={readout}>At rest</output></figcaption>
       </figure>
       <aside className="ja-controls" aria-label="Mechanism controls"><h3>{names[instrument]}</h3><p>{descriptions[instrument]}</p>
-        {instrument==='harp'?<><label htmlFor="ja-servo">Servo position</label><select id="ja-servo" value={selected} onChange={e=>{stop();resetArt();setSelected(Number(e.target.value))}}>{Array.from({length:11},(_,i)=><option key={i} value={i}>{i<6?'Upper rail':'Lower rail'} · {i<6?i+1:i-5}</option>)}</select><button className="ja-action" onClick={()=>pluck(selected)}>Pluck selected string</button></>:instrument==='flute'?<><div className="ja-holes" role="group" aria-label="Flute tone holes">{holes.map((closed,i)=><button key={i} aria-label={`Hole ${i+1}`} aria-pressed={closed} onClick={()=>toggleHole(i)}>{i+1}<small>{closed?'Closed':'Open'}</small></button>)}</div><button className="ja-action" onClick={breathe}>Send an air pulse</button></>:instrument==='hexa'?<><div className="ja-inputs" role="group" aria-label="Hexa-18 sensor inputs">{Array.from({length:HEXA_SENSOR_COUNT},(_,i)=><button key={i} aria-label={`Trigger sensor ${i+1}`} aria-pressed={selected===i} onClick={()=>triggerSensor(i)}><span>{String(i+1).padStart(2,'0')}</span></button>)}</div><label htmlFor="ja-velocity">Demo velocity <output>{velocity}</output></label><PortfolioSlider id="ja-velocity" min={1} max={127} value={velocity} onChange={e=>setVelocity(Number(e.target.value))}/><button className="ja-action" onClick={()=>triggerSensor(selected)}>Trigger selected sensor</button><p className="ja-note">18 sensor inputs. This demo maps them to MIDI notes 60–77; the original firmware assignments are unavailable.</p></>:<><label htmlFor="ja-stick">Corner mount</label><select id="ja-stick" value={selected} onChange={e=>operate(Number(e.target.value))}>{rainMountNames.map((s,i)=><option key={s} value={i}>{s}</option>)}</select><label htmlFor="ja-tilt">Rainstick angle <output>{tilt}°</output></label><PortfolioSlider id="ja-tilt" min={-70} max={70} value={tilt} onChange={e=>turn(Number(e.target.value))}/><button className="ja-action" onClick={()=>turn(tilt<=0?65:-65)}>Turn the rainstick</button></>}
+        {instrument==='harp'?<><label htmlFor="ja-servo">Servo position</label><select id="ja-servo" value={selected} onChange={e=>{stop();resetArt();setSelected(Number(e.target.value))}}>{Array.from({length:11},(_,i)=><option key={i} value={i}>{i<6?'Upper rail':'Lower rail'} · {i<6?i+1:i-5}</option>)}</select><button className="ja-action" onClick={()=>pluck(selected)}>Pluck selected string</button></>:instrument==='flute'?<><div className="ja-holes" role="group" aria-label="Flute tone holes">{holes.map((closed,i)=><button key={i} aria-label={`Hole ${i+1}`} aria-pressed={closed} onClick={()=>toggleHole(i)}>{i+1}<small>{closed?'Closed':'Open'}</small></button>)}</div><button className="ja-action" onClick={breathe}>Send an air pulse</button></>:instrument==='hexa'?<><div className="ja-hexa-sections" role="group" aria-label="Indian instrument sections">{hexaSections.map(section=><button key={section.id} aria-pressed={hexaVoice===section.id} onClick={()=>{stop();resetArt();setHexaVoice(section.id);setStatus(`${section.location}: ${section.name}. Choose an input to hear its synthesized demonstration.`)}}>{section.location} · {section.name}</button>)}</div><div className="ja-inputs" role="group" aria-label="Hexa-18 sensor inputs">{Array.from({length:HEXA_SENSOR_COUNT},(_,i)=><button key={i} aria-label={`Trigger sensor ${i+1}`} aria-pressed={selected===i} onClick={()=>triggerSensor(i)}><span>{String(i+1).padStart(2,'0')}</span></button>)}</div><label htmlFor="ja-velocity">Demo velocity <output>{velocity}</output></label><PortfolioSlider id="ja-velocity" min={1} max={127} value={velocity} onChange={e=>setVelocity(Number(e.target.value))}/><button className="ja-action" onClick={()=>triggerSensor(selected)}>Trigger selected sensor</button><p className="ja-note">18 inputs across the instrument. The bank uses demo notes 60–77 with the selected section’s synthesized sound. Exact sensor counts per section, wiring and tuning are not reconstructed.</p></>:<><label htmlFor="ja-stick">Corner mount</label><select id="ja-stick" value={selected} onChange={e=>operate(Number(e.target.value))}>{rainMountNames.map((s,i)=><option key={s} value={i}>{s}</option>)}</select><label htmlFor="ja-tilt">Rainstick angle <output>{tilt}°</output></label><PortfolioSlider id="ja-tilt" min={-70} max={70} value={tilt} onChange={e=>turn(Number(e.target.value))}/><button className="ja-action" onClick={()=>turn(tilt<=0?65:-65)}>Turn the rainstick</button></>}
         <button aria-pressed={zoom} onClick={()=>setZoom(!zoom)}>{zoom?'Show whole instrument':'Inspect selected mechanism'}</button>
         <p className="ja-status" role="status">{status}</p>
         <div className="ja-secondary"><button aria-pressed={sound} onClick={toggleSound}>{sound?'Sound on':'Enable sound'}</button><button onClick={reset}>Reset</button></div>
         <p className="ja-note">Sound is synthesized in your browser. Pitches, travel and timing are illustrative; the original model and actuator logs are not available here.</p>{error&&<p role="alert">{error}</p>}
       </aside>
     </div>
-    <div className="ja-source"><div><p className="ja-eyebrow">Compare the construction</p><h3>The original {instrument==='rain'?'rainstick rack':instrument==='hexa'?'Hexa-18':instrument}.</h3><p>{instrument==='harp'?'The diagonal and lower rails hold the visible servos around the harp. Demo channels illustrate the pluck cycle; the original wiring and tuning are not reconstructed.':instrument==='flute'?'This bench view follows the annotated construction photo. In the performance, the flute is mounted upright. Six fingers control the holes; the pump supplies the air.':instrument==='hexa'?'The yellow enclosure has sloping upper panels, circular sensor openings, bamboo pipes above and an open tapered lower frame. Explore all 18 inputs using the channel bank. The pictured transducers are not a recovered channel map.':'Eight tubes occupy the corners of two stacked cubic bays. Four are visible in this front construction photograph. Dimensions and the acoustic response are illustrative.'}</p></div><a href={`/Assets/Projects/Jugalbandi/Photos/${photo[instrument]}`} target="_blank" rel="noreferrer"><img src={`/Assets/Projects/Jugalbandi/Photos/${photo[instrument]}`} alt={`Original annotated ${names[instrument]} construction photograph`} loading="lazy"/><span>Open original photograph ↗</span></a></div>
+    <div className="ja-source"><div><p className="ja-eyebrow">Compare the construction</p><h3>The original {instrument==='rain'?'rainstick rack':instrument==='hexa'?'Hexa-18':instrument}.</h3><p>{instrument==='harp'?'The diagonal and lower rails hold the visible servos around the harp. Demo channels illustrate the pluck cycle; the original wiring and tuning are not reconstructed.':instrument==='flute'?'This bench view follows the annotated construction photo. In the performance, the flute is mounted upright. Six fingers control the holes; the pump supplies the air.':instrument==='hexa'?'The top is the flute, the side inputs are tanpura and the inside inputs are tabla. These instrument locations are confirmed by the creator. The enclosure and pipes follow the photograph; the 18-channel bank demonstrates MIDI input without claiming the original wiring or tuning.':'Eight tubes occupy the corners of two stacked cubic bays. Four are visible in this front construction photograph. Dimensions and the acoustic response are illustrative.'}</p></div><a href={`/Assets/Projects/Jugalbandi/Photos/${photo[instrument]}`} target="_blank" rel="noreferrer"><img src={`/Assets/Projects/Jugalbandi/Photos/${photo[instrument]}`} alt={`Original annotated ${names[instrument]} construction photograph`} loading="lazy"/><span>Open original photograph ↗</span></a></div>
     <details className="ja-film" onToggle={e=>{if(!e.currentTarget.open)video.current?.pause()}}><summary>Watch the original performance · 5:10</summary><p>The recording combines acoustic mechanisms and digital instruments. It is independent of the illustrative sounds above.</p><video ref={video} controls playsInline preload="none" poster="/Assets/images/jugalbandi.webp" onPlay={()=>{stop();audioOn.current=false;setSound(false)}} onError={()=>setFilmError(true)}><source src="/Assets/films/jugalbandi.mp4" type="video/mp4"/><track kind="captions" src="/Assets/captions/jugalbandi.en.vtt" srcLang="en" label="English (automatic, review pending)"/></video>{filmError&&<p role="alert">The local recording could not load. <a href="https://vimeo.com/996020149" target="_blank" rel="noreferrer">Watch the original on Vimeo ↗</a></p>}</details>
   </section>
 }

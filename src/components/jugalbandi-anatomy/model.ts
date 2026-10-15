@@ -32,3 +32,7 @@ export function midiForSensor(index: number, velocity = 96) {
   return {sensor,note:60+sensor,velocity:Math.round(clamp(velocity,1,127)),channel:1}
 }
 export const rainMountNames = ['Upper front left','Upper front right','Upper rear left','Upper rear right','Lower front left','Lower front right','Lower rear left','Lower rear right']
+
+// Instrument locations confirmed by the project creator. Per-sensor wiring is not recovered.
+export const hexaSections = [{id:'flute',name:'Flute',location:'Top'},{id:'tanpura',name:'Tanpura',location:'Sides'},{id:'tabla',name:'Tabla',location:'Inside'}] as const
+export type HexaVoice = typeof hexaSections[number]['id']

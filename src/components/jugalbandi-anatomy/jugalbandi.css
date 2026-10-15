@@ -11,3 +11,6 @@
 .ja-inputs button{padding:8px 4px;font:12px var(--mono)}
 .ja-stage[data-instrument=hexa][data-midi-active] .ja-hexa-panel .iso-edge{stroke:var(--anatomy-lit)}
 @media(max-width:800px){.ja-tabs button{flex:1 1 40%}.ja-inputs{grid-template-columns:repeat(6,minmax(0,1fr))}}
+
+.ja-hexa-sections { display:grid; gap:6px; }
+.ja-hexa-sections button { text-align:left; font-size:14px; }
