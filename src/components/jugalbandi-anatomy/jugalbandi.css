@@ -24,7 +24,7 @@
 .ja-duet-stage svg { display:block; width:100%; height:clamp(250px,31vw,390px); }
 .ja-duet-stage .ja-caption { padding:14px; }
 .ja-duet[data-call-active] .ja-duet-stage figure:first-child,
-.ja-duet[data-answer-active] .ja-duet-stage figure:last-child { outline:2px solid var(--anatomy-hi); outline-offset:-2px; }
+.ja-duet-stage figure[data-responding="true"] { outline:2px solid var(--anatomy-hi); outline-offset:-2px; }
 .ja-duet[data-call-active] .ja-hexa-panel .iso-edge { stroke:var(--anatomy-lit); stroke-width:1.6; }
 .ja-duet-readout { display:flex; align-items:center; gap:16px; min-height:76px; border-bottom:1px solid var(--ink-15); }
 .ja-duet-readout output { display:none; }
@@ -54,3 +54,39 @@
  .ja-duet-stage .ja-caption { flex-direction:column; gap:4px; padding:10px 8px; font-size:10px; }
  .ja-duet-stage figcaption { min-height:44px; }
 }
+
+.ja-duet-views { display:flex; gap:8px; margin-bottom:16px; }
+.ja-ensemble-stage { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.ja-ensemble-stage svg { height:250px; }
+.ja-hexa-surface { border:1px solid var(--ink-20); border-radius:8px; overflow:hidden; }
+.ja-hexa-surface > div { padding:14px; }
+.ja-hexa-surface > div + div { border-top:1px solid var(--ink-15); }
+.ja-hexa-surface p { margin:0 0 10px; font-size:14px; }
+.ja-hexa-surface small { display:block; font-size:12px; color:var(--ink-70); }
+.ja-hexa-surface [role=group] { display:flex; gap:6px; flex-wrap:wrap; }
+.ja-hexa-surface button { flex:1; min-width:44px; padding:10px 4px; font-size:13px; }
+.ja-hexa-surface > .ja-note { padding:12px; margin:0; }
+.ja-tanpura-pad { position:relative; min-height:100px; border:1px solid var(--ink-30); border-radius:6px; background:var(--bg-alt); cursor:ew-resize; touch-action:none; overflow:hidden; }
+.ja-tanpura-pad span { position:absolute; width:3px; top:12px; bottom:12px; left:clamp(2px,var(--hand-position),calc(100% - 5px)); background:var(--ink); pointer-events:none; }
+.ja-tanpura-pad output { position:absolute; right:12px; bottom:8px; font:13px var(--mono); pointer-events:none; }
+.ja-tanpura-pad:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+.ja-note-keyboard { margin-top:18px; }
+.ja-note-keyboard summary { cursor:pointer; padding:10px 0; min-height:44px; }
+.ja-ensemble-autoplay { display:flex!important; align-items:center; gap:8px; }
+.ja-ensemble-autoplay input { width:20px; height:20px; }
+@media(max-width:680px){
+ .ja-ensemble-stage { position:static; grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .ja-ensemble-stage svg { height:155px; }
+ .ja-ensemble-stage .ja-caption { font-size:10px; }
+ .ja-duet-views button { flex:1; }
+}
+
+@media(min-width:681px) and (max-width:1000px){.ja-ensemble-stage { grid-template-columns:repeat(2,minmax(0,1fr)); }}
+
+.ja-duet-stage figure:first-child svg { cursor:crosshair; touch-action:pan-y; }
+/* Keep gesture targets stationary while the live status and caller caption change. */
+@media(max-width:680px){
+ .ja-duet-readout { min-height:128px; }
+ .ja-duet-stage figcaption { min-height:56px; }
+}
+.ja-duet { overflow-anchor:none; }

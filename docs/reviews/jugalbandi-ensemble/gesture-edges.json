@@ -1,0 +1,10 @@
+{
+  "nativeTouchCancelRecovery": "pass",
+  "mobileTargetShiftPx": 0,
+  "keyboard": "pass",
+  "reset": "pass",
+  "visibleStrength": "pass",
+  "pairing": "pass",
+  "individualViews": "pass",
+  "returnEnsemble": "pass"
+}
