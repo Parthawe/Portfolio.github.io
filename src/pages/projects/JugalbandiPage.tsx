@@ -161,7 +161,7 @@ export default function JugalbandiPage() {
             <p className="cs-section-label">02 &mdash; The Instrument</p>
             <h2 className="cs-display">Hexa-18</h2>
             <CsBody>
-              <p>Hexa-18 groups the wind, string, and percussion regions in one yellow object. The photographs show four sloped upper panels, pipes above, and an open tapered lower frame.</p>
+              <p>Hexa-18 is a MIDI instrument with 18 sensor inputs, grouping wind, string, and percussion regions in one yellow object. The photographs show four sloped upper panels, pipes above, and an open tapered lower frame.</p>
               <p>The annotated photograph identifies the three sound families. The separate harp, flute, and rainstick photographs below show the mechanisms that turn control signals into acoustic movement.</p>
             </CsBody>
             <CsFeatureGrid features={[
@@ -261,7 +261,7 @@ export default function JugalbandiPage() {
             <p className="cs-section-label">05 &mdash; Rainsticks</p>
             <h3 className="cs-section-title">Rainsticks</h3>
             <CsBody>
-              <p>Servo motors tilt rainsticks to create cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
+              <p>Eight servo-mounted rainsticks occupy the corners of two stacked cubes. Tilting them creates cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
               <p>Changing angle and speed controls the density of the sound, from a sparse trickle to a full wash.</p>
             </CsBody>
             <div className="cs-label-row">

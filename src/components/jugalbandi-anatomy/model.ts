@@ -1,6 +1,6 @@
-export type Instrument = 'harp' | 'flute' | 'rain'
-export const instruments: Instrument[] = ['harp', 'flute', 'rain']
-export const names = { harp: 'Mechanized harp', flute: 'Automated flute', rain: 'Rainsticks' }
+export type Instrument = 'harp' | 'flute' | 'rain' | 'hexa'
+export const instruments: Instrument[] = ['harp', 'flute', 'rain', 'hexa']
+export const names = { harp: 'Mechanized harp', flute: 'Automated flute', rain: 'Rainsticks', hexa: 'Hexa-18 · MIDI' }
 export const clamp = (n: number, low: number, high: number) => Math.min(high, Math.max(low, n))
 // Illustrative cycle: load the string, release it, then return the pick.
 export function pluckAt(seconds: number) {
@@ -24,3 +24,11 @@ export function flutePitchStep(holes: boolean[]) {
   const firstOpen = holes.findIndex(closed => !closed)
   return 6 - (firstOpen < 0 ? holes.length : firstOpen)
 }
+
+// Browser demonstration mapping only. The installation firmware is unavailable.
+export const HEXA_SENSOR_COUNT = 18
+export function midiForSensor(index: number, velocity = 96) {
+  const sensor=Math.round(clamp(index,0,HEXA_SENSOR_COUNT-1))
+  return {sensor,note:60+sensor,velocity:Math.round(clamp(velocity,1,127)),channel:1}
+}
+export const rainMountNames = ['Upper front left','Upper front right','Upper rear left','Upper rear right','Lower front left','Lower front right','Lower rear left','Lower rear right']

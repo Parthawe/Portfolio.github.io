@@ -5,3 +5,9 @@
 .ja .iso-line[data-tone="mid"]{stroke:var(--anatomy-hi);opacity:.6}.ja .ja-timber .iso-edge{stroke:var(--anatomy-hi)}
 .ja[data-theme=dark]{--anatomy-top:#373735;--anatomy-face:#292927;--anatomy-shade-0:#171716;--anatomy-shade-1:#20201e;--anatomy-shade-2:#292927;--anatomy-shade-3:#31312e;--anatomy-mid:#999991;--anatomy-lo:#76766f}
 .ja .ja-hole .iso-fill,.ja .ja-hole .iso-top,.ja .ja-hole .iso-shade{fill:#181818}
+
+.ja-tabs{flex-wrap:wrap}
+.ja-inputs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.ja-inputs button{padding:8px 4px;font:12px var(--mono)}
+.ja-stage[data-instrument=hexa][data-midi-active] .ja-hexa-panel .iso-edge{stroke:var(--anatomy-lit)}
+@media(max-width:800px){.ja-tabs button{flex:1 1 40%}.ja-inputs{grid-template-columns:repeat(6,minmax(0,1fr))}}

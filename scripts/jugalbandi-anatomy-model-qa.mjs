@@ -19,3 +19,15 @@ console.log('PASS: projected hinge rotations, bounded servo travel, one release 
 
 assert(flutePitchStep([false,false,false,false,false,false]) > flutePitchStep([true,true,true,true,true,true]))
 assert.equal(flutePitchStep([false,true,true,true,true,true]), flutePitchStep([false,false,false,false,false,false]), 'nearest open hole dominates the simplified model')
+
+const {readFileSync}=await import('node:fs')
+const art=JSON.parse(readFileSync(new URL('../src/components/jugalbandi-anatomy/art.json',import.meta.url),'utf8'))
+assert.equal(art.rain.live.length,8);assert.equal(art.rain.points.length,8)
+assert.deepEqual([...new Set(art.rain.mounts.map(m=>m.z))],[248,128])
+for(const level of [248,128])assert.equal(new Set(art.rain.mounts.filter(m=>m.z===level).map(m=>`${m.x},${m.y}`)).size,4)
+assert.equal(art.hexa.sensorCount,18);assert.equal(art.hexa.points.length,1,'one enclosure target; no invented 18-channel physical map')
+const {midiForSensor,HEXA_SENSOR_COUNT}=await import('../src/components/jugalbandi-anatomy/model.ts')
+assert.equal(HEXA_SENSOR_COUNT,18)
+for(let i=0;i<18;i++){const event=midiForSensor(i);assert.equal(event.sensor,i);assert.equal(event.note,60+i);assert(event.velocity>0&&event.velocity<=127)}
+assert.equal(midiForSensor(-1,0).velocity,1);assert.equal(midiForSensor(30,300).note,77);assert.equal(midiForSensor(30,300).velocity,127)
+console.log('PASS: eight rainsticks across two cubic bays; 18 bounded MIDI demo inputs.')
