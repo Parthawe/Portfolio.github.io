@@ -49,3 +49,11 @@
 .experience-review-related a:hover { color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
 .experience-review-status { align-items:center; flex-wrap:wrap; }
 .experience-review-status .experience-review-clear { margin-left:auto; font-size:12px; }
+
+/* Shared site chrome; the collection is a sibling of Work. */
+.experience-review { padding-top:132px; }
+.experience-review-collections { display:flex; gap:24px; align-items:center; margin-bottom:28px; font:14px var(--sans); }
+.experience-review-collections a { min-height:44px; display:inline-flex; align-items:center; color:var(--ink-60); text-decoration:none; border-bottom:1px solid transparent; }
+.experience-review-collections a[aria-current="page"] { color:var(--ink); border-bottom-color:currentColor; }
+.experience-review-card-footer { display:flex; flex-wrap:wrap; gap:8px 18px; }
+@media(max-width:640px) { .experience-review { padding-top:108px; }.experience-review-collections { margin-bottom:20px; } }

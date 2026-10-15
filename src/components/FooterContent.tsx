@@ -1,3 +1,4 @@
+import { experiencePreviewsEnabled } from '../utils/experiencePreview'
 import { getVisitorLocation } from '../utils/visitorLocation'
 import { useState, useEffect, useRef, type RefObject } from 'react'
 import { Link } from 'react-router-dom'
@@ -12,6 +13,7 @@ const footerGroups = [
     links: [
       { label: 'Home', to: '/' },
       { label: 'Work', to: '/work' },
+      { label: 'Experiences', to: experiencePreviewsEnabled ? '/experience-preview' : '/project-experiences' },
       { label: 'About', to: '/about' },
       { label: 'Playbook', to: '/playbook' },
       { label: 'Accessibility', to: '/accessibility' },

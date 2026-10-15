@@ -14,6 +14,7 @@ export default function PhysicalWorldPage() {
     const destination=item?experienceHref(project):'/404'
     return <Navigate to={destination===location.pathname?`/${project}`:destination} replace />
   }
+  if (experiencePreviewsEnabled) return <Navigate to={`/experience-preview${location.search}`} replace />
   return <main className="physical-world-page">
     <Helmet><title>Project experiences · Parth Pawar</title></Helmet>
     <header><div><h1>Project experiences</h1><p>Interactive work reviewed for this collection.</p></div>{experiencePreviewsEnabled&&<Link to="/experience-preview">Explore draft previews</Link>}<Link to="/work">Back to Work</Link><ThemeToggle /></header>

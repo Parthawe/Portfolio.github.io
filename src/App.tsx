@@ -118,7 +118,6 @@ export default function App() {
     <ErrorBoundary>
     <Suspense fallback={<Loading />}>
       <Routes>
-        {ExperiencePreviewPage && <Route path="/experience-preview" element={<ExperiencePreviewPage />} />}
         {ExperiencePreviewPage && <Route path="/experience-preview/:project" element={<ExperiencePreviewPage />} />}
         <Route path="/typeface/workshop" element={<TypefaceWorkshopPage/>}/>
         <Route path="/project-experiences" element={<PhysicalWorldPage />} />
@@ -127,6 +126,7 @@ export default function App() {
         <Route path="/:project/world" element={<PhysicalWorldPage />} />
         <Route path="/shuffle/simulation" element={<ShuffleSimulationPage />} />
         <Route element={<RootLayout />}>
+          {ExperiencePreviewPage && <Route path="/experience-preview" element={<ExperiencePreviewPage />} />}
           <Route path="/" element={<HomePage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/about" element={<AboutPage />} />

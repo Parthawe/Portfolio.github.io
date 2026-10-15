@@ -34,10 +34,9 @@ try {
   }
   await navigateWithTemporaryRetry(page, `${base}/typeface/workshop`);await expect(page).toHaveURL(`${base}/typeface`)
   await navigateWithTemporaryRetry(page, `${base}/project-experiences`)
-  await expect(page.locator('.physical-world-index a')).toHaveCount(1)
-  await expect(page.locator('.physical-world-index a')).toHaveAttribute('href', '/shuffle/simulation')
+  if(publishedPreviews){await expect(page).toHaveURL(`${base}/experience-preview`);await expect(page.locator('.experience-review-card')).toHaveCount(registry.filter(item=>['draft','approved'].includes(item.status)).length)}else{await expect(page.locator('.physical-world-index a')).toHaveCount(1);await expect(page.locator('.physical-world-index a')).toHaveAttribute('href','/shuffle/simulation')}
   await navigateWithTemporaryRetry(page, `${base}/experience-preview/typeface`)
-  if(publishedPreviews){await expect(page.locator('[data-glyph-outline]')).toBeVisible();await navigateWithTemporaryRetry(page, `${base}/experience-preview`);await expect(page.locator('.experience-review-card')).toHaveCount(registry.filter(item=>item.status==='draft').length);await expect(page.locator('meta[name=robots]')).toHaveAttribute('content',/noindex/)}else await expect(page.locator('.type-workshop')).toHaveCount(0)
+  if(publishedPreviews){await expect(page.locator('[data-glyph-outline]')).toBeVisible();await navigateWithTemporaryRetry(page, `${base}/experience-preview`);await expect(page.locator('.experience-review-card')).toHaveCount(registry.filter(item=>['draft','approved'].includes(item.status)).length);await expect(page.locator('meta[name=robots]')).toHaveAttribute('content',/noindex/)}else await expect(page.locator('.type-workshop')).toHaveCount(0)
   await navigateWithTemporaryRetry(page, `${base}/shuffle/simulation`)
   await expect(page.locator('.shuffle-stage canvas')).toBeVisible()
   await expect(page.locator('.shuffle-room-nav a')).toHaveCount(1)

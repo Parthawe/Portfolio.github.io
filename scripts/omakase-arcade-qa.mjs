@@ -17,7 +17,7 @@ for(const engine of [chromium,webkit]) for(const mobile of [false,true]) {
   // Exercise lifecycle and failure recovery with a controlled unreachable hosted build.
   await page.route('https://itch.io/embed-upload/**',r=>r.abort());await page.getByRole('button',{name:'Start original game'}).click();await expect(page.locator('.om-screen iframe')).toHaveAttribute('src',/11124779/);await page.getByRole('button',{name:'Reload game'}).click();await expect(page.locator('.om-screen iframe')).toHaveCount(1);await page.getByRole('button',{name:'Stop game',exact:true}).click();await expect(page.locator('.om-screen iframe')).toHaveCount(0);await expect(page.getByRole('button',{name:'Start original game'})).toBeFocused()
   await page.getByRole('button',{name:/Switch to .* mode/}).click();await page.screenshot({path:`${out}/${engine.name()}-${mobile?'mobile':'desktop'}-alternate-theme.png`,fullPage:true})
-  await page.getByRole('link',{name:'All drafts',exact:true}).first().click();assert(new URL(page.url()).searchParams.get('kind')==='games');await expect(page.getByRole('searchbox')).toHaveValue('omakasi');assert.deepEqual(errors,[])
+  await page.getByRole('link',{name:'All experiences',exact:true}).first().click();assert(new URL(page.url()).searchParams.get('kind')==='games');await expect(page.getByRole('searchbox')).toHaveValue('omakasi');assert.deepEqual(errors,[])
   results.push({browser:engine.name(),mobile,overflow:false,lazyGame:true,listingAndSearch:'pass',keyboardGuide:'pass',stopAndReload:'pass',themeToggle:'pass',directoryContext:'pass',errors})
  }finally{await context.close();await browser.close()}
 }

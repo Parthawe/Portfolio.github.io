@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useSearchParams } from 'react-router-dom'
+import { experiencePreviewsEnabled } from '../utils/experiencePreview'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectCardComponent from '../components/ProjectCard'
@@ -509,7 +510,7 @@ export default function WorkPage() {
                 <nav className="work-mobile-views glass-segments" aria-label="Work page views">
                   {([['editorial', 'Editorial'], ['library', 'Index'], ['timeline', 'Arc']] as const).map(([view, label]) => <Link key={view} to={viewHref(view)} aria-current={viewMode === view ? 'page' : undefined}>{label}</Link>)}
                 </nav>
-              <Link className="work-room-link" to="/project-experiences">Explore project experiences</Link>
+              <Link className="work-room-link" to={experiencePreviewsEnabled ? "/experience-preview" : "/project-experiences"}>Explore project experiences</Link>
                 <p className="work-page-intro-copy">
                   Selected product, systems, and interaction work for product design and design engineering roles.
                 </p>

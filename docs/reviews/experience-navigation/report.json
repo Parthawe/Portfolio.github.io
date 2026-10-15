@@ -1,0 +1,46 @@
+[
+  {
+    "browser": "chromium",
+    "width": 1440,
+    "workRoundTrip": true,
+    "sharedNav": true,
+    "sharedFooter": true,
+    "themes": true,
+    "aliases": true,
+    "approvedAndDraftLinks": true,
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "width": 390,
+    "workRoundTrip": true,
+    "sharedNav": true,
+    "sharedFooter": true,
+    "themes": true,
+    "aliases": true,
+    "approvedAndDraftLinks": true,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "width": 1440,
+    "workRoundTrip": true,
+    "sharedNav": true,
+    "sharedFooter": true,
+    "themes": true,
+    "aliases": true,
+    "approvedAndDraftLinks": true,
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "width": 390,
+    "workRoundTrip": true,
+    "sharedNav": true,
+    "sharedFooter": true,
+    "themes": true,
+    "aliases": true,
+    "approvedAndDraftLinks": true,
+    "errors": []
+  }
+]
