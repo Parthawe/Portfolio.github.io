@@ -4,15 +4,15 @@ export class MechanismAudio {
   context: AudioContext | null = null
   private voices = new Set<AudioScheduledSourceNode>()
   async enable() { this.context ??= new AudioContext(); await this.context.resume() }
-  play(kind: Instrument, channel: number, velocity=96, hexaVoice:HexaVoice='flute', note?:number, delay=0) {
+  play(kind: Instrument, channel: number, velocity=96, hexaVoice:HexaVoice='flute', note?:number, delay=0, allowInactive=false) {
     const ctx = this.context
-    if (!ctx || ctx.state !== 'running') return
+    if (!ctx || (ctx.state !== 'running' && !(allowInactive && ctx.state !== 'closed'))) return
     this.stop()
     const at=ctx.currentTime+Math.max(0,delay)
     const duration = kind === 'harp' ? 1.1 : kind==='hexa'?(hexaVoice==='tanpura'?1.8:hexaVoice==='tabla'?.35:.6):.8, gain = ctx.createGain(), filter = ctx.createBiquadFilter()
     filter.type = 'lowpass'; filter.frequency.value = kind === 'rain' ? 2500 : 4500
     gain.gain.setValueAtTime(.0001, at)
-    gain.gain.exponentialRampToValueAtTime(.12*(kind==='hexa'?midiForSensor(channel,velocity).velocity/127:1), at + .015)
+    gain.gain.exponentialRampToValueAtTime(.12*(kind==='hexa'||note!==undefined?midiForSensor(channel,velocity).velocity/127:1), at + .015)
     gain.gain.exponentialRampToValueAtTime(.0001, at + duration)
     gain.connect(filter); filter.connect(ctx.destination)
     let source: AudioScheduledSourceNode

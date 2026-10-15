@@ -16,8 +16,8 @@ export function parseTune(text:string):number[]{
   return note
  })
 }
-export type DuetEvent={at:number;side:'call'|'answer';note:number;index:number;voice:HexaVoice}
-export function duetSequence(notes:number[],voice:HexaVoice,bpm:number,style:'trade'|'phrase'):DuetEvent[]{
+export type DuetEvent={at:number;side:'call'|'answer';note:number;index:number;voice:HexaVoice;velocity:number}
+export function duetSequence(notes:number[],voice:HexaVoice,bpm:number,style:'trade'|'phrase',velocity=96):DuetEvent[]{
  const beat=60/Math.max(40,Math.min(160,bpm))
- return notes.flatMap((note,index)=>[{at:(style==='trade'?index*2:index)*beat,side:'call' as const,note,index,voice},{at:(style==='trade'?index*2+1:notes.length+1+index)*beat,side:'answer' as const,note,index,voice}]).sort((a,b)=>a.at-b.at)
+ return notes.flatMap((note,index)=>[{at:(style==='trade'?index*2:index)*beat,side:'call' as const,note,index,voice,velocity},{at:(style==='trade'?index*2+1:notes.length+1+index)*beat,side:'answer' as const,note,index,voice,velocity}]).sort((a,b)=>a.at-b.at)
 }

@@ -37,6 +37,7 @@
     "qa:physical-drafts": "node scripts/physical-draft-review-qa.mjs",
     "qa:arttown": "node scripts/arttown-archive-qa.mjs",
     "qa:experience-improvements": "node scripts/experience-improvements-qa.mjs",
+    "qa:jugalbandi-verify": "node scripts/jugalbandi-full-verification-qa.mjs && node scripts/jugalbandi-sound-recovery-qa.mjs",
     "qa:jugalbandi-ensemble": "node scripts/jugalbandi-ensemble-qa.mjs && node scripts/jugalbandi-gesture-edges-qa.mjs",
     "qa:jugalbandi-duet": "node --experimental-strip-types scripts/jugalbandi-duet-model-qa.mjs && node scripts/jugalbandi-duet-qa.mjs && node scripts/jugalbandi-duet-activity-qa.mjs",
     "qa:jugalbandi-additions": "node --experimental-strip-types scripts/jugalbandi-anatomy-model-qa.mjs && node scripts/jugalbandi-additions-qa.mjs",

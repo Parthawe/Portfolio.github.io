@@ -1,0 +1,9 @@
+{
+  "rapidManualCalls": 3,
+  "roboticReplies": 3,
+  "idleDomMutations": 0,
+  "idleSampleMs": 900,
+  "extraGpuContexts": 0,
+  "offscreenAudioStarts": 0,
+  "simulatedHiddenAudioStarts": 0
+}
