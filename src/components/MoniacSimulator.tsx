@@ -1,15 +1,10 @@
 import { observeVisible } from '../utils/visibleActivity'
 import PortfolioSlider from './PortfolioSlider'
+import MoniacHydraulic from './MoniacHydraulic'
 import './MoniacSimulator.css'
 import { useState, useCallback, useRef, useEffect } from 'react'
 
-/* ═══════════════════════════════════════════════════════════
-   MONIAC Simulator — hydraulic economic game.
-
-   Clean dashboard layout. 7 levers control the economy.
-   Water-level tanks show each variable. Meters show health.
-   Random events. 60-second rounds. Graded A–F.
-   ═══════════════════════════════════════════════════════════ */
+// Browser rules are preserved; the hydraulic view follows the original game screen.
 
 interface Controls {
   taxRate: number
@@ -55,64 +50,6 @@ function grade(e: Econ) {
   if (s > 40) return { l: 'C', c: '#eab308', m: 'The economy is struggling.' }
   if (s > 25) return { l: 'D', c: '#f97316', m: 'Low balance score in this game.' }
   return { l: 'F', c: '#ef4444', m: 'Lowest balance band in this game.' }
-}
-
-// ── Water tank visual ──
-function Tank({ value, label, color, onChange, running, active=false, onInspect }: {
-  value: number; label: string; color: string; onChange: (v: number) => void; running: boolean; active?:boolean; onInspect?:()=>void
-}) {
-  const fillPct = Math.round(value)
-  return (
-    <div className={`moniac-tank ${active?'is-inspected':''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flex: '1 1 0', minWidth: 92 }}>
-      {/* Tank container */}
-      <div className="moniac-tank-vessel" style={{
-        width: '100%', maxWidth: 84, height: 96,
-        borderRadius: 6, position: 'relative', overflow: 'hidden',
-        background: 'rgba(255,255,255,0.02)',
-        border:'1px solid var(--moniac-rule)',
-      }}>
-        {/* Water fill */}
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          height: '100%', transform:`scaleY(${fillPct/100})`, transformOrigin:'bottom',
-          background: 'var(--moniac-fill)',
-          borderTop: '1px solid var(--moniac-accent)',
-          transition: 'transform 0.3s ease',
-        }} />
-        {/* Water level lines */}
-        {[25, 50, 75].map(line => (
-          <div key={line} style={{
-            position: 'absolute', bottom: `${line}%`, left: 0, right: 0,
-            height: 1, background: 'rgba(255,255,255,0.03)',
-          }} />
-        ))}
-        {/* Value */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: 'var(--mono)', fontSize: 16, fontWeight: 700,
-          color, fontVariantNumeric: 'tabular-nums',
-          textShadow:'none',
-        }}>
-          {fillPct}<small>%</small>
-        </div>
-      </div>
-      {/* Slider */}
-      <PortfolioSlider type="range" min={0} max={100} value={fillPct}
-        onChange={e => onChange(Number(e.target.value))}
-        disabled={!running}
-        aria-label={`${label}: ${fillPct}%`}
-        style={{
-          width: '100%', maxWidth: 84, height: 4, appearance: 'none', WebkitAppearance: 'none',
-          background: 'transparent',
-          borderRadius: 2, outline: 'none',
-          cursor: running ? 'pointer' : 'default', opacity: running ? 1 : 0.3,
-        }}
-        className="moniac-slider"
-      />
-      {onInspect?<button className="moniac-tank-label" aria-pressed={active} onClick={onInspect}>{label}</button>:<span className="moniac-tank-label">{label}</span>}
-    </div>
-  )
 }
 
 // ── Health meter ──
@@ -290,7 +227,7 @@ export default function MoniacSimulator() {
         <Meter label="Debt" value={e.debt} color="var(--moniac-accent)" warn="high" />
       </div>
 
-      <section className="moniac-policy"><div className="moniac-experiment-controls"><button onClick={()=>{if(running){setRunning(false);setPaused(true)}setExploring(true);setTrial(null)}}>Explore rules without shocks</button>{exploring&&<><button onClick={()=>{const before=trial?.after??INIT_E;setTrial({before:{...before},after:simulate(before,c,()=>.5)})}}>Run one model step</button><button onClick={()=>setTrial(null)}>Reset experiment</button></>}</div>{trial&&<table className="moniac-step-results"><caption>One step of the browser rules, with random noise disabled</caption><thead><tr><th>Index</th><th>Before</th><th>After</th><th>Change</th></tr></thead><tbody>{(Object.keys(trial.before) as (keyof Econ)[]).map(key=><tr key={key}><th scope="row">{key}</th><td>{trial.before[key].toFixed(2)}</td><td>{trial.after[key].toFixed(2)}</td><td>{(trial.after[key]-trial.before[key]).toFixed(2)}</td></tr>)}</tbody></table>}<label htmlFor="moniac-policy">Inspect a policy<select id="moniac-policy" value={policy} onChange={event=>setPolicy(event.target.value as keyof Controls)}>{policies.map(item=><option key={item.key} value={item.key}>{item.label}</option>)}</select></label><div className="moniac-policy-bank" role="group" aria-label="Seven economic policy settings">{policies.map(item=><Tank key={item.key} value={c[item.key]} label={item.label} color="var(--moniac-accent)" active={item.key===policy} onInspect={()=>setPolicy(item.key)} running={running||exploring} onChange={value=>{setPolicy(item.key);upd(item.key,value)}}/>)}</div><p className="moniac-gauge-caption">Water levels show the seven browser policy settings. Select a label to inspect its rule.</p><div className="moniac-policy-detail"><h3>{currentPolicy.label} → economy</h3><p>{currentPolicy.effect}</p><p>Settings feed the next simulation tick. Other controls, mean reversion and random shocks also affect the result. Percentages are game indices, not economic forecasts.</p></div></section>
+      <section className="moniac-policy"><div className="moniac-experiment-controls"><button onClick={()=>{if(running){setRunning(false);setPaused(true)}setExploring(true);setTrial(null)}}>Explore rules without shocks</button>{exploring&&<><button onClick={()=>{const before=trial?.after??INIT_E;setTrial({before:{...before},after:simulate(before,c,()=>.5)})}}>Run one model step</button><button onClick={()=>setTrial(null)}>Reset experiment</button></>}</div>{trial&&<table className="moniac-step-results"><caption>One step of the browser rules, with random noise disabled</caption><thead><tr><th>Index</th><th>Before</th><th>After</th><th>Change</th></tr></thead><tbody>{(Object.keys(trial.before) as (keyof Econ)[]).map(key=><tr key={key}><th scope="row">{key}</th><td>{trial.before[key].toFixed(2)}</td><td>{trial.after[key].toFixed(2)}</td><td>{(trial.after[key]-trial.before[key]).toFixed(2)}</td></tr>)}</tbody></table>}<label htmlFor="moniac-policy">Inspect a policy<select id="moniac-policy" value={policy} onChange={event=>setPolicy(event.target.value as keyof Controls)}>{policies.map(item=><option key={item.key} value={item.key}>{item.label}</option>)}</select></label><div className="moniac-machine-layout"><MoniacHydraulic values={c} income={e.gdp} timeLeft={timeLeft} enabled={running||exploring} active={policy} onInspect={setPolicy} onChange={upd}/><div className="moniac-control-inspector"><label htmlFor="moniac-active-policy">{currentPolicy.label}<output>{c[policy].toFixed(1)}%</output></label><PortfolioSlider id="moniac-active-policy" step={.1} aria-label={`${currentPolicy.label}: ${c[policy]}%`} min={0} max={100} value={c[policy]} disabled={!running&&!exploring} onChange={event=>upd(policy,Number(event.target.value))}/><p>{running||exploring?'Turn the selected valve or adjust its value here.':'Start the economy or explore the rules to operate the valves.'}</p><div className="moniac-policy-detail"><h3>{currentPolicy.label} → economy</h3><p>{currentPolicy.effect}</p><p>Settings feed the next simulation tick. Other controls, mean reversion and random shocks also affect the result. Percentages are game indices, not economic forecasts.</p></div></div></div></section>
 
       {/* ── Game over ── */}
       {gameOver && res && (
@@ -330,7 +267,7 @@ export default function MoniacSimulator() {
       {!running && !gameOver && (
         <div style={{ padding: '20px', textAlign: 'center' }}>
           <p style={{ fontSize: 16, color: 'var(--moniac-muted)', lineHeight: 1.6, maxWidth: '48ch', margin: '0 auto' }}>
-            Inspired by the 1949 Phillips Hydraulic Computer. Adjust 7 economic levers — each tank shows your setting as a water level. Keep GDP &amp; employment high, inflation &amp; debt low. Random events will test your strategy.
+            Inspired by the 1949 Phillips Hydraulic Computer. Adjust six valve controls and the additional interest-rate setting. The drawing follows the original game screen; the browser rules are simplified. Keep GDP &amp; employment high, inflation &amp; debt low. Random events will test your strategy.
           </p>
         </div>
       )}

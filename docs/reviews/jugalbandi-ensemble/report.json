@@ -1,0 +1,47 @@
+{
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "reduce": false,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "reduce": false,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "reduce": true,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "reduce": false,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "reduce": false,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "reduce": true,
+      "status": "pass"
+    }
+  ],
+  "errors": []
+}

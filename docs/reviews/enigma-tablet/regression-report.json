@@ -1,0 +1,149 @@
+{
+  "results": [
+    {
+      "slug": "enigma",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "black-hole",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "enigma",
+      "width": 1440,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 1440,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 1440,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 1440,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "black-hole",
+      "width": 1440,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 1440,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "enigma",
+      "width": 390,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 390,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 390,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 390,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "black-hole",
+      "width": 390,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 390,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "slug": "enigma",
+      "width": 390,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 390,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 390,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 390,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "black-hole",
+      "width": 390,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 390,
+      "theme": "dark",
+      "status": "pass"
+    }
+  ],
+  "errors": []
+}

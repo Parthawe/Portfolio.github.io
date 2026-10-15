@@ -161,13 +161,13 @@ export default function JugalbandiPage() {
             <p className="cs-section-label">02 &mdash; The Instrument</p>
             <h2 className="cs-display">Hexa-18</h2>
             <CsBody>
-              <p>Hexa-18 groups the wind, string, and percussion regions in one yellow object. The photographs show four sloped upper panels, pipes above, and an open tapered lower frame.</p>
-              <p>The annotated photograph identifies the three sound families. The separate harp, flute, and rainstick photographs below show the mechanisms that turn control signals into acoustic movement.</p>
+              <p>Hexa-18 is the human-played MIDI instrument, with 18 sensor inputs across three Indian instrument sections: flute at the top, tanpura on the sides, and tabla inside.</p>
+              <p>The robotic instruments answer the performer: flute responds to flute, the mechanized harp responds to tanpura, and rainsticks respond to tabla. The duet moves between the performer’s digital instrument and a physical, acoustic response.</p>
             </CsBody>
             <CsFeatureGrid features={[
-              { title: 'Wind', desc: 'Bamboo pipes of different heights project from the top face. The original annotated photograph identifies this as the wind region.' },
-              { title: 'String', desc: 'Paired circular sensors appear on the sloped yellow face labelled string instrument. The separate mechanized harp provides the visible plucking assembly.' },
-              { title: 'Percussion', desc: 'The source annotation points to the open lower frame. The later rainstick assembly shows a separate approach to producing percussive texture.' },
+              { title: 'Flute → Robotic flute', desc: 'The flute section sits at the top of Hexa-18. Playing it calls the separate automated flute, whose actuators operate the tone holes.' },
+              { title: 'Tanpura → Harp', desc: 'The side inputs play tanpura. The mechanized harp answers through the movement of its string-plucking assembly.' },
+              { title: 'Tabla → Rainsticks', desc: 'The inside inputs play tabla. The rainstick assembly answers with rotating tubes and falling grains.' },
               { title: 'Construction', desc: 'The yellow enclosure separates the sensor faces, pipe openings, and open frame. Its proportions can be compared directly with the original photographs.' },
             ]} />
           </div>
@@ -261,7 +261,7 @@ export default function JugalbandiPage() {
             <p className="cs-section-label">05 &mdash; Rainsticks</p>
             <h3 className="cs-section-title">Rainsticks</h3>
             <CsBody>
-              <p>Servo motors tilt rainsticks to create cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
+              <p>Eight servo-mounted rainsticks occupy the corners of two stacked cubes. Tilting them creates cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
               <p>Changing angle and speed controls the density of the sound, from a sparse trickle to a full wash.</p>
             </CsBody>
             <div className="cs-label-row">

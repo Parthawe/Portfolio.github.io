@@ -1,0 +1,12 @@
+{
+  "fileKey": "UqMHlp3DWI2erzruqcCZNd",
+  "inspectedAt": "2026-10-15",
+  "mutated": false,
+  "flows": [
+    {"name":"Pairing - Mentra Live","page":"63254:33903","node":"63254:44046"},
+    {"name":"Mira","page":"63803:30714","node":"63803:37149","navigationObserved":true},
+    {"name":"Streamer","page":"63803:30714","node":"63803:42509","navigationObserved":true},
+    {"name":"Mentra Notes","page":"63254:33903","node":"63254:52310","connectedDescendantNodes":5},
+    {"name":"Captions","page":"63254:33903","node":"63254:49534","connectedDescendantNodes":5}
+  ]
+}

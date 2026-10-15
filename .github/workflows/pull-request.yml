@@ -83,6 +83,7 @@ jobs:
       VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
       QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
       QA_BASE_URL: http://127.0.0.1:4174
+      QA_DEV_URL: http://127.0.0.1:4174
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -114,6 +115,15 @@ jobs:
           node scripts/anatomy-scroll-qa.mjs
           node scripts/project-prototypes-qa.mjs
           node scripts/case-study-interactions-qa.mjs
+          node scripts/interface-sources-qa.mjs
+          node scripts/work-controls-review-qa.mjs
+          bun run qa:enigma-tablet
+          bun run qa:black-hole-time-trap
+          bun run qa:moniac-hydraulic
+          bun run qa:jugalbandi-duet
+          bun run qa:jugalbandi-ensemble
+          bun run qa:jugalbandi-verify
+          bun run qa:omakase
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -127,3 +137,8 @@ jobs:
             /tmp/anatomy-scroll-qa/
             /tmp/portfolio-prototypes-qa/
             /tmp/case-study-interactions/
+            /tmp/work-controls-review/
+            /tmp/interface-sources-qa/
+            /tmp/enigma-tablet-edges/
+            /tmp/jugalbandi-full-verification/
+            /tmp/moniac-hydraulic-qa/

@@ -299,3 +299,7 @@ Three alternating pairs against 06d34a6 measured median readiness at 5887.4ms be
 Notes is accessible from the footer only; keep it out of desktop and mobile navigation. The footer uses one Notes row with a description and an Open notes action instead of an interactive canvas. Preserve the contact links, arcade, location, clock, and past-portfolio link. Loading placeholders, empty and retry states, disabled posting, draft retention, and pending-review feedback are required. Notes keep the `/guestbook` storage route; do not migrate or mix in project feedback.
 
 Local unconfigured previews show labeled fictional notes with a hide/show control. Keep sample entries out of storage and off public hostnames. The compact header leads directly to the wall, author and sample labels share one metadata row, and equal-height cards align within each row. The expanded desktop form spans two columns and two rows; mobile uses one column.
+
+### Standalone actions and inline links
+
+Use the existing `glass-action` control for standalone navigation or actions on the Work, Experiences, workshop and case-study reading surfaces. Use `glass-segments` for sibling views such as Work/Experiences. Do not introduce a bottom-rule-only button. Keep contextual links within paragraphs and policy text as underlined text links; their underline identifies a link without interrupting the sentence. Case-study prose link selectors must exclude `.glass-action`.

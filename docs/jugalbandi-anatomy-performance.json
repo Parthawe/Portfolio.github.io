@@ -1,25 +1,94 @@
 {
   "environment": "Local production preview, headless Chromium, 1440×1000; fresh context per run; no network/CPU throttling. Not a field performance measurement or comparison.",
-  "moduleBytes": 724993,
-  "gzipBytes": 102501,
+  "moduleBytes": 1090304,
+  "gzipBytes": 147165,
   "runs": [
     {
-      "readyMs": 450.79999999701977,
-      "mutations": 0,
-      "paths": 1419,
-      "canvas": 0
+      "readyMs": 430.8999999910593,
+      "mechanisms": [
+        {
+          "kind": "harp",
+          "mutations": 0,
+          "paths": 1419,
+          "canvas": 0
+        },
+        {
+          "kind": "flute",
+          "mutations": 0,
+          "paths": 788,
+          "canvas": 0
+        },
+        {
+          "kind": "rain",
+          "mutations": 0,
+          "paths": 911,
+          "canvas": 0
+        },
+        {
+          "kind": "hexa",
+          "mutations": 0,
+          "paths": 503,
+          "canvas": 0
+        }
+      ]
     },
     {
-      "readyMs": 858.1999999880791,
-      "mutations": 0,
-      "paths": 1419,
-      "canvas": 0
+      "readyMs": 846.6999999880791,
+      "mechanisms": [
+        {
+          "kind": "harp",
+          "mutations": 0,
+          "paths": 1419,
+          "canvas": 0
+        },
+        {
+          "kind": "flute",
+          "mutations": 0,
+          "paths": 788,
+          "canvas": 0
+        },
+        {
+          "kind": "rain",
+          "mutations": 0,
+          "paths": 911,
+          "canvas": 0
+        },
+        {
+          "kind": "hexa",
+          "mutations": 0,
+          "paths": 503,
+          "canvas": 0
+        }
+      ]
     },
     {
-      "readyMs": 862.2000000029802,
-      "mutations": 0,
-      "paths": 1419,
-      "canvas": 0
+      "readyMs": 850.5,
+      "mechanisms": [
+        {
+          "kind": "harp",
+          "mutations": 0,
+          "paths": 1419,
+          "canvas": 0
+        },
+        {
+          "kind": "flute",
+          "mutations": 0,
+          "paths": 788,
+          "canvas": 0
+        },
+        {
+          "kind": "rain",
+          "mutations": 0,
+          "paths": 911,
+          "canvas": 0
+        },
+        {
+          "kind": "hexa",
+          "mutations": 0,
+          "paths": 503,
+          "canvas": 0
+        }
+      ]
     }
   ]
 }

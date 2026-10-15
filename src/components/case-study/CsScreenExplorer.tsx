@@ -31,7 +31,7 @@ export default function CsScreenExplorer({ screens, label = 'Choose a MiniApp sc
         </div>
         <figcaption>
           <div aria-live="polite" aria-atomic="true"><strong>{screen.title}</strong><p>{screen.caption}</p></div>
-          <a href={screen.src} target="_blank" rel="noopener noreferrer">Open original image <span className="sr-only">in a new tab</span><span aria-hidden="true"> ↗</span></a>
+          <a className="glass-action" href={screen.src} target="_blank" rel="noopener noreferrer">Open original image <span className="sr-only">in a new tab</span><span aria-hidden="true"> ↗</span></a>
         </figcaption>
       </figure>
     </div>

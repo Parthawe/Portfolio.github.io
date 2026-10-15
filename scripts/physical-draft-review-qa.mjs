@@ -15,6 +15,7 @@ try {
     await page.getByRole('navigation',{name:'Stage anatomy chapters'}).getByRole('button',{name:/Rotation$/}).click();await page.getByRole('slider').fill('90');await expect(page.locator('.stage-detail output')).toContainText('90°');assert.equal(await page.locator('canvas').count(),0);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));results.push({slug,width,theme,status:'pass'});continue
    }
    if(slug==='jugalbandi'){
+    await page.getByText('Inspect individual instruments and original evidence',{exact:true}).click()
     await expect(page.locator('.ja-stage svg')).toBeVisible();await expect(page.locator('.ja')).toHaveAttribute('data-theme',theme)
     await page.getByRole('button',{name:'Pluck selected string',exact:true}).click();await expect(page.locator('.ja-status')).toContainText('completed one pluck')
     await page.getByRole('button',{name:'Reset',exact:true}).click();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
@@ -29,7 +30,7 @@ try {
    if(slug==='enigma'){
     await page.getByLabel('Type a letter',{exact:true}).fill('z')
     await expect(page.getByLabel('Type a letter',{exact:true})).toHaveValue('Z')
-    assert.equal(await page.locator('.enigma-input-row canvas').count(),0,'unvalidated drawing is withheld')
+    assert.equal(await page.locator('.enigma-input-row canvas').count(),0,'drawing stays on the sculpture tablet')
    }
    if(slug==='sea-of-salt')await expect(page.locator('.world-story strong')).toHaveText('The command breaks loose')
    if(slug==='black-hole'){

@@ -1662,7 +1662,7 @@
 .cs-quick-summary-link:focus-visible,
 .cs-bnav-link:focus-visible,
 .cs-text-link:focus-visible,
-.project-main :is(.cs-body, .cs-section-content, .proj-desc, .cs-quick-summary-copy) a[href]:not(.cs-bnav-link):not(.cs-quick-summary-link):not(.proj-live-link):not(.back-link):focus-visible {
+.project-main :is(.cs-body, .cs-section-content, .proj-desc, .cs-quick-summary-copy) a[href]:not(.glass-action):not(.cs-bnav-link):not(.cs-quick-summary-link):not(.proj-live-link):not(.back-link):focus-visible {
   outline: 2px solid color-mix(in srgb, var(--project-color, var(--ink)) 65%, var(--ink));
   outline-offset: 3px;
 }
@@ -2180,7 +2180,7 @@
 }
 
 .cs-text-link,
-.project-main :is(.cs-body, .cs-section-content, .proj-desc, .cs-quick-summary-copy) a[href]:not(.cs-bnav-link):not(.cs-quick-summary-link):not(.proj-live-link):not(.back-link) {
+.project-main :is(.cs-body, .cs-section-content, .proj-desc, .cs-quick-summary-copy) a[href]:not(.glass-action):not(.cs-bnav-link):not(.cs-quick-summary-link):not(.proj-live-link):not(.back-link) {
   color: var(--ink);
   font-weight: 650;
   text-decoration-line: underline;
@@ -2192,7 +2192,7 @@
 }
 
 .cs-text-link:hover,
-.project-main :is(.cs-body, .cs-section-content, .proj-desc, .cs-quick-summary-copy) a[href]:not(.cs-bnav-link):not(.cs-quick-summary-link):not(.proj-live-link):not(.back-link):hover {
+.project-main :is(.cs-body, .cs-section-content, .proj-desc, .cs-quick-summary-copy) a[href]:not(.glass-action):not(.cs-bnav-link):not(.cs-quick-summary-link):not(.proj-live-link):not(.back-link):hover {
   color: color-mix(in srgb, var(--project-color, var(--ink)) 38%, var(--ink));
   background: color-mix(in srgb, var(--project-color, var(--ink)) 8%, transparent);
   text-decoration-color: currentColor;
@@ -2694,14 +2694,14 @@
 .cs-body strong {
   color: var(--ink);
 }
-.cs-body a {
+.cs-body a:not(.glass-action) {
   color: var(--ink);
   text-decoration: underline;
   text-decoration-color: var(--ink-15);
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s;
 }
-.cs-body a:hover {
+.cs-body a:not(.glass-action):hover {
   text-decoration-color: var(--ink);
 }
 
@@ -12762,4 +12762,4 @@ body.site-tinted .project-main--medimorpho .medimorpho-access:nth-child(even) {
 }
 
 .project-room-link { margin: 1rem 0 2rem; }
-.project-room-link a { display: inline-block; color: var(--ink); border: 1px solid var(--ink-15); padding: .7rem 1rem; border-radius: var(--radius-sm, 4px); text-underline-offset: 4px; font-size: .85rem; }
+.project-room-link a { color: var(--ink); }

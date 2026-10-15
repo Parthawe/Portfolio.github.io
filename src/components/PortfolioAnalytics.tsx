@@ -161,5 +161,5 @@ export function AnalyticsConsentNotice({ onChoose }: { onChoose: (choice: 'grant
 
 export function AnalyticsPreferences() {
   if (!analyticsConfigured()) return null
-  return <button className="analytics-preferences" type="button" onClick={() => window.dispatchEvent(new Event('portfolio:analytics-preferences'))}>Analytics preferences</button>
+  return <button className="analytics-preferences glass-action" type="button" onClick={() => window.dispatchEvent(new Event('portfolio:analytics-preferences'))}>Analytics preferences</button>
 }

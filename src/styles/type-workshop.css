@@ -2,7 +2,7 @@
 .tw-header { max-width: 1120px; margin: 0 auto var(--space-8); display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-6); }
 .tw-header > div { flex: 1; min-width: 220px; }
 .tw-header h1 { font-family: var(--tf-slice); font-size: clamp(32px, 5vw, 64px); font-weight: 400; margin: var(--space-2) 0; }
-.tw-header a { text-decoration: underline; text-underline-offset: 4px; }
+
 .tw-kicker { font: 12px var(--mono); color: var(--ink-60); }
 .tw-editor .wrap { max-width: 1120px; padding: 0; }
 .tw-editor:not(.tw-editor--workshop) .wrap { padding-inline: var(--space-6); }

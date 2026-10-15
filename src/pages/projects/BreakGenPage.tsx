@@ -133,7 +133,7 @@ export default function BreakGenPage() {
         {/* Read the full case study */}
         <section className="cs-section reveal" id="cs-full-case">
           <div className="wrap project-closing-link">
-            <a href="/keyboard-project">
+            <a className="glass-action" href="/keyboard-project">
               See the earlier physical keyboard study &rarr;
             </a>
           </div>
