@@ -33,6 +33,7 @@
     "qa:experience-recovery": "node scripts/experience-recovery-qa.mjs && node scripts/experience-failures-qa.mjs",
     "test:analytics": "node --test scripts/analytics.test.mjs",
     "qa:experience-curation": "node scripts/experience-curation-qa.mjs",
+    "qa:black-hole-time-trap": "node scripts/black-hole-time-trap-qa.mjs && node scripts/black-hole-activity-qa.mjs",
     "qa:physical-drafts": "node scripts/physical-draft-review-qa.mjs",
     "qa:arttown": "node scripts/arttown-archive-qa.mjs",
     "qa:experience-improvements": "node scripts/experience-improvements-qa.mjs",
