@@ -1,7 +1,7 @@
 import {chromium,webkit,expect} from '@playwright/test'
 import assert from 'node:assert/strict'
 import {mkdirSync,writeFileSync} from 'node:fs'
-const base=process.env.QA_BASE_URL||'http://127.0.0.1:5211',out='docs/reviews/interface-sources';mkdirSync(out,{recursive:true});const results=[]
+const base=process.env.QA_BASE_URL||'http://127.0.0.1:5211',out=process.env.QA_OUTPUT_DIR||'/tmp/interface-sources-qa';mkdirSync(out,{recursive:true});const results=[]
 for(const engine of[chromium,webkit])for(const width of[1440,390]){
  const browser=await engine.launch(),page=await browser.newPage({viewport:{width,height:1000},hasTouch:width===390,reducedMotion:'reduce'}),errors=[],frames=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.url().includes('figma.com/embed'))frames.push(r.url())})
  try{

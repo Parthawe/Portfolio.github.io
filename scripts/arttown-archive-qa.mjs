@@ -2,7 +2,7 @@ import {chromium,expect} from '@playwright/test'
 import assert from 'node:assert/strict'
 import {mkdirSync,writeFileSync} from 'node:fs'
 const dir=process.env.QA_OUTPUT_DIR || '/tmp/portfolio-arttown-review';mkdirSync(dir,{recursive:true})
-const base=process.env.QA_DEV_URL || 'http://127.0.0.1:5201'
+const base=process.env.QA_BASE_URL || process.env.QA_DEV_URL || 'http://127.0.0.1:5211'
 const browser=await chromium.launch();const results=[],errors=[]
 try{
  for(const theme of['light','dark']){
