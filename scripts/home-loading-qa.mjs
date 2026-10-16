@@ -4,9 +4,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 const base=process.env.QA_BASE_URL || 'http://127.0.0.1:5199'
 const baseline=process.env.QA_BASELINE_URL
 const out='/tmp/portfolio-home-loading-qa';mkdirSync(out,{recursive:true})
-// Use the native backend on this macOS workstation. Linux CI keeps its default
-// software renderer; both paths retain the same first-frame and cleanup checks.
-const browser=await chromium.launch({args:process.platform==='darwin'?['--use-angle=metal']:[]});const errors=[],results=[]
+const browser=await chromium.launch();const errors=[],results=[]
 function capableDevice() {
  Object.defineProperty(navigator, 'hardwareConcurrency', { configurable: true, get: () => 8 })
  Object.defineProperty(navigator, 'deviceMemory', { configurable: true, get: () => 8 })

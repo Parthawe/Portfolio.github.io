@@ -36,13 +36,15 @@
     "12 stage/Jugalbandi scroll-story profiles",
     "project links, film playback, captions, painting and camera cleanup",
     "Easter Ask Parth entry",
-    "Work/About/Notes refinement"
+    "Work/About/Notes refinement",
+    "In-app browser: hero renders, expands, and closes with Escape"
   ],
   "technicalFixes": [
     "Hide chapter controls while the reviewer access form is visible, independent of Safari focus behavior",
     "Restore the Jugalbandi harp deep-link container while retaining all four instrument studies",
     "Update regression expectations to current Mentra reading chapters and concise practice entries",
-    "Separate non-GPU logo/card CSS tests from software shader compilation; retain dedicated actual-renderer home tests"
+    "Separate non-GPU logo/card CSS tests from software shader compilation; retain dedicated actual-renderer home tests",
+    "Clear expanded hero state when its renderer becomes unavailable, so the overlay cannot hide the still and copy"
   ],
   "ci": "Authoritative current status is the draft PR Checks tab; a green local check is not deployment approval.",
   "limits": [
@@ -50,7 +52,8 @@
     "No production secrets copied into the candidate",
     "No new real model-service request or external access-request submission",
     "Earlier heavily concurrent local runs timed out; corrected and sequential reruns are retained separately",
-    "Existing mobile Arc period navigation remains top-heavy"
+    "Existing mobile Arc period navigation remains top-heavy",
+    "macOS headless dedicated hero startup exceeded 20 seconds with default and Metal backends; not counted as a pass. Final Linux CI retains the dedicated renderer assertions."
   ],
   "contentCorrections": [
     "Creator confirmed The Point CDC as 2024; registry year and timeline corrected to match About and the case study",
