@@ -42,7 +42,7 @@
     "Hide chapter controls while the reviewer access form is visible, independent of Safari focus behavior",
     "Restore the Jugalbandi harp deep-link container while retaining all four instrument studies",
     "Update regression expectations to current Mentra reading chapters and concise practice entries",
-    "Give marquee checks 20 seconds to observe the existing product fallback, which starts its 15-second timer after deferred mounting"
+    "Separate non-GPU logo/card CSS tests from software shader compilation; retain dedicated actual-renderer home tests"
   ],
   "ci": "Authoritative current status is the draft PR Checks tab; a green local check is not deployment approval.",
   "limits": [
@@ -51,5 +51,9 @@
     "No new real model-service request or external access-request submission",
     "Earlier heavily concurrent local runs timed out; corrected and sequential reruns are retained separately",
     "Existing mobile Arc period navigation remains top-heavy"
+  ],
+  "contentCorrections": [
+    "Creator confirmed The Point CDC as 2024; registry year and timeline corrected to match About and the case study",
+    "Mentra original quotation record is promised but not yet reviewed"
   ]
 }

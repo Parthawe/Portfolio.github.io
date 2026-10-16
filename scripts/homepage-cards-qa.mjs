@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test'
-import { revealForMeasurement } from './visible-layout-qa.mjs'
+import { revealForMeasurement, withoutDecorativeWebGL } from './visible-layout-qa.mjs'
 
 export async function checkProjectCardMotion(browser, base, widths = [1187, 390]) {
   for (const width of widths) {
@@ -7,6 +7,7 @@ export async function checkProjectCardMotion(browser, base, widths = [1187, 390]
       const page = await browser.newPage({ viewport: { width, height: 979 }, reducedMotion: 'no-preference' })
       page.setDefaultTimeout(20_000)
       page.setDefaultNavigationTimeout(30_000)
+      await withoutDecorativeWebGL(page)
       await page.goto(`${base}${route}`)
       const card = page.locator('a.pcard').first()
       await revealForMeasurement(card)

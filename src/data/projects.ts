@@ -699,7 +699,7 @@ export const projects: Project[] = [
     image: '/Assets/mockups/projects/the-point-cdc_16x9.webp',
     cardMockupSource: '/Assets/mockups/projects/the-point-cdc_16x9.webp',
     tag: 'COMMUNITY',
-    year: '2025',
+    year: '2024',
     desc: 'Rebuilt a Bronx nonprofit platform to make community programs, spaces, and services easier to navigate',
     category: 'good',
     page: () => import('../pages/projects/ThePointCdcPage'),
@@ -708,7 +708,7 @@ export const projects: Project[] = [
     summaryProblem: 'The nonprofit had many programs, services, and community resources, but the website made residents work too hard to understand what was available.',
     summaryRole: 'UX designer across information architecture, community program navigation, responsive page structure, and accessibility-minded content hierarchy.',
     summaryTeam: 'Community-focused web redesign project for The Point CDC.',
-    summaryTimeline: '2025',
+    summaryTimeline: '2024',
     summaryOutcome: 'Rebuilt the experience around clearer service discovery, mobile-first navigation, and a calmer path from need to program detail.',
     summaryStats: [
       { label: 'Context', value: 'Bronx nonprofit' },
