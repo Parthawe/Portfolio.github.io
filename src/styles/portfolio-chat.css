@@ -110,7 +110,7 @@ body:has(.portfolio-chat-panel:hover) .figma-cursor-label { visibility: hidden; 
 .portfolio-chat-message .portfolio-chat-source { font-size: 11px; line-height: 1.5; color: var(--ink-muted, var(--ink)); opacity: .7; margin-top: 12px; }
 
 .portfolio-chat-cursor { position: fixed; left: 14px; bottom: max(84px, env(safe-area-inset-bottom)); display: flex; align-items: center; padding: 8px; min-width: 44px; min-height: 44px; z-index: 940; border: 0; background: none; color: #6774ee; cursor: pointer; }
-.portfolio-chat-cursor span { background: #6774ee; color: white; font: 500 11px/1.5 system-ui; padding: 0 6px; border-radius: 5px; }
+.portfolio-chat-cursor span { background: #4054cf; color: white; font: 500 11px/1.5 system-ui; padding: 0 6px; border-radius: 5px; }
 .portfolio-chat-cursor:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 body.site-tools-open .portfolio-chat-cursor { display: none; }
 
