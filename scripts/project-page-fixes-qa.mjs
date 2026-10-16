@@ -22,11 +22,10 @@ function luminance(rgb) {
 try {
   // A public evidence link must open its deferred chapter and transfer focus.
   for (const [route, id] of [
-    ['/mentra/', 'cs-companion'],
+    ['/mentra/', 'decision-first-use'],
     ['/transfi-project/', 'cs-public-story'],
     ['/zentipay/', 'cs-public-story'],
     ['/cuetv/', 'cs-public-story'],
-    ['/feeling-patterns/', 'cs-prototypes'],
   ]) {
     await go(route)
     await page.locator('.page-loader').waitFor({ state: 'hidden' })
@@ -36,6 +35,10 @@ try {
     assert.equal(new URL(page.url()).hash, `#${id}`, `${route}: link is shareable`)
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${route}: no mobile overflow`)
   }
+  await go('/feeling-patterns/#cs-prototypes')
+  assert(await page.locator('main.practice-entry').isVisible(), 'Practice entries stay concise')
+  assert.equal(await page.locator('details#cs-prototypes').getAttribute('open'), '', 'Old practice link opens the study notes')
+  assert.equal(await page.locator('.proj-reading-evidence').count(), 0, 'Practice entry does not promise a full case study')
   // Metadata must remain readable before a visitor chooses a theme, too.
   await page.setViewportSize({ width: 412, height: 915 })
   for (const scheme of ['light', 'dark']) {
@@ -130,14 +133,14 @@ try {
   assert.equal(await page.evaluate(() => document.activeElement?.id), 'cs-mechanism', 'Deep link moves keyboard focus to its section')
   await page.evaluate(() => { window.location.hash = 'cs-overview' })
   await page.waitForFunction(() => document.activeElement?.id === 'cs-overview')
-  await go('/mentra/#cs-context')
-  assert(await page.locator('#cs-context').isVisible(), 'Deep links also open controlled stories')
-  await page.locator('#cs-context').scrollIntoViewIfNeeded()
+  await go('/mentra/#decision-first-use')
+  assert(await page.locator('#decision-first-use').isVisible(), 'Deep links also open controlled stories')
+  await page.locator('#decision-first-use').scrollIntoViewIfNeeded()
   const chapters = page.locator('.cs-bnav-chapters')
   await chapters.click()
-  await page.locator('.cs-bnav-menu-link[href="#cs-bet"]').click()
-  assert.equal(new URL(page.url()).hash, '#cs-bet', 'Chapter selection produces a shareable URL')
-  assert.equal(await page.evaluate(() => document.activeElement?.id), 'cs-bet', 'Chapter selection moves keyboard focus')
+  await page.locator('.cs-bnav-menu-link[href="#decision-runtime"]').click()
+  assert.equal(new URL(page.url()).hash, '#decision-runtime', 'Chapter selection produces a shareable URL')
+  assert.equal(await page.evaluate(() => document.activeElement?.id), 'decision-runtime', 'Chapter selection moves keyboard focus')
   await go('/typeface/#tf-playground')
   assert(await page.locator('#tf-playground').isVisible(), 'Typeface deep link opens the tools')
   await page.evaluate(() => document.fonts.ready)

@@ -27,7 +27,7 @@ try {
   }
   await page.goto(`${base}/clawed-chat`)
   await page.getByText('About the material',{exact:true}).click()
-  await expect(page.getByText('Approval-mode and execution-receipt design proposals.',{exact:true})).toBeVisible()
+  await expect(page.getByText('Original deployment and documentation captures; separately labelled approval and glasses interaction proposals.',{exact:true})).toBeVisible()
   assert(!(await page.locator('main').innerText()).includes('six moderated'))
   await page.goto(`${base}/moniac-machine#cs-interactive`)
   await expect(page.locator('#cs-interactive .moniac-game')).toBeVisible({timeout:20000})

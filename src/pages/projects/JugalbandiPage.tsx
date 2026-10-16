@@ -125,7 +125,7 @@ export default function JugalbandiPage() {
         </CsSection>
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')} sectionIds={['cs-background','cs-instrument','cs-harp-story','cs-process','cs-reflection']} cta="Inspect the instruments and decisions" note="Compare the controller, acoustic mechanisms and their original construction photographs.">
         <CsSection id="cs-instrument" title="Follow the gesture into its mechanism">
-          <span id="cs-harp-story" className="project-decision-alias" /><JugalbandiMechanismStudy />
+          <div id="cs-harp-story"><JugalbandiMechanismStudy /></div>
         </CsSection>
         <CsSection id="cs-background" title="The constraints are physical">
           <CsBody><p>A string responds when a pick releases it. A flute needs both an open air path and a stable blowing angle. A rainstick continues sounding as its contents fall. Those differences give each machine its own attack and decay; the same response timing cannot describe all three.</p></CsBody>

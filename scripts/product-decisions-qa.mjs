@@ -27,7 +27,7 @@ for(const [engine,width,theme] of profiles) {
   assert(requests.filter(url=>url.includes('/Assets/case-study-slides/transfi/')).every(url=>/slide-(6-6779|6-9052|6-9184)/.test(url)),'only public TransFi source slides requested')
   assert.equal(await page.locator('#cs-transfi-research').count(),0)
   await original(page.locator('.case-study-slide > img').first())
-  await page.getByLabel('Reviewer code',{exact:true}).fill('invalid-local-review');await expect(page.locator('#cs-bottom-nav')).not.toBeVisible();await page.getByRole('button',{name:'Unlock',exact:true}).click();await expect(page.locator('.nda-inline-form--code .nda-inline-confirmation')).toBeVisible()
+  const code=page.getByLabel('Reviewer code',{exact:true});await code.scrollIntoViewIfNeeded();await expect(page.locator('#cs-bottom-nav')).not.toBeVisible();await code.fill('invalid-local-review');await code.blur();await expect(page.locator('#cs-bottom-nav')).not.toBeVisible();await page.getByRole('button',{name:'Unlock',exact:true}).click();await expect(page.locator('.nda-inline-form--code .nda-inline-confirmation')).toBeVisible()
   await page.locator('.nda-request-disclosure > summary').click();await expect(page.getByRole('form',{name:'Request case study access'})).toBeVisible();await overflow();await page.screenshot({path:`${out}/transfi-${width}-${theme}-${engine.name()}.png`})
   results.push({slug:'transfi-project',engine:engine.name(),width,theme,status:'pass'})
   await page.goto(base+'/mentra-miniapps');await page.locator('.cs-expand-preview-btn').click()
