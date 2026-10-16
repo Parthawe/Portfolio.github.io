@@ -26,6 +26,9 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) 
 })
 const selectedRoutes = process.env.QA_RENDERED_ROUTES?.split(',').map(route => route.trim()).filter(Boolean)
 const routes = [...new Set(selectedRoutes?.length ? selectedRoutes : [...sitemapRoutes, ...extraRoutes])]
+// These nine courses intentionally use concise, source-limited practice entries.
+// An unexpected conversion still fails the full case-study presentation check.
+const practiceRoutes = new Set(['embodied-web', 'feeling-patterns', 'performance-by-design', 'storytelling', 'hypercinema', 'applications', 'messy-humans', 'production-studio', 'arcade-lab'].map(slug => `/${slug}`))
 
 async function inspectRoute(browser, route, viewport) {
   const page = await browser.newPage({ viewport })
@@ -97,6 +100,7 @@ async function inspectRoute(browser, route, viewport) {
         .filter(Boolean)
       const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))]
       const projectMain = document.querySelector('main.project-main')
+      const practice = projectMain?.matches('.practice-entry') ? projectMain.querySelector('article') : null
 
       return {
         title: document.title,
@@ -121,6 +125,14 @@ async function inspectRoute(browser, route, viewport) {
           header: Boolean(document.querySelector('.project-header')),
           visualHero: Boolean(document.querySelector('.proj-visual-hero')),
           brief: Boolean(document.querySelector('.proj-visual-brief')),
+        } : null,
+        practiceContract: practice ? {
+          title: Boolean(practice.querySelector('header h1')),
+          exploration: [...practice.querySelectorAll('h2')].some(h => h.textContent === 'What I explored'),
+          sourceBoundary: [...practice.querySelectorAll('h2')].some(h => h.textContent === 'Available material'),
+          concise: (practice.innerText || '').split(/\s+/).length < 330,
+          noSubstituteMedia: !practice.querySelector('img,video,iframe,canvas'),
+          documentedOnwardRoute: Boolean(practice.querySelector('.practice-entry__related a[href^="/"]')),
         } : null,
         audibleVideosWithoutCaptions: [...document.querySelectorAll('video')]
           .filter((video) => !video.muted && !video.querySelector('track[kind="captions"],track[kind="subtitles"]'))
@@ -152,7 +164,13 @@ async function inspectRoute(browser, route, viewport) {
     if (result.brokenImages.length) issues.push(`Broken images: ${result.brokenImages.join(', ')}`)
     if (result.unnamedButtons.length) issues.push(`Unnamed controls: ${result.unnamedButtons.join(' | ')}`)
     if (result.appError) issues.push('Application error or not-found state rendered')
-    if (result.projectContract) {
+    if (practiceRoutes.has(route)) {
+      if (!result.practiceContract) issues.push('Expected concise practice entry is missing')
+      else {
+        const missing = Object.entries(result.practiceContract).filter(([, present]) => !present).map(([key]) => key)
+        if (missing.length) issues.push(`Practice presentation missing: ${missing.join(', ')}`)
+      }
+    } else if (result.projectContract) {
       const missing = Object.entries(result.projectContract)
         .filter(([, present]) => !present)
         .map(([key]) => key)

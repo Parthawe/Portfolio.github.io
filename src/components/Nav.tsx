@@ -141,8 +141,8 @@ export default function Nav() {
           {/* Left group, logo + links in a single pill */}
           <div className="nav-left-pill surface-glass figma-hover">
             <Link to="/" className="nav-logo figma-hover" aria-label="Parth Pawar, home">Parth<FigmaSelect /></Link>
-            <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
-            <Link to="/about" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}>About<FigmaSelect /></Link>
+            <Link to="/work" data-label="Work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}><span className="nav-pill-link__label">Work</span><FigmaSelect /></Link>
+            <Link to="/about" data-label="About" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}><span className="nav-pill-link__label">About</span><FigmaSelect /></Link>
             <FigmaSelect />
           </div>
 

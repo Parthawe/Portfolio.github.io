@@ -1,0 +1,31 @@
+{
+  "base": "http://127.0.0.1:4173",
+  "checkedAt": "2026-10-16T21:54:40.348Z",
+  "runs": [
+    {
+      "performance": 47,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    {
+      "performance": 75,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    {
+      "performance": 75,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    }
+  ],
+  "median": {
+    "performance": 75,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "rawReports": "qa-diagnostics/lighthouse"
+}

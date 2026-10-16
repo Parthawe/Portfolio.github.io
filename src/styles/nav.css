@@ -51,6 +51,19 @@
 /* extends .pill-link from base.css */
 .nav-pill-link {
   padding: 0.45rem 0.85rem;
+  display: inline-grid;
+  place-items: center;
+}
+/* Reserve the active label's width without changing the inactive type weight. */
+.nav-pill-link__label,
+.nav-pill-link::after {
+  grid-area: 1 / 1;
+}
+.nav-pill-link::after {
+  content: attr(data-label);
+  font-weight: 600;
+  visibility: hidden;
+  pointer-events: none;
 }
 .nav-pill-link:focus-visible,
 .nav-logo:focus-visible,
