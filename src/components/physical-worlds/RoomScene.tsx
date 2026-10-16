@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import * as T from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { createProjectRenderer, type ProjectRenderer } from '../../utils/projectRenderer'
 import { createSceneActivity } from '../../utils/sceneActivity'
 import { worlds, type WorldKey } from './catalog'
 import { buildJugalbandi } from './JugalbandiModel'
@@ -16,8 +17,14 @@ export default function RoomScene(props: Props) {
   latest.current = props
   useEffect(() => {
     const host = hostRef.current!
-    let renderer: T.WebGLRenderer
-    try { renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'low-power' }) } catch { latest.current.onFail(); return }
+    const controller = new AbortController()
+    let cleanup: (() => void) | undefined
+    const setup = async () => {
+    let renderer: ProjectRenderer
+    try { renderer = await createProjectRenderer(controller.signal) } catch { if (!controller.signal.aborted) latest.current.onFail(); return }
+    if (controller.signal.aborted) { renderer.dispose(); return }
+    if ('onDeviceLost' in renderer) renderer.onDeviceLost = () => { if (!controller.signal.aborted) latest.current.onFail() }
+
     renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75)); renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFSoftShadowMap
     renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1
     renderer.domElement.setAttribute('role', 'img'); renderer.domElement.setAttribute('aria-label', '3D project room. Use the labeled controls below to interact.')
@@ -346,7 +353,7 @@ export default function RoomScene(props: Props) {
         }
       }
       if(cameraMoving){camera.position.lerp(destination,state.reduced?1:1-Math.exp(-delta*7));controls.target.lerp(target,state.reduced?1:1-Math.exp(-delta*7));if(camera.position.distanceTo(destination)<.01&&controls.target.distanceTo(target)<.01)cameraMoving=false}
-      updates.forEach(update=>update(state.values,state.reduced?0:elapsed,delta));controls.update();renderer.render(scene,camera)
+      updates.forEach(update=>update(state.values,state.reduced?0:elapsed,delta));controls.update();try { renderer.render(scene,camera) } catch { activity?.dispose(); latest.current.onFail() }
     }
     activity=createSceneActivity(host,render,{idleMs:2200,introMs:2200,fps:24,interactionFps:60});wake.current=()=>activity?.wake()
     controls.addEventListener('change',()=>activity?.wake())
@@ -361,8 +368,11 @@ export default function RoomScene(props: Props) {
     const up=(event:PointerEvent)=>{if(!drag||drag.pointerId!==event.pointerId)return;drag=null;controls.enabled=true;if(renderer.domElement.hasPointerCapture(event.pointerId))renderer.domElement.releasePointerCapture(event.pointerId)}
     renderer.domElement.addEventListener('pointerdown',down,true);renderer.domElement.addEventListener('pointermove',move);renderer.domElement.addEventListener('pointerup',up);renderer.domElement.addEventListener('pointercancel',up);renderer.domElement.addEventListener('lostpointercapture',up)
     const lost=(event:Event)=>{event.preventDefault();latest.current.onFail()};renderer.domElement.addEventListener('webglcontextlost',lost)
-    return()=>{disposed=true;wake.current=null;activity?.dispose();resizeObserver.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',down,true);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',up);renderer.domElement.removeEventListener('lostpointercapture',up);renderer.domElement.removeEventListener('webglcontextlost',lost)
+    cleanup=()=>{disposed=true;wake.current=null;activity?.dispose();resizeObserver.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',down,true);renderer.domElement.removeEventListener('pointermove',move);renderer.domElement.removeEventListener('pointerup',up);renderer.domElement.removeEventListener('pointercancel',up);renderer.domElement.removeEventListener('lostpointercapture',up);renderer.domElement.removeEventListener('webglcontextlost',lost)
       const geometries=new Set<T.BufferGeometry>();scene.traverse(object=>{if(object instanceof T.Mesh||object instanceof T.LineSegments){geometries.add(object.geometry);const ms=Array.isArray(object.material)?object.material:[object.material];ms.forEach(m=>materials.add(m))}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());renderer.dispose();renderer.domElement.remove()}
+    }
+    void setup().catch(() => { cleanup?.(); if (!controller.signal.aborted) latest.current.onFail() })
+    return () => { controller.abort(); cleanup?.() }
   },[props.project,props.resetVersion])
   useEffect(()=>{wake.current?.()},[props.values,props.dark,props.revision,props.reduced])
   return <div ref={hostRef} style={{width:'100%',height:'100%'}} />

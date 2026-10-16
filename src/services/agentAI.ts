@@ -451,9 +451,9 @@ function buildPublicEdgeContext(ctx: ChatContext, message: string, localAnswer: 
 function rememberTurn(history: ChatHistory, question: string, answer: string) {
   history.turns.push({
     question: question.slice(0, 500),
-    answer: answer.slice(0, 700),
+    answer: answer.slice(0, 2200),
   })
-  history.turns = history.turns.slice(-3)
+  history.turns = history.turns.slice(-6)
 }
 
 function getProjectFocus(project: Project, query: string): FocusTopic | undefined {
@@ -476,6 +476,8 @@ export async function sendMessage(
   history: ChatHistory,
   onChunk?: (text: string) => void,
   options?: {
+    onSource?: (source: 'ai' | 'notes') => void
+    pageContext?: ReturnType<typeof import('./chatPageContext').getChatPageContext>
     surface?: 'cursor' | 'panel'
     cursorContext?: {
       section: string
@@ -485,6 +487,10 @@ export async function sendMessage(
     }
   },
 ): Promise<string> {
+  // Chat keeps paragraph/list boundaries; cursor copy retains its compact format.
+  const formatAnswer = (value: string) => options?.surface === 'panel'
+    ? value.split('\n').map(line => normalizeCopy(line)).join('\n').trim()
+    : normalizeCopy(value)
   syncRoute(history)
   updatePersonaFromMessage(history.ctx, userMessage)
   if (options?.surface === 'cursor' && isCursorIdentityQuestion(userMessage)) {
@@ -496,7 +502,7 @@ export async function sendMessage(
     route: history.route,
     lastProject: history.ctx.lastProject,
   })
-  if (!portfolioQuestion && (options?.surface !== 'cursor' || !isEdgeAIEnabled())) {
+  if (!portfolioQuestion && !isEdgeAIEnabled()) {
     const scoped = options?.surface === 'cursor'
       ? CURSOR_SCOPE_REPLY
       : normalizeCopy(PORTFOLIO_SCOPE_REPLY)
@@ -508,9 +514,20 @@ export async function sendMessage(
     ? getResponse(userMessage, history.ctx)
     : { text: CURSOR_SCOPE_REPLY }
   await new Promise(resolve => setTimeout(resolve, 0))
-  const localAnswer = normalizeCopy(text)
+  let groundedAnswer = text
+  if (options?.surface === 'panel') {
+    const named = projects.filter(project => [project.slug, project.name, ...(PROJECT_ALIASES[project.slug] || [])].some(term => term.length > 3 && normalize(userMessage).includes(normalize(term))))
+    if (/compare|difference|versus|\bvs\b/i.test(userMessage) && named.length >= 2) {
+      groundedAnswer = named.slice(0, 3).map(project => `**[${project.name}](/${project.slug})**\n${project.summaryProblem || project.desc}\nRole: ${project.summaryRole || 'See the public project overview for the scope of ownership.'}\nOutcome: ${project.summaryOutcome || 'No verified outcome is recorded in the public summary.'}`).join('\n\n')
+    } else if (options.pageContext && /this (page|section)|summari[sz]e|what am i looking/i.test(userMessage)) {
+      const section = options.pageContext.sections.find(s => s.inViewport && s.text)
+      if (section?.text) groundedAnswer = `From **${section.title}** on this page:\n\n${section.text.slice(0, 1000)}`
+    }
+  }
+  const localAnswer = formatAnswer(groundedAnswer)
 
   if (!isEdgeAIEnabled()) {
+    options?.onSource?.('notes')
     const fallbackAnswer = options?.surface === 'cursor'
       ? shapeCursorAnswer(localAnswer, userMessage, true)
       : localAnswer
@@ -525,17 +542,19 @@ export async function sendMessage(
     localAnswer,
     context: {
       ...buildPublicEdgeContext(history.ctx, userMessage, localAnswer),
-      recentConversation: history.turns.slice(-3),
+      recentConversation: history.turns.slice(-6),
+      currentPage: options?.pageContext,
       currentTourStop: options?.cursorContext,
     },
     model: getEdgeAIModel(),
     surface: options?.surface || 'panel',
   })
 
+  options?.onSource?.(edgeAnswer ? 'ai' : 'notes')
   const cursorEdgeAnswer = edgeAnswer && isCursorAnswerUsable(edgeAnswer, userMessage) ? edgeAnswer : null
   const finalAnswer = options?.surface === 'cursor'
     ? shapeCursorAnswer(cursorEdgeAnswer || localAnswer, userMessage, !cursorEdgeAnswer)
-    : normalizeCopy(edgeAnswer || localAnswer)
+    : formatAnswer(edgeAnswer || localAnswer)
   rememberTurn(history, userMessage, finalAnswer)
   onChunk?.(finalAnswer)
   return finalAnswer

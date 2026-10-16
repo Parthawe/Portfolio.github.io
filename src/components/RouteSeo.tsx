@@ -340,6 +340,17 @@ function getRouteMeta(pathname: string): RouteMeta {
     }
   }
 
+  if (pathname === '/notes' || pathname === '/guestbook') {
+    return {
+      title: 'Notes · Parth Pawar',
+      description: 'Visitor notes and feedback on Parth Pawar’s portfolio. Leave a hello or share a thought.',
+      image: toAbsoluteUrl(DEFAULT_IMAGE),
+      url: `${SITE_URL}/notes`,
+      type: 'website',
+      robots,
+    }
+  }
+
   if (pathname === '/studio') {
     return {
       title: 'Studio · Parth Pawar',

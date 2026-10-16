@@ -334,6 +334,7 @@ export default function CollaboratorCursor() {
   const tourFinishRef = useRef<(message?: string) => void>(() => {})
 
   const setConversation = (open: boolean) => {
+    if (open) { window.dispatchEvent(new Event('portfolio-chat:open')); return }
     if (open && tourAdvanceTimer.current !== null) {
       window.clearTimeout(tourAdvanceTimer.current)
       tourAdvanceTimer.current = null

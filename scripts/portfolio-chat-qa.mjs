@@ -1,0 +1,60 @@
+import assert from 'node:assert/strict'
+import { chromium, expect } from '@playwright/test'
+const browser = await chromium.launch()
+const base = process.env.QA_BASE_URL || 'http://127.0.0.1:4175'
+const errors = []
+try {
+  for (const width of [1440, 390]) {
+    const page = await browser.newPage({viewport:{width,height:900}, reducedMotion:'reduce',hasTouch:width===390})
+    page.on('pageerror', e => errors.push(e.message))
+    await page.goto(`${base}/work/`)
+    const launch = page.getByRole('button',{name:'Ask Parth about this work',exact:true})
+    await launch.click()
+    await expect(page.locator('.portfolio-chat-panel')).toBeVisible()
+    await expect(page.locator('.portfolio-chat-panel [role="tab"]')).toHaveCount(0)
+    await page.getByRole('button',{name:'Where should I start?',exact:true}).click()
+    await expect(page.locator('.portfolio-chat-message--assistant')).toContainText('Start with these three')
+    await expect(page.locator('.portfolio-chat-message--assistant li')).toHaveCount(3)
+    await page.evaluate(() => { navigator.clipboard.writeText = async text => { window.__copiedAnswer = text } })
+    await page.getByRole('button',{name:'Copy answer',exact:true}).click()
+    await expect(page.getByRole('button',{name:'Copied',exact:true})).toBeVisible()
+    assert.match(await page.evaluate(() => window.__copiedAnswer), /Mentra/)
+    const input = page.getByRole('textbox',{name:'Message Ask Parth'})
+    const initialHeight = await input.evaluate(e=>e.getBoundingClientRect().height)
+    await input.fill('One line\nTwo lines\nThree lines\nFour lines')
+    assert((await input.evaluate(e=>e.getBoundingClientRect().height)) > initialHeight)
+    await input.fill('Keep this draft')
+    await page.locator('.portfolio-chat-message--assistant a').first().click()
+    await expect(page.locator('.portfolio-chat-context')).toContainText('Mentra')
+    await expect(input).toHaveValue('Keep this draft')
+    if(width===1440) {
+      assert.equal(await page.locator('#site-zoom-stage').evaluate(e=>e.getBoundingClientRect().x),390)
+      await page.getByRole('button',{name:/^Open image preview:/}).first().click()
+      await expect(page.locator('.portfolio-chat-panel')).toBeHidden()
+      await page.keyboard.press('Escape')
+      await expect(page.locator('.portfolio-chat-panel')).toBeVisible()
+    } else assert.equal(await page.locator('#root').evaluate(e=>e.inert),false)
+    await page.getByRole('button',{name:'Close panel',exact:true}).click()
+    await expect(launch).toBeFocused()
+    assert.equal(await page.locator('#root').evaluate(e=>e.inert),false)
+    await page.reload()
+    await launch.click()
+    await expect(input).toHaveValue('Keep this draft')
+    await expect(page.locator('.portfolio-chat-message--assistant')).toContainText('Start with these three')
+    await page.getByRole('button',{name:'New chat',exact:true}).click()
+    await expect(page.locator('.portfolio-chat-message')).toHaveCount(0)
+    await expect(input).toHaveValue('')
+    await page.getByRole('button',{name:'Close panel',exact:true}).click()
+    if(width===1440) {
+      await page.getByRole('button',{name:'Show Easter egg tools',exact:true}).click()
+      await page.getByRole('button',{name:'Enter Figma mode',exact:true}).click()
+      await expect(page.locator('.site-layers-panel')).toBeVisible()
+      await expect(page.locator('.site-tools')).toBeVisible()
+      await expect(page.locator('.portfolio-chat-panel')).toBeHidden()
+      assert.equal(await page.locator('.site-layers-panel').evaluate(e=>e.closest('.portfolio-chat-panel')),null)
+    }
+    await page.close()
+  }
+  assert.deepEqual(errors,[])
+  console.log('PASS: desktop/mobile chat, no tabs, answers, route links, drafts, reload, New chat, modal/Escape, and original Figma panels')
+} finally { await browser.close() }

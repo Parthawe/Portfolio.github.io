@@ -1,3 +1,4 @@
+import PortfolioChat from './workspace/PortfolioChat';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, lazy, Suspense } from 'react';
 import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import PageLoader from './PageLoader';
@@ -249,6 +250,7 @@ export default function RootLayout() {
           const parent = node.parentElement
           if (!parent) return NodeFilter.FILTER_REJECT
           if (['SCRIPT', 'STYLE', 'NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT
+          if (parent.closest('[data-preserve-copy]')) return NodeFilter.FILTER_REJECT
           return /[—–]/.test(node.nodeValue || '') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP
         },
       })
@@ -426,6 +428,7 @@ export default function RootLayout() {
       >
         <Outlet />
       </div>
+      {enablePortfolioInteractions && <PortfolioChat />}
       <Lightbox />
       {enableFinePointerEffects && desktopCanvas && !coarsePointer && <Suspense fallback={null}><CollaboratorCursor /></Suspense>}
       {/* AmbientAudio moved to Nav */}

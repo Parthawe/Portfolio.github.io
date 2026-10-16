@@ -29,6 +29,9 @@ export function createSceneActivity(element: HTMLElement, render: (delta: number
     if (disposed || !visible || document.hidden || timeout || frame) return
     if (!pending && (motion.matches || performance.now() >= activeUntil)) { previous = 0; return }
     const interval = performance.now() < interactiveUntil ? 1000 / interactionFps : 1000 / fps
+    // During direct manipulation, use the browser's frame boundary instead of
+    // stacking a 16ms timer before rAF (which can miss every other refresh).
+    if (interval <= 1000 / 60) { frame = requestAnimationFrame(tick); return }
     timeout = window.setTimeout(() => {
       timeout = 0
       frame = requestAnimationFrame(tick)
@@ -37,6 +40,8 @@ export function createSceneActivity(element: HTMLElement, render: (delta: number
   const tick = (now: number) => {
     frame = 0
     if (disposed || !visible || document.hidden) { cancel(); return }
+    const interval = performance.now() < interactiveUntil ? 1000 / interactionFps : 1000 / fps
+    if (previous && now - previous < interval - .5) { schedule(); return }
     const delta = previous ? Math.min((now - previous) / 1000, .08) : 1 / 60
     previous = now
     pending = false
@@ -52,7 +57,12 @@ export function createSceneActivity(element: HTMLElement, render: (delta: number
     schedule()
   }
   const wake = () => wakeFor(introMs)
-  const interact = () => { interactiveUntil = performance.now() + 250; wakeFor(idleMs) }
+  const interact = () => {
+    interactiveUntil = performance.now() + 250
+    // An ambient-rate timer must not delay the first drag/keyboard response.
+    if (timeout) { clearTimeout(timeout); timeout = 0 }
+    wakeFor(idleMs)
+  }
   const visibility = () => { if (document.hidden) cancel(); else wake() }
   const observer = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting
