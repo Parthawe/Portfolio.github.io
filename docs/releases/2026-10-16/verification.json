@@ -1,0 +1,55 @@
+{
+  "baseCommit": "39d242de54d52f76007bd637f50fdd3c8b439da7",
+  "draftPR": "https://github.com/Parthawe/Portfolio.github.io/pull/19",
+  "deployment": "held; no merge or workflow dispatch",
+  "releasePreview": "http://127.0.0.1:5230/",
+  "unfinishedLocalPreview": "http://127.0.0.1:5222/",
+  "boundaries": {
+    "productionFooter": "exactly unchanged; experimental files and artwork excluded",
+    "shuffle": "source and metadata identical",
+    "approvalStates": "all 50 preserved",
+    "protectedBuild": "passed"
+  },
+  "staticChecks": [
+    "frozen lockfile installation",
+    "TypeScript and production build; 208 route entrypoints",
+    "design audit blocking checks",
+    "agent behavior tests",
+    "10 analytics tests",
+    "6 network policy tests",
+    "hero environment, early preload and preload guards",
+    "source, approval, protected asset and footer guards",
+    "git diff whitespace check"
+  ],
+  "builtBrowserChecksPassed": [
+    "original slide assets and access boundaries",
+    "Glassly source case study",
+    "Work loading",
+    "case study reading and recovery",
+    "companion project decisions",
+    "service project decisions",
+    "Jugalbandi simultaneous caller/responder sound and mechanism tests",
+    "Enigma drawing and scene recovery",
+    "Moniac hydraulic controls",
+    "24 product decision profiles including WebKit form rejection after blur",
+    "27 practice route profiles and 3 Moniac comparison tasks",
+    "12 stage/Jugalbandi scroll-story profiles",
+    "project links, film playback, captions, painting and camera cleanup",
+    "Easter Ask Parth entry",
+    "Work/About/Notes refinement"
+  ],
+  "technicalFixes": [
+    "Hide chapter controls while the reviewer access form is visible, independent of Safari focus behavior",
+    "Restore the Jugalbandi harp deep-link container while retaining all four instrument studies",
+    "Update regression expectations to current Mentra reading chapters and concise practice entries",
+    "Give marquee checks 20 seconds to observe the existing product fallback, which starts its 15-second timer after deferred mounting"
+  ],
+  "ci": "Authoritative current status is the draft PR Checks tab; a green local check is not deployment approval.",
+  "limits": [
+    "Browser emulation, not a physical iPhone",
+    "No production secrets copied into the candidate",
+    "No new real model-service request or external access-request submission",
+    "Earlier heavily concurrent local runs timed out; corrected and sequential reruns are retained separately",
+    "Existing mobile Arc period navigation remains top-heavy"
+  ]
+}

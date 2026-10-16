@@ -37,3 +37,22 @@ After an authorized merge: wait for GitHub Pages deployment and production verif
 ## Rollback reference
 
 The currently successful production workflow is run `38856538072`, for `39d242de54d52f76007bd637f50fdd3c8b439da7`. If an eventual deployment fails, revert this PR through the normal review workflow to restore that code and let the standard Pages workflow redeploy it. Do not rotate or overwrite environment configuration as part of a code rollback.
+
+## Preflight fixes and review evidence
+
+Mobile Safari exposed a chapter-dock overlap while submitting the reviewer form. The dock now stays hidden for the visible access section, including after input blur. Invalid-code feedback and the request-access disclosure passed in all six product-review profiles. The legacy Jugalbandi harp link again contains its lazy study; all 12 stage/harp scroll-story profiles passed.
+
+The broader tests were updated to follow the current Mentra decision chapters and the concise practice-entry structure. Their focus, old-link, access-boundary and media-recovery assertions remain in place. The marquee startup deadline is now 20 seconds because the existing product fallback starts its 15-second timer after deferred mounting. This changes the test budget, not the hero's rendering, visuals or timeout.
+
+Review captures: [Safari access form](evidence/access-form-webkit.png), [Mentra decisions](evidence/mentra-desktop.png), [Jugalbandi harp](evidence/jugalbandi-harp-webkit.png). Existing project review folders retain source comparisons and interaction recordings. Hosted CI uploads its own build and browser diagnostics. Follow [PR #19 checks](https://github.com/Parthawe/Portfolio.github.io/pull/19/checks) for the latest commit; do not infer a passing result from this report alone.
+
+## Content questions retained for review
+
+A separate inventory used an older checkout. Reconciliation against this candidate found the following unresolved source questions. No dates, authorship, quotes or measurements were invented to close them:
+
+- The Point CDC has 2024 in About and its case-study header, but 2025 in the project registry. The exact project date needs the creator's record before selecting a replacement year.
+- Mentra's source-led chapters distinguish first-use and runtime figures and state that cohort details and dates are unavailable publicly. The registry still contains a beta-tester quotation whose original record and publication context need confirmation; Home also reuses registry figures without the full source context. Review these existing claims before publishing new application material.
+- The creator's direct explanation establishes the Hexa-18 flute → robotic flute, tanpura → harp and tabla → rainsticks mapping. The exact original sensor split, wiring and collaborator/performer credits remain unverified. Browser behavior is identified as an adaptation.
+- Enigma now explicitly withholds recognition accuracy, latency and audience-learning claims. Its exact contribution and image-credit wording still needs confirmation from the original build/documentation record. A photography credit is not evidence of co-authorship.
+
+These are content limitations, not automated-test failures. Keep them visible during release review; passing CI cannot establish the missing facts.

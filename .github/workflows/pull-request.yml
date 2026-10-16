@@ -149,6 +149,11 @@ jobs:
     env:
       VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
       QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      # Same public test fixture as verify; never used by deploy.yml.
+      VITE_NDA_ACCESS_SHA256: '9022e2445b567f5928a3bb03742867cb8bba427ac1dbe0b25c2dd2e5e008b990'
+      # Browser tests intercept this local transport; no model service is called.
+      VITE_EDGE_AI_ENABLED: '1'
+      VITE_EDGE_AI_ENDPOINT: '/api/folio-answer'
       QA_BASE_URL: http://127.0.0.1:4175
       QA_BASE_REV: ${{ github.event.pull_request.base.sha }}
     steps:
@@ -184,6 +189,11 @@ jobs:
           node scripts/mechanism-case-decisions-qa.mjs
           node scripts/practice-evidence-qa.mjs
           node scripts/portfolio-consistency-review.mjs
+          node scripts/chat-easter-entry-qa.mjs
+          QA_OUTPUT_DIR=/tmp/chat-usability-qa node scripts/chat-usability-qa.mjs
+          QA_OUTPUT_DIR=/tmp/chat-completion-qa node scripts/chat-completion-recovery-qa.mjs
+          QA_OUTPUT_DIR=/tmp/chat-recovery-qa node scripts/live-ai-chat-recovery-qa.mjs
+          node scripts/site-refinement-qa.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -197,3 +207,7 @@ jobs:
             /tmp/mechanism-case-decisions-qa/
             /tmp/practice-evidence-qa/
             /tmp/portfolio-consistency-review/
+            /tmp/chat-usability-qa/
+            /tmp/chat-completion-qa/
+            /tmp/chat-recovery-qa/
+            /tmp/portfolio-site-refinement/

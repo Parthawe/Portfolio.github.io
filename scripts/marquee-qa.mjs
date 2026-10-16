@@ -14,7 +14,10 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
       await page.goto(`${base}/`)
       // The independent motion deadline starts after the hero has initialized
       // or selected its fallback, not during software WebGL bootstrap.
-      await expect(page.locator('.wr-hero')).toHaveClass(/is-scene-ready|wr-hero--no-scene/, { timeout: 15_000 })
+      // The product's renderer timeout is 15s after its deferred mount. Allow
+      // that bounded fallback plus mount scheduling, rather than expiring at
+      // the same instant as the product timer on software-rendered runners.
+      await expect(page.locator('.wr-hero')).toHaveClass(/is-scene-ready|wr-hero--no-scene/, { timeout: 20_000 })
       const strip = page.locator('.cl-marquee')
       await revealForMeasurement(strip.locator('.cl-marquee-track'))
       const track = strip.locator('.cl-marquee-track')
