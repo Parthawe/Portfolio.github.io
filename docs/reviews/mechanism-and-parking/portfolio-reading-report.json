@@ -1,0 +1,762 @@
+{
+  "results": [
+    {
+      "slug": "home",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "work",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "about",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "notes",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "mentra",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "mentra-miniapps",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "transfi-project",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "zentipay",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "executivelens",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "cuetv",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "healthapp",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "medimorpho",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "ibm",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "ballah-code",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "ai-voice",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "raahi-project",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "the-point-cdc",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "vj-software",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "enigma",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "shuffle",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "making-of-time",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "flow-fields",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "embodied-web",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "feeling-patterns",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "performance-by-design",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "on-becoming",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "storytelling",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "dna-speculative",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "comp-media",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "hypercinema",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "applications",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "messy-humans",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "production-studio",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "arcade-lab",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "black-hole",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "uv-light",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "the-omakase",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "dumb-waiter-set-design",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "drowning",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "sculpture",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "mentra-brand",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "tedx",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "code-for-build",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "typeface",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "atps",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "vishwaconclave",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "glassly",
+      "width": 1440,
+      "theme": "light",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "home",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "work",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "about",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "notes",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "mentra",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "mentra-miniapps",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "transfi-project",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "zentipay",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "executivelens",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "cuetv",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "healthapp",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "medimorpho",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "ibm",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "ballah-code",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "ai-voice",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "raahi-project",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "the-point-cdc",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "vj-software",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "enigma",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "shuffle",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "making-of-time",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "flow-fields",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "embodied-web",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "feeling-patterns",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "performance-by-design",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "on-becoming",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "storytelling",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "dna-speculative",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "comp-media",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "hypercinema",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "applications",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "messy-humans",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "production-studio",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "arcade-lab",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "black-hole",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "uv-light",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "the-omakase",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "dumb-waiter-set-design",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "drowning",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "sculpture",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "mentra-brand",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "tedx",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "code-for-build",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "typeface",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "atps",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "vishwaconclave",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    },
+    {
+      "slug": "glassly",
+      "width": 390,
+      "theme": "dark",
+      "issues": [],
+      "repeatedParagraphs": []
+    }
+  ],
+  "failures": [],
+  "scope": "Expanded reading layouts at entry and footer; not a complete functional or source-fidelity review of all 50 projects."
+}

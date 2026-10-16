@@ -1,0 +1,1 @@
+PASS: cursor-only entry, nonmodal page access, compact sizing at 1440/1024/768/390, scrolling, drafts, no horizontal overflow

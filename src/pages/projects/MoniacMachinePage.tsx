@@ -1,5 +1,8 @@
-import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
-import { projectImageProps } from '../../utils/projectImage'
+import DeferredMoniac from '../../components/case-study/DeferredMoniac'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
+import CsScreenStrip from '../../components/case-study/CsScreenStrip'
+import DecisionNote from '../../components/case-study/DecisionNote'
+import '../../components/case-study/service-decisions.css'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -12,7 +15,6 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-import MoniacSimulator from '../../components/MoniacSimulator'
 
 export default function MoniacMachinePage() {
   return (
@@ -28,7 +30,7 @@ export default function MoniacMachinePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#3D7FA8' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--moniac" style={{ '--project-color': '#3D7FA8' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"
@@ -47,7 +49,7 @@ export default function MoniacMachinePage() {
           id="cs-film"
           label="Watch first"
           title="Economy as a cabinet"
-          lede="The film shows the important part immediately: policy levers become physical controls, and the economy pushes back in real time."
+          lede="Watch the original cabinet and its hydraulic-style game screen. The film documents the physical controls; the browser below uses its own simplified economic rules."
           layout="stacked"
         >
           <ExternalVideo
@@ -62,101 +64,39 @@ export default function MoniacMachinePage() {
         {/* Interactive simulator */}
         <CsSection id="cs-interactive" label="Interactive" title="Run the Economy">
           <CsBody>
-            <p className="cs-caption">Browser adaptation of the cabinet game, using simplified rules. This is not an economic forecast or a reconstruction of the historic hydraulic machine.</p>
-            <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. Open the original browser experiment below to try balancing growth, employment, inflation, and debt for 60 seconds.</p>
+            <p>Choose “Explore rules without shocks” for a matched one-step comparison, or start the 60-second browser game. Its six on-screen wheels follow the labelled layout in the original game; interest is an additional browser-model control. Physical cabinet valve assignments are unverified.</p>
           </CsBody>
-          <div className="cs-label-row">
-            <span className="cs-label-row-key">Original game goal</span>
-            <span className="cs-label-row-val">Balance growth against stability for 60 seconds</span>
-          </div>
-          <div className="cs-label-row">
-            <span className="cs-label-row-key">Original game controls</span>
-            <span className="cs-label-row-val">7 economic levers with random shocks</span>
-          </div>
           <div className="project-content-block--roomy">
-            <OriginalExperiment><MoniacSimulator /></OriginalExperiment>
+            <DeferredMoniac />
           </div>
         </CsSection>
 
-        {/* Hero photos */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/hero-cabinet.png")} data-project-preview src="/Assets/Projects/Moniac/photos/hero-cabinet.png" alt="Moniac Machine arcade cabinet with iPad display and valve controllers" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/annotated-breakdown.png")} data-project-preview src="/Assets/Projects/Moniac/photos/annotated-breakdown.png" alt="Annotated breakdown: iPad, arcade wood, valve controllers, Teensy 4.0, wire connections" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Overview */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label">Overview</p>
-            <h2 className="cs-display">Master the Economy</h2>
-            <CsBody>
-              <p>Moniac Machine turns macroeconomics into a playable cabinet. Players move policy levers and watch the system react faster than a textbook diagram ever could.</p>
-              <p>The goal is not perfect control. It is to feel why every economic decision creates a tradeoff somewhere else.</p>
-            </CsBody>
-          </div>
-        </section>
-
-        {/* Inspiration */}
-        <CsExpandPreview>
-        <CsSection id="cs-inspiration" label="01 &mdash; Inspiration" title="Inspiration">
-          <CsBody>
-            <p>The original <a href="https://en.wikipedia.org/wiki/Phillips_Machine" target="_blank" rel="noopener noreferrer" className="project-text-link">MONIAC</a> (Monetary National Income Analogue Computer) was a hydraulic machine built in 1949 by economist <a href="https://en.wikipedia.org/wiki/William_Phillips_(economist)" target="_blank" rel="noopener noreferrer" className="project-text-link">Bill Phillips</a>, using coloured water flowing through transparent tanks and pipes to model the workings of the UK national economy. This game carries that commitment to making the invisible visible into a digital interactive experience.</p>
-          </CsBody>
+        <CsExpandPreview sectionIds={['cs-inspiration','cs-mechanics','cs-result','cs-original']} cta="Compare the cabinet and original game" note="Inspect the screen layout, construction and limits of the browser model.">
+        <CsSection id="cs-original" title="Read the screen and the cabinet separately">
+          <CsScreenExplorer format="landscape" label="Choose original Moniac evidence" screens={[
+            {title:'The original game screen',label:'Layout reference',src:'/Assets/Projects/Moniac/photos/screen-closeup.png',alt:'Original Moniac screen with blue return loop, transparent column, reservoirs, valve wheels and countdown',caption:'The browser follows the return loop, central column, left tax reservoir, right consumption/import reservoir and timer arrangement.',decision:{question:'How can the game make settings visible?',choice:'Use labelled valves and reservoir levels in one isometric view.',evidence:'Compare the tax and consumption labels, white wheels, blue fill and timer with the browser drawing.',limit:'The visual layout is documented. Its original economic equations and event timings are not available.'}},
+            {title:'Six physical valve controllers',label:'Cabinet construction',src:'/Assets/Projects/Moniac/photos/annotated-breakdown.png',alt:'Original annotated cabinet with iPad, wooden arcade enclosure, valve controls and Teensy wiring',caption:'The cabinet contains six photographed valve controllers; their individual policy assignments are not verified.'},
+            {title:'Operate the cabinet',label:'Physical interaction',src:'/Assets/Projects/Moniac/photos/hand-playing.webp',alt:'Original player turning a valve controller on the Moniac cabinet',caption:'The photograph documents the hand-operated controller and exhibition setup.'},
+          ]}/>
         </CsSection>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid project-image-grid--feature">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/screen-closeup.png")} data-project-preview src="/Assets/Projects/Moniac/photos/screen-closeup.png" alt="iPad screen showing economic flow diagram with tax rates and consumer consumption" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/original-moniac.png")} data-project-preview src="/Assets/Projects/Moniac/photos/original-moniac.png" alt="Original 1949 Phillips MONIAC hydraulic computer" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Mechanics */}
-        <CsSection id="cs-mechanics" label="02 &mdash; Mechanics" title="Mechanics">
-          <CsBody>
-            <p>The game is built around seven levers: tax, spending, interest, investment, consumption, imports, and exports. Adjusting one variable immediately shifts the others.</p>
-            <p>Random event cards add shocks like trade wars, disasters, breakthroughs, and pandemics. The animated flow interface helps players feel the system-level tradeoffs instead of reading them.</p>
-          </CsBody>
+        <CsSection id="cs-mechanics" title="Change one setting, then compare its consequence">
+          <DecisionNote decision={{question:'How can someone inspect a rule without a random event obscuring it?',choice:'Offer a deterministic one-step comparison alongside the timed game.',evidence:'Reset control and Your control use the same starting indices and other settings. The Difference column isolates the selected control’s effect in this browser rule set.',limit:'This comparison was added for the browser adaptation. It is not presented as a recovered feature or validation of the original game.'}} />
+          <details className="service-source-details"><summary>Inspect the cabinet and historic inspiration</summary><CsScreenStrip label="Original Moniac construction and context" screens={[
+            ['hero-cabinet.png','Complete cabinet'],['annotated-back.png','Rear construction'],['valve-detail.webp','Valve construction'],['gameplay-wide.png','Exhibition setup'],['original-moniac.png','Historic Phillips machine reference'],
+          ].map(([file,label])=>({src:`/Assets/Projects/Moniac/photos/${file}`,label,alt:`Project archive: ${label}`}))}/></details>
         </CsSection>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/valve-detail.webp")} data-project-preview src="/Assets/Projects/Moniac/photos/valve-detail.webp" alt="Close-up of 3D-printed valve controllers and wiring inside the cabinet" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/hand-playing.webp")} data-project-preview src="/Assets/Projects/Moniac/photos/hand-playing.webp" alt="Player's hand turning valve controllers during gameplay" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Result */}
-        <CsSection id="cs-result" label="03 &mdash; Result" title="Result">
-          <CsBody>
-            <p>The game lets players change a policy and inspect the feedback in a simplified model. Informal playtesting prompted discussion about employment and inflation, but no comparative learning study was recorded. A useful next test would ask players to predict a change before playing, explain what happened afterward, and distinguish the game’s assumptions from real economic behavior.</p>
-            <p>The physical cabinet and the browser game are different representations. The cabinet photographs do not establish a one-to-one mapping between every physical valve and the game’s seven policy controls.</p>
-            <p>In the browser experiment, the task is to keep the indicators balanced for 60 seconds. The model is a simplified teaching exercise; its responses should not be read as economic forecasts.</p>
-          </CsBody>
+        <CsSection id="cs-inspiration" title="A hydraulic metaphor for connected decisions">
+          <CsBody><p>The project takes its name from the Phillips MONIAC hydraulic computer. The cabinet translates that visual idea into a digital strategy game; the browser drawing shows settings and illustrative indices. It is not a fluid simulation or an economic forecast.</p></CsBody>
         </CsSection>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Moniac/photos/gameplay-wide.png")} data-project-preview src="/Assets/Projects/Moniac/photos/gameplay-wide.png" alt="Moniac Machine being played at exhibition, wide shot showing the full arcade setup" loading="lazy" /></div>
-          </div>
-        </section>
-
-        {/* Thanks */}
-        <CsThanks />
-
+        <CsSection id="cs-result" title="What a learning test would need">
+          <CsBody><p>Ask a player to predict one policy’s effect, inspect the matched comparison, then explain which assumptions produced it. The source documents the cabinet and play, but no comparative learning study or real-world predictive accuracy. The 60-second balance score belongs to this browser exercise.</p></CsBody>
+        </CsSection><CsThanks/>
         </CsExpandPreview>
 
         <BottomNav sections={[
           { id: 'cs-film', label: 'Film' },
           { id: 'cs-interactive', label: 'Simulator' },
+          { id: 'cs-original', label: 'Original evidence' },
           { id: 'cs-inspiration', label: 'Inspiration' },
           { id: 'cs-mechanics', label: 'Mechanics' },
           { id: 'cs-result', label: 'Result' },

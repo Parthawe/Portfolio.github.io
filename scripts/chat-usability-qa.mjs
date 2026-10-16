@@ -37,7 +37,7 @@ for(const[engine,width,theme]of[[chromium,1440,'light'],[chromium,1024,'dark'],[
   await input.fill('Can you scroll down a bit?');await panel.getByRole('button',{name:'Send',exact:true}).click();await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(100);assert.equal(requests,0)
   await input.fill('Please scroll back to the top');await panel.getByRole('button',{name:'Send',exact:true}).click();await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0)
   const options=await panel.locator('#portfolio-chat-section option').count();assert(options>2)
-  await panel.locator('#portfolio-chat-section').selectOption('1');await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(0)
+  await panel.locator('.portfolio-chat-browse summary').click();await panel.locator('#portfolio-chat-section').selectOption('1');await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(0)
   await input.fill('Could you open Jugalbandi?');await panel.getByRole('button',{name:'Send',exact:true}).click();await expect(page).toHaveURL(/\/jugalbandi$/);await expect(panel).toBeVisible()
   await page.goto(base+'/');await page.getByRole('button',{name:'Ask Parth about this work',exact:true}).click();await input.fill('Why is he the best?');await panel.getByRole('button',{name:'Send',exact:true}).click();const answer=panel.locator('.portfolio-chat-message--assistant').last();await expect(answer).toContainText('Mentra');await expect(answer.locator('p').first()).toBeInViewport();assert(!/i only answer|only.*parth/i.test(await answer.innerText()))
   await page.screenshot({path:`${out}/${engine.name()}-${width}-${theme}-answer.png`})

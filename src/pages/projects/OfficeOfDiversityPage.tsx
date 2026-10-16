@@ -1,4 +1,3 @@
-import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -7,7 +6,9 @@ import CsSection from '../../components/case-study/CsSection'
 import CsReportReader from '../../components/case-study/CsReportReader'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import DecisionNote from '../../components/case-study/DecisionNote'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
+import '../../components/case-study/service-decisions.css'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -33,7 +34,7 @@ export default function OfficeOfDiversityPage() {
           backLabel="Back to Work"
           tags={['UI/UX', 'Data Visualization', 'Accessibility']}
           title="Office of Diversity Report"
-          subtitle="A compact report-publishing project for NYU Tisch's IDBEA work"
+          subtitle="Make a long institutional report easier to enter and revisit"
           info={[
             { label: 'Client', value: 'Office of Diversity, TSOA' },
             { label: 'Role', value: 'Website Publishing Designer' },
@@ -45,77 +46,44 @@ export default function OfficeOfDiversityPage() {
           heroAlt="Tisch IDBEA report shown across desktop and mobile responsive views"
         />
 
-        <CsSection id="cs-glimpse" label="Approach" title="From a dense report to a navigable website">
-          <CsBody>
-            <p>I changed the reading order from dense institutional material to four entry points: context, milestones, data, and accessibility. The planning boards below show how those groups were formed; the report screens show the resulting hierarchy on the page.</p>
-          </CsBody>
+        <CsSection id="cs-glimpse" label="Design decision" title="Give a long report recognizable entry points">
+          <CsBody><p>I worked on publishing the Office of Diversity’s IDBEA report for the web. The surviving capture shows numbered program areas, repeated headings and visual summaries. The desktop and mobile composition above documents the intended responsive presentation.</p></CsBody>
+          <DecisionNote decision={{question:'How can a reader find the part relevant to them?',choice:'Repeat the four program areas as an overview and as section headings.',evidence:'Learning and Engagement, Resource Development, Restorative Practices and Collaborative Programming appear in the original report.',limit:'The source captures document layout. They do not establish accessibility compliance or improved reading performance.'}} />
         </CsSection>
 
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="ofd-process-stack" data-project-preview>
-              <figure className="ofd-wide-shot">
-                <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/research-wall.webp")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/research-wall.webp" alt="Whiteboard and sticky-note research wall used to organize report themes and content priorities" loading="lazy" decoding="async" />
-                <figcaption>First pass: sort the institutional material into themes, page groups, and reader questions.</figcaption>
-              </figure>
-              <figure className="ofd-wide-shot">
-                <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/scope-timeline.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/scope-timeline.png" alt="Scope timeline showing understanding scope, design concept, data visualization, engagement, collaboration, and accessibility compliance" loading="lazy" decoding="async" />
-                <figcaption>Scope map: translate themes into milestones, data moments, collaboration loops, and accessibility checks.</figcaption>
-              </figure>
-              <div className="ofd-workshop-grid">
-                <figure>
-                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-1.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-1.png" alt="Community event table with people browsing books and printed materials" loading="lazy" decoding="async" />
-                </figure>
-                <figure>
-                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-2.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-2.png" alt="Community member holding a book at an event table" loading="lazy" decoding="async" />
-                </figure>
-                <figure>
-                  <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/community-workshop-3.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/community-workshop-3.png" alt="People browsing and packing books at a community event" loading="lazy" decoding="async" />
-                </figure>
-              </div>
-              <p className="cs-caption">Community photographs included in the project archive. These images provide context for the report; they do not document a usability test of the website.</p>
-            </div>
-          </div>
-        </section>
-
-        <CsSection id="cs-report" label="Report" title="The report, section by section">
+        <CsSection id="cs-report" label="Report" title="Read the original report excerpts">
           <CsBody>
-            <p>The report moves from context to milestones, data, and accessibility. Choose a chapter, scroll within it, or open the complete original capture.</p>
+            <p>These four overlapping excerpts preserve the original capture. Their labels describe the content actually visible. Choose an excerpt, zoom for detail, or open the complete original report including its opening and background timeline.</p>
           </CsBody>
           <CsReportReader original="/Assets/Projects/office-of-diversity/photos/full-report-page.webp" chapters={[
-            { label: 'Opening structure', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png', alt: 'Original IDBEA report introduction and opening structure' },
-            { label: 'Timeline and milestones', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png', alt: 'Original report timeline and milestones' },
-            { label: 'Data and visual summaries', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png', alt: 'Original report data visualizations' },
-            { label: 'Accessibility and closing', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png', alt: 'Original report accessibility and closing content' },
+            { label: 'Priorities and community feedback', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png', alt: 'Original four program priorities, advisement groups and community feedback structure' },
+            { label: 'Program overview and learning', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png', alt: 'Original program-area overview, learning and engagement chart, and resource development' },
+            { label: 'Learning and restorative practice', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png', alt: 'Original learning participation chart, resource development and restorative-practice case summaries' },
+            { label: 'Feedback and the year ahead', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png', alt: 'Original workshop feedback, implementation challenges, HEAR US, Future Artists and year-ahead priorities' },
           ]} />
         </CsSection>
 
-        <CsSection id="cs-impact" label="Impact" title="What improved">
-          <CsFeatureGrid features={[
-            { title: 'Readable structure', desc: 'The report moved from one dense artifact into clear sections that could be scanned and revisited.' },
-            { title: 'Accessible presentation', desc: 'The web version prioritized responsive layouts, readable text, alt text, and accessible chart context.' },
-            { title: 'Community-facing clarity', desc: 'The final shape helped institutional progress read as a public record rather than an internal document.' },
-          ]} />
+        <CsSection id="cs-impact" label="Read the evidence" title="Keep the report’s figures in their context">
+          <CsBody><p>The participation chart, case summaries and community feedback belong to the institution’s report. They are not measurements of this website’s usability. Keep the explanatory text beside those visuals; the source explicitly warns that restorative cases can involve more than one component.</p><p>A next review should test finding a program area, understanding a chart and returning to a section on a small screen. Keyboard navigation, text alternatives and chart comprehension need a documented audit before making accessibility claims.</p></CsBody>
         </CsSection>
-
-        <CsSection id="cs-learning" label="Learning" title="What I learned">
-          <CsBody>
-            <p>I learned to make institutional data easier to navigate without losing its context. Readers should be able to understand the report without someone explaining it beside them.</p>
-          </CsBody>
-          <CsImage
-            src="/Assets/Projects/office-of-diversity/4.webp"
-            alt="IDBEA report process and data visualization approach"
-            caption="A small proof of the work: turning report sections, timelines, and data into a readable web structure."
-          />
+        <CsSection id="cs-learning" label="Supporting material" title="What the archive can establish">
+          <details className="service-source-details"><summary>Inspect the planning board and community context</summary>
+          <CsScreenExplorer format="landscape" label="Choose Office of Diversity source material" screens={[
+            {title:'Scope and intended approach',label:'Planning board',src:'/Assets/Projects/office-of-diversity/photos/scope-timeline.png',alt:'Original scope board naming themes, concepts, visualization, engagement, collaboration and accessibility',caption:'This board records intended work. Tool names and the “WCAG standards met” wording do not constitute an implementation or accessibility audit.'},
+            {title:'Archive photograph',label:'Attribution not verified',src:'/Assets/Projects/office-of-diversity/photos/research-wall.webp',alt:'Archived sticky-note photograph including finance and risk-review labels',caption:'This photograph is stored with the project but contains finance and risk-review language. Its relationship to the report is unverified; it is not used as research evidence.'},
+            ...[1,2,3].map(n=>({title:`Community photograph ${n}`,label:'Report context',src:`/Assets/Projects/office-of-diversity/photos/community-workshop-${n}.png`,alt:`Original archived community event photograph ${n}`,caption:'Community-event context from the project archive; this does not document a website usability test.'})),
+          ]} />
+          <CsImage src="/Assets/Projects/office-of-diversity/4.webp" alt="Original Office of Diversity presentation board" caption="Original presentation board, retained for source inspection." />
+          </details>
         </CsSection>
 
         <CsThanks contactCta />
 
         <BottomNav sections={[
-          { id: 'cs-glimpse', label: 'Glimpse' },
+          { id: 'cs-glimpse', label: 'Decision' },
           { id: 'cs-report', label: 'Report' },
-          { id: 'cs-impact', label: 'Impact' },
-          { id: 'cs-learning', label: 'Learning' },
+          { id: 'cs-impact', label: 'Evidence limits' },
+          { id: 'cs-learning', label: 'Source archive' },
         ]} />
       </main>
 

@@ -1,3 +1,4 @@
+import { useProofMotion } from '../hooks/useProofMotion';
 import PortfolioChat from './workspace/PortfolioChat';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, lazy, Suspense } from 'react';
 import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
@@ -61,6 +62,7 @@ function syncCaseStudyMediaState(img: HTMLImageElement) {
 
 export default function RootLayout() {
   const location = useLocation();
+  useProofMotion(location.pathname);
   const navigationType = useNavigationType();
   const ioRef = useRef<IntersectionObserver | null>(null);
   const initialRouteRef = useRef(true);

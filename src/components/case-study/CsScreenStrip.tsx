@@ -1,10 +1,24 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { projectImageProps } from '../../utils/projectImage'
 import './evidence-readers.css'
-export type EvidenceScreen = { src: string; alt: string; label: string }
+import DecisionNote, { type ScreenDecision } from './DecisionNote'
+export type EvidenceScreen = { src: string; alt: string; label: string; decision?: ScreenDecision }
 export function EvidenceImage({ src, alt, zoomable = true }: { src: string; alt: string; zoomable?: boolean }) {
   const [attempt, setAttempt] = useState(0), [failed, setFailed] = useState(false), [loaded, setLoaded] = useState<string | null>(null)
-  return failed ? <div className="evidence-error" role="status"><p>This image could not load.</p><button type="button" className="glass-action" onClick={() => { setFailed(false); setLoaded(null); setAttempt(n => n + 1) }}>Retry image</button><a href={src} className="glass-action">Open original</a></div> : <>{loaded !== src && <span className="evidence-loading" role="status">Loading original image…</span>}<img key={`${src}-${attempt}`} data-project-preview={zoomable ? true : undefined} {...projectImageProps(src)} src={src} alt={alt} loading="lazy" decoding="async" onLoad={() => setLoaded(src)} onError={() => setFailed(true)} /></>
+  const retrying = useRef(false), retryButton = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (failed && retrying.current) {
+      if (document.activeElement === document.body) retryButton.current?.focus()
+      retrying.current = false
+    }
+  }, [failed])
+  return failed ? <div className="evidence-error" role="status"><p>This image could not load.</p><button ref={retryButton} type="button" className="glass-action" onClick={() => { retrying.current = true; setFailed(false); setLoaded(null); setAttempt(n => n + 1) }}>Retry image</button><a href={src} className="glass-action">Open original</a></div> : <>{loaded !== src && <span className="evidence-loading" role="status">Loading original image…</span>}<img key={`${src}-${attempt}`} data-project-preview={zoomable ? true : undefined} {...projectImageProps(src)} src={src} alt={alt} loading="lazy" decoding="async" tabIndex={zoomable ? 0 : -1} onLoad={event => {
+    setLoaded(src)
+    if (retrying.current) {
+      if (document.activeElement === document.body) event.currentTarget.focus()
+      retrying.current = false
+    }
+  }} onError={() => setFailed(true)} /></>
 }
 export default function CsScreenStrip({ screens, label, format = 'landscape' }: { screens: EvidenceScreen[]; label: string; format?: 'landscape' | 'portrait' }) {
   const id = useId(), rail = useRef<HTMLDivElement>(null)
@@ -27,7 +41,7 @@ export default function CsScreenStrip({ screens, label, format = 'landscape' }: 
       let closest = 0, distance = Infinity
       Array.from(node.children).forEach((child, i) => { const d = Math.abs((child as HTMLElement).offsetLeft - first - node.scrollLeft); if (d < distance) { distance = d; closest = i } }); setIndex(closest)
     }}>
-      {screens.map((screen, i) => <figure key={screen.src}><EvidenceImage src={screen.src} alt={screen.alt} /><figcaption><span>{String(i + 1).padStart(2, '0')} / {screen.label}</span><a className="glass-action" href={screen.src} target="_blank" rel="noreferrer">Inspect original<span className="sr-only"> in a new tab</span></a></figcaption></figure>)}
+      {screens.map((screen, i) => <figure key={screen.src}><EvidenceImage src={screen.src} alt={screen.alt} /><figcaption>{screen.decision && <DecisionNote decision={screen.decision} />}<span>{String(i + 1).padStart(2, '0')} / {screen.label}</span><a className="glass-action" href={screen.src} target="_blank" rel="noreferrer">Inspect original<span className="sr-only"> in a new tab</span></a></figcaption></figure>)}
     </div>
   </section>
 }

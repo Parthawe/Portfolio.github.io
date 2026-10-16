@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "glassly",
+    "width": 1440,
+    "words": 503,
+    "scrollHeight": 7463,
+    "overflow": false
+  },
+  {
+    "slug": "clawed-chat",
+    "width": 1440,
+    "words": 595,
+    "scrollHeight": 5414,
+    "overflow": false
+  },
+  {
+    "slug": "org-dashboard",
+    "width": 1440,
+    "words": 488,
+    "scrollHeight": 3811,
+    "overflow": false
+  },
+  {
+    "slug": "healthapp",
+    "width": 1440,
+    "words": 327,
+    "scrollHeight": 4264,
+    "overflow": false
+  },
+  {
+    "slug": "glassly",
+    "width": 390,
+    "words": 499,
+    "scrollHeight": 6639,
+    "overflow": false
+  },
+  {
+    "slug": "clawed-chat",
+    "width": 390,
+    "words": 589,
+    "scrollHeight": 6723,
+    "overflow": false
+  },
+  {
+    "slug": "org-dashboard",
+    "width": 390,
+    "words": 444,
+    "scrollHeight": 4368,
+    "overflow": false
+  },
+  {
+    "slug": "healthapp",
+    "width": 390,
+    "words": 324,
+    "scrollHeight": 4456,
+    "overflow": false
+  }
+]

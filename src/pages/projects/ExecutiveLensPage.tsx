@@ -3,13 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsSteps from '../../components/case-study/CsSteps'
-import CsProcessFlow from '../../components/case-study/CsProcessFlow'
-import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import BottomNav from '../../components/case-study/BottomNav'
@@ -17,167 +12,89 @@ import NextProject from '../../components/case-study/NextProject'
 import MeetingTimeline from '../../components/MeetingTimeline'
 
 export default function ExecutiveLensPage() {
-  return (
-    <>
-      <Helmet>
-        <title>ExecutiveLens &middot; Parth Pawar</title>
-        <meta name="description" content="ExecutiveLens.ai meeting intelligence for executives: meeting capture, decision tracking, cited summaries, and follow-up workflows." />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
-        <meta property="og:description" content="Meeting intelligence for executives, from cited summaries to decision tracking and follow-up workflows." />
-        <meta property="og:image" content="https://designwhich.works/Assets/images/executivelens.webp" />
-      </Helmet>
-
-      <Nav />
-
-      <main id="main-content" className="project-main project-main--executivelens" style={{ '--project-color': '#9C8E6E' } as React.CSSProperties}>
-
-        <ProjectHeader
-          backLink="/work"
-          categorySlug="ai"
-          backLabel="Back to Work"
-          tags={['AI', 'SaaS', 'Product Design', 'Data Visualization']}
-          title="ExecutiveLens"
-          subtitle="Meeting intelligence that connects conversations to decisions, owners, and follow-up."
-          info={[
-            { label: 'Role', value: 'Design lead' },
-            { label: 'Timeline', value: '2025\u201326' },
-            { label: 'Team', value: 'Product, AI, engineering' },
-            { label: 'Platform', value: 'Web + Mobile' },
-          ]}
-          liveUrl="https://www.executivelens.ai"
-          heroImage="/Assets/mockups/projects/executivelens_16x9.webp"
-          heroAlt="ExecutiveLens project cover for meeting intelligence and decision tracking"
-        />
-
-        <ProjectOverview
-          id="cs-vision"
-          sections={[
-            {
-              label: 'The Vision',
-              content: 'Executives did not need another transcript. They needed memory: what was decided, who owned it, and what changed because of it.',
+  return <>
+    <Helmet>
+      <title>ExecutiveLens · Parth Pawar</title>
+      <meta name="description" content="ExecutiveLens design decisions: connect meeting context to inspectable summaries, decision owners, and controlled follow-up. Original website evidence and a prepared citation demo." />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="ExecutiveLens · Parth Pawar" />
+      <meta property="og:description" content="Original product presentation and a prepared, source-linked meeting review demonstration." />
+      <meta property="og:image" content="https://designwhich.works/Assets/images/executivelens.webp" />
+    </Helmet>
+    <Nav />
+    <main id="main-content" className="project-main project-main--executivelens" style={{ '--project-color': '#9C8E6E' } as React.CSSProperties}>
+      <ProjectHeader backLink="/work" categorySlug="ai" backLabel="Back to Work"
+        tags={['AI', 'Product Design', 'Meeting Intelligence']}
+        title="ExecutiveLens" subtitle="Make a meeting decision traceable before someone acts on it."
+        showHeaderSummary={false}
+        info={[
+          { label: 'Role', value: 'Design lead' },
+          { label: 'Timeline', value: '2025–26' },
+          { label: 'Team', value: 'Product, AI, engineering' },
+          { label: 'Platform', value: 'Web + Mobile' },
+        ]}
+        heroImage="/Assets/mockups/projects/executivelens_16x9.webp"
+        heroAlt="ExecutiveLens project cover for meeting intelligence and decision tracking"
+      />
+      <CsSection id="cs-context" label="Problem and approach" title="A summary needs a source and a next step">
+        <span id="cs-vision" className="project-decision-alias" />
+        <CsBody><p>Meeting notes can name an action without making its context or ownership clear. My design work connects the spoken moment, the decision, the person responsible, and the boundary before an external action.</p></CsBody>
+      </CsSection>
+      <CsSection id="cs-website" label="Original evidence" title="Two decisions in the product presentation">
+        <span id="cs-challenges" className="project-decision-alias" />
+        <span id="cs-meeting" className="project-decision-alias" />
+        <CsScreenExplorer format="landscape" label="Inspect original ExecutiveLens site evidence" screens={[
+          {
+            title: 'Keep capture connected to context', label: 'Original workflow section',
+            src: '/Assets/images/executivelens/site-crops/executivelens-site-workflow.png',
+            alt: 'Original ExecutiveLens website workflow showing glasses audio capture beside a transcript and Capture, Understand, Ship stages',
+            caption: 'Original website capture · March 25, 2026.',
+            decision: {
+              question: 'How does a spoken moment become something a person can review?',
+              choice: 'Present capture, interpretation, and the resulting action as connected stages.',
+              evidence: 'The glasses and timestamped transcript sit beside Capture → Understand → Ship.',
+              limit: 'This is product-presentation evidence. It does not demonstrate operational transcription or AI accuracy.',
             },
-            {
-              label: 'My Role',
-              content: 'I designed live capture, decision extraction, dashboard narrative, and the citation layer that makes AI summaries trustworthy.',
+          },
+          {
+            title: 'Separate notes from permission to act', label: 'Original capabilities and control',
+            src: '/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png',
+            alt: 'Original ExecutiveLens capability cards for live capture, intelligence, notes, and agents with explicit approval for external sending or publishing',
+            caption: 'Original website capture · March 25, 2026.',
+            decision: {
+              question: 'Does an automatically drafted note authorize an external action?',
+              choice: 'Distinguish creating a draft from approving sending or publishing.',
+              evidence: 'Compare Self-building Notes with Agents & Control, which explicitly requires approval for external actions.',
+              limit: 'The source describes the intended permission boundary; a recorded task is needed to verify its implementation.',
             },
-          ]}
-        />
-
-        <CsSection id="cs-context" label="Context" title="From meeting notes to follow-up">
+          },
+        ]} />
+        <p className="cs-caption"><a className="cs-text-link" href="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" target="_blank" rel="noreferrer">Inspect the complete original website capture</a>. <a className="cs-text-link" href="https://www.executivelens.ai" target="_blank" rel="noreferrer">Product website</a> (current availability unverified).</p>
+      </CsSection>
+      <CsExpandPreview cta="Trace a decision to its source" note="A prepared meeting replay makes the citation and ownership decisions testable. It does not record meetings or run live AI.">
+        <CsSection id="cs-demo" label="Prepared interaction" title="Check the source before following up">
+          <span id="cs-dashboard" className="project-decision-alias" />
+          <span id="cs-insights" className="project-decision-alias" />
+          <CsBody><p>Show the complete meeting, then check the proposed date, approval and owner. The open question remains unresolved rather than being turned into an invented decision.</p></CsBody>
+          <div className="project-content-block"><MeetingTimeline /></div>
+        </CsSection>
+        <CsSection id="cs-impact" label="Scope and evaluation" title="What the evidence establishes">
+          <span id="cs-reflections" className="project-decision-alias" />
           <CsBody>
-            <p>Important decisions were scattered across calls, docs, dashboards, and memory. The product needed to connect conversation to consequence: what changed, why it mattered, and who needed to act.</p>
-          </CsBody>
-          <CsProcessFlow title="Conversation to follow-up" steps={[
-            { label: 'Capture', desc: 'Keep speaker and transcript context from the meeting.' },
-            { label: 'Extract', desc: 'Separate decisions, owners and action items from the transcript.' },
-            { label: 'Verify', desc: 'Follow a summary citation back to its transcript moment.' },
-            { label: 'Follow up', desc: 'Review the owner and deadline attached to an action.' },
-          ]} />
-        </CsSection>
-
-        <CsExpandPreview
-          cta="Open the full product system"
-          note="Meeting replay, decision extraction, dashboard structure, site proof, beta signal, and design reflections."
-        >
-        <CsSection id="cs-challenges" label="Design Challenges" title="Four gaps in the meeting workflow">
-          <CsBody>
-            <p>Every screen had to answer fast: what changed, why does it matter, and what needs attention next?</p>
-          </CsBody>
-          <CsFeatureGrid features={[
-            { title: 'Live Meeting Capture', desc: 'Transcript, speakers, decisions, and action items surfaced while the meeting is still happening.' },
-            { title: 'Trustworthy AI', desc: 'Every summary links back to the exact transcript moment behind it.' },
-            { title: 'Narrative Dashboard', desc: 'A briefing feed replaces a wall of charts: what happened, why it matters, what to do.' },
-            { title: 'Mobile Prep', desc: 'Glanceable cards brief executives between meetings without shrinking the desktop UI.' },
-          ]} />
-        </CsSection>
-
-        {/* Interactive — meeting replay */}
-        <CsSection id="cs-demo" label="Interactive" title="Explore the meeting demo">
-          <CsBody>
-            <p>Explore a prepared example of the review flow. Play the sample transcript or show it immediately, then follow each summary citation back to its source.</p>
-          </CsBody>
-          <div className="project-content-block">
-            <MeetingTimeline />
-          </div>
-        </CsSection>
-
-        <CsSection id="cs-meeting" label="Meeting Assistant" title="Capture decisions during the meeting">
-          <CsBody>
-            <p>The assistant joins calls, identifies speakers, and separates signal from transcript noise. Decisions, owners, deadlines, and open questions become persistent cards instead of buried notes.</p>
-          </CsBody>
-          <CsSteps steps={[
-            { num: '1', title: 'Live Transcription', desc: 'Speaker-aware transcript with decisions pulled out of the stream.' },
-            { num: '2', title: 'Decision Detection', desc: 'Key choices become cards with context, timestamp, and people involved.' },
-            { num: '3', title: 'Action Items', desc: 'Owners and deadlines are captured while the commitment is still fresh.' },
-            { num: '4', title: 'Summary', desc: 'After the meeting, the team gets decisions, actions, open questions, and context.' },
-          ]} />
-        </CsSection>
-
-        <CsSection id="cs-dashboard" label="Executive Dashboard" title="Decisions and owners in one briefing">
-          <CsBody>
-            <p>The dashboard is a briefing, not a chart wall. It shows what changed, what needs attention, and which meeting created the shift.</p>
-          </CsBody>
-
-        </CsSection>
-
-        <CsSection id="cs-website" label="Live Product" title="executivelens.ai, The Product Site">
-          <CsBody>
-            <p>The site follows the product: clear hierarchy, real screens, and a problem-to-solution narrative without AI buzzword clutter.</p>
-          </CsBody>
-          <CsScreenExplorer format="landscape" label="Inspect original ExecutiveLens site evidence" screens={[
-            { title: 'Capture, understand, ship', label: 'Original workflow section', src: '/Assets/images/executivelens/site-crops/executivelens-site-workflow.png', alt: 'Original ExecutiveLens workflow section showing glasses audio capture, transcript context and the capture, understand, ship sequence', caption: 'The source keeps the spoken moment beside its transcript. The three stages explain how captured audio becomes a usable outcome.' },
-            { title: 'Capabilities and control', label: 'Original product scope', src: '/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png', alt: 'Original ExecutiveLens capability cards: live capture, intelligence, self-building notes, and agents and control', caption: 'The source groups capture, interpretation, notes and control. External sending or publishing requires explicit approval in the product presentation.' },
-          ]} />
-          <p className="cs-caption">Original website capture, March 25, 2026. These are documented product claims, not independently measured results. <a className="cs-text-link" href="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" target="_blank" rel="noreferrer">Inspect the complete original capture</a>.</p>
-        </CsSection>
-
-        <CsSection id="cs-insights" label="Insight Engine" title="Keep evidence beside the summary">
-          <CsBody>
-            <p>The insight cards connect patterns across meetings and time. Each card explains what changed, why it matters, what to do, and where the evidence came from.</p>
-          </CsBody>
-          <h3 className="cs-section-subtitle">Risk Alerts</h3>
-          <CsBody>
-            <p>Risk alerts stay intentionally blunt: overdue action, contradictory decision, drifting metric, or sentiment shift. One line first, full context one tap away.</p>
+            <p>The original website documents the product direction. The prepared replay demonstrates citation navigation and ownership review with sample content. Neither establishes time saved, live inference, or adoption.</p>
+            <p>A useful next evaluation would ask someone to verify an action’s source, identify its owner, and distinguish a draft from permission to send. Dated beta observations and a recorded product task are still needed.</p>
           </CsBody>
         </CsSection>
-
-        <CsSection id="cs-impact" label="Impact" title="Beta observations and limits">
-          <CsBody className="cs-body--space-after">
-            <p>The intended workflow is a morning brief: review a decision, check its transcript reference, identify the owner, and follow up. Beta observations are qualitative; this page does not include a dated sample or measured adoption result.</p>
-          </CsBody>
-
-        </CsSection>
-
-        <CsSection id="cs-reflections" label="Reflections" title="What Designing for Executives Taught Me">
-          <CsNumList items={[
-            <><strong>Busy people do not forgive bad hierarchy.</strong> Every screen had to answer the first question in seconds: what changed, why does it matter, and who owns it?</>,
-            <><strong>Trust in AI is earned in citations, not confidence scores.</strong> A summary is only useful when the user can inspect the transcript moment behind it.</>,
-            <><strong>Data visualization is about answering questions.</strong> Each chart had to make risk, ownership, or change easier to understand, otherwise it was decoration.</>,
-            <><strong>The best AI products feel like memory, not magic.</strong> A useful review task is tracing a decision to its source, then finding the person responsible for the next action.</>,
-          ]} />
-        </CsSection>
-
         <CsThanks contactCta />
-        </CsExpandPreview>
-
-        <BottomNav sections={[
-          { id: 'cs-vision', label: 'Vision & Role' },
-          { id: 'cs-context', label: 'Context' },
-          { id: 'cs-challenges', label: 'Challenges' },
-          { id: 'cs-demo', label: 'Interactive' },
-          { id: 'cs-meeting', label: 'Meeting Assistant' },
-          { id: 'cs-dashboard', label: 'Dashboard' },
-          { id: 'cs-website', label: 'Live Site' },
-          { id: 'cs-insights', label: 'Insight Engine' },
-          { id: 'cs-impact', label: 'Impact' },
-          { id: 'cs-reflections', label: 'Reflections' },
-        ]} liveUrl="https://www.executivelens.ai" />
-
-      </main>
-
-      <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/mockups/projects/ballah-code_16x9.webp" />
-      <Footer />
-    </>
-  )
+      </CsExpandPreview>
+      <BottomNav sections={[
+        { id: 'cs-context', label: 'Problem' },
+        { id: 'cs-website', label: 'Original screens' },
+        { id: 'cs-demo', label: 'Citation demo' },
+        { id: 'cs-impact', label: 'Evidence limits' },
+      ]} />
+    </main>
+    <NextProject slug="ballah-code" title="Ballah Code" image="/Assets/mockups/projects/ballah-code_16x9.webp" />
+    <Footer />
+  </>
 }

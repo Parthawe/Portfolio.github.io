@@ -142,3 +142,58 @@ jobs:
             /tmp/enigma-tablet-edges/
             /tmp/jugalbandi-full-verification/
             /tmp/moniac-hydraulic-qa/
+
+  verify-reading:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_BASE_URL: http://127.0.0.1:4175
+      QA_BASE_REV: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium webkit
+      - name: Verify approved experiences and source boundaries
+        run: bun scripts/evidence-corrections-qa.ts
+      - run: bun run build
+      - name: Keep the deployed footer and protected assets unchanged
+        run: |
+          node scripts/release-without-footer-qa.mjs
+          node scripts/guarded-build-qa.mjs
+      - name: Verify case-study reading and recovery
+        run: |
+          bun run preview --host 127.0.0.1 --port 4175 > /tmp/reading-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent "$QA_BASE_URL" > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent "$QA_BASE_URL" > /dev/null
+          node scripts/case-study-reading-qa.mjs
+          node scripts/companion-decisions-qa.mjs
+          node scripts/product-decisions-qa.mjs
+          node scripts/service-decisions-qa.mjs
+          node scripts/mechanism-case-decisions-qa.mjs
+          node scripts/practice-evidence-qa.mjs
+          node scripts/portfolio-consistency-review.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reading-verification
+          path: |
+            /tmp/reading-preview.log
+            /tmp/reading-quality-qa/
+            /tmp/companion-decisions-qa/
+            /tmp/product-decisions-qa/
+            /tmp/service-decisions-qa/
+            /tmp/mechanism-case-decisions-qa/
+            /tmp/practice-evidence-qa/
+            /tmp/portfolio-consistency-review/

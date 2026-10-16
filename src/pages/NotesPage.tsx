@@ -98,7 +98,7 @@ export default function NotesPage() {
   }
 
   const approvedCount = notes.filter(note => note.status === 'open').length
-  const samples = localPreview && showSamples ? sampleNotes : []
+  const samples = localPreview && showSamples ? sampleNotes.slice(0, 6) : []
   const displayedNotes = [...notes, ...samples]
 
   return (
@@ -112,16 +112,16 @@ export default function NotesPage() {
               <p>A place to say hello, share a thought, or leave feedback.</p>
             </div>
             {!loading && !loadError && displayedNotes.length > 0 && (
-              <span className="notes-count">{approvedCount > 0 ? `${approvedCount} ${approvedCount === 1 ? 'note' : 'notes'}` : ''}{approvedCount > 0 && samples.length > 0 ? ' + ' : ''}{samples.length > 0 ? `${samples.length} samples` : ''}</span>
+              <span className="notes-count">{approvedCount > 0 ? `${approvedCount} ${approvedCount === 1 ? 'note' : 'notes'}` : ''}{approvedCount > 0 && samples.length > 0 ? ' + ' : ''}{samples.length > 0 ? `${samples.length} preview notes` : ''}</span>
             )}
           </header>
 
           {localOnly && !localPreview && <p className="notes-storage">Your notes stay in this browser and are only visible to you.</p>}
           {localPreview && (
             <div className="notes-preview-tools">
-              <span>{showSamples ? 'Sample notes for layout preview.' : 'Samples hidden.'} Your own notes stay in this browser.</span>
+              <span>{showSamples ? 'Six example notes are shown in this local preview.' : 'Example notes hidden.'} Your own notes stay in this browser.</span>
               <button className="glass-action" type="button" aria-pressed={showSamples} onClick={() => setShowSamples(value => !value)}>
-                {showSamples ? 'Hide sample notes' : 'Show sample notes'}
+                {showSamples ? 'Hide examples' : 'Show examples'}
               </button>
             </div>
           )}
@@ -169,12 +169,11 @@ export default function NotesPage() {
               <div className="note-card note-skeleton" aria-hidden="true" key={index}><span /><span /><span /></div>
             ))}
             {displayedNotes.map(note => (
-              <article className="note-card" data-preserve-copy key={note.id} aria-label={`${note.selector === 'preview-sample' ? 'Sample note' : 'Note'} from ${note.authorName}`}>
+              <article className="note-card" data-note-kind={note.selector === 'preview-sample' ? 'example' : 'visitor'} data-preserve-copy key={note.id} aria-label={`${note.selector === 'preview-sample' ? 'Example note' : 'Note'} from ${note.authorName}`}>
                 <p className="note-body">{note.body}</p>
                 <footer className="note-meta">
                   <div className="note-credit">
                     <span className="note-author">{note.authorName}</span>
-                    {note.selector === 'preview-sample' && <span className="note-sample">Sample</span>}
                   </div>
                   <time dateTime={note.createdAt}>{noteDate(note.createdAt)}</time>
                   {note.status === 'pending' && <span className="note-pending">Awaiting review · visible only to you</span>}

@@ -58,6 +58,7 @@ for (const file of allFiles) {
   })
 }
 
+const practiceShell = await readText('src/components/case-study/PracticeEntry.tsx')
 const shellIssues = []
 const duplicateThanks = []
 const inlineHotspots = []
@@ -68,15 +69,19 @@ for (const file of projectPages) {
   // project shell. Audit the composed page instead of treating the lazy story
   // fragment as a standalone route.
   if (file.endsWith('MediMorphoProtectedStory.tsx')) continue
+  // Concise PracticeEntry routes deliberately omit the long case-study rail.
+  // Validate their composed semantic header, onward links, and footer instead.
+  const practice = /return <PracticeEntry slug="[a-z-]+" \/>/.test(text)
+    && /import PracticeEntry from ['"]..\/..\/components\/case-study\/PracticeEntry['"]/.test(text)
   const shell = {
     // Typeface is a deliberately custom, interactive specimen hero. Treat its
     // semantic hero shell as the project-header equivalent rather than forcing
     // the shared case-study component into a different visual language.
-    projectHeader: /<ProjectHeader\b|<section\s+className="tf-hero"/.test(text),
+    projectHeader: /<ProjectHeader\b|<section\s+className="tf-hero"/.test(text) || (practice && /<h1>/.test(practiceShell)),
     // MediMorphoPage owns the route shell while its gated child owns BottomNav.
-    bottomNav: /<BottomNav\b/.test(text) || file.endsWith('MediMorphoPage.tsx'),
-    nextProject: /<NextProject\b/.test(text),
-    footer: /<Footer\b/.test(text),
+    bottomNav: /<BottomNav\b/.test(text) || file.endsWith('MediMorphoPage.tsx') || (practice && /<Link to="\/work"/.test(practiceShell)),
+    nextProject: /<NextProject\b/.test(text) || (practice && /entry.related.map/.test(practiceShell)),
+    footer: /<Footer\b/.test(text) || (practice && /<Footer\b/.test(practiceShell)),
   }
   const missing = Object.entries(shell)
     .filter(([, present]) => !present)

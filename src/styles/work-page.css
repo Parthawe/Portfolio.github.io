@@ -2632,3 +2632,10 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
 @media(max-width:900px) { .page-work .work-page-summary { gap: .75rem; } }
 body.page-work.figma-chrome-enabled:not(.figma-rulers-off) { padding-left: 0; }
 .page-work #main-content > .abt-paper > .wrap { padding-inline: var(--page-inline-inset); }
+
+/* One stable navigation bar; collection modes live with the Work title. */
+.page-work .work-mobile-views.glass-segments { display: inline-flex; margin-top: 1rem; }
+.page-work .work-page-summary { justify-items: end; text-align: right; }
+@media (max-width: 900px) {
+  .page-work .work-page-summary { justify-items: start; text-align: left; }
+}

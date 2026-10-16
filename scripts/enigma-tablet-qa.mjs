@@ -21,7 +21,7 @@ for(const engine of [chromium,webkit]){
   await page.getByRole('button',{name:'Draw on tablet',exact:true}).click()
   await expect(canvas).toHaveAttribute('data-enigma-output','')
   await page.waitForTimeout(300);await canvas.scrollIntoViewIfNeeded()
-  const points=async path=>{const corners=JSON.parse(await canvas.getAttribute('data-enigma-tablet')),box=await canvas.boundingBox();return path.map(([u,v])=>{const [x,y]=project(corners,u,v);return {x:box.x+x*box.width,y:box.y+y*box.height}})}
+  const points=async path=>{await expect(canvas).toHaveAttribute('data-enigma-camera','ready');const expected=await page.getByLabel('Inspect layer',{exact:true}).inputValue();await expect(canvas).toHaveAttribute('data-enigma-view',expected);const corners=JSON.parse(await canvas.getAttribute('data-enigma-tablet')),box=await canvas.boundingBox();return path.map(([u,v])=>{const [x,y]=project(corners,u,v);return {x:box.x+x*box.width,y:box.y+y*box.height}})}
   const stroke=async path=>{
    const positions=await points(path)
    if(profile.touch&&engine===chromium){const cdp=await context.newCDPSession(page);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...positions[0],id:1}]});for(const position of positions.slice(1))await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...position,id:1}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach()}

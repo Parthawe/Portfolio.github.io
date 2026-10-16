@@ -337,14 +337,14 @@ body.nav-on-dark .nav-toggle {
 
 /* ── Deep scroll — compact + stronger glass ── */
 .nav.scrolled-deep .nav-left-pill {
-  transform: scale(0.97);
+  transform: none;
   --surface-glass-blur: blur(20px) saturate(1.6);
 }
 .nav.scrolled-deep :is(.nav-canvas-panel, .nav-easter-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-blur: blur(18px) saturate(1.55);
 }
 .nav.scrolled-deep .nav-cta {
-  transform: scale(0.97);
+  transform: none;
 }
 
 /* ── Mobile toggle ── */

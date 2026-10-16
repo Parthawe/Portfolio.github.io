@@ -1,0 +1,132 @@
+{
+  "results": [
+    {
+      "slug": "raahi-project",
+      "width": 1440,
+      "theme": "light",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "zentipay",
+      "width": 1440,
+      "theme": "light",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 1440,
+      "theme": "light",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "raahi-project",
+      "width": 1440,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "zentipay",
+      "width": 1440,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 1440,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "raahi-project",
+      "width": 768,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "zentipay",
+      "width": 768,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 768,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "raahi-project",
+      "width": 390,
+      "theme": "light",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "zentipay",
+      "width": 390,
+      "theme": "light",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 390,
+      "theme": "light",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "raahi-project",
+      "width": 320,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "zentipay",
+      "width": 320,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 320,
+      "theme": "dark",
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "slug": "raahi-project",
+      "width": 390,
+      "theme": "dark",
+      "engine": "webkit",
+      "status": "pass"
+    },
+    {
+      "slug": "zentipay",
+      "width": 390,
+      "theme": "dark",
+      "engine": "webkit",
+      "status": "pass"
+    },
+    {
+      "slug": "office-of-diversity",
+      "width": 390,
+      "theme": "dark",
+      "engine": "webkit",
+      "status": "pass"
+    }
+  ],
+  "failures": [],
+  "imageRetry": "pass"
+}

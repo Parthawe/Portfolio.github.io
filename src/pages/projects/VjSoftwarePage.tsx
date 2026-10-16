@@ -1,24 +1,18 @@
-import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
-import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsCallout from '../../components/case-study/CsCallout'
-import CsInfoGrid from '../../components/case-study/CsInfoGrid'
-import CsSteps from '../../components/case-study/CsSteps'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
+import CsScreenStrip, { EvidenceImage } from '../../components/case-study/CsScreenStrip'
 import CsCredits from '../../components/case-study/CsCredits'
-import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-
-export default function VjSoftwarePage() {
-  return (
-    <>
+import '../../components/case-study/service-decisions.css'
+const asset = (file:string) => `/Assets/Projects/vj/photos/${file}`
+export default function VjSoftwarePage(){return <>
       <Helmet>
         <title>VJ Parivar &middot; Parth Pawar</title>
         <meta name="description" content="Vehicle parking management app for homeowners in Vilas Javdekar residential societies, covering user research, UI/UX design, and prototyping." />
@@ -39,7 +33,7 @@ export default function VjSoftwarePage() {
           backLabel="Back to Work"
           tags={['UX', 'UI', 'Research', 'Prototyping']}
           title="VJ Parivar"
-          subtitle="Reframing residential parking as a spatial decision, not a back-office form flow"
+          subtitle="Choose a parking space with its location, dimensions and booking record in view"
           info={[
             { label: 'Client', value: 'Vilas Javdekar' },
             { label: 'Scope', value: 'User Research, UI/UX, Prototyping' },
@@ -47,329 +41,44 @@ export default function VjSoftwarePage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2022' },
           ]}
-          heroImage="/Assets/Projects/vj/photos/all-screens-ui.png"
-          heroAlt="VJ Parivar, Vehicle Parking Made Easy hero with app screens"
+          heroFraming="image"
+          heroImage="/Assets/Projects/vj/photos/car-parking.png"
+          heroAlt="Original VJ Parivar vehicle parking screen with availability and booking window"
         />
 
-        <CsSection title="From parking search to a confirmed space">
-          <CsProcessFlow steps={[
-            { label: 'Check availability', desc: 'Inspect available and booked spaces from the parking overview.' },
-            { label: 'Choose on the map', desc: 'Compare a space’s position and dimensions before selecting it.' },
-            { label: 'Provide vehicle details', desc: 'The documented flow asks for vehicle information and RC upload.' },
-            { label: 'Confirm booking', desc: 'Keep the assigned space and downloadable legal record available after payment.' },
+        <CsSection id="cs-context" title="The decision starts with a place">
+          <CsBody><p>My work focused on parking within VJ’s resident-services app. Choosing a space requires its location and dimensions, followed by a booking record the resident can find again. The original screens below show that sequence; adoption and task-completion results are not recorded.</p></CsBody>
+        </CsSection>
+        <CsExpandPreview sectionIds={['cs-discover','cs-define','cs-develop','cs-deliver']} cta="Read the parking decisions" note="Inspect the original entry, map-selection and confirmed-booking screens.">
+        <CsSection id="cs-deliver" title="Make the booking state visible">
+          <CsScreenExplorer scrollPortrait label="Choose an original VJ parking screen" screens={[
+            {title:'Find the parking task',label:'Legal & Pay',src:asset('legal-pay.png'),alt:'Original Legal and Pay hub with parking entry and selection countdown',caption:'Scroll inside the viewer to inspect the complete original.',decision:{question:'Where does a resident enter the booking flow?',choice:'Expose parking within the Legal & Pay hub.',evidence:'The parking entry and countdown appear alongside other post-purchase tasks.',limit:'The countdown is a proposed urgency treatment; its effect and the fairness of the booking window were not evaluated.'}},
+            {title:'Explain availability and the window',label:'Parking landing',src:asset('car-parking.png'),alt:'Original parking page showing 50 total, 30 available and 20 booked spots plus priority-window explanation',caption:'The design presents availability before the selection action.',decision:{question:'What does someone need before choosing a space?',choice:'Show availability and explain when the selection window applies.',evidence:'Total, available and booked counts precede Select your spot now and the parking FAQs.',limit:'These are source screen values and proposed rules, not live inventory.'}},
+            {title:'Recover the booking afterwards',label:'Post-booking record',src:asset('post-possession.png'),alt:'Original confirmed vehicle spots, owner details, dimensions and legal-document download',caption:'The record keeps the selected spots and their details together.',decision:{question:'What remains after the transaction?',choice:'Keep both vehicle spots, owner context and the document download in one place.',evidence:'Inspect the four-wheeler and two-wheeler cards, spot number, dimensions and download notice.'}},
           ]} />
         </CsSection>
-
-        {/* Overview */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <h2 className="cs-display vj-display-measure">A parking flow that had to match how residents actually think about space.</h2>
-
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">VJ Parivar was designed as the post-purchase app for homeowners in VJ residential societies. My focus was the parking journey, one of those operational problems that sounds administrative until you watch how much anxiety it creates when people cannot understand the layout they are booking into.</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Challenge</span>
-              <span className="cs-label-row-val">Most society tools treated parking like paperwork. Residents did not. They wanted to understand proximity, access, and layout before committing to a spot, while still handling adjacent tasks like complaints, rentals, and vehicle details.</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Role</span>
-              <span className="cs-label-row-val">I worked on research, flow strategy, and interface design, helping define a map-first experience that made parking selection feel spatial and legible instead of bureaucratic.</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Tools &amp; Techniques</span>
-              <span className="cs-label-row-val">
-                <span className="cs-tags project-tags--flush">
-                  <span className="cs-tag-item">Figma</span>
-                  <span className="cs-tag-item">User Research</span>
-                  <span className="cs-tag-item">Identity and Website Design</span>
-                  <span className="cs-tag-item">Prototyping</span>
-                  <span className="cs-tag-item">Wireframes</span>
-                  <span className="cs-tag-item">High-Fidelity</span>
-                  <span className="cs-tag-item">Experience Management</span>
-                  <span className="cs-tag-item">Design System</span>
-                </span>
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* Context */}
-        <CsExpandPreview>
-        <section className="cs-section reveal" id="cs-context">
-          <div className="wrap">
-            <span className="cs-section-label">Context</span>
-            <h2 className="cs-section-title">The Product Context</h2>
-            <div className="cs-two-col">
-              <div>
-                <CsBody>
-                  <p>VJ Parivar sat inside a broader resident-services ecosystem. The app was meant to become the digital face of the company after the apartment purchase, covering updates, payments, utilities, and community features, not just sales.</p>
-                </CsBody>
-                <CsInfoGrid items={[
-                  { key: 'Construction Updates', value: 'Real-time progress' },
-                  { key: 'Legal & Pay', value: 'Documentation & payments' },
-                  { key: 'Services', value: 'Maintenance & utilities' },
-                  { key: 'VJ Connect', value: 'Community platform' },
-                ]} />
-              </div>
-              <div>
-                <h3 className="cs-section-subtitle">Why Parking Became the Hero Flow</h3>
-                <CsBody>
-                  <p>Parking stood out because it forced residents to make a decision with real physical consequences. The right spot affects everyday convenience. The wrong one becomes a recurring source of friction. That made it the most design-sensitive post-purchase touchpoint in the system.</p>
-                </CsBody>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Problem Statement + Process */}
-        <section className="cs-section reveal" id="cs-discover">
-          <div className="wrap">
-            <span className="cs-section-label">Discover</span>
-            <h2 className="cs-section-title">The Core Problem</h2>
-            <CsCallout>
-              <p>How might VJ help residents choose and manage parking with confidence, without forcing them through office-style workflows that ignore the layout of the society itself?</p>
-            </CsCallout>
-
-            <h3 className="cs-section-subtitle">User Research</h3>
-            <CsInfoGrid items={[
-              { key: 'Mr. Ashish Patil', value: 'Male, 36 years old, working with BCG. Flat owner in a Bangalore society.' },
-              { key: 'Mr. Prakash Sharma', value: 'Male, 27 years old, works in IT. Flat tenant in a Gurugram society.' },
-            ]} />
-
-            <div className="cs-two-col vj-two-col--spaced">
-              <div>
-                <CsCallout>
-                  <p>&ldquo;I faced difficulty while choosing my parking spot.&rdquo;</p>
-                </CsCallout>
-                <CsBody>
-                  <p><strong>Primary goal:</strong> Book a parking spot with enough context to know whether the choice is actually convenient.</p>
-                  <p><strong>Secondary goals:</strong> Report misuse, rent out unused space, and handle multiple-vehicle cases without visiting the society office.</p>
-                </CsBody>
-              </div>
-              <div>
-                <CsCallout>
-                  <p>&ldquo;I would want an option to choose their parking spot other than the owner&rsquo;s.&rdquo;</p>
-                </CsCallout>
-                <CsBody>
-                  <p><strong>Primary goal:</strong> Find a usable option beyond the default owner-assigned slot.</p>
-                  <p><strong>Secondary goals:</strong> Resolve parking conflicts and request additional access without getting trapped in manual escalation.</p>
-                </CsBody>
-              </div>
-            </div>
-
-            <h3 className="cs-section-subtitle">Market Research &mdash; Competitive Analysis</h3>
-            <CsBody>
-              <p>I reviewed resident-service apps like MyGate, NoBrokerHood, Swipe On, Varis, Visitor, and Greety to see how they handled parking, complaints, vehicle records, payments, visitor logs, and society communication.</p>
-            </CsBody>
-            <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--competitive-single">
-              <img {...projectImageProps("/Assets/Projects/vj/Desktop/4.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/4.webp" alt="Competitive analysis matrix comparing resident service apps" loading="lazy" />
-              <figcaption className="cs-img-caption">Competitive analysis: where existing resident apps supported parking, complaints, payments, and visitor flows.</figcaption>
-            </figure>
-
-            <h3 className="cs-section-subtitle">Findings</h3>
-            <CsFeatureGrid features={[
-              { title: 'Parking was treated as data entry', desc: 'Most products collected vehicle details but did not help residents understand the physical parking layout before choosing.' },
-              { title: 'Conflict flows were weak', desc: 'Visitor logs existed, but reporting misuse, wrong parking, or alternate access was usually disconnected from the booking flow.' },
-              { title: 'Availability mattered more than admin status', desc: 'The strongest competitor pattern was showing available spots and ownership history, which pointed toward a map-first decision surface.' },
-            ]} />
-
-            <h3 className="cs-section-subtitle">Current Methods</h3>
-            <div className="cs-two-col">
-              <div>
-                <h3 className="cs-section-subtitle">Society Type 1</h3>
-                <CsBody>
-                  <p>No digitization, no documentation, cash payment. Residents visit the office, hear the layout and rates verbally, select a spot, pay, and leave the record with staff.</p>
-                </CsBody>
-              </div>
-              <div>
-                <h3 className="cs-section-subtitle">Society Type 2</h3>
-                <CsBody>
-                  <p>Documents and multiple payment modes exist, but the decision still happens through office explanation rather than a clear spatial interface.</p>
-                </CsBody>
-              </div>
-            </div>
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--methods"><img {...projectImageProps("/Assets/Projects/vj/Desktop/5.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/5.webp" alt="Current methods, flow diagrams for Society Type 1 and Society Type 2 parking processes" loading="lazy" /></div>
-          </div>
-        </section>
-
-        {/* Around the Booking */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">Solution</span>
-            <h2 className="cs-section-title">Around the Booking</h2>
-            <CsBody>
-              <p>The booking flow depends on the screens around it. The Legal &amp; Pay hub surfaces urgency before possession, while the parking landing screen explains why selecting early matters.</p>
-              <p>After booking, both spots, owner details, and the legal document stay together so residents can recover the decision later.</p>
-            </CsBody>
-            <div className="cs-img-grid project-image-grid--three project-image-grid--top-aligned">
-              <figure className="cs-img reveal">
-                <img {...projectImageProps("/Assets/Projects/vj/photos/legal-pay.png")} data-project-preview src="/Assets/Projects/vj/photos/legal-pay.png" alt="Legal & Pay hub screen with a '03 days left' countdown banner urging residents to select their parking spot" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">The Legal &amp; Pay hub: parking sits next to society formation and home loan, with a countdown that makes the selection window impossible to miss.</figcaption>
-              </figure>
-              <figure className="cs-img reveal">
-                <img {...projectImageProps("/Assets/Projects/vj/photos/car-parking.png")} data-project-preview src="/Assets/Projects/vj/photos/car-parking.png" alt="Vehicle parking landing screen showing total, available, and booked spot counts, the priority window explanation, and parking FAQs" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">The landing screen explains the priority window in plain language, so the pressure to choose feels like information rather than a dark pattern.</figcaption>
-              </figure>
-              <figure className="cs-img reveal">
-                <img {...projectImageProps("/Assets/Projects/vj/photos/post-possession.png")} data-project-preview src="/Assets/Projects/vj/photos/post-possession.png" alt="Post-booking screen listing the confirmed four-wheeler and two-wheeler spots with owner details, spot dimensions, and a downloadable legal document" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">After booking: both spots, their dimensions, and the emailed legal copy live on one screen instead of in an office file.</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-
-        {/* Insights + Goals */}
-        <section className="cs-section reveal" id="cs-define">
-          <div className="wrap">
-            <span className="cs-section-label">Define</span>
-            <h2 className="cs-section-title">Insights</h2>
-            <CsFeatureGrid features={[
-              { title: '', desc: 'Residents think in proximity and movement, not in spot IDs, so the map had to become the primary decision surface.' },
-              { title: '', desc: 'Parking is rarely a one-time booking problem. Conflicts, guest access, rentals, and multiple vehicles all sit around the same flow.' },
-              { title: '', desc: 'Tenants and owners do not always want the same parking outcome, so the system needed more flexibility than the inherited allocation model.' },
-              { title: '', desc: 'Entry and verification could be modernized through RFID or FastTag logic instead of relying on brittle sticker-based processes.' },
-              { title: '', desc: 'Rules, pricing, and slot updates needed to be visible early, not discovered after the user had mentally committed to a spot.' },
-              { title: '', desc: 'The product needed to connect admin requirements such as document verification with a resident experience that still felt understandable.' },
-            ]} />
-
-            <h3 className="cs-section-subtitle">Goals</h3>
-            <CsSteps steps={[
-              { num: '1', title: 'Make the layout legible', desc: 'Help residents understand the society as a physical environment before they select a slot.' },
-              { num: '2', title: 'Reduce booking friction', desc: 'Turn spot selection into a guided decision instead of a confusing office transaction.' },
-              { num: '3', title: 'Support real-life edge cases', desc: 'Handle complaints, rentals, and alternate parking needs within the same system.' },
-            ]} />
-          </div>
-        </section>
-
-        {/* User Journey + Features */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">Define</span>
-            <h2 className="cs-section-title">User Journey</h2>
-            <CsBody>
-              <p>The core flow connects a spatial choice to a recoverable booking: vehicle, map, spot, price, payment, confirmation. Secondary paths cover vehicle details, rentals, and complaints.</p>
-            </CsBody>
-            <div className="vj-board-stack vj-board-stack--journey">
-              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--journey">
-                <img {...projectImageProps("/Assets/Projects/vj/Desktop/7.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/7.webp" alt="User journey map for parking spot booking, RFID, and complaints" loading="lazy" />
-                <figcaption className="cs-img-caption">Journey map: booking, RFID, vehicle details, rentals, and complaint branches.</figcaption>
-              </figure>
-              <figure className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--features">
-                <img {...projectImageProps("/Assets/Projects/vj/Desktop/7.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/7.webp" alt="Feature set derived from the VJ parking journey" loading="lazy" />
-                <figcaption className="cs-img-caption">Feature set: the system areas that came out of the journey map.</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
-
-        {/* UX & Wireframe */}
-        <section className="cs-section reveal" id="cs-develop">
-          <div className="wrap">
-            <span className="cs-section-label">Develop</span>
-            <h2 className="cs-section-title">UX &amp; Wireframe</h2>
-            <CsBody>
-              <p>Wireframes tested how a resident moves from the society map to a specific spot without losing location context during pricing and payment.</p>
-            </CsBody>
-            <figure className="cs-img-full">
-              <img {...projectImageProps("/Assets/Projects/vj/photos/user-flows.png")} data-project-preview src="/Assets/Projects/vj/photos/user-flows.png" alt="Eleven hand-sketched paper wireframes covering the flow from the Legal & Pay landing page through slot selection on the map, price filters, RC document upload, and the payment page" loading="lazy" decoding="async" />
-              <figcaption className="cs-img-caption">The flow started on paper: eleven sketched screens working out how the map, filters, and booking steps hand off to each other before anything went into Figma.</figcaption>
-            </figure>
-
-            <h3 className="cs-section-subtitle">High Fidelity</h3>
-            <CsBody>
-              <p>The final screens keep the selected spot visible through booking and confirmation.</p>
-            </CsBody>
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--hifi"><img {...projectImageProps("/Assets/Projects/vj/Desktop/8.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/8.webp" alt="UX wireframes and high fidelity screens for the parking booking flow" loading="lazy" /></div>
-          </div>
-        </section>
-
-        {/* Visual Style */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">Develop</span>
-            <h2 className="cs-section-title">Setting Visual Style</h2>
-
-            <h3 className="cs-section-subtitle">Color Palette</h3>
-            <div className="cs-swatch-grid">
-              {['#F66300', '#FFA25F', '#E6F6FF', '#FFFFFF', '#000000', '#009DF6', '#3BD378', '#FFFDEC'].map((hex, index) => (
-                <div className="cs-swatch" key={`${hex}-${index}`}>
-                  <div className="cs-swatch-color" style={{ background: hex, borderColor: (hex === '#FFFFFF' || hex === '#FFFDEC') ? 'var(--ink-15)' : undefined }} />
-                  <span className="cs-swatch-hex">{hex}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--style"><img {...projectImageProps("/Assets/Projects/vj/Desktop/9.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/9.webp" alt="Visual style, color palette, typography, icons, and layout system" loading="lazy" /></div>
-          </div>
-        </section>
-
-        {/* Visuals & Prototyping */}
-        <section className="cs-section reveal" id="cs-deliver">
-          <div className="wrap">
-            <span className="cs-section-label">Deliver</span>
-            <h2 className="cs-section-title">Visuals &amp; Prototyping</h2>
-
-            <h3 className="cs-section-subtitle">Onboarding</h3>
-            <CsBody>
-              <p>The onboarding flow guides users through selecting their vehicle type (two-wheeler or four-wheeler), viewing the society map layout, and navigating to their wing and floor to explore available parking spots.</p>
-            </CsBody>
-
-            <h3 className="cs-section-subtitle">Choosing A Spot</h3>
-            <CsBody>
-              <p>Users can browse the interactive map, filter by parking type, view available spots with pricing, and walk through the lot with a visual guide before making their selection.</p>
-            </CsBody>
-
-            <h3 className="cs-section-subtitle">Payment</h3>
-            <CsBody>
-              <p>After selecting a spot, users proceed through the booking process, choose a payment method, receive confirmation of their payment, and get a detailed summary of their parking reservation.</p>
-            </CsBody>
-
-            <div className="cs-img-full cs-img-full--vj-board vj-board-crop vj-board-crop--final"><img {...projectImageProps("/Assets/Projects/vj/Desktop/10.webp")} data-project-preview src="/Assets/Projects/vj/Desktop/10.webp" alt="Final high-fidelity screens, onboarding, spot selection, and payment flows" loading="lazy" /></div>
-          </div>
-        </section>
-
-        {/* Credits */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <span className="cs-section-label">Team</span>
-            <h2 className="cs-section-title">Credits</h2>
-            <CsCredits credits={[
-              { role: 'UX Lead', name: 'Akshita Anand' },
-              { role: 'UI/UX Designer', name: 'Parth Pawar' },
-            ]} />
-          </div>
-        </section>
-
-        {/* Reflections */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label">Reflections</p>
-            <h2 className="cs-section-title">What I Learned</h2>
-            <CsBody className="cs-body--measure">
-              <p>This project sharpened a lesson that still shows up in my later work: when the user experiences a problem spatially, the product cannot reduce it to form fields and dropdowns. The map became the interface because that was how people were already reasoning about the choice.</p>
-              <p>Parking needed a direct entry point because it was the main task in this study. The case documents that design decision; it does not establish adoption or usage gains.</p>
-            </CsBody>
-          </div>
-        </section>
-
-        <CsThanks />
-
+        <CsSection id="cs-define" title="Carry the chosen spot through payment">
+          <figure className="service-evidence vj-system-overview"><EvidenceImage src={asset('all-screens-ui.png')} alt="Original complete VJ parking flow: onboarding, map selection, filters, payment and confirmation" /><figcaption>The original board connects wing/floor choice, a selected map space, filters, payment and confirmation. Open it to inspect every screen at its original resolution.</figcaption></figure>
+          <CsBody><p>The map keeps a spatial choice visible through the price and payment steps. The final acknowledgment warns that confirmed spots cannot be changed later. That makes a comprehension and recovery test necessary before treating the flow as complete.</p></CsBody>
+        </CsSection>
+        <CsSection id="cs-develop" title="Inspect the structure before the final screens">
+          <CsScreenStrip label="Original flow and wireframe evidence" screens={[
+            {src:asset('user-flows.png'),label:'Paper wireframe sequence',alt:'Original paper sketches from Legal and Pay through map choice, filters, vehicle information and payment'},
+            {src:asset('all-screens-wireframes.png'),label:'Complete wireframe board',alt:'Original VJ parking wireframe board'},
+            {src:'/Assets/Projects/vj/Desktop/7.webp',label:'Journey and feature synthesis',alt:'Original VJ journey and feature synthesis board'},
+          ]} />
+        </CsSection>
+        <CsSection id="cs-discover" title="What the supporting research establishes">
+          <CsBody><p>The archive includes resident profiles, a competitor comparison and two existing office-based booking flows. They frame the design question; they do not establish a representative sample or a measured improvement in resident confidence.</p></CsBody>
+          <details className="service-source-details"><summary>Inspect the original research and design-system boards</summary><CsScreenStrip label="Original VJ research and presentation" screens={[
+            ['3.jpg','Project context and process'],['4.webp','Resident profiles and competitor comparison'],['5.webp','Existing booking methods'],['6.jpg','Design definition'],['8.webp','Interface development'],['9.webp','Style guide'],['10.webp','Final presentation'],
+          ].map(([file,label])=>({src:`/Assets/Projects/vj/Desktop/${file}`,label,alt:`Original VJ Parivar ${label}`}))} /></details>
+        </CsSection>
+        <CsSection id="cs-evaluation" title="Test the commitment, not just the happy path">
+          <CsBody><p>Ask residents to choose between two spaces, explain the dimensions and price, then recover the booking document. Include an unavailable spot, an expired selection window and a failed payment. The source designs do not establish that these failure states were implemented or tested.</p></CsBody>
+          <CsCredits credits={[{role:'UX Lead',name:'Akshita Anand'},{role:'UI/UX Designer',name:'Parth Pawar'}]} />
+        </CsSection>
         </CsExpandPreview>
-
-        <BottomNav sections={[
-          { id: 'cs-context', label: 'Context' },
-          { id: 'cs-discover', label: 'Discover' },
-          { id: 'cs-define', label: 'Define' },
-          { id: 'cs-develop', label: 'Develop' },
-          { id: 'cs-deliver', label: 'Deliver' },
-        ]} />
-
-      </main>
-
-      <NextProject slug="office-of-diversity" title="Office of Diversity" image="/Assets/mockups/projects/office-of-diversity_16x9.webp" />
-      <Footer />
-    </>
-  )
-}
+        <BottomNav sections={[{id:'cs-context',label:'Problem'},{id:'cs-deliver',label:'Original screens'},{id:'cs-define',label:'Booking flow'},{id:'cs-develop',label:'Wireframes'},{id:'cs-discover',label:'Research'},{id:'cs-evaluation',label:'Next test'}]} />
+      </main><NextProject slug="office-of-diversity" title="Office of Diversity" image="/Assets/mockups/projects/office-of-diversity_16x9.webp"/><Footer/>
+    </>}

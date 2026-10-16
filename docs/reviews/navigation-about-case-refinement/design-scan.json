@@ -1,0 +1,32 @@
+[
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/parth/Documents/Codex/2026-07-08/gm/work/Portfolio-footer-preview/src/styles/about.css",
+    "line": 767,
+    "snippet": "border-left: 3px solid var(--ink)"
+  },
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/parth/Documents/Codex/2026-07-08/gm/work/Portfolio-footer-preview/src/styles/about.css",
+    "line": 1858,
+    "snippet": ".abt-award-shelf::before,\n.abt-award-shelf::after — absolute 11.52px pseudo-element stripe (bottom: 0)"
+  },
+  {
+    "antipattern": "codex-grid-background",
+    "name": "Decorative grid-line background",
+    "description": "A decorative grid or line-field background drawn with hairline linear-gradient layers tiled by a fixed pixel cell is a recurring generated-UI signature. Reserve grid overlays for actual canvas, map, blueprint, or measurement surfaces; elsewhere use product structure or a plain surface.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "/Users/parth/Documents/Codex/2026-07-08/gm/work/Portfolio-footer-preview/src/styles/about.css",
+    "line": 44,
+    "snippet": "two-axis grid-line gradient background"
+  }
+]

@@ -1,4 +1,4 @@
-import { useId, useRef, type KeyboardEvent, type PointerEvent } from 'react'
+import { useId, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
 
 export type MoniacControls = {taxRate:number;govSpending:number;interestRate:number;investmentRate:number;consumerSpending:number;imports:number;exports:number}
 export type PolicyKey=keyof MoniacControls
@@ -36,6 +36,7 @@ function FaceLabel({at,lines}:{at:Point;lines:string[]}){
  return <text className="hydraulic-label" transform={`translate(${x} ${y}) rotate(30)`}>{lines.map((line,i)=><tspan key={line} x="0" dy={i?28:0}>{line}</tspan>)}</text>
 }
 export default function MoniacHydraulic({values,income,timeLeft,enabled,active,onInspect,onChange}:{values:MoniacControls;income:number;timeLeft:number;enabled:boolean;active:PolicyKey;onInspect:(key:PolicyKey)=>void;onChange:(key:PolicyKey,value:number)=>void}){
+ const [enlarged,setEnlarged]=useState(false)
  const id=useId().replace(/:/g,''),drag=useRef<{id:number;key:PolicyKey;x:number;y:number;value:number}|null>(null)
  const adjust=(key:PolicyKey,value:number)=>onChange(key,Math.round(Math.max(0,Math.min(100,value))*10)/10)
  const down=(event:PointerEvent<SVGGElement>,key:PolicyKey)=>{
@@ -55,7 +56,7 @@ export default function MoniacHydraulic({values,income,timeLeft,enabled,active,o
   if(delta||event.key==='Home'||event.key==='End'){event.preventDefault();adjust(key,event.key==='Home'?0:event.key==='End'?100:values[key]+delta)}
  }
  return <div className="moniac-isometric-screen" data-active-policy={active}>
-  <svg viewBox="0 0 960 1280" role="group" aria-label="MONIAC isometric hydraulic game" style={{'--water-gradient':`url(#${id}-water)`} as React.CSSProperties}>
+  <div className="hydraulic-view-controls"><span>Original game layout · browser rules</span><button type="button" className="glass-action" aria-pressed={enlarged} onClick={()=>setEnlarged(value=>!value)}>{enlarged?'Fit diagram':'Enlarge diagram'}</button></div><div className="hydraulic-drawing-viewport" tabIndex={enlarged?0:undefined} aria-label={enlarged?'Enlarged hydraulic diagram, scroll to inspect':undefined} data-enlarged={enlarged}><svg viewBox="0 0 960 1280" role="group" aria-label="MONIAC isometric hydraulic game" style={{'--water-gradient':`url(#${id}-water)`} as React.CSSProperties}>
    <title>MONIAC hydraulic economic game</title><desc>Six valve wheels control the labelled economic policies. Drag a wheel right or up to increase its setting, or use arrow keys. Interest is an additional browser-model control in the inspector.</desc>
    <defs><linearGradient id={`${id}-water`} x1="0" y1="0" x2="0" y2="1"><stop stopColor="#159eff"/><stop offset="1" stopColor="#21dae8"/></linearGradient></defs>
    <g className="hydraulic-floor" aria-hidden="true">{Array.from({length:22},(_,i)=>{const n=-420+i*40;return <g key={i}><path d={`M${project([-420,n,-212])} L${project([440,n,-212])}`}/><path d={`M${project([n,-420,-212])} L${project([n,440,-212])}`}/></g>})}</g>
@@ -99,7 +100,7 @@ export default function MoniacHydraulic({values,income,timeLeft,enabled,active,o
      </g>
     </g>
    })}
-  </svg>
+  </svg></div>
   <p className="hydraulic-interaction-hint">Select a valve. Drag up or right to open it; use arrow keys for small adjustments.</p>
  </div>
 }

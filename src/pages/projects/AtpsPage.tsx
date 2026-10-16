@@ -19,7 +19,7 @@ export default function AtpsPage() {
         <meta name="description" content="ArtTown Podcast Series (ATPS), a weekly podcast hosted by Parth Pawar, featuring 40+ conversations with art and design professionals worldwide. Conversations about creative practice and careers." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="ATPS · Parth Pawar" />
-        <meta property="og:description" content="ArtTown Podcast Series, 40+ conversations with art and design professionals. 50k+ views." />
+        <meta property="og:description" content="ArtTown Podcast Series, An archive of conversations with art and design professionals, with original episode artwork." />
         <meta property="og:image" content="https://designwhich.works/Assets/images/atps.webp" />
       </Helmet>
 
@@ -36,7 +36,7 @@ export default function AtpsPage() {
           title="ArtTown Podcast Series"
           subtitle="Conversations with art and design professionals about their work, practice, and careers."
           info={[
-            { label: 'Year', value: '2020 \u2013 Present' },
+            { label: 'Year', value: '2020 \u2013 2021 archive' },
             { label: 'Role', value: 'Podcast Host' },
             { label: 'Platforms', value: 'Spotify, Apple Podcast, Google Podcast' },
           ]}
@@ -50,7 +50,7 @@ export default function AtpsPage() {
           <div className="wrap">
             <p className="cs-section-label">Distribution</p>
             <h2 className="cs-display">Original distribution</h2>
-            <p className="cs-caption">Platforms listed in the original project record. Episode links and current availability still need verification.</p>
+            <p className="cs-caption">Platforms listed in the original project record. A separate listening draft contains 45 recovered episode records and audio links; current host availability still needs verification.</p>
             <div className="cs-tags atps-platforms">
               <span className="cs-tag-item">Google Podcast</span>
               <span className="cs-tag-item">Podcast Addict</span>
@@ -68,7 +68,7 @@ export default function AtpsPage() {
               <h2 className="cs-display">ArtTown Podcast Series</h2>
               <div className="atps-overview-meta">
                 <strong>Podcast Host</strong>
-                <span>March 2020 &ndash; Present</span>
+                <span>Recovered episodes: 2020 &ndash; November 2021</span>
               </div>
             </div>
             <ProjectOverview

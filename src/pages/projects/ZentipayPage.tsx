@@ -7,8 +7,9 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
-import NdaPublicStory from '../../components/case-study/NdaPublicStory'
-import NdaProcess from '../../components/case-study/NdaProcess'
+import CsSection from '../../components/case-study/CsSection'
+import CsBody from '../../components/case-study/CsBody'
+import '../../components/case-study/service-decisions.css'
 import NdaReviewerGallery from '../../components/case-study/NdaReviewerGallery'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -54,39 +55,13 @@ const ZENTIPAY_REVIEWER_VISUALS = [
 ]
 
 const ZENTIPAY_PUBLIC_VISUALS = [
-  {
-    src: zentipayPublicAsset('Send Crypto.png'),
-    alt: 'ZentiPay transfer screen showing amount entry, live conversion, and balance.',
-    label: 'Transfer preview',
-  },
-  {
-    src: zentipayPublicAsset('Dashboard Desktop-6.png'),
-    alt: 'ZentiPay dashboard showing balance, incoming and outgoing totals, recent transactions, and quick transfer.',
-    label: 'Account overview',
-  },
-  {
-    src: zentipayPublicAsset('Transaction History.png'),
-    alt: 'ZentiPay transaction history table with balances and status.',
-    label: 'Transaction history',
-  },
-  {
-    src: zentipayPublicAsset('Profile.png'),
-    alt: 'ZentiPay account profile screen with balances and onboarding progress.',
-    label: 'Profile & balances',
-  },
+ {src:zentipayPublicAsset('Send Crypto.png'),label:'Prepare the transfer',alt:'Original send screen with recipient, token, conversion, balance and invoice option',decision:{question:'What belongs beside Send?',choice:'Keep the recipient, token amount, conversion and balance together.',evidence:'The invoice option sits immediately above the Send action.',limit:'This is a design screen, not a working transfer. It does not demonstrate a separate review step or final network fees.'}},
+ {src:zentipayPublicAsset('Send Crypto-1.png'),label:'Keep a durable receipt',alt:'Original completed-transfer invoice with recipient, date, transaction ID and fee breakdown',decision:{question:'What can someone inspect after a transfer?',choice:'Keep confirmation and a downloadable invoice together.',evidence:'The completed state includes recipient details, transaction ID, subtotal, fees and net total.',limit:'Values are source mockup content. Formatting and amount inconsistencies remain in the original and need validation before implementation.'}},
 ]
-
-const ZENTIPAY_PROCESS_VISUALS = [
-  {
-    src: zentipayPublicAsset('Send Crypto-1.png'),
-    alt: 'ZentiPay completed-transfer invoice with recipient, transaction ID, date, fees, net total, and download action.',
-    label: 'Receipt after transfer',
-  },
-  {
-    src: zentipayPublicAsset('Dashboard Desktop-6.png'),
-    alt: 'ZentiPay account dashboard with quick transfer, spending history, and recent transactions.',
-    label: 'Account activity',
-  },
+const ZENTIPAY_ACCOUNT_VISUALS = [
+ {src:zentipayPublicAsset('Dashboard Desktop-6.png'),label:'Return to account activity',alt:'Original account overview with balances, quick transfer and recent transactions',decision:{question:'Where should someone resume their account tasks?',choice:'Place totals, recent activity and quick transfer on the same overview.',evidence:'Balance, incoming and outgoing totals sit above recent transactions; saved recipients appear in Quick Transfer.'}},
+ {src:zentipayPublicAsset('Transaction History.png'),label:'Find a transaction record',alt:'Original transaction history with date range, status filter, export and invoices',decision:{question:'How can someone narrow down a past payment?',choice:'Provide date, category and status filters alongside export actions.',evidence:'Inspect the date range, All/Savings/Income/Expenses tabs, Status filter and invoice download.'}},
+ {src:zentipayPublicAsset('Profile.png'),label:'Account profile',alt:'Original profile showing wallet identity, balances and onboarding progress'},
 ]
 
 export default function ZentipayPage() {
@@ -98,8 +73,8 @@ export default function ZentipayPage() {
       ]
     : [
         { id: 'cs-summary', label: 'TL;DR' },
-        { id: 'cs-public-story', label: 'Glimpse' },
-        { id: 'cs-process', label: 'Process' },
+        { id: 'cs-public-story', label: 'Transfer' },
+        { id: 'cs-process', label: 'Account' },
         { id: 'case-study-access-zentipay', label: 'Access' },
       ]
 
@@ -179,44 +154,18 @@ export default function ZentipayPage() {
           expanded={viewMode === 'full'}
           onExpand={() => handleViewModeChange('full')}
           ctaLabel="Explore the public story"
-          note="Explore the transfer flows and trust system. Detailed reviewer material is available by request."
+          note="Inspect original transfer and account screens. Detailed reviewer material remains access-controlled."
         >
         {viewMode === 'full' ? (
           <>
-            <NdaPublicStory
-              slug="zentipay"
-              headline="Transfer flows and trust system"
-              showSummary={false}
-              lede="A focused preview of the trust system: price clarity, progress states, review moments, and reusable fintech components."
-              visuals={ZENTIPAY_PUBLIC_VISUALS}
-              showVisuals={false}
-            />
-
-            <div className="wrap"><CsScreenStrip label="Transfer and account screens" screens={ZENTIPAY_PUBLIC_VISUALS} /></div>
-            <NdaProcess
-              title="How I approached it"
-              intro="The original screens show three connected tasks: prepare a transfer, inspect the completed invoice, and return to account activity."
-              visuals={[]}
-              decisions={[
-                {
-                  move: 'Keep the recipient and amount beside the send action.',
-                  why: 'The transfer screen shows the recipient, selected token, converted amount, balance, and invoice option.',
-                },
-                {
-                  move: 'Give a completed transfer a durable receipt.',
-                  why: 'The invoice separates recipient details from the fee breakdown and provides a transaction ID and download action.',
-                },
-                {
-                  move: 'Put recent activity next to account totals.',
-                  why: 'The dashboard combines balances, recent transactions, and a quick-transfer entry point.',
-                },
-              ]}
-              shift={{
-                before: 'Users learned cost, status, and risk too late in the flow.',
-                after: 'The product front-loads price clarity, progress, and review.',
-              }}
-            />
-            <div className="wrap"><CsScreenStrip label="Receipt and account activity" screens={ZENTIPAY_PROCESS_VISUALS} /></div>
+            <CsSection id="cs-public-story" label="Transfer" title="Keep transfer details and the receipt connected">
+              <CsBody><p>The public screens show a wallet-to-wallet send flow and its completed invoice. Read them as design evidence; no money moves in this case study.</p></CsBody>
+              <CsScreenStrip label="Prepare and confirm a transfer" screens={ZENTIPAY_PUBLIC_VISUALS} />
+            </CsSection>
+            <CsSection id="cs-process" label="Account" title="Make the next task easy to find">
+              <CsScreenStrip label="Account and transaction records" screens={ZENTIPAY_ACCOUNT_VISUALS} />
+              <CsBody><p>The next evaluation should check recipient and amount review, transaction lookup, and recovery when a transfer fails. The public record does not establish completion rates or whether these screens reduced risk.</p></CsBody>
+            </CsSection>
           </>
         ) : null}
 

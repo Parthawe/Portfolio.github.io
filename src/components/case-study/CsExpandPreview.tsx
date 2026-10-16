@@ -51,6 +51,7 @@ export default function CsExpandPreview({
   const content = useRef<HTMLDivElement>(null)
   const requested = useRef(false)
   const linkedSection = useRef<string | null>(null)
+  const entryLinkRead = useRef(false)
 
   useEffect(() => {
     const followSectionLink = () => {
@@ -69,8 +70,11 @@ export default function CsExpandPreview({
         else setInternalExpanded(true)
       }
     }
-    // Initial deep links may point to content that has not been mounted yet.
-    if (!isExpanded) followSectionLink()
+    // Follow the entry link once. A later reading-mode change is explicit user intent.
+    if (!entryLinkRead.current) {
+      entryLinkRead.current = true
+      if (!isExpanded) followSectionLink()
+    }
     window.addEventListener('hashchange', followSectionLink)
     return () => window.removeEventListener('hashchange', followSectionLink)
   }, [children, isExpanded, onExpand, sectionIds])

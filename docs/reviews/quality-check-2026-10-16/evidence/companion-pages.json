@@ -1,0 +1,223 @@
+{
+  "results": [
+    {
+      "slug": "glassly",
+      "width": 1440,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 481,
+      "scrollHeight": 6935,
+      "status": "pass"
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 1440,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 575,
+      "scrollHeight": 5552,
+      "status": "pass"
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 1440,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 487,
+      "scrollHeight": 3811,
+      "status": "pass"
+    },
+    {
+      "slug": "healthapp",
+      "width": 1440,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 331,
+      "scrollHeight": 4285,
+      "status": "pass"
+    },
+    {
+      "slug": "glassly",
+      "width": 1440,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 481,
+      "scrollHeight": 6935,
+      "status": "pass"
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 1440,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 575,
+      "scrollHeight": 5552,
+      "status": "pass"
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 1440,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 487,
+      "scrollHeight": 3811,
+      "status": "pass"
+    },
+    {
+      "slug": "healthapp",
+      "width": 1440,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 331,
+      "scrollHeight": 4285,
+      "status": "pass"
+    },
+    {
+      "slug": "glassly",
+      "width": 768,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 481,
+      "scrollHeight": 6379,
+      "status": "pass"
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 768,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 575,
+      "scrollHeight": 6294,
+      "status": "pass"
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 768,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 487,
+      "scrollHeight": 3511,
+      "status": "pass"
+    },
+    {
+      "slug": "healthapp",
+      "width": 768,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 331,
+      "scrollHeight": 3909,
+      "status": "pass"
+    },
+    {
+      "slug": "glassly",
+      "width": 390,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 477,
+      "scrollHeight": 6286,
+      "status": "pass"
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 390,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 571,
+      "scrollHeight": 6723,
+      "status": "pass"
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 390,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 443,
+      "scrollHeight": 4368,
+      "status": "pass"
+    },
+    {
+      "slug": "healthapp",
+      "width": 390,
+      "theme": "light",
+      "engine": "chromium",
+      "words": 328,
+      "scrollHeight": 4189,
+      "status": "pass"
+    },
+    {
+      "slug": "glassly",
+      "width": 320,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 477,
+      "scrollHeight": 6539,
+      "status": "pass"
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 320,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 571,
+      "scrollHeight": 7334,
+      "status": "pass"
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 320,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 443,
+      "scrollHeight": 4867,
+      "status": "pass"
+    },
+    {
+      "slug": "healthapp",
+      "width": 320,
+      "theme": "dark",
+      "engine": "chromium",
+      "words": 328,
+      "scrollHeight": 4395,
+      "status": "pass"
+    },
+    {
+      "slug": "glassly",
+      "width": 390,
+      "theme": "dark",
+      "engine": "webkit",
+      "words": 477,
+      "scrollHeight": 6286,
+      "status": "pass"
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 390,
+      "theme": "dark",
+      "engine": "webkit",
+      "words": 573,
+      "scrollHeight": 6723,
+      "status": "pass"
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 390,
+      "theme": "dark",
+      "engine": "webkit",
+      "words": 443,
+      "scrollHeight": 4368,
+      "status": "pass"
+    },
+    {
+      "slug": "healthapp",
+      "width": 390,
+      "theme": "dark",
+      "engine": "webkit",
+      "words": 328,
+      "scrollHeight": 4189,
+      "status": "pass"
+    }
+  ],
+  "failures": [],
+  "imageRetry": "pass",
+  "legacyAnchors": "pass"
+}

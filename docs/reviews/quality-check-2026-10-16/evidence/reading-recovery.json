@@ -1,0 +1,116 @@
+{
+  "results": [
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "glassly",
+      "width": 1440,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "clawed-chat",
+      "width": 1440,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "image retry twice, focus recovery and enlargement",
+      "slug": "clawed-chat",
+      "width": 1440,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "report failure recovery, touch targets, zoom bounds, keyboard scroll, chapter/reset and focus",
+      "slug": "healthapp",
+      "width": 1440,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "glassly",
+      "width": 390,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "clawed-chat",
+      "width": 390,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "image retry twice, focus recovery and enlargement",
+      "slug": "clawed-chat",
+      "width": 390,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "report failure recovery, touch targets, zoom bounds, keyboard scroll, chapter/reset and focus",
+      "slug": "healthapp",
+      "width": 390,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "glassly",
+      "width": 320,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "clawed-chat",
+      "width": 320,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "image retry twice, focus recovery and enlargement",
+      "slug": "clawed-chat",
+      "width": 320,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "report failure recovery, touch targets, zoom bounds, keyboard scroll, chapter/reset and focus",
+      "slug": "healthapp",
+      "width": 320,
+      "engine": "chromium",
+      "status": "pass"
+    },
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "glassly",
+      "width": 390,
+      "engine": "webkit",
+      "status": "pass"
+    },
+    {
+      "task": "chapter, quick/full reading and reopen",
+      "slug": "clawed-chat",
+      "width": 390,
+      "engine": "webkit",
+      "status": "pass"
+    },
+    {
+      "task": "image retry twice, focus recovery and enlargement",
+      "slug": "clawed-chat",
+      "width": 390,
+      "engine": "webkit",
+      "status": "pass"
+    },
+    {
+      "task": "report failure recovery, touch targets, zoom bounds, keyboard scroll, chapter/reset and focus",
+      "slug": "healthapp",
+      "width": 390,
+      "engine": "webkit",
+      "status": "pass"
+    }
+  ]
+}

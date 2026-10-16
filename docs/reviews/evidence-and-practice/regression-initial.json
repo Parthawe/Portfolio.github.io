@@ -1,0 +1,174 @@
+{
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "shuffle",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "typeface",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "revolving-stage",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "cuetv",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "medimorpho",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "drowning",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "slug": "shuffle",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "slug": "typeface",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "slug": "revolving-stage",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "slug": "cuetv",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "slug": "medimorpho",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "slug": "drowning",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "shuffle",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "typeface",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "revolving-stage",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "cuetv",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "medimorpho",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "drowning",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "shuffle",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "revolving-stage",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "cuetv",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "medimorpho",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "drowning",
+      "passed": true
+    }
+  ],
+  "failures": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "typeface",
+      "error": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  locator('.tf-specimen-word')\nExpected: \"A slice of typography 0123456789\"\nReceived: \"Slice\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.text\" with timeout 5000ms\n  - waiting for locator('.tf-specimen-word')\n    - waiting for \"http://127.0.0.1:5222/typeface\" navigation to finish...\n    - navigated to \"http://127.0.0.1:5222/typeface\"\n    6 × locator resolved to <p class=\"tf-specimen-word\" aria-label=\"Rendered specimen\">Slice</p>\n      - unexpected value \"Slice\"\n"
+    }
+  ]
+}

@@ -69,10 +69,10 @@ const deepMap: Record<string, ProjectDeep> = {
   zentipay: {
     oneLiner: 'A fintech product that discovered fee anxiety matters more than transfer speed.',
     challenge: 'Users hesitated when pricing arrived late. The problem was not speed, it was fear of hidden costs.',
-    outcome: 'Public preview: stronger transfer confidence, clearer pricing, and deeper internals available by request.',
-    insight: 'Trust beats speed. Showing fees upfront, even when they\'re higher, reduces abandonment more than any speed optimization.',
+    outcome: 'Public preview: screens expose pricing, progress and recovery. Measured confidence and abandonment changes are not established publicly; deeper material requires access.',
+    insight: 'Upfront fees and clear recovery are the design priorities. The public record does not establish an abandonment reduction or comparison with speed optimizations.',
     process: 'Public summary covers research framing, pricing confidence, onboarding clarity, and the trust architecture. Deeper validation details are available by access request.',
-    whyItMatters: 'Proved emotional design (addressing fear) beats functional design (making things faster) in money products.',
+    whyItMatters: 'The preview demonstrates pricing and recovery choices; it does not establish that those choices outperform speed improvements.',
     duration: '2025, detailed timeline by request',
     team: 'Sole designer + product + eng',
     platforms: 'Mobile (iOS/Android), Web dashboard',
@@ -81,31 +81,32 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'The public case study keeps the quick read visible; deeper internals are shared directly after access is approved.',
   },
   'clawed-chat': {
-    oneLiner: 'An AI assistant where every action has a receipt. Trust by design, not afterthought.',
-    challenge: 'People abandon AI tools because they do things without asking. 73% cite "it did something I didn\'t ask for."',
-    outcome: 'Shipped. 3-second request → 5-second results → 1-tap approval.',
-    insight: '"Receipts", an immutable trail for every AI action. The AI always asks. Trust is earned through progressive autonomy.',
-    process: 'Studied why people quit AI tools. Designed a 3-tier trust model: Suggest → Stage → Act. Users grant autonomy per domain.',
-    whyItMatters: 'This trust architecture could apply to any AI product. The industry needs this, AI transparency by design.',
+    oneLiner: "An AI-assistant design study organized around approvals and execution receipts.",
+    challenge: "Help a person inspect what an assistant proposes before granting permission to act.",
+    outcome: "Approval-mode and receipt proposals. Three-second requests and five-second results are design targets, not measured performance. Dated evaluation notes are unavailable.",
+    insight: "Show the proposed action, permission boundary, and result together.",
+    process: "Documented deployment choices and proposed draft, review and result stages; permission enforcement is unverified.",
+    whyItMatters: 'Separating a proposed action from authorization makes the review decision explicit.',
     duration: '10 weeks, Jan–Mar 2026',
     team: 'Sole designer, 3 engineers',
     platforms: 'Web + Mentra smart glasses',
     opinion: 'The "receipt" concept is the kind of idea that seems obvious after you see it. That\'s how you know it\'s good.',
     connectedTo: ['mentra', 'executivelens', 'ballah-code'],
-    surprisingFact: 'Clawed runs on Mentra glasses too, you can approve AI actions by voice while walking.',
+    surprisingFact: "The public archive does not establish participant counts or a complete recorded product task.",
   },
   executivelens: {
-    oneLiner: 'Saves executives 5.2 hrs/week by passively listening to meetings and surfacing decisions.',
-    challenge: 'Executives check 6+ tools per hour. The information exists, it\'s scattered across Slack, email, and dashboards.',
-    outcome: '5.2 hrs/week saved. 87% adoption in 2 weeks.',
-    insight: 'The best tool is invisible. It listens, auto-researches, surfaces decisions. No manual input.',
-    process: 'Shadowed 8 executives for a week. Mapped information flows. Found they context-switch constantly. Built a system that\'s passive by default.',
+    oneLiner: "A meeting-brief prototype that connects decisions to transcript citations.",
+    challenge: "Help someone inspect the source of a decision and its owner before following up.",
+    outcome: "A prepared transcript and citation demo. Dated beta results, adoption figures, and time savings are not established publicly.",
+    insight: "A summary needs inspectable evidence, not just a concise sentence.",
+    process: "Organized transcript passages, summary citations, decision owners, and follow-up actions.",
     whyItMatters: 'Shows how AI augments knowledge work without adding another tool to learn.',
     duration: '2026',
     team: 'Product Designer + engineering',
     platforms: 'Smart glasses + Web dashboard',
     opinion: 'The "no UI is the best UI" approach here is bold. Most products add features; this one removes the need for them.',
     connectedTo: ['mentra', 'clawed-chat', 'transfi-project'],
+    surprisingFact: "The local demo does not record meetings or run live AI; the current external product URL remains unverified.",
   },
   'transfi-project': {
     oneLiner: 'Crypto payment infrastructure across multi-market merchant flows.',
@@ -122,7 +123,7 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'The public preview keeps the shape of the payment problem visible while the internal compliance flows stay private.',
   },
   'raahi-project': {
-    oneLiner: 'Service design that made Pune\'s chaotic public transit system accessible and connected.',
+    oneLiner: "A connected public-transit service concept across app, kiosk, and in-vehicle displays.",
     challenge: 'Pune has buses, metro, auto-rickshaws, and shared cabs, but zero intermodal connectivity. Users can\'t plan multi-mode journeys or pay digitally.',
     outcome: 'Service design across the mobile app, kiosk system, in-vehicle monitors, and a unified color system for 8 transport modes.',
     insight: 'Transit design is a service design problem, not just an app problem. The kiosk, the in-vehicle screen, and the phone all need to speak the same language.',
@@ -133,7 +134,7 @@ const deepMap: Record<string, ProjectDeep> = {
     platforms: 'Mobile app, Kiosk, In-vehicle monitors',
     opinion: 'This is the project that shows Parth can think in service design, not just screens. Every touchpoint connects.',
     connectedTo: ['the-point-cdc'],
-    surprisingFact: 'The color system assigned distinct pairs to 8 transport modes, so users could identify their bus or metro line at a glance without reading.',
+    surprisingFact: "The concept organizes eight transport modes. Commuter anxiety reduction and operational feasibility were not measured.",
   },
   'ballah-code': {
     oneLiner: 'What happens when AI isn\'t a sidebar in the IDE, it\'s the foundation.',
@@ -254,9 +255,9 @@ const deepMap: Record<string, ProjectDeep> = {
     connectedTo: ['jugalbandi', 'shuffle'],
   },
   typeface: {
-    oneLiner: 'Butler\'s Slice, a variable display typeface with geometric slice cuts. 400+ glyphs, 3 weights.',
+    oneLiner: 'Butler\'s Slice, a geometric sliced display family with three supplied static weights and 338 glyphs per font.',
     challenge: 'Design a typeface that has a distinctive visual identity without sacrificing readability at display sizes.',
-    outcome: '400+ glyphs across 3 weights (Light, Regular, Bold). Functional variable font.',
+    outcome: 'Three supplied static weights (UltraLight, Regular, Bold), each containing 338 glyphs. No variable-font axis is present in the supplied fonts.',
     insight: 'Type design is the purest form of systems design: every glyph follows the same rules but must feel individually balanced.',
     process: 'Defined the slice cut system (45-degree geometric cuts on stems and bowls). Applied it across uppercase, lowercase, numerals, and punctuation. Tested at display and body sizes.',
     whyItMatters: 'Making your own typeface is the equivalent of a musician writing their own instrument. It proves design thinking at the atomic level.',
@@ -308,7 +309,7 @@ const deepMap: Record<string, ProjectDeep> = {
   'dna-speculative': {
     oneLiner: 'Would you take a pill to live forever? A speculative pharmaceutical artifact that makes you actually decide.',
     challenge: 'Speculative design usually stays too abstract to provoke a real decision. A thought experiment on screen can be shrugged off, this one had to be held.',
-    outcome: 'Two believable boxed futures: Live Immortal, an anti-aging treatment with dosage cards and efficacy language, and Embrace Death, a serious artifact arguing for accepting finitude. Participants hesitated.',
+    outcome: "Two fictional pharmaceutical packages frame different positions on longevity and mortality. Audience hesitation was not documented as a study result.",
     insight: 'Speculative design succeeds or fails on conviction. If the artifact feels finished, the participant negotiates with the scenario instead of observing it from a safe distance.',
     process: 'Built the fiction from real references, gene editing, telomere research, Chinese alchemy, memento mori, then earned belief through details: print quality, dosage language, booklet tone, unsettlingly familiar pharmaceutical packaging.',
     whyItMatters: 'Turns an abstract ethics debate about anti-aging into choice architecture. The object carries the argument.',
@@ -320,32 +321,32 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'Neither box is the "right answer." The design work went equally into arguing both sides.',
   },
   healthapp: {
-    oneLiner: 'A task planner where your sleep, food, and energy quietly reshape what the day asks of you.',
-    challenge: 'Health metrics live in one app, the to-do list in another, and no connection between them. Planners optimize output while ignoring whether the schedule itself is harmful.',
-    outcome: 'Public preview: a planning concept built on honest capacity, with health signals as scheduling inputs. Deeper internals available by access request.',
-    insight: 'Wellness data usually lives where it changes nothing. Move it into the planner and recovery starts influencing the plan, which makes the plan one you\'ll actually follow.',
-    process: 'Treated sleep, food, movement, and energy as inputs to the schedule itself, designed around realistic daily capacity, and kept the surface calm, complexity stays in the system, not on the screen.',
-    whyItMatters: 'Reframes productivity as a health-aware system. A plan that accounts for the person doing the work is more trustworthy than one that maximizes output.',
+    oneLiner: 'A self-initiated Google Tasks redesign for goals, reminders and calendar conflicts.',
+    challenge: 'Include personal goals and recurring care activities while keeping proposed schedule changes visible.',
+    outcome: 'Original mobile and calendar concept boards. No live scheduling service, automatic sensing or health outcomes are established.',
+    insight: 'A proposed calendar adjustment needs a visible confirmation or cancellation path.',
+    process: 'Sketched goal selection, reminder setup and an overlap prompt; documented the existing Google Tasks baseline separately.',
+    whyItMatters: 'Shows the design decisions and source limits of a planning concept.',
     duration: '4 months, 2024',
     team: 'Product Designer, independent concept',
-    platforms: 'Mobile app',
-    opinion: 'The restraint is the best part. Several noisy data streams could have produced a guilt-inducing dashboard, and instead it\'s a simple, legible plan.',
+    platforms: 'Mobile and calendar concepts',
+    opinion: 'The overlap prompt is the clearest decision to inspect: what changes, and can the person decline it?',
     connectedTo: ['ibm'],
-    surprisingFact: 'The core design principle is honest capacity, the app deliberately plans for less than your maximum.',
+    surprisingFact: 'The original study is titled Reimagining Google Tasks App.',
   },
   ibm: {
     oneLiner: 'A research glimpse into cancer prognosis on genomic data that stays encrypted during computation.',
     challenge: 'Most clinical AI decrypts patient data before analyzing it, exposing the most sensitive information a person can share. The weak point isn\'t storage or transit, it\'s computation itself.',
     outcome: 'A research pipeline produced Kaplan-Meier survival curves for seven treatment groups, with encrypted transfer overhead measured at 42s client-side and 28s server-side.',
-    insight: 'Homomorphic encryption lets the model work on the signal without ever seeing the patient in the clear. Privacy cost was measured in seconds, not usefulness.',
+    insight: "The prototype explores an encrypted-data processing boundary. Privacy guarantees and runtime conclusions require the original configuration and threat model.",
     process: 'Feature selection and validation on clinical and genomic inputs, encryption with IBM\'s FHE toolkit, a neural-network workflow on encrypted data, decryption only at the point of interpretation for clustering and survival curves.',
-    whyItMatters: 'Removes the compromise at the heart of clinical AI: the promise of privacy that breaks the moment raw data reaches a server.',
+    whyItMatters: "The case documents a research pipeline; it is not a clinically validated service or proof of complete privacy.",
     duration: '8 months, 2020',
     team: 'Research internship at IBM, with mentors and a 4-engineer student team',
     platforms: 'FHE Toolkit, Python, Java, Neural Networks',
     opinion: 'This is strongest when kept plain and technical: the value is system logic, not a polished product interface.',
     connectedTo: ['healthapp', 'raahi-project'],
-    surprisingFact: 'The seven output clusters work as risk groups, which curve a patient\'s data falls into tells you how their expected survival differs, all computed blind.',
+    surprisingFact: "Output plots and reported runtimes need dataset, hardware, workload and validation context before comparison.",
   },
   'making-of-time': {
     oneLiner: 'Built three timekeeping systems, sundial, mechanical watch, software clock, to feel how each medium changes our relationship with time.',
@@ -376,18 +377,18 @@ const deepMap: Record<string, ProjectDeep> = {
     surprisingFact: 'The box flap says \'Designed on Earth\', a nod to the open-source MentraOS community, placed exactly where Apple puts \'Designed by Apple in California.\'',
   },
   'mentra-miniapps': {
-    oneLiner: 'The first app ecosystem for smart glasses, a store you talk to instead of scroll.',
-    challenge: 'You can\'t browse 500 apps on a 640×400 transparent display while walking. No scrolling, no tapping, no screenshot carousels, the only reliable input is voice.',
-    outcome: 'Shipped with the Mentra Glass launch: voice-first install, transparent permissions, live developer portal, open-source SDK, and Batch 2 pre-orders 88% claimed.',
-    insight: 'Voice-first discovery isn\'t a workaround for a small screen, it\'s better than visual browsing. You don\'t shop for apps, the right one appears when you need it.',
-    process: 'Organized the store by intent, not category: what you\'re doing, where you are, what you\'re asking for. Then designed the product grammar letting captions, translation, notes, and Mentra AI coexist without feeling like a random pile of features.',
+    oneLiner: "Store discovery and app-use designs for the Mentra MiniApps platform.",
+    challenge: "Connect phone discovery with understandable app use and runtime status on glasses.",
+    outcome: "Original Store and app-use screens, with developer submission and permission flows identified separately as proposals. No end-to-end adoption result is established here.",
+    insight: "Distinguish discovery, launch, active status, and stopping an app.",
+    process: "Designed Store screens and phone controls alongside Notes, Call, Guidance, and glasses experiences.",
     whyItMatters: 'Meta Ray-Ban does what Meta decides. Mentra does what anyone with an idea builds for it. That\'s the difference between a gadget and a platform.',
     duration: 'Q4 2025–Q1 2026',
     team: 'Head of UI/UX, sole designer, with 4 engineers, product, and the open-source ecosystem',
     platforms: 'MentraOS, Companion App, Web developer portal',
     opinion: 'Parth calls this the hardest design problem in the whole Mentra project, harder than the OS. The store is where the platform thesis either proves itself or dies.',
     connectedTo: ['mentra', 'clawed-chat', 'executivelens'],
-    surprisingFact: 'The SDK docs follow a \'first MiniApp in 15 minutes\' philosophy, the quickstart produces a working app with one command.',
+    surprisingFact: "The supplied materials do not verify a fifteen-minute developer completion time.",
   },
   'moniac-machine': {
     oneLiner: 'A 1949 hydraulic economic computer reborn as a playable arcade cabinet where you run the economy.',
@@ -418,8 +419,8 @@ const deepMap: Record<string, ProjectDeep> = {
   },
   'revolving-stage': {
     oneLiner: 'A 15-foot revolving theatre stage, engineered from scratch to carry actors mid-rotation.',
-    challenge: 'Design an axle that revolves a 15 ft. platform on an 8 ft. base with 250+ kgs on it, stable enough for live actors, in 3 months, while leading a 65+ person team.',
-    outcome: 'Over a dozen rotations across seven scene changes, each under fifteen seconds. Audience members reported not noticing the mechanism beneath the set.',
+    challenge: "Design a 15 ft. rotating platform over an 8 ft. base around a 250 kg load target, within a three-month production.",
+    outcome: "Built stage and original assembly/performance documentation. Independent load, noise, and scene-change timing records are unavailable.",
     insight: 'Design is a systems discipline, not a visual one. Every aesthetic decision was also structural: parallax needed specific material thicknesses, transitions needed specific rotation speeds.',
     process: 'Engineered a four-part modular assembly, platform, steel axle with thrust bearings, twin rings of silent caster wheels, wooden base, sized to fit through standard doorways and assemble on-site in a day.',
     whyItMatters: 'Broadway-style stagecraft on a college competition budget. Proof that theatrical ambition needs careful engineering, not professional-grade money.',
@@ -428,7 +429,7 @@ const deepMap: Record<string, ProjectDeep> = {
     platforms: 'Physical fabrication, welding, carpentry, mechanical engineering',
     opinion: 'The climax says it all: the stage rotated 135 degrees with actors still on it, mid-dialogue, as the world changed around them. That\'s design as theatre, literally.',
     connectedTo: ['tedx', 'the-omakase', 'sea-of-salt'],
-    surprisingFact: 'The caster wheels were chosen for silence above all, a revolve that rumbles announces itself, and the illusion dies.',
+    surprisingFact: "The load figure is a design target, not a certified capacity.",
   },
   'sea-of-salt': {
     oneLiner: 'A physical storytelling machine that grinds real salt as you advance through a Norse folktale.',
@@ -795,7 +796,7 @@ const rules: Rule[] = [
       const unseen = (slug: string) => !visited.has(slug)
 
       if (ctx.persona === 'founder') {
-        return "For a founder evaluating 0→1 ownership:\n\n• **[Mentra](/mentra)**, full platform from scratch, OS + app + app store.\n• **[Clawed](/clawed-chat)**, AI trust architecture designed and shipped.\n• **[ZentiPay](/zentipay)**, founding designer, research to shipped product."
+        return "For a founder evaluating 0→1 ownership:\n\n• **[Mentra](/mentra)**, full platform from scratch, OS + app + app store.\n• **[Clawed](/clawed-chat)**, AI approval and receipt design proposals.\n• **[ZentiPay](/zentipay)**, founding designer, research to shipped product."
       }
       if (ctx.persona === 'peer') {
         const picks = [
@@ -807,7 +808,7 @@ const rules: Rule[] = [
       }
       // Default / recruiter / hm
       const picks = [
-        unseen('mentra') ? '• **[Mentra](/mentra)** for systems ambition, full OS, companion app, and app store.' : '• **[ExecutiveLens](/executivelens)** for AI meeting intelligence, 87% adoption.',
+        unseen('mentra') ? '• **[Mentra](/mentra)** for systems ambition, full OS, companion app, and app store.' : '• **[ExecutiveLens](/executivelens)** for a meeting-brief prototype with inspectable citations.',
         unseen('zentipay') ? '• **[ZentiPay](/zentipay)** for research rigor and trust-driven fintech thinking.' : '• **[TransFi](/transfi-project)** for payment-infrastructure scale and merchant UX.',
         unseen('jugalbandi') ? '• **[Jugalbandi](/jugalbandi)** for creative range beyond product UI.' : '• **[Clawed](/clawed-chat)** for AI trust architecture.',
       ]
@@ -841,7 +842,7 @@ const rules: Rule[] = [
       const q = (match.input || '').toLowerCase()
 
       if (/design system/i.test(q)) {
-        return "**Design systems fit:** Strong. ZentiPay required a fintech component system that could cover payment flows. Mentra required a cross-platform design language (glasses + phone + web). Butler's Slice (400+ glyphs) shows systematic precision.\n\n**Gap:** He hasn't worked on a design system as a standalone product, his systems work is always embedded in product design."
+        return "**Design systems fit:** Strong. ZentiPay required a fintech component system that could cover payment flows. Mentra required a cross-platform design language (glasses + phone + web). Butler's Slice (three static weights) shows systematic precision.\n\n**Gap:** He hasn't worked on a design system as a standalone product, his systems work is always embedded in product design."
       }
       if (/0.to.1|founding|early.stage|startup/i.test(q)) {
         return "**0→1 fit:** Very strong. ZentiPay (founding designer, built from scratch), Mentra (first-ever smart glasses app store), Clawed (AI trust model from zero).\n\nThe pattern: he doesn't wait for specs, he defines the product shape."
@@ -1061,7 +1062,7 @@ const rules: Rule[] = [
       const cat = categories.find(c => ctx.route.replace(/^\//, '') === c.slug)
       if (cat) { const f = cat.featured; return `**${f.title}**, ${f.desc}\n\n→ [/${f.slug}](/${f.slug})` }
 
-      if (ctx.persona === 'founder') return "If I had to pick three for a founder:\n\n• **[Mentra](/mentra)**, full platform ownership from zero\n• **[Clawed](/clawed-chat)**, AI trust architecture, shipped\n• **[ZentiPay](/zentipay)**, founding designer, research to product\n\nWhich one?"
+      if (ctx.persona === 'founder') return "If I had to pick three for a founder:\n\n• **[Mentra](/mentra)**, full platform ownership from zero\n• **[Clawed](/clawed-chat)**, AI approval and receipt design proposals\n• **[ZentiPay](/zentipay)**, founding designer, research to product\n\nWhich one?"
       if (ctx.persona === 'peer') return "If I had to pick three for creative range:\n\n• **[Jugalbandi](/jugalbandi)**, neural network that duets with humans\n• **[Enigma](/enigma)**, 200-neuron light sculpture\n• **[Mentra](/mentra)**, systems ambition at platform scale\n\nWhich one?"
 
       return "If I had to pick three:\n\n• **[Mentra](/mentra)**, most ambitious\n• **[ZentiPay](/zentipay)**, best research process\n• **[Jugalbandi](/jugalbandi)**, strongest creative range\n\nWhich one?"

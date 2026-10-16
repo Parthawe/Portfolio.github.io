@@ -1,6 +1,7 @@
 .evidence-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; margin-block: .75rem; color: var(--ink); font-size: .875rem; }
 .evidence-controls>div { display: flex; align-items: center; gap: .5rem; }
-.evidence-controls select { max-width: 100%; padding: .6rem; background: var(--bg); color: var(--ink); border: 1px solid var(--ink-20); border-radius: var(--radius); font: inherit; }
+.evidence-controls select { max-width: 100%; min-height:44px; height:44px; padding: .6rem; background: var(--bg); color: var(--ink); border: 1px solid var(--ink-20); border-radius: var(--radius); font: inherit; }
+.evidence-controls button { min-width:44px; min-height:44px; }
 .cs-screen-strip { min-width: 0; }
 .cs-screen-strip__rail { position: relative; display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x proximity; padding-block: .5rem 1rem; scrollbar-width: thin; }
 .cs-screen-strip__rail>figure { flex: 0 0 85%; margin: 0; scroll-snap-align: start; min-width: 0; }
