@@ -184,10 +184,6 @@ export const projects: Project[] = [
       { label: '7-day return', value: '22% → 41%', note: 'Later runtime phase. First-use return was 22% → 23%; cohort details unavailable publicly.' },
       { label: 'MiniApp task completion', value: '52% → 78%', note: 'Later runtime phase; dates and sample size unavailable publicly.' },
     ],
-    testimonial: {
-      quote: 'An app store on your face sounds absurd until you use it.',
-      cite: 'Early beta tester',
-    },
     hoverMedia: {
       src: '/Assets/images/mentra/appstore-device.png',
       alt: 'Mentra companion app store shown on a mobile device.',

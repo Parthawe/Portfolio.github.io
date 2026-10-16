@@ -63,7 +63,7 @@
   ],
   "contentCorrections": [
     "Creator confirmed The Point CDC as 2024; registry year and timeline corrected to match About and the case study",
-    "Mentra original quotation record is promised but not yet reviewed"
+    "Mentra original quotation record is promised but not yet reviewed; quote withheld from public views until verified"
   ],
   "performanceSample": {
     "run": 38971826645,
@@ -79,5 +79,14 @@
     "bestPractices": 100,
     "seo": 100,
     "interpretation": "Passes existing 70 median budget; the first-run result remains a limitation, not evidence of a performance improvement."
+  },
+  "previousCompleteCI": {
+    "head": "881225ce9cbdbb6f6d243adabbbbd17a3df092ed",
+    "run": 38975515476,
+    "jobs": {
+      "verify": "success",
+      "verify-experiences": "success",
+      "verify-reading": "success"
+    }
   }
 }
