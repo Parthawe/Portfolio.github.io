@@ -1,3 +1,4 @@
+import { readExperienceRegistry } from './project-experience-registry.mjs'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -40,6 +41,7 @@ const routeLabels = new Map([
   ['healthapp', 'Health App Concept'],
   ['medimorpho', 'NYU Langone'],
   ['mentra-miniapps', 'Mentra MiniApps'],
+  ['glassly', 'Glassly'],
   ['transfi-project', 'TransFi'],
   ['clawed-chat', 'Clawed'],
   ['executivelens', 'ExecutiveLens'],
@@ -64,6 +66,7 @@ const routeLabels = new Map([
   ['dna-speculative', 'DNA Speculative Design'],
 ])
 const routeDescriptions = new Map([
+  ['glassly', 'Glassly: product storytelling, brand guidelines and the original synchronized phone-and-glasses website demo by Parth Pawar.'],
   ['notes', 'Visitor notes and feedback on Parth Pawar’s portfolio. Leave a hello or share a thought.'],
   ['work', 'Selected work by Parth Pawar across AI wearables, fintech, UX design, creative technology, installations, and brand systems.'],
   ['about', 'About Parth Pawar, Product Designer and Head of UI/UX at Mentra.'],
@@ -96,6 +99,12 @@ const routeDescriptions = new Map([
   ['page-not-found', 'The requested page is not available in the public portfolio.'],
 ])
 const routeSocialPreviews = new Map([
+  ['glassly', {
+    image: '/Assets/Projects/Glassly/cover.webp',
+    alt: 'Glassly identity with attributed Even Realities G2 partner hardware.',
+    width: 1200,
+    height: 900,
+  }],
   ['medimorpho', {
     image: '/Assets/Projects/MediMorpho/nyu-langone-building.png',
     alt: 'NYU Langone Health building, the setting for an independent multilingual healthcare concept by Parth Pawar.',
@@ -134,15 +143,14 @@ const canonicalAliases = new Map([
 ])
 
 canonicalAliases.set('physical-worlds', 'project-experiences')
+canonicalAliases.set('typeface/workshop', readExperienceRegistry().find(item=>item.slug==='typeface')?.status==='approved'?'typeface/workshop':'typeface')
 routeLabels.set('project-experiences', 'Project experiences')
 routeDescriptions.set('project-experiences', 'Interactive product prototypes and physical project experiences by Parth Pawar.')
-for (const match of readFileSync(join(root, 'src/data/projectExperiences.ts'), 'utf8').matchAll(/slug: '([^']+)', mode: '([^']+)', description: '([^']+)'(?:, href: '([^']+)')?/g)) {
-  const [, slug, mode, description, href] = match
-  const target = mode === 'prototype' ? `${slug}/prototype` : href.replace(/^\//, '').split('#')[0]
-  canonicalAliases.set(`${slug}/world`, target)
-  if (mode !== 'prototype') canonicalAliases.set(`${slug}/prototype`, target)
-  routeLabels.set(`${slug}/prototype`, `${routeLabels.get(slug) || slug.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} prototype`)
-  routeDescriptions.set(`${slug}/prototype`, `${description}. Explore the project’s interactive prototype and documented workflow.`)
+for (const item of readExperienceRegistry()) {
+  const target = item.status === 'approved' ? item.href.replace(/^\//, '') : item.slug
+  canonicalAliases.set(`${item.slug}/world`, target)
+  canonicalAliases.set(`${item.slug}/prototype`, target)
+  // Withdrawn URLs carry the case-study metadata, never promises of a playable room.
 }
 
 const routePreloads = new Map([
@@ -182,6 +190,8 @@ function withRouteMeta(html, route, { noindex = false } = {}) {
     const imageUrl = `${siteOrigin}${socialPreview.image}`
     output = replaceMeta(output, 'property', 'og:image', imageUrl)
     output = replaceMeta(output, 'property', 'og:image:alt', socialPreview.alt)
+    if (socialPreview.width) output = replaceMeta(output, 'property', 'og:image:width', String(socialPreview.width))
+    if (socialPreview.height) output = replaceMeta(output, 'property', 'og:image:height', String(socialPreview.height))
     output = replaceMeta(output, 'name', 'twitter:image', imageUrl)
     output = replaceMeta(output, 'name', 'twitter:image:alt', socialPreview.alt)
   }
@@ -190,7 +200,7 @@ function withRouteMeta(html, route, { noindex = false } = {}) {
     output = output.replace('</head>', `    <link rel="preload" as="image" href="${preload}" fetchpriority="high" />\n  </head>`)
   }
   if (noindex) {
-    output = output.replace('</head>', '    <meta name="robots" content="noindex, nofollow" />\n  </head>')
+    output = output.replace('</head>', '    <meta name="robots" content="noindex,nofollow" data-rh="true" />\n  </head>')
   }
   return output
 }
@@ -212,7 +222,8 @@ const sitemapRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
   })
   .filter(Boolean)
 const routes = [...new Set([
-  'physical-worlds', 'project-experiences', 'shuffle/simulation',
+  'physical-worlds', 'project-experiences', 'shuffle/simulation', 'typeface/workshop',
+  ...(process.env.VITE_EXPERIENCE_PREVIEWS_ENABLED==='1'?['experience-preview',...readExperienceRegistry().filter(item=>item.status==='draft').map(item=>`experience-preview/${item.slug}`)]:[]),
   ...[...readFileSync(join(root,'src/data/projectExperiences.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/prototype`),
   ...[...readFileSync(join(root,'src/data/projectRoutes.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/world`),
   ...sitemapRoutes,
@@ -233,7 +244,7 @@ for (const route of routes) {
   if (route.includes('..')) continue
   const routeDir = join(distDir, route)
   mkdirSync(routeDir, { recursive: true })
-  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route))
+  writeFileSync(join(routeDir, 'index.html'), withRouteMeta(indexHtml, route, {noindex:route.startsWith('experience-preview')}))
   written += 1
 }
 

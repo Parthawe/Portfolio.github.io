@@ -31,7 +31,6 @@ export default function GlyphPlayground() {
   const [text, setText] = useState('Hamburgevons')
   const [weightIdx, setWeightIdx] = useState(1) // Regular
   const [fontSize, setFontSize] = useState(72)
-  const [sliced, setSliced] = useState(true)
   const [activeGlyph, setActiveGlyph] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -86,16 +85,7 @@ export default function GlyphPlayground() {
             />
           </div>
 
-          <div className="gp-control-group">
-            <label className="gp-label">Font</label>
-            <button
-              className={`gp-toggle-btn ${sliced ? 'active' : ''}`}
-              onClick={() => setSliced(s => !s)}
-            >
-              <span className="gp-toggle-option">{sliced ? "Butler's Slice" : 'Butler (Original)'}</span>
-              <span className="gp-toggle-switch">{sliced ? 'Sliced' : 'Original'}</span>
-            </button>
-          </div>
+
         </div>
 
         {/* Preview area */}
@@ -103,11 +93,10 @@ export default function GlyphPlayground() {
           <motion.p
             className="gp-preview-text"
             style={{
-              fontFamily: sliced ? weight.css : 'var(--tf-slice)',
+              fontFamily: weight.css,
               fontWeight: weight.value,
               fontSize: `${fontSize}px`,
             }}
-            key={sliced ? 'sliced' : 'original'}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}

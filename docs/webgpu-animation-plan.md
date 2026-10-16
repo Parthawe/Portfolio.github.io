@@ -5,7 +5,7 @@ Keep the existing appearance and interactions while reducing avoidable frame sch
 
 ## Implemented locally
 
-- Shared project rooms can opt into WebGPU with `?renderer=webgpu`, for example `/enigma/world?renderer=webgpu`.
+- Shared project rooms can opt into WebGPU with `?renderer=webgpu`, for example `/experience-preview/enigma?renderer=webgpu`.
 - The default remains WebGL. The WebGPU module loads only for the opt-in path on a secure context with a GPU API.
 - Initialization failure or a 3.5-second timeout falls back to WebGL. Three.js can also choose its own WebGL2 fallback. The canvas `data-renderer` records the actual backend.
 - Unmounted scenes dispose late initialization results. Device loss uses the existing scene fallback UI.

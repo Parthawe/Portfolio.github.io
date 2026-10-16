@@ -1,0 +1,50 @@
+[
+  {
+    "browser": "chromium",
+    "mobile": false,
+    "overflow": false,
+    "lazyGame": true,
+    "listingAndSearch": "pass",
+    "keyboardGuide": "pass",
+    "stopAndReload": "pass",
+    "themeToggle": "pass",
+    "directoryContext": "pass",
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "mobile": true,
+    "overflow": false,
+    "lazyGame": true,
+    "listingAndSearch": "pass",
+    "keyboardGuide": "pass",
+    "stopAndReload": "pass",
+    "themeToggle": "pass",
+    "directoryContext": "pass",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "mobile": false,
+    "overflow": false,
+    "lazyGame": true,
+    "listingAndSearch": "pass",
+    "keyboardGuide": "pass",
+    "stopAndReload": "pass",
+    "themeToggle": "pass",
+    "directoryContext": "pass",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "mobile": true,
+    "overflow": false,
+    "lazyGame": true,
+    "listingAndSearch": "pass",
+    "keyboardGuide": "pass",
+    "stopAndReload": "pass",
+    "themeToggle": "pass",
+    "directoryContext": "pass",
+    "errors": []
+  }
+]

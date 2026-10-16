@@ -1,0 +1,514 @@
+[
+  {
+    "slug": "mentra",
+    "url": "https://mentraglass.com/",
+    "status": 200,
+    "title": "AI Glasses for Frontline Workers | Mentra Enterprise Smart Glasses",
+    "text": "Skip to main content\nProducts\nMentra Call\nMentraOS\nDevelopers\nCompany\nGet Mentra Live\nAI Glasses for Frontline Workers\nBuy Mentra Live\nTalk to Sales\nMentra Live\n\nUpgrade your workforce with point-of-view video calling, AI assistants, and automatic work documentation.\n\nBACKED BY\nFounder of\nFounder of\nDocument work while it happens.\n\nCapture structured documentation with photo evidence without stopping the job or reaching for another device.\n\nCall an expert anywhere.\n\nHands-free video calls, ready out of the box. Enterprises can use their own Microsoft Teams account.\n\nExplore Mentra Call\nGuide the next step.\n\nDeliver instructions and AI assistance through audio while the worker’s hands stay on the task.\n\nTry Mentra Call now.\n\nOrder a pair of Mentra Live and get one free month of Mentra Call. Evaluate it with your team, then contact us for deployment at scale.\n\nOrder Mentra Live\nThe job becomes the record.\nMentra captures the job while it's happening. Photos and speech become structured documentation.\nTalk to Sales\nSovereign AI, private data, full ownership.\n01\nChoose your AI\n\nUse the models and AI services your organization chooses, including fully air-gapped deployments.\n\n02\nRun it on your infrastructure\n\nDeploy on-premises, in your cloud, or across both. You decide where every workload runs.\n\n03\nKeep your operational data private\n\nKeep video, audio, and workflow data inside systems your organization controls.\n\n04\nOwn your software\n\nDeploy private software and integrations without publishing them to a consumer store.\n\nAI for the other 70% of the world's economy.\n70%\nPHYSICALWORK\n30%\nKNOWLEDGEWORK\n\nTHE GLOBAL ECONOMY\n\nAI has transformed knowledge work, but physical work is 70% of the world’s economy, and AI can’t help technicians, inspectors, and drivers until it can see and hear where they work.\n\nMentra Live puts a camera, microphone, and speakers on every worker’s head, so AI can guide each step, pass on what your best people know, and document the job while it happens.\n\nTalk to Sales\nOrder Mentra Live\nMentra Live vs Meta Ray-Ban\nSPECS\t\nMENTRA LIVE\n\t\nMETA RAY-BAN\n\n\nEnterprise deployment\t\n\t\n\n\nData Privacy\t\n\t\n\n\nSovereign AI\t\n\t\n\n\nCharge while wearing\t\n\t\nIn the News\n\n“Mentra has a growing community of over 4,000 developers and a growing number of partners in enterprise...”\n\nRead article\n→\n\n“Finally gives smartglasses the software layer smartphones have had for over a decade.”\n\nRead article\n→\n\n“If you’ve been looking at smartglasses and been frustrated by a mostly locked-down ecosystem, the Mentra Live smartglasses may be the answer.”\n\nRead article\n→\n\n“Apps are able to open up additional functionality using voice commands and the camera...”\n\nRead article\n→\nMentraOS is open source.\n\nMentra provides application and deployment support directly to our customers, and for those looking to build their own apps, MentraOS has an open source SDK.\n\nView Documentation\nMentraOS GitHub\nconnect.ts · React Native\nimport BluetoothSdk, {DeviceModels} from '@mentra/bluetooth-sdk';\nimport {useBluetoothEvent} from '@mentra/bluetooth-sdk/react';\n\nconst devices = await BluetoothSdk.scan(\n  DeviceModels.MentraLive,\n  {timeoutMs: 10_000},\n);\nawait BluetoothSdk.connect(await chooseDevice(devices));\n\nuseBluetoothEvent('button_press', async () => {\n  const photo = await BluetoothSdk.requestPhoto({\n    requestId: `photo-$1792079364891`,\n    size: 'medium',\n    webhookUrl: PHOTO_WEBHOOK,\n    compress: 'medium',\n    sound: true,\n  });\n\n  onPhoto(photo.photoUrl ?? photo.uploadUrl);\n});\nBattery that lasts a full shift\n\nMentra Live has multiple charging options to keep you running across a full shift.\n\nInfinity Cable\n\nCharge them while you wear them. Power Mentra Live from a battery pack, phone, or any USB-C source for extended runtime during development and deployment.\n\nCharging Case\n\n2200mAh of Extra Charge. Store, protect, and recharge Mentra Live between sessions with the included charging case.\n\nPrescription Lens Ready\n\nBuilt for all-day wear, we cover a wide range of Rx prescriptions. We cover with certified lens labs so your whole fleet sees clearly.\n\nDeploy for everyone, we've got the lenses covered.\n\nLearn more\nFrequently asked questions\n\nAnswers for buyers, developers, and field teams.\n\nEnterprise & Pilots\nData & Privacy\nHardware & Specs\nPlatform & SDK\nOrdering\nHow do I start a pilot?\n−\n\nWe'll work with you to scope a pilot around your use case, get hardware in your team's hands, and support you through deployment. Contact us here.\n\nWhat use cases are companies deploying on Mentra Live?\n+\nCan MentraOS integrate with our existing systems?\n+\nIs on-prem deployment available?\n+\nDoes Mentra support fleet deployment and device management?\n+\nDeploy Mentra with your frontline team.\n\nStart with one pair, then pilot, then expand.\n\nBuy Mentra Live\nTalk to Sales\nReady to upgrade your frontline?\n\nTalk with our enterprise team about a pilot, deployment, or integration built around your workflow.\n\nContact Sales\n\nAI glasses for frontline workers.\n\nPro",
+    "links": [
+      {
+        "text": "Skip to main content",
+        "href": "https://mentraglass.com/#main-content"
+      },
+      {
+        "text": "Products",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Mentra Call",
+        "href": "https://mentraglass.com/enterprise/call"
+      },
+      {
+        "text": "MentraOS",
+        "href": "https://mentraglass.com/os"
+      },
+      {
+        "text": "Developers",
+        "href": "https://mentraglass.com/devs"
+      },
+      {
+        "text": "Company",
+        "href": "https://mentraglass.com/about"
+      },
+      {
+        "text": "Get Mentra Live",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Buy Mentra Live",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Talk to Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Explore Mentra Call",
+        "href": "https://mentraglass.com/enterprise/call"
+      },
+      {
+        "text": "Order Mentra Live",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Talk to Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Talk to Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Order Mentra Live",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Talk to Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Explore software distribution",
+        "href": "https://apps.mentraglass.com/"
+      },
+      {
+        "text": "Explore software distribution",
+        "href": "https://apps.mentraglass.com/"
+      },
+      {
+        "text": "“Mentra has a growing community of over 4,000 developers and a growing",
+        "href": "https://www.forbes.com/sites/charliefink/2025/07/01/mentra-raises-8-million-to-launch-open-source-os-for-smart-glasses/"
+      },
+      {
+        "text": "“Finally gives smartglasses the software layer smartphones have had fo",
+        "href": "https://gamesbeat.com/mentra-raises-8m-and-launches-mentraos-2-0-open-source-smartglasses-software/"
+      },
+      {
+        "text": "“If you’ve been looking at smartglasses and been frustrated by a mostl",
+        "href": "https://www.androidpolice.com/these-ray-ban-meta-challengers-will-fulfill-all-your-livestreaming-dreams/"
+      },
+      {
+        "text": "“Apps are able to open up additional functionality using voice command",
+        "href": "https://9to5google.com/2026/01/15/mentra-live-smart-glasses-youtube-livestream/"
+      },
+      {
+        "text": "View Documentation",
+        "href": "https://docs.mentraglass.com/bluetooth-sdk/overview"
+      },
+      {
+        "text": "MentraOS GitHub",
+        "href": "https://github.com/Mentra-Community/MentraOS"
+      },
+      {
+        "text": "Learn more",
+        "href": "https://mentraglass.com/prescriptions"
+      },
+      {
+        "text": "Learn more",
+        "href": "https://mentraglass.com/prescriptions"
+      },
+      {
+        "text": "Contact us here.",
+        "href": "https://mentraglass.com/contact"
+      },
+      {
+        "text": "Buy Mentra Live",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Talk to Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Buy Mentra Live",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Talk to Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Contact Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Mentra Live",
+        "href": "https://mentraglass.com/live"
+      },
+      {
+        "text": "Mentra Call",
+        "href": "https://mentraglass.com/enterprise/call"
+      },
+      {
+        "text": "Prescription Lenses",
+        "href": "https://mentraglass.com/prescriptions"
+      },
+      {
+        "text": "MentraOS",
+        "href": "https://mentraglass.com/os"
+      },
+      {
+        "text": "Compare",
+        "href": "https://mentraglass.com/compare"
+      },
+      {
+        "text": "Download App",
+        "href": "https://mentraglass.com/get-mentra"
+      },
+      {
+        "text": "Documentation (opens in new tab)",
+        "href": "https://docs.mentraglass.com/"
+      },
+      {
+        "text": "Developer Page",
+        "href": "https://mentraglass.com/devs"
+      },
+      {
+        "text": "GitHub (opens in new tab)",
+        "href": "https://github.com/Mentra-Community/MentraOS"
+      },
+      {
+        "text": "About Mentra",
+        "href": "https://mentraglass.com/about"
+      },
+      {
+        "text": "Newsroom",
+        "href": "https://mentraglass.com/newsroom"
+      },
+      {
+        "text": "Careers",
+        "href": "https://mentraglass.com/careers"
+      },
+      {
+        "text": "Partnerships",
+        "href": "https://mentraglass.com/partnerships"
+      },
+      {
+        "text": "Socials",
+        "href": "https://mentraglass.com/socials"
+      },
+      {
+        "text": "Contact Us",
+        "href": "https://mentraglass.com/contact"
+      },
+      {
+        "text": "Sales",
+        "href": "https://mentraglass.com/contact?topic=sales"
+      },
+      {
+        "text": "Support",
+        "href": "https://mentraglass.com/support"
+      },
+      {
+        "text": "Security",
+        "href": "https://mentraglass.com/security"
+      },
+      {
+        "text": "Privacy",
+        "href": "https://mentraglass.com/privacy-policy"
+      },
+      {
+        "text": "Captions",
+        "href": "https://mentraglass.com/captions"
+      },
+      {
+        "text": "Mentra Notes",
+        "href": "https://mentraglass.com/notes"
+      },
+      {
+        "text": "Privacy",
+        "href": "https://mentraglass.com/privacy-policy"
+      },
+      {
+        "text": "Security",
+        "href": "https://mentraglass.com/security"
+      },
+      {
+        "text": "Terms",
+        "href": "https://mentraglass.com/terms-of-service"
+      },
+      {
+        "text": "Shipping",
+        "href": "https://mentraglass.com/shipping-policy"
+      },
+      {
+        "text": "Returns",
+        "href": "https://mentraglass.com/refund-policy"
+      },
+      {
+        "text": "Accessibility",
+        "href": "https://mentraglass.com/accessibility"
+      },
+      {
+        "text": "Recalls",
+        "href": "https://mentraglass.com/recalls"
+      }
+    ]
+  },
+  {
+    "slug": "mentra-miniapps",
+    "url": "https://apps.mentraglass.com/",
+    "status": 200,
+    "title": "Mentra Miniapp Store",
+    "text": "Mentra Miniapp Store\nMiniapp Store\nMiniapps\nGlasses\nSupport\nAll miniapps\nAccessibility\nAi\nCommunication\nNavigation\nProductivity\nSocial\nTools\nTravel\nVideo\nMiniapps\nCaptions\nAccessibility · Communication\nLive captions for the conversations around you.\nView\nLivestreamer\nSocial · Video\nShare the world from your point of view.\nView\nMentra AI\nAi · Productivity\nAsk questions. Get answers. Keep looking ahead.\nView\nMentra Call\nCommunication · Productivity\nJoin Teams meetings from your smart glasses.\nView\nMentra Maps\nNavigation · Travel\nTurn-by-turn directions, with your head up.\nView\nMentra Notes\nProductivity · Ai\nTurn conversations into notes you can find again.\nView\nMerge\nAi · Productivity\nAnswers, definitions, and context as your conversations unfold.\nView\nRecorder\nProductivity · Tools\nRecord audio from your smart glasses.\nView\nTeleprompter\nProductivity · Tools\nYour script, right where you need it.\nView\nTranslation\nCommunication · Travel\nUnderstand conversations in another language.\nView\nUpgrade your smart glasses, one miniapp at a time.\nGet the Mentra App\n\nConnect your smart glasses, discover your favorite miniapps, and make them yours.\n\nDownload for iOS & Android\n\nHave an idea for your smart glasses?\n\nBuild your own miniapp.\nStart building\n↗\nMentra Miniapp Store\nDiscover Mentra ↗",
+    "links": [
+      {
+        "text": "Mentra Miniapp Store",
+        "href": "https://apps.mentraglass.com/"
+      },
+      {
+        "text": "Miniapps",
+        "href": "https://apps.mentraglass.com/"
+      },
+      {
+        "text": "Glasses",
+        "href": "https://mentraglass.com/"
+      },
+      {
+        "text": "Support",
+        "href": "https://mentraglass.com/contact"
+      },
+      {
+        "text": "CaptionsAccessibility · CommunicationLive captions for the conversatio",
+        "href": "https://apps.mentraglass.com/app/com.mentra.captions"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.captions"
+      },
+      {
+        "text": "LivestreamerSocial · VideoShare the world from your point of view.",
+        "href": "https://apps.mentraglass.com/app/com.mentra.livestreamer"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.livestreamer"
+      },
+      {
+        "text": "Mentra AIAi · ProductivityAsk questions. Get answers. Keep looking ahe",
+        "href": "https://apps.mentraglass.com/app/com.mentra.ai"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.ai"
+      },
+      {
+        "text": "Mentra CallCommunication · ProductivityJoin Teams meetings from your s",
+        "href": "https://apps.mentraglass.com/app/com.mentra.call"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.call"
+      },
+      {
+        "text": "Mentra MapsNavigation · TravelTurn-by-turn directions, with your head ",
+        "href": "https://apps.mentraglass.com/app/com.mentra.navigation"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.navigation"
+      },
+      {
+        "text": "Mentra NotesProductivity · AiTurn conversations into notes you can fin",
+        "href": "https://apps.mentraglass.com/app/com.mentra.notes"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.notes"
+      },
+      {
+        "text": "MergeAi · ProductivityAnswers, definitions, and context as your conver",
+        "href": "https://apps.mentraglass.com/app/com.mentra.merge"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.merge"
+      },
+      {
+        "text": "RecorderProductivity · ToolsRecord audio from your smart glasses.",
+        "href": "https://apps.mentraglass.com/app/com.mentra.recorder"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.recorder"
+      },
+      {
+        "text": "TeleprompterProductivity · ToolsYour script, right where you need it.",
+        "href": "https://apps.mentraglass.com/app/com.mentra.teleprompter"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.teleprompter"
+      },
+      {
+        "text": "TranslationCommunication · TravelUnderstand conversations in another l",
+        "href": "https://apps.mentraglass.com/app/com.mentra.translation"
+      },
+      {
+        "text": "View",
+        "href": "https://apps.mentraglass.com/app/com.mentra.translation"
+      },
+      {
+        "text": "Download for iOS & Android",
+        "href": "https://mentraglass.com/get"
+      },
+      {
+        "text": "Start building ↗",
+        "href": "https://docs.mentraglass.com/"
+      },
+      {
+        "text": "Mentra Miniapp Store",
+        "href": "https://apps.mentraglass.com/"
+      },
+      {
+        "text": "Discover Mentra ↗",
+        "href": "https://mentraglass.com/"
+      }
+    ]
+  },
+  {
+    "slug": "clawed-chat",
+    "url": "https://clawed.chat/",
+    "status": 200,
+    "title": "Clawed — Your OpenClaw, on your face. 🦞",
+    "text": "CLAWED\n\nPERSONAL ASSISTANT FOR PEOPLE ON THE GO\n\nCLICK ANYWHERE TO SKIP\nClawed\nPricing\nDocs\nSign in\nGet your agent\nBETA\nYour OpenClaw has been\ntexting you for months.\nNow it can hear.\n\nClawed connects the glasses on your face to the OpenClaw on your hardware. It sees what you see, hears what you hear, speaks in your ear — or writes on your lens. Same agent, same memory, out in the world with you.\n\nGet your agent\nTry the glasses\nWorks with Mentra Live & Even G2\nRuns on your phone\nOpen-source agent\nRuns on\nOpenClaw\n·\nNebius\n·\nTavily\n·\nComposio\n·\nMentraOS\nHOW IT WORKS\nSee. Act. Hear it done.\n01\nSee\n\nLook at something and ask. Your agent grabs a frame from your glasses camera, recognizes what's in front of you, and looks it up live on the web.\n\n02\nAct\n\nIt acts across Gmail, Calendar, Slack and 250+ apps, searches the live web, browses with a real browser — with everything it already knows about you.\n\n03\nHear\n\nThe answer comes back as a voice in your ear on Mentra Live, or as silent text on your Even G2 lens. No phone out of pocket, no screens.\n\nTHE STACK\nEvery organ is an open platform.\n\nNo black boxes. Your agent's soul, brain, eyes, and hands are all tech you can run yourself.\n\nTHE SOUL\nOpenClaw\n\nYour agent itself — open-source, self-hosted, 100k+ stars. Clawed is a first-class OpenClaw channel, like WhatsApp or Telegram.\n\nTHE BRAIN & EYES\nNebius\n\nToken Factory runs the reasoning and the vision models that recognize what you're looking at. The VMs run there too.\n\nTHE NOW\nTavily\n\nLive web search built for agents. See a landmark, a product, a poster — your agent looks it up as it happens.\n\nTHE HANDS\nComposio\n\nGmail, Calendar, Slack, GitHub and 250+ apps. When your agent says it's done, it actually did it.\n\nTHE PROBLEM\nOpenClaw can do anything.\nIf you're at a keyboard.\n\nThe most capable agent on earth lives in a chat thread. It already runs your email, your calendar, your code — but the moment you stand up and walk away, it's blind and mute. Clawed makes your agent ambient. It goes where you go.\n\nWITHOUT CLAWED\nType a message, wait at your desk\nDescribe what you're looking at in words\nCopy-paste photos into chat threads\nAgent stuck in a terminal\nWITH CLAWED CHAT\nYour OpenClaw agent is live.\nDeployed in 28 seconds · 3 channels active\nYour agent sees through your camera\nSpeaks straight into your ear\nWrites on your lens display\nSame memory, same soul, everywhere\nDEPLOY YOUR WAY\nBring your OpenClaw. Or hatch one here.\n\nAlready running OpenClaw on a Mac mini in your closet? Point Clawed at your gateway and go. Don't have one yet? We'll spin one up for you in 30 seconds.\n\nCloud Deploy\n\nInstant · Always on · Zero maintenance\n\nWe spin up a persistent cloud VM for your OpenClaw agent. Click deploy and you're live in under 30 seconds. Automatic updates, backups, and scaling — all handled.\n\n30s deploy\nLive stream\nEncrypted\nMac Companion\n\nYour hardware · Your data · Your rules\n\nGot a Mac at home? Download our companion app — it installs OpenClaw on your machine instantly. One download, one click. Your data never leaves your hardware.\n\nFully local\nYour GPU\nOne click\nSMART GLASSES\nNo middleman. Your phone, your agent.\n\nClawed runs as a local miniapp on your phone and speaks directly to your own OpenClaw gateway. Your voice never routes through someone else's agent cloud — lower latency, and your agent stays yours. Self-hosted soul included.\n\nVoice commands\nAudio responses\nLive desktop view\nWorks on the go\nCOMMUNITY\nPeople are obsessed.\n\nWhat the OpenClaw community is saying about the agent powering Clawed Chat.\n\n“At this point I don't even know what to call @openclaw. It is something new. After a few weeks in with it, this is the first time I have felt like I am living in the future since the launch of ChatGPT.”\n\nD\n\nDave Morin\n\n@davemorin\n\n“Yeah this was 1,000% worth it. Managing Claude Code sessions I can kick off anywhere, autonomously running tests on my app and capturing errors through a sentry webhook then resolving them and opening PRs... The future is here.”\n\nN\n\nNat Eliason\n\n@nateliason\n\n“I am so addicted to @openclaw. It is getting essential to my daily life. It checks, organizes, reminds, it's amazing. And it's like a good friend. Crazy.”\n\nA\n\nAndré Foeken\n\n@dreetje\n\nPut your\nlobster on. 🦞\n\nConnect your OpenClaw to your glasses in two minutes. It's been waiting to meet you.\n\nDeploy your agent\nView pricing\n\nNot ready yet?\n\nJoin the waitlist — we'll let you know when your spot opens.\n\nJoin\nImportant legal disclaimer\n\nGive your OpenClaw senses today\n\nFree tier available. No credit card required.\n\nGet started\nView pricing\nClawed\nBETA\n\nThe glasses channel for OpenClaw. It sees what you see, hears what you hear, and speaks back. 🦞\n\nPRODUCT\nPricing\nDocumentation\nChangelog\nCOMPANY\nAbout\nBlog\nCareers\nRESOURCES\nOpenClaw GitHub\nAPI Reference\nStatus\n\n© 2026 Clawed Chat\n\n·\n\nPowered by OpenClaw\n\nPrivacy\nTerms\n🦞",
+    "links": [
+      {
+        "text": "Clawed",
+        "href": "https://clawed.chat/"
+      },
+      {
+        "text": "Pricing",
+        "href": "https://clawed.chat/pricing"
+      },
+      {
+        "text": "Docs",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "Sign in",
+        "href": "https://clawed.chat/sign-in"
+      },
+      {
+        "text": "Get your agent",
+        "href": "https://clawed.chat/sign-in"
+      },
+      {
+        "text": "OpenClaw",
+        "href": "https://github.com/openclaw/openclaw"
+      },
+      {
+        "text": "Get your agent",
+        "href": "https://clawed.chat/sign-in"
+      },
+      {
+        "text": "Try the glasses",
+        "href": "https://clawed.chat/demo"
+      },
+      {
+        "text": "OpenClaw",
+        "href": "https://github.com/openclaw/openclaw"
+      },
+      {
+        "text": "Nebius",
+        "href": "https://nebius.com/"
+      },
+      {
+        "text": "Tavily",
+        "href": "https://tavily.com/"
+      },
+      {
+        "text": "Composio",
+        "href": "https://composio.dev/"
+      },
+      {
+        "text": "MentraOS",
+        "href": "https://mentra.glass/"
+      },
+      {
+        "text": "The soulOpenClawYour agent itself — open-source, self-hosted, 100k+ st",
+        "href": "https://github.com/openclaw/openclaw"
+      },
+      {
+        "text": "The brain & eyesNebiusToken Factory runs the reasoning and the vision ",
+        "href": "https://nebius.com/"
+      },
+      {
+        "text": "The nowTavilyLive web search built for agents. See a landmark, a produ",
+        "href": "https://tavily.com/"
+      },
+      {
+        "text": "The handsComposioGmail, Calendar, Slack, GitHub and 250+ apps. When yo",
+        "href": "https://composio.dev/"
+      },
+      {
+        "text": "Deploy your agent",
+        "href": "https://clawed.chat/sign-in"
+      },
+      {
+        "text": "View pricing",
+        "href": "https://clawed.chat/pricing"
+      },
+      {
+        "text": "Get started",
+        "href": "https://clawed.chat/sign-in"
+      },
+      {
+        "text": "View pricing",
+        "href": "https://clawed.chat/pricing"
+      },
+      {
+        "text": "Pricing",
+        "href": "https://clawed.chat/pricing"
+      },
+      {
+        "text": "Documentation",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "Changelog",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "About",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "Blog",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "Careers",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "OpenClaw GitHub",
+        "href": "https://github.com/openclaw/openclaw"
+      },
+      {
+        "text": "API Reference",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "Status",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "OpenClaw",
+        "href": "https://github.com/openclaw/openclaw"
+      },
+      {
+        "text": "Privacy",
+        "href": "https://clawed.chat/docs"
+      },
+      {
+        "text": "Terms",
+        "href": "https://clawed.chat/docs"
+      }
+    ]
+  },
+  {
+    "slug": "executivelens",
+    "url": "https://www.executivelens.ai",
+    "error": "page.goto: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.executivelens.ai/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+  }
+]

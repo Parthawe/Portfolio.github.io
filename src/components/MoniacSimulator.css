@@ -1,0 +1,61 @@
+.moniac-game { --moniac-bg:var(--surface); --moniac-ink:var(--ink); --moniac-muted:var(--ink-60); --moniac-rule:var(--ink-20); --moniac-accent:#075d93; --moniac-fill:#67bfed; --moniac-danger:#a63832; color:var(--moniac-ink); border-color:var(--moniac-rule)!important; }
+[data-theme=dark] .moniac-game { --moniac-danger:#f2a199; --moniac-accent:#8ed2f3; }
+.moniac-policy { padding:20px; border-top:1px solid var(--moniac-rule); }
+.moniac-policy select { display:block; margin-top:8px; padding:12px; background:var(--moniac-bg); color:var(--moniac-ink); border:1px solid var(--moniac-rule); min-height:44px; font:inherit; width:min(100%,320px); }
+.moniac-policy-detail { margin-block:24px 8px; padding-top:20px; border-top:1px solid var(--moniac-rule); }
+
+.moniac-policy-detail p { max-width:65ch; font:16px/1.65 var(--sans); }
+
+.moniac-policy summary { min-height:44px; cursor:pointer; }
+.moniac-game :is(button,input,select,summary):focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+.moniac-game .moniac-slider { min-height:44px!important; outline:revert!important; }
+@media(max-width:540px) { .moniac-policy-detail { align-items:flex-start; flex-wrap:wrap; gap:16px; } .moniac-policy-detail > div:first-child { flex-basis:100%!important; } }
+@media(prefers-reduced-motion:reduce) { .moniac-game *, .moniac-game *::before, .moniac-game *::after { animation:none!important; transition:none!important; } }
+.moniac-experiment-controls { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:16px; }
+.moniac-experiment-controls button { min-height:44px; padding:10px 14px; background:var(--moniac-bg); color:var(--moniac-ink); border:1px solid var(--moniac-rule); }
+.moniac-step-results { width:100%; border-collapse:collapse; margin-block:16px; font-variant-numeric:tabular-nums; font-size:14px; }
+.moniac-step-results :is(th,td) { text-align:start; padding:10px 6px; border-bottom:1px solid var(--moniac-rule); }
+.moniac-step-results caption { text-align:start; padding-block:12px; font:14px/1.6 var(--sans); }
+
+.moniac-game .moniac-session-controls:empty { display:none; }
+.moniac-console-header { border-bottom:1px solid var(--moniac-rule)!important; min-height:82px; }
+.moniac-gauge-caption { font:14px/1.65 var(--sans); color:var(--moniac-muted); margin:12px 0; }
+.moniac-policy-detail h3 { font:600 20px/1.4 var(--sans); margin:0 0 8px; }
+.moniac-experiment-controls button:hover { background:var(--ink-06); }
+
+.moniac-machine-layout{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:24px;margin-top:24px;align-items:start}
+.moniac-isometric-screen{background:#211f1e;color:#fff;min-width:0;overflow:hidden;border-radius:4px}
+.moniac-isometric-screen svg{display:block;width:100%;height:auto;font-family:Arial,Helvetica,sans-serif;isolation:isolate}
+.hydraulic-floor{stroke:#aeb2bc;opacity:.08;stroke-width:1;fill:none}
+.moniac-glass polygon{stroke:#e1e4e8;stroke-opacity:.46;stroke-width:1.5;stroke-linejoin:round}
+.moniac-glass .hydraulic-back{fill:#c9cbce;fill-opacity:.12}
+.moniac-glass .hydraulic-front{fill:#d5d5d5;fill-opacity:.14}
+.moniac-glass .hydraulic-side{fill:#d3d3d3;fill-opacity:.21}
+.moniac-glass .hydraulic-top{fill:#e9e9e9;fill-opacity:.24}
+.moniac-water polygon,.moniac-blue-pipe polygon{stroke:#91e7ff;stroke-opacity:.55;stroke-width:1.3;stroke-linejoin:round;fill:var(--water-gradient)}
+.moniac-water .hydraulic-back{fill-opacity:.65}.moniac-water .hydraulic-front{fill-opacity:.78}.moniac-water .hydraulic-side{fill-opacity:.75}.moniac-water .hydraulic-top{fill:#41cfff;fill-opacity:.9}
+.moniac-blue-pipe .hydraulic-front{fill-opacity:.55}.moniac-blue-pipe .hydraulic-side{fill-opacity:.7}.moniac-blue-pipe .hydraulic-top{fill:#51ddf0;fill-opacity:.7}
+.hydraulic-float .moniac-glass polygon{fill:#f5f5f5;fill-opacity:.5;stroke-opacity:.1}
+.hydraulic-label{fill:#f4f4f4;font-size:25px;font-weight:400;letter-spacing:.2px}
+.hydraulic-percent{fill:#f9ffff;font-size:34px;font-weight:400;font-variant-numeric:tabular-nums}
+.hydraulic-timer{fill:#eee;font-size:28px;font-weight:300}.hydraulic-clock{font-size:64px;font-variant-numeric:tabular-nums}
+.hydraulic-valve{cursor:ns-resize;touch-action:none;outline:none}
+.hydraulic-valve[aria-disabled=true]{cursor:pointer}
+.hydraulic-valve .moniac-glass polygon{fill:#e5e5e5;fill-opacity:.8;stroke:#e8e8e8;stroke-opacity:.7}
+.valve-stem,.valve-rim,.valve-spokes{stroke:#fff;stroke-width:3;fill:none}
+.valve-rim{fill:#353535;fill-opacity:.55}.valve-hub{fill:#fff}.valve-spokes{transition:transform .2s ease}
+.valve-touch-target{fill:transparent;stroke:none;pointer-events:all}.valve-focus-ring{fill:none;stroke:transparent;stroke-width:2}
+.hydraulic-valve:is(:hover,:focus-visible) .valve-focus-ring{stroke:#8fddff}
+.hydraulic-valve:focus-visible .valve-focus-ring{stroke:#fff;stroke-width:4}
+.hydraulic-interaction-hint{font:12px/1.5 var(--sans);color:#d1d1d1;padding:0 18px 14px;margin:0}
+.moniac-control-inspector{position:sticky;top:110px;padding-top:8px;min-width:0}
+.moniac-control-inspector>label{display:flex;gap:12px;justify-content:space-between;font-size:16px}
+.moniac-control-inspector>p{font-size:14px;line-height:1.6;color:var(--moniac-muted)}
+.moniac-policy-detail{margin-top:16px}.moniac-control-inspector .moniac-policy-detail p{font-size:14px}
+@media(max-width:800px){.moniac-machine-layout{grid-template-columns:minmax(0,1fr)}.moniac-control-inspector{position:static}.moniac-isometric-screen{width:100%}}
+.hydraulic-return-loop .return-body{fill:none;stroke:var(--water-gradient);stroke-width:28;stroke-linejoin:miter;opacity:.8}
+.hydraulic-return-loop .return-edge{fill:none;stroke:#a8eaff;stroke-opacity:.65;stroke-width:1.5;stroke-linejoin:miter}
+.hydraulic-return-loop .return-seam{stroke-opacity:.35}
+.hydraulic-pump .moniac-glass .hydraulic-front{fill:#4a4a4a;fill-opacity:1;stroke:#777}
+.hydraulic-pump .moniac-glass .hydraulic-side{fill:#393939;fill-opacity:1;stroke:#777}
+.hydraulic-pump .moniac-glass .hydraulic-top{fill:#666;fill-opacity:1;stroke:#858585}

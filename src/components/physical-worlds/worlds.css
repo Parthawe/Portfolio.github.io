@@ -58,3 +58,56 @@
 
 .jugalbandi-instruments { display: flex; flex-wrap: wrap; gap: .25rem; padding: 0 1rem .75rem; }
 .jugalbandi-instruments button { border-color: var(--world-rule); min-height: 44px; }
+.world-story { padding: 1rem; border-top: 1px solid var(--world-rule); }
+.world-story p { margin: .5rem 0 0; color: var(--world-muted); line-height: 1.6; }
+.world-evidence { margin: 0 0 1rem; }
+.world-evidence summary { cursor: pointer; padding: .75rem 0; }
+.world-evidence img { display: block; width: min(100%, 680px); max-height: 520px; object-fit: contain; margin-block: 1rem; }
+.moniac-session-controls { display: flex; flex-wrap: wrap; gap: 12px; padding: 12px; }
+.moniac-session-controls button { color: var(--ink); background: var(--bg); border: 1px solid var(--ink-20); border-radius: var(--radius-sm); min-height: 44px; padding: 8px 16px; }
+.world-primary { display:flex; align-items:center; flex-wrap:wrap; gap:16px; padding:12px 16px; border-block:1px solid var(--world-rule); }
+.world-primary label { display:flex; align-items:center; gap:12px; }
+.world-primary input { width:64px; min-height:44px; font:24px var(--sans); text-align:center; background:var(--world-bg); color:var(--world-ink); border:1px solid var(--world-rule); }
+.world-primary select { margin:0; width:auto; min-width:150px; }
+.world-primary p { font-size:14px; margin:0; color:var(--world-muted); }
+.world-readout { padding:16px; border-top:1px solid var(--world-rule); }
+.world-readout p { margin:0; max-width:78ch; line-height:1.65; font-size:14px; }
+.world-mobile-tools { display:none; }
+.physical-world button { min-height:44px; }
+.physical-world-stage { height:clamp(360px,43vw,580px); }
+@media(max-width:680px) { .physical-world-stage { height:clamp(290px,44svh,380px); } .physical-world-controls { grid-template-columns:1fr; } .world-desktop-controls { display:none; } .world-mobile-tools { display:block; margin-top:12px; border-color:var(--world-rule)!important; width:100%; } .world-readout { padding:12px; } .physical-world-hint { font-size:12px!important; } }
+
+.physical-world > header .physical-world-actions > .glass-segments { flex-wrap:nowrap; min-width:0; }
+@media(max-width:680px) { .physical-world > header .physical-world-actions { display:grid; grid-template-columns:minmax(0,1fr) auto; width:100%; } .physical-world > header .physical-world-actions > .glass-segments { display:flex; width:100%; } .physical-world > header .physical-world-actions > .glass-segments button { min-width:0; padding-inline:8px; } .physical-world > header .physical-world-actions > button:not(.glass-action) { grid-column:1/-1; } }
+.world-turn-actions { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.world-turn-actions button { border-color:var(--world-rule); }
+.physical-world-stage.world-original-experiment { height:auto; }
+.physical-world .world-original-experiment .physical-world-hint { display:block; position:static; width:auto; max-width:none; margin:0; padding:12px 16px; border-radius:0; line-height:1.6; }
+.world-original-experiment [tabindex="0"]:focus-visible { outline:3px solid var(--world-accent); outline-offset:-3px; }
+.world-stage-plan { display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin:0; padding:16px; border-top:1px solid var(--world-rule); }
+.world-stage-plan svg { width:160px; height:160px; }
+.world-stage-plan figcaption { flex:1; min-width:160px; font-size:14px; line-height:1.6; }
+.world-original-experiment > div > div:last-of-type { grid-template-columns:auto minmax(0,1fr) auto!important; gap:8px!important; left:8px!important; right:8px!important; }
+
+/* Project-specific presentation keeps the original object in the foreground. */
+.physical-world[data-project="enigma"] { --world-accent:#48657e; }
+.enigma-letter-keys { display:grid; grid-template-columns:repeat(13,minmax(0,1fr)); padding:12px 16px; gap:6px; border-top:1px solid var(--world-rule); }
+.enigma-letter-keys button { border-color:var(--world-rule); font-size:16px; min-width:0; }
+.world-stage-plan svg { width:190px; height:190px; }
+@media(max-width:680px){.enigma-letter-keys { grid-template-columns:repeat(7,minmax(0,1fr)); padding:12px; gap:4px; }.enigma-letter-keys button { padding:8px 0; }.world-stage-plan svg { width:200px; height:200px; }}
+
+/* Enigma uses the sculpture's monochrome palette. */
+.physical-world[data-project="enigma"] { --world-bg:#f4f4f4; --world-ink:#222; --world-muted:#606060; --world-rule:#bcbcbc; --world-selected:#dedede; --world-accent:#333; }
+.physical-world[data-project="enigma"][data-world-theme="dark"] { --world-bg:#1e1e1e; --world-ink:#f2f2f2; --world-muted:#bdbdbd; --world-rule:#555; --world-selected:#3b3b3b; --world-accent:#eee; }
+.physical-world[data-project="enigma"] .physical-world-hint { background:#262626; color:#eee; }
+.physical-world[data-project="enigma"] .world-primary button { min-height:44px; padding:8px 14px; border:1px solid var(--world-rule); border-radius:6px; background:var(--world-bg); color:var(--world-ink); }
+.physical-world[data-project="enigma"] .world-primary button[aria-pressed="true"] { background:var(--world-selected); }
+.physical-world[data-project="enigma"] .world-primary button:disabled { opacity:.45; }
+.physical-world[data-project="enigma"] canvas { touch-action:none; }
+
+/* Black Hole keeps its controls in the installation's neutral palette. */
+.physical-world[data-project="black-hole"] { --world-bg:#f4f4f4; --world-ink:#222; --world-muted:#606060; --world-rule:#bcbcbc; --world-selected:#dedede; --world-accent:#333; }
+.physical-world[data-project="black-hole"][data-world-theme="dark"] { --world-bg:#1e1e1e; --world-ink:#f2f2f2; --world-muted:#bdbdbd; --world-rule:#555; --world-selected:#3b3b3b; --world-accent:#eee; }
+.physical-world[data-project="black-hole"] .physical-world-hint { background:#262626; color:#eee; }
+.physical-world[data-project="black-hole"] input.portfolio-slider[type="range"] { --slider-accent:var(--world-ink); --slider-rail:#bcbcbc; --slider-glass:rgba(255,255,255,.76); --slider-glass-active:rgba(245,245,245,.38); --slider-edge:rgba(80,80,80,.26); --slider-shadow:rgba(30,30,30,.22); }
+.physical-world[data-project="black-hole"][data-world-theme="dark"] input.portfolio-slider[type="range"] { --slider-rail:#555; --slider-glass:rgba(240,240,240,.72); --slider-glass-active:rgba(215,215,215,.28); --slider-edge:rgba(240,240,240,.65); --slider-shadow:rgba(0,0,0,.34); }

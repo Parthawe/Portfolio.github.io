@@ -59,4 +59,5 @@ export const projectRoutes: ProjectRoute[] = [
   { slug: 'typeface', page: () => import('../pages/projects/TypefacePage') },
   { slug: 'atps', page: () => import('../pages/projects/AtpsPage') },
   { slug: 'vishwaconclave', page: () => import('../pages/projects/VishwaConclavePage') },
+  { slug: 'glassly', page: () => import('../pages/projects/GlasslyPage') },
 ]

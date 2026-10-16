@@ -1,4 +1,3 @@
-import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
@@ -64,7 +63,7 @@ export default function MoniacMachinePage() {
         <CsSection id="cs-interactive" label="Interactive" title="Run the Economy">
           <CsBody>
             <p className="cs-caption">Browser adaptation of the cabinet game, using simplified rules. This is not an economic forecast or a reconstruction of the historic hydraulic machine.</p>
-            <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. The room lets you explore the physical cabinet. Open the original browser experiment below to try balancing growth, employment, inflation, and debt for 60 seconds.</p>
+            <p>Adjust tax, spending, interest, investment, consumption, imports, and exports. Open the original browser experiment below to try balancing growth, employment, inflation, and debt for 60 seconds.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Original game goal</span>
@@ -75,7 +74,7 @@ export default function MoniacMachinePage() {
             <span className="cs-label-row-val">7 economic levers with random shocks</span>
           </div>
           <div className="project-content-block--roomy">
-            <PhysicalWorld project="moniac-machine" /><OriginalExperiment><MoniacSimulator /></OriginalExperiment>
+            <OriginalExperiment><MoniacSimulator /></OriginalExperiment>
           </div>
         </CsSection>
 
@@ -139,8 +138,8 @@ export default function MoniacMachinePage() {
         <CsSection id="cs-result" label="03 &mdash; Result" title="Result">
           <CsBody>
             <p>The game lets players change a policy and inspect the feedback in a simplified model. Informal playtesting prompted discussion about employment and inflation, but no comparative learning study was recorded. A useful next test would ask players to predict a change before playing, explain what happened afterward, and distinguish the game’s assumptions from real economic behavior.</p>
-            <p>Economics students said the game made policy tradeoffs feel practical. Watching a balanced economy collapse after one tax change carried more weight than reading the same relationship in a diagram.</p>
-            <p>Visitors played alone or in teams to maintain the healthiest economy over a fixed number of rounds. Competition added urgency, and repeat players returned to test different strategies.</p>
+            <p>The physical cabinet and the browser game are different representations. The cabinet photographs do not establish a one-to-one mapping between every physical valve and the game’s seven policy controls.</p>
+            <p>In the browser experiment, the task is to keep the indicators balanced for 60 seconds. The model is a simplified teaching exercise; its responses should not be read as economic forecasts.</p>
           </CsBody>
         </CsSection>
 

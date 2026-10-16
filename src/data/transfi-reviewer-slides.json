@@ -1,0 +1,324 @@
+[
+  {
+    "id": "cs-transfi-scope",
+    "title": "Scope and payment journey",
+    "slides": [
+      {
+        "id": "6:7690",
+        "src": "/Assets/case-study-slides/transfi/slide-6-7690.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Scope and payment journey · ROLE Lead Product Designer WITH 01 CTO 10 Engineers 01 Compliance 02 Marketing INTRO",
+        "text": "ROLE\nLead Product Designer\nWITH\n01 CTO 10 Engineers 01 Compliance\n02 Marketing\nINTRO",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-7690"
+      },
+      {
+        "id": "6:7848",
+        "src": "/Assets/case-study-slides/transfi/slide-6-7848.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Scope and payment journey · INTRO On Ramp and Off Ramp experience (primary focus of this deck)",
+        "text": "INTRO\nOn Ramp and Off Ramp experience \n(primary focus of this deck)",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-7848"
+      },
+      {
+        "id": "6:7991",
+        "src": "/Assets/case-study-slides/transfi/slide-6-7991.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Scope and payment journey · PROBLEM Avg. Drop Rate Avg. Session Duration 18m 40s 82% drop",
+        "text": "PROBLEM\nAvg. Drop Rate\n\nAvg. Session Duration\n18m 40s\n82% drop",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-7991"
+      },
+      {
+        "id": "6:8008",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8008.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Scope and payment journey · Opportunity Opportunity faster, clearer, more local experience increases trust and conversion.",
+        "text": "Opportunity\nOpportunity\nfaster, clearer, more local \nexperience increases \ntrust and conversion.",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8008"
+      }
+    ]
+  },
+  {
+    "id": "cs-transfi-research",
+    "title": "Research and decisions",
+    "slides": [
+      {
+        "id": "6:8657",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8657.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Research and decisions · RESEARCH 6 Countries 8 First Time Buyers 15 Frequent Buyers",
+        "text": "RESEARCH\n6\nCountries\n8\nFirst Time Buyers\n15\nFrequent Buyers",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8657"
+      },
+      {
+        "id": "6:8680",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8680.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Research and decisions · RESEARCH user story first timer",
+        "text": "RESEARCH\nuser story\nfirst timer",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8680"
+      },
+      {
+        "id": "6:8687",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8687.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Research and decisions · RESEARCH repeat buyer user story",
+        "text": "RESEARCH\nrepeat buyer\nuser story",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8687"
+      },
+      {
+        "id": "6:8812",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8812.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Research and decisions · RESEARCH Key insights Crypto users don’t know where to start, which created hesitation and abandonment. Users felt blindsided when fees appe",
+        "text": "RESEARCH\nKey insights\nCrypto users don’t know where to start, which created hesitation and abandonment.\nUsers felt blindsided when fees appeared only at the payment step. They described it as “being tricked at checkout.”\nWhen things broke, support links were hidden or dead. “I needed help and got nowhere.”\nWords like “network fee” and “gas” made people pause and second-guess.\nPeople pasted addresses without realizing chain mismatch could lose funds.\nVerification felt invasive and random when placed up front. First-time buyers called it “like asking for marriage on the first date.”\nLong manual addresses on mobile caused fear of losing funds. Many users dropped after errors.\nPeople did not know how long verification or delivery would take. Quotes like “am I stuck here forever?” came up often.\nWhen SMS codes failed, users felt helpless. One said, “the app just gave up on me.”",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8812"
+      },
+      {
+        "id": "6:8843",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8843.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Research and decisions · RESEARCH TransFi On Ramp and Off Ramp Help link on every step Accessible targets Retry paths Checksums and network detect Input validation E",
+        "text": "RESEARCH\nTransFi \nOn Ramp and Off Ramp\nHelp link on every step\nAccessible targets\nRetry paths\nChecksums and network detect\nInput validation\nError Proofing\nAdoption and retention\nCompletion\nTime to finish\nMetrics\nReceive\nConfirm payment\nOrder details\nAdd wallet\nVerify\nChoose\nSix Steps\nTiny toast vs full status screen\nLocal first vs card first\nFees hidden vs shown\nManual entry vs scan and saved\nSingle card vs micro flow\nVerify early vs later\nDecision Forks\nLocal methods missing\nHidden fees\nWallet entry errors\nOpaque verification\nPrice anxiety\nKey Insights\nRepeat buyer speed needs\nFirst timer trust needs\nUsers\nHigh drop offs\nLong unclear flow in Asia\nProblem",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8843"
+      },
+      {
+        "id": "6:8921",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8921.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Research and decisions · PROBLEM User problem Who What How Why . How might we ... help first time users complete their first crypto purchase with confidence and trus",
+        "text": "PROBLEM\n             User problem\nWho\nWhat\nHow\nWhy\n.\nHow might we ...\nhelp first time users \ncomplete their first crypto purchase \nwith confidence and trust, so that they \nbuild long-term engagement and continue transacting on the platform?",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8921"
+      },
+      {
+        "id": "6:8963",
+        "src": "/Assets/case-study-slides/transfi/slide-6-8963.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Research and decisions · DIRECTIONS Trust first flow Friction light entry Partner anchored entry 01 02 03 Criteria: user impact, time to ship, compliance, partner de",
+        "text": "DIRECTIONS\nTrust first flow\nFriction light entry\nPartner anchored entry\n01\n02\n03\nCriteria: \nuser impact,\ntime to ship,\ncompliance,\npartner dependency",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-8963"
+      }
+    ]
+  },
+  {
+    "id": "cs-transfi-design",
+    "title": "Checkout design",
+    "slides": [
+      {
+        "id": "6:9401",
+        "src": "/Assets/case-study-slides/transfi/slide-6-9401.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Checkout design · Before After Confirm your order Payment Method : Debit Card Save your card in this browser so you do not have to type it every time. Learn M",
+        "text": "Before\nAfter\nConfirm your order\nPayment Method :\nDebit Card\nSave your card in this browser so you do not have to type it every time.  Learn More\nWallet Address :\n0xafc55a44bb1076FA26a0Fc8E72aD411451370711\nSummary :\nQuote updates in 10s\n1 BTC =\n$ 35,673\nYou Get\n0.0925 BTC\nYour Amount\n$ 298.71\nNetwork fees\r\n+ $ 1.29\nProcessing fees\n+ $ 12\nHide fees\nTotal You Pay\n$ 312\nThis Price is Guaranteed for next 15 mins\nPay Now : $312\nPowered by \n$4.32\n$3.15\nBuy Crypto\nSell Crypto\nI want to Pay\n1000\nRM\nMYR\nI want to Buy\n0.130\nETH\nSummary\nEstimated Value\nYou get ~ 0.130 ETH for RM 1000.00\n0.130 @ as low as RM62,802.85\r\r\nNetwork fees\nProcessing fees\n\rRM 1000\nRM 0.22\n\ras low as RM 12.00\nBuy Ethereum\nPowered by \nConfirmation ",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-9401"
+      },
+      {
+        "id": "6:9614",
+        "src": "/Assets/case-study-slides/transfi/slide-6-9614.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Checkout design · SOLUTION Order Summary Order Summary Order status Order details Order ID 2RG684GR7G27TFG2DD3GH7G2D4 Delivering to 0xafc55a44bb1076FA26a0Fc8E",
+        "text": "SOLUTION\nOrder Summary\nOrder Summary\nOrder status\nOrder details\nOrder ID\n2RG684GR7G27TFG2DD3GH7G2D4\nDelivering to\n0xafc55a44bb1076FA26a0Fc8E72aD411451370711\nSummary :\nQuote updates in 10s\n1 BTC =\n$ 35,673\nYou get\n0.0925 BTC\nYour Amount\n$ 300\nNetwork fee\r\n$ 0.22\nProcessing fee\n$ 11.78\nHide fees\nTotal You Pay\n$ 312\nOrder Status\nOrder Placed\n22.4.2022, 10:11:20\nPayment completed\nPayment completed with Credit Card\nProcessing transaction\nWe’re purchasing your crypto. This takes between a few minutes and a few hours. Thanks for your patience.\nCrypto Delivered to wallet\nPlease check your wallet for the delivery\nYou may close this at anytime as it may take upto several mintues.\nFor more help, click here.\nView your transaction on Blockchain explorer\nBuy Again\nGo to Trade History\nPowered by \nOrder Summary\nOrder status\nOrder details\nOrdered\nPayment\nSuccessful\nProcessing\nDelivering\nProcessing transaction\nWe’re purchasing your crypto. This takes between a few minutes and a few hours. Thanks for your patience.\nYou may close this at anytime as it may take upto several mintues.\nFor more help, click here.\nView your transaction on Blockchain explorer\nBuy Again\nGo to Trade History\nPowered by ",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-9614"
+      }
+    ]
+  },
+  {
+    "id": "cs-transfi-testing",
+    "title": "Testing and verification",
+    "slides": [
+      {
+        "id": "6:9825",
+        "src": "/Assets/case-study-slides/transfi/slide-6-9825.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Testing and verification · V1 LAUNCH 3.66% 23.82% Avg. Session Duration 18m 40s 13m 58s Avg. Drop Rate 82% 79%",
+        "text": "V1 LAUNCH\n3.66%\n23.82%\nAvg. Session Duration\n18m 40s\n13m 58s\nAvg. Drop Rate\n82%\n79%",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-9825"
+      },
+      {
+        "id": "6:9891",
+        "src": "/Assets/case-study-slides/transfi/slide-6-9891.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Testing and verification · TESTING User Insights 0 10 20 30 40 50 60 70 80 90 100 Start flow 100% Drop-off at upfront KYC 55% abandoned before upload finished Wallet a",
+        "text": "TESTING\nUser Insights\n0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n100\nStart flow\n100%\nDrop-off at upfront KYC\n55% abandoned before upload finished\nWallet address error rate\n8% failed transactions caused by manual entry errors.\nDrop-off at payment\n~25% exited when quote was not locked.",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-9891"
+      },
+      {
+        "id": "6:9943",
+        "src": "/Assets/case-study-slides/transfi/slide-6-9943.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Testing and verification · PROBLEM 8 moderated interviews 15 remote tests Asia, mobile-first, 22–40 y/o, balanced gender 140+ support tickets coded",
+        "text": "PROBLEM\n8\nmoderated interviews\n15\nremote\ntests\nAsia, mobile-first, 22–40 y/o, balanced gender\n140+\nsupport tickets coded",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-9943"
+      },
+      {
+        "id": "6:9979",
+        "src": "/Assets/case-study-slides/transfi/slide-6-9979.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Testing and verification · TESTING Move verification to near the end when user commitment is at peak New hypothesis",
+        "text": "TESTING\nMove verification to near the end when user commitment is at peak\nNew hypothesis",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-9979"
+      },
+      {
+        "id": "6:11905",
+        "src": "/Assets/case-study-slides/transfi/slide-6-11905.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Testing and verification · TESTING 45 Remote unmoderated tests (Indonesia, Philippines, Vietnam) Live A/B testing",
+        "text": "TESTING\n45\nRemote unmoderated tests\n(Indonesia, Philippines, Vietnam)\nLive A/B testing",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-11905"
+      },
+      {
+        "id": "6:11913",
+        "src": "/Assets/case-study-slides/transfi/slide-6-11913.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Testing and verification · TESTING 3rd Position Verification 3/10 4th Position Verification 5/10 5th Position Verification 4/10",
+        "text": "TESTING\n3rd Position\nVerification\n3/10\n4th Position\nVerification\n5/10\n5th Position\nVerification\n4/10",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-11913"
+      },
+      {
+        "id": "225:3961",
+        "src": "/Assets/case-study-slides/transfi/slide-225-3961.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Testing and verification · UNDER $30 FOR FIRST TRANSACTION 1 2 3 KYC FIRST-TIME USERS Build trust before verification Three successful purchases, then verification. Lo",
+        "text": "UNDER\n$30\nFOR FIRST TRANSACTION\n1\n2\n3\nKYC\nFIRST-TIME USERS\nBuild trust before verification\nThree successful purchases, then verification.\nLower friction gave users room to build confidence and helped early traction.",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=225-3961"
+      }
+    ]
+  },
+  {
+    "id": "cs-transfi-results",
+    "title": "Results",
+    "slides": [
+      {
+        "id": "6:12622",
+        "src": "/Assets/case-study-slides/transfi/slide-6-12622.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Results · RESULTS 32.6% 32.5% Avg. Session Duration 18m 40s 12m 36s Avg. Drop Rate 82% 53%",
+        "text": "RESULTS\n32.6%\n32.5%\nAvg. Session Duration\n18m 40s\n12m 36s\nAvg. Drop Rate\n82%\n53%",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-12622"
+      },
+      {
+        "id": "6:12655",
+        "src": "/Assets/case-study-slides/transfi/slide-6-12655.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Results · RESULTS Business Impact “32.6% more completed purchases → $127,000 increase in transaction volume.”",
+        "text": "RESULTS\nBusiness Impact\n“32.6% more completed purchases →  \n$127,000 increase in transaction volume.”",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-12655"
+      }
+    ]
+  },
+  {
+    "id": "cs-transfi-system",
+    "title": "Design system and collaboration",
+    "slides": [
+      {
+        "id": "6:12676",
+        "src": "/Assets/case-study-slides/transfi/slide-6-12676.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Design system and collaboration · Colors Blue is a great color choice for the Transfi because it conveys a sense of trust, loyalty, and strength — qualities that are essentia",
+        "text": "Colors\nBlue is a great color choice for the Transfi because it conveys a sense of trust, loyalty, and strength — qualities that are essential for a successful finance company.\nFFFFFF\n1A4FD6\n232D95\n202020\nFFBF33\nC2D5FF\nFFCBCB\nTypography / Widget Mobile\nDM Sans\nHeader 1\nFamily: DM Sans\nWeight: Medium\nSize: 36px\nLetter Spacing: 0px\nHeader\nHeader 2\nFamily: DM Sans\nWeight: Bold\nSize: 24px\nLetter Spacing: 0px\nHeader\nBody 1\nFamily: DM Sans\nWeight: Medium\nSize: 18px\nLetter Spacing: 0px\nBody \nBody 2\nFamily: DM Sans\nWeight: Medium\nSize: 18px\nLetter Spacing: 0px\nBody \nBody 3\nFamily: DM Sans\nWeight: Regular\nSize: 18px\nLetter Spacing: 0px\nBody \nBody 4\nFamily: DM Sans\nWeight: Medium\nSize: 16px\nLetter Spacing: 0px\nBody\nBody 5\nFamily: DM Sans\nWeight: Medium\nSize: 16px\nLetter Spacing: 0px\nBody\nBody 6\nFamily: DM Sans\nWeight: Regular\nSize: 16px\nLetter Spacing: 0px\nBody\nBody 7\nFamily: DM Sans\nWeight: Bold\nSize: 14px\nLetter Spacing: 0px\nBody\nBody 8\nFamily: DM Sans\nWeight: Regular\nSize: 14px\nLetter Spacing: 0px\nBody\nBody 9\nFamily: DM Sans\nWeight: Regular\nSize: 14px\nLetter Spacing: 0px\nBody\nBody 10\nFamily: DM Sans\nWeight: Italic\nSize: 14px\nLetter Spacing: 0px\nBody\nBody 11\nFamily: DM Sans\nWeight: Medium\nSize: 12px\nLetter Spacing: 0px\nBody\nBody 12\nFamily: DM Sans\nWeight: Regular\nSize: 12px\nLetter Spacing: 0px\nBody\nTypography\nDM Sans is a modern, versatile typeface that is perfect for Transfi. Its geometric forms lend well to the company's digital-forward approach, while its sharp lines and elegant curves give it a sophisticated and professional look. \nButton\nCards\nAre you sure you want to delete the bankaccountnickname bank account?\nDelete\nCancel\n24 px\n12 px\n24 px\n16 px\n24 px\n12 px\n12 px\n12 px\nBought Ethereum\nMetamask - 22/4/2022, 10: 11 PM\nTransaction Expired!\n$200\n0.0299 ETH\n12 px\n16 px\n16 px\n8 px\n8 px\n12 px\n12 px\n12 px\nWallet Address NickName 1\n0xafc55a44bb1076FA...\nMetaMask\n12 px\n16 px\n36 px\n40 px\n12 px\n12 px\n12 px\nDesign System\nButton\nBuy Ethereum\n10 px\n12 px\n22 px\n12 px\n12 px\n12 px\nAre you sure you want to delete the bankaccountnickname bank account?\nDelete\nCancel\n24 px\n12 px\n24 px\n16 px\n24 px\n12 px\n12 px\n12 px\nBought Ethereum\nMetamask - 22/4/2022, 10: 11 PM\nTransaction Expired!\n$200\n0.0299 ETH\n12 px\n16 px\n16 px\n8 px\n8 px\n12 px\n12 px\n12 px\nWallet Address NickName 1\n0xafc55a44bb1076FA...\nMetaMask\n12 px\n16 px\n36 px\n40 px\n12 px\n12 px\n12 px\nCards\nDESIGN SYSTEM & ACCESSIBILITY",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-12676"
+      },
+      {
+        "id": "393:6180",
+        "src": "/Assets/case-study-slides/transfi/slide-393-6180.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Design system and collaboration · DESIGN SYSTEM & ACCESSIBILITY",
+        "text": "DESIGN SYSTEM & ACCESSIBILITY",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=393-6180"
+      },
+      {
+        "id": "6:13035",
+        "src": "/Assets/case-study-slides/transfi/slide-6-13035.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Design system and collaboration · COLLABORATION Compliances",
+        "text": "COLLABORATION\nCompliances",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-13035"
+      }
+    ]
+  },
+  {
+    "id": "cs-transfi-partners",
+    "title": "Partner integration",
+    "slides": [
+      {
+        "id": "6:13065",
+        "src": "/Assets/case-study-slides/transfi/slide-6-13065.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Partner integration · NEW OPPORTUNITY unlocking b2B Scale beyond direct consumers Faster market entry for partners Revenue diversification",
+        "text": "NEW OPPORTUNITY\nunlocking b2B\nScale beyond direct consumers\nFaster market entry for partners\nRevenue diversification",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-13065"
+      },
+      {
+        "id": "6:15241",
+        "src": "/Assets/case-study-slides/transfi/slide-6-15241.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Partner integration · NEW OPPORTUNITY Easy for partners to integrate",
+        "text": "NEW OPPORTUNITY\nEasy for partners to integrate",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-15241"
+      },
+      {
+        "id": "6:15679",
+        "src": "/Assets/case-study-slides/transfi/slide-6-15679.webp",
+        "width": 1920,
+        "height": 1080,
+        "alt": "Partner integration · CONCLUSION Key learnings Earn trust before asking for it Designing in a regulated finance world",
+        "text": "CONCLUSION\nKey learnings\nEarn trust before asking for it\nDesigning in a regulated finance world",
+        "textTruncated": false,
+        "sourceUrl": "https://www.figma.com/slides/N4p7rXXnLNYjKIRCpzlBaE?node-id=6-15679"
+      }
+    ]
+  }
+]

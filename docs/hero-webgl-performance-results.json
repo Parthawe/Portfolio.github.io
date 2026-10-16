@@ -1,0 +1,85 @@
+{
+  "browser": "151.0.7922.34",
+  "results": [
+    {
+      "run": 0,
+      "variant": "before",
+      "readyMs": 2072.5999999940395,
+      "shaderLogReads": 63,
+      "startupBuffers": 1312,
+      "themeNewBuffers": 900,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 0,
+      "variant": "after",
+      "readyMs": 1704,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 1,
+      "variant": "after",
+      "readyMs": 1556.4000000059605,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 1,
+      "variant": "before",
+      "readyMs": 1427.1999999955297,
+      "shaderLogReads": 63,
+      "startupBuffers": 1312,
+      "themeNewBuffers": 900,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 2,
+      "variant": "before",
+      "readyMs": 1580.3000000044703,
+      "shaderLogReads": 63,
+      "startupBuffers": 1312,
+      "themeNewBuffers": 900,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 2,
+      "variant": "after",
+      "readyMs": 1605.2999999970198,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 3,
+      "variant": "after",
+      "readyMs": 1584.6000000014901,
+      "shaderLogReads": 60,
+      "startupBuffers": 948,
+      "themeNewBuffers": 0,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    },
+    {
+      "run": 3,
+      "variant": "before",
+      "readyMs": 1862.7999999970198,
+      "shaderLogReads": 63,
+      "startupBuffers": 1312,
+      "themeNewBuffers": 900,
+      "hero": "wr-hero is-scene-ready",
+      "errors": []
+    }
+  ]
+}

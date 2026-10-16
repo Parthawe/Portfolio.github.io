@@ -1,0 +1,26 @@
+{
+  "environment": "Local production preview; fresh headless Chromium contexts; desktop 1440×1000; no CPU/network throttling. Readiness is a local DOM observation, not a field metric.",
+  "runs": [
+    {
+      "readyMs": 479.29999999701977,
+      "mutations": 0,
+      "canvas": 0,
+      "nodes": 338
+    },
+    {
+      "readyMs": 851.7999999970198,
+      "mutations": 0,
+      "canvas": 0,
+      "nodes": 338
+    },
+    {
+      "readyMs": 843.1000000089407,
+      "mutations": 0,
+      "canvas": 0,
+      "nodes": 338
+    }
+  ],
+  "embeddedMobile": "pass",
+  "moduleBytes": 19083,
+  "gzipBytes": 6653
+}

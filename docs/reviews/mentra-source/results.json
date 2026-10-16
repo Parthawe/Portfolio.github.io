@@ -1,0 +1,38 @@
+[
+  {
+    "name": "desktop",
+    "theme": "light",
+    "initialReadyMs": 405,
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "theme": "dark",
+    "initialReadyMs": 855,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "theme": "light",
+    "initialReadyMs": 846,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "theme": "dark",
+    "initialReadyMs": 853,
+    "errors": []
+  },
+  {
+    "name": "webkit",
+    "theme": "light",
+    "initialReadyMs": 461,
+    "errors": []
+  },
+  {
+    "name": "webkit",
+    "theme": "dark",
+    "initialReadyMs": 404,
+    "errors": []
+  }
+]

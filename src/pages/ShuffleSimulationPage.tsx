@@ -13,7 +13,7 @@ export default function ShuffleSimulationPage() {
         <ThemeToggle />
       </header>
       <ShuffleInteractive />
-      <nav className="shuffle-room-nav" aria-label="Other project rooms"><Link to="/physical-worlds">All rooms</Link><Link to="/enigma/world">Next room: Enigma →</Link></nav>
+      <nav className="shuffle-room-nav" aria-label="Project experiences"><Link to="/project-experiences">All experiences</Link></nav>
     </main>
   )
 }

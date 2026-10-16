@@ -72,6 +72,7 @@ function OrgDashboardArtifact() {
           </div>
         </section>
       </div>
+      <p className="cs-caption">Concept visualization of the knowledge and approval workflow.</p>
     </div>
   )
 }
@@ -127,7 +128,7 @@ export default function OrgDashboardPage() {
         <CsSection id="cs-concept" label="Concept" title="Connect context to a reviewable action">
           <CsBody>
             <p>The product addresses a specific workflow problem: agents repeatedly need context from connected company tools, while people need to inspect what an agent plans to change. My design work centers on those two paths: retrieving context and reviewing an action.</p>
-            <p>OrgDashboard solves this by creating a persistent, shared knowledge layer. Companies connect their existing tools &mdash; Slack, Linear, QuickBooks, GitHub, PostHog, Google Workspace &mdash; and agents gain organizational awareness through a CLI and MCP server that plugs into any existing harness.</p>
+            <p>The proposed platform uses a persistent, shared knowledge layer. Companies connect their existing tools &mdash; Slack, Linear, QuickBooks, GitHub, PostHog, Google Workspace &mdash; and agents gain organizational awareness through a CLI and MCP server that plugs into any existing harness.</p>
           </CsBody>
           <CsCallout>
             <p>&ldquo;The OrgDashboard CLI is not a standalone agent &mdash; it is an extension to any existing agent harness. When added as an MCP server to Claude Code, Zed, or Cursor, the agent gains organizational awareness without replacing any of the harness&rsquo;s existing tools.&rdquo;</p>
@@ -193,7 +194,7 @@ export default function OrgDashboardPage() {
 
         <CsSection id="cs-results" label="Results" title="What still needs validation">
           <CsBody>
-            <p>OrgDashboard is an early-stage product, so traditional business metrics like revenue or DAU don&rsquo;t tell the full story yet. Instead, we focused on design quality indicators &mdash; signals that the product is solving the right problem in the right way.</p>
+            <p>The current archive contains a reconstructed interface and design descriptions. Original product screens and dated task recordings are still needed to verify the implemented workflow. The following are evaluation questions, not measured results.</p>
           </CsBody>
           <CsFeatureGrid features={[
             { title: 'Task Completion Rate', desc: 'The core review tasks are connecting an integration, searching the knowledge base, and approving an action. A dated protocol and participant-level results are needed before reporting a reliable completion rate.' },

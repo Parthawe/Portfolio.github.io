@@ -165,8 +165,8 @@ export const projects: Project[] = [
     selected: true,
     selectedOrder: 1,
     summaryProblem: 'First use took 9m 40s, and people who made it through setup still could not tell what was running, what sensors were active, or how to regain control.',
-    summaryRole: 'Head of UI/UX, leading research, testing, and delivery across onboarding, the runtime model, companion app, MiniApp ecosystem, and launch website.',
-    summaryTeam: '1 designer working cross-functionally with 4 engineers, product, and hardware.',
+    summaryRole: 'Head of Design, leading research, testing, and delivery across onboarding, the runtime model, companion app, MiniApp ecosystem, and launch website.',
+    summaryTeam: 'Head of Design with 2 founders, 8 engineers, 3 operators and 2 marketers.',
     summaryTimeline: 'Q3 2025–Present',
     timelineMilestones: [
       { period: 'Q3 2025', label: 'Baseline research and first-use audit' },
@@ -304,7 +304,7 @@ export const projects: Project[] = [
   {
     slug: 'zentipay',
     name: 'ZentiPay',
-    image: '/Assets/Projects/ZentiPay/reviewer/send-crypto-1.webp',
+    image: '/Assets/mockups/projects/zentipay_16x9.webp',
     tag: 'FINTECH',
     year: '2025',
     desc: 'Built a trust-first fintech super-app from scratch',
@@ -1386,8 +1386,8 @@ export const projects: Project[] = [
     selected: true,
     selectedOrder: 12,
     summaryProblem: 'Most arcade games treat the cabinet as packaging, when the physical build should shape the ritual, timing, and tension of the game itself.',
-    summaryRole: 'Designed the game, cabinet, controllers, visual system, and the full exhibition experience.',
-    summaryTeam: 'Solo build developed through iterative prototyping at NYU ITP.',
+    summaryRole: 'Co-designed the game with Jane Liu and Shimeng Zhou; built the cabinet with Jane Liu.',
+    summaryTeam: 'Jane Liu, Shimeng Zhou and Parth Pawar. Game development by Jane and Shimeng; cabinet by Parth and Jane.',
     summaryTimeline: '2024',
     summaryOutcome: 'Built a two-player sushi arcade cabinet exhibited at ITP and WonderVille, where the hardware and social pacing became the game logic.',
     summaryImage: '/Assets/Projects/the-omakase/photos/cabinet-front.webp',
@@ -1713,6 +1713,32 @@ export const projects: Project[] = [
       result: 'The project stays as an early branding example with a concise story, not a long case study.',
     },
   },
+  {
+    slug: 'glassly',
+    name: 'Glassly',
+    image: '/Assets/Projects/Glassly/cover.webp',
+    cardMockup: '/Assets/Projects/Glassly/cover.webp',
+    cardMockupSquare: '/Assets/Projects/Glassly/cover.webp',
+    cover16x9: '/Assets/Projects/Glassly/cover.webp',
+    cardMockupAlt: 'Glassly identity with Even Realities G2 partner hardware',
+    tag: 'WEARABLE PLATFORM',
+    year: '2026',
+    desc: 'Product storytelling, brand system and a working phone-and-glasses website demo',
+    category: 'ai',
+    page: () => import('../pages/projects/GlasslyPage'),
+    archiveOrder: 100,
+    summaryProblem: 'A wearable miniapp platform needs to explain what people can do, how the phone and glasses work together, and which hardware belongs to partner manufacturers.',
+    summaryRole: 'Product storytelling, brand guidelines and website implementation.',
+    summaryTimeline: '2026',
+    summaryOutcome: 'A product website, synchronized phone-and-glasses demonstration and implementation-ready brand guidelines.',
+    summaryImage: '/Assets/Projects/Glassly/website-hero.webp',
+    summaryImageAlt: 'Original Glassly website introducing the platform with attributed Even Realities G2 hardware',
+    storyline: {
+      challenge: 'Explain a wearable platform without confusing the software identity with its partner hardware.',
+      approach: 'Lead with everyday miniapp use, show synchronized phone and glasses output, and apply one restrained brand system across the website.',
+      result: 'A working product demonstration and documented visual and interaction rules connect the product story to the implementation.',
+    },
+  },
 ]
 
 for (const project of projects) {
@@ -1810,6 +1836,7 @@ const WORK_PRIORITY_SLUGS = [
   'tedx',
   'typeface',
   'vishwaconclave',
+  'glassly',
 ] as const
 
 const WORK_HIDDEN_SLUGS = new Set<string>([

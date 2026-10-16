@@ -1,4 +1,3 @@
-import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
 import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
@@ -60,16 +59,16 @@ export default function EnigmaPage() {
         </CsMediaSpotlight>
 
         {/* Interactive */}
-        <CsSection id="cs-interactive" label="Interactive" title="Explore a browser model of the sculpture">
+        <CsSection id="cs-interactive" label="Interactive" title="Try the original letter experiment">
           <CsBody>
-            <p>Choose a letter to see an illustrative activation move through the sculpture in its gallery. Open the original browser experiment below to draw a letter. It does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
+            <p>Open the original browser experiment below to draw a letter. This browser adaptation does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Network</span>
-            <span className="cs-label-row-val">200 physical lights · illustrative browser activations</span>
+            <span className="cs-label-row-val">200 physical lights in the documented sculpture</span>
           </div>
           <div className="project-content-block--roomy">
-            <PhysicalWorld project="enigma" /><OriginalExperiment><EnigmaInteractive /></OriginalExperiment>
+            <OriginalExperiment><EnigmaInteractive /></OriginalExperiment>
           </div>
         </CsSection>
 
@@ -82,7 +81,7 @@ export default function EnigmaPage() {
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
               <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/person-viewing.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/person-viewing.webp" alt="Viewer standing before the Enigma sculpture as it recognizes the letter A" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/full-sculpture-c.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Full Enigma sculpture recognizing letter C, 200 neurons illuminated" loading="lazy" decoding="async" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Enigma/photos/full-sculpture-c.webp")} data-project-preview src="/Assets/Projects/Enigma/photos/full-sculpture-c.webp" alt="Enigma’s 200-light sculpture displaying a prediction for the letter C" loading="lazy" decoding="async" /></div>
             </div>
           </div>
         </section>
@@ -109,7 +108,7 @@ export default function EnigmaPage() {
         <CsSection id="cs-concept" label="01 &mdash; Concept" title="200 Neurons of Light">
           <CsBody>
             <p>Enigma makes a neural network visible. A visitor writes a letter, and 200 LEDs reveal the model&rsquo;s pathway from input to prediction.</p>
-            <p>The wall-mounted panel turns the model structure into space: input on one edge, hidden layers through the center, alphabet output on the other. When a letter is submitted, light moves through the sculpture in real time.</p>
+            <p>The freestanding frame arranges the network vertically: the visitor draws at the tablet below, rows of lights represent the network, and the labelled alphabet sits across the top. The photographs show the physical arrangement; the film shows the response to input.</p>
             <p>The project builds on <a href="https://pangenerator.com/projects/the-abacus/" target="_blank" rel="noopener noreferrer" className="project-text-link">The Abacus</a> by <a href="https://pangenerator.com/" target="_blank" rel="noopener noreferrer" className="project-text-link">panGenerator Studio</a>, extending the idea from digit recognition to the full alphabet.</p>
           </CsBody>
         </CsSection>
@@ -120,7 +119,7 @@ export default function EnigmaPage() {
           <CsBody>
             <p>The model is a feedforward neural network trained on EMNIST letters. Its input, hidden, and output layers are physically represented by rows of LEDs.</p>
             <p>A tablet captures the drawn letter, a laptop preprocesses it into a 28 by 28 matrix, and an Arduino Mega drives the LED activation sequence. Brighter LEDs show stronger activations.</p>
-            <p>The full loop finishes in under a second, so visitors can connect their gesture to the model&rsquo;s prediction while the computation is still visible.</p>
+            <p>The visible activation sequence connects the submitted letter to the prediction. A measured latency or recognition-accuracy report is not included in the project archive.</p>
           </CsBody>
         </CsSection>
 
@@ -129,9 +128,9 @@ export default function EnigmaPage() {
         <CsSection id="cs-exhibition" label="03 &mdash; Exhibition" title="ITP Winter Show 2023">
           <CsBody>
             <p>Enigma was exhibited at the ITP Winter Show 2023, NYU&rsquo;s public showcase for experimental technology and art.</p>
-            <p>Thousands of designers, engineers, artists, families, and curious New Yorkers made it the right place to test whether a broad audience could read a physical neural network.</p>
+            <p>The exhibition photographs place the sculpture beside its drawing tablet, so visitors can compare their input with the alphabet output above.</p>
             <p>Visitors wrote letters on a tablet and watched the prediction ripple across the sculpture. Many repeated the same letter to see how different handwriting changed the path.</p>
-            <p>The strongest reaction was recognition: people expected AI to feel opaque, but the lit pathways made the network feel structured and learnable.</p>
+            <p>The installation aims to make the network easier to discuss. The documentation shows participation, rather than a measured improvement in understanding.</p>
             <p>Enigma explores computation through light. Its sibling project, <a href="/jugalbandi" className="project-text-link">Jugalbandi</a>, explores the same neural network architecture through sound &mdash; each hidden layer mapped to a different acoustic instrument. Together they show how the same invisible process can be made tangible through different senses.</p>
           </CsBody>
 

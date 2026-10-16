@@ -8,7 +8,7 @@ try {
   if(mode==='unsupported') await page.addInitScript(()=>Object.defineProperty(navigator,'gpu',{value:undefined}))
   const errors=[],requests=[]
   page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()))
-  await page.goto(`${base}/enigma/world${mode==='default'?'':'?renderer=webgpu'}`)
+  await page.goto(`${base}/experience-preview/enigma${mode==='default'?'':'?renderer=webgpu'}`)
   const canvas=page.locator('.physical-world-stage canvas')
   await expect(canvas).toBeVisible({timeout:20000})
   const backend=await canvas.getAttribute('data-renderer')
@@ -18,7 +18,7 @@ try {
    assert(!requests.some(url=>url.includes('vendor-three-webgpu')), 'Default pages do not fetch WebGPU code')
   }
   if(mode==='unsupported') assert.equal(backend,'webgl')
-  await page.getByRole('button', {name:'B',exact:true}).click()
+  await page.getByLabel('Type a letter', {exact:true}).fill('B')
   await expect(page.getByLabel('Type a letter', {exact:true})).toHaveValue('B')
   assert.deepEqual(errors,[])
   console.log(`${mode}: ${backend}; rendered and controls available`)

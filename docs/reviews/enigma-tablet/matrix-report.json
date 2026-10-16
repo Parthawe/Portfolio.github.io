@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "height": 1000,
+      "theme": "dark",
+      "touch": false,
+      "checks": "drawing, multiple strokes, live lights, explicit label, relabel after edit, clear, oblique coordinates, typed fallback, reset, monochrome, viewport"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "touch": true,
+      "checks": "drawing, multiple strokes, live lights, explicit label, relabel after edit, clear, oblique coordinates, typed fallback, reset, monochrome, viewport"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "height": 1000,
+      "theme": "dark",
+      "touch": false,
+      "checks": "drawing, multiple strokes, live lights, explicit label, relabel after edit, clear, oblique coordinates, typed fallback, reset, monochrome, viewport"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "touch": true,
+      "checks": "drawing, multiple strokes, live lights, explicit label, relabel after edit, clear, oblique coordinates, typed fallback, reset, monochrome, viewport"
+    }
+  ],
+  "errors": []
+}

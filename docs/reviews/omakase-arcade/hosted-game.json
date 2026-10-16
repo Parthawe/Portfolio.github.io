@@ -1,0 +1,69 @@
+{
+  "state": {
+    "title": "Unity WebGL Player | TheOmakase",
+    "loading": "none",
+    "warning": " ",
+    "canvas": true
+  },
+  "bootMs": 4131,
+  "responses": [
+    {
+      "url": "https://itch.io/embed-upload/11124779?color=191716",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/index.html?v=1782825298",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/TemplateData/style.css",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/TemplateData/unity-logo-dark.png",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/Build/v2BUILD.loader.js",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/TemplateData/progress-bar-full-dark.png",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/TemplateData/progress-bar-empty-dark.png",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/Build/v2BUILD.data.br",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/Build/v2BUILD.framework.js.br",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/Build/v2BUILD.wasm.br",
+      "status": 200
+    },
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/Build/v2BUILD.wasm.br",
+      "status": 200
+    }
+  ],
+  "failures": [
+    {
+      "url": "https://html-classic.itch.zone/html/11124779/Build/v2BUILD.wasm.br",
+      "error": {
+        "errorText": "net::ERR_CACHE_WRITE_FAILURE"
+      }
+    }
+  ],
+  "consoleErrors": [
+    "Failed to load resource: net::ERR_CACHE_WRITE_FAILURE",
+    "wasm streaming compile failed: TypeError: WebAssembly compilation aborted: Network error: Response body loading was aborted",
+    "falling back to ArrayBuffer instantiation",
+    "NullReferenceException: Object reference not set to an instance of an object.\n\n\n"
+  ]
+}

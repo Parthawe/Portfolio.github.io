@@ -18,6 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
       VITE_NDA_ACCESS_SHA256: ${{ secrets.VITE_NDA_ACCESS_SHA256 }}
       # These values are intentionally public client configuration. The
       # database's row-level policies control what anonymous visitors can do.
@@ -58,6 +59,8 @@ jobs:
         uses: actions/deploy-pages@v4
 
   verify-production:
+    env:
+      QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
     needs: deploy
     runs-on: ubuntu-latest
     timeout-minutes: 30

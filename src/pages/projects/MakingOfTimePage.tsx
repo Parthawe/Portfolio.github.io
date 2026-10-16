@@ -70,7 +70,7 @@ export default function MakingOfTimePage() {
         {/* Interactive, early proof */}
         <CsSection id="cs-interactive" label="Interactive" title="Three Ways to Read This Moment">
           <CsBody>
-            <p>The same moment, measured three ways: shadow, escapement, and color field. The point is not accuracy, it is how each medium changes attention.</p>
+            <p>This browser illustration compares shadow, a ticking dial, and a color field. It is a new reading aid for the project; the photographs and film document the original watches.</p>
           </CsBody>
           <div className="project-content-block">
             <ClockTrio />
@@ -94,7 +94,7 @@ export default function MakingOfTimePage() {
         <CsSection id="cs-sundial" label="01 &mdash; Sundial" title="Sundial">
           <CsBody>
             <p>The sundial started with gnomon geometry: the shadow-casting angle had to match New York City&rsquo;s latitude for the hour lines to work.</p>
-            <p>Built from wood and brass, it made time slow and spatial. You stand with it, read the shadow, and feel the day moving instead of checking a number.</p>
+            <p>The photographed wrist study uses a white dial, a raised shadow-casting element, and a brown strap. Its form brings the sundial idea into the scale of a watch.</p>
           </CsBody>
           <figure className="cs-img reveal project-media--compact">
             <img {...projectImageProps("/Assets/Projects/making-of-time/photos/white-watch.webp")} data-project-preview src="/Assets/Projects/making-of-time/photos/white-watch.webp" alt="Sundial-inspired white watch with a raised gnomon on the dial" loading="lazy" decoding="async" />
@@ -147,7 +147,7 @@ export default function MakingOfTimePage() {
         {/* Components photo */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/making-of-time/photos/watch-components.png")} data-project-preview src="/Assets/Projects/making-of-time/photos/watch-components.png" alt="Watch assembly: movement, dial, hands, and bracelet components" loading="lazy" /></div>
+            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/making-of-time/photos/watch-components.png")} data-project-preview src="/Assets/Projects/making-of-time/photos/watch-components.png" alt="Finished blue-dial watch with its steel bracelet, photographed upright" loading="lazy" /></div>
           </div>
         </section>
 

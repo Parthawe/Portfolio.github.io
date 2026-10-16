@@ -24,14 +24,14 @@ export default function CsScreenExplorer({ screens, label = 'Choose a MiniApp sc
       </div>
       <figure id={`${id}-preview`} className="cs-screen-explorer__preview">
         <div className="cs-screen-explorer__image" aria-busy={loaded !== screen.src && failed !== screen.src}>
-          {failed === screen.src ? <p role="status">The preview couldn’t load. Try the original image below.</p> : <>
+          {failed === screen.src ? <div role="status"><p>The preview couldn’t load.</p><button type="button" onClick={() => { setFailed(null); setLoaded(null) }}>Retry image</button></div> : <>
             {loaded !== screen.src && <span className="cs-screen-explorer__loading">Loading screen…</span>}
-            <img {...projectImageProps(screen.src)} key={screen.src} src={screen.src} alt={screen.alt} width={screen.width ?? projectImageProps(screen.src).width} height={screen.height ?? projectImageProps(screen.src).height} decoding="async" onLoad={() => setLoaded(screen.src)} onError={() => setFailed(screen.src)} />
+            <img data-project-preview data-original-src={screen.src} {...projectImageProps(screen.src)} key={screen.src} src={screen.src} alt={screen.alt} width={screen.width ?? projectImageProps(screen.src).width} height={screen.height ?? projectImageProps(screen.src).height} decoding="async" onLoad={() => setLoaded(screen.src)} onError={() => setFailed(screen.src)} />
           </>}
         </div>
         <figcaption>
           <div aria-live="polite" aria-atomic="true"><strong>{screen.title}</strong><p>{screen.caption}</p></div>
-          <a href={screen.src} target="_blank" rel="noopener noreferrer">Open original image <span className="sr-only">in a new tab</span><span aria-hidden="true"> ↗</span></a>
+          <a className="glass-action" href={screen.src} target="_blank" rel="noopener noreferrer">Open original image <span className="sr-only">in a new tab</span><span aria-hidden="true"> ↗</span></a>
         </figcaption>
       </figure>
     </div>

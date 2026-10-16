@@ -1,4 +1,5 @@
-import PhysicalWorld from '../../components/physical-worlds/PhysicalWorld'
+import { experiencePreviewsEnabled } from '../../utils/experiencePreview'
+import DeferredStory from '../../components/anatomy-stories/DeferredStory'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { useState } from 'react'
@@ -23,13 +24,11 @@ export default function JugalbandiPage() {
     ? [
         { id: 'cs-summary', label: 'TL;DR' },
         { id: 'cs-film', label: 'Film' },
-        { id: 'cs-world', label: 'Room' },
         { id: 'cs-overview', label: 'Overview' },
       ]
     : [
         { id: 'cs-summary', label: 'TL;DR' },
         { id: 'cs-film', label: 'Film' },
-        { id: 'cs-world', label: 'Room' },
         { id: 'cs-overview', label: 'Overview' },
         { id: 'cs-background', label: 'Background' },
         { id: 'cs-instrument', label: 'The Instrument' },
@@ -117,7 +116,7 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/755.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18: hexagonal instrument with wind, string, and percussion faces annotated" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/755.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18 yellow enclosure with wind, string, and percussion regions annotated" loading="lazy" /></div>
               <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
             </div>
           </div>
@@ -133,8 +132,6 @@ export default function JugalbandiPage() {
             <p>One voice is the performer. The other is a model translated into plucked strings, air-driven pipes, and resonant percussion. Exhibited at the ITP Spring Show and Maker Faire Coney Island, the installation made computation audible as timing, pressure, and mechanical behavior.</p>
           </CsBody>
         </CsSection>
-
-        <CsSection id="cs-world" label="Interactive room" title="Play the acoustic workshop"><PhysicalWorld project="jugalbandi" /></CsSection>
 
         <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
         {/* Background */}
@@ -164,14 +161,14 @@ export default function JugalbandiPage() {
             <p className="cs-section-label">02 &mdash; The Instrument</p>
             <h2 className="cs-display">Hexa-18</h2>
             <CsBody>
-              <p>Hexa-18 combines wind, string, and percussion into one hexagonal instrument. The geometry gives the sculpture its structure and echoes the node-and-edge diagrams used to describe neural networks.</p>
-              <p>Each tier carries a sound family. When the model activates different layers, the object shifts from breath to pluck to texture, turning inference into a physical score.</p>
+              <p>Hexa-18 is the human-played MIDI instrument, with 18 sensor inputs across three Indian instrument sections: flute at the top, tanpura on the sides, and tabla inside.</p>
+              <p>The robotic instruments answer the performer: flute responds to flute, the mechanized harp responds to tanpura, and rainsticks respond to tabla. The duet moves between the performer’s digital instrument and a physical, acoustic response.</p>
             </CsBody>
             <CsFeatureGrid features={[
-              { title: 'Wind', desc: 'Air-driven pipes of varying heights produce different tonal frequencies, controlled by solenoid valves.' },
-              { title: 'String', desc: 'Servo-actuated plucking mechanisms produce melodic sequences through algorithmically composed patterns.' },
-              { title: 'Percussion', desc: 'Speaker cones and vibration motors embedded in hexagonal faces create rhythmic, percussive textures.' },
-              { title: 'Sculpture', desc: 'The hexagonal form is both a visual art piece and a functional instrument \u2014 each face serves a purpose.' },
+              { title: 'Flute → Robotic flute', desc: 'The flute section sits at the top of Hexa-18. Playing it calls the separate automated flute, whose actuators operate the tone holes.' },
+              { title: 'Tanpura → Harp', desc: 'The side inputs play tanpura. The mechanized harp answers through the movement of its string-plucking assembly.' },
+              { title: 'Tabla → Rainsticks', desc: 'The inside inputs play tabla. The rainstick assembly answers with rotating tubes and falling grains.' },
+              { title: 'Construction', desc: 'The yellow enclosure separates the sensor faces, pipe openings, and open frame. Its proportions can be compared directly with the original photographs.' },
             ]} />
           </div>
         </section>
@@ -180,8 +177,8 @@ export default function JugalbandiPage() {
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow hexagonal surface with sensor holes" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Hexa-18 detail: internal wiring and sensor mounting" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow sloped surface with paired circular sensors" loading="lazy" /></div>
+              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Arduino Mega and wiring mounted to the wooden mechanized harp frame" loading="lazy" /></div>
               <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
             </div>
           </div>
@@ -210,6 +207,8 @@ export default function JugalbandiPage() {
             </div>
           </div>
         </section>
+
+        {experiencePreviewsEnabled && <section id="cs-harp-story" className="wrap" style={{scrollMarginTop:100}}><DeferredStory project="harp" /></section>}
 
         <CsSection title="Follow the string layer">
           <CsBody><p>The harp makes one part of the mapping concrete: a model-driven sequence becomes a servo movement, and the servo plucks a tuned string. Keeping the strings within the selected raga constrains the machine’s musical output.</p></CsBody>
@@ -262,7 +261,7 @@ export default function JugalbandiPage() {
             <p className="cs-section-label">05 &mdash; Rainsticks</p>
             <h3 className="cs-section-title">Rainsticks</h3>
             <CsBody>
-              <p>Servo motors tilt rainsticks to create cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
+              <p>Eight servo-mounted rainsticks occupy the corners of two stacked cubes. Tilting them creates cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
               <p>Changing angle and speed controls the density of the sound, from a sparse trickle to a full wash.</p>
             </CsBody>
             <div className="cs-label-row">

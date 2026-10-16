@@ -13,6 +13,11 @@ concurrency:
 
 jobs:
   verify:
+    env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      # Test-only reviewer code (qa-original-slides); never used by deploy.yml.
+      VITE_NDA_ACCESS_SHA256: '9022e2445b567f5928a3bb03742867cb8bba427ac1dbe0b25c2dd2e5e008b990'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -47,6 +52,8 @@ jobs:
           done
           curl --fail --silent "$QA_BASE_URL" > /dev/null
           status=0
+          QA_OUTPUT_DIR=qa-diagnostics/case-study-slides node scripts/case-study-slides-qa.mjs || status=1
+          QA_OUTPUT_DIR=qa-diagnostics/glassly node scripts/glassly-case-study-qa.mjs || status=1
           bun run qa:home-loading || status=1
           node scripts/reveal-readiness-qa.mjs || status=1
           node scripts/performance-qa.mjs || status=1
@@ -68,3 +75,70 @@ jobs:
             qa-diagnostics/
             /tmp/portfolio-physical-worlds-qa
             /tmp/portfolio-home-loading-qa
+
+  verify-experiences:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_BASE_URL: http://127.0.0.1:4174
+      QA_DEV_URL: http://127.0.0.1:4174
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium webkit
+      - name: Check mechanism geometry and behavior
+        run: |
+          node scripts/build-stage-anatomy.mjs --audit
+          node scripts/build-stage-details.mjs --audit
+          bun scripts/jugalbandi-anatomy-model-qa.mjs
+      - run: bun run build
+      - name: Verify curated experiences and original-source interactions
+        run: |
+          bun run preview --host 127.0.0.1 --port 4174 > /tmp/experience-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent "$QA_BASE_URL" > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent "$QA_BASE_URL" > /dev/null
+          node scripts/experience-directory-qa.mjs
+          node scripts/experience-directory-return-qa.mjs
+          node scripts/stage-anatomy-qa.mjs
+          node scripts/mentra-source-qa.mjs
+          node scripts/jugalbandi-anatomy-qa.mjs
+          node scripts/anatomy-scroll-qa.mjs
+          node scripts/project-prototypes-qa.mjs
+          node scripts/case-study-interactions-qa.mjs
+          node scripts/interface-sources-qa.mjs
+          node scripts/work-controls-review-qa.mjs
+          bun run qa:enigma-tablet
+          bun run qa:black-hole-time-trap
+          bun run qa:moniac-hydraulic
+          bun run qa:jugalbandi-duet
+          bun run qa:jugalbandi-ensemble
+          bun run qa:jugalbandi-verify
+          bun run qa:omakase
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: experience-verification
+          path: |
+            /tmp/experience-preview.log
+            /tmp/experience-directory-qa/
+            /tmp/stage-anatomy-qa/
+            /tmp/mentra-source-qa/
+            /tmp/jugalbandi-anatomy-qa/
+            /tmp/anatomy-scroll-qa/
+            /tmp/portfolio-prototypes-qa/
+            /tmp/case-study-interactions/
+            /tmp/work-controls-review/
+            /tmp/interface-sources-qa/
+            /tmp/enigma-tablet-edges/
+            /tmp/jugalbandi-full-verification/
+            /tmp/moniac-hydraulic-qa/
