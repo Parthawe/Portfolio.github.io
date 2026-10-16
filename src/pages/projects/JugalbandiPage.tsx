@@ -1,6 +1,7 @@
 import { experiencePreviewsEnabled } from '../../utils/experiencePreview'
-import DeferredStory from '../../components/anatomy-stories/DeferredStory'
-import { projectImageProps } from '../../utils/projectImage'
+import JugalbandiMechanismStudy from '../../components/case-study/JugalbandiMechanismStudy'
+import CsScreenStrip from '../../components/case-study/CsScreenStrip'
+import '../../components/case-study/service-decisions.css'
 import ExternalVideo from '../../components/ExternalVideo'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -12,8 +13,6 @@ import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsMediaSpotlight from '../../components/case-study/CsMediaSpotlight'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsInfoGrid from '../../components/case-study/CsInfoGrid'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -48,7 +47,7 @@ export default function JugalbandiPage() {
         <meta name="description" content="A physical computing installation where a neural network performs with a human musician through strings, air pipes, and percussion." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Jugalbandi · Parth Pawar" />
-        <meta property="og:description" content="A neural network made audible through a playable acoustic installation." />
+        <meta property="og:description" content="A MIDI controller and acoustic machines exchanging musical phrases." />
         <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/jugalbandi_16x9.webp" />
       </Helmet>
 
@@ -56,7 +55,7 @@ export default function JugalbandiPage() {
 
       <main
         id="main-content"
-        className="project-main"
+        className="project-main project-main--jugalbandi"
         style={{
           '--project-color': '#2F6BFF',
           '--case-outer-glow-a': 'rgba(255, 63, 164, 0.36)',
@@ -79,7 +78,7 @@ export default function JugalbandiPage() {
           title="Jugalbandi"
           subtitle="A playable duet between human improvisation and a neural network expressed through acoustic machines"
           info={[
-            { label: 'Year', value: '2024' },
+            { label: 'Timeline', value: '2024' },
             { label: 'Role', value: 'Interaction designer + fabricator' },
             { label: 'Context', value: 'NYU \u2013 ITP' },
             { label: 'Duration', value: '5 Months' },
@@ -90,8 +89,8 @@ export default function JugalbandiPage() {
         <CsMediaSpotlight
           id="cs-film"
           label="Watch first"
-          title="Hear the network perform"
-          lede="The fastest way into Jugalbandi is the performance: a neural network translated into plucked strings, air pipes, and percussion."
+          title="Hear the human and robotic duet"
+          lede="Follow one exchange: Hexa-18 flute calls the robotic flute, tanpura calls the harp, and tabla calls the rainsticks. The film records the original sound and mechanisms."
           actionLabel="Play performance"
           layout="stacked"
         >
@@ -104,6 +103,15 @@ export default function JugalbandiPage() {
           />
         </CsMediaSpotlight>
 
+        <CsSection title="Follow a call and its answer">
+          <CsBody><p>The performer plays Hexa-18. The separate acoustic instruments answer through air, plucked strings, and falling grains. These pairings follow the original project; synchronized sensor and actuator logs are not included.</p></CsBody>
+          <ol className="study-explorer__flow">
+            <li><span>Flute · top</span><p>Touch input → robotic flute fingers and air supply.</p></li>
+            <li><span>Tanpura · sides</span><p>Hand movement → servo-driven harp plucks.</p></li>
+            <li><span>Tabla · inside</span><p>Percussive input → eight rotating rainsticks.</p></li>
+          </ol>
+        </CsSection>
+
         <ProjectQuickSummary
           slug="jugalbandi"
           viewMode={viewMode}
@@ -111,207 +119,26 @@ export default function JugalbandiPage() {
           variant="open"
         />
 
-        {viewMode === 'full' ? (
-        <>
-        {/* Instrument overview photos */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/755.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/755.png" alt="Hexa-18 yellow enclosure with wind, string, and percussion regions annotated" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3938_nsquare_23.webp" alt="Hexa-18 top view showing ultrasonic sensors and wind pipes" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        </>
-        ) : null}
-
-        {/* Overview */}
-        <CsSection id="cs-overview" label="Overview" title="A duet in Hindi">
-          <CsBody>
-            <p>Jugalbandi asks whether a neural network can feel less like code and more like a musical partner. The answer is a live duet between a human performer and acoustic machines.</p>
-            <p>One voice is the performer. The other is a model translated into plucked strings, air-driven pipes, and resonant percussion. Exhibited at the ITP Spring Show and Maker Faire Coney Island, the installation made computation audible as timing, pressure, and mechanical behavior.</p>
-          </CsBody>
+        <CsSection id="cs-overview" title="Two performers, three kinds of response">
+          <CsBody><p>The Hindustani duet gives the project its name. Hexa-18 is the human-played MIDI instrument; the separate acoustic mechanisms answer the performer. The original performance is the evidence for how those voices sound together.</p></CsBody>
+          {experiencePreviewsEnabled&&<p><a className="glass-action" href="/experience-preview/jugalbandi">Play the browser call and response ↗</a></p>}
         </CsSection>
-
-        <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')}>
-        {/* Background */}
-        <section className="cs-section reveal" id="cs-background">
-          <div className="wrap">
-            <p className="cs-section-label">01 / Background</p>
-            <h3 className="cs-section-title">The Concept</h3>
-            <CsBody>
-
-              <p>The name comes from the <a className="cs-text-link" href="https://en.wikipedia.org/wiki/Jugalbandi" target="_blank" rel="noopener noreferrer">Hindustani classical tradition</a> of a duet between two lead musicians. Here, the duet is between human improvisation and a machine voice constrained by trained weights, raga logic, and mechanical timing.</p>
-            </CsBody>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Approach</span>
-              <span className="cs-label-row-val">Translate neural network layers into tangible, playable acoustic and electronic mechanisms</span>
-            </div>
-          </div>
-        </section>
-
-
-        {/* The Instrument */}
-        <section className="cs-section reveal" id="cs-instrument">
-          <div className="wrap">
-            <p className="cs-section-label">02 / The Instrument</p>
-            <h2 className="cs-display">Hexa-18</h2>
-            <CsBody>
-              <p>Hexa-18 is the human-played MIDI instrument, with 18 sensor inputs across three Indian instrument sections: flute at the top, tanpura on the sides, and tabla inside.</p>
-              <p>The robotic instruments answer the performer: flute responds to flute, the mechanized harp responds to tanpura, and rainsticks respond to tabla. The duet moves between the performer’s digital instrument and a physical, acoustic response.</p>
-            </CsBody>
-            <CsFeatureGrid features={[
-              { title: 'Flute → Robotic flute', desc: 'The flute section sits at the top of Hexa-18. Playing it calls the separate automated flute, whose actuators operate the tone holes.' },
-              { title: 'Tanpura → Harp', desc: 'The side inputs play tanpura. The mechanized harp answers through the movement of its string-plucking assembly.' },
-              { title: 'Tabla → Rainsticks', desc: 'The inside inputs play tabla. The rainstick assembly answers with rotating tubes and falling grains.' },
-              { title: 'Construction', desc: 'The yellow enclosure separates the sensor faces, pipe openings, and open frame. Its proportions can be compared directly with the original photographs.' },
-            ]} />
-          </div>
-        </section>
-
-        {/* Hexa-18 detail photos */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid project-image-grid--three">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39.png" alt="Hexa-18 close-up: yellow sloped surface with paired circular sensors" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A3968_nsquare_39-1.png" alt="Arduino Mega and wiring mounted to the wooden mechanized harp frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4023_nsquare_64.png" alt="Hexa-18 detail: wind pipes from above" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Mechanized Harp */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label">03 / Mechanized Harp</p>
-            <h3 className="cs-section-title">Mechanized Harp</h3>
-            <CsBody>
-              <p>Servo motors pluck tuned strings inside a wooden frame. The harp carries the melodic middle layer: warm, acoustic, and intentionally slower than a screen-based visualization.</p>
-              <p>Each string sits inside the selected raga so the machine can improvise without falling out of the musical world.</p>
-            </CsBody>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Controller</span>
-              <span className="cs-label-row-val">Mega Arduino</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Actuators</span>
-              <span className="cs-label-row-val">Servo Motors</span>
-            </div>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Materials</span>
-              <span className="cs-label-row-val">Wire Mesh, Harp, Wood Frame</span>
-            </div>
-          </div>
-        </section>
-
-        {experiencePreviewsEnabled && <section id="cs-harp-story" className="wrap" style={{scrollMarginTop:100}}><DeferredStory project="harp" /></section>}
-
-        <CsSection title="Follow the string layer">
-          <CsBody><p>The harp makes one part of the mapping concrete: a model-driven sequence becomes a servo movement, and the servo plucks a tuned string. Keeping the strings within the selected raga constrains the machine’s musical output.</p></CsBody>
-          <ol className="study-explorer__flow">
-            <li><span>Sequence</span><p>The melodic layer supplies a plucking pattern.</p></li>
-            <li><span>Mechanism</span><p>The Arduino and servos turn the pattern into physical plucks.</p></li>
-            <li><span>Sound</span><p>Tuned strings produce the acoustic response heard in the performance.</p></li>
-          </ol>
-          <p className="study-explorer__note">A reading diagram of the documented mechanism. Exact model outputs and synchronized actuator logs are not included.</p>
+        <CsExpandPreview expanded={viewMode === 'full'} onExpand={() => setViewMode('full')} sectionIds={['cs-background','cs-instrument','cs-harp-story','cs-process','cs-reflection']} cta="Inspect the instruments and decisions" note="Compare the controller, acoustic mechanisms and their original construction photographs.">
+        <CsSection id="cs-instrument" title="Follow the gesture into its mechanism">
+          <div id="cs-harp-story"><JugalbandiMechanismStudy /></div>
         </CsSection>
-
-        {/* Harp + Flute photos */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid project-image-grid--two">
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/756.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/756.png" alt="Mechanized Harp: Arduino Mega, servo motors, wire mesh, and harp inside wooden frame" loading="lazy" /></div>
-              <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/538A4005_nsquare_57.webp" alt="Mechanized Harp rear view showing wiring, servos, and Arduino board" loading="lazy" /></div>
-            </div>
-          </div>
-        </section>
-
-        {experiencePreviewsEnabled && <div className="wrap"><DeferredStory project="flute" /></div>}
-
-        {/* Automated Flute */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label">04 / Automated Flute</p>
-            <h3 className="cs-section-title">Automated Flute</h3>
-            <CsBody>
-              <p>An air pump drives the flute while servo-actuated fingers open and close tone holes. The hard part was not electronics, it was embouchure: a few degrees of airflow changed the note completely.</p>
-              <p>Lego mechanisms made the finger positions adjustable enough to tune quickly during prototyping.</p>
-            </CsBody>
-            <CsInfoGrid items={[
-              { key: 'Air Source', value: 'Air Pump' },
-              { key: 'Actuators', value: 'Servo Motors' },
-              { key: 'Controller', value: 'Mega Arduino' },
-              { key: 'Structure', value: 'Legos, Clamp, Blowing Hole' },
-            ]} />
-          </div>
-        </section>
-
-        {/* Flute photo */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/757.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/757.png" alt="Automated Flute: air pump, servo motors, Mega Arduino, Lego finger mechanisms on bamboo flute" loading="lazy" /></div>
-          </div>
-        </section>
-
-        {experiencePreviewsEnabled && <div className="wrap"><DeferredStory project="rain" /></div>}
-
-        {/* Rainsticks */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <p className="cs-section-label">05 / Rainsticks</p>
-            <h3 className="cs-section-title">Rainsticks</h3>
-            <CsBody>
-              <p>Eight servo-mounted rainsticks occupy the corners of two stacked cubes. Tilting them creates cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
-              <p>Changing angle and speed controls the density of the sound, from a sparse trickle to a full wash.</p>
-            </CsBody>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Actuators</span>
-              <span className="cs-label-row-val">Servo Motors</span>
-            </div>
-          </div>
-        </section>
-
-        {/* Rainstick photo */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Jugalbandi/Photos/758.png")} data-project-preview src="/Assets/Projects/Jugalbandi/Photos/758.png" alt="Rainsticks: servo motor powered rainstick rotation on wooden frame structure" loading="lazy" /></div>
-          </div>
-        </section>
-
-        <CsSection title="Listen for three different mechanisms">
-          <CsBody>
-            <p>In the performance film, compare the attack of a plucked string with the sustained air of the flute and the uneven decay of the rainsticks. Those physical differences explain why the instruments cannot share one timing rule.</p>
-            <p>The flute prototype makes the constraint visible: the air pump supplies breath, while adjustable Lego finger mechanisms position the servos over the tone holes. The documented challenge was airflow alignment; electronic actuation alone did not guarantee a stable note.</p>
-          </CsBody>
+        <CsSection id="cs-background" title="The constraints are physical">
+          <CsBody><p>A string responds when a pick releases it. A flute needs both an open air path and a stable blowing angle. A rainstick continues sounding as its contents fall. Those differences give each machine its own attack and decay; the same response timing cannot describe all three.</p></CsBody>
+          <details className="service-source-details"><summary>Inspect the enclosure and construction details</summary><CsScreenStrip label="Original Jugalbandi detail photographs" screens={[
+            ['538A3938_nsquare_23.webp','Hexa-18 top and sensor faces'],['538A3968_nsquare_39.png','Controller sensor detail'],['538A3968_nsquare_39-1.png','Harp controller and wiring'],['538A4023_nsquare_64.png','Wind pipes from above'],['538A4005_nsquare_57.webp','Harp rear assembly'],
+          ].map(([file,label])=>({src:`/Assets/Projects/Jugalbandi/Photos/${file}`,label,alt:`Original construction photograph: ${label}`}))} /></details>
         </CsSection>
-
-        {/* Tools & Process */}
-        {experiencePreviewsEnabled && <div className="wrap"><DeferredStory project="hexa" /></div>}
-
-        <section className="cs-section reveal" id="cs-process">
-          <div className="wrap">
-            <p className="cs-section-label">06 / Process</p>
-            <h3 className="cs-section-title">Tools and Techniques</h3>
-            <CsBody>
-              <p>A neural network built with ml5.js drives the piece: its layer activations are mapped to the Arduino-controlled instruments for breath, pluck, and percussion. Its output is constrained by the selected raga so the machine voice stays inside the musical world.</p>
-            </CsBody>
-          </div>
-        </section>
-
-        {/* Reflection */}
-        <section className="cs-section reveal" id="cs-reflection">
-          <div className="wrap">
-            <p className="cs-section-label">07 / Reflection</p>
-            <h3 className="cs-section-title">What Building Jugalbandi Taught Me</h3>
-            <CsBody className="cs-body--measure">
-              <p>The hardest part was the translation layer. A model output has no musical meaning until a designer decides how it should become breath, timing, pitch, and vibration.</p>
-              <p>The physical instruments forced restraint. Air pressure, servo latency, string tension, and resonance shaped the composition more than the software did.</p>
-              <p>The exhibition brought the sound and its mechanism into the same view. Whether that improved understanding would require a separate audience study; the photographs and film document the performance itself.</p>
-            </CsBody>
-          </div>
-        </section>
-
+        <CsSection id="cs-process" title="What the browser reconstructs">
+          <CsBody><p>The project documentation describes an ml5.js model connected to Arduino-controlled acoustic instruments. The browser study preserves the instrument pairings and makes their mechanisms operable with pointer, touch and keyboard input. Its response is an illustrative note echo, with synthesized sound and demo tunes. The original model, raga rules and synchronized sensor/actuator logs are unavailable.</p></CsBody>
+        </CsSection>
+        <CsSection id="cs-reflection" title="What to compare next">
+          <CsBody><p>Use the film to compare the onset and decay of each acoustic answer with its physical movement. A faithful timing reconstruction would need recorded controller events and actuator logs; an audience study would be needed to establish whether the installation makes the computation easier to understand.</p></CsBody>
+        </CsSection>
         <CsThanks />
         </CsExpandPreview>
 

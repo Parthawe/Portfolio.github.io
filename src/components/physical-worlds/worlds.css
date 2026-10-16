@@ -119,3 +119,10 @@
 /* Control chrome stays neutral; the mill's original materials keep their colours. */
 .physical-world[data-project="sea-of-salt"] { --world-bg:#f4f4f4; --world-ink:#222; --world-muted:#606060; --world-rule:#bcbcbc; --world-selected:#dedede; --world-accent:#333; }
 .physical-world[data-project="sea-of-salt"][data-world-theme="dark"] { --world-bg:#1e1e1e; --world-ink:#f2f2f2; --world-muted:#bdbdbd; --world-rule:#555; --world-selected:#3b3b3b; --world-accent:#eee; }
+
+/* Enigma alone: keep the signal legend next to the working tablet and lights. */
+.enigma-signal-path { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; list-style:none; padding:16px 20px; margin:0; border-top:1px solid var(--world-rule); }
+.enigma-signal-path li { display:flex; flex-direction:column; gap:5px; }
+.enigma-signal-path strong { font:500 14px/1.4 var(--sans); }
+.enigma-signal-path span { font:13px/1.6 var(--sans); color:var(--world-muted); }
+@media(max-width:680px) { .enigma-signal-path { grid-template-columns:1fr; gap:12px; padding:16px; } .enigma-signal-path li { display:grid; grid-template-columns:75px minmax(0,1fr); gap:12px; } }

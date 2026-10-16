@@ -11,7 +11,7 @@ import CompactSheet from './CompactSheet';
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const { pathname, search } = useLocation();
+  const { pathname } = useLocation();
 
   useNavScroll(navRef);
 
@@ -123,26 +123,6 @@ export default function Nav() {
   // Project and category pages also count as "work"
   const isWorkContext = isWork || (!isHome && !isAbout && !isWriting && !isNotes && !['studio', 'book', 'graveyard'].some(r => normalizedPathname === `/${r}`));
 
-  // On the Work page itself, the Work tab expands to show its three views.
-  const isWorkPage = normalizedPathname === '/work';
-  const requestedWorkView = new URLSearchParams(search).get('view');
-  const workView =
-    requestedWorkView === 'library' || requestedWorkView === 'index' || requestedWorkView === 'playlist'
-      ? 'library'
-      : requestedWorkView === 'timeline'
-        ? 'timeline'
-        : 'editorial';
-  const workLink = (view?: string) => {
-    const params = new URLSearchParams(search);
-    if (view) params.set('view', view); else params.delete('view');
-    return `/work${params.toString() ? `?${params}` : ''}`;
-  };
-  const workViewLinks = [
-    { key: 'editorial', label: 'Editorial', to: workLink() },
-    { key: 'library', label: 'Index', to: workLink('library') },
-    { key: 'timeline', label: 'Arc', to: workLink('timeline') },
-  ];
-
   const handleSkipToContent = useCallback((event: React.MouseEvent<HTMLAnchorElement>) => {
     const main = document.getElementById('main-content');
     if (!main) return;
@@ -161,23 +141,8 @@ export default function Nav() {
           {/* Left group, logo + links in a single pill */}
           <div className="nav-left-pill surface-glass figma-hover">
             <Link to="/" className="nav-logo figma-hover" aria-label="Parth Pawar, home">Parth<FigmaSelect /></Link>
-            <Link to="/work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}>Work<FigmaSelect /></Link>
-            {isWorkPage && (
-              <div className="nav-work-views glass-segments" aria-label="Work page views">
-                {workViewLinks.map((view) => (
-                  <Link
-                    key={view.key}
-                    to={view.to}
-                    replace
-                    className={`nav-work-view figma-hover${workView === view.key ? ' is-active' : ''}`}
-                    aria-current={workView === view.key ? 'page' : undefined}
-                  >
-                    {view.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-            <Link to="/about" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}>About<FigmaSelect /></Link>
+            <Link to="/work" data-label="Work" className={`pill-link nav-pill-link figma-hover${isWorkContext ? ' active' : ''}`}><span className="nav-pill-link__label">Work</span><FigmaSelect /></Link>
+            <Link to="/about" data-label="About" className={`pill-link nav-pill-link figma-hover${isAbout ? ' active' : ''}`}><span className="nav-pill-link__label">About</span><FigmaSelect /></Link>
             <FigmaSelect />
           </div>
 
@@ -207,6 +172,21 @@ export default function Nav() {
                     <circle cx="6.75" cy="11.75" r="1.05" fill="var(--surface, #fff)" stroke="currentColor" strokeWidth="1.05" />
                   </svg>
                   <span>Figma</span>
+                </button>
+                <button
+                  type="button"
+                  className="nav-grid-toggle"
+                  aria-label="Open Ask Parth AI assistant"
+                  title="Ask Parth"
+                  onClick={() => {
+                    setEasterToolsOpen(false);
+                    window.dispatchEvent(new CustomEvent('portfolio-chat:open', { detail: { dock: 'left' } }));
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 4h16v12H9l-5 4V4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span>AI</span>
                 </button>
                 <button
                   type="button"

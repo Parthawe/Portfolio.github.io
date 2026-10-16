@@ -1,0 +1,92 @@
+{
+  "baseCommit": "39d242de54d52f76007bd637f50fdd3c8b439da7",
+  "draftPR": "https://github.com/Parthawe/Portfolio.github.io/pull/19",
+  "deployment": "held; no merge or workflow dispatch",
+  "releasePreview": "http://127.0.0.1:5230/",
+  "unfinishedLocalPreview": "http://127.0.0.1:5222/",
+  "boundaries": {
+    "productionFooter": "exactly unchanged; experimental files and artwork excluded",
+    "shuffle": "source and metadata identical",
+    "approvalStates": "all 50 preserved",
+    "protectedBuild": "passed"
+  },
+  "staticChecks": [
+    "frozen lockfile installation",
+    "TypeScript and production build; 208 route entrypoints",
+    "design audit blocking checks",
+    "agent behavior tests",
+    "10 analytics tests",
+    "6 network policy tests",
+    "hero environment, early preload and preload guards",
+    "source, approval, protected asset and footer guards",
+    "git diff whitespace check"
+  ],
+  "builtBrowserChecksPassed": [
+    "original slide assets and access boundaries",
+    "Glassly source case study",
+    "Work loading",
+    "case study reading and recovery",
+    "companion project decisions",
+    "service project decisions",
+    "Jugalbandi simultaneous caller/responder sound and mechanism tests",
+    "Enigma drawing and scene recovery",
+    "Moniac hydraulic controls",
+    "24 product decision profiles including WebKit form rejection after blur",
+    "27 practice route profiles and 3 Moniac comparison tasks",
+    "12 stage/Jugalbandi scroll-story profiles",
+    "project links, film playback, captions, painting and camera cleanup",
+    "Easter Ask Parth entry",
+    "Work/About/Notes refinement",
+    "In-app browser: hero renders, expands, and closes with Escape",
+    "18 specialized practice-entry rendered-route cases",
+    "Work/About/Notes/nav recovery profiles at 1440, 768 and 390 after the stable-label fix",
+    "Linux CI: actual first frame, single HDR request, idle/offscreen pause and expanded fallback restores title/still",
+    "Linux CI: all experience verification tasks"
+  ],
+  "technicalFixes": [
+    "Hide chapter controls while the reviewer access form is visible, independent of Safari focus behavior",
+    "Restore the Jugalbandi harp deep-link container while retaining all four instrument studies",
+    "Update regression expectations to current Mentra reading chapters and concise practice entries",
+    "Separate non-GPU logo/card CSS tests from software shader compilation; retain dedicated actual-renderer home tests",
+    "Clear expanded hero state when its renderer becomes unavailable, so the overlay cannot hide the still and copy",
+    "Reserve each navigation label at its active weight, correcting the Linux 2px Work/About width change without changing label weight",
+    "Give the nine approved concise practice-entry formats explicit source/structure/media/reading assertions in the general route scan"
+  ],
+  "ci": "Authoritative current status is the draft PR Checks tab; a green local check is not deployment approval.",
+  "limits": [
+    "Browser emulation, not a physical iPhone",
+    "No production secrets copied into the candidate",
+    "No new real model-service request or external access-request submission",
+    "Earlier heavily concurrent local runs timed out; corrected and sequential reruns are retained separately",
+    "Existing mobile Arc period navigation remains top-heavy",
+    "macOS headless dedicated hero startup exceeded 20 seconds with default and Metal backends; not counted as a pass. Final Linux CI retains the dedicated renderer assertions."
+  ],
+  "contentCorrections": [
+    "Creator confirmed The Point CDC as 2024; registry year and timeline corrected to match About and the case study",
+    "Mentra original quotation record is promised but not yet reviewed; quote withheld from public views until verified"
+  ],
+  "performanceSample": {
+    "run": 38971826645,
+    "head": "a8918f508cbbf532de7eccf9550a0f0c687cc8cd",
+    "scope": "Work page, three Lighthouse runs, before final navigation sizing correction",
+    "performance": [
+      47,
+      75,
+      75
+    ],
+    "median": 75,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 100,
+    "interpretation": "Passes existing 70 median budget; the first-run result remains a limitation, not evidence of a performance improvement."
+  },
+  "previousCompleteCI": {
+    "head": "881225ce9cbdbb6f6d243adabbbbd17a3df092ed",
+    "run": 38975515476,
+    "jobs": {
+      "verify": "success",
+      "verify-experiences": "success",
+      "verify-reading": "success"
+    }
+  }
+}

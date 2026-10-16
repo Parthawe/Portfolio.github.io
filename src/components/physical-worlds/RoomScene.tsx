@@ -293,13 +293,13 @@ export default function RoomScene(props: Props) {
           const right=V(0,1,0).cross(direction).normalize(),up=direction.clone().cross(right).normalize()
           let distance=1
           for(const x of[bounds.min.x,bounds.max.x])for(const y of[bounds.min.y,bounds.max.y])for(const z of[bounds.min.z,bounds.max.z]){const point=V(x,y,z).sub(target),depth=point.dot(direction);distance=Math.max(distance,Math.abs(point.dot(right))/Math.tan(horizontal)+depth,Math.abs(point.dot(up))/Math.tan(vertical)+depth)}
-          destination.copy(target).add(direction.multiplyScalar(distance*1.12))
+          destination.copy(target).add(direction.multiplyScalar(distance*1.04))
           if(state.focus>0&&state.focus<4){
             const layer=state.focus===1?0:state.focus===2?1:3,z=.6-layer*.56,top=2.14+layer*.36
             target.set(0,state.focus===3?top-.17:top-.60,z)
             const direction=V(1,.30,1).normalize(),halfWidth=1.15,halfHeight=state.focus===3?.6:1.05
             const distance=Math.max(halfWidth/Math.tan(horizontal),halfHeight/Math.tan(vertical))
-            destination.copy(target).add(direction.multiplyScalar(distance*1.12))
+            destination.copy(target).add(direction.multiplyScalar(distance*1.04))
           }
         }
         if(props.project==='enigma'&&state.focus===4&&inkSurface){
@@ -341,7 +341,12 @@ export default function RoomScene(props: Props) {
         }
       }
       if(cameraMoving){camera.position.lerp(destination,state.reduced?1:1-Math.exp(-delta*7));controls.target.lerp(target,state.reduced?1:1-Math.exp(-delta*7));if(camera.position.distanceTo(destination)<.01&&controls.target.distanceTo(target)<.01)cameraMoving=false}
-      updates.forEach(update=>update(state.values,state.reduced?0:props.project==='black-hole'?studyTime:elapsed,delta));controls.update();try { renderer.render(scene,camera) } catch { activity?.dispose(); latest.current.onFail() }
+      // Tablet coordinates must use the same camera matrix as the visible frame.
+      if(props.project==='enigma'){controls.update();camera.updateMatrixWorld()}
+      updates.forEach(update=>update(state.values,state.reduced?0:props.project==='black-hole'?studyTime:elapsed,delta));
+      if(props.project!=='enigma')controls.update()
+      if(props.project==='enigma'){renderer.domElement.dataset.enigmaView=String(state.focus);renderer.domElement.dataset.enigmaCamera=cameraMoving?'moving':'ready'}
+      try { renderer.render(scene,camera) } catch { activity?.dispose(); latest.current.onFail() }
     }
     activity=createSceneActivity(host,render,{idleMs:2200,introMs:2200,fps:24,interactionFps:60});wake.current=()=>activity?.wake()
     controls.addEventListener('change',()=>activity?.wake())

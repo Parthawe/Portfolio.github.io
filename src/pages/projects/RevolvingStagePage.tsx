@@ -24,10 +24,10 @@ export default function RevolvingStagePage() {
     <>
       <Helmet>
         <title>Revolving Stage &middot; Parth Pawar</title>
-        <meta name="description" content="Designed and engineered a revolving stage for a theatre play at Firodia Karandak. A 15 ft. rotating platform supporting 250+ kgs, built for scene changes without blackout in a 65+ person production." />
+        <meta name="description" content="Designed and engineered a revolving stage for a theatre play at Firodia Karandak. A 15 ft. rotating platform designed around a 250 kg load target and scene changes without blackout. Independent load-test records are unavailable." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Revolving Stage &middot; Parth Pawar" />
-        <meta property="og:description" content="Engineered a 15 ft. revolving stage for theatre, supporting 250+ kgs and changing scenes without blackout." />
+        <meta property="og:description" content="Designed a 15 ft. revolving stage around a 250 kg load target for scene changes without blackout." />
         <meta property="og:image" content="https://designwhich.works/Assets/images/revolving-stage.webp" />
       </Helmet>
 
@@ -65,7 +65,7 @@ export default function RevolvingStagePage() {
 
             <div className="cs-label-row">
               <span className="cs-label-row-key">The Challenges</span>
-              <span className="cs-label-row-val">The main challenge was to design an axle that could support and revolve the 15 ft. platform on its 8 ft. base, with almost 250+ kgs bearing on it, while staying stable enough for actors to stand and perform on. Planning and completing this in 3 months, while leading a team of 65+ people, was a challenge of its own.</span>
+              <span className="cs-label-row-val">The main challenge was to design an axle that could support and revolve the 15 ft. platform on its 8 ft. base, with a 250 kg design-load target, while staying stable enough for actors to stand and perform on. Planning and completing this in 3 months, while leading a team of 65+ people, was a challenge of its own.</span>
             </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">My Role</span>

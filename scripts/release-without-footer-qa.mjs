@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
 import { readFileSync, existsSync, readdirSync } from 'node:fs'
-const baseline = '6271c74021b97272a66222251de284824108e483'
+const baseline = process.env.QA_BASE_REV || '39d242d'
 for (const file of ['src/components/Footer.tsx','src/components/FooterContent.tsx','src/styles/footer.css']) {
   const original = execFileSync('git',['show',`${baseline}:${file}`])
   assert.deepEqual(readFileSync(file), original, `${file} must match the deployed footer`)

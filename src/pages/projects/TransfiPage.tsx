@@ -7,6 +7,7 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import CaseStudySlides from '../../components/case-study/CaseStudySlides'
+import { transfiDecisions } from '../../data/transfiPublicDecisions'
 import { transfiPublicSlideChapters } from '../../data/caseStudySlides'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -91,7 +92,10 @@ export default function TransfiPage() {
           ctaLabel="Explore the public story"
           note="Product decisions and payment flows. Detailed reviewer material is available by request."
         >
-        <CaseStudySlides chapters={transfiPublicSlideChapters} />
+        <CaseStudySlides chapters={transfiPublicSlideChapters} decisions={transfiDecisions} introductions={{
+          'cs-public-story': 'A buyer needs to connect the quote, payment, delivery state, and transaction record. Inspect those states in this public source board.',
+          'cs-process': 'Compare two specific choices: itemized pricing before purchase, then address entry with saved-wallet reuse.',
+        }} />
         <NdaGate slug="transfi-project" unlockedMode="flow">
           <Suspense fallback={<div className="wrap" role="status"><p>Loading the original case study…</p></div>}><TransfiSlideStory /></Suspense>
         </NdaGate>

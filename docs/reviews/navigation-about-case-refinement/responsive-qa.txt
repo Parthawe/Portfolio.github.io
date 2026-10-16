@@ -1,0 +1,3 @@
+1440px: Work alignment and stable nav, About, six Notes, Mentra chapter controls, book failure recovery, reduced motion and overflow passed.
+768px: Work alignment and stable nav, About, six Notes, Mentra chapter controls, book failure recovery, reduced motion and overflow passed.
+390px: Work alignment and stable nav, About, six Notes, Mentra chapter controls, book failure recovery, reduced motion and overflow passed.

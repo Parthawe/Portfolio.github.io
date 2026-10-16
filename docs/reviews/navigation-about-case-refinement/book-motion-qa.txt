@@ -1,0 +1,1 @@
+PASS: normal-motion proof sequence, combined Code section, local Notes persistence, original PDF first pages, next/select/keyboard navigation, responsive book fit.

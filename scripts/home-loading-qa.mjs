@@ -38,6 +38,22 @@ try {
  await page.getByRole('button',{name:'Explore the skills and projects web',exact:true}).click();await expect(page.getByRole('button',{name:'Close the web and return to the hero',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'Explore the skills and projects web',exact:true})).toBeVisible()
  await page.locator('#works').scrollIntoViewIfNeeded();await page.waitForTimeout(700);const offscreen=await page.evaluate(()=>window.__draws);await page.waitForTimeout(500);assert.equal(await page.evaluate(()=>window.__draws),offscreen,'offscreen scene remains paused')
  results.push('Desktop 3D: first frame, single HDR request, idle pause, expansion, Escape, offscreen pause');await page.close()
+ // Fault recovery starts in a fresh document. The preceding activity can
+ // legitimately trip the runtime guard, which removes its Explore control.
+ const recovery=await browser.newPage({viewport:{width:1440,height:1000}})
+ recovery.on('pageerror',e=>errors.push(e.message));await recovery.addInitScript(capableDevice)
+ await recovery.goto(base,{waitUntil:'domcontentloaded'});await expect(recovery.locator('#hero')).toHaveClass(/is-scene-ready/,{timeout:20000})
+ await recovery.evaluate(()=>{
+  const hero=document.querySelector('#hero');window.__heroExpandedSeen=false
+  new MutationObserver(records=>{if(hero.classList.contains('wr-hero--web-open')||records.some(record=>record.oldValue?.includes('wr-hero--web-open')))window.__heroExpandedSeen=true}).observe(hero,{attributes:true,attributeFilter:['class'],attributeOldValue:true})
+ })
+ await recovery.getByRole('button',{name:'Explore the skills and projects web',exact:true}).click()
+ await expect.poll(()=>recovery.evaluate(()=>window.__heroExpandedSeen)).toBe(true)
+ await recovery.evaluate(()=>{document.documentElement.classList.add('is-low-power-device');window.dispatchEvent(new CustomEvent('portfolio:performance-mode',{detail:{degraded:true,reason:'runtime'}}))})
+ await expect(recovery.locator('#hero')).toHaveClass(/wr-hero--no-scene/);await expect(recovery.locator('#hero')).not.toHaveClass(/wr-hero--web-open/);await expect(recovery.locator('#hero canvas')).toHaveCount(0)
+ await expect(recovery.locator('.wr-hero-copy')).toHaveCSS('opacity','1');await expect(recovery.locator('.wr-hero-still')).toHaveCSS('opacity','1');await expect(recovery.locator('.wr-hero-web-scrim')).toHaveCSS('opacity','0')
+ await recovery.locator('#hero').screenshot({path:`${out}/expanded-fallback.png`})
+ results.push('Fresh-page expanded fallback restores copy/still and disposes the renderer');await recovery.close()
  const fallback=await browser.newPage();const unavailableRequests=[];fallback.on('request',r=>unavailableRequests.push(r.url()));await fallback.addInitScript(capableDevice);await fallback.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){if(type==='webgl'||type==='webgl2'||type==='experimental-webgl')return null;return get.call(this,type,...args)}})
  await fallback.goto(base,{waitUntil:'domcontentloaded'});await expect(fallback.locator('#hero')).toHaveClass(/wr-hero--no-scene/);await fallback.waitForTimeout(1000);assert(!unavailableRequests.some(url=>url.includes('potsdamer_platz')||url.includes('/HeroScene-')),'no heavy hero download when WebGL is unavailable');await fallback.close();results.push('Unavailable WebGL keeps the original fallback without 3D downloads')
  const constrained=await browser.newPage({viewport:{width:1440,height:1000}});const constrainedRequests=[]

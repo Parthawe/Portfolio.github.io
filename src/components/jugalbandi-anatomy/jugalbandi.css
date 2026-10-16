@@ -105,3 +105,8 @@
 .ja-duet-photos figcaption { font-size:13px; padding-block:12px; }
 .ja-duet-evidence video { display:block; width:100%; max-height:620px; background:#111; }
 @media(max-width:680px){.ja-ensemble-stage svg { height:205px; }.ja-duet .ja-caption { font-size:11px; padding:10px; min-height:66px; }.ja-duet-photos { grid-template-columns:1fr; }.ja-duet-photos img { height:250px; }}
+
+.ja-pair-explanation { margin-block:20px; max-width:74ch; }
+.ja-pair-explanation h3 { font:500 20px/1.4 var(--sans); margin:0 0 8px; }
+.ja-pair-explanation p { font:16px/1.65 var(--sans); margin:8px 0; }
+.ja-source-link { display:block; color:inherit; padding-block:12px; min-height:44px; text-decoration:underline; text-underline-offset:3px; }

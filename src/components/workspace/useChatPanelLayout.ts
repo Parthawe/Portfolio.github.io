@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 
 type Dock = 'left' | 'right' | 'floating'
 type Layout = { dock: Dock; width: number; height: number; x: number; y: number; textSize: number }
@@ -6,7 +6,7 @@ const KEY = 'portfolio-chat-layout-v1'
 const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n))
 const defaults = (): Layout => ({ dock: 'left', width: clamp(innerWidth * .28, 300, 390), height: Math.min(620, innerHeight - 32), x: 24, y: 100, textSize: 15 })
 function fit(value: Layout): Layout {
-  const maxWidth = Math.max(260, Math.min(720, innerWidth >= 1200 && value.dock !== 'floating' ? innerWidth * .48 : innerWidth - 16))
+  const maxWidth = Math.max(260, Math.min(720, innerWidth >= 900 && value.dock !== 'floating' ? innerWidth * .48 : innerWidth - 16))
   const width = clamp(value.width, Math.min(300, maxWidth), maxWidth)
   const height = clamp(value.height, Math.min(260, innerHeight - 16), innerHeight - 16)
   return { ...value, width, height, x: clamp(value.x, 8, Math.max(8, innerWidth - width - 8)), y: clamp(value.y, 8, Math.max(8, innerHeight - height - 8)), textSize: clamp(value.textSize, 14, 19) }
@@ -30,11 +30,11 @@ export function useChatPanelLayout() {
     window.addEventListener('resize', resize)
     return () => window.removeEventListener('resize', resize)
   }, [])
-  const dock = (value: Dock) => setLayout(current => fit({ ...current, dock: value }))
+  const dock = useCallback((value: Dock) => setLayout(current => fit({ ...current, dock: value })), [])
   const reset = () => { setLayout(defaults()); setMobileHeight(null) }
   const resizeWidth = (delta: number) => setLayout(current => fit({ ...current, width: current.width + delta }))
   const resizeHeight = (delta: number) => {
-    if (innerWidth < 600) setMobileHeight(value => clamp((value ?? Math.min(460, innerHeight * .44)) + delta, Math.min(260, innerHeight - 16), innerHeight * .8))
+    if (innerWidth < 600) setMobileHeight(value => clamp((value ?? Math.min(560, innerHeight * .56)) + delta, Math.min(260, innerHeight - 16), innerHeight * .8))
     else setLayout(value => fit({ ...value, height: value.height + delta }))
   }
   const textSize = (delta: number) => setLayout(value => fit({ ...value, textSize: value.textSize + delta }))

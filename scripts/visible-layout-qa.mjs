@@ -1,5 +1,17 @@
 import { expect } from '@playwright/test'
 
+/** Keep CSS/layout checks independent of software shader compilation. Dedicated
+ * home-loading/hero suites still exercise the real WebGL rendering path. */
+export async function withoutDecorativeWebGL(page) {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      if (['webgl', 'webgl2', 'experimental-webgl'].includes(type)) return null
+      return original.call(this, type, ...args)
+    }
+  })
+}
+
 /** Sample motion within one visible interval. A transform captured before
  * deferred layout settles can equal a later suspended offscreen sample. */
 export async function waitForMotion(track, viewport, timeout = 5_000) {

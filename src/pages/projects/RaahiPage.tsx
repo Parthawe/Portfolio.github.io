@@ -5,56 +5,28 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsImage from '../../components/case-study/CsImage'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
-import CsStatGrid from '../../components/case-study/CsStatGrid'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
+import CsScreenStrip from '../../components/case-study/CsScreenStrip'
+import { EvidenceImage } from '../../components/case-study/CsScreenStrip'
+import DecisionNote from '../../components/case-study/DecisionNote'
 import CsCredits from '../../components/case-study/CsCredits'
-import CsNumList from '../../components/case-study/CsNumList'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-
-const RAAHI_ASSET_BASE = '/Assets/Projects/Raahi/photos'
-const raahiAsset = (fileName: string) => (
-  `${RAAHI_ASSET_BASE}/${encodeURIComponent(fileName)}`
-)
-
-const RAAHI_RESEARCH_QUESTIONS = [
-  'Where does confidence break across planning, waiting, boarding, transferring, and arrival?',
-  'Which information must remain consistent across mobile, stop-level, and in-vehicle touchpoints?',
-  'How do language, familiarity, and transport dependence change what a rider needs from the service?',
-  'Which parts of the journey require continuity rather than another standalone feature?',
+import '../../components/case-study/service-decisions.css'
+const raahiAsset = (file: string) => `/Assets/Projects/Raahi/photos/${encodeURIComponent(file)}`
+const research = [
+ ['Mind Map.png', 'Problem-space map', 'Early framing of transport needs and service opportunities.'],
+ ['Group 2531.png', 'Rider models and journey maps', 'Concept synthesis for convenience switchers, captive riders and mode mixers. Participant counts and sampling records are unavailable.'],
+ ['service blueprints.png', 'Service blueprint', 'The source blueprint connects journey stages and service touchpoints.'],
+ ['information architecture.png', 'Mobile architecture', 'The mobile structure before screen design.'],
+ ['information architecture_kiosk.png', 'Kiosk architecture', 'Only this low-resolution original survives; enlargement cannot recover missing detail.'],
 ]
-
-const RAAHI_DECISIONS = [
-  {
-    index: '01',
-    signal: 'Riders experience a commute as one journey even when information is split across operators and surfaces.',
-    implication: 'Optimizing a mobile route planner alone would leave the most fragile handoffs unresolved.',
-    response: 'Design app, kiosk, and in-vehicle guidance as one service architecture with shared route language.',
-  },
-  {
-    index: '02',
-    signal: 'Rider archetypes differed in confidence, convenience needs, and dependence on public transport.',
-    implication: 'A single expert-commuter flow would disadvantage riders who need more orientation and reassurance.',
-    response: 'Prioritize saved places, leg-by-leg guidance, familiar modes, and stop-level access without requiring an account.',
-  },
-  {
-    index: '03',
-    signal: 'Route changes, tickets, and mode switches create repeated interpretation work during a trip.',
-    implication: 'Continuity depends on recognizable information, not merely access to more data.',
-    response: 'Use a transport-mode color system and repeat the same route hierarchy across planning and live guidance.',
-  },
-  {
-    index: '04',
-    signal: 'Pune riders navigate across Marathi, Hindi, and English and may encounter the service without the app.',
-    implication: 'Localization and physical access are core service requirements.',
-    response: 'Carry the three-language model into kiosk entry points and study the identity across scripts.',
-  },
+const identity = [
+ ['Spectrum.png', 'Brand personality spectrum'], ['brand personality.png', 'Brand directions'], ['brand personality-1.png', 'Chosen brand direction'],
+ ['Nomenclature.png', 'Wordmark and script studies'], ['WhatsApp Image 2022-09-19 at 10.54.png', 'Transit and connection sketches'], ['WhatsApp Image 2022-09-20 at 18.28.png', 'Devanagari sketches'], ['Frame 2547-1.png', 'Transport-mode system'], ['Frame 427318656.png', 'Identity and palette'],
 ]
-
 export default function RaahiPage() {
-  return (
-    <>
+ return <>
       <Helmet>
         <title>Raahi Public Transit Research Case Study &middot; Parth Pawar</title>
         <meta name="description" content="An in-depth service research case study connecting rider evidence to decisions across mobile, kiosk, and in-vehicle public-transit touchpoints in Pune." />
@@ -84,326 +56,43 @@ export default function RaahiPage() {
           ]}
         />
 
-        {/* Hero slide */}
-        <div className="cs-slide reveal raahi-overview-proof"><img data-project-preview src={raahiAsset('Frame 427318652.png')} alt="Raahi overview render showing the app, bus, and service touchpoints on a blue transit map" loading="lazy" decoding="async" /></div>
-
-        {/* Summary section with label-rows */}
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Summary</span>
-              <span className="cs-label-row-val">We studied where riders lose confidence across a trip, then connected route planning, ticketing, stop information, transfer guidance, kiosks, and in-vehicle displays.</span>
-            </div>
-
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">My contribution</span>
-              <span className="cs-label-row-val">I worked with one fellow designer from research through concept development, contributing to inquiry, rider models, service synthesis, brand identity, and interface systems. This is a concept case study, not a launched transit service.</span>
-            </div>
-
-          </div>
-        </section>
-
-        <CsExpandPreview
-          cta="Read the full story"
-          note="Continue into the field research, service blueprint, interface system, and final proof."
-          previewImage={raahiAsset('Frame 427318652.png')}
-        >
-        {/* Research */}
-        <section className="cs-section reveal" id="cs-research">
-          <div className="wrap">
-            <span className="cs-section-label">01 · Study framing</span>
-            <h2 className="cs-display">Research across the full commute</h2>
-            <CsBody>
-              <p>A route can be technically available and still feel unusable when the rider cannot confidently interpret the stop, transfer, ticket, or next vehicle. We studied the surrounding service to identify where continuity mattered most.</p>
-            </CsBody>
-            <div className="cs-tags">
-              <span className="cs-tag-item">Problem-space mapping</span>
-              <span className="cs-tag-item">Rider archetypes</span>
-              <span className="cs-tag-item">Journey mapping</span>
-              <span className="cs-tag-item">Service blueprint</span>
-            </div>
-
-            <div className="raahi-research-brief">
-              <article><span>Decision at risk</span><p>Whether to optimize one digital touchpoint or define a connected service across the commute.</p></article>
-              <article><span>Unit of analysis</span><p>The end-to-end rider journey: plan, reach the stop, board, transfer, stay oriented, and arrive.</p></article>
-              <article><span>Collaboration</span><p>Two designers shared research and concept work; my focus extended through service synthesis, brand, and UI.</p></article>
-              <article><span>Evidence boundary</span><p>The surviving project record contains synthesis artifacts but not a reliable participant count or formal sampling record.</p></article>
-            </div>
-
-            <div className="raahi-research-questions">
-              <span>Research questions</span>
-              <ol>
-                {RAAHI_RESEARCH_QUESTIONS.map((question, index) => (
-                  <li key={question}><b>{String(index + 1).padStart(2, '0')}</b><p>{question}</p></li>
-                ))}
-              </ol>
-            </div>
-            <div className="raahi-research-grid">
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('Mind Map.png')} alt="Raahi research mind map connecting public transport pain points, rider needs, and service opportunities" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Early mind map to frame the public-transport problem space.</figcaption>
-              </div>
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('Spectrum.png')} alt="Brand personality spectrum positioning Raahi between casual and professional, modern and traditional, accessible and exclusive" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Rider spectrum used to separate convenience, confidence, and dependency needs.</figcaption>
-              </div>
-              <div className="cs-img reveal raahi-research-blueprint">
-                <img data-project-preview src={raahiAsset('service blueprints.png')} alt="Service blueprint diagram mapping app, kiosk, vehicle, and rider touchpoints across the commute" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Blueprint view of the commute as one connected service.</figcaption>
-              </div>
-            </div>
-            <CsImage
-              className="raahi-research-board"
-              src={raahiAsset('Group 2531.png')}
-              alt="Boards of empathy maps and customer journey maps for rider archetypes like mode mixers, convenience switchers, and captive riders, leading into service blueprint and task flow diagrams"
-              caption="Empathy maps and journey maps for rider archetypes, feeding into the service blueprint and task flows my partner mapped -- the document I translated into screens."
-            />
-            <div className="raahi-ia-stack">
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('information architecture.png')} alt="Information architecture diagram for the Raahi mobile app" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Mobile information architecture before screen design.</figcaption>
-              </div>
-              <div className="cs-img reveal raahi-ia-kiosk">
-                <img data-project-preview src={raahiAsset('information architecture_kiosk.png')} alt="Original low-resolution information architecture diagram for the Raahi kiosk experience" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Kiosk information architecture for stop-level use.</figcaption>
-              </div>
-            </div>
-
-            <div className="raahi-decision-section">
-              <span className="cs-section-label">02 · Evidence to decision</span>
-              <h2 className="cs-display">From research to service architecture</h2>
-              <p>The artifacts became useful when they changed what we designed. Each row below makes that reasoning explicit.</p>
-              <div className="raahi-decision-ledger" aria-label="Raahi evidence, implication, and service decision">
-                <div className="raahi-decision-ledger__head" aria-hidden="true"><span>Signal</span><span>Implication</span><span>Service response</span></div>
-                {RAAHI_DECISIONS.map((item) => (
-                  <article key={item.index}>
-                    <b>{item.index}</b>
-                    <p>{item.signal}</p>
-                    <p>{item.implication}</p>
-                    <p>{item.response}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Image slides */}
-        
-        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('brand personality.png')} alt="Brand mood board exploring approachable, casual, navigator, and spontaneous personality directions" loading="lazy" decoding="async" /></div>
-        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('brand personality-1.png')} alt="Condensed Raahi brand personality board showing the chosen approachable navigation direction" loading="lazy" decoding="async" /></div>
-        
-
-        {/* Design System */}
-        <section className="cs-section reveal" id="cs-system">
-          <div className="wrap">
-            <span className="cs-section-label">Design System</span>
-            <h2 className="cs-section-title">Project Styleguide</h2>
-            <CsBody>
-              <p>The color system maps directly to transport modes: cab, bus, walk, bike-share, local, cycle, auto, and metro. Each mode gets a distinct pair so route changes are readable at a glance.</p>
-            </CsBody>
-            <CsImage
-              src={raahiAsset('Frame 2547-1.png')}
-              alt="Raahi extended styleguide strip showing transport-mode colors and typography rules"
-              caption="A tighter system strip for transport-mode colors, typography, and repeatable UI language."
-            />
-          </div>
-        </section>
-
-        {/* Visual Design */}
-        <section className="cs-section reveal" id="cs-visual">
-          <div className="wrap">
-            <span className="cs-section-label">Visual Design</span>
-            <h2 className="cs-section-title">Nomenclature &amp; Logo</h2>
-            <CsBody>
-              <p>&ldquo;Raahi&rdquo; means traveller: a companion on the road. Because riders read across languages and scripts, the wordmark was tested before the UI system was locked.</p>
-              <p>The mark reduces the service to a person and a connection. That dot-and-line logic became the identity language across app and kiosk surfaces.</p>
-            </CsBody>
-            <CsImage
-              src={raahiAsset('Nomenclature.png')}
-              alt="Raahi wordmark rendered in multiple Indian scripts, above pencil sketches deriving the logo from bus, train, and metro shapes and from dots (people) joined by connections (places), with Devanagari lettering studies"
-              caption="Nomenclature studies across scripts, and the sketchbook route from dot-plus-connection to the final mark."
-            />
-            <div className="cs-img-pair">
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('WhatsApp Image 2022-09-19 at 10.54.png')} alt="Raahi pencil sketches exploring transit shapes and dot-connection logo forms" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Transit-shape and dot-connection sketches behind the mark.</figcaption>
-              </div>
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('WhatsApp Image 2022-09-20 at 18.28.png')} alt="Raahi pencil sketches studying Devanagari wordmark forms" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Wordmark studies before the identity became digital.</figcaption>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('Frame 427318657.png')} alt="Raahi system overview showing app screens and transit touchpoints arranged as one service journey" loading="lazy" decoding="async" /></div>
-
-        {/* Features */}
-        <section className="cs-section reveal" id="cs-features">
-          <div className="wrap">
-            <span className="cs-section-label">Features</span>
-            <h2 className="cs-display">A home screen built around familiar routes</h2>
-            <CsBody className="cs-body--space-after">
-              <p>The homepage centers saved addresses, preferred modes, commute insights, tickets, and day passes so repeat riders do not rebuild the same trip every time.</p>
-            </CsBody>
-            <div className="raahi-phone-row raahi-phone-row--trio">
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('homepage.png')} alt="Raahi home screen showing saved addresses, transport modes, and recent commute context" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('added addresses.png')} alt="Raahi saved-address flow showing home and work locations" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('added addresses-1.png')} alt="Raahi address confirmation screen for a saved commute location" loading="lazy" decoding="async" /></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <h2 className="cs-display">Personalisation without extra work</h2>
-            <CsBody>
-              <p>Saved places and preferred modes reduce repeated trip setup. The screens below show how those preferences enter the concept.</p>
-            </CsBody>
-            <CsImage
-              className="raahi-wide-flow"
-              src={raahiAsset('frequent addresses.png')}
-              alt="Onboarding screens for saving frequent addresses like home and work, and choosing preferred transport modes from cab, bus, walk, bike-share, local, cycle, auto, share-auto, and metro"
-              caption="Onboarding asks for the places and modes you actually use, so the app starts out feeling familiar."
-            />
-          </div>
-        </section>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <h2 className="cs-display">Digital payments, insights, and incentives</h2>
-            <div className="raahi-phone-row raahi-phone-row--pair">
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('insights-1.png')} alt="Insights screen showing frequently visited places on a commute map" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">The service remembers real rider patterns, not just abstract route data.</figcaption>
-              </div>
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('insights.png')} alt="Insights dashboard — commute trends, carbon footprint reduction by mode, and frequently visited places" loading="lazy" decoding="async" />
-                <figcaption className="cs-img-caption">Insights show carbon emissions saved, and a free day pass past a spending threshold rewards riders for choosing public transport.</figcaption>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <h2 className="cs-display">Live guidance across the commute</h2>
-            <CsBody>
-              <p>The route flow shows what to take, where to change, how long each leg takes, and what is happening next, so the rider can trust the journey while it is unfolding.</p>
-            </CsBody>
-            <div className="raahi-phone-row raahi-phone-row--trio">
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('route list.png')} alt="Route list comparing commute options and public transit modes" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('route details.png')} alt="Detailed route screen showing multimodal commute steps and transit timing" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('bus in transit.png')} alt="Raahi mobile trip ticket with a QR code and save-to-gallery action" loading="lazy" decoding="async" /></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="cs-section reveal">
-          <div className="wrap">
-            <h2 className="cs-display">Mobile journey guidance and identity</h2>
-            <CsBody>
-              <p>The mobile journey screens share a visual identity with the wider transport service. These references show the app interface and the identity symbols.</p>
-            </CsBody>
-            <div className="raahi-touchpoint-pair">
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('Frame 427318655.png')} alt="Raahi mobile journey-planning and trip-detail interface mockup" loading="lazy" decoding="async" />
-              </div>
-              <div className="cs-img reveal">
-                <img data-project-preview src={raahiAsset('Frame 427318656.png')} alt="Raahi identity symbols and transport-mode color palette" loading="lazy" decoding="async" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Touchpoints */}
-        <section className="cs-section reveal" id="cs-touchpoints">
-          <div className="wrap">
-            <span className="cs-section-label">Touchpoints</span>
-            <h2 className="cs-section-title">Kiosk, welcome and in-vehicle displays</h2>
-            <CsBody className="cs-body--space-after">
-              <p>At the kiosk, riders choose English, Hindi, or Marathi, then a timetable, route, ticket, or day pass. The concept offers this path without an account.</p>
-            </CsBody>
-            <CsImage
-              src={raahiAsset('Frame 2547.png')}
-              alt="Raahi kiosk screens for buying tickets, choosing a language, and checking routes, paired with the transport-mode color system"
-              caption="The kiosk applies one color pair per transport mode, keeping route changes readable across ticketing, maps, and welcome states."
-            />
-            <div className="raahi-kiosk-row">
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('welcome.png')} alt="Raahi mobile welcome screen with sign-up and sign-in actions" loading="lazy" decoding="async" /></div>
-              <div className="cs-img reveal"><img data-project-preview src={raahiAsset('kiosk home.png')} alt="Raahi in-vehicle display showing the next stop and arrival times" loading="lazy" decoding="async" /></div>
-            </div>
-          </div>
-        </section>
-
-        {/* Concept outcome */}
-        <section className="cs-section reveal" id="cs-results">
-          <div className="wrap">
-            <span className="cs-section-label">03 · Concept outcome</span>
-            <h2 className="cs-section-title">A testable service hypothesis—not an impact claim.</h2>
-            <CsFeatureGrid features={[
-              { title: 'Lower cognitive load', desc: 'Route planning, ticketing, and live guidance sit in one flow instead of scattered decisions.' },
-              { title: 'Multilingual by design', desc: 'The naming, script study, and three-language kiosk make language part of the service design, not a late translation layer.' },
-            ]} />
-            <CsStatGrid className="cs-stat-grid--space-before" stats={[
-              { label: 'Transport Modes Represented', value: '8' },
-              { label: 'Languages Supported', value: '3' },
-              { label: 'Primary Service Surfaces', value: '3' },
-            ]} />
-
-            <div className="raahi-study-boundary" role="note">
-              <div>
-                <span>What this case demonstrates</span>
-                <p>System framing, research synthesis, and translation of a rider journey into coordinated physical and digital touchpoints.</p>
-              </div>
-              <div>
-                <span>What remains unproven</span>
-                <p>The record does not document usability-test results, operational feasibility, adoption, accessibility compliance, or live transit outcomes.</p>
-              </div>
-              <div>
-                <span>Next study</span>
-                <p>Test transfer comprehension and recovery with frequent riders, occasional riders, and people less familiar with Pune transit, using app, kiosk, and in-vehicle scenarios together.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Reflections */}
-        <CsSection id="cs-reflections" label="Reflections" title="What This Project Taught Me">
-          <CsNumList items={[
-            <><strong>Service design extends far beyond screens.</strong> This was my first real exposure to service design thinking. The project pushed us to consider kiosks at bus stops, in-vehicle monitors, payment infrastructure, and the physical experience of waiting and boarding. It became clear that a mobile app alone could never solve a transit problem; the entire service ecosystem had to work together.</>,
-            <><strong>Localization must be a first-class design requirement.</strong> Pune is a city where riders speak Marathi, Hindi, and English with varying fluency. The nomenclature work I did -- rendering &ldquo;Raahi&rdquo; across multiple Indian scripts -- shaped the entire visual system. Language could not be an afterthought when it determined whether someone could even find their stop.</>,
+        <figure className="wrap service-overview raahi-overview-proof"><EvidenceImage src={raahiAsset('Frame 427318652.png')} alt="Original Raahi concept overview showing mobile, bus and service touchpoints" /><figcaption>A 2022 service concept for Pune. Screens show proposed behavior; they do not establish live transit performance.</figcaption></figure>
+        <CsSection id="cs-summary" label="Problem" title="Keep a journey legible across handoffs">
+          <CsBody><p>Planning a route is only part of a commute. The design connects saved destinations, route comparisons, a leg-by-leg itinerary and stop information. I worked with Sampada Inamdar on research and concept development, then carried the service structure into the identity and interfaces.</p></CsBody>
+        </CsSection>
+        <CsExpandPreview sectionIds={['cs-research','cs-system','cs-visual','cs-features','cs-touchpoints','cs-results','cs-reflections']} cta="Read the decisions and original screens" note="Inspect the mobile journey, shared-service touchpoints and supporting research artifacts.">
+        <CsSection id="cs-features" label="Mobile journey" title="From a familiar place to the next leg">
+          <CsScreenExplorer scrollPortrait label="Choose a Raahi journey screen" screens={[
+            { title:'Start with familiar places', label:'Home and recent trips', src:raahiAsset('homepage.png'), alt:'Original Raahi home screen with destination shortcuts, transport modes and recent trips', caption:'Scroll within the screen to inspect the complete home design, or open the original.', decision:{question:'What should a repeat rider enter again?', choice:'Put destination shortcuts and recent trips before the rest of the service.', evidence:'The destination field, saved-place chips and recent-trip cards share the home screen.', limit:'The carbon and reward values are concept content, not measured environmental or adoption results.'}},
+            { title:'Compare routes by priority', label:'Route options', src:raahiAsset('route list.png'), alt:'Original Raahi route list with bookmarked, earliest-arrival and lowest-cost groups', caption:'Route options grouped by the rider’s immediate decision.', decision:{question:'How should a rider choose between similar routes?',choice:'Group options by bookmarked, earliest arrival and lowest cost.',evidence:'Compare the time, fare and mode sequence before each Start action.'}},
+            { title:'Keep every leg in view', label:'Route detail', src:raahiAsset('route details.png'), alt:'Original Raahi route detail with walking and bus legs, timings, fare and start action', caption:'One itinerary connects the map and the detailed sequence.', decision:{question:'What happens after choosing a route?',choice:'Keep walking, boarding and transfer detail in one ordered itinerary.',evidence:'Follow the colored mode markers, stop names, arrival times and total fare.',limit:'Timings and crowding labels are designed states; no live transport integration is demonstrated.'}},
+            { title:'Carry the ticket into the trip', label:'Ticket',src:raahiAsset('bus in transit.png'),alt:'Original Raahi mobile ticket with QR code and save-to-gallery action',caption:'The original ticket concept keeps its own inspection view.'},
+          ]} />
+          <details className="service-source-details"><summary>Inspect saved-place setup and commute insights</summary><CsScreenStrip label="Supporting mobile screens" format="portrait" screens={[
+            ['added addresses.png','Saved addresses'],['added addresses-1.png','Address confirmation'],['frequent addresses.png','Places and preferred modes'],['insights-1.png','Visited places'],['insights.png','Commute insights'],['Frame 427318655.png','Journey mockup'],
+          ].map(([file,label])=>({src:raahiAsset(file),label,alt:`Original Raahi concept: ${label}`}))} /></details>
+        </CsSection>
+        <CsSection id="cs-touchpoints" label="Service touchpoints" title="Keep the same route language beyond the phone">
+          <figure className="service-evidence"><EvidenceImage src={raahiAsset('Frame 2547.png')} alt="Original Raahi kiosk board showing ticket purchase, three language choices, timetable and route lookup" /><figcaption><DecisionNote decision={{question:'How can someone use the service at a stop?',choice:'Offer timetable, route, ticket and day-pass entry points at the kiosk.',evidence:'The central Welcome screen exposes English, Hindi and Marathi; the adjacent screens show ticket purchase and route selection.',limit:'These are kiosk concepts. Operational feasibility and language comprehension still need testing.'}} /></figcaption></figure>
+          <CsScreenStrip label="Welcome and vehicle display" screens={[
+            {src:raahiAsset('welcome.png'),label:'Mobile welcome',alt:'Original mobile welcome with sign-up and sign-in actions'},
+            {src:raahiAsset('kiosk home.png'),label:'In-vehicle next stop',alt:'Original in-vehicle display emphasizing Mundhwa Gaon as the next stop',decision:{question:'What should stand out during the ride?',choice:'Emphasize the next stop within the route sequence.',evidence:'Mundhwa Gaon and its arrival time receive orange emphasis; the bus route remains visible below.'}},
           ]} />
         </CsSection>
-
-        {/* Thanks + Credits */}
-        <section className="cs-section cs-thanks reveal">
-          <div className="wrap">
-            <h2 className="cs-thanks-title">Thank You</h2>
-            <CsCredits credits={[
-              { role: 'UI Designer & Researcher', name: 'Parth Pawar' },
-              { role: 'UX Designer & Researcher', name: 'Sampada Inamdar' },
-            ]} className="cs-stat-grid--space-before-lg" />
-          </div>
-        </section>
-
+        <CsSection id="cs-research" label="Supporting work" title="Inspect the synthesis behind the service">
+          <CsBody><p>The surviving maps show how the concept was organized. They do not provide a reliable participant count, interview record or usability result. The personality spectrum belongs to the brand exploration.</p></CsBody>
+          <CsScreenStrip label="Research and service artifacts" screens={research.map(([file,label,alt])=>({src:raahiAsset(file),label,alt}))} />
+          <span id="cs-visual" className="project-decision-alias" /><details id="cs-system" className="service-source-details"><summary>Inspect the identity and transport-mode system</summary><p>The dot-and-connection mark and script studies explore a shared identity. Mode colors repeat across the app and kiosk; their readability has not been validated here.</p><CsScreenStrip label="Original identity studies" screens={identity.map(([file,label])=>({src:raahiAsset(file),label,alt:`Original Raahi ${label}`}))} /></details>
+          <details className="service-source-details"><summary>Inspect the complete service composition</summary><figure className="service-evidence"><EvidenceImage src={raahiAsset('Frame 427318657.png')} alt="Original Raahi full system overview" /></figure></details>
+        </CsSection>
+        <CsSection id="cs-results" label="Evidence limits" title="What needs testing next">
+          <span id="cs-reflections" className="project-decision-alias" /><CsBody><p>The record supports a coordinated service concept, not an improvement in rider confidence or travel outcomes. Test whether riders can compare two routes, explain a transfer and find their next stop across the mobile and vehicle displays. Include Marathi, Hindi and English speakers and people unfamiliar with the route.</p></CsBody>
+          <CsCredits credits={[{role:'UI Designer & Researcher',name:'Parth Pawar'},{role:'UX Designer & Researcher',name:'Sampada Inamdar'}]} />
+        </CsSection>
         </CsExpandPreview>
-
-        <BottomNav sections={[
-          { id: 'cs-research', label: 'Research' },
-          { id: 'cs-system', label: 'System' },
-          { id: 'cs-visual', label: 'Visual Design' },
-          { id: 'cs-features', label: 'Features' },
-          { id: 'cs-touchpoints', label: 'Touchpoints' },
-          { id: 'cs-results', label: 'Results' },
-          { id: 'cs-reflections', label: 'Reflections' },
-        ]} />
-
+        <BottomNav sections={[{id:'cs-summary',label:'Problem'},{id:'cs-features',label:'Mobile journey'},{id:'cs-touchpoints',label:'Beyond the phone'},{id:'cs-research',label:'Source artifacts'},{id:'cs-results',label:'Next study'}]} />
       </main>
-
-        <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
+      <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
       <Footer />
     </>
-  )
 }

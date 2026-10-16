@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "scenes": 6
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "scenes": 6
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "scenes": 6
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "scenes": 6
+    }
+  ],
+  "errors": []
+}

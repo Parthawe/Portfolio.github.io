@@ -111,20 +111,23 @@ export default function BottomNav({ sections, liveUrl, modeAction, placement = '
       pairs.forEach((pair) => sectionObserver!.observe(pair.element));
     }
 
-    // --- Keep the dock clear of the next-project handoff and footer ---
+    // Keep the dock away from access forms even when Safari leaves a clicked
+    // submit button unfocused. A focus-only guard can uncover it mid-click.
     let endGuardObserver: IntersectionObserver | undefined;
-    const endGuards = document.querySelectorAll('.next-project, .footer');
+    const endGuards = document.querySelectorAll('.next-project, .footer, .nda-access-stack');
     if (endGuards.length) {
       const visibleEndGuards = new Set<Element>();
       endGuardObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) visibleEndGuards.add(entry.target);
+            const visible = entry.isIntersecting &&
+              (entry.target.matches('.nda-access-stack') || entry.intersectionRatio >= 0.1);
+            if (visible) visibleEndGuards.add(entry.target);
             else visibleEndGuards.delete(entry.target);
           });
           nav.classList.toggle('is-hidden', visibleEndGuards.size > 0);
         },
-        { threshold: 0.1 }
+        { threshold: [0, 0.1] }
       );
       endGuards.forEach((guard) => endGuardObserver!.observe(guard));
     }

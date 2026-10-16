@@ -19,7 +19,12 @@ try {
       await expect(page.locator('.project-story__prompt')).toBeVisible()
       assert.equal(requests.length, 0, 'Summary does not load deck imagery')
       await page.locator('.cs-expand-preview-btn').click()
-      await expect(page.locator('.case-study-slide')).toHaveCount(slug === 'mentra' ? 44 : 3)
+      await expect(page.locator('.case-study-slide')).toHaveCount(slug === 'mentra' ? 10 : 3)
+      if (slug === 'mentra') {
+        assert.equal(await page.locator('#source-presentation .case-study-slide').count(),0,'complete source reader stays deferred')
+        await page.getByText('Inspect all 44 original presentation slides',{exact:true}).click()
+        await expect(page.locator('#source-presentation .case-study-slide')).toHaveCount(44)
+      }
       if (slug === 'transfi-project') {
         await expect(page.locator('#cs-transfi-research')).toHaveCount(0)
         assert(requests.every(url => /slide-(6-6779|6-9052|6-9184)/.test(url)), 'Locked route requests only public slides')
@@ -29,7 +34,7 @@ try {
           await expect(page.locator('.case-study-slide')).toHaveCount(31)
         }
       }
-      const images = page.locator('.case-study-slide > img')
+      const images = (slug === 'mentra' ? page.locator('#source-presentation') : page).locator('.case-study-slide > img')
       for (const image of await images.all()) {
         await image.scrollIntoViewIfNeeded()
         await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true)

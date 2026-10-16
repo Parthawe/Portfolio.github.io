@@ -1,0 +1,14 @@
+chromium 1440 light: layout, input, navigation and fallback passed.
+chromium 1024 dark: layout, input, navigation and fallback passed.
+webkit 390 light: layout, input, navigation and fallback passed.
+webkit 390 dark: layout, input, navigation and fallback passed.
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+browserContext.close: Target page, context or browser has been closed
+    at async file:///Users/parth/Documents/Codex/2026-07-08/gm/work/Portfolio-local-preview/scripts/chat-usability-qa.mjs:46:11 {
+  log: []
+}
+
+Node.js v23.11.0

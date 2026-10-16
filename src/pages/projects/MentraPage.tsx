@@ -11,16 +11,18 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import CaseStudySlides from '../../components/case-study/CaseStudySlides'
 import { mentraSlideChapters } from '../../data/caseStudySlides'
+import { mentraDecisionChapters, mentraDecisions } from '../../data/productDecisionStories'
 import { settleAnchor } from '../../utils/settleAnchor'
 
 export default function MentraPage() {
   const location = useLocation()
   const [viewMode, setViewMode] = useState<'summary' | 'full'>('summary')
+  const [sourceOpen, setSourceOpen] = useState(false)
   const sections = viewMode === 'summary'
     ? [
         { id: 'cs-summary', label: 'Quick read' },
       ]
-    : [{ id: 'cs-summary', label: 'Quick read' }, ...mentraSlideChapters.map(chapter => ({ id: chapter.id, label: chapter.title }))]
+    : [{ id: 'cs-summary', label: 'Quick read' }, ...mentraDecisionChapters.map(chapter => ({ id: chapter.id, label: ({ 'decision-first-use': 'First use', 'decision-runtime': 'Runtime', 'decision-recovery': 'Recovery', 'decision-results': 'Results' } as Record<string,string>)[chapter.id] })), { id: 'source-presentation', label: 'Original deck' }]
 
   const handleViewModeChange = (nextMode: 'summary' | 'full') => {
     if (nextMode === viewMode) return
@@ -31,6 +33,8 @@ export default function MentraPage() {
     if (typeof window === 'undefined') return
     const targetId = location.hash.replace('#', '')
     if (!targetId) return
+
+    if (mentraSlideChapters.some(chapter => chapter.id === targetId) || targetId === 'source-presentation') setSourceOpen(true)
 
     if (targetId !== 'cs-summary' && targetId !== 'project-overview') {
       setViewMode('full')
@@ -104,13 +108,21 @@ export default function MentraPage() {
         />
 
         <CsExpandPreview
-          sectionIds={mentraSlideChapters.map(chapter => chapter.id)}
+          sectionIds={[...mentraDecisionChapters.map(chapter => chapter.id), ...mentraSlideChapters.map(chapter => chapter.id), 'source-presentation']}
           expanded={viewMode === 'full'}
           onExpand={() => setViewMode('full')}
-          cta="Read the full case study"
+          cta="Read the decisions and original screens"
           previewImage="/Assets/mockups/projects/mentra_16x9.webp"
         >
-        <CaseStudySlides chapters={mentraSlideChapters} />
+        <CaseStudySlides chapters={mentraDecisionChapters} decisions={mentraDecisions} />
+        <div className="wrap">
+          <p className="cs-caption">These decisions focus on first use and runtime. <a className="cs-text-link" href="/mentra-miniapps">See MiniApps for the app-specific screen flows</a>.</p>
+          <details id="source-presentation" className="mentra-source-archive" open={sourceOpen} onToggle={event => { if (event.target === event.currentTarget) setSourceOpen(event.currentTarget.open) }}>
+            <summary>Inspect all 44 original presentation slides</summary>
+            <p>The complete source retains research, explorations, enterprise, website, results, and reflection. Reported results belong to separate first-use and runtime phases; dates and cohort sizes are not available publicly.</p>
+            {sourceOpen && <CaseStudySlides chapters={mentraSlideChapters} />}
+          </details>
+        </div>
 
         <CsThanks contactCta className="cs-thanks--separated" />
         </CsExpandPreview>

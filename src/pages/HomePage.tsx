@@ -100,7 +100,13 @@ export default function HomePage() {
   const allowDecorative3D = !prefersReducedMotion;
   // Resolve capability before the deferred mount can race the hook's first effect.
   const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || !canUseWebGL() || heroSceneTimedOut;
-  useEffect(() => { if (heroSceneUnavailable) setHeroSceneReady(false); }, [heroSceneUnavailable]);
+  useEffect(() => {
+    if (!heroSceneUnavailable) return;
+    setHeroSceneReady(false);
+    // The renderer can unmount while its web is expanded. Clear the overlay
+    // too, so the matching still and copy remain visible during fallback.
+    setHeroWebOpen(false);
+  }, [heroSceneUnavailable]);
   const [readerMoved, setReaderMoved] = useState(() => typeof window !== 'undefined' && window.scrollY > 40);
   useEffect(() => {
     if (readerMoved) return;

@@ -2,198 +2,71 @@ import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
-import NdaPublicStory from '../../components/case-study/NdaPublicStory'
-import NdaProcess from '../../components/case-study/NdaProcess'
+import ProjectOverview from '../../components/case-study/ProjectOverview'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
+import CsReportReader from '../../components/case-study/CsReportReader'
+import CsSection from '../../components/case-study/CsSection'
+import CsBody from '../../components/case-study/CsBody'
+import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-import CsImage from '../../components/case-study/CsImage'
-import CsSection from '../../components/case-study/CsSection'
-import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
+import '../../components/case-study/service-decisions.css'
 
-const HEALTH_APP_COVER = '/Assets/mockups/projects/healthapp_16x9.webp'
-const HEALTH_APP_ORIGINAL = '/Assets/Projects/HealthApp/optimized/cover-original.webp'
-
-const HEALTH_APP_PUBLIC_VISUALS = [
-  {
-    src: HEALTH_APP_ORIGINAL,
-    alt: 'Original Health App project board showing mobile planning screens and the core product concept.',
-    label: 'Original product board',
-  },
+const base = '/Assets/Projects/HealthApp/optimized'
+const archive = [
+  {src:`${base}/01-planning.webp`,alt:'Original Reimagining Google Tasks App brief with self-initiated scope, four-month duration and design goals',label:'Project brief · 2024'},
+  {src:`${base}/02-flow.webp`,alt:'Existing Google Tasks product and ecosystem reference board',label:'Existing Google Tasks · baseline'},
+  {src:`${base}/03-tasks.webp`,alt:'Existing Google Tasks in Gmail, Workspace and Calendar',label:'Existing integrations · baseline'},
+  {src:`${base}/04-insights.webp`,alt:'Historical problem-framing board with unverified health and economic assertions',label:'Historical problem framing · unvalidated claims'},
+  {src:`${base}/cover-original.webp`,alt:'Original Health App project cover board',label:'Original cover board'},
 ]
-
-const HEALTH_APP_BOARD_IMAGES = [
-  {
-    src: '/Assets/Projects/HealthApp/optimized/01-planning.webp',
-    alt: 'Original project introduction titled Reimagining Google Tasks App, with scope, role, and health-related design goals.',
-    label: 'Project brief: a concept redesign of Google Tasks that brings health and planning into the same study.',
-  },
-  {
-    src: '/Assets/Projects/HealthApp/optimized/02-flow.webp',
-    alt: 'Baseline Google Tasks overview showing its ecosystem and existing task-list screens.',
-    label: 'Existing product: Google Tasks and its ecosystem, used as the starting point for the redesign.',
-  },
-  {
-    src: '/Assets/Projects/HealthApp/optimized/04-insights.webp',
-    alt: 'Problem-framing board describing the proposed connection between task management and wellbeing.',
-    label: 'Design brief: the board states the proposed problem and goal. Its health and economic claims are reproduced as historical project material, not validated findings.',
-  },
-]
-
 export default function HealthAppPage() {
-  return (
-    <>
-      <Helmet>
-        <title>Health App &middot; Parth Pawar</title>
-        <meta name="description" content="A health-aware task planner — balancing productivity with personal well-being through time division, sleep regulation, food tracking, and physical activity." />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Health App · Parth Pawar" />
-        <meta property="og:description" content="A health-aware task planner with wellness integration." />
-        <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/healthapp_16x9.webp" />
-      </Helmet>
-
-      <Nav />
-
-      <main id="main-content" className="project-main project-main--healthapp" style={{ '--project-color': '#4285F4' } as React.CSSProperties}>
-
-        <ProjectHeader
-          showHeaderSummary={false}
-          backLink="/work"
-          categorySlug="ux-design"
-          backLabel="Back to Work"
-          tags={['UX Design', 'Mobile App', 'Health']}
-          title="Health App"
-          subtitle="A concept redesign of Google Tasks exploring wellbeing, personalization, and daily planning."
-          heroImage={HEALTH_APP_COVER}
-          heroAlt="Health App 16:9 cover showing the planning concept and interface direction."
-          info={[
-            { label: 'Year', value: '2024' },
-            { label: 'Role', value: 'Product Designer' },
-            { label: 'Duration', value: '4 Months' },
-          ]}
-        />
-
-        <NdaPublicStory
-          slug="healthapp"
-          headline="Productivity with recovery built in."
-          lede="The concept stays simple: planning should account for the person doing the work, not only the tasks."
-          visuals={HEALTH_APP_PUBLIC_VISUALS}
-        />
-
-        <CsSection
-          id="cs-healthapp-model"
-          label="01 · Product model"
-          title="Propose a lighter plan, explain the change."
-        >
-          <p className="cs-body-lg">
-            Most wellness apps report what already happened, while task managers keep asking for more. Health App connects the two: lightweight signals change the load, order, and timing of the day before the plan becomes unrealistic.
-          </p>
-          <CsFeatureGrid
-            className="cs-healthapp-signal-grid"
-            features={[
-              {
-                title: 'Sleep sets capacity',
-                desc: 'A low-recovery night reduces the day\'s cognitive load instead of treating every morning as identical.',
-              },
-              {
-                title: 'Energy shapes sequence',
-                desc: 'High-focus work lands in stronger windows; routine work moves into lower-energy periods.',
-              },
-              {
-                title: 'Care becomes calendar',
-                desc: 'Food, movement, and recovery receive protected time rather than competing with the task list.',
-              },
-              {
-                title: 'Adjustments stay legible',
-                desc: 'The interface explains why a plan changed, keeping the user in control of every recommendation.',
-              },
-            ]}
-          />
-          <p className="cs-caption">Concept logic: a low-recovery signal suggests a lighter plan, explains the proposed changes, and lets the person decide. This is a planning concept, not a validated health intervention or evidence of burnout prevention.</p>
+  return <>
+    <Helmet>
+      <title>Health App · Parth Pawar</title>
+      <meta name="description" content="A self-initiated Google Tasks redesign concept: original goal selection, reminder setup and calendar-conflict screens, with design decisions and source limits." />
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="Health App · Parth Pawar" />
+      <meta property="og:description" content="Original planning concept boards and proposed interactions, not a live health service." />
+      <meta property="og:image" content="https://designwhich.works/Assets/mockups/projects/healthapp_16x9.webp" />
+    </Helmet>
+    <Nav />
+    <main id="main-content" className="project-main project-main--healthapp" style={{'--project-color':'#4285F4'} as React.CSSProperties}>
+      <ProjectHeader showHeaderSummary={false} backLink="/work" categorySlug="ux-design" backLabel="Back to Work"
+        tags={['UX Design','Mobile','Self-initiated concept']} title="Health App"
+        subtitle="Reimagining Google Tasks around personal goals, reminders and reviewable schedule changes."
+        heroImage="/Assets/mockups/projects/healthapp_16x9.webp" heroAlt="Health App planning concept cover"
+        info={[{label:'Year',value:'2024'},{label:'Role',value:'Product Designer'},{label:'Duration',value:'4 months'},{label:'Status',value:'Concept redesign · no live health service'}]} />
+      <ProjectOverview id="cs-public-story" sections={[
+        {label:'Design question',content:'How could a task planner include personal goals and recurring care activities without hiding changes to the day’s schedule?'},
+        {label:'Proposal',content:'The original boards explore goal selection, reminder setup and a calendar-conflict prompt. They show interface ideas; they do not establish automatic health sensing or improved wellbeing.'},
+      ]} />
+      <CsExpandPreview cta="Inspect the original planning screens" note="Read the proposed interactions beside their original boards.">
+        <CsSection id="cs-healthapp-screens" label="01 · Original redesign" title="Choose a goal; review the schedule change">
+          <span id="cs-healthapp-model" className="project-decision-alias" />
+          <span id="cs-process" className="project-decision-alias" />
+          <CsBody><p>The original boards cover goal selection, reminders and a calendar-conflict prompt. Select one, scroll within it or open the original at full resolution.</p></CsBody>
+          <CsScreenExplorer format="landscape" scrollPortrait label="Inspect original Health App redesign boards" screens={[
+            {title:'Choose goals and set reminders',label:'Original mobile redesign board',src:`${base}/07-screen-set.webp`,alt:'Original low-fidelity sketches, goal-selection screens, daily diary and meditation reminder setup',caption:'Original proposed screens, including sketches and mobile flows.',decision:{question:'How could someone choose what the planner supports?',choice:'Ask for a personal goal and let the person set a reminder’s time and days.',evidence:'The board shows What Brings You to Us, a daily diary and a meditation reminder with Save and No Thanks.',limit:'The screens do not demonstrate measured sleep, energy sensing or an adaptive scheduling engine.'}},
+            {title:'Ask before resolving an overlap',label:'Original calendar proposal',src:`${base}/09-calendar.webp`,alt:'Original calendar concept showing an Overlap Spotted prompt with Move Sleep and Cancel actions',caption:'Original conflict prompt shown against a calendar.',decision:{question:'Should a proposed schedule adjustment silently change the calendar?',choice:'Show the overlap and ask for confirmation or cancellation.',evidence:'The Overlap Spotted dialog offers Move Sleep and Cancel rather than silently applying the change.',limit:'The historical example proposes moving sleep. That recommendation has not been evaluated for suitability; the board is evidence of an interface proposal, not health guidance or a validated intervention.'}},
+          ]} />
         </CsSection>
-
-        <CsExpandPreview
-          cta="Open the planning boards"
-          note="Process moves, original boards, task surfaces, screen set, and calendar logic."
-        >
-        <NdaProcess
-          intro="I kept the concept simple: let health signals shape the plan without turning the product into a noisy wellness dashboard."
-          decisions={[
-            {
-              move: 'Put health signals inside planning.',
-              why: 'Let sleep, food, movement, and energy affect the schedule.',
-            },
-            {
-              move: 'Plan around real capacity.',
-              why: 'Make the day feel possible instead of optimized past the user.',
-            },
-            {
-              move: 'Keep the daily surface calm.',
-              why: 'Hide the data machinery and show one clear plan.',
-            },
-          ]}
-          shift={{
-            before: 'Health data and task planning lived in separate places.',
-            after: 'The daily plan adapts to the person doing the work.',
-          }}
-        />
-
-        <section className="cs-section reveal" id="cs-healthapp-screens">
-          <div className="wrap">
-            <div className="cs-nda-process-head">
-              <h2 className="cs-nda-process-title">Original boards</h2>
-              <p className="cs-nda-process-intro">
-                The archive includes the project brief, existing Google Tasks references, problem framing, and proposed screens. Captions distinguish the existing product from the redesign.
-              </p>
-            </div>
-            <div className="cs-healthapp-board-list">
-              {HEALTH_APP_BOARD_IMAGES.map((visual) => (
-                <CsImage
-                  key={visual.src}
-                  className="cs-img-full--healthapp-board"
-                  src={visual.src}
-                  alt={visual.alt}
-                  caption={visual.label}
-                />
-              ))}
-              <CsImage
-                className="cs-img-full--healthapp-board"
-                src="/Assets/Projects/HealthApp/optimized/03-tasks.webp"
-                alt="Existing Google Tasks interfaces inside Gmail, Workspace, and Calendar."
-                caption="Baseline integration references: Gmail, Workspace, and Calendar, before the proposed redesign."
-              />
-              <CsImage
-                className="cs-img-full--healthapp-board"
-                src="/Assets/Projects/HealthApp/optimized/07-screen-set.webp"
-                alt="Low-fidelity sketches and proposed mobile screens for personalization and task scheduling."
-                caption="Proposed design: low-fidelity sketches, personalization, and task scheduling."
-              />
-              <CsImage
-                className="cs-img-full--healthapp-board"
-                src="/Assets/Projects/HealthApp/optimized/09-calendar.webp"
-                alt="Health App calendar and schedule planning board."
-                caption="Calendar: the schedule needs to remain inspectable and editable after a proposed change."
-              />
-            </div>
-          </div>
-        </section>
-        </CsExpandPreview>
-
-
-        <BottomNav
-          sections={[
-            { id: 'cs-public-story', label: 'Glimpse' },
-            { id: 'cs-healthapp-model', label: 'Model' },
-            { id: 'cs-process', label: 'Process' },
-            { id: 'cs-healthapp-screens', label: 'Screens' },
-          ]}
-          placement="side"
-        />
-
-      </main>
-
-      <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Assets/Projects/ibm/1.webp" />
-      <Footer />
-    </>
-  )
+        <CsSection id="cs-healthapp-archive" label="02 · Supporting source material" title="Separate the baseline from the redesign">
+          <details className="service-source-details">
+            <summary>Inspect the brief and existing Google Tasks references</summary>
+            <p>The Google Tasks integration boards show the existing product. The problem-framing board contains historical health and economic assertions without supporting research in this archive; those assertions are not treated as findings.</p>
+            <CsReportReader chapters={archive} label="Health App source boards" continueHref="#cs-healthapp-evaluation" originalLabel="Open selected original board" />
+          </details>
+        </CsSection>
+        <CsSection id="cs-healthapp-evaluation" label="03 · Open evaluation" title="Test whether the proposed change is understood">
+          <CsBody><p>Ask someone to choose a goal, set a reminder, identify a calendar conflict and decline the proposed adjustment. Check whether they understand what would change and can edit it afterward.</p><p>The archive has original boards, not a running scheduling service or participant-level test results. A recorded prototype task and research supporting the recommendations are still needed.</p></CsBody>
+        </CsSection>
+        <CsThanks contactCta />
+      </CsExpandPreview>
+      <BottomNav sections={[{id:'cs-public-story',label:'Brief'},{id:'cs-healthapp-screens',label:'Original screens'},{id:'cs-healthapp-archive',label:'Source archive'},{id:'cs-healthapp-evaluation',label:'Open evaluation'}]} />
+    </main>
+    <NextProject slug="ibm" title="IBM Cancer Prognosis" image="/Assets/Projects/ibm/1.webp" />
+    <Footer />
+  </>
 }

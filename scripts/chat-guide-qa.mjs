@@ -11,6 +11,7 @@ try {
     await page.route('**/folio-answer', async route => { payload=route.request().postDataJSON(); await route.fulfill({status:503,body:'unavailable'}) })
     await page.goto(`${base}/about/`)
     await page.getByRole('button',{name:'Ask Parth about this work',exact:true}).click()
+    await page.locator('.portfolio-chat-browse summary').click()
     await page.getByRole('button',{name:'Next section ↓',exact:true}).click()
     await expect.poll(()=>page.evaluate(()=>window.scrollY)).toBeGreaterThan(100)
     await expect(page.locator('.portfolio-chat-panel')).toBeVisible()

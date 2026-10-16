@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { expect } from '@playwright/test'
-import { revealForMeasurement, waitForReveal, waitForMotion } from './visible-layout-qa.mjs'
+import { revealForMeasurement, waitForReveal, waitForMotion, withoutDecorativeWebGL } from './visible-layout-qa.mjs'
 import { checkHomepageCards } from './homepage-cards-qa.mjs'
 
 export async function checkMarquees(browser, base, widths = [1187, 390]) {
@@ -11,10 +11,11 @@ export async function checkMarquees(browser, base, widths = [1187, 390]) {
       page.setDefaultTimeout(20_000)
       page.setDefaultNavigationTimeout(30_000)
       await page.addInitScript(theme => localStorage.setItem('theme', theme), theme)
+      await withoutDecorativeWebGL(page)
       await page.goto(`${base}/`)
       // The independent motion deadline starts after the hero has initialized
       // or selected its fallback, not during software WebGL bootstrap.
-      await expect(page.locator('.wr-hero')).toHaveClass(/is-scene-ready|wr-hero--no-scene/, { timeout: 15_000 })
+      await expect(page.locator('.wr-hero')).toHaveClass(/wr-hero--no-scene/, { timeout: 15_000 })
       const strip = page.locator('.cl-marquee')
       await revealForMeasurement(strip.locator('.cl-marquee-track'))
       const track = strip.locator('.cl-marquee-track')

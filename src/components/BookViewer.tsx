@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState, useCallback, forwardRef } from 'react';
+import { useMediaQuery } from '../hooks/useMediaQuery';
+import { usePrefersReduced } from '../hooks/usePrefersReduced';
 import HTMLFlipBook from 'react-pageflip';
 import '../styles/book-viewer.css';
 
-const INITIAL_READY_PAGES = 6
+const INITIAL_READY_PAGES = 4
 const RENDER_BATCH = 4
 
 async function canvasToObjectUrl(canvas: HTMLCanvasElement) {
@@ -37,6 +39,9 @@ export default function BookViewer({
   onProgress?: (loaded: number, total: number) => void;
   onReady?: () => void;
 }) {
+  const reducedMotion = usePrefersReduced();
+  const isMobile = useMediaQuery('(max-width: 699px)');
+  const [attempt, setAttempt] = useState(0);
   const [pages, setPages] = useState<string[]>([]);
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -44,29 +49,25 @@ export default function BookViewer({
   const [error, setError] = useState<string | null>(null);
   const [dimensions, setDimensions] = useState({ width: 650, height: 840 });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- HTMLFlipBook has no exported instance type
-  const flipBookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void; getCurrentPageIndex: () => number } } | null>(null);
+  const flipBookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void; flip: (page: number) => void; getCurrentPageIndex: () => number } } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const aspectRef = useRef(840 / 650);
   const pageUrlsRef = useRef<string[]>([])
 
   /* Calculate optimal dimensions, large, consume most of the screen */
   const calcDimensions = useCallback((aspect: number) => {
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    let pageW: number;
-    if (vw > 1400) pageW = 900;
-    else if (vw > 1200) pageW = 820;
-    else if (vw > 900) pageW = Math.min(700, (vw - 80) / 2);
-    else if (vw > 600) pageW = Math.min(550, (vw - 48) / 2);
-    else pageW = vw - 24;
-    const pageH = Math.min(pageW * aspect, vh * 0.88);
-    return { width: Math.round(pageW), height: Math.round(pageH) };
+    const available = containerRef.current?.clientWidth || window.innerWidth;
+    const portrait = window.innerWidth < 700;
+    const maxWidth = (available - (portrait ? 24 : 64)) / (portrait ? 1 : 2);
+    const width = Math.max(120, Math.min(650, maxWidth, (window.innerHeight * .72) / aspect));
+    return { width: Math.round(width), height: Math.round(width * aspect) };
   }, []);
 
   /* Render all PDF pages */
   useEffect(() => {
     let cancelled = false;
-    const scale = 2.5;
+    const scale = window.innerWidth < 700 ? 1.5 : 2;
+    setLoading(true); setError(null); setPages([]); setCurrentPage(0);
 
     async function renderPdf() {
       try {
@@ -98,6 +99,7 @@ export default function BookViewer({
           const ctx = canvas.getContext('2d')!;
           await page.render({ canvasContext: ctx, viewport }).promise;
           const pageUrl = await canvasToObjectUrl(canvas)
+          if (cancelled) { URL.revokeObjectURL(pageUrl); return; }
           rendered.push(pageUrl);
           pageUrlsRef.current.push(pageUrl)
 
@@ -133,7 +135,7 @@ export default function BookViewer({
       pageUrlsRef.current.forEach((url) => URL.revokeObjectURL(url))
       pageUrlsRef.current = []
     };
-  }, [pdfUrl, calcDimensions]);
+  }, [pdfUrl, calcDimensions, attempt]);
 
   /* Resize handler, debounced */
   useEffect(() => {
@@ -152,30 +154,18 @@ export default function BookViewer({
     };
   }, [pages.length, calcDimensions]);
 
-  /* Keyboard navigation */
-  useEffect(() => {
-    const handle = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        flipBookRef.current?.pageFlip()?.flipNext();
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        flipBookRef.current?.pageFlip()?.flipPrev();
-      }
-    };
-    window.addEventListener('keydown', handle);
-    return () => window.removeEventListener('keydown', handle);
-  }, []);
-
   const onFlip = useCallback((e: { data: number }) => { setCurrentPage(e.data); }, []);
-  const goNext = () => flipBookRef.current?.pageFlip()?.flipNext();
-  const goPrev = () => flipBookRef.current?.pageFlip()?.flipPrev();
+  const goNext = () => isMobile ? setCurrentPage(page => Math.min(pages.length - 1, page + 1)) : flipBookRef.current?.pageFlip()?.flipNext();
+  const goPrev = () => isMobile ? setCurrentPage(page => Math.max(0, page - 1)) : flipBookRef.current?.pageFlip()?.flipPrev();
   const totalPages = pageCount || pages.length;
   const loadedPages = pages.length;
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 700;
+
 
   return (
-    <div className="book-viewer" ref={containerRef}>
+    <div className="book-viewer" ref={containerRef} tabIndex={0} role="group" aria-label="Portfolio book. Use left and right arrow keys to turn pages." onKeyDown={event => {
+      if ((event.target as HTMLElement).closest('button, input, select, textarea, a')) return;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); event.key === 'ArrowRight' ? goNext() : goPrev(); }
+    }}>
       {/* Book */}
       <div className="book-stage">
         {loading ? (
@@ -186,8 +176,10 @@ export default function BookViewer({
           </div>
         ) : error ? (
           <div className="book-loading" role="alert">
-            <span>{error}</span>
+            <span>{error}</span><button className="glass-action" onClick={() => setAttempt(value => value + 1)}>Retry book</button><a href={pdfUrl} target="_blank" rel="noopener noreferrer">Open original PDF</a>
           </div>
+        ) : isMobile ? (
+          <div className="book-mobile-page"><img src={pages[currentPage]} alt={`Portfolio page ${currentPage + 1}`} draggable={false} style={{ aspectRatio: `${1 / aspectRef.current}` }} /></div>
         ) : (
           <div className="book-flip-wrapper">
             {/* @ts-ignore */}
@@ -196,9 +188,9 @@ export default function BookViewer({
               width={dimensions.width}
               height={dimensions.height}
               size="stretch"
-              minWidth={280}
+              minWidth={120}
               maxWidth={1100}
-              minHeight={380}
+              minHeight={160}
               maxHeight={1200}
               showCover={true}
               mobileScrollSupport={true}
@@ -207,7 +199,7 @@ export default function BookViewer({
               style={{}}
               startPage={0}
               drawShadow={true}
-              flippingTime={700}
+              flippingTime={reducedMotion ? 1 : 600}
               usePortrait={isMobile}
               startZIndex={0}
               autoSize={false}
@@ -229,17 +221,17 @@ export default function BookViewer({
 
       {/* Controls */}
       <div className="book-controls">
-        <button className="book-ctrl-btn" onClick={goPrev} disabled={currentPage <= 0} aria-label="Previous page">
+        <button className="book-ctrl-btn" onClick={goPrev} disabled={loading || !!error || currentPage <= 0} aria-label="Previous page">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
           <span>Prev</span>
         </button>
 
-        <div className="book-page-info">
+        <div className="book-page-info"><label className="sr-only" htmlFor="book-page-select">Go to page</label><select id="book-page-select" value={Math.min(currentPage, Math.max(0, loadedPages - 1))} disabled={loading || !!error} onChange={event => isMobile ? setCurrentPage(Number(event.target.value)) : flipBookRef.current?.pageFlip()?.flip(Number(event.target.value))}>{pages.map((_, index) => <option key={index} value={index}>Page {index + 1}</option>)}</select>
           <span className="book-page-indicator">{currentPage + 1} / {totalPages || '...'}</span>
           {loadedPages < totalPages && <span className="book-page-indicator">Loaded {loadedPages}</span>}
         </div>
 
-        <button className="book-ctrl-btn" onClick={goNext} disabled={currentPage >= loadedPages - 1} aria-label="Next page">
+        <button className="book-ctrl-btn" onClick={goNext} disabled={loading || !!error || currentPage >= loadedPages - 1} aria-label="Next page">
           <span>Next</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
         </button>

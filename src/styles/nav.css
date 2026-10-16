@@ -51,6 +51,19 @@
 /* extends .pill-link from base.css */
 .nav-pill-link {
   padding: 0.45rem 0.85rem;
+  display: inline-grid;
+  place-items: center;
+}
+/* Reserve the active label's width without changing the inactive type weight. */
+.nav-pill-link__label,
+.nav-pill-link::after {
+  grid-area: 1 / 1;
+}
+.nav-pill-link::after {
+  content: attr(data-label);
+  font-weight: 600;
+  visibility: hidden;
+  pointer-events: none;
 }
 .nav-pill-link:focus-visible,
 .nav-logo:focus-visible,
@@ -337,14 +350,14 @@ body.nav-on-dark .nav-toggle {
 
 /* ── Deep scroll — compact + stronger glass ── */
 .nav.scrolled-deep .nav-left-pill {
-  transform: scale(0.97);
+  transform: none;
   --surface-glass-blur: blur(20px) saturate(1.6);
 }
 .nav.scrolled-deep :is(.nav-canvas-panel, .nav-easter-toggle, .nav-right > .theme-toggle, .nav-right > .ambient-ui .ambient-toggle, .nav-right > .ambient-ui .ambient-note) {
   --surface-glass-blur: blur(18px) saturate(1.55);
 }
 .nav.scrolled-deep .nav-cta {
-  transform: scale(0.97);
+  transform: none;
 }
 
 /* ── Mobile toggle ── */

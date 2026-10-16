@@ -1,0 +1,1213 @@
+{
+  "base": "39d242de54d52f76007bd637f50fdd3c8b439da7",
+  "sourceBranch": "local/footer-refinement",
+  "files": [
+    {
+      "path": ".impeccable/critique/2026-10-16T18-32-09Z__src-pages-projects.md",
+      "sha256": "4893c286dbdf5fd31f2ea87870b4e2270ea9ecd659a7489a5a3c9bb5e0460fc2"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/README.md",
+      "sha256": "05110900cab9ad9c070a28761c7b52c949b58f856363fda7cf29d641965a61bd"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/automated/chromium-1024-dark-answer.png",
+      "sha256": "ea0526306b7a2142c2d483fb26eb74891e873b6b3d45ef20002ee43a65613f02"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/automated/chromium-1024-dark-floating.png",
+      "sha256": "3632e36d2ef8247de4702e9d6f6b483a312c2925eac5ba89e13b48bb1695ae17"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/automated/chromium-1440-light-answer.png",
+      "sha256": "5fc706f36f891eebdb76c4729a5627523edb18161de0262eeec8ecdc2cc301bb"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/automated/chromium-1440-light-floating.png",
+      "sha256": "ddfd003b507792efa47dff0c0f87480541189cefe2379447c87936e1de95cda5"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/compact-results.txt",
+      "sha256": "27ff400f518aa2db0920dea8c034f27d242486bc8eedb562a48b94d8c7082d42"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/desktop-dark.png",
+      "sha256": "e8bd028fcdd9166dc55cf6d6350481cf8ac24a6991efd2cfed2d223fc9036fa1"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/easter-ai-left.png",
+      "sha256": "8c7615e133805cbdbc15e5b202c5fc2d65b80307a30c8e002ffb68fd13d971c2"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/mobile-dark.png",
+      "sha256": "9ec9b60133753920469c47b0e6ecac54db7140e33f24405349cb556aedd4314b"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/mobile-light.png",
+      "sha256": "f7a3ee1c4524bcda9c02fd10a232666f9dff009ee50146d27650864510d94909"
+    },
+    {
+      "path": "docs/reviews/ask-parth-refinement/usability-run.txt",
+      "sha256": "a344f110165f85bad062c74b6a3a7f45060a45f5eb81bc876b83fc5471a42ec9"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/README.md",
+      "sha256": "d0ddcf3a537e57d461e3f34b15dabea8abe3604ef5ac1b4eb5fd0e07ee9a9ddf"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/clawed-chat-1440.png",
+      "sha256": "aa1802ae59c72260c6d82ecfcc861851e076cb146d747e807e46549a1c8ea60f"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/clawed-chat-390.png",
+      "sha256": "6142401a256c3c6c477220f14e68dab781cffa311036b30bb6e115cd4ca637f0"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/clawed-chat-evidence-1440-light.png",
+      "sha256": "25c37c85c5bb645baa39557c03d2a82a03cc8d7caae1feee0ebf0f7be2889fab"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/clawed-chat-evidence-320-dark.png",
+      "sha256": "4aedeaa1394ce30f796ce541040f2601b4b9ff53e98aafbc2366e98575547350"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/clawed-chat-evidence-390-light.png",
+      "sha256": "0620443541de0000fc5ecd8cd3582f1f1f8bfdf787832d5a1ddea819b46ec01b"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/clawed-desktop-source.png",
+      "sha256": "b05abf9193194006e11ca047336fa9a3efacfec796701be5258a4d4779181a10"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/glassly-1440.png",
+      "sha256": "0465b30265380d06925bf7d70ab20f7ffa6c0e9d7594610ea6a77db102bff408"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/glassly-390.png",
+      "sha256": "0b566bf261ae94e25c8bc766efe4ee9cdbd0eaed7d6b529507bd0257def086c1"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/glassly-evidence-1440-light.png",
+      "sha256": "3109d474afe1a9d64652c3e616572f6d8fdbaf455452c78a910fa990ec6a60e8"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/glassly-evidence-320-dark.png",
+      "sha256": "f48f8dda51e7b36623d44746b5a8307322ce3ccfb860b17e16a1f74598eeaf1c"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/glassly-evidence-390-light.png",
+      "sha256": "c97a604865176acacc6ea4c147a609fd7f0748364e758fdbe43f894f5225d6f7"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/healthapp-1440.png",
+      "sha256": "0b3462119621510ae839f08bfe82e1726a99dfb372e859118f033ba4040a380d"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/healthapp-390.png",
+      "sha256": "e5a8535bf3d235e48de797bd1190f61187c510499ee32871f5f8c335dc8da494"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/healthapp-evidence-1440-light.png",
+      "sha256": "2c81e8c23822ffafceb7cee8a563cf434b85c893ec91bb1f17b1ebf9651bb6a8"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/healthapp-evidence-320-dark.png",
+      "sha256": "ccd1cf11216d7a2b81564e1d19f80e62c8e1427a59231071d2533605cee085f4"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/healthapp-evidence-390-light.png",
+      "sha256": "5914599225c650ee6a362073c7062a884098e18b01fa70dbf538c93b412f2b61"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/org-dashboard-1440.png",
+      "sha256": "a127b0213c27effae5b40f772857c12e019130446f9db30039bcf1963158c21c"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/org-dashboard-390.png",
+      "sha256": "7823ec47e4d6d9412b804d16de6892495e8f359ba43c45ddbb5017b0929de3bb"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/org-dashboard-evidence-1440-light.png",
+      "sha256": "6163b13f123205305f8d53a7ae2beb791749aa6261aed69df0fe3cfae5850b56"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/org-dashboard-evidence-320-dark.png",
+      "sha256": "89c22dca113735a80ddc9d8a850c6f8d53803bd1f7cb77156a50b12ca021c9d3"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/after/org-dashboard-evidence-390-light.png",
+      "sha256": "d86e8513639cf7d7bdf7f4cd773a3c832ee75586be869c983e86e079f7dd4983"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/baseline.json",
+      "sha256": "643682f6257d5acb5a23af937a950e23ec4d9f35206b673bca1dce6287b5d7fc"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/clawed-chat-1440.png",
+      "sha256": "a3c9147c777442b1a3bfcdc5ecd5d60b92b7a334a07e5d4cfb6dfea758dbaa43"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/clawed-chat-390.png",
+      "sha256": "68690287cc1269967c8a3ef0ee1ebe7bac267599d0be9cfb61900d7afd576bfb"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/glassly-1440.png",
+      "sha256": "3f42a0d48a29703b6c647e16a4023e434046c85e10d5457c9f0e34382958acc1"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/glassly-390.png",
+      "sha256": "71b17707ce69c641949f93a0f17f75a79ff6219debb75aaa33fd45d9eaa519b5"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/healthapp-1440.png",
+      "sha256": "441fdc4a7722bc13a088a1f0f59005fbbcdcf57a295eb6349d84ae0f33ea0f76"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/healthapp-390.png",
+      "sha256": "372ae1d17dece324273b06903dc5465482de7254adaf3bc91025e01bc3265128"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/org-dashboard-1440.png",
+      "sha256": "97fcb311b607da77a1147aaddae5707cb301a2349042907ba4c56ae5a6e3b811"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/before/org-dashboard-390.png",
+      "sha256": "fcbb75d097f0d8cad20d3435b3320474a934c0e315eaa53066d55d38ffb59d82"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/reading-measurements.json",
+      "sha256": "29b6451c9988743e2aa60397b7335697d7f837148fc9d40f47568bc2cf2197a0"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/source-checksums.json",
+      "sha256": "af1e43975d2fc89cd1cfbac74b3220ae8849fd98b1a3f8b584b0fd9db15ff99d"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/verification/companion-controls.json",
+      "sha256": "5ecc5ca0f05bee2daf4de7eb2f972c496281b88607efe2b5ec2b616f5a11dafc"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/verification/glassly-chromium.json",
+      "sha256": "4228a94930bc2489db0719dcd9be33610540ba1ec43f5d7597c5fe2861451676"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/verification/glassly-webkit.json",
+      "sha256": "4228a94930bc2489db0719dcd9be33610540ba1ec43f5d7597c5fe2861451676"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/verification/mobile-interactions.webm",
+      "sha256": "05bdf25f10f3b3db631224b1914401cbabe7cc47f35e6247922676484569a12b"
+    },
+    {
+      "path": "docs/reviews/companion-product-stories/verification/portfolio-reading.json",
+      "sha256": "17f3a9248759701d7e1e5e6a03706736f759c5c69694b0ac67439ec703221022"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/README.md",
+      "sha256": "038bf1df4e5cc1044f352723700b5b6152857085ab673b37d66b0aed67cbe86c"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/agent-contract.txt",
+      "sha256": "48e2021ccba787b0885f8613b472b5651c26909160c8b48a6acb08948e96ecfd"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/build.txt",
+      "sha256": "01c7e8564e4bd1d3d7ac2e7bd364dfce17659b79b866d010e652cd456c6ce1fc"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/design-scan.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/design-system-audit.txt",
+      "sha256": "6570405a4be5df4f02a78f031f79b3444d54fbc2acbfeec5b843f515a6ce934a"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/enigma-edge-results.json",
+      "sha256": "43440b533ed2ed9f20070fd08c14563cd2e701cba8ff9361f32f80277122c731"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/enigma-mobile.png",
+      "sha256": "9340279634008c4a7495d478374a06bb275d7c3631b3a792ec15c85d74cb45f8"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/enigma-results.json",
+      "sha256": "e89481a85f3d57e2e29455bf6cdacc355a8d1c7253e416930974acbe6d4496e0"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/enigma-touch.webm",
+      "sha256": "b846ecfe3bb24d088489152e1565f857417219d73c13950f90c8b17a9579644d"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/jugalbandi-desktop.png",
+      "sha256": "545ab66b7d64153aca8c993203961d4fde40955bed88d584ee98f055f360b93f"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/jugalbandi-interaction.webm",
+      "sha256": "ffa6a1bc3adebb25b2ef08185574b04f223c95af6ac3e36f7d47717fcede4a35"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/jugalbandi-results.json",
+      "sha256": "8c88c4dd38161ba958ed42a7d2649cd7d64322f632fa048b23e392b1c207d11b"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/moniac-desktop.png",
+      "sha256": "769dd5d71400f83700541f23be82c72cc418b4bb471c3d3b540c77f1f10099ba"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/moniac-interaction.webm",
+      "sha256": "8e8e49a7c2bb18a8729c1b91ad14c92f03f8887dc5ca6259a72236e98fd298dd"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/moniac-results.json",
+      "sha256": "113532a209ff203245411790b293d60b2dffcb565ba906d4963f171e58da4456"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/practice-desktop.png",
+      "sha256": "c45524c636986483687817d5109ad31dd1a27578fccac1e1073eede52f253ccb"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/practice-mobile.png",
+      "sha256": "0c93e71c074aa7d727596e632ba5fa93413d364a1ebb0c680b191dd1adeeb632"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/practice-results.json",
+      "sha256": "96102236e301b610cd5ebf7b03bb5965c7be173f6e701d276b60a2d12f443eb3"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/regression-initial.json",
+      "sha256": "df08814439fc9138bcb55a8923a79e40447462f89822086c5064060a159cd533"
+    },
+    {
+      "path": "docs/reviews/evidence-and-practice/typeface-confirm.json",
+      "sha256": "d681d10e4c71741c84c1ec94626958335628cdc801ff71f1a22733401f23bf4c"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/README.md",
+      "sha256": "2272e07243153f74b8ce0c2a89ad41be07cffa455282aec6f4b042eb23d11139"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/build.log",
+      "sha256": "cec2937f41117010596e00ae9d5d01997340b58c7715f97e296b4ae1ee04c991"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/design-audit.log",
+      "sha256": "6570405a4be5df4f02a78f031f79b3444d54fbc2acbfeec5b843f515a6ce934a"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-1440-dark-chromium.png",
+      "sha256": "edb18fb80286bee060e961742a8e9dfb7abb46895b45b696ee9755360a107054"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-1440-light-chromium.png",
+      "sha256": "4339b42c30f8f2fd5bbddc946afe73707c1883293729c2fefb7fa9c38805355b"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-320-dark-chromium.png",
+      "sha256": "f82672820b8ea4079310dc417bca6b5d3b4e6f7215c4dc559d5d8d1163894050"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-390-dark-webkit.png",
+      "sha256": "877300555ada8ae5fd072b2ef21f4f585a52bbeda87dea59aadaac063cbe4ec1"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-390-light-chromium.png",
+      "sha256": "e43de5c74c98ba2cb10c676dc4528c177853039885aeb8936ff3bed96cf1cdba"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-768-dark-chromium.png",
+      "sha256": "37dbbd8f6b72bd3af793bd93dc1bf09d8c62786dffd10cba27f3f2ae94c0a2b5"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-drawing/chromium-1440-dark.png",
+      "sha256": "cf3b61a40388bbc74431ba4c49c2d51f267ebc75af0e9dfff9126c875c21bae8"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-drawing/chromium-390-light.png",
+      "sha256": "4e0e799ecb4c40fa4d4ad99c85badb3f99353c05be593d7007f488387f6ee077"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-drawing/report.json",
+      "sha256": "e89481a85f3d57e2e29455bf6cdacc355a8d1c7253e416930974acbe6d4496e0"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-drawing/touch-drawing.webm",
+      "sha256": "4e8653db546b4115f4c6a7049e190f0a53b12d78614caceea0ff403fb2206e84"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-drawing/webkit-1440-dark.png",
+      "sha256": "5361f6565844fce6581966ce1ea6066b0288c5823372ad82f6927120518880f6"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/enigma-drawing/webkit-390-light.png",
+      "sha256": "cd0bc8cfda3675ad26e7118328fd7e4f2bf2713c19bcc4d96286461678f17b50"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-1440-dark-chromium.png",
+      "sha256": "51240a24a2f7efd2f99710c23e727ea0fb4137f7d2f778dc27af2aa95bfad940"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-1440-light-chromium.png",
+      "sha256": "6f7865a4ddbcfbe89d548a24cb8183eeba4c048c58c4f313e7e4f61840d6e3f4"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-320-dark-chromium.png",
+      "sha256": "1f43c62bbfe0fbb0abaf4a802cdbbd1b08cc6bb844d9e057c027aca036f79fe5"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-390-dark-webkit.png",
+      "sha256": "e6b46feae7e9e27e23b7c4e9d0595eabad3d75b98eb71a95637e90922e490c23"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-390-light-chromium.png",
+      "sha256": "1edfc557b8f5c6349f349b64c1010fac3091efb54e99a7a0ae45af941d26497e"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-768-dark-chromium.png",
+      "sha256": "c993e558e2c3f54ff210bd26c0b4b8ee21d4276feabdf37e4bb75e5dc1548dc1"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/chromium-1440-dark.png",
+      "sha256": "1bf6818ac93d0ccabb0f5a41cd482d1d773a76abe67fb33af9344b3e6bde69c5"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/chromium-390-dark.png",
+      "sha256": "a17ebbe169b79c836ece0ec8abe79b5ace37ef9d48294026ba1f6d87fadf9f7f"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/chromium-390-light.png",
+      "sha256": "f67b7d835948e5cbf3cc6a2351f324f73f7ea0e4c89ad42976e494b5d938e96b"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/interaction.webm",
+      "sha256": "737f0d23137dab39a9e23d98db7e1ce742762f4cc2f96fc27b7a5844422e71c1"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/report.json",
+      "sha256": "4bf6c6ff1440279702b8dea1eb5f8dc9e66fbf9a19ac443dbc85afd3617c43be"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/webkit-1440-dark.png",
+      "sha256": "440e0500ab185ba53e5fa4b1677ad2c635cc476eac5a23913e1f16ed602d5f47"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/webkit-390-dark.png",
+      "sha256": "b2797e3644c857fb9778ab942faa2ddd10ed817cd87e3f053e3280ed3dfeaf05"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-interactions/webkit-390-light.png",
+      "sha256": "3d4b9ef3c26ba7912a9af06037a33800d3585a9c09151b167489fbf9814c77bc"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/jugalbandi-local-review.png",
+      "sha256": "2ee5dc735c11d112e459a28d4e53e541f038d7b05e8c056c6c1335e844a76ffa"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/mobile-case-reading.webm",
+      "sha256": "f0ab9f752dd2a0d54a4d9d37d691dd9e95ecb9df4fe46997d16a6460a91d75ed"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-1440-dark-chromium.png",
+      "sha256": "bf15acdb98515ddedf9293be38b447ae9cda2f84209a26ae78b6cb559feeec33"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-1440-light-chromium.png",
+      "sha256": "83c1921b4b82f1c0d1b2d4db9dad7660b68e10105c9b6c5cb2ce492c7efe937c"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-320-dark-chromium.png",
+      "sha256": "737b1bed652c5b99a441321fa4af5d5fa4e5efb162c81fac97706d5043a7acd5"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-390-dark-webkit.png",
+      "sha256": "3c6822166d293fa7078572bd5c90985703b761fe4d945bba8787db0a43946427"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-390-light-chromium.png",
+      "sha256": "44ee77b730bf90d09629c34766afc031e8b1d4784466079de78793d2c9d00eee"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-768-dark-chromium.png",
+      "sha256": "0f4c7b2279a9e94aaf200afa22c4311a10f14753b0520ddc76ab9ec6b91e0b23"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-final-light-controls.png",
+      "sha256": "8a0e5d6708ce7e2b9e29930e1bd47273eef8a00770f2ff0c425316d5ee8566b3"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/chromium-1440-dark.png",
+      "sha256": "a28471780b399825229d868bd5d1f2c8a9a01d8d363b2cbb5efbfeaff62b7d20"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/chromium-1440-light.png",
+      "sha256": "dd98c699ab6f321cdbc5c50dbc138b22d8d80614803f6e8323c9d8b875ef2fbf"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/chromium-390-dark.png",
+      "sha256": "eba9ca57b9dc4402222dd83d04c34e03e03010bf97f372b22eef5f23e4cd37c4"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/chromium-390-light.png",
+      "sha256": "97b4f6273e82c37c575416dae93b14db5a2aab40473f20bf0000d5032e00cb9d"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/interaction.webm",
+      "sha256": "fc089df26d7a0324e71b82d36e20404d397d11c2250f0d5d1a1549cac994b616"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/report.json",
+      "sha256": "113532a209ff203245411790b293d60b2dffcb565ba906d4963f171e58da4456"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/webkit-390-dark.png",
+      "sha256": "0e1c6a3a06303744aaf73bc0cdde751e5dc5baa4c05a39466bdf7d46f3c72279"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/moniac-valves/webkit-390-light.png",
+      "sha256": "3f3cb2790f517e69d1bfb94eb88cb888cd829be472fed2e510ed27db7c8c88c3"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/portfolio-reading-report.json",
+      "sha256": "17f3a9248759701d7e1e5e6a03706736f759c5c69694b0ac67439ec703221022"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/report.json",
+      "sha256": "a9530a1d6013a52545100e83e777bf107a04ee2a38d4af4dfcf2ec5e79c4d984"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/vj-1440-dark-chromium.png",
+      "sha256": "80fd2a328ca77e6649db38d3543631036508f0052fbc9ea2727aa76446e32377"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/vj-1440-light-chromium.png",
+      "sha256": "ae90293940f240b1d9844d533d7ffb1c9d85677266d452fa87336253671b2f10"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/vj-320-dark-chromium.png",
+      "sha256": "f070bdb24387dfa0a3f9b3888b1f5ad8544cdd1dee8d5ba49815c7ed7fad487c"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/vj-390-dark-webkit.png",
+      "sha256": "b9afbe88a6ec8b4464b516f6e57869c6dc9575ac408dac27b25235d157f5fb53"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/vj-390-light-chromium.png",
+      "sha256": "26e9006f8231856a4850992bd8f8f37a03305b07f5c05aa8c8793933db4a79c8"
+    },
+    {
+      "path": "docs/reviews/mechanism-and-parking/vj-768-dark-chromium.png",
+      "sha256": "6198ebd6d33d67b43a7953eb6d0beb8f7c872c4f67183d84929d7f2976b8b88c"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/README.md",
+      "sha256": "ecc5f1af844074651e52cb2c2e40630cb35bb74a6f44f698e1fecbd1beed1ade"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/about-390.png",
+      "sha256": "fd87a61f3c16395f3254fdcccf5346f8174ff7585864c8ee46b47ebfd58a8d28"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/about-code-desktop.png",
+      "sha256": "2df70de8608934ce28ea8cfa4177a438b5765d4b74bc84fe58767a37be52ea98"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/book-desktop.png",
+      "sha256": "74512f04607b010b28482e319048e81fb71141f43830f4f352d6d039fefc8669"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/book-motion-qa.txt",
+      "sha256": "c04f2f56f587ddb36a9262d2c8b9ac9c52d973e09334a480ee9b20b901eb4b4e"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/build.txt",
+      "sha256": "63e7ad21505e8a19750ce2bcb12ad980daa0fc2de5ad2d1b7c010b5dbd057262"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/design-scan.json",
+      "sha256": "ab3fe6266cbfc0d8ec3d252970a4eaaabd0f75ca38725e416ea7dbaf93147f6d"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/interaction-check.webm",
+      "sha256": "85112159d65c9e754a671bbc60b724b3d75709c7905c596a7a0058748817ad9d"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/mentra-390.png",
+      "sha256": "b2accf37815e158581bfe97e82e14885f839eaaf9f4fac29cd65071c8ec5f932"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/notes-390.png",
+      "sha256": "9c6cce6cb4d23244299e373ad554e46b7a3989cd9331e76e4393319894a44367"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/responsive-qa.txt",
+      "sha256": "9cef0b15a10782495726845ce2107840bc93839e3cf7ba4d29aae55578559663"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/results.json",
+      "sha256": "e9455f6da13e60d1d51edad77d8148dbaea44d7a8442b5955bd3743c6940878e"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/work-1440.png",
+      "sha256": "2b8f1c55fece0bcb10403c48e8bf604e9219432794223bbd5a785f5425fc995e"
+    },
+    {
+      "path": "docs/reviews/navigation-about-case-refinement/work-local.png",
+      "sha256": "49f105f41976ae53500ff2ea30ecbc78aaa9f29c2d7b0a4f4883d49378e00369"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/README.md",
+      "sha256": "b519dbe1de4615974e2b85f9f935d019653235f46e0682d11074fd70ebe78b6e"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/build.log",
+      "sha256": "00bdf44e417d11e6a0ad32a871c9fc66e2706474bbdc330ee4de670fd7f431ed"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/design-scan.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/executivelens-1440-dark-chromium.png",
+      "sha256": "0dffee95a9c0d281b97150f1be9124848d84e2787839b1eb7c6168c44214ee9b"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/executivelens-1440-light-chromium.png",
+      "sha256": "8750cfbd50d2653459716270e011ab95467c3f1420a949485eb3961dafbd4d69"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/executivelens-320-dark-chromium.png",
+      "sha256": "ea218dd9562cc2fb96e4361f7bc0258fbcfa6450d6ed428d146027ca73085f89"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/executivelens-390-dark-webkit.png",
+      "sha256": "c27b81749d053cdfe0a7e6c2e7aaef5fcdd8dbc102bb8a88ed46be687c51ed01"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/executivelens-390-light-chromium.png",
+      "sha256": "2f853152e0f87aa228506a0ad1e6eb6b1b6dedf48fc881d2cfe2158a666df67d"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/executivelens-768-dark-chromium.png",
+      "sha256": "f337b5372eefbe9d90774a5342277cef5abfb2da6e7902997e4ce7b46822cbcf"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/executivelens-decision-review.png",
+      "sha256": "d07cca2e54e99391c7577422a4f63dd8c6601bddc2d75dd17e32df1223ec7e1c"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/mentra-1440-dark-chromium.png",
+      "sha256": "ed70f9b28954d9cc4e772b4b115e457030252d8301705ef4afc3980f898fb411"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/mentra-1440-light-chromium.png",
+      "sha256": "708ba829ebd6cb24e031b2c17c5464af073bce08c5487fcb179a57796a84751a"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/mentra-320-dark-chromium.png",
+      "sha256": "46133c180bc34c6981dd235d313a023f9927f861a8bf513062c9fe46a2f2e957"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/mentra-390-dark-webkit.png",
+      "sha256": "47cf64bdc7a0c09b9474c250559f5e71ef4a22881b1f7b011b8bddaebf901fa5"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/mentra-390-light-chromium.png",
+      "sha256": "2762058273a29d010768a06e71a0a4abc4cb8a1705e3e02326c13e31fef6a43f"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/mentra-768-dark-chromium.png",
+      "sha256": "166b9b6cbc521fec052f4de18b2e0aeb5d2bb7e7daf2ed28cead2035b8e22720"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/miniapps-1440-dark-chromium.png",
+      "sha256": "2a08fc6da8332d6c668ad8a048c0c43898dd9b4a88308a060768155fb0979ce7"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/miniapps-1440-light-chromium.png",
+      "sha256": "71bf57f524a5f72637d0971fcdab6d982e688c7963d6dee10f20ab1c9df29f35"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/miniapps-320-dark-chromium.png",
+      "sha256": "54d533951bb1e71d1596bf1f95a1e3a3054dcb969905d9bf375634c56fbdd653"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/miniapps-390-dark-webkit.png",
+      "sha256": "b69a179824f31ed1e3f67b717b79fb00b3014cf1889342c450a00401ec3d5e61"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/miniapps-390-light-chromium.png",
+      "sha256": "87007f71700bd92de7923c67c01a009a8726db2fd72e88d4be8d41bb787b0077"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/miniapps-768-dark-chromium.png",
+      "sha256": "9bb290474ed4ffc020149dd92eb6c0c8c64afeefba37a4317fed063211e40778"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/mobile-interactions.webm",
+      "sha256": "d58bd7f3eda616c070412822d566391079b2345b6576b5be2e4909a8fa8df26c"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/original-slides-report.json",
+      "sha256": "1247e67642fbe81fda8eb2fefdd2eb11c852b22435e97296803712037022d4fb"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/report.json",
+      "sha256": "ebe5a2dc38067ea2eeb65a12c00f6655cc968fd7159caf9c60aa18185df74aa3"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/transfi-1440-dark-chromium.png",
+      "sha256": "1437a712de316c6975dc5a3c632fbe87c34abddfcdaaadb9736f55024839fdc9"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/transfi-1440-light-chromium.png",
+      "sha256": "94982346500407ea20024cb995a768c981abce3dbe8fed1d11467b2bd08e86e3"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/transfi-320-dark-chromium.png",
+      "sha256": "4aabc45ffa17e59bee498c072165b194939370c171d03e7fb2d5a2f7017af3ca"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/transfi-390-dark-webkit.png",
+      "sha256": "4a5b290c24cd860327c31f03fdfc711498710fe30ab06c6447286909a69fc8a6"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/transfi-390-light-chromium.png",
+      "sha256": "e14204bbeee15a5f3d9759be75ca437b62a06094a14e614b0f0fc99a09b31918"
+    },
+    {
+      "path": "docs/reviews/product-decision-stories/transfi-768-dark-chromium.png",
+      "sha256": "d362633b59f981f710efd53d0365b92f640f2e527166cbd5b6f5847ea35c688a"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/README.md",
+      "sha256": "3057ca170530c4a4fc2d058b1f1c6b0c3aa731e0b775cc268768892ada73fc53"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/access-form-mobile.png",
+      "sha256": "4cc0ab645ebd1279ae0938bc6f26a82924bd093773d6a4fd50b5cf0b9cdc23ee"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/companion-pages.json",
+      "sha256": "5ecc5ca0f05bee2daf4de7eb2f972c496281b88607efe2b5ec2b616f5a11dafc"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/detector.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/initial-scan.json",
+      "sha256": "631338c810d2705de83d6dc93317e0101af451756a6f7f2decf6d2345a7ca668"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/portfolio-reading.json",
+      "sha256": "17f3a9248759701d7e1e5e6a03706736f759c5c69694b0ac67439ec703221022"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/product-pages.json",
+      "sha256": "ebe5a2dc38067ea2eeb65a12c00f6655cc968fd7159caf9c60aa18185df74aa3"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/reading-recovery.json",
+      "sha256": "31d89656138f74b1a467ee8fcfd0ddbd2d2866b60dd5e50cf884051e799437f5"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/report-controls-desktop.png",
+      "sha256": "3260d5a884b63f66991066700f27bda747fb8627c9d7f271414095236188e357"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/report-controls-mobile.png",
+      "sha256": "a9231edb88232925f1028bb85b52faf50c3d45254f1b4d01d37d1de7ff319879"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/service-pages.json",
+      "sha256": "79695a7c61a470d9bc14d6e978b7b57f26c5af32867ae58c01913200b87adab1"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/work-arc-mobile-before.png",
+      "sha256": "0178a8a1f2c4385db583aa998b59cee93c695dc17495524037e886e362f3a8ff"
+    },
+    {
+      "path": "docs/reviews/quality-check-2026-10-16/evidence/work-index-desktop.png",
+      "sha256": "781bb9bbdba829bbcb3327c27aee1ced23ba4c55c71274a9ad0becf9f181393d"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/README.md",
+      "sha256": "9e11b768637f182cad5451d04c46674dacb8ef5b35caba3b5f72162e8d4eb54e"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/build.log",
+      "sha256": "1359cb3b995b9976e1b3723bbdb37a04e4c1682085c64a1e2d94e6cfa5f2eec6"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/design-audit.log",
+      "sha256": "6570405a4be5df4f02a78f031f79b3444d54fbc2acbfeec5b843f515a6ce934a"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/diversity-1440-dark-chromium.png",
+      "sha256": "3c585853302a517da564362ad026319a628f3388c941bba2e65a0f7185ec1e44"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/diversity-1440-light-chromium.png",
+      "sha256": "4c01a91c93f026b6485facb6b78d53ba7c4ca90c1c2c09b4d30b56a6c9fba532"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/diversity-320-dark-chromium.png",
+      "sha256": "1ecf597d98d5c54d8b211bf233b4b64b3ad4aeda978085fe67a33ed3974fbea8"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/diversity-390-dark-webkit.png",
+      "sha256": "cc7d7a041231ce3831eb00b9d8f60f3c6810d91f81308fa1b52edfabdc1a6ffb"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/diversity-390-light-chromium.png",
+      "sha256": "b1f309ee1bed21c0b5e2c8efac34977f3c36ddb7999cb4460c36b1b88427e707"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/diversity-768-dark-chromium.png",
+      "sha256": "850aae1126d824b06ba1888758fdfb6dab590747948c9e2474ff0d61f8864457"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/mobile-interactions.webm",
+      "sha256": "cafa948ebfc382cb45f83c674dfa361263dc8f344b3b6478def6d0ec5db64ae8"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/raahi-1440-dark-chromium.png",
+      "sha256": "a69dab8f8514ac6e44e24bbc6cf2f401b4bf0a4bc73d2c2da761707779c35266"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/raahi-1440-light-chromium.png",
+      "sha256": "973b51e7323c2ddb9210f8d3c68706dfc62471d7a6e4d473e21f0112183d46ca"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/raahi-320-dark-chromium.png",
+      "sha256": "c320283a2f13f9aee7245f7880b55860a74d20fe33b3df744eb5dca147aace0f"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/raahi-390-dark-webkit.png",
+      "sha256": "64d6b367fb3f7afb810808c46bfd42b9b38939363096da59d175c01bfe8a7c5a"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/raahi-390-light-chromium.png",
+      "sha256": "6749a27b8c8bc68f155056b813bde306db3c1b3cd561be8955638fd247f00db6"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/raahi-768-dark-chromium.png",
+      "sha256": "1761df97b328b74195848aec4265f5e05af9d2b836880e145e614ca885b99917"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/report.json",
+      "sha256": "79695a7c61a470d9bc14d6e978b7b57f26c5af32867ae58c01913200b87adab1"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/zentipay-1440-dark-chromium.png",
+      "sha256": "0c975b33db193982b9d3cfe678dfc71ef87a1cacd3d0c599e1366a77b842d141"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/zentipay-1440-light-chromium.png",
+      "sha256": "a3a89b8820f706e71b9efa584de32f06a6d7ba2113e60b9a3b0e3526c0fa6ec0"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/zentipay-320-dark-chromium.png",
+      "sha256": "05f090bf971fe4c9a913f389ac521744600d7c91567af941c02b9c34b97ffc75"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/zentipay-390-dark-webkit.png",
+      "sha256": "38b9b78f179983842edfde0ab386cf6c70dec8f5b6da16587c11f950de21aa81"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/zentipay-390-light-chromium.png",
+      "sha256": "d3075d0ada028f7066966bc75eab4594f1a26284c4b89ad8a7372031fa4d503d"
+    },
+    {
+      "path": "docs/reviews/service-decision-stories/zentipay-768-dark-chromium.png",
+      "sha256": "8836bbd3a2c332796a5683cc60c9123dfa7db10b9f99c55ee1c9d7d272dfe33f"
+    },
+    {
+      "path": "scripts/audit-design-system.mjs",
+      "sha256": "9c340acbe4a237cbc6d948bb78ca1e3fe32b5adc77c54ec3dc3778d8f1e41021"
+    },
+    {
+      "path": "scripts/case-study-reading-qa.mjs",
+      "sha256": "f0ab03576b6507e4e29a7d4cd4445d17678d4fa8f0ddd2c9ce7743c68b3a9ece"
+    },
+    {
+      "path": "scripts/case-study-slides-qa.mjs",
+      "sha256": "3b4350b1a57d501b62911d478024bc4f2042ef6649f6e2db4ef3d3d820615e75"
+    },
+    {
+      "path": "scripts/chat-compact-qa.mjs",
+      "sha256": "b324322fa804d92666dae50778ab5419d5df08f7d589ed8942bbbd11ae4b25d8"
+    },
+    {
+      "path": "scripts/chat-easter-entry-qa.mjs",
+      "sha256": "92483a67331d58604c97b9b2a1e2866dd9b2a3cba18733f7390c35235a9633c0"
+    },
+    {
+      "path": "scripts/chat-guide-qa.mjs",
+      "sha256": "198407e4f6f8a6ed6034dfe47092239df87fadc175c035944518c5091d1fb35d"
+    },
+    {
+      "path": "scripts/chat-usability-qa.mjs",
+      "sha256": "7352c64511a782c7ddc14eff60f6a6867b65bf060c00601d804791911a8758d1"
+    },
+    {
+      "path": "scripts/companion-decisions-qa.mjs",
+      "sha256": "a7cdbde5fcf1876bad61081c0807f99af8f713b37a4d0f67cc6b570bd95276f8"
+    },
+    {
+      "path": "scripts/enigma-tablet-qa.mjs",
+      "sha256": "51cfca3ebc99fddce420cf09f5818796281f1971068fa256894bf382f5084a3e"
+    },
+    {
+      "path": "scripts/evidence-corrections-qa.ts",
+      "sha256": "1739ae2421a705c22c9f6d78ebea681c9a1722e0c6ab204852a96ed4d20c0021"
+    },
+    {
+      "path": "scripts/mechanism-case-decisions-qa.mjs",
+      "sha256": "c2b3a7389152912c1a7eb21fa47c2318290e40df90a94e028424730877a8830d"
+    },
+    {
+      "path": "scripts/notes-page-qa.mjs",
+      "sha256": "905028c991cdda03e776f22afb4bb76787436b812cc3ffabc56aece75bb692de"
+    },
+    {
+      "path": "scripts/portfolio-consistency-review.mjs",
+      "sha256": "5a226d30acf015d0f5353dfec6755efb44d5b6fa3af947d4f874da1b28c8e696"
+    },
+    {
+      "path": "scripts/practice-evidence-qa.mjs",
+      "sha256": "0abf78f3e75b5712726235d9e3e2329cf4e66b7d7a7d687c7ee81361b1ce8f87"
+    },
+    {
+      "path": "scripts/product-decisions-qa.mjs",
+      "sha256": "d5a4ab3a5c9156b7f48ad4dd30b0eb5e2ce3f9c084746430791742c1e1f83f7d"
+    },
+    {
+      "path": "scripts/proof-motion-book-qa.mjs",
+      "sha256": "57ebfcb6ebb81511ef991bc6054fe9d565a91dcfb9efc1c5a6bf4868d7d2abcf"
+    },
+    {
+      "path": "scripts/service-decisions-qa.mjs",
+      "sha256": "a307e5b95a45934638e6b7cbdcf437e736282632341ecf9a9fdbbfecf20b08af"
+    },
+    {
+      "path": "scripts/site-refinement-qa.mjs",
+      "sha256": "84931c706573b3b2b352b79c218fc183eaccac02a082d46b203fe65f6733b095"
+    },
+    {
+      "path": "src/components/BookViewer.tsx",
+      "sha256": "3b2a9c8afda969cf6e0171ada231171fc96baad3b18d44c6189830f787124610"
+    },
+    {
+      "path": "src/components/MoniacHydraulic.tsx",
+      "sha256": "ad47afff972639f8b94ea3a8a834322df231e995fe4602afd2b692efce76737b"
+    },
+    {
+      "path": "src/components/MoniacSimulator.css",
+      "sha256": "22c8b035a75d1cd79d4b906b0f1dae201c5cba925a1c5fe5f5495d384c52d371"
+    },
+    {
+      "path": "src/components/MoniacSimulator.tsx",
+      "sha256": "9fa24aeae6e179fadc9f82e889a3d7ef7dc87665922be67bec70e4bdb2d2e189"
+    },
+    {
+      "path": "src/components/Nav.tsx",
+      "sha256": "60e62fae952720470c79bddef0845c1653a2684be338abf3522e3b469a56d141"
+    },
+    {
+      "path": "src/components/RootLayout.tsx",
+      "sha256": "9267c5338d0a66c4cfc9604394f3b8dd9470871eca6dcb8293049b865a8e5ef2"
+    },
+    {
+      "path": "src/components/case-study/CaseStudySlides.tsx",
+      "sha256": "820d5e07efd72be0345c649a454a2483a81c005a6357da3a2275aa538af6cef7"
+    },
+    {
+      "path": "src/components/case-study/CsExpandPreview.tsx",
+      "sha256": "6439a0d3b5c62943a444ca86c7da04d59c8a3ab90839c391d2f0fe62f09fda1f"
+    },
+    {
+      "path": "src/components/case-study/CsReportReader.tsx",
+      "sha256": "ee098ee74e4ed870a5fdbe3a5f7aa22a0fb57e7f635008284c1fe6dfd5d0b7a2"
+    },
+    {
+      "path": "src/components/case-study/CsScreenExplorer.tsx",
+      "sha256": "ac444f3cedab9e5075c1cb0815856c6511a69b82f6f191333a46509441a56283"
+    },
+    {
+      "path": "src/components/case-study/CsScreenStrip.tsx",
+      "sha256": "aa8c327478cfef757d923692e5c8de064c226f4369fad1e00a64c53654266a5b"
+    },
+    {
+      "path": "src/components/case-study/DecisionNote.tsx",
+      "sha256": "3207b514f3afa3da7f451b8364de458d73e8e0474a8e67fdf8caef9ffa941c94"
+    },
+    {
+      "path": "src/components/case-study/DeferredMoniac.tsx",
+      "sha256": "a16ef485469e61d1bd412aedd042cfaf43a7689fc3b931771e4014562a254d3f"
+    },
+    {
+      "path": "src/components/case-study/JugalbandiMechanismStudy.tsx",
+      "sha256": "a22563ee0939e40232860250e0a9a5327f5e3b296d237d5fb45715a462319e88"
+    },
+    {
+      "path": "src/components/case-study/PracticeEntry.tsx",
+      "sha256": "051be3e3e016939227c6b566fae282ba7068ceb97d00b216e478ce0f57efd81c"
+    },
+    {
+      "path": "src/components/case-study/decision-note.css",
+      "sha256": "ba7713bc66c63ddfdff254c4099b8026b0a4de844454762ee7d8df3fd9bf7031"
+    },
+    {
+      "path": "src/components/case-study/evidence-readers.css",
+      "sha256": "3574912faa7abb45143527fbadd06432d8c6ce5578c68acb33db388bd3f97a90"
+    },
+    {
+      "path": "src/components/case-study/evidenceKeyboard.ts",
+      "sha256": "55483c66deaec0050ad67570be4d575d2d0eed43b5a0bb45d21548ea28178ed8"
+    },
+    {
+      "path": "src/components/case-study/practice-entry.css",
+      "sha256": "bab512b1dc2f00fbaf117ccd788a07314a6d735b958e6999ece17047e5e0d8c7"
+    },
+    {
+      "path": "src/components/case-study/service-decisions.css",
+      "sha256": "6de9d7ae534d34f41071be56c0735d902adc81a6a8ff71c2861451396f13d455"
+    },
+    {
+      "path": "src/components/jugalbandi-anatomy/JugalbandiDuet.tsx",
+      "sha256": "0fc890e407142a452dae4d8ec96e345cf6297f3b9bc310abfdea2da3007fec2b"
+    },
+    {
+      "path": "src/components/jugalbandi-anatomy/jugalbandi.css",
+      "sha256": "8da3444eb6d13bb8fc2791ef433bc67346a904dbfe3864fea369497772c0be9e"
+    },
+    {
+      "path": "src/components/physical-worlds/PhysicalWorld.tsx",
+      "sha256": "196ad62aa6488df44d4793edee8165bd4ad2448a22ef475c130c0cacd6f8f987"
+    },
+    {
+      "path": "src/components/physical-worlds/RoomScene.tsx",
+      "sha256": "082faa15e8105eda987248c02ea339629750b8ba1e8e7c80644aa14a105338f8"
+    },
+    {
+      "path": "src/components/physical-worlds/worlds.css",
+      "sha256": "63a0a639bf67833223deac6a8d708fd9450a95a36380108464a006d7ef64ff6f"
+    },
+    {
+      "path": "src/components/workspace/PortfolioChat.tsx",
+      "sha256": "3951182def75e9cf8c7f06b66baf25573f71490e543f69990908ea906bcb3a24"
+    },
+    {
+      "path": "src/components/workspace/useChatPanelLayout.ts",
+      "sha256": "01fdf3f98b3023c6af05006f87c776a3b62fb51b0e30238fe6add6b5fd994079"
+    },
+    {
+      "path": "src/data/agentKnowledge.ts",
+      "sha256": "715f66219efc02240786d9e6a6d8364a8fa2e8e7ef29729e69865df3827b1bff"
+    },
+    {
+      "path": "src/data/categories.ts",
+      "sha256": "d4a08096f45b9d3cdb6d8e2e5a934033db8fa3948ec5518fa283395dbf48cdf6"
+    },
+    {
+      "path": "src/data/practiceEntries.ts",
+      "sha256": "8fcf8cfc4089286560c89c08daa1f18c537f0bf73143d09520556b2033f728ec"
+    },
+    {
+      "path": "src/data/productDecisionStories.ts",
+      "sha256": "9652ecc9b523ed2ee50f20a4d9ffb75cfdfe27f11753de855546bbc4406b87d9"
+    },
+    {
+      "path": "src/data/projectExperiences.ts",
+      "sha256": "42f68157f574d3dd696a9331d6b45f014ee564dd2968f70dd1e5a5d5f08bb84d"
+    },
+    {
+      "path": "src/data/projectReadingPaths.ts",
+      "sha256": "459a11759eddb94d08ffad98a4cda6495a5473e57b91897f72ae24e7d943436d"
+    },
+    {
+      "path": "src/data/projectRecords.ts",
+      "sha256": "1e1367021c8c2c67fcbf4f648921ea32711876e2207e178b79e3cfd79a241987"
+    },
+    {
+      "path": "src/data/projects.ts",
+      "sha256": "c0eaea95dd8934e0176cda4c68b22271106e9df87a7d7a1b824803dd596918bc"
+    },
+    {
+      "path": "src/data/transfiPublicDecisions.ts",
+      "sha256": "9bc566f1b84a4240624cd70df3ec90b190c1764ae7fb79dba99648a1ae17e1d9"
+    },
+    {
+      "path": "src/hooks/useProofMotion.ts",
+      "sha256": "4888df4a0a8d2c5c1943e05d5db1399c4bf8d8d596f3b897f77d0362d8f294dd"
+    },
+    {
+      "path": "src/pages/AboutPage.tsx",
+      "sha256": "dbfadaaf72738c5843952d92c9da7dcde3c86ebbfc355b843b33144beb36888d"
+    },
+    {
+      "path": "src/pages/BookPage.tsx",
+      "sha256": "b329a97268ea3129a2b79a790f2774bc3ee1c1f64005821f09562b2d63b786ab"
+    },
+    {
+      "path": "src/pages/NotesPage.tsx",
+      "sha256": "e6d34cd7611042318b0d6849f24642621005bcc74795428f06880df46fb8bedf"
+    },
+    {
+      "path": "src/pages/WritingPage.tsx",
+      "sha256": "61e1f99c77808ee608a353629f704a22e5aea2989bdb57af7eb710b24fdee205"
+    },
+    {
+      "path": "src/pages/projects/ApplicationsPage.tsx",
+      "sha256": "5d8dea697541f4a509d1068422f9f8819b6b22445ef5a86019ba8de3e62524ec"
+    },
+    {
+      "path": "src/pages/projects/ArcadeLabPage.tsx",
+      "sha256": "e7ec440159be3236902baf91388856a5fb50e1bf244c645932ff2714e16ee119"
+    },
+    {
+      "path": "src/pages/projects/AtpsPage.tsx",
+      "sha256": "6b0dba4b319f484f992fde8f8ac97aee443d6bf429a7edee3286d8b396a46db7"
+    },
+    {
+      "path": "src/pages/projects/ClawedChatPage.tsx",
+      "sha256": "2e5e6b1258811eeb79f278dbc990be2d629ad9b10aaac411c52ef29b644f64f5"
+    },
+    {
+      "path": "src/pages/projects/EmbodiedWebPage.tsx",
+      "sha256": "227ee1b5cd668ab24983680cfe4fedd97a1360dd5ff0eafbb7e09109c9ba66e1"
+    },
+    {
+      "path": "src/pages/projects/EnigmaPage.tsx",
+      "sha256": "4f3e8f0ca229ab33676132c9b731d5097372a8142d0cfa46b526207d3d72adbd"
+    },
+    {
+      "path": "src/pages/projects/ExecutiveLensPage.tsx",
+      "sha256": "29999b8c3844d9742acbc09f9895c9ddd12a63d07f3dbfc5f524ef62945c38d9"
+    },
+    {
+      "path": "src/pages/projects/FeelingPatternsPage.tsx",
+      "sha256": "456f7c08fae09716276d16f0c75c48dbd9c3f19750544c08dfe6b791a2f71514"
+    },
+    {
+      "path": "src/pages/projects/GlasslyPage.tsx",
+      "sha256": "31e4d4bfc0f10247ed6d5d1850e98925eea7b7d89f3a1843b7c6f0134abc689b"
+    },
+    {
+      "path": "src/pages/projects/HealthAppPage.tsx",
+      "sha256": "9f8016db834ef253b84269031f17cbde40ef736f75d9ecb21ec1ef66e67353d3"
+    },
+    {
+      "path": "src/pages/projects/HypercinemaPage.tsx",
+      "sha256": "91dc765ac7958f0f2c3e0543d6ce52b50de07646d4b29de992bc486ace51f93d"
+    },
+    {
+      "path": "src/pages/projects/JugalbandiPage.tsx",
+      "sha256": "75dd5f3f2785325d5310eebbf70df1d0d1cd04ed421fbb27b17b927c8592664a"
+    },
+    {
+      "path": "src/pages/projects/MentraMiniAppsPage.tsx",
+      "sha256": "c2578d09f2324c0171e954a8b572a078dd9407d5b91f92ba74e8744286603311"
+    },
+    {
+      "path": "src/pages/projects/MentraPage.tsx",
+      "sha256": "4437b63f53ee3540217bee0e5f1e05ce32141feb36b2675dcf481d429230d546"
+    },
+    {
+      "path": "src/pages/projects/MessyHumansPage.tsx",
+      "sha256": "ad5d56e45cdea1d275f3a0ae90c8baa0c5fe0d447427cfae34161ddb26afd95b"
+    },
+    {
+      "path": "src/pages/projects/MoniacMachinePage.tsx",
+      "sha256": "b6f94c5317e4c9149ed67b25e1e5757be31d1525f3837adbb0ba14345556c29c"
+    },
+    {
+      "path": "src/pages/projects/OfficeOfDiversityPage.tsx",
+      "sha256": "f464ab91ed80dde01ec386305289749b6959aed74feae440ebf525b1f7767b1b"
+    },
+    {
+      "path": "src/pages/projects/OrgDashboardPage.tsx",
+      "sha256": "470813307e31225f59d69b7d2b6990c26645793f307779f8f2ed5f30bd5f2a53"
+    },
+    {
+      "path": "src/pages/projects/PerformanceByDesignPage.tsx",
+      "sha256": "552b2b010ea29c1b5970f39fd120e2c45d4f455d563954d599f8a54909879439"
+    },
+    {
+      "path": "src/pages/projects/ProductionStudioPage.tsx",
+      "sha256": "ed1c3a9fe78662fcaabcf8de00ed4a83c7ba384d7b21534e31919696c401d9b3"
+    },
+    {
+      "path": "src/pages/projects/RaahiPage.tsx",
+      "sha256": "9a2816208ca19f72c57687ceff86a95e0468606da5b840197e6dbc9c1e3700a7"
+    },
+    {
+      "path": "src/pages/projects/RevolvingStagePage.tsx",
+      "sha256": "db0c4c803f52e9a4c0e6d6e7d9a5ff512dec1703271dc53ac654234695a856ed"
+    },
+    {
+      "path": "src/pages/projects/StorytellingPage.tsx",
+      "sha256": "b00d1cc606368e567a03d43619ffb5eaeb09d7593b12a842b81416167c97be10"
+    },
+    {
+      "path": "src/pages/projects/TransfiPage.tsx",
+      "sha256": "0ceb2535e1236dfd5d1fc2e62679c18919bd925a4d74d4c184d3bc5cfa7138e5"
+    },
+    {
+      "path": "src/pages/projects/VjSoftwarePage.tsx",
+      "sha256": "966e6d4e8946d4792e75775ace799f6d2e9dc72f99bc386a34bffa9ec05a6542"
+    },
+    {
+      "path": "src/pages/projects/ZentipayPage.tsx",
+      "sha256": "f5ba8d1480556f1d678e5544d5662672b11a426fea1cfc5c09fc8a27b3c52855"
+    },
+    {
+      "path": "src/styles/about.css",
+      "sha256": "97843e03cf2c572b82f801b0564a9440b802c2b14766a34b05c506e119671670"
+    },
+    {
+      "path": "src/styles/book-viewer.css",
+      "sha256": "4bf351eaeac4413680d53f253104737aac3c003db284c67111dff3213cc7e575"
+    },
+    {
+      "path": "src/styles/case-study-slides.css",
+      "sha256": "1d97bdccd515346975155255a7bde19e021c9f176ec4ee01727446ca1aab718a"
+    },
+    {
+      "path": "src/styles/nav.css",
+      "sha256": "b5ae0b3a69603f1d43888a2b63ef2b5ec35f4811b4769fcfca49da32f0433ded"
+    },
+    {
+      "path": "src/styles/nda-gate.css",
+      "sha256": "f2a9871562bfa91493ff955cec5a83efda308d313175c56c3934ab4e357894f9"
+    },
+    {
+      "path": "src/styles/portfolio-chat.css",
+      "sha256": "9058463270923335cf1f24fb21b4844376726b27112b9ed519f902910075da12"
+    },
+    {
+      "path": "src/styles/work-page.css",
+      "sha256": "5395327138a8a77f2050c028f922dc0a04802d665e62c5ebe767636465b6ef52"
+    }
+  ],
+  "excluded": [
+    "docs/reviews/footer-local/README.md",
+    "docs/reviews/footer-local/desktop-dark.png",
+    "docs/reviews/footer-local/mobile-light.png",
+    "docs/reviews/footer-local/ux-only-dark.png",
+    "public/Assets/footer-crowd/ATTRIBUTION.txt",
+    "public/Assets/footer-crowd/open-peeps-sheet.avif",
+    "src/components/Footer.tsx",
+    "src/components/FooterContent.tsx",
+    "src/components/FooterCrowd.tsx",
+    "src/styles/footer-crowd.css"
+  ],
+  "releaseOnlyChanges": [
+    ".github/workflows/pull-request.yml",
+    "scripts/evidence-corrections-qa.ts",
+    "scripts/release-without-footer-qa.mjs",
+    "docs/releases/2026-10-16/"
+  ],
+  "notes": "File checksums record the local source snapshot. Release-only packaging and guard changes are listed separately; the final Git commit is the release authority."
+}

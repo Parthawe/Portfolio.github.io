@@ -391,6 +391,12 @@
 .nda-inline .nda-inline-confirmation { flex-basis: 100%; }
 .nda-request-disclosure>summary { cursor: pointer; width: fit-content; }
 .nda-request-disclosure[open]>summary { margin-bottom: 1rem; }
+
+/* Keep floating reading controls clear of an active access form. */
+.project-main:has(.nda-access-stack:focus-within) #cs-bottom-nav {
+  visibility: hidden;
+  pointer-events: none;
+}
 .nda-inline .nda-inline-form--request { padding-top: 1rem; border-top: 1px solid var(--ink-15); }
 .nda-inline { container-type: inline-size; }
 .nda-inline .nda-inline-form--code .nda-field { max-width: 380px; }

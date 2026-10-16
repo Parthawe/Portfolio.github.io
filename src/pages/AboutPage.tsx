@@ -334,44 +334,14 @@ function SoftwareChip({ tool }: { tool: string }) {
 }
 
 function CodexProfile() {
-  return (
-    <section className="abt-codex reveal" aria-labelledby="abt-codex-title">
-      <div className="abt-codex-profile">
-        <div className="abt-codex-identity">
-          <div className="abt-codex-person">
-            <div className="abt-codex-avatar" aria-hidden="true">PP</div>
-            <div>
-              <h3>Parth Pawar</h3>
-              <p>@pawar.d.parth <span>Pro</span></p>
-            </div>
-          </div>
-          <div className="abt-codex-profile-heading">
-            <span>Agent practice · Updated <time dateTime="2026-09-26">September 26, 2026</time></span>
-            <h2 id="abt-codex-title">Codex, tuned through use.</h2>
-          </div>
-        </div>
-
-        <dl className="abt-codex-stats" aria-label="Codex profile statistics">
-          {codexStats.map(stat => (
-            <div className="abt-codex-stat" key={stat.label}>
-              <dt>{stat.label}</dt>
-              <dd>{stat.value}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <div className="abt-codex-practice" aria-label="How Parth works with Codex">
-          {codexPractice.map((item, index) => (
-            <div key={item.title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
+  return <div className="abt-build-practice">
+    <div className="abt-build-steps" aria-label="How Parth works with Codex">
+      {codexPractice.map(item => <div key={item.title}><h3>{item.title}</h3><p>{item.text}</p></div>)}
+    </div>
+    <details className="abt-build-usage"><summary>Codex usage snapshot · September 26, 2026</summary>
+      <dl>{codexStats.map(stat => <div key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>)}</dl>
+    </details>
+  </div>
 }
 
 /* ── Component ── */
@@ -424,7 +394,7 @@ export default function AboutPage() {
             </section>
 
             {/* ── Unified experience table ── */}
-            <section id="experience" className="abt-table-wrap reveal">
+            <section id="experience" className="abt-table-wrap reveal"><div className="abt-experience-heading"><h2>Experience</h2><Link className="glass-action" to="/book">Read the 2022 portfolio</Link></div>
               <table className="abt-table">
                 <tbody>
                   {rows.map((r, i) => (
@@ -455,37 +425,19 @@ export default function AboutPage() {
 
         <section id="recognition" className="abt-recognition reveal" aria-labelledby="abt-recognition-title">
           <div className="abt-recognition-head">
-            <span className="sec-label">Awards / Recognition</span>
-            <h2 id="abt-recognition-title">Proof beyond the job title</h2>
+              <h2 id="abt-recognition-title">Proof beyond the job title</h2>
           </div>
-          <div className="abt-award-shelves">
-            {recognitionGroups.map((group) => (
-              <section
-                className="abt-award-shelf"
-                style={{ '--award-count': group.items.length } as CSSProperties}
-                aria-labelledby={`award-shelf-${group.label.toLowerCase()}`}
-                key={group.label}
-              >
-                <h3 id={`award-shelf-${group.label.toLowerCase()}`}>{group.label}</h3>
-                <div className="abt-award-shelf__cards">
-                  {group.items.map((item, index) => (
-                    <article className={`abt-award-card is-${item.theme}`} key={item.title}>
-                      <span className="abt-award-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                      <div className="abt-award-card__mark" aria-hidden="true"><i /><i /><i /></div>
-                      <h4>{item.title}</h4>
-                      <p>{item.meta}</p>
-                    </article>
-                  ))}
-                </div>
-              </section>
-            ))}
+          <div className="abt-recognition-ledger">
+            {recognitionGroups.map(group => <div className="abt-recognition-group" key={group.label}>
+              <h3>{group.label}</h3>
+              <ul>{group.items.map(item => <li className="abt-recognition-row" key={item.title}><h4>{item.title}</h4><p>{item.meta}</p></li>)}</ul>
+            </div>)}
           </div>
             </section>
 
             {/* ── Vibe coding / software stack ── */}
             <section className="abt-vibe reveal" aria-labelledby="abt-vibe-title">
               <div className="abt-vibe-head">
-                <span className="sec-label">Design engineering</span>
                 <h2 id="abt-vibe-title">Code with design</h2>
                 <p>I do not stop at the mockup. I build prototypes, wire interactions, and use code to prove the system works.</p>
               </div>
@@ -516,9 +468,8 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
+              <CodexProfile />
             </section>
-
-            <CodexProfile />
 
             {/* ── Spotlight: after experience ── */}
             <section className="wr-reveal-section">

@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "typeface",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "slug": "typeface",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "typeface",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "typeface",
+      "passed": true
+    }
+  ],
+  "failures": []
+}
