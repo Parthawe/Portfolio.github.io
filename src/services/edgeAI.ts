@@ -32,7 +32,7 @@ export function getEdgeAIModel() {
   return EDGE_MODEL
 }
 
-export async function getEdgeAIAnswer(payload: EdgeAIRequest, timeoutMs = 6500): Promise<string | null> {
+export async function getEdgeAIAnswer(payload: EdgeAIRequest, timeoutMs = payload.surface === 'panel' ? 22_000 : 6_500): Promise<string | null> {
   if (!EDGE_ENABLED || typeof fetch !== 'function') return null
 
   const controller = new AbortController()
