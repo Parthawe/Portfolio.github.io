@@ -14,7 +14,7 @@ for(const [engine,name,width] of [[chromium,'desktop',1440],[chromium,'touch',39
    assert.equal(await page.locator('.mechanism-story').count(),0,'collapsed story stays unloaded')
    assert(!(await page.evaluate(()=>performance.getEntriesByType('resource').map(r=>r.name))).some(r=>/\/(StageStory|HarpStory)-/.test(r)),'no diagram chunk before expansion')
    await page.goto(`${base}/${slug}#${hash}`)
-   const story=page.locator('.mechanism-story');await expect(story).toBeVisible({timeout:20000})
+   const story=page.locator(`#${hash} .mechanism-story`);await expect(story).toBeVisible({timeout:20000})
    await expect(story).toHaveAttribute('data-following','true')
    const moving=story.locator(slug==='revolving-stage'?'[data-assembly="deck"]':'[data-story-horn="horn-2"]').first()
    const nav=story.locator('nav button')

@@ -25,7 +25,7 @@ try {
     ['/mentra/', 'cs-companion'],
     ['/transfi-project/', 'cs-public-story'],
     ['/zentipay/', 'cs-public-story'],
-    ['/cuetv/', 'cs-cuetv-catalogue'],
+    ['/cuetv/', 'cs-public-story'],
     ['/feeling-patterns/', 'cs-prototypes'],
   ]) {
     await go(route)
