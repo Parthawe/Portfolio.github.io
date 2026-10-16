@@ -4,7 +4,9 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 const base=process.env.QA_BASE_URL || 'http://127.0.0.1:5199'
 const baseline=process.env.QA_BASELINE_URL
 const out='/tmp/portfolio-home-loading-qa';mkdirSync(out,{recursive:true})
-const browser=await chromium.launch();const errors=[],results=[]
+// Use the native backend on this macOS workstation. Linux CI keeps its default
+// software renderer; both paths retain the same first-frame and cleanup checks.
+const browser=await chromium.launch({args:process.platform==='darwin'?['--use-angle=metal']:[]});const errors=[],results=[]
 function capableDevice() {
  Object.defineProperty(navigator, 'hardwareConcurrency', { configurable: true, get: () => 8 })
  Object.defineProperty(navigator, 'deviceMemory', { configurable: true, get: () => 8 })
@@ -37,7 +39,13 @@ try {
  await page.waitForTimeout(3000);assert.equal(await page.locator('.wr-hero--no-scene').count(),0,'healthy startup retains the 3D hero');const start=await page.evaluate(()=>window.__draws);await page.waitForTimeout(600);assert.equal(await page.evaluate(()=>window.__draws),start,'hero stops drawing while idle')
  await page.getByRole('button',{name:'Explore the skills and projects web',exact:true}).click();await expect(page.getByRole('button',{name:'Close the web and return to the hero',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'Explore the skills and projects web',exact:true})).toBeVisible()
  await page.locator('#works').scrollIntoViewIfNeeded();await page.waitForTimeout(700);const offscreen=await page.evaluate(()=>window.__draws);await page.waitForTimeout(500);assert.equal(await page.evaluate(()=>window.__draws),offscreen,'offscreen scene remains paused')
- results.push('Desktop 3D: first frame, single HDR request, idle pause, expansion, Escape, offscreen pause');await page.close()
+ await page.locator('#hero').scrollIntoViewIfNeeded()
+ await page.getByRole('button',{name:'Explore the skills and projects web',exact:true}).click();await expect(page.locator('#hero')).toHaveClass(/wr-hero--web-open/)
+ await page.evaluate(()=>{document.documentElement.classList.add('is-low-power-device');window.dispatchEvent(new CustomEvent('portfolio:performance-mode',{detail:{degraded:true,reason:'runtime'}}))})
+ await expect(page.locator('#hero')).toHaveClass(/wr-hero--no-scene/);await expect(page.locator('#hero')).not.toHaveClass(/wr-hero--web-open/);await expect(page.locator('#hero canvas')).toHaveCount(0)
+ await expect(page.locator('.wr-hero-copy')).toHaveCSS('opacity','1');await expect(page.locator('.wr-hero-still')).toHaveCSS('opacity','1');await expect(page.locator('.wr-hero-web-scrim')).toHaveCSS('opacity','0')
+ await page.locator('#hero').screenshot({path:`${out}/expanded-fallback.png`})
+ results.push('Desktop 3D: first frame, single HDR request, idle pause, expansion, Escape, offscreen pause, expanded fallback restores copy/still');await page.close()
  const fallback=await browser.newPage();const unavailableRequests=[];fallback.on('request',r=>unavailableRequests.push(r.url()));await fallback.addInitScript(capableDevice);await fallback.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){if(type==='webgl'||type==='webgl2'||type==='experimental-webgl')return null;return get.call(this,type,...args)}})
  await fallback.goto(base,{waitUntil:'domcontentloaded'});await expect(fallback.locator('#hero')).toHaveClass(/wr-hero--no-scene/);await fallback.waitForTimeout(1000);assert(!unavailableRequests.some(url=>url.includes('potsdamer_platz')||url.includes('/HeroScene-')),'no heavy hero download when WebGL is unavailable');await fallback.close();results.push('Unavailable WebGL keeps the original fallback without 3D downloads')
  const constrained=await browser.newPage({viewport:{width:1440,height:1000}});const constrainedRequests=[]

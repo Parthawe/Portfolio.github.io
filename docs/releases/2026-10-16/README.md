@@ -56,3 +56,5 @@ A separate inventory used an older checkout. Reconciliation against this candida
 - Enigma now explicitly withholds recognition accuracy, latency and audience-learning claims. Its exact contribution and image-credit wording still needs confirmation from the original build/documentation record. A photography credit is not evidence of co-authorship.
 
 These are content limitations, not automated-test failures. Keep them visible during release review; passing CI cannot establish the missing facts.
+
+The in-app browser also reproduced an existing hero recovery defect: runtime degradation while the web was expanded left its overlay active after the renderer unmounted. The fallback now clears the expanded state, restoring the still, title and interactions. The home-loading regression exercises this transition explicitly. Native Metal is used for that test on macOS; Linux CI retains software rendering. A macOS SwiftShader attempt exceeded its 20-second startup assertion and is not counted as a pass.
