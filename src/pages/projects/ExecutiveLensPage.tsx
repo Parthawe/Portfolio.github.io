@@ -1,4 +1,4 @@
-import { projectImageProps } from '../../utils/projectImage'
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -8,7 +8,7 @@ import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsSteps from '../../components/case-study/CsSteps'
-import CsCallout from '../../components/case-study/CsCallout'
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import CsNumList from '../../components/case-study/CsNumList'
 import CsThanks from '../../components/case-study/CsThanks'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
@@ -68,9 +68,12 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>Important decisions were scattered across calls, docs, dashboards, and memory. The product needed to connect conversation to consequence: what changed, why it mattered, and who needed to act.</p>
           </CsBody>
-          <CsCallout>
-            <p>&ldquo;The problem is not that executives lack information. The problem is that the most important information is trapped inside conversations that vanish the moment the meeting ends.&rdquo;</p>
-          </CsCallout>
+          <CsProcessFlow title="Conversation to follow-up" steps={[
+            { label: 'Capture', desc: 'Keep speaker and transcript context from the meeting.' },
+            { label: 'Extract', desc: 'Separate decisions, owners and action items from the transcript.' },
+            { label: 'Verify', desc: 'Follow a summary citation back to its transcript moment.' },
+            { label: 'Follow up', desc: 'Review the owner and deadline attached to an action.' },
+          ]} />
         </CsSection>
 
         <CsExpandPreview
@@ -115,20 +118,18 @@ export default function ExecutiveLensPage() {
           <CsBody>
             <p>The dashboard is a briefing, not a chart wall. It shows what changed, what needs attention, and which meeting created the shift.</p>
           </CsBody>
-          <h3 className="cs-section-subtitle">From Data to Narrative</h3>
-          <CsBody>
-            <p>A feed-based dashboard made the product easier to scan: one prioritized insight first, supporting evidence below, and a clear action attached.</p>
-          </CsBody>
+
         </CsSection>
 
         <CsSection id="cs-website" label="Live Product" title="executivelens.ai, The Product Site">
           <CsBody>
             <p>The site follows the product: clear hierarchy, real screens, and a problem-to-solution narrative without AI buzzword clutter.</p>
           </CsBody>
-          <div className="cs-slide reveal">
-            <img {...projectImageProps("/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp")} data-project-preview src="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" alt="Original Executive Lens website: glasses and action board, capture workflow, capability cards, integrations, and closing demo action" loading="lazy" decoding="async" />
-          </div>
-          <p className="cs-caption">Original website capture, March 25, 2026. The page presents the glasses-assisted workflow and product capabilities. Marketing claims in the capture are not independent performance measurements.</p>
+          <CsScreenExplorer format="landscape" label="Inspect original ExecutiveLens site evidence" screens={[
+            { title: 'Capture, understand, ship', label: 'Original workflow section', src: '/Assets/images/executivelens/site-crops/executivelens-site-workflow.png', alt: 'Original ExecutiveLens workflow section showing glasses audio capture, transcript context and the capture, understand, ship sequence', caption: 'The source keeps the spoken moment beside its transcript. The three stages explain how captured audio becomes a usable outcome.' },
+            { title: 'Capabilities and control', label: 'Original product scope', src: '/Assets/images/executivelens/site-crops/executivelens-site-capabilities.png', alt: 'Original ExecutiveLens capability cards: live capture, intelligence, self-building notes, and agents and control', caption: 'The source groups capture, interpretation, notes and control. External sending or publishing requires explicit approval in the product presentation.' },
+          ]} />
+          <p className="cs-caption">Original website capture, March 25, 2026. These are documented product claims, not independently measured results. <a className="cs-text-link" href="/Assets/Projects/website-screenshot/screencapture-executivelens-ai-2026-03-25-13_34_30.webp" target="_blank" rel="noreferrer">Inspect the complete original capture</a>.</p>
         </CsSection>
 
         <CsSection id="cs-insights" label="Insight Engine" title="Keep evidence beside the summary">

@@ -18,17 +18,20 @@ export function TimeDilation() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [distance, setDistance] = useState(0.8)
   const timeRef = useRef({ far: 0, near: 0 })
+  const distanceRef = useRef(distance)
+  distanceRef.current = distance
+  const clockWake = useRef<(() => void) | null>(null)
+  useEffect(() => { clockWake.current?.() }, [distance])
   const lastT = useRef(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')!
-    lastT.current = performance.now()
+    lastT.current = 0
 
-    const draw = () => {
-      const now = performance.now()
-      const dt = (now - lastT.current) / 1000
+    const draw = (now: number) => {
+      const dt = motion.matches ? 0 : lastT.current ? Math.min(.08, (now - lastT.current) / 1000) : 0
       lastT.current = now
 
       const dpr = Math.min(window.devicePixelRatio, 2)
@@ -41,11 +44,14 @@ export function TimeDilation() {
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
+      const distance = distanceRef.current
+      canvas.dataset.clockTimes = JSON.stringify({ reference: timeRef.current.far, adjustable: timeRef.current.near, rate: Math.sqrt(Math.max(.01,distance)), distance })
+
       // Background
       ctx.fillStyle = '#08080f'
       ctx.fillRect(0, 0, w, h)
 
-      const nearRate = Math.sqrt(Math.max(0.01, distance))
+      const nearRate = Math.sqrt(Math.max(0.01, distanceRef.current))
       timeRef.current.far += dt * 8
       timeRef.current.near += dt * nearRate * 8
 
@@ -214,9 +220,11 @@ export function TimeDilation() {
       ctx.setLineDash([])
 
     }
-    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
-    return () => activity.dispose()
-  }, [distance])
+    const motion = matchMedia('(prefers-reduced-motion: reduce)')
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw, () => !motion.matches)
+    clockWake.current = activity.wake
+    return () => { clockWake.current = null; activity.dispose() }
+  }, [])
 
   return (
     <div style={{ position: 'relative' }}>

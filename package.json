@@ -43,7 +43,9 @@
     "qa:jugalbandi-ensemble": "node scripts/jugalbandi-ensemble-qa.mjs && node scripts/jugalbandi-gesture-edges-qa.mjs",
     "qa:jugalbandi-duet": "node --experimental-strip-types scripts/jugalbandi-duet-model-qa.mjs && node scripts/jugalbandi-duet-qa.mjs && node scripts/jugalbandi-duet-activity-qa.mjs",
     "qa:jugalbandi-additions": "node --experimental-strip-types scripts/jugalbandi-anatomy-model-qa.mjs && node scripts/jugalbandi-additions-qa.mjs",
-    "qa:jugalbandi-anatomy": "node --experimental-strip-types scripts/jugalbandi-anatomy-model-qa.mjs && node scripts/jugalbandi-anatomy-qa.mjs"
+    "qa:jugalbandi-anatomy": "node --experimental-strip-types scripts/jugalbandi-anatomy-model-qa.mjs && node scripts/jugalbandi-anatomy-qa.mjs",
+    "qa:remaining-case-studies": "node scripts/remaining-case-studies-qa.mjs && node scripts/remaining-interactions-qa.mjs",
+    "qa:guarded-build": "node scripts/guarded-build-qa.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.33",

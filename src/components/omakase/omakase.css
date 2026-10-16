@@ -38,3 +38,14 @@
 .om-cabinet:fullscreen .om-bezel { background:transparent; height:100%; padding:0; display:grid; place-items:center; }
 .om-cabinet:fullscreen .om-screen { width:min(calc((100vh - 24px)*16/9),100%); max-height:100%; border:0; }
 @media(max-width:600px) { .om-intro { flex-direction:column; gap:14px; }.om-cabinet{padding:0 7px}.om-marquee{min-height:68px;padding:16px 6px;gap:8px}.om-marquee small{font-size:9px}.om-bezel{padding:10px 5px 16px}.om-screen{border-width:5px}.om-start{padding:12px 4px;gap:5px}.om-start button{font-size:14px;padding:10px 12px}.om-start > span{font-size:10px}.om-control-deck{padding:18px 12px;gap:15px}.om-keys{grid-template-columns:repeat(4,30px);gap:7px}.om-keys kbd{width:30px;height:28px;font-size:12px}.om-cabinet-footer{font-size:9px;padding:10px 5px}.om-evidence > div{grid-template-columns:1fr} }
+
+/* The photographed plywood cabinet surrounds an undistorted hosted game. */
+.om-cabinet { position:relative; border-inline-width:10px; border-bottom-width:18px; background:#b99566; box-shadow:inset 0 0 0 1px #ead2ad; }
+.om-marquee { border:1px solid #8d704b; margin-top:12px; background:#dfc69e; }
+.om-bezel { border-inline:2px solid #8d704b; }
+.om-control-deck { position:relative; box-shadow:inset 0 2px 0 #f5dfbd; }
+.om-control-deck::before,.om-control-deck::after { content:'';position:absolute;width:5px;height:5px;border:1px solid #6d5840;border-radius:50%;top:9px;background:#b4b0a3; }
+.om-control-deck::before {left:9px}.om-control-deck::after {right:9px}
+.om-keys kbd { box-sizing:border-box; height:42px; aspect-ratio:1; border-radius:50%; box-shadow:0 3px 0 #605b51,inset 0 2px 2px #fff9; }
+.om-cabinet-footer { min-height:42px; align-items:center; }
+@media(max-width:600px){.om-cabinet{border-inline-width:5px;border-bottom-width:12px}.om-keys{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.om-keys kbd{width:100%;height:auto;aspect-ratio:1;min-width:0;font-size:11px}.om-control-deck{gap:16px;padding-inline:8px}.om-player{min-width:0}}

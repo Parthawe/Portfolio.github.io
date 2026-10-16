@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { isCompletePanelAnswer } from './src/services/panelAnswerQuality'
 
 interface FolioAnswerPayload {
   message?: string
@@ -44,12 +45,13 @@ function getGeminiText(data: unknown): string {
   const candidate = (data as {
     candidates?: Array<{
       content?: {
-        parts?: Array<{ text?: string }>
+        parts?: Array<{ text?: string; thought?: boolean }>
       }
     }>
   }).candidates?.[0]
 
   return candidate?.content?.parts
+    ?.filter(part => !part.thought)
     ?.map(part => part.text || '')
     .join('')
     .trim() || ''
@@ -188,9 +190,10 @@ function localGeminiEdgePlugin(apiKey: string, defaultModel: string): Plugin {
                     maxOutputTokens: payload.surface === 'cursor' ? 768 : 1_024,
                   }
                 : {
+                    ...(model.startsWith('gemini-2.5') ? { thinkingConfig: { thinkingBudget: 0 } } : {}),
                     temperature: 0.35,
                     topP: 0.9,
-                    maxOutputTokens: payload.surface === 'cursor' ? 240 : 520,
+                    maxOutputTokens: payload.surface === 'cursor' ? 240 : 1_024,
                   },
             }),
             signal: controller.signal,
@@ -205,7 +208,10 @@ function localGeminiEdgePlugin(apiKey: string, defaultModel: string): Plugin {
           }
 
           const answer = getGeminiText(data)
-          const completeAnswer = payload.surface !== 'cursor' || isCompleteCursorAnswer(answer, String(payload.message || ''))
+          const finishReason = (data as { candidates?: Array<{ finishReason?: string }> }).candidates?.[0]?.finishReason
+          const completeAnswer = payload.surface === 'cursor'
+            ? isCompleteCursorAnswer(answer, String(payload.message || ''))
+            : ((!finishReason || finishReason === 'STOP') && isCompletePanelAnswer(answer))
           if (answer && completeAnswer) {
             writeJson(res, 200, { answer, model })
             return
@@ -222,7 +228,7 @@ function localGeminiEdgePlugin(apiKey: string, defaultModel: string): Plugin {
         }
       }
 
-      writeJson(res, lastStatus, { error: 'Gemini request failed' })
+      writeJson(res, lastStatus === 200 ? 502 : lastStatus, { error: 'Gemini request failed' })
     } catch (error) {
       const message = error instanceof Error ? error.message : 'AI endpoint failed'
       writeJson(res, 500, { error: message })
@@ -349,6 +355,14 @@ export default defineConfig(({ mode }) => {
           if (id.includes('/three/src/renderers/common/') || id.includes('/three/src/renderers/webgpu/') || id.includes('/three/src/renderers/webgl-fallback/') || id.includes('/three/src/nodes/') || id.includes('/three/src/materials/nodes/') || id.includes('/three/build/three.webgpu')) {
             return 'vendor-three-webgpu'
           }
+          // Stage lettering belongs only to the optional scenic viewer. Keeping
+          // its font and geometry out of the core avoids charging the hero for it.
+          if (id.includes('/three/examples/fonts/helvetiker_') ||
+              id.includes('/three/examples/jsm/loaders/FontLoader') ||
+              id.includes('/three/examples/jsm/geometries/TextGeometry')) {
+            return 'scenic-lettering'
+          }
+
           if (id.includes('/three/')) {
             return 'vendor-three-core'
           }

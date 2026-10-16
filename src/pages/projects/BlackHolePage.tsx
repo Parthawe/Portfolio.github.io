@@ -62,9 +62,6 @@ export default function BlackHolePage() {
           ]}
         />
 
-        {/* Hero */}
-        <CsImage src="/Assets/Projects/black-hole-assets/time-trap.jpg" alt="The Black Hole's Time Trap, circular platform with clocks at different distances demonstrating time dilation" />
-
         <section className="cs-slide reveal" id="cs-film">
           <div className="wrap">
             <video className="black-hole-film" src="/Assets/Projects/black-hole-assets/time-dilation.mp4" poster="/Assets/Projects/black-hole-assets/time-trap.jpg" controls preload="none" muted playsInline aria-label="Time dilation physical model demonstration" />

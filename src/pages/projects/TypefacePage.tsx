@@ -1,7 +1,6 @@
 import { projectImageProps } from '../../utils/projectImage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
@@ -51,8 +50,15 @@ const featureCards = [
 export default function TypefacePage() {
   const [weightIdx, setWeightIdx] = useState(1)
   const [specimenIdx, setSpecimenIdx] = useState(0)
+  const [sampleText, setSampleText] = useState(specimens[0])
+  const [fontStatus, setFontStatus] = useState('Loading the original font…')
   const activeWeight = weights[weightIdx]
-  const activeSpecimen = specimens[specimenIdx]
+  useEffect(() => {
+    let disposed=false
+    setFontStatus('Loading the original font…')
+    document.fonts.load(`${activeWeight.value} 48px "Butlers Slice"`).then(fonts=>{if(!disposed)setFontStatus(fonts.length?`${activeWeight.label} · original font loaded`:'Font unavailable. Reload to try again.')}).catch(()=>{if(!disposed)setFontStatus('Font unavailable. Reload to try again.')})
+    return()=>{disposed=true}
+  },[activeWeight.value,activeWeight.label])
   const specimenStyle = {
     fontFamily: 'var(--tf-slice)',
     fontWeight: activeWeight.value,
@@ -113,7 +119,7 @@ export default function TypefacePage() {
                         type="button"
                         key={sample}
                         className={index === specimenIdx ? 'is-active' : ''}
-                        onClick={() => setSpecimenIdx(index)}
+                        onClick={() => {setSpecimenIdx(index);setSampleText(sample)}}
                         aria-pressed={index === specimenIdx}
                       >
                         {sample}
@@ -139,16 +145,9 @@ export default function TypefacePage() {
                 </div>
               </div>
 
-              <motion.p
-                key={`${activeSpecimen}-${activeWeight.value}`}
-                className="tf-specimen-word"
-                style={specimenStyle}
-                initial={{ opacity: 0, y: 18, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0)' }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {activeSpecimen}
-              </motion.p>
+              <label className="tf-specimen-input">Your specimen<input aria-label="Specimen text" value={sampleText} maxLength={160} spellCheck={false} onChange={event=>{setSampleText(event.target.value);setSpecimenIdx(-1)}} /></label>
+              <p className="tf-specimen-word" style={specimenStyle} aria-label="Rendered specimen">{sampleText || 'Type something above'}</p>
+              <p className="tf-font-status" role="status">{fontStatus}</p>
 
               <div className="tf-specimen-footer">
                 <span>{activeWeight.file}</span>
@@ -165,7 +164,7 @@ export default function TypefacePage() {
         <section className="tf-section" id="tf-origin">
           <div className="tf-section-head">
             <p className="tf-section-kicker">Origin</p>
-            <h2>Named after a knife, not a font menu.</h2>
+            <h2>A cut translated into letterforms.</h2>
           </div>
           <div className="tf-split-section tf-split-section--flush">
             <div className="tf-split-copy">
@@ -201,7 +200,7 @@ export default function TypefacePage() {
         <section className="tf-section tf-feature-section" id="tf-concept">
           <div className="tf-section-head">
             <p className="tf-section-kicker">Concept</p>
-            <h2>The slice is a rule, not decoration.</h2>
+            <h2>The construction of the slice.</h2>
           </div>
           <div className="tf-feature-grid">
             {featureCards.map(card => (
@@ -317,12 +316,12 @@ export default function TypefacePage() {
 
         <section className="tf-download-section" id="tf-download">
           <p className="tf-section-kicker">Download</p>
-          <h2 style={specimenStyle}>Use Butler&rsquo;s Slice</h2>
+          <h2>Use Butler&rsquo;s Slice</h2>
           <p>
             Includes OTF, WOFF, and WOFF2 files for Ultralight, Regular, and Bold. Best for expressive titles,
             covers, posters, and short editorial moments.
           </p>
-          <a href={`${TYPEFACE_ASSET}/butlers-slice.zip`} download className="tf-primary-download">
+          <a href={`${TYPEFACE_ASSET}/butlers-slice.zip`} download className="tf-primary-download glass-action">
             Download font family
           </a>
         </section>

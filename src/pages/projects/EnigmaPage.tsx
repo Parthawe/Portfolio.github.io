@@ -1,4 +1,4 @@
-import OriginalExperiment from '../../components/physical-worlds/OriginalExperiment'
+import DeferredObjectStudy from '../../components/case-study/DeferredObjectStudy'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
@@ -12,7 +12,6 @@ import CsBody from '../../components/case-study/CsBody'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-import EnigmaInteractive from '../../components/EnigmaInteractive'
 
 export default function EnigmaPage() {
   return (
@@ -43,7 +42,7 @@ export default function EnigmaPage() {
           ]}
         />
 
-        <CsMediaSpotlight
+        <CsMediaSpotlight layout="stacked"
           id="cs-film"
           label="Watch first"
           title="Light as inference"
@@ -59,16 +58,16 @@ export default function EnigmaPage() {
         </CsMediaSpotlight>
 
         {/* Interactive */}
-        <CsSection id="cs-interactive" label="Interactive" title="Try the original letter experiment">
+        <CsSection id="cs-interactive" label="Interactive" title="Draw through the sculpture">
           <CsBody>
-            <p>Open the original browser experiment below to draw a letter. This browser adaptation does not run the original trained letter-recognition model; the film and photographs document the physical sculpture.</p>
+            <p>Draw on the tablet or type a letter to drive the sculpture’s lights. Switch to the signal explanation to inspect the input and layer relationships. Both browser studies are explanatory adaptations; the original trained model is not available. The film records the actual installation.</p>
           </CsBody>
           <div className="cs-label-row">
             <span className="cs-label-row-key">Network</span>
             <span className="cs-label-row-val">200 physical lights in the documented sculpture</span>
           </div>
           <div className="project-content-block--roomy">
-            <OriginalExperiment><EnigmaInteractive /></OriginalExperiment>
+            <DeferredObjectStudy project="enigma" />
           </div>
         </CsSection>
 

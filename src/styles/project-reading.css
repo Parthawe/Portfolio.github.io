@@ -161,10 +161,10 @@
 /* Reference-led project reading flow: one column, steady type, quiet guides. */
 body:has(.project-main) {
   --project-reading-width: 1040px;
-  --project-reading-gutter: clamp(20px, 4vw, 48px);
+  --project-reading-gutter: var(--page-inline-inset);
 }
 body:has(.project-main) .nav {
-  padding-inline: max(var(--project-reading-gutter), calc((100% - var(--project-reading-width)) / 2));
+  padding-inline: max(var(--project-reading-gutter), calc((100% - var(--project-reading-width)) / 2), calc(var(--ruler-inline-offset, 0px) + .75rem));
 }
 .project-main {
   --project-body-type: 1rem;
@@ -728,3 +728,27 @@ body.case-side-nav .project-main .project-header--visual.wrap,
   .project-main--mentra-miniapps .cs-screen-explorer__choices { position: static; }
   .project-main--mentra-miniapps .cs-screen-explorer__image { height: auto; aspect-ratio: 419 / 909; max-height: none; }
 }
+
+/* Keep action sizes in the navigation system; reserve width for evidence. */
+.project-main .proj-reading-links a.glass-action { min-height: 44px; padding: .55rem .85rem; font: 500 .8rem/1.25 var(--sans); }
+.project-main .proj-visual-brief .proj-visual-brief__facts { grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); }
+.project-main--office-diversity .proj-visual-hero__media img { object-fit: contain; transform: none; height: auto; max-height: 640px; }
+.project-main--vj .proj-visual-hero__media { max-height: 620px; }
+.project-main--vj .proj-visual-hero__media img { object-fit: contain; height: 620px; max-width: 100%; transform: none; }
+#main-content.project-main--raahi .raahi-overview-proof { max-width: min(600px, var(--project-frame)); }
+.project-main--raahi .raahi-overview-proof img { max-height: 900px; object-fit: contain; width: 100%; }
+.project-main--raahi :is(.raahi-research-grid,.raahi-ia-stack) img { object-fit: contain; max-height: 520px; width: auto; max-width: 100%; margin-inline: auto; }
+.project-main--raahi .raahi-ia-kiosk img { max-width: 251px; }
+.project-main--raahi .raahi-phone-row .cs-img { display: flex; flex-direction: column; align-items: center; }
+.project-main--raahi .raahi-phone-row img { max-height: 560px; width: auto; max-width: 100%; object-fit: contain; }
+.project-main--raahi .raahi-research-grid>div:nth-child(-n+2) img { max-width: 419px; }
+.project-main--raahi .raahi-research-blueprint img { max-width: 564px; }
+.project-main:has(.project-header--project-jugalbandi) .cs-media-spotlight-grid--stacked { display: flex; flex-direction: column; gap: 1rem; }
+.project-main:has(.project-header--project-jugalbandi) .cs-media-spotlight-frame { width: 100%; }
+.project-main:has(.project-header--project-jugalbandi) .cs-label-row { grid-template-columns: minmax(110px, .25fr) minmax(0,1fr); }
+@media(max-width:767px) { .project-main .proj-visual-brief .proj-visual-brief__facts { grid-template-columns: 1fr; } .project-main--vj .proj-visual-hero__media img { height: auto; max-height: 500px; } }
+
+.project-main--vj .project-header--project-vj-software .proj-visual-stage { aspect-ratio: auto; height: 620px; min-height: 0; }
+@media(max-width:767px) { .project-main--vj .project-header--project-vj-software .proj-visual-stage { height: 480px; } .project-main--vj .project-header--project-vj-software .proj-visual-hero__media img { height: 480px; } }
+/* The reading gutter already clears the ruler; do not shift the whole body too. */
+body.figma-chrome-enabled:not(.figma-rulers-off):has(.project-main) { padding-left: 0; }

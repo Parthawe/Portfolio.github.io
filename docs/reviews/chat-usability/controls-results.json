@@ -1,0 +1,32 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "theme": "light",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1024,
+    "theme": "dark",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "light",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "dark",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 320,
+    "theme": "light",
+    "passed": true
+  }
+]

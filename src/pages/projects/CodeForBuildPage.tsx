@@ -1,3 +1,4 @@
+import DeferredCodeBlockStudy from '../../components/case-study/DeferredCodeBlockStudy'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -30,6 +31,7 @@ export default function CodeForBuildPage() {
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#2B6CB0' } as React.CSSProperties}>
         <ProjectHeader
+          heroFraming="image"
           showHeaderSummary={false}
           backLink="/work"
           categorySlug="ux-design"
@@ -64,6 +66,7 @@ export default function CodeForBuildPage() {
           </div>
         </CsSection>
 
+        <section className="wrap"><DeferredCodeBlockStudy /></section>
         <CsExpandPreview
           ctaLabel="Open the full build concept"
           note="Process maps, block grammar, result screens, and the learning system."

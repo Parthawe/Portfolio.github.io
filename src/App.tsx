@@ -1,6 +1,8 @@
+import ExperienceChatLayout from './components/workspace/ExperienceChatLayout'
 import { experiencePreviewsEnabled } from './utils/experiencePreview'
 import { lazy, Suspense, Component, type ReactNode } from 'react'
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom'
+import { ProjectReturnProvider } from './components/ProjectReturnContext'
 import RootLayout from './components/RootLayout'
 import Nav from './components/Nav'
 import PixelLoaderVisual from './components/PixelLoaderVisual'
@@ -116,10 +118,13 @@ const ShuffleSimulationPage = lazy(() => import('./pages/ShuffleSimulationPage')
 export default function App() {
   return (
     <ErrorBoundary>
+    <ProjectReturnProvider>
     <Suspense fallback={<Loading />}>
       <Routes>
-        {ExperiencePreviewPage && <Route path="/experience-preview/:project" element={<ExperiencePreviewPage />} />}
-        <Route path="/typeface/workshop" element={<TypefaceWorkshopPage/>}/>
+        <Route element={<ExperienceChatLayout />} >
+          {ExperiencePreviewPage && <Route path="/experience-preview/:project" element={<ExperiencePreviewPage />} />}
+          <Route path="/typeface/workshop" element={<TypefaceWorkshopPage/>}/>
+        </Route>
         <Route path="/project-experiences" element={<PhysicalWorldPage />} />
         <Route path="/:project/prototype" element={<PhysicalWorldPage />} />
         <Route path="/physical-worlds" element={<PhysicalWorldPage />} />
@@ -174,6 +179,7 @@ export default function App() {
         </Route>
       </Routes>
     </Suspense>
+    </ProjectReturnProvider>
     </ErrorBoundary>
   )
 }

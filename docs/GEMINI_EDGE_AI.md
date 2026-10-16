@@ -14,8 +14,31 @@ VITE_EDGE_AI_ENDPOINT=/api/folio-answer
 VITE_EDGE_AI_MODEL=gemini-2.5-flash
 ```
 
-If `VITE_EDGE_AI_ENDPOINT` is omitted but `VITE_EDGE_AI_ENABLED=1` is set, the
-frontend calls `/api/folio-answer`.
+`VITE_EDGE_AI_ENDPOINT` selects an explicit endpoint. Otherwise, an enabled client
+uses `${VITE_SUPABASE_URL}/functions/v1/folio-answer` when a Supabase project URL
+is configured, or `/api/folio-answer` as the local adapter fallback. The Vite
+adapter needs server-side Gemini configuration; a static preview cannot serve
+that API route by itself.
+
+For local testing against an existing deployed edge function, put its public URL
+in the ignored `.env.local`, set `VITE_EDGE_AI_ENABLED=1`, and restart Vite or
+rebuild the preview. No Gemini API key belongs in this client configuration.
+Build-time environment flags are not changed by opening the chat.
+
+The client and existing edge contract accept questions up to 800 JavaScript
+string characters. The panel allows 26 seconds for the endpoint's model fallback
+sequence; the cursor keeps its shorter 6.5-second budget. On unavailable,
+rate-limited, empty or invalid responses, the chat labels the portfolio-note
+fallback and offers an explicit retry. Retry replaces the same answer, preserves
+an unsent draft and retains the question's original project context.
+
+The panel rejects cut-off replies and makes at most one completion retry inside
+the same 26-second deadline. Persistent fragments fall back to labeled notes.
+Local server changes reserve the Flash 2.5 output budget for the visible answer,
+check the provider finish reason, and exclude thought parts. These changes need
+a separate server deployment; editing this checkout does not update Supabase.
+Google documents the shared reasoning/output budget in its
+[thinking guide](https://ai.google.dev/gemini-api/docs/generate-content/thinking).
 
 ## Endpoint Contract
 
@@ -51,10 +74,11 @@ Cloudflare Workers.
 
 ## Gemini Request Shape
 
-Use `gemini-2.5-flash` as the default model for the portfolio agent because it
-is currently the fastest reliable option for short portfolio chat answers. The
-local Vite endpoint can also fall back through Gemini 3 Flash models if a
-requested model is rate-limited or temporarily unavailable.
+The configured default model is `gemini-3.1-flash-lite`. The existing server
+chooses its fallback sequence. A successful HTTP response alone does not prove
+model generation: verification should check the response's model identifier and
+distinguish `portfolio-knowledge` from a live model. The browser does not receive
+the server API key.
 
 ```ts
 const model = 'gemini-2.5-flash'
@@ -72,8 +96,9 @@ const response = await fetch(url, {
       parts: [{ text: prompt }]
     }],
     generationConfig: {
+      thinkingConfig: { thinkingBudget: 0 },
       temperature: 0.35,
-      maxOutputTokens: 520
+      maxOutputTokens: 1024
     }
   })
 })

@@ -69,10 +69,19 @@ function withinRateLimit(address: string) {
 
 function geminiText(data: unknown) {
   const parts = (data as {
-    candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>
+    candidates?: Array<{ content?: { parts?: Array<{ text?: string; thought?: boolean }> } }>
   }).candidates?.[0]?.content?.parts
 
-  return parts?.map(part => part.text || '').join('').trim() || ''
+  return parts?.filter(part => !part.thought).map(part => part.text || '').join('').trim() || ''
+}
+
+function isCompletePanelAnswer(answer: string, data: unknown) {
+  const reason = (data as { candidates?: Array<{ finishReason?: string }> }).candidates?.[0]?.finishReason
+  if (reason && reason !== 'STOP') return false
+  if (!answer || answer.length > 2_200) return false
+  if ((answer.match(/\*\*/g)?.length || 0) % 2 || (answer.match(/`/g)?.length || 0) % 2) return false
+  const ending = answer.trim().replace(/[\s*`_"'’”)\]]+$/, '')
+  return /[.!?]$/.test(ending) && !/\b(?:and|because|the|a|an|to|of|for|with|from)[.!?]$/i.test(ending)
 }
 
 function isCompleteCursorAnswer(answer: string, question: string) {
@@ -216,9 +225,12 @@ Deno.serve(async request => {
             maxOutputTokens: payload.surface === 'cursor' ? 768 : 1_024,
           }
         : {
+            // Flash 2.5 thinking shares the output budget. These grounded
+            // portfolio replies do not need reasoning tokens.
+            ...(model.startsWith('gemini-2.5') ? { thinkingConfig: { thinkingBudget: 0 } } : {}),
             temperature: 0.72,
             topP: 0.9,
-            maxOutputTokens: payload.surface === 'cursor' ? 240 : 520,
+            maxOutputTokens: payload.surface === 'cursor' ? 240 : 1_024,
           }
 
       try {
@@ -251,7 +263,9 @@ Deno.serve(async request => {
         }
 
         const answer = geminiText(data)
-        const completeAnswer = payload.surface !== 'cursor' || isCompleteCursorAnswer(answer, message)
+        const completeAnswer = payload.surface === 'cursor'
+          ? isCompleteCursorAnswer(answer, message)
+          : isCompletePanelAnswer(answer, data)
         if (answer && completeAnswer) {
           return json(origin, 200, { answer: answer.slice(0, 2_200), model })
         }

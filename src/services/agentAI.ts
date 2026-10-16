@@ -1,3 +1,5 @@
+import { projectChatEvidence, verifiedProjectAnswer } from '../data/projectChatEvidence'
+import { chatProjectSlug } from '../utils/chatProjectPath'
 import { categories } from '../data/categories'
 import { PORTFOLIO_SCOPE_REPLY, isPortfolioQuestion } from '../data/portfolioKnowledgeBase'
 import { CATEGORY_LABELS, visibleProjects as projects, type Project, type ProjectCategory } from '../data/projects'
@@ -390,7 +392,7 @@ const EDGE_CATEGORY_ALIASES: Record<string, string> = {
 }
 
 function relevantProjectSlugs(ctx: ChatContext, message: string, localAnswer: string) {
-  const routeSlug = ctx.route.replace(/^\//, '').split(/[?#]/)[0]
+  const routeSlug = chatProjectSlug(ctx.route) || ctx.route.replace(/^\//, '').split(/[?#]/)[0]
   const categorySlug = EDGE_CATEGORY_ALIASES[routeSlug] || routeSlug
   const currentCategory = categories.find(category => category.slug === categorySlug)
   const categorySlugs = currentCategory
@@ -411,14 +413,14 @@ function relevantProjectSlugs(ctx: ChatContext, message: string, localAnswer: st
     ...directlyRelevant,
     ...categorySlugs,
     ...DEFAULT_CONTEXT_PROJECTS,
-  ].filter(Boolean))).slice(0, 10)
+  ].filter(Boolean))).slice(0, 6)
 }
 
 function buildPublicEdgeContext(ctx: ChatContext, message: string, localAnswer: string) {
   const relevantSlugs = new Set(relevantProjectSlugs(ctx, message, localAnswer))
   return {
     instruction:
-      'Answer as Parth Pawar portfolio guide. Use only this public context. If the user asks for private NDA details, give the safe public glimpse and invite an access request.',
+      'Answer as Parth Pawar portfolio guide. Use only this public context. Do not invent anecdotes, motivations, quotations, measurements or team responsibilities. Prefer supplied project summaries over stylistic inferences, and state when evidence is missing. The chat is already inside this portfolio: he, him and you refer to Parth unless the conversation names someone else. Answer role-fit questions with specific evidence rather than a blanket best-person claim or a canned scope refusal. Keep replies under 120 words unless the visitor explicitly requests detail. Finish all sentences; omit generic invitations and invented personal feelings. If the user asks for private NDA details, give the safe public glimpse and invite an access request.',
     visitor: {
       persona: ctx.persona,
       lastProject: ctx.lastProject,
@@ -444,6 +446,7 @@ function buildPublicEdgeContext(ctx: ChatContext, message: string, localAnswer: 
       summaryTimeline: project.summaryTimeline,
       summaryOutcome: project.summaryOutcome,
       storyline: project.storyline,
+      evidence: projectChatEvidence[project.slug],
     })),
   }
 }
@@ -468,7 +471,16 @@ function getProjectFocus(project: Project, query: string): FocusTopic | undefine
 }
 
 export function createChatHistory(route: string): ChatHistory {
-  return { route, ctx: createContext(route), turns: [] }
+  const ctx = createContext(route)
+  ctx.lastProject = chatProjectSlug(route)
+  return { route, ctx, turns: [] }
+}
+
+function panelOverview(history: ChatHistory, question: string) {
+  const slug = chatProjectSlug(history.route)
+  const project = findProject(question) || projects.find(project => project.slug === slug) || projects.find(project => project.slug === history.ctx.lastProject)
+  if (project) return `**[${project.name}](/${project.slug})**\n${project.summaryProblem || project.desc}\n${project.summaryRole || ''}\n${project.summaryOutcome || ''}`
+  return 'For design engineering and senior product design roles, judge the fit from the work:\n\n• **[Mentra](/mentra):** Head of Design across the smart-glasses OS, companion app, MiniApps and launch site.\n• **[Clawed](/clawed-chat):** product design for an AI assistant with visible approvals and action receipts.\n• **[Jugalbandi](/jugalbandi):** a playable MIDI instrument with robotic acoustic responses.\n\nWhich role or skill would you like to assess?'
 }
 
 export async function sendMessage(
@@ -502,7 +514,7 @@ export async function sendMessage(
     route: history.route,
     lastProject: history.ctx.lastProject,
   })
-  if (!portfolioQuestion && !isEdgeAIEnabled()) {
+  if (!portfolioQuestion && !isEdgeAIEnabled() && options?.surface !== 'panel') {
     const scoped = options?.surface === 'cursor'
       ? CURSOR_SCOPE_REPLY
       : normalizeCopy(PORTFOLIO_SCOPE_REPLY)
@@ -510,11 +522,16 @@ export async function sendMessage(
     onChunk?.(scoped)
     return scoped
   }
+  const explicitlyNamed = findProject(userMessage)
+  if (explicitlyNamed) history.ctx.lastProject = explicitlyNamed.slug
   const { text } = portfolioQuestion
     ? getResponse(userMessage, history.ctx)
-    : { text: CURSOR_SCOPE_REPLY }
+    : { text: options?.surface === 'panel' ? panelOverview(history, userMessage) : CURSOR_SCOPE_REPLY }
   await new Promise(resolve => setTimeout(resolve, 0))
-  let groundedAnswer = text
+  const routeSlug = chatProjectSlug(history.route)
+  const evidenceProject = findProject(userMessage)?.slug || (projects.some(project => project.slug === routeSlug) ? routeSlug : history.ctx.lastProject)
+  let groundedAnswer = verifiedProjectAnswer(evidenceProject, userMessage) || text
+  if (options?.surface === 'panel' && (/\b(best|stand.?out|different|good fit|hire him|hire you)\b/i.test(userMessage) || /^(?:ask about a specific project|ask where to start|i only (?:answer|discuss|talk))/i.test(text))) groundedAnswer = panelOverview(history, userMessage)
   if (options?.surface === 'panel') {
     const named = projects.filter(project => [project.slug, project.name, ...(PROJECT_ALIASES[project.slug] || [])].some(term => term.length > 3 && normalize(userMessage).includes(normalize(term))))
     if (/compare|difference|versus|\bvs\b/i.test(userMessage) && named.length >= 2) {
@@ -548,9 +565,9 @@ export async function sendMessage(
     },
     model: getEdgeAIModel(),
     surface: options?.surface || 'panel',
-  })
+  }, undefined, options?.onSource)
 
-  options?.onSource?.(edgeAnswer ? 'ai' : 'notes')
+  if (!edgeAnswer) options?.onSource?.('notes')
   const cursorEdgeAnswer = edgeAnswer && isCursorAnswerUsable(edgeAnswer, userMessage) ? edgeAnswer : null
   const finalAnswer = options?.surface === 'cursor'
     ? shapeCursorAnswer(cursorEdgeAnswer || localAnswer, userMessage, !cursorEdgeAnswer)

@@ -1,0 +1,56 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "theme": "light",
+    "route": "/work",
+    "exchanges": [
+      {
+        "question": "Compare Mentra and TransFi. Which one focuses on AI wearables?",
+        "answer": "**Mentra** focuses on AI wearables; **TransFi** is a fintech project focused on cross-border payment infrastructure.\n\n*   **[Mentra](/mentra):** I designed the operating system, companion app, and app ecosystem specifically for AI smart glasses. The work centers on the unique challenges of wearable OS interaction, such as managing sensor transparency and first-use onboarding.\n*   **[TransFi](/transfi-project):** My role here was focused on simplifying complex financial flows. The project prioritizes merchant onboarding and building trust in payment rails rather than wearable hardware.\n\nMentra is where I spend my time solving the \"what is the AI doing right now\" problem on a device without a traditional screen. If you're looking for my work on how AI should interact with users in real-time, that's the one to look at.",
+        "model": "gemini-3.1-flash-lite",
+        "status": 200,
+        "allowedOrigin": "http://127.0.0.1:5211",
+        "elapsedMs": 2193,
+        "priorTurns": 0
+      },
+      {
+        "question": "For the wearables project, what did Parth own?",
+        "answer": "At [Mentra](/mentra), I served as Head of Design, which meant I owned the end-to-end design strategy and execution across the operating system, companion app, MiniApp ecosystem, and the launch website. \n\nWhile I collaborated with a team of two founders, eight engineers, three operators, and two marketers, I was personally responsible for the research, testing, and delivery of:\n\n*   **The OS and Companion App:** Defining how the device and phone communicate, specifically solving for the complex \\\"first use\\\" setup and runtime control that initially caused high abandonment rates.\n*   **The MiniApp Ecosystem:** Designing the app distribution layer to ensure voice-first interactions felt coherent across different utility apps.\n*   **Launch Narrative:** Designing the public website to align our hardware, software, and distribution story for potential users.\n\nIn short, I owned the mental model—the challenge was making a wearable interface feel like a unified, legible product rather than a collection of disconnected AI demos.",
+        "model": "gemini-3.1-flash-lite",
+        "status": 200,
+        "allowedOrigin": "http://127.0.0.1:5211",
+        "elapsedMs": 1391,
+        "priorTurns": 1
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "dark",
+    "route": "/jugalbandi",
+    "exchanges": [
+      {
+        "question": "How did you build Jugalbandi?",
+        "answer": "I built Jugalbandi around the Hexa-18, a MIDI instrument with 18 sensor inputs. When a human musician plays the flute inputs at the top of the Hexa-18, it calls the separate robotic flute. Tanpura inputs on the sides call the mechanized harp, and tabla inputs inside trigger the mechanized rainsticks.\n\nIn the browser, the sound is synthesized, and the timings and responses are illustrative adaptations, not the original model weights or actuator logs.",
+        "model": "gemini-2.5-flash",
+        "status": 200,
+        "allowedOrigin": "http://127.0.0.1:5211",
+        "elapsedMs": 2998,
+        "priorTurns": 0
+      },
+      {
+        "question": "Which robotic instrument answers the tabla input?",
+        "answer": "The tabla inputs inside the Hexa-18 instrument call the mechanized rainsticks.",
+        "model": "gemini-2.5-flash",
+        "status": 200,
+        "allowedOrigin": "http://127.0.0.1:5211",
+        "elapsedMs": 7660,
+        "priorTurns": 1
+      }
+    ],
+    "passed": true
+  }
+]

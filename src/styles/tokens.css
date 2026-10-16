@@ -431,3 +431,6 @@
 @media (max-width: 768px) {
   .theme-toggle--mobile { display: flex; }
 }
+
+/* Resolve against the body-level ruler preference before descendants inherit it. */
+body { --page-inline-inset: max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + .75rem)); }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import CsScreenStrip from './CsScreenStrip'
 
 interface ReviewerImage {
   src: string
@@ -15,6 +16,7 @@ interface ReviewerGroup {
 
 interface NdaReviewerGalleryProps {
   groups: ReviewerGroup[]
+  layout?: 'carousel' | 'strip'
 }
 
 function ReviewerImageSet({ group }: { group: ReviewerGroup }) {
@@ -80,7 +82,7 @@ function ReviewerImageSet({ group }: { group: ReviewerGroup }) {
  * <NdaGate> — see ACCESS_MODEL.md: the gate is a UX nudge, not a lock, so
  * only content already cleared for recoverability belongs here.
  */
-export default function NdaReviewerGallery({ groups }: NdaReviewerGalleryProps) {
+export default function NdaReviewerGallery({ groups, layout = 'carousel' }: NdaReviewerGalleryProps) {
   return (
     <div className="cs-nda-reviewer-gallery">
       {groups.map((group) => (
@@ -89,8 +91,8 @@ export default function NdaReviewerGallery({ groups }: NdaReviewerGalleryProps) 
             <span className="cs-nda-reviewer-group-label">{group.label}</span>
             <p className="cs-nda-reviewer-group-note">{group.note}</p>
           </header>
-          <div className={`cs-nda-reviewer-grid${group.tall ? ' cs-nda-reviewer-grid--tall' : ''}`}>
-            <ReviewerImageSet group={group} />
+          <div className={`cs-nda-reviewer-grid${group.tall ? ' cs-nda-reviewer-grid--tall' : ''}${layout === 'strip' ? ' cs-nda-reviewer-grid--strip' : ''}`}>
+            {layout === 'strip' && !group.tall ? <CsScreenStrip label={group.label} screens={group.images.map((image, index) => ({ ...image, label: `${group.label} · ${index + 1}` }))} /> : <ReviewerImageSet group={group} />}
           </div>
         </section>
       ))}

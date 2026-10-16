@@ -14,7 +14,7 @@ export const digitalExperiences: DigitalExperience[] = [
   { slug: 'zentipay', mode: 'access', description: 'Public preview and reviewer access', href: '/zentipay#case-study-access-zentipay' },
   { slug: 'cuetv', mode: 'access', description: 'Public preview and reviewer access', href: '/cuetv#case-study-access-cuetv' },
   { slug: 'ai-voice', mode: 'access', description: 'Public preview and reviewer access', href: '/ai-voice#case-study-access-ai-voice' },
-  { slug: 'medimorpho', mode: 'reference', description: 'Healthcare research and service concept', href: '/medimorpho' },
+  { slug: 'medimorpho', mode: 'access', description: 'Public overview and private review request', href: '/medimorpho#case-study-access-medimorpho' },
   { slug: 'ibm', mode: 'reference', description: 'Encrypted-computation research', href: '/ibm' },
   { slug: 'office-of-diversity', mode: 'reference', description: 'Original interactive-report design', href: '/office-of-diversity#cs-report' },
   { slug: 'the-point-cdc', mode: 'live', description: 'Explore the community website', href: '/the-point-cdc' },

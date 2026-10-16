@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { getProject } from '../data/projects'
 import { CONTACT_EMAIL } from '../config/site'
-import { sentenceCaseProjectLabel } from '../utils/projectPresentation'
 import '../styles/nda-gate.css'
 
 interface NdaGateProps {
   slug: string
+  delivery?: 'existing' | 'withheld'
   children?: ReactNode
   compact?: boolean
   hideWhenLocked?: boolean
@@ -116,6 +116,7 @@ function storeAccess(slug: string, hash: string) {
 
 export default function NdaGate({
   slug,
+  delivery = 'existing',
   children,
   compact = false,
   hideWhenLocked = false,
@@ -212,7 +213,7 @@ export default function NdaGate({
     }
   }
 
-  if (verified) {
+  if (verified && delivery !== 'withheld') {
     if (!children) return null
 
     if (unlockedMode === 'flow') {
@@ -254,23 +255,16 @@ export default function NdaGate({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="nda-inline-preview" aria-label={`Preview of ${projectName}`}>
-        <span>{project?.tag ? sentenceCaseProjectLabel(project.tag) : 'Protected case study'}</span>
-        <h2>{projectName}: protected story</h2>
-        <p>{project?.summaryProblem ?? project?.desc ?? 'The full process, decisions, and evidence are available to reviewers.'}</p>
-        <p>{project?.summaryOutcome ?? 'Research artifacts, working decisions, and final proof continue after access.'}</p>
-        <div className="nda-inline-preview-fade" aria-hidden="true" />
-      </div>
       <div className="nda-inline-inner">
         <header className="nda-inline-text">
-          <h2 className="nda-inline-title">Unlock the full case study</h2>
+          <h2 className="nda-inline-title">Continue reading</h2>
           <p className="nda-inline-desc">
-            Use the reviewer code I shared with you.
+            {delivery === 'withheld' ? 'Detailed material is withheld from this public build. Request a private review copy.' : 'Use the reviewer code I shared with you.'}
           </p>
         </header>
 
         <div className="nda-access-stack">
-          <form
+          {delivery !== 'withheld' && <form
             className="nda-inline-form nda-inline-form--code"
             aria-label="Unlock with reviewer code"
             onSubmit={handleCodeSubmit}
@@ -287,14 +281,16 @@ export default function NdaGate({
                 autoComplete="current-password"
               />
             </label>
-            <button type="submit" className="nda-request-submit nda-request-submit--secondary">
+            <button type="submit" className="nda-request-submit nda-request-submit--secondary glass-action">
               Unlock
             </button>
             {codeMessage ? (
               <p className="nda-inline-confirmation">{codeMessage}</p>
             ) : null}
-          </form>
+          </form>}
 
+          <details className="nda-request-disclosure">
+            <summary className="glass-action">Request access</summary>
           <form
             className="nda-inline-form nda-inline-form--request"
             aria-label="Request case study access"
@@ -331,7 +327,7 @@ export default function NdaGate({
                 rows={3}
               />
             </label>
-            <button type="submit" className="nda-request-submit">
+            <button type="submit" className="nda-request-submit glass-action">
               Send request
             </button>
             {sent ? (
@@ -340,6 +336,7 @@ export default function NdaGate({
               <p className="nda-request-helper">Opens a pre-filled email to Parth.</p>
             )}
           </form>
+          </details>
         </div>
       </div>
     </motion.div>

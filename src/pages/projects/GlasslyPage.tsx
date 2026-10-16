@@ -1,3 +1,4 @@
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -54,6 +55,11 @@ export default function GlasslyPage() {
         <section id="glassly-demo" className="glassly-case-section"><div className="wrap">
           <h2>Let people see what a miniapp changes</h2>
           <p className="glassly-case-intro">Choose Home, Captions, Navigation, Notifications, Assist or Terminal. The original website demonstration changes the phone interface and glasses output together. Manual selection pauses playback, and the larger mirror keeps the selected scene.</p>
+          <CsProcessFlow title="Read the demonstration" steps={[
+            {label:'Choose a miniapp',desc:'Select a scene in the original website demo. Each scene represents a different use of the phone and glasses.'},
+            {label:'Inspect the phone',desc:'The phone interface provides the controls and detail for the selected scene.'},
+            {label:'Compare the glasses output',desc:'The paired output illustrates information in view. It is a website demonstration, not a physical optical simulation or a live hardware connection.'}
+          ]}/>
           <GlasslyDemo />
         </div></section>
         <section id="glassly-hardware" className="glassly-case-section"><div className="wrap">
@@ -81,7 +87,7 @@ export default function GlasslyPage() {
           <h2>What the work delivers</h2>
           <p className="glassly-case-intro">A website that moves from product explanation to a working demonstration, device discovery, miniapps and a developer path. The accompanying brand guidelines connect visual decisions to implementation rules. This case study documents those artifacts; it does not claim a measured increase in adoption or conversion.</p>
           <CsImage src={`${base}/brand-15.webp`} aspectRatio="16 / 9" alt="Original Glassly layout guidelines defining the desktop and mobile reading order and website section sequence" />
-          <div className="glassly-case-actions"><a href={`${base}/brand-guidelines.pdf`} target="_blank" rel="noopener noreferrer">Read the original brand guidelines ↗</a><a href="https://glassly.ai" target="_blank" rel="noopener noreferrer">Visit Glassly ↗</a></div>
+          <div className="glassly-case-actions"><a className="glass-action" href={`${base}/brand-guidelines.pdf`} target="_blank" rel="noopener noreferrer">Read the original brand guidelines ↗</a><a className="glass-action" href="https://glassly.ai" target="_blank" rel="noopener noreferrer">Visit Glassly ↗</a></div>
         </div></section>
         <CsThanks contactCta />
       </CsExpandPreview>

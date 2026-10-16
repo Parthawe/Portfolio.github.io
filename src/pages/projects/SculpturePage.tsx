@@ -1,3 +1,4 @@
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -26,6 +27,7 @@ export default function SculpturePage() {
 
       <main id="main-content" className="project-main" style={{ '--project-color': '#3A3A3E' } as React.CSSProperties}>
         <ProjectHeader
+          heroFraming="image"
           backLink="/work"
           categorySlug="installations"
           backLabel="Back to Work"
@@ -59,15 +61,11 @@ export default function SculpturePage() {
             <span className="cs-label-row-val">A finished figurative sculpture that won in the competition context and became a useful proof of physical making discipline.</span>
           </div>
         </CsSection>
-        <section id="cs-sculpture-process" className="cs-section reveal">
-          <div className="wrap">
-            <div className="cs-img-grid project-image-grid--two">
-              <CsImage src="/Assets/Projects/Sculpture/3.jpg" alt="Moodboard with anatomical and classical sculpture references" caption="Anatomy and classical references informed the figure’s proportions and pose." />
-              <CsImage src="/Assets/Projects/Sculpture/4.jpg" alt="Sculpture process board showing early attempts and armature construction" caption="Early forms and armature construction show the support beneath the surface." />
-            </div>
-          </div>
-        </section>
-
+        <section id="cs-sculpture-process" className="cs-section"><div className="wrap"><h2 className="cs-section-title">Inspect the making</h2><CsBody><p>The available photographs document references, armature studies and the finished form. They do not cover enough angles to reconstruct the sculpture faithfully in 360 degrees.</p></CsBody><CsScreenExplorer format="landscape" label="Choose a sculpture evidence stage" screens={[
+          {title:'References',label:'Anatomy and posture',src:'/Assets/Projects/Sculpture/3.jpg',alt:'Original anatomy and classical sculpture reference board',caption:'The reference board informed the pose and proportions.'},
+          {title:'Structure',label:'Armature and early forms',src:'/Assets/Projects/Sculpture/4.jpg',alt:'Original sculpture process and armature board',caption:'The process board documents support and material build-up.'},
+          {title:'Finished form',label:'Surface and silhouette',src:'/Assets/Projects/Sculpture/5.jpg',alt:'Original finished sculpture photographs',caption:'Inspect the documented finished form. Unseen geometry has not been invented.'}
+        ]}/></div></section>
         <CsSection id="cs-impact" label="Impact" title="Structure before surface detail">
           <CsFeatureGrid features={[
             { title: 'Physical patience', desc: 'The project forced slower decisions because material work does not have an easy undo button.' },

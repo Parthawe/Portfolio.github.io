@@ -2,12 +2,18 @@ import {chromium} from '@playwright/test'
 import {mkdirSync,writeFileSync} from 'node:fs'
 const base=process.env.QA_BASE_URL||'http://127.0.0.1:5199',out=process.env.QA_OUTPUT_DIR||'/tmp/portfolio-hero-startup', runs=Number(process.env.PERF_RUNS||3)
 mkdirSync(out,{recursive:true});const browser=await chromium.launch();const samples=[]
-try{for(let run=0;run<runs;run++)for(const [variant,url] of (process.env.QA_COMPARE_URL ? [['before',process.env.QA_COMPARE_URL],['after',base]] : [['sample',base]])){
+function variantsForRun(run) {
+ const variants=process.env.QA_COMPARE_URL ? [['before',process.env.QA_COMPARE_URL],['after',base]] : [['sample',base]]
+ return process.env.PERF_ALTERNATE_ORDER==='1' && run%2 ? variants.reverse() : variants
+}
+try{for(let run=0;run<runs;run++)for(const [variant,url] of variantsForRun(run)){
  const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),client=await context.newCDPSession(page)
  await client.send('Network.enable');await client.send('Network.setCacheDisabled',{cacheDisabled:true});await client.send('Network.emulateNetworkConditions',{offline:false,latency:80,downloadThroughput:625000,uploadThroughput:125000});await client.send('Emulation.setCPUThrottlingRate',{rate:4})
  const errors=[];page.on('pageerror',e=>errors.push(e.message))
  await page.addInitScript(()=>{
-  if(window.top!==window)return;localStorage.setItem('theme','light');window.__heroStartup={events:[],ready:null}
+  if(window.top!==window)return;localStorage.setItem('theme','light');window.__heroStartup={events:[],ready:null,stillPaints:[],layoutShift:0}
+  new PerformanceObserver(list=>{for(const entry of list.getEntries()){if(entry.element?.closest('.wr-hero-still'))window.__heroStartup.stillPaints.push(entry.startTime)}}).observe({type:'largest-contentful-paint',buffered:true})
+  new PerformanceObserver(list=>{for(const entry of list.getEntries())if(!entry.hadRecentInput)window.__heroStartup.layoutShift+=entry.value}).observe({type:'layout-shift',buffered:true})
   const record=(name,detail)=>window.__heroStartup.events.push({name,time:performance.now(),detail})
   const original=HTMLCanvasElement.prototype.getContext
   HTMLCanvasElement.prototype.getContext=function(type,...args){const result=original.call(this,type,...args);if(this.closest('#hero')&&type==='webgl2')record('context');return result}

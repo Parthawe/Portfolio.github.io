@@ -801,3 +801,14 @@ body.site-tools-open .typeface-page .tf-image-grid {
     transform: none;
   }
 }
+
+/* Keep the display font in specimens; the case study uses the site’s reading type. */
+.typeface-page :is(.tf-section h2,.tf-split-copy h2,.tf-tool-intro h2,.tf-download-section h2,.tf-feature-card h3){font-family:var(--serif);font-weight:400;letter-spacing:-.025em}
+.typeface-page :is(.tf-split-copy p,.tf-feature-card p,.tf-download-section p,.tf-tool-intro p,.tf-metric p){font-family:var(--sans);font-size:clamp(16px,1.2vw,18px);line-height:1.75}
+.typeface-page .proj-visual-title__deck {color:var(--ink-70)}
+.tf-specimen-input {display:grid;gap:8px;margin:24px 0;font:13px var(--sans);color:var(--ink-70)}
+.tf-specimen-input input {font:16px var(--sans);padding:12px;border:1px solid var(--ink-20);background:var(--ink-04);color:var(--ink);border-radius:var(--radius-sm);width:100%;box-sizing:border-box}
+.tf-specimen-word {white-space:normal;overflow-wrap:anywhere;word-break:normal;font-size:clamp(52px,9vw,140px);line-height:1.18;min-height:1.2em;font-synthesis:none}
+.tf-font-status{font:12px/1.6 var(--sans);color:var(--ink-70)}
+.tf-download-section h2 {font-size:clamp(34px,5vw,64px)}
+.tf-primary-download.glass-action {font:14px var(--sans);min-height:44px;padding:10px 16px;border-radius:var(--radius-sm)}

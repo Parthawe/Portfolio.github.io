@@ -1,3 +1,4 @@
+import ScenicStudy from '../../components/case-study/ScenicStudy'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -41,6 +42,7 @@ export default function DrowningPage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#5D7B6F' } as React.CSSProperties}>
 
         <ProjectHeader
+          heroFraming="image"
           backLink="/work"
           categorySlug="installations"
           backLabel="Back to Work"
@@ -91,6 +93,8 @@ export default function DrowningPage() {
         </CsSection>
 
         {/* Concept */}
+        <section className="wrap"><ScenicStudy kind="drowning" /></section>
+
         <CsExpandPreview>
         <section className="cs-section reveal" id="cs-concept">
           <div className="wrap">

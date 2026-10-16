@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import ProjectQuickSummary from '../../components/case-study/ProjectQuickSummary'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -104,9 +105,7 @@ export default function ClawedChatPage() {
             <p>Most AI assistants break trust in the same place: they act confidently, then leave no clear trail. If an assistant sends, books, or changes something, the user needs a pause, an edit path, and proof of what happened.</p>
             <p>Clawed started from that accountability gap. The product needed to feel fast enough to use, but constrained enough to trust on web and smart glasses.</p>
           </CsBody>
-          <CsCallout>
-            <p>&ldquo;The problem with AI assistants is not that they are too dumb. It is that they are too confident. An assistant that acts without asking and fails without apologizing is not an assistant &mdash; it is a liability.&rdquo;</p>
-          </CsCallout>
+
           <CsBeforeAfter
             title="The Trust Gap"
             before={{
@@ -160,7 +159,13 @@ export default function ClawedChatPage() {
         </CsSection>
 
         <CsSection id="cs-webhub" label="04 &mdash; Web Hub" title="Deployment and documentation">
-          <CsBody><p>The original documentation gives users three setup paths: Cloud VM Deploy, Mac Companion App, and Self-Hosted. Smart-glasses pairing, voice commands, and audio responses have their own navigation group.</p><p>The deployment comparison puts hosting ownership before setup: a managed cloud environment or the user’s own Mac. The captured documentation labels search as coming soon, so browsing the sections is the available path in this version.</p></CsBody>
+          <CsBody><p>The documented setup starts with a hosting choice. The screenshots below show the available deployment paths and their guides.</p></CsBody>
+          <CsProcessFlow connected={false} title="Choose where the assistant runs" steps={[
+            { label: 'Cloud VM', desc: 'Follow the Cloud VM Deploy guide in the original documentation.' },
+            { label: 'Mac companion', desc: 'Run the companion on your Mac using the documented setup path.' },
+            { label: 'Self-hosted', desc: 'Use the self-hosted guide when you manage the environment.' },
+          ]} />
+          <p className="cs-caption">Three alternatives, not sequential deployment steps. Documentation search is marked coming soon in the source capture.</p>
           <div className="cs-img reveal"><img {...projectImageProps("/Assets/Projects/Clawed.chat/docs-page.webp")} data-project-preview src="/Assets/Projects/Clawed.chat/docs-page.webp" alt="Clawed documentation: Build with Clawed, getting started, deployment, smart glasses integration" loading="lazy" /></div>
           <p className="cs-caption">Documentation hub with getting started guides, deployment options, and smart glasses integration</p>
 
@@ -201,16 +206,6 @@ export default function ClawedChatPage() {
               { feature: 'Best context', values: ['Driving, meetings', 'Default, daily use', 'Trusted, repetitive tasks'] },
             ]}
           />
-          <details className="cs-details">
-            <summary className="cs-details-summary">Safety architecture: How Clawed prevents accidental actions</summary>
-            <div className="cs-details-content">
-              <p>The safety architecture has three layers.</p>
-              <p><strong>Permission boundaries:</strong> each safety mode defines what the AI can and cannot execute.</p>
-              <p><strong>Staging area:</strong> draft actions show the request, affected surface, and editable output before anything is sent.</p>
-              <p><strong>Receipt ledger:</strong> approved actions generate a searchable record with the original request, recommendation, user decision, timestamp, and outcome.</p>
-              <p>Users described this as a volume knob for AI trust: low when moving, higher when seated and focused.</p>
-            </div>
-          </details>
           <CsFlowDiagram
             title="Approval Workflow"
             nodes={[
@@ -227,11 +222,12 @@ export default function ClawedChatPage() {
         {/* Website */}
         <CsSection id="cs-website" label="Live Product" title="clawed.chat">
           <CsBody>
-            <p>The marketing site I designed &mdash; positioning Clawed as &ldquo;Your AI agent, live in 30 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
+            <p>The marketing site I designed positions Clawed as &ldquo;Your AI agent, live in 30 seconds.&rdquo; Three steps to deploy. Safety-first architecture. Receipts for every action.</p>
           </CsBody>
-          <div className="cs-slide reveal clawed-slide--spaced">
-            <img {...projectImageProps("/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp")} data-project-preview src="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" alt="clawed.chat marketing website — hero with 3D claw logo, three-step setup, trust architecture, testimonials" loading="lazy" className="project-media-frame" />
+          <div className="cs-img reveal clawed-slide--spaced">
+            <img {...projectImageProps('/Assets/Projects/Clawed.chat/landing-hero.webp')} data-project-preview src="/Assets/Projects/Clawed.chat/landing-hero.webp" alt="Original Clawed landing page introduction showing the product positioning and deployment entry point" loading="lazy" />
           </div>
+          <p className="cs-caption"><a className="cs-text-link" href="/Assets/Projects/website-screenshot/screencapture-clawed-chat-2026-03-25-13_35_05.webp" target="_blank" rel="noreferrer">Inspect the complete original site capture</a>. The quoted launch time is a marketing claim in the source.</p>
         </CsSection>
 
         <CsSection id="cs-impact" label="07 · Evidence" title="What the archive demonstrates">

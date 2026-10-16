@@ -509,6 +509,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'medimorpho',
+    nda: true,
+    access: { mode: 'request', publicLabel: 'Quick glimpse', publicPreviewImage: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp' },
     name: 'NYU Langone',
     image: '/Assets/Projects/MediMorpho/nyu-langone-building-clear.webp',
     cardMockupAlt: 'NYU Langone Health signage on the glass facade of its hospital building.',
@@ -524,17 +526,12 @@ export const projects: Project[] = [
     summaryRole: 'Service designer in a five-person NYU student team, spanning primary research, synthesis, system framing, and concept direction.',
     summaryTeam: 'Five-person NYU student team',
     summaryTimeline: 'January–February 2024',
-    summaryOutcome: 'Reframed the opportunity from standalone translation to a continuity-of-care model spanning live understanding, patient education, and a post-visit recap.',
-    summaryStats: [
-      { label: 'Research interviews', value: '20' },
-      { label: 'LEP participants', value: '16' },
-      { label: 'Healthcare professionals', value: '4' },
-      { label: 'Affinity themes', value: '4' },
-    ],
+    summaryOutcome: 'A healthcare research study and service-design concept. Detailed evidence is reserved for private review.',
+    summaryStats: [],
     storyline: {
       challenge: 'Language barriers, medical jargon, and fragmented records can make a healthcare visit difficult to understand and even harder to remember.',
-      approach: 'The team combined field interviews, secondary research, affinity mapping, journey mapping, and technical feasibility work to isolate the highest-risk communication moments.',
-      result: 'The research defined a service direction for making the conversation legible in the moment and the next step clear after the visit.',
+      approach: 'Ecosystem research and interviews informed a connected service concept.',
+      result: 'Detailed research findings and supporting material are reserved for private review.',
     },
   },
   {

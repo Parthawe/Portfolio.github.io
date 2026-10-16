@@ -138,7 +138,8 @@ export default memo(function ProjectCard({
 
   // Prefetch the page chunk on hover so navigation is instant
   const handlePrefetch = useCallback(() => {
-    if (project?.page) project.page() // triggers the dynamic import
+    // A cancelled optional preload must not become a page-level error.
+    if (project?.page) void project.page().catch(() => {})
   }, [project])
 
   const card = (

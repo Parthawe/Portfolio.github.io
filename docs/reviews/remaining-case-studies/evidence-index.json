@@ -1,0 +1,14 @@
+{
+  "comparisons": [
+    "comparison-1.webp",
+    "comparison-2.webp",
+    "comparison-3.webp",
+    "comparison-4.webp",
+    "comparison-5.webp"
+  ],
+  "interactionRecordings": [
+    "interaction-review-1.webm",
+    "interaction-review-2.webm"
+  ],
+  "privateBeforeCapturesIncluded": false
+}
