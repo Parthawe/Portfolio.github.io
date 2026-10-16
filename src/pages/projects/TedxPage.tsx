@@ -1,3 +1,4 @@
+import ScenicStudy from '../../components/case-study/ScenicStudy'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -26,6 +27,7 @@ export default function TedxPage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#E53E3E' } as React.CSSProperties}>
 
         <ProjectHeader
+          heroFraming="image"
           backLink="/work"
           categorySlug="brand-visual"
           backLabel="Back to Work"
@@ -58,6 +60,8 @@ export default function TedxPage() {
         </div>
 
         {/* Brand Identity */}
+        <section className="wrap"><ScenicStudy kind="tedx" /></section>
+
         <CsExpandPreview>
         <section className="cs-section reveal" id="cs-brand">
           <div className="wrap">
@@ -102,6 +106,8 @@ export default function TedxPage() {
         </section>
 
         {/* Team Leadership */}
+        <section className="cs-section"><div className="wrap"><h2 className="cs-section-title">From the 2019 talk archive</h2><CsBody><p>TED’s archive lists <cite>7 perspectives towards a better mental health</cite> from TEDxVITPune in November 2019. The archive is linked as an event reference; the original stage photographs above remain the reference for this reconstruction.</p><a className="glass-action" href="https://www.ted.com/talks/7_perspectives_towards_a_better_mental_health" target="_blank" rel="noopener noreferrer">Open the 2019 TED talk</a></CsBody></div></section>
+
         <CsSection id="cs-team" label="04 &mdash; Team Leadership" title="Coordinating an 8-Person Stage Team">
           <CsBody className="cs-body--measure">
             <p>I was the sole stage designer inside an 8-person team, translating the concept into templates, dimensions, paint specs, and assembly guides the team could actually build from.</p>

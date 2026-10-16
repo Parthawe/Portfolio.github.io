@@ -1,0 +1,764 @@
+{
+  "baseline": "deployed 3c77dc2",
+  "deployed": false,
+  "liveReview": [
+    {
+      "slug": "typeface",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "typeface",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "atps",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "atps",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "enigma",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "enigma",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "the-omakase",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "the-omakase",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "black-hole",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "black-hole",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra-miniapps",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra-miniapps",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "executivelens",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "executivelens",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "healthapp",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "healthapp",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "vj-software",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "vj-software",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "code-for-build",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "code-for-build",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "ballah-code",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "ballah-code",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "raahi-project",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "raahi-project",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    }
+  ],
+  "localReview": [
+    {
+      "slug": "typeface",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "typeface",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "atps",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "atps",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "enigma",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "enigma",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "jugalbandi",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "moniac-machine",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "the-omakase",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "the-omakase",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "revolving-stage",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "sea-of-salt",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "black-hole",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "black-hole",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra-miniapps",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "mentra-miniapps",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "clawed-chat",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "executivelens",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "executivelens",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "org-dashboard",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "healthapp",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "healthapp",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "vj-software",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "vj-software",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "code-for-build",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "code-for-build",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "ballah-code",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "ballah-code",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "raahi-project",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "slug": "raahi-project",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "errors": []
+    }
+  ],
+  "focusedChecks": [
+    {
+      "browser": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "drawingFit": [
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8418190710285737,
+          "h": 0.8589687143727632
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.9232061457581593,
+          "h": 0.8262757843096404
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8584070892059131,
+          "h": 0.8806860037199128
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8190045436319332,
+          "h": 0.8742385522350423
+        }
+      ],
+      "tabletMonitor": "same sampled input; clear verified",
+      "selectedValve": "visible and linked",
+      "originalEvidence": true,
+      "footerDuplicates": 0,
+      "errors": []
+    },
+    {
+      "browser": "chromium",
+      "width": 390,
+      "theme": "light",
+      "drawingFit": [
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8418190710285737,
+          "h": 0.8589687143727632
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.9232061457581593,
+          "h": 0.8262757843096404
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8584070892059131,
+          "h": 0.8806860037199128
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8190045436319332,
+          "h": 0.8742385522350423
+        }
+      ],
+      "tabletMonitor": "same sampled input; clear verified",
+      "selectedValve": "visible and linked",
+      "originalEvidence": true,
+      "footerDuplicates": 0,
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "drawingFit": [
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8418190710285737,
+          "h": 0.8589687143727632
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.9232061457581593,
+          "h": 0.8262757843096404
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8584070892059131,
+          "h": 0.8806860037199128
+        },
+        {
+          "x": 32,
+          "y": 32,
+          "w": 0.8190045436319332,
+          "h": 0.8742385522350423
+        }
+      ],
+      "tabletMonitor": "same sampled input; clear verified",
+      "selectedValve": "visible and linked",
+      "originalEvidence": true,
+      "footerDuplicates": 0,
+      "errors": []
+    }
+  ],
+  "jugalbandiIdle": {
+    "rapidManualCalls": 3,
+    "roboticReplies": 3,
+    "idleDomMutations": 0,
+    "idleSampleMs": 900,
+    "extraGpuContexts": 0,
+    "offscreenAudioStarts": 0,
+    "simulatedHiddenAudioStarts": 0
+  },
+  "enigmaDrawing": {
+    "results": [
+      "Cancelled touch restores ink; secondary pointer cannot draw",
+      "Window blur safely cancels unfinished stroke",
+      "Leaving and re-entering the tablet does not bridge the gap",
+      "Input lights update during an active stroke",
+      "Keyboard can label drawn input",
+      "Same-letter typed fallback works after drawing",
+      "WebGL failure offers reload; typed fallback and reset recover"
+    ],
+    "metrics": {
+      "firstResponseMs": 2045,
+      "strokeGestureMs": 1150,
+      "idleDraws": 0
+    },
+    "errors": []
+  },
+  "sourceImages": [
+    {
+      "slug": "typeface",
+      "source": "/Assets/images/typeface.webp"
+    },
+    {
+      "slug": "atps",
+      "source": "/Assets/images/atps.webp"
+    },
+    {
+      "slug": "enigma",
+      "source": "/Assets/Projects/Enigma/photos/full-sculpture-wide.webp"
+    },
+    {
+      "slug": "jugalbandi",
+      "source": "/Assets/Projects/Jugalbandi/Photos/756.png"
+    },
+    {
+      "slug": "moniac-machine",
+      "source": "/Assets/Projects/Moniac/photos/gameplay-wide.png"
+    },
+    {
+      "slug": "the-omakase",
+      "source": "/Assets/Projects/the-omakase/photos/cabinet-front.webp"
+    },
+    {
+      "slug": "revolving-stage",
+      "source": "/Assets/Projects/RevolvingStage/photos/isometric-stage.png"
+    },
+    {
+      "slug": "sea-of-salt",
+      "source": "/Assets/Projects/sea-of-salt/photos/salt-ground.webp"
+    },
+    {
+      "slug": "black-hole",
+      "source": "/Assets/Projects/black-hole-assets/time-trap.jpg"
+    },
+    {
+      "slug": "mentra",
+      "source": "/Assets/Projects/mentra-brand/motion/mentra-onboarding-prototype-poster.jpg"
+    },
+    {
+      "slug": "mentra-miniapps",
+      "source": "/Assets/Projects/mentra-miniapps/figma/meet-home.png"
+    },
+    {
+      "slug": "clawed-chat",
+      "source": "/Assets/Projects/Clawed.chat/landing-hero.webp"
+    },
+    {
+      "slug": "executivelens",
+      "source": "/Assets/images/executivelens.webp"
+    },
+    {
+      "slug": "org-dashboard",
+      "source": "/Assets/images/org-dashboard.webp"
+    },
+    {
+      "slug": "healthapp",
+      "source": "/Assets/Projects/HealthApp/optimized/07-screen-set.webp"
+    },
+    {
+      "slug": "vj-software",
+      "source": "/Assets/Projects/vj/photos/car-parking.png"
+    },
+    {
+      "slug": "code-for-build",
+      "source": "/Assets/Projects/CodeforBuild/photos/output-code-pair.png"
+    },
+    {
+      "slug": "ballah-code",
+      "source": "/Assets/Projects/BallahCode/site/ballah-product-window.png"
+    },
+    {
+      "slug": "raahi-project",
+      "source": "/Assets/Projects/Raahi/photos/route list.png"
+    }
+  ],
+  "anonymousFigmaCheck": {
+    "project": "healthapp",
+    "prototypeAppLoaded": true,
+    "loginPromptObserved": false,
+    "fullFlowCompletionVerified": false
+  },
+  "executiveLensUrls": {
+    "www": "15 second connection timeout",
+    "bare": "15 second connection timeout"
+  }
+}

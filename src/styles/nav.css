@@ -8,7 +8,7 @@
   display: flex;
   align-items: flex-start;
   pointer-events: none;
-  --nav-edge-inset: max(var(--chrome-inline), calc(var(--ruler-inline-offset, 0px) + 0.75rem));
+  --nav-edge-inset: var(--page-inline-inset);
   --nav-block-inset: max(var(--chrome-block), calc(var(--ruler-block-offset, 0px) + 0.75rem));
   padding: var(--nav-block-inset) var(--nav-edge-inset) var(--chrome-block);
 }
@@ -535,3 +535,9 @@ body.nav-on-dark .nav-work-view.is-active {
     display: none;
   }
 }
+
+/* Shared chrome edges follow the case-study frame, including ruler mode. */
+body:has(.project-main) .nav {
+  --nav-edge-inset: max(var(--chrome-inline), calc((100vw - var(--project-reading-width, 1040px)) / 2), calc(var(--ruler-inline-offset, 0px) + .75rem));
+}
+.nav-work-view { text-transform: none; letter-spacing: 0; }

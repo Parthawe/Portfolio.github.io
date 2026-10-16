@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 interface ProcessStep {
   label: string
@@ -10,6 +10,7 @@ interface ProcessStep {
 interface CsProcessFlowProps {
   steps: ProcessStep[]
   title?: string
+  connected?: boolean
 }
 
 const container = {
@@ -27,9 +28,10 @@ const lineVariant = {
   show: { scaleX: 1, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] as [number, number, number, number] } },
 }
 
-export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
+export default function CsProcessFlow({ steps, title, connected = true }: CsProcessFlowProps) {
   const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const detailId = useId()
+  const reduced = useReducedMotion()
 
   return (
     <div className="cs-pflow">
@@ -37,7 +39,7 @@ export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
       <motion.div
         className="cs-pflow-track"
         variants={container}
-        initial="hidden"
+        initial={reduced ? false : "hidden"}
         whileInView="show"
         viewport={{ once: true, margin: '-40px' }}
       >
@@ -50,17 +52,15 @@ export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
               aria-pressed={activeIdx === i}
               aria-expanded={activeIdx === i}
               aria-controls={detailId}
-              onClick={() => setActiveIdx(activeIdx === i ? null : i)}
+              onClick={() => setActiveIdx(i)}
               onFocus={() => setActiveIdx(i)}
               onBlur={() => setActiveIdx(null)}
-              onMouseEnter={() => setActiveIdx(i)}
-              onMouseLeave={() => setActiveIdx(null)}
             >
               <span className="cs-pflow-num">{step.icon || String(i + 1).padStart(2, '0')}</span>
               <span className="cs-pflow-label">{step.label}</span>
             </motion.button>
 
-            {i < steps.length - 1 && (
+            {connected && i < steps.length - 1 && (
               <motion.div className="cs-pflow-line" variants={lineVariant}>
                 <svg viewBox="0 0 40 8" fill="none" preserveAspectRatio="none">
                   <path d="M0 4h32l4-3v6l-4-3" stroke="currentColor" strokeWidth="1" fill="currentColor" opacity="0.3" />
@@ -77,9 +77,9 @@ export default function CsProcessFlow({ steps, title }: CsProcessFlowProps) {
           <motion.div
             key={activeIdx}
             className="cs-pflow-detail-inner"
-            initial={{ opacity: 0, y: 8 }}
+            initial={reduced ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: reduced ? 0 : 0.25 }}
           >
             <span className="cs-pflow-detail-num">{steps[activeIdx].icon || String(activeIdx + 1).padStart(2, '0')}</span>
             <span className="cs-pflow-detail-label">{steps[activeIdx].label}</span>

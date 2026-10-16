@@ -29,7 +29,7 @@ export default function ShufflePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main" style={{ '--project-color': '#C99B3F' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--shuffle" style={{ '--project-color': '#C99B3F' } as React.CSSProperties}>
 
         <ProjectHeader
           backLink="/work"

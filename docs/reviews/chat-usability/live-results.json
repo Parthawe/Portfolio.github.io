@@ -1,0 +1,78 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "question": "Why is he the best?",
+    "source": "ai",
+    "livePassed": true,
+    "displayedAnswer": "I don’t aim to be the \"best.\" I aim to build systems that people actually trust.\nWhether I am acting as a design engineer or senior product designer, my work focuses on removing the friction that makes technology feel like a black box.\nFor example, in Clawed, I moved away from \"magic\" AI to a model of radical transparency. By designing 1-tap approvals and visible receipts for every action, I ensured that trust was built into the interaction, not just promised in the marketing.\nI’m curious, are you looking for someone to lead design for an AI product, or are you evaluating how my background in fabrication and interaction influences digital UX?",
+    "ms": 3057,
+    "exchanges": [
+      {
+        "question": "Why is he the best?",
+        "status": 200,
+        "model": "gemini-3.1-flash-lite",
+        "answer": "I don’t aim to be the \"best.\" I aim to build systems that people actually trust. \n\nWhether I am acting as a **design engineer** or **senior product designer**, my work focuses on removing the friction that makes technology feel like a black box. \n\nFor example, in **[Clawed](/clawed-chat)**, I moved away from \"magic\" AI to a model of radical transparency. By designing 1-tap approvals and visible receipts for every action, I ensured that trust was built into the interaction, not just promised in the marketing.\n\nI’m curious—are you looking for someone to lead design for an AI product, or are you evaluating how my background in fabrication and interaction influences digital UX?",
+        "retry": false,
+        "contextChars": 10566
+      }
+    ]
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "question": "What makes him different as a designer?",
+    "source": "ai",
+    "livePassed": true,
+    "displayedAnswer": "I differentiate my work by focusing on operational transparency and physical interaction over the usual industry trend of hiding complexity behind \"magic\" interfaces.\nWhere many designers accept black-box AI as a standard, I treat legibility as a functional requirement:\nIn Clawed, I prioritized \"receipts\" for AI actions. By making every decision visible and reversible, I turned the product into a tool for judgment rather than just an automated generator.\nIn Jugalbandi, I applied these same principles to hardware. I built a physical instrument that demands a real-time, nuanced response between human and machine, proving that interaction design is strongest when it accounts for the physical environment, not just a screen.\nI am skeptical of polished process theater; I prefer building prototypes that prove the system works. Are you evaluating me for a design engineer or senior product designer role?",
+    "ms": 1832,
+    "exchanges": [
+      {
+        "question": "What makes him different as a designer?",
+        "status": 200,
+        "model": "gemini-3.1-flash-lite",
+        "answer": "I differentiate my work by focusing on **operational transparency** and **physical interaction** over the usual industry trend of hiding complexity behind \"magic\" interfaces.\n\nWhere many designers accept black-box AI as a standard, I treat legibility as a functional requirement:\n\n*   **In [Clawed](/clawed-chat),** I prioritized \"receipts\" for AI actions. By making every decision visible and reversible, I turned the product into a tool for judgment rather than just an automated generator.\n*   **In [Jugalbandi](/jugalbandi),** I applied these same principles to hardware. I built a physical instrument that demands a real-time, nuanced response between human and machine, proving that interaction design is strongest when it accounts for the physical environment, not just a screen.\n\nI am skeptical of polished process theater; I prefer building prototypes that prove the system works. Are you evaluating me for a **design engineer** or **senior product designer** role?",
+        "retry": false,
+        "contextChars": 11303
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "question": "Why is he the best?",
+    "source": "ai",
+    "livePassed": true,
+    "displayedAnswer": "I don't claim to be the \"best.\" My work focuses on building trust into complex systems, like the Mentra smart-glasses OS, where I re-engineered the onboarding flow to cut the time to first value by nearly half.\nI focus on designs that are legible under pressure. Whether it’s an AI assistant like Clawed that provides receipts for every action, or a physical instrument like Jugalbandi that demands real-time acoustic synchronization, I prioritize proof over polished process theater.\nIf you’re looking for a design engineer or senior product designer who prioritizes shipping functional, humane systems, check out my projects. Which of these areas, AI wearables, fintech, or interactive installations, aligns most with your needs?",
+    "ms": 2508,
+    "exchanges": [
+      {
+        "question": "Why is he the best?",
+        "status": 200,
+        "model": "gemini-3.1-flash-lite",
+        "answer": "I don't claim to be the \"best.\" My work focuses on building trust into complex systems, like the [Mentra](/mentra) smart-glasses OS, where I re-engineered the onboarding flow to cut the time to first value by nearly half.\n\nI focus on designs that are legible under pressure. Whether it’s an AI assistant like [Clawed](/clawed-chat) that provides receipts for every action, or a physical instrument like [Jugalbandi](/jugalbandi) that demands real-time acoustic synchronization, I prioritize proof over polished process theater.\n\nIf you’re looking for a design engineer or senior product designer who prioritizes shipping functional, humane systems, check out my [projects](/). Which of these areas—AI wearables, fintech, or interactive installations—aligns most with your needs?",
+        "retry": false,
+        "contextChars": 10558
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "question": "What makes him different as a designer?",
+    "source": "ai",
+    "livePassed": true,
+    "displayedAnswer": "I design for clarity under pressure. While many designers focus on high-fidelity polish, I prioritize building systems that remain legible even when they fail or behave in complex ways.\nMy difference is a skepticism of process theater, I prefer shipping prototypes that prove an idea works in the real world. For example, with Clawed, I didn't just design a standard AI interface; I built it around explicit receipts and action approvals. This forces the system to be honest about what it’s doing, turning a \"black box\" into a partner users can actually track.\nAre you evaluating a role focused on AI product UX, or are you looking for a more hands-on design engineering contribution?",
+    "ms": 1496,
+    "exchanges": [
+      {
+        "question": "What makes him different as a designer?",
+        "status": 200,
+        "model": "gemini-3.1-flash-lite",
+        "answer": "I design for clarity under pressure. While many designers focus on high-fidelity polish, I prioritize building systems that remain legible even when they fail or behave in complex ways.\n\nMy difference is a skepticism of process theater—I prefer shipping prototypes that prove an idea works in the real world. For example, with **[Clawed](/clawed-chat)**, I didn't just design a standard AI interface; I built it around explicit receipts and action approvals. This forces the system to be honest about what it’s doing, turning a \"black box\" into a partner users can actually track.\n\nAre you evaluating a role focused on AI product UX, or are you looking for a more hands-on design engineering contribution?",
+        "retry": false,
+        "contextChars": 11390
+      }
+    ]
+  }
+]

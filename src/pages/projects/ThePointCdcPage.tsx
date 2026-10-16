@@ -29,6 +29,7 @@ export default function ThePointCdcPage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#1B5EFF' } as React.CSSProperties}>
 
         <ProjectHeader
+          heroFraming="image"
           backLink="/work"
           categorySlug="design-for-good"
           backLabel="Back to Work"
@@ -43,8 +44,8 @@ export default function ThePointCdcPage() {
             { label: 'Year', value: '2024' },
           ]}
           liveUrl="https://thepoint.org"
-          heroImage="/Assets/Projects/ThePointCDC/photos/homepage-hero.png"
-          heroAlt="The Point CDC redesigned homepage for Hunts Point community programs and services"
+          heroImage="/Assets/mockups/projects/the-point-cdc_16x9.webp"
+          heroAlt="The Point CDC project cover showing the community website and its interface direction"
         />
 
         {/* Overview with label-rows */}

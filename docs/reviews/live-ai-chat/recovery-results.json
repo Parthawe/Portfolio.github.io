@@ -1,0 +1,167 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "503",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "429",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "malformed",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "empty",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "null",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "knowledge",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "abort",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "timeout",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "800-character contract",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "New chat ignores late answer",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "Protected page DOM excluded",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "Retry after navigation retains original project",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "scenario": "Cold chat chunk reload and saved-question retry",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "503",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "429",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "malformed",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "empty",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "null",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "knowledge",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "abort",
+    "retry": "replaced answer without duplicate question",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "800-character contract",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "New chat ignores late answer",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "Protected page DOM excluded",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "Retry after navigation retains original project",
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "scenario": "Cold chat chunk reload and saved-question retry",
+    "passed": true
+  }
+]

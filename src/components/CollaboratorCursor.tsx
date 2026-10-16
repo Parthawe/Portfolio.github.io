@@ -398,6 +398,21 @@ export default function CollaboratorCursor() {
     tourFinishRef.current(message)
   }
 
+  useEffect(() => {
+    // Opening the separate chat must stop the cursor tour from scrolling the page.
+    const onChatOpen = () => {
+      finishTour()
+      for (const timer of [tourStartTimer, welcomeTimer, parkTimer]) {
+        if (timer.current !== null) window.clearTimeout(timer.current)
+        timer.current = null
+      }
+      welcomeActiveRef.current = false
+      parthRef.current?.classList.remove('is-welcoming', 'is-speaking', 'is-nearby')
+    }
+    window.addEventListener('portfolio-chat:open', onChatOpen)
+    return () => window.removeEventListener('portfolio-chat:open', onChatOpen)
+  }, [])
+
   const goToTourStep = (index: number) => {
     if (!tourActiveRef.current) return
     if (tourAdvanceTimer.current !== null) {

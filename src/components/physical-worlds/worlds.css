@@ -111,3 +111,11 @@
 .physical-world[data-project="black-hole"] .physical-world-hint { background:#262626; color:#eee; }
 .physical-world[data-project="black-hole"] input.portfolio-slider[type="range"] { --slider-accent:var(--world-ink); --slider-rail:#bcbcbc; --slider-glass:rgba(255,255,255,.76); --slider-glass-active:rgba(245,245,245,.38); --slider-edge:rgba(80,80,80,.26); --slider-shadow:rgba(30,30,30,.22); }
 .physical-world[data-project="black-hole"][data-world-theme="dark"] input.portfolio-slider[type="range"] { --slider-rail:#555; --slider-glass:rgba(240,240,240,.72); --slider-glass-active:rgba(215,215,215,.28); --slider-edge:rgba(240,240,240,.65); --slider-shadow:rgba(0,0,0,.34); }
+
+.world-input-monitor { display:flex; gap:16px; align-items:center; border-top:1px solid var(--world-rule); padding:12px 20px; }
+.world-input-monitor svg { flex:0 0 72px; width:72px; height:72px; }
+.world-input-monitor strong { font-size:13px; }
+.world-input-monitor p { margin:6px 0 0; color:var(--world-muted); font-size:13px; line-height:1.6; max-width:62ch; }
+/* Control chrome stays neutral; the mill's original materials keep their colours. */
+.physical-world[data-project="sea-of-salt"] { --world-bg:#f4f4f4; --world-ink:#222; --world-muted:#606060; --world-rule:#bcbcbc; --world-selected:#dedede; --world-accent:#333; }
+.physical-world[data-project="sea-of-salt"][data-world-theme="dark"] { --world-bg:#1e1e1e; --world-ink:#f2f2f2; --world-muted:#bdbdbd; --world-rule:#555; --world-selected:#3b3b3b; --world-accent:#eee; }

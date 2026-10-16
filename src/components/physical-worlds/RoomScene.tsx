@@ -8,7 +8,7 @@ import { worlds, type WorldKey } from './catalog'
 import { buildJugalbandi } from './JugalbandiModel'
 import { buildRevolvingStage } from './RevolvingStageModel'
 
-type Props = { project: WorldKey; values: number[]; dark: boolean; reduced: boolean; cameraView: number; focus: number; revision: number; resetVersion: number; enigma?: { mode: 'type' | 'draw'; clear: number; label: number | null }; onInk?: (strokes: number) => void; onReset: () => void; onChange: (index: number, value: number) => void; onFail: () => void }
+type Props = { project: WorldKey; values: number[]; dark: boolean; reduced: boolean; cameraView: number; focus: number; revision: number; resetVersion: number; enigma?: { mode: 'type' | 'draw'; clear: number; label: number | null }; onInk?: (strokes: number) => void; onInput?: (values:number[]) => void; onReset: () => void; onChange: (index: number, value: number) => void; onFail: () => void }
 type Update = (values: number[], time: number, delta: number) => void
 const V = (x: number, y: number, z: number) => new T.Vector3(x, y, z)
 
@@ -130,7 +130,7 @@ export default function RoomScene(props: Props) {
       const inkTexture=new T.CanvasTexture(inkCanvas);inkTexture.colorSpace=T.SRGBColorSpace;textures.add(inkTexture)
       const inkMaterial=new T.MeshBasicMaterial({map:inkTexture});materials.add(inkMaterial)
       const display=mesh(new T.PlaneGeometry(.66,.42),inkMaterial,tablet,0,0,.03);inkSurface=display
-      let previous=-1,previousInk=-1,age=0
+      let previous=-1,previousInk=-1,previewVersion=-1,previewAt=-1,age=0
       let signals:number[][]=[]
       updates.push((values,_time,delta)=>{
         const input=latest.current.enigma
@@ -153,6 +153,9 @@ export default function RoomScene(props: Props) {
             return sum/Math.max(.001,weights)
           })
 
+        }
+        if(previewVersion!==inkVersion&&(elapsed-previewAt>.08||inkPointer===null)){
+          previewVersion=inkVersion;previewAt=elapsed;latest.current.onInput?.(signals[0]??Array(64).fill(0))
         }
         age=latest.current.reduced?1:age+delta
         let k=0
@@ -284,8 +287,8 @@ export default function RoomScene(props: Props) {
         }
         if(props.project==='enigma'){
           controls.minDistance=state.focus===4?.35:state.focus>0?.8:3.4;controls.enabled=state.focus!==4&&inkPointer===null
-          const bounds=new T.Box3().setFromObject(root);bounds.getCenter(target)
-          const direction=(state.cameraView===2?V(0,1,.001):state.cameraView===1?V(.2,.18,1):V(.5,.28,1)).normalize()
+          const bounds=new T.Box3().setFromObject(root);bounds.min.y=Math.max(.68,bounds.min.y);bounds.getCenter(target)
+          const direction=(state.cameraView===2?V(0,1,.001):state.cameraView===1?V(.2,.18,1):V(.27,.22,1)).normalize()
           const vertical=T.MathUtils.degToRad(camera.fov/2),horizontal=Math.atan(Math.tan(vertical)*camera.aspect)
           const right=V(0,1,0).cross(direction).normalize(),up=direction.clone().cross(right).normalize()
           let distance=1

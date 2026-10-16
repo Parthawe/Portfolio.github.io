@@ -4,6 +4,7 @@ import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsSection from '../../components/case-study/CsSection'
+import CsReportReader from '../../components/case-study/CsReportReader'
 import CsBody from '../../components/case-study/CsBody'
 import CsImage from '../../components/case-study/CsImage'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
@@ -39,6 +40,7 @@ export default function OfficeOfDiversityPage() {
             { label: 'Duration', value: '3 Months' },
             { label: 'Year', value: '2024' },
           ]}
+          heroFraming="image"
           heroImage="/Assets/Projects/office-of-diversity/photos/responsive-preview.png"
           heroAlt="Tisch IDBEA report shown across desktop and mobile responsive views"
         />
@@ -78,26 +80,14 @@ export default function OfficeOfDiversityPage() {
 
         <CsSection id="cs-report" label="Report" title="The report, section by section">
           <CsBody>
-            <p>The report moves from context to milestones, data, and accessibility. Open each image to inspect the layout at full size.</p>
+            <p>The report moves from context to milestones, data, and accessibility. Choose a chapter, scroll within it, or open the complete original capture.</p>
           </CsBody>
-          <div className="ofd-report-slices" data-project-preview>
-            <figure>
-              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png" alt="Top section of the IDBEA web report with title, introductory content, and opening report structure" loading="lazy" decoding="async" />
-              <figcaption>01 / Opening structure</figcaption>
-            </figure>
-            <figure>
-              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png" alt="Middle section of the IDBEA web report showing timeline and milestone content" loading="lazy" decoding="async" />
-              <figcaption>02 / Timeline and milestones</figcaption>
-            </figure>
-            <figure>
-              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png" alt="Middle section of the IDBEA web report showing data visualization and progress sections" loading="lazy" decoding="async" />
-              <figcaption>03 / Data and visual summaries</figcaption>
-            </figure>
-            <figure>
-              <img {...projectImageProps("/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png")} data-project-preview src="/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png" alt="Lower section of the IDBEA web report showing accessibility, collaboration, and closing content" loading="lazy" decoding="async" />
-              <figcaption>04 / Accessibility and closing content</figcaption>
-            </figure>
-          </div>
+          <CsReportReader original="/Assets/Projects/office-of-diversity/photos/full-report-page.webp" chapters={[
+            { label: 'Opening structure', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-intro.png', alt: 'Original IDBEA report introduction and opening structure' },
+            { label: 'Timeline and milestones', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-timeline.png', alt: 'Original report timeline and milestones' },
+            { label: 'Data and visual summaries', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-data.png', alt: 'Original report data visualizations' },
+            { label: 'Accessibility and closing', src: '/Assets/Projects/office-of-diversity/photos/report-slices/report-access.png', alt: 'Original report accessibility and closing content' },
+          ]} />
         </CsSection>
 
         <CsSection id="cs-impact" label="Impact" title="What improved">

@@ -59,3 +59,10 @@
 .hydraulic-pump .moniac-glass .hydraulic-front{fill:#4a4a4a;fill-opacity:1;stroke:#777}
 .hydraulic-pump .moniac-glass .hydraulic-side{fill:#393939;fill-opacity:1;stroke:#777}
 .hydraulic-pump .moniac-glass .hydraulic-top{fill:#666;fill-opacity:1;stroke:#858585}
+
+/* The inspector selection must also be visible on the original game drawing. */
+.hydraulic-valve.is-selected .valve-focus-ring { stroke:#a8eaff; stroke-width:2; stroke-dasharray:4 4; }
+.hydraulic-valve.is-selected .valve-rim { fill:#336078; fill-opacity:.8; }
+.moniac-control-inspector { border:1px solid var(--moniac-rule); border-radius:8px; padding:18px; background:var(--moniac-bg); }
+.moniac-control-inspector .moniac-policy-detail { margin-bottom:0; }
+.moniac-control-inspector>label output { color:var(--moniac-accent); font-variant-numeric:tabular-nums; }

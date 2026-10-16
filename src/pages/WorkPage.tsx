@@ -242,9 +242,7 @@ export default function WorkPage() {
       columns[shortest].push(project)
       heights[shortest] += (archiveShapes.get(project.slug) === 'square' ? 1 : 1.25) + .08
     }
-    return columns.map((column, index) => ({ column, height: heights[index] }))
-      .sort((a, b) => a.height - b.height)
-      .map(({ column }) => column)
+    return columns.filter(column => column.length > 0)
   }, [archiveProjects, archiveColumnCount, archiveShapes])
   const allWorkProjects = [
     ...featuredProjects,
@@ -510,11 +508,13 @@ export default function WorkPage() {
                 <nav className="work-mobile-views glass-segments" aria-label="Work page views">
                   {([['editorial', 'Editorial'], ['library', 'Index'], ['timeline', 'Arc']] as const).map(([view, label]) => <Link key={view} to={viewHref(view)} aria-current={viewMode === view ? 'page' : undefined}>{label}</Link>)}
                 </nav>
-                <Link className="work-room-link glass-action" to={experiencePreviewsEnabled ? "/experience-preview" : "/project-experiences"}>Explore project experiences</Link>
               </div>
-              <p className="work-page-intro-copy">
-                Selected product, systems, and interaction work for product design and design engineering roles.
-              </p>
+              <div className="work-page-summary">
+                <Link className="work-room-link glass-action" to={experiencePreviewsEnabled ? "/experience-preview" : "/project-experiences"}>Explore project experiences</Link>
+                <p className="work-page-intro-copy">
+                  Selected product, systems, and interaction work for product design and design engineering roles.
+                </p>
+              </div>
               {viewMode === 'editorial' ? (
                 <nav className="work-filter-inline surface-glass" aria-label="Filter projects inline" role="toolbar">
                   {renderFilterButtons()}
@@ -524,24 +524,24 @@ export default function WorkPage() {
 
             {viewMode === 'editorial' ? (
               <>
-                <section className="work-group work-group--selected" id="work-project-results" aria-label={isAll ? 'Selected projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} selected projects`}>
+                {editorialSelectedProjects.length > 0 && <section className="work-group work-group--selected" id="work-project-results" aria-label={isAll ? 'Selected projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} selected projects`}>
                   <div className="work-group-head">
                     <span className="mono-label work-group-label">Selected Work</span>
                   </div>
 
                   {editorialSelectedProjects.length ? (
                     <div className="pcard-masonry">
-                      {selectedMasonryColumns.map((column, columnIndex) => (
+                      {selectedMasonryColumns.filter(column => column.length > 0).map((column, columnIndex) => (
                         <div className="pcard-masonry__column" key={`selected-column-${columnIndex}`}>
                           {column.map(renderCard)}
                         </div>
                       ))}
                     </div>
                   ) : null}
-                </section>
+                </section>}
 
                 {archiveProjects.length ? (
-                  <section className="work-group work-group--archive" aria-label={isAll ? 'Archive projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} archive projects`}>
+                  <section className="work-group work-group--archive" id={editorialSelectedProjects.length ? undefined : 'work-project-results'} aria-label={isAll ? 'Archive projects' : `${CATEGORY_LABELS[activeFilter as ProjectCategory]} archive projects`}>
                     <div className="work-group-head">
                       <span className="mono-label work-group-label">Archive</span>
                     </div>
@@ -558,12 +558,6 @@ export default function WorkPage() {
             ) : viewMode === 'library' ? (
               <section className="work-library-shell" id="work-project-results" aria-label="Work library">
                 <div className="work-library-shell__head">
-                  <div className="work-library-shell__copy">
-                    <span className="mono-label work-group-label">Library</span>
-                    <p className="work-group-copy">
-                      Scan the portfolio by project, role, outcome, and year. Flagship work comes first, then each discipline becomes a clean shelf.
-                    </p>
-                  </div>
                   <div className="work-library-nav surface-glass surface-glass--subtle" role="toolbar" aria-label="Jump to library shelf">
                     {librarySections.map(section => (
                       <button
@@ -657,9 +651,6 @@ export default function WorkPage() {
                 <aside className="work-timeline-rail surface-glass surface-glass--subtle">
                   <div className="work-timeline-rail__head">
                     <span className="mono-label work-group-label">Arc</span>
-                    <p className="work-group-copy">
-                      Read the portfolio as progression: one anchor project per period, then the supporting work around it.
-                    </p>
                   </div>
                   <div className="work-timeline-rail__list" role="toolbar" aria-label="Jump to period">
                     {timelineSections.map(section => (

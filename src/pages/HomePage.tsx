@@ -1,3 +1,4 @@
+import { useThemeMode } from '../hooks/useThemeMode';
 import ExperienceBoundary from '../components/ExperienceBoundary';
 import { useState, useEffect, lazy, Suspense, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -80,6 +81,7 @@ const identityTabs = [
 const IDENTITY_SLIDE_INTERVAL_MS = 6500;
 
 export default function HomePage() {
+  const heroStillTheme = useThemeMode() ? 'dark' : 'light';
   const navigate = useNavigate();
   const [identityTab, setIdentityTab] = useState<(typeof identityTabs)[number]['id']>('who-i-am');
   const [heroWebOpen, setHeroWebOpen] = useState(false);
@@ -98,6 +100,7 @@ export default function HomePage() {
   const allowDecorative3D = !prefersReducedMotion;
   // Resolve capability before the deferred mount can race the hook's first effect.
   const heroSceneUnavailable = !allowDecorative3D || performanceDegraded || !webglAvailable || !canUseWebGL() || heroSceneTimedOut;
+  useEffect(() => { if (heroSceneUnavailable) setHeroSceneReady(false); }, [heroSceneUnavailable]);
   const [readerMoved, setReaderMoved] = useState(() => typeof window !== 'undefined' && window.scrollY > 40);
   useEffect(() => {
     if (readerMoved) return;
@@ -200,7 +203,7 @@ export default function HomePage() {
       </Helmet>
 
       <section
-        className={`wr-hero${heroSceneReady ? ' is-scene-ready' : ''}${heroSceneUnavailable ? ' wr-hero--no-scene' : ''}${heroWebOpen ? ' wr-hero--web-open' : ''}`}
+        className={`wr-hero${heroSceneReady && !heroSceneUnavailable ? ' is-scene-ready' : ''}${heroSceneUnavailable ? ' wr-hero--no-scene' : ''}${heroWebOpen ? ' wr-hero--web-open' : ''}`}
         id="hero"
         ref={heroRef}
         style={{ position: 'relative' }}
@@ -210,6 +213,9 @@ export default function HomePage() {
         <div className="wr-hero-aurora-bottom" aria-hidden="true" />
         <div className="wr-hero-web-scrim" aria-hidden="true" />
 
+        <div className="wr-hero-still" aria-hidden="true">
+          <img src={`/Assets/hero/connected-objects-${heroStillTheme}-480.webp`} srcSet={`/Assets/hero/connected-objects-${heroStillTheme}-480.webp 480w, /Assets/hero/connected-objects-${heroStillTheme}-749.webp 749w`} sizes="(max-width: 767px) 90vw, 52vw" width="749" height="759" alt="" fetchPriority="high" decoding="async" />
+        </div>
         <div className="wr-hero-3d">
           {mountHeroScene ? (
             <ExperienceBoundary onError={() => setHeroSceneTimedOut(true)}><Suspense fallback={null}>

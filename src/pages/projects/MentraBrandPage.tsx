@@ -1,5 +1,5 @@
-import { projectImageProps } from '../../utils/projectImage'
 import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
+import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -82,6 +82,11 @@ export default function MentraBrandPage() {
           </CsBody>
         </CsSection>
 
+        <section className="cs-section"><div className="wrap"><h2 className="cs-section-title">Inspect the product details</h2><CsBody><p>Compare the original launch renders at a consistent scale. These are project assets, not newly generated product variations.</p></CsBody><CsScreenExplorer format="landscape" label="Choose a product detail" screens={[
+          {title:'Both frames',label:'Black and transparent',src:`${P}/render-both-frames.webp`,alt:'Original render of black and transparent Mentra frames',caption:'The same product identity carried across two frame finishes.'},
+          {title:'Hinge',label:'Physical detail',src:`${P}/render-hinge-detail.webp`,alt:'Original close-up render of the Mentra hinge',caption:'The original detail render shows the joint and material transition.'},
+          {title:'Transparent frame',label:'Top view',src:`${P}/render-transparent-top.webp`,alt:'Original transparent Mentra frame top-view render',caption:'An alternate view of the same documented frame.'}
+        ]}/></div></section>
         <CsSection title="One structure, two variants">
           <CsBody><p>The packaging work went through seven iterations. The three artifacts below show the shared box structure, the second frame variant, and the production label. They document the final constraints rather than a complete revision history.</p></CsBody>
           <CsScreenExplorer format="landscape" label="Compare Mentra packaging artifacts" screens={[

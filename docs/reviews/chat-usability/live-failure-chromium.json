@@ -1,0 +1,29 @@
+{
+  "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('.portfolio-chat-message--assistant').last()\nExpected: \"ai\"\nReceived: \"notes\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('.portfolio-chat-message--assistant').last()\n    14 × locator resolved to <div data-source=\"notes\" class=\"portfolio-chat-message portfolio-chat-message--assistant\">…</div>\n       - unexpected value \"notes\"\n",
+  "network": [
+    {
+      "question": "Why is he the best?",
+      "status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "answer": "I don’t aim to be the \"best.\" I aim to be the designer who makes complex, high-pressure systems legible and trustworthy. \n\nI’m a design engineer and senior product designer who focuses on products where the stakes are high—like financial transfers or AI decision-making—where I prove an idea by shipping a working prototype that actually functions. \n\nIf you want to see how I handle ambiguity, I’d suggest looking at:\n\n*   **[Mentra](/mentra):** To see how I reduced time-to-first-value in a complex wearable OS.\n*   **[Clawed](/clawed-chat):** To see how I enforce transparency in AI through receipt-based interaction.\n\nDo you have a specific product challenge you’re looking to solve?",
+      "retry": false,
+      "contextChars": 10566
+    },
+    {
+      "question": "What makes him different as a designer?",
+      "status": 200,
+      "model": "gemini-2.5-flash",
+      "answer": "I believe what makes my approach different is my commitment to shipping working prototypes that solve complex, human-centered",
+      "retry": false,
+      "contextChars": 11305
+    },
+    {
+      "question": "What makes him different as a designer?",
+      "status": 200,
+      "model": "gemini-2.5-flash",
+      "answer": "What makes me different is my commitment to shipping humane systems, especially under pressure. I'm a design",
+      "retry": true,
+      "contextChars": 11527
+    }
+  ]
+}

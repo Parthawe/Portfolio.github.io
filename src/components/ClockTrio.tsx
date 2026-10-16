@@ -244,8 +244,11 @@ export default function ClockTrio() {
 
     }
 
-    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw)
-    return () => activity.dispose()
+    const motion = matchMedia('(prefers-reduced-motion: reduce)')
+    const activity = visibleAnimation(canvas.parentElement ?? canvas, draw, () => !motion.matches)
+    const change = () => activity.wake()
+    motion.addEventListener('change', change)
+    return () => { motion.removeEventListener('change', change); activity.dispose() }
   }, [])
 
   return (

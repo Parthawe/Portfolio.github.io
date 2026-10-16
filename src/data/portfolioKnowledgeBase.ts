@@ -2,7 +2,7 @@ import { categories } from './categories'
 import { visibleProjects as projects } from './projects'
 
 export const PORTFOLIO_SCOPE_REPLY =
-  "I only answer questions about Parth Pawar, the projects, and the pages on this portfolio. Ask about a case study, a role fit, a tool, or ask me to show you a section."
+  "I can explain the projects, compare design decisions, help assess role fit, or take you to a page section. Try asking what Parth owned at Mentra."
 
 const PAGE_TERMS = [
   'home',
@@ -100,6 +100,10 @@ export function isPortfolioQuestion(
   if (!query) return true
 
   if (CLEARLY_OFF_TOPIC_PATTERNS.some(pattern => pattern.test(message))) return false
+
+  // A visitor speaking to the portfolio guide need not repeat Parth’s name.
+  if (/\b(he|his|him|you|your)\b/.test(query) && /\b(why|what|who|how|best|good|fit|hire|different|work|design|help)\b/.test(query)) return true
+  if (/^(hi|hello|hey|help|tell me more|more|why|what else)[!.?]*$/.test(query)) return true
 
   if ((options?.lastProject || (options?.route && options.route !== '/')) && FOLLOW_UP_PATTERNS.some(pattern => pattern.test(message))) {
     return true

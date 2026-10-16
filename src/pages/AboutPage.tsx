@@ -398,6 +398,7 @@ export default function AboutPage() {
       <Nav />
 
       <main id="main-content">
+        <h1 className="sr-only">About Parth Pawar</h1>
 
         {/* ── Paper canvas wraps entire page ── */}
         <div className="abt-paper">

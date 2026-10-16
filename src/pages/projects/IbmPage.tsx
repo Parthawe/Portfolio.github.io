@@ -1,3 +1,4 @@
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -66,6 +67,12 @@ export default function IbmPage() {
             <span className="cs-label-row-val">A research pipeline that produced survival-cluster outputs while keeping sensitive data protected through the key computation step.</span>
           </div>
         </CsSection>
+        <section className="cs-section"><div className="wrap"><h2 className="cs-section-title">Follow the encrypted workflow</h2><CsBody><p>Select a stage to inspect its role in the documented pipeline. This explains the architecture; it does not process patient information or implement cryptography in the page.</p></CsBody><CsProcessFlow title="Where computation happens" steps={[
+          {label:'Prepare features',desc:'The research workflow begins with selected genomic features. The original system diagram below documents the preparation stages.'},
+          {label:'Encrypt',desc:'Features enter the protected computation as encrypted values. This separates the useful signal from direct access to the raw patient information.'},
+          {label:'Compute',desc:'The homomorphic-encryption model supports selected operations on encrypted values. Follow the original model diagram for the scope of the research pipeline.'},
+          {label:'Interpret results',desc:'The recorded outputs include prognosis-group plots. Interpretation requires authorized access and further evaluation; a plot alone does not establish clinical validity.'}
+        ]}/></div></section>
         <section className="cs-section reveal">
           <div className="wrap">
             <div className="ibm-diagram-stack" aria-label="Encrypted cancer prognosis system diagrams">
@@ -96,6 +103,8 @@ export default function IbmPage() {
           ]} />
           <CsBody><p>These are the runtimes recorded in the project material. Hardware, workload, and repeat-run details are not included here, so they should not be read as a reproducible benchmark.</p></CsBody>
         </CsSection>
+
+        <section className="cs-section"><div className="wrap"><h2 className="cs-section-title">Publication record</h2><CsBody><p>Co-author Sakshi Oswal lists <cite>Privacy Preserving Cancer Prognosis via Fully Homomorphic Encryption</cite> as an IP.com defensive publication dated May 11, 2022. The original publication document has not been recovered for this case study.</p><a className="glass-action" href="https://in.linkedin.com/in/sakshi-oswal" target="_blank" rel="noopener noreferrer">View the co-author’s publication record</a></CsBody></div></section>
 
         <CsSection id="cs-learning" label="Learning" title="What I Learned">
           <CsFeatureGrid features={[

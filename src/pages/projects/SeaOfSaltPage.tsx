@@ -1,3 +1,4 @@
+import DeferredObjectStudy from '../../components/case-study/DeferredObjectStudy'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -12,7 +13,6 @@ import CsCredits from '../../components/case-study/CsCredits'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
-import SaltSimulation from '../../components/SaltSimulation'
 
 export default function SeaOfSaltPage() {
   return (
@@ -88,10 +88,10 @@ export default function SeaOfSaltPage() {
         {/* Interactive — salt simulation */}
         <CsSection id="cs-try" label="Interactive" title="Grind the Story">
           <CsBody>
-            <p>Slide from &ldquo;Start of the Story&rdquo; to &ldquo;End of the Story&rdquo; and watch salt accumulate &mdash; just like the physical installation. The further you go, the more salt piles up. There&rsquo;s no undo.</p>
+            <p>Turn the mill directly to advance the story and build up the salt. The original installation used a linear potentiometer to control motor speed; direct rotation is the browser interpretation. Reset begins a new telling.</p>
           </CsBody>
           <div className="project-content-block">
-            <SaltSimulation />
+            <DeferredObjectStudy project="sea-of-salt" />
           </div>
         </CsSection>
 

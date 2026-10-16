@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import CsScreenStrip from '../../components/case-study/CsScreenStrip'
 import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -188,12 +189,14 @@ export default function ZentipayPage() {
               showSummary={false}
               lede="A focused preview of the trust system: price clarity, progress states, review moments, and reusable fintech components."
               visuals={ZENTIPAY_PUBLIC_VISUALS}
+              showVisuals={false}
             />
 
+            <div className="wrap"><CsScreenStrip label="Transfer and account screens" screens={ZENTIPAY_PUBLIC_VISUALS} /></div>
             <NdaProcess
               title="How I approached it"
               intro="The original screens show three connected tasks: prepare a transfer, inspect the completed invoice, and return to account activity."
-              visuals={ZENTIPAY_PROCESS_VISUALS}
+              visuals={[]}
               decisions={[
                 {
                   move: 'Keep the recipient and amount beside the send action.',
@@ -213,11 +216,12 @@ export default function ZentipayPage() {
                 after: 'The product front-loads price clarity, progress, and review.',
               }}
             />
+            <div className="wrap"><CsScreenStrip label="Receipt and account activity" screens={ZENTIPAY_PROCESS_VISUALS} /></div>
           </>
         ) : null}
 
         <NdaGate slug="zentipay">
-          <NdaReviewerGallery groups={ZENTIPAY_REVIEWER_VISUALS} />
+          <NdaReviewerGallery groups={ZENTIPAY_REVIEWER_VISUALS} layout="strip" />
         </NdaGate>
         </CsExpandPreview>
 

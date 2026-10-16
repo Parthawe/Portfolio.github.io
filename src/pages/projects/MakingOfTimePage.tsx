@@ -1,3 +1,4 @@
+import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
 import { projectImageProps } from '../../utils/projectImage'
 import ExternalVideo from '../../components/ExternalVideo'
 import { Helmet } from 'react-helmet-async'
@@ -42,7 +43,7 @@ export default function MakingOfTimePage() {
           ]}
         />
 
-        <CsMediaSpotlight
+        <CsMediaSpotlight layout="stacked"
           id="cs-film"
           label="Watch first"
           title="Three clocks, one moment"
@@ -118,6 +119,11 @@ export default function MakingOfTimePage() {
             <p>I took apart mechanical movements under magnification, mapping energy from mainspring to gear train to balance wheel.</p>
             <p>The escapement became the heart of the project: one tiny lever releasing stored energy one tick at a time. Reassembly taught patience, precision, and respect for craft.</p>
           </CsBody>
+        <CsScreenExplorer label="Inspect the original watch" format="landscape" screens={[
+          {title:'Dial',label:'Read the surface',src:'/Assets/Projects/making-of-time/photos/blue-dial-top.png',alt:'Original top view of the blue dial watch',caption:'The top view records the markers, hands and dial texture.'},
+          {title:'Case',label:'Inspect its depth',src:'/Assets/Projects/making-of-time/photos/blue-dial-angle.png',alt:'Original angled view of the mechanical watch',caption:'The angled photograph shows the bezel, case and bracelet relationship.'},
+          {title:'Assembly',label:'Finished object',src:'/Assets/Projects/making-of-time/photos/watch-components.png',alt:'Finished watch standing on its steel bracelet',caption:'This source is a photograph of the completed watch, not an exploded movement drawing. No unseen gear train is reconstructed.'}
+        ]}/>
         </CsSection>
 
         

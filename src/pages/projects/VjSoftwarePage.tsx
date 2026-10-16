@@ -4,6 +4,8 @@ import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
+import CsSection from '../../components/case-study/CsSection'
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import CsBody from '../../components/case-study/CsBody'
 import CsFeatureGrid from '../../components/case-study/CsFeatureGrid'
 import CsCallout from '../../components/case-study/CsCallout'
@@ -48,6 +50,15 @@ export default function VjSoftwarePage() {
           heroImage="/Assets/Projects/vj/photos/all-screens-ui.png"
           heroAlt="VJ Parivar, Vehicle Parking Made Easy hero with app screens"
         />
+
+        <CsSection title="From parking search to a confirmed space">
+          <CsProcessFlow steps={[
+            { label: 'Check availability', desc: 'Inspect available and booked spaces from the parking overview.' },
+            { label: 'Choose on the map', desc: 'Compare a space’s position and dimensions before selecting it.' },
+            { label: 'Provide vehicle details', desc: 'The documented flow asks for vehicle information and RC upload.' },
+            { label: 'Confirm booking', desc: 'Keep the assigned space and downloadable legal record available after payment.' },
+          ]} />
+        </CsSection>
 
         {/* Overview */}
         <section className="cs-section reveal">

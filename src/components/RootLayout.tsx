@@ -428,7 +428,7 @@ export default function RootLayout() {
       >
         <Outlet />
       </div>
-      {enablePortfolioInteractions && <PortfolioChat />}
+      {enablePortfolioInteractions && <PortfolioChat cursorAvailable={enableFinePointerEffects && desktopCanvas && !coarsePointer} />}
       <Lightbox />
       {enableFinePointerEffects && desktopCanvas && !coarsePointer && <Suspense fallback={null}><CollaboratorCursor /></Suspense>}
       {/* AmbientAudio moved to Nav */}

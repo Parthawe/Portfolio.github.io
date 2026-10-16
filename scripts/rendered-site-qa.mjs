@@ -73,6 +73,11 @@ async function inspectRoute(browser, route, viewport) {
 
     const result = await page.evaluate(() => {
       const isVisible = (element) => {
+        // Closed disclosure descendants can retain layout boxes in Chromium,
+        // but only their direct summary belongs to the visible interface.
+        for (let ancestor = element.parentElement; ancestor; ancestor = ancestor.parentElement) {
+          if (ancestor.tagName === 'DETAILS' && !ancestor.open && !ancestor.querySelector(':scope > summary')?.contains(element)) return false
+        }
         const style = getComputedStyle(element)
         const rect = element.getBoundingClientRect()
         return style.display !== 'none'

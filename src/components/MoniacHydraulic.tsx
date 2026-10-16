@@ -54,7 +54,7 @@ export default function MoniacHydraulic({values,income,timeLeft,enabled,active,o
   const delta=event.key==='ArrowUp'||event.key==='ArrowRight'?1:event.key==='ArrowDown'||event.key==='ArrowLeft'?-1:event.key==='PageUp'?10:event.key==='PageDown'?-10:0
   if(delta||event.key==='Home'||event.key==='End'){event.preventDefault();adjust(key,event.key==='Home'?0:event.key==='End'?100:values[key]+delta)}
  }
- return <div className="moniac-isometric-screen">
+ return <div className="moniac-isometric-screen" data-active-policy={active}>
   <svg viewBox="0 0 960 1280" role="group" aria-label="MONIAC isometric hydraulic game" style={{'--water-gradient':`url(#${id}-water)`} as React.CSSProperties}>
    <title>MONIAC hydraulic economic game</title><desc>Six valve wheels control the labelled economic policies. Drag a wheel right or up to increase its setting, or use arrow keys. Interest is an additional browser-model control in the inspector.</desc>
    <defs><linearGradient id={`${id}-water`} x1="0" y1="0" x2="0" y2="1"><stop stopColor="#159eff"/><stop offset="1" stopColor="#21dae8"/></linearGradient></defs>
@@ -72,6 +72,7 @@ export default function MoniacHydraulic({values,income,timeLeft,enabled,active,o
     <Prism x={-85} y={26} z={373} w={120} d={18} h={18}/>
     {[557,393,187,37].map(z=><Prism key={z} x={65} y={26} z={z} w={130} d={18} h={18}/>)}
     <Prism x={0} y={0} z={-200} w={70} d={70} h={938}/>
+    <Prism x={1} y={1} z={590} w={68} d={68} h={148} water/>
     {/* The reference includes pale floats in the column, above the income reservoir. */}
     <g className="hydraulic-float"><Prism x={1} y={1} z={370+income*1.5} w={68} d={68} h={20}/><Prism x={1} y={1} z={100+income*.6} w={68} d={68} h={20}/></g>
     <Tank x={-235} y={44} z={375} w={150} d={58} h={240} value={values.taxRate} name="tax-reservoir"/>

@@ -1,3 +1,4 @@
+import CsProcessFlow from '../../components/case-study/CsProcessFlow'
 import { Helmet } from 'react-helmet-async'
 import NdaGate from '../../components/NdaGate'
 import Nav from '../../components/Nav'
@@ -34,7 +35,7 @@ export default function AiVoicePage() {
 
       <Nav />
 
-      <main id="main-content" className="project-main project-main--ai-voice" style={{ '--project-color': '#3F82D8' } as React.CSSProperties}>
+      <main id="main-content" className="project-main project-main--ai-voice" style={{ '--project-color': '#24835D' } as React.CSSProperties}>
 
         <ProjectHeader
           showHeaderSummary={false}
@@ -109,24 +110,13 @@ export default function AiVoicePage() {
           </div>
         </CsSection>
 
-        <CsSection id="cs-ai-voice-journey" label="Journey" title="Explain the choice to a team">
-          <div className="ai-voice-section-copy">
-            <p>
-              The journey map made the risk visible: the user starts curious, becomes unsure during exploration,
-              then has to justify a subjective voice choice to brand and engineering teams.
-            </p>
-            <p>
-              The strongest design direction was to turn voice selection into evidence: persona, transcript,
-              scenario, and adjustable parameters all visible in one place.
-            </p>
-          </div>
-        </CsSection>
-
-        <CsSection id="cs-ai-voice-system" label="System" title="Compare persona, transcript, and parameters">
-          <div className="ai-voice-section-copy">
-            <p>Voice DNA translated subjective preferences into visible signals such as tone, speed, pitch, accent, and scenario fit.</p>
-            <p>The interface kept persona, transcript, and adjustable parameters together so reviewers could explain a choice instead of simply trusting a sample.</p>
-          </div>
+        <CsSection id="cs-ai-voice-journey" label="Journey" title="Make the choice explainable">
+          <CsProcessFlow title="From a scenario to a team decision" steps={[
+            {label:'Set the scenario',desc:'Start with where and how the voice will be heard, so comparison has a shared context.'},
+            {label:'Compare a persona',desc:'Inspect the suggested voice persona alongside the transcript and intended tone.'},
+            {label:'Review parameters',desc:'Tone, speed, pitch and accent make the rationale visible. These are interface decisions, not audio controls on this public page.'},
+            {label:'Explain the choice',desc:'Keep the persona, transcript and parameter rationale together for the handoff to brand and technical teams.'}
+          ]}/>
         </CsSection>
         </CsExpandPreview>
 
@@ -137,7 +127,6 @@ export default function AiVoicePage() {
           { id: 'cs-process', label: 'Process' },
           { id: 'cs-ai-voice-research', label: 'Research' },
           { id: 'cs-ai-voice-journey', label: 'Journey' },
-          { id: 'cs-ai-voice-system', label: 'System' },
         ]} placement="side" />
 
 

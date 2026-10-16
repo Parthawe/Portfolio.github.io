@@ -93,6 +93,7 @@ export default function JugalbandiPage() {
           title="Hear the network perform"
           lede="The fastest way into Jugalbandi is the performance: a neural network translated into plucked strings, air pipes, and percussion."
           actionLabel="Play performance"
+          layout="stacked"
         >
           <ExternalVideo
             src="https://player.vimeo.com/video/996020149?title=0&byline=0&portrait=0"
@@ -137,16 +138,12 @@ export default function JugalbandiPage() {
         {/* Background */}
         <section className="cs-section reveal" id="cs-background">
           <div className="wrap">
-            <p className="cs-section-label">01 &mdash; Background</p>
+            <p className="cs-section-label">01 / Background</p>
             <h3 className="cs-section-title">The Concept</h3>
             <CsBody>
-              <p>The project builds on <a className="cs-text-link" href="https://pangenerator.com/projects/the-abacus/" target="_blank" rel="noopener noreferrer">The Abacus</a> by <a className="cs-text-link" href="https://pangenerator.com/" target="_blank" rel="noopener noreferrer">panGenerator Studio</a>, but shifts the representation from light to sound. Instead of watching a model process information, visitors hear it move through instrument layers.</p>
+
               <p>The name comes from the <a className="cs-text-link" href="https://en.wikipedia.org/wiki/Jugalbandi" target="_blank" rel="noopener noreferrer">Hindustani classical tradition</a> of a duet between two lead musicians. Here, the duet is between human improvisation and a machine voice constrained by trained weights, raga logic, and mechanical timing.</p>
             </CsBody>
-            <div className="cs-label-row">
-              <span className="cs-label-row-key">Inspiration</span>
-              <span className="cs-label-row-val">panGenerator Studio &mdash; &ldquo;The Abacus&rdquo;</span>
-            </div>
             <div className="cs-label-row">
               <span className="cs-label-row-key">Approach</span>
               <span className="cs-label-row-val">Translate neural network layers into tangible, playable acoustic and electronic mechanisms</span>
@@ -158,7 +155,7 @@ export default function JugalbandiPage() {
         {/* The Instrument */}
         <section className="cs-section reveal" id="cs-instrument">
           <div className="wrap">
-            <p className="cs-section-label">02 &mdash; The Instrument</p>
+            <p className="cs-section-label">02 / The Instrument</p>
             <h2 className="cs-display">Hexa-18</h2>
             <CsBody>
               <p>Hexa-18 is the human-played MIDI instrument, with 18 sensor inputs across three Indian instrument sections: flute at the top, tanpura on the sides, and tabla inside.</p>
@@ -187,7 +184,7 @@ export default function JugalbandiPage() {
         {/* Mechanized Harp */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <p className="cs-section-label">03 &mdash; Mechanized Harp</p>
+            <p className="cs-section-label">03 / Mechanized Harp</p>
             <h3 className="cs-section-title">Mechanized Harp</h3>
             <CsBody>
               <p>Servo motors pluck tuned strings inside a wooden frame. The harp carries the melodic middle layer: warm, acoustic, and intentionally slower than a screen-based visualization.</p>
@@ -230,10 +227,12 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
+        {experiencePreviewsEnabled && <div className="wrap"><DeferredStory project="flute" /></div>}
+
         {/* Automated Flute */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <p className="cs-section-label">04 &mdash; Automated Flute</p>
+            <p className="cs-section-label">04 / Automated Flute</p>
             <h3 className="cs-section-title">Automated Flute</h3>
             <CsBody>
               <p>An air pump drives the flute while servo-actuated fingers open and close tone holes. The hard part was not electronics, it was embouchure: a few degrees of airflow changed the note completely.</p>
@@ -255,10 +254,12 @@ export default function JugalbandiPage() {
           </div>
         </section>
 
+        {experiencePreviewsEnabled && <div className="wrap"><DeferredStory project="rain" /></div>}
+
         {/* Rainsticks */}
         <section className="cs-section reveal">
           <div className="wrap">
-            <p className="cs-section-label">05 &mdash; Rainsticks</p>
+            <p className="cs-section-label">05 / Rainsticks</p>
             <h3 className="cs-section-title">Rainsticks</h3>
             <CsBody>
               <p>Eight servo-mounted rainsticks occupy the corners of two stacked cubes. Tilting them creates cascading percussion. The beads never fall the same way twice, which made them a useful physical analogue for probabilistic inference.</p>
@@ -286,12 +287,14 @@ export default function JugalbandiPage() {
         </CsSection>
 
         {/* Tools & Process */}
+        {experiencePreviewsEnabled && <div className="wrap"><DeferredStory project="hexa" /></div>}
+
         <section className="cs-section reveal" id="cs-process">
           <div className="wrap">
-            <p className="cs-section-label">06 &mdash; Process</p>
+            <p className="cs-section-label">06 / Process</p>
             <h3 className="cs-section-title">Tools and Techniques</h3>
             <CsBody>
-              <p>A neural network built with ml5.js drives the piece: its layer activations are mapped to the Arduino-controlled instruments &mdash; breath, pluck, and percussion &mdash; and constrained by the selected raga so the machine voice stays inside the musical world.</p>
+              <p>A neural network built with ml5.js drives the piece: its layer activations are mapped to the Arduino-controlled instruments for breath, pluck, and percussion. Its output is constrained by the selected raga so the machine voice stays inside the musical world.</p>
             </CsBody>
           </div>
         </section>
@@ -299,7 +302,7 @@ export default function JugalbandiPage() {
         {/* Reflection */}
         <section className="cs-section reveal" id="cs-reflection">
           <div className="wrap">
-            <p className="cs-section-label">07 &mdash; Reflection</p>
+            <p className="cs-section-label">07 / Reflection</p>
             <h3 className="cs-section-title">What Building Jugalbandi Taught Me</h3>
             <CsBody className="cs-body--measure">
               <p>The hardest part was the translation layer. A model output has no musical meaning until a designer decides how it should become breath, timing, pitch, and vibration.</p>

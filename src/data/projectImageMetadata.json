@@ -302,26 +302,6 @@
     "height": 1709,
     "srcSet": "/Assets/project-display/a0136070686c08-640.webp 640w, /Assets/project-display/a0136070686c08-1040.webp 1040w, /Assets/project-display/a0136070686c08-1600.webp 1600w, /Assets/Projects/MediMorpho/nyu-langone-building-clear.webp 2560w"
   },
-  "/Assets/Projects/MediMorpho/research/affinity-map.webp": {
-    "width": 930,
-    "height": 430
-  },
-  "/Assets/Projects/MediMorpho/research/competitive-analysis.webp": {
-    "width": 1800,
-    "height": 820
-  },
-  "/Assets/Projects/MediMorpho/research/cover-illustration.webp": {
-    "width": 1780,
-    "height": 1350
-  },
-  "/Assets/Projects/MediMorpho/research/journey-map.webp": {
-    "width": 930,
-    "height": 440
-  },
-  "/Assets/Projects/MediMorpho/research/system-map.webp": {
-    "width": 1780,
-    "height": 1200
-  },
   "/Assets/Projects/Moniac/photos/annotated-breakdown.png": {
     "width": 1214,
     "height": 568,
@@ -687,46 +667,10 @@
     "width": 1280,
     "height": 720
   },
-  "/Assets/Projects/cuetv-public/refresh/audience-map.png": {
-    "width": 1321,
-    "height": 551
-  },
-  "/Assets/Projects/cuetv-public/refresh/awareness-flow.png": {
-    "width": 1319,
-    "height": 657
-  },
-  "/Assets/Projects/cuetv-public/refresh/campaign-collage.png": {
-    "width": 1503,
-    "height": 1058,
-    "srcSet": "/Assets/project-display/461838a9f12beb-640.webp 640w, /Assets/project-display/461838a9f12beb-1040.webp 1040w, /Assets/Projects/cuetv-public/refresh/campaign-collage.png 1503w"
-  },
-  "/Assets/Projects/cuetv-public/refresh/funnel-stages.png": {
-    "width": 1163,
-    "height": 212
-  },
-  "/Assets/Projects/cuetv-public/refresh/gifting-banner.png": {
-    "width": 1440,
-    "height": 450,
-    "srcSet": "/Assets/project-display/66dd35b4d50a59-640.webp 640w, /Assets/project-display/66dd35b4d50a59-1040.webp 1040w, /Assets/Projects/cuetv-public/refresh/gifting-banner.png 1440w"
-  },
   "/Assets/Projects/cuetv-public/refresh/hero-devices.png": {
     "width": 1101,
     "height": 969,
     "srcSet": "/Assets/project-display/2b339c1765272f-640.webp 640w, /Assets/project-display/2b339c1765272f-1040.webp 1040w, /Assets/Projects/cuetv-public/refresh/hero-devices.png 1101w"
-  },
-  "/Assets/Projects/cuetv-public/refresh/mobile-discovery.png": {
-    "width": 1327,
-    "height": 3296,
-    "srcSet": "/Assets/project-display/dd0e9a3c7ced89-640.webp 640w, /Assets/project-display/dd0e9a3c7ced89-1040.webp 1040w, /Assets/Projects/cuetv-public/refresh/mobile-discovery.png 1327w"
-  },
-  "/Assets/Projects/cuetv-public/refresh/platforms.png": {
-    "width": 1254,
-    "height": 965,
-    "srcSet": "/Assets/project-display/2fdc47705d60f9-640.webp 640w, /Assets/project-display/2fdc47705d60f9-1040.webp 1040w, /Assets/Projects/cuetv-public/refresh/platforms.png 1254w"
-  },
-  "/Assets/Projects/cuetv-public/refresh/poster-cascade.png": {
-    "width": 521,
-    "height": 702
   },
   "/Assets/Projects/dumb-waiter/photos/bath-mirror.jpg": {
     "width": 2200,
@@ -1564,5 +1508,17 @@
   "/Assets/project-illustrations/hypercinema-viewpoints.webp": {
     "width": 1536,
     "height": 1024
+  },
+  "/Assets/Projects/mentra-miniapps/figma/store-discovery.png": {
+    "width": 390,
+    "height": 1103
+  },
+  "/Assets/Projects/mentra-miniapps/figma/store-detail.png": {
+    "width": 390,
+    "height": 1166
+  },
+  "/Assets/Projects/mentra-miniapps/figma/store-installed.png": {
+    "width": 390,
+    "height": 1166
   }
 }

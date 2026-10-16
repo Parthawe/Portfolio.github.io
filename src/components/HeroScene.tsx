@@ -28,7 +28,7 @@ const NODES: NodeConfig[] = [
   { position: [2.05, 0.6, -0.2], label: 'Design for Good', labelOffset: [0.45, 1.08, 0.12], route: '/design-for-good' },
   { position: [0, 0.15, 0.3], label: 'Product Design', labelOffset: [0, -1.12, 0.12], route: '/ux-design' },
   { position: [-2.15, 0.1, 0.3], label: 'Brand & Visual', labelOffset: [-0.36, -0.92, 0.12], route: '/brand-visual' },
-  { position: [-1.3, -1.6, 0.3], label: 'AI & Wearables', labelOffset: [-0.34, -1.08, 0.12], route: '/ai' },
+  { position: [-1.3, -1.6, 0.3], label: 'AI & Wearables', labelOffset: [-0.34, -0.66, 0.12], route: '/ai' },
   { position: [1.55, -1.4, 0.2], label: 'Design Engineering', labelOffset: [0.36, -1.06, 0.12], route: '/design-engineering' },
 ];
 
@@ -37,7 +37,7 @@ const SAFE_DESKTOP_NODES: NodeConfig[] = [
   { position: [2.05, 0.72, -0.2], label: 'Design for Good', labelOffset: [0.42, 1.0, 0.12], route: '/design-for-good' },
   { position: [0.45, 0.04, 0.3], label: 'Product Design', labelOffset: [0.04, -1.02, 0.12], route: '/ux-design' },
   { position: [-1.15, -0.1, 0.3], label: 'Brand & Visual', labelOffset: [-0.36, -0.88, 0.12], route: '/brand-visual' },
-  { position: [-0.08, -1.66, 0.3], label: 'AI & Wearables', labelOffset: [-0.08, -1.0, 0.12], route: '/ai' },
+  { position: [-0.08, -1.66, 0.3], label: 'AI & Wearables', labelOffset: [-0.08, -0.6, 0.12], route: '/ai' },
   { position: [1.55, -1.28, 0.2], label: 'Design Engineering', labelOffset: [0.28, -0.98, 0.12], route: '/design-engineering' },
 ];
 

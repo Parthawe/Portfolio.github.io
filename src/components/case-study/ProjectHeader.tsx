@@ -1,5 +1,6 @@
 import { projectExperience, experienceHref, experienceLabel } from '../../data/projectExperiences'
 import ProjectRecord from './ProjectRecord'
+import { useProjectReturn } from '../ProjectReturnContext'
 import { useProjectMediaPause } from '../../hooks/useProjectMediaPause'
 import { projectImageProps } from '../../utils/projectImage'
 import { lazy, Suspense, useRef, type ReactNode, type MouseEvent } from 'react'
@@ -18,6 +19,7 @@ import {
 import '../../styles/case-study.css'
 import '../../styles/project-page-polish.css'
 import '../../styles/project-reading.css'
+import '../../styles/case-refinement.css'
 
 const CategoryObject3D = lazy(() => import('../CategoryObject3D'))
 
@@ -48,7 +50,7 @@ interface ProjectHeaderProps {
   visualTitleMode?: 'sentence' | 'stacked'
 }
 
-const TIMELINE_LABELS = ['timeline', 'duration', 'year']
+const TIMELINE_LABELS = ['timeline', 'year', 'duration']
 const ROLE_LABELS = ['role', 'my role', 'my contribution', 'creator', 'artist', 'host', 'director']
 const CONTEXT_LABELS = ['team / context', 'team', 'collaborator', 'company', 'client', 'organization', 'context', 'platform']
 
@@ -56,7 +58,7 @@ function findInfoValue(
   info: ProjectHeaderProps['info'],
   labels: string[],
 ) {
-  const match = info.find((item) => labels.includes(item.label.trim().toLowerCase()))
+  const match = labels.map(label => info.find(item => item.label.trim().toLowerCase() === label)).find(Boolean)
   return match?.value
 }
 
@@ -81,8 +83,8 @@ function slugClass(value?: string) {
 }
 
 export default function ProjectHeader({
-  backLink,
-  backLabel,
+  backLink: _backLink,
+  backLabel: _backLabel,
   tags,
   title,
   subtitle,
@@ -106,6 +108,7 @@ export default function ProjectHeader({
   visualBriefMode = 'combined',
 }: ProjectHeaderProps) {
   const location = useLocation()
+  const { href: backLink, label: backLabel } = useProjectReturn()
   const heroRef = useRef<HTMLDivElement>(null)
   const reduceMotion = Boolean(useReducedMotion()) || isLowPowerDevice()
   const canShowOrnament = Boolean(categorySlug)
@@ -218,7 +221,7 @@ export default function ProjectHeader({
     const visualContext = findInfoValue(info, CONTEXT_LABELS) ?? project?.summaryTeam ?? null
     const primaryInfo = new Set(
       [ROLE_LABELS, CONTEXT_LABELS, TIMELINE_LABELS].map(labels =>
-        info.find(item => labels.includes(item.label.trim().toLowerCase())),
+        labels.map(label => info.find(item => item.label.trim().toLowerCase() === label)).find(Boolean),
       ),
     )
     const additionalInfo = info.filter(item => !primaryInfo.has(item))
@@ -336,7 +339,7 @@ export default function ProjectHeader({
               <div key={item.label}><dt>{sentenceCaseProjectLabel(item.label)}</dt><dd>{item.value}</dd></div>
             ))}
           </dl>
-          {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link className="glass-action" to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
+          {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link">{currentSlug === 'shuffle' ? <a className="glass-action" href="#cs-interactive" onClick={event => followProjectSection(event, 'cs-interactive')}>Redistribute your time</a> : <Link className="glass-action" to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link>}</div>}
           <ProjectRecord slug={currentSlug} />
         </section>
       </div>
@@ -432,7 +435,7 @@ export default function ProjectHeader({
       </section>
 
       {renderStoryAndSummary(4)}
-      {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link"><Link className="glass-action" to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link></div>}
+      {projectExperience(currentSlug)?.status === 'approved' && <div className="project-room-link">{currentSlug === 'shuffle' ? <a className="glass-action" href="#cs-interactive" onClick={event => followProjectSection(event, 'cs-interactive')}>Redistribute your time</a> : <Link className="glass-action" to={experienceHref(currentSlug)}>{experienceLabel(currentSlug)}</Link>}</div>}
       <ProjectRecord slug={currentSlug} />
     </div>
   )

@@ -85,7 +85,7 @@ export default function RaahiPage() {
         />
 
         {/* Hero slide */}
-        <div className="cs-slide reveal"><img data-project-preview src={raahiAsset('Frame 427318652.png')} alt="Raahi overview render showing the app, bus, and service touchpoints on a blue transit map" loading="lazy" decoding="async" /></div>
+        <div className="cs-slide reveal raahi-overview-proof"><img data-project-preview src={raahiAsset('Frame 427318652.png')} alt="Raahi overview render showing the app, bus, and service touchpoints on a blue transit map" loading="lazy" decoding="async" /></div>
 
         {/* Summary section with label-rows */}
         <section className="cs-section reveal">
@@ -164,7 +164,7 @@ export default function RaahiPage() {
                 <figcaption className="cs-img-caption">Mobile information architecture before screen design.</figcaption>
               </div>
               <div className="cs-img reveal raahi-ia-kiosk">
-                <img data-project-preview src={raahiAsset('information architecture_kiosk.png')} alt="Information architecture diagram for the Raahi kiosk experience" loading="lazy" decoding="async" />
+                <img data-project-preview src={raahiAsset('information architecture_kiosk.png')} alt="Original low-resolution information architecture diagram for the Raahi kiosk experience" loading="lazy" decoding="async" />
                 <figcaption className="cs-img-caption">Kiosk information architecture for stop-level use.</figcaption>
               </div>
             </div>

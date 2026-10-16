@@ -44,7 +44,7 @@ export default function CsCredits({ credits, className, style }: CsCreditsProps)
       className={`cs-credits${className ? ` ${className}` : ''}`}
       style={style}
       variants={container}
-      initial="hidden"
+      initial={false}
       whileInView="show"
       viewport={{ once: true, margin: '-40px' }}
     >

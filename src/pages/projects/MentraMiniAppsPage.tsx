@@ -1,4 +1,5 @@
 import { projectImageProps } from '../../utils/projectImage'
+import CsScreenStrip from '../../components/case-study/CsScreenStrip'
 import CsScreenExplorer from '../../components/case-study/CsScreenExplorer'
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -152,15 +153,14 @@ export default function MentraMiniAppsPage() {
           proofLimit={0}
         />
 
-        <section className="cs-section mentra-miniapps-hero-gallery reveal" aria-label="MiniApp system previews">
-          <div className="wrap mentra-miniapps-hero-gallery__inner">
-            <figure className="mentra-miniapps-hero-gallery__primary">
-              <img data-project-preview src={MINIAPP_ASSETS.notes} width="419" height="909" alt="Mentra Notes MiniApp running as part of the smart glasses ecosystem" loading="eager" decoding="async" />
-              <figcaption>
-                <span>Featured MiniApp</span>
-                The Notes screen keeps saved summaries, their source conversations, and manual entries in one list. The expanded story follows the related conversation and recording screens.
-              </figcaption>
-            </figure>
+        <section className="cs-section reveal" aria-label="Original MiniApp Store flow">
+          <div className="wrap">
+            <CsScreenStrip format="portrait" label="Discover, configure, run" screens={[
+              { src: '/Assets/Projects/mentra-miniapps/figma/store-discovery.png', label: 'Discover apps', alt: 'Original Figma Mentra Store screen with search, featured app, must-have apps and editor choices' },
+              { src: '/Assets/Projects/mentra-miniapps/figma/store-detail.png', label: 'Inspect Live Captions', alt: 'Original Figma Live Captions detail screen with Get action, language, line width and speed settings' },
+              { src: '/Assets/Projects/mentra-miniapps/figma/store-installed.png', label: 'Manage a running app', alt: 'Original Figma Live Captions running state with Stop and Uninstall actions' },
+            ]} />
+            <p className="cs-caption">Original companion-app designs from Figma: Store → Live Captions → running state. These are source screens, not a live installation.</p>
           </div>
         </section>
 

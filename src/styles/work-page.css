@@ -2615,3 +2615,20 @@ body.page-work-timeline :is(.work-timeline-feature:hover, .work-timeline-support
   .page-work .work-page-header { grid-template-columns: minmax(0, 1fr); }
   .page-work .work-page-intro-copy { max-width: 52ch; padding-bottom: 0; }
 }
+
+/* Keep sparse filtered collections anchored to the first column. */
+.page-work .work-page-summary { display: grid; align-content: end; justify-items: start; gap: 1rem; }
+.page-work .work-page-summary .work-room-link { margin: 0; }
+.page-work .work-page-summary .work-page-intro-copy { margin: 0; }
+.page-work .work-mobile-views :is(a,button) { text-transform: none; letter-spacing: 0; }
+.pcard--light .pcard-name {
+  color: #242424;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, .7);
+}
+.pcard--light:hover .pcard-name {
+  text-shadow: 0 1px 6px rgba(255, 255, 255, .8);
+}
+.pcard--light .pcard-marquee { color: #242424; text-shadow: none; }
+@media(max-width:900px) { .page-work .work-page-summary { gap: .75rem; } }
+body.page-work.figma-chrome-enabled:not(.figma-rulers-off) { padding-left: 0; }
+.page-work #main-content > .abt-paper > .wrap { padding-inline: var(--page-inline-inset); }

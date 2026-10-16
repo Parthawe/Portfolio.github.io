@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { analyticsConfigured, analyticsEnabled, analyticsOwnerExcluded, setAnalyticsConsent, trackDiagnostic, trackEvent, trackPage, trackSection, trackVisibleTime } from '../utils/analytics'
 import { publicPage } from '../utils/analytics/policy'
@@ -139,12 +139,24 @@ export default function PortfolioAnalytics() {
     setAnalyticsConsent(choice)
     setOpen(false)
   }
-  return <AnalyticsConsentNotice onChoose={choose} />
+  return <AnalyticsConsentNotice onChoose={choose} onDismiss={() => setOpen(false)} />
 }
 
-export function AnalyticsConsentNotice({ onChoose }: { onChoose: (choice: 'granted' | 'denied') => void }) {
-  return <section className="analytics-consent" aria-labelledby="analytics-heading">
+export function AnalyticsConsentNotice({ onChoose, onDismiss }: { onChoose: (choice: 'granted' | 'denied') => void; onDismiss?: () => void }) {
+  const notice = useRef<HTMLElement>(null)
+  const dismiss = useRef(onDismiss)
+  dismiss.current = onDismiss
+  useEffect(() => {
+    if (!dismiss.current) return
+    const previous = document.activeElement as HTMLElement | null
+    notice.current?.querySelector<HTMLButtonElement>('button')?.focus()
+    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') dismiss.current?.() }
+    document.addEventListener('keydown', escape)
+    return () => { document.removeEventListener('keydown', escape); if (previous?.isConnected) previous.focus({ preventScroll: true }) }
+  }, [])
+  return <section ref={notice} className="analytics-consent" aria-labelledby="analytics-heading">
     <h2 id="analytics-heading">Analytics preferences</h2>
+    {onDismiss && <button className="glass-action" type="button" onClick={onDismiss} aria-label="Close analytics preferences">Close</button>}
     <p>This site automatically uses Google Analytics cookies to measure visits and interactions. You can turn analytics off for this browser. Your choice won’t affect access to the site.</p>
     <p role="status">{analyticsOwnerExcluded() ? 'Owner browser excluded. ' : ''}Analytics is {analyticsEnabled() ? 'on' : 'off'} for this browser.</p>
     <details>

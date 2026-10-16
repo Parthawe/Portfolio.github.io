@@ -1,0 +1,92 @@
+[
+  {
+    "version": "before",
+    "width": 1440,
+    "height": 1000,
+    "canvas": {
+      "x": 637.5487060546875,
+      "y": 143.07937622070312,
+      "width": 744.9935302734375,
+      "height": 755.8942565917969
+    },
+    "triggerTop": 829.17724609375,
+    "projectedLabelBottom": 832.2783649332046,
+    "conservativeGap": -3.101118839454557,
+    "degraded": false
+  },
+  {
+    "version": "after",
+    "width": 1440,
+    "height": 1000,
+    "canvas": {
+      "x": 651.285400390625,
+      "y": 153.77499389648438,
+      "width": 736.28759765625,
+      "height": 747.0609436035156
+    },
+    "triggerTop": 855.4951171875,
+    "projectedLabelBottom": 793.3747317551764,
+    "conservativeGap": 62.12038543232359,
+    "degraded": false
+  },
+  {
+    "version": "before",
+    "width": 1440,
+    "height": 768,
+    "canvas": {
+      "x": 651.285400390625,
+      "y": 119.950927734375,
+      "width": 736.28759765625,
+      "height": 573.7625122070312
+    },
+    "triggerTop": 618.8805541992188,
+    "projectedLabelBottom": 643.0883106762545,
+    "conservativeGap": -24.207756477035787,
+    "degraded": false
+  },
+  {
+    "version": "after",
+    "width": 1440,
+    "height": 768,
+    "canvas": {
+      "x": 651.285400390625,
+      "y": 119.950927734375,
+      "width": 736.28759765625,
+      "height": 573.7625122070312
+    },
+    "triggerTop": 643.142822265625,
+    "projectedLabelBottom": 611.1803990953174,
+    "conservativeGap": 31.962423170307602,
+    "degraded": false
+  },
+  {
+    "version": "before",
+    "width": 1049,
+    "height": 962,
+    "canvas": {
+      "x": 519.34716796875,
+      "y": 141.60565185546875,
+      "width": 495.65509033203125,
+      "height": 725.1600952148438
+    },
+    "triggerTop": 803.4025268554688,
+    "projectedLabelBottom": 718.3089671552473,
+    "conservativeGap": 85.09355970022148,
+    "degraded": false
+  },
+  {
+    "version": "after",
+    "width": 1049,
+    "height": 962,
+    "canvas": {
+      "x": 519.34716796875,
+      "y": 141.60565185546875,
+      "width": 495.65509033203125,
+      "height": 725.1600952148438
+    },
+    "triggerTop": 824.0721435546875,
+    "projectedLabelBottom": 688.3101296764004,
+    "conservativeGap": 135.76201387828712,
+    "degraded": false
+  }
+]

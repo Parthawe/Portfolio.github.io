@@ -7,6 +7,7 @@ try {
   for (const width of [1440, 390]) {
     const page = await browser.newPage({viewport:{width,height:900}, reducedMotion:'reduce',hasTouch:width===390})
     page.on('pageerror', e => errors.push(e.message))
+    await page.route('**/folio-answer',route=>route.fulfill({status:503,body:'unavailable'}))
     await page.goto(`${base}/work/`)
     const launch = page.getByRole('button',{name:'Ask Parth about this work',exact:true})
     await launch.click()

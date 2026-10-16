@@ -1,3 +1,4 @@
+import CsReportReader from '../../components/case-study/CsReportReader'
 import { projectImageProps } from '../../utils/projectImage'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
@@ -6,7 +7,6 @@ import ProjectHeader from '../../components/case-study/ProjectHeader'
 import CsExpandPreview from '../../components/case-study/CsExpandPreview'
 import CsSection from '../../components/case-study/CsSection'
 import CsBody from '../../components/case-study/CsBody'
-import CsImage from '../../components/case-study/CsImage'
 import CsThanks from '../../components/case-study/CsThanks'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
@@ -28,6 +28,7 @@ export default function VishwaConclavePage() {
       <main id="main-content" className="project-main" style={{ '--project-color': '#7B2FBF' } as React.CSSProperties}>
 
         <ProjectHeader
+          heroFraming="image"
           backLink="/work"
           categorySlug="brand-visual"
           backLabel="Back to Work"
@@ -57,23 +58,12 @@ export default function VishwaConclavePage() {
           cta="Open the campaign archive"
           note="Event timeline, identity systems, campaign assets, scope, growth notes, and final sign-off."
         >
-        <CsSection id="cs-events" label="Events" title="Selected events, 2019–2021">
-          <CsBody>
-            <h3>2019 · Revisit and Narrative</h3>
-            <p>The inaugural conference and the Narrative conversation series needed speaker cards, podcast artwork, and social campaigns. These boards show the early event identities.</p>
-          </CsBody>
-          <CsImage src="/Assets/Projects/VishwaConclave/2.jpg" alt="Narrative and Revisit speaker cards, podcast artwork, and social campaigns" caption="2019: speaker and conversation formats within the event identity." />
-          <CsBody>
-            <h3>2020 · Crafting the Decade</h3>
-            <p>The conference moved to a virtual format. The design work extended across speaker campaigns and recruitment material for eight team departments.</p>
-          </CsBody>
-          <CsImage src="/Assets/Projects/VishwaConclave/4.jpg" alt="Crafting the Decade speaker campaigns and recruitment structure" caption="2020: event communication and team recruitment within one system." />
-          <CsBody>
-            <h3>2021 · Accelerate the Paradigm Shift</h3>
-            <p>My scope expanded to creative direction across the website, speaker campaigns, sponsorship collateral, merchandise, video, and musical experience.</p>
-          </CsBody>
-          <CsImage src="/Assets/Projects/VishwaConclave/5.webp" alt="Accelerate the Paradigm Shift campaigns, website, speaker material, and merchandise" caption="2021: the identity extends across digital communication and physical event material." />
-        </CsSection>
+        <section id="cs-events" className="cs-section"><div className="wrap"><h2 className="cs-section-title">Three years of an evolving identity</h2><CsBody><p>Choose an edition, inspect its complete board, then zoom or enter fullscreen to read the artwork. The original boards document the shift from individual campaigns to creative direction across an event.</p></CsBody>
+        <CsReportReader label="VishwaConclave edition archive" continueHref="#cs-scope" originalLabel="Open selected original board" chapters={[
+          {label:'2019 · Narrative and Revisit',src:'/Assets/Projects/VishwaConclave/2.jpg',alt:'2019 Narrative podcast and Revisit campaign artwork'},
+          {label:'2020 · Crafting the Decade',src:'/Assets/Projects/VishwaConclave/4.jpg',alt:'2020 conference campaigns and recruitment artwork'},
+          {label:'2021 · Accelerate the Paradigm Shift',src:'/Assets/Projects/VishwaConclave/5.webp',alt:'2021 campaigns, website, collateral and merchandise'}
+        ]}/></div></section>
 
         {/* Scope */}
         <CsSection id="cs-scope" label="02 &mdash; Scope" title="The scope of creative direction">

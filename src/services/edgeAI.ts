@@ -1,3 +1,4 @@
+import { isCompletePanelAnswer } from './panelAnswerQuality'
 export interface EdgeAIRequest {
   message: string
   route: string
@@ -10,6 +11,7 @@ export interface EdgeAIRequest {
 interface EdgeAIResponse {
   answer?: string
   text?: string
+  model?: string
 }
 
 const EDGE_ENDPOINT = import.meta.env.VITE_EDGE_AI_ENDPOINT?.trim()
@@ -32,27 +34,34 @@ export function getEdgeAIModel() {
   return EDGE_MODEL
 }
 
-export async function getEdgeAIAnswer(payload: EdgeAIRequest, timeoutMs = payload.surface === 'panel' ? 22_000 : 6_500): Promise<string | null> {
+export async function getEdgeAIAnswer(payload: EdgeAIRequest, timeoutMs = payload.surface === 'panel' ? 26_000 : 6_500, onSource?: (source: 'ai' | 'notes') => void): Promise<string | null> {
   if (!EDGE_ENABLED || typeof fetch !== 'function') return null
 
   const controller = new AbortController()
   const timeout = window.setTimeout(() => controller.abort(), timeoutMs)
 
   try {
-    const response = await fetch(EDGE_ENDPOINT || DEFAULT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      signal: controller.signal,
-    })
-
-    if (!response.ok) return null
-
-    const data = await response.json() as EdgeAIResponse
-    const answer = typeof data.answer === 'string' ? data.answer : data.text
-    if (!answer) return null
-
-    return answer.trim().slice(0, 2200)
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const original = payload.context && typeof payload.context === 'object' && !Array.isArray(payload.context) ? payload.context : {}
+      const body = attempt === 0 ? payload : { ...payload, context: { ...original, responseRequirements: 'The previous reply did not finish. Answer the original question in 40–80 words. Use supplied project evidence when relevant and end every sentence completely. Do not continue the unfinished reply.' } }
+      const response = await fetch(EDGE_ENDPOINT || DEFAULT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      })
+      if (!response.ok) return null
+      const data = await response.json() as EdgeAIResponse
+      const answer = typeof data.answer === 'string' ? data.answer : data.text
+      if (typeof answer !== 'string' || !answer.trim()) return null
+      if (payload.surface === 'panel' && data.model !== 'portfolio-knowledge' && !isCompletePanelAnswer(answer)) {
+        if (attempt === 0) continue
+        return null
+      }
+      onSource?.(data.model === 'portfolio-knowledge' ? 'notes' : 'ai')
+      return answer.trim().slice(0, 2200)
+    }
+    return null
   } catch {
     return null
   } finally {

@@ -1,3 +1,4 @@
+import ScenicStudy from '../../components/case-study/ScenicStudy'
 import { Helmet } from 'react-helmet-async'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -46,6 +47,7 @@ export default function DumbWaiterPage() {
         style={{ '--project-color': '#8D6A4B' } as React.CSSProperties}
       >
         <ProjectHeader
+          heroFraming="image"
           backLink="/work"
           categorySlug="installations"
           backLabel="Back to Work"
@@ -83,6 +85,8 @@ export default function DumbWaiterPage() {
             <p>I designed the room as a polished criminal basement rather than a naturalistic flat. The John Wick reference gave the model a hard visual language: dark walls, a weapons display, warm wood, sharp thresholds, and objects that make ordinary waiting feel choreographed and dangerous.</p>
           </CsBody>
         </CsSection>
+
+        <section className="wrap"><ScenicStudy kind="dumb-waiter" /></section>
 
         <CsExpandPreview>
           <section className="cs-section reveal" id="cs-concept">

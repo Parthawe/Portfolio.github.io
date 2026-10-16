@@ -107,16 +107,15 @@ export default function TheOmakasePage() {
               <p>Two players stand shoulder to shoulder and race through 90-second sushi orders. That puts the shared screen, both sets of hands, and the score in the same view for players and spectators.</p>
             </CsBody>
           </div>
-          <div className="wrap">
+          <div className="wrap omakase-evidence-pair">
             <figure className="cs-img reveal omakase-figure">
               <img {...projectImageProps("/Assets/Projects/the-omakase/photos/chef-select-screen.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/chef-select-screen.webp" alt="Chef select screen — Chef Shiro versus Chef Kuro, each player's sushi likes, and a color-coded button legend for dropping sushi and changing belt direction" loading="lazy" decoding="async" />
               <figcaption className="cs-img-caption">The whole rulebook fits on one screen: pick your chef, match button colors to customers, go.</figcaption>
             </figure>
-          </div>
-          <div className="wrap">
+
             <figure className="cs-img reveal omakase-figure">
               <img {...projectImageProps("/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/play-dark-buttons-screen.webp" alt="Over a player's shoulder in the dark: the sushi conveyor belt on screen above two clusters of glowing RGB buttons under their hands" loading="lazy" decoding="async" />
-              <figcaption className="cs-img-caption">The mapping in action — customers on screen glow in the same colors as the buttons under your fingers.</figcaption>
+              <figcaption className="cs-img-caption">Screen and controls together: the customer colors are repeated by the physical RGB buttons.</figcaption>
             </figure>
           </div>
         </section>
@@ -178,13 +177,13 @@ export default function TheOmakasePage() {
             <h3 className="cs-section-title">Exhibition</h3>
             <CsBody>
               <p>At the ITP Spring Show 2024, visitors played while others waited around the cabinet. The available documentation does not include a verified participant count. The format worked because every match was also a performance for the people waiting.</p>
-              <p>It later held up at Wonderville Brooklyn, where the louder bar context pushed the same core loop harder: fast onboarding, visible competition, instant rematches.</p>
+              <p>The cabinet was also shown at Wonderville in Brooklyn, Coney Island, and a Manhattan sushi restaurant. Moving between a student show, an arcade bar and a restaurant changed the setting around the same two-player game.</p>
             </CsBody>
           </div>
           <div className="wrap">
             <figure className="cs-img reveal omakase-figure">
               <img {...projectImageProps("/Assets/Projects/the-omakase/photos/head-to-head-match.webp")} data-project-preview src="/Assets/Projects/the-omakase/photos/head-to-head-match.webp" alt="Two players seen from behind, mid-match at the cabinet — scores of $115 and $50 on the shared screen, buttons glowing under their hands" loading="lazy" decoding="async" />
-              <figcaption className="cs-img-caption">Mid-match: $115 to $50 with time left — exactly the momentum swings the 90-second rounds were tuned for.</figcaption>
+              <figcaption className="cs-img-caption">A shared screen keeps both scores visible to the players and the people watching.</figcaption>
             </figure>
           </div>
         </section>

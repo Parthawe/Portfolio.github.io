@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "dumb-waiter-set-design",
+    "draws": 324,
+    "start": 1158.2000000029802,
+    "first": 1790.5,
+    "activationToFirstDrawMs": 632.2999999970198,
+    "resourceBodyBytes": 211701,
+    "canvases": 1,
+    "idleDrawsOver500ms": 0,
+    "disposed": true
+  },
+  {
+    "slug": "drowning",
+    "draws": 428,
+    "start": 919.6000000089407,
+    "first": 1388.9000000059605,
+    "activationToFirstDrawMs": 469.29999999701977,
+    "resourceBodyBytes": 211701,
+    "canvases": 1,
+    "idleDrawsOver500ms": 0,
+    "disposed": true
+  },
+  {
+    "slug": "tedx",
+    "draws": 351,
+    "start": 1261.2000000029802,
+    "first": 1645.2000000029802,
+    "activationToFirstDrawMs": 384,
+    "resourceBodyBytes": 211701,
+    "canvases": 1,
+    "idleDrawsOver500ms": 0,
+    "disposed": true
+  }
+]

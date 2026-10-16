@@ -1,0 +1,50 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "slug": "dumb-waiter-set-design",
+    "checks": "deferred load, three views, lighting, keyboard, touch mode, reset and disposal"
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "slug": "drowning",
+    "checks": "deferred load, three views, lighting, keyboard, touch mode, reset and disposal"
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "slug": "tedx",
+    "checks": "deferred load, three views, lighting, keyboard, touch mode, reset and disposal"
+  },
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "slug": "black-hole",
+    "checks": "same-direction advancing clocks, proximity rate, continuity, offscreen pause, reduced motion"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "slug": "dumb-waiter-set-design",
+    "checks": "deferred load, three views, lighting, keyboard, touch mode, reset and disposal"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "slug": "drowning",
+    "checks": "deferred load, three views, lighting, keyboard, touch mode, reset and disposal"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "slug": "tedx",
+    "checks": "deferred load, three views, lighting, keyboard, touch mode, reset and disposal"
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "slug": "black-hole",
+    "checks": "same-direction advancing clocks, proximity rate, continuity, offscreen pause, reduced motion"
+  }
+]
