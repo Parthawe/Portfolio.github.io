@@ -10,10 +10,18 @@ export function ProjectReturnProvider({children}:{children:ReactNode}) {
  const location=useLocation()
  const history=useRef(new Map<string,ReturnTarget>())
  const previous=useRef<{path:string;search:string;target:ReturnTarget}|null>(null)
+ const path=location.pathname.replace(/\/+$/, '') || '/'
  const prior=previous.current
- const target=history.current.get(location.key) ?? (prior && prior.path !== location.pathname && collections[prior.path] ? {href:prior.path+prior.search,label:`Back to ${collections[prior.path]}`} : prior && projectRoutes.some(project=>`/${project.slug}`===prior.path) ? prior.target : work)
- if (!history.current.has(location.key)) history.current.set(location.key,target)
- previous.current={path:location.pathname,search:location.search,target}
+ // Native chapter links can have the same default key as the entry route.
+ // That key cannot identify a cached return destination across visits.
+ const entryKey=location.key === 'default' ? null : location.key
+ const target=(entryKey ? history.current.get(entryKey) : undefined) ?? (
+  prior?.path === path ? prior.target :
+  prior && collections[prior.path] ? {href:prior.path+prior.search,label:`Back to ${collections[prior.path]}`} :
+  prior && projectRoutes.some(project=>`/${project.slug}`===prior.path) ? prior.target : work
+ )
+ if (entryKey && !history.current.has(entryKey)) history.current.set(entryKey,target)
+ previous.current={path,search:location.search,target}
  return <Context.Provider value={target}>{children}</Context.Provider>
 }
 export const useProjectReturn=()=>useContext(Context)

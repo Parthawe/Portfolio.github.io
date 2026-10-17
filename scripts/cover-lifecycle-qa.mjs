@@ -8,10 +8,14 @@ const out = process.env.QA_OUTPUT_DIR || '/tmp/index-preview-lifecycle'
 mkdirSync(out, { recursive: true })
 const results = [], failures = []
 const chunkPattern = /CoverPreview[^/]*\.(?:js|tsx)(?:\?.*)?$/
+const engines = (process.env.QA_COVER_ENGINE || 'chromium,webkit').split(',')
+const cases = process.env.QA_COVER_CASE?.split(',')
 
 for (const engine of [chromium, webkit]) {
+  if (!engines.includes(engine.name())) continue
   const browser = await engine.launch()
-  async function check(name, width, theme, run, { delayVisibility = 0, reduce = false } = {}) {
+  async function check(name, width, theme, run, { delayVisibility = 0, reduce = false, failChunk = false } = {}) {
+    if (cases && !cases.includes(name)) return
     const context = await browser.newContext({ viewport: { width, height: 1000 }, hasTouch: width < 500, reducedMotion: reduce ? 'reduce' : 'no-preference',
       recordVideo: engine === chromium && name === 'cold-hover-screens' && theme === 'light' ? { dir: out } : undefined })
     const page = await context.newPage(), events = [], media = []
@@ -32,20 +36,27 @@ for (const engine of [chromium, webkit]) {
     await context.tracing.start({ screenshots: true, snapshots: true, sources: true })
     page.on('pageerror', error => events.push({ error: error.stack }))
     page.on('requestfailed', request => events.push({ request: request.url(), failure: request.failure() }))
+    page.on('requestfinished', request => {
+      if (chunkPattern.test(request.url())) events.push({ chunk: 'finished', url: request.url() })
+    })
     page.on('request', request => { if (request.url().includes('/Assets/cover-motion/')) media.push(request.url()) })
     let release
     const gate = new Promise(resolve => { release = resolve })
     await page.route(chunkPattern, async route => {
-      events.push({ chunk: 'held' }); await gate; await route.continue(); events.push({ chunk: 'released' })
+      events.push({ chunk: 'held' }); await gate
+      if (failChunk) { await route.abort('failed'); events.push({ chunk: 'aborted' }) }
+      else { await route.continue(); events.push({ chunk: 'released' }) }
     })
     try {
-      await run({ page, release, media })
+      await run({ page, release, media, events })
       assert.deepEqual(events.filter(event => event.error), [], 'no unhandled renderer errors')
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'no horizontal page overflow')
       results.push({ engine: engine.name(), width, theme, name })
     } catch (error) {
       failures.push({ engine: engine.name(), width, theme, name, error: String(error), events, media,
         inputState: await page.evaluate(() => ({ scrollY, focused: document.activeElement?.outerHTML.slice(0, 400), hovered: [...document.querySelectorAll('.work-library-row:hover, .work-library-preview:hover')].map(element => element.className) })),
+        loaderState: await page.evaluate(() => ({ visibility: document.visibilityState, observers: window.__coverObservers,
+          resources: performance.getEntriesByType('resource').filter(resource => resource.name.includes('CoverPreview')).map(resource => resource.toJSON()) })),
         state: await page.locator('.cover-art').evaluateAll(elements => elements.map(element => ({ motion: element.getAttribute('data-cover-motion'), hover: element.matches(':hover'), rect: element.getBoundingClientRect().toJSON() }))) })
       await page.screenshot({ path: `${out}/FAIL-${engine.name()}-${width}-${theme}-${name}.png` }).catch(() => {})
       await context.tracing.stop({ path: `${out}/FAIL-${engine.name()}-${width}-${theme}-${name}.zip` })
@@ -106,6 +117,41 @@ for (const engine of [chromium, webkit]) {
       await expect.poll(() => frame.locator('video').evaluate(video => video.currentTime)).toBeGreaterThan(.05)
       await expect(frame.locator('.cover-motion__screen')).toHaveCount(0)
     })
+
+    await check('delayed-chunk', 1440, theme, async ({ page, release, media }) => {
+      await page.goto(base + '/work?view=library', { waitUntil: 'domcontentloaded' })
+      const frame = page.locator('.work-library-preview__frame'), art = frame.locator('.cover-art')
+      for (const slug of ['mentra', 'raahi-project', 'transfi-project', 'raahi-project']) await page.locator(`.work-library-row[href="/${slug}"]`).first().hover()
+      await frame.scrollIntoViewIfNeeded(); await frame.hover()
+      // Reproduce the original long intercept while keeping the existing
+      // eight-second playback deadline after the module is released.
+      await page.waitForTimeout(7000)
+      await expect(art.locator(':scope > img')).toBeVisible()
+      assert.equal(media.length, 0, 'the original cover remains while the optional player is pending')
+      release()
+      await expect(art).toHaveAttribute('data-cover-motion', 'playing', { timeout: 8000 })
+      assert(await art.locator('.cover-motion__screen img').evaluateAll(images => images.length === 3 && images.every(image => image.src.includes('/raahi-') && image.complete && image.naturalWidth > 0)))
+      assert.equal(await page.locator('[data-cover-motion="playing"]').count(), 1)
+      await page.locator('.work-library-row[href="/mentra"]').first().hover(); await frame.hover()
+      await expect.poll(() => art.locator('video').evaluate(video => video.currentTime)).toBeGreaterThan(.05)
+      await expect(art.locator('.cover-motion__screen')).toHaveCount(0)
+    })
+
+    await check('failed-chunk', 1440, theme, async ({ page, release, media, events }) => {
+      await page.goto(base + '/work?view=library', { waitUntil: 'domcontentloaded' })
+      const frame = page.locator('.work-library-preview__frame'), art = frame.locator('.cover-art')
+      await frame.scrollIntoViewIfNeeded(); await frame.hover(); release()
+      await expect.poll(() => events.some(event => event.chunk === 'aborted')).toBe(true)
+      await expect.poll(() => events.some(event => event.failure && chunkPattern.test(event.request))).toBe(true)
+      const cover = art.locator(':scope > img')
+      await expect.poll(() => cover.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true)
+      await expect(cover).toHaveCSS('opacity', '1')
+      await expect(art.locator('.cover-motion')).toHaveCount(0)
+      assert.equal(media.length, 0, 'a failed optional module never requests media')
+      await page.locator('.work-library-row[href="/mentra"]').first().click()
+      await expect(page).toHaveURL(/\/mentra\/?$/)
+      await expect(page.getByRole('heading', { name: 'Mentra', exact: true })).toBeVisible()
+    }, { failChunk: true })
 
     await check('selection-over-scroll', 1440, theme, async ({ page, release }) => {
       release()
@@ -212,4 +258,5 @@ for (const engine of [chromium, webkit]) {
 }
 writeFileSync(`${out}/report.json`, JSON.stringify({ base, results, failures }, null, 2))
 console.log(JSON.stringify({ checks: results.length, failures }, null, 2))
+assert(results.length + failures.length > 0, 'at least one cover lifecycle case selected')
 assert.deepEqual(failures, [])

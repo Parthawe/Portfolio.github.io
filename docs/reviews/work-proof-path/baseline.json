@@ -1,0 +1,36 @@
+[
+  {
+    "width": 1440,
+    "arc": {
+      "duplicates": 2,
+      "periodHeight": 479.796875,
+      "firstProjectTop": 454.390625
+    },
+    "beforeAnchor": "/work?view=timeline",
+    "afterAnchor": "/work",
+    "beforeState": {
+      "usr": null,
+      "key": "m8pt372s",
+      "idx": 1
+    },
+    "afterState": null,
+    "detailVisible": true
+  },
+  {
+    "width": 390,
+    "arc": {
+      "duplicates": 2,
+      "periodHeight": 479.796875,
+      "firstProjectTop": 1029.328125
+    },
+    "beforeAnchor": "/work?view=timeline",
+    "afterAnchor": "/work",
+    "beforeState": {
+      "usr": null,
+      "key": "5ue6y0d8",
+      "idx": 1
+    },
+    "afterState": null,
+    "detailVisible": false
+  }
+]

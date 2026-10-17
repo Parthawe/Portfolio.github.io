@@ -1,0 +1,704 @@
+[
+  {
+    "engine": "webkit",
+    "name": "rapid-selection",
+    "base": "http://127.0.0.1:5236",
+    "status": "pass",
+    "assertions": [
+      "Raahi renders three loaded original screens with one active player",
+      "Switch to Mentra replaces screens with an advancing film"
+    ],
+    "steps": [
+      {
+        "label": "launch",
+        "time": 1792266182638
+      },
+      {
+        "label": "document loaded",
+        "time": 1792266184335
+      },
+      {
+        "label": "chunk held",
+        "time": 1792266184418
+      },
+      {
+        "label": "hover and release",
+        "time": 1792266186785
+      },
+      {
+        "label": "chunk released",
+        "time": 1792266186846
+      },
+      {
+        "label": "screens playing",
+        "time": 1792266187120
+      },
+      {
+        "label": "Mentra film playing",
+        "time": 1792266188261
+      },
+      {
+        "label": "finished",
+        "time": 1792266188603
+      }
+    ],
+    "errors": [],
+    "timeline": {
+      "events": [
+        {
+          "event": "mutation",
+          "time": 34,
+          "wall": 1792266184163,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 36,
+          "wall": 1792266184166,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 37,
+          "wall": 1792266184166,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 116,
+          "wall": 1792266184245,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 182,
+          "wall": 1792266184312,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "load",
+          "time": 232,
+          "wall": 1792266184362,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 239,
+          "wall": 1792266184368,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 275,
+          "wall": 1792266184404,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 288,
+          "wall": 1792266184417,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 295,
+          "wall": 1792266184424,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 298,
+          "wall": 1792266184428,
+          "visibility": "visible",
+          "opacity": null,
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 605,
+          "wall": 1792266184734,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 749,
+          "wall": 1792266184878,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 774,
+          "wall": 1792266184904,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1075,
+          "wall": 1792266185205,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1152,
+          "wall": 1792266185281,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1159,
+          "wall": 1792266185288,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1201,
+          "wall": 1792266185330,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1457,
+          "wall": 1792266185587,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1468,
+          "wall": 1792266185598,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "screens",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1647,
+          "wall": 1792266185777,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "screens",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1750,
+          "wall": 1792266185880,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 1757,
+          "wall": 1792266185887,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2095,
+          "wall": 1792266186225,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2107,
+          "wall": 1792266186237,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "screens",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2367,
+          "wall": 1792266186497,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "screens",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2598,
+          "wall": 1792266186728,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "screens",
+          "hover": true,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2604,
+          "wall": 1792266186733,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "screens",
+          "hover": true,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2796,
+          "wall": 1792266186926,
+          "visibility": "visible",
+          "motion": "loading",
+          "kind": "screens",
+          "hover": true,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2798,
+          "wall": 1792266186928,
+          "visibility": "visible",
+          "motion": "loading",
+          "kind": "screens",
+          "hover": true,
+          "opacity": "1",
+          "screens": [
+            {
+              "src": "/Assets/cover-motion/raahi-home.webp",
+              "complete": false,
+              "width": 0
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-routes.webp",
+              "complete": false,
+              "width": 0
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-itinerary.webp",
+              "complete": false,
+              "width": 0
+            }
+          ],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 2825,
+          "wall": 1792266186954,
+          "visibility": "visible",
+          "motion": "playing",
+          "kind": "screens",
+          "hover": true,
+          "opacity": "1",
+          "screens": [
+            {
+              "src": "/Assets/cover-motion/raahi-home.webp",
+              "complete": true,
+              "width": 360
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-routes.webp",
+              "complete": true,
+              "width": 360
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-itinerary.webp",
+              "complete": true,
+              "width": 360
+            }
+          ],
+          "players": 1
+        },
+        {
+          "event": "mutation",
+          "time": 3214,
+          "wall": 1792266187343,
+          "visibility": "visible",
+          "motion": "playing",
+          "kind": "screens",
+          "hover": true,
+          "opacity": "1",
+          "screens": [
+            {
+              "src": "/Assets/cover-motion/raahi-home.webp",
+              "complete": true,
+              "width": 360
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-routes.webp",
+              "complete": true,
+              "width": 360
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-itinerary.webp",
+              "complete": true,
+              "width": 360
+            }
+          ],
+          "players": 1
+        },
+        {
+          "event": "mutation",
+          "time": 3626,
+          "wall": 1792266187755,
+          "visibility": "visible",
+          "motion": "idle",
+          "kind": "screens",
+          "hover": false,
+          "opacity": "1",
+          "screens": [
+            {
+              "src": "/Assets/cover-motion/raahi-home.webp",
+              "complete": true,
+              "width": 360
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-routes.webp",
+              "complete": true,
+              "width": 360
+            },
+            {
+              "src": "/Assets/cover-motion/raahi-itinerary.webp",
+              "complete": true,
+              "width": 360
+            }
+          ],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 3636,
+          "wall": 1792266187765,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 3658,
+          "wall": 1792266187787,
+          "visibility": "visible",
+          "motion": null,
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 3659,
+          "wall": 1792266187788,
+          "visibility": "visible",
+          "motion": "loading",
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 3665,
+          "wall": 1792266187794,
+          "visibility": "visible",
+          "motion": "loading",
+          "kind": "film",
+          "hover": false,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 3887,
+          "wall": 1792266188016,
+          "visibility": "visible",
+          "motion": "loading",
+          "kind": "film",
+          "hover": true,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 3889,
+          "wall": 1792266188018,
+          "visibility": "visible",
+          "motion": "loading",
+          "kind": "film",
+          "hover": true,
+          "opacity": "1",
+          "screens": [],
+          "players": 0
+        },
+        {
+          "event": "mutation",
+          "time": 3972,
+          "wall": 1792266188101,
+          "visibility": "visible",
+          "motion": "playing",
+          "kind": "film",
+          "hover": true,
+          "opacity": "1",
+          "screens": [],
+          "players": 1
+        }
+      ],
+      "heartbeats": [
+        {
+          "time": 154,
+          "wall": 1792266184283
+        },
+        {
+          "time": 257,
+          "wall": 1792266184386
+        },
+        {
+          "time": 358,
+          "wall": 1792266184487
+        },
+        {
+          "time": 459,
+          "wall": 1792266184589
+        },
+        {
+          "time": 660,
+          "wall": 1792266184789
+        },
+        {
+          "time": 774,
+          "wall": 1792266184904
+        },
+        {
+          "time": 931,
+          "wall": 1792266185060
+        },
+        {
+          "time": 1046,
+          "wall": 1792266185175
+        },
+        {
+          "time": 1147,
+          "wall": 1792266185276
+        },
+        {
+          "time": 1251,
+          "wall": 1792266185380
+        },
+        {
+          "time": 1370,
+          "wall": 1792266185500
+        },
+        {
+          "time": 1477,
+          "wall": 1792266185606
+        },
+        {
+          "time": 1578,
+          "wall": 1792266185708
+        },
+        {
+          "time": 1682,
+          "wall": 1792266185812
+        },
+        {
+          "time": 1787,
+          "wall": 1792266185916
+        },
+        {
+          "time": 1891,
+          "wall": 1792266186021
+        },
+        {
+          "time": 2001,
+          "wall": 1792266186131
+        },
+        {
+          "time": 2108,
+          "wall": 1792266186238
+        },
+        {
+          "time": 2218,
+          "wall": 1792266186348
+        },
+        {
+          "time": 2345,
+          "wall": 1792266186474
+        },
+        {
+          "time": 2447,
+          "wall": 1792266186576
+        },
+        {
+          "time": 2551,
+          "wall": 1792266186680
+        },
+        {
+          "time": 2656,
+          "wall": 1792266186785
+        },
+        {
+          "time": 2759,
+          "wall": 1792266186888
+        },
+        {
+          "time": 2866,
+          "wall": 1792266186996
+        },
+        {
+          "time": 2968,
+          "wall": 1792266187098
+        },
+        {
+          "time": 3072,
+          "wall": 1792266187202
+        },
+        {
+          "time": 3265,
+          "wall": 1792266187395
+        },
+        {
+          "time": 3479,
+          "wall": 1792266187608
+        },
+        {
+          "time": 3582,
+          "wall": 1792266187712
+        },
+        {
+          "time": 3694,
+          "wall": 1792266187823
+        },
+        {
+          "time": 3794,
+          "wall": 1792266187924
+        },
+        {
+          "time": 3899,
+          "wall": 1792266188028
+        },
+        {
+          "time": 4002,
+          "wall": 1792266188132
+        },
+        {
+          "time": 4107,
+          "wall": 1792266188236
+        }
+      ]
+    }
+  }
+]
