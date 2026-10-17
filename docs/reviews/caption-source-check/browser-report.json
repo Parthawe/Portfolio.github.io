@@ -1,0 +1,262 @@
+{
+  "base": "http://127.0.0.1:5236",
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/jugalbandi",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/enigma",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/shuffle",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/drowning",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/moniac-machine",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/motion/vishwa-conclave-motion",
+      "tracks": 5,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/motion/editing-motion-stories",
+      "tracks": 4,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "route": "/the-omakase",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/jugalbandi",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/enigma",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/shuffle",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/drowning",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/moniac-machine",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/motion/vishwa-conclave-motion",
+      "tracks": 5,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/motion/editing-motion-stories",
+      "tracks": 4,
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "route": "/the-omakase",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/jugalbandi",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/enigma",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/shuffle",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/drowning",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/moniac-machine",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/motion/vishwa-conclave-motion",
+      "tracks": 5,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/motion/editing-motion-stories",
+      "tracks": 4,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "route": "/the-omakase",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/jugalbandi",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/enigma",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/shuffle",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/drowning",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/moniac-machine",
+      "tracks": 1,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/motion/vishwa-conclave-motion",
+      "tracks": 5,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/motion/editing-motion-stories",
+      "tracks": 4,
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "route": "/the-omakase",
+      "tracks": 1,
+      "status": "pass"
+    }
+  ],
+  "failures": []
+}

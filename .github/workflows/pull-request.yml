@@ -12,6 +12,56 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  verify-captions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_BASE_URL: http://127.0.0.1:4177
+      QA_OUTPUT_DIR: qa-diagnostics/captions
+      QA_BASE_REV: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Detect caption changes
+        id: changes
+        run: |
+          if git diff --name-only "$QA_BASE_REV" HEAD | grep -Eq '^(public/Assets/captions/|src/data/campaignCaptions\.ts$|scripts/caption-(source|browser)-qa\.mjs$|docs/reviews/caption-source-check/)'; then
+            echo 'captions=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: oven-sh/setup-bun@v2
+        if: steps.changes.outputs.captions == 'true'
+        with:
+          bun-version: 1.3.10
+      - if: steps.changes.outputs.captions == 'true'
+        run: bun install --frozen-lockfile
+      - if: steps.changes.outputs.captions == 'true'
+        run: bunx playwright install --with-deps chromium webkit
+      - name: Check original recordings and caption boundaries
+        if: steps.changes.outputs.captions == 'true'
+        run: node scripts/caption-source-qa.mjs
+      - if: steps.changes.outputs.captions == 'true'
+        run: bun run build
+      - name: Verify captions and playback on desktop and mobile
+        if: steps.changes.outputs.captions == 'true'
+        run: |
+          mkdir -p qa-diagnostics/captions
+          bun run preview --host 127.0.0.1 --port 4177 > qa-diagnostics/captions/preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent "$QA_BASE_URL" > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent "$QA_BASE_URL" > /dev/null
+          node scripts/caption-browser-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.changes.outputs.captions == 'true'
+        with:
+          name: caption-verification
+          path: qa-diagnostics/captions/
+
   verify-cover-motion:
     runs-on: ubuntu-latest
     timeout-minutes: 15
