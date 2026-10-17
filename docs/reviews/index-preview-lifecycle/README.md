@@ -49,4 +49,4 @@ Run the production preview, then set `QA_BASE_URL` to its address and `QA_OUTPUT
 - `node scripts/cover-artwork-qa.mjs`
 - `node scripts/cover-startup-qa.mjs`
 
-The lifecycle suite holds the actual lazy-module request instead of assuming a fixed delay. On failure it saves the browser error/request log, DOM geometry, screenshot and Playwright trace. Tests do not call the live AI backend or submit access requests.
+The lifecycle suite holds the actual lazy-module request instead of assuming a fixed delay. On failure it saves the browser error/request log, DOM geometry, screenshot and Playwright trace. The scroll-selection test sends its wheel gesture over the visible content gutter and requires a measured scroll-position change before checking selection. Linux WebKit ignored the earlier gesture at the document corner; its trace showed no scrolling. This corrects the test input without changing the application. Tests do not call the live AI backend or submit access requests.

@@ -44,7 +44,9 @@ for (const engine of [chromium, webkit]) {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'no horizontal page overflow')
       results.push({ engine: engine.name(), width, theme, name })
     } catch (error) {
-      failures.push({ engine: engine.name(), width, theme, name, error: String(error), events, media, state: await page.locator('.cover-art').evaluateAll(elements => elements.map(element => ({ motion: element.getAttribute('data-cover-motion'), hover: element.matches(':hover'), rect: element.getBoundingClientRect().toJSON() }))) })
+      failures.push({ engine: engine.name(), width, theme, name, error: String(error), events, media,
+        inputState: await page.evaluate(() => ({ scrollY, focused: document.activeElement?.outerHTML.slice(0, 400), hovered: [...document.querySelectorAll('.work-library-row:hover, .work-library-preview:hover')].map(element => element.className) })),
+        state: await page.locator('.cover-art').evaluateAll(elements => elements.map(element => ({ motion: element.getAttribute('data-cover-motion'), hover: element.matches(':hover'), rect: element.getBoundingClientRect().toJSON() }))) })
       await page.screenshot({ path: `${out}/FAIL-${engine.name()}-${width}-${theme}-${name}.png` }).catch(() => {})
       await context.tracing.stop({ path: `${out}/FAIL-${engine.name()}-${width}-${theme}-${name}.zip` })
     } finally {
@@ -110,15 +112,25 @@ for (const engine of [chromium, webkit]) {
       await page.goto(base + '/work?view=library', { waitUntil: 'domcontentloaded' })
       const row = page.locator('.work-library-row[href="/raahi-project"]').first()
       const frame = page.locator('.work-library-preview__frame')
+      // Wheel events at (0, 0) do not scroll the Linux WebKit content surface.
+      // Use the visible gutter between list and artwork, outside both controls.
+      const moveToGutter = async () => {
+        const listBox = await page.locator('.work-library-shelves').boundingBox(), artBox = await frame.boundingBox()
+        await page.mouse.move((listBox.x + listBox.width + artBox.x) / 2, 500)
+      }
       await row.hover(); await frame.hover()
       await expect(page.locator('.work-library-preview__caption strong')).toHaveText('Raahi')
       await page.mouse.wheel(0, 120); await page.waitForTimeout(300)
       await expect(page.locator('.work-library-preview__caption strong')).toHaveText('Raahi')
       // Focus, too, owns the selection while scroll bookkeeping catches up.
-      await row.focus(); await page.mouse.move(0, 0); await page.mouse.wheel(0, 160)
+      await row.focus(); await moveToGutter(); await page.mouse.wheel(0, 160)
       await page.waitForTimeout(300)
       await expect(page.locator('.work-library-preview__caption strong')).toHaveText('Raahi')
-      await row.blur(); await page.mouse.wheel(0, 300); await page.waitForTimeout(300)
+      await row.blur(); await moveToGutter()
+      const beforeScroll = await page.evaluate(() => scrollY)
+      await page.mouse.wheel(0, 300)
+      await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(beforeScroll)
+      await page.waitForTimeout(300)
       const expected = await page.locator('[data-library-project-slug]').evaluateAll(rows => {
         const top = Math.max(96, innerHeight * .16), bottom = innerHeight * .88
         const visible = rows.map(row => ({ row, rect: row.getBoundingClientRect() }))
