@@ -22,4 +22,6 @@ The lifecycle suite now includes delayed-module and failed-module cases for both
 
 `QA_COVER_ENGINE` and `QA_COVER_CASE` can select a bounded reproduction without changing default CI coverage or playback deadlines. An empty selection fails the script.
 
+The expanded final lifecycle run passed all 52 cases. See `cover-lifecycle-final-results.json`. The original eight-second post-release playback assertion remains unchanged.
+
 No runtime player change was made without a reproducible defect. Shuffle and footer sources remain unchanged.
