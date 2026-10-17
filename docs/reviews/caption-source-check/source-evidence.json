@@ -1,0 +1,325 @@
+{
+  "checkedOn": "2026-10-17",
+  "baseline": "f326bd79f7a6a5da243960a8766432597b842bbb",
+  "method": "Local faster-whisper large-v3-turbo and small model comparison, word timestamps, plus no-VAD speech-window checks; PyAV audio decoding. Automated source check only, not human listening approval.",
+  "media": [
+    {
+      "name": "drowning",
+      "path": "public/Assets/films/drowning.mp4",
+      "sha256": "2b126ced14d5341407408612a8aefd011e9fef1d57a02abc003d06ed6e37d67a",
+      "containerDuration": 73.045,
+      "streamDuration": 73.045,
+      "decodedDuration": 73.045,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.3734686374664307,
+      "rms": 0.18258239328861237,
+      "caption": "public/Assets/captions/drowning.en.vtt",
+      "audioDurationMs": 73045
+    },
+    {
+      "name": "jugalbandi",
+      "path": "public/Assets/films/jugalbandi.mp4",
+      "sha256": "33ddda52b607eafa738f405f422b4bdce9cb45f2ce0554ab619cbdb8dd943a26",
+      "containerDuration": 309.994,
+      "streamDuration": 309.994,
+      "decodedDuration": 309.994,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.2736883163452148,
+      "rms": 0.06761981546878815,
+      "caption": "public/Assets/captions/jugalbandi.en.vtt",
+      "audioDurationMs": 309994
+    },
+    {
+      "name": "the-omakase",
+      "path": "public/Assets/films/the-omakase.mp4",
+      "sha256": "cf737427631e3f5fd99f750bdcd45424a22ed34a2041bedec5fd78ecb9e7d82a",
+      "containerDuration": 170.154,
+      "streamDuration": 170.154,
+      "decodedDuration": 170.154,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.376035213470459,
+      "rms": 0.2580128014087677,
+      "caption": "public/Assets/captions/the-omakase.en.vtt",
+      "audioDurationMs": 170154
+    },
+    {
+      "name": "enigma",
+      "path": "public/Assets/films/enigma.mp4",
+      "sha256": "2769fc7fa5d562632e0d1914bdc09fc56a3973b3fdbb2cb2173fd85e725bdee6",
+      "containerDuration": 94.976,
+      "streamDuration": 94.976,
+      "decodedDuration": 94.976,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 0.8286261558532715,
+      "rms": 0.099540576338768,
+      "caption": "public/Assets/captions/enigma.en.vtt",
+      "audioDurationMs": 94976
+    },
+    {
+      "name": "moniac-machine",
+      "path": "public/Assets/films/moniac-machine.mp4",
+      "sha256": "49beb95189e20d00e2c267f4313fe73433e3e0cbf0e990ea92ce127e99dfc3f8",
+      "containerDuration": 65.3653,
+      "streamDuration": 65.365,
+      "decodedDuration": 65.365,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.7171534299850464,
+      "rms": 0.31017911434173584,
+      "caption": "public/Assets/captions/moniac-machine.en.vtt",
+      "audioDurationMs": 65365
+    },
+    {
+      "name": "crafting-decade-trailer",
+      "path": "public/Assets/Projects/VishwaConclave/motion-2021/crafting-decade-trailer.mp4",
+      "sha256": "cfe0b7892d00e5e0a196aa722a96073e539c51b2ce8dca4be327684ffcdb9c4d",
+      "containerDuration": 40.021333,
+      "streamDuration": 40.02133333333333,
+      "decodedDuration": 40.0213125,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.3495604991912842,
+      "rms": 0.24789975583553314,
+      "caption": "public/Assets/captions/crafting-decade-trailer.en.vtt",
+      "audioDurationMs": 40021
+    },
+    {
+      "name": "theme-release",
+      "path": "public/Assets/Projects/VishwaConclave/motion-2021/theme-release.mp4",
+      "sha256": "37fa3089b8e5c2ffe9eb9103dbf5014a9248447ced6ec5fde717aa0c263329bb",
+      "containerDuration": 80.554667,
+      "streamDuration": 80.55466666666666,
+      "decodedDuration": 80.5546875,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.465606927871704,
+      "rms": 0.24917349219322205,
+      "caption": "public/Assets/captions/theme-release.en.vtt",
+      "audioDurationMs": 80554
+    },
+    {
+      "name": "crafting-decade-theme",
+      "path": "public/Assets/Projects/VishwaConclave/motion-2021/crafting-decade-theme.mp4",
+      "sha256": "038ef3bff80a188f79897084a18530fb86534a4b986160d2b448fb935d741915",
+      "containerDuration": 60.16,
+      "streamDuration": 60.16,
+      "decodedDuration": 60.0119375,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.150862216949463,
+      "rms": 0.16667093336582184,
+      "caption": "public/Assets/captions/crafting-decade-theme.en.vtt",
+      "audioDurationMs": 60011
+    },
+    {
+      "name": "website-release",
+      "path": "public/Assets/Projects/VishwaConclave/motion-2021/website-release.mp4",
+      "sha256": "0fc5e8df0cef85a84847863f2738ade5f8a15bf4fd9638302665215545258571",
+      "containerDuration": 48.170667,
+      "streamDuration": 48.17066666666667,
+      "decodedDuration": 48.1706875,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 0.7988947629928589,
+      "rms": 0.09289881587028503,
+      "caption": "public/Assets/captions/website-release.en.vtt",
+      "audioDurationMs": 48170
+    },
+    {
+      "name": "event-story",
+      "path": "public/Assets/Projects/VishwaConclave/motion-2021/event-story.mp4",
+      "sha256": "9c34fe68338b1e832276e596f3272c5f99fcdc457950296e5f6db6c3d338fe6c",
+      "containerDuration": 30.208,
+      "streamDuration": 30.208,
+      "decodedDuration": 30.208,
+      "audioChannels": 2,
+      "sampleRate": 48000,
+      "peak": 1.2768110036849976,
+      "rms": 0.19061416387557983,
+      "caption": "public/Assets/captions/event-story.en.vtt",
+      "audioDurationMs": 30208
+    }
+  ],
+  "modelComparison": [
+    {
+      "name": "jugalbandi",
+      "model": "large-v3-turbo",
+      "start": 0,
+      "end": 22,
+      "vad": true,
+      "text": ""
+    },
+    {
+      "name": "jugalbandi",
+      "model": "large-v3-turbo",
+      "start": 270,
+      "end": 310,
+      "vad": true,
+      "text": "Keep it going for Parth. There's Alvandhi, a musical duet performance showcasing a unique blend of traditional analog, mechanical instruments, and modern digital MIDI instruments. This ensemble features analog sounds from the flute, harp, rainstick, and alongside their digital counterparts, including the flute, tampura, and tabla. Collaboration between classical and contemporary musical technologies. One more time for Parth, everybody."
+    },
+    {
+      "name": "theme-release",
+      "model": "large-v3-turbo",
+      "start": 0,
+      "end": 81,
+      "vad": true,
+      "text": "The leaf is turning, but what colour will it be? Look closer, change is the very nature of being, from a moment to a memory, drenched clothes to fur coats, a shack to a skyscraper, radical to a plant, the universe has come a long way. There will be a few misses with approaching patchy shadows, but will surely be followed by a clear sky. Let us join hands to replace patterns, to create, witness and approach a new goal. Let us shatter the shroud of the leaves. Petals fade, but let not our minds and hearts. Slap your wings with the flowing change. Allow change for the unknown, the unborn, and the alchemy. Accept change as we are no slaves to time and mine. Embrace change as we are all about man's attempt at false stability. Shuffle and reshuffle to unravel positivity And to make us love and live more Let us all unite to accelerate the paradigm shift"
+    },
+    {
+      "name": "jugalbandi",
+      "model": "small",
+      "start": 0,
+      "end": 22,
+      "vad": true,
+      "text": ""
+    },
+    {
+      "name": "jugalbandi",
+      "model": "small",
+      "start": 270,
+      "end": 310,
+      "vad": true,
+      "text": "Keep it going for part. Resolve on me. A musical duet performance showcasing a unique blend of traditional analog mechanical instruments and modern digital MIDI instruments. This ensemble features analog sounds from the flute, harp, rain stick, and alongside their digital counterparts including the flute, tangpura, and tabla. Collaboration between classical and contemporary musical technologies. one more time for Parts, everybody."
+    },
+    {
+      "name": "theme-release",
+      "model": "small",
+      "start": 0,
+      "end": 81,
+      "vad": true,
+      "text": "The leaf is turning, but what color will it be? Look closer, change is the very nature of being, from a moment to a memory, drench clothes to fur coats, a shack to a sky's paper, radical to a plant, the universe has come a long way. There will be a few misses with approaching patchy shadows, but will surely be followed by a clear sky. Let us join hands to replace patterns To create, witness and approach a new goal Let us shatter the shroud of the leaves Petals fade, but let not our minds and hearts Flap your wings with the flowing change I love change for the unknown, the unborn and the alchemy Accept change as we are no slaves to time and mind Embrace change as we are all about man's attempt at false stability. Shuffle and reshuffle to unravel positivity and to make us love and live more. Let us all unite to accelerate the paradigm shift."
+    },
+    {
+      "name": "drowning",
+      "model": "small",
+      "start": 0,
+      "end": 73.045,
+      "vad": true,
+      "text": ""
+    },
+    {
+      "name": "the-omakase",
+      "model": "small",
+      "start": 0,
+      "end": 170.154,
+      "vad": true,
+      "text": ""
+    },
+    {
+      "name": "enigma",
+      "model": "small",
+      "start": 0,
+      "end": 94.976,
+      "vad": true,
+      "text": ""
+    },
+    {
+      "name": "moniac-machine",
+      "model": "small",
+      "start": 0,
+      "end": 65.365,
+      "vad": true,
+      "text": ""
+    },
+    {
+      "name": "crafting-decade-trailer",
+      "model": "small",
+      "start": 0,
+      "end": 40.0213125,
+      "vad": true,
+      "text": "You"
+    },
+    {
+      "name": "crafting-decade-theme",
+      "model": "small",
+      "start": 0,
+      "end": 60.0119375,
+      "vad": true,
+      "text": "You"
+    },
+    {
+      "name": "website-release",
+      "model": "small",
+      "start": 0,
+      "end": 48.1706875,
+      "vad": true,
+      "text": "You"
+    },
+    {
+      "name": "event-story",
+      "model": "small",
+      "start": 0,
+      "end": 30.208,
+      "vad": true,
+      "text": ""
+    },
+    {
+      "name": "jugalbandi",
+      "model": "large-v3-turbo",
+      "start": 0,
+      "end": 22,
+      "vad": false,
+      "text": "For our first performer of the evening, we have parts."
+    },
+    {
+      "name": "jugalbandi",
+      "model": "large-v3-turbo",
+      "start": 273,
+      "end": 280,
+      "vad": false,
+      "text": "Keep it going for Kharth. That was... It was all by me."
+    },
+    {
+      "name": "theme-release",
+      "model": "large-v3-turbo",
+      "start": 45,
+      "end": 49,
+      "vad": false,
+      "text": "minds and hearts. Flap your wings with the flowing change."
+    },
+    {
+      "name": "jugalbandi",
+      "model": "small",
+      "start": 0,
+      "end": 22,
+      "vad": false,
+      "text": "For our first performer of the evening, we have Parth."
+    },
+    {
+      "name": "jugalbandi",
+      "model": "small",
+      "start": 273,
+      "end": 280,
+      "vad": false,
+      "text": "Keep it going for card. That was... That was all by me."
+    },
+    {
+      "name": "theme-release",
+      "model": "small",
+      "start": 45,
+      "end": 49,
+      "vad": false,
+      "text": "mind and heart. Flap your wings with the flowing change."
+    }
+  ],
+  "protectedFiles": {
+    "src/pages/projects/ShufflePage.tsx": "86117e3df6499d098a470f7c40cafb959fc500e703560eff1894ccf169356f24",
+    "src/pages/ShuffleSimulationPage.tsx": "2fe068c1d84f9006daa112741a1ad9f064a985bd4f2a4825d30a44e79431454f",
+    "src/components/ShuffleInteractive.tsx": "65d0d8562cb7c2b84fef7ca91c732644e818b8c7d73364105679391d233176c8",
+    "public/Assets/captions/shuffle.en.vtt": "5c4f907203d52d89c82b983a5636546595d04b99d7faf6b0aebe46059915fe88",
+    "public/Assets/films/shuffle.mp4": "ac9ba5490a8b3a332677d265aedc0c3d53ce6a9f82e9aee3cdd4b00cdb5a02d1",
+    "src/data/projectFilmCaptions.ts": "dd54d23a56cdfcb6c1eaec1efed70f09c0a92b7baa89355b24b4d385dc6a843f",
+    "src/components/ExternalVideo.tsx": "a48ebf931b3c2a2aad1243c32aad2b91a417c117c1ddd423c8b0f7e6a24cce93",
+    "src/components/Footer.tsx": "cd3aba5bc2d5ff813cf9dec42b308551885f809f9b3df811e9fa1d9bc7a25f2e",
+    "src/components/FooterContent.tsx": "8e721cbd514c12580317ed21e22e822a5d5e4384802fea30b3f51fc6cdf587d8",
+    "src/styles/footer.css": "fd7d547d108a5cf96d20691c6b0cd1ee3128588d52bc937ef786a3b9aaaef0ba",
+    "src/data/projectExperiences.ts": "42f68157f574d3dd696a9331d6b45f014ee564dd2968f70dd1e5a5d5f08bb84d",
+    "src/components/shuffle/model.ts": "bec0220b001e1131604d95fd447bca3f7f976019b33a4c69b4db40bd7e0345a5",
+    "src/components/shuffle/shuffle.css": "3982740b3bf619f2678b92502080c13c2aaae2bef17905ac0389b48914a31e09",
+    "src/components/shuffle/ShuffleScene.tsx": "f56dc49378bcd2befe4bcba616663b649a31098cf4af895b8f766baebeabca36"
+  }
+}
