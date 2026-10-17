@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { chromium, webkit, expect } from '@playwright/test'
-import { withoutDecorativeWebGL } from './visible-layout-qa.mjs'
+import { revealForMeasurement, withoutDecorativeWebGL } from './visible-layout-qa.mjs'
 
 const base = process.env.QA_BASE_URL || 'http://127.0.0.1:5232'
 const out = process.env.QA_OUTPUT_DIR || '/tmp/cover-motion-qa'
@@ -23,10 +23,15 @@ for (const [engine, width, theme] of profiles) {
   await withoutDecorativeWebGL(page)
   const open = async slug => {
     const card = cardFor(page, slug)
-    await card.scrollIntoViewIfNeeded()
+    await revealForMeasurement(card)
     await page.mouse.move(0, 0); await card.blur()
     await card.focus()
-    await expect(card).toHaveAttribute('data-cover-motion', 'playing', { timeout: 8000 })
+    // Deferred rows can replace estimated heights after a long scroll. Keep
+    // the focused card in view while that layout settles, as a real tab does.
+    await expect(async () => {
+      await revealForMeasurement(card)
+      await expect(card).toHaveAttribute('data-cover-motion', 'playing', { timeout: 2000 })
+    }).toPass({ timeout: 12000 })
     assert.equal(await page.locator('[data-cover-motion="playing"]').count(), 1, 'one active preview')
     return card
   }

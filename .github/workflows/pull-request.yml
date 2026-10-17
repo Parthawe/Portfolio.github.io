@@ -38,7 +38,8 @@ jobs:
       - run: bun run build
       - name: Verify cover playback, touch entry and startup stability
         run: |
-          bun run preview --host 127.0.0.1 --port 4176 > /tmp/cover-preview.log 2>&1 &
+          mkdir -p qa-diagnostics
+          bun run preview --host 127.0.0.1 --port 4176 > qa-diagnostics/cover-preview.log 2>&1 &
           preview_pid=$!
           trap 'kill "$preview_pid"' EXIT
           for attempt in $(seq 1 30); do
@@ -56,9 +57,7 @@ jobs:
         if: always()
         with:
           name: cover-motion-verification
-          path: |
-            /tmp/cover-preview.log
-            qa-diagnostics/
+          path: qa-diagnostics/
 
   verify:
     env:

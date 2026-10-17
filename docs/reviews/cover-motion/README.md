@@ -127,3 +127,9 @@ Two cover-entry defects were corrected: focus or mouse entry arriving before a v
 Review: [desktop cover contact sheet](desktop-all-covers.jpg), [mobile cover contact sheet](mobile-all-covers.jpg), [short mobile recording](mobile-preview.mp4). Current local preview: http://127.0.0.1:5234/work. Prepared for pull-request review; not merged or deployed.
 
 Settled layout geometry matched the preceding cover build on Home, Work and Shuffle at 1440 and 390 pixels. Captures and comparison details: [visual-parity.json](visual-parity.json), [before](before-startup-work.png), [after](after-startup-work.png).
+
+## PR verification
+
+Linux CI exposed fallback text movement when route styles discovered the General Sans 500/600 files late. The existing font files are now preloaded from the document head; no typeface, weight or image changed. The Safari cover test now keeps its focused card in view while deferred rows settle, rather than expecting an offscreen player to continue. Playback and offscreen-stop expectations are unchanged.
+
+After these corrections, all 18 local startup cases recorded zero CLS, and all 56 local cover runs plus the six policy/failure scenarios passed. The six candidate cold loads recorded zero CLS and no initial cover-media requests, with the same measured transfer costs as the preceding startup fix. These remain local browser measurements, not field guarantees. Reports: [startup](pr-startup-verification.json), [covers](pr-cover-verification.json), [paired measurements](pr-startup-performance.json). The PR CI job publishes independent Linux results and captures in its cover-motion-verification artifact.
