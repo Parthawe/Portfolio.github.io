@@ -51,6 +51,7 @@ jobs:
           QA_OUTPUT_DIR=qa-diagnostics/cover-motion node scripts/cover-motion-qa.mjs || status=1
           QA_OUTPUT_DIR=qa-diagnostics/cover-entry node scripts/cover-entry-qa.mjs || status=1
           QA_OUTPUT_DIR=qa-diagnostics/cover-artwork node scripts/cover-artwork-qa.mjs || status=1
+          QA_OUTPUT_DIR=qa-diagnostics/cover-lifecycle node scripts/cover-lifecycle-qa.mjs || status=1
           QA_OUTPUT_DIR=qa-diagnostics/cover-startup node scripts/cover-startup-qa.mjs || status=1
           exit "$status"
       - uses: actions/upload-artifact@v4

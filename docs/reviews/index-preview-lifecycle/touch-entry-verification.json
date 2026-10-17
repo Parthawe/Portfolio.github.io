@@ -1,0 +1,8 @@
+{
+  "results": [
+    "chromium mobile: focus before a delayed visibility callback starts screens, film and typography; Escape releases the single player",
+    "Chromium touch input: native swipe scrolls and starts a visible preview; one tap opens the project",
+    "webkit mobile: focus before a delayed visibility callback starts screens, film and typography; Escape releases the single player"
+  ],
+  "failures": []
+}

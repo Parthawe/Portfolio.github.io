@@ -46,7 +46,11 @@ export default function CoverPreview({ preview, cardRef }: {
     const card = cardRef.current
     if (!card) return
     const trigger = card.closest('a') || card
-    let disposed = false, playing = false, visible = false, automaticVisible = false, triedAutomatic = false, failed = false, pointerInside = false
+    // The optional chunk can finish after pointerenter. Read live hover state
+    // when binding, so a stationary pointer still expresses intent. Touch's
+    // sticky :hover state must not turn into a mouse preview.
+    let pointerInside = window.matchMedia('(hover: hover)').matches && trigger.matches(':hover')
+    let disposed = false, playing = false, visible = false, automaticVisible = false, triedAutomatic = false, failed = false
     let watchdog: ReturnType<typeof setTimeout> | undefined
     let endTimer: ReturnType<typeof setTimeout> | undefined
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -109,7 +113,9 @@ export default function CoverPreview({ preview, cardRef }: {
       if (!trigger.contains(document.activeElement)) stop()
     }
     const onBlur = () => queueMicrotask(() => { if (!trigger.matches(':hover') && !trigger.contains(document.activeElement)) stop() })
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') stop() }
+    // Index artwork sits beside its focused row. Escape must reach the single
+    // active player even when focus is outside that artwork's DOM subtree.
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape' && owner === stop) stop() }
     const onPolicy = () => { if (!allowed()) stop() }
     const rootObserver = new MutationObserver(onPolicy)
     rootObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
@@ -117,7 +123,7 @@ export default function CoverPreview({ preview, cardRef }: {
     trigger.addEventListener('pointerleave', onLeave)
     trigger.addEventListener('focusin', onFocus)
     trigger.addEventListener('focusout', onBlur)
-    trigger.addEventListener('keydown', onKey)
+    document.addEventListener('keydown', onKey)
     document.addEventListener('visibilitychange', onPolicy)
     reduce.addEventListener('change', onPolicy)
     const onError = () => { failed = true; stop() }
@@ -127,7 +133,7 @@ export default function CoverPreview({ preview, cardRef }: {
       disposed = true; stop(); observer.disconnect(); rootObserver.disconnect(); stopBrowsing()
       trigger.removeEventListener('pointerenter', onEnter); trigger.removeEventListener('pointerleave', onLeave)
       trigger.removeEventListener('focusin', onFocus); trigger.removeEventListener('focusout', onBlur)
-      trigger.removeEventListener('keydown', onKey); card.removeEventListener('cover-preview-error', onError)
+      document.removeEventListener('keydown', onKey); card.removeEventListener('cover-preview-error', onError)
       document.removeEventListener('visibilitychange', onPolicy); reduce.removeEventListener('change', onPolicy)
       connection?.removeEventListener?.('change', onPolicy)
       delete card.dataset.coverMotion

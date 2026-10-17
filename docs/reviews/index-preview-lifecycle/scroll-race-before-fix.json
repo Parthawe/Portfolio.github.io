@@ -1,0 +1,256 @@
+{
+  "base": "http://127.0.0.1:5235",
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "reduced-motion-cold-hover"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "rapid-selection"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "reduced-motion-cold-hover"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "rapid-selection"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "reduced-motion-cold-hover"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "reduced-motion-cold-hover"
+    }
+  ],
+  "failures": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "rapid-selection",
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('.work-library-preview__frame').locator('.cover-art')\nExpected: \"screens\"\nReceived: \"film\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('.work-library-preview__frame').locator('.cover-art')\n    2 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-preview-kind=\"film\">…</span>\n      - unexpected value \"film\"\n    10 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-motion=\"playing\" data-cover-preview-kind=\"film\">…</span>\n       - unexpected value \"film\"\n    2 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-motion=\"idle\" data-cover-preview-kind=\"film\">…</span>\n      - unexpected value \"film\"\n",
+      "events": [
+        {
+          "chunk": "held"
+        },
+        {
+          "chunk": "released"
+        }
+      ],
+      "media": [
+        "http://127.0.0.1:5235/Assets/cover-motion/transfi-project.mp4"
+      ],
+      "state": [
+        {
+          "motion": "idle",
+          "hover": true,
+          "rect": {
+            "x": 1076.6875,
+            "y": 101,
+            "width": 314.796875,
+            "height": 393.984375,
+            "top": 101,
+            "right": 1391.484375,
+            "bottom": 494.984375,
+            "left": 1076.6875
+          }
+        }
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "rapid-selection",
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('.work-library-preview__frame').locator('.cover-art')\nExpected: \"screens\"\nReceived: \"film\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('.work-library-preview__frame').locator('.cover-art')\n    3 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-preview-kind=\"film\">…</span>\n      - unexpected value \"film\"\n    9 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-motion=\"playing\" data-cover-preview-kind=\"film\">…</span>\n      - unexpected value \"film\"\n    2 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-motion=\"idle\" data-cover-preview-kind=\"film\">…</span>\n      - unexpected value \"film\"\n",
+      "events": [
+        {
+          "chunk": "held"
+        },
+        {
+          "chunk": "released"
+        }
+      ],
+      "media": [
+        "http://127.0.0.1:5235/Assets/cover-motion/transfi-project.mp4",
+        "http://127.0.0.1:5235/Assets/cover-motion/transfi-project.mp4"
+      ],
+      "state": [
+        {
+          "motion": "idle",
+          "hover": true,
+          "rect": {
+            "x": 1076.6875,
+            "y": 101,
+            "width": 314.796875,
+            "height": 395.984375,
+            "top": 101,
+            "right": 1391.484375,
+            "bottom": 496.984375,
+            "left": 1076.6875
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5299 @@
+{
+  "conditions": "Fresh desktop/mobile contexts; Home and Work, both themes, delayed styles, saved ruler preference, reduced motion. Decorative WebGL disabled to isolate startup geometry. Chromium records CLS; WebKit verifies first-frame geometry.",
+  "base": "http://127.0.0.1:5236",
+  "samples": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "delay": 0,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "delay": 0,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "delay": 0,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "delay": 0,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "delay": 0,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "delay": 500,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "delay": 500,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "23.76px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "delay": 500,
+      "rulers": false,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "delay": 500,
+      "rulers": false,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        },
+        {
+          "body": "page-work figma-rulers-off figma-reader-mode page-ready",
+          "bodyTop": "0px",
+          "bodyLeft": "0px",
+          "navTop": "12px",
+          "navLeft": "16px",
+          "wrapX": 0,
+          "wrapWidth": 390
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "delay": 0,
+      "rulers": true,
+      "route": "/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        },
+        {
+          "body": "figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "30px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 0
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "delay": 0,
+      "rulers": true,
+      "route": "/work/",
+      "cls": 0,
+      "shifts": [],
+      "frames": [
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        },
+        {
+          "body": "page-work figma-chrome-enabled figma-grid-on figma-coordinates-on collaborator-cursor-active page-ready",
+          "bodyTop": "30px",
+          "bodyLeft": "0px",
+          "navTop": "42px",
+          "navLeft": "47.52px",
+          "wrapX": 0,
+          "wrapWidth": 1440
+        }
+      ],
+      "mediaRequests": [],
+      "overflow": false
+    }
+  ],
+  "failures": []
+}
