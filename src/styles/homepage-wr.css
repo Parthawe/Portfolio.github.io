@@ -2233,3 +2233,8 @@ body.page-ready .wr-hero-stage {
 @media(max-width:768px) { .wr-hero-still { top: var(--wr-mobile-hero-scene-top); height: var(--wr-mobile-hero-scene-height); bottom: auto; left: .75rem; right: .75rem; } }
 
 .wr-hero--no-scene .wr-hero-still { transition: none; }
+
+/* Bring the introduction closer to the still on tall, narrow screens. */
+@media (max-width:480px) and (min-height:800px) and (orientation:portrait) {
+  .wr-hero { height:calc(100svh - 3rem); min-height:calc(100svh - 3rem); }
+}

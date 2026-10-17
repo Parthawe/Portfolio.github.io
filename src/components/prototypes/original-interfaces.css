@@ -39,3 +39,6 @@
 .original-interface-poster img { display:block; width:100%; height:auto; }
 .original-interface-launch { max-width:36ch; }
 @media(max-width:640px){.original-interface-player > .original-interface-poster { width:100%; max-width:360px; max-height:420px; }.original-interface-launch { order:-1; width:100%; }}
+
+.original-interface-handoff { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:16px; }
+.original-interface-handoff .glass-action, .original-interface-live .glass-action { min-height:44px; font:inherit; cursor:pointer; }

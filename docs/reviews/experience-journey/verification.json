@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-17",
+  "branch": "fix/experience-journey",
+  "baselineCommit": "a9452fe940ec8537565f4f82f42b4af79e072a9e",
+  "status": "local review; not deployed; approvals unchanged",
+  "reviewUrl": "http://127.0.0.1:5240/experience-preview",
+  "fixed": [
+    "New experiences start at the heading; browser Back restores reading position; directory filter context survives the journey.",
+    "Jugalbandi starts with one pairing, with the note surface beside the visible robot. Ensemble, tunes, independent mechanisms and original recordings remain available.",
+    "Moniac starts untimed. Mobile inspector and isometric drawing fit together. A deterministic step updates the drawing and economic readouts. Timed start reveals its controls and focuses Pause.",
+    "Moniac results scroll within their own labelled, keyboard-accessible region instead of clipping a column at 320px.",
+    "Enigma uses five key columns at narrow widths and keeps 44px targets. Preview theme controls have 44px height.",
+    "Tools excludes games. Live products includes only three verified entries. Visitor-facing preview labels replace owner-review counters; approval status is unchanged.",
+    "Unverified ExecutiveLens offers the existing labelled local study. Every Figma entry offers a browser-study fallback that disposes its external frame and moves focus to the study.",
+    "Tall mobile homepage spacing is reduced by 48px; the still composition and desktop geometry remain unchanged.",
+    "The navigation, mobile interaction, filter and recovery regression is connected to the existing PR experience job."
+  ],
+  "verification": {
+    "build": "passed; production build with public CI reviewer fixture and intercepted local AI transport",
+    "renderedSite": {
+      "routes": 82,
+      "viewportChecks": 164,
+      "failures": 0,
+      "knownCaptionWarnings": 14
+    },
+    "startup": {
+      "profiles": 18,
+      "failures": 0,
+      "maxCls": 0,
+      "conditions": "Home and Work; Chromium/WebKit; desktop/mobile; light/dark; delayed styles; ruler mode. Decorative WebGL disabled to isolate geometry."
+    },
+    "journey": "4 browser/viewport/theme profiles, including 320px; new-visit focus, history restore, retained filters, typed-key targets, blocked Figma recovery, timed-game focus and reachable results columns passed.",
+    "jugalbandi": "6 ensemble and 6 audio-output profiles; native Chromium touch, WebKit pointer/keyboard, all three callers/responders, mixed-audio headroom, pause, stop, reset, reduced motion, cancellation and permission recovery passed.",
+    "moniac": "6 profiles; six direct wheel drags, native Chromium touch, keyboard limits, water linkage, pause/resume, reset, deterministic step and interest inspector passed. Final result-column/focus additions passed in the journey regression.",
+    "enigma": "4 drawing profiles plus cancellation, blur, re-entry, live light sampling, clear, typed correction, idle rendering and context-loss recovery passed. WebKit drag touch is synthetic; Chromium uses native CDP touch. Idle rendering: zero draw calls.",
+    "workAndMentra": "7 proof-path profiles and 3 experience-presentation profiles passed.",
+    "directory": "6 theme/browser profiles, missing-image recovery and 2 filtered-return profiles passed.",
+    "chat": "25 mocked service recovery/boundary checks plus 2 completion-retry profiles passed. No real model request sent.",
+    "access": "6 invalid-code/layout checks passed; protected content remained closed. No access request sent.",
+    "sourceGuards": "10 original films and 14 protected source files unchanged; private assets excluded from build; all 274 preserved unfinished-footer files unchanged.",
+    "anonymousFigma": {
+      "originalFile": "UqMHlp3DWI2erzruqcCZNd",
+      "observed": "Streamer design loaded without sign-in; Settings navigated from node 63803-41770 to 63803-41500. One Stream here tap produced no visible transition, so complete product-task success is not claimed.",
+      "reconstructedFile": "u9ZRlQnwfUsErk2bFa9Ceq",
+      "reconstructedObserved": "Health App topic action navigated from node 2-33 to node 2-37 without sign-in. Source remains explicitly reconstructed/sample data.",
+      "sharingChanged": false
+    }
+  },
+  "performance": {
+    "method": "Three cold contexts per build/profile. Matching Vite preview servers and compression; Chromium; 80ms latency; 625000 bytes/s download; 4x CPU throttle; reduced motion; 5-second sample. Raw uncompressed-baseline rows are explicitly discarded. Desktop idle repeat investigates timing variance after other suites stop.",
+    "results": [
+      {
+        "width": 390,
+        "results": [
+          {
+            "build": "baseline",
+            "runs": 3,
+            "medianLcpMs": 1468,
+            "lcpRangeMs": [
+              1452,
+              1480
+            ],
+            "maxCls": 0,
+            "encodedResourceBytes": 637933
+          },
+          {
+            "build": "after",
+            "runs": 3,
+            "medianLcpMs": 1484,
+            "lcpRangeMs": [
+              1484,
+              1568
+            ],
+            "maxCls": 0,
+            "encodedResourceBytes": 638494
+          }
+        ],
+        "byteDelta": 561
+      },
+      {
+        "width": 1440,
+        "results": [
+          {
+            "build": "baseline-idle",
+            "runs": 3,
+            "medianLcpMs": 1544,
+            "lcpRangeMs": [
+              1528,
+              1548
+            ],
+            "maxCls": 0,
+            "encodedResourceBytes": 756502
+          },
+          {
+            "build": "after-idle",
+            "runs": 3,
+            "medianLcpMs": 1576,
+            "lcpRangeMs": [
+              1544,
+              1672
+            ],
+            "maxCls": 0,
+            "encodedResourceBytes": 757070
+          }
+        ],
+        "byteDelta": 568
+      }
+    ],
+    "interpretation": "No startup shift. Payload increase below 0.1%. Median LCP differences of +16ms mobile and +32ms desktop do not establish a speed gain or a material runtime regression. These are local lab results, not physical-phone or production field data.",
+    "limits": "Final Moniac-only presentation changes do not alter the homepage rendering path; content-hash references may change a few transferred bytes."
+  },
+  "remainingSourceDependencies": [
+    "A current verified ExecutiveLens destination is still unavailable. Its recorded evidence and local task remain usable.",
+    "14 automatic-caption editorial warnings remain, including explicitly unclear words. Original audio and caption review boundaries are preserved.",
+    "Original model/actuator records and study cohort/date gaps require source evidence. No measurements or interfaces were invented.",
+    "Real AI inference and external access-request delivery were not exercised. Mocked recovery and protected-content boundaries passed.",
+    "No physical-phone or native Safari hardware claim; WebKit automation and native Chromium touch were used."
+  ],
+  "protected": [
+    "Shuffle sources, original media and behavior",
+    "unfinished footer source, artwork and preserved checkout",
+    "experience approval registry",
+    "existing case-study and access contracts"
+  ],
+  "delivery": {
+    "pullRequestCreated": false,
+    "pushed": false,
+    "merged": false,
+    "deployed": false
+  },
+  "artifacts": [
+    "chat-completion.json",
+    "chat-recovery.json",
+    "directory-after-mobile.png",
+    "enigma-after-320.png",
+    "enigma-drawing.json",
+    "enigma-recovery.json",
+    "executivelens-fallback-mobile.png",
+    "figma-original-anonymous.png",
+    "figma-task-after.png",
+    "figma-task-before.png",
+    "home-after-390.png",
+    "home-before-390.png",
+    "home-measurements.json",
+    "interaction-mobile.webm",
+    "interfaces.json",
+    "journey-mobile.webm",
+    "jugalbandi-after-mobile.png",
+    "jugalbandi-audio-recovery.json",
+    "jugalbandi-audio.json",
+    "jugalbandi-before-mobile.png",
+    "moniac-after-mobile.png",
+    "moniac-before-mobile.png",
+    "moniac.json",
+    "navigation-and-recovery.json",
+    "rendered-report.md",
+    "startup.json",
+    "work-proof.json"
+  ]
+}

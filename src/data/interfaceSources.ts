@@ -23,4 +23,4 @@ export const interfaceSources:Record<string,InterfaceSource> = {
  'raahi-project':{prototypes:[taskPrototype('2%3A240','Plan a bus journey','raahi-project')],sourceNote:'Source-based task draft using the original Raahi palette and journey concept. Explore a prepared route; no live transit data or ticketing.'},
 }
 export const interfaceSource=(slug:string)=>interfaceSources[slug]
-export function interfaceKindMatches(slug:string,kind:string){const source=interfaceSource(slug);return kind==='all'||(kind==='live'?!!source?.live:kind==='figma'?!!source?.prototypes.length:kind==='studies'?!!source&&!source.live&&!source.prototypes.length:false)}
+export function interfaceKindMatches(slug:string,kind:string){const source=interfaceSource(slug);return kind==='all'||(kind==='live'?source?.live?.verified===true:kind==='figma'?!!source?.prototypes.length:kind==='studies'?!!source&&!source.live?.verified&&!source.prototypes.length:false)}

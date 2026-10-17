@@ -83,7 +83,7 @@ function Meter({ label, value, color, warn }: {
 
 export default function MoniacSimulator() {
   const [c, setC] = useState<Controls>(INIT_C)
-  const [exploring,setExploring]=useState(false)
+  const [exploring,setExploring]=useState(true)
   const [trial,setTrial]=useState<{before:Econ;after:Econ;reference:Econ;policy:string;value:number;resetValue:number}|null>(null)
   const [policy,setPolicy]=useState<keyof Controls>('taxRate')
   const policies:{key:keyof Controls;label:string;effect:string}[]=[
@@ -102,6 +102,8 @@ export default function MoniacSimulator() {
   const [paused, setPaused] = useState(false)
   const [visible, setVisible] = useState(false)
   const host = useRef<HTMLDivElement>(null)
+  const pauseButton = useRef<HTMLButtonElement>(null)
+  const startFrame = useRef(0)
   useEffect(() => host.current ? observeVisible(host.current,setVisible) : undefined, [])
   const [timeLeft, setTimeLeft] = useState(60)
   const [gameOver, setGameOver] = useState(false)
@@ -114,6 +116,11 @@ export default function MoniacSimulator() {
   const start = useCallback(() => {
     setC(INIT_C); setE(INIT_E); setTimeLeft(60)
     setExploring(false);setTrial(null);setGameOver(false); setEvent(null); setPaused(false); setRunning(true)
+    cancelAnimationFrame(startFrame.current)
+    startFrame.current = requestAnimationFrame(() => {
+      host.current?.scrollIntoView({ block: 'start', behavior: 'instant' })
+      pauseButton.current?.focus({ preventScroll: true })
+    })
   }, [])
 
   const upd = useCallback((k: keyof Controls, v: number) => {
@@ -151,19 +158,20 @@ export default function MoniacSimulator() {
     return () => { clearTimeout(evRef.current); clearTimeout(noticeRef.current) }
   }, [running, visible])
 
-  useEffect(() => () => { clearInterval(timerRef.current); clearInterval(simRef.current); clearTimeout(evRef.current); clearTimeout(noticeRef.current) }, [])
+  useEffect(() => () => { clearInterval(timerRef.current); clearInterval(simRef.current); clearTimeout(evRef.current); clearTimeout(noticeRef.current); cancelAnimationFrame(startFrame.current) }, [])
 
+  const displayEconomy = exploring ? trial?.after ?? INIT_E : e
   const res = gameOver ? grade(e) : null
   const timerColor = timeLeft <= 10 ? 'var(--moniac-danger)' : 'var(--moniac-accent)'
 
   return (
-    <div ref={host} className="moniac-game" style={{
+    <div ref={host} className="moniac-game" data-mode={exploring?'study':'game'} style={{
       width: '100%', borderRadius: 'var(--radius-lg)', overflow: 'hidden',
       border: '1px solid rgba(255,255,255,0.04)',
       background: 'var(--moniac-bg)',
       fontFamily: 'var(--sans)',
     }}>
-      <div className="moniac-session-controls">{running && <button onClick={() => { setRunning(false); setPaused(true) }}>Pause game</button>}{paused && <><button onClick={() => { setExploring(false); setTrial(null); setRunning(true); setPaused(false) }}>Resume game</button><button onClick={start}>Restart game</button></>}{!visible && running && <span role="status">Game paused while out of view.</span>}</div>
+      <div className="moniac-session-controls">{running && <button ref={pauseButton} onClick={() => { setRunning(false); setPaused(true) }}>Pause game</button>}{paused && <><button onClick={() => { setExploring(false); setTrial(null); setRunning(true); setPaused(false) }}>Resume game</button><button onClick={start}>Restart game</button></>}{!visible && running && <span role="status">Game paused while out of view.</span>}</div>
       {/* ── Header ── */}
       <div className="moniac-console-header" style={{
         padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -172,7 +180,7 @@ export default function MoniacSimulator() {
       }}>
         <div>
           <div style={{ fontSize: 16, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'var(--moniac-muted)', marginBottom: 4 }}>
-            MONIAC Economic Simulator
+            MONIAC · Economic model
           </div>
           {running && (
             <div style={{ fontSize: 16, color: 'var(--moniac-muted)' }}>
@@ -190,18 +198,7 @@ export default function MoniacSimulator() {
               {String(Math.floor(timeLeft / 60)).padStart(2, '0')}:{String(timeLeft % 60).padStart(2, '0')}
             </div>
           </div>
-        ) : !gameOver && !paused ? (
-          <button onClick={start} style={{
-            padding: '10px 24px', borderRadius: 'var(--radius-pill)',
-            border: '1px solid var(--moniac-accent)', background: 'var(--moniac-accent)',
-            color:'var(--moniac-bg)', fontSize: 16, fontWeight: 600, letterSpacing: '0.03em',
-            textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'var(--mono)',
-            transition: 'background 0.2s',
-          }}
-          >
-            Start Economy
-          </button>
-        ) : null}
+        ) : <span className="moniac-mode-label">{gameOver?'Game complete':paused?'Game paused':'Untimed study'}</span>}
       </div>
 
       {/* ── Event banner ── */}
@@ -219,15 +216,31 @@ export default function MoniacSimulator() {
         </div>
       )}
 
-      {/* ── Economy health ── */}
-      <div style={{ padding: '14px 20px', display: 'flex', gap: 14, flexWrap: 'wrap', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-        <Meter label="GDP" value={e.gdp} color="var(--moniac-accent)" warn="low" />
-        <Meter label="Employment" value={e.employment} color="var(--moniac-accent)" warn="low" />
-        <Meter label="Inflation" value={e.inflation} color="var(--moniac-accent)" warn="high" />
-        <Meter label="Debt" value={e.debt} color="var(--moniac-accent)" warn="high" />
-      </div>
+      <section className="moniac-policy" aria-label="Operate the economic model">
+        <div className="moniac-machine-layout">
+          <div className="moniac-control-inspector">
+            <label htmlFor="moniac-policy">Policy</label>
+            <select id="moniac-policy" value={policy} onChange={event=>setPolicy(event.target.value as keyof Controls)}>{policies.map(item=><option key={item.key} value={item.key}>{item.label}</option>)}</select>
+            <label htmlFor="moniac-active-policy"><span>{currentPolicy.label}</span><output>{c[policy].toFixed(1)}%</output></label>
+            <PortfolioSlider id="moniac-active-policy" step={.1} aria-label={`${currentPolicy.label}: ${c[policy]}%`} min={0} max={100} value={c[policy]} disabled={!running&&!exploring} onChange={event=>upd(policy,Number(event.target.value))}/>
+            {exploring&&<div className="moniac-experiment-controls"><button onClick={()=>{const before=trial?.after??INIT_E;setTrial({before:{...before},after:simulate(before,c,()=>.5),reference:simulate(before,{...c,[policy]:INIT_C[policy]},()=>.5),policy:currentPolicy.label,value:c[policy],resetValue:INIT_C[policy]})}} aria-label="Run one model step">Run a step</button><button onClick={()=>{setTrial(null);setC({...INIT_C});setPolicy('taxRate')}} aria-label="Reset experiment">Reset</button></div>}
 
-      <section className="moniac-policy"><div className="moniac-experiment-controls"><button onClick={()=>{if(running){setRunning(false);setPaused(true)}setExploring(true);setTrial(null)}}>Explore rules without shocks</button>{exploring&&<><button onClick={()=>{const before=trial?.after??INIT_E;setTrial({before:{...before},after:simulate(before,c,()=>.5),reference:simulate(before,{...c,[policy]:INIT_C[policy]},()=>.5),policy:currentPolicy.label,value:c[policy],resetValue:INIT_C[policy]})}}>Run one model step</button><button onClick={()=>{setTrial(null);setC({...INIT_C});setPolicy('taxRate')}}>Reset experiment</button></>}</div>{trial&&<table className="moniac-step-results"><caption>One step with random noise disabled. {trial.policy}: {trial.value.toFixed(1)}% compared with its reset value of {trial.resetValue}%. All other inputs and starting indices match.</caption><thead><tr><th>Index</th><th>Before</th><th>Reset control</th><th>Your control</th><th>Difference</th></tr></thead><tbody>{(Object.keys(trial.before) as (keyof Econ)[]).map(key=><tr key={key}><th scope="row">{key}</th><td>{trial.before[key].toFixed(2)}</td><td>{trial.reference[key].toFixed(2)}</td><td>{trial.after[key].toFixed(2)}</td><td>{(trial.after[key]-trial.reference[key]).toFixed(2)}</td></tr>)}</tbody></table>}<label htmlFor="moniac-policy">Inspect a policy<select id="moniac-policy" value={policy} onChange={event=>setPolicy(event.target.value as keyof Controls)}>{policies.map(item=><option key={item.key} value={item.key}>{item.label}</option>)}</select></label><div className="moniac-machine-layout"><MoniacHydraulic values={c} income={e.gdp} timeLeft={timeLeft} enabled={running||exploring} active={policy} onInspect={setPolicy} onChange={upd}/><div className="moniac-control-inspector"><label htmlFor="moniac-active-policy">{currentPolicy.label}<output>{c[policy].toFixed(1)}%</output></label><PortfolioSlider id="moniac-active-policy" step={.1} aria-label={`${currentPolicy.label}: ${c[policy]}%`} min={0} max={100} value={c[policy]} disabled={!running&&!exploring} onChange={event=>upd(policy,Number(event.target.value))}/><p>{policy==='interestRate'?'Interest is an additional browser-model control. The original screen does not show a seventh valve.':running||exploring?'Turn the selected valve or adjust its value here.':'Start the economy or explore the rules to operate the valves.'}</p><div className="moniac-policy-detail"><h3>{currentPolicy.label} → economy</h3><p>{currentPolicy.effect}</p><p>Settings feed the next simulation tick. Other controls, mean reversion and random shocks also affect the result. Percentages are game indices, not economic forecasts.</p></div></div></div></section>
+          </div>
+          <MoniacHydraulic values={c} income={displayEconomy.gdp} timeLeft={timeLeft} enabled={running||exploring} active={policy} onInspect={setPolicy} onChange={upd}/>
+        </div>
+        {trial&&exploring&&<p role="status" className="moniac-trial-feedback">One step: GDP {trial.after.gdp.toFixed(2)}, employment {trial.after.employment.toFixed(2)}. The full comparison follows the diagram.</p>}
+            <details className="moniac-policy-detail"><summary>How {currentPolicy.label.toLowerCase()} affects the model</summary><h3>{currentPolicy.label} → economy</h3><p>{currentPolicy.effect}</p><p>{policy==='interestRate'?'Interest is an additional browser-model control. The original screen does not show a seventh valve.':'Turn its labelled wheel or adjust the value above.'} {exploring?'Run one model step to compare outcomes with random noise disabled.':'Settings feed the next simulation tick. Other controls, mean reversion and random shocks also affect the result.'} Percentages are game indices, not economic forecasts.</p></details>
+        {trial&&<div className="moniac-step-scroll" role="region" aria-label="Model step comparison" tabIndex={0}><table className="moniac-step-results"><caption>One step with random noise disabled. {trial.policy}: {trial.value.toFixed(1)}% compared with its reset value of {trial.resetValue}%. All other inputs and starting indices match.</caption><thead><tr><th>Index</th><th>Before</th><th>Reset control</th><th>Your control</th><th>Difference</th></tr></thead><tbody>{(Object.keys(trial.before) as (keyof Econ)[]).map(key=><tr key={key}><th scope="row">{key}</th><td>{trial.before[key].toFixed(2)}</td><td>{trial.reference[key].toFixed(2)}</td><td>{trial.after[key].toFixed(2)}</td><td>{(trial.after[key]-trial.reference[key]).toFixed(2)}</td></tr>)}</tbody></table></div>}
+      </section>
+      <div className="moniac-game-mode"><p>{exploring?'Untimed: change a valve, then run one step. Try the 60-second game when you know the controls.':'Explore the rules without a countdown or random shocks.'}</p><div className="moniac-experiment-controls"><button onClick={()=>{if(running){setRunning(false);setPaused(true)}setExploring(true);setTrial(null)}}>Explore rules without shocks</button>{!running&&!gameOver&&!paused&&<button className="glass-action moniac-start" onClick={start}>Start Economy</button>}</div></div>
+
+      {/* ── Economy health ── */}
+      <div className="moniac-economy-health" style={{ padding: '14px 20px', display: 'flex', gap: 14, flexWrap: 'wrap', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+        <Meter label="GDP" value={displayEconomy.gdp} color="var(--moniac-accent)" warn="low" />
+        <Meter label="Employment" value={displayEconomy.employment} color="var(--moniac-accent)" warn="low" />
+        <Meter label="Inflation" value={displayEconomy.inflation} color="var(--moniac-accent)" warn="high" />
+        <Meter label="Debt" value={displayEconomy.debt} color="var(--moniac-accent)" warn="high" />
+      </div>
 
       {/* ── Game over ── */}
       {gameOver && res && (

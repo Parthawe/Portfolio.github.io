@@ -208,6 +208,7 @@ jobs:
           curl --fail --silent "$QA_BASE_URL" > /dev/null
           node scripts/experience-directory-qa.mjs
           node scripts/experience-directory-return-qa.mjs
+          QA_OUTPUT_DIR=/tmp/experience-journey-qa node scripts/experience-journey-qa.mjs
           node scripts/stage-anatomy-qa.mjs
           node scripts/mentra-source-qa.mjs
           node scripts/jugalbandi-anatomy-qa.mjs
@@ -230,6 +231,7 @@ jobs:
           path: |
             /tmp/experience-preview.log
             /tmp/experience-directory-qa/
+            /tmp/experience-journey-qa/
             /tmp/stage-anatomy-qa/
             /tmp/mentra-source-qa/
             /tmp/jugalbandi-anatomy-qa/

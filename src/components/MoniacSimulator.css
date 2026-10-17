@@ -74,3 +74,55 @@
 .hydraulic-drawing-viewport:focus-visible { outline:2px solid #fff; outline-offset:-3px; }
 /* The source-game screen stays dark in both site themes. */
 .moniac-isometric-screen .hydraulic-view-controls .glass-action { background:#343434; color:#fff; border-color:#999; }
+
+/* Untimed controls lead the drawing; the countdown is an explicit later choice. */
+.moniac-machine-layout { grid-template-areas:"drawing inspector"; margin-top:0; }
+.moniac-isometric-screen { grid-area:drawing; }
+.moniac-control-inspector { grid-area:inspector; }
+.moniac-control-inspector > select { width:100%; margin:6px 0 12px; }
+.moniac-control-inspector .moniac-experiment-controls { margin-block:12px 0; gap:8px; }
+.moniac-control-inspector .moniac-experiment-controls button { flex:1; font-size:14px; }
+.moniac-policy-detail summary { font-size:14px; line-height:1.5; }
+.moniac-trial-feedback { font-size:14px; line-height:1.5; }
+.moniac-mode-label { font-size:14px; color:var(--moniac-muted); }
+.moniac-game { scroll-margin-top:calc(var(--nav-h,4rem) + 1rem); }
+.experience-preview-page .moniac-game { scroll-margin-top:12px; }
+.moniac-game-mode { padding:16px 20px; border-top:1px solid var(--moniac-rule); }
+.moniac-game-mode > p { margin:0 0 12px; font-size:14px; line-height:1.5; }
+.moniac-game-mode .moniac-start { color:var(--moniac-bg); background:var(--moniac-accent); border-color:var(--moniac-accent); }
+@media(max-width:800px) {
+ .moniac-machine-layout { grid-template-areas:"inspector" "drawing"; gap:12px; }
+ .moniac-control-inspector { padding:12px; }
+ .physical-world-page .moniac-control-inspector { position:sticky; top:8px; z-index:4; }
+ .moniac-control-inspector > select { margin-bottom:8px; padding:8px; }
+ .moniac-console-header { min-height:60px; padding:10px 16px!important; }
+ .moniac-policy { padding:12px; }
+ .hydraulic-view-controls { padding:10px; gap:6px; flex-wrap:nowrap; }
+ .hydraulic-view-controls span { flex:1; font-size:11px; }
+ .hydraulic-view-controls button { font-size:12px; padding:8px; }
+ .moniac-step-results { font-size:12px; }
+ .moniac-step-results :is(th,td) { padding:8px 3px; }
+}
+
+@media(max-width:800px) {
+ .moniac-console-header { gap:4px!important; }
+ .moniac-console-header > div > div { font-size:14px!important; margin:0!important; }
+ .moniac-control-inspector > label:first-child { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+ .moniac-control-inspector > select { margin-top:0; }
+ .moniac-control-inspector .moniac-experiment-controls button { padding:8px; line-height:1.4; }
+ .moniac-policy-detail summary { min-height:44px!important; }
+}
+
+.moniac-control-inspector > .portfolio-slider { display:block; width:100%; }
+@media(max-width:800px) {
+ .moniac-control-inspector { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; column-gap:12px; }
+ .moniac-control-inspector > select { grid-column:1; margin:0; }
+ .moniac-control-inspector > label[for=moniac-active-policy] { grid-column:2; }
+ .moniac-control-inspector > label[for=moniac-active-policy] > span { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+ .moniac-control-inspector > .portfolio-slider,.moniac-control-inspector > .moniac-experiment-controls { grid-column:1/-1; }
+ .moniac-policy > .moniac-policy-detail { margin-top:12px; padding-top:12px; }
+}
+
+.moniac-step-scroll { max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; }
+.moniac-step-scroll:focus-visible { outline:2px solid var(--moniac-ink); outline-offset:2px; }
+.moniac-step-scroll .moniac-step-results { min-width:350px; }
