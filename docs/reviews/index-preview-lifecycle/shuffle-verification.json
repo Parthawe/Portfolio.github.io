@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "canvas": true,
+      "linkedSliders": true,
+      "views": true,
+      "reset": true,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "canvas": true,
+      "linkedSliders": true,
+      "views": true,
+      "reset": true,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "canvas": true,
+      "linkedSliders": true,
+      "views": true,
+      "reset": true,
+      "errors": []
+    }
+  ],
+  "failures": []
+}

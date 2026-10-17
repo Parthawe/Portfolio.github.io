@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-17T03:19:09.777Z",
+  "results": [
+    "chromium light: Index/Arc complete screen sizing, full-frame films, playback and Escape disposal passed",
+    "webkit dark: Index/Arc complete screen sizing, full-frame films, playback and Escape disposal passed"
+  ],
+  "failures": []
+}

@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "CoverPreview": {
+      "file": "CoverPreview-CRzLjMuB.js",
+      "bytes": 4534,
+      "gzip_bytes": 1974
+    },
+    "WorkPage": {
+      "file": "WorkPage-BHWGJwfi.js",
+      "bytes": 20040,
+      "gzip_bytes": 6086
+    }
+  },
+  "candidate": {
+    "CoverPreview": {
+      "file": "CoverPreview-Wqpff98I.js",
+      "bytes": 4617,
+      "gzip_bytes": 1991
+    },
+    "WorkPage": {
+      "file": "WorkPage-BVd5cX0O.js",
+      "bytes": 19815,
+      "gzip_bytes": 6131
+    }
+  }
+}

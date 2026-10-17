@@ -1,0 +1,60 @@
+[
+  {
+    "engine": "chromium",
+    "pass": false,
+    "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('.work-library-preview__frame').locator('.cover-art')\nExpected: \"playing\"\nReceived: \"\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('.work-library-preview__frame').locator('.cover-art')\n    14 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-preview-kind=\"film\">…</span>\n       - unexpected value \"null\"\n",
+    "events": [
+      {
+        "chunk": "held"
+      },
+      {
+        "beforeRelease": {
+          "hover": true,
+          "media": true,
+          "rect": {
+            "x": 1075.6875,
+            "y": 454.765625,
+            "width": 316.796875,
+            "height": 395.984375,
+            "top": 454.765625,
+            "right": 1392.484375,
+            "bottom": 850.75,
+            "left": 1075.6875
+          }
+        }
+      },
+      {
+        "chunk": "released"
+      }
+    ]
+  },
+  {
+    "engine": "webkit",
+    "pass": false,
+    "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('.work-library-preview__frame').locator('.cover-art')\nExpected: \"playing\"\nReceived: \"\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 5000ms\n  - waiting for locator('.work-library-preview__frame').locator('.cover-art')\n    14 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-preview-kind=\"film\">…</span>\n       - unexpected value \"null\"\n",
+    "events": [
+      {
+        "chunk": "held"
+      },
+      {
+        "beforeRelease": {
+          "hover": true,
+          "media": true,
+          "rect": {
+            "x": 1075.6875,
+            "y": 454.765625,
+            "width": 316.796875,
+            "height": 395.984375,
+            "top": 454.765625,
+            "right": 1392.484375,
+            "bottom": 850.75,
+            "left": 1075.6875
+          }
+        }
+      },
+      {
+        "chunk": "released"
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "results": [
+    "chromium 1440 light: all 14 registered covers load their real media or supplied typeface",
+    "chromium 1440 light: film playback/end, screen sequence, replay, Escape, reduced motion, hidden/offscreen cleanup, original fonts, all Work views, direct navigation",
+    "chromium 1440 dark: all 14 registered covers load their real media or supplied typeface",
+    "chromium 1440 dark: film playback/end, screen sequence, replay, Escape, reduced motion, hidden/offscreen cleanup, original fonts, all Work views, direct navigation",
+    "chromium 390 light: all 14 registered covers load their real media or supplied typeface",
+    "chromium 390 light: film playback/end, screen sequence, replay, Escape, reduced motion, hidden/offscreen cleanup, original fonts, all Work views, direct navigation",
+    "webkit 390 dark: all 14 registered covers load their real media or supplied typeface",
+    "webkit 390 dark: film playback/end, screen sequence, replay, Escape, reduced motion, hidden/offscreen cleanup, original fonts, all Work views, direct navigation",
+    "reduce: original poster and project navigation remain usable",
+    "save-data: original poster and project navigation remain usable",
+    "low-memory: original poster and project navigation remain usable",
+    "emergency: original poster and project navigation remain usable",
+    "media-failure: original poster and project navigation remain usable",
+    "chunk-failure: original poster and project navigation remain usable"
+  ],
+  "failures": []
+}

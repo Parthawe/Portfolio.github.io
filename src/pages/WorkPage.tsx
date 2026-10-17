@@ -371,36 +371,15 @@ export default function WorkPage() {
   useEffect(() => {
     if (viewMode !== 'library') return
 
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-library-shelf]'))
-    if (!sections.length) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-
-        const shelfKey = visible?.target.getAttribute('data-library-shelf')
-        if (shelfKey) {
-          setActiveLibraryShelf(shelfKey)
-        }
-      },
-      {
-        rootMargin: '-18% 0px -55% 0px',
-        threshold: [0.15, 0.3, 0.5],
-      }
-    )
-
-    sections.forEach(section => observer.observe(section))
-    return () => observer.disconnect()
-  }, [viewMode, librarySections.length])
-
-  useEffect(() => {
-    if (viewMode !== 'library') return
-
     let frameId = 0
     const syncPreviewToVisibleRow = () => {
       frameId = 0
+      // A pending scroll/resize frame must not overwrite an explicit row
+      // selection or swap artwork while someone is inspecting its preview.
+      const focusedRow = document.activeElement?.closest('.work-library-row')
+      const hoveredPreview = window.matchMedia('(hover: hover)').matches &&
+        document.querySelector('.work-library-row:hover, .work-library-preview:hover')
+      if (focusedRow || hoveredPreview) return
       const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-library-project-slug]'))
       if (!rows.length) return
 
