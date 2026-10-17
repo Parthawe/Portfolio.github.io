@@ -1,6 +1,8 @@
 /* --- Reset --- */
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 html {
+  /* Motion measures scroll targets against this containing block. */
+  position: relative;
   -webkit-text-size-adjust:100%;
   scroll-behavior:auto;
   overflow-x: clip;
