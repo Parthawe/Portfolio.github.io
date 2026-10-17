@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-10-17T01:49:00.133Z",
+  "conditions": "Three alternating pairs; fresh 1440×1000 browser contexts, HTTP cache disabled, unthrottled local previews. WebGL deliberately unavailable on both builds to isolate cover/initial-paint costs. Not a 3D-startup or field benchmark.",
+  "baseline": "http://127.0.0.1:5233",
+  "candidate": "http://127.0.0.1:5234",
+  "summary": [
+    {
+      "route": "/",
+      "baseline": {
+        "fcp": 156,
+        "transferredBytes": 791567,
+        "cls": 0
+      },
+      "candidate": {
+        "fcp": 160,
+        "transferredBytes": 791600,
+        "cls": 0
+      }
+    },
+    {
+      "route": "/work/",
+      "baseline": {
+        "fcp": 156,
+        "transferredBytes": 4285567,
+        "cls": 0
+      },
+      "candidate": {
+        "fcp": 156,
+        "transferredBytes": 4285611,
+        "cls": 0
+      }
+    }
+  ],
+  "samples": [
+    {
+      "pair": 1,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 152,
+      "domContentLoaded": 49.19999999925494,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 1,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 152,
+      "domContentLoaded": 39.80000000074506,
+      "transferredBytes": 791600,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 1,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 164,
+      "domContentLoaded": 45.80000000074506,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 1,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 156,
+      "domContentLoaded": 43.900000002235174,
+      "transferredBytes": 4285611,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 2,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 160,
+      "domContentLoaded": 40.19999999925494,
+      "transferredBytes": 791600,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 2,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 156,
+      "domContentLoaded": 40.900000002235174,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 2,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 160,
+      "domContentLoaded": 47,
+      "transferredBytes": 4285611,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 2,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 156,
+      "domContentLoaded": 40.400000002235174,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 3,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 164,
+      "domContentLoaded": 45.399999998509884,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 3,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 164,
+      "domContentLoaded": 46.900000002235174,
+      "transferredBytes": 791600,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 3,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 156,
+      "domContentLoaded": 47.399999998509884,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 3,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 156,
+      "domContentLoaded": 49.69999999925494,
+      "transferredBytes": 4285611,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    }
+  ]
+}

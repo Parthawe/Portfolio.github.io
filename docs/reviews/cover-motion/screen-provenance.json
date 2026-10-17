@@ -1,0 +1,98 @@
+[
+  {
+    "name": "miniapps-discover",
+    "source": "/Assets/Projects/mentra-miniapps/figma/store-discovery.png",
+    "derivative": "/Assets/cover-motion/miniapps-discover.webp",
+    "originalSize": [
+      390,
+      1103
+    ],
+    "previewSize": [
+      360,
+      1018
+    ],
+    "bytes": 32096,
+    "sourceSHA256": "179dc5b4a7ad103abbdc9b3f591cf4ce1657c78f3a510303d108fc8752f04909",
+    "provenance": "Web-size derivative of the original supplied screen; no UI added or removed."
+  },
+  {
+    "name": "miniapps-detail",
+    "source": "/Assets/Projects/mentra-miniapps/figma/store-detail.png",
+    "derivative": "/Assets/cover-motion/miniapps-detail.webp",
+    "originalSize": [
+      390,
+      1166
+    ],
+    "previewSize": [
+      360,
+      1076
+    ],
+    "bytes": 20696,
+    "sourceSHA256": "806b1825866200a31df106f82444505e605afb4d4a173f7a2401660d13c92344",
+    "provenance": "Web-size derivative of the original supplied screen; no UI added or removed."
+  },
+  {
+    "name": "miniapps-installed",
+    "source": "/Assets/Projects/mentra-miniapps/figma/store-installed.png",
+    "derivative": "/Assets/cover-motion/miniapps-installed.webp",
+    "originalSize": [
+      390,
+      1166
+    ],
+    "previewSize": [
+      360,
+      1076
+    ],
+    "bytes": 21222,
+    "sourceSHA256": "a61f33912f1ea96646c141d54bb12d71b5be067a2d8562b7cd77bd17f1f28674",
+    "provenance": "Web-size derivative of the original supplied screen; no UI added or removed."
+  },
+  {
+    "name": "raahi-home",
+    "source": "/Assets/Projects/Raahi/photos/raahi-homepage.webp",
+    "derivative": "/Assets/cover-motion/raahi-home.webp",
+    "originalSize": [
+      488,
+      1691
+    ],
+    "previewSize": [
+      360,
+      1247
+    ],
+    "bytes": 100086,
+    "sourceSHA256": "ff64150f2f88876e5e5d04e045b2a1dec87ee4a793cb2d726f77f8d63091339f",
+    "provenance": "Web-size derivative of the original supplied screen; no UI added or removed."
+  },
+  {
+    "name": "raahi-routes",
+    "source": "/Assets/Projects/Raahi/photos/route list.png",
+    "derivative": "/Assets/cover-motion/raahi-routes.webp",
+    "originalSize": [
+      607,
+      1084
+    ],
+    "previewSize": [
+      360,
+      643
+    ],
+    "bytes": 51542,
+    "sourceSHA256": "5a0d823d88be16cb4c84cce5d66b1dd7c6fc9fd1356bd6e852604bbf7e220f5c",
+    "provenance": "Web-size derivative of the original supplied screen; no UI added or removed."
+  },
+  {
+    "name": "raahi-itinerary",
+    "source": "/Assets/Projects/Raahi/photos/raahi-route-details.webp",
+    "derivative": "/Assets/cover-motion/raahi-itinerary.webp",
+    "originalSize": [
+      516,
+      975
+    ],
+    "previewSize": [
+      360,
+      680
+    ],
+    "bytes": 60576,
+    "sourceSHA256": "3b431913acf4dc6c4b1cb3c926dbe22004eddba5ea5e22f80ae69a221606b463",
+    "provenance": "Web-size derivative of the original supplied screen; no UI added or removed."
+  }
+]

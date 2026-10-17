@@ -1,0 +1,168 @@
+[
+  {
+    "route": "/",
+    "delay": 0,
+    "shifts": [],
+    "changes": []
+  },
+  {
+    "route": "/",
+    "delay": 500,
+    "shifts": [
+      {
+        "value": 0.020833333333333332,
+        "time": 672.4000000022352,
+        "sources": [
+          "figma-grid-overlay",
+          "nav-left-pill surface-glass figma-hover",
+          "nav-easter-toggle surface-glass surface-glass--subtle",
+          "ambient-toggle surface-glass surface-glass--subtle figma-hover",
+          "theme-toggle surface-glass surface-glass--subtle"
+        ],
+        "state": {
+          "body": "figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "links": [
+            {
+              "url": "http://127.0.0.1:5233/bundle/index-BdAd2zTU.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/ParthDoesSection-D1rK_NT6.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/ProjectCard-B1Mv1YpW.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/HomePage-CEJHAeCu.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/PocketArcade-B-tBw-ZD.css",
+              "loaded": false
+            }
+          ],
+          "wrap": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          },
+          "font": "16px"
+        }
+      }
+    ],
+    "changes": []
+  },
+  {
+    "route": "/work/",
+    "delay": 0,
+    "shifts": [
+      {
+        "value": 0.00017253870081018519,
+        "time": 636.2000000029802,
+        "sources": [
+          "pill-link work-bnav-link figma-hover",
+          "pill-link work-bnav-link figma-hover",
+          "pill-link work-bnav-link figma-hover",
+          "pill-link work-bnav-link figma-hover"
+        ],
+        "state": {
+          "body": "page-work collaborator-cursor-active figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "links": [
+            {
+              "url": "http://127.0.0.1:5233/bundle/index-BdAd2zTU.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/ProjectCard-B1Mv1YpW.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/WorkPage-BiDOm0EG.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/CoverPreview-D5Queq5U.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/PocketArcade-B-tBw-ZD.css",
+              "loaded": false
+            }
+          ],
+          "wrap": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 4630.84375,
+            "top": 0,
+            "right": 1440,
+            "bottom": 4630.84375,
+            "left": 0
+          },
+          "font": "16px"
+        }
+      }
+    ],
+    "changes": []
+  },
+  {
+    "route": "/work/",
+    "delay": 500,
+    "shifts": [
+      {
+        "value": 0.00017253870081018519,
+        "time": 837.5,
+        "sources": [
+          "pill-link work-bnav-link figma-hover",
+          "pill-link work-bnav-link figma-hover",
+          "pill-link work-bnav-link figma-hover",
+          "pill-link work-bnav-link figma-hover"
+        ],
+        "state": {
+          "body": "page-work figma-chrome-enabled figma-rulers-off figma-reader-mode",
+          "links": [
+            {
+              "url": "http://127.0.0.1:5233/bundle/index-BdAd2zTU.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/ProjectCard-B1Mv1YpW.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/WorkPage-BiDOm0EG.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/CoverPreview-D5Queq5U.css",
+              "loaded": true
+            },
+            {
+              "url": "http://127.0.0.1:5233/bundle/PocketArcade-B-tBw-ZD.css",
+              "loaded": false
+            }
+          ],
+          "wrap": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 4630.84375,
+            "top": 0,
+            "right": 1440,
+            "bottom": 4630.84375,
+            "left": 0
+          },
+          "font": "16px"
+        }
+      }
+    ],
+    "changes": []
+  }
+]

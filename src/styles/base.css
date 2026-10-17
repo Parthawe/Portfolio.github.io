@@ -410,6 +410,11 @@ body.nav-on-dark .figma-ruler-corner {
 body {
   padding-left: 0;
   padding-top: 0;
+}
+
+/* Saved ruler settings must settle before paint. Keep the transition only
+   for subsequent, deliberate changes after the initial loading handoff. */
+body.page-ready {
   transition: padding 0.2s ease;
 }
 

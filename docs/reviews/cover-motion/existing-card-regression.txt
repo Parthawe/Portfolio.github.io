@@ -1,0 +1,6 @@
+PASS card text loop: / 1187px, 2px/s seamless motion, hover/focus pause, reduced-motion support
+PASS card text loop: /work/ 1187px, 20px/s seamless motion, hover/focus pause, reduced-motion support
+PASS card text loop: /ux-research/ 1187px, 20px/s seamless motion, hover/focus pause, reduced-motion support
+PASS card text loop: / 390px, 2px/s seamless motion, hover/focus pause, reduced-motion support
+PASS card text loop: /work/ 390px, 20px/s seamless motion, hover/focus pause, reduced-motion support
+PASS card text loop: /ux-research/ 390px, 20px/s seamless motion, hover/focus pause, reduced-motion support

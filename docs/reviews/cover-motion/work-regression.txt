@@ -1,0 +1,7 @@
+PASS static cover contrast: 31 images match measured text treatment
+PASS Work loading: 390px light, visible priority, deferred entrance/media, hover, reduced motion
+PASS Work loading: 390px dark, visible priority, deferred entrance/media, hover, reduced motion
+PASS Work loading: 1024px light, visible priority, deferred entrance/media, hover, reduced motion
+PASS Work loading: 1024px dark, visible priority, deferred entrance/media, hover, reduced motion
+PASS Work loading: 1440px light, visible priority, deferred entrance/media, hover, reduced motion
+PASS Work loading: 1440px dark, visible priority, deferred entrance/media, hover, reduced motion

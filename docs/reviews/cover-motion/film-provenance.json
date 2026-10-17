@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "mentra",
+    "source": "/Assets/Projects/mentra-brand/motion/official-product-intro.mp4",
+    "startSeconds": 0.1,
+    "durationSeconds": 3.3,
+    "bytes": 50377,
+    "sourceSHA256": "6bb907de24d19edbcd4b8f63e5347c9c927a02e6433d9bd7d70487a4a3f26c97",
+    "outputSHA256": "f91bf30f0a76ba1887bd99591031ad77dee5b16420c72626f9b68ad40a41b600",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "transfi-project",
+    "source": "/Assets/Projects/Transfi/motion/official-site-hero.mp4",
+    "startSeconds": 0.3,
+    "durationSeconds": 4.2,
+    "bytes": 226288,
+    "sourceSHA256": "ed21747076023d50d1ed1bf3aa7724467740117ec2e92a396e85fcbef9e1201e",
+    "outputSHA256": "8e048ceb7670e8fb851034da53f073047be0accea40da121d6a5ccfcce5f331d",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "jugalbandi",
+    "source": "/Assets/films/jugalbandi.mp4",
+    "startSeconds": 118,
+    "durationSeconds": 4.2,
+    "bytes": 108594,
+    "sourceSHA256": "33ddda52b607eafa738f405f422b4bdce9cb45f2ce0554ab619cbdb8dd943a26",
+    "outputSHA256": "6c65447cf9d44a3e715917905a1b9a1782241bf9656d49994fa94f16210b1214",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "enigma",
+    "source": "/Assets/films/enigma.mp4",
+    "startSeconds": 27,
+    "durationSeconds": 4.2,
+    "bytes": 51434,
+    "sourceSHA256": "2769fc7fa5d562632e0d1914bdc09fc56a3973b3fdbb2cb2173fd85e725bdee6",
+    "outputSHA256": "5e5db8ab7922f906390b8eca8446179690a9f6bc1f784e7822c640c0f844ff21",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "moniac-machine",
+    "source": "/Assets/films/moniac-machine.mp4",
+    "startSeconds": 34,
+    "durationSeconds": 4.2,
+    "bytes": 82631,
+    "sourceSHA256": "49beb95189e20d00e2c267f4313fe73433e3e0cbf0e990ea92ce127e99dfc3f8",
+    "outputSHA256": "d61fd4ef8d7246fe9479231c6262d790689e5ac85db1dd09f4be9bf4901a36ed",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "the-omakase",
+    "source": "/Assets/films/the-omakase.mp4",
+    "startSeconds": 78,
+    "durationSeconds": 4.2,
+    "bytes": 104440,
+    "sourceSHA256": "cf737427631e3f5fd99f750bdcd45424a22ed34a2041bedec5fd78ecb9e7d82a",
+    "outputSHA256": "c1890527ac930c4a90f823e84865865042d2b84ba732fab23310ecddf68c1173",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "drowning",
+    "source": "/Assets/films/drowning.mp4",
+    "startSeconds": 42,
+    "durationSeconds": 4.2,
+    "bytes": 73039,
+    "sourceSHA256": "2b126ced14d5341407408612a8aefd011e9fef1d57a02abc003d06ed6e37d67a",
+    "outputSHA256": "76cae56dc57b0cb5aa03e05d2ca95d16e0320b96484bb6f3cf31294bfa952d29",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "making-of-time",
+    "source": "/Assets/films/making-of-time.mp4",
+    "startSeconds": 68,
+    "durationSeconds": 4.2,
+    "bytes": 71422,
+    "sourceSHA256": "b030a38dff997a5f4f427252764cbb76c56d9e864efa60c8bb70497ce1e9fa2f",
+    "outputSHA256": "aa00b82fb00999760340460194ec8e8e0c28602104cbc336a8aaa6e80278522d",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "vishwaconclave",
+    "source": "/Assets/Projects/VishwaConclave/motion-2021/theme-release.mp4",
+    "startSeconds": 55,
+    "durationSeconds": 4.2,
+    "bytes": 75317,
+    "sourceSHA256": "37fa3089b8e5c2ffe9eb9103dbf5014a9248447ced6ec5fde717aa0c263329bb",
+    "outputSHA256": "c8eba748e91e5a82adae32df7bb3f7a30153c52c4cea6f7ebc2dc9d8d2e43083",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  },
+  {
+    "slug": "black-hole",
+    "source": "/Assets/Projects/black-hole-assets/time-dilation.mp4",
+    "startSeconds": 10,
+    "durationSeconds": 4.2,
+    "bytes": 39701,
+    "sourceSHA256": "b533fac6bae12d8eb2a95ecdf311fb65b8bafdc75d73a578358a1d044d4695aa",
+    "outputSHA256": "f406681bb57d2ba1c84ceb8e955a3c5cb5c85c200c9398eaf64de5d36f8e2d93",
+    "provenance": "Excerpt from existing public project recording; no audio or generated footage."
+  }
+]
