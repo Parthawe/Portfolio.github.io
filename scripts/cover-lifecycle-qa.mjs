@@ -112,34 +112,34 @@ for (const engine of [chromium, webkit]) {
       await page.goto(base + '/work?view=library', { waitUntil: 'domcontentloaded' })
       const row = page.locator('.work-library-row[href="/raahi-project"]').first()
       const frame = page.locator('.work-library-preview__frame')
-      // Wheel events at (0, 0) do not scroll the Linux WebKit content surface.
-      // Use the visible gutter between list and artwork, outside both controls.
+      // Keep the pointer outside both controls when testing scroll selection.
       const moveToGutter = async () => {
         const listBox = await page.locator('.work-library-shelves').boundingBox(), artBox = await frame.boundingBox()
         await page.mouse.move((listBox.x + listBox.width + artBox.x) / 2, 500)
       }
+      const scrollContent = async delta => {
+        const before = await page.evaluate(() => scrollY)
+        // Linux WebKit's wheel transport can leave the viewport stationary.
+        // Exercise its real document scroll events directly; Chromium retains
+        // native wheel input, alongside the separate native-touch suite.
+        if (engine === webkit) await page.evaluate(delta => window.scrollBy({ top: delta, behavior: 'instant' }), delta)
+        else await page.mouse.wheel(0, delta)
+        await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(before)
+        await page.waitForTimeout(300)
+      }
       await row.hover(); await frame.hover()
       await expect(page.locator('.work-library-preview__caption strong')).toHaveText('Raahi')
-      await page.mouse.wheel(0, 120); await page.waitForTimeout(300)
+      await scrollContent(120)
       await expect(page.locator('.work-library-preview__caption strong')).toHaveText('Raahi')
       // Focus, too, owns the selection while scroll bookkeeping catches up.
-      await row.focus(); await moveToGutter(); await page.mouse.wheel(0, 160)
-      await page.waitForTimeout(300)
+      await row.focus(); await moveToGutter(); await scrollContent(160)
       await expect(page.locator('.work-library-preview__caption strong')).toHaveText('Raahi')
       await row.blur(); await moveToGutter()
       const beforeScroll = await page.evaluate(() => scrollY)
-      await page.mouse.wheel(0, 300)
+      const nextRow = page.locator('.work-library-row[href="/moniac-machine"]').first()
+      await nextRow.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }))
       await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(beforeScroll)
-      await page.waitForTimeout(300)
-      const expected = await page.locator('[data-library-project-slug]').evaluateAll(rows => {
-        const top = Math.max(96, innerHeight * .16), bottom = innerHeight * .88
-        const visible = rows.map(row => ({ row, rect: row.getBoundingClientRect() }))
-          .filter(({ rect }) => rect.bottom > top && rect.top < bottom)
-          .sort((a, b) => Math.abs((a.rect.top + a.rect.height / 2) - innerHeight * .5) - Math.abs((b.rect.top + b.rect.height / 2) - innerHeight * .5))
-        return visible[0]?.row.querySelector('.work-library-row__name')?.textContent
-      })
-      assert(expected, 'normal scrolling leaves a visible row to preview')
-      await expect(page.locator('.work-library-preview__caption strong')).toHaveText(expected)
+      await expect(page.locator('.work-library-preview__caption strong')).toHaveText('Moniac Machine')
     })
 
     await check('index-row-escape', 1440, theme, async ({ page, release }) => {
