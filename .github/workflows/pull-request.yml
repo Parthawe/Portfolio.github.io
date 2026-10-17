@@ -53,6 +53,7 @@ jobs:
           QA_OUTPUT_DIR=qa-diagnostics/cover-artwork node scripts/cover-artwork-qa.mjs || status=1
           QA_OUTPUT_DIR=qa-diagnostics/cover-lifecycle node scripts/cover-lifecycle-qa.mjs || status=1
           QA_OUTPUT_DIR=qa-diagnostics/cover-startup node scripts/cover-startup-qa.mjs || status=1
+          QA_OUTPUT_DIR=qa-diagnostics/work-proof-path node scripts/work-proof-path-qa.mjs || status=1
           exit "$status"
       - uses: actions/upload-artifact@v4
         if: always()

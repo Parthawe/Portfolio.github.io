@@ -1529,11 +1529,37 @@ html.is-low-power-device .page-work .pcard-visual img {
   }
 
   .work-library-row {
-    grid-template-columns: 42px 64px minmax(0, 1fr) 96px;
+    grid-template-columns: 34px 64px minmax(0, 1fr);
+    align-items: start;
+    row-gap: 0.4rem;
+  }
+
+  .work-library-row__index,
+  .work-library-row__thumb {
+    grid-row: 1 / span 3;
+  }
+
+  .work-library-row__thumb {
+    grid-column: 2;
+    width: 64px;
+  }
+
+  .work-library-row__project {
+    grid-column: 3;
+    grid-row: 1;
   }
 
   .work-library-row__detail {
-    display: none;
+    display: -webkit-box;
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .work-library-row__year {
+    grid-column: 3;
+    grid-row: 3;
+    justify-self: start;
+    text-align: left;
   }
 
   .work-timeline-shell {
@@ -1545,11 +1571,30 @@ html.is-low-power-device .page-work .pcard-visual img {
     width: auto;
     max-height: none;
     overflow: visible;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem;
   }
 
   .work-timeline-rail__list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    min-width: 0;
     padding-left: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .work-timeline-rail__item {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 0.625rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  body.page-work-timeline .work-timeline-rail__list .work-timeline-rail__item.is-active {
+    transform: none;
   }
 
   /* The vertical spine and its per-item dots only make sense as a single
@@ -1750,10 +1795,6 @@ html.is-low-power-device .page-work .pcard-visual img {
     min-width: 0;
   }
 
-  .work-timeline-rail__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .work-timeline-feature {
     grid-template-columns: 1fr;
   }
@@ -1812,7 +1853,7 @@ html.is-low-power-device .page-work .pcard-visual img {
   }
 
   .work-library-row__index {
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
     align-self: center;
   }
 
@@ -1826,13 +1867,9 @@ html.is-low-power-device .page-work .pcard-visual img {
   }
 
   .work-library-row__year {
-    justify-self: end;
+    justify-self: start;
     font-size: 10px;
-    text-align: right;
-  }
-
-  .work-timeline-rail__list {
-    grid-template-columns: 1fr;
+    text-align: left;
   }
 
   .work-timeline-year__head {

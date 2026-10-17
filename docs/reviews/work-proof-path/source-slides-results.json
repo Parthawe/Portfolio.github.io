@@ -1,0 +1,61 @@
+{
+  "results": [
+    {
+      "slug": "mentra",
+      "width": 1440,
+      "theme": "light",
+      "slides": 44,
+      "requestedImages": 45
+    },
+    {
+      "slug": "transfi-project",
+      "width": 1440,
+      "theme": "light",
+      "slides": 3,
+      "requestedImages": 4
+    },
+    {
+      "slug": "mentra",
+      "width": 1440,
+      "theme": "dark",
+      "slides": 44,
+      "requestedImages": 45
+    },
+    {
+      "slug": "transfi-project",
+      "width": 1440,
+      "theme": "dark",
+      "slides": 3,
+      "requestedImages": 4
+    },
+    {
+      "slug": "mentra",
+      "width": 390,
+      "theme": "light",
+      "slides": 44,
+      "requestedImages": 45
+    },
+    {
+      "slug": "transfi-project",
+      "width": 390,
+      "theme": "light",
+      "slides": 3,
+      "requestedImages": 4
+    },
+    {
+      "slug": "mentra",
+      "width": 320,
+      "theme": "dark",
+      "slides": 44,
+      "requestedImages": 45
+    },
+    {
+      "slug": "transfi-project",
+      "width": 320,
+      "theme": "dark",
+      "slides": 3,
+      "requestedImages": 4
+    }
+  ],
+  "errors": []
+}

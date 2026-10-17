@@ -11,7 +11,7 @@ import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import CaseStudySlides from '../../components/case-study/CaseStudySlides'
 import { mentraSlideChapters } from '../../data/caseStudySlides'
-import { mentraDecisionChapters, mentraDecisions } from '../../data/productDecisionStories'
+import { mentraDecisionChapters, mentraDecisions, mentraQuickProof } from '../../data/productDecisionStories'
 import { settleAnchor } from '../../utils/settleAnchor'
 
 export default function MentraPage() {
@@ -21,6 +21,7 @@ export default function MentraPage() {
   const sections = viewMode === 'summary'
     ? [
         { id: 'cs-summary', label: 'Quick read' },
+        { id: mentraQuickProof.id, label: 'Design decision' },
       ]
     : [{ id: 'cs-summary', label: 'Quick read' }, ...mentraDecisionChapters.map(chapter => ({ id: chapter.id, label: ({ 'decision-first-use': 'First use', 'decision-runtime': 'Runtime', 'decision-recovery': 'Recovery', 'decision-results': 'Results' } as Record<string,string>)[chapter.id] })), { id: 'source-presentation', label: 'Original deck' }]
 
@@ -36,7 +37,9 @@ export default function MentraPage() {
 
     if (mentraSlideChapters.some(chapter => chapter.id === targetId) || targetId === 'source-presentation') setSourceOpen(true)
 
-    if (targetId !== 'cs-summary' && targetId !== 'project-overview') {
+    if (targetId === mentraQuickProof.id) {
+      setViewMode('summary')
+    } else if (targetId !== 'cs-summary' && targetId !== 'project-overview') {
       setViewMode('full')
     }
 
@@ -106,6 +109,11 @@ export default function MentraPage() {
           title="Project overview"
           proofLimit={0}
         />
+
+        {viewMode === 'summary' && <CaseStudySlides
+          chapters={[mentraQuickProof]}
+          decisions={mentraDecisions}
+        />}
 
         <CsExpandPreview
           sectionIds={[...mentraDecisionChapters.map(chapter => chapter.id), ...mentraSlideChapters.map(chapter => chapter.id), 'source-presentation']}

@@ -1,0 +1,198 @@
+[
+  {
+    "mode": "paused-network",
+    "events": [
+      {
+        "kind": "request",
+        "ms": 620,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "held",
+        "ms": 620,
+        "value": null
+      },
+      {
+        "kind": "release",
+        "ms": 9419,
+        "value": null
+      },
+      {
+        "kind": "released",
+        "ms": 9426,
+        "value": null
+      },
+      {
+        "kind": "finished",
+        "ms": 9451,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "playing",
+        "ms": 9512,
+        "value": null
+      }
+    ],
+    "status": "pass"
+  },
+  {
+    "mode": "buffered-module",
+    "events": [
+      {
+        "kind": "request",
+        "ms": 196,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "held",
+        "ms": 197,
+        "value": null
+      },
+      {
+        "kind": "buffered",
+        "ms": 273,
+        "value": 4617
+      },
+      {
+        "kind": "release",
+        "ms": 8813,
+        "value": null
+      },
+      {
+        "kind": "finished",
+        "ms": 8853,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "released",
+        "ms": 8853,
+        "value": null
+      },
+      {
+        "kind": "playing",
+        "ms": 9037,
+        "value": null
+      }
+    ],
+    "status": "pass"
+  },
+  {
+    "mode": "unintercepted",
+    "events": [
+      {
+        "kind": "request",
+        "ms": 209,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "finished",
+        "ms": 214,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "playing",
+        "ms": 2545,
+        "value": null
+      }
+    ],
+    "status": "pass"
+  },
+  {
+    "mode": "paused-network",
+    "events": [
+      {
+        "kind": "request",
+        "ms": 577,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "held",
+        "ms": 578,
+        "value": null
+      },
+      {
+        "kind": "release",
+        "ms": 11900,
+        "value": null
+      },
+      {
+        "kind": "released",
+        "ms": 11955,
+        "value": null
+      },
+      {
+        "kind": "finished",
+        "ms": 12052,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "playing",
+        "ms": 12215,
+        "value": null
+      }
+    ],
+    "status": "pass"
+  },
+  {
+    "mode": "buffered-module",
+    "events": [
+      {
+        "kind": "request",
+        "ms": 371,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "held",
+        "ms": 371,
+        "value": null
+      },
+      {
+        "kind": "buffered",
+        "ms": 403,
+        "value": 4617
+      },
+      {
+        "kind": "release",
+        "ms": 9135,
+        "value": null
+      },
+      {
+        "kind": "finished",
+        "ms": 9142,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "released",
+        "ms": 9142,
+        "value": null
+      },
+      {
+        "kind": "playing",
+        "ms": 9199,
+        "value": null
+      }
+    ],
+    "status": "pass"
+  },
+  {
+    "mode": "unintercepted",
+    "events": [
+      {
+        "kind": "request",
+        "ms": 142,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "finished",
+        "ms": 177,
+        "value": "http://127.0.0.1:5236/bundle/CoverPreview-Wqpff98I.js"
+      },
+      {
+        "kind": "playing",
+        "ms": 1698,
+        "value": null
+      }
+    ],
+    "status": "pass"
+  }
+]

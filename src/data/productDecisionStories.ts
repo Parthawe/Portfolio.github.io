@@ -12,10 +12,15 @@ export const mentraDecisionChapters: SlideChapter[] = [
   { id: 'decision-recovery', title: 'Make waiting and recovery legible', slides: ['500:3981', '500:3980'].map(slide) },
   { id: 'decision-results', title: 'Separate first-use and runtime results', slides: ['329:8449', '329:8363', '500:3979'].map(slide) },
 ]
+export const mentraQuickProof: SlideChapter = {
+  id: 'cs-design-proof',
+  title: 'Give apps the home screen',
+  slides: [slide('6:28341')],
+}
 export const mentraDecisions: Record<string, ScreenDecision> = {
   '97:5038': { question: 'How does a new wearer reach a connected device?', choice: 'Give setup its own sequence before everyday app use.', evidence: 'Follow the setup screens in order, then compare the separate pairing sequence on the next slide.' },
   '77:2532': { question: 'When can the wearer move past pairing?', choice: 'Treat connection as a first-use task with its own screens.', evidence: 'Inspect the pairing progression rather than inferring connection from the home screen.', limit: 'These are source designs; this slide alone does not demonstrate pairing reliability.' },
-  '6:28341': { question: 'Should the home screen lead with device controls or apps?', choice: 'Give app launching the main area and reduce the device panel’s dominance.', evidence: 'Compare the large device card and active/inactive lists on the left with the app grid and bottom runtime entry on the right.' },
+  '6:28341': { question: 'Should the home screen lead with device controls or apps?', choice: 'Give app launching the main area and reduce the device panel’s dominance.', evidence: 'Compare the large device card and active/inactive lists on the left with the app grid and bottom runtime entry on the right.', limit: 'Original design comparison. Evaluation dates and cohort sizes are not included in the public source.' },
   '0:65': { question: 'How can runtime controls stay available without taking over home?', choice: 'Select the bottom drawer over a persistent dock or card switcher.', evidence: 'Read the source comparison across recognition, control, idle cost, and scale.', limit: 'This is the source’s qualitative tradeoff comparison, not a timed benchmark.' },
   '0:66': { question: 'What is running, and how can it be stopped?', choice: 'Use one runtime entry for the count, app identity, background apps, data access, and control.', evidence: 'Locate the running count at the bottom, then the app actions in the open drawer.' },
   '500:3981': { question: 'What should happen before an AI answer is ready?', choice: 'Distinguish listening, working, and uncertain input.', evidence: 'Compare the Listening and Working states with the clarification choices for an uncertain MiniApp request.' },

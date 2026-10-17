@@ -247,11 +247,14 @@ export default function WorkPage() {
     }
     return columns.filter(column => column.length > 0)
   }, [archiveProjects, archiveColumnCount, archiveShapes])
-  const allWorkProjects = [
-    ...featuredProjects,
-    ...selectedWorkProjects.filter(project => !project.featured),
-    ...archiveWorkProjects,
-  ]
+  const allWorkProjects = useMemo(() => {
+    const seen = new Set<string>()
+    return [...featuredProjects, ...selectedWorkProjects, ...archiveWorkProjects].filter(project => {
+      if (seen.has(project.slug)) return false
+      seen.add(project.slug)
+      return true
+    })
+  }, [])
   const timelineSections = allWorkProjects
     .map((project, index) => ({
       project,

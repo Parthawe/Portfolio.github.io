@@ -17,7 +17,16 @@ try {
       page.on('request', request => { if(request.url().includes('/Assets/case-study-slides/')) requests.push(request.url()) })
       await page.goto(`${base}/${slug}`)
       await expect(page.locator('.project-story__prompt')).toBeVisible()
-      assert.equal(requests.length, 0, 'Summary does not load deck imagery')
+      if (slug === 'mentra') {
+        const proof = page.locator('#cs-design-proof .case-study-slide > img')
+        await expect(proof).toHaveCount(1)
+        await proof.scrollIntoViewIfNeeded()
+        await expect.poll(() => proof.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true)
+        assert(requests.length > 0, 'Quick read displays its original design comparison')
+        assert(requests.every(url => /\/slide-6-28341(?:-768|-1280)?\.webp$/.test(url)), 'Quick read loads only its single public comparison, not the full deck')
+      } else {
+        assert.equal(requests.length, 0, 'Protected summary does not load deck imagery')
+      }
       await page.locator('.cs-expand-preview-btn').click()
       await expect(page.locator('.case-study-slide')).toHaveCount(slug === 'mentra' ? 10 : 3)
       if (slug === 'mentra') {

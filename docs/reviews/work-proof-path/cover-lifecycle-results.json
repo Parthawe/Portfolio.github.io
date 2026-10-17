@@ -1,0 +1,304 @@
+{
+  "base": "http://127.0.0.1:5236",
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "rapid-selection"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "selection-over-scroll"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "index-row-escape"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "stale-screen-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "name": "reduced-motion-cold-hover"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "rapid-selection"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "selection-over-scroll"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "index-row-escape"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "stale-screen-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "dark",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "name": "reduced-motion-cold-hover"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "selection-over-scroll"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "index-row-escape"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "stale-screen-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "reduced-motion-cold-hover"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-film"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "cold-hover-screens"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "left-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "rapid-selection"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "selection-over-scroll"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "index-row-escape"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "stale-screen-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "name": "focus-before-load"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "name": "mobile-index"
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "name": "reduced-motion-cold-hover"
+    }
+  ],
+  "failures": [
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "name": "rapid-selection",
+      "error": "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  locator('.work-library-preview__frame').locator('.cover-art')\nExpected: \"playing\"\nReceived: \"\"\nTimeout:  8000ms\n\nCall log:\n  - Expect \"to.have.attribute.value\" with timeout 8000ms\n  - waiting for locator('.work-library-preview__frame').locator('.cover-art')\n    19 × locator resolved to <span class=\"cover-art\" data-cover-tone=\"light\" data-cover-preview-kind=\"screens\">…</span>\n       - unexpected value \"null\"\n",
+      "events": [
+        {
+          "chunk": "held"
+        },
+        {
+          "chunk": "released"
+        }
+      ],
+      "media": [],
+      "inputState": {
+        "scrollY": 395,
+        "focused": "<body class=\"page-work page-work-library figma-chrome-enabled figma-rulers-off figma-reader-mode collaborator-cursor-active page-ready\" style=\"--portfolio-chat-width: 390px; --figma-chrome-accent: #1a1a1a;\">\n    <div id=\"root\"><div class=\"grain\" aria-hidden=\"true\"></div><div class=\"dot-bg\" aria-hidden=\"true\"></div><div class=\"figma-grid-overlay\" aria-hidden=\"true\"></div><div id=\"site-zoom-stage\" s",
+        "hovered": [
+          "work-library-preview"
+        ]
+      },
+      "state": [
+        {
+          "motion": null,
+          "hover": true,
+          "rect": {
+            "x": 1076.6875,
+            "y": 101,
+            "width": 314.796875,
+            "height": 395.984375,
+            "top": 101,
+            "right": 1391.484375,
+            "bottom": 496.984375,
+            "left": 1076.6875
+          }
+        }
+      ]
+    }
+  ]
+}
