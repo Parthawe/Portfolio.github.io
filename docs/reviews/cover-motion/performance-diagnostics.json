@@ -1,0 +1,311 @@
+{
+  "checkedAt": "2026-10-17T01:17:13.588Z",
+  "conditions": "Three alternating pairs; fresh 1440×1000 browser contexts, HTTP cache disabled, unthrottled local previews. WebGL deliberately unavailable on both builds to isolate cover/initial-paint costs. Not a 3D-startup or field benchmark.",
+  "baseline": "http://127.0.0.1:5230",
+  "candidate": "http://127.0.0.1:5233",
+  "summary": [
+    {
+      "route": "/",
+      "baseline": {
+        "fcp": 168,
+        "transferredBytes": 808051,
+        "cls": 0
+      },
+      "candidate": {
+        "fcp": 156,
+        "transferredBytes": 791567,
+        "cls": 0
+      }
+    },
+    {
+      "route": "/work/",
+      "baseline": {
+        "fcp": 168,
+        "transferredBytes": 4279552,
+        "cls": 0
+      },
+      "candidate": {
+        "fcp": 164,
+        "transferredBytes": 4285567,
+        "cls": 0.1311306423611111
+      }
+    }
+  ],
+  "samples": [
+    {
+      "pair": 1,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 232,
+      "domContentLoaded": 83.30000000074506,
+      "transferredBytes": 808051,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 0
+    },
+    {
+      "pair": 1,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 156,
+      "domContentLoaded": 45.100000001490116,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 1,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 164,
+      "domContentLoaded": 43.79999999701977,
+      "transferredBytes": 4279552,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 0
+    },
+    {
+      "pair": 1,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 164,
+      "domContentLoaded": 48.5,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 2,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 156,
+      "domContentLoaded": 44.399999998509884,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 2,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 168,
+      "domContentLoaded": 44.19999999925494,
+      "transferredBytes": 808051,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 0
+    },
+    {
+      "pair": 2,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 164,
+      "domContentLoaded": 43.69999999925494,
+      "transferredBytes": 4485569,
+      "cls": 0.1311306423611111,
+      "layoutShifts": [
+        {
+          "value": 0.1311306423611111,
+          "sources": [
+            {
+              "element": "DIV",
+              "id": "",
+              "className": "figma-grid-overlay",
+              "previousRect": {
+                "x": 30,
+                "y": 30,
+                "width": 1410,
+                "height": 970,
+                "top": 30,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 30
+              },
+              "currentRect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 1000,
+                "top": 0,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "element": "DIV",
+              "id": "",
+              "className": "wrap",
+              "previousRect": {
+                "x": 160,
+                "y": 0,
+                "width": 1120,
+                "height": 1000,
+                "top": 0,
+                "right": 1280,
+                "bottom": 1000,
+                "left": 160
+              },
+              "currentRect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 1000,
+                "top": 0,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "element": "NAV",
+              "id": "",
+              "className": "work-bottom-nav surface-glass",
+              "previousRect": {
+                "x": 0,
+                "y": 899.203125,
+                "width": 772.6484375,
+                "height": 100.796875,
+                "top": 899.203125,
+                "right": 772.6484375,
+                "bottom": 1000,
+                "left": 0
+              },
+              "currentRect": {
+                "x": 0,
+                "y": 879,
+                "width": 586.5078125,
+                "height": 121,
+                "top": 879,
+                "right": 586.5078125,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "element": "DIV",
+              "id": "",
+              "className": "nav-left-pill surface-glass figma-hover",
+              "previousRect": {
+                "x": 5.515625,
+                "y": 9.75,
+                "width": 305.109375,
+                "height": 133.96875,
+                "top": 9.75,
+                "right": 310.625,
+                "bottom": 143.71875,
+                "left": 5.515625
+              },
+              "currentRect": {
+                "x": 5.515625,
+                "y": 0,
+                "width": 305.15625,
+                "height": 125.71875,
+                "top": 0,
+                "right": 310.671875,
+                "bottom": 125.71875,
+                "left": 5.515625
+              }
+            },
+            {
+              "element": "BUTTON",
+              "id": "",
+              "className": "theme-toggle surface-glass surface-glass--subtle",
+              "previousRect": {
+                "x": 1213.9375,
+                "y": 19.75,
+                "width": 96,
+                "height": 96,
+                "top": 19.75,
+                "right": 1309.9375,
+                "bottom": 115.75,
+                "left": 1213.9375
+              },
+              "currentRect": {
+                "x": 1215.9375,
+                "y": 1.75,
+                "width": 96,
+                "height": 96,
+                "top": 1.75,
+                "right": 1311.9375,
+                "bottom": 97.75,
+                "left": 1215.9375
+              }
+            }
+          ]
+        }
+      ],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 2,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 168,
+      "domContentLoaded": 41.80000000074506,
+      "transferredBytes": 4279552,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 0
+    },
+    {
+      "pair": 3,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 168,
+      "domContentLoaded": 46.30000000074506,
+      "transferredBytes": 808051,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 0
+    },
+    {
+      "pair": 3,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 160,
+      "domContentLoaded": 48.80000000074506,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 3,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 168,
+      "domContentLoaded": 43.5,
+      "transferredBytes": 4279552,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 0
+    },
+    {
+      "pair": 3,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 160,
+      "domContentLoaded": 45.899999998509884,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    }
+  ]
+}

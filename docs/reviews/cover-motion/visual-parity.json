@@ -1,0 +1,736 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "route": "/",
+      "pair": [
+        {
+          "name": "before",
+          "geometry": [
+            {
+              "className": "wr-hero wr-hero--no-scene",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 1000,
+                "top": 0,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 97.46875,
+                "top": 0,
+                "right": 1440,
+                "bottom": 97.46875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 47.515625,
+                "y": 23.75,
+                "width": 221.15625,
+                "height": 49.96875,
+                "top": 23.75,
+                "right": 268.671875,
+                "bottom": 73.71875,
+                "left": 47.515625
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 1153.9375,
+                "y": 23.75,
+                "width": 238.546875,
+                "height": 40,
+                "top": 23.75,
+                "right": 1392.484375,
+                "bottom": 63.75,
+                "left": 1153.9375
+              }
+            }
+          ]
+        },
+        {
+          "name": "after",
+          "geometry": [
+            {
+              "className": "wr-hero wr-hero--no-scene",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 1000,
+                "top": 0,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 97.46875,
+                "top": 0,
+                "right": 1440,
+                "bottom": 97.46875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 47.515625,
+                "y": 23.75,
+                "width": 221.15625,
+                "height": 49.96875,
+                "top": 23.75,
+                "right": 268.671875,
+                "bottom": 73.71875,
+                "left": 47.515625
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 1153.9375,
+                "y": 23.75,
+                "width": 238.546875,
+                "height": 40,
+                "top": 23.75,
+                "right": 1392.484375,
+                "bottom": 63.75,
+                "left": 1153.9375
+              }
+            }
+          ]
+        }
+      ],
+      "geometryMatches": true,
+      "screenshotsPixelIdentical": true
+    },
+    {
+      "width": 1440,
+      "route": "/work",
+      "pair": [
+        {
+          "name": "before",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 97.46875,
+                "top": 0,
+                "right": 1440,
+                "bottom": 97.46875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 47.515625,
+                "y": 23.75,
+                "width": 221.15625,
+                "height": 49.96875,
+                "top": 23.75,
+                "right": 268.671875,
+                "bottom": 73.71875,
+                "left": 47.515625
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 1153.9375,
+                "y": 23.75,
+                "width": 238.546875,
+                "height": 40,
+                "top": 23.75,
+                "right": 1392.484375,
+                "bottom": 63.75,
+                "left": 1153.9375
+              }
+            },
+            {
+              "className": "work-page-title",
+              "rect": {
+                "x": 47.515625,
+                "y": 152,
+                "width": 153.9375,
+                "height": 72,
+                "top": 152,
+                "right": 201.453125,
+                "bottom": 224,
+                "left": 47.515625
+              }
+            }
+          ]
+        },
+        {
+          "name": "after",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 97.46875,
+                "top": 0,
+                "right": 1440,
+                "bottom": 97.46875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 47.515625,
+                "y": 23.75,
+                "width": 221.15625,
+                "height": 49.96875,
+                "top": 23.75,
+                "right": 268.671875,
+                "bottom": 73.71875,
+                "left": 47.515625
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 1153.9375,
+                "y": 23.75,
+                "width": 238.546875,
+                "height": 40,
+                "top": 23.75,
+                "right": 1392.484375,
+                "bottom": 63.75,
+                "left": 1153.9375
+              }
+            },
+            {
+              "className": "work-page-title",
+              "rect": {
+                "x": 47.515625,
+                "y": 152,
+                "width": 153.9375,
+                "height": 72,
+                "top": 152,
+                "right": 201.453125,
+                "bottom": 224,
+                "left": 47.515625
+              }
+            }
+          ]
+        }
+      ],
+      "geometryMatches": true,
+      "screenshotsPixelIdentical": false
+    },
+    {
+      "width": 1440,
+      "route": "/shuffle",
+      "pair": [
+        {
+          "name": "before",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 97.46875,
+                "top": 0,
+                "right": 1440,
+                "bottom": 97.46875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 200,
+                "y": 23.75,
+                "width": 221.15625,
+                "height": 49.96875,
+                "top": 23.75,
+                "right": 421.15625,
+                "bottom": 73.71875,
+                "left": 200
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 1001.453125,
+                "y": 23.75,
+                "width": 238.546875,
+                "height": 40,
+                "top": 23.75,
+                "right": 1240,
+                "bottom": 63.75,
+                "left": 1001.453125
+              }
+            },
+            {
+              "className": "proj-visual-hero hero-anim hero-anim-1",
+              "rect": {
+                "x": 200,
+                "y": 153.59375,
+                "width": 1040,
+                "height": 780.984375,
+                "top": 153.59375,
+                "right": 1240,
+                "bottom": 934.578125,
+                "left": 200
+              }
+            }
+          ]
+        },
+        {
+          "name": "after",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 97.46875,
+                "top": 0,
+                "right": 1440,
+                "bottom": 97.46875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 200,
+                "y": 23.75,
+                "width": 221.15625,
+                "height": 49.96875,
+                "top": 23.75,
+                "right": 421.15625,
+                "bottom": 73.71875,
+                "left": 200
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 1001.453125,
+                "y": 23.75,
+                "width": 238.546875,
+                "height": 40,
+                "top": 23.75,
+                "right": 1240,
+                "bottom": 63.75,
+                "left": 1001.453125
+              }
+            },
+            {
+              "className": "proj-visual-hero hero-anim hero-anim-1",
+              "rect": {
+                "x": 200,
+                "y": 153.59375,
+                "width": 1040,
+                "height": 780.984375,
+                "top": 153.59375,
+                "right": 1240,
+                "bottom": 934.578125,
+                "left": 200
+              }
+            }
+          ]
+        }
+      ],
+      "geometryMatches": true,
+      "screenshotsPixelIdentical": true
+    },
+    {
+      "width": 390,
+      "route": "/",
+      "pair": [
+        {
+          "name": "before",
+          "geometry": [
+            {
+              "className": "wr-hero wr-hero--no-scene",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 1000,
+                "top": 0,
+                "right": 390,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 73.96875,
+                "top": 0,
+                "right": 390,
+                "bottom": 73.96875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 16,
+                "y": 12,
+                "width": 87.59375,
+                "height": 49.96875,
+                "top": 12,
+                "right": 103.59375,
+                "bottom": 61.96875,
+                "left": 16
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 278,
+                "y": 12,
+                "width": 96,
+                "height": 44,
+                "top": 12,
+                "right": 374,
+                "bottom": 56,
+                "left": 278
+              }
+            }
+          ]
+        },
+        {
+          "name": "after",
+          "geometry": [
+            {
+              "className": "wr-hero wr-hero--no-scene",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 1000,
+                "top": 0,
+                "right": 390,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 73.96875,
+                "top": 0,
+                "right": 390,
+                "bottom": 73.96875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 16,
+                "y": 12,
+                "width": 87.59375,
+                "height": 49.96875,
+                "top": 12,
+                "right": 103.59375,
+                "bottom": 61.96875,
+                "left": 16
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 278,
+                "y": 12,
+                "width": 96,
+                "height": 44,
+                "top": 12,
+                "right": 374,
+                "bottom": 56,
+                "left": 278
+              }
+            }
+          ]
+        }
+      ],
+      "geometryMatches": true,
+      "screenshotsPixelIdentical": true
+    },
+    {
+      "width": 390,
+      "route": "/work",
+      "pair": [
+        {
+          "name": "before",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 73.96875,
+                "top": 0,
+                "right": 390,
+                "bottom": 73.96875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 16,
+                "y": 12,
+                "width": 87.59375,
+                "height": 49.96875,
+                "top": 12,
+                "right": 103.59375,
+                "bottom": 61.96875,
+                "left": 16
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 278,
+                "y": 12,
+                "width": 96,
+                "height": 44,
+                "top": 12,
+                "right": 374,
+                "bottom": 56,
+                "left": 278
+              }
+            },
+            {
+              "className": "work-page-title",
+              "rect": {
+                "x": 16,
+                "y": 112,
+                "width": 68.421875,
+                "height": 38.390625,
+                "top": 112,
+                "right": 84.421875,
+                "bottom": 150.390625,
+                "left": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "after",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 73.96875,
+                "top": 0,
+                "right": 390,
+                "bottom": 73.96875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 16,
+                "y": 12,
+                "width": 87.59375,
+                "height": 49.96875,
+                "top": 12,
+                "right": 103.59375,
+                "bottom": 61.96875,
+                "left": 16
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 278,
+                "y": 12,
+                "width": 96,
+                "height": 44,
+                "top": 12,
+                "right": 374,
+                "bottom": 56,
+                "left": 278
+              }
+            },
+            {
+              "className": "work-page-title",
+              "rect": {
+                "x": 16,
+                "y": 112,
+                "width": 68.421875,
+                "height": 38.390625,
+                "top": 112,
+                "right": 84.421875,
+                "bottom": 150.390625,
+                "left": 16
+              }
+            }
+          ]
+        }
+      ],
+      "geometryMatches": true,
+      "screenshotsPixelIdentical": false
+    },
+    {
+      "width": 390,
+      "route": "/shuffle",
+      "pair": [
+        {
+          "name": "before",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 73.96875,
+                "top": 0,
+                "right": 390,
+                "bottom": 73.96875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 16,
+                "y": 12,
+                "width": 87.59375,
+                "height": 49.96875,
+                "top": 12,
+                "right": 103.59375,
+                "bottom": 61.96875,
+                "left": 16
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 278,
+                "y": 12,
+                "width": 96,
+                "height": 44,
+                "top": 12,
+                "right": 374,
+                "bottom": 56,
+                "left": 278
+              }
+            },
+            {
+              "className": "proj-visual-hero hero-anim hero-anim-1",
+              "rect": {
+                "x": 16,
+                "y": 228,
+                "width": 358,
+                "height": 423.515625,
+                "top": 228,
+                "right": 374,
+                "bottom": 651.515625,
+                "left": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "after",
+          "geometry": [
+            {
+              "className": "nav",
+              "rect": {
+                "x": 0,
+                "y": 0,
+                "width": 390,
+                "height": 73.96875,
+                "top": 0,
+                "right": 390,
+                "bottom": 73.96875,
+                "left": 0
+              }
+            },
+            {
+              "className": "nav-left-pill surface-glass figma-hover",
+              "rect": {
+                "x": 16,
+                "y": 12,
+                "width": 87.59375,
+                "height": 49.96875,
+                "top": 12,
+                "right": 103.59375,
+                "bottom": 61.96875,
+                "left": 16
+              }
+            },
+            {
+              "className": "nav-right",
+              "rect": {
+                "x": 278,
+                "y": 12,
+                "width": 96,
+                "height": 44,
+                "top": 12,
+                "right": 374,
+                "bottom": 56,
+                "left": 278
+              }
+            },
+            {
+              "className": "proj-visual-hero hero-anim hero-anim-1",
+              "rect": {
+                "x": 16,
+                "y": 228,
+                "width": 358,
+                "height": 423.515625,
+                "top": 228,
+                "right": 374,
+                "bottom": 651.515625,
+                "left": 16
+              }
+            }
+          ]
+        }
+      ],
+      "geometryMatches": true,
+      "screenshotsPixelIdentical": true
+    }
+  ]
+}

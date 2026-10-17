@@ -12,6 +12,53 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  verify-cover-motion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'
+      QA_BASE_URL: http://127.0.0.1:4176
+      QA_BASE_REV: ${{ github.event.pull_request.base.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium webkit
+      - name: Keep all Shuffle sources unchanged
+        run: |
+          git diff --exit-code "$QA_BASE_REV" -- \
+            src/pages/projects/ShufflePage.tsx \
+            src/pages/ShuffleSimulationPage.tsx \
+            src/components/ShuffleInteractive.tsx \
+            src/components/shuffle/
+      - run: bun run build
+      - name: Verify cover playback, touch entry and startup stability
+        run: |
+          mkdir -p qa-diagnostics
+          bun run preview --host 127.0.0.1 --port 4176 > qa-diagnostics/cover-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent "$QA_BASE_URL" > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent "$QA_BASE_URL" > /dev/null
+          status=0
+          QA_OUTPUT_DIR=qa-diagnostics/cover-motion node scripts/cover-motion-qa.mjs || status=1
+          QA_OUTPUT_DIR=qa-diagnostics/cover-entry node scripts/cover-entry-qa.mjs || status=1
+          QA_OUTPUT_DIR=qa-diagnostics/cover-artwork node scripts/cover-artwork-qa.mjs || status=1
+          QA_OUTPUT_DIR=qa-diagnostics/cover-startup node scripts/cover-startup-qa.mjs || status=1
+          exit "$status"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cover-motion-verification
+          path: qa-diagnostics/
+
   verify:
     env:
       VITE_EXPERIENCE_PREVIEWS_ENABLED: '1'

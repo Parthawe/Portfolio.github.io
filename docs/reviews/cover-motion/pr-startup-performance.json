@@ -1,0 +1,311 @@
+{
+  "checkedAt": "2026-10-17T02:14:25.327Z",
+  "conditions": "Three alternating pairs; fresh 1440×1000 browser contexts, HTTP cache disabled, unthrottled local previews. WebGL deliberately unavailable on both builds to isolate cover/initial-paint costs. Not a 3D-startup or field benchmark.",
+  "baseline": "http://127.0.0.1:5233",
+  "candidate": "http://127.0.0.1:5234",
+  "summary": [
+    {
+      "route": "/",
+      "baseline": {
+        "fcp": 168,
+        "transferredBytes": 791567,
+        "cls": 0.020833333333333332
+      },
+      "candidate": {
+        "fcp": 168,
+        "transferredBytes": 791600,
+        "cls": 0
+      }
+    },
+    {
+      "route": "/work/",
+      "baseline": {
+        "fcp": 168,
+        "transferredBytes": 4285567,
+        "cls": 0
+      },
+      "candidate": {
+        "fcp": 160,
+        "transferredBytes": 4285611,
+        "cls": 0
+      }
+    }
+  ],
+  "samples": [
+    {
+      "pair": 1,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 260,
+      "domContentLoaded": 120.39999999850988,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 1,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 180,
+      "domContentLoaded": 64.5,
+      "transferredBytes": 791600,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 1,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 168,
+      "domContentLoaded": 52.19999999552965,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 1,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 144,
+      "domContentLoaded": 41.69999999552965,
+      "transferredBytes": 4285611,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 2,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 168,
+      "domContentLoaded": 55.69999999552965,
+      "transferredBytes": 791600,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 2,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 148,
+      "domContentLoaded": 41.30000000447035,
+      "transferredBytes": 791567,
+      "cls": 0.020833333333333332,
+      "layoutShifts": [
+        {
+          "value": 0.020833333333333332,
+          "sources": [
+            {
+              "element": "DIV",
+              "id": "",
+              "className": "figma-grid-overlay",
+              "previousRect": {
+                "x": 30,
+                "y": 30,
+                "width": 1410,
+                "height": 970,
+                "top": 30,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 30
+              },
+              "currentRect": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 1000,
+                "top": 0,
+                "right": 1440,
+                "bottom": 1000,
+                "left": 0
+              }
+            },
+            {
+              "element": "DIV",
+              "id": "",
+              "className": "nav-left-pill surface-glass figma-hover",
+              "previousRect": {
+                "x": 5.515625,
+                "y": 9.75,
+                "width": 305.109375,
+                "height": 133.96875,
+                "top": 9.75,
+                "right": 310.625,
+                "bottom": 143.71875,
+                "left": 5.515625
+              },
+              "currentRect": {
+                "x": 5.515625,
+                "y": 0,
+                "width": 305.15625,
+                "height": 125.71875,
+                "top": 0,
+                "right": 310.671875,
+                "bottom": 125.71875,
+                "left": 5.515625
+              }
+            },
+            {
+              "element": "BUTTON",
+              "id": "",
+              "className": "nav-easter-toggle surface-glass surface-glass--subtle",
+              "previousRect": {
+                "x": 1121.9375,
+                "y": 17.75,
+                "width": 100,
+                "height": 100,
+                "top": 17.75,
+                "right": 1221.9375,
+                "bottom": 117.75,
+                "left": 1121.9375
+              },
+              "currentRect": {
+                "x": 1123.9375,
+                "y": 0,
+                "width": 100,
+                "height": 99.75,
+                "top": 0,
+                "right": 1223.9375,
+                "bottom": 99.75,
+                "left": 1123.9375
+              }
+            },
+            {
+              "element": "BUTTON",
+              "id": "",
+              "className": "ambient-toggle surface-glass surface-glass--subtle figma-hover",
+              "previousRect": {
+                "x": 1169.9375,
+                "y": 19.75,
+                "width": 96,
+                "height": 96,
+                "top": 19.75,
+                "right": 1265.9375,
+                "bottom": 115.75,
+                "left": 1169.9375
+              },
+              "currentRect": {
+                "x": 1171.9375,
+                "y": 1.75,
+                "width": 96,
+                "height": 96,
+                "top": 1.75,
+                "right": 1267.9375,
+                "bottom": 97.75,
+                "left": 1171.9375
+              }
+            },
+            {
+              "element": "BUTTON",
+              "id": "",
+              "className": "theme-toggle surface-glass surface-glass--subtle",
+              "previousRect": {
+                "x": 1213.9375,
+                "y": 19.75,
+                "width": 96,
+                "height": 96,
+                "top": 19.75,
+                "right": 1309.9375,
+                "bottom": 115.75,
+                "left": 1213.9375
+              },
+              "currentRect": {
+                "x": 1215.9375,
+                "y": 1.75,
+                "width": 96,
+                "height": 96,
+                "top": 1.75,
+                "right": 1311.9375,
+                "bottom": 97.75,
+                "left": 1215.9375
+              }
+            }
+          ]
+        }
+      ],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 2,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 160,
+      "domContentLoaded": 46.899999998509884,
+      "transferredBytes": 4285611,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 2,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 168,
+      "domContentLoaded": 48.399999998509884,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 3,
+      "name": "baseline",
+      "route": "/",
+      "fcp": 168,
+      "domContentLoaded": 51,
+      "transferredBytes": 791567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 3,
+      "name": "candidate",
+      "route": "/",
+      "fcp": 160,
+      "domContentLoaded": 41.399999998509884,
+      "transferredBytes": 791600,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    },
+    {
+      "pair": 3,
+      "name": "baseline",
+      "route": "/work/",
+      "fcp": 156,
+      "domContentLoaded": 50.70000000298023,
+      "transferredBytes": 4285567,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3728
+    },
+    {
+      "pair": 3,
+      "name": "candidate",
+      "route": "/work/",
+      "fcp": 168,
+      "domContentLoaded": 55.100000001490116,
+      "transferredBytes": 4285611,
+      "cls": 0,
+      "layoutShifts": [],
+      "coverRequests": [],
+      "optionalModuleBytes": 3753
+    }
+  ]
+}

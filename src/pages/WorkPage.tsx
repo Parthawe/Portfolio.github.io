@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useCallback, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useSearchParams } from 'react-router-dom'
 import { experiencePreviewsEnabled } from '../utils/experiencePreview'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ProjectCardComponent from '../components/ProjectCard'
+import CoverArtwork from '../components/CoverArtwork'
 import FigmaSelect from '../components/FigmaSelect'
 import {
   featuredProjects,
@@ -138,17 +139,19 @@ export default function WorkPage() {
   const [activeLibraryShelf, setActiveLibraryShelf] = useState('start-here')
   const [activeTimelineYear, setActiveTimelineYear] = useState(TIMELINE_PRESENT_KEY)
 
-  useEffect(() => {
+  // These classes own the page's frame and navigation geometry, so they must
+  // be present before paint rather than resizing an already-visible route.
+  useLayoutEffect(() => {
     document.body.classList.add('page-work')
     return () => document.body.classList.remove('page-work')
   }, [])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.body.classList.toggle('page-work-library', viewMode === 'library')
     return () => document.body.classList.remove('page-work-library')
   }, [viewMode])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.body.classList.toggle('page-work-timeline', viewMode === 'timeline')
     return () => document.body.classList.remove('page-work-timeline')
   }, [viewMode])
@@ -578,7 +581,7 @@ export default function WorkPage() {
                 {libraryPreviewProject ? (
                   <aside className="work-library-preview" aria-live="polite">
                     <div className="work-library-preview__frame">
-                      <img key={libraryPreviewImage} src={libraryPreviewImage} alt={libraryPreviewAlt} loading="eager" decoding="async" />
+                      <CoverArtwork key={libraryPreviewImage} slug={libraryPreviewProject.slug} src={libraryPreviewImage} alt={libraryPreviewAlt} loading="eager" />
                     </div>
                     <div className="work-library-preview__caption">
                       <span className="work-library-preview__eyebrow">Preview</span>
@@ -695,11 +698,11 @@ export default function WorkPage() {
                           className="work-timeline-feature figma-hover"
                         >
                           <div className="work-timeline-feature__media">
-                            <img
+                            <CoverArtwork
+                              slug={section.leadProject.slug}
                               src={section.leadProject.cover16x9 || section.leadProject.summaryImage || section.leadProject.image}
                               alt={section.leadProject.summaryImageAlt || section.leadProject.name}
                               loading={section.key === timelineSections[0]?.key ? 'eager' : 'lazy'}
-                              decoding="async"
                             />
                           </div>
                           <div className="work-timeline-feature__body">

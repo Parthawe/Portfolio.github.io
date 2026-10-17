@@ -186,14 +186,16 @@ export default function RootLayout() {
     };
   }, [location.key, location.hash, navigationType]);
 
-  useEffect(() => {
+  // Rulers change page padding and fixed-control offsets. Apply the saved
+  // preference in the commit, before the route's first visible frame.
+  useLayoutEffect(() => {
     document.body.classList.toggle('figma-chrome-enabled', enableFigmaChrome);
     return () => {
       document.body.classList.remove('figma-chrome-enabled');
     };
   }, [enableFigmaChrome]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const shouldShowCanvasChrome = enableFigmaChrome && desktopCanvas && finePointer && !coarsePointer && canvasChromePreferred && !isLowPowerDevice();
     document.body.classList.toggle('figma-grid-on', shouldShowCanvasChrome);
     document.body.classList.toggle('figma-coordinates-on', shouldShowCanvasChrome);

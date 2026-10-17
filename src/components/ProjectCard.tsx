@@ -1,5 +1,5 @@
 import { observeVisible } from '../utils/visibleActivity'
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, memo, useCallback, useEffect, useRef, useState } from 'react'
 // Shared cards must not depend on a previous visit to the Work route.
 import '../styles/work-page.css'
 import { Link } from 'react-router-dom'
@@ -8,6 +8,10 @@ import FigmaSelect from './FigmaSelect'
 import { getImageBrightness } from '../utils/imageBrightness'
 import { normalizeCopy } from '../utils/normalizeCopy'
 import { isRequestAccessProject, visibleProjects as projects } from '../data/projects'
+import { coverPreviews } from '../data/coverPreviews'
+import ExperienceBoundary from './ExperienceBoundary'
+
+const CoverPreview = lazy(() => import('./CoverPreview'))
 
 interface ProjectCardProps {
   slug: string
@@ -54,6 +58,8 @@ export default memo(function ProjectCard({
     return () => observer.disconnect()
   }, [deferUntilNearView, mediaReady, preloadMargin])
   const project = projects.find(p => p.slug === slug)
+  const coverPreview = useProvidedImage ? undefined : coverPreviews[slug]
+  const legacyHoverMedia = coverPreview ? undefined : hoverMediaSrc
   // Wide covers are for featured/highlight slots. Work grid cards use either
   // square or portrait covers to avoid hiding important composition.
   const resolvedCoverShape = coverShape ?? ((featured || preferWide) ? 'wide' : 'portrait')
@@ -91,7 +97,7 @@ export default memo(function ProjectCard({
     const onIntent = () => queueMicrotask(sync)
     events.forEach(event => card.addEventListener(event, onIntent))
     return () => { disposed = true; stop(); events.forEach(event => card.removeEventListener(event, onIntent)); video.pause() }
-  }, [hoverMediaSrc, hoverMediaKind])
+  }, [legacyHoverMedia, hoverMediaKind])
 
   useEffect(() => {
     const track = marqueeRef.current
@@ -146,7 +152,9 @@ export default memo(function ProjectCard({
     <Link
       ref={cardRef}
       data-cover-shape={resolvedCoverShape}
-      className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${hoverMediaSrc ? ' pcard--has-hover-media' : ''}${requestAccess ? ' pcard--request-access' : ''}`}
+      data-cover-preview-kind={coverPreview?.kind}
+      data-cover-tone={coverPreview?.tone}
+      className={`pcard figma-hover${featured ? ' pcard--featured' : ''}${legacyHoverMedia ? ' pcard--has-hover-media' : ''}${requestAccess ? ' pcard--request-access' : ''}`}
       to={`/${slug}`}
       onMouseEnter={handlePrefetch}
       onFocus={handlePrefetch}
@@ -177,7 +185,8 @@ export default memo(function ProjectCard({
             onLoad={handleImgLoad}
             onError={handleImgError}
           />
-          {hoverMediaSrc ? (
+          {mediaReady && coverPreview ? <ExperienceBoundary fallback={null}><Suspense fallback={null}><CoverPreview preview={coverPreview} cardRef={cardRef} /></Suspense></ExperienceBoundary> : null}
+          {legacyHoverMedia ? (
             hoverMediaKind === 'video' ? (
               <video
                 ref={videoRef}
@@ -188,12 +197,12 @@ export default memo(function ProjectCard({
                 preload="none"
                 aria-hidden="true"
               >
-                <source src={mediaReady ? hoverMediaSrc : undefined} />
+                <source src={mediaReady ? legacyHoverMedia : undefined} />
               </video>
             ) : (
               <img
                 className="pcard-hover-media"
-                src={mediaReady ? hoverMediaSrc : undefined}
+                src={mediaReady ? legacyHoverMedia : undefined}
                 alt=""
                 loading={loading}
                 decoding="async"

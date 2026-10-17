@@ -1,0 +1,347 @@
+[
+  {
+    "slug": "mentra",
+    "name": "Mentra",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/mentra.mp4",
+      "tone": "light",
+      "contain": true
+    }
+  },
+  {
+    "slug": "mentra-miniapps",
+    "name": "MiniApps in OS",
+    "preview": {
+      "kind": "screens",
+      "tone": "light",
+      "sources": [
+        "/Assets/cover-motion/miniapps-discover.webp",
+        "/Assets/cover-motion/miniapps-detail.webp",
+        "/Assets/cover-motion/miniapps-installed.webp"
+      ],
+      "labels": [
+        "Discover",
+        "Inspect",
+        "Install"
+      ]
+    }
+  },
+  {
+    "slug": "transfi-project",
+    "name": "TransFi",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/transfi-project.mp4",
+      "tone": "light",
+      "contain": true
+    }
+  },
+  {
+    "slug": "zentipay",
+    "name": "ZentiPay",
+    "preview": null
+  },
+  {
+    "slug": "clawed-chat",
+    "name": "Clawed",
+    "preview": null
+  },
+  {
+    "slug": "executivelens",
+    "name": "ExecutiveLens",
+    "preview": null
+  },
+  {
+    "slug": "org-dashboard",
+    "name": "OrgDashboard",
+    "preview": null
+  },
+  {
+    "slug": "cuetv",
+    "name": "CueTV",
+    "preview": null
+  },
+  {
+    "slug": "healthapp",
+    "name": "Health App",
+    "preview": null
+  },
+  {
+    "slug": "medimorpho",
+    "name": "NYU Langone",
+    "preview": null
+  },
+  {
+    "slug": "ibm",
+    "name": "IBM Cancer Prognosis",
+    "preview": null
+  },
+  {
+    "slug": "ballah-code",
+    "name": "Ballah Code",
+    "preview": null
+  },
+  {
+    "slug": "oncall-lens",
+    "name": "OnCall Lens",
+    "preview": null
+  },
+  {
+    "slug": "ai-voice",
+    "name": "AI Voice",
+    "preview": null
+  },
+  {
+    "slug": "raahi-project",
+    "name": "Raahi",
+    "preview": {
+      "kind": "screens",
+      "tone": "light",
+      "sources": [
+        "/Assets/cover-motion/raahi-home.webp",
+        "/Assets/cover-motion/raahi-routes.webp",
+        "/Assets/cover-motion/raahi-itinerary.webp"
+      ],
+      "labels": [
+        "Choose a destination",
+        "Compare routes",
+        "Follow the itinerary"
+      ]
+    }
+  },
+  {
+    "slug": "the-point-cdc",
+    "name": "The Point CDC",
+    "preview": null
+  },
+  {
+    "slug": "office-of-diversity",
+    "name": "Office of Diversity",
+    "preview": null
+  },
+  {
+    "slug": "jugalbandi",
+    "name": "Jugalbandi",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/jugalbandi.mp4",
+      "tone": "dark",
+      "position": "62% center"
+    }
+  },
+  {
+    "slug": "keyboard-project",
+    "name": "Keyboard Project",
+    "preview": null
+  },
+  {
+    "slug": "breakgen",
+    "name": "BreakGen",
+    "preview": null
+  },
+  {
+    "slug": "vj-software",
+    "name": "VJ Parivar",
+    "preview": null
+  },
+  {
+    "slug": "enigma",
+    "name": "Enigma",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/enigma.mp4",
+      "tone": "dark",
+      "position": "46% center"
+    }
+  },
+  {
+    "slug": "shuffle",
+    "name": "Shuffle",
+    "preview": null
+  },
+  {
+    "slug": "making-of-time",
+    "name": "Making of Time",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/making-of-time.mp4",
+      "tone": "dark"
+    }
+  },
+  {
+    "slug": "sea-of-salt",
+    "name": "Why the Sea is Salt",
+    "preview": null
+  },
+  {
+    "slug": "flow-fields",
+    "name": "Flow Fields",
+    "preview": null
+  },
+  {
+    "slug": "embodied-web",
+    "name": "Embodied Web",
+    "preview": null
+  },
+  {
+    "slug": "feeling-patterns",
+    "name": "Feeling Patterns",
+    "preview": null
+  },
+  {
+    "slug": "performance-by-design",
+    "name": "Performance by Design",
+    "preview": null
+  },
+  {
+    "slug": "on-becoming",
+    "name": "On Becoming",
+    "preview": null
+  },
+  {
+    "slug": "storytelling",
+    "name": "Storytelling",
+    "preview": null
+  },
+  {
+    "slug": "dna-speculative",
+    "name": "DNA: Speculative Design",
+    "preview": null
+  },
+  {
+    "slug": "comp-media",
+    "name": "Computational Media",
+    "preview": null
+  },
+  {
+    "slug": "hypercinema",
+    "name": "Hypercinema",
+    "preview": null
+  },
+  {
+    "slug": "applications",
+    "name": "Applications",
+    "preview": null
+  },
+  {
+    "slug": "messy-humans",
+    "name": "Designing for Messy Humans",
+    "preview": null
+  },
+  {
+    "slug": "production-studio",
+    "name": "Production Studio",
+    "preview": null
+  },
+  {
+    "slug": "arcade-lab",
+    "name": "Arcade Lab",
+    "preview": null
+  },
+  {
+    "slug": "black-hole",
+    "name": "Black Hole",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/black-hole.mp4",
+      "tone": "light",
+      "contain": true
+    }
+  },
+  {
+    "slug": "uv-light",
+    "name": "UV Light",
+    "preview": null
+  },
+  {
+    "slug": "the-omakase",
+    "name": "The Omakase",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/the-omakase.mp4",
+      "tone": "dark"
+    }
+  },
+  {
+    "slug": "revolving-stage",
+    "name": "Revolving Stage",
+    "preview": null
+  },
+  {
+    "slug": "moniac-machine",
+    "name": "Moniac Machine",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/moniac-machine.mp4",
+      "tone": "dark",
+      "contain": true
+    }
+  },
+  {
+    "slug": "dumb-waiter-set-design",
+    "name": "Set Design for Pinter's The Dumb Waiter",
+    "preview": null
+  },
+  {
+    "slug": "drowning",
+    "name": "Drowning",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/drowning.mp4",
+      "tone": "dark"
+    }
+  },
+  {
+    "slug": "sculpture",
+    "name": "Sculpture",
+    "preview": null
+  },
+  {
+    "slug": "mentra-brand",
+    "name": "Mentra Brand & Packaging",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/mentra.mp4",
+      "tone": "light",
+      "contain": true
+    }
+  },
+  {
+    "slug": "tedx",
+    "name": "TEDxVITPune",
+    "preview": null
+  },
+  {
+    "slug": "code-for-build",
+    "name": "Code for Build",
+    "preview": null
+  },
+  {
+    "slug": "typeface",
+    "name": "Butler's Slice",
+    "preview": {
+      "kind": "type",
+      "tone": "light"
+    }
+  },
+  {
+    "slug": "atps",
+    "name": "ArtTown Podcast",
+    "preview": null
+  },
+  {
+    "slug": "vishwaconclave",
+    "name": "VishwaConclave",
+    "preview": {
+      "kind": "film",
+      "src": "/Assets/cover-motion/vishwaconclave.mp4",
+      "tone": "dark"
+    }
+  },
+  {
+    "slug": "glassly",
+    "name": "Glassly",
+    "preview": null
+  }
+]
