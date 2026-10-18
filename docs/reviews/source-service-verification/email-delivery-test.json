@@ -1,0 +1,37 @@
+{
+  "testDate": "2026-10-18",
+  "reference": "portfolio-access-qa-20261018-042236",
+  "authorization": "User explicitly approved one QA email and receipt verification.",
+  "recipient": "parthpawar@nyu.edu",
+  "subject": "Portfolio QA test \u2014 access request",
+  "sentAtUtc": "2026-10-18T04:22:46Z",
+  "sentCount": 1,
+  "observedLabels": [
+    "SENT"
+  ],
+  "receiptVerified": false,
+  "bounceObserved": false,
+  "lastCheckedAtUtc": "2026-10-18T04:28:12Z",
+  "scope": "One controlled email through connected Gmail, not a website delivery API. A sent copy does not prove receipt.",
+  "observationWindowSeconds": 326,
+  "result": "Original QA message remains SENT; no bounce found. Existing external mail independently confirms the configured recipient receives messages in the connected NYU inbox. Missing self-test inbox copy is consistent with documented Gmail own-alias suppression; specific QA receipt is not independently established.",
+  "recipientEvidence": {
+    "address": "parthpawar@nyu.edu",
+    "existingExternalInboxMessagesFound": 5,
+    "latestObservedMessageDate": "2026-10-16",
+    "headersChecked": [
+      "Delivered-To: parthpawar@nyu.edu",
+      "Received: SMTP delivery for <parthpawar@nyu.edu>"
+    ],
+    "privacy": "Private account identifiers, sender identities, subjects and bodies omitted."
+  },
+  "diagnosis": {
+    "likelyCause": "Gmail suppresses inbox copies of mail sent to an alias of the sending account.",
+    "classification": "Test-method limitation; no confirmed website or mailbox delivery failure.",
+    "officialSource": "https://knowledge.workspace.google.com/admin/support/troubleshooting/messages-sent-to-email-alias-or-group-arent-in-my-inbox?hl=en",
+    "newTestEmailsSent": 0,
+    "deployed": false,
+    "configurationChanged": false
+  },
+  "senderType": "Recipient\u2019s primary NYU Gmail account"
+}

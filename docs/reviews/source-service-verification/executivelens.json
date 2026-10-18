@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://executivelens.ai",
+    "exit": 28,
+    "result": "000 https://executivelens.ai/ 12.009409",
+    "error": "curl: (28) Connection timed out after 12009 milliseconds"
+  },
+  {
+    "url": "https://www.executivelens.ai",
+    "exit": 28,
+    "result": "000 https://www.executivelens.ai/ 12.010668",
+    "error": "curl: (28) Connection timed out after 12010 milliseconds"
+  },
+  {
+    "url": "http://executivelens.ai",
+    "exit": 28,
+    "result": "000 http://executivelens.ai/ 12.004542",
+    "error": "curl: (28) Connection timed out after 12004 milliseconds"
+  },
+  {
+    "url": "http://www.executivelens.ai",
+    "exit": 28,
+    "result": "000 http://www.executivelens.ai/ 12.010563",
+    "error": "curl: (28) Connection timed out after 12010 milliseconds"
+  }
+]

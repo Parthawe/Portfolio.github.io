@@ -1,0 +1,93 @@
+{
+  "base": "http://127.0.0.1:5241",
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "transfi-project",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "slug": "zentipay",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "theme": "dark",
+      "slug": "transfi-project",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "theme": "dark",
+      "slug": "zentipay",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "transfi-project",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "dark",
+      "slug": "zentipay",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "transfi-project",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "light",
+      "slug": "zentipay",
+      "clipboardSuccess": true,
+      "clipboardDeniedFallback": true,
+      "staleClipboardIgnored": true,
+      "draftOnly": true,
+      "passed": true
+    }
+  ]
+}

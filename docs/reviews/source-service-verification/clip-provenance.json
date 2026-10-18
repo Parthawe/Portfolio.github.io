@@ -1,0 +1,50 @@
+[
+  {
+    "id": "jugalbandi",
+    "source": "public/Assets/films/jugalbandi.mp4",
+    "sourceSha256": "33ddda52b607eafa738f405f422b4bdce9cb45f2ce0554ab619cbdb8dd943a26",
+    "clip": "clips/jugalbandi.wav",
+    "clipSha256": "70f8c2ce082e858c62bcffe7e49e265cfbc3887448a20603d614d52b96f01b5e",
+    "start": 275.5,
+    "end": 281,
+    "uncertainSpan": "04:36.560\u201304:39.380",
+    "currentCaption": "That was [unclear].",
+    "editorialReview": "pending"
+  },
+  {
+    "id": "theme-19",
+    "source": "public/Assets/Projects/VishwaConclave/motion-2021/theme-release.mp4",
+    "sourceSha256": "37fa3089b8e5c2ffe9eb9103dbf5014a9248447ced6ec5fde717aa0c263329bb",
+    "clip": "clips/theme-19.wav",
+    "clipSha256": "69c6a8ef6581eae8759d9d72f99f727f2e390733310ac2ad607533aeb25fe173",
+    "start": 18,
+    "end": 25,
+    "uncertainSpan": "00:19.840\u201300:23.320",
+    "currentCaption": "a shack to a skyscraper, [unclear] to a plant,",
+    "editorialReview": "pending"
+  },
+  {
+    "id": "theme-39",
+    "source": "public/Assets/Projects/VishwaConclave/motion-2021/theme-release.mp4",
+    "sourceSha256": "37fa3089b8e5c2ffe9eb9103dbf5014a9248447ced6ec5fde717aa0c263329bb",
+    "clip": "clips/theme-39.wav",
+    "clipSha256": "583cf3a010cb008f0b87f80bdff7b1ed1a19db5af90a4f73d040a01b4cece9f5",
+    "start": 38,
+    "end": 44,
+    "uncertainSpan": "00:39.580\u201300:42.320",
+    "currentCaption": "Let us shatter [unclear].",
+    "editorialReview": "pending"
+  },
+  {
+    "id": "theme-57",
+    "source": "public/Assets/Projects/VishwaConclave/motion-2021/theme-release.mp4",
+    "sourceSha256": "37fa3089b8e5c2ffe9eb9103dbf5014a9248447ced6ec5fde717aa0c263329bb",
+    "clip": "clips/theme-57.wav",
+    "clipSha256": "20cf80058df9623c7565fffd851ab3c6e95b5019e1803a94a20c3057d929dc00",
+    "start": 56,
+    "end": 63,
+    "uncertainSpan": "00:57.320\u201301:01.640",
+    "currentCaption": "Embrace change as we are [unclear] attempt at false stability.",
+    "editorialReview": "pending"
+  }
+]
