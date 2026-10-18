@@ -1,0 +1,23 @@
+{
+  "testDate": "2026-10-18",
+  "reference": "portfolio-access-qa-personal-20261018-043657",
+  "authorization": "User approved one independent personal Gmail test and selected the sender.",
+  "recipient": "parthpawar@nyu.edu",
+  "subject": "Portfolio QA test \u2014 personal Gmail delivery",
+  "sentAtUtc": "2026-10-18T04:37:16Z",
+  "sentCount": 1,
+  "receiptVerified": true,
+  "receiptCheckedAtUtc": "2026-10-18T04:37:40Z",
+  "recipientLabels": [
+    "UNREAD",
+    "CATEGORY_PERSONAL",
+    "INBOX"
+  ],
+  "deliveredToHeader": "parthpawar@nyu.edu",
+  "matchingRfcMessageId": true,
+  "matchingTestReference": true,
+  "scope": "Independent-account delivery verified in recipient Inbox. Website still prepares mailto drafts; no website delivery API was added.",
+  "deployed": false,
+  "result": "PASS: the single authorized personal-sender QA email arrived in the NYU Inbox.",
+  "senderType": "User-selected personal Gmail account"
+}

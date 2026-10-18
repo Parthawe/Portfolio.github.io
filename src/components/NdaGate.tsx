@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { getProject } from '../data/projects'
 import { CONTACT_EMAIL } from '../config/site'
@@ -128,7 +128,9 @@ export default function NdaGate({
   const [context, setContext] = useState('')
   const [accessCode, setAccessCode] = useState('')
   const [codeMessage, setCodeMessage] = useState('')
-  const [sent, setSent] = useState(false)
+  const [draftOpened, setDraftOpened] = useState(false)
+  const [requestCopy, setRequestCopy] = useState<'idle' | 'copied' | 'manual'>('idle')
+  const requestRevision = useRef(0)
   // The stored value is the SHA-256 of the accepted code, re-checked against
   // the configured hash — so a rotated reviewer code invalidates old grants,
   // and the literal value to forge is at least not a guessable constant.
@@ -148,7 +150,7 @@ export default function NdaGate({
     return () => window.removeEventListener(NDA_UNLOCK_EVENT, handleUnlock)
   }, [slug])
 
-  const mailtoHref = useMemo(() => {
+  const requestDraft = useMemo(() => {
     const subject = `Access request: ${projectName}`
     const body = [
       `Project: ${projectName}`,
@@ -159,8 +161,28 @@ export default function NdaGate({
       context.trim() || 'I would like to review the full case study.',
     ].join('\n')
 
-    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    return {
+      href: `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      text: `To: ${CONTACT_EMAIL}\nSubject: ${subject}\n\n${body}`,
+    }
   }, [context, email, projectName])
+
+  const copyRequest = async (button: HTMLButtonElement) => {
+    if (!button.form?.reportValidity()) return
+    const revision = ++requestRevision.current
+    try {
+      await navigator.clipboard.writeText(requestDraft.text)
+      if (revision === requestRevision.current) setRequestCopy('copied')
+    } catch {
+      if (revision === requestRevision.current) setRequestCopy('manual')
+    }
+  }
+
+  const clearRequestStatus = () => {
+    requestRevision.current += 1
+    setRequestCopy('idle')
+    setDraftOpened(false)
+  }
 
   if (!project?.nda && project?.access?.mode !== 'request') {
     return null
@@ -168,9 +190,10 @@ export default function NdaGate({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setSent(true)
+    clearRequestStatus()
+    setDraftOpened(true)
     if (typeof window !== 'undefined') {
-      window.location.href = mailtoHref
+      window.location.href = requestDraft.href
     }
   }
 
@@ -310,7 +333,7 @@ export default function NdaGate({
                 type="email"
                 className="nda-input"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={e => { setEmail(e.target.value); clearRequestStatus() }}
                 placeholder="you@company.com"
                 autoComplete="email"
                 required
@@ -322,19 +345,28 @@ export default function NdaGate({
                 id={`nda-review-context-${slug}`}
                 className="nda-input nda-textarea"
                 value={context}
-                onChange={e => setContext(e.target.value)}
+                onChange={e => { setContext(e.target.value); clearRequestStatus() }}
                 placeholder="Hiring, collaboration, or project review"
                 rows={3}
               />
             </label>
             <button type="submit" className="nda-request-submit glass-action">
-              Send request
+              Open email draft
             </button>
-            {sent ? (
-              <p className="nda-inline-confirmation">Opening your email client with the request.</p>
-            ) : (
-              <p className="nda-request-helper">Opens a pre-filled email to Parth.</p>
-            )}
+            <button type="button" className="nda-request-submit nda-request-submit--secondary glass-action" onClick={e => void copyRequest(e.currentTarget)}>
+              Copy request
+            </button>
+            <p className="nda-request-helper">
+              Opens your email app. Review and send the draft to {CONTACT_EMAIL}. This website does not send or track delivery.
+            </p>
+            {(draftOpened || requestCopy !== 'idle') && <p className="nda-inline-confirmation" role="status">
+              {requestCopy === 'copied' ? 'Request copied. Paste it into an email and send it to Parth.' : requestCopy === 'manual' ? 'Copying was blocked. Select and copy the request below.' : 'Email draft requested. If your email app did not open, copy the request instead. Nothing has been sent by this website.'}
+            </p>}
+            {requestCopy === 'manual' && <label className="nda-field" htmlFor={`nda-request-copy-${slug}`}>
+              <span>Request to copy</span>
+              <textarea id={`nda-request-copy-${slug}`} className="nda-input nda-textarea" value={requestDraft.text} readOnly rows={9} onFocus={e => e.currentTarget.select()} />
+            </label>}
+
           </form>
           </details>
         </div>

@@ -1,0 +1,56 @@
+[
+  {
+    "engine": "chromium",
+    "width": 1440,
+    "theme": "light",
+    "route": "/work",
+    "exchanges": [
+      {
+        "question": "Compare Mentra and TransFi. Which one focuses on AI wearables?",
+        "answer": "**[Mentra](/mentra)** is the project focused on AI wearables.\n\nHere is how the two compare:\n\n* **[Mentra](/mentra)** (AI & Wearables): I served as Head of Design, building the operating system, runtime model, companion app, MiniApp ecosystem, and launch site for AI smart glasses. The focus was on fixing high setup friction (previously 9m 40s) and making active sensors and controls clear to the wearer.\n* **[TransFi](/transfi-project)** (Fintech / Web3): I was Lead Product Designer, focusing on cross-border crypto payment infrastructure. My work centered on simplifying merchant onboarding, consumer widget flows, and dashboard UX so non-crypto businesses could trust and operate the system.",
+        "model": "gemini-3.5-flash",
+        "status": 200,
+        "allowedOrigin": "https://designwhich.works",
+        "elapsedMs": 7150,
+        "priorTurns": 0
+      },
+      {
+        "question": "For the wearables project, what did Parth own?",
+        "answer": "For [Mentra](/mentra), I was the Head of Design owning research, testing, and delivery across four main areas:\n\n* **MentraOS:** Designed the core runtime model, active sensor states, and voice/glanceable UI.\n* **Companion App:** Built the iOS and Android pairing and onboarding flows to cut down setup friction.\n* **MiniApp Ecosystem:** Designed the distribution platform and web App Store for voice-first apps.\n* **Launch Site:** Created the web GTM experience to connect the hardware and software story.",
+        "model": "gemini-3.5-flash",
+        "status": 200,
+        "allowedOrigin": "https://designwhich.works",
+        "elapsedMs": 8018,
+        "priorTurns": 1
+      }
+    ],
+    "passed": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "dark",
+    "route": "/jugalbandi",
+    "exchanges": [
+      {
+        "question": "How did you build Jugalbandi?",
+        "answer": "I built Hexa-18 as the core MIDI interface with 18 sensor inputs to capture human improvisation. To bridge that input to physical output, I mapped the signals to three distinct acoustic mechanical systems: flute sensors trigger the robotic flute, tanpura sensors trigger the mechanized harp, and tabla sensors trigger the rainsticks.\n\nThe machine’s \"intelligence\" is a neural network trained to respond to these specific improvisational inputs, treating the system as a true duet partner rather than a playback loop. \n\nIt’s worth noting that while the installation’s sound and physical movement were captured in the performance film, the browser-based demonstrations are illustrative adaptations—the original model weights and high-fidelity actuator logs aren't included in the public build.",
+        "model": "gemini-3.1-flash-lite",
+        "status": 200,
+        "allowedOrigin": "https://designwhich.works",
+        "elapsedMs": 2422,
+        "priorTurns": 0
+      },
+      {
+        "question": "Which robotic instrument answers the tabla input?",
+        "answer": "The mechanized rainsticks answer the tabla input. \n\nWhen you play the tabla sensors located inside the Hexa-18 MIDI instrument, the system triggers the rainsticks to provide an acoustic response. It is one of three specific pairings I designed: the flute calls the robotic flute, and the tanpura calls the mechanized harp.",
+        "model": "gemini-3.1-flash-lite",
+        "status": 200,
+        "allowedOrigin": "https://designwhich.works",
+        "elapsedMs": 1831,
+        "priorTurns": 1
+      }
+    ],
+    "passed": true
+  }
+]

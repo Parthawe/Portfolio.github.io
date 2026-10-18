@@ -1,0 +1,26 @@
+[
+  {
+    "check": "empty-question",
+    "status": 400,
+    "expected": 400,
+    "passed": true
+  },
+  {
+    "check": "malformed-json",
+    "status": 400,
+    "expected": 400,
+    "passed": true
+  },
+  {
+    "check": "unsupported-method",
+    "status": 405,
+    "expected": 405,
+    "passed": true
+  },
+  {
+    "check": "foreign-origin",
+    "status": 403,
+    "expected": 403,
+    "passed": true
+  }
+]

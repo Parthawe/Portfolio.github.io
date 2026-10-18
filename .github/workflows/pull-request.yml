@@ -287,6 +287,7 @@ jobs:
           node scripts/companion-decisions-qa.mjs
           node scripts/product-decisions-qa.mjs
           node scripts/service-decisions-qa.mjs
+          QA_OUTPUT_DIR=/tmp/access-request-handoff-qa node scripts/access-request-handoff-qa.mjs
           node scripts/mechanism-case-decisions-qa.mjs
           node scripts/practice-evidence-qa.mjs
           node scripts/portfolio-consistency-review.mjs
@@ -305,6 +306,7 @@ jobs:
             /tmp/companion-decisions-qa/
             /tmp/product-decisions-qa/
             /tmp/service-decisions-qa/
+            /tmp/access-request-handoff-qa/
             /tmp/mechanism-case-decisions-qa/
             /tmp/practice-evidence-qa/
             /tmp/portfolio-consistency-review/
