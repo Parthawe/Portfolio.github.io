@@ -1,0 +1,24 @@
+[
+  {
+    "engine": "chromium",
+    "audioPermissionFailure": "recovered",
+    "silentVisualFallback": "pass",
+    "inputStrength": 32,
+    "subsequentStrength": 120,
+    "callerAndReplyGain": [
+      0.03023622047244094,
+      0.03023622047244094
+    ]
+  },
+  {
+    "engine": "webkit",
+    "audioPermissionFailure": "recovered",
+    "silentVisualFallback": "pass",
+    "inputStrength": 32,
+    "subsequentStrength": 120,
+    "callerAndReplyGain": [
+      0.03023622047244094,
+      0.03023622047244094
+    ]
+  }
+]

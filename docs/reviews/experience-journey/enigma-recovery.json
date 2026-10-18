@@ -1,0 +1,17 @@
+{
+  "results": [
+    "Cancelled touch restores ink; secondary pointer cannot draw",
+    "Window blur safely cancels unfinished stroke",
+    "Leaving and re-entering the tablet does not bridge the gap",
+    "Input lights update during an active stroke",
+    "Keyboard can label drawn input",
+    "Same-letter typed fallback works after drawing",
+    "WebGL failure offers reload; typed fallback and reset recover"
+  ],
+  "metrics": {
+    "firstResponseMs": 2678,
+    "strokeGestureMs": 3198,
+    "idleDraws": 0
+  },
+  "errors": []
+}

@@ -110,3 +110,39 @@
 .ja-pair-explanation h3 { font:500 20px/1.4 var(--sans); margin:0 0 8px; }
 .ja-pair-explanation p { font:16px/1.65 var(--sans); margin:8px 0; }
 .ja-source-link { display:block; color:inherit; padding-block:12px; min-height:44px; text-decoration:underline; text-underline-offset:3px; }
+
+/* A complete call-and-response fits together before tune configuration. */
+.ja-duet-play { margin-top:12px; }
+.ja-duet .ja-intro { margin-block:20px; }
+.ja-duet .ja-intro h2 { margin-top:0; }
+.ja-duet .ja-intro p { margin-bottom:0; }
+.ja-duet .ja-duet-stage { position:relative; }
+@media(max-width:680px) {
+ .ja-duet .ja-intro { margin-block:12px; }
+ .ja-duet .ja-intro h2 { font-size:26px; margin-bottom:8px; }
+ .ja-duet .ja-intro p { font-size:14px; line-height:1.5; }
+ .ja-duet-pairing { margin-block:12px; gap:6px; }
+ .ja-duet-pairing button { flex:1 1 0; min-width:0; padding:8px 6px; font-size:14px; }
+ .ja-duet-pairing span { font-size:12px; }
+ .ja-duet .ja-duet-stage { position:sticky; top:8px; }
+ .ja-duet .ja-ensemble-stage { position:static; }
+ .ja-duet-stage:not(.ja-ensemble-stage) svg { height:140px; }
+ .ja-duet .ja-duet-stage:not(.ja-ensemble-stage) .ja-caption { min-height:36px; padding:6px 8px; font-size:11px; }
+ .ja-duet-play .ja-hexa-surface > div { padding:10px; }
+ .ja-duet-play .ja-hexa-surface > .ja-note { padding:8px 10px; }
+}
+
+@media(max-width:680px) {
+ .ja-duet-views { margin-bottom:8px; }
+ .ja-duet-views button { min-width:0; font-size:14px; line-height:1.4; padding:8px; }
+ .ja-duet-pairing button { line-height:1.35; }
+ .ja-duet-pairing span { line-height:1.35; }
+ .ja-duet .ja-duet-stage:not(.ja-ensemble-stage) .ja-caption { line-height:1.35; }
+ .ja-duet-stage .ja-source-link { padding-block:8px; }
+ .ja-surface-top [role=group] { display:grid; grid-template-columns:repeat(6,minmax(44px,1fr)); }
+ .ja-surface-top [role=group] button { min-width:0; }
+ .ja-duet-play .ja-hexa-surface p { line-height:1.4; }
+}
+@media(max-width:380px) {
+ .ja-surface-top [role=group] { grid-template-columns:repeat(3,minmax(44px,1fr)); }
+}

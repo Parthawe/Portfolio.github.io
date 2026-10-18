@@ -1,0 +1,14 @@
+[
+  {
+    "engine": "chromium",
+    "retryComplete": true,
+    "boundedFallback": true,
+    "attempts": 2
+  },
+  {
+    "engine": "webkit",
+    "retryComplete": true,
+    "boundedFallback": true,
+    "attempts": 2
+  }
+]

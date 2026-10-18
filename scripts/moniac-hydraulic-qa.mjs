@@ -11,7 +11,7 @@ for(const [engine,width]of[[chromium,1440],[chromium,390],[webkit,390]]){
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(`${base}/experience-preview/moniac-machine`)
   const scene=page.getByRole('group',{name:'MONIAC isometric hydraulic game'})
   await expect(scene.getByRole('slider')).toHaveCount(6);assert.equal(await page.locator('.moniac-policy-bank').count(),0,'no flat bar bank');assert.equal(await page.locator('.moniac-game canvas').count(),0,'no GPU renderer')
-  await expect(scene.getByRole('slider').first()).toHaveAttribute('aria-disabled','true')
+  await expect(scene.getByRole('slider').first()).toHaveAttribute('aria-disabled','false');await expect(page.locator('.moniac-game')).toHaveAttribute('data-mode','study')
   await page.getByRole('button',{name:'Start Economy',exact:true}).click()
   for(const label of ['Tax Rate','Gov Spend','Consumer','Invest','Imports','Exports']){
    const wheel=scene.getByRole('slider',{name:`${label} valve`,exact:true});await wheel.scrollIntoViewIfNeeded();const box=await wheel.boundingBox(),x=box.x+box.width/2,y=box.y+box.height/2,before=Number(await wheel.getAttribute('aria-valuenow'))

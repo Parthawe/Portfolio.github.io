@@ -1,0 +1,64 @@
+{
+  "base": "http://127.0.0.1:5240",
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "theme": "dark",
+      "status": "pass"
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "theme": "dark",
+      "status": "pass",
+      "mobileArc": {
+        "periodHeight": 66,
+        "firstProjectTop": 633.0625
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "theme": "light",
+      "status": "pass",
+      "mobileArc": {
+        "periodHeight": 66,
+        "firstProjectTop": 615.53125
+      }
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "theme": "dark",
+      "status": "pass",
+      "mobileArc": {
+        "periodHeight": 66,
+        "firstProjectTop": 641.921875
+      }
+    },
+    {
+      "engine": "webkit",
+      "width": 1440,
+      "theme": "light",
+      "status": "pass"
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "theme": "dark",
+      "status": "pass",
+      "mobileArc": {
+        "periodHeight": 66,
+        "firstProjectTop": 615.53125
+      }
+    }
+  ],
+  "failures": []
+}
