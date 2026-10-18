@@ -52,8 +52,6 @@ for (const [engine, width, theme] of [[chromium,1440,'light'],[chromium,320,'dar
       await expect(form.getByRole('status')).toHaveText('Request copied. Paste it into an email and send it to Parth.')
       assert.equal(await page.evaluate(()=>window.qaClipboard.text),draft)
       await expect(manual).toHaveCount(0)
-      await form.getByRole('button',{name:'Open email draft',exact:true}).click({noWaitAfter:true})
-      await expect(form.getByRole('status')).toContainText('Nothing has been sent by this website.')
       await contextInput.fill('Revised QA draft; do not send.')
       await expect(form.locator('[role=status]')).toHaveCount(0)
       await page.evaluate(()=>{window.qaClipboard.deferred=true;window.qaClipboard.resolve=null})
@@ -63,6 +61,11 @@ for (const [engine, width, theme] of [[chromium,1440,'light'],[chromium,320,'dar
       await page.evaluate(()=>{window.qaClipboard.resolve();window.qaClipboard.deferred=false})
       await expect.poll(()=>page.evaluate(()=>window.qaClipboard.text)).toContain('Revised QA draft; do not send.')
       await expect(form.locator('[role=status]')).toHaveCount(0)
+      await form.getByRole('button',{name:'Copy request',exact:true}).click()
+      await expect(form.getByRole('status')).toHaveText('Request copied. Paste it into an email and send it to Parth.')
+      assert((await page.evaluate(()=>window.qaClipboard.text)).endsWith('Edited while clipboard permission was pending.'))
+      // External protocol handling differs by OS. Finish clipboard checks first,
+      // then verify the copy-to-draft transition without depending on an email app.
       await form.getByRole('button',{name:'Open email draft',exact:true}).click({noWaitAfter:true})
       await expect(form.getByRole('status')).toContainText('Nothing has been sent by this website.')
       await expect(email).toHaveValue('qa+handoff@example.com')
@@ -70,8 +73,15 @@ for (const [engine, width, theme] of [[chromium,1440,'light'],[chromium,320,'dar
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
       await page.screenshot({path:`${out}/${engine.name()}-${width}-${slug}-draft.png`})
       results.push({engine:engine.name(),width,theme,slug,clipboardSuccess:true,clipboardDeniedFallback:true,staleClipboardIgnored:true,draftOnly:true,passed:true})
+      writeFileSync(`${out}/report.json`,JSON.stringify({base,results},null,2))
+      console.log(`${engine.name()} ${width} ${slug}: request preparation and recovery passed`)
     }
     assert.deepEqual(errors,[])
+  } catch(error) {
+    await page.screenshot({path:`${out}/FAIL-${engine.name()}-${width}.png`}).catch(()=>{})
+    const state = await page.evaluate(()=>({url:location.href,visibility:document.visibilityState,focused:document.hasFocus(),clipboard:window.qaClipboard,invalidFields:[...document.querySelectorAll(':invalid')].map(el=>({name:el.id,message:el.validationMessage}))})).catch(()=>null)
+    writeFileSync(`${out}/failure.json`,JSON.stringify({engine:engine.name(),width,theme,error:String(error),errors,state},null,2))
+    throw error
   } finally { await context.close(); await browser.close() }
 }
 writeFileSync(`${out}/report.json`,JSON.stringify({base,results},null,2))
