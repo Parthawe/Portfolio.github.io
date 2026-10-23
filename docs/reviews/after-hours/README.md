@@ -6,13 +6,13 @@ Requested as a Floor796-inspired explorable animation floor. Plan and research l
 
 Eight original fictional workshop scenes: greenhouse, print shop, listening room, robot repairs, observatory, watchmaker, tea break and kinetic gallery. They recur in deterministic spatial arrangements; this is not an infinite library of unique characters. There is no borrowed Floor796 artwork or source. Direct reference inspection was blocked by proxy HTTP 403, so no statement about Floor796's actual renderer is verified.
 
-Single Canvas 2D renderer, cached static room plates, viewport culling, a 30fps cap and capped DPR. No artwork downloads, extra dependency, video loops or WebGL context. Route code is lazy-loaded. The new bundled module is 14,325 bytes (6,082 gzip); CSS 3,865 bytes (1,229 gzip). These are build measurements, not the entire application's network transfer.
+Single Canvas 2D renderer, cached static room plates, viewport culling, a 30fps cap and capped DPR. No artwork downloads, extra dependency, video loops or WebGL context. Route code is lazy-loaded. The new bundled module is 14,436 bytes (6,110 gzip); CSS 3,865 bytes (1,229 gzip). These are build measurements, not the entire application's network transfer.
 
 Pointer and touch drag, two-finger pinch, Ctrl/Cmd-wheel zoom, zoom buttons, arrows, Home, Enter inspection, reset and pause. Ordinary wheel remains native page scrolling. Directory exposes all eight scenes and remains usable if Canvas 2D fails. Reduced motion starts static; changes in preferences update without reload. Animation pauses offscreen and on document visibility changes. Runtime input, theme and resize wake static redraws.
 
 ## Validation
 
-- TypeScript, production Vite build, static route metadata/entrypoint, blocking design audit and whitespace check passed.
+- TypeScript, production Vite build, static route metadata/entrypoint, blocking design audit and whitespace check passed. The existing rendered-site QA also passed the new route at both 1207px and 390px, with zero warnings; the standalone page explicitly supplies index/follow metadata.
 - 44 model cases passed: coordinate inversion at near/far/negative locations, deterministic bounded scene types, reachable eight-scene directory, sorted viewport culling and bounded far-camera work. An initial test assumed almost identical counts at different lattice phases; that assumption was corrected to test bounded work rather than equal edge intersections.
 - 13 browser cases passed with no page errors. Eight matrix cases: 320/390/768/1440px, light/dark; visible animation/frame cap, pause, keyboard panning/reset, zoom, input redraw while paused, focus and no horizontal overflow. Additional cases: reduced-motion resize/preference changes; pointer drag and touch pinch; simulated hidden-document and actual offscreen pause; forced Canvas 2D failure with all eight directory selections; rendering cost/resource sample.
 - Built-page smoke checks passed: /after-hours/ direct load, pointer room picking, Ctrl-wheel zoom, normal page scrolling, single-touch panning and Studio discovery link.
