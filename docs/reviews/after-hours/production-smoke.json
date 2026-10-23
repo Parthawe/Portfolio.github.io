@@ -1,0 +1,9 @@
+{
+  "passed": [
+    "Production route and pointer room selection",
+    "Ctrl-wheel zoom",
+    "Ordinary wheel keeps native page scrolling",
+    "Single-touch drag pans world",
+    "Studio discovery link"
+  ]
+}

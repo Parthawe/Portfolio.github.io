@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import type { StudioCanvasRef } from './StudioCanvas'
 
 interface Props {
@@ -96,6 +97,7 @@ export default function StudioMenuBar({ canvasRef, onUndo, onRedo }: Props) {
           )}
         </div>
       ))}
+      <Link className="studio-menu-trigger" to="/after-hours">After hours</Link>
     </div>
   )
 }

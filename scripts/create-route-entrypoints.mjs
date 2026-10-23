@@ -18,6 +18,7 @@ const indexHtml = readFileSync(indexPath, 'utf8')
 const siteOrigin = 'https://designwhich.works'
 const defaultDescription = 'Portfolio of Parth Pawar, a Product Designer crafting trusted systems across AI wearables, fintech, civic tools, design engineering, and physical interaction.'
 const routeLabels = new Map([
+  ['after-hours', 'After Hours'],
   ['work', 'Work'],
   ['about', 'About'],
   ['notes', 'Notes'],
@@ -66,6 +67,7 @@ const routeLabels = new Map([
   ['dna-speculative', 'DNA Speculative Design'],
 ])
 const routeDescriptions = new Map([
+  ['after-hours', 'An endless isometric floor of original animated workshops by Parth Pawar. Drag, zoom and explore the rooms.'],
   ['glassly', 'Glassly: product storytelling, brand guidelines and the original synchronized phone-and-glasses website demo by Parth Pawar.'],
   ['notes', 'Visitor notes and feedback on Parth Pawar’s portfolio. Leave a hello or share a thought.'],
   ['work', 'Selected work by Parth Pawar across AI wearables, fintech, UX design, creative technology, installations, and brand systems.'],
@@ -228,6 +230,7 @@ const routes = [...new Set([
   ...[...readFileSync(join(root,'src/data/projectRoutes.ts'),'utf8').matchAll(/slug: '([^']+)'/g)].map(match => `${match[1]}/world`),
   ...sitemapRoutes,
   ...canonicalAliases.keys(),
+  'after-hours',
   'accessibility',
   'notes',
   'book',

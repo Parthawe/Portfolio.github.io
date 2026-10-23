@@ -94,6 +94,7 @@ const GraveyardPage = lazy(() => import('./pages/GraveyardPage'))
 const StudioPage = lazy(() => import('./pages/StudioPage'))
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'))
 const MotionPage = lazy(() => import('./pages/MotionPage'))
+const AfterHoursPage = lazy(() => import('./pages/AfterHoursPage'))
 const PerplexityPage = lazy(() => import('./pages/PerplexityPage'))
 
 // Project page components — auto-generated from registry
@@ -125,6 +126,7 @@ export default function App() {
           {ExperiencePreviewPage && <Route path="/experience-preview/:project" element={<ExperiencePreviewPage />} />}
           <Route path="/typeface/workshop" element={<TypefaceWorkshopPage/>}/>
         </Route>
+        <Route path="/after-hours" element={<AfterHoursPage />} />
         <Route path="/project-experiences" element={<PhysicalWorldPage />} />
         <Route path="/:project/prototype" element={<PhysicalWorldPage />} />
         <Route path="/physical-worlds" element={<PhysicalWorldPage />} />
