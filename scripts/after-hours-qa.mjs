@@ -32,10 +32,13 @@ try{
   await context.close()
  }
  const context=await open(390,'dark','reduce');await page.locator('canvas').scrollIntoViewIfNeeded();await page.waitForTimeout(150)
- assert(await page.getByRole('button',{name:'Motion reduced',exact:true}).isDisabled());const stop=await frames();await page.waitForTimeout(300);assert.equal(await frames(),stop)
+ assert(await page.getByRole('button',{name:'Play animation',exact:true}).isEnabled());const stop=await frames();await page.waitForTimeout(300);assert.equal(await frames(),stop)
+ await page.getByRole('button',{name:'Play animation',exact:true}).click();await page.waitForTimeout(200);assert(await frames()>stop,'explicit play opts into animation under reduced motion')
+ await page.getByRole('button',{name:'Pause animation',exact:true}).click();await page.waitForTimeout(80);const optedStop=await frames();await page.waitForTimeout(150);assert.equal(await frames(),optedStop)
+ await page.getByRole('button',{name:'Play animation',exact:true}).click()
  await page.setViewportSize({width:320,height:1000});await page.waitForTimeout(100);assert.equal(await page.locator('canvas').evaluate(c=>c.width),await page.evaluate(()=>Math.round(document.querySelector('.ah-world').clientWidth*Math.min(devicePixelRatio,1.5))))
  await page.emulateMedia({reducedMotion:'no-preference'});await page.waitForTimeout(180);assert(await frames()>stop)
- results.push({reducedMotion:true,staticResize:true,preferenceChange:true})
+ results.push({reducedMotion:true,explicitPlayOptIn:true,staticResize:true,preferenceChange:true})
  await page.getByRole('button',{name:'Pause animation',exact:true}).click()
  await page.locator('canvas').scrollIntoViewIfNeeded();const bounds=await page.locator('canvas').boundingBox();const x=bounds.x+bounds.width/2,y=bounds.y+bounds.height/2
  await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+70,y+45,{steps:5});await page.mouse.up();await page.waitForTimeout(100)

@@ -1,0 +1,193 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "21",
+        "rooms": "15",
+        "drawMs": "1.40",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "33",
+        "rooms": "15",
+        "drawMs": "1.20",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "21",
+        "rooms": "25",
+        "drawMs": "1.50",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "33",
+        "rooms": "25",
+        "drawMs": "1.40",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "21",
+        "rooms": "25",
+        "drawMs": "2.20",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "22",
+        "rooms": "25",
+        "drawMs": "2.30",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "22",
+        "rooms": "45",
+        "drawMs": "3.40",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "frames": "22",
+        "rooms": "45",
+        "drawMs": "3.30",
+        "camera": "0,0"
+      }
+    },
+    {
+      "reducedMotion": true,
+      "explicitPlayOptIn": true,
+      "staticResize": true,
+      "preferenceChange": true
+    },
+    {
+      "pointerDrag": true,
+      "touchPinch": true
+    },
+    {
+      "hiddenDocumentSimulation": true,
+      "offscreen": true
+    },
+    {
+      "canvasFailure": true,
+      "allEightRoomsAccessible": true
+    },
+    {
+      "drawSamplesMs": [
+        1.8,
+        2,
+        1.7,
+        1.9,
+        4,
+        2.4,
+        2,
+        2.1,
+        1.8,
+        1.7,
+        1.8,
+        1.8,
+        1.7,
+        3,
+        1.9,
+        1.8,
+        1.7,
+        1.7,
+        1.9,
+        1.9
+      ],
+      "maximumSampleMs": 4,
+      "noHeroOrMediaDependencies": true
+    }
+  ],
+  "pageErrors": []
+}

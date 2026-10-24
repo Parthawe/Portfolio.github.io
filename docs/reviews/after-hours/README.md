@@ -1,3 +1,5 @@
+Current local art revision: [revision 2](revision-2/README.md). The report below records the originally published version.
+
 # After Hours: original animated world
 
 Requested as a Floor796-inspired explorable animation floor. Plan and research limits are in PLAN.md. Route: /after-hours, linked from the Studio menu. This page is independent of the homepage and of all previously unapproved footer/Taste Index drafts.

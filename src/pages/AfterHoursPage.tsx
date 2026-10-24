@@ -6,11 +6,15 @@ import { visibleAnimation } from '../utils/visibleActivity'
 import { cellAt, createWorldRenderer, point, roomType, ROOMS, type Camera, type Cell } from '../components/after-hours/world'
 import '../styles/after-hours.css'
 
+function startingZoom() { return window.innerWidth < 600 ? 1.6 : 1.8 }
+
 export default function AfterHoursPage() {
   const canvas = useRef<HTMLCanvasElement>(null), host = useRef<HTMLDivElement>(null)
-  const camera = useRef<Camera>({ x: 0, y: 0, zoom: 1.3 }), selected = useRef<Cell>({ col: 0, row: 0 })
-  const [selection, setSelection] = useState<Cell>({ col: 0, row: 0 }), [zoom, setZoom] = useState(1.3)
+  const camera = useRef<Camera>({ x: 0, y: 0, zoom: startingZoom() }), selected = useRef<Cell>({ col: 0, row: 0 })
+  const [selection, setSelection] = useState<Cell>({ col: 0, row: 0 }), [zoom, setZoom] = useState(startingZoom)
   const [paused, setPaused] = useState(false), [reduced, setReduced] = useState(false), [unavailable, setUnavailable] = useState(false)
+  const [motionOptIn, setMotionOptIn] = useState(false)
+  const overrideReduced = useRef(false)
   const pausedRef = useRef(false), wake = useRef<() => void>(() => {})
   const room = ROOMS[roomType(selection.col, selection.row)]
   function choose(cell: Cell, travel = false) {
@@ -19,7 +23,7 @@ export default function AfterHoursPage() {
     wake.current()
   }
   function changeZoom(factor: number) { camera.current.zoom = Math.min(2.2, Math.max(.55, camera.current.zoom * factor)); setZoom(camera.current.zoom); wake.current() }
-  function home() { camera.current = { x: 0, y: 0, zoom: 1.3 }; setZoom(1.3); choose({ col: 0, row: 0 }) }
+  function home() { camera.current = { x: 0, y: 0, zoom: startingZoom() }; setZoom(startingZoom()); choose({ col: 0, row: 0 }) }
   useEffect(() => {
     const surface = canvas.current, stage = host.current
     if (!surface || !stage) return
@@ -27,20 +31,20 @@ export default function AfterHoursPage() {
     if (!c) { setUnavailable(true); return }
     const renderer = createWorldRenderer(), media = matchMedia('(prefers-reduced-motion: reduce)')
     let reduce = media.matches, last = -Infinity, sceneTime = 0, previous = 0, dirty = true
-    const syncMotion = () => { reduce = media.matches; setReduced(reduce); dirty = true; wake.current() }; syncMotion()
+    const syncMotion = () => { reduce = media.matches; setReduced(reduce); overrideReduced.current = false; setMotionOptIn(false); dirty = true; wake.current() }; syncMotion()
     const draw = (time: number) => {
       if (!dirty && time - last < 1000 / 30) return
       const started = performance.now(), width = stage.clientWidth, height = stage.clientHeight
       const ratio = Math.min(devicePixelRatio || 1, 1.5)
       if (surface.width !== Math.round(width * ratio) || surface.height !== Math.round(height * ratio)) { surface.width = Math.round(width * ratio); surface.height = Math.round(height * ratio) }
-      if (!pausedRef.current && !reduce) sceneTime += previous ? Math.min(time - previous, 80) : 0
+      if (!pausedRef.current && (!reduce || overrideReduced.current)) sceneTime += previous ? Math.min(time - previous, 80) : 0
       previous = time; last = time; dirty = false
       c.setTransform(ratio, 0, 0, ratio, 0, 0); c.imageSmoothingEnabled = false
       const count = renderer.draw(c, width, height, camera.current, sceneTime, selected.current, document.documentElement.dataset.theme === 'dark')
       stage.dataset.frames = String(Number(stage.dataset.frames || 0) + 1); stage.dataset.rooms = String(count); stage.dataset.drawMs = (performance.now() - started).toFixed(2)
       stage.dataset.camera = `${camera.current.x.toFixed(0)},${camera.current.y.toFixed(0)}`
     }
-    const animation = visibleAnimation(stage, draw, () => !pausedRef.current && !reduce)
+    const animation = visibleAnimation(stage, draw, () => !pausedRef.current && (!reduce || overrideReduced.current))
     wake.current = () => { dirty = true; animation.wake() }
     const theme = new MutationObserver(() => wake.current()); theme.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
     const resize = () => wake.current(); window.addEventListener('resize', resize); media.addEventListener('change', syncMotion)
@@ -75,8 +79,9 @@ export default function AfterHoursPage() {
     <Helmet><title>After Hours · Parth Pawar</title><meta name="robots" content="index, follow" /><meta name="googlebot" content="index, follow" /><meta name="description" content="Explore an endless isometric floor of original animated workshops. A playful generative illustration by Parth Pawar." /><link rel="canonical" href="https://designwhich.works/after-hours" /></Helmet>
     <header className="ah-top"><Link to="/">Parth Pawar</Link><span>A small world, still awake.</span><ThemeToggle /></header>
     <main id="main-content">
-      <section className="ah-heading"><div><span className="ah-kicker">An endless illustration / 01</span><h1>After <em>hours.</em></h1></div><p>The lights are on in every workshop.<br />Take a look around. There is no last room.</p></section>
-      <div className="ah-toolbar" aria-label="World controls"><div><button onClick={() => { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current); wake.current() }} disabled={reduced}>{reduced ? 'Motion reduced' : paused ? 'Play animation' : 'Pause animation'}</button><button onClick={home}>Return to start</button></div><div><button aria-label="Zoom out" onClick={() => changeZoom(1 / 1.2)} disabled={zoom <= .55}>−</button><output aria-label="Zoom level">{Math.round(zoom * 100)}%</output><button aria-label="Zoom in" onClick={() => changeZoom(1.2)} disabled={zoom >= 2.2}>+</button></div></div>
+      <section className="ah-heading"><div><span className="ah-kicker">An endless illustration / 01</span><h1>After <em>hours.</em></h1></div><p>A press is running. Someone is watering the plants.<br />Every room has a little story in motion.</p></section>
+      <div className="ah-toolbar" aria-label="World controls"><div><button onClick={() => { if (reduced && !overrideReduced.current) { overrideReduced.current = true; setMotionOptIn(true); pausedRef.current = false; setPaused(false) } else { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current) } wake.current() }}>{paused || (reduced && !motionOptIn) ? 'Play animation' : 'Pause animation'}</button><button onClick={home}>Return to start</button></div><div><button aria-label="Zoom out" onClick={() => changeZoom(1 / 1.2)} disabled={zoom <= .55}>−</button><output aria-label="Zoom level">{Math.round(zoom * 100)}%</output><button aria-label="Zoom in" onClick={() => changeZoom(1.2)} disabled={zoom >= 2.2}>+</button></div></div>
+      {reduced && !motionOptIn && <p className="ah-motion-note" role="status">Reduced motion is on. Choose Play to start the animation.</p>}
       <div className="ah-world" ref={host}>
         {unavailable ? <div className="ah-fallback" role="status"><h2>The illustrated floor is unavailable.</h2><p>You can still explore every workshop in the directory below.</p></div> : <canvas ref={canvas} tabIndex={0} aria-label="Animated workshop floor. Drag to explore, or use arrow keys. Enter selects the room at the center. Plus and minus zoom; Home resets." aria-describedby="ah-help" onKeyDown={e => {
           const directions: Record<string, [number, number]> = { ArrowLeft: [-70, 0], ArrowRight: [70, 0], ArrowUp: [0, -70], ArrowDown: [0, 70] }

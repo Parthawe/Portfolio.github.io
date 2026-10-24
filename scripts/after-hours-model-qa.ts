@@ -11,6 +11,9 @@ for (const col of [-10000, -17, -1, 0, 1, 127, 10000]) for (const row of [-10000
 const kinds = new Set<number>()
 for (let col = -8; col <= 8; col++) for (let row = -8; row <= 8; row++) kinds.add(roomType(col, row))
 assert.equal(kinds.size, 8)
+for (let col = -8; col <= 8; col++) for (let row = -8; row <= 8; row++) {
+  for (const [dx, dy] of [[1,0],[0,1],[1,1],[1,-1]]) assert.notEqual(roomType(col,row),roomType(col+dx,row+dy), 'neighbouring rooms have different authored sets')
+}
 for (const zoom of [.55, 1.05, 2.2]) for (const width of [320, 768, 1728]) {
   const cells = visibleCells(width, 820, { x: 0, y: 0, zoom })
   assert(cells.length > 0 && cells.length < 350)
