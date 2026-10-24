@@ -33,40 +33,52 @@ export function visibleCells(width: number, height: number, camera: Camera) {
 }
 
 type Context = CanvasRenderingContext2D
-const INK = '#27343c', CREAM = '#eee1bd', GOLD = '#d5a548', RED = '#be594c', BLUE = '#517a9b', GREEN = '#518a74'
-const FLOOR = ['#89aa97', '#bda17a', '#55647c', '#a8a596', '#586b83', '#a28362', '#bd8a79', '#91a6a7']
-const WALL = ['#b4c9ad', '#c7a27d', '#b5a8a5', '#c4ba8d', '#94acb6', '#bba785', '#d4b9a1', '#bcc2af']
+// Ochre wood, oxidised blue and garden greens. Keep linework coloured, not black.
+const INK = '#46554c', CREAM = '#f3e5bd', GOLD = '#caa666', RED = '#b97964', BLUE = '#769897', GREEN = '#7d986b'
+const FLOOR = ['#acb99a', '#cfb593', '#a5aaa0', '#b7b6a0', '#99acac', '#c1af91', '#cbb49c', '#adb9a3']
+const WALL = ['#d9dec3', '#e7d6b5', '#d6d7c4', '#d7d7bc', '#c6d4cb', '#e1d1b0', '#ead7b9', '#d8ddc6']
 function polygon(c: Context, points: number[][], color: string) { c.fillStyle=color;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fill() }
-function rect(c: Context,x:number,y:number,w:number,h:number,color:string){c.fillStyle=color;c.fillRect(Math.round(x),Math.round(y),w,h)}
-function line(c:Context,points:number[][],color:string,width=2){c.strokeStyle=color;c.lineWidth=width;c.lineJoin='miter';c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke()}
+function rect(c: Context,x:number,y:number,w:number,h:number,color:string){c.fillStyle=color;c.beginPath();c.roundRect(x,y,w,h,Math.min(1.8,Math.abs(w)/3,Math.abs(h)/3));c.fill()}
+function line(c:Context,points:number[][],color:string,width=2){c.strokeStyle=color;c.lineWidth=width;c.lineJoin='round';c.lineCap='round';c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke()}
 function ellipse(c:Context,x:number,y:number,rx:number,ry:number,color:string){c.fillStyle=color;c.beginPath();c.ellipse(x,y,rx,ry,0,0,Math.PI*2);c.fill()}
 function box(c:Context,x:number,y:number,w:number,d:number,h:number,color:string,top=CREAM){
+ ellipse(c,x+(w-d)/2,y+(w+d)/4+2,(w+d)*.55,Math.max(4,(w+d)*.22),'#46554c17')
  polygon(c,[[x+w,y+w/2],[x+w-d,y+(w+d)/2],[x+w-d,y+(w+d)/2-h],[x+w,y+w/2-h]],color)
- polygon(c,[[x+w-d,y+(w+d)/2],[x-d,y+d/2],[x-d,y+d/2-h],[x+w-d,y+(w+d)/2-h]],INK)
+ polygon(c,[[x+w-d,y+(w+d)/2],[x-d,y+d/2],[x-d,y+d/2-h],[x+w-d,y+(w+d)/2-h]],color)
+ polygon(c,[[x+w-d,y+(w+d)/2],[x-d,y+d/2],[x-d,y+d/2-h],[x+w-d,y+(w+d)/2-h]],'#46554c25')
  polygon(c,[[x,y-h],[x+w,y+w/2-h],[x+w-d,y+(w+d)/2-h],[x-d,y+d/2-h]],top)
+ line(c,[[x-d+2,y+d/2-h+1],[x+w-d,y+(w+d)/2-h-1],[x+w-2,y+w/2-h+1]],'#fff5d73d',1)
 }
-function label(c:Context,text:string,x:number,y:number,color=INK,size=7){c.font=`bold ${size}px monospace`;c.textAlign='center';c.fillStyle=color;c.fillText(text,x,y)}
+function leaf(c:Context,x:number,y:number,angle:number,length:number,color:string){
+ c.save();c.translate(x,y);c.rotate(angle);c.fillStyle=color;c.beginPath();c.moveTo(0,0);c.bezierCurveTo(-length*.6,-length*.3,-length*.4,-length*.9,0,-length);c.bezierCurveTo(length*.5,-length*.7,length*.5,-length*.1,0,0);c.fill();c.restore()
+}
 function plant(c:Context,x:number,y:number,t:number,height=28){
- box(c,x,y,9,9,8,'#9c5946','#c9825e');const lean=Math.sin(t*2)*3
- line(c,[[x,y-9],[x+lean,y-height]],'#355e4e',2)
- for(let n=0;n<3;n++){ellipse(c,x-5+lean,y-14-n*6,7,3,n%2?'#4b7754':'#6b994f');ellipse(c,x+5+lean,y-18-n*6,7,3,'#a0bd66')}
+ ellipse(c,x,y+2,11,4,'#46554c1c');c.fillStyle='#bc896c';c.beginPath();c.moveTo(x-7,y-10);c.lineTo(x-5,y+1);c.quadraticCurveTo(x,y+4,x+5,y+1);c.lineTo(x+7,y-10);c.fill();ellipse(c,x,y-10,7,3,'#d5ad86');ellipse(c,x,y-11,5,2,'#716e51')
+ const lean=Math.sin(t*1.3)*2;line(c,[[x,y-10],[x+lean,y-height]],'#738b5d',1.2)
+ for(let n=0;n<4;n++){leaf(c,x+lean*n/4,y-12-n*height/5,-.8-n*.08,10+n*1.3,n%2?'#7e9b64':'#9ab37b');leaf(c,x+lean*n/4,y-14-n*height/5,.8,10+n,'#b8c78a')}
 }
 type Pose='walk'|'work'|'wave'|'drum'|'idle'
 function person(c:Context,x:number,y:number,shirt:string,t:number,pose:Pose='idle',variant=0){
- c.save();c.translate(Math.round(x),Math.round(y));const stride=pose==='walk'?Math.sin(t*9)*4:0,bob=pose==='walk'?Math.abs(Math.sin(t*9))*2:0
- ellipse(c,0,1,8,3,'#26333d35');c.translate(0,-bob)
- line(c,[[-3,-12],[-4-stride,-2]],INK,4);line(c,[[3,-12],[4+stride,-2]],INK,4);rect(c,-7-stride,-3,6,3,INK);rect(c,2+stride,-3,6,3,INK)
- rect(c,-6,-25,12,15,shirt);rect(c,-5,-13,10,3,'#26333d60');rect(c,0,-25,2,13,CREAM)
- const skin=variant%2?'#b87d5d':'#e0b185',hand=pose==='work'?Math.sin(t*5)*7:pose==='drum'?Math.sin(t*9)*12:pose==='wave'?-12+Math.sin(t*7)*4:stride
- line(c,[[-7,-23],[-10,-15+hand]],shirt,4);line(c,[[7,-23],[11,-15-hand]],shirt,4);rect(c,-12,-17+hand,4,4,skin);rect(c,9,-17-hand,4,4,skin)
- rect(c,-5,-36,10,11,skin);rect(c,-6,-38,12,4,INK);rect(c,-6,-35,3,7,INK);rect(c,2,-32,2,2,INK)
- if(variant%3===0){rect(c,-7,-40,14,3,shirt);rect(c,-4,-43,9,4,shirt)}
- if(variant%3===1){rect(c,-7,-33,3,8,INK);rect(c,4,-33,3,8,INK);line(c,[[-6,-35],[0,-39],[5,-35]],INK,2)}
+ c.save();c.translate(x,y);const stride=pose==='walk'?Math.sin(t*5)*3.5:0,bob=pose==='walk'?Math.abs(Math.sin(t*5))*.9:Math.sin(t*1.8)*.35
+ ellipse(c,1,1,9,3,'#46554c24');c.translate(0,-bob)
+ line(c,[[-3,-12],[-4-stride,-2]],'#65756a',4);line(c,[[3,-12],[4+stride,-2]],'#65756a',4);ellipse(c,-5-stride,-1,4,2,'#625b4b');ellipse(c,4+stride,-1,4,2,'#625b4b')
+ c.fillStyle=shirt;c.beginPath();c.moveTo(-4,-27);c.bezierCurveTo(-9,-24,-7,-17,-8,-11);c.quadraticCurveTo(0,-8,8,-11);c.bezierCurveTo(6,-18,8,-24,4,-27);c.fill()
+ // Canvas apron and pocket, with different hair and hats rather than square sprites.
+ polygon(c,[[-3,-24],[3,-24],[5,-12],[-5,-12]],'#e7d7ad');rect(c,-2,-18,5,3,'#d4bf97')
+ const skin=variant%2?'#c99d7b':'#e6bd96',hand=pose==='work'?Math.sin(t*3.1)*5:pose==='drum'?Math.sin(t*7)*9:pose==='wave'?-10+Math.sin(t*3)*3:stride
+ line(c,[[-6,-24],[-9,-19],[-10,-15+hand]],shirt,4);line(c,[[6,-24],[9,-20],[11,-15-hand]],shirt,4);ellipse(c,-10,-15+hand,2.3,2.5,skin);ellipse(c,11,-15-hand,2.3,2.5,skin)
+ ellipse(c,0,-32,6.5,8,skin);ellipse(c,-1,-37,6.3,4.5,'#635c4c');ellipse(c,-5,-33,2.3,5,'#635c4c');ellipse(c,3,-32,0.7,0.9,INK)
+ if(variant%3===0){ellipse(c,-1,-38,10,2.3,'#c6ac75');ellipse(c,-1,-41,6,4,'#cdb47e');line(c,[[-6,-39],[4,-39]],'#8c9470',1.5)}
+ if(variant%3===1){ellipse(c,-6,-30,2.5,5,'#635c4c');ellipse(c,5,-30,2,4,'#635c4c')}
+ if(variant%3===2)ellipse(c,-6,-37,4,4,'#635c4c')
+ line(c,[[1,-28],[3,-28]],'#b98e70',.55)
  c.restore()
 }
 function gear(c:Context,x:number,y:number,r:number,t:number){c.save();c.translate(x,y);c.rotate(t);ellipse(c,0,0,r,r,GOLD);ellipse(c,0,0,r-4,r-4,INK);for(let i=0;i<10;i++){c.rotate(Math.PI/5);rect(c,-2,-r-2,4,r*2+4,GOLD)}ellipse(c,0,0,4,4,CREAM);c.restore()}
 function paper(c:Context,x:number,y:number,color:string){polygon(c,[[x,y],[x+15,y+7],[x+2,y+14],[x-13,y+7]],CREAM);line(c,[[x-4,y+5],[x+5,y+9]],color,3)}
-function steam(c:Context,x:number,y:number,t:number){for(let i=0;i<4;i++){const a=(t*13+i*8)%32;rect(c,x+Math.sin(a/5+i)*4,y-a,2+(i%2),4,'#f8e5bd99')}}
+function steam(c:Context,x:number,y:number,t:number){
+ for(let i=0;i<3;i++){const age=(t*.28+i/3)%1;c.save();c.globalAlpha=(1-age)*.45;c.strokeStyle=CREAM;c.lineWidth=1.5+age*2;c.beginPath();c.moveTo(x+Math.sin(t+i)*2,y-age*29);c.bezierCurveTo(x-6,y-age*29-5,x+7,y-age*29-9,x+2,y-age*29-14);c.stroke();c.restore()}
+}
 
 // Each room has a different set and a staged action. Animation time is explicit,
 // allowing visual frame comparisons rather than merely counting canvas redraws.
@@ -80,7 +92,7 @@ function scene(c:Context,type:number,t:number,variant:number){
   const x=cycle<.45?-48+cycle/.45*85:cycle>.75?37-(cycle-.75)/.25*85:37
   person(c,x,31,GREEN,t,cycle>.45&&cycle<.75?'work':'walk',0)
   if(cycle>.45&&cycle<.75){box(c,x+16,10,10,7,8,BLUE,BLUE);line(c,[[x+24,7],[x+31,15]],BLUE,3);for(let i=0;i<6;i++)rect(c,x+28+i%3*3,14+((t*30+i*3)%18),2,3,'#80c0d4')}
-  label(c,'NIGHT NURSERY',-35,-52,CREAM,8);break
+  break
  }
  case 1:{
   box(c,-25,-16,62,33,23,RED,'#e5c995');rect(c,-29,-48,61,6,INK);rect(c,-26,-43+beat*9,55,8,BLUE)
@@ -88,10 +100,10 @@ function scene(c:Context,type:number,t:number,variant:number){
   for(let i=0;i<4;i++)box(c,59,15-i*3,17,18,4,RED,i%2?CREAM:'#ddb653')
   box(c,-73,-3,18,16,17,BLUE,BLUE);rect(c,-79,-25,7,8,GOLD);rect(c,-68,-21,7,8,RED)
   person(c,-57,30,BLUE,t,'work',1);line(c,[[-46,8],[-37,-9+beat*11]],GOLD,3);person(c,35,42,RED,t,'work',2)
-  label(c,'ONE MORE EDITION',3,-62,CREAM,8);break
+  break
  }
  case 2:{
-  polygon(c,[[0,-24],[70,11],[0,47],[-70,11]],'#b45f58');for(let i=0;i<5;i++)line(c,[[-44+i*15,-2-i*2],[-15+i*15,29-i*2]],'#d9a36d',2)
+  polygon(c,[[0,-24],[70,11],[0,47],[-70,11]],'#b88e76');for(let i=0;i<5;i++)line(c,[[-44+i*15,-2-i*2],[-15+i*15,29-i*2]],'#d9a36d',2)
   box(c,-21,-23,48,22,17,BLUE,'#d4b992');for(let i=0;i<8;i++){rect(c,-27+i*6,-27+i*.8,4,8,CREAM);rect(c,-28+i*6,-36,3,3,(Math.floor(t*6)+i)%4===0?GOLD:INK)}
   for(const x of [-74,70]){box(c,x,-5,15,17,34,INK,BLUE);ellipse(c,x-1,0,7+beat,7+beat,BLUE);ellipse(c,x-1,-17,4,4,CREAM)}
   ellipse(c,48,13,17,10,INK);ellipse(c,48,13,5,3,RED);line(c,[[48,13],[48+Math.cos(t*4)*14,13+Math.sin(t*4)*8]],CREAM,2)
@@ -106,10 +118,10 @@ function scene(c:Context,type:number,t:number,variant:number){
   line(c,[[handX-5,handY+2],[handX-8,handY+11],[handX,handY+15],[handX+8,handY+11],[handX+5,handY+2]],INK,3)
   if(a>-.45)box(c,handX,handY+21,10,9,10,RED,GOLD)
   const robotX=-59+((t*24)%118);box(c,robotX,39,16,13,13,BLUE,CREAM);rect(c,robotX-4,23,12,6,INK);rect(c,robotX-2,25,3,2,GOLD);rect(c,robotX+4,25,3,2,GOLD);ellipse(c,robotX-5,42,4,4,INK);ellipse(c,robotX+8,46,4,4,INK)
-  label(c,'SORT / REPEAT',-33,-49,INK,8);break
+  break
  }
  case 4:{
-  ellipse(c,15,3,72,35,'#324658');for(let i=0;i<14;i++){const a=i*2.4,r=22+(i%4)*11;rect(c,15+Math.cos(a)*r,3+Math.sin(a)*r*.46,2+(i%3===beat?1:0),2,CREAM)}
+  ellipse(c,15,3,72,35,'#80948c');for(let i=0;i<14;i++){const a=i*2.4,r=22+(i%4)*11;rect(c,15+Math.cos(a)*r,3+Math.sin(a)*r*.46,2+(i%3===beat?1:0),2,CREAM)}
   line(c,[[-21,-6],[-50,29]],GOLD,4);line(c,[[-21,-6],[12,28]],GOLD,4)
   c.save();c.translate(-21,-34);c.rotate(-.7+Math.sin(t/2)*.35);rect(c,-34,-9,68,18,BLUE);rect(c,22,-12,14,24,CREAM);rect(c,-31,-6,15,12,INK);c.restore()
   const a=t*.8;ellipse(c,52+Math.cos(a)*28,8+Math.sin(a)*13,9,9,GOLD);line(c,[[35,-30],[57,-30],[72,-17]],CREAM,1)
@@ -130,7 +142,7 @@ function scene(c:Context,type:number,t:number,variant:number){
   plant(c,74,7,t,30);break
  }
  case 7:{
-  ellipse(c,8,13,66,32,'#647f86');for(let i=0;i<3;i++)ellipse(c,8,13,20+i*18,9+i*8,'#647f86')
+  ellipse(c,8,13,66,32,'#97aaa0');for(let i=0;i<3;i++)ellipse(c,8,13,20+i*18,9+i*8,'#97aaa0')
   box(c,22,15,23,23,18,GREEN,CREAM);c.save();c.translate(22,-26);c.rotate(t*.9);for(let i=0;i<4;i++){c.rotate(Math.PI/2);rect(c,-4,-35,8,70,i%2?GOLD:RED)}c.restore()
   line(c,[[-75,22],[-47,-62],[-17,25]],INK,4);const sway=Math.sin(t*2)*25;line(c,[[-47,-62],[-47+sway,0]],GOLD,3);ellipse(c,-47+sway,0,11,11,RED)
   for(let i=0;i<3;i++){const x=37+i*15,y=-43+i*5;line(c,[[x,-72+i*7],[x+Math.sin(t*2+i)*10,y]],INK,1);ellipse(c,x+Math.sin(t*2+i)*10,y,5,5,i%2?GOLD:BLUE)}
@@ -143,32 +155,50 @@ function scene(c:Context,type:number,t:number,variant:number){
 
 export function createWorldRenderer(){
  const plates=new Map<string,HTMLCanvasElement>()
+ // Static pigment, grain and scenery are cached once, never regenerated each frame.
  function backplate(type:number,dark:boolean){
   const key=`${type}-${dark}`,cached=plates.get(key);if(cached)return cached
-  const plate=document.createElement('canvas');plate.width=272;plate.height=232;const c=plate.getContext('2d');if(!c)return null;c.translate(136,146)
-  polygon(c,[[0,-64],[124,0],[0,64],[-124,0]],FLOOR[type])
-  if([1,5,6].includes(type))for(let i=0;i<9;i++){const y=i*14-55;line(c,[[-110+Math.abs(i-4)*17,y*.55],[30+i*8,y*.55+45]],'#493c3928',1)}
-  else if(type===3){for(let i=0;i<6;i++)polygon(c,[[55+i*7,-18+i*3.5],[61+i*7,-15+i*3.5],[46+i*7,-6+i*3.5],[40+i*7,-9+i*3.5]],i%2?INK:GOLD)}
-  else if(type===0)for(let i=0;i<4;i++)line(c,[[-85+i*32,-15-i*4],[-37+i*32,38-i*4]],'#4b776a',1)
-  polygon(c,[[-124,0],[0,-64],[0,-84],[-124,-20]],dark?'#6b7878':WALL[type])
-  polygon(c,[[0,-64],[124,0],[124,-20],[0,-84]],dark?'#89938b':WALL[type])
-  line(c,[[-124,-20],[0,-84],[124,-20]],INK,2);line(c,[[-124,0],[0,64],[124,0]],INK,2)
-  // Different wall silhouettes: shelving, cables, prints and framed diagrams.
-  if(type===0||type===6){for(let i=0;i<4;i++){const x=14+i*21,y=-66+i*10;polygon(c,[[x,y],[x+16,y+8],[x+16,y-5],[x,y-13]],'#e6cd91');line(c,[[x+8,y+4],[x+8,y-9]],INK,1)}}
-  if(type===1||type===5){for(let i=0;i<4;i++){const x=-101+i*17,y=-18-i*9;rect(c,x,y-16,12,17,i%2?RED:CREAM);rect(c,x+2,y-13,8,2,INK);rect(c,x+2,y-8,6,2,BLUE)}}
-  if(type===2){line(c,[[-110,-19],[-72,-66],[31,-56],[95,-10]],INK,2);for(let i=0;i<9;i++)ellipse(c,-100+i*22,-32-Math.sin(i/8*Math.PI)*29,2.5,2.5,i%2?GOLD:RED)}
-  if(type===3){for(let i=0;i<4;i++)box(c,-98+i*14,-12-i*6,10,8,11,BLUE,i%2?GOLD:CREAM)}
-  if(type===4){for(let i=0;i<16;i++){const x=-102+i*12,y=-26-Math.sin(i/15*Math.PI)*43;rect(c,x,y,2,2,CREAM)}line(c,[[-101,-22],[-68,-48],[-30,-62],[13,-59],[54,-37],[87,-12]],GOLD,1)}
-  if(type===7){for(let i=0;i<3;i++){const x=-95+i*24,y=-20-i*12;rect(c,x,y-18,18,22,CREAM);ellipse(c,x+9,y-8,6,6,i%2?GOLD:RED)}}
+  const plate=document.createElement('canvas');plate.width=544;plate.height=464;const c=plate.getContext('2d');if(!c)return null;c.scale(2,2);c.translate(136,146)
+  ellipse(c,2,9,126,62,'#53675015')
+  c.beginPath();c.moveTo(0,-64);c.bezierCurveTo(25,-53,107,-17,122,-2);c.quadraticCurveTo(130,3,119,9);c.lineTo(8,65);c.quadraticCurveTo(0,69,-9,63);c.lineTo(-119,8);c.quadraticCurveTo(-129,2,-120,-4);c.closePath();c.fillStyle=FLOOR[type];c.fill()
+  c.save();c.clip();let seed=type*173+41
+  const rand=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}
+  for(let i=0;i<380;i++){const x=rand()*260-130,y=rand()*140-70;line(c,[[x,y],[x+rand()*11+2,y+rand()*3]],i%2?'#fff4d51c':'#66795212',.4+rand()*1.8)}
+  if([1,5,6].includes(type))for(let i=0;i<10;i++)line(c,[[-130+i*22,-65],[i*22,65]],'#8578581c',.8)
+  c.restore()
+  // Low plaster walls, warm timber caps and small arched windows.
+  polygon(c,[[-122,0],[0,-63],[0,-91],[-122,-28]],WALL[type]);polygon(c,[[0,-63],[122,0],[122,-28],[0,-91]],WALL[type]);polygon(c,[[0,-63],[122,0],[122,-28],[0,-91]],'#869c7b12')
+  line(c,[[-122,-28],[0,-91],[122,-28]],'#bcac89',3);line(c,[[-122,-26],[0,-89],[122,-26]],'#f7edcd',1)
+  for(const side of [-1,1]){
+   c.save();c.translate(side*60,-47);c.transform(1,side*.51,0,1,0,0)
+   if(type===0){
+    // Greenhouse windows have narrow painted muntins and an overgrown sill.
+    rect(c,-25,-27,50,27,'#baccc2');for(let n=0;n<5;n++)line(c,[[-23+n*12,-27],[-23+n*12,0]],'#f0e7c6',1.8);line(c,[[-25,-13],[25,-13]],'#f0e7c6',1.8);line(c,[[-27,1],[27,1]],'#a3aa7b',3)
+   }else if(type===4){
+    rect(c,-23,-25,46,25,'#829b98');for(let n=0;n<10;n++)ellipse(c,-20+n*4,-6-(n*7%16),.6,.6,CREAM);line(c,[[-16,-13],[-6,-20],[4,-10],[17,-17]],'#e0d5aa',.7)
+   }else if(type===5){
+    for(let n=0;n<3;n++){rect(c,-24+n*17,-18,13,16,'#b9ab87');for(let j=0;j<3;j++)rect(c,-22+n*17+j*3,-17,2,13,j%2?BLUE:CREAM)}line(c,[[-27,1],[26,1]],'#ad9b74',3)
+   }else{
+    c.fillStyle='#b6c7bb';c.beginPath();c.roundRect(-12,-29,24,29,[12,12,1,1]);c.fill();line(c,[[0,-28],[0,-2]],'#ece0bc',1.7);line(c,[[-11,-12],[11,-12]],'#ece0bc',1.7);line(c,[[-15,1],[15,1]],'#bdab85',3)
+    if(type===6){for(let n=0;n<5;n++){rect(c,-16+n*7,-31,7,8,n%2?'#bc8c72':'#f2dfb6');ellipse(c,-12.5+n*7,-23,3.5,2,n%2?'#bc8c72':'#f2dfb6')}}
+   }
+   c.restore()
+  }
+  // Tiny dry-brush marks follow the wall planes, not a screen-space filter.
+  for(let i=0;i<140;i++){const side=i%2?1:-1,x=(rand()*118)*side,y=Math.abs(x)*.51-90+rand()*23;line(c,[[x,y],[x+side*(2+rand()*5),y+rand()*2]],i%3?'#fff5d225':'#a6aa7b18',.6)}
+  // Painted shrubs soften room joins; small ochre flowers keep a limited palette.
+  for(let i=0;i<9;i++){const x=-114+i*12,y=-10-i*5.7;ellipse(c,x,y,10+rand()*5,5+rand()*3,i%3===0?'#9aac7b':i%2?'#7f9871':'#b0bd87');for(let j=0;j<5;j++)leaf(c,x+j*3-6,y+2,rand()*2.5-1.25,7+rand()*7,j%2?'#bdc88d88':'#708c6155');if(i%4===0)ellipse(c,x+3,y-2,1.8,1.8,'#ead9a0')}
+  for(let i=0;i<5;i++){const x=29+i*19,y=-65+i*10;line(c,[[x,y],[x+2,y+11]],'#829b6b',1);leaf(c,x+2,y+7,-.9,8,'#98ad7c');leaf(c,x+2,y+10,.7,7,'#b2bf86')}
+  if(type===1||type===7){for(let i=0;i<3;i++){const x=14+i*26,y=-63+i*13;c.save();c.translate(x,y);c.transform(1,.51,0,1,0,0);rect(c,-1,-13,13,16,'#f2e3bc');line(c,[[2,-9],[9,-9]],i%2?RED:BLUE,2);line(c,[[2,-5],[8,-5]],'#a99e79',1);c.restore()}}
   plates.set(key,plate);return plate
  }
  return{
   draw(c:Context,width:number,height:number,camera:Camera,time:number,selected:Cell,dark:boolean){
-   rect(c,0,0,width,height,dark?'#263536':'#d9d4c1');const cells=visibleCells(width,height,camera)
+   rect(c,0,0,width,height,dark?'#394c45':'#c5cbb1');const cells=visibleCells(width,height,camera)
    for(const {col,row}of cells){const type=roomType(col,row),p=point(col,row);c.save();c.translate(width/2+(p.x-camera.x)*camera.zoom,height/2+(p.y-camera.y)*camera.zoom);c.scale(camera.zoom,camera.zoom)
-    const plate=backplate(type,dark);if(plate)c.drawImage(plate,-136,-146)
-    scene(c,type,Math.floor(time/90)*.09+(((col*17+row*31)%53+53)%53),Math.abs(col+row*3)%3)
-    if(selected.col===col&&selected.row===row)line(c,[[0,-65],[125,0],[0,65],[-125,0],[0,-65]],dark?'#f4dc98':'#254d61',2)
+    const plate=backplate(type,dark);if(plate)c.drawImage(plate,-136,-146,272,232)
+    scene(c,type,Math.floor(time/65)*.065+(((col*17+row*31)%53+53)%53),Math.abs(col+row*3)%3)
+    if(selected.col===col&&selected.row===row){ellipse(c,0,58,12,3,dark?'#f4dc98':'#f6ebcd');ellipse(c,0,58,3,1.5,'#7c8c65')}
     c.restore()
    }
    return cells.length

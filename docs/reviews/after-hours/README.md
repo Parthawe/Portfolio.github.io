@@ -1,3 +1,5 @@
+Current visual revision: [softer illustration pass](revision-3/README.md). Earlier reports below describe previous versions.
+
 Current local art revision: [revision 2](revision-2/README.md). The report below records the originally published version.
 
 # After Hours: original animated world

@@ -39,7 +39,7 @@ export default function AfterHoursPage() {
       if (surface.width !== Math.round(width * ratio) || surface.height !== Math.round(height * ratio)) { surface.width = Math.round(width * ratio); surface.height = Math.round(height * ratio) }
       if (!pausedRef.current && (!reduce || overrideReduced.current)) sceneTime += previous ? Math.min(time - previous, 80) : 0
       previous = time; last = time; dirty = false
-      c.setTransform(ratio, 0, 0, ratio, 0, 0); c.imageSmoothingEnabled = false
+      c.setTransform(ratio, 0, 0, ratio, 0, 0); c.imageSmoothingEnabled = true
       const count = renderer.draw(c, width, height, camera.current, sceneTime, selected.current, document.documentElement.dataset.theme === 'dark')
       stage.dataset.frames = String(Number(stage.dataset.frames || 0) + 1); stage.dataset.rooms = String(count); stage.dataset.drawMs = (performance.now() - started).toFixed(2)
       stage.dataset.camera = `${camera.current.x.toFixed(0)},${camera.current.y.toFixed(0)}`
