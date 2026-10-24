@@ -1,4 +1,4 @@
-Latest preview: [motion, detail and exploration](revision-4/README.md). Earlier reviews: [revision 3](revision-3/README.md), [revision 2](revision-2/README.md).
+Latest preview: [contact, cadence and the animation skill](revision-5/README.md). Prior reviews: [revision 4](revision-4/README.md), [revision 3](revision-3/README.md), [revision 2](revision-2/README.md).
 
 The report below records the originally published version.
 

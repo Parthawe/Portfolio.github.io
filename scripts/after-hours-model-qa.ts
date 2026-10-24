@@ -46,3 +46,38 @@ for(let col=-20;col<=20;col++)for(let row=-20;row<=20;row++){
 }
 assert.equal(variants.size,12,'addresses use all orientation/accessory combinations')
 console.log('PASS: 6,003 patrol samples, 2,001 arm samples and 1,681 stable address variations; no motion-boundary jumps.')
+
+const { walkingFeet, watering, characterTime } = await import('../src/components/after-hours/motion')
+let stanceChecks=0
+for(const length of [10,12])for(let i=-1000;i<=1000;i++){
+ const distance=i*.071,a=walkingFeet(distance,length),b=walkingFeet(distance+.00001,length)
+ for(const name of ['left','right'] as const){
+  assert(Number.isFinite(a[name].x)&&a[name].y<=0&&a[name].y>=-2.50001)
+  if(a[name].planted&&b[name].planted){
+   assert(Math.abs((distance+a[name].x)-(distance+.00001+b[name].x))<1e-8,'a supporting foot stays on the same floor point during full-stride travel');stanceChecks++
+  }
+  assert(Math.hypot(a[name].x-b[name].x,a[name].y-b[name].y)<.001,'foot paths join without a position jump')
+ }
+}
+for(let i=-1200;i<=1200;i++){
+ const t=i*.01,p=((t%12)+12)%12/12,amount=watering(t)
+ assert(amount>=0&&amount<=1)
+ if(p<.45||p>.56)assert.equal(amount,0,'water stops outside the watering rest')
+ assert(Math.abs(watering(t+.00001)-amount)<.001,'water ramps in and out without a cut')
+ assert(characterTime(t)<=t+1e-9&&t-characterTime(t)<1/12+1e-9)
+}
+for(const duration of [12,14,18])for(const p of [.08,.45,.58,.95,1]){
+ const a=patrol((p-.000001)*duration,duration),b=patrol((p+.000001)*duration,duration)
+ assert(Math.abs(a.blend-b.blend)<.00001,'walking settles continuously into and out of rests')
+}
+console.log(`PASS: ${stanceChecks} planted-foot contacts, 4,002 gait samples, 2,401 watering/cadence samples and all gait-rest boundaries.`)
+
+const { GARDEN } = await import('../src/components/after-hours/world')
+for(let i=0;i<=1200;i++){
+ const route=patrol(i*.01,12),x=GARDEN.startX+route.position*GARDEN.span
+ assert(Math.abs(x)+Math.abs(GARDEN.pathY)*124/64<124,'the walking route stays on its room floor')
+}
+assert(Math.abs(GARDEN.pot.x)+7+(GARDEN.pot.y+4)*124/64<124,'the front pot fits on the room floor')
+const fullPourX=GARDEN.startX+GARDEN.span+11+24*Math.cos(.26)+Math.sin(.26)
+assert(Math.abs(fullPourX-GARDEN.pot.x)<5,'the spout reaches the target pot, including the pour rotation')
+console.log('PASS: 1,201 garden floor positions, target pot footprint and pouring reach.')

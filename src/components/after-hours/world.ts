@@ -1,4 +1,4 @@
-import { ease, parcelArm, patrol, phase } from './motion'
+import { ease, parcelArm, patrol, phase, walkingFeet, watering, characterTime } from './motion'
 
 // Original procedural illustrations. No artwork or source from Floor796 is used.
 export const ROOMS = [
@@ -11,6 +11,7 @@ export const ROOMS = [
   { name: 'Tea break', color: '#8d6d81', note: 'The kettle is on. Two colleagues have forgotten whose turn it is.' },
   { name: 'Kinetic gallery', color: '#587d7d', note: 'A pendulum draws a quiet rhythm beside a slowly turning sculpture.' },
 ] as const
+export const GARDEN = { startX: -48, span: 57, pathY: 31, pot: { x: 42, y: 34 } } as const
 export type Camera = { x: number; y: number; zoom: number }
 export type Cell = { col: number; row: number }
 export function roomType(col: number, row: number) {
@@ -66,10 +67,24 @@ function plant(c:Context,x:number,y:number,t:number,height=28){
  for(let n=0;n<4;n++){leaf(c,x+lean*n/4,y-12-n*height/5,-.8-n*.08,10+n*1.3,n%2?'#7e9b64':'#9ab37b');leaf(c,x+lean*n/4,y-14-n*height/5,.8,10+n,'#b8c78a')}
 }
 type Pose='walk'|'work'|'wave'|'drum'|'idle'
-function person(c:Context,x:number,y:number,shirt:string,t:number,pose:Pose='idle',variant=0,facing=1){
- c.save();c.translate(x,y);c.scale(facing,1);const stride=pose==='walk'?Math.sin(t*5)*3.5:0,bob=pose==='walk'?Math.abs(Math.sin(t*5))*.9:Math.sin(t*1.8)*.35
- ellipse(c,1,1,9,3,'#46554c24');c.translate(0,-bob)
- line(c,[[-3,-12],[-4-stride,-2]],'#65756a',4);line(c,[[3,-12],[4+stride,-2]],'#65756a',4);ellipse(c,-5-stride,-1,4,2,'#625b4b');ellipse(c,4+stride,-1,4,2,'#625b4b')
+type PersonMotion = { facing?: number; distance?: number; carryCan?: boolean; pour?: number; walkBlend?: number }
+function wateringCan(c:Context,x:number,y:number,pour:number){
+ const angle=pour*.26;c.save();c.translate(x,y);c.rotate(angle)
+ c.strokeStyle=BLUE;c.lineWidth=2;c.beginPath();c.ellipse(-1,-4,4,5,0,0,Math.PI*2);c.stroke()
+ ellipse(c,7,-1,8,7,BLUE);ellipse(c,7,-7,6,2,'#a9bdb3');ellipse(c,7,-7,4,1,'#6c8c87')
+ line(c,[[12,-4],[19,-7],[24,-1]],BLUE,2.5);ellipse(c,24,-1,1.5,1,'#abc3b6');c.restore()
+ return { x:x+24*Math.cos(angle)+Math.sin(angle), y:y+24*Math.sin(angle)-Math.cos(angle) }
+}
+function person(c:Context,x:number,y:number,shirt:string,t:number,pose:Pose='idle',variant=0,motion:PersonMotion={}){
+ t=characterTime(t)
+ const facing=motion.facing??1,distance=motion.distance??0,gait=walkingFeet(distance),blend=pose==='walk'?(motion.walkBlend??1):0
+ const left={x:gait.left.x*blend,y:gait.left.y*blend},right={x:gait.right.x*blend,y:gait.right.y*blend}
+ const stride=Math.sin(distance*Math.PI/12)*2.5*blend,bob=Math.sin(distance*Math.PI/12)**2*.7*blend+Math.sin(t*1.8)*.35*(1-blend)
+ c.save();c.translate(x,y);c.scale(facing,1)
+ ellipse(c,1,1,9,3,'#46554c24')
+ // Feet remain in floor coordinates while the chest and head rise over them.
+ line(c,[[-3,-12-bob],[-4+left.x,-2+left.y]],'#65756a',4);line(c,[[3,-12-bob],[4+right.x,-2+right.y]],'#65756a',4)
+ ellipse(c,-5+left.x,-1+left.y,4,2,'#625b4b');ellipse(c,4+right.x,-1+right.y,4,2,'#625b4b');c.translate(0,-bob)
  c.fillStyle=shirt;c.beginPath();c.moveTo(-4,-27);c.bezierCurveTo(-9,-24,-7,-17,-8,-11);c.quadraticCurveTo(0,-8,8,-11);c.bezierCurveTo(6,-18,8,-24,4,-27);c.fill()
  // Canvas apron and pocket, with different hair and hats rather than square sprites.
  if(variant%3===0){polygon(c,[[-3,-24],[3,-24],[5,-12],[-5,-12]],'#e7d7ad');rect(c,-2,-18,5,3,'#d4bf97')}
@@ -77,7 +92,10 @@ function person(c:Context,x:number,y:number,shirt:string,t:number,pose:Pose='idl
  else {line(c,[[0,-25],[0,-11]],'#f2e0ba',1);for(let i=0;i<3;i++)ellipse(c,1,-21+i*4,.55,.55,CREAM)}
  line(c,[[-5,-12],[-3,-14]],'#46554c26',.8)
  const skin=variant%2?'#c99d7b':'#e6bd96',hand=pose==='work'?Math.sin(t*3.1)*5:pose==='drum'?Math.sin(t*7)*9:pose==='wave'?-10+Math.sin(t*3)*3:stride
- line(c,[[-6,-24],[-9,-19],[-10,-15+hand]],shirt,4);line(c,[[6,-24],[9,-20],[11,-15-hand]],shirt,4);ellipse(c,-10,-15+hand,2.3,2.5,skin);ellipse(c,11,-15-hand,2.3,2.5,skin)
+ const rightHand=motion.carryCan?-4*(motion.pour??0):-hand
+ line(c,[[-6,-24],[-9,-19],[-10,-15+hand]],shirt,4);line(c,[[6,-24],[9,-20],[11,-15+rightHand]],shirt,4);ellipse(c,-10,-15+hand,2.3,2.5,skin);ellipse(c,11,-15+rightHand,2.3,2.5,skin)
+ const spout=motion.carryCan?wateringCan(c,11,-15+rightHand,motion.pour??0):null
+ if(motion.carryCan)ellipse(c,11,-15+rightHand,2.3,2.5,skin)
  ellipse(c,0,-32,6.5,8,skin);ellipse(c,-5.7,-31,1.5,2,skin);ellipse(c,6.2,-31,1.3,1.1,skin);ellipse(c,-1,-37,6.3,4.5,'#635c4c');ellipse(c,-5,-33,2.3,5,'#635c4c');if(phase(t+variant*.7,5.3)<.035)line(c,[[2,-32],[4,-32]],INK,.65);else ellipse(c,3,-32,.7,.9,INK)
  if(variant%3===2){line(c,[[0,-33],[6,-33]],'#786b53',.7);ellipse(c,2.7,-32.2,2.3,1.9,'#f4e6c31f')}
  if(variant%3===0){ellipse(c,-1,-38,10,2.3,'#c6ac75');ellipse(c,-1,-41,6,4,'#cdb47e');line(c,[[-6,-39],[4,-39]],'#8c9470',1.5)}
@@ -85,6 +103,11 @@ function person(c:Context,x:number,y:number,shirt:string,t:number,pose:Pose='idl
  if(variant%3===2)ellipse(c,-6,-37,4,4,'#635c4c')
  line(c,[[1,-28],[3,-28]],'#b98e70',.55)
  c.restore()
+ return {
+  spout:spout?{x:x+facing*spout.x,y:y-bob+spout.y}:null,
+  leftHand:{x:x-facing*10,y:y-bob-15+hand},
+  rightHand:{x:x+facing*11,y:y-bob-15+rightHand},
+ }
 }
 function gear(c:Context,x:number,y:number,r:number,t:number){c.save();c.translate(x,y);c.rotate(t);ellipse(c,0,0,r,r,GOLD);ellipse(c,0,0,r-4,r-4,INK);for(let i=0;i<10;i++){c.rotate(Math.PI/5);rect(c,-2,-r-2,4,r*2+4,GOLD)}ellipse(c,0,0,4,4,CREAM);c.restore()}
 function paper(c:Context,x:number,y:number,color:string){polygon(c,[[x,y],[x+15,y+7],[x+2,y+14],[x-13,y+7]],CREAM);line(c,[[x-4,y+5],[x+5,y+9]],color,3)}
@@ -126,17 +149,21 @@ function workshopSet(c:Context,type:number){
 // Each room has a different set and a staged action. Animation time is explicit,
 // allowing visual frame comparisons rather than merely counting canvas redraws.
 function scene(c:Context,type:number,t:number,variant:number){
- const beat=(1-Math.cos(t*6))*.5,cycle=phase(t,12)
+ const beat=(1-Math.cos(t*6))*.5
  switch(type){
  case 0:{
   for(let i=0;i<5;i++)plant(c,-64+i*21,-1+(i%2)*8,t+i,25)
   plant(c,66,-4,t,44)
   ellipse(c,21,-63,15,15,INK);c.save();c.translate(21,-63);c.rotate(t*2);for(let i=0;i<4;i++){ellipse(c,0,8,4,9,CREAM);c.rotate(Math.PI/2)}c.restore()
-  const route=patrol(t,12),x=-48+route.position*85
-  person(c,x,31,GREEN,t,route.walking?'walk':cycle>.45&&cycle<.56?'work':'idle',variant*3,route.facing)
-  const pouring=cycle>.45&&cycle<.56
-  c.save();c.translate(x,31);c.scale(route.facing,1);box(c,16,-15,10,7,8,BLUE,BLUE);line(c,[[24,-18],[31,-13]],BLUE,2);c.strokeStyle=BLUE;c.lineWidth=2;c.beginPath();c.arc(14,-22,5,1,5);c.stroke();c.restore()
-  if(pouring)for(let i=0;i<6;i++)ellipse(c,x+31+i%3*2,18+((t*30+i*3)%14),.7,1.2,'#9cc4c6')
+  const route=patrol(t,12),x=GARDEN.startX+route.position*GARDEN.span
+  const pour=watering(t),distance=(route.facing>0?route.position:2-route.position)*GARDEN.span,flow=ease((pour-.25)/.5)
+  const {spout}=person(c,x,GARDEN.pathY,GREEN,t,route.walking?'walk':'idle',variant*3,{facing:route.facing,distance,carryCan:true,pour,walkBlend:route.blend})
+  // Keep the receiving pot on the floor, and the stream legible above its leaves.
+  plant(c,GARDEN.pot.x,GARDEN.pot.y,t,18)
+  if(spout&&flow>.001){
+   c.save();c.globalAlpha=flow*.7;c.strokeStyle='#6f9da5';c.lineWidth=1;c.beginPath();c.moveTo(spout.x,spout.y);c.quadraticCurveTo(spout.x+1,spout.y+4,GARDEN.pot.x+1,GARDEN.pot.y-10);c.stroke();c.restore()
+   for(let i=0;i<6;i++){const age=phase(t*2+i/6,1);c.save();c.globalAlpha=flow*(1-age*.7);ellipse(c,spout.x+(i%3-1)*1.2,spout.y+age*8,.55,1.05,'#a4cad0');c.restore()}
+  }
   break
  }
  case 1:{
@@ -152,7 +179,9 @@ function scene(c:Context,type:number,t:number,variant:number){
   for(let i=0;i<8;i++){rect(c,-28+i*6,-36,3,3,(Math.floor(t*6)+i)%4===0?GOLD:INK)}
   for(const x of [-74,70]){ellipse(c,x-1,0,7+beat,7+beat,BLUE);ellipse(c,x-1,-17,4,4,CREAM)}
   ellipse(c,48,13,17,10,INK);ellipse(c,48,13,5,3,RED);line(c,[[48,13],[48+Math.cos(t*4)*14,13+Math.sin(t*4)*8]],CREAM,2)
-  person(c,-12,16,GOLD,t,'work',1);person(c,-48,37,RED,t,'drum',2);ellipse(c,-39,22,14,8,CREAM);line(c,[[-58,7-beat*14],[-38,18]],GOLD,2)
+  person(c,-12,16,GOLD,t,'work',1);const drummer=person(c,-40,24,RED,t,'drum',2);ellipse(c,-34,16,14,8,RED);ellipse(c,-34,14,14,7,CREAM)
+  line(c,[[drummer.leftHand.x,drummer.leftHand.y],[drummer.leftHand.x+15,drummer.leftHand.y-4]],GOLD,1.5)
+  line(c,[[drummer.rightHand.x,drummer.rightHand.y],[drummer.rightHand.x-11,drummer.rightHand.y-4]],GOLD,1.5)
   person(c,42+Math.sin(t*3)*9,40-Math.abs(Math.sin(t*6))*6,GREEN,t,'wave',0);break
  }
  case 3:{
@@ -187,7 +216,8 @@ function scene(c:Context,type:number,t:number,variant:number){
   person(c,-49,11,GREEN,t,'work',0);person(c,34,40,BLUE,t,'work',1)
   const route=patrol(t,18),cat=-64+route.position*119
   c.save();c.translate(cat,43);c.scale(route.facing,1);ellipse(c,0,1,14,3,'#46554c18');ellipse(c,0,-3,10,5,'#796b54');ellipse(c,8,-8,5.5,5.5,'#796b54');polygon(c,[[5,-11],[5,-17],[9,-13],[12,-17],[13,-10]],'#796b54');line(c,[[7,-8],[8,-8]],CREAM,.8)
-  for(let i=0;i<4;i++){const step=route.walking?Math.sin(t*7+i*Math.PI)*2:0;line(c,[[-6+i*4,-2],[-6+i*4+step,3]],'#796b54',2)}
+  const distance=(route.facing>0?route.position:2-route.position)*119,gait=walkingFeet(distance,10)
+  for(let i=0;i<4;i++){const foot=i%2?gait.left:gait.right,step=foot.x*route.blend,lift=foot.y*route.blend;line(c,[[-6+i*4,-2],[-6+i*4+step,3+lift]],'#796b54',2)}
   c.strokeStyle='#796b54';c.lineWidth=2;c.beginPath();c.moveTo(-8,-3);c.bezierCurveTo(-18,-7,-15,-13+Math.sin(t*2)*2,-20,-11);c.stroke();c.restore()
   plant(c,74,7,t,30);break
  }
@@ -279,7 +309,7 @@ export function createWorldRenderer(){
   draw(c:Context,width:number,height:number,camera:Camera,time:number,selected:Cell,dark:boolean){
    rect(c,0,0,width,height,dark?'#394c45':'#c5cbb1');const cells=visibleCells(width,height,camera)
    for(const {col,row}of cells){const type=roomType(col,row),p=point(col,row);c.save();c.translate(width/2+(p.x-camera.x)*camera.zoom,height/2+(p.y-camera.y)*camera.zoom);c.scale(camera.zoom,camera.zoom)
-    const variation=cellVariation(col,row),localTime=Math.floor(time/65)*.065+(variation%530)/10
+    const variation=cellVariation(col,row),localTime=time/1000+(variation%530)/10
     c.save();if(variation%4===1||variation%4===2)c.scale(-1,1)
     if(camera.zoom<.85){const distant=overview(type,time,dark);if(distant)c.drawImage(distant,-136,-146)}
     else room(c,type,localTime,variation%3,dark)
