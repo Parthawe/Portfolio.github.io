@@ -1,0 +1,201 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "22",
+        "rooms": "15",
+        "drawMs": "2.10",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "22",
+        "rooms": "15",
+        "drawMs": "1.50",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "22",
+        "rooms": "25",
+        "drawMs": "2.40",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "21",
+        "rooms": "25",
+        "drawMs": "1.90",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "33",
+        "rooms": "25",
+        "drawMs": "2.70",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "22",
+        "rooms": "25",
+        "drawMs": "3.80",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "23",
+        "rooms": "45",
+        "drawMs": "3.40",
+        "camera": "0,0"
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "frames": "23",
+        "rooms": "45",
+        "drawMs": "3.60",
+        "camera": "0,0"
+      }
+    },
+    {
+      "reducedMotion": true,
+      "explicitPlayOptIn": true,
+      "staticResize": true,
+      "preferenceChange": true
+    },
+    {
+      "pointerDrag": true,
+      "touchPinch": true
+    },
+    {
+      "hiddenDocumentSimulation": true,
+      "offscreen": true
+    },
+    {
+      "canvasFailure": true,
+      "allEightRoomsAccessible": true
+    },
+    {
+      "drawSamplesMs": [
+        3.9,
+        3.8,
+        4,
+        3.3,
+        3.5,
+        3.3,
+        3.3,
+        3.3,
+        3.4,
+        3.4,
+        3.4,
+        3.3,
+        3.3,
+        3.4,
+        4.3,
+        3.8,
+        3.4,
+        3.3,
+        3.6,
+        3.4
+      ],
+      "maximumSampleMs": 4.3,
+      "noHeroOrMediaDependencies": true
+    }
+  ],
+  "pageErrors": []
+}

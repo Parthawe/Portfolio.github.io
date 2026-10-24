@@ -27,6 +27,7 @@ try{
   await page.getByRole('button',{name:'Return to start',exact:true}).click()
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false)
   await canvas.focus();await page.keyboard.press('Shift+Tab');await page.keyboard.press('Tab');assert(await canvas.evaluate(e=>getComputedStyle(e).outlineStyle==='solid'))
+  if(width<600)assert(await page.getByRole('button',{name:'Explore by touch',exact:true}).isVisible(),'touch controls remain available after keyboard/mouse interaction')
   await page.screenshot({path:`${output}/world-${width}-${theme}.png`,fullPage:true})
   results.push({width,theme,animation:true,pause:true,keyboardPan:true,home:true,zoom:true,pausedRedraw:true,noOverflow:true,focus:true,metrics:await page.locator('.ah-world').evaluate(e=>({...e.dataset}))})
   await context.close()
@@ -43,6 +44,7 @@ try{
  await page.locator('canvas').scrollIntoViewIfNeeded();const bounds=await page.locator('canvas').boundingBox();const x=bounds.x+bounds.width/2,y=bounds.y+bounds.height/2
  await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(x+70,y+45,{steps:5});await page.mouse.up();await page.waitForTimeout(100)
  assert.notEqual(await page.locator('.ah-world').getAttribute('data-camera'),'0,0')
+ await page.getByRole('button',{name:'Explore by touch',exact:true}).click()
  const cdp=await context.newCDPSession(page)
  const before=await page.locator('output').innerText()
  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x-35,y},{x:x+35,y}]})
@@ -56,7 +58,7 @@ try{
  await page.locator('summary').click();await page.locator('.ah-footer').scrollIntoViewIfNeeded();await page.waitForTimeout(100);const offscreen=await frames();await page.waitForTimeout(200);assert.equal(await frames(),offscreen)
  results.push({hiddenDocumentSimulation:true,offscreen:true})
  await context.close()
- const fallback=await open(390,'light','reduce',true);await page.getByText('The illustrated floor is unavailable.').waitFor();await page.locator('summary').click();const workshops=page.locator('.ah-directory button');assert.equal(await workshops.count(),8)
+ const fallback=await open(390,'light','reduce',true);await page.getByText('The illustrated floor is unavailable.').waitFor();assert(await page.getByRole('button',{name:'Animation unavailable',exact:true}).isDisabled());assert.equal(await page.locator('.ah-touch-tools').count(),0);await page.locator('summary').click();const workshops=page.locator('.ah-directory button');assert.equal(await workshops.count(),8)
  for(let i=0;i<8;i++){const name=await workshops.nth(i).locator('strong').innerText();await workshops.nth(i).click();assert.equal(await page.locator('.ah-selected h2').innerText(),name)}
  results.push({canvasFailure:true,allEightRoomsAccessible:true});await fallback.close()
  const perf=await open(1440);await page.locator('canvas').scrollIntoViewIfNeeded();await page.waitForTimeout(300)

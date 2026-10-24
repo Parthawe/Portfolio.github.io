@@ -1,0 +1,2 @@
+PASS 47 coordinate/culling cases; all 8 workshop types reachable.
+PASS: 6,003 patrol samples, 2,001 arm samples and 1,681 stable address variations; no motion-boundary jumps.

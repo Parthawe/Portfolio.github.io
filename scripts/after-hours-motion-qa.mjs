@@ -41,7 +41,8 @@ try{
   frames.push({file,time:event.metadata.timestamp??Date.now()/1000});writes.push(writeFile(file,Buffer.from(event.data,'base64')))
  })
  await cdp.send('Page.startScreencast',{format:'jpeg',quality:82,maxWidth:1440,maxHeight:1000,everyNthFrame:2})
- await page.waitForTimeout(6500);await page.getByRole('button',{name:'Zoom in',exact:true}).click();await page.waitForTimeout(2500)
+ const seconds=Math.max(9,Number(process.env.QA_RECORD_SECONDS)||9),zoomSteps=Math.min(3,Math.max(1,Number(process.env.QA_RECORD_ZOOM_STEPS)||1))
+ await page.waitForTimeout(seconds*1000*2/3);for(let i=0;i<zoomSteps;i++)await page.getByRole('button',{name:'Zoom in',exact:true}).click();await page.waitForTimeout(seconds*1000/3)
  await cdp.send('Page.stopScreencast');await Promise.all(writes);assert(frames.length>20)
  let concat='';for(let i=0;i<frames.length;i++){const duration=i+1<frames.length?Math.max(.001,frames[i+1].time-frames[i].time):1/30;concat+=`file '${frames[i].file}'\nduration ${duration.toFixed(6)}\n`}
  concat+=`file '${frames.at(-1).file}'\n`;await writeFile(`${output}/realtime-frames/frames.concat`,concat)

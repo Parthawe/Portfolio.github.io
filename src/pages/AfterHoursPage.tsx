@@ -15,6 +15,7 @@ export default function AfterHoursPage() {
   const [paused, setPaused] = useState(false), [reduced, setReduced] = useState(false), [unavailable, setUnavailable] = useState(false)
   const [motionOptIn, setMotionOptIn] = useState(false)
   const overrideReduced = useRef(false)
+  const [touchExploring, setTouchExploring] = useState(false), touchExploringRef = useRef(false)
   const pausedRef = useRef(false), wake = useRef<() => void>(() => {})
   const room = ROOMS[roomType(selection.col, selection.row)]
   function choose(cell: Cell, travel = false) {
@@ -22,7 +23,12 @@ export default function AfterHoursPage() {
     if (travel) { const p = point(cell.col, cell.row); camera.current.x = p.x; camera.current.y = p.y }
     wake.current()
   }
-  function changeZoom(factor: number) { camera.current.zoom = Math.min(2.2, Math.max(.55, camera.current.zoom * factor)); setZoom(camera.current.zoom); wake.current() }
+  function changeZoom(factor: number, anchor?: { x: number; y: number }) {
+    const view = camera.current, previous = view.zoom, next = Math.min(3.6, Math.max(.55, previous * factor))
+    // Keep the world point under the fingers/cursor fixed during zoom.
+    if (anchor) { view.x += anchor.x / previous - anchor.x / next; view.y += anchor.y / previous - anchor.y / next }
+    view.zoom = next; setZoom(next); wake.current()
+  }
   function home() { camera.current = { x: 0, y: 0, zoom: startingZoom() }; setZoom(startingZoom()); choose({ col: 0, row: 0 }) }
   useEffect(() => {
     const surface = canvas.current, stage = host.current
@@ -53,17 +59,28 @@ export default function AfterHoursPage() {
     const distance = () => { const values = [...pointers.values()]; return values.length === 2 ? Math.hypot(values[0].x - values[1].x, values[0].y - values[1].y) : 0 }
     const down = (e: PointerEvent) => {
       if (e.button !== 0 && e.pointerType === 'mouse') return
+      if (e.pointerType === 'touch' && !touchExploringRef.current) return
       surface.setPointerCapture(e.pointerId); pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); start = { x: e.clientX, y: e.clientY }; moved = false; pinch = distance()
     }
     const move = (e: PointerEvent) => {
       const previousPoint = pointers.get(e.pointerId); if (!previousPoint) return
+      const oldMidpoint = pointers.size === 2 ? [...pointers.values()].reduce((p, v) => ({ x: p.x + v.x / 2, y: p.y + v.y / 2 }), { x: 0, y: 0 }) : null
       pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
       if (Math.hypot(e.clientX - start.x, e.clientY - start.y) > 4) moved = true
-      if (pointers.size === 2) { const next = distance(); if (pinch) changeZoom(next / pinch); pinch = next; moved = true }
+      if (pointers.size === 2) {
+        const next = distance(), values = [...pointers.values()], bounds = surface.getBoundingClientRect()
+        if (pinch && oldMidpoint) {
+          changeZoom(next / pinch, { x: oldMidpoint.x - bounds.left - stage.clientWidth / 2, y: oldMidpoint.y - bounds.top - stage.clientHeight / 2 })
+          camera.current.x -= ((values[0].x + values[1].x) / 2 - oldMidpoint.x) / camera.current.zoom
+          camera.current.y -= ((values[0].y + values[1].y) / 2 - oldMidpoint.y) / camera.current.zoom
+        }
+        pinch = next; moved = true
+      }
       else { camera.current.x -= (e.clientX - previousPoint.x) / camera.current.zoom; camera.current.y -= (e.clientY - previousPoint.y) / camera.current.zoom }
       camera.current.x = Math.max(-1e7, Math.min(1e7, camera.current.x)); camera.current.y = Math.max(-1e7, Math.min(1e7, camera.current.y)); wake.current()
     }
     const up = (e: PointerEvent) => {
+      if (!pointers.has(e.pointerId)) return
       const wasPinching = pointers.size > 1; pointers.delete(e.pointerId); pinch = distance()
       if (!moved && !wasPinching && e.type === 'pointerup') {
         const bounds = surface.getBoundingClientRect(), view = camera.current
@@ -71,18 +88,23 @@ export default function AfterHoursPage() {
       }
       moved = true
     }
-    const wheel = (e: WheelEvent) => { if (!e.ctrlKey && !e.metaKey) return; e.preventDefault(); changeZoom(Math.exp(-e.deltaY * .003)) }
+    const wheel = (e: WheelEvent) => {
+      if (!e.ctrlKey && !e.metaKey) return
+      e.preventDefault(); const bounds = surface.getBoundingClientRect()
+      changeZoom(Math.exp(-e.deltaY * .003), { x: e.clientX - bounds.left - stage.clientWidth / 2, y: e.clientY - bounds.top - stage.clientHeight / 2 })
+    }
     surface.addEventListener('pointerdown', down); surface.addEventListener('pointermove', move); surface.addEventListener('pointerup', up); surface.addEventListener('pointercancel', up); surface.addEventListener('wheel', wheel, { passive: false })
     return () => { animation.dispose(); renderer.dispose(); theme.disconnect(); window.removeEventListener('resize', resize); media.removeEventListener('change', syncMotion); surface.removeEventListener('pointerdown', down); surface.removeEventListener('pointermove', move); surface.removeEventListener('pointerup', up); surface.removeEventListener('pointercancel', up); surface.removeEventListener('wheel', wheel); wake.current = () => {} }
   }, [])
-  return <div className="after-hours">
+  return <div className="after-hours" data-touch-capable={navigator.maxTouchPoints > 0}>
     <Helmet><title>After Hours · Parth Pawar</title><meta name="robots" content="index, follow" /><meta name="googlebot" content="index, follow" /><meta name="description" content="Explore an endless isometric floor of original animated workshops. A playful generative illustration by Parth Pawar." /><link rel="canonical" href="https://designwhich.works/after-hours" /></Helmet>
     <header className="ah-top"><Link to="/">Parth Pawar</Link><span>A small world, still awake.</span><ThemeToggle /></header>
     <main id="main-content">
       <section className="ah-heading"><div><span className="ah-kicker">An endless illustration / 01</span><h1>After <em>hours.</em></h1></div><p>A press is running. Someone is watering the plants.<br />Every room has a little story in motion.</p></section>
-      <div className="ah-toolbar" aria-label="World controls"><div><button onClick={() => { if (reduced && !overrideReduced.current) { overrideReduced.current = true; setMotionOptIn(true); pausedRef.current = false; setPaused(false) } else { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current) } wake.current() }}>{paused || (reduced && !motionOptIn) ? 'Play animation' : 'Pause animation'}</button><button onClick={home}>Return to start</button></div><div><button aria-label="Zoom out" onClick={() => changeZoom(1 / 1.2)} disabled={zoom <= .55}>−</button><output aria-label="Zoom level">{Math.round(zoom * 100)}%</output><button aria-label="Zoom in" onClick={() => changeZoom(1.2)} disabled={zoom >= 2.2}>+</button></div></div>
-      {reduced && !motionOptIn && <p className="ah-motion-note" role="status">Reduced motion is on. Choose Play to start the animation.</p>}
-      <div className="ah-world" ref={host}>
+      <div className="ah-toolbar" aria-label="World controls"><div><button disabled={unavailable} onClick={() => { if (reduced && !overrideReduced.current) { overrideReduced.current = true; setMotionOptIn(true); pausedRef.current = false; setPaused(false) } else { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current) } wake.current() }}>{unavailable ? 'Animation unavailable' : paused || (reduced && !motionOptIn) ? 'Play animation' : 'Pause animation'}</button><button disabled={unavailable} onClick={home}>Return to start</button></div><div><button aria-label="Zoom out" onClick={() => changeZoom(1 / 1.2)} disabled={unavailable || zoom <= .55}>−</button><output aria-label="Zoom level">{Math.round(zoom * 100)}%</output><button aria-label="Zoom in" onClick={() => changeZoom(1.2)} disabled={unavailable || zoom >= 3.6}>+</button></div></div>
+      {reduced && !motionOptIn && !unavailable && <p className="ah-motion-note" role="status">Reduced motion is on. Choose Play to start the animation.</p>}
+      {!unavailable && <div className="ah-touch-tools"><button type="button" aria-pressed={touchExploring} onClick={() => { touchExploringRef.current = !touchExploringRef.current; setTouchExploring(touchExploringRef.current) }}>{touchExploring ? 'Finish exploring' : 'Explore by touch'}</button><p>{touchExploring ? 'Drag or pinch the floor. Finish exploring to scroll here again.' : 'Scroll freely. Choose Explore by touch to drag and pinch the floor.'}</p></div>}
+      <div className="ah-world" ref={host} data-touch-exploring={touchExploring}>
         {unavailable ? <div className="ah-fallback" role="status"><h2>The illustrated floor is unavailable.</h2><p>You can still explore every workshop in the directory below.</p></div> : <canvas ref={canvas} tabIndex={0} aria-label="Animated workshop floor. Drag to explore, or use arrow keys. Enter selects the room at the center. Plus and minus zoom; Home resets." aria-describedby="ah-help" onKeyDown={e => {
           const directions: Record<string, [number, number]> = { ArrowLeft: [-70, 0], ArrowRight: [70, 0], ArrowUp: [0, -70], ArrowDown: [0, 70] }
           if (directions[e.key]) { e.preventDefault(); const [x, y] = directions[e.key]; camera.current.x += x / zoom; camera.current.y += y / zoom; wake.current() }

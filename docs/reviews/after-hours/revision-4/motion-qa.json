@@ -1,0 +1,16 @@
+{
+  "liveChangedPixels": 58580,
+  "pausedChangedPixels": 0,
+  "reducedMotionOptInChangedPixels": 62279,
+  "deterministicFrameComparison": {
+    "changedPixels": 46395,
+    "totalPixels": 650000,
+    "ratio": 0.07137692307692307,
+    "unstableBytesAtSameTime": 0
+  },
+  "recording": {
+    "frames": 201,
+    "durationSeconds": 18.163485050201416,
+    "method": "Chrome screencast frames with recorded timestamps; variable frame timing retained"
+  }
+}
