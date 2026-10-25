@@ -1,17 +1,21 @@
-import { ease, parcelArm, patrol, phase, walkingFeet, watering, characterTime } from './motion'
+import { sprite } from './sprites'
+import { SPRITES, CAN_RIG, DRUM_RIG } from './sprite-frames'
+import { artworkImage, characterImage, artworkState, loadArtwork, retryArtwork, subscribeArtwork, type ArtworkState } from './artwork'
+import { ease, parcelArm, patrol, phase, walkingFeet, watering, characterTime, canSpout } from './motion'
 
 // Original procedural illustrations. No artwork or source from Floor796 is used.
 export const ROOMS = [
-  { name: 'The greenhouse', color: '#5c7d65', note: 'The gardener tends a small forest while the ventilation fan turns.' },
-  { name: 'Print night', color: '#9c654d', note: 'Fresh sheets travel through the press. Someone is still mixing the ink.' },
-  { name: 'Listening room', color: '#626d98', note: 'A record turns, the sequencer blinks, and the drummer never quite stops.' },
+  { name: 'The greenhouse', color: '#5c7d65', note: 'A gardener carries a can through the greenhouse and waters a young plant.' },
+  { name: 'Print night', color: '#9c654d', note: 'A fresh sheet feeds across the press while the printer works beside it.' },
+  { name: 'Listening room', color: '#626d98', note: 'A drummer keeps a slow rhythm among the records and old speakers.' },
   { name: 'Robot repairs', color: '#b58a43', note: 'A patient arm sorts parcels as the little inspection robot makes its rounds.' },
-  { name: 'The observatory', color: '#4b7891', note: 'A telescope sweeps the room. The planets here have their own orbit.' },
-  { name: 'Clock department', color: '#98735c', note: 'Three clocks disagree. The watchmaker keeps turning the same gear.' },
-  { name: 'Tea break', color: '#8d6d81', note: 'The kettle is on. Two colleagues have forgotten whose turn it is.' },
-  { name: 'Kinetic gallery', color: '#587d7d', note: 'A pendulum draws a quiet rhythm beside a slowly turning sculpture.' },
+  { name: 'The observatory', color: '#4b7891', note: 'An astronomer studies a chart while a brass orrery traces its orbit.' },
+  { name: 'Clock department', color: '#98735c', note: 'The watchmaker works among parts drawers and a turning escapement.' },
+  { name: 'Tea break', color: '#8d6d81', note: 'Steam rises from a cup while the cat pads around the kitchen.' },
+  { name: 'The sculptor’s studio', color: '#587d7d', note: 'An artist works beside a small clay vessel on a turning wheel.' },
 ] as const
 export const GARDEN = { startX: -48, span: 57, pathY: 31, pot: { x: 42, y: 34 } } as const
+export const GRID = { x: 180, y: 115 } as const
 export type Camera = { x: number; y: number; zoom: number }
 export type Cell = { col: number; row: number }
 export function roomType(col: number, row: number) {
@@ -19,9 +23,9 @@ export function roomType(col: number, row: number) {
   const sequence = [0, 3, 6, 2, 7, 1, 5, 4]
   return sequence[((col * 3 + row * 2) % 8 + 8) % 8]
 }
-export const point = (col: number, row: number) => ({ x: (col - row) * 132, y: (col + row) * 70 })
+export const point = (col: number, row: number) => ({ x: (col - row) * GRID.x, y: (col + row) * GRID.y })
 export function cellAt(x: number, y: number): Cell {
-  return { col: Math.round((x / 132 + y / 70) / 2), row: Math.round((y / 70 - x / 132) / 2) }
+  return { col: Math.round((x / GRID.x + y / GRID.y) / 2), row: Math.round((y / GRID.y - x / GRID.x) / 2) }
 }
 export function visibleCells(width: number, height: number, camera: Camera) {
   const corners = [[0, 0], [width, 0], [0, height], [width, height]].map(([x, y]) => cellAt((x - width / 2) / camera.zoom + camera.x, (y - height / 2) / camera.zoom + camera.y))
@@ -33,6 +37,16 @@ export function visibleCells(width: number, height: number, camera: Camera) {
     }
   }
   return result.sort((a, b) => a.col + a.row - b.col - b.row)
+}
+
+/** Tall illustrated walls own clicks as well as their floor; painter order resolves overlap. */
+export function pickCell(width:number,height:number,camera:Camera,px:number,py:number):Cell {
+ const x=(px-width/2)/camera.zoom+camera.x,y=(py-height/2)/camera.zoom+camera.y
+ const cells=visibleCells(width,height,camera)
+ for(let i=cells.length-1;i>=0;i--){const cell=cells[i],p=point(cell.col,cell.row),u=Math.abs(x-p.x),v=y-p.y
+  if(u<=128&&v>=-153+u*.61&&v<=67-u*.52)return cell
+ }
+ return cellAt(x,y)
 }
 
 /** Stable per-address variation; never samples Math.random during a frame. */
@@ -48,7 +62,7 @@ const FLOOR = ['#acb99a', '#cfb593', '#a5aaa0', '#b7b6a0', '#99acac', '#c1af91',
 const WALL = ['#d9dec3', '#e7d6b5', '#d6d7c4', '#d7d7bc', '#c6d4cb', '#e1d1b0', '#ead7b9', '#d8ddc6']
 function polygon(c: Context, points: number[][], color: string) { c.fillStyle=color;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fill() }
 function rect(c: Context,x:number,y:number,w:number,h:number,color:string){c.fillStyle=color;c.beginPath();c.roundRect(x,y,w,h,Math.min(1.8,Math.abs(w)/3,Math.abs(h)/3));c.fill()}
-function line(c:Context,points:number[][],color:string,width=2){c.strokeStyle=color;c.lineWidth=width;c.lineJoin='round';c.lineCap='round';c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke()}
+function line(c:Context,points:number[][],color:string|CanvasGradient,width=2){c.strokeStyle=color;c.lineWidth=width;c.lineJoin='round';c.lineCap='round';c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke()}
 function ellipse(c:Context,x:number,y:number,rx:number,ry:number,color:string){c.fillStyle=color;c.beginPath();c.ellipse(x,y,rx,ry,0,0,Math.PI*2);c.fill()}
 function box(c:Context,x:number,y:number,w:number,d:number,h:number,color:string,top=CREAM){
  ellipse(c,x+(w-d)/2,y+(w+d)/4+2,(w+d)*.55,Math.max(4,(w+d)*.22),'#46554c17')
@@ -62,6 +76,7 @@ function leaf(c:Context,x:number,y:number,angle:number,length:number,color:strin
  c.save();c.translate(x,y);c.rotate(angle);c.fillStyle=color;c.beginPath();c.moveTo(0,0);c.bezierCurveTo(-length*.6,-length*.3,-length*.4,-length*.9,0,-length);c.bezierCurveTo(length*.5,-length*.7,length*.5,-length*.1,0,0);c.fill();c.restore()
 }
 function plant(c:Context,x:number,y:number,t:number,height=28){
+ if(characterImage()){const f=SPRITES.plant,h=30,w=h*f[2]/f[3];ellipse(c,x,y+2,9,3,'#302a2326');sprite(c,'plant',x-w/2,y-h,w,h);return}
  ellipse(c,x,y+2,11,4,'#46554c1c');c.fillStyle='#bc896c';c.beginPath();c.moveTo(x-7,y-10);c.lineTo(x-5,y+1);c.quadraticCurveTo(x,y+4,x+5,y+1);c.lineTo(x+7,y-10);c.fill();ellipse(c,x,y-10,7,3,'#d5ad86');ellipse(c,x,y-11,5,2,'#716e51')
  const lean=Math.sin(t*1.3)*2;line(c,[[x,y-10],[x+lean,y-height]],'#738b5d',1.2)
  for(let n=0;n<4;n++){leaf(c,x+lean*n/4,y-12-n*height/5,-.8-n*.08,10+n*1.3,n%2?'#7e9b64':'#9ab37b');leaf(c,x+lean*n/4,y-14-n*height/5,.8,10+n,'#b8c78a')}
@@ -70,45 +85,75 @@ type Pose='walk'|'work'|'wave'|'drum'|'idle'
 type PersonMotion = { facing?: number; distance?: number; carryCan?: boolean; pour?: number; walkBlend?: number }
 function wateringCan(c:Context,x:number,y:number,pour:number){
  const angle=pour*.26;c.save();c.translate(x,y);c.rotate(angle)
+ if(characterImage()){
+  const f=SPRITES.can,scale=CAN_RIG.width/f[2]
+  sprite(c,'can',-(CAN_RIG.grip[0]-f[0])*scale,-(CAN_RIG.grip[1]-f[1])*scale,f[2]*scale,f[3]*scale);c.restore()
+  const tip=canSpout(pour);return{x:x+tip.x,y:y+tip.y}
+ }
  c.strokeStyle=BLUE;c.lineWidth=2;c.beginPath();c.ellipse(-1,-4,4,5,0,0,Math.PI*2);c.stroke()
  ellipse(c,7,-1,8,7,BLUE);ellipse(c,7,-7,6,2,'#a9bdb3');ellipse(c,7,-7,4,1,'#6c8c87')
  line(c,[[12,-4],[19,-7],[24,-1]],BLUE,2.5);ellipse(c,24,-1,1.5,1,'#abc3b6');c.restore()
  return { x:x+24*Math.cos(angle)+Math.sin(angle), y:y+24*Math.sin(angle)-Math.cos(angle) }
 }
+function trouserLeg(c:Context,points:number[][],front:boolean){
+ const x=points[1][0],shade=c.createLinearGradient(x-3,0,x+3,0)
+ shade.addColorStop(0,front?'#414d49':'#37433f');shade.addColorStop(.42,front?'#78817a':'#626f69');shade.addColorStop(1,front?'#58645e':'#46564f')
+ line(c,points,'#303c3640',6);line(c,points,shade,5)
+ line(c,[[x-2,points[1][1]+1],[x+1,points[1][1]+2]],'#31413750',.6)
+}
+function shoe(c:Context,x:number,y:number){
+ c.save();c.translate(x,y);const shade=c.createLinearGradient(0,-3,0,3);shade.addColorStop(0,'#6a5744');shade.addColorStop(1,'#392f27');c.fillStyle=shade
+ c.beginPath();c.moveTo(-3,-3);c.quadraticCurveTo(1,-4,2,-1);c.quadraticCurveTo(6,-1,7,1);c.quadraticCurveTo(7,3,1,3);c.lineTo(-3,2);c.closePath();c.fill();line(c,[[-2,2],[5,2.5]],'#b09a7055',.6);c.restore()
+}
 function person(c:Context,x:number,y:number,shirt:string,t:number,pose:Pose='idle',variant=0,motion:PersonMotion={}){
  t=characterTime(t)
- const facing=motion.facing??1,distance=motion.distance??0,gait=walkingFeet(distance),blend=pose==='walk'?(motion.walkBlend??1):0
- const left={x:gait.left.x*blend,y:gait.left.y*blend},right={x:gait.right.x*blend,y:gait.right.y*blend}
- const stride=Math.sin(distance*Math.PI/12)*2.5*blend,bob=Math.sin(distance*Math.PI/12)**2*.7*blend+Math.sin(t*1.8)*.35*(1-blend)
+ const facing=motion.facing??1,distance=motion.distance??0,blend=pose==='walk'?(motion.walkBlend??1):0
+ const gait=walkingFeet(distance),left={x:gait.left.x*blend,y:gait.left.y*blend},right={x:gait.right.x*blend,y:gait.right.y*blend}
+ const stride=Math.sin(distance*Math.PI/12)*2.5*blend,bob=Math.sin(distance*Math.PI/12)**2*.7*blend+Math.sin(t*1.8)*.3*(1-blend)
+ const painted=!!characterImage(),skin=variant%3===1?'#a16c4a':variant%3===2?'#c99b76':'#c18b61',hair=variant%2?'#403e35':'#4d4438'
+ const cloth=painted?(shirt===GREEN?'#6c7353':shirt===RED?'#a36348':shirt===BLUE?'#60757b':'#b79550'):shirt
+ const hand=pose==='work'?Math.sin(t*3.1)*4:pose==='drum'?Math.sin(t*7)*9:pose==='wave'?-13+Math.sin(t*3)*3:stride
+ const bodyLift=6,wristY=pose==='drum'?-21:motion.carryCan?-27:-23,rightHand=motion.carryCan?-4*(motion.pour??0):-hand
  c.save();c.translate(x,y);c.scale(facing,1)
- ellipse(c,1,1,9,3,'#46554c24')
- // Feet remain in floor coordinates while the chest and head rise over them.
- line(c,[[-3,-12-bob],[-4+left.x,-2+left.y]],'#65756a',4);line(c,[[3,-12-bob],[4+right.x,-2+right.y]],'#65756a',4)
- ellipse(c,-5+left.x,-1+left.y,4,2,'#625b4b');ellipse(c,4+right.x,-1+right.y,4,2,'#625b4b');c.translate(0,-bob)
- c.fillStyle=shirt;c.beginPath();c.moveTo(-4,-27);c.bezierCurveTo(-9,-24,-7,-17,-8,-11);c.quadraticCurveTo(0,-8,8,-11);c.bezierCurveTo(6,-18,8,-24,4,-27);c.fill()
- // Canvas apron and pocket, with different hair and hats rather than square sprites.
- if(variant%3===0){polygon(c,[[-3,-24],[3,-24],[5,-12],[-5,-12]],'#e7d7ad');rect(c,-2,-18,5,3,'#d4bf97')}
- else if(variant%3===1){line(c,[[-4,-26],[-3,-17],[-5,-11]],'#c1bca0',1);line(c,[[4,-26],[3,-17],[5,-11]],'#c1bca0',1);rect(c,-3,-19,6,5,'#b4b3a0');ellipse(c,0,-16,1,1,CREAM)}
- else {line(c,[[0,-25],[0,-11]],'#f2e0ba',1);for(let i=0;i<3;i++)ellipse(c,1,-21+i*4,.55,.55,CREAM)}
- line(c,[[-5,-12],[-3,-14]],'#46554c26',.8)
- const skin=variant%2?'#c99d7b':'#e6bd96',hand=pose==='work'?Math.sin(t*3.1)*5:pose==='drum'?Math.sin(t*7)*9:pose==='wave'?-10+Math.sin(t*3)*3:stride
- const rightHand=motion.carryCan?-4*(motion.pour??0):-hand
- line(c,[[-6,-24],[-9,-19],[-10,-15+hand]],shirt,4);line(c,[[6,-24],[9,-20],[11,-15+rightHand]],shirt,4);ellipse(c,-10,-15+hand,2.3,2.5,skin);ellipse(c,11,-15+rightHand,2.3,2.5,skin)
- const spout=motion.carryCan?wateringCan(c,11,-15+rightHand,motion.pour??0):null
- if(motion.carryCan)ellipse(c,11,-15+rightHand,2.3,2.5,skin)
- ellipse(c,0,-32,6.5,8,skin);ellipse(c,-5.7,-31,1.5,2,skin);ellipse(c,6.2,-31,1.3,1.1,skin);ellipse(c,-1,-37,6.3,4.5,'#635c4c');ellipse(c,-5,-33,2.3,5,'#635c4c');if(phase(t+variant*.7,5.3)<.035)line(c,[[2,-32],[4,-32]],INK,.65);else ellipse(c,3,-32,.7,.9,INK)
- if(variant%3===2){line(c,[[0,-33],[6,-33]],'#786b53',.7);ellipse(c,2.7,-32.2,2.3,1.9,'#f4e6c31f')}
- if(variant%3===0){ellipse(c,-1,-38,10,2.3,'#c6ac75');ellipse(c,-1,-41,6,4,'#cdb47e');line(c,[[-6,-39],[4,-39]],'#8c9470',1.5)}
- if(variant%3===1){ellipse(c,-6,-30,2.5,5,'#635c4c');ellipse(c,5,-30,2,4,'#635c4c')}
- if(variant%3===2)ellipse(c,-6,-37,4,4,'#635c4c')
- line(c,[[1,-28],[3,-28]],'#b98e70',.55)
- c.restore()
- return {
-  spout:spout?{x:x+facing*spout.x,y:y-bob+spout.y}:null,
-  leftHand:{x:x-facing*10,y:y-bob-15+hand},
-  rightHand:{x:x+facing*11,y:y-bob-15+rightHand},
+ polygon(c,[[-6,0],[5,-1],[20,6],[11,8]],'#2834291a');ellipse(c,1,1,8,2.4,'#2834292b')
+ trouserLeg(c,[[-4,-28-bob],[-5+left.x*.45,-15+left.y*.3],[-5+left.x,-2+left.y]],false)
+ trouserLeg(c,[[4,-28-bob],[5+right.x*.45,-15+right.y*.3],[5+right.x,-2+right.y]],true)
+ shoe(c,-5+left.x,-2+left.y);shoe(c,5+right.x,-2+right.y);c.translate(0,-bob-bodyLift)
+ rect(c,-2,-45,4,6,skin)
+ c.fillStyle=cloth;c.beginPath();c.moveTo(-4,-42);c.quadraticCurveTo(-9,-41,-10,-36);c.lineTo(-7,-21);c.quadraticCurveTo(0,-19,8,-21);c.lineTo(9,-36);c.quadraticCurveTo(8,-41,4,-42);c.closePath();c.fill()
+ polygon(c,[[-8,-36],[-4,-34],[-3,-21],[-7,-21]],'#263d3720')
+ if(!painted&&variant%3===0){polygon(c,[[-3,-39],[3,-39],[6,-22],[-6,-22]],'#d9c797');rect(c,-2,-29,6,4,'#b7a580');line(c,[[-3,-41],[-2,-36]],CREAM,1)}
+ else if(!painted&&variant%3===1){line(c,[[-5,-41],[-3,-25]],'#c3b68e',1.3);line(c,[[5,-41],[3,-25]],'#c3b68e',1.3);rect(c,-4,-31,8,6,'#a9aa91')}
+ else if(!painted){line(c,[[0,-40],[0,-22]],'#e1d2a7',.8);for(let i=0;i<4;i++)ellipse(c,1,-36+i*4,.5,.5,CREAM)}
+ if(painted){
+  const key=shirt===GREEN?'torso0':shirt===RED?'torso1':shirt===BLUE?'torso2':'torso3';sprite(c,key,-12,-44,24,25)
+  // The painted sleeve ends are the elbow anchors. Forearms must draw above the torso.
+  for(const [cx,wx,wy] of [[-10,-12,wristY+hand],[10,11,wristY+rightHand]]){
+   line(c,[[cx,-25],[wx,wy]],'#704c383d',3.8);line(c,[[cx,-25],[wx,wy]],skin,3);line(c,[[cx-.6,-25],[wx-.6,wy]],'#edd1ab55',.6)
+  }
+ }else{
+  line(c,[[-8,-39],[-12,-32],[-12,wristY+hand]],cloth,4);line(c,[[8,-39],[12,-33],[11,wristY+rightHand]],cloth,4)
+  line(c,[[-12,wristY+hand-3],[-12,wristY+hand]],'#d8c89e',3);line(c,[[11,wristY+rightHand-3],[11,wristY+rightHand]],'#d8c89e',3)
  }
+ ellipse(c,-12,wristY+hand,2,2.5,skin);ellipse(c,11,wristY+rightHand,2,2.5,skin)
+ const spout=motion.carryCan?wateringCan(c,11,wristY+rightHand,motion.pour??0):null
+ if(motion.carryCan)ellipse(c,11,wristY+rightHand,2,2.5,skin)
+ if(painted){
+  const key=(shirt===RED&&pose==='work'?'head3':variant%3===0?'head0':variant%3===1?'head1':'head2'),f=SPRITES[key],h=23,w=h*f[2]/f[3]
+  c.save();c.translate(0,-42);if(pose==='work')c.rotate(.07);else if(motion.pour)c.rotate(motion.pour*.05);sprite(c,key,-w/2,-h,w,h);c.restore()
+ }else{
+ ellipse(c,0,-49.5,5.5,7.5,skin);ellipse(c,-3,-49,2.5,6,'#604a3322');ellipse(c,-5,-49,1.5,2,skin);ellipse(c,5.2,-48.5,1.25,1.1,skin)
+ c.fillStyle=hair;c.beginPath();c.moveTo(-5,-47);c.bezierCurveTo(-8,-52,-6,-58,0,-58);c.bezierCurveTo(5,-59,7,-54,5,-52);c.quadraticCurveTo(1,-51,-2,-54);c.lineTo(-3,-47);c.closePath();c.fill()
+ if(phase(t+variant*.7,5.3)<.035)line(c,[[2,-49],[4,-49]],INK,.6);else ellipse(c,3,-49,.65,.85,INK)
+ line(c,[[2,-44],[4,-44]],'#8e6951',.6)
+ if(variant%3===0){ellipse(c,-.5,-56,9,1.9,'#baa16f');ellipse(c,-.5,-59,5.5,3.6,'#c2aa79');line(c,[[-5,-57],[4,-57]],'#76836a',1.3)}
+ if(variant%3===1){ellipse(c,-5,-47,2,5,hair);ellipse(c,-5,-54,3,3,hair)}
+ if(variant%3===2){ellipse(c,-5,-55,3,3,hair);line(c,[[0,-50],[6,-50]],'#5e5847',.7);ellipse(c,3,-49.2,2.2,1.8,'#efe4c41c')}
+ }
+ c.restore()
+ return{spout:spout?{x:x+facing*spout.x,y:y-bob-bodyLift+spout.y}:null,leftHand:{x:x-facing*12,y:y-bob-bodyLift+wristY+hand},rightHand:{x:x+facing*11,y:y-bob-bodyLift+wristY+rightHand}}
 }
+
 function gear(c:Context,x:number,y:number,r:number,t:number){c.save();c.translate(x,y);c.rotate(t);ellipse(c,0,0,r,r,GOLD);ellipse(c,0,0,r-4,r-4,INK);for(let i=0;i<10;i++){c.rotate(Math.PI/5);rect(c,-2,-r-2,4,r*2+4,GOLD)}ellipse(c,0,0,4,4,CREAM);c.restore()}
 function paper(c:Context,x:number,y:number,color:string){polygon(c,[[x,y],[x+15,y+7],[x+2,y+14],[x-13,y+7]],CREAM);line(c,[[x-4,y+5],[x+5,y+9]],color,3)}
 function steam(c:Context,x:number,y:number,t:number){
@@ -179,7 +224,7 @@ function scene(c:Context,type:number,t:number,variant:number){
   for(let i=0;i<8;i++){rect(c,-28+i*6,-36,3,3,(Math.floor(t*6)+i)%4===0?GOLD:INK)}
   for(const x of [-74,70]){ellipse(c,x-1,0,7+beat,7+beat,BLUE);ellipse(c,x-1,-17,4,4,CREAM)}
   ellipse(c,48,13,17,10,INK);ellipse(c,48,13,5,3,RED);line(c,[[48,13],[48+Math.cos(t*4)*14,13+Math.sin(t*4)*8]],CREAM,2)
-  person(c,-12,16,GOLD,t,'work',1);const drummer=person(c,-40,24,RED,t,'drum',2);ellipse(c,-34,16,14,8,RED);ellipse(c,-34,14,14,7,CREAM)
+  person(c,-12,16,GOLD,t,'work',1);const drummer=person(c,-40,24,RED,t,'drum',2);ellipse(c,-34,4,14,8,RED);ellipse(c,-34,2,14,7,CREAM)
   line(c,[[drummer.leftHand.x,drummer.leftHand.y],[drummer.leftHand.x+15,drummer.leftHand.y-4]],GOLD,1.5)
   line(c,[[drummer.rightHand.x,drummer.rightHand.y],[drummer.rightHand.x-11,drummer.rightHand.y-4]],GOLD,1.5)
   person(c,42+Math.sin(t*3)*9,40-Math.abs(Math.sin(t*6))*6,GREEN,t,'wave',0);break
@@ -240,6 +285,66 @@ function scene(c:Context,type:number,t:number,variant:number){
  }
 }
 
+// Live cel animation sits over the illustrated sets. Keep foreground actions clear.
+function paintedScene(c:Context,type:number,t:number,variant:number){
+ switch(type){
+ case 0:{
+  const route=patrol(t,12),x=GARDEN.startX+route.position*GARDEN.span,pour=watering(t),flow=ease((pour-.25)/.5),distance=(route.facing>0?route.position:2-route.position)*GARDEN.span
+  const {spout}=person(c,x,GARDEN.pathY,GREEN,t,route.walking?'walk':'idle',variant*3,{facing:route.facing,distance,carryCan:true,pour,walkBlend:route.blend})
+  plant(c,GARDEN.pot.x,GARDEN.pot.y,t,18)
+  if(spout&&flow>.001){c.save();c.globalAlpha=flow*.8;c.strokeStyle='#6f9da5';c.lineWidth=1;c.beginPath();c.moveTo(spout.x,spout.y);c.quadraticCurveTo(spout.x+1,spout.y+7,GARDEN.pot.x+1,GARDEN.pot.y-10);c.stroke();for(let i=0;i<5;i++){const age=phase(t*2+i/5,1);ellipse(c,spout.x+(i%3-1),spout.y+age*(GARDEN.pot.y-10-spout.y),.55,1.1,'#b4d4d7')}c.restore()}
+  break
+ }
+ case 1:{
+  const actor=person(c,-35,20,BLUE,t,'work',1,{facing:-1})
+  const progress=phase(t,4);c.save();c.globalAlpha=Math.min(1,progress*10,(1-progress)*10);paper(c,-77+progress*39,-16+progress*8,RED);c.restore()
+  line(c,[[actor.rightHand.x,actor.rightHand.y],[-50,-11]],'#aa8b5c',1);break
+ }
+ case 2:{
+  const actor=person(c,-25,33,RED,t,'drum',2)
+  if(characterImage()){const f=SPRITES.drum,scale=DRUM_RIG.height/f[3];sprite(c,'drum',-19-(DRUM_RIG.face[0]-f[0])*scale,11-(DRUM_RIG.face[1]-f[1])*scale,f[2]*scale,f[3]*scale)}else{ellipse(c,-19,13,14,8,'#9f6552');ellipse(c,-19,11,14,7,'#e6d8ae')}
+  line(c,[[actor.leftHand.x,actor.leftHand.y],[actor.leftHand.x+15,actor.leftHand.y-4]],GOLD,1.5);line(c,[[actor.rightHand.x,actor.rightHand.y],[actor.rightHand.x-11,actor.rightHand.y-4]],GOLD,1.5)
+  break
+ }
+ case 3:{
+  const arm=parcelArm(t),hx=arm.x,hy=arm.y
+  ellipse(c,43,24,17,7,'#34443a20');box(c,43,15,16,17,12,'#9e6f4e','#bc9b62');line(c,[[43,3],[65,-43],[hx,hy]],'#504e3e',9);line(c,[[43,3],[65,-43],[hx,hy]],'#b49356',6);line(c,[[44,3],[66,-43],[hx+1,hy]],'#d0b779',1);ellipse(c,65,-43,5,5,'#7c6850')
+  line(c,[[hx-4,hy+2],[hx-7,hy+10],[hx-3,hy+13]],INK,2);line(c,[[hx+4,hy+2],[hx+7,hy+10],[hx+3,hy+13]],INK,2)
+  if(arm.carrying)box(c,hx,hy+18,10,9,10,RED,GOLD)
+  if(arm.pickup)box(c,8,17,10,9,10,RED,GOLD)
+  if(arm.delivered)box(c,61,23,10,9,10,RED,GOLD)
+  break
+ }
+ case 4:{
+  const actor=person(c,-33,26,BLUE,t,'idle',1)
+  polygon(c,[[actor.leftHand.x-1,actor.leftHand.y],[actor.rightHand.x+1,actor.rightHand.y],[actor.rightHand.x+1,actor.rightHand.y+8],[actor.leftHand.x-1,actor.leftHand.y+8]],'#dfcda4');line(c,[[-33,actor.leftHand.y],[-33,actor.leftHand.y+8]],'#b09b76',.8)
+  ellipse(c,43,24,15,6,'#3f534426');line(c,[[43,22],[43,-3]],'#a88749',2);ellipse(c,43,-3,20,8,'#788d7b');c.strokeStyle=GOLD;c.lineWidth=1;c.beginPath();c.ellipse(43,-3,20,8,0,0,Math.PI*2);c.stroke();ellipse(c,43+Math.cos(t*.8)*20,-3+Math.sin(t*.8)*8,3.5,3.5,GOLD);break
+ }
+ case 5:{
+  person(c,-24,24,BLUE,t,'work',2);gear(c,12,-5,7,t*1.3);gear(c,24,-2,5,-t*1.8);break
+ }
+ case 6:{
+  const actor=person(c,-38,33,GREEN,t,'idle',0),hand=actor.rightHand
+  ellipse(c,hand.x,hand.y+1,4,2,'#3048391a');rect(c,hand.x-3,hand.y-5,6,7,'#c1b89b');ellipse(c,hand.x,hand.y-5,3,1.5,'#927b58');steam(c,hand.x,hand.y-7,t)
+  const route=patrol(t,18),x=-23+route.position*46,distance=(route.facing>0?route.position:2-route.position)*46,gait=walkingFeet(distance,10)
+  c.save();c.translate(x,42);c.scale(route.facing,1);ellipse(c,1,2,12,3,'#3c4d3820');if(characterImage()){const f=SPRITES.cat,w=25,h=w*f[3]/f[2];sprite(c,'cat',-13,-h+1,w,h)}else{ellipse(c,0,-3,10,5,'#74604a');ellipse(c,8,-8,5,5,'#74604a');polygon(c,[[5,-11],[5,-16],[9,-13],[12,-16],[13,-10]],'#74604a')};for(let i=0;i<4;i++){const foot=i%2?gait.left:gait.right;line(c,[[-6+i*4,-2],[-6+i*4+foot.x*route.blend,3+foot.y*route.blend]],'#74604a',2)}if(!characterImage())line(c,[[-8,-3],[-15,-8],[-18,-7+Math.sin(t*2)*2]],'#74604a',2);c.restore();break
+ }
+ case 7:{
+  const artist=person(c,-27,31,RED,t,'work',2)
+  ellipse(c,-4,22,17,7,'#4f50362b');ellipse(c,-4,18,14,6,'#8c7956');ellipse(c,-4,15,14,5,'#b49b73')
+  const clay=c.createLinearGradient(-14,0,8,0);clay.addColorStop(0,'#7d4f38');clay.addColorStop(.4,'#cb9c72');clay.addColorStop(.65,'#dbad80');clay.addColorStop(1,'#976348');c.fillStyle=clay;c.beginPath();c.moveTo(-10,12);c.bezierCurveTo(-16,-1,-10,-8,-6,-10);c.lineTo(-6,-15);c.quadraticCurveTo(-4,-17,-2,-15);c.lineTo(-2,-10);c.bezierCurveTo(4,-8,8,-1,2,12);c.closePath();c.fill();ellipse(c,-4,-15,2.8,1,'#735845');line(c,[[-4+Math.sin(t*1.5)*5,-6],[-5+Math.sin(t*1.5)*5,7]],'#dbaf8155',1);line(c,[[artist.rightHand.x,artist.rightHand.y],[-10,3]],'#796244',1);break
+ }
+ }
+}
+function walkway(c:Context){
+ for(const direction of [-1,1]){
+  const a={x:direction*64,y:32},b={x:direction*116,y:83},nx=7,ny=-direction*7
+  polygon(c,[[a.x+nx,a.y+ny+3],[b.x+nx,b.y+ny+3],[b.x-nx,b.y-ny+3],[a.x-nx,a.y-ny+3]],'#5e675528')
+  polygon(c,[[a.x+nx,a.y+ny],[b.x+nx,b.y+ny],[b.x-nx,b.y-ny],[a.x-nx,a.y-ny]],'#a3997f')
+  for(let i=1;i<6;i++){const f=i/6,x=a.x+(b.x-a.x)*f,y=a.y+(b.y-a.y)*f;line(c,[[x-nx,y-ny],[x+nx,y+ny]],'#6c715a70',.7)}
+ }
+}
+
 function roomLamp(c:Context,type:number,dark:boolean){
  const x=type%2?-82:81,y=type%2?-4:-2
  // The pool of light is tied to a physical desk lamp, with no extra animation loop.
@@ -248,13 +353,21 @@ function roomLamp(c:Context,type:number,dark:boolean){
  c.fillStyle=dark?'#f3d793':'#bdad82';c.beginPath();c.moveTo(x-10,y-36);c.quadraticCurveTo(x-3,y-40,x+2,y-30);c.lineTo(x-14,y-30);c.closePath();c.fill();ellipse(c,x-6,y-30,7,2,dark?'#f6e6b8':'#e4d0a5')
 }
 
-export function createWorldRenderer(){
+export function createWorldRenderer(wake:()=>void=()=>{},onArtwork?:(state:ArtworkState)=>void){
  const plates=new Map<number,HTMLCanvasElement>()
  const overviews=new Map<number,{canvas:HTMLCanvasElement;stamp:string}>()
+ const unsubscribe=subscribeArtwork(state=>{plates.clear();overviews.clear();onArtwork?.(state);wake()})
+ const ready=loadArtwork()
  // Static pigment, grain and scenery are cached once, never regenerated each frame.
  function backplate(type:number){
   const cached=plates.get(type);if(cached)return cached
-  const plate=document.createElement('canvas');plate.width=544;plate.height=464;const c=plate.getContext('2d');if(!c)return null;c.scale(2,2);c.translate(136,146)
+  const plate=document.createElement('canvas');plate.width=544;plate.height=560;const c=plate.getContext('2d');if(!c)return null;c.scale(2,2);c.translate(136,200)
+  const atlas=artworkImage()
+  if(atlas){
+   const w=atlas.naturalWidth/4,h=atlas.naturalHeight/2
+   c.drawImage(atlas,(type%4)*w,Math.floor(type/4)*h,w,h,-128,-153,256,220)
+   plates.set(type,plate);return plate
+  }
   ellipse(c,2,9,126,62,'#53675015')
   c.beginPath();c.moveTo(0,-64);c.bezierCurveTo(25,-53,107,-17,122,-2);c.quadraticCurveTo(130,3,119,9);c.lineTo(8,65);c.quadraticCurveTo(0,69,-9,63);c.lineTo(-119,8);c.quadraticCurveTo(-129,2,-120,-4);c.closePath();c.fillStyle=FLOOR[type];c.fill()
   c.save();c.clip();let seed=type*173+41
@@ -290,28 +403,29 @@ export function createWorldRenderer(){
   plates.set(type,plate);return plate
  }
  function room(c:Context,type:number,time:number,variant:number,dark:boolean){
-  const plate=backplate(type);if(plate)c.drawImage(plate,-136,-146,272,232)
-  scene(c,type,time,variant)
-  if(dark){c.save();c.beginPath();c.moveTo(-124,-28);c.lineTo(0,-92);c.lineTo(124,-28);c.lineTo(124,0);c.lineTo(0,66);c.lineTo(-124,0);c.closePath();c.clip();c.fillStyle='#25434b40';c.fillRect(-130,-100,260,175);c.restore()}
-  roomLamp(c,type,dark)
+  const plate=backplate(type);if(plate)c.drawImage(plate,-136,-200,272,280)
+  if(artworkImage())paintedScene(c,type,time,variant);else scene(c,type,time,variant)
+  if(dark){c.save();c.beginPath();c.moveTo(-128,-65);c.lineTo(0,-154);c.lineTo(128,-65);c.lineTo(128,0);c.lineTo(0,68);c.lineTo(-128,0);c.closePath();c.clip();c.fillStyle='#25434b40';c.fillRect(-130,-158,260,235);c.restore()}
+  if(!artworkImage())roomLamp(c,type,dark)
  }
  function overview(type:number,time:number,dark:boolean){
   let cached=overviews.get(type)
-  if(!cached){const canvas=document.createElement('canvas');canvas.width=272;canvas.height=232;cached={canvas,stamp:''};overviews.set(type,cached)}
+  if(!cached){const canvas=document.createElement('canvas');canvas.width=272;canvas.height=280;cached={canvas,stamp:''};overviews.set(type,cached)}
   const stamp=`${Math.floor(time/100)}-${dark}`
   if(cached.stamp!==stamp){
    const c=cached.canvas.getContext('2d');if(!c)return null
-   c.clearRect(0,0,272,232);c.save();c.translate(136,146);room(c,type,Math.floor(time/100)*.1+type*4.37,type%3,dark);c.restore();cached.stamp=stamp
+   c.clearRect(0,0,272,280);c.save();c.translate(136,200);room(c,type,Math.floor(time/100)*.1+type*4.37,type%3,dark);c.restore();cached.stamp=stamp
   }
   return cached.canvas
  }
- return{
+ return{ready,retryArtwork,get artworkState(){return artworkState()},
   draw(c:Context,width:number,height:number,camera:Camera,time:number,selected:Cell,dark:boolean){
-   rect(c,0,0,width,height,dark?'#394c45':'#c5cbb1');const cells=visibleCells(width,height,camera)
+   rect(c,0,0,width,height,dark?'#29383a':'#c7c2ae');const cells=visibleCells(width,height,camera)
+   for(const {col,row}of cells){const p=point(col,row);c.save();c.translate(width/2+(p.x-camera.x)*camera.zoom,height/2+(p.y-camera.y)*camera.zoom);c.scale(camera.zoom,camera.zoom);walkway(c);c.restore()}
    for(const {col,row}of cells){const type=roomType(col,row),p=point(col,row);c.save();c.translate(width/2+(p.x-camera.x)*camera.zoom,height/2+(p.y-camera.y)*camera.zoom);c.scale(camera.zoom,camera.zoom)
     const variation=cellVariation(col,row),localTime=time/1000+(variation%530)/10
     c.save();if(variation%4===1||variation%4===2)c.scale(-1,1)
-    if(camera.zoom<.85){const distant=overview(type,time,dark);if(distant)c.drawImage(distant,-136,-146)}
+    if(camera.zoom<.85){const distant=overview(type,time,dark);if(distant)c.drawImage(distant,-136,-200)}
     else room(c,type,localTime,variation%3,dark)
     c.restore()
     if(selected.col===col&&selected.row===row){
@@ -321,6 +435,6 @@ export function createWorldRenderer(){
     c.restore()
    }
    return cells.length
-  },dispose(){plates.clear();overviews.clear()},
+  },dispose(){unsubscribe();plates.clear();overviews.clear()},
  }
 }

@@ -1,0 +1,86 @@
+{
+  "frames": [
+    {
+      "name": "walking",
+      "time": 2800,
+      "cell": {
+        "col": 0,
+        "row": 0
+      },
+      "theme": "light",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-walking-light.png"
+    },
+    {
+      "name": "watering",
+      "time": 6200,
+      "cell": {
+        "col": 0,
+        "row": 0
+      },
+      "theme": "light",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-watering-light.png"
+    },
+    {
+      "name": "turning",
+      "time": 7150,
+      "cell": {
+        "col": 0,
+        "row": 0
+      },
+      "theme": "light",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-turning-light.png"
+    },
+    {
+      "name": "drumming",
+      "time": 6200,
+      "cell": {
+        "col": 1,
+        "row": 0
+      },
+      "theme": "light",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-drumming-light.png"
+    },
+    {
+      "name": "walking",
+      "time": 2800,
+      "cell": {
+        "col": 0,
+        "row": 0
+      },
+      "theme": "dark",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-walking-dark.png"
+    },
+    {
+      "name": "watering",
+      "time": 6200,
+      "cell": {
+        "col": 0,
+        "row": 0
+      },
+      "theme": "dark",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-watering-dark.png"
+    },
+    {
+      "name": "turning",
+      "time": 7150,
+      "cell": {
+        "col": 0,
+        "row": 0
+      },
+      "theme": "dark",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-turning-dark.png"
+    },
+    {
+      "name": "drumming",
+      "time": 6200,
+      "cell": {
+        "col": 1,
+        "row": 0
+      },
+      "theme": "dark",
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/contact-drumming-dark.png"
+    }
+  ],
+  "pageErrors": [],
+  "scope": "Deterministic close-up keyframes for human visual review; not an artistic-quality assertion."
+}

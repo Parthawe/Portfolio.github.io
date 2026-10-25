@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import ThemeToggle from '../components/ThemeToggle'
-import { visibleAnimation } from '../utils/visibleActivity'
-import { cellAt, createWorldRenderer, point, roomType, ROOMS, type Camera, type Cell } from '../components/after-hours/world'
+import { illustratedActivity as visibleAnimation } from '../components/after-hours/activity'
+import { cellAt, createWorldRenderer, point, pickCell, roomType, ROOMS, type Camera, type Cell } from '../components/after-hours/world'
+import type { ArtworkState } from '../components/after-hours/artwork'
 import '../styles/after-hours.css'
 
-function startingZoom() { return window.innerWidth < 600 ? 1.6 : 1.8 }
+function startingZoom() { return window.innerWidth < 600 ? 1.6 : 2.2 }
 
 export default function AfterHoursPage() {
   const canvas = useRef<HTMLCanvasElement>(null), host = useRef<HTMLDivElement>(null)
@@ -14,6 +15,7 @@ export default function AfterHoursPage() {
   const [selection, setSelection] = useState<Cell>({ col: 0, row: 0 }), [zoom, setZoom] = useState(startingZoom)
   const [paused, setPaused] = useState(false), [reduced, setReduced] = useState(false), [unavailable, setUnavailable] = useState(false)
   const [motionOptIn, setMotionOptIn] = useState(false)
+  const [artwork,setArtwork]=useState<ArtworkState>('loading'), retry=useRef<()=>void>(()=>{})
   const overrideReduced = useRef(false)
   const [touchExploring, setTouchExploring] = useState(false), touchExploringRef = useRef(false)
   const pausedRef = useRef(false), wake = useRef<() => void>(() => {})
@@ -35,10 +37,12 @@ export default function AfterHoursPage() {
     if (!surface || !stage) return
     const c = surface.getContext('2d', { alpha: false })
     if (!c) { setUnavailable(true); return }
-    const renderer = createWorldRenderer(), media = matchMedia('(prefers-reduced-motion: reduce)')
+    let disposed=false
+    const renderer = createWorldRenderer(()=>wake.current(),setArtwork), media = matchMedia('(prefers-reduced-motion: reduce)')
     let reduce = media.matches, last = -Infinity, sceneTime = 0, previous = 0, dirty = true
     const syncMotion = () => { reduce = media.matches; setReduced(reduce); overrideReduced.current = false; setMotionOptIn(false); dirty = true; wake.current() }; syncMotion()
     const draw = (time: number) => {
+      stage.dataset.tickTime=time.toFixed(1);stage.dataset.loopAllowed=String(!pausedRef.current&&(!reduce||overrideReduced.current))
       if (!dirty && time - last < 1000 / 30) return
       const started = performance.now(), width = stage.clientWidth, height = stage.clientHeight
       const ratio = Math.min(devicePixelRatio || 1, 1.5)
@@ -50,8 +54,9 @@ export default function AfterHoursPage() {
       stage.dataset.frames = String(Number(stage.dataset.frames || 0) + 1); stage.dataset.rooms = String(count); stage.dataset.drawMs = (performance.now() - started).toFixed(2)
       stage.dataset.camera = `${camera.current.x.toFixed(0)},${camera.current.y.toFixed(0)}`
     }
+    retry.current=()=>{const previousFocus=document.activeElement;void renderer.retryArtwork().then(()=>{if(!disposed&&renderer.artworkState==='ready'&&(document.activeElement===document.body||document.activeElement===previousFocus))surface.focus({preventScroll:true})})}
     const animation = visibleAnimation(stage, draw, () => !pausedRef.current && (!reduce || overrideReduced.current))
-    wake.current = () => { dirty = true; animation.wake() }
+    wake.current = () => { dirty = true; stage.dataset.wakeFlags=JSON.stringify({reduce,optIn:overrideReduced.current,paused:pausedRef.current});animation.wake() }
     const theme = new MutationObserver(() => wake.current()); theme.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
     const resize = () => wake.current(); window.addEventListener('resize', resize); media.addEventListener('change', syncMotion)
     const pointers = new Map<number, { x: number; y: number }>()
@@ -84,7 +89,7 @@ export default function AfterHoursPage() {
       const wasPinching = pointers.size > 1; pointers.delete(e.pointerId); pinch = distance()
       if (!moved && !wasPinching && e.type === 'pointerup') {
         const bounds = surface.getBoundingClientRect(), view = camera.current
-        choose(cellAt((e.clientX - bounds.left - stage.clientWidth / 2) / view.zoom + view.x, (e.clientY - bounds.top - stage.clientHeight / 2) / view.zoom + view.y))
+        choose(pickCell(stage.clientWidth,stage.clientHeight,view,e.clientX-bounds.left,e.clientY-bounds.top))
       }
       moved = true
     }
@@ -94,7 +99,7 @@ export default function AfterHoursPage() {
       changeZoom(Math.exp(-e.deltaY * .003), { x: e.clientX - bounds.left - stage.clientWidth / 2, y: e.clientY - bounds.top - stage.clientHeight / 2 })
     }
     surface.addEventListener('pointerdown', down); surface.addEventListener('pointermove', move); surface.addEventListener('pointerup', up); surface.addEventListener('pointercancel', up); surface.addEventListener('wheel', wheel, { passive: false })
-    return () => { animation.dispose(); renderer.dispose(); theme.disconnect(); window.removeEventListener('resize', resize); media.removeEventListener('change', syncMotion); surface.removeEventListener('pointerdown', down); surface.removeEventListener('pointermove', move); surface.removeEventListener('pointerup', up); surface.removeEventListener('pointercancel', up); surface.removeEventListener('wheel', wheel); wake.current = () => {} }
+    return () => { disposed=true;retry.current=()=>{};animation.dispose(); renderer.dispose(); theme.disconnect(); window.removeEventListener('resize', resize); media.removeEventListener('change', syncMotion); surface.removeEventListener('pointerdown', down); surface.removeEventListener('pointermove', move); surface.removeEventListener('pointerup', up); surface.removeEventListener('pointercancel', up); surface.removeEventListener('wheel', wheel); wake.current = () => {} }
   }, [])
   return <div className="after-hours" data-touch-capable={navigator.maxTouchPoints > 0}>
     <Helmet><title>After Hours · Parth Pawar</title><meta name="robots" content="index, follow" /><meta name="googlebot" content="index, follow" /><meta name="description" content="Explore an endless isometric floor of original animated workshops. A playful generative illustration by Parth Pawar." /><link rel="canonical" href="https://designwhich.works/after-hours" /></Helmet>
@@ -103,15 +108,16 @@ export default function AfterHoursPage() {
       <section className="ah-heading"><div><span className="ah-kicker">An endless illustration / 01</span><h1>After <em>hours.</em></h1></div><p>A press is running. Someone is watering the plants.<br />Every room has a little story in motion.</p></section>
       <div className="ah-toolbar" aria-label="World controls"><div><button disabled={unavailable} onClick={() => { if (reduced && !overrideReduced.current) { overrideReduced.current = true; setMotionOptIn(true); pausedRef.current = false; setPaused(false) } else { pausedRef.current = !pausedRef.current; setPaused(pausedRef.current) } wake.current() }}>{unavailable ? 'Animation unavailable' : paused || (reduced && !motionOptIn) ? 'Play animation' : 'Pause animation'}</button><button disabled={unavailable} onClick={home}>Return to start</button></div><div><button aria-label="Zoom out" onClick={() => changeZoom(1 / 1.2)} disabled={unavailable || zoom <= .55}>−</button><output aria-label="Zoom level">{Math.round(zoom * 100)}%</output><button aria-label="Zoom in" onClick={() => changeZoom(1.2)} disabled={unavailable || zoom >= 3.6}>+</button></div></div>
       {reduced && !motionOptIn && !unavailable && <p className="ah-motion-note" role="status">Reduced motion is on. Choose Play to start the animation.</p>}
+      {!unavailable && artwork!=='ready' && <div className="ah-artwork-note" role="status">{artwork==='loading'?<span>Preparing the illustrated rooms…</span>:<><span>The scenery could not load. A simple drawing is available.</span><button onClick={()=>retry.current()}>Retry scenery</button></>}</div>}
       {!unavailable && <div className="ah-touch-tools"><button type="button" aria-pressed={touchExploring} onClick={() => { touchExploringRef.current = !touchExploringRef.current; setTouchExploring(touchExploringRef.current) }}>{touchExploring ? 'Finish exploring' : 'Explore by touch'}</button><p>{touchExploring ? 'Drag or pinch the floor. Finish exploring to scroll here again.' : 'Scroll freely. Choose Explore by touch to drag and pinch the floor.'}</p></div>}
-      <div className="ah-world" ref={host} data-touch-exploring={touchExploring}>
+      <div className="ah-world" ref={host} data-touch-exploring={touchExploring} data-artwork={artwork}>
         {unavailable ? <div className="ah-fallback" role="status"><h2>The illustrated floor is unavailable.</h2><p>You can still explore every workshop in the directory below.</p></div> : <canvas ref={canvas} tabIndex={0} aria-label="Animated workshop floor. Drag to explore, or use arrow keys. Enter selects the room at the center. Plus and minus zoom; Home resets." aria-describedby="ah-help" onKeyDown={e => {
           const directions: Record<string, [number, number]> = { ArrowLeft: [-70, 0], ArrowRight: [70, 0], ArrowUp: [0, -70], ArrowDown: [0, 70] }
           if (directions[e.key]) { e.preventDefault(); const [x, y] = directions[e.key]; camera.current.x += x / zoom; camera.current.y += y / zoom; wake.current() }
           else if (e.key === '+' || e.key === '=') { e.preventDefault(); changeZoom(1.2) }
           else if (e.key === '-') { e.preventDefault(); changeZoom(1 / 1.2) }
           else if (e.key === 'Home') { e.preventDefault(); home() }
-          else if (e.key === 'Enter') { e.preventDefault(); choose(cellAt(camera.current.x, camera.current.y)) }
+          else if (e.key === 'Enter') { e.preventDefault(); choose(host.current?pickCell(host.current.clientWidth,host.current.clientHeight,camera.current,host.current.clientWidth/2,host.current.clientHeight/2):cellAt(camera.current.x,camera.current.y)) }
         }} />}
         <span className="ah-coordinate" aria-hidden="true">BAY {selection.col} / {selection.row}</span>
       </div>
@@ -122,7 +128,7 @@ export default function AfterHoursPage() {
         let cell: Cell = { col: 0, row: 0 }; outer: for (let row = -8; row <= 8; row++) for (let col = -8; col <= 8; col++) if (roomType(col, row) === i) { cell = { col, row }; break outer }
         return <button key={item.name} onClick={() => choose(cell, true)}><strong>{item.name}</strong><span>{item.note}</span></button>
       })}</div></details>
-      <footer className="ah-footer"><p>An original generative illustration, inspired by the joy of exploring <a href="https://floor796.com/" target="_blank" rel="noreferrer">Floor796</a>. All scenes here are newly drawn.</p><Link to="/studio">Back to the studio</Link></footer>
+      <footer className="ah-footer"><p>An original generative illustration, inspired by the joy of exploring <a href="https://floor796.com/" target="_blank" rel="noreferrer">Floor796</a>. AI-assisted artwork with original coded animation.</p><Link to="/studio">Back to the studio</Link></footer>
     </main>
   </div>
 }

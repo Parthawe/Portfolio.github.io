@@ -9,7 +9,7 @@ const result={};
 try{
  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'no-preference'})
  await context.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort())
- const page=await context.newPage();await page.goto(base+'/after-hours');await page.locator('canvas').scrollIntoViewIfNeeded();await page.waitForTimeout(200)
+ const page=await context.newPage();await page.goto(base+'/after-hours');await page.locator('.ah-world[data-artwork="ready"]').waitFor();await page.locator('canvas').scrollIntoViewIfNeeded();await page.waitForTimeout(200)
  // Compare real raster output, rather than accepting a rising redraw counter.
  const sample=()=>page.locator('canvas').evaluate(c=>{
   const data=c.getContext('2d').getImageData(0,0,c.width,c.height).data,previous=window.__afterHoursPreviousPixels
@@ -23,7 +23,7 @@ try{
  await page.getByRole('button',{name:'Pause animation',exact:true}).click();await page.emulateMedia({reducedMotion:'no-preference'})
  const motion=await page.evaluate(async()=>{
   const {createWorldRenderer}=await import('/src/components/after-hours/world.ts')
-  const canvas=document.createElement('canvas');canvas.width=1000;canvas.height=650;const c=canvas.getContext('2d'),renderer=createWorldRenderer()
+  const canvas=document.createElement('canvas');canvas.width=1000;canvas.height=650;const c=canvas.getContext('2d'),renderer=createWorldRenderer();await renderer.ready
   renderer.draw(c,1000,650,{x:0,y:0,zoom:1.3},1000,{col:0,row:0},false);const a=c.getImageData(0,0,1000,650).data
   renderer.draw(c,1000,650,{x:0,y:0,zoom:1.3},1800,{col:0,row:0},false);const b=c.getImageData(0,0,1000,650).data
   let changed=0;for(let i=0;i<a.length;i+=4)if(Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2])>30)changed++
@@ -36,7 +36,7 @@ try{
  const cdp=await context.newCDPSession(page),frames=[],writes=[]
  cdp.on('Page.screencastFrame',event=>{
   void cdp.send('Page.screencastFrameAck',{sessionId:event.sessionId})
-  if(frames.length>=240)return
+  if(frames.length>=480)return
   const file=`${output}/realtime-frames/frame-${String(frames.length).padStart(4,'0')}.jpg`
   frames.push({file,time:event.metadata.timestamp??Date.now()/1000});writes.push(writeFile(file,Buffer.from(event.data,'base64')))
  })

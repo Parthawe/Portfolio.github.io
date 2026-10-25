@@ -1,0 +1,137 @@
+{
+  "method": "Two unaltered recordings played continuously at playbackRate=1, sampled sequentially against elapsed wall time; no frame seeking or sped-up screenshots.",
+  "before": "/workspace/portfolio-handoff/review/after-hours-v5/realtime-animation.webm",
+  "after": "/workspace/portfolio-handoff/review/after-hours-v6/final-animation.webm",
+  "samples": [
+    {
+      "wallSeconds": 3.007,
+      "videos": [
+        {
+          "currentTime": 3.01373,
+          "duration": 18.12,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 38,
+            "droppedVideoFrames": 1
+          }
+        },
+        {
+          "currentTime": 3.013721,
+          "duration": 18.04,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 38,
+            "droppedVideoFrames": 0
+          }
+        }
+      ],
+      "file": "/workspace/portfolio-handoff/review/after-hours-v6/final-normal-playback-03.png"
+    },
+    {
+      "wallSeconds": 6.143,
+      "videos": [
+        {
+          "currentTime": 6.147062,
+          "duration": 18.12,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 72,
+            "droppedVideoFrames": 1
+          }
+        },
+        {
+          "currentTime": 6.14696,
+          "duration": 18.04,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 72,
+            "droppedVideoFrames": 0
+          }
+        }
+      ],
+      "file": "/workspace/portfolio-handoff/review/after-hours-v6/final-normal-playback-06.png"
+    },
+    {
+      "wallSeconds": 9.281,
+      "videos": [
+        {
+          "currentTime": 9.288062,
+          "duration": 18.12,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 107,
+            "droppedVideoFrames": 1
+          }
+        },
+        {
+          "currentTime": 9.28796,
+          "duration": 18.04,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 106,
+            "droppedVideoFrames": 0
+          }
+        }
+      ],
+      "file": "/workspace/portfolio-handoff/review/after-hours-v6/final-normal-playback-09.png"
+    },
+    {
+      "wallSeconds": 12.405,
+      "videos": [
+        {
+          "currentTime": 12.412126,
+          "duration": 18.12,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 141,
+            "droppedVideoFrames": 1
+          }
+        },
+        {
+          "currentTime": 12.412023,
+          "duration": 18.04,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 141,
+            "droppedVideoFrames": 0
+          }
+        }
+      ],
+      "file": "/workspace/portfolio-handoff/review/after-hours-v6/final-normal-playback-12.png"
+    },
+    {
+      "wallSeconds": 15.54,
+      "videos": [
+        {
+          "currentTime": 15.547248,
+          "duration": 18.12,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 175,
+            "droppedVideoFrames": 1
+          }
+        },
+        {
+          "currentTime": 15.547147,
+          "duration": 18.04,
+          "playbackRate": 1,
+          "paused": false,
+          "quality": {
+            "totalVideoFrames": 177,
+            "droppedVideoFrames": 0
+          }
+        }
+      ],
+      "file": "/workspace/portfolio-handoff/review/after-hours-v6/final-normal-playback-15.png"
+    }
+  ]
+}

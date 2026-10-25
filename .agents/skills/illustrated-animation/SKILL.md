@@ -15,6 +15,15 @@ Name concrete defects: a floating prop, sliding foot, abrupt loop boundary, uncl
 
 An uncertain artist name remains an assumption. Describe observable visual traits and preserve original authorship. Do not claim a perfect replica, invented source research, licensed artwork or hand painting for procedural geometry. Respect the session's asset, network and paid-service restrictions. Do not repeat searches already recorded as exhausted.
 
+
+## When the visual foundation is wrong
+
+Repeated rejection of the artwork is a signal to reconsider composition, material rendering and character design, rather than making another small timing pass. Preserve the prior commit and recording. Develop one coherent scene first, then inspect it in normal playback before expanding it. Background and actor styles must agree; detailed scenery behind flat placeholder bodies is not a finished art direction.
+
+Record the provenance of any new imagery. Generated illustrations must be identified as AI-assisted, never presented as a painter’s work or hand-painted evidence. Retain originals, encoded-file hashes and sprite registration. Test loading, failure, retry and focus recovery. Keep the art request within the session’s tool, spending and source restrictions.
+
+Use after-hours-playback-review.mjs to play the preserved and candidate recordings continuously at 1× and save sequential wall-time samples. Inspect the sequence, not just a chosen pose or the count of changed pixels. Note that sampled review through tools is not a physical-device or full frame-by-frame animation assessment.
+
 ## Stage one readable action
 
 1. Give the actor an intention, preparation, contact/action, release and recovery. Check how the last frame joins the first.
@@ -29,7 +38,7 @@ Current examples: [motion model](../../../src/components/after-hours/motion.ts) 
 
 Choose a restricted material palette and coloured linework. Keep distinct workshop silhouettes and useful details. Place shadows under objects, light beneath physical lamps and foliage where it explains the setting. Stable pigment marks belong in cached surfaces; never resample random texture every frame.
 
-Cache static furniture separately from moving actors. Cull by viewport, cap display DPR and frame rate, and use the existing visibleActivity lifecycle. Preserve pause, reduced-motion static default with explicit opt-in, offscreen/tab-hidden suspension, input wake and cleanup. Any new cache must have a finite address space and a disposal path.
+Cache static furniture separately from moving actors. Cull by viewport, cap display DPR and frame rate, and use the existing visibleActivity lifecycle. For the illustrated After Hours page, retain its [scoped activity driver](../../../src/components/after-hours/activity.ts) and stalled-frame/stale-visibility checks; the shared utility stays unchanged. Preserve pause, reduced-motion static default with explicit opt-in, offscreen/tab-hidden suspension, input wake and cleanup. Any new cache must have a finite address space and a disposal path.
 
 A lighter far view may share a small animated composite by motif. Document changes in phase/detail at the threshold and verify it still moves, changes theme and remains bounded. Measure actual running frames as well as draw-call duration. Report outliers and distinguish raw RGBA calculations, real browser memory, device battery measurements and field performance. Do not turn a headless sample into an FPS or battery promise.
 

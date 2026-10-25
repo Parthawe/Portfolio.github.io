@@ -12,7 +12,7 @@ try{
  await page.evaluate(async()=>{
   const {createWorldRenderer,point}=await import('/src/components/after-hours/world.ts')
   const canvas=document.createElement('canvas');canvas.width=1280;canvas.height=900;canvas.style.cssText='display:block;width:1280px;height:900px'
-  document.body.replaceChildren(canvas);document.body.style.margin='0';const renderer=createWorldRenderer()
+  document.body.replaceChildren(canvas);document.body.style.margin='0';const renderer=createWorldRenderer();await renderer.ready
   window.__drawContactFrame=({cell,time,dark})=>{const p=point(cell.col,cell.row);renderer.draw(canvas.getContext('2d'),1280,900,{x:p.x,y:p.y+12,zoom:3.3},time,cell,dark)}
   window.__disposeContactReview=()=>renderer.dispose()
  })

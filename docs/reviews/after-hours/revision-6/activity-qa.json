@@ -1,0 +1,10 @@
+{
+  "staticOneFrame": true,
+  "explicitResume": true,
+  "strandedFrameRecovery": true,
+  "staleObserverRecovery": true,
+  "offscreenNoWork": true,
+  "returnWithoutObserver": true,
+  "pauseStops": true,
+  "disposeStops": true
+}

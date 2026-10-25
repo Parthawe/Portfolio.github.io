@@ -12,7 +12,7 @@ async function open(width,theme='light',reducedMotion='no-preference',canvasFail
  page=await context.newPage();page.on('pageerror',e=>errors.push(e.message))
  if(canvasFailure)await page.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return type==='2d'?null:get.call(this,type,...args)}})
  const response=await page.goto(base+'/after-hours',{waitUntil:'domcontentloaded'});assert.equal(response.status(),200)
- await page.getByRole('heading',{name:'After hours.'}).waitFor();return context
+ await page.getByRole('heading',{name:'After hours.'}).waitFor();if(!canvasFailure)await page.locator('.ah-world[data-artwork="ready"]').waitFor();return context
 }
 const frames=()=>page.locator('.ah-world').getAttribute('data-frames').then(Number)
 try{
@@ -64,7 +64,7 @@ try{
  const perf=await open(1440);await page.locator('canvas').scrollIntoViewIfNeeded();await page.waitForTimeout(300)
  const samples=[];for(let i=0;i<20;i++){samples.push(await page.locator('.ah-world').evaluate(e=>Number(e.dataset.drawMs)));await page.waitForTimeout(50)}
  const resources=await page.evaluate(()=>performance.getEntriesByType('resource').map(r=>r.name))
- assert(!resources.some(r=>/HeroScene|vendor-three|\.gif|\.mp4|\.glb|\.avif/.test(r)),'world does not load homepage 3D/media assets')
- results.push({drawSamplesMs:samples,maximumSampleMs:Math.max(...samples),noHeroOrMediaDependencies:true});await perf.close()
+ assert(!resources.some(r=>/HeroScene|vendor-three|\.gif|\.mp4|\.glb|\.avif/.test(r)),'world does not load homepage 3D/video assets')
+ results.push({drawSamplesMs:samples,maximumSampleMs:Math.max(...samples),noHomepage3DOrVideoDependencies:true});await perf.close()
 }catch(e){results.push({failure:e.stack});if(page&&!page.isClosed())await page.screenshot({path:`${output}/failure.png`,fullPage:true});process.exitCode=1}
 await browser.close();await writeFile(`${output}/qa.json`,JSON.stringify({results,pageErrors:errors},null,2)+'\n');console.log(JSON.stringify({cases:results.length,pageErrors:errors,last:results.at(-1)}));if(errors.length)process.exitCode=1

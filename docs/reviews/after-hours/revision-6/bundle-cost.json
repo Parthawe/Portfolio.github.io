@@ -1,0 +1,16 @@
+{
+  "routeChunks": [
+    {
+      "file": "bundle/AfterHoursPage-B7y1RSHR.js",
+      "bytes": 37847,
+      "gzipBytes": 15143
+    },
+    {
+      "file": "bundle/AfterHoursPage-BomNv6sZ.css",
+      "bytes": 5780,
+      "gzipBytes": 1574
+    }
+  ],
+  "artworkBytes": 1164468,
+  "measurement": "Build output sizes; not a device or battery benchmark."
+}

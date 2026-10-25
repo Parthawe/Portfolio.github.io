@@ -1,4 +1,4 @@
-Latest preview: [contact, cadence and the animation skill](revision-5/README.md). Prior reviews: [revision 4](revision-4/README.md), [revision 3](revision-3/README.md), [revision 2](revision-2/README.md).
+Latest candidate: [illustrated scenes and resume recovery](revision-6/README.md). Preserved previous preview: [revision 5](revision-5/README.md). Earlier reviews: [revision 4](revision-4/README.md), [revision 3](revision-3/README.md), [revision 2](revision-2/README.md).
 
 The report below records the originally published version.
 

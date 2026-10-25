@@ -1,0 +1,233 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "913.5",
+        "loopAllowed": "false",
+        "frames": "24",
+        "rooms": "9",
+        "drawMs": "0.80",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "913.2",
+        "loopAllowed": "false",
+        "frames": "24",
+        "rooms": "9",
+        "drawMs": "0.70",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "1280.0",
+        "loopAllowed": "false",
+        "frames": "32",
+        "rooms": "9",
+        "drawMs": "0.70",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "1263.3",
+        "loopAllowed": "false",
+        "frames": "31",
+        "rooms": "9",
+        "drawMs": "0.50",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "1263.3",
+        "loopAllowed": "false",
+        "frames": "31",
+        "rooms": "7",
+        "drawMs": "0.60",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "946.7",
+        "loopAllowed": "false",
+        "frames": "24",
+        "rooms": "7",
+        "drawMs": "0.70",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "943.4",
+        "loopAllowed": "false",
+        "frames": "24",
+        "rooms": "13",
+        "drawMs": "0.90",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "animation": true,
+      "pause": true,
+      "keyboardPan": true,
+      "home": true,
+      "zoom": true,
+      "pausedRedraw": true,
+      "noOverflow": true,
+      "focus": true,
+      "metrics": {
+        "touchExploring": "false",
+        "artwork": "ready",
+        "tickTime": "929.9",
+        "loopAllowed": "false",
+        "frames": "25",
+        "rooms": "13",
+        "drawMs": "1.00",
+        "camera": "0,0",
+        "wakeFlags": "{\"reduce\":false,\"optIn\":false,\"paused\":true}"
+      }
+    },
+    {
+      "reducedMotion": true,
+      "explicitPlayOptIn": true,
+      "staticResize": true,
+      "preferenceChange": true
+    },
+    {
+      "pointerDrag": true,
+      "touchPinch": true
+    },
+    {
+      "hiddenDocumentSimulation": true,
+      "offscreen": true
+    },
+    {
+      "canvasFailure": true,
+      "allEightRoomsAccessible": true
+    },
+    {
+      "drawSamplesMs": [
+        1,
+        1.1,
+        0.9,
+        1.1,
+        1.8,
+        1,
+        1.1,
+        1.1,
+        0.8,
+        1,
+        1,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        1.2,
+        0.9,
+        1,
+        0.9,
+        1
+      ],
+      "maximumSampleMs": 1.8,
+      "noHomepage3DOrVideoDependencies": true
+    }
+  ],
+  "pageErrors": []
+}

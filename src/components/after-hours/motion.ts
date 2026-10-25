@@ -1,3 +1,4 @@
+import { CAN_RIG, SPRITES } from './sprite-frames'
 // Explicit scene time keeps pause, reduced motion and recordings deterministic.
 export const phase = (time: number, duration: number) => ((time % duration) + duration) % duration / duration
 export const ease = (value: number) => { const v = Math.min(1, Math.max(0, value)); return v * v * (3 - 2 * v) }
@@ -38,3 +39,8 @@ export function watering(time: number) {
 
 // Pose changes may hold on twos while travel and machinery use continuous time.
 export const characterTime = (time: number) => Math.floor(time * 12) / 12
+
+export function canSpout(pour: number) {
+ const scale=CAN_RIG.width/SPRITES.can[2],x=(CAN_RIG.spout[0]-CAN_RIG.grip[0])*scale,y=(CAN_RIG.spout[1]-CAN_RIG.grip[1])*scale,angle=pour*.26
+ return {x:x*Math.cos(angle)-y*Math.sin(angle),y:x*Math.sin(angle)+y*Math.cos(angle)}
+}

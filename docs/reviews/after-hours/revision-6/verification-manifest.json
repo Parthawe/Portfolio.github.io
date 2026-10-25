@@ -1,0 +1,71 @@
+{
+  "baselinePreview": "b205007",
+  "branch": "codex/after-hours-art-pass",
+  "files": [
+    {
+      "path": "/workspace/Portfolio.github.io/src/components/after-hours/world.ts",
+      "bytes": 34872,
+      "sha256": "7aea1dca0bd7e859c2c53f5e4e467ee2a2dfc630370cfc8d20fd8dafe054e589"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/src/components/after-hours/motion.ts",
+      "bytes": 2627,
+      "sha256": "707610aefabfaf4f3e120a72076fde746d88fbf5e2404a4cd39187e7b9606d58"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/src/components/after-hours/sprites.ts",
+      "bytes": 345,
+      "sha256": "732c1162147da657472e86e7de3efcf5f22213f16064ab1abab49e05a86a4ff9"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/src/components/after-hours/artwork.ts",
+      "bytes": 2043,
+      "sha256": "8e1db1897eb6bc3fc9a5d063a6dd4f4361c0281c07735866867d97bf3f53cd36"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/src/components/after-hours/sprite-frames.ts",
+      "bytes": 944,
+      "sha256": "035faabecf85e674680c4db344d9e7f1ee72fa759192eea2d23f1c134510945f"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/src/components/after-hours/activity.ts",
+      "bytes": 1895,
+      "sha256": "fd16c7b71ae682ccbae7b391bb8b40c025d11153671b6ecc567497de604ceaa4"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/src/pages/AfterHoursPage.tsx",
+      "bytes": 13868,
+      "sha256": "545c031b5666f8b9c2405c30ea6b85297920b5ecc6a15800d5ea9e08c5a738b1"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/src/styles/after-hours.css",
+      "bytes": 5997,
+      "sha256": "33d4a2f03b93bd631c05ec7c0ab67bcae480fa96d46a603404e800b609975444"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/public/Assets/AfterHours/character-parts.webp",
+      "bytes": 551292,
+      "sha256": "83e89d5a13c119785f7a50424fb0b706d8bdcc280d6ae6fb8e36325e467b03ad"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/public/Assets/AfterHours/PROVENANCE.md",
+      "bytes": 1326,
+      "sha256": "a304daf58caab0045b2e7f396c65dab535c7264be40d3d80bc10bff8b6f70919"
+    },
+    {
+      "path": "/workspace/Portfolio.github.io/public/Assets/AfterHours/workshop-atlas.webp",
+      "bytes": 613176,
+      "sha256": "d6cb6b9d61d687fbd7e63a90afa209ded15a1b6777d454448d7944ead916ed61"
+    },
+    {
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/final-animation.webm",
+      "bytes": 944716,
+      "sha256": "46cf01d81539fd4de3802b226d43e1cf386ff6afecc5824f774323618cbeb86e"
+    },
+    {
+      "path": "/workspace/portfolio-handoff/review/after-hours-v6/final-normal-playback-15.png",
+      "bytes": 795463,
+      "sha256": "fd86d79b6e03f0efb024cf98693e90a12605d459986787fb34971654c00dfee4"
+    }
+  ]
+}

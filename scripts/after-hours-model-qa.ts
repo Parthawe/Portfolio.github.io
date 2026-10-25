@@ -78,6 +78,14 @@ for(let i=0;i<=1200;i++){
  assert(Math.abs(x)+Math.abs(GARDEN.pathY)*124/64<124,'the walking route stays on its room floor')
 }
 assert(Math.abs(GARDEN.pot.x)+7+(GARDEN.pot.y+4)*124/64<124,'the front pot fits on the room floor')
-const fullPourX=GARDEN.startX+GARDEN.span+11+24*Math.cos(.26)+Math.sin(.26)
+const { canSpout } = await import('../src/components/after-hours/motion')
+const fullPourX=GARDEN.startX+GARDEN.span+11+canSpout(1).x
 assert(Math.abs(fullPourX-GARDEN.pot.x)<5,'the spout reaches the target pot, including the pour rotation')
 console.log('PASS: 1,201 garden floor positions, target pot footprint and pouring reach.')
+
+const { pickCell } = await import('../src/components/after-hours/world')
+for(const zoom of [.55,1.6,2.2,3.6]){
+ const camera={x:0,y:0,zoom},width=1440,height=1000
+ for(const [x,y] of [[0,0],[0,-120],[40,32]])assert.deepEqual(pickCell(width,height,camera,width/2+x*zoom,height/2+y*zoom),{col:0,row:0},'room wall and floor hit targets agree with the tall illustration')
+}
+console.log('PASS: 12 illustrated wall/floor hit targets across overview, mobile, opening and close zoom.')

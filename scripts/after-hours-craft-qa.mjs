@@ -9,12 +9,12 @@ const results=[],errors=[]
 try{
  const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'})
  await context.route('**/*',r=>new URL(r.request().url()).origin===new URL(base).origin?r.continue():r.abort())
- const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/after-hours')
+ const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/after-hours');await page.locator('.ah-world[data-artwork="ready"]').waitFor()
  await page.locator('canvas').scrollIntoViewIfNeeded()
  const bounds=await page.locator('canvas').boundingBox(),x=bounds.x+bounds.width*.7,y=bounds.y+bounds.height*.4
  await page.mouse.move(x,y);await page.keyboard.down('Control');await page.mouse.wheel(0,-100);await page.keyboard.up('Control');await page.waitForTimeout(100)
- const camera=(await page.locator('.ah-world').getAttribute('data-camera')).split(',').map(Number),next=Math.min(3.6,1.8*Math.exp(.3))
- const expected=[bounds.width*.2/1.8-bounds.width*.2/next,-bounds.height*.1/1.8+bounds.height*.1/next]
+ const camera=(await page.locator('.ah-world').getAttribute('data-camera')).split(',').map(Number),next=Math.min(3.6,2.2*Math.exp(.3))
+ const expected=[bounds.width*.2/2.2-bounds.width*.2/next,-bounds.height*.1/2.2+bounds.height*.1/next]
  assert(camera.every((n,i)=>Math.abs(n-expected[i])<1.1),'wheel zoom preserves the cursor world point')
  for(let i=0;i<7&&await page.getByRole('button',{name:'Zoom in',exact:true}).isEnabled();i++)await page.getByRole('button',{name:'Zoom in',exact:true}).click()
  assert.equal(await page.locator('output').innerText(),'360%')
@@ -35,6 +35,10 @@ try{
  const runtimeStart=await page.locator('.ah-world').evaluate(e=>({frames:Number(e.dataset.frames),time:performance.now()})),runtimeSamples=[]
  for(let i=0;i<40;i++){runtimeSamples.push(await page.locator('.ah-world').evaluate(e=>Number(e.dataset.drawMs)));await page.waitForTimeout(50)}
  const runtimeEnd=await page.locator('.ah-world').evaluate(e=>({frames:Number(e.dataset.frames),time:performance.now()}))
+ const wideDiagnostic={start:runtimeStart,end:runtimeEnd,stage:await page.locator('.ah-world').evaluate(e=>({rect:e.getBoundingClientRect().toJSON(),hidden:document.hidden,drawMs:e.dataset.drawMs,tickTime:e.dataset.tickTime,loopAllowed:e.dataset.loopAllowed,wakeFlags:e.dataset.wakeFlags,controls:[...document.querySelectorAll('.ah-toolbar button')].map(b=>b.textContent)}))}
+ const freshIntersection=await page.locator('.ah-world').evaluate(e=>new Promise(resolve=>{const o=new IntersectionObserver(([v])=>{resolve({intersecting:v.isIntersecting,ratio:v.intersectionRatio});o.disconnect()});o.observe(e)}));wideDiagnostic.freshIntersection=freshIntersection
+ await writeFile(`${output}/wide-runtime-diagnostic.json`,JSON.stringify(wideDiagnostic,null,2)+'\n')
+ console.log(JSON.stringify({wideDiagnostic}))
  assert(runtimeEnd.frames>runtimeStart.frames+10,'the wide overview continues rendering in real animation frames')
  results.push({wideViewRuntime:{zoom:await page.locator('output').innerText(),durationMs:runtimeEnd.time-runtimeStart.time,frames:runtimeEnd.frames-runtimeStart.frames,drawSamplesMs:runtimeSamples}})
  await page.getByRole('button',{name:'Pause animation',exact:true}).click()
@@ -44,7 +48,7 @@ try{
   const original=document.createElement.bind(document);let count=0
   document.createElement=function(name,...args){if(name==='canvas')count++;return original(name,...args)}
   try{
-   const renderer=createWorldRenderer(),canvas=original('canvas');canvas.width=1200;canvas.height=800;const c=canvas.getContext('2d')
+   const renderer=createWorldRenderer(),canvas=original('canvas');canvas.width=1200;canvas.height=800;const c=canvas.getContext('2d');await renderer.ready
    renderer.draw(c,1200,800,{x:0,y:0,zoom:1},1000,{col:0,row:0},false);const first=count
    renderer.draw(c,1200,800,{x:0,y:0,zoom:1},1000,{col:0,row:0},true);const afterTheme=count
    const samples=[];for(let i=0;i<12;i++){const start=performance.now();renderer.draw(c,1200,800,{x:0,y:0,zoom:.55},1000+i*100,{col:0,row:0},false);samples.push(performance.now()-start)}
@@ -56,7 +60,7 @@ try{
    for(const dark of [false,true])for(let type=0;type<8;type++){
     let cell;outer:for(let col=-4;col<=4;col++)for(let row=-4;row<=4;row++){const {roomType}=await import('/src/components/after-hours/world.ts');if(roomType(col,row)===type){cell={col,row};break outer}}
     const {point}=await import('/src/components/after-hours/world.ts'),p=point(cell.col,cell.row),tile=original('div'),caption=original('p'),image=original('canvas');image.width=720;image.height=480;image.style.cssText='width:360px;height:240px;display:block';const ctx=image.getContext('2d');ctx.scale(2,2)
-    const r=createWorldRenderer();r.draw(ctx,360,240,{...p,zoom:1.25},3400,cell,dark);r.dispose();caption.textContent=`${ROOMS[type].name} / ${dark?'night':'day'}`;tile.append(image,caption);atlas.append(tile)
+    const r=createWorldRenderer();await r.ready;r.draw(ctx,360,240,{...p,zoom:1.25},3400,cell,dark);r.dispose();caption.textContent=`${ROOMS[type].name} / ${dark?'night':'day'}`;tile.append(image,caption);atlas.append(tile)
    }
    document.body.replaceChildren(atlas);document.body.style.margin='0'
    return {cachedPlates:first,afterTheme,totalAfterZoom:total,lowZoomDrawSamplesMs:samples,overviewChangedPixels}

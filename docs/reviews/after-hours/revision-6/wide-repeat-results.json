@@ -1,0 +1,18 @@
+{
+  "assertion": "endFrames > startFrames + 10; unchanged",
+  "observedFullSequenceRunsAfterScopedRecovery": [
+    {
+      "frames": 53,
+      "durationMs": 2370
+    },
+    {
+      "frames": 54,
+      "durationMs": 2360.400000035763
+    },
+    {
+      "frames": 50,
+      "durationMs": 2325.600000023842
+    }
+  ],
+  "source": "Observed outputs of the complete craft suite, retained as a repeat summary."
+}

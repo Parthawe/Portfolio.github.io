@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "asset": "workshop-atlas.webp",
+      "failureShown": true,
+      "retryRecovered": true,
+      "staticReducedMotion": true
+    },
+    {
+      "asset": "character-parts.webp",
+      "failureShown": true,
+      "retryRecovered": true,
+      "staticReducedMotion": true
+    },
+    {
+      "twoSharedSameOriginArtRequests": true,
+      "decodedImages": [
+        {
+          "width": 1774,
+          "height": 887,
+          "pixels": 1573538
+        },
+        {
+          "width": 1448,
+          "height": 1086,
+          "pixels": 1572528
+        }
+      ]
+    }
+  ],
+  "pageErrors": []
+}

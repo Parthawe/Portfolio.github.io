@@ -1,0 +1,5 @@
+PASS 47 coordinate/culling cases; all 8 workshop types reachable.
+PASS: 6,003 patrol samples, 2,001 arm samples and 1,681 stable address variations; no motion-boundary jumps.
+PASS: 4002 planted-foot contacts, 4,002 gait samples, 2,401 watering/cadence samples and all gait-rest boundaries.
+PASS: 1,201 garden floor positions, target pot footprint and pouring reach.
+PASS: 12 illustrated wall/floor hit targets across overview, mobile, opening and close zoom.

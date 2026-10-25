@@ -25,3 +25,5 @@
  .after-hours[data-touch-capable="true"] .ah-touch-tools p{font:11px/1.5 var(--sans);color:var(--ink-70);margin:0}
  .after-hours[data-touch-capable="true"] .ah-world[data-touch-exploring="false"] canvas{touch-action:pan-y pinch-zoom}
  .after-hours[data-touch-capable="true"] .ah-world[data-touch-exploring="true"] canvas{touch-action:none}
+
+.ah-artwork-note{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font:12px/1.5 var(--sans);color:var(--ink-70);padding:0 0 12px}.ah-artwork-note button{min-height:44px;border:1px solid var(--ink-30);border-radius:4px;background:var(--bg);color:var(--ink);padding:9px 12px;cursor:pointer}.ah-artwork-note button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
