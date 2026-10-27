@@ -1,0 +1,2 @@
+
+Design system audit passed blocking checks. Warnings above are refactor targets.

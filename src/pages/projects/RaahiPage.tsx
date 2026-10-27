@@ -13,7 +13,9 @@ import CsCredits from '../../components/case-study/CsCredits'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
 import '../../components/case-study/service-decisions.css'
+import '../../styles/raahi-prototype-entry.css'
 const raahiAsset = (file: string) => `/Assets/Projects/Raahi/photos/${encodeURIComponent(file)}`
+const raahiPrototypeUrl = 'https://raahi-interactive-20261023.pawar-d-parth.chatgpt.site/#/home'
 const research = [
  ['Mind Map.png', 'Problem-space map', 'Early framing of transport needs and service opportunities.'],
  ['Group 2531.png', 'Rider models and journey maps', 'Concept synthesis for convenience switchers, captive riders and mode mixers. Participant counts and sampling records are unavailable.'],
@@ -29,7 +31,7 @@ export default function RaahiPage() {
  return <>
       <Helmet>
         <title>Raahi Public Transit Research Case Study &middot; Parth Pawar</title>
-        <meta name="description" content="An in-depth service research case study connecting rider evidence to decisions across mobile, kiosk, and in-vehicle public-transit touchpoints in Pune." />
+        <meta name="description" content="Explore Raahi's private working browser prototype, then follow the service design decisions across mobile, kiosk, and in-vehicle transit touchpoints in Pune." />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Raahi · Parth Pawar" />
         <meta property="og:description" content="How rider research and service mapping reframed Pune transit as one connected journey across digital and physical touchpoints." />
@@ -48,6 +50,8 @@ export default function RaahiPage() {
           tags={['UX', 'Research', 'Service Design', 'Mobile']}
           title="Raahi"
           subtitle="A Pune transit service study connecting trip planning, waiting, boarding, transfers, and arrival."
+          liveUrl={raahiPrototypeUrl}
+          liveLabel="Open private prototype"
           info={[
             { label: 'Decision at risk', value: 'Where should one service connect fragmented transit touchpoints?' },
             { label: 'My contribution', value: 'Research, service synthesis, brand, and UI system' },
@@ -55,6 +59,32 @@ export default function RaahiPage() {
             { label: 'Duration', value: '3 months · 2022' },
           ]}
         />
+
+        <CsSection id="cs-prototype" title="Start with a sample journey">
+          <div className="raahi-prototype-entry">
+            <div className="raahi-prototype-entry__intro">
+              <p>This browser adaptation makes the original service concept usable. Compare routes, save places, follow a journey, and issue a demo QR ticket. Your progress and saved data stay in that browser.</p>
+              <a className="proj-live-link raahi-prototype-entry__launch" href={raahiPrototypeUrl} target="_blank" rel="noopener noreferrer" aria-describedby="raahi-prototype-access">
+                Open private prototype
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18 18 6M7 6h11v11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </a>
+              <p id="raahi-prototype-access" className="raahi-prototype-entry__note">Opens in a new tab. Sign in with the ChatGPT account that owns this private preview. The original screens and service decisions below are available without prototype access.</p>
+              <nav className="raahi-prototype-entry__reading" aria-label="Explore the Raahi project">
+                <a href="#cs-features">Explore the design decisions</a>
+                <a href="#cs-research">Inspect the research artifacts</a>
+              </nav>
+            </div>
+            <div className="raahi-prototype-entry__guide">
+              <h3>A trip to try</h3>
+              <ol>
+                <li>Keep <strong>Amanora Future Towers</strong> as the origin. Choose <strong>Phoenix Marketcity</strong> as the destination, then select <strong>Find routes</strong>.</li>
+                <li>Compare the connections, open <strong>View route</strong>, then select <strong>Try this journey</strong>.</li>
+                <li>Advance through the stops, get a demo ticket, and complete the journey. Your trip will appear in <strong>Activity</strong> and <strong>Insights</strong>.</li>
+              </ol>
+              <p className="raahi-prototype-entry__note">This browser adaptation uses sample stops, departures, and fares. Journey progress is manual. No money is collected, and demo tickets are not valid for travel.</p>
+            </div>
+          </div>
+        </CsSection>
 
         <figure className="wrap service-overview raahi-overview-proof"><EvidenceImage src={raahiAsset('Frame 427318652.png')} alt="Original Raahi concept overview showing mobile, bus and service touchpoints" /><figcaption>A 2022 service concept for Pune. Screens show proposed behavior; they do not establish live transit performance.</figcaption></figure>
         <CsSection id="cs-summary" label="Problem" title="Keep a journey legible across handoffs">
@@ -90,7 +120,7 @@ export default function RaahiPage() {
           <CsCredits credits={[{role:'UI Designer & Researcher',name:'Parth Pawar'},{role:'UX Designer & Researcher',name:'Sampada Inamdar'}]} />
         </CsSection>
         </CsExpandPreview>
-        <BottomNav sections={[{id:'cs-summary',label:'Problem'},{id:'cs-features',label:'Mobile journey'},{id:'cs-touchpoints',label:'Beyond the phone'},{id:'cs-research',label:'Source artifacts'},{id:'cs-results',label:'Next study'}]} />
+        <BottomNav sections={[{id:'cs-prototype',label:'Try the prototype'},{id:'cs-summary',label:'Problem'},{id:'cs-features',label:'Mobile journey'},{id:'cs-touchpoints',label:'Beyond the phone'},{id:'cs-research',label:'Source artifacts'},{id:'cs-results',label:'Next study'}]} />
       </main>
       <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
       <Footer />
