@@ -13,7 +13,7 @@ for(const slug of slugs){
  const page=await context.newPage();page.on('pageerror',e=>errors.push(`${slug}: ${e.message}`))
  await page.route('https://www.figma.com/embed?*',r=>r.fulfill({contentType:'text/html',body:'<p>Frame load test; live Figma not tested</p>'}))
  await page.goto(`${base}/experience-preview/${slug}`)
- await expect(page.getByRole('navigation',{name:'Draft review sequence'})).toContainText(`Draft ${slugs.indexOf(slug)+1} of 18`)
+ await expect(page.getByRole('navigation',{name:'More project experiences'})).toContainText('Continue exploring')
  if(['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(slug))await expect(page.locator('.physical-world-stage canvas')).toBeVisible()
  if(slug==='typeface')await expect(page.locator('[data-glyph-outline]')).toBeVisible();else if(slug==='atps')await expect(page.locator('audio')).toBeVisible();else if(slug==='moniac-machine')await expect(page.getByRole('button',{name:'Start Economy',exact:true})).toBeVisible();else if(!['raahi-project','enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(slug))await expect(page.locator('[data-prototype]')).toBeVisible();
  startup.push({slug,...await page.evaluate(()=>({readyMs:Math.round(performance.now()),localEncodedBytes:performance.getEntriesByType('resource').filter(entry=>new URL(entry.name).origin===location.origin).reduce((sum,entry)=>sum+(entry.encodedBodySize||0),0)}))});
