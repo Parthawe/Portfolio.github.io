@@ -31,9 +31,9 @@ The original project screens, credits, story disclosure, and other experiences r
 
 Final screenshots: `desktop-light.png`, `desktop-dark.png`, `mobile-light.png`, and `mobile-dark.png`. `private-signin.png` records the expected access gate. The two `*-before.png` files record the inherited article-link contrast defect, corrected before the final screenshots.
 
-## Delivery boundary
+## Delivery boundary at the October 26 review
 
-This is a local review branch. It has not been pushed, merged, or deployed to the public portfolio. The prototype repository and hosted app remain private.
+At that review, this was a local branch and had not been pushed, merged, or deployed. On October 31 the user authorized public portfolio publication with the expanded service study. See `../raahi-service-2026/README.md` for that delivery. The prototype repository and hosted app remain private.
 
 The current launch supports the authorized owner. Letting ordinary portfolio visitors play the app would require a separate privacy decision. The integration does not make that decision or bypass sign-in; visitors can inspect the existing public case-study material instead.
 

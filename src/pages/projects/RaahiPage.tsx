@@ -12,9 +12,11 @@ import DecisionNote from '../../components/case-study/DecisionNote'
 import CsCredits from '../../components/case-study/CsCredits'
 import BottomNav from '../../components/case-study/BottomNav'
 import NextProject from '../../components/case-study/NextProject'
+import RaahiServiceStudy from '../../components/case-study/RaahiServiceStudy'
 import '../../components/case-study/service-decisions.css'
 import '../../styles/raahi-prototype-entry.css'
 const raahiAsset = (file: string) => `/Assets/Projects/Raahi/photos/${encodeURIComponent(file)}`
+const serviceAsset=(file:string)=>`/Assets/Projects/Raahi/service-2026/${file}`
 const raahiPrototypeUrl = 'https://raahi-interactive-20261023.pawar-d-parth.chatgpt.site/#/home'
 const research = [
  ['Mind Map.png', 'Problem-space map', 'Early framing of transport needs and service opportunities.'],
@@ -49,7 +51,10 @@ export default function RaahiPage() {
           backLabel="Back to Work"
           tags={['UX', 'Research', 'Service Design', 'Mobile']}
           title="Raahi"
-          subtitle="A Pune transit service study connecting trip planning, waiting, boarding, transfers, and arrival."
+          subtitle="A connected Pune transit concept, from the phone to the station kiosk and the next stop on the bus."
+          visualHeroImage={serviceAsset('service-mockup.png')}
+          visualHeroAlt="Concept mockups of the working Raahi planner, station kiosk and bus display"
+          heroFraming="image"
           liveUrl={raahiPrototypeUrl}
           liveLabel="Open private prototype"
           info={[
@@ -57,18 +62,20 @@ export default function RaahiPage() {
             { label: 'My contribution', value: 'Research, service synthesis, brand, and UI system' },
             { label: 'Team', value: '2 designers' },
             { label: 'Duration', value: '3 months · 2022' },
+            { label: 'Working extension', value: '2026 · Browser prototype and source-based service study' },
           ]}
         />
 
         <CsSection id="cs-prototype" title="Start with a sample journey">
           <div className="raahi-prototype-entry">
             <div className="raahi-prototype-entry__intro">
-              <p>This browser adaptation makes the original service concept usable. Compare routes, save places, follow a journey, and issue a demo QR ticket. Your progress and saved data stay in that browser.</p>
+              <p>The working browser adaptation uses Pune Metro station sequences and selected published feeder connections. Compare routes, save places, follow a journey, and issue a demo QR ticket. Your progress and saved data stay in that browser.</p>
               <a className="proj-live-link raahi-prototype-entry__launch" href={raahiPrototypeUrl} target="_blank" rel="noopener noreferrer" aria-describedby="raahi-prototype-access">
                 Open private prototype
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18 18 6M7 6h11v11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>
               <p id="raahi-prototype-access" className="raahi-prototype-entry__note">Opens in a new tab. Sign in with the ChatGPT account that owns this private preview. The original screens and service decisions below are available without prototype access.</p>
+              <div className="raahi-prototype-entry__reading"><a href="https://raahi-interactive-20261023.pawar-d-parth.chatgpt.site/#/kiosk" target="_blank" rel="noopener noreferrer">Open private kiosk</a><a href="https://raahi-interactive-20261023.pawar-d-parth.chatgpt.site/#/vehicle" target="_blank" rel="noopener noreferrer">Open private bus display</a></div>
               <nav className="raahi-prototype-entry__reading" aria-label="Explore the Raahi project">
                 <a href="#cs-features">Explore the design decisions</a>
                 <a href="#cs-research">Inspect the research artifacts</a>
@@ -77,11 +84,11 @@ export default function RaahiPage() {
             <div className="raahi-prototype-entry__guide">
               <h3>A trip to try</h3>
               <ol>
-                <li>Keep <strong>Amanora Future Towers</strong> as the origin. Choose <strong>Phoenix Marketcity</strong> as the destination, then select <strong>Find routes</strong>.</li>
+                <li>Set <strong>Vanaz</strong> as the origin. Choose <strong>EON IT Park</strong> as the destination, then select <strong>Find routes</strong>.</li>
                 <li>Compare the connections, open <strong>View route</strong>, then select <strong>Try this journey</strong>.</li>
                 <li>Advance through the stops, get a demo ticket, and complete the journey. Your trip will appear in <strong>Activity</strong> and <strong>Insights</strong>.</li>
               </ol>
-              <p className="raahi-prototype-entry__note">This browser adaptation uses sample stops, departures, and fares. Journey progress is manual. No money is collected, and demo tickets are not valid for travel.</p>
+              <p className="raahi-prototype-entry__note">Operator names and selected connections are source-backed. Positions, departure times and fares are prototype estimates. Journey progress is manual. No money is collected, and demo tickets are not valid for travel.</p>
             </div>
           </div>
         </CsSection>
@@ -90,7 +97,8 @@ export default function RaahiPage() {
         <CsSection id="cs-summary" label="Problem" title="Keep a journey legible across handoffs">
           <CsBody><p>Planning a route is only part of a commute. The design connects saved destinations, route comparisons, a leg-by-leg itinerary and stop information. I worked with Sampada Inamdar on research and concept development, then carried the service structure into the identity and interfaces.</p></CsBody>
         </CsSection>
-        <CsExpandPreview sectionIds={['cs-research','cs-system','cs-visual','cs-features','cs-touchpoints','cs-results','cs-reflections']} cta="Read the decisions and original screens" note="Inspect the mobile journey, shared-service touchpoints and supporting research artifacts.">
+        <CsExpandPreview sectionIds={['cs-pune-evidence','cs-service-journey','cs-service-blueprint','cs-service-architecture','cs-service-mockups','cs-service-validation','cs-research','cs-system','cs-visual','cs-features','cs-touchpoints','cs-results','cs-reflections']} cta="Read the decisions and original screens" note="Inspect the mobile journey, shared-service touchpoints and supporting research artifacts.">
+        <RaahiServiceStudy />
         <CsSection id="cs-features" label="Mobile journey" title="From a familiar place to the next leg">
           <CsScreenExplorer scrollPortrait label="Choose a Raahi journey screen" screens={[
             { title:'Start with familiar places', label:'Home and recent trips', src:raahiAsset('homepage.png'), alt:'Original Raahi home screen with destination shortcuts, transport modes and recent trips', caption:'Scroll within the screen to inspect the complete home design, or open the original.', decision:{question:'What should a repeat rider enter again?', choice:'Put destination shortcuts and recent trips before the rest of the service.', evidence:'The destination field, saved-place chips and recent-trip cards share the home screen.', limit:'The carbon and reward values are concept content, not measured environmental or adoption results.'}},
@@ -116,11 +124,11 @@ export default function RaahiPage() {
           <details className="service-source-details"><summary>Inspect the complete service composition</summary><figure className="service-evidence"><EvidenceImage src={raahiAsset('Frame 427318657.png')} alt="Original Raahi full system overview" /></figure></details>
         </CsSection>
         <CsSection id="cs-results" label="Evidence limits" title="What needs testing next">
-          <span id="cs-reflections" className="project-decision-alias" /><CsBody><p>The record supports a coordinated service concept, not an improvement in rider confidence or travel outcomes. Test whether riders can compare two routes, explain a transfer and find their next stop across the mobile and vehicle displays. Include Marathi, Hindi and English speakers and people unfamiliar with the route.</p></CsBody>
+          <span id="cs-reflections" className="project-decision-alias" /><CsBody><p>The original record and new working prototype support a coordinated service proposal. Neither establishes an improvement in rider confidence or travel outcomes. Test whether riders can compare two routes, explain a transfer and find their next stop across the mobile and vehicle displays. Include Marathi, Hindi and English speakers and people unfamiliar with the route.</p></CsBody>
           <CsCredits credits={[{role:'UI Designer & Researcher',name:'Parth Pawar'},{role:'UX Designer & Researcher',name:'Sampada Inamdar'}]} />
         </CsSection>
         </CsExpandPreview>
-        <BottomNav sections={[{id:'cs-prototype',label:'Try the prototype'},{id:'cs-summary',label:'Problem'},{id:'cs-features',label:'Mobile journey'},{id:'cs-touchpoints',label:'Beyond the phone'},{id:'cs-research',label:'Source artifacts'},{id:'cs-results',label:'Next study'}]} />
+        <BottomNav sections={[{id:'cs-prototype',label:'Try the prototype'},{id:'cs-pune-evidence',label:'Pune evidence'},{id:'cs-service-blueprint',label:'Service blueprint'},{id:'cs-service-architecture',label:'Architecture'},{id:'cs-service-mockups',label:'Final touchpoints'},{id:'cs-features',label:'Original screens'},{id:'cs-touchpoints',label:'Beyond the phone'},{id:'cs-research',label:'Source artifacts'},{id:'cs-results',label:'Next study'}]} />
       </main>
       <NextProject slug="mentra-miniapps" title="MiniApps in OS" image="/Assets/mockups/projects/mentra-miniapps_16x9.webp" />
       <Footer />
