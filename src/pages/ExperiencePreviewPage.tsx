@@ -11,6 +11,7 @@ import '../styles/typeface-page.css'
 import '../styles/glyph-editor.css'
 import '../styles/type-workshop.css'
 import '../components/physical-worlds/worlds.css'
+const RaahiExperiencePage = lazy(() => import('./RaahiExperiencePage'))
 const ProjectPrototypePage = lazy(() => import('./ProjectPrototypePage'))
 const PhysicalWorld = lazy(() => import('../components/physical-worlds/PhysicalWorld'))
 const ArtTownArchive = lazy(() => import('../components/ArtTownArchive'))
@@ -25,6 +26,7 @@ export default function ExperiencePreviewPage() {
   const directory=useDraftReturn()
   const previewProjects=draftReviewOrder.filter(slug=>experienceRegistry.some(item=>item.slug===slug&&item.status==='draft'))
   if (experiencePreviewsEnabled && !project) return <ExperienceReviewIndex slugs={[...experienceRegistry.filter(item=>item.status==='approved').map(item=>item.slug),...previewProjects]} />
+  if (experiencePreviewsEnabled && project === 'raahi-project') return <Suspense fallback={<p role="status">Preparing Raahi…</p>}><RaahiExperiencePage /></Suspense>
   if (experiencePreviewsEnabled && projectExperience(project)?.format === 'prototype') return <Suspense fallback={<p role="status">Preparing the workflow prototype…</p>}><ProjectPrototypePage preview /></Suspense>
   const physical = ['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(project)
   if (!experiencePreviewsEnabled || (!physical && !['typeface','moniac-machine','atps','the-omakase'].includes(project))) return <Navigate to={projectExperience(project) ? `/${project}` : '/404'} replace />
