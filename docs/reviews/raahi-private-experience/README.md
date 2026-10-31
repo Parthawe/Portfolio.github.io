@@ -8,4 +8,4 @@ The existing browser QA scripts now verify this route's actual contract: exact p
 
 Production build uses the same `VITE_EXPERIENCE_PREVIEWS_ENABLED=1` setting as deployment. Direct routes are generated as static entrypoints. No Figma file was read or modified for this change.
 
-Validation: full TypeScript/production build passed (240 static route entrypoints), changed-source detector returned no findings, and diff checks passed. CUA checked desktop light and mobile dark layouts, loaded image, exact private destinations, no iframe and viewport containment. Mobile launch target is approximately 53px high.
+Validation: full TypeScript/production build passed (260 static route entrypoints), changed-source detector returned no findings, and diff checks passed. CUA checked desktop light and mobile dark layouts, loaded image, exact private destinations, no iframe and viewport containment. Mobile launch target is approximately 53px high.
