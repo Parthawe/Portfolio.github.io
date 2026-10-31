@@ -31,6 +31,7 @@ export default function PracticeEntry({ slug }: { slug: keyof typeof practiceEnt
     <main id="main-content" className="project-main practice-entry">
       <article className="wrap">
         <Link to="/work" className="glass-action">Back to work</Link>
+        <Link to={`/process/${encodeURIComponent(slug)}`} className="glass-action">References &amp; process ↗</Link>
         <header>
           <h1>{project.name}</h1>
           <p>{entry.description}</p>

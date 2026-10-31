@@ -156,12 +156,19 @@ export default function RootLayout() {
     });
   }, [location.pathname]);
 
+  const previousScrollRoute = useRef<{ pathname: string; hash: string } | null>(null);
+
   // Restore history positions; new routes start at their explicit anchor or top.
   useLayoutEffect(() => {
-    clearBodyScrollLocks();
+    const previous = previousScrollRoute.current;
+    previousScrollRoute.current = { pathname: location.pathname, hash: location.hash };
+    // Artifact selection and stage filters are views of the same process board.
+    // Their query-string history entries must not reset the reading position.
+    const preserveProcessPosition = location.pathname.startsWith('/process/') && previous?.pathname === location.pathname && previous.hash === location.hash;
+    if (!preserveProcessPosition) clearBodyScrollLocks();
     const previousRestoration = history.scrollRestoration;
     history.scrollRestoration = 'manual';
-    const top = navigationType === 'POP' ? scrollPositions.get(location.key) ?? 0 : 0;
+    const top = preserveProcessPosition ? window.scrollY : navigationType === 'POP' ? scrollPositions.get(location.key) ?? 0 : 0;
     // The fresh HTML shell has no scrollable route content yet. Its initial
     // zero-position restore would force layout twice as the lazy route mounts.
     const initialTop = initialRouteRef.current && top === 0 && !location.hash;
@@ -184,7 +191,7 @@ export default function RootLayout() {
       cancelAnimationFrame(frame);
       history.scrollRestoration = previousRestoration;
     };
-  }, [location.key, location.hash, navigationType]);
+  }, [location.key, location.pathname, location.hash, navigationType]);
 
   // Rulers change page padding and fixed-control offsets. Apply the saved
   // preference in the commit, before the route's first visible frame.
