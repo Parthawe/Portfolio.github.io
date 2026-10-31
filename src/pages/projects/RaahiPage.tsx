@@ -53,7 +53,7 @@ export default function RaahiPage() {
           title="Raahi"
           subtitle="A connected Pune transit concept, from the phone to the station kiosk and the next stop on the bus."
           visualHeroImage={serviceAsset('service-mockup.png')}
-          visualHeroAlt="Concept mockups of the working Raahi planner, station kiosk and bus display"
+          visualHeroAlt="Concept mockups of a Raahi phone demo QR ticket, station kiosk and bus display"
           heroFraming="image"
           liveUrl={raahiPrototypeUrl}
           liveLabel="Open private prototype"
