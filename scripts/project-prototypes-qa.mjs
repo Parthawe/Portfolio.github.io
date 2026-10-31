@@ -1,3 +1,4 @@
+import { verifyRaahiPrivateEntry } from './raahi-private-entry-assertions.mjs'
 import assert from 'node:assert/strict'
 import { chromium, expect } from '@playwright/test'
 import { mkdirSync, writeFileSync } from 'node:fs'
@@ -17,6 +18,7 @@ await page.route('https://www.figma.com/embed?*',route=>route.fulfill({contentTy
 page.on('pageerror',e=>errors.push(e.message))
 for(const slug of slugs) {
  await page.goto(`${base}/experience-preview/${slug}`,{waitUntil:'domcontentloaded'})
+ if(slug==='raahi-project'){await verifyRaahiPrivateEntry(page);results.push(`${profile.name} private Raahi entry`);continue}
  await page.locator('.original-interface-study > summary').click()
  const app=page.locator('[data-prototype]')
  await expect(app).toHaveAttribute('data-prototype-theme',profile.theme)
@@ -31,7 +33,6 @@ for(const slug of slugs) {
  if(slug==='ballah-code') {await button('Propose explicit button type').click();await button('Apply proposed change').click();await expect(app.getByLabel('Component source')).toHaveValue(/type="button"/)}
  if(slug==='vj-software') {await expect(button('Review booking')).toBeDisabled();await app.getByRole('button',{name:/Bay 2, wing/}).click();await button('Review booking').click();await button('Confirm sample booking').click();await expect(app).toContainText('No real space was booked')}
  if(slug==='code-for-build') {await expect(page.frameLocator('iframe[title="Your generated page"]').getByRole('heading',{name:'Your first page',exact:true})).toBeVisible();await button('Add button').click();await button('Code').click();await expect(app.getByLabel('Generated HTML')).toContainText('<button type="button">Continue</button>');await button('Output').click();await expect(page.frameLocator('iframe[title="Your generated page"]').getByRole('button',{name:'Continue',exact:true})).toBeVisible()}
- if(slug==='raahi-project') {await app.getByLabel('Destination').selectOption('Work');await button('Plan sample journey').click();await button('Next touchpoint').click();await expect(app.getByRole('status')).toContainText('Touchpoint 2 of 5');await expect(button('Board sample vehicle')).toBeDisabled();await button('Create sample ticket').click();await button('Board sample vehicle').click();await button('Next touchpoint').click();await button('Finish journey').click();await expect(app).toContainText('completed the sample journey')}
 
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${slug} overflow`)
  await page.screenshot({path:`${out}/${profile.name}-${slug}.png`,fullPage:true})

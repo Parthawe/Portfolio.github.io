@@ -20,7 +20,7 @@ export const interfaceSources:Record<string,InterfaceSource> = {
  'vj-software':{prototypes:[taskPrototype('2%3A70','Parking selection','vj-software')],sourceNote:'Source-based task draft using the original parking screen: inspect sample availability, choose a bay and review the selection.'},
  'code-for-build':{prototypes:[taskPrototype('2%3A120','Block to code','code-for-build')],sourceNote:'Source-based task draft: select a block, inspect its output hierarchy and compare illustrative Flutter/Dart.'},
  'ballah-code':{prototypes:[taskPrototype('2%3A157','Review a code change','ballah-code')],sourceNote:'Source-based IDE task draft: inspect a proposed validation change, apply or reject it, and undo the prototype change.'},
- 'raahi-project':{prototypes:[taskPrototype('2%3A240','Plan a bus journey','raahi-project')],sourceNote:'Source-based task draft using the original Raahi palette and journey concept. Explore a prepared route; no live transit data or ticketing.'},
+ 'raahi-project':{prototypes:[],sourceNote:'Working private browser prototype with selected Pune references, a personal journey planner, isolated station kiosk and simulated bus display. Owner sign-in required.'},
 }
 export const interfaceSource=(slug:string)=>interfaceSources[slug]
 export function interfaceKindMatches(slug:string,kind:string){const source=interfaceSource(slug);return kind==='all'||(kind==='live'?source?.live?.verified===true:kind==='figma'?!!source?.prototypes.length:kind==='studies'?!!source&&!source.live?.verified&&!source.prototypes.length:false)}

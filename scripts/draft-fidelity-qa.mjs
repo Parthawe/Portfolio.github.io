@@ -1,3 +1,4 @@
+import { verifyRaahiPrivateEntry } from './raahi-private-entry-assertions.mjs'
 import {chromium,webkit,expect} from '@playwright/test'
 import assert from 'node:assert/strict'
 import {mkdirSync,writeFileSync} from 'node:fs'
@@ -14,7 +15,7 @@ for(const slug of slugs){
  await page.goto(`${base}/experience-preview/${slug}`)
  await expect(page.getByRole('navigation',{name:'Draft review sequence'})).toContainText(`Draft ${slugs.indexOf(slug)+1} of 18`)
  if(['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(slug))await expect(page.locator('.physical-world-stage canvas')).toBeVisible()
- if(slug==='typeface')await expect(page.locator('[data-glyph-outline]')).toBeVisible();else if(slug==='atps')await expect(page.locator('audio')).toBeVisible();else if(slug==='moniac-machine')await expect(page.getByRole('button',{name:'Start Economy',exact:true})).toBeVisible();else if(!['enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(slug))await expect(page.locator('[data-prototype]')).toBeVisible();
+ if(slug==='typeface')await expect(page.locator('[data-glyph-outline]')).toBeVisible();else if(slug==='atps')await expect(page.locator('audio')).toBeVisible();else if(slug==='moniac-machine')await expect(page.getByRole('button',{name:'Start Economy',exact:true})).toBeVisible();else if(!['raahi-project','enigma','jugalbandi','revolving-stage','sea-of-salt','black-hole'].includes(slug))await expect(page.locator('[data-prototype]')).toBeVisible();
  startup.push({slug,...await page.evaluate(()=>({readyMs:Math.round(performance.now()),localEncodedBytes:performance.getEntriesByType('resource').filter(entry=>new URL(entry.name).origin===location.origin).reduce((sum,entry)=>sum+(entry.encodedBodySize||0),0)}))});
  switch(slug){
  case 'typeface':
@@ -53,7 +54,7 @@ for(const slug of slugs){
  case 'ballah-code':
   await page.getByRole('button',{name:'Signup validation',exact:true}).click();await page.getByRole('button',{name:'Run validation checks',exact:true}).click();await page.getByRole('button',{name:'Prepare validation proposal',exact:true}).click();await page.getByRole('button',{name:'Apply validation proposal',exact:true}).click();await page.getByRole('button',{name:'Run validation checks',exact:true}).click();await expect(page.locator('.prototype-test-results tbody tr').filter({hasText:'Pass'})).toHaveCount(3);break
  case 'raahi-project':
-  await page.getByRole('button',{name:'Plan sample journey'}).click();await page.getByRole('button',{name:'Next touchpoint'}).click();await page.getByRole('button',{name:'Miss this sample vehicle'}).click();await page.getByRole('button',{name:'Create sample ticket'}).click();await page.getByRole('button',{name:'Board sample vehicle'}).click();await expect(page.getByRole('img',{name:'Original Raahi in-vehicle next-stop display'})).toBeVisible();await expect(page.locator('.prototype-transit-handoff')).toContainText('Alternative prepared vehicle');break
+  await verifyRaahiPrivateEntry(page);break
  }
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),slug)
  await page.screenshot({path:`${out}/${slug}/interaction.png`,fullPage:true});const video=page.video();await page.close();await context.close();await video.saveAs(`${out}/${slug}/interaction.webm`);results.push(slug);console.log(slug)

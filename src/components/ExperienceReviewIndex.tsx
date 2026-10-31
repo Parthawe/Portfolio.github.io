@@ -29,7 +29,7 @@ const previews: Record<string, { description: string; image?: string; note?: str
   'vj-software': { description: 'Choose a floor, vehicle and compatible parking bay, then review a sample reservation.', image: '/Assets/Projects/vj/photos/car-parking.png', note: 'Sample availability · no booking' },
   'code-for-build': { description: 'Edit and arrange page blocks, inspect the rendered output and structure, then export the HTML.', image: '/Assets/Projects/CodeforBuild/photos/output-code-pair.png', note: 'Browser adaptation of the learning concept' },
   'ballah-code': { description: 'Test a button’s behavior or signup validation, inspect a proposed code change and apply it locally.', image: '/Assets/Projects/BallahCode/site/ballah-product-window.png', note: 'Prepared coding exercises' },
-  'raahi-project': { description: 'Plan a sample transit journey across the app, stop, vehicle and transfer, including a missed vehicle.', image: '/Assets/Projects/Raahi/photos/Frame%20427318655.png', note: 'Prepared journey · no live transit data' },
+  'raahi-project': { description: 'Open the private working journey planner, station kiosk and inside-bus display.', image: '/Assets/Projects/Raahi/service-2026/service-mockup.png', note: 'Private working app · owner sign-in' },
 }
 const formatLabels: Record<string, string> = { '3d': 'Interactive 3D', anatomy: 'Anatomy mechanism', prototype: 'Working prototype', tool: 'Interactive tool', 'original-experiment': 'Original experiment / tool', media: 'Listening archive' }
 
